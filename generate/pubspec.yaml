@@ -9,6 +9,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   args: ^2.7.0
+  code_builder: ^4.10.1
   http: ^1.4.0
   # path: ^1.8.0
 
