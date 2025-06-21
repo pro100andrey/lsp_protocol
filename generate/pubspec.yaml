@@ -10,6 +10,7 @@ environment:
 dependencies:
   args: ^2.7.0
   code_builder: ^4.10.1
+  equatable: ^2.0.7
   http: ^1.4.0
   json_annotation: ^4.9.0
   # path: ^1.8.0

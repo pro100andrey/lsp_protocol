@@ -5,11 +5,18 @@ import 'dart:io';
 
 import 'downloader.dart';
 
-Uri _lspSpecUri(String version) {
-  final url =
+const _version = '3.17';
+const _dirName = 'lsp_download_$_version';
+const _specFileName = 'lsp_spec_$_version.json';
+const _licenseFileName = 'lsp_license.txt';
+const fullSpecFileName = '$_dirName/$_specFileName';
+const fullLicenseFileName = '$_dirName/$_licenseFileName';
+
+Uri _lspSpecUri() {
+  const url =
       'https://microsoft.github.io/'
       'language-server-protocol/specifications/'
-      'lsp/$version/metaModel/metaModel.json';
+      'lsp/$_version/metaModel/metaModel.json';
 
   return Uri.parse(url);
 }
@@ -28,43 +35,43 @@ Future<void> _saveToFile(String content, String fileName) async {
   print('Content saved to $fileName');
 }
 
-Future<void> downloadLSPSpecAndLicense(String version) async {
-  final specUri = _lspSpecUri(version);
+Future<void> downloadLSPSpecAndLicense() async {
+  if (!Directory(_dirName).existsSync()) {
+    await Directory(_dirName).create(recursive: true);
+  } else if (File(fullSpecFileName).existsSync() &&
+      File(fullLicenseFileName).existsSync()) {
+    print('Files already exist in $_dirName, skipping download.');
+    return;
+  }
+
+  final specUri = _lspSpecUri();
   final licenseUri = _licenseUri();
 
   final result = await Future.wait([download(specUri), download(licenseUri)]);
 
   final [specResult, licenseResult] = result;
 
-  final outputDir = 'lsp_download_$version';
-
-  if (!Directory(outputDir).existsSync()) {
-    await Directory(outputDir).create(recursive: true);
-  }
-
-  await _saveToFile(specResult, '$outputDir/lsp_spec_$version.json');
-  await _saveToFile(licenseResult, '$outputDir/lsp_license.txt');
+  await _saveToFile(specResult, fullSpecFileName);
+  await _saveToFile(licenseResult, fullLicenseFileName);
 }
 
 Future<void> cleanUp(String version) async {
-  final outputDir = 'lsp_download_$version';
-  final dir = Directory(outputDir);
+  final dir = Directory('$_dirName/');
 
   if (dir.existsSync()) {
-    print('Cleaning up directory: $outputDir');
+    print('Cleaning up directory: $_dirName');
     await dir.delete(recursive: true);
-    print('Directory $outputDir cleaned up.');
+    print('Directory $_dirName cleaned up.');
   } else {
-    print('Directory $outputDir does not exist, nothing to clean up.');
+    print('Directory $_dirName does not exist, nothing to clean up.');
   }
 }
 
-Future<Map<String, dynamic>> loadLSPMeta(String version) async {
-  final fileName = 'lsp_download_$version/lsp_spec_$version.json';
-  final file = File(fileName);
+Future<Map<String, dynamic>> loadLSPMeta() async {
+  final file = File(fullSpecFileName);
 
   if (!file.existsSync()) {
-    throw Exception('LSP specification file not found: $fileName');
+    throw Exception('LSP specification file not found: ${file.path}');
   }
 
   final content = await file.readAsString();
