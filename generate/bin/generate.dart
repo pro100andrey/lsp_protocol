@@ -2,6 +2,7 @@
 
 import 'package:args/args.dart';
 import 'package:generate/src/lsp_source.dart';
+import 'package:generate/src/meta/protocol.dart';
 
 Future<void> main(List<String> args) async {
   final parser = _argParser();
@@ -18,6 +19,14 @@ Future<void> main(List<String> args) async {
   await downloadLSPSpecAndLicense(version);
 
   final meta = await loadLSPMeta(version);
+
+  final protocol = LSPProtocol.fromJson(meta);
+
+  for (final request in protocol.requests) {
+    if (request.result.name != null) {
+      print('Result Name: ${request.result.name}');
+    }
+  }
 
   if (meta case {
     'metaData': final Map metaData,
