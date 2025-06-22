@@ -6,6 +6,7 @@ import '../meta/protocol.dart';
 String generateCode(MetaProtocol protocol) {
   final library = Library(
     (b) {
+      b.body.add(_generateBaseJsonClass());
       // Generate classes from structures
       for (final structure in protocol.structures) {
         b.body.add(_generateClassFromStructure(structure));
@@ -24,26 +25,42 @@ String generateCode(MetaProtocol protocol) {
   return result;
 }
 
+Class _generateBaseJsonClass() {
+  final clazz = Class((b) {
+    b
+      ..name = 'BaseJson'
+      ..abstract = true;
+    b.methods.add(
+      Method(
+        (mb) {
+          mb
+            ..name = 'toJson'
+            ..returns = refer('Map<String, dynamic>');
+        },
+      ),
+    );
+  });
+
+  return clazz;
+}
+
 Class _generateClassFromStructure(MetaStructure structure) {
   final clazz = Class((b) {
-    b.name = structure.name;
-
-    // Add factory constructor for fromJson
-    b.constructors.add(
-      Constructor((cb) {
-        cb
-          ..factory = true
-          ..name = 'fromJson'
-          ..requiredParameters.add(
-            Parameter(
-              (pb) => pb
-                ..name = 'json'
-                ..type = refer('Map<String, dynamic>'),
-            ),
-          )
-          ..body = Code('return _\$${structure.name}FromJson(json);');
-      }),
-    );
+    b
+      ..name = structure.name
+      ..extend = refer('BaseJson')
+      ..methods.add(
+        Method(
+          (mb) {
+            mb
+              ..name = 'toJson'
+              ..returns = refer('Map<String, dynamic>')
+              ..body = const Code('''
+                return {};
+              ''');
+          },
+        ),
+      );
   });
 
   return clazz;

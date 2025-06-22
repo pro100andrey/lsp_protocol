@@ -2,6 +2,7 @@
 
 import 'package:args/args.dart';
 import 'package:generate/generate.dart';
+import 'package:generate/src/code_generator/generator.dart';
 
 Future<void> main(List<String> args) async {
   final parser = _argParser();
@@ -19,6 +20,11 @@ Future<void> main(List<String> args) async {
   final protocol = MetaProtocol.fromJson(meta);
   printProtocol(protocol);
 
+  final code = generateCode(protocol);
+
+  final outputFile = resolvePath('../lib/src/generated/protocol.dart');
+  await createDirectoryForFilePath(outputFile);
+  await writeToFile(code, outputFile);
   await cleanUp();
 }
 
