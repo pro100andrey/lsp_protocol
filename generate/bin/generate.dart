@@ -1,9 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:args/args.dart';
-import 'package:generate/src/lsp_source.dart';
-import 'package:generate/src/meta/protocol.dart';
-import 'package:generate/src/utils.dart';
+import 'package:generate/generate.dart';
 
 Future<void> main(List<String> args) async {
   final parser = _argParser();
