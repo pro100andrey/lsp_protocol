@@ -1,5 +1,9 @@
 include: package:pro_lints/common.yaml
 
+analyzer: 
+  exclude:
+    - lib/src/**/*.g.dart
+
 formatter: 
   page_width: 80
   trailing_commas: preserve

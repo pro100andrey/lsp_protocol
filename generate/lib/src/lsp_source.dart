@@ -55,7 +55,7 @@ Future<void> downloadLSPSpecAndLicense() async {
   await _saveToFile(licenseResult, fullLicenseFileName);
 }
 
-Future<void> cleanUp(String version) async {
+Future<void> cleanUp() async {
   final dir = Directory('$_dirName/');
 
   if (dir.existsSync()) {
