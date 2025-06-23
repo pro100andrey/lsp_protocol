@@ -76,11 +76,11 @@ class ProtocolGenerator {
   });
 
   Class _generateToJsonClass() {
-    final clazz = Class((b) {
-      b
+    final clazz = Class((cb) {
+      cb
         ..name = toJsonClassRef.symbol
         ..abstract = true;
-      b.methods.add(
+      cb.methods.add(
         Method(
           (mb) {
             mb
@@ -95,10 +95,10 @@ class ProtocolGenerator {
     return clazz;
   }
 
-  void _addStructFields(ClassBuilder classBuilder, MetaStructure structure) {
+  void _addStructFields(ClassBuilder cb, MetaStructure structure) {
     final fields = structure.properties;
 
-    classBuilder.fields.addAll(
+    cb.fields.addAll(
       fields.map(
         (property) {
           final propDocs =
@@ -119,7 +119,7 @@ class ProtocolGenerator {
       ),
     );
 
-    classBuilder.constructors.add(
+    cb.constructors.add(
       Constructor((cb) {
         cb.optionalParameters.addAll(
           fields.map(
@@ -136,10 +136,10 @@ class ProtocolGenerator {
     );
   }
 
-  void _generateMethods(ClassBuilder classBuilder, MetaStructure structure) {
+  void _generateMethods(ClassBuilder cb, MetaStructure structure) {
     // Add methods to the class if needed
     // For example, you can add a method to convert the structure to JSON
-    classBuilder.methods.add(
+    cb.methods.add(
       Method(
         (mb) {
           mb
@@ -159,18 +159,18 @@ class ProtocolGenerator {
     final formattedDescription =
         formatDocComment(structure.documentation) ?? [];
 
-    final clazz = Class((b) {
-      b
+    final clazz = Class((cb) {
+      cb
         ..docs.addAll(formattedDescription)
         ..name = structure.name
         ..extend = toJsonClassRef;
 
       if (generateMethods) {
-        _generateMethods(b, structure);
+        _generateMethods(cb, structure);
       }
 
       if (generateFields) {
-        _addStructFields(b, structure);
+        _addStructFields(cb, structure);
       }
     });
 
