@@ -22,17 +22,22 @@ class ProtocolGenerator {
 
   Reference get toJsonClassRef => refer('ToJson');
 
+  bool get generateFields => false;
+  bool get generateMethods => false;
+
+  List<String> _header() => [
+    '/// Do not edit it manually.',
+    '///',
+    '/// To regenerate, run `dart run lsp_meta:generate`.',
+    '',
+    '// ignore_for_file: prefer_expression_function_bodies',
+    '// ignore_for_file: one_member_abstracts',
+  ];
+
   String _generateCode(MetaProtocol protocol) {
     final library = Library(
       (b) {
-        b.docs.addAll([
-          '/// Do not edit it manually.',
-          '///',
-          '/// To regenerate, run `dart run lsp_meta:generate`.',
-          '',
-          '// ignore_for_file: prefer_expression_function_bodies',
-          '// ignore_for_file: one_member_abstracts',
-        ]);
+        b.docs.addAll(_header());
 
         for (final typeAlias in protocol.typeAliases) {
           b.body.add(_generateTypeAlias(typeAlias));
@@ -55,7 +60,6 @@ class ProtocolGenerator {
     );
 
     final dartCode = library.accept(emitter).toString();
-
     final result = formatter.format(dartCode);
 
     return result;
@@ -79,13 +83,70 @@ class ProtocolGenerator {
           (mb) {
             mb
               ..name = 'toJson'
-              ..returns = refer('Map<String, dynamic>');
+              ..returns = refer('Map<String, dynamic>')
+              ..body = const Code('throw UnimplementedError();');
           },
         ),
       );
     });
 
     return clazz;
+  }
+
+  void _addStructFields(ClassBuilder classBuilder, MetaStructure structure) {
+    final fields = structure.properties;
+
+    classBuilder.fields.addAll(
+      fields.map(
+        (property) {
+          final propDocs =
+              formatDocComment(property.documentation, maxLineLength: 76) ?? [];
+          final propType = _resolveTypeName(property.type!.name.toString());
+          final propName = property.name;
+
+          return Field(
+            (fb) {
+              fb
+                ..docs.addAll(propDocs)
+                ..modifier = FieldModifier.final$
+                ..name = propName
+                ..type = refer(propType);
+            },
+          );
+        },
+      ),
+    );
+
+    classBuilder.constructors.add(
+      Constructor((cb) {
+        cb.optionalParameters.addAll(
+          fields.map(
+            (property) => Parameter((pb) {
+              pb
+                ..name = property.name!
+                ..named = true
+                ..required = true
+                ..toThis = true;
+            }),
+          ),
+        );
+      }),
+    );
+  }
+
+  void _generateMethods(ClassBuilder classBuilder, MetaStructure structure) {
+    // Add methods to the class if needed
+    // For example, you can add a method to convert the structure to JSON
+    classBuilder.methods.add(
+      Method(
+        (mb) {
+          mb
+            ..name = 'toJson'
+            ..returns = refer('Map<String, dynamic>')
+            ..body = const Code('return {};');
+        },
+      ),
+    );
   }
 
   Class _generateClassFromStructure(MetaStructure structure) {
@@ -96,72 +157,19 @@ class ProtocolGenerator {
     final formattedDescription =
         formatDocComment(structure.documentation) ?? [];
 
-    if (formattedDescription.isEmpty) {
-      formattedDescription.insert(
-        0,
-        '/// Represents the ${structure.name} structure.',
-      );
-    }
-
-    final properties = structure.properties;
-
-    final fields = properties.map((property) {
-      final propDocs =
-          formatDocComment(property.documentation, maxLineLength: 76) ?? [];
-      final propType = _resolveTypeName(property.type!.name.toString());
-      final propName = property.name;
-
-      return Field(
-        (fb) {
-          fb
-            ..docs.addAll(propDocs)
-            ..modifier = FieldModifier.final$
-            ..name = propName
-            ..type = refer(propType);
-        },
-      );
-    }).toList();
-
-    final constructor = Constructor((cb) {
-      cb.optionalParameters.addAll(
-        properties.map(
-          (property) => Parameter((pb) {
-            pb
-              ..name = property.name!
-              ..named = true
-              ..required = true
-              ..toThis = true;
-          }),
-        ),
-      );
-    });
-
-    final methods = [
-      Method(
-        (mb) {
-          mb
-            ..annotations.add(refer('override'))
-            ..name = 'toJson'
-            ..returns = refer('Map<String, dynamic>')
-            ..body = const Code('return {};');
-        },
-      ),
-    ];
-
-    final implements = structure.extends$?.map((ext) {
-      final extType = _resolveTypeName(ext.name.toString());
-      return refer(extType);
-    }).toList();
-
     final clazz = Class((b) {
       b
         ..docs.addAll(formattedDescription)
         ..name = structure.name
-        // ..implements.addAll(implements ?? [])
-        ..extend = toJsonClassRef
-        ..constructors.add(constructor)
-        ..fields.addAll(fields)
-        ..methods.addAll(methods);
+        ..extend = toJsonClassRef;
+
+      if (generateMethods) {
+        _generateMethods(b, structure);
+      }
+
+      if (generateFields) {
+        _addStructFields(b, structure);
+      }
     });
 
     return clazz;
