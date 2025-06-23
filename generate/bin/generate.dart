@@ -18,7 +18,7 @@ Future<void> main(List<String> args) async {
 
   final meta = await loadLSPMeta();
   final protocol = MetaProtocol.fromJson(meta);
-  printProtocol(protocol);
+  // printProtocol(protocol);
 
   final code = generateCode(protocol);
 
