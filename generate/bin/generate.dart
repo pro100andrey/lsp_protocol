@@ -20,12 +20,13 @@ Future<void> main(List<String> args) async {
   final protocol = MetaProtocol.fromJson(meta);
   // printProtocol(protocol);
 
-  final code = generateCode(protocol);
+  final generator = ProtocolGenerator(protocol);
+  final code = generator.generate();
 
   final outputFile = resolvePath('../lib/src/generated/protocol.dart');
   await createDirectoryForFilePath(outputFile);
   await writeToFile(code, outputFile);
-  await cleanUp();
+  // await cleanUp();
 }
 
 ArgParser _argParser() {
