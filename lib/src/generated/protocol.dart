@@ -36,204 +36,446 @@ abstract class ToJson {
   }
 }
 
-class ImplementationParams extends ToJson
+class ImplementationParams
     implements
+        ToJson,
         TextDocumentPositionParams,
         WorkDoneProgressParams,
-        PartialResultParams {}
+        PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a location inside a resource, such as a line inside a text file.
-class Location extends ToJson {}
+class Location implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class ImplementationRegistrationOptions extends ToJson
+class ImplementationRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
         ImplementationOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class TypeDefinitionParams extends ToJson
+class TypeDefinitionParams
     implements
+        ToJson,
         TextDocumentPositionParams,
         WorkDoneProgressParams,
-        PartialResultParams {}
+        PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class TypeDefinitionRegistrationOptions extends ToJson
+class TypeDefinitionRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
         TypeDefinitionOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A workspace folder inside a client.
-class WorkspaceFolder extends ToJson {}
+class WorkspaceFolder implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a `workspace/didChangeWorkspaceFolders` notification.
-class DidChangeWorkspaceFoldersParams extends ToJson {}
+class DidChangeWorkspaceFoldersParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a configuration request.
-class ConfigurationParams extends ToJson {}
+class ConfigurationParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters for a {@link DocumentColorRequest}.
-class DocumentColorParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class DocumentColorParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a color range from a document.
-class ColorInformation extends ToJson {}
+class ColorInformation implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class DocumentColorRegistrationOptions extends ToJson
+class DocumentColorRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
         DocumentColorOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters for a {@link ColorPresentationRequest}.
-class ColorPresentationParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class ColorPresentationParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class ColorPresentation extends ToJson {}
+class ColorPresentation implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkDoneProgressOptions extends ToJson {}
+class WorkDoneProgressOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// General text document registration options.
-class TextDocumentRegistrationOptions extends ToJson {}
+class TextDocumentRegistrationOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters for a {@link FoldingRangeRequest}.
-class FoldingRangeParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class FoldingRangeParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a folding range. To be valid, start and end line must be bigger
 /// than zero and smaller than the number of lines in the document. Clients are
 /// free to ignore invalid ranges.
-class FoldingRange extends ToJson {}
+class FoldingRange implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class FoldingRangeRegistrationOptions extends ToJson
+class FoldingRangeRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
         FoldingRangeOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class DeclarationParams extends ToJson
+class DeclarationParams
     implements
+        ToJson,
         TextDocumentPositionParams,
         WorkDoneProgressParams,
-        PartialResultParams {}
+        PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class DeclarationRegistrationOptions extends ToJson
+class DeclarationRegistrationOptions
     implements
+        ToJson,
         DeclarationOptions,
         TextDocumentRegistrationOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A parameter literal used in selection range requests.
-class SelectionRangeParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class SelectionRangeParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A selection range represents a part of a selection hierarchy. A selection
 /// range may have a parent selection range that contains it.
-class SelectionRange extends ToJson {}
+class SelectionRange implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class SelectionRangeRegistrationOptions extends ToJson
+class SelectionRangeRegistrationOptions
     implements
+        ToJson,
         SelectionRangeOptions,
         TextDocumentRegistrationOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkDoneProgressCreateParams extends ToJson {}
+class WorkDoneProgressCreateParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkDoneProgressCancelParams extends ToJson {}
+class WorkDoneProgressCancelParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameter of a `textDocument/prepareCallHierarchy` request.
 /// @since 3.16.0
-class CallHierarchyPrepareParams extends ToJson
-    implements TextDocumentPositionParams, WorkDoneProgressParams {}
+class CallHierarchyPrepareParams
+    implements ToJson, TextDocumentPositionParams, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents programming constructs like functions or constructors in the
 /// context of call hierarchy.
 /// @since 3.16.0
-class CallHierarchyItem extends ToJson {}
+class CallHierarchyItem implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Call hierarchy options used during static or dynamic registration.
 /// @since 3.16.0
-class CallHierarchyRegistrationOptions extends ToJson
+class CallHierarchyRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
         CallHierarchyOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameter of a `callHierarchy/incomingCalls` request.
 /// @since 3.16.0
-class CallHierarchyIncomingCallsParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class CallHierarchyIncomingCallsParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents an incoming call, e.g. a caller of a method or constructor.
 /// @since 3.16.0
-class CallHierarchyIncomingCall extends ToJson {}
+class CallHierarchyIncomingCall implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameter of a `callHierarchy/outgoingCalls` request.
 /// @since 3.16.0
-class CallHierarchyOutgoingCallsParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class CallHierarchyOutgoingCallsParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents an outgoing call, e.g. calling a getter from a method or a
 /// method from a constructor etc.
 /// @since 3.16.0
-class CallHierarchyOutgoingCall extends ToJson {}
+class CallHierarchyOutgoingCall implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class SemanticTokensParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokens extends ToJson {}
+class SemanticTokens implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensPartialResult extends ToJson {}
+class SemanticTokensPartialResult implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensRegistrationOptions extends ToJson
+class SemanticTokensRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
         SemanticTokensOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensDeltaParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class SemanticTokensDeltaParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensDelta extends ToJson {}
+class SemanticTokensDelta implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensDeltaPartialResult extends ToJson {}
+class SemanticTokensDeltaPartialResult implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensRangeParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class SemanticTokensRangeParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Params to show a resource in the UI.
 /// @since 3.16.0
-class ShowDocumentParams extends ToJson {}
+class ShowDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The result of a showDocument request.
 /// @since 3.16.0
-class ShowDocumentResult extends ToJson {}
+class ShowDocumentResult implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class LinkedEditingRangeParams extends ToJson
-    implements TextDocumentPositionParams, WorkDoneProgressParams {}
+class LinkedEditingRangeParams
+    implements ToJson, TextDocumentPositionParams, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The result of a linked editing range request.
 /// @since 3.16.0
-class LinkedEditingRanges extends ToJson {}
+class LinkedEditingRanges implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class LinkedEditingRangeRegistrationOptions extends ToJson
+class LinkedEditingRangeRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
         LinkedEditingRangeOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters sent in notifications/requests for user-initiated creation
 /// of files.
 /// @since 3.16.0
-class CreateFilesParams extends ToJson {}
+class CreateFilesParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A workspace edit represents changes to many resources managed in the
 /// workspace. The edit should either provide `changes` or `documentChanges`.
@@ -248,465 +490,1050 @@ class CreateFilesParams extends ToJson {}
 /// file a.txt) will cause failure of the operation. How the client recovers
 /// from the failure is described by the client capability:
 /// `workspace.workspaceEdit.failureHandling`
-class WorkspaceEdit extends ToJson {}
+class WorkspaceEdit implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The options to register for file operations.
 /// @since 3.16.0
-class FileOperationRegistrationOptions extends ToJson {}
+class FileOperationRegistrationOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters sent in notifications/requests for user-initiated renames of
 /// files.
 /// @since 3.16.0
-class RenameFilesParams extends ToJson {}
+class RenameFilesParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters sent in notifications/requests for user-initiated deletes of
 /// files.
 /// @since 3.16.0
-class DeleteFilesParams extends ToJson {}
+class DeleteFilesParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class MonikerParams extends ToJson
+class MonikerParams
     implements
+        ToJson,
         TextDocumentPositionParams,
         WorkDoneProgressParams,
-        PartialResultParams {}
+        PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Moniker definition to match LSIF 0.5 moniker definition.
 /// @since 3.16.0
-class Moniker extends ToJson {}
+class Moniker implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class MonikerRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, MonikerOptions {}
+class MonikerRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, MonikerOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameter of a `textDocument/prepareTypeHierarchy` request.
 /// @since 3.17.0
-class TypeHierarchyPrepareParams extends ToJson
-    implements TextDocumentPositionParams, WorkDoneProgressParams {}
+class TypeHierarchyPrepareParams
+    implements ToJson, TextDocumentPositionParams, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.17.0
-class TypeHierarchyItem extends ToJson {}
+class TypeHierarchyItem implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Type hierarchy options used during static or dynamic registration.
 /// @since 3.17.0
-class TypeHierarchyRegistrationOptions extends ToJson
+class TypeHierarchyRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
         TypeHierarchyOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameter of a `typeHierarchy/supertypes` request.
 /// @since 3.17.0
-class TypeHierarchySupertypesParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class TypeHierarchySupertypesParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameter of a `typeHierarchy/subtypes` request.
 /// @since 3.17.0
-class TypeHierarchySubtypesParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class TypeHierarchySubtypesParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A parameter literal used in inline value requests.
 /// @since 3.17.0
-class InlineValueParams extends ToJson implements WorkDoneProgressParams {}
+class InlineValueParams implements ToJson, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Inline value options used during static or dynamic registration.
 /// @since 3.17.0
-class InlineValueRegistrationOptions extends ToJson
+class InlineValueRegistrationOptions
     implements
+        ToJson,
         InlineValueOptions,
         TextDocumentRegistrationOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A parameter literal used in inlay hint requests.
 /// @since 3.17.0
-class InlayHintParams extends ToJson implements WorkDoneProgressParams {}
+class InlayHintParams implements ToJson, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Inlay hint information.
 /// @since 3.17.0
-class InlayHint extends ToJson {}
+class InlayHint implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Inlay hint options used during static or dynamic registration.
 /// @since 3.17.0
-class InlayHintRegistrationOptions extends ToJson
+class InlayHintRegistrationOptions
     implements
+        ToJson,
         InlayHintOptions,
         TextDocumentRegistrationOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters of the document diagnostic request.
 /// @since 3.17.0
-class DocumentDiagnosticParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class DocumentDiagnosticParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A partial result for a document diagnostic report.
 /// @since 3.17.0
-class DocumentDiagnosticReportPartialResult extends ToJson {}
+class DocumentDiagnosticReportPartialResult implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Cancellation data returned from a diagnostic request.
 /// @since 3.17.0
-class DiagnosticServerCancellationData extends ToJson {}
+class DiagnosticServerCancellationData implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Diagnostic registration options.
 /// @since 3.17.0
-class DiagnosticRegistrationOptions extends ToJson
+class DiagnosticRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
         DiagnosticOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters of the workspace diagnostic request.
 /// @since 3.17.0
-class WorkspaceDiagnosticParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class WorkspaceDiagnosticParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A workspace diagnostic report.
 /// @since 3.17.0
-class WorkspaceDiagnosticReport extends ToJson {}
+class WorkspaceDiagnosticReport implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A partial result for a workspace diagnostic report.
 /// @since 3.17.0
-class WorkspaceDiagnosticReportPartialResult extends ToJson {}
+class WorkspaceDiagnosticReportPartialResult implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The params sent in an open notebook document notification.
 /// @since 3.17.0
-class DidOpenNotebookDocumentParams extends ToJson {}
+class DidOpenNotebookDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The params sent in a change notebook document notification.
 /// @since 3.17.0
-class DidChangeNotebookDocumentParams extends ToJson {}
+class DidChangeNotebookDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The params sent in a save notebook document notification.
 /// @since 3.17.0
-class DidSaveNotebookDocumentParams extends ToJson {}
+class DidSaveNotebookDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The params sent in a close notebook document notification.
 /// @since 3.17.0
-class DidCloseNotebookDocumentParams extends ToJson {}
+class DidCloseNotebookDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A parameter literal used in inline completion requests.
 /// @since 3.18.0 @proposed
-class InlineCompletionParams extends ToJson
-    implements TextDocumentPositionParams, WorkDoneProgressParams {}
+class InlineCompletionParams
+    implements ToJson, TextDocumentPositionParams, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a collection of {@link InlineCompletionItem inline completion
 /// items} to be presented in the editor.
 /// @since 3.18.0 @proposed
-class InlineCompletionList extends ToJson {}
+class InlineCompletionList implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// An inline completion item represents a text snippet that is proposed inline
 /// to complete text that is being typed.
 /// @since 3.18.0 @proposed
-class InlineCompletionItem extends ToJson {}
+class InlineCompletionItem implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Inline completion options used during static or dynamic registration.
 /// @since 3.18.0 @proposed
-class InlineCompletionRegistrationOptions extends ToJson
+class InlineCompletionRegistrationOptions
     implements
+        ToJson,
         InlineCompletionOptions,
         TextDocumentRegistrationOptions,
-        StaticRegistrationOptions {}
+        StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class RegistrationParams extends ToJson {}
+class RegistrationParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class UnregistrationParams extends ToJson {}
+class UnregistrationParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class InitializeParams extends ToJson
-    implements _InitializeParams, WorkspaceFoldersInitializeParams {}
+class InitializeParams
+    implements ToJson, _InitializeParams, WorkspaceFoldersInitializeParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The result returned from an initialize request.
-class InitializeResult extends ToJson {}
+class InitializeResult implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The data type of the ResponseError if the initialize request fails.
-class InitializeError extends ToJson {}
+class InitializeError implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class InitializedParams extends ToJson {}
+class InitializedParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a change configuration notification.
-class DidChangeConfigurationParams extends ToJson {}
+class DidChangeConfigurationParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class DidChangeConfigurationRegistrationOptions extends ToJson {}
+class DidChangeConfigurationRegistrationOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a notification message.
-class ShowMessageParams extends ToJson {}
+class ShowMessageParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class ShowMessageRequestParams extends ToJson {}
+class ShowMessageRequestParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class MessageActionItem extends ToJson {}
+class MessageActionItem implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The log message parameters.
-class LogMessageParams extends ToJson {}
+class LogMessageParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters sent in an open text document notification
-class DidOpenTextDocumentParams extends ToJson {}
+class DidOpenTextDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The change text document notification's parameters.
-class DidChangeTextDocumentParams extends ToJson {}
+class DidChangeTextDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Describe options to be used when registered for text document change events.
-class TextDocumentChangeRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions {}
+class TextDocumentChangeRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters sent in a close text document notification
-class DidCloseTextDocumentParams extends ToJson {}
+class DidCloseTextDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters sent in a save text document notification
-class DidSaveTextDocumentParams extends ToJson {}
+class DidSaveTextDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Save registration options.
-class TextDocumentSaveRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, SaveOptions {}
+class TextDocumentSaveRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, SaveOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters sent in a will save text document notification.
-class WillSaveTextDocumentParams extends ToJson {}
+class WillSaveTextDocumentParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A text edit applicable to a text document.
-class TextEdit extends ToJson {}
+class TextEdit implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The watched files change notification's parameters.
-class DidChangeWatchedFilesParams extends ToJson {}
+class DidChangeWatchedFilesParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Describe options to be used when registered for text document change events.
-class DidChangeWatchedFilesRegistrationOptions extends ToJson {}
+class DidChangeWatchedFilesRegistrationOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The publish diagnostic notification's parameters.
-class PublishDiagnosticsParams extends ToJson {}
+class PublishDiagnosticsParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Completion parameters
-class CompletionParams extends ToJson
+class CompletionParams
     implements
+        ToJson,
         TextDocumentPositionParams,
         WorkDoneProgressParams,
-        PartialResultParams {}
+        PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A completion item represents a text snippet that is proposed to complete
 /// text that is being typed.
-class CompletionItem extends ToJson {}
+class CompletionItem implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a collection of {@link CompletionItem completion items} to be
 /// presented in the editor.
-class CompletionList extends ToJson {}
+class CompletionList implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link CompletionRequest}.
-class CompletionRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, CompletionOptions {}
+class CompletionRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, CompletionOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters for a {@link HoverRequest}.
-class HoverParams extends ToJson
-    implements TextDocumentPositionParams, WorkDoneProgressParams {}
+class HoverParams
+    implements ToJson, TextDocumentPositionParams, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The result of a hover request.
-class Hover extends ToJson {}
+class Hover implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link HoverRequest}.
-class HoverRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, HoverOptions {}
+class HoverRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, HoverOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters for a {@link SignatureHelpRequest}.
-class SignatureHelpParams extends ToJson
-    implements TextDocumentPositionParams, WorkDoneProgressParams {}
+class SignatureHelpParams
+    implements ToJson, TextDocumentPositionParams, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Signature help represents the signature of something callable. There can be
 /// multiple signature but only one active and only one active parameter.
-class SignatureHelp extends ToJson {}
+class SignatureHelp implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link SignatureHelpRequest}.
-class SignatureHelpRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, SignatureHelpOptions {}
+class SignatureHelpRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, SignatureHelpOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters for a {@link DefinitionRequest}.
-class DefinitionParams extends ToJson
+class DefinitionParams
     implements
+        ToJson,
         TextDocumentPositionParams,
         WorkDoneProgressParams,
-        PartialResultParams {}
+        PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link DefinitionRequest}.
-class DefinitionRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, DefinitionOptions {}
+class DefinitionRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, DefinitionOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters for a {@link ReferencesRequest}.
-class ReferenceParams extends ToJson
+class ReferenceParams
     implements
+        ToJson,
         TextDocumentPositionParams,
         WorkDoneProgressParams,
-        PartialResultParams {}
+        PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link ReferencesRequest}.
-class ReferenceRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, ReferenceOptions {}
+class ReferenceRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, ReferenceOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters for a {@link DocumentHighlightRequest}.
-class DocumentHighlightParams extends ToJson
+class DocumentHighlightParams
     implements
+        ToJson,
         TextDocumentPositionParams,
         WorkDoneProgressParams,
-        PartialResultParams {}
+        PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A document highlight is a range inside a text document which deserves
 /// special attention. Usually a document highlight is visualized by changing
 /// the background color of its range.
-class DocumentHighlight extends ToJson {}
+class DocumentHighlight implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link DocumentHighlightRequest}.
-class DocumentHighlightRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, DocumentHighlightOptions {}
+class DocumentHighlightRegistrationOptions
+    implements
+        ToJson,
+        TextDocumentRegistrationOptions,
+        DocumentHighlightOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Parameters for a {@link DocumentSymbolRequest}.
-class DocumentSymbolParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class DocumentSymbolParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents information about programming constructs like variables,
 /// classes, interfaces etc.
-class SymbolInformation extends ToJson implements BaseSymbolInformation {}
+class SymbolInformation implements ToJson, BaseSymbolInformation {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents programming constructs like variables, classes, interfaces etc.
 /// that appear in a document. Document symbols can be hierarchical and they
 /// have two ranges: one that encloses its definition and one that points to
 /// its most interesting range, e.g. the range of an identifier.
-class DocumentSymbol extends ToJson {}
+class DocumentSymbol implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link DocumentSymbolRequest}.
-class DocumentSymbolRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, DocumentSymbolOptions {}
+class DocumentSymbolRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, DocumentSymbolOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link CodeActionRequest}.
-class CodeActionParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class CodeActionParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a reference to a command. Provides a title which will be used to
 /// represent a command in the UI and, optionally, an array of arguments which
 /// will be passed to the command handler function when invoked.
-class Command extends ToJson {}
+class Command implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A code action represents a change that can be performed in code, e.g. to
 /// fix a problem or to refactor code.
 /// A CodeAction must set either `edit` and/or a `command`. If both are
 /// supplied, the `edit` is applied first, then the `command` is executed.
-class CodeAction extends ToJson {}
+class CodeAction implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link CodeActionRequest}.
-class CodeActionRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, CodeActionOptions {}
+class CodeActionRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, CodeActionOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link WorkspaceSymbolRequest}.
-class WorkspaceSymbolParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class WorkspaceSymbolParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A special workspace symbol that supports locations without a range.
 /// See also SymbolInformation.
 /// @since 3.17.0
-class WorkspaceSymbol extends ToJson implements BaseSymbolInformation {}
+class WorkspaceSymbol implements ToJson, BaseSymbolInformation {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link WorkspaceSymbolRequest}.
-class WorkspaceSymbolRegistrationOptions extends ToJson
-    implements WorkspaceSymbolOptions {}
+class WorkspaceSymbolRegistrationOptions
+    implements ToJson, WorkspaceSymbolOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link CodeLensRequest}.
-class CodeLensParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class CodeLensParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A code lens represents a {@link Command command} that should be shown along
 /// with source text, like the number of references, a way to run tests, etc.
 /// A code lens is _unresolved_ when no command is associated to it. For
 /// performance reasons the creation of a code lens and resolving should be
 /// done in two stages.
-class CodeLens extends ToJson {}
+class CodeLens implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link CodeLensRequest}.
-class CodeLensRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, CodeLensOptions {}
+class CodeLensRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, CodeLensOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link DocumentLinkRequest}.
-class DocumentLinkParams extends ToJson
-    implements WorkDoneProgressParams, PartialResultParams {}
+class DocumentLinkParams
+    implements ToJson, WorkDoneProgressParams, PartialResultParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A document link is a range in a text document that links to an internal or
 /// external resource, like another text document or a web site.
-class DocumentLink extends ToJson {}
+class DocumentLink implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link DocumentLinkRequest}.
-class DocumentLinkRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, DocumentLinkOptions {}
+class DocumentLinkRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, DocumentLinkOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link DocumentFormattingRequest}.
-class DocumentFormattingParams extends ToJson
-    implements WorkDoneProgressParams {}
+class DocumentFormattingParams implements ToJson, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link DocumentFormattingRequest}.
-class DocumentFormattingRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, DocumentFormattingOptions {}
+class DocumentFormattingRegistrationOptions
+    implements
+        ToJson,
+        TextDocumentRegistrationOptions,
+        DocumentFormattingOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link DocumentRangeFormattingRequest}.
-class DocumentRangeFormattingParams extends ToJson
-    implements WorkDoneProgressParams {}
+class DocumentRangeFormattingParams implements ToJson, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link DocumentRangeFormattingRequest}.
-class DocumentRangeFormattingRegistrationOptions extends ToJson
+class DocumentRangeFormattingRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
-        DocumentRangeFormattingOptions {}
+        DocumentRangeFormattingOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link DocumentRangesFormattingRequest}.
 /// @since 3.18.0 @proposed
-class DocumentRangesFormattingParams extends ToJson
-    implements WorkDoneProgressParams {}
+class DocumentRangesFormattingParams implements ToJson, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link DocumentOnTypeFormattingRequest}.
-class DocumentOnTypeFormattingParams extends ToJson {}
+class DocumentOnTypeFormattingParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link DocumentOnTypeFormattingRequest}.
-class DocumentOnTypeFormattingRegistrationOptions extends ToJson
+class DocumentOnTypeFormattingRegistrationOptions
     implements
+        ToJson,
         TextDocumentRegistrationOptions,
-        DocumentOnTypeFormattingOptions {}
+        DocumentOnTypeFormattingOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link RenameRequest}.
-class RenameParams extends ToJson implements WorkDoneProgressParams {}
+class RenameParams implements ToJson, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link RenameRequest}.
-class RenameRegistrationOptions extends ToJson
-    implements TextDocumentRegistrationOptions, RenameOptions {}
+class RenameRegistrationOptions
+    implements ToJson, TextDocumentRegistrationOptions, RenameOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class PrepareRenameParams extends ToJson
-    implements TextDocumentPositionParams, WorkDoneProgressParams {}
+class PrepareRenameParams
+    implements ToJson, TextDocumentPositionParams, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters of a {@link ExecuteCommandRequest}.
-class ExecuteCommandParams extends ToJson implements WorkDoneProgressParams {}
+class ExecuteCommandParams implements ToJson, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options for a {@link ExecuteCommandRequest}.
-class ExecuteCommandRegistrationOptions extends ToJson
-    implements ExecuteCommandOptions {}
+class ExecuteCommandRegistrationOptions
+    implements ToJson, ExecuteCommandOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The parameters passed via an apply workspace edit request.
-class ApplyWorkspaceEditParams extends ToJson {}
+class ApplyWorkspaceEditParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The result returned from the apply workspace edit request.
 /// @since 3.17 renamed from ApplyWorkspaceEditResponse
-class ApplyWorkspaceEditResult extends ToJson {}
+class ApplyWorkspaceEditResult implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkDoneProgressBegin extends ToJson {}
+class WorkDoneProgressBegin implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkDoneProgressReport extends ToJson {}
+class WorkDoneProgressReport implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkDoneProgressEnd extends ToJson {}
+class WorkDoneProgressEnd implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class SetTraceParams extends ToJson {}
+class SetTraceParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class LogTraceParams extends ToJson {}
+class LogTraceParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class CancelParams extends ToJson {}
+class CancelParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class ProgressParams extends ToJson {}
+class ProgressParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A parameter literal used in requests to pass a text document and a position
 /// inside that document.
-class TextDocumentPositionParams extends ToJson {}
+class TextDocumentPositionParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkDoneProgressParams extends ToJson {}
+class WorkDoneProgressParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class PartialResultParams extends ToJson {}
+class PartialResultParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents the connection of two locations. Provides additional metadata
 /// over normal {@link Location locations}, including an origin range.
-class LocationLink extends ToJson {}
+class LocationLink implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A range in a text document expressed as (zero-based) start and end
 /// positions.
@@ -714,31 +1541,86 @@ class LocationLink extends ToJson {}
 /// ending character(s) then use an end position denoting the start of the next
 /// line. For example: ```ts { start: { line: 5, character: 23 } end : { line
 /// 6, character : 0 } } ```
-class Range extends ToJson {}
+class Range implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class ImplementationOptions extends ToJson implements WorkDoneProgressOptions {}
+class ImplementationOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Static registration options to be returned in the initialize request.
-class StaticRegistrationOptions extends ToJson {}
+class StaticRegistrationOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class TypeDefinitionOptions extends ToJson implements WorkDoneProgressOptions {}
+class TypeDefinitionOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The workspace folder change event.
-class WorkspaceFoldersChangeEvent extends ToJson {}
+class WorkspaceFoldersChangeEvent implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class ConfigurationItem extends ToJson {}
+class ConfigurationItem implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A literal to identify a text document in the client.
-class TextDocumentIdentifier extends ToJson {}
+class TextDocumentIdentifier implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a color in RGBA space.
-class Color extends ToJson {}
+class Color implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class DocumentColorOptions extends ToJson implements WorkDoneProgressOptions {}
+class DocumentColorOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class FoldingRangeOptions extends ToJson implements WorkDoneProgressOptions {}
+class FoldingRangeOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class DeclarationOptions extends ToJson implements WorkDoneProgressOptions {}
+class DeclarationOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Position in a text document expressed as zero-based line and character
 /// offset. Prior to 3.17 the offsets were always based on a UTF-16 string
@@ -767,95 +1649,209 @@ class DeclarationOptions extends ToJson implements WorkDoneProgressOptions {}
 /// position that denotes `\r|\n` or `\n|` where `|` represents the character
 /// offset.
 /// @since 3.17.0 - support for negotiated position encoding.
-class Position extends ToJson {}
+class Position implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class SelectionRangeOptions extends ToJson implements WorkDoneProgressOptions {}
+class SelectionRangeOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Call hierarchy options used during static registration.
 /// @since 3.16.0
-class CallHierarchyOptions extends ToJson implements WorkDoneProgressOptions {}
+class CallHierarchyOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensOptions extends ToJson implements WorkDoneProgressOptions {}
+class SemanticTokensOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensEdit extends ToJson {}
+class SemanticTokensEdit implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class LinkedEditingRangeOptions extends ToJson
-    implements WorkDoneProgressOptions {}
+class LinkedEditingRangeOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents information on a file/folder create.
 /// @since 3.16.0
-class FileCreate extends ToJson {}
+class FileCreate implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Describes textual changes on a text document. A TextDocumentEdit describes
 /// all changes on a document version Si and after they are applied move the
 /// document to version Si+1. So the creator of a TextDocumentEdit doesn't need
 /// to sort the array of edits or do any kind of ordering. However the edits
 /// must be non overlapping.
-class TextDocumentEdit extends ToJson {}
+class TextDocumentEdit implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Create file operation.
-class CreateFile extends ToJson implements ResourceOperation {}
+class CreateFile implements ToJson, ResourceOperation {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Rename file operation
-class RenameFile extends ToJson implements ResourceOperation {}
+class RenameFile implements ToJson, ResourceOperation {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Delete file operation
-class DeleteFile extends ToJson implements ResourceOperation {}
+class DeleteFile implements ToJson, ResourceOperation {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Additional information that describes document changes.
 /// @since 3.16.0
-class ChangeAnnotation extends ToJson {}
+class ChangeAnnotation implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A filter to describe in which file operation requests or notifications the
 /// server is interested in receiving.
 /// @since 3.16.0
-class FileOperationFilter extends ToJson {}
+class FileOperationFilter implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents information on a file/folder rename.
 /// @since 3.16.0
-class FileRename extends ToJson {}
+class FileRename implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents information on a file/folder delete.
 /// @since 3.16.0
-class FileDelete extends ToJson {}
+class FileDelete implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class MonikerOptions extends ToJson implements WorkDoneProgressOptions {}
+class MonikerOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Type hierarchy options used during static registration.
 /// @since 3.17.0
-class TypeHierarchyOptions extends ToJson implements WorkDoneProgressOptions {}
+class TypeHierarchyOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.17.0
-class InlineValueContext extends ToJson {}
+class InlineValueContext implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provide inline value as text.
 /// @since 3.17.0
-class InlineValueText extends ToJson {}
+class InlineValueText implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provide inline value through a variable lookup. If only a range is
 /// specified, the variable name will be extracted from the underlying
 /// document. An optional variable name can be used to override the extracted
 /// name.
 /// @since 3.17.0
-class InlineValueVariableLookup extends ToJson {}
+class InlineValueVariableLookup implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provide an inline value through an expression evaluation. If only a range
 /// is specified, the expression will be extracted from the underlying
 /// document. An optional expression can be used to override the extracted
 /// expression.
 /// @since 3.17.0
-class InlineValueEvaluatableExpression extends ToJson {}
+class InlineValueEvaluatableExpression implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Inline value options used during static registration.
 /// @since 3.17.0
-class InlineValueOptions extends ToJson implements WorkDoneProgressOptions {}
+class InlineValueOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// An inlay hint label part allows for interactive and composite labels of
 /// inlay hints.
 /// @since 3.17.0
-class InlayHintLabelPart extends ToJson {}
+class InlayHintLabelPart implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A `MarkupContent` literal represents a string value which content is
 /// interpreted base on its kind flag. Currently the protocol supports
@@ -869,62 +1865,132 @@ class InlayHintLabelPart extends ToJson {}
 /// 'someCode();', '```' ].join('\n') }; ```
 /// *Please Note* that clients might sanitize the return markdown. A client
 /// could decide to remove HTML from the markdown to avoid script execution.
-class MarkupContent extends ToJson {}
+class MarkupContent implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Inlay hint options used during static registration.
 /// @since 3.17.0
-class InlayHintOptions extends ToJson implements WorkDoneProgressOptions {}
+class InlayHintOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A full diagnostic report with a set of related documents.
 /// @since 3.17.0
-class RelatedFullDocumentDiagnosticReport extends ToJson
-    implements FullDocumentDiagnosticReport {}
+class RelatedFullDocumentDiagnosticReport
+    implements ToJson, FullDocumentDiagnosticReport {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// An unchanged diagnostic report with a set of related documents.
 /// @since 3.17.0
-class RelatedUnchangedDocumentDiagnosticReport extends ToJson
-    implements UnchangedDocumentDiagnosticReport {}
+class RelatedUnchangedDocumentDiagnosticReport
+    implements ToJson, UnchangedDocumentDiagnosticReport {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A diagnostic report with a full set of problems.
 /// @since 3.17.0
-class FullDocumentDiagnosticReport extends ToJson {}
+class FullDocumentDiagnosticReport implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A diagnostic report indicating that the last returned report is still
 /// accurate.
 /// @since 3.17.0
-class UnchangedDocumentDiagnosticReport extends ToJson {}
+class UnchangedDocumentDiagnosticReport implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Diagnostic options.
 /// @since 3.17.0
-class DiagnosticOptions extends ToJson implements WorkDoneProgressOptions {}
+class DiagnosticOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A previous result id in a workspace pull request.
 /// @since 3.17.0
-class PreviousResultId extends ToJson {}
+class PreviousResultId implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A notebook document.
 /// @since 3.17.0
-class NotebookDocument extends ToJson {}
+class NotebookDocument implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// An item to transfer a text document from the client to the server.
-class TextDocumentItem extends ToJson {}
+class TextDocumentItem implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A versioned notebook document identifier.
 /// @since 3.17.0
-class VersionedNotebookDocumentIdentifier extends ToJson {}
+class VersionedNotebookDocumentIdentifier implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A change event for a notebook document.
 /// @since 3.17.0
-class NotebookDocumentChangeEvent extends ToJson {}
+class NotebookDocumentChangeEvent implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A literal to identify a notebook document in the client.
 /// @since 3.17.0
-class NotebookDocumentIdentifier extends ToJson {}
+class NotebookDocumentIdentifier implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provides information about the context in which an inline completion was
 /// requested.
 /// @since 3.18.0 @proposed
-class InlineCompletionContext extends ToJson {}
+class InlineCompletionContext implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A string value used as a snippet is a template which allows to insert text
 /// and to control the editor cursor when insertion happens.
@@ -932,188 +1998,444 @@ class InlineCompletionContext extends ToJson {}
 /// `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of the
 /// snippet. Variables are defined with `$name` and `${name:default value}`.
 /// @since 3.18.0 @proposed
-class StringValue extends ToJson {}
+class StringValue implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Inline completion options used during static registration.
 /// @since 3.18.0 @proposed
-class InlineCompletionOptions extends ToJson
-    implements WorkDoneProgressOptions {}
+class InlineCompletionOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// General parameters to register for a notification or to register a provider.
-class Registration extends ToJson {}
+class Registration implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// General parameters to unregister a request or notification.
-class Unregistration extends ToJson {}
+class Unregistration implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The initialize parameters
-class _InitializeParams extends ToJson implements WorkDoneProgressParams {}
+class _InitializeParams implements ToJson, WorkDoneProgressParams {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkspaceFoldersInitializeParams extends ToJson {}
+class WorkspaceFoldersInitializeParams implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Defines the capabilities provided by a language server.
-class ServerCapabilities extends ToJson {}
+class ServerCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A text document identifier to denote a specific version of a text document.
-class VersionedTextDocumentIdentifier extends ToJson
-    implements TextDocumentIdentifier {}
+class VersionedTextDocumentIdentifier
+    implements ToJson, TextDocumentIdentifier {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Save options.
-class SaveOptions extends ToJson {}
+class SaveOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// An event describing a file change.
-class FileEvent extends ToJson {}
+class FileEvent implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class FileSystemWatcher extends ToJson {}
+class FileSystemWatcher implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a diagnostic, such as a compiler error or warning. Diagnostic
 /// objects are only valid in the scope of a resource.
-class Diagnostic extends ToJson {}
+class Diagnostic implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Contains additional information about the context in which a completion
 /// request is triggered.
-class CompletionContext extends ToJson {}
+class CompletionContext implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Additional details for a completion item label.
 /// @since 3.17.0
-class CompletionItemLabelDetails extends ToJson {}
+class CompletionItemLabelDetails implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A special text edit to provide an insert and a replace operation.
 /// @since 3.16.0
-class InsertReplaceEdit extends ToJson {}
+class InsertReplaceEdit implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Completion options.
-class CompletionOptions extends ToJson implements WorkDoneProgressOptions {}
+class CompletionOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Hover options.
-class HoverOptions extends ToJson implements WorkDoneProgressOptions {}
+class HoverOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Additional information about the context in which a signature help request
 /// was triggered.
 /// @since 3.15.0
-class SignatureHelpContext extends ToJson {}
+class SignatureHelpContext implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents the signature of something callable. A signature can have a
 /// label, like a function-name, a doc-comment, and a set of parameters.
-class SignatureInformation extends ToJson {}
+class SignatureInformation implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Server Capabilities for a {@link SignatureHelpRequest}.
-class SignatureHelpOptions extends ToJson implements WorkDoneProgressOptions {}
+class SignatureHelpOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Server Capabilities for a {@link DefinitionRequest}.
-class DefinitionOptions extends ToJson implements WorkDoneProgressOptions {}
+class DefinitionOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Value-object that contains additional information when requesting
 /// references.
-class ReferenceContext extends ToJson {}
+class ReferenceContext implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Reference options.
-class ReferenceOptions extends ToJson implements WorkDoneProgressOptions {}
+class ReferenceOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provider options for a {@link DocumentHighlightRequest}.
-class DocumentHighlightOptions extends ToJson
-    implements WorkDoneProgressOptions {}
+class DocumentHighlightOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A base for all symbol information.
-class BaseSymbolInformation extends ToJson {}
+class BaseSymbolInformation implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provider options for a {@link DocumentSymbolRequest}.
-class DocumentSymbolOptions extends ToJson implements WorkDoneProgressOptions {}
+class DocumentSymbolOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Contains additional diagnostic information about the context in which a
 /// {@link CodeActionProvider.provideCodeActions code action} is run.
-class CodeActionContext extends ToJson {}
+class CodeActionContext implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provider options for a {@link CodeActionRequest}.
-class CodeActionOptions extends ToJson implements WorkDoneProgressOptions {}
+class CodeActionOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Server capabilities for a {@link WorkspaceSymbolRequest}.
-class WorkspaceSymbolOptions extends ToJson
-    implements WorkDoneProgressOptions {}
+class WorkspaceSymbolOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Code Lens provider options of a {@link CodeLensRequest}.
-class CodeLensOptions extends ToJson implements WorkDoneProgressOptions {}
+class CodeLensOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provider options for a {@link DocumentLinkRequest}.
-class DocumentLinkOptions extends ToJson implements WorkDoneProgressOptions {}
+class DocumentLinkOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Value-object describing what options formatting should use.
-class FormattingOptions extends ToJson {}
+class FormattingOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provider options for a {@link DocumentFormattingRequest}.
-class DocumentFormattingOptions extends ToJson
-    implements WorkDoneProgressOptions {}
+class DocumentFormattingOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provider options for a {@link DocumentRangeFormattingRequest}.
-class DocumentRangeFormattingOptions extends ToJson
-    implements WorkDoneProgressOptions {}
+class DocumentRangeFormattingOptions
+    implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provider options for a {@link DocumentOnTypeFormattingRequest}.
-class DocumentOnTypeFormattingOptions extends ToJson {}
+class DocumentOnTypeFormattingOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Provider options for a {@link RenameRequest}.
-class RenameOptions extends ToJson implements WorkDoneProgressOptions {}
+class RenameOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The server capabilities of a {@link ExecuteCommandRequest}.
-class ExecuteCommandOptions extends ToJson implements WorkDoneProgressOptions {}
+class ExecuteCommandOptions implements ToJson, WorkDoneProgressOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensLegend extends ToJson {}
+class SemanticTokensLegend implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A text document identifier to optionally denote a specific version of a
 /// text document.
-class OptionalVersionedTextDocumentIdentifier extends ToJson
-    implements TextDocumentIdentifier {}
+class OptionalVersionedTextDocumentIdentifier
+    implements ToJson, TextDocumentIdentifier {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A special text edit with an additional change annotation.
 /// @since 3.16.0.
-class AnnotatedTextEdit extends ToJson implements TextEdit {}
+class AnnotatedTextEdit implements ToJson, TextEdit {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A generic resource operation.
-class ResourceOperation extends ToJson {}
+class ResourceOperation implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Options to create a file.
-class CreateFileOptions extends ToJson {}
+class CreateFileOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Rename file options
-class RenameFileOptions extends ToJson {}
+class RenameFileOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Delete file options
-class DeleteFileOptions extends ToJson {}
+class DeleteFileOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A pattern to describe in which file operation requests or notifications the
 /// server is interested in receiving.
 /// @since 3.16.0
-class FileOperationPattern extends ToJson {}
+class FileOperationPattern implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A full document diagnostic report for a workspace diagnostic result.
 /// @since 3.17.0
-class WorkspaceFullDocumentDiagnosticReport extends ToJson
-    implements FullDocumentDiagnosticReport {}
+class WorkspaceFullDocumentDiagnosticReport
+    implements ToJson, FullDocumentDiagnosticReport {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// An unchanged document diagnostic report for a workspace diagnostic result.
 /// @since 3.17.0
-class WorkspaceUnchangedDocumentDiagnosticReport extends ToJson
-    implements UnchangedDocumentDiagnosticReport {}
+class WorkspaceUnchangedDocumentDiagnosticReport
+    implements ToJson, UnchangedDocumentDiagnosticReport {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A notebook cell.
 /// A cell's document URI must be unique across ALL notebook cells and can
 /// therefore be used to uniquely identify a notebook cell or the cell's text
 /// document.
 /// @since 3.17.0
-class NotebookCell extends ToJson {}
+class NotebookCell implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A change describing how to move a `NotebookCell` array from state S to S'.
 /// @since 3.17.0
-class NotebookCellArrayChange extends ToJson {}
+class NotebookCellArrayChange implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Describes the currently selected completion item.
 /// @since 3.18.0 @proposed
-class SelectedCompletionInfo extends ToJson {}
+class SelectedCompletionInfo implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Defines the capabilities provided by the client.
-class ClientCapabilities extends ToJson {}
+class ClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class TextDocumentSyncOptions extends ToJson {}
+class TextDocumentSyncOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Options specific to a notebook plus its cells to be synced to the server.
 /// If a selector provides a notebook document filter but no cell selector all
@@ -1122,214 +2444,534 @@ class TextDocumentSyncOptions extends ToJson {}
 /// all notebook document that contain at least one matching cell will be
 /// synced.
 /// @since 3.17.0
-class NotebookDocumentSyncOptions extends ToJson {}
+class NotebookDocumentSyncOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Registration options specific to a notebook.
 /// @since 3.17.0
-class NotebookDocumentSyncRegistrationOptions extends ToJson
-    implements NotebookDocumentSyncOptions, StaticRegistrationOptions {}
+class NotebookDocumentSyncRegistrationOptions
+    implements ToJson, NotebookDocumentSyncOptions, StaticRegistrationOptions {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkspaceFoldersServerCapabilities extends ToJson {}
+class WorkspaceFoldersServerCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Options for notifications/requests for user operations on files.
 /// @since 3.16.0
-class FileOperationOptions extends ToJson {}
+class FileOperationOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Structure to capture a description for an error code.
 /// @since 3.16.0
-class CodeDescription extends ToJson {}
+class CodeDescription implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a related message and source code location for a diagnostic.
 /// This should be used to point to code locations that cause or related to a
 /// diagnostics, e.g when duplicating a symbol in a scope.
-class DiagnosticRelatedInformation extends ToJson {}
+class DiagnosticRelatedInformation implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Represents a parameter of a callable-signature. A parameter can have a
 /// label and a doc-comment.
-class ParameterInformation extends ToJson {}
+class ParameterInformation implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A notebook cell text document filter denotes a cell text document by
 /// different properties.
 /// @since 3.17.0
-class NotebookCellTextDocumentFilter extends ToJson {}
+class NotebookCellTextDocumentFilter implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Matching options for the file operation pattern.
 /// @since 3.16.0
-class FileOperationPatternOptions extends ToJson {}
+class FileOperationPatternOptions implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class ExecutionSummary extends ToJson {}
+class ExecutionSummary implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Workspace specific client capabilities.
-class WorkspaceClientCapabilities extends ToJson {}
+class WorkspaceClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Text document specific client capabilities.
-class TextDocumentClientCapabilities extends ToJson {}
+class TextDocumentClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Capabilities specific to the notebook document support.
 /// @since 3.17.0
-class NotebookDocumentClientCapabilities extends ToJson {}
+class NotebookDocumentClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WindowClientCapabilities extends ToJson {}
+class WindowClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// General client capabilities.
 /// @since 3.16.0
-class GeneralClientCapabilities extends ToJson {}
+class GeneralClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// A relative pattern is a helper to construct glob patterns that are matched
 /// relatively to a base URI. The common value for a `baseUri` is a workspace
 /// folder root, but it can be another absolute URI as well.
 /// @since 3.17.0
-class RelativePattern extends ToJson {}
+class RelativePattern implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class WorkspaceEditClientCapabilities extends ToJson {}
+class WorkspaceEditClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class DidChangeConfigurationClientCapabilities extends ToJson {}
+class DidChangeConfigurationClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class DidChangeWatchedFilesClientCapabilities extends ToJson {}
+class DidChangeWatchedFilesClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities for a {@link WorkspaceSymbolRequest}.
-class WorkspaceSymbolClientCapabilities extends ToJson {}
+class WorkspaceSymbolClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The client capabilities of a {@link ExecuteCommandRequest}.
-class ExecuteCommandClientCapabilities extends ToJson {}
+class ExecuteCommandClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensWorkspaceClientCapabilities extends ToJson {}
+class SemanticTokensWorkspaceClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class CodeLensWorkspaceClientCapabilities extends ToJson {}
+class CodeLensWorkspaceClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Capabilities relating to events from file operations by the user in the
 /// client.
 /// These events do not come from the file system, they come from user
 /// operations like renaming a file in the UI.
 /// @since 3.16.0
-class FileOperationClientCapabilities extends ToJson {}
+class FileOperationClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client workspace capabilities specific to inline values.
 /// @since 3.17.0
-class InlineValueWorkspaceClientCapabilities extends ToJson {}
+class InlineValueWorkspaceClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client workspace capabilities specific to inlay hints.
 /// @since 3.17.0
-class InlayHintWorkspaceClientCapabilities extends ToJson {}
+class InlayHintWorkspaceClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Workspace client capabilities specific to diagnostic pull requests.
 /// @since 3.17.0
-class DiagnosticWorkspaceClientCapabilities extends ToJson {}
+class DiagnosticWorkspaceClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client workspace capabilities specific to folding ranges
 /// @since 3.18.0 @proposed
-class FoldingRangeWorkspaceClientCapabilities extends ToJson {}
+class FoldingRangeWorkspaceClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class TextDocumentSyncClientCapabilities extends ToJson {}
+class TextDocumentSyncClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Completion client capabilities
-class CompletionClientCapabilities extends ToJson {}
+class CompletionClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class HoverClientCapabilities extends ToJson {}
+class HoverClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client Capabilities for a {@link SignatureHelpRequest}.
-class SignatureHelpClientCapabilities extends ToJson {}
+class SignatureHelpClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.14.0
-class DeclarationClientCapabilities extends ToJson {}
+class DeclarationClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client Capabilities for a {@link DefinitionRequest}.
-class DefinitionClientCapabilities extends ToJson {}
+class DefinitionClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Since 3.6.0
-class TypeDefinitionClientCapabilities extends ToJson {}
+class TypeDefinitionClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.6.0
-class ImplementationClientCapabilities extends ToJson {}
+class ImplementationClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client Capabilities for a {@link ReferencesRequest}.
-class ReferenceClientCapabilities extends ToJson {}
+class ReferenceClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client Capabilities for a {@link DocumentHighlightRequest}.
-class DocumentHighlightClientCapabilities extends ToJson {}
+class DocumentHighlightClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client Capabilities for a {@link DocumentSymbolRequest}.
-class DocumentSymbolClientCapabilities extends ToJson {}
+class DocumentSymbolClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The Client Capabilities of a {@link CodeActionRequest}.
-class CodeActionClientCapabilities extends ToJson {}
+class CodeActionClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The client capabilities  of a {@link CodeLensRequest}.
-class CodeLensClientCapabilities extends ToJson {}
+class CodeLensClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The client capabilities of a {@link DocumentLinkRequest}.
-class DocumentLinkClientCapabilities extends ToJson {}
+class DocumentLinkClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class DocumentColorClientCapabilities extends ToJson {}
+class DocumentColorClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities of a {@link DocumentFormattingRequest}.
-class DocumentFormattingClientCapabilities extends ToJson {}
+class DocumentFormattingClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities of a {@link DocumentRangeFormattingRequest}.
-class DocumentRangeFormattingClientCapabilities extends ToJson {}
+class DocumentRangeFormattingClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities of a {@link DocumentOnTypeFormattingRequest}.
-class DocumentOnTypeFormattingClientCapabilities extends ToJson {}
+class DocumentOnTypeFormattingClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class RenameClientCapabilities extends ToJson {}
+class RenameClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class FoldingRangeClientCapabilities extends ToJson {}
+class FoldingRangeClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
-class SelectionRangeClientCapabilities extends ToJson {}
+class SelectionRangeClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// The publish diagnostic client capabilities.
-class PublishDiagnosticsClientCapabilities extends ToJson {}
+class PublishDiagnosticsClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class CallHierarchyClientCapabilities extends ToJson {}
+class CallHierarchyClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.16.0
-class SemanticTokensClientCapabilities extends ToJson {}
+class SemanticTokensClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities for the linked editing range request.
 /// @since 3.16.0
-class LinkedEditingRangeClientCapabilities extends ToJson {}
+class LinkedEditingRangeClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities specific to the moniker request.
 /// @since 3.16.0
-class MonikerClientCapabilities extends ToJson {}
+class MonikerClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// @since 3.17.0
-class TypeHierarchyClientCapabilities extends ToJson {}
+class TypeHierarchyClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities specific to inline values.
 /// @since 3.17.0
-class InlineValueClientCapabilities extends ToJson {}
+class InlineValueClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Inlay hint client capabilities.
 /// @since 3.17.0
-class InlayHintClientCapabilities extends ToJson {}
+class InlayHintClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities specific to diagnostic pull requests.
 /// @since 3.17.0
-class DiagnosticClientCapabilities extends ToJson {}
+class DiagnosticClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities specific to inline completions.
 /// @since 3.18.0 @proposed
-class InlineCompletionClientCapabilities extends ToJson {}
+class InlineCompletionClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Notebook specific client capabilities.
 /// @since 3.17.0
-class NotebookDocumentSyncClientCapabilities extends ToJson {}
+class NotebookDocumentSyncClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Show message request client capabilities
-class ShowMessageRequestClientCapabilities extends ToJson {}
+class ShowMessageRequestClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities for the showDocument request.
 /// @since 3.16.0
-class ShowDocumentClientCapabilities extends ToJson {}
+class ShowDocumentClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities specific to regular expressions.
 /// @since 3.16.0
-class RegularExpressionsClientCapabilities extends ToJson {}
+class RegularExpressionsClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
 
 /// Client capabilities specific to the used markdown parser.
 /// @since 3.16.0
-class MarkdownClientCapabilities extends ToJson {}
+class MarkdownClientCapabilities implements ToJson {
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}

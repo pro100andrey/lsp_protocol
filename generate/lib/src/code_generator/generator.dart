@@ -23,7 +23,7 @@ class ProtocolGenerator {
   Reference get toJsonClassRef => refer('ToJson');
 
   bool get _isGenerateFields => false;
-  bool get _isGenerateMethods => false;
+  bool get _isGenerateMethods => true;
 
   List<String> _header() => [
     '/// Do not edit it manually.',
@@ -144,6 +144,7 @@ class ProtocolGenerator {
         (mb) {
           mb
             ..name = 'toJson'
+            ..annotations.add(refer('override'))
             ..returns = refer('Map<String, dynamic>')
             ..body = const Code('return {};');
         },
@@ -156,21 +157,21 @@ class ProtocolGenerator {
       throw ArgumentError('Structure name cannot be empty');
     }
 
+    final toImplements = [
+      toJsonClassRef,
+      ...?structure.extends$?.map((e) => refer(e.name!)),
+      ...?structure.mixins?.map((m) => refer(m.name!)),
+    ];
+
     final formattedDescription =
         formatDocComment(structure.documentation) ?? [];
 
     final clazz = Class((cb) {
       cb
         ..docs.addAll(formattedDescription)
-        ..name = structure.name
-        ..extend = toJsonClassRef;
+        ..name = structure.name;
 
-      cb.implements.addAll(
-        [
-          ...?structure.extends$?.map((e) => refer(e.name!)),
-          ...?structure.mixins?.map((m) => refer(m.name!)),
-        ],
-      );
+      cb.implements.addAll(toImplements);
 
       if (_isGenerateMethods) {
         _generateMethods(cb, structure);
