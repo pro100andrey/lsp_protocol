@@ -22,8 +22,8 @@ class ProtocolGenerator {
 
   Reference get toJsonClassRef => refer('ToJson');
 
-  bool get generateFields => false;
-  bool get generateMethods => false;
+  bool get _isGenerateFields => false;
+  bool get _isGenerateMethods => false;
 
   List<String> _header() => [
     '/// Do not edit it manually.',
@@ -165,11 +165,18 @@ class ProtocolGenerator {
         ..name = structure.name
         ..extend = toJsonClassRef;
 
-      if (generateMethods) {
+      cb.implements.addAll(
+        [
+          ...?structure.extends$?.map((e) => refer(e.name!)),
+          ...?structure.mixins?.map((m) => refer(m.name!)),
+        ],
+      );
+
+      if (_isGenerateMethods) {
         _generateMethods(cb, structure);
       }
 
-      if (generateFields) {
+      if (_isGenerateFields) {
         _addStructFields(cb, structure);
       }
     });
@@ -206,7 +213,7 @@ class ProtocolGenerator {
       case 'URI' || 'DocumentUri':
         return 'Uri';
       default:
-        return typeName; // Assume it's a custom type
+        return typeName;
     }
   }
 }

@@ -2,9 +2,10 @@
 ///
 /// To regenerate, run `dart run lsp_meta:generate`.
 
-// ignore_for_file: prefer_expression_function_bodies, doc_directive_unknown
+// ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: one_member_abstracts
 // ignore_for_file: unused_element
+// ignore_for_file: doc_directive_unknown
 library;
 
 typedef Definition = Object?;
@@ -35,16 +36,32 @@ abstract class ToJson {
   }
 }
 
-class ImplementationParams extends ToJson {}
+class ImplementationParams extends ToJson
+    implements
+        TextDocumentPositionParams,
+        WorkDoneProgressParams,
+        PartialResultParams {}
 
 /// Represents a location inside a resource, such as a line inside a text file.
 class Location extends ToJson {}
 
-class ImplementationRegistrationOptions extends ToJson {}
+class ImplementationRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        ImplementationOptions,
+        StaticRegistrationOptions {}
 
-class TypeDefinitionParams extends ToJson {}
+class TypeDefinitionParams extends ToJson
+    implements
+        TextDocumentPositionParams,
+        WorkDoneProgressParams,
+        PartialResultParams {}
 
-class TypeDefinitionRegistrationOptions extends ToJson {}
+class TypeDefinitionRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        TypeDefinitionOptions,
+        StaticRegistrationOptions {}
 
 /// A workspace folder inside a client.
 class WorkspaceFolder extends ToJson {}
@@ -56,15 +73,21 @@ class DidChangeWorkspaceFoldersParams extends ToJson {}
 class ConfigurationParams extends ToJson {}
 
 /// Parameters for a {@link DocumentColorRequest}.
-class DocumentColorParams extends ToJson {}
+class DocumentColorParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// Represents a color range from a document.
 class ColorInformation extends ToJson {}
 
-class DocumentColorRegistrationOptions extends ToJson {}
+class DocumentColorRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        DocumentColorOptions,
+        StaticRegistrationOptions {}
 
 /// Parameters for a {@link ColorPresentationRequest}.
-class ColorPresentationParams extends ToJson {}
+class ColorPresentationParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 class ColorPresentation extends ToJson {}
 
@@ -74,27 +97,45 @@ class WorkDoneProgressOptions extends ToJson {}
 class TextDocumentRegistrationOptions extends ToJson {}
 
 /// Parameters for a {@link FoldingRangeRequest}.
-class FoldingRangeParams extends ToJson {}
+class FoldingRangeParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// Represents a folding range. To be valid, start and end line must be bigger
 /// than zero and smaller than the number of lines in the document. Clients are
 /// free to ignore invalid ranges.
 class FoldingRange extends ToJson {}
 
-class FoldingRangeRegistrationOptions extends ToJson {}
+class FoldingRangeRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        FoldingRangeOptions,
+        StaticRegistrationOptions {}
 
-class DeclarationParams extends ToJson {}
+class DeclarationParams extends ToJson
+    implements
+        TextDocumentPositionParams,
+        WorkDoneProgressParams,
+        PartialResultParams {}
 
-class DeclarationRegistrationOptions extends ToJson {}
+class DeclarationRegistrationOptions extends ToJson
+    implements
+        DeclarationOptions,
+        TextDocumentRegistrationOptions,
+        StaticRegistrationOptions {}
 
 /// A parameter literal used in selection range requests.
-class SelectionRangeParams extends ToJson {}
+class SelectionRangeParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// A selection range represents a part of a selection hierarchy. A selection
 /// range may have a parent selection range that contains it.
 class SelectionRange extends ToJson {}
 
-class SelectionRangeRegistrationOptions extends ToJson {}
+class SelectionRangeRegistrationOptions extends ToJson
+    implements
+        SelectionRangeOptions,
+        TextDocumentRegistrationOptions,
+        StaticRegistrationOptions {}
 
 class WorkDoneProgressCreateParams extends ToJson {}
 
@@ -102,7 +143,8 @@ class WorkDoneProgressCancelParams extends ToJson {}
 
 /// The parameter of a `textDocument/prepareCallHierarchy` request.
 /// @since 3.16.0
-class CallHierarchyPrepareParams extends ToJson {}
+class CallHierarchyPrepareParams extends ToJson
+    implements TextDocumentPositionParams, WorkDoneProgressParams {}
 
 /// Represents programming constructs like functions or constructors in the
 /// context of call hierarchy.
@@ -111,11 +153,16 @@ class CallHierarchyItem extends ToJson {}
 
 /// Call hierarchy options used during static or dynamic registration.
 /// @since 3.16.0
-class CallHierarchyRegistrationOptions extends ToJson {}
+class CallHierarchyRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        CallHierarchyOptions,
+        StaticRegistrationOptions {}
 
 /// The parameter of a `callHierarchy/incomingCalls` request.
 /// @since 3.16.0
-class CallHierarchyIncomingCallsParams extends ToJson {}
+class CallHierarchyIncomingCallsParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// Represents an incoming call, e.g. a caller of a method or constructor.
 /// @since 3.16.0
@@ -123,7 +170,8 @@ class CallHierarchyIncomingCall extends ToJson {}
 
 /// The parameter of a `callHierarchy/outgoingCalls` request.
 /// @since 3.16.0
-class CallHierarchyOutgoingCallsParams extends ToJson {}
+class CallHierarchyOutgoingCallsParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// Represents an outgoing call, e.g. calling a getter from a method or a
 /// method from a constructor etc.
@@ -131,7 +179,8 @@ class CallHierarchyOutgoingCallsParams extends ToJson {}
 class CallHierarchyOutgoingCall extends ToJson {}
 
 /// @since 3.16.0
-class SemanticTokensParams extends ToJson {}
+class SemanticTokensParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// @since 3.16.0
 class SemanticTokens extends ToJson {}
@@ -140,10 +189,15 @@ class SemanticTokens extends ToJson {}
 class SemanticTokensPartialResult extends ToJson {}
 
 /// @since 3.16.0
-class SemanticTokensRegistrationOptions extends ToJson {}
+class SemanticTokensRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        SemanticTokensOptions,
+        StaticRegistrationOptions {}
 
 /// @since 3.16.0
-class SemanticTokensDeltaParams extends ToJson {}
+class SemanticTokensDeltaParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// @since 3.16.0
 class SemanticTokensDelta extends ToJson {}
@@ -152,7 +206,8 @@ class SemanticTokensDelta extends ToJson {}
 class SemanticTokensDeltaPartialResult extends ToJson {}
 
 /// @since 3.16.0
-class SemanticTokensRangeParams extends ToJson {}
+class SemanticTokensRangeParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// Params to show a resource in the UI.
 /// @since 3.16.0
@@ -162,13 +217,18 @@ class ShowDocumentParams extends ToJson {}
 /// @since 3.16.0
 class ShowDocumentResult extends ToJson {}
 
-class LinkedEditingRangeParams extends ToJson {}
+class LinkedEditingRangeParams extends ToJson
+    implements TextDocumentPositionParams, WorkDoneProgressParams {}
 
 /// The result of a linked editing range request.
 /// @since 3.16.0
 class LinkedEditingRanges extends ToJson {}
 
-class LinkedEditingRangeRegistrationOptions extends ToJson {}
+class LinkedEditingRangeRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        LinkedEditingRangeOptions,
+        StaticRegistrationOptions {}
 
 /// The parameters sent in notifications/requests for user-initiated creation
 /// of files.
@@ -204,44 +264,60 @@ class RenameFilesParams extends ToJson {}
 /// @since 3.16.0
 class DeleteFilesParams extends ToJson {}
 
-class MonikerParams extends ToJson {}
+class MonikerParams extends ToJson
+    implements
+        TextDocumentPositionParams,
+        WorkDoneProgressParams,
+        PartialResultParams {}
 
 /// Moniker definition to match LSIF 0.5 moniker definition.
 /// @since 3.16.0
 class Moniker extends ToJson {}
 
-class MonikerRegistrationOptions extends ToJson {}
+class MonikerRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, MonikerOptions {}
 
 /// The parameter of a `textDocument/prepareTypeHierarchy` request.
 /// @since 3.17.0
-class TypeHierarchyPrepareParams extends ToJson {}
+class TypeHierarchyPrepareParams extends ToJson
+    implements TextDocumentPositionParams, WorkDoneProgressParams {}
 
 /// @since 3.17.0
 class TypeHierarchyItem extends ToJson {}
 
 /// Type hierarchy options used during static or dynamic registration.
 /// @since 3.17.0
-class TypeHierarchyRegistrationOptions extends ToJson {}
+class TypeHierarchyRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        TypeHierarchyOptions,
+        StaticRegistrationOptions {}
 
 /// The parameter of a `typeHierarchy/supertypes` request.
 /// @since 3.17.0
-class TypeHierarchySupertypesParams extends ToJson {}
+class TypeHierarchySupertypesParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// The parameter of a `typeHierarchy/subtypes` request.
 /// @since 3.17.0
-class TypeHierarchySubtypesParams extends ToJson {}
+class TypeHierarchySubtypesParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// A parameter literal used in inline value requests.
 /// @since 3.17.0
-class InlineValueParams extends ToJson {}
+class InlineValueParams extends ToJson implements WorkDoneProgressParams {}
 
 /// Inline value options used during static or dynamic registration.
 /// @since 3.17.0
-class InlineValueRegistrationOptions extends ToJson {}
+class InlineValueRegistrationOptions extends ToJson
+    implements
+        InlineValueOptions,
+        TextDocumentRegistrationOptions,
+        StaticRegistrationOptions {}
 
 /// A parameter literal used in inlay hint requests.
 /// @since 3.17.0
-class InlayHintParams extends ToJson {}
+class InlayHintParams extends ToJson implements WorkDoneProgressParams {}
 
 /// Inlay hint information.
 /// @since 3.17.0
@@ -249,11 +325,16 @@ class InlayHint extends ToJson {}
 
 /// Inlay hint options used during static or dynamic registration.
 /// @since 3.17.0
-class InlayHintRegistrationOptions extends ToJson {}
+class InlayHintRegistrationOptions extends ToJson
+    implements
+        InlayHintOptions,
+        TextDocumentRegistrationOptions,
+        StaticRegistrationOptions {}
 
 /// Parameters of the document diagnostic request.
 /// @since 3.17.0
-class DocumentDiagnosticParams extends ToJson {}
+class DocumentDiagnosticParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// A partial result for a document diagnostic report.
 /// @since 3.17.0
@@ -265,11 +346,16 @@ class DiagnosticServerCancellationData extends ToJson {}
 
 /// Diagnostic registration options.
 /// @since 3.17.0
-class DiagnosticRegistrationOptions extends ToJson {}
+class DiagnosticRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        DiagnosticOptions,
+        StaticRegistrationOptions {}
 
 /// Parameters of the workspace diagnostic request.
 /// @since 3.17.0
-class WorkspaceDiagnosticParams extends ToJson {}
+class WorkspaceDiagnosticParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// A workspace diagnostic report.
 /// @since 3.17.0
@@ -297,7 +383,8 @@ class DidCloseNotebookDocumentParams extends ToJson {}
 
 /// A parameter literal used in inline completion requests.
 /// @since 3.18.0 @proposed
-class InlineCompletionParams extends ToJson {}
+class InlineCompletionParams extends ToJson
+    implements TextDocumentPositionParams, WorkDoneProgressParams {}
 
 /// Represents a collection of {@link InlineCompletionItem inline completion
 /// items} to be presented in the editor.
@@ -311,13 +398,18 @@ class InlineCompletionItem extends ToJson {}
 
 /// Inline completion options used during static or dynamic registration.
 /// @since 3.18.0 @proposed
-class InlineCompletionRegistrationOptions extends ToJson {}
+class InlineCompletionRegistrationOptions extends ToJson
+    implements
+        InlineCompletionOptions,
+        TextDocumentRegistrationOptions,
+        StaticRegistrationOptions {}
 
 class RegistrationParams extends ToJson {}
 
 class UnregistrationParams extends ToJson {}
 
-class InitializeParams extends ToJson {}
+class InitializeParams extends ToJson
+    implements _InitializeParams, WorkspaceFoldersInitializeParams {}
 
 /// The result returned from an initialize request.
 class InitializeResult extends ToJson {}
@@ -349,7 +441,8 @@ class DidOpenTextDocumentParams extends ToJson {}
 class DidChangeTextDocumentParams extends ToJson {}
 
 /// Describe options to be used when registered for text document change events.
-class TextDocumentChangeRegistrationOptions extends ToJson {}
+class TextDocumentChangeRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions {}
 
 /// The parameters sent in a close text document notification
 class DidCloseTextDocumentParams extends ToJson {}
@@ -358,7 +451,8 @@ class DidCloseTextDocumentParams extends ToJson {}
 class DidSaveTextDocumentParams extends ToJson {}
 
 /// Save registration options.
-class TextDocumentSaveRegistrationOptions extends ToJson {}
+class TextDocumentSaveRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, SaveOptions {}
 
 /// The parameters sent in a will save text document notification.
 class WillSaveTextDocumentParams extends ToJson {}
@@ -376,7 +470,11 @@ class DidChangeWatchedFilesRegistrationOptions extends ToJson {}
 class PublishDiagnosticsParams extends ToJson {}
 
 /// Completion parameters
-class CompletionParams extends ToJson {}
+class CompletionParams extends ToJson
+    implements
+        TextDocumentPositionParams,
+        WorkDoneProgressParams,
+        PartialResultParams {}
 
 /// A completion item represents a text snippet that is proposed to complete
 /// text that is being typed.
@@ -387,41 +485,60 @@ class CompletionItem extends ToJson {}
 class CompletionList extends ToJson {}
 
 /// Registration options for a {@link CompletionRequest}.
-class CompletionRegistrationOptions extends ToJson {}
+class CompletionRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, CompletionOptions {}
 
 /// Parameters for a {@link HoverRequest}.
-class HoverParams extends ToJson {}
+class HoverParams extends ToJson
+    implements TextDocumentPositionParams, WorkDoneProgressParams {}
 
 /// The result of a hover request.
 class Hover extends ToJson {}
 
 /// Registration options for a {@link HoverRequest}.
-class HoverRegistrationOptions extends ToJson {}
+class HoverRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, HoverOptions {}
 
 /// Parameters for a {@link SignatureHelpRequest}.
-class SignatureHelpParams extends ToJson {}
+class SignatureHelpParams extends ToJson
+    implements TextDocumentPositionParams, WorkDoneProgressParams {}
 
 /// Signature help represents the signature of something callable. There can be
 /// multiple signature but only one active and only one active parameter.
 class SignatureHelp extends ToJson {}
 
 /// Registration options for a {@link SignatureHelpRequest}.
-class SignatureHelpRegistrationOptions extends ToJson {}
+class SignatureHelpRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, SignatureHelpOptions {}
 
 /// Parameters for a {@link DefinitionRequest}.
-class DefinitionParams extends ToJson {}
+class DefinitionParams extends ToJson
+    implements
+        TextDocumentPositionParams,
+        WorkDoneProgressParams,
+        PartialResultParams {}
 
 /// Registration options for a {@link DefinitionRequest}.
-class DefinitionRegistrationOptions extends ToJson {}
+class DefinitionRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, DefinitionOptions {}
 
 /// Parameters for a {@link ReferencesRequest}.
-class ReferenceParams extends ToJson {}
+class ReferenceParams extends ToJson
+    implements
+        TextDocumentPositionParams,
+        WorkDoneProgressParams,
+        PartialResultParams {}
 
 /// Registration options for a {@link ReferencesRequest}.
-class ReferenceRegistrationOptions extends ToJson {}
+class ReferenceRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, ReferenceOptions {}
 
 /// Parameters for a {@link DocumentHighlightRequest}.
-class DocumentHighlightParams extends ToJson {}
+class DocumentHighlightParams extends ToJson
+    implements
+        TextDocumentPositionParams,
+        WorkDoneProgressParams,
+        PartialResultParams {}
 
 /// A document highlight is a range inside a text document which deserves
 /// special attention. Usually a document highlight is visualized by changing
@@ -429,14 +546,16 @@ class DocumentHighlightParams extends ToJson {}
 class DocumentHighlight extends ToJson {}
 
 /// Registration options for a {@link DocumentHighlightRequest}.
-class DocumentHighlightRegistrationOptions extends ToJson {}
+class DocumentHighlightRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, DocumentHighlightOptions {}
 
 /// Parameters for a {@link DocumentSymbolRequest}.
-class DocumentSymbolParams extends ToJson {}
+class DocumentSymbolParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// Represents information about programming constructs like variables,
 /// classes, interfaces etc.
-class SymbolInformation extends ToJson {}
+class SymbolInformation extends ToJson implements BaseSymbolInformation {}
 
 /// Represents programming constructs like variables, classes, interfaces etc.
 /// that appear in a document. Document symbols can be hierarchical and they
@@ -445,10 +564,12 @@ class SymbolInformation extends ToJson {}
 class DocumentSymbol extends ToJson {}
 
 /// Registration options for a {@link DocumentSymbolRequest}.
-class DocumentSymbolRegistrationOptions extends ToJson {}
+class DocumentSymbolRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, DocumentSymbolOptions {}
 
 /// The parameters of a {@link CodeActionRequest}.
-class CodeActionParams extends ToJson {}
+class CodeActionParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// Represents a reference to a command. Provides a title which will be used to
 /// represent a command in the UI and, optionally, an array of arguments which
@@ -462,21 +583,25 @@ class Command extends ToJson {}
 class CodeAction extends ToJson {}
 
 /// Registration options for a {@link CodeActionRequest}.
-class CodeActionRegistrationOptions extends ToJson {}
+class CodeActionRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, CodeActionOptions {}
 
 /// The parameters of a {@link WorkspaceSymbolRequest}.
-class WorkspaceSymbolParams extends ToJson {}
+class WorkspaceSymbolParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// A special workspace symbol that supports locations without a range.
 /// See also SymbolInformation.
 /// @since 3.17.0
-class WorkspaceSymbol extends ToJson {}
+class WorkspaceSymbol extends ToJson implements BaseSymbolInformation {}
 
 /// Registration options for a {@link WorkspaceSymbolRequest}.
-class WorkspaceSymbolRegistrationOptions extends ToJson {}
+class WorkspaceSymbolRegistrationOptions extends ToJson
+    implements WorkspaceSymbolOptions {}
 
 /// The parameters of a {@link CodeLensRequest}.
-class CodeLensParams extends ToJson {}
+class CodeLensParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// A code lens represents a {@link Command command} that should be shown along
 /// with source text, like the number of references, a way to run tests, etc.
@@ -486,53 +611,69 @@ class CodeLensParams extends ToJson {}
 class CodeLens extends ToJson {}
 
 /// Registration options for a {@link CodeLensRequest}.
-class CodeLensRegistrationOptions extends ToJson {}
+class CodeLensRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, CodeLensOptions {}
 
 /// The parameters of a {@link DocumentLinkRequest}.
-class DocumentLinkParams extends ToJson {}
+class DocumentLinkParams extends ToJson
+    implements WorkDoneProgressParams, PartialResultParams {}
 
 /// A document link is a range in a text document that links to an internal or
 /// external resource, like another text document or a web site.
 class DocumentLink extends ToJson {}
 
 /// Registration options for a {@link DocumentLinkRequest}.
-class DocumentLinkRegistrationOptions extends ToJson {}
+class DocumentLinkRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, DocumentLinkOptions {}
 
 /// The parameters of a {@link DocumentFormattingRequest}.
-class DocumentFormattingParams extends ToJson {}
+class DocumentFormattingParams extends ToJson
+    implements WorkDoneProgressParams {}
 
 /// Registration options for a {@link DocumentFormattingRequest}.
-class DocumentFormattingRegistrationOptions extends ToJson {}
+class DocumentFormattingRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, DocumentFormattingOptions {}
 
 /// The parameters of a {@link DocumentRangeFormattingRequest}.
-class DocumentRangeFormattingParams extends ToJson {}
+class DocumentRangeFormattingParams extends ToJson
+    implements WorkDoneProgressParams {}
 
 /// Registration options for a {@link DocumentRangeFormattingRequest}.
-class DocumentRangeFormattingRegistrationOptions extends ToJson {}
+class DocumentRangeFormattingRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        DocumentRangeFormattingOptions {}
 
 /// The parameters of a {@link DocumentRangesFormattingRequest}.
 /// @since 3.18.0 @proposed
-class DocumentRangesFormattingParams extends ToJson {}
+class DocumentRangesFormattingParams extends ToJson
+    implements WorkDoneProgressParams {}
 
 /// The parameters of a {@link DocumentOnTypeFormattingRequest}.
 class DocumentOnTypeFormattingParams extends ToJson {}
 
 /// Registration options for a {@link DocumentOnTypeFormattingRequest}.
-class DocumentOnTypeFormattingRegistrationOptions extends ToJson {}
+class DocumentOnTypeFormattingRegistrationOptions extends ToJson
+    implements
+        TextDocumentRegistrationOptions,
+        DocumentOnTypeFormattingOptions {}
 
 /// The parameters of a {@link RenameRequest}.
-class RenameParams extends ToJson {}
+class RenameParams extends ToJson implements WorkDoneProgressParams {}
 
 /// Registration options for a {@link RenameRequest}.
-class RenameRegistrationOptions extends ToJson {}
+class RenameRegistrationOptions extends ToJson
+    implements TextDocumentRegistrationOptions, RenameOptions {}
 
-class PrepareRenameParams extends ToJson {}
+class PrepareRenameParams extends ToJson
+    implements TextDocumentPositionParams, WorkDoneProgressParams {}
 
 /// The parameters of a {@link ExecuteCommandRequest}.
-class ExecuteCommandParams extends ToJson {}
+class ExecuteCommandParams extends ToJson implements WorkDoneProgressParams {}
 
 /// Registration options for a {@link ExecuteCommandRequest}.
-class ExecuteCommandRegistrationOptions extends ToJson {}
+class ExecuteCommandRegistrationOptions extends ToJson
+    implements ExecuteCommandOptions {}
 
 /// The parameters passed via an apply workspace edit request.
 class ApplyWorkspaceEditParams extends ToJson {}
@@ -575,12 +716,12 @@ class LocationLink extends ToJson {}
 /// 6, character : 0 } } ```
 class Range extends ToJson {}
 
-class ImplementationOptions extends ToJson {}
+class ImplementationOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Static registration options to be returned in the initialize request.
 class StaticRegistrationOptions extends ToJson {}
 
-class TypeDefinitionOptions extends ToJson {}
+class TypeDefinitionOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// The workspace folder change event.
 class WorkspaceFoldersChangeEvent extends ToJson {}
@@ -593,11 +734,11 @@ class TextDocumentIdentifier extends ToJson {}
 /// Represents a color in RGBA space.
 class Color extends ToJson {}
 
-class DocumentColorOptions extends ToJson {}
+class DocumentColorOptions extends ToJson implements WorkDoneProgressOptions {}
 
-class FoldingRangeOptions extends ToJson {}
+class FoldingRangeOptions extends ToJson implements WorkDoneProgressOptions {}
 
-class DeclarationOptions extends ToJson {}
+class DeclarationOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Position in a text document expressed as zero-based line and character
 /// offset. Prior to 3.17 the offsets were always based on a UTF-16 string
@@ -628,19 +769,20 @@ class DeclarationOptions extends ToJson {}
 /// @since 3.17.0 - support for negotiated position encoding.
 class Position extends ToJson {}
 
-class SelectionRangeOptions extends ToJson {}
+class SelectionRangeOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Call hierarchy options used during static registration.
 /// @since 3.16.0
-class CallHierarchyOptions extends ToJson {}
+class CallHierarchyOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// @since 3.16.0
-class SemanticTokensOptions extends ToJson {}
+class SemanticTokensOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// @since 3.16.0
 class SemanticTokensEdit extends ToJson {}
 
-class LinkedEditingRangeOptions extends ToJson {}
+class LinkedEditingRangeOptions extends ToJson
+    implements WorkDoneProgressOptions {}
 
 /// Represents information on a file/folder create.
 /// @since 3.16.0
@@ -654,13 +796,13 @@ class FileCreate extends ToJson {}
 class TextDocumentEdit extends ToJson {}
 
 /// Create file operation.
-class CreateFile extends ToJson {}
+class CreateFile extends ToJson implements ResourceOperation {}
 
 /// Rename file operation
-class RenameFile extends ToJson {}
+class RenameFile extends ToJson implements ResourceOperation {}
 
 /// Delete file operation
-class DeleteFile extends ToJson {}
+class DeleteFile extends ToJson implements ResourceOperation {}
 
 /// Additional information that describes document changes.
 /// @since 3.16.0
@@ -679,11 +821,11 @@ class FileRename extends ToJson {}
 /// @since 3.16.0
 class FileDelete extends ToJson {}
 
-class MonikerOptions extends ToJson {}
+class MonikerOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Type hierarchy options used during static registration.
 /// @since 3.17.0
-class TypeHierarchyOptions extends ToJson {}
+class TypeHierarchyOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// @since 3.17.0
 class InlineValueContext extends ToJson {}
@@ -708,7 +850,7 @@ class InlineValueEvaluatableExpression extends ToJson {}
 
 /// Inline value options used during static registration.
 /// @since 3.17.0
-class InlineValueOptions extends ToJson {}
+class InlineValueOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// An inlay hint label part allows for interactive and composite labels of
 /// inlay hints.
@@ -731,15 +873,17 @@ class MarkupContent extends ToJson {}
 
 /// Inlay hint options used during static registration.
 /// @since 3.17.0
-class InlayHintOptions extends ToJson {}
+class InlayHintOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// A full diagnostic report with a set of related documents.
 /// @since 3.17.0
-class RelatedFullDocumentDiagnosticReport extends ToJson {}
+class RelatedFullDocumentDiagnosticReport extends ToJson
+    implements FullDocumentDiagnosticReport {}
 
 /// An unchanged diagnostic report with a set of related documents.
 /// @since 3.17.0
-class RelatedUnchangedDocumentDiagnosticReport extends ToJson {}
+class RelatedUnchangedDocumentDiagnosticReport extends ToJson
+    implements UnchangedDocumentDiagnosticReport {}
 
 /// A diagnostic report with a full set of problems.
 /// @since 3.17.0
@@ -752,7 +896,7 @@ class UnchangedDocumentDiagnosticReport extends ToJson {}
 
 /// Diagnostic options.
 /// @since 3.17.0
-class DiagnosticOptions extends ToJson {}
+class DiagnosticOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// A previous result id in a workspace pull request.
 /// @since 3.17.0
@@ -792,7 +936,8 @@ class StringValue extends ToJson {}
 
 /// Inline completion options used during static registration.
 /// @since 3.18.0 @proposed
-class InlineCompletionOptions extends ToJson {}
+class InlineCompletionOptions extends ToJson
+    implements WorkDoneProgressOptions {}
 
 /// General parameters to register for a notification or to register a provider.
 class Registration extends ToJson {}
@@ -801,7 +946,7 @@ class Registration extends ToJson {}
 class Unregistration extends ToJson {}
 
 /// The initialize parameters
-class _InitializeParams extends ToJson {}
+class _InitializeParams extends ToJson implements WorkDoneProgressParams {}
 
 class WorkspaceFoldersInitializeParams extends ToJson {}
 
@@ -809,7 +954,8 @@ class WorkspaceFoldersInitializeParams extends ToJson {}
 class ServerCapabilities extends ToJson {}
 
 /// A text document identifier to denote a specific version of a text document.
-class VersionedTextDocumentIdentifier extends ToJson {}
+class VersionedTextDocumentIdentifier extends ToJson
+    implements TextDocumentIdentifier {}
 
 /// Save options.
 class SaveOptions extends ToJson {}
@@ -836,10 +982,10 @@ class CompletionItemLabelDetails extends ToJson {}
 class InsertReplaceEdit extends ToJson {}
 
 /// Completion options.
-class CompletionOptions extends ToJson {}
+class CompletionOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Hover options.
-class HoverOptions extends ToJson {}
+class HoverOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Additional information about the context in which a signature help request
 /// was triggered.
@@ -851,71 +997,76 @@ class SignatureHelpContext extends ToJson {}
 class SignatureInformation extends ToJson {}
 
 /// Server Capabilities for a {@link SignatureHelpRequest}.
-class SignatureHelpOptions extends ToJson {}
+class SignatureHelpOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Server Capabilities for a {@link DefinitionRequest}.
-class DefinitionOptions extends ToJson {}
+class DefinitionOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Value-object that contains additional information when requesting
 /// references.
 class ReferenceContext extends ToJson {}
 
 /// Reference options.
-class ReferenceOptions extends ToJson {}
+class ReferenceOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Provider options for a {@link DocumentHighlightRequest}.
-class DocumentHighlightOptions extends ToJson {}
+class DocumentHighlightOptions extends ToJson
+    implements WorkDoneProgressOptions {}
 
 /// A base for all symbol information.
 class BaseSymbolInformation extends ToJson {}
 
 /// Provider options for a {@link DocumentSymbolRequest}.
-class DocumentSymbolOptions extends ToJson {}
+class DocumentSymbolOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Contains additional diagnostic information about the context in which a
 /// {@link CodeActionProvider.provideCodeActions code action} is run.
 class CodeActionContext extends ToJson {}
 
 /// Provider options for a {@link CodeActionRequest}.
-class CodeActionOptions extends ToJson {}
+class CodeActionOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Server capabilities for a {@link WorkspaceSymbolRequest}.
-class WorkspaceSymbolOptions extends ToJson {}
+class WorkspaceSymbolOptions extends ToJson
+    implements WorkDoneProgressOptions {}
 
 /// Code Lens provider options of a {@link CodeLensRequest}.
-class CodeLensOptions extends ToJson {}
+class CodeLensOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Provider options for a {@link DocumentLinkRequest}.
-class DocumentLinkOptions extends ToJson {}
+class DocumentLinkOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// Value-object describing what options formatting should use.
 class FormattingOptions extends ToJson {}
 
 /// Provider options for a {@link DocumentFormattingRequest}.
-class DocumentFormattingOptions extends ToJson {}
+class DocumentFormattingOptions extends ToJson
+    implements WorkDoneProgressOptions {}
 
 /// Provider options for a {@link DocumentRangeFormattingRequest}.
-class DocumentRangeFormattingOptions extends ToJson {}
+class DocumentRangeFormattingOptions extends ToJson
+    implements WorkDoneProgressOptions {}
 
 /// Provider options for a {@link DocumentOnTypeFormattingRequest}.
 class DocumentOnTypeFormattingOptions extends ToJson {}
 
 /// Provider options for a {@link RenameRequest}.
-class RenameOptions extends ToJson {}
+class RenameOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// The server capabilities of a {@link ExecuteCommandRequest}.
-class ExecuteCommandOptions extends ToJson {}
+class ExecuteCommandOptions extends ToJson implements WorkDoneProgressOptions {}
 
 /// @since 3.16.0
 class SemanticTokensLegend extends ToJson {}
 
 /// A text document identifier to optionally denote a specific version of a
 /// text document.
-class OptionalVersionedTextDocumentIdentifier extends ToJson {}
+class OptionalVersionedTextDocumentIdentifier extends ToJson
+    implements TextDocumentIdentifier {}
 
 /// A special text edit with an additional change annotation.
 /// @since 3.16.0.
-class AnnotatedTextEdit extends ToJson {}
+class AnnotatedTextEdit extends ToJson implements TextEdit {}
 
 /// A generic resource operation.
 class ResourceOperation extends ToJson {}
@@ -936,11 +1087,13 @@ class FileOperationPattern extends ToJson {}
 
 /// A full document diagnostic report for a workspace diagnostic result.
 /// @since 3.17.0
-class WorkspaceFullDocumentDiagnosticReport extends ToJson {}
+class WorkspaceFullDocumentDiagnosticReport extends ToJson
+    implements FullDocumentDiagnosticReport {}
 
 /// An unchanged document diagnostic report for a workspace diagnostic result.
 /// @since 3.17.0
-class WorkspaceUnchangedDocumentDiagnosticReport extends ToJson {}
+class WorkspaceUnchangedDocumentDiagnosticReport extends ToJson
+    implements UnchangedDocumentDiagnosticReport {}
 
 /// A notebook cell.
 /// A cell's document URI must be unique across ALL notebook cells and can
@@ -973,7 +1126,8 @@ class NotebookDocumentSyncOptions extends ToJson {}
 
 /// Registration options specific to a notebook.
 /// @since 3.17.0
-class NotebookDocumentSyncRegistrationOptions extends ToJson {}
+class NotebookDocumentSyncRegistrationOptions extends ToJson
+    implements NotebookDocumentSyncOptions, StaticRegistrationOptions {}
 
 class WorkspaceFoldersServerCapabilities extends ToJson {}
 
