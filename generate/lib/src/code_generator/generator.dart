@@ -22,7 +22,7 @@ class ProtocolGenerator {
 
   Reference get toJsonClassRef => refer('ToJson');
 
-  bool get _isGenerateFields => false;
+  bool get _isGenerateFields => true;
   bool get _isGenerateMethods => true;
 
   List<String> _header() => [
