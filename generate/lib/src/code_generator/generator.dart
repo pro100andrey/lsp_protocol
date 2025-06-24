@@ -71,7 +71,10 @@ class ProtocolGenerator {
     b
       ..name = typeAlias.name
       ..definition = refer(
-        _resolveTypeName(typeAlias.type!.name.toString()),
+        _resolveDartTypeName(
+          typeAlias.name!,
+          isOptional: typeAlias.optional ?? false,
+        ),
       );
   });
 
@@ -96,14 +99,76 @@ class ProtocolGenerator {
   }
 
   void _addStructFields(ClassBuilder cb, MetaStructure structure) {
-    final fields = structure.properties;
+    final processedPropertyNames = <String>{};
+    final allFields = <Element>[];
+
+    // Add properties directly defined in the current structure
+    for (final property in structure.properties) {
+      allFields.add(property);
+      processedPropertyNames.add(property.name!);
+    }
+
+    // Properties from extended structures (implements/mixins implicitly often)
+    // Add properties from extended structures
+    final inheritedPropertyNames = <String>{};
+
+    // Add properties from extended structures
+    for (final extendRef in structure.extends$ ?? <Element>[]) {
+      final extendedStructure = _structures[extendRef.name!];
+
+      if (extendedStructure != null) {
+        for (final property in extendedStructure.properties) {
+          if (!processedPropertyNames.contains(property.name)) {
+            allFields.add(property);
+            processedPropertyNames.add(property.name!);
+            inheritedPropertyNames.add(property.name!);
+          }
+        }
+      }
+    }
+
+    // Add properties from mixins
+    for (final mixinRef in structure.mixins ?? <Element>[]) {
+      final mixinStructure = _structures[mixinRef.name!];
+      if (mixinStructure != null) {
+        for (final property in mixinStructure.properties) {
+          if (!processedPropertyNames.contains(property.name)) {
+            allFields.add(property);
+            processedPropertyNames.add(property.name!);
+            inheritedPropertyNames.add(property.name!);
+          }
+        }
+      }
+    }
+
+    allFields.sort(
+      (a, b) => a.name!.compareTo(b.name!),
+    );
+
+    String resolveFieldType(Element property) {
+
+      final type  = property.type!;
+      if (type.name == null && type.kind! == TypeKind.or) {
+
+        throw ArgumentError(
+          'Type name is null for property ${property.name}. '
+          'This might be due to an unsupported type kind: ${type.kind}',
+        );
+    
+      }
+
+      return _resolveDartTypeName(
+        property.type!.name!,
+        isOptional: property.optional ?? false,
+      );
+    }
 
     cb.fields.addAll(
-      fields.map(
+      allFields.map(
         (property) {
           final propDocs =
               formatDocComment(property.documentation, maxLineLength: 76) ?? [];
-          final propType = _resolveTypeName(property.type!.name.toString());
+          final propType = resolveFieldType(property);
           final propName = property.name;
 
           return Field(
@@ -113,6 +178,10 @@ class ProtocolGenerator {
                 ..modifier = FieldModifier.final$
                 ..name = propName
                 ..type = refer(propType);
+              // Add @override annotation if the field is inherited
+              if (inheritedPropertyNames.contains(propName)) {
+                fb.annotations.add(refer('override'));
+              }
             },
           );
         },
@@ -122,7 +191,7 @@ class ProtocolGenerator {
     cb.constructors.add(
       Constructor((cb) {
         cb.optionalParameters.addAll(
-          fields.map(
+          allFields.map(
             (property) => Parameter((pb) {
               pb
                 ..name = property.name!
@@ -185,7 +254,7 @@ class ProtocolGenerator {
     return clazz;
   }
 
-  String _resolveTypeName(String typeName) {
+  String _resolveDartTypeName(String typeName, {required bool isOptional}) {
     final structure = _structures[typeName];
 
     if (structure != null) {
@@ -200,21 +269,16 @@ class ProtocolGenerator {
     }
 
     // Resolve type names to their Dart equivalents
-    switch (typeName) {
-      case 'integer' || 'uinteger':
-        return 'int';
-      case 'decimal':
-        return 'double';
-      case 'string':
-        return 'String';
-      case 'boolean':
-        return 'bool';
-      case 'null':
-        return 'Object?';
-      case 'URI' || 'DocumentUri':
-        return 'Uri';
-      default:
-        return typeName;
-    }
+    final type = switch (typeName) {
+      'integer' || 'uinteger' => 'int',
+      'decimal' => 'double',
+      'string' => 'String',
+      'boolean' => 'bool',
+      'null' => 'String',
+      'URI' || 'DocumentUri' => 'Uri',
+      _ => typeName,
+    };
+
+    return isOptional ? '$type?' : type;
   }
 }
