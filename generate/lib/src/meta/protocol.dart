@@ -1,280 +1,234 @@
-import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'converters/int_or_string_converter.dart';
+
+part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
-sealed class Meta extends Equatable {
-  const Meta();
+@freezed
+abstract class MetaProtocol with _$MetaProtocol {
+  const factory MetaProtocol({
+    @JsonSerializable(disallowUnrecognizedKeys: true)
+    required MetaData metaData,
+    required List<MetaRequest> requests,
+    required List<MetaNotification> notifications,
+    required List<MetaStructure> structures,
+    required List<MetaEnumeration> enumerations,
+    required List<MetaTypeAlias> typeAliases,
+  }) = _MetaProtocol;
 
-  @override
-  List<Object?> get props => throw UnimplementedError();
-
-  @override
-  bool get stringify => false;
-}
-
-@JsonSerializable(disallowUnrecognizedKeys: true)
-class MetaProtocol extends Meta {
-  const MetaProtocol({
-    required this.metaData,
-    required this.requests,
-    required this.notifications,
-    required this.structures,
-    required this.enumerations,
-    required this.typeAliases,
-  });
-
-  factory MetaProtocol.fromJson(Map<String, dynamic> json) =>
+  factory MetaProtocol.fromJson(Map<String, Object?> json) =>
       _$MetaProtocolFromJson(json);
-
-  final MetaData metaData;
-  final List<MetaRequest> requests;
-  final List<MetaNotification> notifications;
-  final List<MetaStructure> structures;
-  final List<MetaEnumeration> enumerations;
-  final List<Element> typeAliases;
-
-  @override
-  List<Object?> get props => [
-    metaData,
-    requests,
-    notifications,
-    structures,
-    enumerations,
-  ];
-
-  Map<String, dynamic> toJson() => _$MetaProtocolToJson(this);
 }
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
-class MetaData extends Meta {
-  const MetaData({required this.version});
+@freezed
+abstract class MetaData with _$MetaData {
+  const factory MetaData({
+    @JsonSerializable(disallowUnrecognizedKeys: true) required String version,
+  }) = _MetaData;
 
-  factory MetaData.fromJson(Map<String, dynamic> json) =>
+  factory MetaData.fromJson(Map<String, Object?> json) =>
       _$MetaDataFromJson(json);
-
-  final String version;
-
-  @override
-  List<Object?> get props => [version];
-
-  Map<String, dynamic> toJson() => _$MetaDataToJson(this);
 }
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
-class MetaRequest extends Meta {
-  const MetaRequest({
-    required this.method,
-    required this.messageDirection,
-    required this.params,
-    required this.result,
-    required this.documentation,
-    required this.partialResult,
-    required this.registrationOptions,
-    required this.since,
-    required this.proposed,
-    required this.registrationMethod,
-    required this.errorData,
-  });
+@freezed
+abstract class MetaRequest with _$MetaRequest {
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  const factory MetaRequest({
+    required String method,
+    required MessageDirection messageDirection,
+    TypeRef? params,
+    MetaReference? result,
+    String? documentation,
+    MetaReference? partialResult,
+    MetaReference? registrationOptions,
+    String? since,
+    bool? proposed,
+    String? registrationMethod,
+    TypeRef? errorData,
+  }) = _MetaRequest;
 
-  factory MetaRequest.fromJson(Map<String, dynamic> json) =>
+  factory MetaRequest.fromJson(Map<String, Object?> json) =>
       _$MetaRequestFromJson(json);
-
-  final String method;
-  final MessageDirection messageDirection;
-  final Element? params;
-  final Element? result;
-  final String? documentation;
-  final Element? partialResult;
-  final Element? registrationOptions;
-  final String? since;
-  final bool? proposed;
-  final String? registrationMethod;
-  final Element? errorData;
-
-  @override
-  List<Object?> get props => [
-    method,
-    params,
-    result,
-    messageDirection,
-    documentation,
-    partialResult,
-    registrationOptions,
-    since,
-    proposed,
-    registrationMethod,
-    errorData,
-  ];
-
-  Map<String, dynamic> toJson() => _$MetaRequestToJson(this);
 }
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
-class MetaNotification extends Meta {
-  const MetaNotification({
-    required this.method,
-    required this.params,
-    required this.messageDirection,
-    required this.documentation,
-    required this.registrationOptions,
-    required this.since,
-    required this.registrationMethod,
-  });
+@Freezed(unionKey: 'kind')
+sealed class MetaReference with _$MetaReference {
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  @FreezedUnionValue('reference')
+  const factory MetaReference.typeReference({
+    required TypeKind kind,
+    required String name,
+    @Default(false) bool optional,
+  }) = TypeRef;
 
-  factory MetaNotification.fromJson(Map<String, dynamic> json) =>
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  @FreezedUnionValue('array')
+  const factory MetaReference.elementReference({
+    required MetaReference element,
+    @Default(false) bool optional,
+  }) = ElementRef;
+
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  @FreezedUnionValue('base')
+  const factory MetaReference.base({
+    required String name,
+    @Default(false) bool optional,
+  }) = BaseRef;
+
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  @FreezedUnionValue('or')
+  const factory MetaReference.or({
+    required List<MetaReference> items,
+    @Default(false) bool optional,
+  }) = OrRef;
+
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  @FreezedUnionValue('and')
+  const factory MetaReference.and({
+    required List<TypeRef> items,
+    @Default(false) bool optional,
+  }) = AndRef;
+
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  @FreezedUnionValue('map')
+  const factory MetaReference.map({
+    required TypeRef key,
+    required MetaReference value,
+    @Default(false) bool optional,
+  }) = MapRef;
+
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  @FreezedUnionValue('literal')
+  const factory MetaReference.literal({
+    required MetaLiteral value,
+    @Default(false) bool optional,
+  }) = LiteralRef;
+
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  @FreezedUnionValue('stringLiteral')
+  const factory MetaReference.stringLiteral({
+    required String value,
+    @Default(false) bool optional,
+  }) = StringLiteralRef;
+
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  @FreezedUnionValue('tuple')
+  const factory MetaReference.tuple({
+    required List<TypeRef> items,
+    @Default(false) bool optional,
+  }) = TupleRef;
+
+  factory MetaReference.fromJson(Map<String, Object?> json) =>
+      _$MetaReferenceFromJson(json);
+}
+
+@freezed
+abstract class MetaLiteral with _$MetaLiteral {
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  const factory MetaLiteral({
+    required List<MetaProperty> properties,
+  }) = _MetaLiteral;
+  factory MetaLiteral.fromJson(Map<String, Object?> json) =>
+      _$MetaLiteralFromJson(json);
+}
+
+@freezed
+abstract class MetaNotification with _$MetaNotification {
+  const factory MetaNotification({
+    @JsonSerializable(disallowUnrecognizedKeys: true) required String method,
+    required MessageDirection messageDirection,
+    TypeRef? params,
+    String? documentation,
+    TypeRef? registrationOptions,
+    String? since,
+    String? registrationMethod,
+  }) = _MetaNotification;
+
+  factory MetaNotification.fromJson(Map<String, Object?> json) =>
       _$MetaNotificationFromJson(json);
-
-  final String method;
-  final Element? params;
-  final MessageDirection messageDirection;
-  final String? documentation;
-  final Element? registrationOptions;
-  final String? since;
-  final String? registrationMethod;
-
-  @override
-  List<Object?> get props => [
-    method,
-    params,
-    messageDirection,
-    documentation,
-    registrationOptions,
-    since,
-    registrationMethod,
-  ];
-
-  Map<String, dynamic> toJson() => _$MetaNotificationToJson(this);
 }
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
-class MetaStructure extends Meta {
-  const MetaStructure({
-    required this.name,
-    required this.properties,
-    required this.extends$,
-    required this.mixins,
-    required this.documentation,
-    required this.since,
-    required this.proposed,
-  });
+@freezed
+abstract class MetaProperty with _$MetaProperty {
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  const factory MetaProperty({
+    required String name,
+    required MetaReference type,
+    String? documentation,
+    String? since,
+    String? deprecated,
+    @Default(false) bool optional,
+    @Default(false) bool proposed,
+  }) = _MetaProperty;
 
-  factory MetaStructure.fromJson(Map<String, dynamic> json) =>
+  factory MetaProperty.fromJson(Map<String, Object?> json) =>
+      _$MetaPropertyFromJson(json);
+}
+
+@freezed
+abstract class MetaStructure with _$MetaStructure {
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  const factory MetaStructure({
+    required String name,
+    required List<MetaProperty> properties,
+    String? documentation,
+    String? since,
+    @Default(false) bool proposed,
+    @JsonKey(name: 'mixins') @Default([]) List<MetaReference> mixins$,
+    @JsonKey(name: 'extends') @Default([]) List<MetaReference> extends$,
+  }) = _MetaStructure;
+
+  factory MetaStructure.fromJson(Map<String, Object?> json) =>
       _$MetaStructureFromJson(json);
-
-  final String name;
-  final List<Element> properties;
-  @JsonKey(name: 'extends')
-  final List<Element>? extends$;
-  final List<Element>? mixins;
-  final String? documentation;
-  final String? since;
-  final bool? proposed;
-
-  @override
-  List<Object?> get props => [
-    name,
-    properties,
-    extends$,
-    mixins,
-    documentation,
-    since,
-    proposed,
-  ];
-
-  Map<String, dynamic> toJson() => _$MetaStructureToJson(this);
 }
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
-class MetaEnumeration extends Meta {
-  const MetaEnumeration({
-    required this.name,
-    required this.type,
-    required this.values,
-    this.supportsCustomValues,
-    this.documentation,
-    this.since,
-    this.proposed,
-  });
+@freezed
+abstract class MetaEnumMember with _$MetaEnumMember {
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  const factory MetaEnumMember({
+    required String name,
+    @IntOrStringSealedConverter() required IntOrString value,
+    String? documentation,
+    String? since,
+  }) = _MetaEnumMember;
 
-  factory MetaEnumeration.fromJson(Map<String, dynamic> json) =>
+  factory MetaEnumMember.fromJson(Map<String, Object?> json) =>
+      _$MetaEnumMemberFromJson(json);
+}
+
+@freezed
+abstract class MetaEnumeration with _$MetaEnumeration {
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  const factory MetaEnumeration({
+    required String name,
+    required TypeRef type,
+    required List<MetaEnumMember> values,
+    bool? supportsCustomValues,
+    String? documentation,
+    String? since,
+    @Default(false) bool proposed,
+  }) = _MetaEnumeration;
+
+  factory MetaEnumeration.fromJson(Map<String, Object?> json) =>
       _$MetaEnumerationFromJson(json);
-
-  final String name;
-  final Element type;
-  final List<Element> values;
-  final bool? supportsCustomValues;
-  final String? documentation;
-  final String? since;
-  final bool? proposed;
-
-  @override
-  List<Object?> get props => [
-    name,
-    type,
-    values,
-    supportsCustomValues,
-    documentation,
-    since,
-    proposed,
-  ];
-
-  Map<String, dynamic> toJson() => _$MetaEnumerationToJson(this);
 }
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
-class Element extends Meta {
-  const Element({
-    required this.kind,
-    required this.items,
-    required this.element,
-    required this.name,
-    required this.type,
-    required this.documentation,
-    required this.optional,
-    required this.since,
-    required this.proposed,
-    required this.key,
-    required this.value,
-    required this.properties,
-    required this.deprecated,
-  });
+@freezed
+abstract class MetaTypeAlias with _$MetaTypeAlias {
+  @JsonSerializable(disallowUnrecognizedKeys: true)
+  const factory MetaTypeAlias({
+    required String name,
+    required MetaReference type,
+    String? documentation,
+    String? since,
+    String? deprecated,
+    @Default(false) bool proposed,
+    @Default(false) bool optional,
+  }) = _MetaTypeAlias;
 
-  factory Element.fromJson(Map<String, dynamic> json) =>
-      _$ElementFromJson(json);
-
-  final TypeKind? kind;
-  final String? name;
-  final Element? element;
-  final List<Element>? items;
-  final Element? type;
-  final String? documentation;
-  final bool? optional;
-  final String? since;
-  final bool? proposed;
-  final Element? key;
-  final Object? value;
-  final List<Element>? properties;
-  final String? deprecated;
-
-  @override
-  List<Object?> get props => [
-    kind,
-    items,
-    element,
-    name,
-    type,
-    documentation,
-    optional,
-    since,
-    proposed,
-    key,
-    value,
-    properties,
-    deprecated,
-  ];
-
-  Map<String, dynamic> toJson() => _$ElementToJson(this);
+  factory MetaTypeAlias.fromJson(Map<String, Object?> json) =>
+      _$MetaTypeAliasFromJson(json);
 }
 
 @JsonEnum(valueField: 'kind')

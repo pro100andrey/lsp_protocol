@@ -8,26 +8,26 @@
 // ignore_for_file: doc_directive_unknown
 library;
 
-typedef Definition = String;
+typedef Definition = Object;
 typedef DefinitionLink = LocationLink;
-typedef LSPArray = String;
-typedef LSPAny = String;
-typedef Declaration = String;
+typedef LSPArray = List<LSPAny>;
+typedef LSPAny = Object;
+typedef Declaration = Object;
 typedef DeclarationLink = LocationLink;
-typedef InlineValue = String;
-typedef DocumentDiagnosticReport = String;
-typedef PrepareRenameResult = String;
-typedef DocumentSelector = String;
-typedef ProgressToken = String;
+typedef InlineValue = Object;
+typedef DocumentDiagnosticReport = Object;
+typedef PrepareRenameResult = Object;
+typedef DocumentSelector = List<DocumentFilter>;
+typedef ProgressToken = Object;
 typedef ChangeAnnotationIdentifier = String;
-typedef WorkspaceDocumentDiagnosticReport = String;
-typedef TextDocumentContentChangeEvent = String;
-typedef MarkedString = String;
-typedef DocumentFilter = String;
-typedef LSPObject = String;
-typedef GlobPattern = String;
-typedef TextDocumentFilter = String;
-typedef NotebookDocumentFilter = String;
+typedef WorkspaceDocumentDiagnosticReport = Object;
+typedef TextDocumentContentChangeEvent = Object;
+typedef MarkedString = Object;
+typedef DocumentFilter = Object;
+typedef LSPObject = Map<String, LSPAny>;
+typedef GlobPattern = Object;
+typedef TextDocumentFilter = Object;
+typedef NotebookDocumentFilter = Object;
 typedef Pattern = String;
 
 abstract class ToJson {
@@ -52,19 +52,19 @@ class ImplementationParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -76,9 +76,9 @@ class ImplementationParams
 class Location implements ToJson {
   Location({required this.range, required this.uri});
 
-  final Range range;
+  final Object range;
 
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -100,12 +100,12 @@ class ImplementationRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -129,19 +129,19 @@ class TypeDefinitionParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -163,12 +163,12 @@ class TypeDefinitionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -182,10 +182,10 @@ class WorkspaceFolder implements ToJson {
 
   /// The name of the workspace folder. Used to refer to this workspace
   /// folder in the user interface.
-  final String name;
+  final Object name;
 
   /// The associated URI for this workspace folder.
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -198,7 +198,7 @@ class DidChangeWorkspaceFoldersParams implements ToJson {
   DidChangeWorkspaceFoldersParams({required this.event});
 
   /// The actual workspace folder change event.
-  final WorkspaceFoldersChangeEvent event;
+  final Object event;
 
   @override
   Map<String, dynamic> toJson() {
@@ -210,7 +210,7 @@ class DidChangeWorkspaceFoldersParams implements ToJson {
 class ConfigurationParams implements ToJson {
   ConfigurationParams({required this.items});
 
-  final String items;
+  final Object items;
 
   @override
   Map<String, dynamic> toJson() {
@@ -230,14 +230,14 @@ class DocumentColorParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -250,10 +250,10 @@ class ColorInformation implements ToJson {
   ColorInformation({required this.color, required this.range});
 
   /// The actual color value for this color range.
-  final Color color;
+  final Object color;
 
   /// The range in the document where this color appears.
-  final Range range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -275,12 +275,12 @@ class DocumentColorRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -300,22 +300,22 @@ class ColorPresentationParams
   });
 
   /// The color to request presentations for.
-  final Color color;
+  final Object color;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The range where the color would be inserted. Serves as a context.
-  final Range range;
+  final Object range;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -334,17 +334,17 @@ class ColorPresentation implements ToJson {
   /// applied when selecting this color presentation. Edits must not overlap
   /// with the main {@link ColorPresentation.textEdit edit} nor with
   /// themselves.
-  final String additionalTextEdits;
+  final Object additionalTextEdits;
 
   /// The label of this color presentation. It will be shown on the color
   /// picker header. By default this is also the text that is inserted when
   /// selecting this color presentation.
-  final String label;
+  final Object label;
 
   /// An {@link TextEdit edit} which is applied to a document when selecting
   /// this presentation for the color. When `falsy` the {@link
   /// ColorPresentation.label label} is used.
-  final TextEdit textEdit;
+  final Object textEdit;
 
   @override
   Map<String, dynamic> toJson() {
@@ -355,7 +355,7 @@ class ColorPresentation implements ToJson {
 class WorkDoneProgressOptions implements ToJson {
   WorkDoneProgressOptions({required this.workDoneProgress});
 
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -369,7 +369,7 @@ class TextDocumentRegistrationOptions implements ToJson {
 
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
-  final String documentSelector;
+  final Object documentSelector;
 
   @override
   Map<String, dynamic> toJson() {
@@ -389,14 +389,14 @@ class FoldingRangeParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -421,31 +421,31 @@ class FoldingRange implements ToJson {
   /// collapsed. If not defined or not supported by the client, a default
   /// will be chosen by the client.
   /// @since 3.17.0
-  final String collapsedText;
+  final Object collapsedText;
 
   /// The zero-based character offset before the folded range ends. If not
   /// defined, defaults to the length of the end line.
-  final int endCharacter;
+  final Object endCharacter;
 
   /// The zero-based end line of the range to fold. The folded area ends with
   /// the line's last character. To be valid, the end must be zero or larger
   /// and smaller than the number of lines in the document.
-  final int endLine;
+  final Object endLine;
 
   /// Describes the kind of the folding range such as `comment' or 'region'.
   /// The kind is used to categorize folding ranges and used by commands like
   /// 'Fold all comments'. See {@link FoldingRangeKind} for an enumeration of
   /// standardized kinds.
-  final Object? kind;
+  final Object kind;
 
   /// The zero-based character offset from where the folded range starts. If
   /// not defined, defaults to the length of the start line.
-  final int startCharacter;
+  final Object startCharacter;
 
   /// The zero-based start line of the range to fold. The folded area starts
   /// after the line's last character. To be valid, the end must be zero or
   /// larger and smaller than the number of lines in the document.
-  final int startLine;
+  final Object startLine;
 
   @override
   Map<String, dynamic> toJson() {
@@ -467,12 +467,12 @@ class FoldingRangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -496,19 +496,19 @@ class DeclarationParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -530,12 +530,12 @@ class DeclarationRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -556,17 +556,17 @@ class SelectionRangeParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The positions inside the text document.
-  final String positions;
+  final Object positions;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -581,10 +581,10 @@ class SelectionRange implements ToJson {
 
   /// The parent selection range containing this range. Therefore
   /// `parent.range` must contain `this.range`.
-  final SelectionRange parent;
+  final Object parent;
 
   /// The {@link Range range} of this selection range.
-  final Range range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -606,12 +606,12 @@ class SelectionRangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -623,7 +623,7 @@ class WorkDoneProgressCreateParams implements ToJson {
   WorkDoneProgressCreateParams({required this.token});
 
   /// The token to be used to report progress.
-  final ProgressToken token;
+  final Object token;
 
   @override
   Map<String, dynamic> toJson() {
@@ -635,7 +635,7 @@ class WorkDoneProgressCancelParams implements ToJson {
   WorkDoneProgressCancelParams({required this.token});
 
   /// The token to be used to report progress.
-  final ProgressToken token;
+  final Object token;
 
   @override
   Map<String, dynamic> toJson() {
@@ -655,15 +655,15 @@ class CallHierarchyPrepareParams
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -688,31 +688,31 @@ class CallHierarchyItem implements ToJson {
 
   /// A data entry field that is preserved between a call hierarchy prepare
   /// and incoming calls or outgoing calls requests.
-  final LSPAny data;
+  final Object data;
 
   /// More detail for this item, e.g. the signature of a function.
-  final String detail;
+  final Object detail;
 
   /// The kind of this item.
-  final Object? kind;
+  final Object kind;
 
   /// The name of this item.
-  final String name;
+  final Object name;
 
   /// The range enclosing this symbol not including leading/trailing
   /// whitespace but everything else, e.g. comments and code.
-  final Range range;
+  final Object range;
 
   /// The range that should be selected and revealed when this symbol is
   /// being picked, e.g. the name of a function. Must be contained by the
   /// {@link CallHierarchyItem.range `range`}.
-  final Range selectionRange;
+  final Object selectionRange;
 
   /// Tags for this item.
-  final String tags;
+  final Object tags;
 
   /// The resource identifier of this item.
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -736,12 +736,12 @@ class CallHierarchyRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -759,16 +759,16 @@ class CallHierarchyIncomingCallsParams
     required this.workDoneToken,
   });
 
-  final CallHierarchyItem item;
+  final Object item;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -782,11 +782,11 @@ class CallHierarchyIncomingCall implements ToJson {
   CallHierarchyIncomingCall({required this.from, required this.fromRanges});
 
   /// The item that makes the call.
-  final CallHierarchyItem from;
+  final Object from;
 
   /// The ranges at which the calls appear. This is relative to the caller
   /// denoted by {@link CallHierarchyIncomingCall.from `this.from`}.
-  final String fromRanges;
+  final Object fromRanges;
 
   @override
   Map<String, dynamic> toJson() {
@@ -804,16 +804,16 @@ class CallHierarchyOutgoingCallsParams
     required this.workDoneToken,
   });
 
-  final CallHierarchyItem item;
+  final Object item;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -832,10 +832,10 @@ class CallHierarchyOutgoingCall implements ToJson {
   /// CallHierarchyItemProvider.provideCallHierarchyOutgoingCalls
   /// `provideCallHierarchyOutgoingCalls`} and not {@link
   /// CallHierarchyOutgoingCall.to `this.to`}.
-  final String fromRanges;
+  final Object fromRanges;
 
   /// The item that is called.
-  final CallHierarchyItem to;
+  final Object to;
 
   @override
   Map<String, dynamic> toJson() {
@@ -855,14 +855,14 @@ class SemanticTokensParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -875,13 +875,13 @@ class SemanticTokens implements ToJson {
   SemanticTokens({required this.data, required this.resultId});
 
   /// The actual tokens.
-  final String data;
+  final Object data;
 
   /// An optional result id. If provided and clients support delta updating
   /// the client will include the result id in the next semantic token
   /// request. A server can then instead of computing all semantic tokens
   /// again simply send a delta.
-  final String resultId;
+  final Object resultId;
 
   @override
   Map<String, dynamic> toJson() {
@@ -893,7 +893,7 @@ class SemanticTokens implements ToJson {
 class SemanticTokensPartialResult implements ToJson {
   SemanticTokensPartialResult({required this.data});
 
-  final String data;
+  final Object data;
 
   @override
   Map<String, dynamic> toJson() {
@@ -919,25 +919,25 @@ class SemanticTokensRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// Server supports providing semantic tokens for a full document.
   @override
-  final String full;
+  final Object full;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   /// The legend used by the server
   @override
-  final SemanticTokensLegend legend;
+  final Object legend;
 
   /// Server supports providing semantic tokens for a specific range of a
   /// document.
   @override
-  final String range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -958,19 +958,19 @@ class SemanticTokensDeltaParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The result id of a previous response. The result Id can either point to
   /// a full response or a delta response depending on what was received
   /// last.
-  final String previousResultId;
+  final Object previousResultId;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -984,9 +984,9 @@ class SemanticTokensDelta implements ToJson {
 
   /// The semantic token edits to transform a previous result into a new
   /// result.
-  final String edits;
+  final Object edits;
 
-  final String resultId;
+  final Object resultId;
 
   @override
   Map<String, dynamic> toJson() {
@@ -998,7 +998,7 @@ class SemanticTokensDelta implements ToJson {
 class SemanticTokensDeltaPartialResult implements ToJson {
   SemanticTokensDeltaPartialResult({required this.edits});
 
-  final String edits;
+  final Object edits;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1019,17 +1019,17 @@ class SemanticTokensRangeParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The range the semantic tokens are requested for.
-  final Range range;
+  final Object range;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1050,20 +1050,20 @@ class ShowDocumentParams implements ToJson {
   /// Indicates to show the resource in an external program. To show, for
   /// example, `https://code.visualstudio.com/` in the default WEB browser
   /// set `external` to `true`.
-  final bool external;
+  final Object external;
 
   /// An optional selection range if the document is a text document. Clients
   /// might ignore the property if an external program is started or the file
   /// is not a text file.
-  final Range selection;
+  final Object selection;
 
   /// An optional property to indicate whether the editor showing the
   /// document should take focus or not. Clients might ignore this property
   /// if an external program is started.
-  final bool takeFocus;
+  final Object takeFocus;
 
   /// The uri to show.
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1077,7 +1077,7 @@ class ShowDocumentResult implements ToJson {
   ShowDocumentResult({required this.success});
 
   /// A boolean indicating if the show was successful.
-  final bool success;
+  final Object success;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1095,15 +1095,15 @@ class LinkedEditingRangeParams
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1119,12 +1119,12 @@ class LinkedEditingRanges implements ToJson {
   /// A list of ranges that can be edited together. The ranges must have
   /// identical length and contain identical text content. The ranges cannot
   /// overlap.
-  final String ranges;
+  final Object ranges;
 
   /// An optional word pattern (regular expression) that describes valid
   /// contents for the given ranges. If no pattern is provided, the client
   /// configuration's word pattern will be used.
-  final String wordPattern;
+  final Object wordPattern;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1146,12 +1146,12 @@ class LinkedEditingRangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1166,7 +1166,7 @@ class CreateFilesParams implements ToJson {
   CreateFilesParams({required this.files});
 
   /// An array of all files/folders created in this operation.
-  final String files;
+  final Object files;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1200,10 +1200,10 @@ class WorkspaceEdit implements ToJson {
   /// Whether clients honor this property depends on the client capability
   /// `workspace.changeAnnotationSupport`.
   /// @since 3.16.0
-  final String changeAnnotations;
+  final Object changeAnnotations;
 
   /// Holds changes to existing resources.
-  final String changes;
+  final Object changes;
 
   /// Depending on the client capability
   /// `workspace.workspaceEdit.resourceOperations` document changes are
@@ -1217,7 +1217,7 @@ class WorkspaceEdit implements ToJson {
   /// If a client neither supports `documentChanges` nor
   /// `workspace.workspaceEdit.resourceOperations` then only plain
   /// `TextEdit`s using the `changes` property are supported.
-  final String documentChanges;
+  final Object documentChanges;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1231,7 +1231,7 @@ class FileOperationRegistrationOptions implements ToJson {
   FileOperationRegistrationOptions({required this.filters});
 
   /// The actual filters.
-  final String filters;
+  final Object filters;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1247,7 +1247,7 @@ class RenameFilesParams implements ToJson {
 
   /// An array of all files/folders renamed in this operation. When a folder
   /// is renamed, only the folder will be included, and not its children.
-  final String files;
+  final Object files;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1262,7 +1262,7 @@ class DeleteFilesParams implements ToJson {
   DeleteFilesParams({required this.files});
 
   /// An array of all files/folders deleted in this operation.
-  final String files;
+  final Object files;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1286,19 +1286,19 @@ class MonikerParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1318,16 +1318,16 @@ class Moniker implements ToJson {
 
   /// The identifier of the moniker. The value is opaque in LSIF however
   /// schema owners are allowed to define the structure if they want.
-  final String identifier;
+  final Object identifier;
 
   /// The moniker kind if known.
-  final Object? kind;
+  final Object kind;
 
   /// The scheme of the moniker. For example tsc or .Net
-  final String scheme;
+  final Object scheme;
 
   /// The scope in which the moniker is unique
-  final Object? unique;
+  final Object unique;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1342,7 +1342,7 @@ class MonikerRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1362,15 +1362,15 @@ class TypeHierarchyPrepareParams
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1395,31 +1395,31 @@ class TypeHierarchyItem implements ToJson {
   /// and supertypes or subtypes requests. It could also be used to identify
   /// the type hierarchy in the server, helping improve the performance on
   /// resolving supertypes and subtypes.
-  final LSPAny data;
+  final Object data;
 
   /// More detail for this item, e.g. the signature of a function.
-  final String detail;
+  final Object detail;
 
   /// The kind of this item.
-  final Object? kind;
+  final Object kind;
 
   /// The name of this item.
-  final String name;
+  final Object name;
 
   /// The range enclosing this symbol not including leading/trailing
   /// whitespace but everything else, e.g. comments and code.
-  final Range range;
+  final Object range;
 
   /// The range that should be selected and revealed when this symbol is
   /// being picked, e.g. the name of a function. Must be contained by the
   /// {@link TypeHierarchyItem.range `range`}.
-  final Range selectionRange;
+  final Object selectionRange;
 
   /// Tags for this item.
-  final String tags;
+  final Object tags;
 
   /// The resource identifier of this item.
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1443,12 +1443,12 @@ class TypeHierarchyRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1466,16 +1466,16 @@ class TypeHierarchySupertypesParams
     required this.workDoneToken,
   });
 
-  final TypeHierarchyItem item;
+  final Object item;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1493,16 +1493,16 @@ class TypeHierarchySubtypesParams
     required this.workDoneToken,
   });
 
-  final TypeHierarchyItem item;
+  final Object item;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1522,17 +1522,17 @@ class InlineValueParams implements ToJson, WorkDoneProgressParams {
 
   /// Additional information about the context in which inline values were
   /// requested.
-  final InlineValueContext context;
+  final Object context;
 
   /// The document range for which inline values should be computed.
-  final Range range;
+  final Object range;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1556,12 +1556,12 @@ class InlineValueRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1579,14 +1579,14 @@ class InlayHintParams implements ToJson, WorkDoneProgressParams {
   });
 
   /// The document range for which inlay hints should be computed.
-  final Range range;
+  final Object range;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1610,42 +1610,42 @@ class InlayHint implements ToJson {
 
   /// A data entry field that is preserved on an inlay hint between a
   /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
-  final LSPAny data;
+  final Object data;
 
   /// The kind of this hint. Can be omitted in which case the client should
   /// fall back to a reasonable default.
-  final Object? kind;
+  final Object kind;
 
   /// The label of this hint. A human readable string or an array of
   /// InlayHintLabelPart label parts.
   /// *Note* that neither the string nor the label part can be empty.
-  final String label;
+  final Object label;
 
   /// Render padding before the hint.
   /// Note: Padding should use the editor's background color, not the
   /// background color of the hint itself. That means padding can be used to
   /// visually align/separate an inlay hint.
-  final bool paddingLeft;
+  final Object paddingLeft;
 
   /// Render padding after the hint.
   /// Note: Padding should use the editor's background color, not the
   /// background color of the hint itself. That means padding can be used to
   /// visually align/separate an inlay hint.
-  final bool paddingRight;
+  final Object paddingRight;
 
   /// The position of this hint.
   /// If multiple hints have the same position, they will be shown in the
   /// order they appear in the response.
-  final Position position;
+  final Object position;
 
   /// Optional text edits that are performed when accepting this inlay hint.
   /// *Note* that edits are expected to change the document so that the inlay
   /// hint (or its nearest variant) is now part of the document and the inlay
   /// hint itself is now obsolete.
-  final String textEdits;
+  final Object textEdits;
 
   /// The tooltip text when you hover over this item.
-  final String tooltip;
+  final Object tooltip;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1670,17 +1670,17 @@ class InlayHintRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   /// The server provides support to resolve additional information for an
   /// inlay hint item.
   @override
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1701,22 +1701,22 @@ class DocumentDiagnosticParams
   });
 
   /// The additional identifier  provided during registration.
-  final String identifier;
+  final Object identifier;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The result id of a previous response if provided.
-  final String previousResultId;
+  final Object previousResultId;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1729,7 +1729,7 @@ class DocumentDiagnosticParams
 class DocumentDiagnosticReportPartialResult implements ToJson {
   DocumentDiagnosticReportPartialResult({required this.relatedDocuments});
 
-  final String relatedDocuments;
+  final Object relatedDocuments;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1742,7 +1742,7 @@ class DocumentDiagnosticReportPartialResult implements ToJson {
 class DiagnosticServerCancellationData implements ToJson {
   DiagnosticServerCancellationData({required this.retriggerRequest});
 
-  final bool retriggerRequest;
+  final Object retriggerRequest;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1769,28 +1769,28 @@ class DiagnosticRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   /// An optional identifier under which the diagnostics are managed by the
   /// client.
   @override
-  final String identifier;
+  final Object identifier;
 
   /// Whether the language has inter file dependencies meaning that editing
   /// code in one file can result in a different diagnostic set in another
   /// file. Inter file dependencies are common for most programming languages
   /// and typically uncommon for linters.
   @override
-  final bool interFileDependencies;
+  final Object interFileDependencies;
 
   /// The server provides support for workspace diagnostics as well.
   @override
-  final bool workspaceDiagnostics;
+  final Object workspaceDiagnostics;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1810,19 +1810,19 @@ class WorkspaceDiagnosticParams
   });
 
   /// The additional identifier provided during registration.
-  final String identifier;
+  final Object identifier;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The currently known diagnostic reports with their previous result ids.
-  final String previousResultIds;
+  final Object previousResultIds;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1835,7 +1835,7 @@ class WorkspaceDiagnosticParams
 class WorkspaceDiagnosticReport implements ToJson {
   WorkspaceDiagnosticReport({required this.items});
 
-  final String items;
+  final Object items;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1848,7 +1848,7 @@ class WorkspaceDiagnosticReport implements ToJson {
 class WorkspaceDiagnosticReportPartialResult implements ToJson {
   WorkspaceDiagnosticReportPartialResult({required this.items});
 
-  final String items;
+  final Object items;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1865,10 +1865,10 @@ class DidOpenNotebookDocumentParams implements ToJson {
   });
 
   /// The text documents that represent the content of a notebook cell.
-  final String cellTextDocuments;
+  final Object cellTextDocuments;
 
   /// The notebook document that got opened.
-  final NotebookDocument notebookDocument;
+  final Object notebookDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1895,13 +1895,13 @@ class DidChangeNotebookDocumentParams implements ToJson {
   /// 'notebookDocument/didChange' notifications in the order you receive
   /// them. - apply the `NotebookChangeEvent`s in a single notification in
   /// the order you receive them.
-  final NotebookDocumentChangeEvent change;
+  final Object change;
 
   /// The notebook document that did change. The version number points to the
   /// version after all provided changes have been applied. If only the text
   /// document content of a cell changes the notebook version doesn't
   /// necessarily have to change.
-  final VersionedNotebookDocumentIdentifier notebookDocument;
+  final Object notebookDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1915,7 +1915,7 @@ class DidSaveNotebookDocumentParams implements ToJson {
   DidSaveNotebookDocumentParams({required this.notebookDocument});
 
   /// The notebook document that got saved.
-  final NotebookDocumentIdentifier notebookDocument;
+  final Object notebookDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1933,10 +1933,10 @@ class DidCloseNotebookDocumentParams implements ToJson {
 
   /// The text documents that represent the content of a notebook cell that
   /// got closed.
-  final String cellTextDocuments;
+  final Object cellTextDocuments;
 
   /// The notebook document that got closed.
-  final NotebookDocumentIdentifier notebookDocument;
+  final Object notebookDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1957,19 +1957,19 @@ class InlineCompletionParams
 
   /// Additional information about the context in which inline completions
   /// were requested.
-  final InlineCompletionContext context;
+  final Object context;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1984,7 +1984,7 @@ class InlineCompletionList implements ToJson {
   InlineCompletionList({required this.items});
 
   /// The inline completion items
-  final String items;
+  final Object items;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2005,18 +2005,18 @@ class InlineCompletionItem implements ToJson {
 
   /// An optional {@link Command} that is executed *after* inserting this
   /// completion.
-  final Command command;
+  final Object command;
 
   /// A text that is used to decide if this inline completion should be
   /// shown. When `falsy` the {@link InlineCompletionItem.insertText} is
   /// used.
-  final String filterText;
+  final Object filterText;
 
   /// The text to replace the range with. Must be set.
-  final String insertText;
+  final Object insertText;
 
   /// The range to replace. Must begin and end on the same line.
-  final Range range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2040,12 +2040,12 @@ class InlineCompletionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2056,7 +2056,7 @@ class InlineCompletionRegistrationOptions
 class RegistrationParams implements ToJson {
   RegistrationParams({required this.registrations});
 
-  final String registrations;
+  final Object registrations;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2067,7 +2067,7 @@ class RegistrationParams implements ToJson {
 class UnregistrationParams implements ToJson {
   UnregistrationParams({required this.unregisterations});
 
-  final String unregisterations;
+  final Object unregisterations;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2091,16 +2091,16 @@ class InitializeParams
 
   /// The capabilities provided by the client (editor or tool)
   @override
-  final ClientCapabilities capabilities;
+  final Object capabilities;
 
   /// Information about the client
   /// @since 3.15.0
   @override
-  final String clientInfo;
+  final Object clientInfo;
 
   /// User provided initialization options.
   @override
-  final LSPAny initializationOptions;
+  final Object initializationOptions;
 
   /// The locale the client is currently showing the user interface in. This
   /// must not necessarily be the locale of the operating system.
@@ -2108,28 +2108,28 @@ class InitializeParams
   /// https://en.wikipedia.org/wiki/IETF_language_tag)
   /// @since 3.16.0
   @override
-  final String locale;
+  final Object locale;
 
   /// The process Id of the parent process that started the server.
   /// Is `null` if the process has not been started by another process. If
   /// the parent process is not alive then the server should exit.
   @override
-  final String processId;
+  final Object processId;
 
   /// The rootPath of the workspace. Is null if no folder is open.
   /// @deprecated in favour of rootUri.
   @override
-  final String rootPath;
+  final Object rootPath;
 
   /// The rootUri of the workspace. Is null if no folder is open. If both
   /// `rootPath` and `rootUri` are set `rootUri` wins.
   /// @deprecated in favour of workspaceFolders.
   @override
-  final String rootUri;
+  final Object rootUri;
 
   /// The initial trace setting. If omitted trace is disabled ('off').
   @override
-  final Object? trace;
+  final Object trace;
 
   /// The workspace folders configured in the client when the server starts.
   /// This property is only available if the client supports workspace
@@ -2137,7 +2137,7 @@ class InitializeParams
   /// none are configured.
   /// @since 3.6.0
   @override
-  final String workspaceFolders;
+  final Object workspaceFolders;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2150,11 +2150,11 @@ class InitializeResult implements ToJson {
   InitializeResult({required this.capabilities, required this.serverInfo});
 
   /// The capabilities the language server provides.
-  final ServerCapabilities capabilities;
+  final Object capabilities;
 
   /// Information about the server.
   /// @since 3.15.0
-  final String serverInfo;
+  final Object serverInfo;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2170,7 +2170,7 @@ class InitializeError implements ToJson {
   /// show the message provided by the ResponseError to the user (2) user
   /// selects retry or cancel (3) if user selected retry the initialize
   /// method is sent again.
-  final bool retry;
+  final Object retry;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2192,7 +2192,7 @@ class DidChangeConfigurationParams implements ToJson {
   DidChangeConfigurationParams({required this.settings});
 
   /// The actual changed settings
-  final LSPAny settings;
+  final Object settings;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2203,7 +2203,7 @@ class DidChangeConfigurationParams implements ToJson {
 class DidChangeConfigurationRegistrationOptions implements ToJson {
   DidChangeConfigurationRegistrationOptions({required this.section});
 
-  final String section;
+  final Object section;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2216,10 +2216,10 @@ class ShowMessageParams implements ToJson {
   ShowMessageParams({required this.message, required this.type});
 
   /// The actual message.
-  final String message;
+  final Object message;
 
   /// The message type. See {@link MessageType}
-  final Object? type;
+  final Object type;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2235,13 +2235,13 @@ class ShowMessageRequestParams implements ToJson {
   });
 
   /// The message action items to present.
-  final String actions;
+  final Object actions;
 
   /// The actual message.
-  final String message;
+  final Object message;
 
   /// The message type. See {@link MessageType}
-  final Object? type;
+  final Object type;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2253,7 +2253,7 @@ class MessageActionItem implements ToJson {
   MessageActionItem({required this.title});
 
   /// A short title like 'Retry', 'Open Log' etc.
-  final String title;
+  final Object title;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2266,10 +2266,10 @@ class LogMessageParams implements ToJson {
   LogMessageParams({required this.message, required this.type});
 
   /// The actual message.
-  final String message;
+  final Object message;
 
   /// The message type. See {@link MessageType}
-  final Object? type;
+  final Object type;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2282,7 +2282,7 @@ class DidOpenTextDocumentParams implements ToJson {
   DidOpenTextDocumentParams({required this.textDocument});
 
   /// The document that was opened.
-  final TextDocumentItem textDocument;
+  final Object textDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2307,11 +2307,11 @@ class DidChangeTextDocumentParams implements ToJson {
   /// 'textDocument/didChange' notifications in the order you receive them. -
   /// apply the `TextDocumentContentChangeEvent`s in a single notification in
   /// the order you receive them.
-  final String contentChanges;
+  final Object contentChanges;
 
   /// The document that did change. The version number points to the version
   /// after all provided content changes have been applied.
-  final VersionedTextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2330,10 +2330,10 @@ class TextDocumentChangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// How documents are synced to the server.
-  final Object? syncKind;
+  final Object syncKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2346,7 +2346,7 @@ class DidCloseTextDocumentParams implements ToJson {
   DidCloseTextDocumentParams({required this.textDocument});
 
   /// The document that was closed.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2360,10 +2360,10 @@ class DidSaveTextDocumentParams implements ToJson {
 
   /// Optional the content when saved. Depends on the includeText value when
   /// the save notification was requested.
-  final String text;
+  final Object text;
 
   /// The document that was saved.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2382,11 +2382,11 @@ class TextDocumentSaveRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The client is supposed to include the content on save.
   @override
-  final bool includeText;
+  final Object includeText;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2402,10 +2402,10 @@ class WillSaveTextDocumentParams implements ToJson {
   });
 
   /// The 'TextDocumentSaveReason'.
-  final Object? reason;
+  final Object reason;
 
   /// The document that will be saved.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2418,11 +2418,11 @@ class TextEdit implements ToJson {
   TextEdit({required this.newText, required this.range});
 
   /// The string to be inserted. For delete operations use an empty string.
-  final String newText;
+  final Object newText;
 
   /// The range of the text document to be manipulated. To insert text into a
   /// document create a range where start === end.
-  final Range range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2435,7 +2435,7 @@ class DidChangeWatchedFilesParams implements ToJson {
   DidChangeWatchedFilesParams({required this.changes});
 
   /// The actual file events.
-  final String changes;
+  final Object changes;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2448,7 +2448,7 @@ class DidChangeWatchedFilesRegistrationOptions implements ToJson {
   DidChangeWatchedFilesRegistrationOptions({required this.watchers});
 
   /// The watchers to register.
-  final String watchers;
+  final Object watchers;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2465,15 +2465,15 @@ class PublishDiagnosticsParams implements ToJson {
   });
 
   /// An array of diagnostic information items.
-  final String diagnostics;
+  final Object diagnostics;
 
   /// The URI for which diagnostic information is reported.
-  final Uri uri;
+  final Object uri;
 
   /// Optional the version number of the document the diagnostics are
   /// published for.
   /// @since 3.15.0
-  final int version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2499,24 +2499,24 @@ class CompletionParams
   /// The completion context. This is only available if the client specifies
   /// to send this using the client capability
   /// `textDocument.completion.contextSupport === true`
-  final CompletionContext context;
+  final Object context;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2557,37 +2557,37 @@ class CompletionItem implements ToJson {
   /// current cursor position (for example adding an import statement at the
   /// top of the file if the completion item will insert an unqualified
   /// type).
-  final String additionalTextEdits;
+  final Object additionalTextEdits;
 
   /// An optional {@link Command command} that is executed *after* inserting
   /// this completion. *Note* that additional modifications to the current
   /// document should be described with the {@link
   /// CompletionItem.additionalTextEdits additionalTextEdits}-property.
-  final Command command;
+  final Object command;
 
   /// An optional set of characters that when pressed while this completion
   /// is active will accept it first and then type that character. *Note*
   /// that all commit characters should have `length=1` and that superfluous
   /// characters will be ignored.
-  final String commitCharacters;
+  final Object commitCharacters;
 
   /// A data entry field that is preserved on a completion item between a
   /// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
-  final LSPAny data;
+  final Object data;
 
   /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
-  final bool deprecated;
+  final Object deprecated;
 
   /// A human-readable string with additional information about this item,
   /// like type or symbol information.
-  final String detail;
+  final Object detail;
 
   /// A human-readable string that represents a doc-comment.
-  final String documentation;
+  final Object documentation;
 
   /// A string that should be used when filtering a set of completion items.
   /// When `falsy` the {@link CompletionItem.label label} is used.
-  final String filterText;
+  final Object filterText;
 
   /// A string that should be inserted into a document when selecting this
   /// completion. When `falsy` the {@link CompletionItem.label label} is
@@ -2598,49 +2598,49 @@ class CompletionItem implements ToJson {
   /// completion item with an `insertText` of `console` is provided it will
   /// only insert `sole`. Therefore it is recommended to use `textEdit`
   /// instead since it avoids additional client side interpretation.
-  final String insertText;
+  final Object insertText;
 
   /// The format of the insert text. The format applies to both the
   /// `insertText` property and the `newText` property of a provided
   /// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
   /// Please note that the insertTextFormat doesn't apply to
   /// `additionalTextEdits`.
-  final Object? insertTextFormat;
+  final Object insertTextFormat;
 
   /// How whitespace and indentation is handled during completion item
   /// insertion. If not provided the clients default value depends on the
   /// `textDocument.completion.insertTextMode` client capability.
   /// @since 3.16.0
-  final Object? insertTextMode;
+  final Object insertTextMode;
 
   /// The kind of this completion item. Based of the kind an icon is chosen
   /// by the editor.
-  final Object? kind;
+  final Object kind;
 
   /// The label of this completion item.
   /// The label property is also by default the text that is inserted when
   /// selecting this completion.
   /// If label details are provided the label itself should be an unqualified
   /// name of the completion item.
-  final String label;
+  final Object label;
 
   /// Additional details for the label
   /// @since 3.17.0
-  final CompletionItemLabelDetails labelDetails;
+  final Object labelDetails;
 
   /// Select this item when showing.
   /// *Note* that only one completion item can be selected and that the tool
   /// / client decides which item that is. The rule is that the *first* item
   /// of those that match best is selected.
-  final bool preselect;
+  final Object preselect;
 
   /// A string that should be used when comparing this item with other items.
   /// When `falsy` the {@link CompletionItem.label label} is used.
-  final String sortText;
+  final Object sortText;
 
   /// Tags for this completion item.
   /// @since 3.15.0
-  final String tags;
+  final Object tags;
 
   /// An {@link TextEdit edit} which is applied to a document when selecting
   /// this completion. When an edit is provided the value of {@link
@@ -2659,7 +2659,7 @@ class CompletionItem implements ToJson {
   /// prefix of the edit's replace range, that means it must be contained and
   /// starting at the same position.
   /// @since 3.16.0 additional type `InsertReplaceEdit`
-  final String textEdit;
+  final Object textEdit;
 
   /// The edit text used if the completion item is part of a CompletionList
   /// and CompletionList defines an item default for the text edit range.
@@ -2668,7 +2668,7 @@ class CompletionItem implements ToJson {
   /// If not provided and a list's default range is provided the label
   /// property is used as a text.
   /// @since 3.17.0
-  final String textEditText;
+  final Object textEditText;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2689,7 +2689,7 @@ class CompletionList implements ToJson {
   /// list.
   /// Recomputed lists have all their items replaced (not appended) in the
   /// incomplete completion sessions.
-  final bool isIncomplete;
+  final Object isIncomplete;
 
   /// In many cases the items of an actual completion result share the same
   /// value for properties like `commitCharacters` or the range of a text
@@ -2700,10 +2700,10 @@ class CompletionList implements ToJson {
   /// Servers are only allowed to return default values if the client signals
   /// support for this via the `completionList.itemDefaults` capability.
   /// @since 3.17.0
-  final String itemDefaults;
+  final Object itemDefaults;
 
   /// The completion items.
-  final String items;
+  final Object items;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2730,23 +2730,23 @@ class CompletionRegistrationOptions
   /// on an individual completion item the ones on the completion item win.
   /// @since 3.2.0
   @override
-  final String allCommitCharacters;
+  final Object allCommitCharacters;
 
   /// The server supports the following `CompletionItem` specific
   /// capabilities.
   /// @since 3.17.0
   @override
-  final String completionItem;
+  final Object completionItem;
 
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The server provides support to resolve additional information for a
   /// completion item.
   @override
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   /// Most tools trigger completion request automatically without explicitly
   /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
@@ -2758,7 +2758,7 @@ class CompletionRegistrationOptions
   /// being valid inside an identifier (for example `.` in JavaScript) list
   /// them in `triggerCharacters`.
   @override
-  final String triggerCharacters;
+  final Object triggerCharacters;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2777,15 +2777,15 @@ class HoverParams
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2798,11 +2798,11 @@ class Hover implements ToJson {
   Hover({required this.contents, required this.range});
 
   /// The hover's content
-  final String contents;
+  final Object contents;
 
   /// An optional range inside the text document that is used to visualize
   /// the hover, e.g. by changing the background color.
-  final Range range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2818,7 +2818,7 @@ class HoverRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2840,19 +2840,19 @@ class SignatureHelpParams
   /// specifies to send this using the client capability
   /// `textDocument.signatureHelp.contextSupport === true`
   /// @since 3.15.0
-  final SignatureHelpContext context;
+  final Object context;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2875,7 +2875,7 @@ class SignatureHelp implements ToJson {
   /// signature has no parameters it is ignored. In future version of the
   /// protocol this property might become mandatory to better express the
   /// active parameter if the active signature does have any.
-  final int activeParameter;
+  final Object activeParameter;
 
   /// The active signature. If omitted or the value lies outside the range of
   /// `signatures` the value defaults to zero or is ignored if the
@@ -2884,10 +2884,10 @@ class SignatureHelp implements ToJson {
   /// active signature and shouldn't rely on a default value.
   /// In future version of the protocol this property might become mandatory
   /// to better express this.
-  final int activeSignature;
+  final Object activeSignature;
 
   /// One or more signatures.
-  final String signatures;
+  final Object signatures;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2907,7 +2907,7 @@ class SignatureHelpRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// List of characters that re-trigger signature help.
   /// These trigger characters are only active when signature help is already
@@ -2915,11 +2915,11 @@ class SignatureHelpRegistrationOptions
   /// characters.
   /// @since 3.15.0
   @override
-  final String retriggerCharacters;
+  final Object retriggerCharacters;
 
   /// List of characters that trigger signature help automatically.
   @override
-  final String triggerCharacters;
+  final Object triggerCharacters;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2944,19 +2944,19 @@ class DefinitionParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2972,7 +2972,7 @@ class DefinitionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2995,24 +2995,24 @@ class ReferenceParams
     required this.workDoneToken,
   });
 
-  final ReferenceContext context;
+  final Object context;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3028,7 +3028,7 @@ class ReferenceRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3053,19 +3053,19 @@ class DocumentHighlightParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3080,10 +3080,10 @@ class DocumentHighlight implements ToJson {
   DocumentHighlight({required this.kind, required this.range});
 
   /// The highlight kind, default is {@link DocumentHighlightKind.Text text}.
-  final Object? kind;
+  final Object kind;
 
   /// The range this highlight applies to.
-  final Range range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3102,7 +3102,7 @@ class DocumentHighlightRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3122,14 +3122,14 @@ class DocumentSymbolParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3154,15 +3154,15 @@ class SymbolInformation implements ToJson, BaseSymbolInformation {
   /// interface if necessary). It can't be used to re-infer a hierarchy for
   /// the document symbols.
   @override
-  final String containerName;
+  final Object containerName;
 
   /// Indicates if this symbol is deprecated.
   /// @deprecated Use tags instead
-  final bool deprecated;
+  final Object deprecated;
 
   /// The kind of this symbol.
   @override
-  final Object? kind;
+  final Object kind;
 
   /// The location of this symbol. The location's range is used by a tool to
   /// reveal the location in the editor. If the symbol is selected in the
@@ -3172,16 +3172,16 @@ class SymbolInformation implements ToJson, BaseSymbolInformation {
   /// The range doesn't have to denote a node range in the sense of an
   /// abstract syntax tree. It can therefore not be used to re-construct a
   /// hierarchy of the symbols.
-  final Location location;
+  final Object location;
 
   /// The name of this symbol.
   @override
-  final String name;
+  final Object name;
 
   /// Tags for this symbol.
   /// @since 3.16.0
   @override
-  final String tags;
+  final Object tags;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3206,37 +3206,37 @@ class DocumentSymbol implements ToJson {
   });
 
   /// Children of this symbol, e.g. properties of a class.
-  final String children;
+  final Object children;
 
   /// Indicates if this symbol is deprecated.
   /// @deprecated Use tags instead
-  final bool deprecated;
+  final Object deprecated;
 
   /// More detail for this symbol, e.g the signature of a function.
-  final String detail;
+  final Object detail;
 
   /// The kind of this symbol.
-  final Object? kind;
+  final Object kind;
 
   /// The name of this symbol. Will be displayed in the user interface and
   /// therefore must not be an empty string or a string only consisting of
   /// white spaces.
-  final String name;
+  final Object name;
 
   /// The range enclosing this symbol not including leading/trailing
   /// whitespace but everything else like comments. This information is
   /// typically used to determine if the clients cursor is inside the symbol
   /// to reveal in the symbol in the UI.
-  final Range range;
+  final Object range;
 
   /// The range that should be selected and revealed when this symbol is
   /// being picked, e.g the name of a function. Must be contained by the
   /// `range`.
-  final Range selectionRange;
+  final Object selectionRange;
 
   /// Tags for this document symbol.
   /// @since 3.16.0
-  final String tags;
+  final Object tags;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3255,13 +3255,13 @@ class DocumentSymbolRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// A human-readable string that is shown when multiple outlines trees are
   /// shown for the same document.
   /// @since 3.16.0
   @override
-  final String label;
+  final Object label;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3281,22 +3281,22 @@ class CodeActionParams
   });
 
   /// Context carrying additional information.
-  final CodeActionContext context;
+  final Object context;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The range for which the command was invoked.
-  final Range range;
+  final Object range;
 
   /// The document in which the command was invoked.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3315,13 +3315,13 @@ class Command implements ToJson {
   });
 
   /// Arguments that the command handler should be invoked with.
-  final String arguments;
+  final Object arguments;
 
   /// The identifier of the actual command handler.
-  final String command;
+  final Object command;
 
   /// Title of the command, like `save`.
-  final String title;
+  final Object title;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3347,15 +3347,15 @@ class CodeAction implements ToJson {
 
   /// A command this code action executes. If a code action provides an edit
   /// and a command, first the edit is executed and then the command.
-  final Command command;
+  final Object command;
 
   /// A data entry field that is preserved on a code action between a
   /// `textDocument/codeAction` and a `codeAction/resolve` request.
   /// @since 3.16.0
-  final LSPAny data;
+  final Object data;
 
   /// The diagnostics that this code action resolves.
-  final String diagnostics;
+  final Object diagnostics;
 
   /// Marks that the code action cannot currently be applied.
   /// Clients should follow the following guidelines regarding disabled code
@@ -3372,10 +3372,10 @@ class CodeAction implements ToJson {
   /// returned, the client should show the user an error message with
   /// `reason` in the editor.
   /// @since 3.16.0
-  final String disabled;
+  final Object disabled;
 
   /// The workspace edit this code action performs.
-  final WorkspaceEdit edit;
+  final Object edit;
 
   /// Marks this as a preferred action. Preferred actions are used by the
   /// `auto fix` command and can be targeted by keybindings.
@@ -3383,14 +3383,14 @@ class CodeAction implements ToJson {
   /// underlying error. A refactoring should be marked preferred if it is the
   /// most reasonable choice of actions to take.
   /// @since 3.15.0
-  final bool isPreferred;
+  final Object isPreferred;
 
   /// The kind of the code action.
   /// Used to filter code actions.
-  final Object? kind;
+  final Object kind;
 
   /// A short, human-readable, title for this code action.
-  final String title;
+  final Object title;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3411,18 +3411,18 @@ class CodeActionRegistrationOptions
   /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
   /// the server may list out every specific kind they provide.
   @override
-  final String codeActionKinds;
+  final Object codeActionKinds;
 
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// The server provides support to resolve additional information for a
   /// code action.
   /// @since 3.16.0
   @override
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3442,15 +3442,15 @@ class WorkspaceSymbolParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// A query string to filter symbols by. Clients may send an empty string
   /// here to request all symbols.
-  final String query;
+  final Object query;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3476,30 +3476,30 @@ class WorkspaceSymbol implements ToJson, BaseSymbolInformation {
   /// interface if necessary). It can't be used to re-infer a hierarchy for
   /// the document symbols.
   @override
-  final String containerName;
+  final Object containerName;
 
   /// A data entry field that is preserved on a workspace symbol between a
   /// workspace symbol request and a workspace symbol resolve request.
-  final LSPAny data;
+  final Object data;
 
   /// The kind of this symbol.
   @override
-  final Object? kind;
+  final Object kind;
 
   /// The location of the symbol. Whether a server is allowed to return a
   /// location without a range depends on the client capability
   /// `workspace.symbol.resolveSupport`.
   /// See SymbolInformation#location for more details.
-  final String location;
+  final Object location;
 
   /// The name of this symbol.
   @override
-  final String name;
+  final Object name;
 
   /// Tags for this symbol.
   /// @since 3.16.0
   @override
-  final String tags;
+  final Object tags;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3516,7 +3516,7 @@ class WorkspaceSymbolRegistrationOptions
   /// workspace symbol.
   /// @since 3.17.0
   @override
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3536,14 +3536,14 @@ class CodeLensParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The document to request code lens for.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3560,15 +3560,15 @@ class CodeLens implements ToJson {
   CodeLens({required this.command, required this.data, required this.range});
 
   /// The command this code lens represents.
-  final Command command;
+  final Object command;
 
   /// A data entry field that is preserved on a code lens item between a
   /// {@link CodeLensRequest} and a {@link CodeLensResolveRequest}
-  final LSPAny data;
+  final Object data;
 
   /// The range in which this code lens is valid. Should only span a single
   /// line.
-  final Range range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3587,11 +3587,11 @@ class CodeLensRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// Code lens has a resolve provider as well.
   @override
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3611,14 +3611,14 @@ class DocumentLinkParams
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   /// The document to provide document links for.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3638,13 +3638,13 @@ class DocumentLink implements ToJson {
 
   /// A data entry field that is preserved on a document link between a
   /// DocumentLinkRequest and a DocumentLinkResolveRequest.
-  final LSPAny data;
+  final Object data;
 
   /// The range this link applies to.
-  final Range range;
+  final Object range;
 
   /// The uri this link points to. If missing a resolve request is sent later.
-  final Uri target;
+  final Object target;
 
   /// The tooltip text when you hover over this link.
   /// If a tooltip is provided, is will be displayed in a string that
@@ -3652,7 +3652,7 @@ class DocumentLink implements ToJson {
   /// click)`. The specific instructions vary depending on OS, user settings,
   /// and localization.
   /// @since 3.15.0
-  final String tooltip;
+  final Object tooltip;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3671,11 +3671,11 @@ class DocumentLinkRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// Document links have a resolve provider as well.
   @override
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3692,14 +3692,14 @@ class DocumentFormattingParams implements ToJson, WorkDoneProgressParams {
   });
 
   /// The format options.
-  final FormattingOptions options;
+  final Object options;
 
   /// The document to format.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3718,7 +3718,7 @@ class DocumentFormattingRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3736,17 +3736,17 @@ class DocumentRangeFormattingParams implements ToJson, WorkDoneProgressParams {
   });
 
   /// The format options
-  final FormattingOptions options;
+  final Object options;
 
   /// The range to format
-  final Range range;
+  final Object range;
 
   /// The document to format.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3768,12 +3768,12 @@ class DocumentRangeFormattingRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// Whether the server supports formatting multiple ranges at once.
   /// @since 3.18.0 @proposed
   @override
-  final bool rangesSupport;
+  final Object rangesSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3792,17 +3792,17 @@ class DocumentRangesFormattingParams implements ToJson, WorkDoneProgressParams {
   });
 
   /// The format options
-  final FormattingOptions options;
+  final Object options;
 
   /// The ranges to format
-  final String ranges;
+  final Object ranges;
 
   /// The document to format.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3823,18 +3823,18 @@ class DocumentOnTypeFormattingParams implements ToJson {
   /// request. That is not necessarily the last character that got inserted
   /// into the document since the client could auto insert characters as well
   /// (e.g. like automatic brace completion).
-  final String ch;
+  final Object ch;
 
   /// The formatting options.
-  final FormattingOptions options;
+  final Object options;
 
   /// The position around which the on type formatting should happen. This is
   /// not necessarily the exact position where the character denoted by the
   /// property `ch` got typed.
-  final Position position;
+  final Object position;
 
   /// The document to format.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3857,15 +3857,15 @@ class DocumentOnTypeFormattingRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// A character on which formatting should be triggered, like `{`.
   @override
-  final String firstTriggerCharacter;
+  final Object firstTriggerCharacter;
 
   /// More trigger characters.
   @override
-  final String moreTriggerCharacter;
+  final Object moreTriggerCharacter;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3884,17 +3884,17 @@ class RenameParams implements ToJson, WorkDoneProgressParams {
 
   /// The new name of the symbol. If the given name is not valid the request
   /// must return a {@link ResponseError} with an appropriate message set.
-  final String newName;
+  final Object newName;
 
   /// The position at which this request was sent.
-  final Position position;
+  final Object position;
 
   /// The document to rename.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3913,12 +3913,12 @@ class RenameRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final String documentSelector;
+  final Object documentSelector;
 
   /// Renames should be checked and tested before being executed.
   /// @since version 3.12.0
   @override
-  final bool prepareProvider;
+  final Object prepareProvider;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3936,15 +3936,15 @@ class PrepareRenameParams
 
   /// The position inside the text document.
   @override
-  final Position position;
+  final Object position;
 
   /// The text document.
   @override
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3961,14 +3961,14 @@ class ExecuteCommandParams implements ToJson, WorkDoneProgressParams {
   });
 
   /// Arguments that the command should be invoked with.
-  final String arguments;
+  final Object arguments;
 
   /// The identifier of the actual command handler.
-  final String command;
+  final Object command;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3983,7 +3983,7 @@ class ExecuteCommandRegistrationOptions
 
   /// The commands to be executed on the server
   @override
-  final String commands;
+  final Object commands;
 
   @override
   Map<String, dynamic> toJson() {
@@ -3996,11 +3996,11 @@ class ApplyWorkspaceEditParams implements ToJson {
   ApplyWorkspaceEditParams({required this.edit, required this.label});
 
   /// The edits to apply.
-  final WorkspaceEdit edit;
+  final Object edit;
 
   /// An optional label of the workspace edit. This label is presented in the
   /// user interface for example on an undo stack to undo the workspace edit.
-  final String label;
+  final Object label;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4018,18 +4018,18 @@ class ApplyWorkspaceEditResult implements ToJson {
   });
 
   /// Indicates whether the edit was applied or not.
-  final bool applied;
+  final Object applied;
 
   /// Depending on the client's failure handling strategy `failedChange`
   /// might contain the index of the change that failed. This property is
   /// only available if the client signals a `failureHandlingStrategy` in its
   /// client capabilities.
-  final int failedChange;
+  final Object failedChange;
 
   /// An optional textual description for why the edit was not applied. This
   /// may be used by the server for diagnostic logging or to provide a
   /// suitable error for a request that triggered the edit.
-  final String failureReason;
+  final Object failureReason;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4049,27 +4049,27 @@ class WorkDoneProgressBegin implements ToJson {
   /// Controls if a cancel button should show to allow the user to cancel the
   /// long running operation. Clients that don't support cancellation are
   /// allowed to ignore the setting.
-  final bool cancellable;
+  final Object cancellable;
 
-  final String kind;
+  final Object kind;
 
   /// Optional, more detailed associated progress message. Contains
   /// complementary information to the `title`.
   /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
   /// If unset, the previous progress message (if any) is still valid.
-  final String message;
+  final Object message;
 
   /// Optional progress percentage to display (value 100 is considered 100%).
   /// If not provided infinite progress is assumed and clients are allowed to
   /// ignore the `percentage` value in subsequent report notifications.
   /// The value should be steadily rising. Clients are free to ignore values
   /// that are not following this rule. The value range is [0, 100].
-  final int percentage;
+  final Object percentage;
 
   /// Mandatory title of the progress operation. Used to briefly inform about
   /// the kind of operation being performed.
   /// Examples: "Indexing" or "Linking dependencies".
-  final String title;
+  final Object title;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4088,22 +4088,22 @@ class WorkDoneProgressReport implements ToJson {
   /// Controls enablement state of a cancel button.
   /// Clients that don't support cancellation or don't support controlling
   /// the button's enablement state are allowed to ignore the property.
-  final bool cancellable;
+  final Object cancellable;
 
-  final String kind;
+  final Object kind;
 
   /// Optional, more detailed associated progress message. Contains
   /// complementary information to the `title`.
   /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
   /// If unset, the previous progress message (if any) is still valid.
-  final String message;
+  final Object message;
 
   /// Optional progress percentage to display (value 100 is considered 100%).
   /// If not provided infinite progress is assumed and clients are allowed to
   /// ignore the `percentage` value in subsequent report notifications.
   /// The value should be steadily rising. Clients are free to ignore values
   /// that are not following this rule. The value range is [0, 100].
-  final int percentage;
+  final Object percentage;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4114,11 +4114,11 @@ class WorkDoneProgressReport implements ToJson {
 class WorkDoneProgressEnd implements ToJson {
   WorkDoneProgressEnd({required this.kind, required this.message});
 
-  final String kind;
+  final Object kind;
 
   /// Optional, a final message indicating to for example indicate the
   /// outcome of the operation.
-  final String message;
+  final Object message;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4129,7 +4129,7 @@ class WorkDoneProgressEnd implements ToJson {
 class SetTraceParams implements ToJson {
   SetTraceParams({required this.value});
 
-  final Object? value;
+  final Object value;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4140,9 +4140,9 @@ class SetTraceParams implements ToJson {
 class LogTraceParams implements ToJson {
   LogTraceParams({required this.message, required this.verbose});
 
-  final String message;
+  final Object message;
 
-  final String verbose;
+  final Object verbose;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4154,7 +4154,7 @@ class CancelParams implements ToJson {
   CancelParams({required this.id});
 
   /// The request id to cancel.
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4166,10 +4166,10 @@ class ProgressParams implements ToJson {
   ProgressParams({required this.token, required this.value});
 
   /// The progress token provided by the client or server.
-  final ProgressToken token;
+  final Object token;
 
   /// The progress data.
-  final LSPAny value;
+  final Object value;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4186,10 +4186,10 @@ class TextDocumentPositionParams implements ToJson {
   });
 
   /// The position inside the text document.
-  final Position position;
+  final Object position;
 
   /// The text document.
-  final TextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4201,7 +4201,7 @@ class WorkDoneProgressParams implements ToJson {
   WorkDoneProgressParams({required this.workDoneToken});
 
   /// An optional token that a server can use to report work done progress.
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4214,7 +4214,7 @@ class PartialResultParams implements ToJson {
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
-  final ProgressToken partialResultToken;
+  final Object partialResultToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4235,22 +4235,22 @@ class LocationLink implements ToJson {
   /// Span of the origin of this link.
   /// Used as the underlined span for mouse interaction. Defaults to the word
   /// range at the definition position.
-  final Range originSelectionRange;
+  final Object originSelectionRange;
 
   /// The full target range of this link. If the target for example is a
   /// symbol then target range is the range enclosing this symbol not
   /// including leading/trailing whitespace but everything else like
   /// comments. This information is typically used to highlight the range in
   /// the editor.
-  final Range targetRange;
+  final Object targetRange;
 
   /// The range that should be selected and revealed when this link is being
   /// followed, e.g the name of a function. Must be contained by the
   /// `targetRange`. See also `DocumentSymbol#range`
-  final Range targetSelectionRange;
+  final Object targetSelectionRange;
 
   /// The target resource identifier of this link.
-  final Uri targetUri;
+  final Object targetUri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4268,10 +4268,10 @@ class Range implements ToJson {
   Range({required this.end, required this.start});
 
   /// The range's end position.
-  final Position end;
+  final Object end;
 
   /// The range's start position.
-  final Position start;
+  final Object start;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4283,7 +4283,7 @@ class ImplementationOptions implements ToJson, WorkDoneProgressOptions {
   ImplementationOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4297,7 +4297,7 @@ class StaticRegistrationOptions implements ToJson {
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
-  final String id;
+  final Object id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4309,7 +4309,7 @@ class TypeDefinitionOptions implements ToJson, WorkDoneProgressOptions {
   TypeDefinitionOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4322,10 +4322,10 @@ class WorkspaceFoldersChangeEvent implements ToJson {
   WorkspaceFoldersChangeEvent({required this.added, required this.removed});
 
   /// The array of added workspace folders
-  final String added;
+  final Object added;
 
   /// The array of the removed workspace folders
-  final String removed;
+  final Object removed;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4337,10 +4337,10 @@ class ConfigurationItem implements ToJson {
   ConfigurationItem({required this.scopeUri, required this.section});
 
   /// The scope to get the configuration section for.
-  final Uri scopeUri;
+  final Object scopeUri;
 
   /// The configuration section asked for.
-  final String section;
+  final Object section;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4353,7 +4353,7 @@ class TextDocumentIdentifier implements ToJson {
   TextDocumentIdentifier({required this.uri});
 
   /// The text document's uri.
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4371,16 +4371,16 @@ class Color implements ToJson {
   });
 
   /// The alpha component of this color in the range [0-1].
-  final double alpha;
+  final Object alpha;
 
   /// The blue component of this color in the range [0-1].
-  final double blue;
+  final Object blue;
 
   /// The green component of this color in the range [0-1].
-  final double green;
+  final Object green;
 
   /// The red component of this color in the range [0-1].
-  final double red;
+  final Object red;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4392,7 +4392,7 @@ class DocumentColorOptions implements ToJson, WorkDoneProgressOptions {
   DocumentColorOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4404,7 +4404,7 @@ class FoldingRangeOptions implements ToJson, WorkDoneProgressOptions {
   FoldingRangeOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4416,7 +4416,7 @@ class DeclarationOptions implements ToJson, WorkDoneProgressOptions {
   DeclarationOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4459,13 +4459,13 @@ class Position implements ToJson {
   /// `PositionEncodingKind`.
   /// If the character value is greater than the line length it defaults back
   /// to the line length.
-  final int character;
+  final Object character;
 
   /// Line position in a document (zero-based).
   /// If a line number is greater than the number of lines in a document, it
   /// defaults back to the number of lines in the document. If a line number
   /// is negative, it defaults to 0.
-  final int line;
+  final Object line;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4477,7 +4477,7 @@ class SelectionRangeOptions implements ToJson, WorkDoneProgressOptions {
   SelectionRangeOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4491,7 +4491,7 @@ class CallHierarchyOptions implements ToJson, WorkDoneProgressOptions {
   CallHierarchyOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4509,17 +4509,17 @@ class SemanticTokensOptions implements ToJson, WorkDoneProgressOptions {
   });
 
   /// Server supports providing semantic tokens for a full document.
-  final String full;
+  final Object full;
 
   /// The legend used by the server
-  final SemanticTokensLegend legend;
+  final Object legend;
 
   /// Server supports providing semantic tokens for a specific range of a
   /// document.
-  final String range;
+  final Object range;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4536,13 +4536,13 @@ class SemanticTokensEdit implements ToJson {
   });
 
   /// The elements to insert.
-  final String data;
+  final Object data;
 
   /// The count of elements to remove.
-  final int deleteCount;
+  final Object deleteCount;
 
   /// The start offset of the edit.
-  final int start;
+  final Object start;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4554,7 +4554,7 @@ class LinkedEditingRangeOptions implements ToJson, WorkDoneProgressOptions {
   LinkedEditingRangeOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4568,7 +4568,7 @@ class FileCreate implements ToJson {
   FileCreate({required this.uri});
 
   /// A file:// URI for the location of the file/folder being created.
-  final String uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4587,10 +4587,10 @@ class TextDocumentEdit implements ToJson {
   /// The edits to be applied.
   /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
   /// client capability.
-  final String edits;
+  final Object edits;
 
   /// The text document to change.
-  final OptionalVersionedTextDocumentIdentifier textDocument;
+  final Object textDocument;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4610,16 +4610,16 @@ class CreateFile implements ToJson, ResourceOperation {
   /// An optional annotation identifier describing the operation.
   /// @since 3.16.0
   @override
-  final ChangeAnnotationIdentifier annotationId;
+  final Object annotationId;
 
   /// A create
-  final String kind;
+  final Object kind;
 
   /// Additional options
-  final CreateFileOptions options;
+  final Object options;
 
   /// The resource to create.
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4640,19 +4640,19 @@ class RenameFile implements ToJson, ResourceOperation {
   /// An optional annotation identifier describing the operation.
   /// @since 3.16.0
   @override
-  final ChangeAnnotationIdentifier annotationId;
+  final Object annotationId;
 
   /// A rename
-  final String kind;
+  final Object kind;
 
   /// The new location.
-  final Uri newUri;
+  final Object newUri;
 
   /// The old (existing) location.
-  final Uri oldUri;
+  final Object oldUri;
 
   /// Rename options.
-  final RenameFileOptions options;
+  final Object options;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4672,16 +4672,16 @@ class DeleteFile implements ToJson, ResourceOperation {
   /// An optional annotation identifier describing the operation.
   /// @since 3.16.0
   @override
-  final ChangeAnnotationIdentifier annotationId;
+  final Object annotationId;
 
   /// A delete
-  final String kind;
+  final Object kind;
 
   /// Delete options.
-  final DeleteFileOptions options;
+  final Object options;
 
   /// The file to delete.
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4700,15 +4700,15 @@ class ChangeAnnotation implements ToJson {
 
   /// A human-readable string which is rendered less prominent in the user
   /// interface.
-  final String description;
+  final Object description;
 
   /// A human-readable string describing the actual change. The string is
   /// rendered prominent in the user interface.
-  final String label;
+  final Object label;
 
   /// A flag which indicates that user confirmation is needed before applying
   /// the change.
-  final bool needsConfirmation;
+  final Object needsConfirmation;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4723,10 +4723,10 @@ class FileOperationFilter implements ToJson {
   FileOperationFilter({required this.pattern, required this.scheme});
 
   /// The actual file operation pattern.
-  final FileOperationPattern pattern;
+  final Object pattern;
 
   /// A Uri scheme like `file` or `untitled`.
-  final String scheme;
+  final Object scheme;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4740,11 +4740,11 @@ class FileRename implements ToJson {
   FileRename({required this.newUri, required this.oldUri});
 
   /// A file:// URI for the new location of the file/folder being renamed.
-  final String newUri;
+  final Object newUri;
 
   /// A file:// URI for the original location of the file/folder being
   /// renamed.
-  final String oldUri;
+  final Object oldUri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4758,7 +4758,7 @@ class FileDelete implements ToJson {
   FileDelete({required this.uri});
 
   /// A file:// URI for the location of the file/folder being deleted.
-  final String uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4770,7 +4770,7 @@ class MonikerOptions implements ToJson, WorkDoneProgressOptions {
   MonikerOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4784,7 +4784,7 @@ class TypeHierarchyOptions implements ToJson, WorkDoneProgressOptions {
   TypeHierarchyOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4797,12 +4797,12 @@ class InlineValueContext implements ToJson {
   InlineValueContext({required this.frameId, required this.stoppedLocation});
 
   /// The stack frame (as a DAP Id) where the execution has stopped.
-  final int frameId;
+  final Object frameId;
 
   /// The document range where execution has stopped. Typically the end
   /// position of the range denotes the line where the inline values are
   /// shown.
-  final Range stoppedLocation;
+  final Object stoppedLocation;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4816,10 +4816,10 @@ class InlineValueText implements ToJson {
   InlineValueText({required this.range, required this.text});
 
   /// The document range for which the inline value applies.
-  final Range range;
+  final Object range;
 
   /// The text of the inline value.
-  final String text;
+  final Object text;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4840,14 +4840,14 @@ class InlineValueVariableLookup implements ToJson {
   });
 
   /// How to perform the lookup.
-  final bool caseSensitiveLookup;
+  final Object caseSensitiveLookup;
 
   /// The document range for which the inline value applies. The range is
   /// used to extract the variable name from the underlying document.
-  final Range range;
+  final Object range;
 
   /// If specified the name of the variable to look up.
-  final String variableName;
+  final Object variableName;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4867,12 +4867,12 @@ class InlineValueEvaluatableExpression implements ToJson {
   });
 
   /// If specified the expression overrides the extracted expression.
-  final String expression;
+  final Object expression;
 
   /// The document range for which the inline value applies. The range is
   /// used to extract the evaluatable expression from the underlying
   /// document.
-  final Range range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4886,7 +4886,7 @@ class InlineValueOptions implements ToJson, WorkDoneProgressOptions {
   InlineValueOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4908,7 +4908,7 @@ class InlayHintLabelPart implements ToJson {
   /// An optional command for this label part.
   /// Depending on the client capability `inlayHint.resolveSupport` clients
   /// might resolve this property late using the resolve request.
-  final Command command;
+  final Object command;
 
   /// An optional source code location that represents this label part.
   /// The editor will use this location for the hover and for code navigation
@@ -4918,15 +4918,15 @@ class InlayHintLabelPart implements ToJson {
   /// and it shows a context menu with further code navigation commands.
   /// Depending on the client capability `inlayHint.resolveSupport` clients
   /// might resolve this property late using the resolve request.
-  final Location location;
+  final Object location;
 
   /// The tooltip text when you hover over this label part. Depending on the
   /// client capability `inlayHint.resolveSupport` clients might resolve this
   /// property late using the resolve request.
-  final String tooltip;
+  final Object tooltip;
 
   /// The value of this label part.
-  final String value;
+  final Object value;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4950,10 +4950,10 @@ class MarkupContent implements ToJson {
   MarkupContent({required this.kind, required this.value});
 
   /// The type of the Markup
-  final Object? kind;
+  final Object kind;
 
   /// The content itself
-  final String value;
+  final Object value;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4971,10 +4971,10 @@ class InlayHintOptions implements ToJson, WorkDoneProgressOptions {
 
   /// The server provides support to resolve additional information for an
   /// inlay hint item.
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4995,11 +4995,11 @@ class RelatedFullDocumentDiagnosticReport
 
   /// The actual items.
   @override
-  final String items;
+  final Object items;
 
   /// A full document diagnostic report.
   @override
-  final String kind;
+  final Object kind;
 
   /// Diagnostics of related documents. This information is useful in
   /// programming languages where code in a file A can generate diagnostics
@@ -5007,12 +5007,12 @@ class RelatedFullDocumentDiagnosticReport
   /// where marco definitions in a file a.cpp and result in errors in a
   /// header file b.hpp.
   /// @since 3.17.0
-  final String relatedDocuments;
+  final Object relatedDocuments;
 
   /// An optional result id. If provided it will be sent on the next
   /// diagnostic request for the same document.
   @override
-  final String resultId;
+  final Object resultId;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5033,7 +5033,7 @@ class RelatedUnchangedDocumentDiagnosticReport
   /// A document diagnostic report indicating no changes to the last result.
   /// A server can only return `unchanged` if result ids are provided.
   @override
-  final String kind;
+  final Object kind;
 
   /// Diagnostics of related documents. This information is useful in
   /// programming languages where code in a file A can generate diagnostics
@@ -5041,12 +5041,12 @@ class RelatedUnchangedDocumentDiagnosticReport
   /// where marco definitions in a file a.cpp and result in errors in a
   /// header file b.hpp.
   /// @since 3.17.0
-  final String relatedDocuments;
+  final Object relatedDocuments;
 
   /// A result id which will be sent on the next diagnostic request for the
   /// same document.
   @override
-  final String resultId;
+  final Object resultId;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5064,14 +5064,14 @@ class FullDocumentDiagnosticReport implements ToJson {
   });
 
   /// The actual items.
-  final String items;
+  final Object items;
 
   /// A full document diagnostic report.
-  final String kind;
+  final Object kind;
 
   /// An optional result id. If provided it will be sent on the next
   /// diagnostic request for the same document.
-  final String resultId;
+  final Object resultId;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5090,11 +5090,11 @@ class UnchangedDocumentDiagnosticReport implements ToJson {
 
   /// A document diagnostic report indicating no changes to the last result.
   /// A server can only return `unchanged` if result ids are provided.
-  final String kind;
+  final Object kind;
 
   /// A result id which will be sent on the next diagnostic request for the
   /// same document.
-  final String resultId;
+  final Object resultId;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5114,19 +5114,19 @@ class DiagnosticOptions implements ToJson, WorkDoneProgressOptions {
 
   /// An optional identifier under which the diagnostics are managed by the
   /// client.
-  final String identifier;
+  final Object identifier;
 
   /// Whether the language has inter file dependencies meaning that editing
   /// code in one file can result in a different diagnostic set in another
   /// file. Inter file dependencies are common for most programming languages
   /// and typically uncommon for linters.
-  final bool interFileDependencies;
+  final Object interFileDependencies;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   /// The server provides support for workspace diagnostics as well.
-  final bool workspaceDiagnostics;
+  final Object workspaceDiagnostics;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5140,10 +5140,10 @@ class PreviousResultId implements ToJson {
   PreviousResultId({required this.uri, required this.value});
 
   /// The URI for which the client knowns a result id.
-  final Uri uri;
+  final Object uri;
 
   /// The value of the previous result id.
-  final String value;
+  final Object value;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5163,21 +5163,21 @@ class NotebookDocument implements ToJson {
   });
 
   /// The cells of a notebook.
-  final String cells;
+  final Object cells;
 
   /// Additional metadata stored with the notebook document.
   /// Note: should always be an object literal (e.g. LSPObject)
-  final LSPObject metadata;
+  final Object metadata;
 
   /// The type of the notebook.
-  final String notebookType;
+  final Object notebookType;
 
   /// The notebook document's uri.
-  final Uri uri;
+  final Object uri;
 
   /// The version number of this document (it will increase after each
   /// change, including undo/redo).
-  final int version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5195,17 +5195,17 @@ class TextDocumentItem implements ToJson {
   });
 
   /// The text document's language identifier.
-  final String languageId;
+  final Object languageId;
 
   /// The content of the opened text document.
-  final String text;
+  final Object text;
 
   /// The text document's uri.
-  final Uri uri;
+  final Object uri;
 
   /// The version number of this document (it will increase after each
   /// change, including undo/redo).
-  final int version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5222,10 +5222,10 @@ class VersionedNotebookDocumentIdentifier implements ToJson {
   });
 
   /// The notebook document's uri.
-  final Uri uri;
+  final Object uri;
 
   /// The version number of this notebook document.
-  final int version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5239,11 +5239,11 @@ class NotebookDocumentChangeEvent implements ToJson {
   NotebookDocumentChangeEvent({required this.cells, required this.metadata});
 
   /// Changes to cells
-  final String cells;
+  final Object cells;
 
   /// The changed meta data if any.
   /// Note: should always be an object literal (e.g. LSPObject)
-  final LSPObject metadata;
+  final Object metadata;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5257,7 +5257,7 @@ class NotebookDocumentIdentifier implements ToJson {
   NotebookDocumentIdentifier({required this.uri});
 
   /// The notebook document's uri.
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5276,10 +5276,10 @@ class InlineCompletionContext implements ToJson {
 
   /// Provides information about the currently selected item in the
   /// autocomplete widget if it is visible.
-  final SelectedCompletionInfo selectedCompletionInfo;
+  final Object selectedCompletionInfo;
 
   /// Describes how the inline completion was triggered.
-  final Object? triggerKind;
+  final Object triggerKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5297,10 +5297,10 @@ class StringValue implements ToJson {
   StringValue({required this.kind, required this.value});
 
   /// The kind of string value.
-  final String kind;
+  final Object kind;
 
   /// The snippet string.
-  final String value;
+  final Object value;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5314,7 +5314,7 @@ class InlineCompletionOptions implements ToJson, WorkDoneProgressOptions {
   InlineCompletionOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5332,13 +5332,13 @@ class Registration implements ToJson {
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again.
-  final String id;
+  final Object id;
 
   /// The method / capability to register for.
-  final String method;
+  final Object method;
 
   /// Options necessary for the registration.
-  final LSPAny registerOptions;
+  final Object registerOptions;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5352,10 +5352,10 @@ class Unregistration implements ToJson {
 
   /// The id used to unregister the request or notification. Usually an id
   /// provided during the register request.
-  final String id;
+  final Object id;
 
   /// The method to unregister for.
-  final String method;
+  final Object method;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5378,42 +5378,42 @@ class _InitializeParams implements ToJson, WorkDoneProgressParams {
   });
 
   /// The capabilities provided by the client (editor or tool)
-  final ClientCapabilities capabilities;
+  final Object capabilities;
 
   /// Information about the client
   /// @since 3.15.0
-  final String clientInfo;
+  final Object clientInfo;
 
   /// User provided initialization options.
-  final LSPAny initializationOptions;
+  final Object initializationOptions;
 
   /// The locale the client is currently showing the user interface in. This
   /// must not necessarily be the locale of the operating system.
   /// Uses IETF language tags as the value's syntax (See
   /// https://en.wikipedia.org/wiki/IETF_language_tag)
   /// @since 3.16.0
-  final String locale;
+  final Object locale;
 
   /// The process Id of the parent process that started the server.
   /// Is `null` if the process has not been started by another process. If
   /// the parent process is not alive then the server should exit.
-  final String processId;
+  final Object processId;
 
   /// The rootPath of the workspace. Is null if no folder is open.
   /// @deprecated in favour of rootUri.
-  final String rootPath;
+  final Object rootPath;
 
   /// The rootUri of the workspace. Is null if no folder is open. If both
   /// `rootPath` and `rootUri` are set `rootUri` wins.
   /// @deprecated in favour of workspaceFolders.
-  final String rootUri;
+  final Object rootUri;
 
   /// The initial trace setting. If omitted trace is disabled ('off').
-  final Object? trace;
+  final Object trace;
 
   /// An optional token that a server can use to report work done progress.
   @override
-  final ProgressToken workDoneToken;
+  final Object workDoneToken;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5429,7 +5429,7 @@ class WorkspaceFoldersInitializeParams implements ToJson {
   /// folders. It can be `null` if the client supports workspace folders but
   /// none are configured.
   /// @since 3.6.0
-  final String workspaceFolders;
+  final Object workspaceFolders;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5480,88 +5480,88 @@ class ServerCapabilities implements ToJson {
 
   /// The server provides call hierarchy support.
   /// @since 3.16.0
-  final String callHierarchyProvider;
+  final Object callHierarchyProvider;
 
   /// The server provides code actions. CodeActionOptions may only be
   /// specified if the client states that it supports
   /// `codeActionLiteralSupport` in its initial `initialize` request.
-  final String codeActionProvider;
+  final Object codeActionProvider;
 
   /// The server provides code lens.
-  final CodeLensOptions codeLensProvider;
+  final Object codeLensProvider;
 
   /// The server provides color provider support.
-  final String colorProvider;
+  final Object colorProvider;
 
   /// The server provides completion support.
-  final CompletionOptions completionProvider;
+  final Object completionProvider;
 
   /// The server provides Goto Declaration support.
-  final String declarationProvider;
+  final Object declarationProvider;
 
   /// The server provides goto definition support.
-  final String definitionProvider;
+  final Object definitionProvider;
 
   /// The server has support for pull model diagnostics.
   /// @since 3.17.0
-  final String diagnosticProvider;
+  final Object diagnosticProvider;
 
   /// The server provides document formatting.
-  final String documentFormattingProvider;
+  final Object documentFormattingProvider;
 
   /// The server provides document highlight support.
-  final String documentHighlightProvider;
+  final Object documentHighlightProvider;
 
   /// The server provides document link support.
-  final DocumentLinkOptions documentLinkProvider;
+  final Object documentLinkProvider;
 
   /// The server provides document formatting on typing.
-  final DocumentOnTypeFormattingOptions documentOnTypeFormattingProvider;
+  final Object documentOnTypeFormattingProvider;
 
   /// The server provides document range formatting.
-  final String documentRangeFormattingProvider;
+  final Object documentRangeFormattingProvider;
 
   /// The server provides document symbol support.
-  final String documentSymbolProvider;
+  final Object documentSymbolProvider;
 
   /// The server provides execute command support.
-  final ExecuteCommandOptions executeCommandProvider;
+  final Object executeCommandProvider;
 
   /// Experimental server capabilities.
-  final LSPAny experimental;
+  final Object experimental;
 
   /// The server provides folding provider support.
-  final String foldingRangeProvider;
+  final Object foldingRangeProvider;
 
   /// The server provides hover support.
-  final String hoverProvider;
+  final Object hoverProvider;
 
   /// The server provides Goto Implementation support.
-  final String implementationProvider;
+  final Object implementationProvider;
 
   /// The server provides inlay hints.
   /// @since 3.17.0
-  final String inlayHintProvider;
+  final Object inlayHintProvider;
 
   /// Inline completion options used during static registration.
   /// @since 3.18.0 @proposed
-  final String inlineCompletionProvider;
+  final Object inlineCompletionProvider;
 
   /// The server provides inline values.
   /// @since 3.17.0
-  final String inlineValueProvider;
+  final Object inlineValueProvider;
 
   /// The server provides linked editing range support.
   /// @since 3.16.0
-  final String linkedEditingRangeProvider;
+  final Object linkedEditingRangeProvider;
 
   /// The server provides moniker support.
   /// @since 3.16.0
-  final String monikerProvider;
+  final Object monikerProvider;
 
   /// Defines how notebook documents are synced.
   /// @since 3.17.0
-  final String notebookDocumentSync;
+  final Object notebookDocumentSync;
 
   /// The position encoding the server picked from the encodings offered by
   /// the client via the client capability `general.positionEncodings`.
@@ -5569,43 +5569,43 @@ class ServerCapabilities implements ToJson {
   /// value that a server can return is 'utf-16'.
   /// If omitted it defaults to 'utf-16'.
   /// @since 3.17.0
-  final Object? positionEncoding;
+  final Object positionEncoding;
 
   /// The server provides find references support.
-  final String referencesProvider;
+  final Object referencesProvider;
 
   /// The server provides rename support. RenameOptions may only be specified
   /// if the client states that it supports `prepareSupport` in its initial
   /// `initialize` request.
-  final String renameProvider;
+  final Object renameProvider;
 
   /// The server provides selection range support.
-  final String selectionRangeProvider;
+  final Object selectionRangeProvider;
 
   /// The server provides semantic tokens support.
   /// @since 3.16.0
-  final String semanticTokensProvider;
+  final Object semanticTokensProvider;
 
   /// The server provides signature help support.
-  final SignatureHelpOptions signatureHelpProvider;
+  final Object signatureHelpProvider;
 
   /// Defines how text documents are synced. Is either a detailed structure
   /// defining each notification or for backwards compatibility the
   /// TextDocumentSyncKind number.
-  final String textDocumentSync;
+  final Object textDocumentSync;
 
   /// The server provides Goto Type Definition support.
-  final String typeDefinitionProvider;
+  final Object typeDefinitionProvider;
 
   /// The server provides type hierarchy support.
   /// @since 3.17.0
-  final String typeHierarchyProvider;
+  final Object typeHierarchyProvider;
 
   /// Workspace specific server capabilities.
-  final String workspace;
+  final Object workspace;
 
   /// The server provides workspace symbol support.
-  final String workspaceSymbolProvider;
+  final Object workspaceSymbolProvider;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5620,10 +5620,10 @@ class VersionedTextDocumentIdentifier
 
   /// The text document's uri.
   @override
-  final Uri uri;
+  final Object uri;
 
   /// The version number of this document.
-  final int version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5636,7 +5636,7 @@ class SaveOptions implements ToJson {
   SaveOptions({required this.includeText});
 
   /// The client is supposed to include the content on save.
-  final bool includeText;
+  final Object includeText;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5649,10 +5649,10 @@ class FileEvent implements ToJson {
   FileEvent({required this.type, required this.uri});
 
   /// The change type.
-  final Object? type;
+  final Object type;
 
   /// The file's uri.
-  final Uri uri;
+  final Object uri;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5666,11 +5666,11 @@ class FileSystemWatcher implements ToJson {
   /// The glob pattern to watch. See {@link GlobPattern glob pattern} for
   /// more detail.
   /// @since 3.17.0 support for relative patterns.
-  final GlobPattern globPattern;
+  final Object globPattern;
 
   /// The kind of events of interest. If omitted it defaults to
   /// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
-  final Object? kind;
+  final Object kind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5694,40 +5694,40 @@ class Diagnostic implements ToJson {
   });
 
   /// The diagnostic's code, which usually appear in the user interface.
-  final String code;
+  final Object code;
 
   /// An optional property to describe the error code. Requires the code
   /// field (above) to be present/not null.
   /// @since 3.16.0
-  final CodeDescription codeDescription;
+  final Object codeDescription;
 
   /// A data entry field that is preserved between a
   /// `textDocument/publishDiagnostics` notification and
   /// `textDocument/codeAction` request.
   /// @since 3.16.0
-  final LSPAny data;
+  final Object data;
 
   /// The diagnostic's message. It usually appears in the user interface
-  final String message;
+  final Object message;
 
   /// The range at which the message applies
-  final Range range;
+  final Object range;
 
   /// An array of related diagnostic information, e.g. when symbol-names
   /// within a scope collide all definitions can be marked via this property.
-  final String relatedInformation;
+  final Object relatedInformation;
 
   /// The diagnostic's severity. Can be omitted. If omitted it is up to the
   /// client to interpret diagnostics as error, warning, info or hint.
-  final Object? severity;
+  final Object severity;
 
   /// A human-readable string describing the source of this diagnostic, e.g.
   /// 'typescript' or 'super lint'. It usually appears in the user interface.
-  final String source;
+  final Object source;
 
   /// Additional metadata about the diagnostic.
   /// @since 3.15.0
-  final String tags;
+  final Object tags;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5746,10 +5746,10 @@ class CompletionContext implements ToJson {
   /// The trigger character (a single character) that has trigger code
   /// complete. Is undefined if `triggerKind !==
   /// CompletionTriggerKind.TriggerCharacter`
-  final String triggerCharacter;
+  final Object triggerCharacter;
 
   /// How the completion was triggered.
-  final Object? triggerKind;
+  final Object triggerKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5765,12 +5765,12 @@ class CompletionItemLabelDetails implements ToJson {
   /// An optional string which is rendered less prominently after {@link
   /// CompletionItem.detail}. Should be used for fully qualified names and
   /// file paths.
-  final String description;
+  final Object description;
 
   /// An optional string which is rendered less prominently directly after
   /// {@link CompletionItem.label label}, without any spacing. Should be used
   /// for function signatures and type annotations.
-  final String detail;
+  final Object detail;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5788,13 +5788,13 @@ class InsertReplaceEdit implements ToJson {
   });
 
   /// The range if the insert is requested
-  final Range insert;
+  final Object insert;
 
   /// The string to be inserted.
-  final String newText;
+  final Object newText;
 
   /// The range if the replace is requested.
-  final Range replace;
+  final Object replace;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5819,16 +5819,16 @@ class CompletionOptions implements ToJson, WorkDoneProgressOptions {
   /// If a server provides both `allCommitCharacters` and commit characters
   /// on an individual completion item the ones on the completion item win.
   /// @since 3.2.0
-  final String allCommitCharacters;
+  final Object allCommitCharacters;
 
   /// The server supports the following `CompletionItem` specific
   /// capabilities.
   /// @since 3.17.0
-  final String completionItem;
+  final Object completionItem;
 
   /// The server provides support to resolve additional information for a
   /// completion item.
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   /// Most tools trigger completion request automatically without explicitly
   /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
@@ -5839,10 +5839,10 @@ class CompletionOptions implements ToJson, WorkDoneProgressOptions {
   /// If code complete should automatically be trigger on characters not
   /// being valid inside an identifier (for example `.` in JavaScript) list
   /// them in `triggerCharacters`.
-  final String triggerCharacters;
+  final Object triggerCharacters;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5855,7 +5855,7 @@ class HoverOptions implements ToJson, WorkDoneProgressOptions {
   HoverOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5877,21 +5877,21 @@ class SignatureHelpContext implements ToJson {
   /// The currently active `SignatureHelp`.
   /// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field
   /// updated based on the user navigating through available signatures.
-  final SignatureHelp activeSignatureHelp;
+  final Object activeSignatureHelp;
 
   /// `true` if signature help was already showing when it was triggered.
   /// Retriggers occurs when the signature help is already active and can be
   /// caused by actions such as typing a trigger character, a cursor move, or
   /// document content changes.
-  final bool isRetrigger;
+  final Object isRetrigger;
 
   /// Character that caused signature help to be triggered.
   /// This is undefined when `triggerKind !==
   /// SignatureHelpTriggerKind.TriggerCharacter`
-  final String triggerCharacter;
+  final Object triggerCharacter;
 
   /// Action that caused signature help to be triggered.
-  final Object? triggerKind;
+  final Object triggerKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5912,17 +5912,17 @@ class SignatureInformation implements ToJson {
   /// The index of the active parameter.
   /// If provided, this is used in place of `SignatureHelp.activeParameter`.
   /// @since 3.16.0
-  final int activeParameter;
+  final Object activeParameter;
 
   /// The human-readable doc-comment of this signature. Will be shown in the
   /// UI but can be omitted.
-  final String documentation;
+  final Object documentation;
 
   /// The label of this signature. Will be shown in the UI.
-  final String label;
+  final Object label;
 
   /// The parameters of this signature.
-  final String parameters;
+  final Object parameters;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5943,13 +5943,13 @@ class SignatureHelpOptions implements ToJson, WorkDoneProgressOptions {
   /// showing. All trigger characters are also counted as re-trigger
   /// characters.
   /// @since 3.15.0
-  final String retriggerCharacters;
+  final Object retriggerCharacters;
 
   /// List of characters that trigger signature help automatically.
-  final String triggerCharacters;
+  final Object triggerCharacters;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5962,7 +5962,7 @@ class DefinitionOptions implements ToJson, WorkDoneProgressOptions {
   DefinitionOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5976,7 +5976,7 @@ class ReferenceContext implements ToJson {
   ReferenceContext({required this.includeDeclaration});
 
   /// Include the declaration of the current symbol.
-  final bool includeDeclaration;
+  final Object includeDeclaration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5989,7 +5989,7 @@ class ReferenceOptions implements ToJson, WorkDoneProgressOptions {
   ReferenceOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6002,7 +6002,7 @@ class DocumentHighlightOptions implements ToJson, WorkDoneProgressOptions {
   DocumentHighlightOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6023,17 +6023,17 @@ class BaseSymbolInformation implements ToJson {
   /// user interface purposes (e.g. to render a qualifier in the user
   /// interface if necessary). It can't be used to re-infer a hierarchy for
   /// the document symbols.
-  final String containerName;
+  final Object containerName;
 
   /// The kind of this symbol.
-  final Object? kind;
+  final Object kind;
 
   /// The name of this symbol.
-  final String name;
+  final Object name;
 
   /// Tags for this symbol.
   /// @since 3.16.0
-  final String tags;
+  final Object tags;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6048,10 +6048,10 @@ class DocumentSymbolOptions implements ToJson, WorkDoneProgressOptions {
   /// A human-readable string that is shown when multiple outlines trees are
   /// shown for the same document.
   /// @since 3.16.0
-  final String label;
+  final Object label;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6074,16 +6074,16 @@ class CodeActionContext implements ToJson {
   /// for the given range. There is no guarantee that these accurately
   /// reflect the error state of the resource. The primary parameter to
   /// compute code actions is the provided range.
-  final String diagnostics;
+  final Object diagnostics;
 
   /// Requested kind of actions to return.
   /// Actions not of this kind are filtered out by the client before being
   /// shown. So servers can omit computing them.
-  final String only;
+  final Object only;
 
   /// The reason why code actions were requested.
   /// @since 3.17.0
-  final Object? triggerKind;
+  final Object triggerKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6102,15 +6102,15 @@ class CodeActionOptions implements ToJson, WorkDoneProgressOptions {
   /// CodeActionKinds that this server may return.
   /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
   /// the server may list out every specific kind they provide.
-  final String codeActionKinds;
+  final Object codeActionKinds;
 
   /// The server provides support to resolve additional information for a
   /// code action.
   /// @since 3.16.0
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6128,10 +6128,10 @@ class WorkspaceSymbolOptions implements ToJson, WorkDoneProgressOptions {
   /// The server provides support to resolve additional information for a
   /// workspace symbol.
   /// @since 3.17.0
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6147,10 +6147,10 @@ class CodeLensOptions implements ToJson, WorkDoneProgressOptions {
   });
 
   /// Code lens has a resolve provider as well.
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6166,10 +6166,10 @@ class DocumentLinkOptions implements ToJson, WorkDoneProgressOptions {
   });
 
   /// Document links have a resolve provider as well.
-  final bool resolveProvider;
+  final Object resolveProvider;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6189,21 +6189,21 @@ class FormattingOptions implements ToJson {
 
   /// Insert a newline character at the end of the file if one does not exist.
   /// @since 3.15.0
-  final bool insertFinalNewline;
+  final Object insertFinalNewline;
 
   /// Prefer spaces over tabs.
-  final bool insertSpaces;
+  final Object insertSpaces;
 
   /// Size of a tab in spaces.
-  final int tabSize;
+  final Object tabSize;
 
   /// Trim all newlines after the final newline at the end of the file.
   /// @since 3.15.0
-  final bool trimFinalNewlines;
+  final Object trimFinalNewlines;
 
   /// Trim trailing whitespace on a line.
   /// @since 3.15.0
-  final bool trimTrailingWhitespace;
+  final Object trimTrailingWhitespace;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6216,7 +6216,7 @@ class DocumentFormattingOptions implements ToJson, WorkDoneProgressOptions {
   DocumentFormattingOptions({required this.workDoneProgress});
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6234,10 +6234,10 @@ class DocumentRangeFormattingOptions
 
   /// Whether the server supports formatting multiple ranges at once.
   /// @since 3.18.0 @proposed
-  final bool rangesSupport;
+  final Object rangesSupport;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6253,10 +6253,10 @@ class DocumentOnTypeFormattingOptions implements ToJson {
   });
 
   /// A character on which formatting should be triggered, like `{`.
-  final String firstTriggerCharacter;
+  final Object firstTriggerCharacter;
 
   /// More trigger characters.
-  final String moreTriggerCharacter;
+  final Object moreTriggerCharacter;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6273,10 +6273,10 @@ class RenameOptions implements ToJson, WorkDoneProgressOptions {
 
   /// Renames should be checked and tested before being executed.
   /// @since version 3.12.0
-  final bool prepareProvider;
+  final Object prepareProvider;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6292,10 +6292,10 @@ class ExecuteCommandOptions implements ToJson, WorkDoneProgressOptions {
   });
 
   /// The commands to be executed on the server
-  final String commands;
+  final Object commands;
 
   @override
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6311,10 +6311,10 @@ class SemanticTokensLegend implements ToJson {
   });
 
   /// The token modifiers a server uses.
-  final String tokenModifiers;
+  final Object tokenModifiers;
 
   /// The token types a server uses.
-  final String tokenTypes;
+  final Object tokenTypes;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6333,7 +6333,7 @@ class OptionalVersionedTextDocumentIdentifier
 
   /// The text document's uri.
   @override
-  final Uri uri;
+  final Object uri;
 
   /// The version number of this document. If a versioned text document
   /// identifier is sent from the server to the client and the file is not
@@ -6341,7 +6341,7 @@ class OptionalVersionedTextDocumentIdentifier
   /// before) the server can send `null` to indicate that the version is
   /// unknown and the content on disk is the truth (as specified with
   /// document content ownership).
-  final String version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6359,16 +6359,16 @@ class AnnotatedTextEdit implements ToJson, TextEdit {
   });
 
   /// The actual identifier of the change annotation
-  final ChangeAnnotationIdentifier annotationId;
+  final Object annotationId;
 
   /// The string to be inserted. For delete operations use an empty string.
   @override
-  final String newText;
+  final Object newText;
 
   /// The range of the text document to be manipulated. To insert text into a
   /// document create a range where start === end.
   @override
-  final Range range;
+  final Object range;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6382,10 +6382,10 @@ class ResourceOperation implements ToJson {
 
   /// An optional annotation identifier describing the operation.
   /// @since 3.16.0
-  final ChangeAnnotationIdentifier annotationId;
+  final Object annotationId;
 
   /// The resource operation kind.
-  final String kind;
+  final Object kind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6398,10 +6398,10 @@ class CreateFileOptions implements ToJson {
   CreateFileOptions({required this.ignoreIfExists, required this.overwrite});
 
   /// Ignore if exists.
-  final bool ignoreIfExists;
+  final Object ignoreIfExists;
 
   /// Overwrite existing file. Overwrite wins over `ignoreIfExists`
-  final bool overwrite;
+  final Object overwrite;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6414,10 +6414,10 @@ class RenameFileOptions implements ToJson {
   RenameFileOptions({required this.ignoreIfExists, required this.overwrite});
 
   /// Ignores if target exists.
-  final bool ignoreIfExists;
+  final Object ignoreIfExists;
 
   /// Overwrite target if existing. Overwrite wins over `ignoreIfExists`
-  final bool overwrite;
+  final Object overwrite;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6430,10 +6430,10 @@ class DeleteFileOptions implements ToJson {
   DeleteFileOptions({required this.ignoreIfNotExists, required this.recursive});
 
   /// Ignore the operation if the file doesn't exist.
-  final bool ignoreIfNotExists;
+  final Object ignoreIfNotExists;
 
   /// Delete the content recursively if a folder is denoted.
-  final bool recursive;
+  final Object recursive;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6461,14 +6461,14 @@ class FileOperationPattern implements ToJson {
   /// - `[!...]` to negate a range of characters to match in a path segment
   /// (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not
   /// `example.0`)
-  final String glob;
+  final Object glob;
 
   /// Whether to match files or folders with this pattern.
   /// Matches both if undefined.
-  final Object? matches;
+  final Object matches;
 
   /// Additional options used during matching.
-  final FileOperationPatternOptions options;
+  final Object options;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6490,23 +6490,23 @@ class WorkspaceFullDocumentDiagnosticReport
 
   /// The actual items.
   @override
-  final String items;
+  final Object items;
 
   /// A full document diagnostic report.
   @override
-  final String kind;
+  final Object kind;
 
   /// An optional result id. If provided it will be sent on the next
   /// diagnostic request for the same document.
   @override
-  final String resultId;
+  final Object resultId;
 
   /// The URI for which diagnostic information is reported.
-  final Uri uri;
+  final Object uri;
 
   /// The version number for which the diagnostics are reported. If the
   /// document is not marked as open `null` can be provided.
-  final String version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6528,19 +6528,19 @@ class WorkspaceUnchangedDocumentDiagnosticReport
   /// A document diagnostic report indicating no changes to the last result.
   /// A server can only return `unchanged` if result ids are provided.
   @override
-  final String kind;
+  final Object kind;
 
   /// A result id which will be sent on the next diagnostic request for the
   /// same document.
   @override
-  final String resultId;
+  final Object resultId;
 
   /// The URI for which diagnostic information is reported.
-  final Uri uri;
+  final Object uri;
 
   /// The version number for which the diagnostics are reported. If the
   /// document is not marked as open `null` can be provided.
-  final String version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6562,17 +6562,17 @@ class NotebookCell implements ToJson {
   });
 
   /// The URI of the cell's text document content.
-  final Uri document;
+  final Object document;
 
   /// Additional execution summary information if supported by the client.
-  final ExecutionSummary executionSummary;
+  final Object executionSummary;
 
   /// The cell's kind
-  final Object? kind;
+  final Object kind;
 
   /// Additional metadata stored with the cell.
   /// Note: should always be an object literal (e.g. LSPObject)
-  final LSPObject metadata;
+  final Object metadata;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6590,13 +6590,13 @@ class NotebookCellArrayChange implements ToJson {
   });
 
   /// The new cells, if any
-  final String cells;
+  final Object cells;
 
   /// The deleted cells
-  final int deleteCount;
+  final Object deleteCount;
 
   /// The start oftest of the cell that changed.
-  final int start;
+  final Object start;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6610,10 +6610,10 @@ class SelectedCompletionInfo implements ToJson {
   SelectedCompletionInfo({required this.range, required this.text});
 
   /// The range that will be replaced if this completion item is accepted.
-  final Range range;
+  final Object range;
 
   /// The text the range will be replaced with if this completion is accepted.
-  final String text;
+  final Object text;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6633,24 +6633,24 @@ class ClientCapabilities implements ToJson {
   });
 
   /// Experimental client capabilities.
-  final LSPAny experimental;
+  final Object experimental;
 
   /// General client capabilities.
   /// @since 3.16.0
-  final GeneralClientCapabilities general;
+  final Object general;
 
   /// Capabilities specific to the notebook document support.
   /// @since 3.17.0
-  final NotebookDocumentClientCapabilities notebookDocument;
+  final Object notebookDocument;
 
   /// Text document specific client capabilities.
-  final TextDocumentClientCapabilities textDocument;
+  final Object textDocument;
 
   /// Window specific client capabilities.
-  final WindowClientCapabilities window;
+  final Object window;
 
   /// Workspace specific client capabilities.
-  final WorkspaceClientCapabilities workspace;
+  final Object workspace;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6671,23 +6671,23 @@ class TextDocumentSyncOptions implements ToJson {
   /// TextDocumentSyncKind.None, TextDocumentSyncKind.Full and
   /// TextDocumentSyncKind.Incremental. If omitted it defaults to
   /// TextDocumentSyncKind.None.
-  final Object? change;
+  final Object change;
 
   /// Open and close notifications are sent to the server. If omitted open
   /// close notification should not be sent.
-  final bool openClose;
+  final Object openClose;
 
   /// If present save notifications are sent to the server. If omitted the
   /// notification should not be sent.
-  final String save;
+  final Object save;
 
   /// If present will save notifications are sent to the server. If omitted
   /// the notification should not be sent.
-  final bool willSave;
+  final Object willSave;
 
   /// If present will save wait until requests are sent to the server. If
   /// omitted the request should not be sent.
-  final bool willSaveWaitUntil;
+  final Object willSaveWaitUntil;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6709,11 +6709,11 @@ class NotebookDocumentSyncOptions implements ToJson {
   });
 
   /// The notebooks to be synced
-  final String notebookSelector;
+  final Object notebookSelector;
 
   /// Whether save notification should be forwarded to the server. Will only
   /// be honored if mode === `notebook`.
-  final bool save;
+  final Object save;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6734,16 +6734,16 @@ class NotebookDocumentSyncRegistrationOptions
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
-  final String id;
+  final Object id;
 
   /// The notebooks to be synced
   @override
-  final String notebookSelector;
+  final Object notebookSelector;
 
   /// Whether save notification should be forwarded to the server. Will only
   /// be honored if mode === `notebook`.
   @override
-  final bool save;
+  final Object save;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6763,10 +6763,10 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
   /// notification is registered on the client side. The ID can be used to
   /// unregister for these events using the `client/unregisterCapability`
   /// request.
-  final String changeNotifications;
+  final Object changeNotifications;
 
   /// The server has support for workspace folders
-  final bool supported;
+  final Object supported;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6787,22 +6787,22 @@ class FileOperationOptions implements ToJson {
   });
 
   /// The server is interested in receiving didCreateFiles notifications.
-  final FileOperationRegistrationOptions didCreate;
+  final Object didCreate;
 
   /// The server is interested in receiving didDeleteFiles file notifications.
-  final FileOperationRegistrationOptions didDelete;
+  final Object didDelete;
 
   /// The server is interested in receiving didRenameFiles notifications.
-  final FileOperationRegistrationOptions didRename;
+  final Object didRename;
 
   /// The server is interested in receiving willCreateFiles requests.
-  final FileOperationRegistrationOptions willCreate;
+  final Object willCreate;
 
   /// The server is interested in receiving willDeleteFiles file requests.
-  final FileOperationRegistrationOptions willDelete;
+  final Object willDelete;
 
   /// The server is interested in receiving willRenameFiles requests.
-  final FileOperationRegistrationOptions willRename;
+  final Object willRename;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6816,7 +6816,7 @@ class CodeDescription implements ToJson {
   CodeDescription({required this.href});
 
   /// An URI to open with more information about the diagnostic error.
-  final Uri href;
+  final Object href;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6831,10 +6831,10 @@ class DiagnosticRelatedInformation implements ToJson {
   DiagnosticRelatedInformation({required this.location, required this.message});
 
   /// The location of this related diagnostic information.
-  final Location location;
+  final Object location;
 
   /// The message of this related diagnostic information.
-  final String message;
+  final Object message;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6849,7 +6849,7 @@ class ParameterInformation implements ToJson {
 
   /// The human-readable doc-comment of this parameter. Will be shown in the
   /// UI but can be omitted.
-  final String documentation;
+  final Object documentation;
 
   /// The label of this parameter information.
   /// Either a string or an inclusive start and exclusive end offsets within
@@ -6859,7 +6859,7 @@ class ParameterInformation implements ToJson {
   /// *Note*: a label of type string should be a substring of its containing
   /// signature label. Its intended use case is to highlight the parameter
   /// label part in the `SignatureInformation.label`.
-  final String label;
+  final Object label;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6879,12 +6879,12 @@ class NotebookCellTextDocumentFilter implements ToJson {
   /// A language id like `python`.
   /// Will be matched against the language id of the notebook cell document.
   /// '*' matches every language.
-  final String language;
+  final Object language;
 
   /// A filter that matches against the notebook containing the notebook
   /// cell. If a string value is provided it matches against the notebook
   /// type. '*' matches every notebook.
-  final String notebook;
+  final Object notebook;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6898,7 +6898,7 @@ class FileOperationPatternOptions implements ToJson {
   FileOperationPatternOptions({required this.ignoreCase});
 
   /// The pattern should be matched ignoring casing.
-  final bool ignoreCase;
+  final Object ignoreCase;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6911,10 +6911,10 @@ class ExecutionSummary implements ToJson {
 
   /// A strict monotonically increasing value indicating the execution order
   /// of a cell inside a notebook.
-  final int executionOrder;
+  final Object executionOrder;
 
   /// Whether the execution was successful or not if known by the client.
-  final bool success;
+  final Object success;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6944,66 +6944,66 @@ class WorkspaceClientCapabilities implements ToJson {
 
   /// The client supports applying batch edits to the workspace by supporting
   /// the request 'workspace/applyEdit'
-  final bool applyEdit;
+  final Object applyEdit;
 
   /// Capabilities specific to the code lens requests scoped to the workspace.
   /// @since 3.16.0.
-  final CodeLensWorkspaceClientCapabilities codeLens;
+  final Object codeLens;
 
   /// The client supports `workspace/configuration` requests.
   /// @since 3.6.0
-  final bool configuration;
+  final Object configuration;
 
   /// Capabilities specific to the diagnostic requests scoped to the
   /// workspace.
   /// @since 3.17.0.
-  final DiagnosticWorkspaceClientCapabilities diagnostics;
+  final Object diagnostics;
 
   /// Capabilities specific to the `workspace/didChangeConfiguration`
   /// notification.
-  final DidChangeConfigurationClientCapabilities didChangeConfiguration;
+  final Object didChangeConfiguration;
 
   /// Capabilities specific to the `workspace/didChangeWatchedFiles`
   /// notification.
-  final DidChangeWatchedFilesClientCapabilities didChangeWatchedFiles;
+  final Object didChangeWatchedFiles;
 
   /// Capabilities specific to the `workspace/executeCommand` request.
-  final ExecuteCommandClientCapabilities executeCommand;
+  final Object executeCommand;
 
   /// The client has support for file notifications/requests for user
   /// operations on files.
   /// Since 3.16.0
-  final FileOperationClientCapabilities fileOperations;
+  final Object fileOperations;
 
   /// Capabilities specific to the folding range requests scoped to the
   /// workspace.
   /// @since 3.18.0 @proposed
-  final FoldingRangeWorkspaceClientCapabilities foldingRange;
+  final Object foldingRange;
 
   /// Capabilities specific to the inlay hint requests scoped to the
   /// workspace.
   /// @since 3.17.0.
-  final InlayHintWorkspaceClientCapabilities inlayHint;
+  final Object inlayHint;
 
   /// Capabilities specific to the inline values requests scoped to the
   /// workspace.
   /// @since 3.17.0.
-  final InlineValueWorkspaceClientCapabilities inlineValue;
+  final Object inlineValue;
 
   /// Capabilities specific to the semantic token requests scoped to the
   /// workspace.
   /// @since 3.16.0.
-  final SemanticTokensWorkspaceClientCapabilities semanticTokens;
+  final Object semanticTokens;
 
   /// Capabilities specific to the `workspace/symbol` request.
-  final WorkspaceSymbolClientCapabilities symbol;
+  final Object symbol;
 
   /// Capabilities specific to `WorkspaceEdit`s.
-  final WorkspaceEditClientCapabilities workspaceEdit;
+  final Object workspaceEdit;
 
   /// The client has support for workspace folders.
   /// @since 3.6.0
-  final bool workspaceFolders;
+  final Object workspaceFolders;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7049,113 +7049,113 @@ class TextDocumentClientCapabilities implements ToJson {
 
   /// Capabilities specific to the various call hierarchy requests.
   /// @since 3.16.0
-  final CallHierarchyClientCapabilities callHierarchy;
+  final Object callHierarchy;
 
   /// Capabilities specific to the `textDocument/codeAction` request.
-  final CodeActionClientCapabilities codeAction;
+  final Object codeAction;
 
   /// Capabilities specific to the `textDocument/codeLens` request.
-  final CodeLensClientCapabilities codeLens;
+  final Object codeLens;
 
   /// Capabilities specific to the `textDocument/documentColor` and the
   /// `textDocument/colorPresentation` request.
   /// @since 3.6.0
-  final DocumentColorClientCapabilities colorProvider;
+  final Object colorProvider;
 
   /// Capabilities specific to the `textDocument/completion` request.
-  final CompletionClientCapabilities completion;
+  final Object completion;
 
   /// Capabilities specific to the `textDocument/declaration` request.
   /// @since 3.14.0
-  final DeclarationClientCapabilities declaration;
+  final Object declaration;
 
   /// Capabilities specific to the `textDocument/definition` request.
-  final DefinitionClientCapabilities definition;
+  final Object definition;
 
   /// Capabilities specific to the diagnostic pull model.
   /// @since 3.17.0
-  final DiagnosticClientCapabilities diagnostic;
+  final Object diagnostic;
 
   /// Capabilities specific to the `textDocument/documentHighlight` request.
-  final DocumentHighlightClientCapabilities documentHighlight;
+  final Object documentHighlight;
 
   /// Capabilities specific to the `textDocument/documentLink` request.
-  final DocumentLinkClientCapabilities documentLink;
+  final Object documentLink;
 
   /// Capabilities specific to the `textDocument/documentSymbol` request.
-  final DocumentSymbolClientCapabilities documentSymbol;
+  final Object documentSymbol;
 
   /// Capabilities specific to the `textDocument/foldingRange` request.
   /// @since 3.10.0
-  final FoldingRangeClientCapabilities foldingRange;
+  final Object foldingRange;
 
   /// Capabilities specific to the `textDocument/formatting` request.
-  final DocumentFormattingClientCapabilities formatting;
+  final Object formatting;
 
   /// Capabilities specific to the `textDocument/hover` request.
-  final HoverClientCapabilities hover;
+  final Object hover;
 
   /// Capabilities specific to the `textDocument/implementation` request.
   /// @since 3.6.0
-  final ImplementationClientCapabilities implementation;
+  final Object implementation;
 
   /// Capabilities specific to the `textDocument/inlayHint` request.
   /// @since 3.17.0
-  final InlayHintClientCapabilities inlayHint;
+  final Object inlayHint;
 
   /// Client capabilities specific to inline completions.
   /// @since 3.18.0 @proposed
-  final InlineCompletionClientCapabilities inlineCompletion;
+  final Object inlineCompletion;
 
   /// Capabilities specific to the `textDocument/inlineValue` request.
   /// @since 3.17.0
-  final InlineValueClientCapabilities inlineValue;
+  final Object inlineValue;
 
   /// Capabilities specific to the `textDocument/linkedEditingRange` request.
   /// @since 3.16.0
-  final LinkedEditingRangeClientCapabilities linkedEditingRange;
+  final Object linkedEditingRange;
 
   /// Client capabilities specific to the `textDocument/moniker` request.
   /// @since 3.16.0
-  final MonikerClientCapabilities moniker;
+  final Object moniker;
 
   /// Capabilities specific to the `textDocument/onTypeFormatting` request.
-  final DocumentOnTypeFormattingClientCapabilities onTypeFormatting;
+  final Object onTypeFormatting;
 
   /// Capabilities specific to the `textDocument/publishDiagnostics`
   /// notification.
-  final PublishDiagnosticsClientCapabilities publishDiagnostics;
+  final Object publishDiagnostics;
 
   /// Capabilities specific to the `textDocument/rangeFormatting` request.
-  final DocumentRangeFormattingClientCapabilities rangeFormatting;
+  final Object rangeFormatting;
 
   /// Capabilities specific to the `textDocument/references` request.
-  final ReferenceClientCapabilities references;
+  final Object references;
 
   /// Capabilities specific to the `textDocument/rename` request.
-  final RenameClientCapabilities rename;
+  final Object rename;
 
   /// Capabilities specific to the `textDocument/selectionRange` request.
   /// @since 3.15.0
-  final SelectionRangeClientCapabilities selectionRange;
+  final Object selectionRange;
 
   /// Capabilities specific to the various semantic token request.
   /// @since 3.16.0
-  final SemanticTokensClientCapabilities semanticTokens;
+  final Object semanticTokens;
 
   /// Capabilities specific to the `textDocument/signatureHelp` request.
-  final SignatureHelpClientCapabilities signatureHelp;
+  final Object signatureHelp;
 
   /// Defines which synchronization capabilities the client supports.
-  final TextDocumentSyncClientCapabilities synchronization;
+  final Object synchronization;
 
   /// Capabilities specific to the `textDocument/typeDefinition` request.
   /// @since 3.6.0
-  final TypeDefinitionClientCapabilities typeDefinition;
+  final Object typeDefinition;
 
   /// Capabilities specific to the various type hierarchy requests.
   /// @since 3.17.0
-  final TypeHierarchyClientCapabilities typeHierarchy;
+  final Object typeHierarchy;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7170,7 +7170,7 @@ class NotebookDocumentClientCapabilities implements ToJson {
 
   /// Capabilities specific to notebook document synchronization
   /// @since 3.17.0
-  final NotebookDocumentSyncClientCapabilities synchronization;
+  final Object synchronization;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7187,11 +7187,11 @@ class WindowClientCapabilities implements ToJson {
 
   /// Capabilities specific to the showDocument request.
   /// @since 3.16.0
-  final ShowDocumentClientCapabilities showDocument;
+  final Object showDocument;
 
   /// Capabilities specific to the showMessage request.
   /// @since 3.16.0
-  final ShowMessageRequestClientCapabilities showMessage;
+  final Object showMessage;
 
   /// It indicates whether the client supports server initiated progress
   /// using the `window/workDoneProgress/create` request.
@@ -7200,7 +7200,7 @@ class WindowClientCapabilities implements ToJson {
   /// `workDoneProgress` property in the request specific server
   /// capabilities.
   /// @since 3.15.0
-  final bool workDoneProgress;
+  final Object workDoneProgress;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7220,7 +7220,7 @@ class GeneralClientCapabilities implements ToJson {
 
   /// Client capabilities specific to the client's markdown parser.
   /// @since 3.16.0
-  final MarkdownClientCapabilities markdown;
+  final Object markdown;
 
   /// The position encodings supported by the client. Client and server have
   /// to agree on the same position encoding to ensure that offsets (e.g.
@@ -7234,17 +7234,17 @@ class GeneralClientCapabilities implements ToJson {
   /// into another requires the content of the file / line the conversion is
   /// best done where the file is read which is usually on the server side.
   /// @since 3.17.0
-  final String positionEncodings;
+  final Object positionEncodings;
 
   /// Client capabilities specific to regular expressions.
   /// @since 3.16.0
-  final RegularExpressionsClientCapabilities regularExpressions;
+  final Object regularExpressions;
 
   /// Client capability that signals how the client handles stale requests
   /// (e.g. a request for which the client will not process the response
   /// anymore since the information is outdated).
   /// @since 3.17.0
-  final String staleRequestSupport;
+  final Object staleRequestSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7261,10 +7261,10 @@ class RelativePattern implements ToJson {
 
   /// A workspace folder or a base URI to which this pattern will be matched
   /// against relatively.
-  final String baseUri;
+  final Object baseUri;
 
   /// The actual glob pattern;
-  final Pattern pattern;
+  final Object pattern;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7284,27 +7284,27 @@ class WorkspaceEditClientCapabilities implements ToJson {
   /// Whether the client in general supports change annotations on text
   /// edits, create file, rename file and delete file changes.
   /// @since 3.16.0
-  final String changeAnnotationSupport;
+  final Object changeAnnotationSupport;
 
   /// The client supports versioned document changes in `WorkspaceEdit`s
-  final bool documentChanges;
+  final Object documentChanges;
 
   /// The failure handling strategy of a client if applying the workspace
   /// edit fails.
   /// @since 3.13.0
-  final Object? failureHandling;
+  final Object failureHandling;
 
   /// Whether the client normalizes line endings to the client specific
   /// setting. If set to `true` the client will normalize line ending
   /// characters in a workspace edit to the client-specified new line
   /// character.
   /// @since 3.16.0
-  final bool normalizesLineEndings;
+  final Object normalizesLineEndings;
 
   /// The resource operations the client supports. Clients should at least
   /// support 'create', 'rename' and 'delete' files and folders.
   /// @since 3.13.0
-  final String resourceOperations;
+  final Object resourceOperations;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7316,7 +7316,7 @@ class DidChangeConfigurationClientCapabilities implements ToJson {
   DidChangeConfigurationClientCapabilities({required this.dynamicRegistration});
 
   /// Did change configuration notification supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7333,12 +7333,12 @@ class DidChangeWatchedFilesClientCapabilities implements ToJson {
   /// Did change watched files notification supports dynamic registration.
   /// Please note that the current protocol doesn't support static
   /// configuration for file changes from the server side.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// Whether the client has support for {@link RelativePattern relative
   /// pattern} or not.
   /// @since 3.17.0
-  final bool relativePatternSupport;
+  final Object relativePatternSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7356,22 +7356,22 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
   });
 
   /// Symbol request supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client support partial workspace symbols. The client will send the
   /// request `workspaceSymbol/resolve` to the server to resolve additional
   /// properties.
   /// @since 3.17.0
-  final String resolveSupport;
+  final Object resolveSupport;
 
   /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
   /// request.
-  final String symbolKind;
+  final Object symbolKind;
 
   /// The client supports tags on `SymbolInformation`. Clients supporting
   /// tags have to handle unknown tags gracefully.
   /// @since 3.16.0
-  final String tagSupport;
+  final Object tagSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7384,7 +7384,7 @@ class ExecuteCommandClientCapabilities implements ToJson {
   ExecuteCommandClientCapabilities({required this.dynamicRegistration});
 
   /// Execute command supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7402,7 +7402,7 @@ class SemanticTokensWorkspaceClientCapabilities implements ToJson {
   /// semantic tokens currently shown. It should be used with absolute care
   /// and is useful for situation where a server for example detects a
   /// project wide change that requires such a calculation.
-  final bool refreshSupport;
+  final Object refreshSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7420,7 +7420,7 @@ class CodeLensWorkspaceClientCapabilities implements ToJson {
   /// code lenses currently shown. It should be used with absolute care and
   /// is useful for situation where a server for example detect a project
   /// wide change that requires such a calculation.
-  final bool refreshSupport;
+  final Object refreshSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7445,26 +7445,26 @@ class FileOperationClientCapabilities implements ToJson {
   });
 
   /// The client has support for sending didCreateFiles notifications.
-  final bool didCreate;
+  final Object didCreate;
 
   /// The client has support for sending didDeleteFiles notifications.
-  final bool didDelete;
+  final Object didDelete;
 
   /// The client has support for sending didRenameFiles notifications.
-  final bool didRename;
+  final Object didRename;
 
   /// Whether the client supports dynamic registration for file
   /// requests/notifications.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client has support for sending willCreateFiles requests.
-  final bool willCreate;
+  final Object willCreate;
 
   /// The client has support for sending willDeleteFiles requests.
-  final bool willDelete;
+  final Object willDelete;
 
   /// The client has support for sending willRenameFiles requests.
-  final bool willRename;
+  final Object willRename;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7483,7 +7483,7 @@ class InlineValueWorkspaceClientCapabilities implements ToJson {
   /// inline values currently shown. It should be used with absolute care and
   /// is useful for situation where a server for example detects a project
   /// wide change that requires such a calculation.
-  final bool refreshSupport;
+  final Object refreshSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7502,7 +7502,7 @@ class InlayHintWorkspaceClientCapabilities implements ToJson {
   /// inlay hints currently shown. It should be used with absolute care and
   /// is useful for situation where a server for example detects a project
   /// wide change that requires such a calculation.
-  final bool refreshSupport;
+  final Object refreshSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7521,7 +7521,7 @@ class DiagnosticWorkspaceClientCapabilities implements ToJson {
   /// pulled diagnostics currently shown. It should be used with absolute
   /// care and is useful for situation where a server for example detects a
   /// project wide change that requires such a calculation.
-  final bool refreshSupport;
+  final Object refreshSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7541,7 +7541,7 @@ class FoldingRangeWorkspaceClientCapabilities implements ToJson {
   /// and is useful for situation where a server for example detects a
   /// project wide change that requires such a calculation.
   /// @since 3.18.0 @proposed
-  final bool refreshSupport;
+  final Object refreshSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7558,18 +7558,18 @@ class TextDocumentSyncClientCapabilities implements ToJson {
   });
 
   /// The client supports did save notifications.
-  final bool didSave;
+  final Object didSave;
 
   /// Whether text document synchronization supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client supports sending will save notifications.
-  final bool willSave;
+  final Object willSave;
 
   /// The client supports sending a will save request and waits for a
   /// response providing text edits which will be applied to the document
   /// before it is saved.
-  final bool willSaveWaitUntil;
+  final Object willSaveWaitUntil;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7590,27 +7590,27 @@ class CompletionClientCapabilities implements ToJson {
 
   /// The client supports the following `CompletionItem` specific
   /// capabilities.
-  final String completionItem;
+  final Object completionItem;
 
-  final String completionItemKind;
+  final Object completionItemKind;
 
   /// The client supports the following `CompletionList` specific
   /// capabilities.
   /// @since 3.17.0
-  final String completionList;
+  final Object completionList;
 
   /// The client supports to send additional context information for a
   /// `textDocument/completion` request.
-  final bool contextSupport;
+  final Object contextSupport;
 
   /// Whether completion supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// Defines how the client handles whitespace and indentation when
   /// accepting a completion item that uses multi line text in either
   /// `insertText` or `textEdit`.
   /// @since 3.17.0
-  final Object? insertTextMode;
+  final Object insertTextMode;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7626,10 +7626,10 @@ class HoverClientCapabilities implements ToJson {
 
   /// Client supports the following content formats for the content property.
   /// The order describes the preferred format of the client.
-  final String contentFormat;
+  final Object contentFormat;
 
   /// Whether hover supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7650,14 +7650,14 @@ class SignatureHelpClientCapabilities implements ToJson {
   /// contextSupport will also support the `retriggerCharacters` on
   /// `SignatureHelpOptions`.
   /// @since 3.15.0
-  final bool contextSupport;
+  final Object contextSupport;
 
   /// Whether signature help supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client supports the following `SignatureInformation` specific
   /// properties.
-  final String signatureInformation;
+  final Object signatureInformation;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7675,11 +7675,11 @@ class DeclarationClientCapabilities implements ToJson {
   /// Whether declaration supports dynamic registration. If this is set to
   /// `true` the client supports the new `DeclarationRegistrationOptions`
   /// return value for the corresponding server capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client supports additional metadata in the form of declaration
   /// links.
-  final bool linkSupport;
+  final Object linkSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7695,11 +7695,11 @@ class DefinitionClientCapabilities implements ToJson {
   });
 
   /// Whether definition supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client supports additional metadata in the form of definition links.
   /// @since 3.14.0
-  final bool linkSupport;
+  final Object linkSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7717,11 +7717,11 @@ class TypeDefinitionClientCapabilities implements ToJson {
   /// Whether implementation supports dynamic registration. If this is set to
   /// `true` the client supports the new `TypeDefinitionRegistrationOptions`
   /// return value for the corresponding server capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client supports additional metadata in the form of definition links.
   /// Since 3.14.0
-  final bool linkSupport;
+  final Object linkSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7739,11 +7739,11 @@ class ImplementationClientCapabilities implements ToJson {
   /// Whether implementation supports dynamic registration. If this is set to
   /// `true` the client supports the new `ImplementationRegistrationOptions`
   /// return value for the corresponding server capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client supports additional metadata in the form of definition links.
   /// @since 3.14.0
-  final bool linkSupport;
+  final Object linkSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7756,7 +7756,7 @@ class ReferenceClientCapabilities implements ToJson {
   ReferenceClientCapabilities({required this.dynamicRegistration});
 
   /// Whether references supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7769,7 +7769,7 @@ class DocumentHighlightClientCapabilities implements ToJson {
   DocumentHighlightClientCapabilities({required this.dynamicRegistration});
 
   /// Whether document highlight supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7788,25 +7788,25 @@ class DocumentSymbolClientCapabilities implements ToJson {
   });
 
   /// Whether document symbol supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client supports hierarchical document symbols.
-  final bool hierarchicalDocumentSymbolSupport;
+  final Object hierarchicalDocumentSymbolSupport;
 
   /// The client supports an additional label presented in the UI when
   /// registering a document symbol provider.
   /// @since 3.16.0
-  final bool labelSupport;
+  final Object labelSupport;
 
   /// Specific capabilities for the `SymbolKind` in the
   /// `textDocument/documentSymbol` request.
-  final String symbolKind;
+  final Object symbolKind;
 
   /// The client supports tags on `SymbolInformation`. Tags are supported on
   /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
   /// Clients supporting tags have to handle unknown tags gracefully.
   /// @since 3.16.0
-  final String tagSupport;
+  final Object tagSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7830,35 +7830,35 @@ class CodeActionClientCapabilities implements ToJson {
   /// response of the `textDocument/codeAction` request. If the property is
   /// not set the request can only return `Command` literals.
   /// @since 3.8.0
-  final String codeActionLiteralSupport;
+  final Object codeActionLiteralSupport;
 
   /// Whether code action supports the `data` property which is preserved
   /// between a `textDocument/codeAction` and a `codeAction/resolve` request.
   /// @since 3.16.0
-  final bool dataSupport;
+  final Object dataSupport;
 
   /// Whether code action supports the `disabled` property.
   /// @since 3.16.0
-  final bool disabledSupport;
+  final Object disabledSupport;
 
   /// Whether code action supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// Whether the client honors the change annotations in text edits and
   /// resource operations returned via the `CodeAction#edit` property by for
   /// example presenting the workspace edit in the user interface and asking
   /// for confirmation.
   /// @since 3.16.0
-  final bool honorsChangeAnnotations;
+  final Object honorsChangeAnnotations;
 
   /// Whether code action supports the `isPreferred` property.
   /// @since 3.15.0
-  final bool isPreferredSupport;
+  final Object isPreferredSupport;
 
   /// Whether the client supports resolving additional code action properties
   /// via a separate `codeAction/resolve` request.
   /// @since 3.16.0
-  final String resolveSupport;
+  final Object resolveSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7871,7 +7871,7 @@ class CodeLensClientCapabilities implements ToJson {
   CodeLensClientCapabilities({required this.dynamicRegistration});
 
   /// Whether code lens supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7887,11 +7887,11 @@ class DocumentLinkClientCapabilities implements ToJson {
   });
 
   /// Whether document link supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// Whether the client supports the `tooltip` property on `DocumentLink`.
   /// @since 3.15.0
-  final bool tooltipSupport;
+  final Object tooltipSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7905,7 +7905,7 @@ class DocumentColorClientCapabilities implements ToJson {
   /// Whether implementation supports dynamic registration. If this is set to
   /// `true` the client supports the new `DocumentColorRegistrationOptions`
   /// return value for the corresponding server capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7918,7 +7918,7 @@ class DocumentFormattingClientCapabilities implements ToJson {
   DocumentFormattingClientCapabilities({required this.dynamicRegistration});
 
   /// Whether formatting supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7934,11 +7934,11 @@ class DocumentRangeFormattingClientCapabilities implements ToJson {
   });
 
   /// Whether range formatting supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// Whether the client supports formatting multiple ranges at once.
   /// @since 3.18.0 @proposed
-  final bool rangesSupport;
+  final Object rangesSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7953,7 +7953,7 @@ class DocumentOnTypeFormattingClientCapabilities implements ToJson {
   });
 
   /// Whether on type formatting supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7970,24 +7970,24 @@ class RenameClientCapabilities implements ToJson {
   });
 
   /// Whether rename supports dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// Whether the client honors the change annotations in text edits and
   /// resource operations returned via the rename request's workspace edit by
   /// for example presenting the workspace edit in the user interface and
   /// asking for confirmation.
   /// @since 3.16.0
-  final bool honorsChangeAnnotations;
+  final Object honorsChangeAnnotations;
 
   /// Client supports testing for validity of rename operations before
   /// execution.
   /// @since 3.12.0
-  final bool prepareSupport;
+  final Object prepareSupport;
 
   /// Client supports the default behavior result.
   /// The value indicates the default behavior used by the client.
   /// @since 3.16.0
-  final Object? prepareSupportDefaultBehavior;
+  final Object prepareSupportDefaultBehavior;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8008,25 +8008,25 @@ class FoldingRangeClientCapabilities implements ToJson {
   /// providers. If this is set to `true` the client supports the new
   /// `FoldingRangeRegistrationOptions` return value for the corresponding
   /// server capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// Specific options for the folding range.
   /// @since 3.17.0
-  final String foldingRange;
+  final Object foldingRange;
 
   /// Specific options for the folding range kind.
   /// @since 3.17.0
-  final String foldingRangeKind;
+  final Object foldingRangeKind;
 
   /// If set, the client signals that it only supports folding complete
   /// lines. If set, client will ignore specified `startCharacter` and
   /// `endCharacter` properties in a FoldingRange.
-  final bool lineFoldingOnly;
+  final Object lineFoldingOnly;
 
   /// The maximum number of folding ranges that the client prefers to receive
   /// per document. The value serves as a hint, servers are free to follow
   /// the limit.
-  final int rangeLimit;
+  final Object rangeLimit;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8041,7 +8041,7 @@ class SelectionRangeClientCapabilities implements ToJson {
   /// range providers. If this is set to `true` the client supports the new
   /// `SelectionRangeRegistrationOptions` return value for the corresponding
   /// server capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8061,27 +8061,27 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
 
   /// Client supports a codeDescription property
   /// @since 3.16.0
-  final bool codeDescriptionSupport;
+  final Object codeDescriptionSupport;
 
   /// Whether code action supports the `data` property which is preserved
   /// between a `textDocument/publishDiagnostics` and
   /// `textDocument/codeAction` request.
   /// @since 3.16.0
-  final bool dataSupport;
+  final Object dataSupport;
 
   /// Whether the clients accepts diagnostics with related information.
-  final bool relatedInformation;
+  final Object relatedInformation;
 
   /// Client supports the tag property to provide meta data about a
   /// diagnostic. Clients supporting tags have to handle unknown tags
   /// gracefully.
   /// @since 3.15.0
-  final String tagSupport;
+  final Object tagSupport;
 
   /// Whether the client interprets the version property of the
   /// `textDocument/publishDiagnostics` notification's parameter.
   /// @since 3.15.0
-  final bool versionSupport;
+  final Object versionSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8097,7 +8097,7 @@ class CallHierarchyClientCapabilities implements ToJson {
   /// `true` the client supports the new `(TextDocumentRegistrationOptions &
   /// StaticRegistrationOptions)` return value for the corresponding server
   /// capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8125,22 +8125,22 @@ class SemanticTokensClientCapabilities implements ToJson {
   /// only uses the returned semantic tokens for colorization.
   /// If the value is `undefined` then the client behavior is not specified.
   /// @since 3.17.0
-  final bool augmentsSyntaxTokens;
+  final Object augmentsSyntaxTokens;
 
   /// Whether implementation supports dynamic registration. If this is set to
   /// `true` the client supports the new `(TextDocumentRegistrationOptions &
   /// StaticRegistrationOptions)` return value for the corresponding server
   /// capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The token formats the clients supports.
-  final String formats;
+  final Object formats;
 
   /// Whether the client supports tokens that can span multiple lines.
-  final bool multilineTokenSupport;
+  final Object multilineTokenSupport;
 
   /// Whether the client supports tokens that can overlap each other.
-  final bool overlappingTokenSupport;
+  final Object overlappingTokenSupport;
 
   /// Which requests the client supports and might send to the server
   /// depending on the server's capability. Please note that clients might
@@ -8150,19 +8150,19 @@ class SemanticTokensClientCapabilities implements ToJson {
   /// `request.range` are both set to true but the server only provides a
   /// range provider the client might not render a minimap correctly or might
   /// even decide to not show any semantic tokens at all.
-  final String requests;
+  final Object requests;
 
   /// Whether the client allows the server to actively cancel a semantic
   /// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
   /// If a server does the client needs to retrigger the request.
   /// @since 3.17.0
-  final bool serverCancelSupport;
+  final Object serverCancelSupport;
 
   /// The token modifiers that the client supports.
-  final String tokenModifiers;
+  final Object tokenModifiers;
 
   /// The token types that the client supports.
-  final String tokenTypes;
+  final Object tokenTypes;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8179,7 +8179,7 @@ class LinkedEditingRangeClientCapabilities implements ToJson {
   /// `true` the client supports the new `(TextDocumentRegistrationOptions &
   /// StaticRegistrationOptions)` return value for the corresponding server
   /// capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8195,7 +8195,7 @@ class MonikerClientCapabilities implements ToJson {
   /// Whether moniker supports dynamic registration. If this is set to `true`
   /// the client supports the new `MonikerRegistrationOptions` return value
   /// for the corresponding server capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8211,7 +8211,7 @@ class TypeHierarchyClientCapabilities implements ToJson {
   /// `true` the client supports the new `(TextDocumentRegistrationOptions &
   /// StaticRegistrationOptions)` return value for the corresponding server
   /// capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8226,7 +8226,7 @@ class InlineValueClientCapabilities implements ToJson {
 
   /// Whether implementation supports dynamic registration for inline value
   /// providers.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8243,10 +8243,10 @@ class InlayHintClientCapabilities implements ToJson {
   });
 
   /// Whether inlay hints support dynamic registration.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// Indicates which properties a client can resolve lazily on an inlay hint.
-  final String resolveSupport;
+  final Object resolveSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8266,11 +8266,11 @@ class DiagnosticClientCapabilities implements ToJson {
   /// `true` the client supports the new `(TextDocumentRegistrationOptions &
   /// StaticRegistrationOptions)` return value for the corresponding server
   /// capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// Whether the clients supports related documents for document diagnostic
   /// pulls.
-  final bool relatedDocumentSupport;
+  final Object relatedDocumentSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8285,7 +8285,7 @@ class InlineCompletionClientCapabilities implements ToJson {
 
   /// Whether implementation supports dynamic registration for inline
   /// completion providers.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8305,10 +8305,10 @@ class NotebookDocumentSyncClientCapabilities implements ToJson {
   /// `true` the client supports the new `(TextDocumentRegistrationOptions &
   /// StaticRegistrationOptions)` return value for the corresponding server
   /// capability as well.
-  final bool dynamicRegistration;
+  final Object dynamicRegistration;
 
   /// The client supports sending execution summary data per cell.
-  final bool executionSummarySupport;
+  final Object executionSummarySupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8321,7 +8321,7 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   ShowMessageRequestClientCapabilities({required this.messageActionItem});
 
   /// Capabilities specific to the `MessageActionItem` type.
-  final String messageActionItem;
+  final Object messageActionItem;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8335,7 +8335,7 @@ class ShowDocumentClientCapabilities implements ToJson {
   ShowDocumentClientCapabilities({required this.support});
 
   /// The client has support for the showDocument request.
-  final bool support;
+  final Object support;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8352,10 +8352,10 @@ class RegularExpressionsClientCapabilities implements ToJson {
   });
 
   /// The engine's name.
-  final String engine;
+  final Object engine;
 
   /// The engine's version.
-  final String version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8374,13 +8374,13 @@ class MarkdownClientCapabilities implements ToJson {
 
   /// A list of HTML tags that the client allows / supports in Markdown.
   /// @since 3.17.0
-  final String allowedTags;
+  final Object allowedTags;
 
   /// The name of the parser.
-  final String parser;
+  final Object parser;
 
   /// The version of the parser.
-  final String version;
+  final Object version;
 
   @override
   Map<String, dynamic> toJson() {

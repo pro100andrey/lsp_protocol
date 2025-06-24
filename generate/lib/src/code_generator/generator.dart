@@ -67,13 +67,15 @@ class ProtocolGenerator {
     return result;
   }
 
-  TypeDef _generateTypeAlias(Element typeAlias) => TypeDef((b) {
+  TypeDef _generateTypeAlias(MetaTypeAlias typeAlias) => TypeDef((b) {
+    final typeName = resolveReferenceName(typeAlias.type);
+
     b
       ..name = typeAlias.name
       ..definition = refer(
         _resolveDartTypeName(
-          typeAlias.name!,
-          isOptional: typeAlias.optional ?? false,
+          typeName,
+          isOptional: typeAlias.optional,
         ),
       );
   });
@@ -100,12 +102,12 @@ class ProtocolGenerator {
 
   void _addStructFields(ClassBuilder cb, MetaStructure structure) {
     final processedPropertyNames = <String>{};
-    final allFields = <Element>[];
+    final allFields = <MetaProperty>[];
 
     // Add properties directly defined in the current structure
     for (final property in structure.properties) {
       allFields.add(property);
-      processedPropertyNames.add(property.name!);
+      processedPropertyNames.add(property.name);
     }
 
     // Properties from extended structures (implements/mixins implicitly often)
@@ -113,54 +115,74 @@ class ProtocolGenerator {
     final inheritedPropertyNames = <String>{};
 
     // Add properties from extended structures
-    for (final extendRef in structure.extends$ ?? <Element>[]) {
-      final extendedStructure = _structures[extendRef.name!];
+    for (final extendRef in structure.extends$) {
+      final extendedStructure = _structures[resolveReferenceName(extendRef)];
 
       if (extendedStructure != null) {
         for (final property in extendedStructure.properties) {
           if (!processedPropertyNames.contains(property.name)) {
             allFields.add(property);
-            processedPropertyNames.add(property.name!);
-            inheritedPropertyNames.add(property.name!);
+            processedPropertyNames.add(property.name);
+            inheritedPropertyNames.add(property.name);
           }
         }
       }
     }
 
     // Add properties from mixins
-    for (final mixinRef in structure.mixins ?? <Element>[]) {
-      final mixinStructure = _structures[mixinRef.name!];
+    for (final mixinRef in structure.mixins$) {
+      final mixinStructure = _structures[resolveReferenceName(mixinRef)];
       if (mixinStructure != null) {
         for (final property in mixinStructure.properties) {
           if (!processedPropertyNames.contains(property.name)) {
             allFields.add(property);
-            processedPropertyNames.add(property.name!);
-            inheritedPropertyNames.add(property.name!);
+            processedPropertyNames.add(property.name);
+            inheritedPropertyNames.add(property.name);
           }
         }
       }
     }
 
     allFields.sort(
-      (a, b) => a.name!.compareTo(b.name!),
+      (a, b) => a.name.compareTo(b.name),
     );
 
-    String resolveFieldType(Element property) {
+    String resolveFieldType(MetaProperty property) {
+      return 'Object';
+      // final type = property.type;
+      // if (type.name == null && type.kind == TypeKind.or) {
+      //   final t1 = type.items!.first;
 
-      final type  = property.type!;
-      if (type.name == null && type.kind! == TypeKind.or) {
+      //   return _resolveDartTypeName(t1.name!, isOptional: t1.optional ?? false);
+      // }
 
-        throw ArgumentError(
-          'Type name is null for property ${property.name}. '
-          'This might be due to an unsupported type kind: ${type.kind}',
-        );
-    
-      }
+      // if (type.kind == TypeKind.array) {
+      //   final itemType = type.element;
+      //   final dartType = _resolveDartTypeName(
+      //     itemType.name!,
+      //     isOptional: itemType.optional ?? false,
+      //   );
+      //   return 'List<$dartType>';
+      // }
 
-      return _resolveDartTypeName(
-        property.type!.name!,
-        isOptional: property.optional ?? false,
-      );
+      // if (type.kind == TypeKind.map) {
+      //   final keyType = type.key;
+      //   final valueType = type.value;
+      //   // final dartKeyType = _resolveDartTypeName(
+      //   //   keyType.name!,
+      //   //   isOptional: keyType.optional ?? false,
+      //   // );
+      //   // final dartValueType = _resolveDartTypeName(
+      //   //   valueType.name!,
+      //   //   isOptional: valueType.optional ?? false,
+      //   // );
+      //   return 'Map<String, String>';
+      // }
+
+      // return _resolveDartTypeName(
+      //   property.type.name,
+      //   isOptional: property.optional ?? false,
+      // );
     }
 
     cb.fields.addAll(
@@ -194,7 +216,7 @@ class ProtocolGenerator {
           allFields.map(
             (property) => Parameter((pb) {
               pb
-                ..name = property.name!
+                ..name = property.name
                 ..named = true
                 ..required = true
                 ..toThis = true;
@@ -221,6 +243,32 @@ class ProtocolGenerator {
     );
   }
 
+  String resolveReferenceName(MetaReference reference) {
+    final typeName = switch (reference) {
+      TypeRef(name: final name) => name,
+      ElementRef(element: TypeRef(name: final name)) => 'List<$name>',
+      OrRef(items: final items) => 'Object',
+      BaseRef(name: final name) => name,
+      LiteralRef(value: final value) => 'Literal',
+      MapRef(
+        key: TypeRef(name: final keyName),
+        value: final valueRef,
+      ) =>
+        'Map<${_resolveDartTypeName(keyName, isOptional: false)}, ${resolveReferenceName(valueRef)}>',
+      _ => throw ArgumentError(
+        'Unsupported reference type: ${reference.runtimeType}',
+      ),
+    };
+
+    final isOptional = reference is ElementRef && reference.optional;
+
+    if (typeName.isEmpty) {
+      throw ArgumentError('Reference name cannot be empty');
+    }
+
+    return _resolveDartTypeName(typeName, isOptional: isOptional);
+  }
+
   Class _generateClassFromStructure(MetaStructure structure) {
     if (structure.name.isEmpty) {
       throw ArgumentError('Structure name cannot be empty');
@@ -228,8 +276,8 @@ class ProtocolGenerator {
 
     final toImplements = [
       toJsonClassRef,
-      ...?structure.extends$?.map((e) => refer(e.name!)),
-      ...?structure.mixins?.map((m) => refer(m.name!)),
+      ...structure.extends$.map((e) => refer(resolveReferenceName(e))),
+      ...structure.mixins$.map((m) => refer(resolveReferenceName(m))),
     ];
 
     final formattedDescription =
