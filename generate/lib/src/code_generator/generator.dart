@@ -1,6 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
+import '../meta/converters/int_or_string_converter.dart';
 import '../meta/protocol.dart';
 import 'utils.dart';
 
@@ -52,6 +53,10 @@ class ProtocolGenerator {
         for (final structure in protocol.structures) {
           b.body.add(_generateClassFromStructure(structure));
         }
+
+        for (final enumeration in protocol.enumerations) {
+          b.body.add(_generateEnumFromEnumeration(enumeration));
+        }
       },
     );
 
@@ -68,7 +73,7 @@ class ProtocolGenerator {
   }
 
   TypeDef _generateTypeAlias(MetaTypeAlias typeAlias) => TypeDef((b) {
-    final typeName = resolveReferenceName(typeAlias.type);
+    final typeName = _resolveReferenceName(typeAlias.type);
 
     b
       ..name = typeAlias.name
@@ -100,46 +105,65 @@ class ProtocolGenerator {
     return clazz;
   }
 
-  void _addStructFields(ClassBuilder cb, MetaStructure structure) {
-    final processedPropertyNames = <String>{};
-    final allFields = <MetaProperty>[];
+  /// Recursively collects all properties for a given structure,
+  /// including those inherited from extended structures and mixins.
+  /// Returns a map where keys are property names and values are MetaProperty
+  /// objects.
+  Map<String, MetaProperty> _collectAllProperties(MetaStructure structure) {
+    final collectedProperties = <String, MetaProperty>{};
 
-    // Add properties directly defined in the current structure
-    for (final property in structure.properties) {
-      allFields.add(property);
-      processedPropertyNames.add(property.name);
-    }
+    // Start with properties from extended structures/mixins (bottom-up approach)
+    // This ensures properties defined higher in the hierarchy are considered
+    // first so that more specific definitions (lower in hierarchy) can override
+    // them.
 
-    // Properties from extended structures (implements/mixins implicitly often)
-    // Add properties from extended structures
-    final inheritedPropertyNames = <String>{};
-
-    // Add properties from extended structures
+    // Collect from extended structures
     for (final extendRef in structure.extends$) {
-      final extendedStructure = _structures[resolveReferenceName(extendRef)];
-
+      final extendedStructure = _structures[_resolveReferenceName(extendRef)];
       if (extendedStructure != null) {
-        for (final property in extendedStructure.properties) {
-          if (!processedPropertyNames.contains(property.name)) {
-            allFields.add(property);
-            processedPropertyNames.add(property.name);
-            inheritedPropertyNames.add(property.name);
-          }
-        }
+        // Recursively get properties from the extended structure
+        final parentProperties = _collectAllProperties(extendedStructure);
+        collectedProperties.addAll(parentProperties);
       }
     }
 
-    // Add properties from mixins
+    // Collect from mixins
     for (final mixinRef in structure.mixins$) {
-      final mixinStructure = _structures[resolveReferenceName(mixinRef)];
+      // Assuming mixins$ is correct
+      final mixinStructure = _structures[_resolveReferenceName(mixinRef)];
       if (mixinStructure != null) {
-        for (final property in mixinStructure.properties) {
-          if (!processedPropertyNames.contains(property.name)) {
-            allFields.add(property);
-            processedPropertyNames.add(property.name);
-            inheritedPropertyNames.add(property.name);
-          }
-        }
+        // Recursively get properties from the mixin
+        final mixinProperties = _collectAllProperties(mixinStructure);
+        collectedProperties.addAll(mixinProperties);
+      }
+    }
+
+    // Add properties directly defined in the current structure.
+    // These will override any properties with the same name from parents/mixins.
+    for (final property in structure.properties) {
+      collectedProperties[property.name] = property;
+    }
+
+    return collectedProperties;
+  }
+
+  void _addStructFields(ClassBuilder cb, MetaStructure structure) {
+    final allPropertiesMap = _collectAllProperties(
+      structure,
+    );
+
+    final allFields = allPropertiesMap.values.toList();
+
+    // Determine which fields are inherited for the @override annotation
+    final inheritedPropertyNames = <String>{};
+    // Get property names directly defined in the current structure
+    final directPropertyNames = structure.properties.map((p) => p.name).toSet();
+
+    for (final propertyName in allPropertiesMap.keys) {
+      // If a property is in the *final* list of all properties but not directly
+      // defined by 'this' structure, it must be inherited.
+      if (!directPropertyNames.contains(propertyName)) {
+        inheritedPropertyNames.add(propertyName);
       }
     }
 
@@ -147,50 +171,19 @@ class ProtocolGenerator {
       (a, b) => a.name.compareTo(b.name),
     );
 
-    String resolveFieldType(MetaProperty property) {
-      return 'Object';
-      // final type = property.type;
-      // if (type.name == null && type.kind == TypeKind.or) {
-      //   final t1 = type.items!.first;
-
-      //   return _resolveDartTypeName(t1.name!, isOptional: t1.optional ?? false);
-      // }
-
-      // if (type.kind == TypeKind.array) {
-      //   final itemType = type.element;
-      //   final dartType = _resolveDartTypeName(
-      //     itemType.name!,
-      //     isOptional: itemType.optional ?? false,
-      //   );
-      //   return 'List<$dartType>';
-      // }
-
-      // if (type.kind == TypeKind.map) {
-      //   final keyType = type.key;
-      //   final valueType = type.value;
-      //   // final dartKeyType = _resolveDartTypeName(
-      //   //   keyType.name!,
-      //   //   isOptional: keyType.optional ?? false,
-      //   // );
-      //   // final dartValueType = _resolveDartTypeName(
-      //   //   valueType.name!,
-      //   //   isOptional: valueType.optional ?? false,
-      //   // );
-      //   return 'Map<String, String>';
-      // }
-
-      // return _resolveDartTypeName(
-      //   property.type.name,
-      //   isOptional: property.optional ?? false,
-      // );
-    }
-
     cb.fields.addAll(
       allFields.map(
         (property) {
           final propDocs =
               formatDocComment(property.documentation, maxLineLength: 76) ?? [];
-          final propType = resolveFieldType(property);
+
+          if (property.type case LiteralRef()) {
+            final typeName = '${structure.name}${capitalize(property.name)}';
+
+            print(typeName);
+          }
+
+          final propType = _resolveReferenceName(property.type);
           final propName = property.name;
 
           return Field(
@@ -243,41 +236,19 @@ class ProtocolGenerator {
     );
   }
 
-  String resolveReferenceName(MetaReference reference) {
-    final typeName = switch (reference) {
-      TypeRef(name: final name) => name,
-      ElementRef(element: TypeRef(name: final name)) => 'List<$name>',
-      OrRef(items: final items) => 'Object',
-      BaseRef(name: final name) => name,
-      LiteralRef(value: final value) => 'Literal',
-      MapRef(
-        key: TypeRef(name: final keyName),
-        value: final valueRef,
-      ) =>
-        'Map<${_resolveDartTypeName(keyName, isOptional: false)}, ${resolveReferenceName(valueRef)}>',
-      _ => throw ArgumentError(
-        'Unsupported reference type: ${reference.runtimeType}',
-      ),
-    };
-
-    final isOptional = reference is ElementRef && reference.optional;
-
-    if (typeName.isEmpty) {
-      throw ArgumentError('Reference name cannot be empty');
-    }
-
-    return _resolveDartTypeName(typeName, isOptional: isOptional);
-  }
-
   Class _generateClassFromStructure(MetaStructure structure) {
     if (structure.name.isEmpty) {
       throw ArgumentError('Structure name cannot be empty');
     }
 
+    final isInherited =
+        structure.extends$.isNotEmpty || structure.mixins$.isNotEmpty;
+
     final toImplements = [
-      toJsonClassRef,
-      ...structure.extends$.map((e) => refer(resolveReferenceName(e))),
-      ...structure.mixins$.map((m) => refer(resolveReferenceName(m))),
+      if (!isInherited) toJsonClassRef,
+
+      ...structure.extends$.map((e) => refer(_resolveReferenceName(e))),
+      ...structure.mixins$.map((m) => refer(_resolveReferenceName(m))),
     ];
 
     final formattedDescription =
@@ -302,7 +273,101 @@ class ProtocolGenerator {
     return clazz;
   }
 
-  String _resolveDartTypeName(String typeName, {required bool isOptional}) {
+  Enum _generateEnumFromEnumeration(MetaEnumeration enumeration) {
+    final formattedDescription =
+        formatDocComment(enumeration.documentation) ?? [];
+    final typeName = _resolveDartTypeName(enumeration.type.name);
+
+    return Enum((eb) {
+      eb
+        ..docs.addAll(formattedDescription)
+        ..name = enumeration.name
+        ..constructors.add(
+          Constructor(
+            (ecb) {
+              ecb
+                ..constant = true
+                ..requiredParameters.add(
+                  Parameter(
+                    (pb) {
+                      pb
+                        ..name = 'value'
+                        ..named = true
+                        ..toThis = true;
+                    },
+                  ),
+                )
+                ..docs.add('// The list of all values in this enumeration.');
+            },
+          ),
+        );
+
+      eb.fields.add(
+        Field(
+          (fb) {
+            fb
+              ..name = 'value'
+              ..modifier = FieldModifier.final$
+              ..type = refer(typeName)
+              ..docs.add('// The type of this enumeration.');
+          },
+        ),
+      );
+
+      for (final value in enumeration.values) {
+        eb.values.add(
+          EnumValue(
+            (evb) {
+              final argumentValue = switch (value.value) {
+                IsInt(:final value) => '$value',
+                IsString(:final value) => "'$value'",
+              };
+
+              evb.arguments.add(
+                refer(
+                  argumentValue,
+                ),
+              );
+              evb.name = '${uncapitalize(value.name)}Value';
+            },
+          ),
+        );
+      }
+    });
+  }
+
+  String _resolveReferenceName(MetaReference reference) {
+    final typeName = switch (reference) {
+      TypeRef(name: final name) => name,
+      ArrayRef(element: TypeRef(name: final name)) => 'List<$name>',
+      ArrayRef(element: BaseRef(name: final name)) =>
+        'List<${_resolveDartTypeName(name)}>',
+      ArrayRef(element: OrRef(items: final items)) => 'List<Object>',
+      StringLiteralRef(value: final value) => 'String',
+      OrRef(items: final items) => 'Object',
+      BaseRef(name: final name) => name,
+      LiteralRef(value: final value) => 'Object?',
+      MapRef(
+        key: TypeRef(name: final keyName),
+        value: final valueRef,
+      ) =>
+        'Map<${_resolveDartTypeName(keyName)}, ${_resolveReferenceName(valueRef)}>',
+
+      _ => throw ArgumentError(
+        'Unsupported reference type: ${reference.runtimeType}',
+      ),
+    };
+
+    final isOptional = reference.optional;
+
+    if (typeName.isEmpty) {
+      throw ArgumentError('Reference name cannot be empty');
+    }
+
+    return _resolveDartTypeName(typeName, isOptional: isOptional);
+  }
+
+  String _resolveDartTypeName(String typeName, {bool isOptional = false}) {
     final structure = _structures[typeName];
 
     if (structure != null) {
@@ -330,3 +395,7 @@ class ProtocolGenerator {
     return isOptional ? '$type?' : type;
   }
 }
+
+String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+
+String uncapitalize(String s) => s[0].toLowerCase() + s.substring(1);

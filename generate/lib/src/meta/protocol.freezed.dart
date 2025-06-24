@@ -585,7 +585,7 @@ MetaReference _$MetaReferenceFromJson(
             json
           );
                 case 'array':
-          return ElementRef.fromJson(
+          return ArrayRef.fromJson(
             json
           );
                 case 'base':
@@ -724,7 +724,7 @@ int get hashCode => Object.hash(runtimeType,kind,name,optional);
 
 @override
 String toString() {
-  return 'MetaReference.typeReference(kind: $kind, name: $name, optional: $optional)';
+  return 'MetaReference.type(kind: $kind, name: $name, optional: $optional)';
 }
 
 
@@ -767,9 +767,9 @@ as bool,
 /// @nodoc
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
-class ElementRef implements MetaReference {
-  const ElementRef({required this.element, this.optional = false, final  String? $type}): $type = $type ?? 'array';
-  factory ElementRef.fromJson(Map<String, dynamic> json) => _$ElementRefFromJson(json);
+class ArrayRef implements MetaReference {
+  const ArrayRef({required this.element, this.optional = false, final  String? $type}): $type = $type ?? 'array';
+  factory ArrayRef.fromJson(Map<String, dynamic> json) => _$ArrayRefFromJson(json);
 
  final  MetaReference element;
 @override@JsonKey() final  bool optional;
@@ -782,16 +782,16 @@ final String $type;
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$ElementRefCopyWith<ElementRef> get copyWith => _$ElementRefCopyWithImpl<ElementRef>(this, _$identity);
+$ArrayRefCopyWith<ArrayRef> get copyWith => _$ArrayRefCopyWithImpl<ArrayRef>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$ElementRefToJson(this, );
+  return _$ArrayRefToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ElementRef&&(identical(other.element, element) || other.element == element)&&(identical(other.optional, optional) || other.optional == optional));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ArrayRef&&(identical(other.element, element) || other.element == element)&&(identical(other.optional, optional) || other.optional == optional));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -800,15 +800,15 @@ int get hashCode => Object.hash(runtimeType,element,optional);
 
 @override
 String toString() {
-  return 'MetaReference.elementReference(element: $element, optional: $optional)';
+  return 'MetaReference.array(element: $element, optional: $optional)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ElementRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
-  factory $ElementRefCopyWith(ElementRef value, $Res Function(ElementRef) _then) = _$ElementRefCopyWithImpl;
+abstract mixin class $ArrayRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
+  factory $ArrayRefCopyWith(ArrayRef value, $Res Function(ArrayRef) _then) = _$ArrayRefCopyWithImpl;
 @override @useResult
 $Res call({
  MetaReference element, bool optional
@@ -819,17 +819,17 @@ $MetaReferenceCopyWith<$Res> get element;
 
 }
 /// @nodoc
-class _$ElementRefCopyWithImpl<$Res>
-    implements $ElementRefCopyWith<$Res> {
-  _$ElementRefCopyWithImpl(this._self, this._then);
+class _$ArrayRefCopyWithImpl<$Res>
+    implements $ArrayRefCopyWith<$Res> {
+  _$ArrayRefCopyWithImpl(this._self, this._then);
 
-  final ElementRef _self;
-  final $Res Function(ElementRef) _then;
+  final ArrayRef _self;
+  final $Res Function(ArrayRef) _then;
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? element = null,Object? optional = null,}) {
-  return _then(ElementRef(
+  return _then(ArrayRef(
 element: null == element ? _self.element : element // ignore: cast_nullable_to_non_nullable
 as MetaReference,optional: null == optional ? _self.optional : optional // ignore: cast_nullable_to_non_nullable
 as bool,

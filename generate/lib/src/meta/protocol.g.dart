@@ -138,21 +138,20 @@ const _$TypeKindEnumMap = {
   TypeKind.tuple: 'tuple',
 };
 
-ElementRef _$ElementRefFromJson(Map<String, dynamic> json) {
+ArrayRef _$ArrayRefFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['element', 'optional', 'kind']);
-  return ElementRef(
+  return ArrayRef(
     element: MetaReference.fromJson(json['element'] as Map<String, dynamic>),
     optional: json['optional'] as bool? ?? false,
     $type: json['kind'] as String?,
   );
 }
 
-Map<String, dynamic> _$ElementRefToJson(ElementRef instance) =>
-    <String, dynamic>{
-      'element': instance.element,
-      'optional': instance.optional,
-      'kind': instance.$type,
-    };
+Map<String, dynamic> _$ArrayRefToJson(ArrayRef instance) => <String, dynamic>{
+  'element': instance.element,
+  'optional': instance.optional,
+  'kind': instance.$type,
+};
 
 BaseRef _$BaseRefFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['name', 'optional', 'kind']);

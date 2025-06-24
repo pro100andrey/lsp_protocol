@@ -56,7 +56,7 @@ abstract class MetaRequest with _$MetaRequest {
 sealed class MetaReference with _$MetaReference {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('reference')
-  const factory MetaReference.typeReference({
+  const factory MetaReference.type({
     required TypeKind kind,
     required String name,
     @Default(false) bool optional,
@@ -64,10 +64,10 @@ sealed class MetaReference with _$MetaReference {
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('array')
-  const factory MetaReference.elementReference({
+  const factory MetaReference.array({
     required MetaReference element,
     @Default(false) bool optional,
-  }) = ElementRef;
+  }) = ArrayRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('base')
