@@ -2,7 +2,7 @@
 
 import 'package:args/args.dart';
 import 'package:generate/generate.dart';
-import 'package:generate/src/meta/visiters/code_generator_visitor.dart';
+import 'package:generate/src/visiters/code_generator_visitor.dart';
 
 Future<void> main(List<String> args) async {
   final parser = _argParser();

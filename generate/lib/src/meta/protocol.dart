@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'visiters/visiter.dart';
+import '../visiters/visiter.dart';
 
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';

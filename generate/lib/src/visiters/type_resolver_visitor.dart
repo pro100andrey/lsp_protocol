@@ -1,4 +1,4 @@
-import '../protocol.dart';
+import '../meta/protocol.dart';
 import 'visiter.dart';
 
 /// A concrete visitor that resolves MetaReference types to their Dart String

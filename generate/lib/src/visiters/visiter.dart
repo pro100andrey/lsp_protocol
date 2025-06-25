@@ -1,4 +1,4 @@
-import '../protocol.dart';
+import '../meta/protocol.dart';
 
 abstract class MetaReferenceVisitor<T> {
   const MetaReferenceVisitor();
