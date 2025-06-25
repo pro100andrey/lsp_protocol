@@ -5,8 +5,45 @@ import 'converters/int_or_string_converter.dart';
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
+abstract class MetaReferenceVisitor<T> {
+  const MetaReferenceVisitor();
+
+  // Methods for visiting MetaReference types
+  T visitTypeRef(TypeRef ref);
+  T visitArrayRef(ArrayRef ref);
+  T visitBaseRef(BaseRef ref);
+  T visitOrRef(OrRef ref);
+  T visitAndRef(AndRef ref);
+  T visitMapRef(MapRef ref);
+  T visitLiteralRef(LiteralRef ref);
+  T visitStringLiteralRef(StringLiteralRef ref);
+  T visitTupleRef(TupleRef ref);
+}
+
+abstract class MetaProtocolVisitor<T> implements MetaReferenceVisitor<T> {
+  const MetaProtocolVisitor();
+
+  T visitProtocol(MetaProtocol protocol);
+  T visitMetaData(MetaData metaData);
+  T visitRequest(MetaRequest request);
+  T visitNotification(MetaNotification notification);
+  T visitStructure(MetaStructure structure);
+  T visitEnumeration(MetaEnumeration enumeration);
+  T visitTypeAlias(MetaTypeAlias typeAlias);
+
+  T visitProperty(MetaProperty property);
+  T visitEnumMember(MetaEnumMember enumMember);
+  T visitLiteral(MetaLiteral literal);
+}
+
+sealed class BaseMeta {
+  const BaseMeta();
+
+  T accept<T>(MetaProtocolVisitor<T> visitor);
+}
+
 @freezed
-abstract class MetaProtocol with _$MetaProtocol {
+abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
   const factory MetaProtocol({
     @JsonSerializable(disallowUnrecognizedKeys: true)
     required MetaData metaData,
@@ -17,22 +54,32 @@ abstract class MetaProtocol with _$MetaProtocol {
     required List<MetaTypeAlias> typeAliases,
   }) = _MetaProtocol;
 
+  const MetaProtocol._();
+
   factory MetaProtocol.fromJson(Map<String, Object?> json) =>
       _$MetaProtocolFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitProtocol(this);
 }
 
 @freezed
-abstract class MetaData with _$MetaData {
+abstract class MetaData extends BaseMeta with _$MetaData {
   const factory MetaData({
     @JsonSerializable(disallowUnrecognizedKeys: true) required String version,
   }) = _MetaData;
 
+  const MetaData._();
+
   factory MetaData.fromJson(Map<String, Object?> json) =>
       _$MetaDataFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitMetaData(this);
 }
 
 @freezed
-abstract class MetaRequest with _$MetaRequest {
+abstract class MetaRequest extends BaseMeta with _$MetaRequest {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaRequest({
     required String method,
@@ -48,12 +95,19 @@ abstract class MetaRequest with _$MetaRequest {
     TypeRef? errorData,
   }) = _MetaRequest;
 
+  const MetaRequest._();
+
   factory MetaRequest.fromJson(Map<String, Object?> json) =>
       _$MetaRequestFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitRequest(this);
 }
 
 @Freezed(unionKey: 'kind')
-sealed class MetaReference with _$MetaReference {
+sealed class MetaReference extends BaseMeta with _$MetaReference {
+  const MetaReference._();
+
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('reference')
   const factory MetaReference.type({
@@ -121,20 +175,45 @@ sealed class MetaReference with _$MetaReference {
 
   factory MetaReference.fromJson(Map<String, Object?> json) =>
       _$MetaReferenceFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => throw UnimplementedError(
+    'MetaReference should not be visited directly by MetaProtocolVisitor '
+    'for type resolution. Use its specific visit methods instead.',
+  );
+
+  // Метод, который будет использоваться с TypeResolverVisitor
+  R resolveType<R>(MetaReferenceVisitor<R> visitor) => switch (this) {
+    final TypeRef ref => visitor.visitTypeRef(ref),
+    final ArrayRef ref => visitor.visitArrayRef(ref),
+    final BaseRef ref => visitor.visitBaseRef(ref),
+    final OrRef ref => visitor.visitOrRef(ref),
+    final AndRef ref => visitor.visitAndRef(ref),
+    final MapRef ref => visitor.visitMapRef(ref),
+    final LiteralRef ref => visitor.visitLiteralRef(ref),
+    final StringLiteralRef ref => visitor.visitStringLiteralRef(ref),
+    final TupleRef ref => visitor.visitTupleRef(ref),
+  };
 }
 
 @freezed
-abstract class MetaLiteral with _$MetaLiteral {
+abstract class MetaLiteral extends BaseMeta with _$MetaLiteral {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaLiteral({
     required List<MetaProperty> properties,
   }) = _MetaLiteral;
+
+  const MetaLiteral._();
+
   factory MetaLiteral.fromJson(Map<String, Object?> json) =>
       _$MetaLiteralFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitLiteral(this);
 }
 
 @freezed
-abstract class MetaNotification with _$MetaNotification {
+abstract class MetaNotification extends BaseMeta with _$MetaNotification {
   const factory MetaNotification({
     @JsonSerializable(disallowUnrecognizedKeys: true) required String method,
     required MessageDirection messageDirection,
@@ -145,12 +224,18 @@ abstract class MetaNotification with _$MetaNotification {
     String? registrationMethod,
   }) = _MetaNotification;
 
+  const MetaNotification._();
+
   factory MetaNotification.fromJson(Map<String, Object?> json) =>
       _$MetaNotificationFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) =>
+      visitor.visitNotification(this);
 }
 
 @freezed
-abstract class MetaProperty with _$MetaProperty {
+abstract class MetaProperty extends BaseMeta with _$MetaProperty {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaProperty({
     required String name,
@@ -162,12 +247,17 @@ abstract class MetaProperty with _$MetaProperty {
     @Default(false) bool proposed,
   }) = _MetaProperty;
 
+  const MetaProperty._();
+
   factory MetaProperty.fromJson(Map<String, Object?> json) =>
       _$MetaPropertyFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitProperty(this);
 }
 
 @freezed
-abstract class MetaStructure with _$MetaStructure {
+abstract class MetaStructure extends BaseMeta with _$MetaStructure {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaStructure({
     required String name,
@@ -179,12 +269,17 @@ abstract class MetaStructure with _$MetaStructure {
     @JsonKey(name: 'extends') @Default([]) List<MetaReference> extends$,
   }) = _MetaStructure;
 
+  const MetaStructure._();
+
   factory MetaStructure.fromJson(Map<String, Object?> json) =>
       _$MetaStructureFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitStructure(this);
 }
 
 @freezed
-abstract class MetaEnumMember with _$MetaEnumMember {
+abstract class MetaEnumMember extends BaseMeta with _$MetaEnumMember {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaEnumMember({
     required String name,
@@ -193,12 +288,17 @@ abstract class MetaEnumMember with _$MetaEnumMember {
     String? since,
   }) = _MetaEnumMember;
 
+  const MetaEnumMember._();
+
   factory MetaEnumMember.fromJson(Map<String, Object?> json) =>
       _$MetaEnumMemberFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitEnumMember(this);
 }
 
 @freezed
-abstract class MetaEnumeration with _$MetaEnumeration {
+abstract class MetaEnumeration extends BaseMeta with _$MetaEnumeration {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaEnumeration({
     required String name,
@@ -210,12 +310,17 @@ abstract class MetaEnumeration with _$MetaEnumeration {
     @Default(false) bool proposed,
   }) = _MetaEnumeration;
 
+  const MetaEnumeration._();
+
   factory MetaEnumeration.fromJson(Map<String, Object?> json) =>
       _$MetaEnumerationFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitEnumeration(this);
 }
 
 @freezed
-abstract class MetaTypeAlias with _$MetaTypeAlias {
+abstract class MetaTypeAlias extends BaseMeta with _$MetaTypeAlias {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaTypeAlias({
     required String name,
@@ -227,8 +332,13 @@ abstract class MetaTypeAlias with _$MetaTypeAlias {
     @Default(false) bool optional,
   }) = _MetaTypeAlias;
 
+  const MetaTypeAlias._();
+
   factory MetaTypeAlias.fromJson(Map<String, Object?> json) =>
       _$MetaTypeAliasFromJson(json);
+
+  @override
+  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitTypeAlias(this);
 }
 
 @JsonEnum(valueField: 'kind')

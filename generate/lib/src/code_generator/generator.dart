@@ -1,9 +1,13 @@
+// ignore_for_file: avoid_print
+
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
 import '../meta/converters/int_or_string_converter.dart';
 import '../meta/protocol.dart';
 import 'utils.dart';
+
+typedef LiteralDefinition = ({String name, List<MetaProperty> properties});
 
 class ProtocolGenerator {
   ProtocolGenerator(this.protocol)
@@ -49,13 +53,50 @@ class ProtocolGenerator {
         // Generate the base class for JSON serialization
         b.body.add(_generateToJsonClass());
 
+        final literals = <LiteralDefinition>[];
+
         // Generate classes from structures
         for (final structure in protocol.structures) {
-          b.body.add(_generateClassFromStructure(structure));
+          final allPropertiesMap = _collectAllProperties(structure);
+          final allFields = allPropertiesMap.values.toList(growable: false);
+
+          for (final property in allFields) {
+            if (property.type case LiteralRef(:final value)) {
+              final typeName = '${structure.name}${capitalize(property.name)}';
+
+              literals.add((name: typeName, properties: value.properties));
+            }
+          }
+
+          final inheritedPropertyNames = <String>{};
+          // Get property names directly defined in the current structure
+          final directPropertyNames = structure.properties
+              .map((p) => p.name)
+              .toSet();
+
+          for (final propertyName in allPropertiesMap.keys) {
+            // If a property is in the *final* list of all properties but not
+            // directly  defined by 'this' structure, it must be inherited.
+            if (!directPropertyNames.contains(propertyName)) {
+              inheritedPropertyNames.add(propertyName);
+            }
+          }
+
+          final clazz = _generateClassFromStructure(
+            structure: structure,
+            allFields: allFields,
+            inheritedPropertyNames: inheritedPropertyNames,
+          );
+
+          b.body.add(clazz);
         }
 
         for (final enumeration in protocol.enumerations) {
           b.body.add(_generateEnumFromEnumeration(enumeration));
+        }
+
+        for (final literal in literals) {
+          b.body.add(_generateLiteralClass(literal));
         }
       },
     );
@@ -71,6 +112,20 @@ class ProtocolGenerator {
 
     return result;
   }
+
+  Class _generateLiteralClass(LiteralDefinition literal) => Class((b) {
+    b
+      ..name = literal.name
+      ..fields.addAll(
+        literal.properties.map(
+          (p) => Field((b) {
+            b
+              ..name = p.name
+              ..type = refer(_resolveReferenceName(p.type));
+          }),
+        ),
+      );
+  });
 
   TypeDef _generateTypeAlias(MetaTypeAlias typeAlias) => TypeDef((b) {
     final typeName = _resolveReferenceName(typeAlias.type);
@@ -147,25 +202,13 @@ class ProtocolGenerator {
     return collectedProperties;
   }
 
-  void _addStructFields(ClassBuilder cb, MetaStructure structure) {
-    final allPropertiesMap = _collectAllProperties(
-      structure,
-    );
-
-    final allFields = allPropertiesMap.values.toList();
-
+  void _addStructFields({
+    required ClassBuilder cb,
+    required MetaStructure structure,
+    required List<MetaProperty> allFields,
+    required Set<String> inheritedPropertyNames,
+  }) {
     // Determine which fields are inherited for the @override annotation
-    final inheritedPropertyNames = <String>{};
-    // Get property names directly defined in the current structure
-    final directPropertyNames = structure.properties.map((p) => p.name).toSet();
-
-    for (final propertyName in allPropertiesMap.keys) {
-      // If a property is in the *final* list of all properties but not directly
-      // defined by 'this' structure, it must be inherited.
-      if (!directPropertyNames.contains(propertyName)) {
-        inheritedPropertyNames.add(propertyName);
-      }
-    }
 
     allFields.sort(
       (a, b) => a.name.compareTo(b.name),
@@ -176,12 +219,6 @@ class ProtocolGenerator {
         (property) {
           final propDocs =
               formatDocComment(property.documentation, maxLineLength: 76) ?? [];
-
-          if (property.type case LiteralRef()) {
-            final typeName = '${structure.name}${capitalize(property.name)}';
-
-            print(typeName);
-          }
 
           final propType = _resolveReferenceName(property.type);
           final propName = property.name;
@@ -236,11 +273,11 @@ class ProtocolGenerator {
     );
   }
 
-  Class _generateClassFromStructure(MetaStructure structure) {
-    if (structure.name.isEmpty) {
-      throw ArgumentError('Structure name cannot be empty');
-    }
-
+  Class _generateClassFromStructure({
+    required MetaStructure structure,
+    required List<MetaProperty> allFields,
+    required Set<String> inheritedPropertyNames,
+  }) {
     final isInherited =
         structure.extends$.isNotEmpty || structure.mixins$.isNotEmpty;
 
@@ -266,7 +303,12 @@ class ProtocolGenerator {
       }
 
       if (_isGenerateFields) {
-        _addStructFields(cb, structure);
+        _addStructFields(
+          cb: cb,
+          structure: structure,
+          allFields: allFields,
+          inheritedPropertyNames: inheritedPropertyNames,
+        );
       }
     });
 
@@ -342,8 +384,9 @@ class ProtocolGenerator {
       ArrayRef(element: TypeRef(name: final name)) => 'List<$name>',
       ArrayRef(element: BaseRef(name: final name)) =>
         'List<${_resolveDartTypeName(name)}>',
-      ArrayRef(element: OrRef(items: final items)) => 'List<Object>',
-      StringLiteralRef(value: final value) => 'String',
+      ArrayRef(element: OrRef()) => 'List<Object>',
+      ArrayRef(element: LiteralRef()) => 'List<Literal>',
+      StringLiteralRef() => 'String',
       OrRef(items: final items) => 'Object',
       BaseRef(name: final name) => name,
       LiteralRef(value: final value) => 'Object?',

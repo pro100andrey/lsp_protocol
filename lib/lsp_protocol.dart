@@ -2,5 +2,3 @@
 ///
 /// More dartdocs go here.
 library;
-
-export 'src/lsp_protocol_base.dart';

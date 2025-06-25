@@ -9060,3 +9060,161 @@ enum TokenFormat {
   // The type of this enumeration.
   final String value;
 }
+
+class InitializeParamsClientInfo {
+  String name;
+
+  String version;
+}
+
+class InitializeResultServerInfo {
+  String name;
+
+  String version;
+}
+
+class CompletionListItemDefaults {
+  List<String> commitCharacters;
+
+  Object editRange;
+
+  Object? insertTextFormat;
+
+  Object? insertTextMode;
+
+  LSPAny data;
+}
+
+class CompletionRegistrationOptionsCompletionItem {
+  bool labelDetailsSupport;
+}
+
+class CodeActionDisabled {
+  String reason;
+}
+
+class NotebookDocumentChangeEventCells {
+  Object? structure;
+
+  List<NotebookCell> data;
+
+  List<Literal> textContent;
+}
+
+class _InitializeParamsClientInfo {
+  String name;
+
+  String version;
+}
+
+class ServerCapabilitiesWorkspace {
+  WorkspaceFoldersServerCapabilities workspaceFolders;
+
+  FileOperationOptions fileOperations;
+}
+
+class CompletionOptionsCompletionItem {
+  bool labelDetailsSupport;
+}
+
+class GeneralClientCapabilitiesStaleRequestSupport {
+  bool cancel;
+
+  List<String> retryOnContentModified;
+}
+
+class WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
+  bool groupsOnLabel;
+}
+
+class WorkspaceSymbolClientCapabilitiesSymbolKind {
+  List<SymbolKind> valueSet;
+}
+
+class WorkspaceSymbolClientCapabilitiesTagSupport {
+  List<SymbolTag> valueSet;
+}
+
+class WorkspaceSymbolClientCapabilitiesResolveSupport {
+  List<String> properties;
+}
+
+class CompletionClientCapabilitiesCompletionItem {
+  bool snippetSupport;
+
+  bool commitCharactersSupport;
+
+  List<MarkupKind> documentationFormat;
+
+  bool deprecatedSupport;
+
+  bool preselectSupport;
+
+  Object? tagSupport;
+
+  bool insertReplaceSupport;
+
+  Object? resolveSupport;
+
+  Object? insertTextModeSupport;
+
+  bool labelDetailsSupport;
+}
+
+class CompletionClientCapabilitiesCompletionItemKind {
+  List<CompletionItemKind> valueSet;
+}
+
+class CompletionClientCapabilitiesCompletionList {
+  List<String> itemDefaults;
+}
+
+class SignatureHelpClientCapabilitiesSignatureInformation {
+  List<MarkupKind> documentationFormat;
+
+  Object? parameterInformation;
+
+  bool activeParameterSupport;
+}
+
+class DocumentSymbolClientCapabilitiesSymbolKind {
+  List<SymbolKind> valueSet;
+}
+
+class DocumentSymbolClientCapabilitiesTagSupport {
+  List<SymbolTag> valueSet;
+}
+
+class CodeActionClientCapabilitiesCodeActionLiteralSupport {
+  Object? codeActionKind;
+}
+
+class CodeActionClientCapabilitiesResolveSupport {
+  List<String> properties;
+}
+
+class FoldingRangeClientCapabilitiesFoldingRangeKind {
+  List<FoldingRangeKind> valueSet;
+}
+
+class FoldingRangeClientCapabilitiesFoldingRange {
+  bool collapsedText;
+}
+
+class PublishDiagnosticsClientCapabilitiesTagSupport {
+  List<DiagnosticTag> valueSet;
+}
+
+class SemanticTokensClientCapabilitiesRequests {
+  Object range;
+
+  Object full;
+}
+
+class InlayHintClientCapabilitiesResolveSupport {
+  List<String> properties;
+}
+
+class ShowMessageRequestClientCapabilitiesMessageActionItem {
+  bool additionalPropertiesSupport;
+}
