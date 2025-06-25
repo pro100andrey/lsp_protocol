@@ -1,40 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'converters/int_or_string_converter.dart';
+import 'visiters/visiter.dart';
 
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
-abstract class MetaReferenceVisitor<T> {
-  const MetaReferenceVisitor();
-
-  // Methods for visiting MetaReference types
-  T visitTypeRef(TypeRef ref);
-  T visitArrayRef(ArrayRef ref);
-  T visitBaseRef(BaseRef ref);
-  T visitOrRef(OrRef ref);
-  T visitAndRef(AndRef ref);
-  T visitMapRef(MapRef ref);
-  T visitLiteralRef(LiteralRef ref);
-  T visitStringLiteralRef(StringLiteralRef ref);
-  T visitTupleRef(TupleRef ref);
-}
-
-abstract class MetaProtocolVisitor<T> implements MetaReferenceVisitor<T> {
-  const MetaProtocolVisitor();
-
-  T visitProtocol(MetaProtocol protocol);
-  T visitMetaData(MetaData metaData);
-  T visitRequest(MetaRequest request);
-  T visitNotification(MetaNotification notification);
-  T visitStructure(MetaStructure structure);
-  T visitEnumeration(MetaEnumeration enumeration);
-  T visitTypeAlias(MetaTypeAlias typeAlias);
-
-  T visitProperty(MetaProperty property);
-  T visitEnumMember(MetaEnumMember enumMember);
-  T visitLiteral(MetaLiteral literal);
-}
+typedef MetaLiteralDefinition = ({
+  String name,
+  List<MetaProperty> properties,
+  String? documentation,
+});
 
 sealed class BaseMeta {
   const BaseMeta();
@@ -365,4 +340,45 @@ enum MessageDirection {
 
   const MessageDirection(this.messageDirection);
   final String messageDirection;
+}
+
+sealed class IntOrString {
+  const IntOrString();
+}
+
+class IsInt extends IntOrString {
+  const IsInt(this.value);
+  final int value;
+}
+
+class IsString extends IntOrString {
+  const IsString(this.value);
+  final String value;
+}
+
+// Custom converter for IntOrString sealed class
+class IntOrStringSealedConverter implements JsonConverter<IntOrString, Object> {
+  const IntOrStringSealedConverter();
+
+  @override
+  IntOrString fromJson(Object json) {
+    if (json is int) {
+      return IsInt(json);
+    } else if (json is String) {
+      return IsString(json);
+    }
+    throw Exception(
+      'Expected int or String for IntOrString, but got ${json.runtimeType}',
+    );
+  }
+
+  @override
+  Object toJson(IntOrString object) {
+    if (object is IsInt) {
+      return object.value;
+    } else if (object is IsString) {
+      return object.value;
+    }
+    throw Exception('Unknown IntOrString type');
+  }
 }

@@ -3,12 +3,10 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
-import '../../code_generator/utils.dart';
-import '../converters/int_or_string_converter.dart';
+import '../../utils.dart';
 import '../protocol.dart';
-import 'type_resolver_visitor.dart'; // Import the new type resolver
-
-typedef LiteralDefinition = ({String name, List<MetaProperty> properties});
+import 'type_resolver_visitor.dart';
+import 'visiter.dart';
 
 /// A concrete visitor that generates Dart code from MetaProtocol.
 class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
@@ -19,18 +17,38 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ),
       _enumerations = Map.fromEntries(
         protocol.enumerations.map((e) => MapEntry(e.name, e)),
-      ) {
+      ),
+      _literals = {} {
     // Initialize the type resolver with the known structures and enumerations
     _typeResolverVisitor = TypeResolverVisitor(_structures, _enumerations);
+
+    // Generate classes from structures
+    for (final structure in protocol.structures) {
+      // Collect literals embedded in structures
+
+      final allPropertiesMap = _collectAllProperties(structure);
+      for (final property in allPropertiesMap.values) {
+        if (property.type case LiteralRef(:final value)) {
+          final typeName = '${structure.name}${capitalize(property.name)}';
+          _literals[typeName] = (
+            name: typeName,
+            properties: value.properties,
+            documentation: property.documentation,
+          );
+        }
+      }
+    }
   }
 
   final MetaProtocol protocol;
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
+  final Map<String, MetaLiteralDefinition> _literals;
 
   late final TypeResolverVisitor _typeResolverVisitor;
-  final List<LiteralDefinition> _literalsToGenerate = [];
+
+  final Map<String, Map<String, MetaProperty>> _collectedPropertiesCache = {};
 
   Reference get toJsonClassRef => refer('ToJson');
 
@@ -50,16 +68,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       // Generate classes from structures
       for (final structure in protocol.structures) {
         // Collect literals embedded in structures
-        final allPropertiesMap = _collectAllProperties(structure);
-        for (final property in allPropertiesMap.values) {
-          if (property.type case LiteralRef(:final value)) {
-            final typeName = '${structure.name}${capitalize(property.name)}';
-            _literalsToGenerate.add((
-              name: typeName,
-              properties: value.properties,
-            ));
-          }
-        }
+
         b.body.add(visitStructure(structure));
       }
 
@@ -69,11 +78,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       }
 
       // Generate literal classes (after collecting them from structures)
-      for (final literal in _literalsToGenerate) {
-        // We need to wrap the generated class within a ClassBuilder to assign
-        // a name
-        // final generatedLiteralClass = _generateLiteralClass(literal);
-        // b.body.add(generatedLiteralClass);
+      for (final literal in _literals.values) {
+        // Create a MetaLiteralDefinition from the collected data
+        b.body.add(visitLiteralDefinition(literal));
       }
 
       for (final request in protocol.requests) {
@@ -107,20 +114,38 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   @override
   TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {
-    final typeName = typeAlias.type.resolveType(
-      _typeResolverVisitor,
-    ); // Use resolveType
+    final typeName = typeAlias.type.resolveType(_typeResolverVisitor);
     return TypeDef((b) {
       b
         ..name = typeAlias.name
-        ..definition = refer(typeName); // typeName already includes optionality
+        ..definition = refer(typeName);
+    });
+  }
+
+  @override
+  Class visitLiteralDefinition(MetaLiteralDefinition literalDefinition) {
+    final formattedDescription =
+        formatDocComment(literalDefinition.documentation) ?? [];
+    return Class((cb) {
+      cb
+        ..docs.addAll(formattedDescription)
+        ..name = literalDefinition.name;
+
+      _addStructFields(
+        cb: cb,
+        allFields: literalDefinition.properties,
+        inheritedPropertyNames: {},
+      );
+
+      _generateMethods(cb);
     });
   }
 
   @override
   Class visitStructure(MetaStructure structure) {
     final allPropertiesMap = _collectAllProperties(structure);
-    final allFields = allPropertiesMap.values.toList(growable: false);
+    final allFields = allPropertiesMap.values.toList(growable: false)
+      ..sort((a, b) => a.name.compareTo(b.name));
 
     final inheritedPropertyNames = <String>{};
     final directPropertyNames = structure.properties.map((p) => p.name).toSet();
@@ -159,6 +184,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         allFields: allFields,
         inheritedPropertyNames: inheritedPropertyNames,
       );
+
       _generateMethods(cb);
     });
   }
@@ -255,24 +281,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     Code('// MetaEnumMember visitor not implemented for generation\n'),
   );
 
-  // --- Helper Methods (moved from old ProtocolGenerator) ---
-
-  Class _generateLiteralClass(LiteralDefinition literal) => Class((b) {
-    b
-      ..name = literal.name
-      ..fields.addAll(
-        literal.properties.map(
-          (p) => Field((b) {
-            b
-              ..name = p.name
-              ..type = refer(
-                p.type.resolveType(_typeResolverVisitor),
-              ); // Use resolveType
-          }),
-        ),
-      );
-  });
-
   List<String> _header() => [
     '/// Do not edit it manually.',
     '///',
@@ -307,6 +315,10 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   /// Returns a map where keys are property names and values are MetaProperty
   /// objects.
   Map<String, MetaProperty> _collectAllProperties(MetaStructure structure) {
+    if (_collectedPropertiesCache.containsKey(structure.name)) {
+      return _collectedPropertiesCache[structure.name]!;
+    }
+
     final collectedProperties = <String, MetaProperty>{};
 
     // Collect from extended structures first (bottom-up)
@@ -336,6 +348,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       collectedProperties[property.name] = property;
     }
 
+    _collectedPropertiesCache[structure.name] = collectedProperties;
+
     return collectedProperties;
   }
 
@@ -344,8 +358,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     required List<MetaProperty> allFields,
     required Set<String> inheritedPropertyNames,
   }) {
-    allFields.sort((a, b) => a.name.compareTo(b.name));
-
     cb.fields.addAll(
       allFields.map(
         (property) {
@@ -393,7 +405,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     cb.methods.add(
       Method(
         (mb) {
-          // TODO: implement visitTypeRef
           mb
             ..name = 'toJson'
             ..annotations.add(refer('override'))
@@ -405,55 +416,38 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   }
 
   @override
-  Spec visitAndRef(AndRef ref) {
-    throw UnimplementedError();
-  }
+  Spec visitAndRef(AndRef ref) => throw UnimplementedError();
 
   @override
-  Spec visitArrayRef(ArrayRef ref) {
-    throw UnimplementedError();
-  }
+  Spec visitArrayRef(ArrayRef ref) => throw UnimplementedError();
 
   @override
-  Spec visitBaseRef(BaseRef ref) {
-    throw UnimplementedError();
-  }
+  Spec visitBaseRef(BaseRef ref) => throw UnimplementedError();
 
   @override
-  Spec visitLiteralRef(LiteralRef ref) {
-    throw UnimplementedError();
-  }
+  Spec visitLiteralRef(LiteralRef ref) => throw UnimplementedError();
 
   @override
-  Spec visitMapRef(MapRef ref) {
-    throw UnimplementedError();
-  }
+  Spec visitMapRef(MapRef ref) => throw UnimplementedError();
 
   @override
-  Spec visitOrRef(OrRef ref) {
-    throw UnimplementedError();
-  }
+  Spec visitOrRef(OrRef ref) => throw UnimplementedError();
 
   @override
-  Spec visitStringLiteralRef(StringLiteralRef ref) {
-    throw UnimplementedError();
-  }
+  Spec visitStringLiteralRef(StringLiteralRef ref) =>
+      throw UnimplementedError();
 
   @override
-  Spec visitTupleRef(TupleRef ref) {
-    throw UnimplementedError();
-  }
+  Spec visitTupleRef(TupleRef ref) => throw UnimplementedError();
 
   @override
-  Spec visitTypeRef(TypeRef ref) {
-    throw UnimplementedError();
-  }
+  Spec visitTypeRef(TypeRef ref) => throw UnimplementedError();
 }
 
 /// The main entry point for the protocol generation.
 /// Orchestrates the visitation process.
-class ProtocolGenerator1 {
-  ProtocolGenerator1(this.protocol);
+class ProtocolGenerator {
+  ProtocolGenerator(this.protocol);
 
   final MetaProtocol protocol;
 

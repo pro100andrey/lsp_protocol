@@ -9062,6 +9062,607 @@ enum TokenFormat {
   final String value;
 }
 
+/// Information about the client
+/// @since 3.15.0
+class InitializeParamsClientInfo {
+  InitializeParamsClientInfo({required this.name, required this.version});
+
+  /// The name of the client as defined by the client.
+  final String name;
+
+  /// The client's version as defined by the client.
+  final String version;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Information about the server.
+/// @since 3.15.0
+class InitializeResultServerInfo {
+  InitializeResultServerInfo({required this.name, required this.version});
+
+  /// The name of the server as defined by the server.
+  final String name;
+
+  /// The server's version as defined by the server.
+  final String version;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// In many cases the items of an actual completion result share the same value
+/// for properties like `commitCharacters` or the range of a text edit. A
+/// completion list can therefore define item defaults which will be used if a
+/// completion item itself doesn't specify the value.
+/// If a completion list specifies a default value and a completion item also
+/// specifies a corresponding value the one from the item is used.
+/// Servers are only allowed to return default values if the client signals
+/// support for this via the `completionList.itemDefaults` capability.
+/// @since 3.17.0
+class CompletionListItemDefaults {
+  CompletionListItemDefaults({
+    required this.commitCharacters,
+    required this.editRange,
+    required this.insertTextFormat,
+    required this.insertTextMode,
+    required this.data,
+  });
+
+  /// A default commit character set.
+  /// @since 3.17.0
+  final List<String> commitCharacters;
+
+  /// A default edit range.
+  /// @since 3.17.0
+  final Object editRange;
+
+  /// A default insert text format.
+  /// @since 3.17.0
+  final InsertTextFormat insertTextFormat;
+
+  /// A default insert text mode.
+  /// @since 3.17.0
+  final InsertTextMode insertTextMode;
+
+  /// A default data value.
+  /// @since 3.17.0
+  final LSPAny data;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The server supports the following `CompletionItem` specific capabilities.
+/// @since 3.17.0
+class CompletionRegistrationOptionsCompletionItem {
+  CompletionRegistrationOptionsCompletionItem({
+    required this.labelDetailsSupport,
+  });
+
+  /// The server has support for completion item label details (see also
+  /// `CompletionItemLabelDetails`) when receiving a completion item in a
+  /// resolve call.
+  /// @since 3.17.0
+  final bool labelDetailsSupport;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Marks that the code action cannot currently be applied.
+/// Clients should follow the following guidelines regarding disabled code
+/// actions:
+/// - Disabled code actions are not shown in automatic
+/// [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
+/// code action menus.
+/// - Disabled actions are shown as faded out in the code action menu when the
+/// user requests a more specific type of code action, such as refactorings.
+/// - If the user has a
+/// [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
+/// that auto applies a code action and only disabled code actions are
+/// returned, the client should show the user an error message with `reason` in
+/// the editor.
+/// @since 3.16.0
+class CodeActionDisabled {
+  CodeActionDisabled({required this.reason});
+
+  /// Human readable description of why the code action is currently disabled.
+  /// This is displayed in the code actions UI.
+  final String reason;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Changes to cells
+class NotebookDocumentChangeEventCells {
+  NotebookDocumentChangeEventCells({
+    required this.structure,
+    required this.data,
+    required this.textContent,
+  });
+
+  /// Changes to the cell structure to add or remove cells.
+  final Object structure;
+
+  /// Changes to notebook cells properties like its kind, execution summary
+  /// or metadata.
+  final List<NotebookCell> data;
+
+  /// Changes to the text content of notebook cells.
+  final List<Object> textContent;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Information about the client
+/// @since 3.15.0
+class _InitializeParamsClientInfo {
+  _InitializeParamsClientInfo({required this.name, required this.version});
+
+  /// The name of the client as defined by the client.
+  final String name;
+
+  /// The client's version as defined by the client.
+  final String version;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Workspace specific server capabilities.
+class ServerCapabilitiesWorkspace {
+  ServerCapabilitiesWorkspace({
+    required this.workspaceFolders,
+    required this.fileOperations,
+  });
+
+  /// The server supports workspace folder.
+  /// @since 3.6.0
+  final WorkspaceFoldersServerCapabilities workspaceFolders;
+
+  /// The server is interested in notifications/requests for operations on
+  /// files.
+  /// @since 3.16.0
+  final FileOperationOptions fileOperations;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The server supports the following `CompletionItem` specific capabilities.
+/// @since 3.17.0
+class CompletionOptionsCompletionItem {
+  CompletionOptionsCompletionItem({required this.labelDetailsSupport});
+
+  /// The server has support for completion item label details (see also
+  /// `CompletionItemLabelDetails`) when receiving a completion item in a
+  /// resolve call.
+  /// @since 3.17.0
+  final bool labelDetailsSupport;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Client capability that signals how the client handles stale requests (e.g.
+/// a request for which the client will not process the response anymore since
+/// the information is outdated).
+/// @since 3.17.0
+class GeneralClientCapabilitiesStaleRequestSupport {
+  GeneralClientCapabilitiesStaleRequestSupport({
+    required this.cancel,
+    required this.retryOnContentModified,
+  });
+
+  /// The client will actively cancel the request.
+  final bool cancel;
+
+  /// The list of requests for which the client will retry the request if it
+  /// receives a response with error code `ContentModified`
+  final List<String> retryOnContentModified;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Whether the client in general supports change annotations on text edits,
+/// create file, rename file and delete file changes.
+/// @since 3.16.0
+class WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
+  WorkspaceEditClientCapabilitiesChangeAnnotationSupport({
+    required this.groupsOnLabel,
+  });
+
+  /// Whether the client groups edits with equal labels into tree nodes, for
+  /// instance all edits labelled with "Changes in Strings" would be a tree
+  /// node.
+  final bool groupsOnLabel;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
+/// request.
+class WorkspaceSymbolClientCapabilitiesSymbolKind {
+  WorkspaceSymbolClientCapabilitiesSymbolKind({required this.valueSet});
+
+  /// The symbol kind values the client supports. When this property exists
+  /// the client also guarantees that it will handle values outside its set
+  /// gracefully and falls back to a default value when unknown.
+  /// If this property is not present the client only supports the symbol
+  /// kinds from `File` to `Array` as defined in the initial version of the
+  /// protocol.
+  final List<SymbolKind> valueSet;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The client supports tags on `SymbolInformation`. Clients supporting tags
+/// have to handle unknown tags gracefully.
+/// @since 3.16.0
+class WorkspaceSymbolClientCapabilitiesTagSupport {
+  WorkspaceSymbolClientCapabilitiesTagSupport({required this.valueSet});
+
+  /// The tags supported by the client.
+  final List<SymbolTag> valueSet;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The client support partial workspace symbols. The client will send the
+/// request `workspaceSymbol/resolve` to the server to resolve additional
+/// properties.
+/// @since 3.17.0
+class WorkspaceSymbolClientCapabilitiesResolveSupport {
+  WorkspaceSymbolClientCapabilitiesResolveSupport({required this.properties});
+
+  /// The properties that a client can resolve lazily. Usually
+  /// `location.range`
+  final List<String> properties;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The client supports the following `CompletionItem` specific capabilities.
+class CompletionClientCapabilitiesCompletionItem {
+  CompletionClientCapabilitiesCompletionItem({
+    required this.snippetSupport,
+    required this.commitCharactersSupport,
+    required this.documentationFormat,
+    required this.deprecatedSupport,
+    required this.preselectSupport,
+    required this.tagSupport,
+    required this.insertReplaceSupport,
+    required this.resolveSupport,
+    required this.insertTextModeSupport,
+    required this.labelDetailsSupport,
+  });
+
+  /// Client supports snippets as insert text.
+  /// A snippet can define tab stops and placeholders with `$1`, `$2` and
+  /// `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of
+  /// the snippet. Placeholders with equal identifiers are linked, that is
+  /// typing in one will update others too.
+  final bool snippetSupport;
+
+  /// Client supports commit characters on a completion item.
+  final bool commitCharactersSupport;
+
+  /// Client supports the following content formats for the documentation
+  /// property. The order describes the preferred format of the client.
+  final List<MarkupKind> documentationFormat;
+
+  /// Client supports the deprecated property on a completion item.
+  final bool deprecatedSupport;
+
+  /// Client supports the preselect property on a completion item.
+  final bool preselectSupport;
+
+  /// Client supports the tag property on a completion item. Clients
+  /// supporting tags have to handle unknown tags gracefully. Clients
+  /// especially need to preserve unknown tags when sending a completion item
+  /// back to the server in a resolve call.
+  /// @since 3.15.0
+  final Object tagSupport;
+
+  /// Client support insert replace edit to control different behavior if a
+  /// completion item is inserted in the text or should replace text.
+  /// @since 3.16.0
+  final bool insertReplaceSupport;
+
+  /// Indicates which properties a client can resolve lazily on a completion
+  /// item. Before version 3.16.0 only the predefined properties
+  /// `documentation` and `details` could be resolved lazily.
+  /// @since 3.16.0
+  final Object resolveSupport;
+
+  /// The client supports the `insertTextMode` property on a completion item
+  /// to override the whitespace handling mode as defined by the client (see
+  /// `insertTextMode`).
+  /// @since 3.16.0
+  final Object insertTextModeSupport;
+
+  /// The client has support for completion item label details (see also
+  /// `CompletionItemLabelDetails`).
+  /// @since 3.17.0
+  final bool labelDetailsSupport;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+class CompletionClientCapabilitiesCompletionItemKind {
+  CompletionClientCapabilitiesCompletionItemKind({required this.valueSet});
+
+  /// The completion item kind values the client supports. When this property
+  /// exists the client also guarantees that it will handle values outside
+  /// its set gracefully and falls back to a default value when unknown.
+  /// If this property is not present the client only supports the completion
+  /// items kinds from `Text` to `Reference` as defined in the initial
+  /// version of the protocol.
+  final List<CompletionItemKind> valueSet;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The client supports the following `CompletionList` specific capabilities.
+/// @since 3.17.0
+class CompletionClientCapabilitiesCompletionList {
+  CompletionClientCapabilitiesCompletionList({required this.itemDefaults});
+
+  /// The client supports the following itemDefaults on a completion list.
+  /// The value lists the supported property names of the
+  /// `CompletionList.itemDefaults` object. If omitted no properties are
+  /// supported.
+  /// @since 3.17.0
+  final List<String> itemDefaults;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The client supports the following `SignatureInformation` specific
+/// properties.
+class SignatureHelpClientCapabilitiesSignatureInformation {
+  SignatureHelpClientCapabilitiesSignatureInformation({
+    required this.documentationFormat,
+    required this.parameterInformation,
+    required this.activeParameterSupport,
+  });
+
+  /// Client supports the following content formats for the documentation
+  /// property. The order describes the preferred format of the client.
+  final List<MarkupKind> documentationFormat;
+
+  /// Client capabilities specific to parameter information.
+  final Object parameterInformation;
+
+  /// The client supports the `activeParameter` property on
+  /// `SignatureInformation` literal.
+  /// @since 3.16.0
+  final bool activeParameterSupport;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Specific capabilities for the `SymbolKind` in the
+/// `textDocument/documentSymbol` request.
+class DocumentSymbolClientCapabilitiesSymbolKind {
+  DocumentSymbolClientCapabilitiesSymbolKind({required this.valueSet});
+
+  /// The symbol kind values the client supports. When this property exists
+  /// the client also guarantees that it will handle values outside its set
+  /// gracefully and falls back to a default value when unknown.
+  /// If this property is not present the client only supports the symbol
+  /// kinds from `File` to `Array` as defined in the initial version of the
+  /// protocol.
+  final List<SymbolKind> valueSet;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The client supports tags on `SymbolInformation`. Tags are supported on
+/// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
+/// Clients supporting tags have to handle unknown tags gracefully.
+/// @since 3.16.0
+class DocumentSymbolClientCapabilitiesTagSupport {
+  DocumentSymbolClientCapabilitiesTagSupport({required this.valueSet});
+
+  /// The tags supported by the client.
+  final List<SymbolTag> valueSet;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The client support code action literals of type `CodeAction` as a valid
+/// response of the `textDocument/codeAction` request. If the property is not
+/// set the request can only return `Command` literals.
+/// @since 3.8.0
+class CodeActionClientCapabilitiesCodeActionLiteralSupport {
+  CodeActionClientCapabilitiesCodeActionLiteralSupport({
+    required this.codeActionKind,
+  });
+
+  /// The code action kind is support with the following value set.
+  final Object codeActionKind;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Whether the client supports resolving additional code action properties via
+/// a separate `codeAction/resolve` request.
+/// @since 3.16.0
+class CodeActionClientCapabilitiesResolveSupport {
+  CodeActionClientCapabilitiesResolveSupport({required this.properties});
+
+  /// The properties that a client can resolve lazily.
+  final List<String> properties;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Specific options for the folding range kind.
+/// @since 3.17.0
+class FoldingRangeClientCapabilitiesFoldingRangeKind {
+  FoldingRangeClientCapabilitiesFoldingRangeKind({required this.valueSet});
+
+  /// The folding range kind values the client supports. When this property
+  /// exists the client also guarantees that it will handle values outside
+  /// its set gracefully and falls back to a default value when unknown.
+  final List<FoldingRangeKind> valueSet;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Specific options for the folding range.
+/// @since 3.17.0
+class FoldingRangeClientCapabilitiesFoldingRange {
+  FoldingRangeClientCapabilitiesFoldingRange({required this.collapsedText});
+
+  /// If set, the client signals that it supports setting collapsedText on
+  /// folding ranges to display custom labels instead of the default text.
+  /// @since 3.17.0
+  final bool collapsedText;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Client supports the tag property to provide meta data about a diagnostic.
+/// Clients supporting tags have to handle unknown tags gracefully.
+/// @since 3.15.0
+class PublishDiagnosticsClientCapabilitiesTagSupport {
+  PublishDiagnosticsClientCapabilitiesTagSupport({required this.valueSet});
+
+  /// The tags supported by the client.
+  final List<DiagnosticTag> valueSet;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Which requests the client supports and might send to the server depending
+/// on the server's capability. Please note that clients might not show
+/// semantic tokens or degrade some of the user experience if a range or full
+/// request is advertised by the client but not provided by the server. If for
+/// example the client capability `requests.full` and `request.range` are both
+/// set to true but the server only provides a range provider the client might
+/// not render a minimap correctly or might even decide to not show any
+/// semantic tokens at all.
+class SemanticTokensClientCapabilitiesRequests {
+  SemanticTokensClientCapabilitiesRequests({
+    required this.range,
+    required this.full,
+  });
+
+  /// The client will send the `textDocument/semanticTokens/range` request if
+  /// the server provides a corresponding handler.
+  final Object range;
+
+  /// The client will send the `textDocument/semanticTokens/full` request if
+  /// the server provides a corresponding handler.
+  final Object full;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Indicates which properties a client can resolve lazily on an inlay hint.
+class InlayHintClientCapabilitiesResolveSupport {
+  InlayHintClientCapabilitiesResolveSupport({required this.properties});
+
+  /// The properties that a client can resolve lazily.
+  final List<String> properties;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Capabilities specific to the `MessageActionItem` type.
+class ShowMessageRequestClientCapabilitiesMessageActionItem {
+  ShowMessageRequestClientCapabilitiesMessageActionItem({
+    required this.additionalPropertiesSupport,
+  });
+
+  /// Whether the client supports additional attributes which are preserved
+  /// and send back to the server in the request's response.
+  final bool additionalPropertiesSupport;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
 // MetaRequest visitor not implemented for generation
 // MetaRequest visitor not implemented for generation
 // MetaRequest visitor not implemented for generation

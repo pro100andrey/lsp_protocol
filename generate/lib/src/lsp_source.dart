@@ -4,11 +4,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-
+  
 import 'downloader.dart';
 
 const _version = '3.17';
-const _dirName = 'lsp_download_$_version';
+const _dirName = 'lsp_downloads';
 const _specFileName = 'lsp_spec_$_version.json';
 const _licenseFileName = 'lsp_license.txt';
 const fullSpecFileName = '$_dirName/$_specFileName';

@@ -19,7 +19,7 @@ Future<void> main(List<String> args) async {
   final meta = await loadLSPMeta();
   final protocol = MetaProtocol.fromJson(meta);
 
-  final generator = ProtocolGenerator1(protocol);
+  final generator = ProtocolGenerator(protocol);
   final code = generator.generate();
 
   final outputFile = resolvePath('../lib/src/generated/protocol.dart');

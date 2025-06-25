@@ -1,4 +1,5 @@
 import '../protocol.dart';
+import 'visiter.dart';
 
 /// A concrete visitor that resolves MetaReference types to their Dart String
 /// representations.
@@ -27,7 +28,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   @override
   String visitTypeRef(TypeRef ref) {
     final structure = _structures[ref.name];
-    
+
     if (structure != null) {
       return _applyOptional(structure.name, ref.optional);
     }
