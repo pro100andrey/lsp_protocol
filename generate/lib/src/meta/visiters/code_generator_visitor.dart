@@ -3,6 +3,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
+import '../../code_generator/utils.dart';
 import '../converters/int_or_string_converter.dart';
 import '../protocol.dart';
 import 'type_resolver_visitor.dart'; // Import the new type resolver
@@ -71,8 +72,18 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       for (final literal in _literalsToGenerate) {
         // We need to wrap the generated class within a ClassBuilder to assign
         // a name
-        final generatedLiteralClass = _generateLiteralClass(literal);
-        b.body.add(generatedLiteralClass);
+        // final generatedLiteralClass = _generateLiteralClass(literal);
+        // b.body.add(generatedLiteralClass);
+      }
+
+      for (final request in protocol.requests) {
+        // Use the visitor to generate the class for the request
+        b.body.add(visitRequest(request));
+      }
+
+      for (final notification in protocol.notifications) {
+        // Use the visitor to generate the class for the notification
+        b.body.add(visitNotification(notification));
       }
     },
   );
@@ -226,22 +237,22 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   @override
   Spec visitRequest(MetaRequest request) => const CodeExpression(
-    Code('// MetaRequest visitor not implemented for generation'),
+    Code('// MetaRequest visitor not implemented for generation\n'),
   );
 
   @override
   Spec visitNotification(MetaNotification notification) => const CodeExpression(
-    Code('// MetaNotification visitor not implemented for generation'),
+    Code('// MetaNotification visitor not implemented for generation\n'),
   );
 
   @override
   Spec visitProperty(MetaProperty property) => const CodeExpression(
-    Code('// MetaProperty visitor not implemented for generation'),
+    Code('// MetaProperty visitor not implemented for generation\n'),
   );
 
   @override
   Spec visitEnumMember(MetaEnumMember enumMember) => const CodeExpression(
-    Code('// MetaEnumMember visitor not implemented for generation'),
+    Code('// MetaEnumMember visitor not implemented for generation\n'),
   );
 
   // --- Helper Methods (moved from old ProtocolGenerator) ---
@@ -441,8 +452,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
 /// The main entry point for the protocol generation.
 /// Orchestrates the visitation process.
-class ProtocolGenerator {
-  ProtocolGenerator(this.protocol);
+class ProtocolGenerator1 {
+  ProtocolGenerator1(this.protocol);
 
   final MetaProtocol protocol;
 
@@ -468,28 +479,3 @@ class ProtocolGenerator {
 String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
 String uncapitalize(String s) => s[0].toLowerCase() + s.substring(1);
-
-List<String>? formatDocComment(
-  String? documentation, {
-  int maxLineLength = 80,
-}) {
-  if (documentation == null || documentation.trim().isEmpty) {
-    return null;
-  }
-
-  final lines = <String>[];
-  final words = documentation.split(' ');
-  var currentLine = StringBuffer('///');
-
-  for (final word in words) {
-    if ((currentLine.length + word.length + 1) > maxLineLength) {
-      lines.add(currentLine.toString().trimRight());
-      currentLine = StringBuffer('/// $word');
-    } else {
-      currentLine.write(' $word');
-    }
-  }
-  lines.add(currentLine.toString().trimRight());
-
-  return lines;
-}

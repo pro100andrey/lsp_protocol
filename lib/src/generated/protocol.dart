@@ -6,7 +6,14 @@
 // ignore_for_file: one_member_abstracts
 // ignore_for_file: unused_element
 // ignore_for_file: doc_directive_unknown
+// ignore_for_file: directives_ordering
 library;
+
+abstract class ToJson {
+  Map<String, dynamic> toJson() {
+    throw UnimplementedError();
+  }
+}
 
 typedef Definition = Object;
 typedef DefinitionLink = LocationLink;
@@ -29,12 +36,6 @@ typedef GlobPattern = Object;
 typedef TextDocumentFilter = Object;
 typedef NotebookDocumentFilter = Object;
 typedef Pattern = String;
-
-abstract class ToJson {
-  Map<String, dynamic> toJson() {
-    throw UnimplementedError();
-  }
-}
 
 class ImplementationParams
     implements
@@ -443,7 +444,7 @@ class FoldingRange implements ToJson {
   /// The kind is used to categorize folding ranges and used by commands like
   /// 'Fold all comments'. See {@link FoldingRangeKind} for an enumeration of
   /// standardized kinds.
-  final Object? kind;
+  final FoldingRangeKind kind;
 
   /// The zero-based character offset from where the folded range starts. If
   /// not defined, defaults to the length of the start line.
@@ -709,7 +710,7 @@ class CallHierarchyItem implements ToJson {
   final String detail;
 
   /// The kind of this item.
-  final Object? kind;
+  final SymbolKind kind;
 
   /// The name of this item.
   final String name;
@@ -1344,13 +1345,13 @@ class Moniker implements ToJson {
   final String identifier;
 
   /// The moniker kind if known.
-  final Object? kind;
+  final MonikerKind kind;
 
   /// The scheme of the moniker. For example tsc or .Net
   final String scheme;
 
   /// The scope in which the moniker is unique
-  final Object? unique;
+  final UniquenessLevel unique;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1430,7 +1431,7 @@ class TypeHierarchyItem implements ToJson {
   final String detail;
 
   /// The kind of this item.
-  final Object? kind;
+  final SymbolKind kind;
 
   /// The name of this item.
   final String name;
@@ -1649,7 +1650,7 @@ class InlayHint implements ToJson {
 
   /// The kind of this hint. Can be omitted in which case the client should
   /// fall back to a reasonable default.
-  final Object? kind;
+  final InlayHintKind kind;
 
   /// The label of this hint. A human readable string or an array of
   /// InlayHintLabelPart label parts.
@@ -2141,7 +2142,7 @@ class InitializeParams
   /// Information about the client
   /// @since 3.15.0
   @override
-  final Object? clientInfo;
+  final Object clientInfo;
 
   /// User provided initialization options.
   @override
@@ -2174,7 +2175,7 @@ class InitializeParams
 
   /// The initial trace setting. If omitted trace is disabled ('off').
   @override
-  final Object? trace;
+  final TraceValues trace;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -2203,7 +2204,7 @@ class InitializeResult implements ToJson {
 
   /// Information about the server.
   /// @since 3.15.0
-  final Object? serverInfo;
+  final Object serverInfo;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2268,7 +2269,7 @@ class ShowMessageParams implements ToJson {
   final String message;
 
   /// The message type. See {@link MessageType}
-  final Object? type;
+  final MessageType type;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2290,7 +2291,7 @@ class ShowMessageRequestParams implements ToJson {
   final String message;
 
   /// The message type. See {@link MessageType}
-  final Object? type;
+  final MessageType type;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2318,7 +2319,7 @@ class LogMessageParams implements ToJson {
   final String message;
 
   /// The message type. See {@link MessageType}
-  final Object? type;
+  final MessageType type;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2382,7 +2383,7 @@ class TextDocumentChangeRegistrationOptions
   final Object documentSelector;
 
   /// How documents are synced to the server.
-  final Object? syncKind;
+  final TextDocumentSyncKind syncKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2451,7 +2452,7 @@ class WillSaveTextDocumentParams implements ToJson {
   });
 
   /// The 'TextDocumentSaveReason'.
-  final Object? reason;
+  final TextDocumentSaveReason reason;
 
   /// The document that will be saved.
   final TextDocumentIdentifier textDocument;
@@ -2653,17 +2654,17 @@ class CompletionItem implements ToJson {
   /// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
   /// Please note that the insertTextFormat doesn't apply to
   /// `additionalTextEdits`.
-  final Object? insertTextFormat;
+  final InsertTextFormat insertTextFormat;
 
   /// How whitespace and indentation is handled during completion item
   /// insertion. If not provided the clients default value depends on the
   /// `textDocument.completion.insertTextMode` client capability.
   /// @since 3.16.0
-  final Object? insertTextMode;
+  final InsertTextMode insertTextMode;
 
   /// The kind of this completion item. Based of the kind an icon is chosen
   /// by the editor.
-  final Object? kind;
+  final CompletionItemKind kind;
 
   /// The label of this completion item.
   /// The label property is also by default the text that is inserted when
@@ -2748,7 +2749,7 @@ class CompletionList implements ToJson {
   /// Servers are only allowed to return default values if the client signals
   /// support for this via the `completionList.itemDefaults` capability.
   /// @since 3.17.0
-  final Object? itemDefaults;
+  final Object itemDefaults;
 
   /// The completion items.
   final List<CompletionItem> items;
@@ -2785,7 +2786,7 @@ class CompletionRegistrationOptions
   /// capabilities.
   /// @since 3.17.0
   @override
-  final Object? completionItem;
+  final Object completionItem;
 
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
@@ -3151,7 +3152,7 @@ class DocumentHighlight implements ToJson {
   DocumentHighlight({required this.kind, required this.range});
 
   /// The highlight kind, default is {@link DocumentHighlightKind.Text text}.
-  final Object? kind;
+  final DocumentHighlightKind kind;
 
   /// The range this highlight applies to.
   final Range range;
@@ -3236,7 +3237,7 @@ class SymbolInformation implements BaseSymbolInformation {
 
   /// The kind of this symbol.
   @override
-  final Object? kind;
+  final SymbolKind kind;
 
   /// The location of this symbol. The location's range is used by a tool to
   /// reveal the location in the editor. If the symbol is selected in the
@@ -3290,7 +3291,7 @@ class DocumentSymbol implements ToJson {
   final String detail;
 
   /// The kind of this symbol.
-  final Object? kind;
+  final SymbolKind kind;
 
   /// The name of this symbol. Will be displayed in the user interface and
   /// therefore must not be an empty string or a string only consisting of
@@ -3449,7 +3450,7 @@ class CodeAction implements ToJson {
   /// returned, the client should show the user an error message with
   /// `reason` in the editor.
   /// @since 3.16.0
-  final Object? disabled;
+  final Object disabled;
 
   /// The workspace edit this code action performs.
   final WorkspaceEdit edit;
@@ -3464,7 +3465,7 @@ class CodeAction implements ToJson {
 
   /// The kind of the code action.
   /// Used to filter code actions.
-  final Object? kind;
+  final CodeActionKind kind;
 
   /// A short, human-readable, title for this code action.
   final String title;
@@ -3565,7 +3566,7 @@ class WorkspaceSymbol implements BaseSymbolInformation {
 
   /// The kind of this symbol.
   @override
-  final Object? kind;
+  final SymbolKind kind;
 
   /// The location of the symbol. Whether a server is allowed to return a
   /// location without a range depends on the client capability
@@ -4234,7 +4235,7 @@ class WorkDoneProgressEnd implements ToJson {
 class SetTraceParams implements ToJson {
   SetTraceParams({required this.value});
 
-  final Object? value;
+  final TraceValues value;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5055,7 +5056,7 @@ class MarkupContent implements ToJson {
   MarkupContent({required this.kind, required this.value});
 
   /// The type of the Markup
-  final Object? kind;
+  final MarkupKind kind;
 
   /// The content itself
   final String value;
@@ -5344,7 +5345,7 @@ class NotebookDocumentChangeEvent implements ToJson {
   NotebookDocumentChangeEvent({required this.cells, required this.metadata});
 
   /// Changes to cells
-  final Object? cells;
+  final Object cells;
 
   /// The changed meta data if any.
   /// Note: should always be an object literal (e.g. LSPObject)
@@ -5384,7 +5385,7 @@ class InlineCompletionContext implements ToJson {
   final SelectedCompletionInfo selectedCompletionInfo;
 
   /// Describes how the inline completion was triggered.
-  final Object? triggerKind;
+  final InlineCompletionTriggerKind triggerKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5487,7 +5488,7 @@ class _InitializeParams implements WorkDoneProgressParams {
 
   /// Information about the client
   /// @since 3.15.0
-  final Object? clientInfo;
+  final Object clientInfo;
 
   /// User provided initialization options.
   final LSPAny initializationOptions;
@@ -5514,7 +5515,7 @@ class _InitializeParams implements WorkDoneProgressParams {
   final Object rootUri;
 
   /// The initial trace setting. If omitted trace is disabled ('off').
-  final Object? trace;
+  final TraceValues trace;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -5674,7 +5675,7 @@ class ServerCapabilities implements ToJson {
   /// value that a server can return is 'utf-16'.
   /// If omitted it defaults to 'utf-16'.
   /// @since 3.17.0
-  final Object? positionEncoding;
+  final PositionEncodingKind positionEncoding;
 
   /// The server provides find references support.
   final Object referencesProvider;
@@ -5707,7 +5708,7 @@ class ServerCapabilities implements ToJson {
   final Object typeHierarchyProvider;
 
   /// Workspace specific server capabilities.
-  final Object? workspace;
+  final Object workspace;
 
   /// The server provides workspace symbol support.
   final Object workspaceSymbolProvider;
@@ -5753,7 +5754,7 @@ class FileEvent implements ToJson {
   FileEvent({required this.type, required this.uri});
 
   /// The change type.
-  final Object? type;
+  final FileChangeType type;
 
   /// The file's uri.
   final Uri uri;
@@ -5774,7 +5775,7 @@ class FileSystemWatcher implements ToJson {
 
   /// The kind of events of interest. If omitted it defaults to
   /// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
-  final Object? kind;
+  final WatchKind kind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5823,7 +5824,7 @@ class Diagnostic implements ToJson {
 
   /// The diagnostic's severity. Can be omitted. If omitted it is up to the
   /// client to interpret diagnostics as error, warning, info or hint.
-  final Object? severity;
+  final DiagnosticSeverity severity;
 
   /// A human-readable string describing the source of this diagnostic, e.g.
   /// 'typescript' or 'super lint'. It usually appears in the user interface.
@@ -5853,7 +5854,7 @@ class CompletionContext implements ToJson {
   final String triggerCharacter;
 
   /// How the completion was triggered.
-  final Object? triggerKind;
+  final CompletionTriggerKind triggerKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -5928,7 +5929,7 @@ class CompletionOptions implements WorkDoneProgressOptions {
   /// The server supports the following `CompletionItem` specific
   /// capabilities.
   /// @since 3.17.0
-  final Object? completionItem;
+  final Object completionItem;
 
   /// The server provides support to resolve additional information for a
   /// completion item.
@@ -5995,7 +5996,7 @@ class SignatureHelpContext implements ToJson {
   final String triggerCharacter;
 
   /// Action that caused signature help to be triggered.
-  final Object? triggerKind;
+  final SignatureHelpTriggerKind triggerKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6130,7 +6131,7 @@ class BaseSymbolInformation implements ToJson {
   final String containerName;
 
   /// The kind of this symbol.
-  final Object? kind;
+  final SymbolKind kind;
 
   /// The name of this symbol.
   final String name;
@@ -6187,7 +6188,7 @@ class CodeActionContext implements ToJson {
 
   /// The reason why code actions were requested.
   /// @since 3.17.0
-  final Object? triggerKind;
+  final CodeActionTriggerKind triggerKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6568,7 +6569,7 @@ class FileOperationPattern implements ToJson {
 
   /// Whether to match files or folders with this pattern.
   /// Matches both if undefined.
-  final Object? matches;
+  final FileOperationPatternKind matches;
 
   /// Additional options used during matching.
   final FileOperationPatternOptions options;
@@ -6671,7 +6672,7 @@ class NotebookCell implements ToJson {
   final ExecutionSummary executionSummary;
 
   /// The cell's kind
-  final Object? kind;
+  final NotebookCellKind kind;
 
   /// Additional metadata stored with the cell.
   /// Note: should always be an object literal (e.g. LSPObject)
@@ -6774,7 +6775,7 @@ class TextDocumentSyncOptions implements ToJson {
   /// TextDocumentSyncKind.None, TextDocumentSyncKind.Full and
   /// TextDocumentSyncKind.Incremental. If omitted it defaults to
   /// TextDocumentSyncKind.None.
-  final Object? change;
+  final TextDocumentSyncKind change;
 
   /// Open and close notifications are sent to the server. If omitted open
   /// close notification should not be sent.
@@ -7347,7 +7348,7 @@ class GeneralClientCapabilities implements ToJson {
   /// (e.g. a request for which the client will not process the response
   /// anymore since the information is outdated).
   /// @since 3.17.0
-  final Object? staleRequestSupport;
+  final Object staleRequestSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7387,7 +7388,7 @@ class WorkspaceEditClientCapabilities implements ToJson {
   /// Whether the client in general supports change annotations on text
   /// edits, create file, rename file and delete file changes.
   /// @since 3.16.0
-  final Object? changeAnnotationSupport;
+  final Object changeAnnotationSupport;
 
   /// The client supports versioned document changes in `WorkspaceEdit`s
   final bool documentChanges;
@@ -7395,7 +7396,7 @@ class WorkspaceEditClientCapabilities implements ToJson {
   /// The failure handling strategy of a client if applying the workspace
   /// edit fails.
   /// @since 3.13.0
-  final Object? failureHandling;
+  final FailureHandlingKind failureHandling;
 
   /// Whether the client normalizes line endings to the client specific
   /// setting. If set to `true` the client will normalize line ending
@@ -7465,16 +7466,16 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
   /// request `workspaceSymbol/resolve` to the server to resolve additional
   /// properties.
   /// @since 3.17.0
-  final Object? resolveSupport;
+  final Object resolveSupport;
 
   /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
   /// request.
-  final Object? symbolKind;
+  final Object symbolKind;
 
   /// The client supports tags on `SymbolInformation`. Clients supporting
   /// tags have to handle unknown tags gracefully.
   /// @since 3.16.0
-  final Object? tagSupport;
+  final Object tagSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7693,14 +7694,14 @@ class CompletionClientCapabilities implements ToJson {
 
   /// The client supports the following `CompletionItem` specific
   /// capabilities.
-  final Object? completionItem;
+  final Object completionItem;
 
-  final Object? completionItemKind;
+  final Object completionItemKind;
 
   /// The client supports the following `CompletionList` specific
   /// capabilities.
   /// @since 3.17.0
-  final Object? completionList;
+  final Object completionList;
 
   /// The client supports to send additional context information for a
   /// `textDocument/completion` request.
@@ -7713,7 +7714,7 @@ class CompletionClientCapabilities implements ToJson {
   /// accepting a completion item that uses multi line text in either
   /// `insertText` or `textEdit`.
   /// @since 3.17.0
-  final Object? insertTextMode;
+  final InsertTextMode insertTextMode;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7760,7 +7761,7 @@ class SignatureHelpClientCapabilities implements ToJson {
 
   /// The client supports the following `SignatureInformation` specific
   /// properties.
-  final Object? signatureInformation;
+  final Object signatureInformation;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7903,13 +7904,13 @@ class DocumentSymbolClientCapabilities implements ToJson {
 
   /// Specific capabilities for the `SymbolKind` in the
   /// `textDocument/documentSymbol` request.
-  final Object? symbolKind;
+  final Object symbolKind;
 
   /// The client supports tags on `SymbolInformation`. Tags are supported on
   /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
   /// Clients supporting tags have to handle unknown tags gracefully.
   /// @since 3.16.0
-  final Object? tagSupport;
+  final Object tagSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7933,7 +7934,7 @@ class CodeActionClientCapabilities implements ToJson {
   /// response of the `textDocument/codeAction` request. If the property is
   /// not set the request can only return `Command` literals.
   /// @since 3.8.0
-  final Object? codeActionLiteralSupport;
+  final Object codeActionLiteralSupport;
 
   /// Whether code action supports the `data` property which is preserved
   /// between a `textDocument/codeAction` and a `codeAction/resolve` request.
@@ -7961,7 +7962,7 @@ class CodeActionClientCapabilities implements ToJson {
   /// Whether the client supports resolving additional code action properties
   /// via a separate `codeAction/resolve` request.
   /// @since 3.16.0
-  final Object? resolveSupport;
+  final Object resolveSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8090,7 +8091,7 @@ class RenameClientCapabilities implements ToJson {
   /// Client supports the default behavior result.
   /// The value indicates the default behavior used by the client.
   /// @since 3.16.0
-  final Object? prepareSupportDefaultBehavior;
+  final PrepareSupportDefaultBehavior prepareSupportDefaultBehavior;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8115,11 +8116,11 @@ class FoldingRangeClientCapabilities implements ToJson {
 
   /// Specific options for the folding range.
   /// @since 3.17.0
-  final Object? foldingRange;
+  final Object foldingRange;
 
   /// Specific options for the folding range kind.
   /// @since 3.17.0
-  final Object? foldingRangeKind;
+  final Object foldingRangeKind;
 
   /// If set, the client signals that it only supports folding complete
   /// lines. If set, client will ignore specified `startCharacter` and
@@ -8179,7 +8180,7 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
   /// diagnostic. Clients supporting tags have to handle unknown tags
   /// gracefully.
   /// @since 3.15.0
-  final Object? tagSupport;
+  final Object tagSupport;
 
   /// Whether the client interprets the version property of the
   /// `textDocument/publishDiagnostics` notification's parameter.
@@ -8253,7 +8254,7 @@ class SemanticTokensClientCapabilities implements ToJson {
   /// `request.range` are both set to true but the server only provides a
   /// range provider the client might not render a minimap correctly or might
   /// even decide to not show any semantic tokens at all.
-  final Object? requests;
+  final Object requests;
 
   /// Whether the client allows the server to actively cancel a semantic
   /// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
@@ -8349,7 +8350,7 @@ class InlayHintClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   /// Indicates which properties a client can resolve lazily on an inlay hint.
-  final Object? resolveSupport;
+  final Object resolveSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8424,7 +8425,7 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   ShowMessageRequestClientCapabilities({required this.messageActionItem});
 
   /// Capabilities specific to the `MessageActionItem` type.
-  final Object? messageActionItem;
+  final Object messageActionItem;
 
   @override
   Map<String, dynamic> toJson() {
@@ -9061,160 +9062,96 @@ enum TokenFormat {
   final String value;
 }
 
-class InitializeParamsClientInfo {
-  String name;
-
-  String version;
-}
-
-class InitializeResultServerInfo {
-  String name;
-
-  String version;
-}
-
-class CompletionListItemDefaults {
-  List<String> commitCharacters;
-
-  Object editRange;
-
-  Object? insertTextFormat;
-
-  Object? insertTextMode;
-
-  LSPAny data;
-}
-
-class CompletionRegistrationOptionsCompletionItem {
-  bool labelDetailsSupport;
-}
-
-class CodeActionDisabled {
-  String reason;
-}
-
-class NotebookDocumentChangeEventCells {
-  Object? structure;
-
-  List<NotebookCell> data;
-
-  List<Literal> textContent;
-}
-
-class _InitializeParamsClientInfo {
-  String name;
-
-  String version;
-}
-
-class ServerCapabilitiesWorkspace {
-  WorkspaceFoldersServerCapabilities workspaceFolders;
-
-  FileOperationOptions fileOperations;
-}
-
-class CompletionOptionsCompletionItem {
-  bool labelDetailsSupport;
-}
-
-class GeneralClientCapabilitiesStaleRequestSupport {
-  bool cancel;
-
-  List<String> retryOnContentModified;
-}
-
-class WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
-  bool groupsOnLabel;
-}
-
-class WorkspaceSymbolClientCapabilitiesSymbolKind {
-  List<SymbolKind> valueSet;
-}
-
-class WorkspaceSymbolClientCapabilitiesTagSupport {
-  List<SymbolTag> valueSet;
-}
-
-class WorkspaceSymbolClientCapabilitiesResolveSupport {
-  List<String> properties;
-}
-
-class CompletionClientCapabilitiesCompletionItem {
-  bool snippetSupport;
-
-  bool commitCharactersSupport;
-
-  List<MarkupKind> documentationFormat;
-
-  bool deprecatedSupport;
-
-  bool preselectSupport;
-
-  Object? tagSupport;
-
-  bool insertReplaceSupport;
-
-  Object? resolveSupport;
-
-  Object? insertTextModeSupport;
-
-  bool labelDetailsSupport;
-}
-
-class CompletionClientCapabilitiesCompletionItemKind {
-  List<CompletionItemKind> valueSet;
-}
-
-class CompletionClientCapabilitiesCompletionList {
-  List<String> itemDefaults;
-}
-
-class SignatureHelpClientCapabilitiesSignatureInformation {
-  List<MarkupKind> documentationFormat;
-
-  Object? parameterInformation;
-
-  bool activeParameterSupport;
-}
-
-class DocumentSymbolClientCapabilitiesSymbolKind {
-  List<SymbolKind> valueSet;
-}
-
-class DocumentSymbolClientCapabilitiesTagSupport {
-  List<SymbolTag> valueSet;
-}
-
-class CodeActionClientCapabilitiesCodeActionLiteralSupport {
-  Object? codeActionKind;
-}
-
-class CodeActionClientCapabilitiesResolveSupport {
-  List<String> properties;
-}
-
-class FoldingRangeClientCapabilitiesFoldingRangeKind {
-  List<FoldingRangeKind> valueSet;
-}
-
-class FoldingRangeClientCapabilitiesFoldingRange {
-  bool collapsedText;
-}
-
-class PublishDiagnosticsClientCapabilitiesTagSupport {
-  List<DiagnosticTag> valueSet;
-}
-
-class SemanticTokensClientCapabilitiesRequests {
-  Object range;
-
-  Object full;
-}
-
-class InlayHintClientCapabilitiesResolveSupport {
-  List<String> properties;
-}
-
-class ShowMessageRequestClientCapabilitiesMessageActionItem {
-  bool additionalPropertiesSupport;
-}
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaRequest visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation
+// MetaNotification visitor not implemented for generation

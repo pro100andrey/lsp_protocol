@@ -2,7 +2,7 @@
 
 import 'package:args/args.dart';
 import 'package:generate/generate.dart';
-import 'package:generate/src/code_generator/generator.dart';
+import 'package:generate/src/meta/visiters/code_generator_visitor.dart';
 
 Future<void> main(List<String> args) async {
   final parser = _argParser();
@@ -19,8 +19,7 @@ Future<void> main(List<String> args) async {
   final meta = await loadLSPMeta();
   final protocol = MetaProtocol.fromJson(meta);
 
-
-  final generator = ProtocolGenerator(protocol);
+  final generator = ProtocolGenerator1(protocol);
   final code = generator.generate();
 
   final outputFile = resolvePath('../lib/src/generated/protocol.dart');
