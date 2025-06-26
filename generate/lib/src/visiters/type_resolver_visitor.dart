@@ -1,5 +1,5 @@
 import '../meta/protocol.dart';
-import 'visiter.dart';
+import 'visitor.dart';
 
 /// A concrete visitor that resolves MetaReference types to their Dart String
 /// representations.
@@ -77,7 +77,12 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   @override
   // ignore: prefer_expression_function_bodies
   String visitLiteralRef(LiteralRef ref) {
-    final literal = _literals[ref]!;
+ 
+    final literal = _literals[ref];
+
+    if (literal == null) {
+      return _applyOptional('Literal', ref.optional);
+    }
 
     return _applyOptional(literal.name, ref.optional);
   }

@@ -15,6 +15,8 @@ abstract class ToJson {
   }
 }
 
+sealed class OrRefType {}
+
 /// The definition of a symbol represented as one or many {@link Location
 /// locations}. For most programming languages there is only one location at
 /// which a symbol is defined.
@@ -708,10 +710,6 @@ class SelectionRange implements ToJson {
   Map<String, dynamic> toJson() {
     return {};
   }
-}
-
-sealed class OrRefType implements ToJson {
-
 }
 
 class SelectionRangeRegistrationOptions
@@ -2251,7 +2249,7 @@ class InitializeParams
   /// Information about the client
   /// @since 3.15.0
   @override
-  final Literal clientInfo;
+  final _InitializeParamsClientInfo clientInfo;
 
   /// User provided initialization options.
   @override
@@ -2313,7 +2311,7 @@ class InitializeResult implements ToJson {
 
   /// Information about the server.
   /// @since 3.15.0
-  final Literal serverInfo;
+  final InitializeResultServerInfo serverInfo;
 
   @override
   Map<String, dynamic> toJson() {
@@ -2858,7 +2856,7 @@ class CompletionList implements ToJson {
   /// Servers are only allowed to return default values if the client signals
   /// support for this via the `completionList.itemDefaults` capability.
   /// @since 3.17.0
-  final Literal itemDefaults;
+  final CompletionListItemDefaults itemDefaults;
 
   /// The completion items.
   final List<CompletionItem> items;
@@ -2895,7 +2893,7 @@ class CompletionRegistrationOptions
   /// capabilities.
   /// @since 3.17.0
   @override
-  final Literal completionItem;
+  final CompletionOptionsCompletionItem completionItem;
 
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
@@ -3559,7 +3557,7 @@ class CodeAction implements ToJson {
   /// returned, the client should show the user an error message with
   /// `reason` in the editor.
   /// @since 3.16.0
-  final Literal disabled;
+  final CodeActionDisabled disabled;
 
   /// The workspace edit this code action performs.
   final WorkspaceEdit edit;
@@ -5454,7 +5452,7 @@ class NotebookDocumentChangeEvent implements ToJson {
   NotebookDocumentChangeEvent({required this.cells, required this.metadata});
 
   /// Changes to cells
-  final Literal cells;
+  final NotebookDocumentChangeEventCells cells;
 
   /// The changed meta data if any.
   /// Note: should always be an object literal (e.g. LSPObject)
@@ -5597,7 +5595,7 @@ class _InitializeParams implements WorkDoneProgressParams {
 
   /// Information about the client
   /// @since 3.15.0
-  final Literal clientInfo;
+  final _InitializeParamsClientInfo clientInfo;
 
   /// User provided initialization options.
   final LSPAny initializationOptions;
@@ -5817,7 +5815,7 @@ class ServerCapabilities implements ToJson {
   final OrRefType typeHierarchyProvider;
 
   /// Workspace specific server capabilities.
-  final Literal workspace;
+  final ServerCapabilitiesWorkspace workspace;
 
   /// The server provides workspace symbol support.
   final OrRefType workspaceSymbolProvider;
@@ -6038,7 +6036,7 @@ class CompletionOptions implements WorkDoneProgressOptions {
   /// The server supports the following `CompletionItem` specific
   /// capabilities.
   /// @since 3.17.0
-  final Literal completionItem;
+  final CompletionOptionsCompletionItem completionItem;
 
   /// The server provides support to resolve additional information for a
   /// completion item.
@@ -7457,7 +7455,7 @@ class GeneralClientCapabilities implements ToJson {
   /// (e.g. a request for which the client will not process the response
   /// anymore since the information is outdated).
   /// @since 3.17.0
-  final Literal staleRequestSupport;
+  final GeneralClientCapabilitiesStaleRequestSupport staleRequestSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7497,7 +7495,8 @@ class WorkspaceEditClientCapabilities implements ToJson {
   /// Whether the client in general supports change annotations on text
   /// edits, create file, rename file and delete file changes.
   /// @since 3.16.0
-  final Literal changeAnnotationSupport;
+  final WorkspaceEditClientCapabilitiesChangeAnnotationSupport
+  changeAnnotationSupport;
 
   /// The client supports versioned document changes in `WorkspaceEdit`s
   final bool documentChanges;
@@ -7575,16 +7574,16 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
   /// request `workspaceSymbol/resolve` to the server to resolve additional
   /// properties.
   /// @since 3.17.0
-  final Literal resolveSupport;
+  final WorkspaceSymbolClientCapabilitiesResolveSupport resolveSupport;
 
   /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
   /// request.
-  final Literal symbolKind;
+  final WorkspaceSymbolClientCapabilitiesSymbolKind symbolKind;
 
   /// The client supports tags on `SymbolInformation`. Clients supporting
   /// tags have to handle unknown tags gracefully.
   /// @since 3.16.0
-  final Literal tagSupport;
+  final WorkspaceSymbolClientCapabilitiesTagSupport tagSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -7803,14 +7802,14 @@ class CompletionClientCapabilities implements ToJson {
 
   /// The client supports the following `CompletionItem` specific
   /// capabilities.
-  final Literal completionItem;
+  final CompletionClientCapabilitiesCompletionItem completionItem;
 
-  final Literal completionItemKind;
+  final CompletionClientCapabilitiesCompletionItemKind completionItemKind;
 
   /// The client supports the following `CompletionList` specific
   /// capabilities.
   /// @since 3.17.0
-  final Literal completionList;
+  final CompletionClientCapabilitiesCompletionList completionList;
 
   /// The client supports to send additional context information for a
   /// `textDocument/completion` request.
@@ -7870,7 +7869,8 @@ class SignatureHelpClientCapabilities implements ToJson {
 
   /// The client supports the following `SignatureInformation` specific
   /// properties.
-  final Literal signatureInformation;
+  final SignatureHelpClientCapabilitiesSignatureInformation
+  signatureInformation;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8013,13 +8013,13 @@ class DocumentSymbolClientCapabilities implements ToJson {
 
   /// Specific capabilities for the `SymbolKind` in the
   /// `textDocument/documentSymbol` request.
-  final Literal symbolKind;
+  final WorkspaceSymbolClientCapabilitiesSymbolKind symbolKind;
 
   /// The client supports tags on `SymbolInformation`. Tags are supported on
   /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
   /// Clients supporting tags have to handle unknown tags gracefully.
   /// @since 3.16.0
-  final Literal tagSupport;
+  final WorkspaceSymbolClientCapabilitiesTagSupport tagSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8043,7 +8043,8 @@ class CodeActionClientCapabilities implements ToJson {
   /// response of the `textDocument/codeAction` request. If the property is
   /// not set the request can only return `Command` literals.
   /// @since 3.8.0
-  final Literal codeActionLiteralSupport;
+  final CodeActionClientCapabilitiesCodeActionLiteralSupport
+  codeActionLiteralSupport;
 
   /// Whether code action supports the `data` property which is preserved
   /// between a `textDocument/codeAction` and a `codeAction/resolve` request.
@@ -8071,7 +8072,7 @@ class CodeActionClientCapabilities implements ToJson {
   /// Whether the client supports resolving additional code action properties
   /// via a separate `codeAction/resolve` request.
   /// @since 3.16.0
-  final Literal resolveSupport;
+  final CompletionClientCapabilitiesCompletionItemResolveSupport resolveSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8225,11 +8226,11 @@ class FoldingRangeClientCapabilities implements ToJson {
 
   /// Specific options for the folding range.
   /// @since 3.17.0
-  final Literal foldingRange;
+  final FoldingRangeClientCapabilitiesFoldingRange foldingRange;
 
   /// Specific options for the folding range kind.
   /// @since 3.17.0
-  final Literal foldingRangeKind;
+  final FoldingRangeClientCapabilitiesFoldingRangeKind foldingRangeKind;
 
   /// If set, the client signals that it only supports folding complete
   /// lines. If set, client will ignore specified `startCharacter` and
@@ -8289,7 +8290,7 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
   /// diagnostic. Clients supporting tags have to handle unknown tags
   /// gracefully.
   /// @since 3.15.0
-  final Literal tagSupport;
+  final PublishDiagnosticsClientCapabilitiesTagSupport tagSupport;
 
   /// Whether the client interprets the version property of the
   /// `textDocument/publishDiagnostics` notification's parameter.
@@ -8363,7 +8364,7 @@ class SemanticTokensClientCapabilities implements ToJson {
   /// `request.range` are both set to true but the server only provides a
   /// range provider the client might not render a minimap correctly or might
   /// even decide to not show any semantic tokens at all.
-  final Literal requests;
+  final SemanticTokensClientCapabilitiesRequests requests;
 
   /// Whether the client allows the server to actively cancel a semantic
   /// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
@@ -8459,7 +8460,7 @@ class InlayHintClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   /// Indicates which properties a client can resolve lazily on an inlay hint.
-  final Literal resolveSupport;
+  final CompletionClientCapabilitiesCompletionItemResolveSupport resolveSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -8534,7 +8535,7 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   ShowMessageRequestClientCapabilities({required this.messageActionItem});
 
   /// Capabilities specific to the `MessageActionItem` type.
-  final Literal messageActionItem;
+  final ShowMessageRequestClientCapabilitiesMessageActionItem messageActionItem;
 
   @override
   Map<String, dynamic> toJson() {
@@ -9171,23 +9172,6 @@ enum TokenFormat {
   final String value;
 }
 
-/// Information about the client
-/// @since 3.15.0
-class InitializeParamsClientInfo {
-  InitializeParamsClientInfo({required this.name, required this.version});
-
-  /// The name of the client as defined by the client.
-  final String name;
-
-  /// The client's version as defined by the client.
-  final String version;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {};
-  }
-}
-
 /// Information about the server.
 /// @since 3.15.0
 class InitializeResultServerInfo {
@@ -9249,25 +9233,6 @@ class CompletionListItemDefaults {
   }
 }
 
-/// The server supports the following `CompletionItem` specific capabilities.
-/// @since 3.17.0
-class CompletionRegistrationOptionsCompletionItem {
-  CompletionRegistrationOptionsCompletionItem({
-    required this.labelDetailsSupport,
-  });
-
-  /// The server has support for completion item label details (see also
-  /// `CompletionItemLabelDetails`) when receiving a completion item in a
-  /// resolve call.
-  /// @since 3.17.0
-  final bool labelDetailsSupport;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {};
-  }
-}
-
 /// Marks that the code action cannot currently be applied.
 /// Clients should follow the following guidelines regarding disabled code
 /// actions:
@@ -9304,7 +9269,7 @@ class NotebookDocumentChangeEventCells {
   });
 
   /// Changes to the cell structure to add or remove cells.
-  final Literal structure;
+  final NotebookDocumentChangeEventCellsStructure structure;
 
   /// Changes to notebook cells properties like its kind, execution summary
   /// or metadata.
@@ -9312,6 +9277,29 @@ class NotebookDocumentChangeEventCells {
 
   /// Changes to the text content of notebook cells.
   final List<Literal> textContent;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Changes to the cell structure to add or remove cells.
+class NotebookDocumentChangeEventCellsStructure {
+  NotebookDocumentChangeEventCellsStructure({
+    required this.array,
+    required this.didOpen,
+    required this.didClose,
+  });
+
+  /// The change to the cell array.
+  final NotebookCellArrayChange array;
+
+  /// Additional opened cell text documents.
+  final List<TextDocumentItem> didOpen;
+
+  /// Additional closed cell text documents.
+  final List<TextDocumentIdentifier> didClose;
 
   @override
   Map<String, dynamic> toJson() {
@@ -9508,7 +9496,7 @@ class CompletionClientCapabilitiesCompletionItem {
   /// especially need to preserve unknown tags when sending a completion item
   /// back to the server in a resolve call.
   /// @since 3.15.0
-  final Literal tagSupport;
+  final CompletionClientCapabilitiesCompletionItemTagSupport tagSupport;
 
   /// Client support insert replace edit to control different behavior if a
   /// completion item is inserted in the text or should replace text.
@@ -9519,18 +9507,73 @@ class CompletionClientCapabilitiesCompletionItem {
   /// item. Before version 3.16.0 only the predefined properties
   /// `documentation` and `details` could be resolved lazily.
   /// @since 3.16.0
-  final Literal resolveSupport;
+  final CompletionClientCapabilitiesCompletionItemResolveSupport resolveSupport;
 
   /// The client supports the `insertTextMode` property on a completion item
   /// to override the whitespace handling mode as defined by the client (see
   /// `insertTextMode`).
   /// @since 3.16.0
-  final Literal insertTextModeSupport;
+  final CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
+  insertTextModeSupport;
 
   /// The client has support for completion item label details (see also
   /// `CompletionItemLabelDetails`).
   /// @since 3.17.0
   final bool labelDetailsSupport;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Client supports the tag property on a completion item. Clients supporting
+/// tags have to handle unknown tags gracefully. Clients especially need to
+/// preserve unknown tags when sending a completion item back to the server in
+/// a resolve call.
+/// @since 3.15.0
+class CompletionClientCapabilitiesCompletionItemTagSupport {
+  CompletionClientCapabilitiesCompletionItemTagSupport({
+    required this.valueSet,
+  });
+
+  /// The tags supported by the client.
+  final List<CompletionItemTag> valueSet;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Indicates which properties a client can resolve lazily on a completion
+/// item. Before version 3.16.0 only the predefined properties `documentation`
+/// and `details` could be resolved lazily.
+/// @since 3.16.0
+class CompletionClientCapabilitiesCompletionItemResolveSupport {
+  CompletionClientCapabilitiesCompletionItemResolveSupport({
+    required this.properties,
+  });
+
+  /// The properties that a client can resolve lazily.
+  final List<String> properties;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The client supports the `insertTextMode` property on a completion item to
+/// override the whitespace handling mode as defined by the client (see
+/// `insertTextMode`).
+/// @since 3.16.0
+class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
+  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({
+    required this.valueSet,
+  });
+
+  final List<InsertTextMode> valueSet;
 
   @override
   Map<String, dynamic> toJson() {
@@ -9587,7 +9630,8 @@ class SignatureHelpClientCapabilitiesSignatureInformation {
   final List<MarkupKind> documentationFormat;
 
   /// Client capabilities specific to parameter information.
-  final Literal parameterInformation;
+  final SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
+  parameterInformation;
 
   /// The client supports the `activeParameter` property on
   /// `SignatureInformation` literal.
@@ -9600,34 +9644,16 @@ class SignatureHelpClientCapabilitiesSignatureInformation {
   }
 }
 
-/// Specific capabilities for the `SymbolKind` in the
-/// `textDocument/documentSymbol` request.
-class DocumentSymbolClientCapabilitiesSymbolKind {
-  DocumentSymbolClientCapabilitiesSymbolKind({required this.valueSet});
+/// Client capabilities specific to parameter information.
+class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
+  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation({
+    required this.labelOffsetSupport,
+  });
 
-  /// The symbol kind values the client supports. When this property exists
-  /// the client also guarantees that it will handle values outside its set
-  /// gracefully and falls back to a default value when unknown.
-  /// If this property is not present the client only supports the symbol
-  /// kinds from `File` to `Array` as defined in the initial version of the
-  /// protocol.
-  final List<SymbolKind> valueSet;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {};
-  }
-}
-
-/// The client supports tags on `SymbolInformation`. Tags are supported on
-/// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
-/// Clients supporting tags have to handle unknown tags gracefully.
-/// @since 3.16.0
-class DocumentSymbolClientCapabilitiesTagSupport {
-  DocumentSymbolClientCapabilitiesTagSupport({required this.valueSet});
-
-  /// The tags supported by the client.
-  final List<SymbolTag> valueSet;
+  /// The client supports processing label offsets instead of a simple label
+  /// string.
+  /// @since 3.14.0
+  final bool labelOffsetSupport;
 
   @override
   Map<String, dynamic> toJson() {
@@ -9645,7 +9671,8 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupport {
   });
 
   /// The code action kind is support with the following value set.
-  final Literal codeActionKind;
+  final CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
+  codeActionKind;
 
   @override
   Map<String, dynamic> toJson() {
@@ -9653,14 +9680,16 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupport {
   }
 }
 
-/// Whether the client supports resolving additional code action properties via
-/// a separate `codeAction/resolve` request.
-/// @since 3.16.0
-class CodeActionClientCapabilitiesResolveSupport {
-  CodeActionClientCapabilitiesResolveSupport({required this.properties});
+/// The code action kind is support with the following value set.
+class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind {
+  CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind({
+    required this.valueSet,
+  });
 
-  /// The properties that a client can resolve lazily.
-  final List<String> properties;
+  /// The code action kind values the client supports. When this property
+  /// exists the client also guarantees that it will handle values outside
+  /// its set gracefully and falls back to a default value when unknown.
+  final List<CodeActionKind> valueSet;
 
   @override
   Map<String, dynamic> toJson() {
@@ -9736,19 +9765,6 @@ class SemanticTokensClientCapabilitiesRequests {
   /// The client will send the `textDocument/semanticTokens/full` request if
   /// the server provides a corresponding handler.
   final OrRefType full;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {};
-  }
-}
-
-/// Indicates which properties a client can resolve lazily on an inlay hint.
-class InlayHintClientCapabilitiesResolveSupport {
-  InlayHintClientCapabilitiesResolveSupport({required this.properties});
-
-  /// The properties that a client can resolve lazily.
-  final List<String> properties;
 
   @override
   Map<String, dynamic> toJson() {

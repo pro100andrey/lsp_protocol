@@ -6,7 +6,7 @@ import 'package:dart_style/dart_style.dart';
 import '../meta/protocol.dart';
 import '../utils.dart';
 import 'type_resolver_visitor.dart';
-import 'visiter.dart';
+import 'visitor.dart';
 
 /// A concrete visitor that generates Dart code from MetaProtocol.
 class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
@@ -27,27 +27,35 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       _literals,
     );
 
-    // Collect embedded literals from structures
-    for (final structure in protocol.structures) {
-      // final allPropertiesMap = _collectAllProperties(structure);
+    void collectLiterals(MetaProperty property, String prefix) {
+      if (property.type is LiteralRef) {
+        final ref = property.type as LiteralRef;
 
-      for (final property in structure.properties) {
-        if (property.type case LiteralRef(:final value)) {
-          final ref = property.type as LiteralRef;
-          final typeName = '${structure.name}${capitalize(property.name)}';
-
-          if (_literals.containsKey(ref)) {
-            // If a literal with the same name already exists, throw an error
-            continue;
-            // throw ArgumentError('Duplicate literal type name: $typeName');
-          }
-
-          _literals[ref] = (
-            name: typeName,
-            properties: value.properties,
-            documentation: property.documentation,
-          );
+        // Check if the literal is already collected
+        if (_literals.containsKey(ref)) {
+          return; // Already collected, skip
         }
+
+        final typeName = '$prefix${capitalize(property.name)}';
+
+        _literals[ref] = (
+          name: typeName,
+          properties: ref.value.properties,
+          documentation: property.documentation,
+        );
+
+        if (ref.value.properties.isNotEmpty) {
+          // Recursively collect properties of the literal
+          for (final subProperty in ref.value.properties) {
+            collectLiterals(subProperty, typeName);
+          }
+        }
+      }
+    }
+
+    for (final structure in protocol.structures) {
+      for (final property in structure.properties) {
+        collectLiterals(property, structure.name);
       }
     }
   }
@@ -71,6 +79,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
       // Generate the base class for JSON serialization
       b.body.add(_generateToJsonClass());
+
+      // Generate the OrRef class
+      b.body.add(_generateOrRefClass());
 
       // Generate type aliases
       for (final typeAlias in protocol.typeAliases) {
@@ -304,6 +315,13 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
           },
         ),
       );
+  });
+
+  /// Generate Or Ref class.
+  Class _generateOrRefClass() => Class((cb) {
+    cb
+      ..name = 'OrRefType'
+      ..sealed = true;
   });
 
   /// Recursively collects all properties for a given structure,

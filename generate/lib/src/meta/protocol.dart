@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../visiters/visiter.dart';
+import '../visiters/visitor.dart';
 
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
@@ -157,7 +157,7 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
     'for type resolution. Use its specific visit methods instead.',
   );
 
-  // Метод, который будет использоваться с TypeResolverVisitor
+ 
   R resolveType<R>(MetaReferenceVisitor<R> visitor) => switch (this) {
     final TypeRef ref => visitor.visitTypeRef(ref),
     final ArrayRef ref => visitor.visitArrayRef(ref),
