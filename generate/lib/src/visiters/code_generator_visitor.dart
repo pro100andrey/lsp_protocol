@@ -20,17 +20,29 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ),
       _literals = {} {
     // Initialize the type resolver with the known structures and enumerations
-    _typeResolverVisitor = TypeResolverVisitor(_structures, _enumerations);
 
-    // Generate classes from structures
+    _typeResolverVisitor = TypeResolverVisitor(
+      _structures,
+      _enumerations,
+      _literals,
+    );
+
+    // Collect embedded literals from structures
     for (final structure in protocol.structures) {
-      // Collect literals embedded in structures
+      // final allPropertiesMap = _collectAllProperties(structure);
 
-      final allPropertiesMap = _collectAllProperties(structure);
-      for (final property in allPropertiesMap.values) {
+      for (final property in structure.properties) {
         if (property.type case LiteralRef(:final value)) {
+          final ref = property.type as LiteralRef;
           final typeName = '${structure.name}${capitalize(property.name)}';
-          _literals[typeName] = (
+
+          if (_literals.containsKey(ref)) {
+            // If a literal with the same name already exists, throw an error
+            continue;
+            // throw ArgumentError('Duplicate literal type name: $typeName');
+          }
+
+          _literals[ref] = (
             name: typeName,
             properties: value.properties,
             documentation: property.documentation,
@@ -44,7 +56,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
-  final Map<String, MetaLiteralDefinition> _literals;
+  final Map<LiteralRef, MetaLiteralDefinition> _literals;
 
   late final TypeResolverVisitor _typeResolverVisitor;
 
@@ -68,7 +80,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       // Generate classes from structures
       for (final structure in protocol.structures) {
         // Collect literals embedded in structures
-
         b.body.add(visitStructure(structure));
       }
 
@@ -96,27 +107,12 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   );
 
   @override
-  Class visitLiteral(MetaLiteral literal) => Class((b) {
-    // Name will be assigned when adding to library body from
-    // _literalsToGenerate
-    b.fields.addAll(
-      literal.properties.map(
-        (p) => Field((fb) {
-          fb
-            ..name = p.name
-            ..type = refer(
-              p.type.resolveType(_typeResolverVisitor),
-            ); // Use resolveType
-        }),
-      ),
-    );
-  });
-
-  @override
   TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {
     final typeName = typeAlias.type.resolveType(_typeResolverVisitor);
+
     return TypeDef((b) {
       b
+        ..docs.addAll(formatDocComment(typeAlias.documentation) ?? [])
         ..name = typeAlias.name
         ..definition = refer(typeName);
     });
@@ -414,6 +410,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ),
     );
   }
+
+  @override
+  Class visitLiteral(MetaLiteral literal) => throw UnimplementedError();
 
   @override
   Spec visitAndRef(AndRef ref) => throw UnimplementedError();

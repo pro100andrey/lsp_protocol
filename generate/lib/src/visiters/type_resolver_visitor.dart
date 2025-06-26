@@ -4,9 +4,10 @@ import 'visiter.dart';
 /// A concrete visitor that resolves MetaReference types to their Dart String
 /// representations.
 class TypeResolverVisitor implements MetaReferenceVisitor<String> {
-  TypeResolverVisitor(this._structures, this._enumerations);
+  TypeResolverVisitor(this._structures, this._enumerations, this._literals);
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
+  final Map<LiteralRef, MetaLiteralDefinition> _literals;
 
   /// Resolves primitive meta-types (like 'integer', 'string') to Dart types.
   String _resolveDartPrimitiveType(String typeName) => switch (typeName) {
@@ -54,14 +55,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
       _applyOptional(_resolveDartPrimitiveType(ref.name), ref.optional);
 
   @override
-  // ignore: prefer_expression_function_bodies
-  String visitOrRef(OrRef ref) {
-    // For 'or' types, a common approach is 'Object' or dynamic.
-    // More complex handling might involve generating a Dart union type
-    // (if supported) or a base interface with fromJson/toJson methods. For
-    //simplicity, we use Object.
-    return _applyOptional('Object', ref.optional);
-  }
+  String visitOrRef(OrRef ref) => _applyOptional('OrRefType', ref.optional);
 
   @override
   // ignore: prefer_expression_function_bodies
@@ -83,16 +77,9 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   @override
   // ignore: prefer_expression_function_bodies
   String visitLiteralRef(LiteralRef ref) {
-    // When a LiteralRef is encountered, it implies an anonymous inline object.
-    // The DartCodeGeneratorVisitor will assign a unique name to it during
-    // generation. For resolution purposes, we might just return 'Object' or a
-    // placeholder.
-    // In our generator, we assign a specific name like
-    // 'ParentStructurePropertyName'.
-    // So, this visitor needs context or a way to infer the name.
-    // For now, let's assume 'Object', and the generator will handle specific
-    //class names.
-    return _applyOptional('Object', ref.optional);
+    final literal = _literals[ref]!;
+
+    return _applyOptional(literal.name, ref.optional);
   }
 
   @override
