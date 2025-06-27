@@ -368,15 +368,17 @@ class ImplementationParams
   });
 
   factory ImplementationParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return ImplementationParams(
       partialResultToken: partialResultToken,
       position: position,
@@ -413,10 +415,11 @@ class Location implements ToJson {
   Location({required this.range, required this.uri});
 
   factory Location.fromJson(Map<String, Object?> json) {
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return Location(range: range, uri: uri);
   }
 
@@ -444,14 +447,13 @@ class ImplementationRegistrationOptions
   factory ImplementationRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return ImplementationRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -491,15 +493,17 @@ class TypeDefinitionParams
   });
 
   factory TypeDefinitionParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return TypeDefinitionParams(
       partialResultToken: partialResultToken,
       position: position,
@@ -545,14 +549,13 @@ class TypeDefinitionRegistrationOptions
   factory TypeDefinitionRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return TypeDefinitionRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -584,10 +587,11 @@ class WorkspaceFolder implements ToJson {
   WorkspaceFolder({required this.name, required this.uri});
 
   factory WorkspaceFolder.fromJson(Map<String, Object?> json) {
-    final nameJson = (json['name']! as Map<String, Object?>);
+    final nameJson = json['name']!;
     final name = (nameJson as String);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return WorkspaceFolder(name: name, uri: uri);
   }
 
@@ -609,8 +613,11 @@ class DidChangeWorkspaceFoldersParams implements ToJson {
   DidChangeWorkspaceFoldersParams({required this.event});
 
   factory DidChangeWorkspaceFoldersParams.fromJson(Map<String, Object?> json) {
-    final eventJson = (json['event']! as Map<String, Object?>);
-    final event = WorkspaceFoldersChangeEvent.fromJson(eventJson);
+    final eventJson = json['event']!;
+    final event = WorkspaceFoldersChangeEvent.fromJson(
+      (eventJson as Map<String, Object?>),
+    );
+
     return DidChangeWorkspaceFoldersParams(event: event);
   }
 
@@ -628,8 +635,9 @@ class ConfigurationParams implements ToJson {
   ConfigurationParams({required this.items});
 
   factory ConfigurationParams.fromJson(Map<String, Object?> json) {
-    final itemsJson = (json['items']! as Map<String, Object?>);
+    final itemsJson = json['items']!;
     final items = (itemsJson as List<ConfigurationItem>);
+
     return ConfigurationParams(items: items);
   }
 
@@ -651,13 +659,15 @@ class DocumentColorParams
   });
 
   factory DocumentColorParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DocumentColorParams(
       partialResultToken: partialResultToken,
       textDocument: textDocument,
@@ -688,10 +698,11 @@ class ColorInformation implements ToJson {
   ColorInformation({required this.color, required this.range});
 
   factory ColorInformation.fromJson(Map<String, Object?> json) {
-    final colorJson = (json['color']! as Map<String, Object?>);
-    final color = Color.fromJson(colorJson);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
+    final colorJson = json['color']!;
+    final color = Color.fromJson((colorJson as Map<String, Object?>));
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+
     return ColorInformation(color: color, range: range);
   }
 
@@ -719,14 +730,13 @@ class DocumentColorRegistrationOptions
   });
 
   factory DocumentColorRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentColorRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -765,17 +775,19 @@ class ColorPresentationParams
   });
 
   factory ColorPresentationParams.fromJson(Map<String, Object?> json) {
-    final colorJson = (json['color']! as Map<String, Object?>);
-    final color = Color.fromJson(colorJson);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final colorJson = json['color']!;
+    final color = Color.fromJson((colorJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return ColorPresentationParams(
       color: color,
       partialResultToken: partialResultToken,
@@ -817,13 +829,13 @@ class ColorPresentation implements ToJson {
   });
 
   factory ColorPresentation.fromJson(Map<String, Object?> json) {
-    final additionalTextEditsJson =
-        (json['additionalTextEdits']! as Map<String, Object?>);
+    final additionalTextEditsJson = json['additionalTextEdits']!;
     final additionalTextEdits = (additionalTextEditsJson as List<TextEdit>);
-    final labelJson = (json['label']! as Map<String, Object?>);
+    final labelJson = json['label']!;
     final label = (labelJson as String);
-    final textEditJson = (json['textEdit']! as Map<String, Object?>);
-    final textEdit = TextEdit.fromJson(textEditJson);
+    final textEditJson = json['textEdit']!;
+    final textEdit = TextEdit.fromJson((textEditJson as Map<String, Object?>));
+
     return ColorPresentation(
       additionalTextEdits: additionalTextEdits,
       label: label,
@@ -857,9 +869,9 @@ class WorkDoneProgressOptions implements ToJson {
   WorkDoneProgressOptions({required this.workDoneProgress});
 
   factory WorkDoneProgressOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return WorkDoneProgressOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -876,9 +888,9 @@ class TextDocumentRegistrationOptions implements ToJson {
   TextDocumentRegistrationOptions({required this.documentSelector});
 
   factory TextDocumentRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
+
     return TextDocumentRegistrationOptions(documentSelector: documentSelector);
   }
 
@@ -902,13 +914,15 @@ class FoldingRangeParams
   });
 
   factory FoldingRangeParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return FoldingRangeParams(
       partialResultToken: partialResultToken,
       textDocument: textDocument,
@@ -948,20 +962,20 @@ class FoldingRange implements ToJson {
   });
 
   factory FoldingRange.fromJson(Map<String, Object?> json) {
-    final collapsedTextJson = (json['collapsedText']! as Map<String, Object?>);
+    final collapsedTextJson = json['collapsedText']!;
     final collapsedText = (collapsedTextJson as String);
-    final endCharacterJson = (json['endCharacter']! as Map<String, Object?>);
+    final endCharacterJson = json['endCharacter']!;
     final endCharacter = (endCharacterJson as int);
-    final endLineJson = (json['endLine']! as Map<String, Object?>);
+    final endLineJson = json['endLine']!;
     final endLine = (endLineJson as int);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$FoldingRangeKindEnumMap, kindJson);
-    final startCharacterJson =
-        (json['startCharacter']! as Map<String, Object?>);
+    final startCharacterJson = json['startCharacter']!;
     final startCharacter = (startCharacterJson as int);
-    final startLineJson = (json['startLine']! as Map<String, Object?>);
+    final startLineJson = json['startLine']!;
     final startLine = (startLineJson as int);
+
     return FoldingRange(
       collapsedText: collapsedText,
       endCharacter: endCharacter,
@@ -1020,14 +1034,13 @@ class FoldingRangeRegistrationOptions
   });
 
   factory FoldingRangeRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return FoldingRangeRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -1067,15 +1080,17 @@ class DeclarationParams
   });
 
   factory DeclarationParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DeclarationParams(
       partialResultToken: partialResultToken,
       position: position,
@@ -1119,14 +1134,13 @@ class DeclarationRegistrationOptions
   });
 
   factory DeclarationRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DeclarationRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -1164,15 +1178,17 @@ class SelectionRangeParams
   });
 
   factory SelectionRangeParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final positionsJson = (json['positions']! as Map<String, Object?>);
+    final positionsJson = json['positions']!;
     final positions = (positionsJson as List<Position>);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return SelectionRangeParams(
       partialResultToken: partialResultToken,
       positions: positions,
@@ -1208,10 +1224,13 @@ class SelectionRange implements ToJson {
   SelectionRange({required this.parent, required this.range});
 
   factory SelectionRange.fromJson(Map<String, Object?> json) {
-    final parentJson = (json['parent']! as Map<String, Object?>);
-    final parent = SelectionRange.fromJson(parentJson);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
+    final parentJson = json['parent']!;
+    final parent = SelectionRange.fromJson(
+      (parentJson as Map<String, Object?>),
+    );
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+
     return SelectionRange(parent: parent, range: range);
   }
 
@@ -1242,14 +1261,13 @@ class SelectionRangeRegistrationOptions
   factory SelectionRangeRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return SelectionRangeRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -1280,8 +1298,9 @@ class WorkDoneProgressCreateParams implements ToJson {
   WorkDoneProgressCreateParams({required this.token});
 
   factory WorkDoneProgressCreateParams.fromJson(Map<String, Object?> json) {
-    final tokenJson = (json['token']! as Map<String, Object?>);
+    final tokenJson = json['token']!;
     final token = (tokenJson as ProgressToken);
+
     return WorkDoneProgressCreateParams(token: token);
   }
 
@@ -1298,8 +1317,9 @@ class WorkDoneProgressCancelParams implements ToJson {
   WorkDoneProgressCancelParams({required this.token});
 
   factory WorkDoneProgressCancelParams.fromJson(Map<String, Object?> json) {
-    final tokenJson = (json['token']! as Map<String, Object?>);
+    final tokenJson = json['token']!;
     final token = (tokenJson as ProgressToken);
+
     return WorkDoneProgressCancelParams(token: token);
   }
 
@@ -1323,12 +1343,15 @@ class CallHierarchyPrepareParams
   });
 
   factory CallHierarchyPrepareParams.fromJson(Map<String, Object?> json) {
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return CallHierarchyPrepareParams(
       position: position,
       textDocument: textDocument,
@@ -1370,24 +1393,26 @@ class CallHierarchyItem implements ToJson {
   });
 
   factory CallHierarchyItem.fromJson(Map<String, Object?> json) {
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
-    final detailJson = (json['detail']! as Map<String, Object?>);
+    final detailJson = json['detail']!;
     final detail = (detailJson as String);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final nameJson = (json['name']! as Map<String, Object?>);
+    final nameJson = json['name']!;
     final name = (nameJson as String);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final selectionRangeJson =
-        (json['selectionRange']! as Map<String, Object?>);
-    final selectionRange = Range.fromJson(selectionRangeJson);
-    final tagsJson = (json['tags']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final selectionRangeJson = json['selectionRange']!;
+    final selectionRange = Range.fromJson(
+      (selectionRangeJson as Map<String, Object?>),
+    );
+    final tagsJson = json['tags']!;
     final tags = (tagsJson as List<SymbolTag>);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return CallHierarchyItem(
       data: data,
       detail: detail,
@@ -1448,14 +1473,13 @@ class CallHierarchyRegistrationOptions
   });
 
   factory CallHierarchyRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return CallHierarchyRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -1493,13 +1517,13 @@ class CallHierarchyIncomingCallsParams
   });
 
   factory CallHierarchyIncomingCallsParams.fromJson(Map<String, Object?> json) {
-    final itemJson = (json['item']! as Map<String, Object?>);
-    final item = CallHierarchyItem.fromJson(itemJson);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final itemJson = json['item']!;
+    final item = CallHierarchyItem.fromJson((itemJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return CallHierarchyIncomingCallsParams(
       item: item,
       partialResultToken: partialResultToken,
@@ -1530,10 +1554,11 @@ class CallHierarchyIncomingCall implements ToJson {
   CallHierarchyIncomingCall({required this.from, required this.fromRanges});
 
   factory CallHierarchyIncomingCall.fromJson(Map<String, Object?> json) {
-    final fromJson = (json['from']! as Map<String, Object?>);
-    final from = CallHierarchyItem.fromJson(fromJson);
-    final fromRangesJson = (json['fromRanges']! as Map<String, Object?>);
+    final fromJson = json['from']!;
+    final from = CallHierarchyItem.fromJson((fromJson as Map<String, Object?>));
+    final fromRangesJson = json['fromRanges']!;
     final fromRanges = (fromRangesJson as List<Range>);
+
     return CallHierarchyIncomingCall(from: from, fromRanges: fromRanges);
   }
 
@@ -1561,13 +1586,13 @@ class CallHierarchyOutgoingCallsParams
   });
 
   factory CallHierarchyOutgoingCallsParams.fromJson(Map<String, Object?> json) {
-    final itemJson = (json['item']! as Map<String, Object?>);
-    final item = CallHierarchyItem.fromJson(itemJson);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final itemJson = json['item']!;
+    final item = CallHierarchyItem.fromJson((itemJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return CallHierarchyOutgoingCallsParams(
       item: item,
       partialResultToken: partialResultToken,
@@ -1599,10 +1624,11 @@ class CallHierarchyOutgoingCall implements ToJson {
   CallHierarchyOutgoingCall({required this.fromRanges, required this.to});
 
   factory CallHierarchyOutgoingCall.fromJson(Map<String, Object?> json) {
-    final fromRangesJson = (json['fromRanges']! as Map<String, Object?>);
+    final fromRangesJson = json['fromRanges']!;
     final fromRanges = (fromRangesJson as List<Range>);
-    final toJson = (json['to']! as Map<String, Object?>);
-    final to = CallHierarchyItem.fromJson(toJson);
+    final toJson = json['to']!;
+    final to = CallHierarchyItem.fromJson((toJson as Map<String, Object?>));
+
     return CallHierarchyOutgoingCall(fromRanges: fromRanges, to: to);
   }
 
@@ -1632,13 +1658,15 @@ class SemanticTokensParams
   });
 
   factory SemanticTokensParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return SemanticTokensParams(
       partialResultToken: partialResultToken,
       textDocument: textDocument,
@@ -1669,10 +1697,11 @@ class SemanticTokens implements ToJson {
   SemanticTokens({required this.data, required this.resultId});
 
   factory SemanticTokens.fromJson(Map<String, Object?> json) {
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final dataJson = json['data']!;
     final data = (dataJson as List<int>);
-    final resultIdJson = (json['resultId']! as Map<String, Object?>);
+    final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
+
     return SemanticTokens(data: data, resultId: resultId);
   }
 
@@ -1696,8 +1725,9 @@ class SemanticTokensPartialResult implements ToJson {
   SemanticTokensPartialResult({required this.data});
 
   factory SemanticTokensPartialResult.fromJson(Map<String, Object?> json) {
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final dataJson = json['data']!;
     final data = (dataJson as List<int>);
+
     return SemanticTokensPartialResult(data: data);
   }
 
@@ -1727,20 +1757,21 @@ class SemanticTokensRegistrationOptions
   factory SemanticTokensRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final fullJson = (json['full']! as Map<String, Object?>);
+    final fullJson = json['full']!;
     final full = (fullJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final legendJson = (json['legend']! as Map<String, Object?>);
-    final legend = SemanticTokensLegend.fromJson(legendJson);
-    final rangeJson = (json['range']! as Map<String, Object?>);
+    final legendJson = json['legend']!;
+    final legend = SemanticTokensLegend.fromJson(
+      (legendJson as Map<String, Object?>),
+    );
+    final rangeJson = json['range']!;
     final range = (rangeJson as OrRefType);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return SemanticTokensRegistrationOptions(
       documentSelector: documentSelector,
       full: full,
@@ -1794,16 +1825,17 @@ class SemanticTokensDeltaParams
   });
 
   factory SemanticTokensDeltaParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final previousResultIdJson =
-        (json['previousResultId']! as Map<String, Object?>);
+    final previousResultIdJson = json['previousResultId']!;
     final previousResultId = (previousResultIdJson as String);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return SemanticTokensDeltaParams(
       partialResultToken: partialResultToken,
       previousResultId: previousResultId,
@@ -1840,10 +1872,11 @@ class SemanticTokensDelta implements ToJson {
   SemanticTokensDelta({required this.edits, required this.resultId});
 
   factory SemanticTokensDelta.fromJson(Map<String, Object?> json) {
-    final editsJson = (json['edits']! as Map<String, Object?>);
+    final editsJson = json['edits']!;
     final edits = (editsJson as List<SemanticTokensEdit>);
-    final resultIdJson = (json['resultId']! as Map<String, Object?>);
+    final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
+
     return SemanticTokensDelta(edits: edits, resultId: resultId);
   }
 
@@ -1864,8 +1897,9 @@ class SemanticTokensDeltaPartialResult implements ToJson {
   SemanticTokensDeltaPartialResult({required this.edits});
 
   factory SemanticTokensDeltaPartialResult.fromJson(Map<String, Object?> json) {
-    final editsJson = (json['edits']! as Map<String, Object?>);
+    final editsJson = json['edits']!;
     final edits = (editsJson as List<SemanticTokensEdit>);
+
     return SemanticTokensDeltaPartialResult(edits: edits);
   }
 
@@ -1888,15 +1922,17 @@ class SemanticTokensRangeParams
   });
 
   factory SemanticTokensRangeParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return SemanticTokensRangeParams(
       partialResultToken: partialResultToken,
       range: range,
@@ -1937,14 +1973,15 @@ class ShowDocumentParams implements ToJson {
   });
 
   factory ShowDocumentParams.fromJson(Map<String, Object?> json) {
-    final externalJson = (json['external']! as Map<String, Object?>);
+    final externalJson = json['external']!;
     final external = (externalJson as bool);
-    final selectionJson = (json['selection']! as Map<String, Object?>);
-    final selection = Range.fromJson(selectionJson);
-    final takeFocusJson = (json['takeFocus']! as Map<String, Object?>);
+    final selectionJson = json['selection']!;
+    final selection = Range.fromJson((selectionJson as Map<String, Object?>));
+    final takeFocusJson = json['takeFocus']!;
     final takeFocus = (takeFocusJson as bool);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return ShowDocumentParams(
       external: external,
       selection: selection,
@@ -1983,8 +2020,9 @@ class ShowDocumentResult implements ToJson {
   ShowDocumentResult({required this.success});
 
   factory ShowDocumentResult.fromJson(Map<String, Object?> json) {
-    final successJson = (json['success']! as Map<String, Object?>);
+    final successJson = json['success']!;
     final success = (successJson as bool);
+
     return ShowDocumentResult(success: success);
   }
 
@@ -2006,12 +2044,15 @@ class LinkedEditingRangeParams
   });
 
   factory LinkedEditingRangeParams.fromJson(Map<String, Object?> json) {
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return LinkedEditingRangeParams(
       position: position,
       textDocument: textDocument,
@@ -2043,10 +2084,11 @@ class LinkedEditingRanges implements ToJson {
   LinkedEditingRanges({required this.ranges, required this.wordPattern});
 
   factory LinkedEditingRanges.fromJson(Map<String, Object?> json) {
-    final rangesJson = (json['ranges']! as Map<String, Object?>);
+    final rangesJson = json['ranges']!;
     final ranges = (rangesJson as List<Range>);
-    final wordPatternJson = (json['wordPattern']! as Map<String, Object?>);
+    final wordPatternJson = json['wordPattern']!;
     final wordPattern = (wordPatternJson as String);
+
     return LinkedEditingRanges(ranges: ranges, wordPattern: wordPattern);
   }
 
@@ -2080,14 +2122,13 @@ class LinkedEditingRangeRegistrationOptions
   factory LinkedEditingRangeRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return LinkedEditingRangeRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -2121,8 +2162,9 @@ class CreateFilesParams implements ToJson {
   CreateFilesParams({required this.files});
 
   factory CreateFilesParams.fromJson(Map<String, Object?> json) {
-    final filesJson = (json['files']! as Map<String, Object?>);
+    final filesJson = json['files']!;
     final files = (filesJson as List<FileCreate>);
+
     return CreateFilesParams(files: files);
   }
 
@@ -2156,16 +2198,15 @@ class WorkspaceEdit implements ToJson {
   });
 
   factory WorkspaceEdit.fromJson(Map<String, Object?> json) {
-    final changeAnnotationsJson =
-        (json['changeAnnotations']! as Map<String, Object?>);
+    final changeAnnotationsJson = json['changeAnnotations']!;
     final changeAnnotations =
         (changeAnnotationsJson
             as Map<ChangeAnnotationIdentifier, ChangeAnnotation>);
-    final changesJson = (json['changes']! as Map<String, Object?>);
+    final changesJson = json['changes']!;
     final changes = (changesJson as Map<Uri, List<TextEdit>>);
-    final documentChangesJson =
-        (json['documentChanges']! as Map<String, Object?>);
+    final documentChangesJson = json['documentChanges']!;
     final documentChanges = (documentChangesJson as List<OrRefType>);
+
     return WorkspaceEdit(
       changeAnnotations: changeAnnotations,
       changes: changes,
@@ -2210,8 +2251,9 @@ class FileOperationRegistrationOptions implements ToJson {
   FileOperationRegistrationOptions({required this.filters});
 
   factory FileOperationRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final filtersJson = (json['filters']! as Map<String, Object?>);
+    final filtersJson = json['filters']!;
     final filters = (filtersJson as List<FileOperationFilter>);
+
     return FileOperationRegistrationOptions(filters: filters);
   }
 
@@ -2231,8 +2273,9 @@ class RenameFilesParams implements ToJson {
   RenameFilesParams({required this.files});
 
   factory RenameFilesParams.fromJson(Map<String, Object?> json) {
-    final filesJson = (json['files']! as Map<String, Object?>);
+    final filesJson = json['files']!;
     final files = (filesJson as List<FileRename>);
+
     return RenameFilesParams(files: files);
   }
 
@@ -2253,8 +2296,9 @@ class DeleteFilesParams implements ToJson {
   DeleteFilesParams({required this.files});
 
   factory DeleteFilesParams.fromJson(Map<String, Object?> json) {
-    final filesJson = (json['files']! as Map<String, Object?>);
+    final filesJson = json['files']!;
     final files = (filesJson as List<FileDelete>);
+
     return DeleteFilesParams(files: files);
   }
 
@@ -2280,15 +2324,17 @@ class MonikerParams
   });
 
   factory MonikerParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return MonikerParams(
       partialResultToken: partialResultToken,
       position: position,
@@ -2331,16 +2377,17 @@ class Moniker implements ToJson {
   });
 
   factory Moniker.fromJson(Map<String, Object?> json) {
-    final identifierJson = (json['identifier']! as Map<String, Object?>);
+    final identifierJson = json['identifier']!;
     final identifier = (identifierJson as String);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$MonikerKindEnumMap, kindJson);
-    final schemeJson = (json['scheme']! as Map<String, Object?>);
+    final schemeJson = json['scheme']!;
     final scheme = (schemeJson as String);
-    final uniqueJson = (json['unique']! as Map<String, Object?>);
+    final uniqueJson = json['unique']!;
     // Handle enum type;
     final unique = _i1.$enumDecode(_$UniquenessLevelEnumMap, uniqueJson);
+
     return Moniker(
       identifier: identifier,
       kind: kind,
@@ -2376,12 +2423,11 @@ class MonikerRegistrationOptions
   });
 
   factory MonikerRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return MonikerRegistrationOptions(
       documentSelector: documentSelector,
       workDoneProgress: workDoneProgress,
@@ -2413,12 +2459,15 @@ class TypeHierarchyPrepareParams
   });
 
   factory TypeHierarchyPrepareParams.fromJson(Map<String, Object?> json) {
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return TypeHierarchyPrepareParams(
       position: position,
       textDocument: textDocument,
@@ -2458,24 +2507,26 @@ class TypeHierarchyItem implements ToJson {
   });
 
   factory TypeHierarchyItem.fromJson(Map<String, Object?> json) {
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
-    final detailJson = (json['detail']! as Map<String, Object?>);
+    final detailJson = json['detail']!;
     final detail = (detailJson as String);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final nameJson = (json['name']! as Map<String, Object?>);
+    final nameJson = json['name']!;
     final name = (nameJson as String);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final selectionRangeJson =
-        (json['selectionRange']! as Map<String, Object?>);
-    final selectionRange = Range.fromJson(selectionRangeJson);
-    final tagsJson = (json['tags']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final selectionRangeJson = json['selectionRange']!;
+    final selectionRange = Range.fromJson(
+      (selectionRangeJson as Map<String, Object?>),
+    );
+    final tagsJson = json['tags']!;
     final tags = (tagsJson as List<SymbolTag>);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return TypeHierarchyItem(
       data: data,
       detail: detail,
@@ -2538,14 +2589,13 @@ class TypeHierarchyRegistrationOptions
   });
 
   factory TypeHierarchyRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return TypeHierarchyRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -2583,13 +2633,13 @@ class TypeHierarchySupertypesParams
   });
 
   factory TypeHierarchySupertypesParams.fromJson(Map<String, Object?> json) {
-    final itemJson = (json['item']! as Map<String, Object?>);
-    final item = TypeHierarchyItem.fromJson(itemJson);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final itemJson = json['item']!;
+    final item = TypeHierarchyItem.fromJson((itemJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return TypeHierarchySupertypesParams(
       item: item,
       partialResultToken: partialResultToken,
@@ -2625,13 +2675,13 @@ class TypeHierarchySubtypesParams
   });
 
   factory TypeHierarchySubtypesParams.fromJson(Map<String, Object?> json) {
-    final itemJson = (json['item']! as Map<String, Object?>);
-    final item = TypeHierarchyItem.fromJson(itemJson);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final itemJson = json['item']!;
+    final item = TypeHierarchyItem.fromJson((itemJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return TypeHierarchySubtypesParams(
       item: item,
       partialResultToken: partialResultToken,
@@ -2667,14 +2717,19 @@ class InlineValueParams implements WorkDoneProgressParams {
   });
 
   factory InlineValueParams.fromJson(Map<String, Object?> json) {
-    final contextJson = (json['context']! as Map<String, Object?>);
-    final context = InlineValueContext.fromJson(contextJson);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final contextJson = json['context']!;
+    final context = InlineValueContext.fromJson(
+      (contextJson as Map<String, Object?>),
+    );
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return InlineValueParams(
       context: context,
       range: range,
@@ -2717,14 +2772,13 @@ class InlineValueRegistrationOptions
   });
 
   factory InlineValueRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return InlineValueRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -2761,12 +2815,15 @@ class InlayHintParams implements WorkDoneProgressParams {
   });
 
   factory InlayHintParams.fromJson(Map<String, Object?> json) {
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return InlayHintParams(
       range: range,
       textDocument: textDocument,
@@ -2805,23 +2862,24 @@ class InlayHint implements ToJson {
   });
 
   factory InlayHint.fromJson(Map<String, Object?> json) {
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$InlayHintKindEnumMap, kindJson);
-    final labelJson = (json['label']! as Map<String, Object?>);
+    final labelJson = json['label']!;
     final label = (labelJson as OrRefType);
-    final paddingLeftJson = (json['paddingLeft']! as Map<String, Object?>);
+    final paddingLeftJson = json['paddingLeft']!;
     final paddingLeft = (paddingLeftJson as bool);
-    final paddingRightJson = (json['paddingRight']! as Map<String, Object?>);
+    final paddingRightJson = json['paddingRight']!;
     final paddingRight = (paddingRightJson as bool);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textEditsJson = (json['textEdits']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textEditsJson = json['textEdits']!;
     final textEdits = (textEditsJson as List<TextEdit>);
-    final tooltipJson = (json['tooltip']! as Map<String, Object?>);
+    final tooltipJson = json['tooltip']!;
     final tooltip = (tooltipJson as OrRefType);
+
     return InlayHint(
       data: data,
       kind: kind,
@@ -2894,17 +2952,15 @@ class InlayHintRegistrationOptions
   });
 
   factory InlayHintRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return InlayHintRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -2950,18 +3006,19 @@ class DocumentDiagnosticParams
   });
 
   factory DocumentDiagnosticParams.fromJson(Map<String, Object?> json) {
-    final identifierJson = (json['identifier']! as Map<String, Object?>);
+    final identifierJson = json['identifier']!;
     final identifier = (identifierJson as String);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final previousResultIdJson =
-        (json['previousResultId']! as Map<String, Object?>);
+    final previousResultIdJson = json['previousResultId']!;
     final previousResultId = (previousResultIdJson as String);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DocumentDiagnosticParams(
       identifier: identifier,
       partialResultToken: partialResultToken,
@@ -3003,9 +3060,9 @@ class DocumentDiagnosticReportPartialResult implements ToJson {
   factory DocumentDiagnosticReportPartialResult.fromJson(
     Map<String, Object?> json,
   ) {
-    final relatedDocumentsJson =
-        (json['relatedDocuments']! as Map<String, Object?>);
+    final relatedDocumentsJson = json['relatedDocuments']!;
     final relatedDocuments = (relatedDocumentsJson as Map<Uri, OrRefType>);
+
     return DocumentDiagnosticReportPartialResult(
       relatedDocuments: relatedDocuments,
     );
@@ -3025,9 +3082,9 @@ class DiagnosticServerCancellationData implements ToJson {
   DiagnosticServerCancellationData({required this.retriggerRequest});
 
   factory DiagnosticServerCancellationData.fromJson(Map<String, Object?> json) {
-    final retriggerRequestJson =
-        (json['retriggerRequest']! as Map<String, Object?>);
+    final retriggerRequestJson = json['retriggerRequest']!;
     final retriggerRequest = (retriggerRequestJson as bool);
+
     return DiagnosticServerCancellationData(retriggerRequest: retriggerRequest);
   }
 
@@ -3056,22 +3113,19 @@ class DiagnosticRegistrationOptions
   });
 
   factory DiagnosticRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final identifierJson = (json['identifier']! as Map<String, Object?>);
+    final identifierJson = json['identifier']!;
     final identifier = (identifierJson as String);
-    final interFileDependenciesJson =
-        (json['interFileDependencies']! as Map<String, Object?>);
+    final interFileDependenciesJson = json['interFileDependencies']!;
     final interFileDependencies = (interFileDependenciesJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
-    final workspaceDiagnosticsJson =
-        (json['workspaceDiagnostics']! as Map<String, Object?>);
+    final workspaceDiagnosticsJson = json['workspaceDiagnostics']!;
     final workspaceDiagnostics = (workspaceDiagnosticsJson as bool);
+
     return DiagnosticRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -3129,16 +3183,15 @@ class WorkspaceDiagnosticParams
   });
 
   factory WorkspaceDiagnosticParams.fromJson(Map<String, Object?> json) {
-    final identifierJson = (json['identifier']! as Map<String, Object?>);
+    final identifierJson = json['identifier']!;
     final identifier = (identifierJson as String);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final previousResultIdsJson =
-        (json['previousResultIds']! as Map<String, Object?>);
+    final previousResultIdsJson = json['previousResultIds']!;
     final previousResultIds = (previousResultIdsJson as List<PreviousResultId>);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return WorkspaceDiagnosticParams(
       identifier: identifier,
       partialResultToken: partialResultToken,
@@ -3174,8 +3227,9 @@ class WorkspaceDiagnosticReport implements ToJson {
   WorkspaceDiagnosticReport({required this.items});
 
   factory WorkspaceDiagnosticReport.fromJson(Map<String, Object?> json) {
-    final itemsJson = (json['items']! as Map<String, Object?>);
+    final itemsJson = json['items']!;
     final items = (itemsJson as List<WorkspaceDocumentDiagnosticReport>);
+
     return WorkspaceDiagnosticReport(items: items);
   }
 
@@ -3195,8 +3249,9 @@ class WorkspaceDiagnosticReportPartialResult implements ToJson {
   factory WorkspaceDiagnosticReportPartialResult.fromJson(
     Map<String, Object?> json,
   ) {
-    final itemsJson = (json['items']! as Map<String, Object?>);
+    final itemsJson = json['items']!;
     final items = (itemsJson as List<WorkspaceDocumentDiagnosticReport>);
+
     return WorkspaceDiagnosticReportPartialResult(items: items);
   }
 
@@ -3217,12 +3272,13 @@ class DidOpenNotebookDocumentParams implements ToJson {
   });
 
   factory DidOpenNotebookDocumentParams.fromJson(Map<String, Object?> json) {
-    final cellTextDocumentsJson =
-        (json['cellTextDocuments']! as Map<String, Object?>);
+    final cellTextDocumentsJson = json['cellTextDocuments']!;
     final cellTextDocuments = (cellTextDocumentsJson as List<TextDocumentItem>);
-    final notebookDocumentJson =
-        (json['notebookDocument']! as Map<String, Object?>);
-    final notebookDocument = NotebookDocument.fromJson(notebookDocumentJson);
+    final notebookDocumentJson = json['notebookDocument']!;
+    final notebookDocument = NotebookDocument.fromJson(
+      (notebookDocumentJson as Map<String, Object?>),
+    );
+
     return DidOpenNotebookDocumentParams(
       cellTextDocuments: cellTextDocuments,
       notebookDocument: notebookDocument,
@@ -3250,13 +3306,15 @@ class DidChangeNotebookDocumentParams implements ToJson {
   });
 
   factory DidChangeNotebookDocumentParams.fromJson(Map<String, Object?> json) {
-    final changeJson = (json['change']! as Map<String, Object?>);
-    final change = NotebookDocumentChangeEvent.fromJson(changeJson);
-    final notebookDocumentJson =
-        (json['notebookDocument']! as Map<String, Object?>);
-    final notebookDocument = VersionedNotebookDocumentIdentifier.fromJson(
-      notebookDocumentJson,
+    final changeJson = json['change']!;
+    final change = NotebookDocumentChangeEvent.fromJson(
+      (changeJson as Map<String, Object?>),
     );
+    final notebookDocumentJson = json['notebookDocument']!;
+    final notebookDocument = VersionedNotebookDocumentIdentifier.fromJson(
+      (notebookDocumentJson as Map<String, Object?>),
+    );
+
     return DidChangeNotebookDocumentParams(
       change: change,
       notebookDocument: notebookDocument,
@@ -3294,11 +3352,11 @@ class DidSaveNotebookDocumentParams implements ToJson {
   DidSaveNotebookDocumentParams({required this.notebookDocument});
 
   factory DidSaveNotebookDocumentParams.fromJson(Map<String, Object?> json) {
-    final notebookDocumentJson =
-        (json['notebookDocument']! as Map<String, Object?>);
+    final notebookDocumentJson = json['notebookDocument']!;
     final notebookDocument = NotebookDocumentIdentifier.fromJson(
-      notebookDocumentJson,
+      (notebookDocumentJson as Map<String, Object?>),
     );
+
     return DidSaveNotebookDocumentParams(notebookDocument: notebookDocument);
   }
 
@@ -3320,15 +3378,14 @@ class DidCloseNotebookDocumentParams implements ToJson {
   });
 
   factory DidCloseNotebookDocumentParams.fromJson(Map<String, Object?> json) {
-    final cellTextDocumentsJson =
-        (json['cellTextDocuments']! as Map<String, Object?>);
+    final cellTextDocumentsJson = json['cellTextDocuments']!;
     final cellTextDocuments =
         (cellTextDocumentsJson as List<TextDocumentIdentifier>);
-    final notebookDocumentJson =
-        (json['notebookDocument']! as Map<String, Object?>);
+    final notebookDocumentJson = json['notebookDocument']!;
     final notebookDocument = NotebookDocumentIdentifier.fromJson(
-      notebookDocumentJson,
+      (notebookDocumentJson as Map<String, Object?>),
     );
+
     return DidCloseNotebookDocumentParams(
       cellTextDocuments: cellTextDocuments,
       notebookDocument: notebookDocument,
@@ -3360,14 +3417,19 @@ class InlineCompletionParams
   });
 
   factory InlineCompletionParams.fromJson(Map<String, Object?> json) {
-    final contextJson = (json['context']! as Map<String, Object?>);
-    final context = InlineCompletionContext.fromJson(contextJson);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final contextJson = json['context']!;
+    final context = InlineCompletionContext.fromJson(
+      (contextJson as Map<String, Object?>),
+    );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return InlineCompletionParams(
       context: context,
       position: position,
@@ -3405,8 +3467,9 @@ class InlineCompletionList implements ToJson {
   InlineCompletionList({required this.items});
 
   factory InlineCompletionList.fromJson(Map<String, Object?> json) {
-    final itemsJson = (json['items']! as Map<String, Object?>);
+    final itemsJson = json['items']!;
     final items = (itemsJson as List<InlineCompletionItem>);
+
     return InlineCompletionList(items: items);
   }
 
@@ -3431,14 +3494,15 @@ class InlineCompletionItem implements ToJson {
   });
 
   factory InlineCompletionItem.fromJson(Map<String, Object?> json) {
-    final commandJson = (json['command']! as Map<String, Object?>);
-    final command = Command.fromJson(commandJson);
-    final filterTextJson = (json['filterText']! as Map<String, Object?>);
+    final commandJson = json['command']!;
+    final command = Command.fromJson((commandJson as Map<String, Object?>));
+    final filterTextJson = json['filterText']!;
     final filterText = (filterTextJson as String);
-    final insertTextJson = (json['insertText']! as Map<String, Object?>);
+    final insertTextJson = json['insertText']!;
     final insertText = (insertTextJson as OrRefType);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+
     return InlineCompletionItem(
       command: command,
       filterText: filterText,
@@ -3484,14 +3548,13 @@ class InlineCompletionRegistrationOptions
   factory InlineCompletionRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return InlineCompletionRegistrationOptions(
       documentSelector: documentSelector,
       id: id,
@@ -3522,8 +3585,9 @@ class RegistrationParams implements ToJson {
   RegistrationParams({required this.registrations});
 
   factory RegistrationParams.fromJson(Map<String, Object?> json) {
-    final registrationsJson = (json['registrations']! as Map<String, Object?>);
+    final registrationsJson = json['registrations']!;
     final registrations = (registrationsJson as List<Registration>);
+
     return RegistrationParams(registrations: registrations);
   }
 
@@ -3539,9 +3603,9 @@ class UnregistrationParams implements ToJson {
   UnregistrationParams({required this.unregisterations});
 
   factory UnregistrationParams.fromJson(Map<String, Object?> json) {
-    final unregisterationsJson =
-        (json['unregisterations']! as Map<String, Object?>);
+    final unregisterationsJson = json['unregisterations']!;
     final unregisterations = (unregisterationsJson as List<Unregistration>);
+
     return UnregistrationParams(unregisterations: unregisterations);
   }
 
@@ -3569,29 +3633,30 @@ class InitializeParams
   });
 
   factory InitializeParams.fromJson(Map<String, Object?> json) {
-    final capabilitiesJson = (json['capabilities']! as Map<String, Object?>);
-    final capabilities = ClientCapabilities.fromJson(capabilitiesJson);
-    final clientInfoJson = (json['clientInfo']! as Map<String, Object?>);
+    final capabilitiesJson = json['capabilities']!;
+    final capabilities = ClientCapabilities.fromJson(
+      (capabilitiesJson as Map<String, Object?>),
+    );
+    final clientInfoJson = json['clientInfo']!;
     final clientInfo = (clientInfoJson as _InitializeParamsClientInfo);
-    final initializationOptionsJson =
-        (json['initializationOptions']! as Map<String, Object?>);
+    final initializationOptionsJson = json['initializationOptions']!;
     final initializationOptions = (initializationOptionsJson as LSPAny);
-    final localeJson = (json['locale']! as Map<String, Object?>);
+    final localeJson = json['locale']!;
     final locale = (localeJson as String);
-    final processIdJson = (json['processId']! as Map<String, Object?>);
+    final processIdJson = json['processId']!;
     final processId = (processIdJson as OrRefType);
-    final rootPathJson = (json['rootPath']! as Map<String, Object?>);
+    final rootPathJson = json['rootPath']!;
     final rootPath = (rootPathJson as OrRefType);
-    final rootUriJson = (json['rootUri']! as Map<String, Object?>);
+    final rootUriJson = json['rootUri']!;
     final rootUri = (rootUriJson as OrRefType);
-    final traceJson = (json['trace']! as Map<String, Object?>);
+    final traceJson = json['trace']!;
     // Handle enum type;
     final trace = _i1.$enumDecode(_$TraceValuesEnumMap, traceJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
-    final workspaceFoldersJson =
-        (json['workspaceFolders']! as Map<String, Object?>);
+    final workspaceFoldersJson = json['workspaceFolders']!;
     final workspaceFolders = (workspaceFoldersJson as OrRefType);
+
     return InitializeParams(
       capabilities: capabilities,
       clientInfo: clientInfo,
@@ -3671,10 +3736,13 @@ class InitializeResult implements ToJson {
   InitializeResult({required this.capabilities, required this.serverInfo});
 
   factory InitializeResult.fromJson(Map<String, Object?> json) {
-    final capabilitiesJson = (json['capabilities']! as Map<String, Object?>);
-    final capabilities = ServerCapabilities.fromJson(capabilitiesJson);
-    final serverInfoJson = (json['serverInfo']! as Map<String, Object?>);
+    final capabilitiesJson = json['capabilities']!;
+    final capabilities = ServerCapabilities.fromJson(
+      (capabilitiesJson as Map<String, Object?>),
+    );
+    final serverInfoJson = json['serverInfo']!;
     final serverInfo = (serverInfoJson as InitializeResultServerInfo);
+
     return InitializeResult(capabilities: capabilities, serverInfo: serverInfo);
   }
 
@@ -3696,8 +3764,9 @@ class InitializeError implements ToJson {
   InitializeError({required this.retry});
 
   factory InitializeError.fromJson(Map<String, Object?> json) {
-    final retryJson = (json['retry']! as Map<String, Object?>);
+    final retryJson = json['retry']!;
     final retry = (retryJson as bool);
+
     return InitializeError(retry: retry);
   }
 
@@ -3731,8 +3800,9 @@ class DidChangeConfigurationParams implements ToJson {
   DidChangeConfigurationParams({required this.settings});
 
   factory DidChangeConfigurationParams.fromJson(Map<String, Object?> json) {
-    final settingsJson = (json['settings']! as Map<String, Object?>);
+    final settingsJson = json['settings']!;
     final settings = (settingsJson as LSPAny);
+
     return DidChangeConfigurationParams(settings: settings);
   }
 
@@ -3751,8 +3821,9 @@ class DidChangeConfigurationRegistrationOptions implements ToJson {
   factory DidChangeConfigurationRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final sectionJson = (json['section']! as Map<String, Object?>);
+    final sectionJson = json['section']!;
     final section = (sectionJson as OrRefType);
+
     return DidChangeConfigurationRegistrationOptions(section: section);
   }
 
@@ -3769,11 +3840,12 @@ class ShowMessageParams implements ToJson {
   ShowMessageParams({required this.message, required this.type});
 
   factory ShowMessageParams.fromJson(Map<String, Object?> json) {
-    final messageJson = (json['message']! as Map<String, Object?>);
+    final messageJson = json['message']!;
     final message = (messageJson as String);
-    final typeJson = (json['type']! as Map<String, Object?>);
+    final typeJson = json['type']!;
     // Handle enum type;
     final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
+
     return ShowMessageParams(message: message, type: type);
   }
 
@@ -3797,13 +3869,14 @@ class ShowMessageRequestParams implements ToJson {
   });
 
   factory ShowMessageRequestParams.fromJson(Map<String, Object?> json) {
-    final actionsJson = (json['actions']! as Map<String, Object?>);
+    final actionsJson = json['actions']!;
     final actions = (actionsJson as List<MessageActionItem>);
-    final messageJson = (json['message']! as Map<String, Object?>);
+    final messageJson = json['message']!;
     final message = (messageJson as String);
-    final typeJson = (json['type']! as Map<String, Object?>);
+    final typeJson = json['type']!;
     // Handle enum type;
     final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
+
     return ShowMessageRequestParams(
       actions: actions,
       message: message,
@@ -3830,8 +3903,9 @@ class MessageActionItem implements ToJson {
   MessageActionItem({required this.title});
 
   factory MessageActionItem.fromJson(Map<String, Object?> json) {
-    final titleJson = (json['title']! as Map<String, Object?>);
+    final titleJson = json['title']!;
     final title = (titleJson as String);
+
     return MessageActionItem(title: title);
   }
 
@@ -3849,11 +3923,12 @@ class LogMessageParams implements ToJson {
   LogMessageParams({required this.message, required this.type});
 
   factory LogMessageParams.fromJson(Map<String, Object?> json) {
-    final messageJson = (json['message']! as Map<String, Object?>);
+    final messageJson = json['message']!;
     final message = (messageJson as String);
-    final typeJson = (json['type']! as Map<String, Object?>);
+    final typeJson = json['type']!;
     // Handle enum type;
     final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
+
     return LogMessageParams(message: message, type: type);
   }
 
@@ -3874,8 +3949,11 @@ class DidOpenTextDocumentParams implements ToJson {
   DidOpenTextDocumentParams({required this.textDocument});
 
   factory DidOpenTextDocumentParams.fromJson(Map<String, Object?> json) {
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentItem.fromJson(textDocumentJson);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentItem.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+
     return DidOpenTextDocumentParams(textDocument: textDocument);
   }
 
@@ -3896,14 +3974,14 @@ class DidChangeTextDocumentParams implements ToJson {
   });
 
   factory DidChangeTextDocumentParams.fromJson(Map<String, Object?> json) {
-    final contentChangesJson =
-        (json['contentChanges']! as Map<String, Object?>);
+    final contentChangesJson = json['contentChanges']!;
     final contentChanges =
         (contentChangesJson as List<TextDocumentContentChangeEvent>);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
     final textDocument = VersionedTextDocumentIdentifier.fromJson(
-      textDocumentJson,
+      (textDocumentJson as Map<String, Object?>),
     );
+
     return DidChangeTextDocumentParams(
       contentChanges: contentChanges,
       textDocument: textDocument,
@@ -3943,15 +4021,15 @@ class TextDocumentChangeRegistrationOptions
   factory TextDocumentChangeRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final syncKindJson = (json['syncKind']! as Map<String, Object?>);
+    final syncKindJson = json['syncKind']!;
     // Handle enum type;
     final syncKind = _i1.$enumDecode(
       _$TextDocumentSyncKindEnumMap,
       syncKindJson,
     );
+
     return TextDocumentChangeRegistrationOptions(
       documentSelector: documentSelector,
       syncKind: syncKind,
@@ -3977,8 +4055,11 @@ class DidCloseTextDocumentParams implements ToJson {
   DidCloseTextDocumentParams({required this.textDocument});
 
   factory DidCloseTextDocumentParams.fromJson(Map<String, Object?> json) {
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+
     return DidCloseTextDocumentParams(textDocument: textDocument);
   }
 
@@ -3996,10 +4077,13 @@ class DidSaveTextDocumentParams implements ToJson {
   DidSaveTextDocumentParams({required this.text, required this.textDocument});
 
   factory DidSaveTextDocumentParams.fromJson(Map<String, Object?> json) {
-    final textJson = (json['text']! as Map<String, Object?>);
+    final textJson = json['text']!;
     final text = (textJson as String);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+
     return DidSaveTextDocumentParams(text: text, textDocument: textDocument);
   }
 
@@ -4027,11 +4111,11 @@ class TextDocumentSaveRegistrationOptions
   factory TextDocumentSaveRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final includeTextJson = (json['includeText']! as Map<String, Object?>);
+    final includeTextJson = json['includeText']!;
     final includeText = (includeTextJson as bool);
+
     return TextDocumentSaveRegistrationOptions(
       documentSelector: documentSelector,
       includeText: includeText,
@@ -4061,11 +4145,14 @@ class WillSaveTextDocumentParams implements ToJson {
   });
 
   factory WillSaveTextDocumentParams.fromJson(Map<String, Object?> json) {
-    final reasonJson = (json['reason']! as Map<String, Object?>);
+    final reasonJson = json['reason']!;
     // Handle enum type;
     final reason = _i1.$enumDecode(_$TextDocumentSaveReasonEnumMap, reasonJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+
     return WillSaveTextDocumentParams(
       reason: reason,
       textDocument: textDocument,
@@ -4089,10 +4176,11 @@ class TextEdit implements ToJson {
   TextEdit({required this.newText, required this.range});
 
   factory TextEdit.fromJson(Map<String, Object?> json) {
-    final newTextJson = (json['newText']! as Map<String, Object?>);
+    final newTextJson = json['newText']!;
     final newText = (newTextJson as String);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+
     return TextEdit(newText: newText, range: range);
   }
 
@@ -4114,8 +4202,9 @@ class DidChangeWatchedFilesParams implements ToJson {
   DidChangeWatchedFilesParams({required this.changes});
 
   factory DidChangeWatchedFilesParams.fromJson(Map<String, Object?> json) {
-    final changesJson = (json['changes']! as Map<String, Object?>);
+    final changesJson = json['changes']!;
     final changes = (changesJson as List<FileEvent>);
+
     return DidChangeWatchedFilesParams(changes: changes);
   }
 
@@ -4135,8 +4224,9 @@ class DidChangeWatchedFilesRegistrationOptions implements ToJson {
   factory DidChangeWatchedFilesRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final watchersJson = (json['watchers']! as Map<String, Object?>);
+    final watchersJson = json['watchers']!;
     final watchers = (watchersJson as List<FileSystemWatcher>);
+
     return DidChangeWatchedFilesRegistrationOptions(watchers: watchers);
   }
 
@@ -4158,12 +4248,13 @@ class PublishDiagnosticsParams implements ToJson {
   });
 
   factory PublishDiagnosticsParams.fromJson(Map<String, Object?> json) {
-    final diagnosticsJson = (json['diagnostics']! as Map<String, Object?>);
+    final diagnosticsJson = json['diagnostics']!;
     final diagnostics = (diagnosticsJson as List<Diagnostic>);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as int);
+
     return PublishDiagnosticsParams(
       diagnostics: diagnostics,
       uri: uri,
@@ -4203,17 +4294,21 @@ class CompletionParams
   });
 
   factory CompletionParams.fromJson(Map<String, Object?> json) {
-    final contextJson = (json['context']! as Map<String, Object?>);
-    final context = CompletionContext.fromJson(contextJson);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final contextJson = json['context']!;
+    final context = CompletionContext.fromJson(
+      (contextJson as Map<String, Object?>),
+    );
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return CompletionParams(
       context: context,
       partialResultToken: partialResultToken,
@@ -4277,57 +4372,56 @@ class CompletionItem implements ToJson {
   });
 
   factory CompletionItem.fromJson(Map<String, Object?> json) {
-    final additionalTextEditsJson =
-        (json['additionalTextEdits']! as Map<String, Object?>);
+    final additionalTextEditsJson = json['additionalTextEdits']!;
     final additionalTextEdits = (additionalTextEditsJson as List<TextEdit>);
-    final commandJson = (json['command']! as Map<String, Object?>);
-    final command = Command.fromJson(commandJson);
-    final commitCharactersJson =
-        (json['commitCharacters']! as Map<String, Object?>);
+    final commandJson = json['command']!;
+    final command = Command.fromJson((commandJson as Map<String, Object?>));
+    final commitCharactersJson = json['commitCharacters']!;
     final commitCharacters = (commitCharactersJson as List<String>);
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
-    final deprecatedJson = (json['deprecated']! as Map<String, Object?>);
+    final deprecatedJson = json['deprecated']!;
     final deprecated = (deprecatedJson as bool);
-    final detailJson = (json['detail']! as Map<String, Object?>);
+    final detailJson = json['detail']!;
     final detail = (detailJson as String);
-    final documentationJson = (json['documentation']! as Map<String, Object?>);
+    final documentationJson = json['documentation']!;
     final documentation = (documentationJson as OrRefType);
-    final filterTextJson = (json['filterText']! as Map<String, Object?>);
+    final filterTextJson = json['filterText']!;
     final filterText = (filterTextJson as String);
-    final insertTextJson = (json['insertText']! as Map<String, Object?>);
+    final insertTextJson = json['insertText']!;
     final insertText = (insertTextJson as String);
-    final insertTextFormatJson =
-        (json['insertTextFormat']! as Map<String, Object?>);
+    final insertTextFormatJson = json['insertTextFormat']!;
     // Handle enum type;
     final insertTextFormat = _i1.$enumDecode(
       _$InsertTextFormatEnumMap,
       insertTextFormatJson,
     );
-    final insertTextModeJson =
-        (json['insertTextMode']! as Map<String, Object?>);
+    final insertTextModeJson = json['insertTextMode']!;
     // Handle enum type;
     final insertTextMode = _i1.$enumDecode(
       _$InsertTextModeEnumMap,
       insertTextModeJson,
     );
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$CompletionItemKindEnumMap, kindJson);
-    final labelJson = (json['label']! as Map<String, Object?>);
+    final labelJson = json['label']!;
     final label = (labelJson as String);
-    final labelDetailsJson = (json['labelDetails']! as Map<String, Object?>);
-    final labelDetails = CompletionItemLabelDetails.fromJson(labelDetailsJson);
-    final preselectJson = (json['preselect']! as Map<String, Object?>);
+    final labelDetailsJson = json['labelDetails']!;
+    final labelDetails = CompletionItemLabelDetails.fromJson(
+      (labelDetailsJson as Map<String, Object?>),
+    );
+    final preselectJson = json['preselect']!;
     final preselect = (preselectJson as bool);
-    final sortTextJson = (json['sortText']! as Map<String, Object?>);
+    final sortTextJson = json['sortText']!;
     final sortText = (sortTextJson as String);
-    final tagsJson = (json['tags']! as Map<String, Object?>);
+    final tagsJson = json['tags']!;
     final tags = (tagsJson as List<CompletionItemTag>);
-    final textEditJson = (json['textEdit']! as Map<String, Object?>);
+    final textEditJson = json['textEdit']!;
     final textEdit = (textEditJson as OrRefType);
-    final textEditTextJson = (json['textEditText']! as Map<String, Object?>);
+    final textEditTextJson = json['textEditText']!;
     final textEditText = (textEditTextJson as String);
+
     return CompletionItem(
       additionalTextEdits: additionalTextEdits,
       command: command,
@@ -4488,12 +4582,13 @@ class CompletionList implements ToJson {
   });
 
   factory CompletionList.fromJson(Map<String, Object?> json) {
-    final isIncompleteJson = (json['isIncomplete']! as Map<String, Object?>);
+    final isIncompleteJson = json['isIncomplete']!;
     final isIncomplete = (isIncompleteJson as bool);
-    final itemDefaultsJson = (json['itemDefaults']! as Map<String, Object?>);
+    final itemDefaultsJson = json['itemDefaults']!;
     final itemDefaults = (itemDefaultsJson as CompletionListItemDefaults);
-    final itemsJson = (json['items']! as Map<String, Object?>);
+    final itemsJson = json['items']!;
     final items = (itemsJson as List<CompletionItem>);
+
     return CompletionList(
       isIncomplete: isIncomplete,
       itemDefaults: itemDefaults,
@@ -4540,25 +4635,20 @@ class CompletionRegistrationOptions
   });
 
   factory CompletionRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final allCommitCharactersJson =
-        (json['allCommitCharacters']! as Map<String, Object?>);
+    final allCommitCharactersJson = json['allCommitCharacters']!;
     final allCommitCharacters = (allCommitCharactersJson as List<String>);
-    final completionItemJson =
-        (json['completionItem']! as Map<String, Object?>);
+    final completionItemJson = json['completionItem']!;
     final completionItem =
         (completionItemJson as CompletionOptionsCompletionItem);
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final triggerCharactersJson =
-        (json['triggerCharacters']! as Map<String, Object?>);
+    final triggerCharactersJson = json['triggerCharacters']!;
     final triggerCharacters = (triggerCharactersJson as List<String>);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return CompletionRegistrationOptions(
       allCommitCharacters: allCommitCharacters,
       completionItem: completionItem,
@@ -4626,12 +4716,15 @@ class HoverParams
   });
 
   factory HoverParams.fromJson(Map<String, Object?> json) {
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return HoverParams(
       position: position,
       textDocument: textDocument,
@@ -4662,10 +4755,11 @@ class Hover implements ToJson {
   Hover({required this.contents, required this.range});
 
   factory Hover.fromJson(Map<String, Object?> json) {
-    final contentsJson = (json['contents']! as Map<String, Object?>);
+    final contentsJson = json['contents']!;
     final contents = (contentsJson as OrRefType);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+
     return Hover(contents: contents, range: range);
   }
 
@@ -4691,12 +4785,11 @@ class HoverRegistrationOptions
   });
 
   factory HoverRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return HoverRegistrationOptions(
       documentSelector: documentSelector,
       workDoneProgress: workDoneProgress,
@@ -4728,14 +4821,19 @@ class SignatureHelpParams
   });
 
   factory SignatureHelpParams.fromJson(Map<String, Object?> json) {
-    final contextJson = (json['context']! as Map<String, Object?>);
-    final context = SignatureHelpContext.fromJson(contextJson);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final contextJson = json['context']!;
+    final context = SignatureHelpContext.fromJson(
+      (contextJson as Map<String, Object?>),
+    );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return SignatureHelpParams(
       context: context,
       position: position,
@@ -4778,14 +4876,13 @@ class SignatureHelp implements ToJson {
   });
 
   factory SignatureHelp.fromJson(Map<String, Object?> json) {
-    final activeParameterJson =
-        (json['activeParameter']! as Map<String, Object?>);
+    final activeParameterJson = json['activeParameter']!;
     final activeParameter = (activeParameterJson as int);
-    final activeSignatureJson =
-        (json['activeSignature']! as Map<String, Object?>);
+    final activeSignatureJson = json['activeSignature']!;
     final activeSignature = (activeSignatureJson as int);
-    final signaturesJson = (json['signatures']! as Map<String, Object?>);
+    final signaturesJson = json['signatures']!;
     final signatures = (signaturesJson as List<SignatureInformation>);
+
     return SignatureHelp(
       activeParameter: activeParameter,
       activeSignature: activeSignature,
@@ -4830,18 +4927,15 @@ class SignatureHelpRegistrationOptions
   });
 
   factory SignatureHelpRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final retriggerCharactersJson =
-        (json['retriggerCharacters']! as Map<String, Object?>);
+    final retriggerCharactersJson = json['retriggerCharacters']!;
     final retriggerCharacters = (retriggerCharactersJson as List<String>);
-    final triggerCharactersJson =
-        (json['triggerCharacters']! as Map<String, Object?>);
+    final triggerCharactersJson = json['triggerCharacters']!;
     final triggerCharacters = (triggerCharactersJson as List<String>);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return SignatureHelpRegistrationOptions(
       documentSelector: documentSelector,
       retriggerCharacters: retriggerCharacters,
@@ -4890,15 +4984,17 @@ class DefinitionParams
   });
 
   factory DefinitionParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DefinitionParams(
       partialResultToken: partialResultToken,
       position: position,
@@ -4939,12 +5035,11 @@ class DefinitionRegistrationOptions
   });
 
   factory DefinitionRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DefinitionRegistrationOptions(
       documentSelector: documentSelector,
       workDoneProgress: workDoneProgress,
@@ -4980,17 +5075,21 @@ class ReferenceParams
   });
 
   factory ReferenceParams.fromJson(Map<String, Object?> json) {
-    final contextJson = (json['context']! as Map<String, Object?>);
-    final context = ReferenceContext.fromJson(contextJson);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final contextJson = json['context']!;
+    final context = ReferenceContext.fromJson(
+      (contextJson as Map<String, Object?>),
+    );
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return ReferenceParams(
       context: context,
       partialResultToken: partialResultToken,
@@ -5034,12 +5133,11 @@ class ReferenceRegistrationOptions
   });
 
   factory ReferenceRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return ReferenceRegistrationOptions(
       documentSelector: documentSelector,
       workDoneProgress: workDoneProgress,
@@ -5074,15 +5172,17 @@ class DocumentHighlightParams
   });
 
   factory DocumentHighlightParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DocumentHighlightParams(
       partialResultToken: partialResultToken,
       position: position,
@@ -5121,11 +5221,12 @@ class DocumentHighlight implements ToJson {
   DocumentHighlight({required this.kind, required this.range});
 
   factory DocumentHighlight.fromJson(Map<String, Object?> json) {
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$DocumentHighlightKindEnumMap, kindJson);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+
     return DocumentHighlight(kind: kind, range: range);
   }
 
@@ -5152,12 +5253,11 @@ class DocumentHighlightRegistrationOptions
   factory DocumentHighlightRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentHighlightRegistrationOptions(
       documentSelector: documentSelector,
       workDoneProgress: workDoneProgress,
@@ -5188,13 +5288,15 @@ class DocumentSymbolParams
   });
 
   factory DocumentSymbolParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DocumentSymbolParams(
       partialResultToken: partialResultToken,
       textDocument: textDocument,
@@ -5233,19 +5335,20 @@ class SymbolInformation implements BaseSymbolInformation {
   });
 
   factory SymbolInformation.fromJson(Map<String, Object?> json) {
-    final containerNameJson = (json['containerName']! as Map<String, Object?>);
+    final containerNameJson = json['containerName']!;
     final containerName = (containerNameJson as String);
-    final deprecatedJson = (json['deprecated']! as Map<String, Object?>);
+    final deprecatedJson = json['deprecated']!;
     final deprecated = (deprecatedJson as bool);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final locationJson = (json['location']! as Map<String, Object?>);
-    final location = Location.fromJson(locationJson);
-    final nameJson = (json['name']! as Map<String, Object?>);
+    final locationJson = json['location']!;
+    final location = Location.fromJson((locationJson as Map<String, Object?>));
+    final nameJson = json['name']!;
     final name = (nameJson as String);
-    final tagsJson = (json['tags']! as Map<String, Object?>);
+    final tagsJson = json['tags']!;
     final tags = (tagsJson as List<SymbolTag>);
+
     return SymbolInformation(
       containerName: containerName,
       deprecated: deprecated,
@@ -5313,24 +5416,26 @@ class DocumentSymbol implements ToJson {
   });
 
   factory DocumentSymbol.fromJson(Map<String, Object?> json) {
-    final childrenJson = (json['children']! as Map<String, Object?>);
+    final childrenJson = json['children']!;
     final children = (childrenJson as List<DocumentSymbol>);
-    final deprecatedJson = (json['deprecated']! as Map<String, Object?>);
+    final deprecatedJson = json['deprecated']!;
     final deprecated = (deprecatedJson as bool);
-    final detailJson = (json['detail']! as Map<String, Object?>);
+    final detailJson = json['detail']!;
     final detail = (detailJson as String);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final nameJson = (json['name']! as Map<String, Object?>);
+    final nameJson = json['name']!;
     final name = (nameJson as String);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final selectionRangeJson =
-        (json['selectionRange']! as Map<String, Object?>);
-    final selectionRange = Range.fromJson(selectionRangeJson);
-    final tagsJson = (json['tags']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final selectionRangeJson = json['selectionRange']!;
+    final selectionRange = Range.fromJson(
+      (selectionRangeJson as Map<String, Object?>),
+    );
+    final tagsJson = json['tags']!;
     final tags = (tagsJson as List<SymbolTag>);
+
     return DocumentSymbol(
       children: children,
       deprecated: deprecated,
@@ -5394,14 +5499,13 @@ class DocumentSymbolRegistrationOptions
   factory DocumentSymbolRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final labelJson = (json['label']! as Map<String, Object?>);
+    final labelJson = json['label']!;
     final label = (labelJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentSymbolRegistrationOptions(
       documentSelector: documentSelector,
       label: label,
@@ -5440,17 +5544,21 @@ class CodeActionParams implements WorkDoneProgressParams, PartialResultParams {
   });
 
   factory CodeActionParams.fromJson(Map<String, Object?> json) {
-    final contextJson = (json['context']! as Map<String, Object?>);
-    final context = CodeActionContext.fromJson(contextJson);
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final contextJson = json['context']!;
+    final context = CodeActionContext.fromJson(
+      (contextJson as Map<String, Object?>),
+    );
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return CodeActionParams(
       context: context,
       partialResultToken: partialResultToken,
@@ -5495,12 +5603,13 @@ class Command implements ToJson {
   });
 
   factory Command.fromJson(Map<String, Object?> json) {
-    final argumentsJson = (json['arguments']! as Map<String, Object?>);
+    final argumentsJson = json['arguments']!;
     final arguments = (argumentsJson as List<LSPAny>);
-    final commandJson = (json['command']! as Map<String, Object?>);
+    final commandJson = json['command']!;
     final command = (commandJson as String);
-    final titleJson = (json['title']! as Map<String, Object?>);
+    final titleJson = json['title']!;
     final title = (titleJson as String);
+
     return Command(arguments: arguments, command: command, title: title);
   }
 
@@ -5536,23 +5645,24 @@ class CodeAction implements ToJson {
   });
 
   factory CodeAction.fromJson(Map<String, Object?> json) {
-    final commandJson = (json['command']! as Map<String, Object?>);
-    final command = Command.fromJson(commandJson);
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final commandJson = json['command']!;
+    final command = Command.fromJson((commandJson as Map<String, Object?>));
+    final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
-    final diagnosticsJson = (json['diagnostics']! as Map<String, Object?>);
+    final diagnosticsJson = json['diagnostics']!;
     final diagnostics = (diagnosticsJson as List<Diagnostic>);
-    final disabledJson = (json['disabled']! as Map<String, Object?>);
+    final disabledJson = json['disabled']!;
     final disabled = (disabledJson as CodeActionDisabled);
-    final editJson = (json['edit']! as Map<String, Object?>);
-    final edit = WorkspaceEdit.fromJson(editJson);
-    final isPreferredJson = (json['isPreferred']! as Map<String, Object?>);
+    final editJson = json['edit']!;
+    final edit = WorkspaceEdit.fromJson((editJson as Map<String, Object?>));
+    final isPreferredJson = json['isPreferred']!;
     final isPreferred = (isPreferredJson as bool);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$CodeActionKindEnumMap, kindJson);
-    final titleJson = (json['title']! as Map<String, Object?>);
+    final titleJson = json['title']!;
     final title = (titleJson as String);
+
     return CodeAction(
       command: command,
       data: data,
@@ -5629,18 +5739,15 @@ class CodeActionRegistrationOptions
   });
 
   factory CodeActionRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final codeActionKindsJson =
-        (json['codeActionKinds']! as Map<String, Object?>);
+    final codeActionKindsJson = json['codeActionKinds']!;
     final codeActionKinds = (codeActionKindsJson as List<CodeActionKind>);
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return CodeActionRegistrationOptions(
       codeActionKinds: codeActionKinds,
       documentSelector: documentSelector,
@@ -5685,13 +5792,13 @@ class WorkspaceSymbolParams
   });
 
   factory WorkspaceSymbolParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final queryJson = (json['query']! as Map<String, Object?>);
+    final queryJson = json['query']!;
     final query = (queryJson as String);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return WorkspaceSymbolParams(
       partialResultToken: partialResultToken,
       query: query,
@@ -5732,19 +5839,20 @@ class WorkspaceSymbol implements BaseSymbolInformation {
   });
 
   factory WorkspaceSymbol.fromJson(Map<String, Object?> json) {
-    final containerNameJson = (json['containerName']! as Map<String, Object?>);
+    final containerNameJson = json['containerName']!;
     final containerName = (containerNameJson as String);
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final locationJson = (json['location']! as Map<String, Object?>);
+    final locationJson = json['location']!;
     final location = (locationJson as OrRefType);
-    final nameJson = (json['name']! as Map<String, Object?>);
+    final nameJson = json['name']!;
     final name = (nameJson as String);
-    final tagsJson = (json['tags']! as Map<String, Object?>);
+    final tagsJson = json['tags']!;
     final tags = (tagsJson as List<SymbolTag>);
+
     return WorkspaceSymbol(
       containerName: containerName,
       data: data,
@@ -5801,12 +5909,11 @@ class WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolOptions {
   factory WorkspaceSymbolRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return WorkspaceSymbolRegistrationOptions(
       resolveProvider: resolveProvider,
       workDoneProgress: workDoneProgress,
@@ -5837,13 +5944,15 @@ class CodeLensParams implements WorkDoneProgressParams, PartialResultParams {
   });
 
   factory CodeLensParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return CodeLensParams(
       partialResultToken: partialResultToken,
       textDocument: textDocument,
@@ -5878,12 +5987,13 @@ class CodeLens implements ToJson {
   CodeLens({required this.command, required this.data, required this.range});
 
   factory CodeLens.fromJson(Map<String, Object?> json) {
-    final commandJson = (json['command']! as Map<String, Object?>);
-    final command = Command.fromJson(commandJson);
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final commandJson = json['command']!;
+    final command = Command.fromJson((commandJson as Map<String, Object?>));
+    final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+
     return CodeLens(command: command, data: data, range: range);
   }
 
@@ -5914,15 +6024,13 @@ class CodeLensRegistrationOptions
   });
 
   factory CodeLensRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return CodeLensRegistrationOptions(
       documentSelector: documentSelector,
       resolveProvider: resolveProvider,
@@ -5958,13 +6066,15 @@ class DocumentLinkParams
   });
 
   factory DocumentLinkParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DocumentLinkParams(
       partialResultToken: partialResultToken,
       textDocument: textDocument,
@@ -6001,14 +6111,15 @@ class DocumentLink implements ToJson {
   });
 
   factory DocumentLink.fromJson(Map<String, Object?> json) {
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final targetJson = (json['target']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final targetJson = json['target']!;
     final target = (targetJson as Uri);
-    final tooltipJson = (json['tooltip']! as Map<String, Object?>);
+    final tooltipJson = json['tooltip']!;
     final tooltip = (tooltipJson as String);
+
     return DocumentLink(
       data: data,
       range: range,
@@ -6051,15 +6162,13 @@ class DocumentLinkRegistrationOptions
   });
 
   factory DocumentLinkRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentLinkRegistrationOptions(
       documentSelector: documentSelector,
       resolveProvider: resolveProvider,
@@ -6094,12 +6203,17 @@ class DocumentFormattingParams implements WorkDoneProgressParams {
   });
 
   factory DocumentFormattingParams.fromJson(Map<String, Object?> json) {
-    final optionsJson = (json['options']! as Map<String, Object?>);
-    final options = FormattingOptions.fromJson(optionsJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final optionsJson = json['options']!;
+    final options = FormattingOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
+    );
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DocumentFormattingParams(
       options: options,
       textDocument: textDocument,
@@ -6134,12 +6248,11 @@ class DocumentFormattingRegistrationOptions
   factory DocumentFormattingRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentFormattingRegistrationOptions(
       documentSelector: documentSelector,
       workDoneProgress: workDoneProgress,
@@ -6170,14 +6283,19 @@ class DocumentRangeFormattingParams implements WorkDoneProgressParams {
   });
 
   factory DocumentRangeFormattingParams.fromJson(Map<String, Object?> json) {
-    final optionsJson = (json['options']! as Map<String, Object?>);
-    final options = FormattingOptions.fromJson(optionsJson);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final optionsJson = json['options']!;
+    final options = FormattingOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
+    );
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DocumentRangeFormattingParams(
       options: options,
       range: range,
@@ -6217,14 +6335,13 @@ class DocumentRangeFormattingRegistrationOptions
   factory DocumentRangeFormattingRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final rangesSupportJson = (json['rangesSupport']! as Map<String, Object?>);
+    final rangesSupportJson = json['rangesSupport']!;
     final rangesSupport = (rangesSupportJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentRangeFormattingRegistrationOptions(
       documentSelector: documentSelector,
       rangesSupport: rangesSupport,
@@ -6262,14 +6379,19 @@ class DocumentRangesFormattingParams implements WorkDoneProgressParams {
   });
 
   factory DocumentRangesFormattingParams.fromJson(Map<String, Object?> json) {
-    final optionsJson = (json['options']! as Map<String, Object?>);
-    final options = FormattingOptions.fromJson(optionsJson);
-    final rangesJson = (json['ranges']! as Map<String, Object?>);
+    final optionsJson = json['options']!;
+    final options = FormattingOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
+    );
+    final rangesJson = json['ranges']!;
     final ranges = (rangesJson as List<Range>);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return DocumentRangesFormattingParams(
       options: options,
       ranges: ranges,
@@ -6307,14 +6429,19 @@ class DocumentOnTypeFormattingParams implements ToJson {
   });
 
   factory DocumentOnTypeFormattingParams.fromJson(Map<String, Object?> json) {
-    final chJson = (json['ch']! as Map<String, Object?>);
+    final chJson = json['ch']!;
     final ch = (chJson as String);
-    final optionsJson = (json['options']! as Map<String, Object?>);
-    final options = FormattingOptions.fromJson(optionsJson);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
+    final optionsJson = json['options']!;
+    final options = FormattingOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
+    );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+
     return DocumentOnTypeFormattingParams(
       ch: ch,
       options: options,
@@ -6360,15 +6487,13 @@ class DocumentOnTypeFormattingRegistrationOptions
   factory DocumentOnTypeFormattingRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final firstTriggerCharacterJson =
-        (json['firstTriggerCharacter']! as Map<String, Object?>);
+    final firstTriggerCharacterJson = json['firstTriggerCharacter']!;
     final firstTriggerCharacter = (firstTriggerCharacterJson as String);
-    final moreTriggerCharacterJson =
-        (json['moreTriggerCharacter']! as Map<String, Object?>);
+    final moreTriggerCharacterJson = json['moreTriggerCharacter']!;
     final moreTriggerCharacter = (moreTriggerCharacterJson as List<String>);
+
     return DocumentOnTypeFormattingRegistrationOptions(
       documentSelector: documentSelector,
       firstTriggerCharacter: firstTriggerCharacter,
@@ -6405,14 +6530,17 @@ class RenameParams implements WorkDoneProgressParams {
   });
 
   factory RenameParams.fromJson(Map<String, Object?> json) {
-    final newNameJson = (json['newName']! as Map<String, Object?>);
+    final newNameJson = json['newName']!;
     final newName = (newNameJson as String);
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return RenameParams(
       newName: newName,
       position: position,
@@ -6451,15 +6579,13 @@ class RenameRegistrationOptions
   });
 
   factory RenameRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final documentSelectorJson =
-        (json['documentSelector']! as Map<String, Object?>);
+    final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final prepareProviderJson =
-        (json['prepareProvider']! as Map<String, Object?>);
+    final prepareProviderJson = json['prepareProvider']!;
     final prepareProvider = (prepareProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return RenameRegistrationOptions(
       documentSelector: documentSelector,
       prepareProvider: prepareProvider,
@@ -6495,12 +6621,15 @@ class PrepareRenameParams
   });
 
   factory PrepareRenameParams.fromJson(Map<String, Object?> json) {
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return PrepareRenameParams(
       position: position,
       textDocument: textDocument,
@@ -6535,12 +6664,13 @@ class ExecuteCommandParams implements WorkDoneProgressParams {
   });
 
   factory ExecuteCommandParams.fromJson(Map<String, Object?> json) {
-    final argumentsJson = (json['arguments']! as Map<String, Object?>);
+    final argumentsJson = json['arguments']!;
     final arguments = (argumentsJson as List<LSPAny>);
-    final commandJson = (json['command']! as Map<String, Object?>);
+    final commandJson = json['command']!;
     final command = (commandJson as String);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return ExecuteCommandParams(
       arguments: arguments,
       command: command,
@@ -6574,11 +6704,11 @@ class ExecuteCommandRegistrationOptions implements ExecuteCommandOptions {
   factory ExecuteCommandRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final commandsJson = (json['commands']! as Map<String, Object?>);
+    final commandsJson = json['commands']!;
     final commands = (commandsJson as List<String>);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return ExecuteCommandRegistrationOptions(
       commands: commands,
       workDoneProgress: workDoneProgress,
@@ -6603,10 +6733,11 @@ class ApplyWorkspaceEditParams implements ToJson {
   ApplyWorkspaceEditParams({required this.edit, required this.label});
 
   factory ApplyWorkspaceEditParams.fromJson(Map<String, Object?> json) {
-    final editJson = (json['edit']! as Map<String, Object?>);
-    final edit = WorkspaceEdit.fromJson(editJson);
-    final labelJson = (json['label']! as Map<String, Object?>);
+    final editJson = json['edit']!;
+    final edit = WorkspaceEdit.fromJson((editJson as Map<String, Object?>));
+    final labelJson = json['label']!;
     final label = (labelJson as String);
+
     return ApplyWorkspaceEditParams(edit: edit, label: label);
   }
 
@@ -6633,12 +6764,13 @@ class ApplyWorkspaceEditResult implements ToJson {
   });
 
   factory ApplyWorkspaceEditResult.fromJson(Map<String, Object?> json) {
-    final appliedJson = (json['applied']! as Map<String, Object?>);
+    final appliedJson = json['applied']!;
     final applied = (appliedJson as bool);
-    final failedChangeJson = (json['failedChange']! as Map<String, Object?>);
+    final failedChangeJson = json['failedChange']!;
     final failedChange = (failedChangeJson as int);
-    final failureReasonJson = (json['failureReason']! as Map<String, Object?>);
+    final failureReasonJson = json['failureReason']!;
     final failureReason = (failureReasonJson as String);
+
     return ApplyWorkspaceEditResult(
       applied: applied,
       failedChange: failedChange,
@@ -6676,16 +6808,17 @@ class WorkDoneProgressBegin implements ToJson {
   });
 
   factory WorkDoneProgressBegin.fromJson(Map<String, Object?> json) {
-    final cancellableJson = (json['cancellable']! as Map<String, Object?>);
+    final cancellableJson = json['cancellable']!;
     final cancellable = (cancellableJson as bool);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final messageJson = (json['message']! as Map<String, Object?>);
+    final messageJson = json['message']!;
     final message = (messageJson as String);
-    final percentageJson = (json['percentage']! as Map<String, Object?>);
+    final percentageJson = json['percentage']!;
     final percentage = (percentageJson as int);
-    final titleJson = (json['title']! as Map<String, Object?>);
+    final titleJson = json['title']!;
     final title = (titleJson as String);
+
     return WorkDoneProgressBegin(
       cancellable: cancellable,
       kind: kind,
@@ -6735,14 +6868,15 @@ class WorkDoneProgressReport implements ToJson {
   });
 
   factory WorkDoneProgressReport.fromJson(Map<String, Object?> json) {
-    final cancellableJson = (json['cancellable']! as Map<String, Object?>);
+    final cancellableJson = json['cancellable']!;
     final cancellable = (cancellableJson as bool);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final messageJson = (json['message']! as Map<String, Object?>);
+    final messageJson = json['message']!;
     final message = (messageJson as String);
-    final percentageJson = (json['percentage']! as Map<String, Object?>);
+    final percentageJson = json['percentage']!;
     final percentage = (percentageJson as int);
+
     return WorkDoneProgressReport(
       cancellable: cancellable,
       kind: kind,
@@ -6781,10 +6915,11 @@ class WorkDoneProgressEnd implements ToJson {
   WorkDoneProgressEnd({required this.kind, required this.message});
 
   factory WorkDoneProgressEnd.fromJson(Map<String, Object?> json) {
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final messageJson = (json['message']! as Map<String, Object?>);
+    final messageJson = json['message']!;
     final message = (messageJson as String);
+
     return WorkDoneProgressEnd(kind: kind, message: message);
   }
 
@@ -6804,9 +6939,10 @@ class SetTraceParams implements ToJson {
   SetTraceParams({required this.value});
 
   factory SetTraceParams.fromJson(Map<String, Object?> json) {
-    final valueJson = (json['value']! as Map<String, Object?>);
+    final valueJson = json['value']!;
     // Handle enum type;
     final value = _i1.$enumDecode(_$TraceValuesEnumMap, valueJson);
+
     return SetTraceParams(value: value);
   }
 
@@ -6822,10 +6958,11 @@ class LogTraceParams implements ToJson {
   LogTraceParams({required this.message, required this.verbose});
 
   factory LogTraceParams.fromJson(Map<String, Object?> json) {
-    final messageJson = (json['message']! as Map<String, Object?>);
+    final messageJson = json['message']!;
     final message = (messageJson as String);
-    final verboseJson = (json['verbose']! as Map<String, Object?>);
+    final verboseJson = json['verbose']!;
     final verbose = (verboseJson as String);
+
     return LogTraceParams(message: message, verbose: verbose);
   }
 
@@ -6843,8 +6980,9 @@ class CancelParams implements ToJson {
   CancelParams({required this.id});
 
   factory CancelParams.fromJson(Map<String, Object?> json) {
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as OrRefType);
+
     return CancelParams(id: id);
   }
 
@@ -6861,10 +6999,11 @@ class ProgressParams implements ToJson {
   ProgressParams({required this.token, required this.value});
 
   factory ProgressParams.fromJson(Map<String, Object?> json) {
-    final tokenJson = (json['token']! as Map<String, Object?>);
+    final tokenJson = json['token']!;
     final token = (tokenJson as ProgressToken);
-    final valueJson = (json['value']! as Map<String, Object?>);
+    final valueJson = json['value']!;
     final value = (valueJson as LSPAny);
+
     return ProgressParams(token: token, value: value);
   }
 
@@ -6889,10 +7028,13 @@ class TextDocumentPositionParams implements ToJson {
   });
 
   factory TextDocumentPositionParams.fromJson(Map<String, Object?> json) {
-    final positionJson = (json['position']! as Map<String, Object?>);
-    final position = Position.fromJson(positionJson);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
-    final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+
     return TextDocumentPositionParams(
       position: position,
       textDocument: textDocument,
@@ -6915,8 +7057,9 @@ class WorkDoneProgressParams implements ToJson {
   WorkDoneProgressParams({required this.workDoneToken});
 
   factory WorkDoneProgressParams.fromJson(Map<String, Object?> json) {
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return WorkDoneProgressParams(workDoneToken: workDoneToken);
   }
 
@@ -6933,9 +7076,9 @@ class PartialResultParams implements ToJson {
   PartialResultParams({required this.partialResultToken});
 
   factory PartialResultParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson =
-        (json['partialResultToken']! as Map<String, Object?>);
+    final partialResultTokenJson = json['partialResultToken']!;
     final partialResultToken = (partialResultTokenJson as ProgressToken);
+
     return PartialResultParams(partialResultToken: partialResultToken);
   }
 
@@ -6960,16 +7103,21 @@ class LocationLink implements ToJson {
   });
 
   factory LocationLink.fromJson(Map<String, Object?> json) {
-    final originSelectionRangeJson =
-        (json['originSelectionRange']! as Map<String, Object?>);
-    final originSelectionRange = Range.fromJson(originSelectionRangeJson);
-    final targetRangeJson = (json['targetRange']! as Map<String, Object?>);
-    final targetRange = Range.fromJson(targetRangeJson);
-    final targetSelectionRangeJson =
-        (json['targetSelectionRange']! as Map<String, Object?>);
-    final targetSelectionRange = Range.fromJson(targetSelectionRangeJson);
-    final targetUriJson = (json['targetUri']! as Map<String, Object?>);
+    final originSelectionRangeJson = json['originSelectionRange']!;
+    final originSelectionRange = Range.fromJson(
+      (originSelectionRangeJson as Map<String, Object?>),
+    );
+    final targetRangeJson = json['targetRange']!;
+    final targetRange = Range.fromJson(
+      (targetRangeJson as Map<String, Object?>),
+    );
+    final targetSelectionRangeJson = json['targetSelectionRange']!;
+    final targetSelectionRange = Range.fromJson(
+      (targetSelectionRangeJson as Map<String, Object?>),
+    );
+    final targetUriJson = json['targetUri']!;
     final targetUri = (targetUriJson as Uri);
+
     return LocationLink(
       originSelectionRange: originSelectionRange,
       targetRange: targetRange,
@@ -7014,10 +7162,11 @@ class Range implements ToJson {
   Range({required this.end, required this.start});
 
   factory Range.fromJson(Map<String, Object?> json) {
-    final endJson = (json['end']! as Map<String, Object?>);
-    final end = Position.fromJson(endJson);
-    final startJson = (json['start']! as Map<String, Object?>);
-    final start = Position.fromJson(startJson);
+    final endJson = json['end']!;
+    final end = Position.fromJson((endJson as Map<String, Object?>));
+    final startJson = json['start']!;
+    final start = Position.fromJson((startJson as Map<String, Object?>));
+
     return Range(end: end, start: start);
   }
 
@@ -7037,9 +7186,9 @@ class ImplementationOptions implements WorkDoneProgressOptions {
   ImplementationOptions({required this.workDoneProgress});
 
   factory ImplementationOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return ImplementationOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7057,8 +7206,9 @@ class StaticRegistrationOptions implements ToJson {
   StaticRegistrationOptions({required this.id});
 
   factory StaticRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
+
     return StaticRegistrationOptions(id: id);
   }
 
@@ -7076,9 +7226,9 @@ class TypeDefinitionOptions implements WorkDoneProgressOptions {
   TypeDefinitionOptions({required this.workDoneProgress});
 
   factory TypeDefinitionOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return TypeDefinitionOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7096,10 +7246,11 @@ class WorkspaceFoldersChangeEvent implements ToJson {
   WorkspaceFoldersChangeEvent({required this.added, required this.removed});
 
   factory WorkspaceFoldersChangeEvent.fromJson(Map<String, Object?> json) {
-    final addedJson = (json['added']! as Map<String, Object?>);
+    final addedJson = json['added']!;
     final added = (addedJson as List<WorkspaceFolder>);
-    final removedJson = (json['removed']! as Map<String, Object?>);
+    final removedJson = json['removed']!;
     final removed = (removedJson as List<WorkspaceFolder>);
+
     return WorkspaceFoldersChangeEvent(added: added, removed: removed);
   }
 
@@ -7119,10 +7270,11 @@ class ConfigurationItem implements ToJson {
   ConfigurationItem({required this.scopeUri, required this.section});
 
   factory ConfigurationItem.fromJson(Map<String, Object?> json) {
-    final scopeUriJson = (json['scopeUri']! as Map<String, Object?>);
+    final scopeUriJson = json['scopeUri']!;
     final scopeUri = (scopeUriJson as Uri);
-    final sectionJson = (json['section']! as Map<String, Object?>);
+    final sectionJson = json['section']!;
     final section = (sectionJson as String);
+
     return ConfigurationItem(scopeUri: scopeUri, section: section);
   }
 
@@ -7143,8 +7295,9 @@ class TextDocumentIdentifier implements ToJson {
   TextDocumentIdentifier({required this.uri});
 
   factory TextDocumentIdentifier.fromJson(Map<String, Object?> json) {
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return TextDocumentIdentifier(uri: uri);
   }
 
@@ -7167,14 +7320,15 @@ class Color implements ToJson {
   });
 
   factory Color.fromJson(Map<String, Object?> json) {
-    final alphaJson = (json['alpha']! as Map<String, Object?>);
+    final alphaJson = json['alpha']!;
     final alpha = (alphaJson as double);
-    final blueJson = (json['blue']! as Map<String, Object?>);
+    final blueJson = json['blue']!;
     final blue = (blueJson as double);
-    final greenJson = (json['green']! as Map<String, Object?>);
+    final greenJson = json['green']!;
     final green = (greenJson as double);
-    final redJson = (json['red']! as Map<String, Object?>);
+    final redJson = json['red']!;
     final red = (redJson as double);
+
     return Color(alpha: alpha, blue: blue, green: green, red: red);
   }
 
@@ -7200,9 +7354,9 @@ class DocumentColorOptions implements WorkDoneProgressOptions {
   DocumentColorOptions({required this.workDoneProgress});
 
   factory DocumentColorOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentColorOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7219,9 +7373,9 @@ class FoldingRangeOptions implements WorkDoneProgressOptions {
   FoldingRangeOptions({required this.workDoneProgress});
 
   factory FoldingRangeOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return FoldingRangeOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7238,9 +7392,9 @@ class DeclarationOptions implements WorkDoneProgressOptions {
   DeclarationOptions({required this.workDoneProgress});
 
   factory DeclarationOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DeclarationOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7284,10 +7438,11 @@ class Position implements ToJson {
   Position({required this.character, required this.line});
 
   factory Position.fromJson(Map<String, Object?> json) {
-    final characterJson = (json['character']! as Map<String, Object?>);
+    final characterJson = json['character']!;
     final character = (characterJson as int);
-    final lineJson = (json['line']! as Map<String, Object?>);
+    final lineJson = json['line']!;
     final line = (lineJson as int);
+
     return Position(character: character, line: line);
   }
 
@@ -7314,9 +7469,9 @@ class SelectionRangeOptions implements WorkDoneProgressOptions {
   SelectionRangeOptions({required this.workDoneProgress});
 
   factory SelectionRangeOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return SelectionRangeOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7335,9 +7490,9 @@ class CallHierarchyOptions implements WorkDoneProgressOptions {
   CallHierarchyOptions({required this.workDoneProgress});
 
   factory CallHierarchyOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return CallHierarchyOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7360,15 +7515,17 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
   });
 
   factory SemanticTokensOptions.fromJson(Map<String, Object?> json) {
-    final fullJson = (json['full']! as Map<String, Object?>);
+    final fullJson = json['full']!;
     final full = (fullJson as OrRefType);
-    final legendJson = (json['legend']! as Map<String, Object?>);
-    final legend = SemanticTokensLegend.fromJson(legendJson);
-    final rangeJson = (json['range']! as Map<String, Object?>);
+    final legendJson = json['legend']!;
+    final legend = SemanticTokensLegend.fromJson(
+      (legendJson as Map<String, Object?>),
+    );
+    final rangeJson = json['range']!;
     final range = (rangeJson as OrRefType);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return SemanticTokensOptions(
       full: full,
       legend: legend,
@@ -7405,12 +7562,13 @@ class SemanticTokensEdit implements ToJson {
   });
 
   factory SemanticTokensEdit.fromJson(Map<String, Object?> json) {
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final dataJson = json['data']!;
     final data = (dataJson as List<int>);
-    final deleteCountJson = (json['deleteCount']! as Map<String, Object?>);
+    final deleteCountJson = json['deleteCount']!;
     final deleteCount = (deleteCountJson as int);
-    final startJson = (json['start']! as Map<String, Object?>);
+    final startJson = json['start']!;
     final start = (startJson as int);
+
     return SemanticTokensEdit(
       data: data,
       deleteCount: deleteCount,
@@ -7437,9 +7595,9 @@ class LinkedEditingRangeOptions implements WorkDoneProgressOptions {
   LinkedEditingRangeOptions({required this.workDoneProgress});
 
   factory LinkedEditingRangeOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return LinkedEditingRangeOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7458,8 +7616,9 @@ class FileCreate implements ToJson {
   FileCreate({required this.uri});
 
   factory FileCreate.fromJson(Map<String, Object?> json) {
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as String);
+
     return FileCreate(uri: uri);
   }
 
@@ -7481,12 +7640,13 @@ class TextDocumentEdit implements ToJson {
   TextDocumentEdit({required this.edits, required this.textDocument});
 
   factory TextDocumentEdit.fromJson(Map<String, Object?> json) {
-    final editsJson = (json['edits']! as Map<String, Object?>);
+    final editsJson = json['edits']!;
     final edits = (editsJson as List<OrRefType>);
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
     final textDocument = OptionalVersionedTextDocumentIdentifier.fromJson(
-      textDocumentJson,
+      (textDocumentJson as Map<String, Object?>),
     );
+
     return TextDocumentEdit(edits: edits, textDocument: textDocument);
   }
 
@@ -7514,14 +7674,17 @@ class CreateFile implements ResourceOperation {
   });
 
   factory CreateFile.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = (json['annotationId']! as Map<String, Object?>);
+    final annotationIdJson = json['annotationId']!;
     final annotationId = (annotationIdJson as ChangeAnnotationIdentifier);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final optionsJson = (json['options']! as Map<String, Object?>);
-    final options = CreateFileOptions.fromJson(optionsJson);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final optionsJson = json['options']!;
+    final options = CreateFileOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
+    );
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return CreateFile(
       annotationId: annotationId,
       kind: kind,
@@ -7561,16 +7724,19 @@ class RenameFile implements ResourceOperation {
   });
 
   factory RenameFile.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = (json['annotationId']! as Map<String, Object?>);
+    final annotationIdJson = json['annotationId']!;
     final annotationId = (annotationIdJson as ChangeAnnotationIdentifier);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final newUriJson = (json['newUri']! as Map<String, Object?>);
+    final newUriJson = json['newUri']!;
     final newUri = (newUriJson as Uri);
-    final oldUriJson = (json['oldUri']! as Map<String, Object?>);
+    final oldUriJson = json['oldUri']!;
     final oldUri = (oldUriJson as Uri);
-    final optionsJson = (json['options']! as Map<String, Object?>);
-    final options = RenameFileOptions.fromJson(optionsJson);
+    final optionsJson = json['options']!;
+    final options = RenameFileOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
+    );
+
     return RenameFile(
       annotationId: annotationId,
       kind: kind,
@@ -7613,14 +7779,17 @@ class DeleteFile implements ResourceOperation {
   });
 
   factory DeleteFile.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = (json['annotationId']! as Map<String, Object?>);
+    final annotationIdJson = json['annotationId']!;
     final annotationId = (annotationIdJson as ChangeAnnotationIdentifier);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final optionsJson = (json['options']! as Map<String, Object?>);
-    final options = DeleteFileOptions.fromJson(optionsJson);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final optionsJson = json['options']!;
+    final options = DeleteFileOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
+    );
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return DeleteFile(
       annotationId: annotationId,
       kind: kind,
@@ -7659,13 +7828,13 @@ class ChangeAnnotation implements ToJson {
   });
 
   factory ChangeAnnotation.fromJson(Map<String, Object?> json) {
-    final descriptionJson = (json['description']! as Map<String, Object?>);
+    final descriptionJson = json['description']!;
     final description = (descriptionJson as String);
-    final labelJson = (json['label']! as Map<String, Object?>);
+    final labelJson = json['label']!;
     final label = (labelJson as String);
-    final needsConfirmationJson =
-        (json['needsConfirmation']! as Map<String, Object?>);
+    final needsConfirmationJson = json['needsConfirmation']!;
     final needsConfirmation = (needsConfirmationJson as bool);
+
     return ChangeAnnotation(
       description: description,
       label: label,
@@ -7698,10 +7867,13 @@ class FileOperationFilter implements ToJson {
   FileOperationFilter({required this.pattern, required this.scheme});
 
   factory FileOperationFilter.fromJson(Map<String, Object?> json) {
-    final patternJson = (json['pattern']! as Map<String, Object?>);
-    final pattern = FileOperationPattern.fromJson(patternJson);
-    final schemeJson = (json['scheme']! as Map<String, Object?>);
+    final patternJson = json['pattern']!;
+    final pattern = FileOperationPattern.fromJson(
+      (patternJson as Map<String, Object?>),
+    );
+    final schemeJson = json['scheme']!;
     final scheme = (schemeJson as String);
+
     return FileOperationFilter(pattern: pattern, scheme: scheme);
   }
 
@@ -7723,10 +7895,11 @@ class FileRename implements ToJson {
   FileRename({required this.newUri, required this.oldUri});
 
   factory FileRename.fromJson(Map<String, Object?> json) {
-    final newUriJson = (json['newUri']! as Map<String, Object?>);
+    final newUriJson = json['newUri']!;
     final newUri = (newUriJson as String);
-    final oldUriJson = (json['oldUri']! as Map<String, Object?>);
+    final oldUriJson = json['oldUri']!;
     final oldUri = (oldUriJson as String);
+
     return FileRename(newUri: newUri, oldUri: oldUri);
   }
 
@@ -7749,8 +7922,9 @@ class FileDelete implements ToJson {
   FileDelete({required this.uri});
 
   factory FileDelete.fromJson(Map<String, Object?> json) {
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as String);
+
     return FileDelete(uri: uri);
   }
 
@@ -7767,9 +7941,9 @@ class MonikerOptions implements WorkDoneProgressOptions {
   MonikerOptions({required this.workDoneProgress});
 
   factory MonikerOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return MonikerOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7788,9 +7962,9 @@ class TypeHierarchyOptions implements WorkDoneProgressOptions {
   TypeHierarchyOptions({required this.workDoneProgress});
 
   factory TypeHierarchyOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return TypeHierarchyOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7808,11 +7982,13 @@ class InlineValueContext implements ToJson {
   InlineValueContext({required this.frameId, required this.stoppedLocation});
 
   factory InlineValueContext.fromJson(Map<String, Object?> json) {
-    final frameIdJson = (json['frameId']! as Map<String, Object?>);
+    final frameIdJson = json['frameId']!;
     final frameId = (frameIdJson as int);
-    final stoppedLocationJson =
-        (json['stoppedLocation']! as Map<String, Object?>);
-    final stoppedLocation = Range.fromJson(stoppedLocationJson);
+    final stoppedLocationJson = json['stoppedLocation']!;
+    final stoppedLocation = Range.fromJson(
+      (stoppedLocationJson as Map<String, Object?>),
+    );
+
     return InlineValueContext(
       frameId: frameId,
       stoppedLocation: stoppedLocation,
@@ -7839,10 +8015,11 @@ class InlineValueText implements ToJson {
   InlineValueText({required this.range, required this.text});
 
   factory InlineValueText.fromJson(Map<String, Object?> json) {
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final textJson = (json['text']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final textJson = json['text']!;
     final text = (textJson as String);
+
     return InlineValueText(range: range, text: text);
   }
 
@@ -7871,13 +8048,13 @@ class InlineValueVariableLookup implements ToJson {
   });
 
   factory InlineValueVariableLookup.fromJson(Map<String, Object?> json) {
-    final caseSensitiveLookupJson =
-        (json['caseSensitiveLookup']! as Map<String, Object?>);
+    final caseSensitiveLookupJson = json['caseSensitiveLookup']!;
     final caseSensitiveLookup = (caseSensitiveLookupJson as bool);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final variableNameJson = (json['variableName']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final variableNameJson = json['variableName']!;
     final variableName = (variableNameJson as String);
+
     return InlineValueVariableLookup(
       caseSensitiveLookup: caseSensitiveLookup,
       range: range,
@@ -7913,10 +8090,11 @@ class InlineValueEvaluatableExpression implements ToJson {
   });
 
   factory InlineValueEvaluatableExpression.fromJson(Map<String, Object?> json) {
-    final expressionJson = (json['expression']! as Map<String, Object?>);
+    final expressionJson = json['expression']!;
     final expression = (expressionJson as String);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+
     return InlineValueEvaluatableExpression(
       expression: expression,
       range: range,
@@ -7943,9 +8121,9 @@ class InlineValueOptions implements WorkDoneProgressOptions {
   InlineValueOptions({required this.workDoneProgress});
 
   factory InlineValueOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return InlineValueOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -7970,14 +8148,15 @@ class InlayHintLabelPart implements ToJson {
   });
 
   factory InlayHintLabelPart.fromJson(Map<String, Object?> json) {
-    final commandJson = (json['command']! as Map<String, Object?>);
-    final command = Command.fromJson(commandJson);
-    final locationJson = (json['location']! as Map<String, Object?>);
-    final location = Location.fromJson(locationJson);
-    final tooltipJson = (json['tooltip']! as Map<String, Object?>);
+    final commandJson = json['command']!;
+    final command = Command.fromJson((commandJson as Map<String, Object?>));
+    final locationJson = json['location']!;
+    final location = Location.fromJson((locationJson as Map<String, Object?>));
+    final tooltipJson = json['tooltip']!;
     final tooltip = (tooltipJson as OrRefType);
-    final valueJson = (json['value']! as Map<String, Object?>);
+    final valueJson = json['value']!;
     final value = (valueJson as String);
+
     return InlayHintLabelPart(
       command: command,
       location: location,
@@ -8031,11 +8210,12 @@ class MarkupContent implements ToJson {
   MarkupContent({required this.kind, required this.value});
 
   factory MarkupContent.fromJson(Map<String, Object?> json) {
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$MarkupKindEnumMap, kindJson);
-    final valueJson = (json['value']! as Map<String, Object?>);
+    final valueJson = json['value']!;
     final value = (valueJson as String);
+
     return MarkupContent(kind: kind, value: value);
   }
 
@@ -8060,12 +8240,11 @@ class InlayHintOptions implements WorkDoneProgressOptions {
   });
 
   factory InlayHintOptions.fromJson(Map<String, Object?> json) {
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return InlayHintOptions(
       resolveProvider: resolveProvider,
       workDoneProgress: workDoneProgress,
@@ -8099,15 +8278,15 @@ class RelatedFullDocumentDiagnosticReport
   factory RelatedFullDocumentDiagnosticReport.fromJson(
     Map<String, Object?> json,
   ) {
-    final itemsJson = (json['items']! as Map<String, Object?>);
+    final itemsJson = json['items']!;
     final items = (itemsJson as List<Diagnostic>);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final relatedDocumentsJson =
-        (json['relatedDocuments']! as Map<String, Object?>);
+    final relatedDocumentsJson = json['relatedDocuments']!;
     final relatedDocuments = (relatedDocumentsJson as Map<Uri, OrRefType>);
-    final resultIdJson = (json['resultId']! as Map<String, Object?>);
+    final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
+
     return RelatedFullDocumentDiagnosticReport(
       items: items,
       kind: kind,
@@ -8156,13 +8335,13 @@ class RelatedUnchangedDocumentDiagnosticReport
   factory RelatedUnchangedDocumentDiagnosticReport.fromJson(
     Map<String, Object?> json,
   ) {
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final relatedDocumentsJson =
-        (json['relatedDocuments']! as Map<String, Object?>);
+    final relatedDocumentsJson = json['relatedDocuments']!;
     final relatedDocuments = (relatedDocumentsJson as Map<Uri, OrRefType>);
-    final resultIdJson = (json['resultId']! as Map<String, Object?>);
+    final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
+
     return RelatedUnchangedDocumentDiagnosticReport(
       kind: kind,
       relatedDocuments: relatedDocuments,
@@ -8204,12 +8383,13 @@ class FullDocumentDiagnosticReport implements ToJson {
   });
 
   factory FullDocumentDiagnosticReport.fromJson(Map<String, Object?> json) {
-    final itemsJson = (json['items']! as Map<String, Object?>);
+    final itemsJson = json['items']!;
     final items = (itemsJson as List<Diagnostic>);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final resultIdJson = (json['resultId']! as Map<String, Object?>);
+    final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
+
     return FullDocumentDiagnosticReport(
       items: items,
       kind: kind,
@@ -8245,10 +8425,11 @@ class UnchangedDocumentDiagnosticReport implements ToJson {
   factory UnchangedDocumentDiagnosticReport.fromJson(
     Map<String, Object?> json,
   ) {
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final resultIdJson = (json['resultId']! as Map<String, Object?>);
+    final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
+
     return UnchangedDocumentDiagnosticReport(kind: kind, resultId: resultId);
   }
 
@@ -8277,17 +8458,15 @@ class DiagnosticOptions implements WorkDoneProgressOptions {
   });
 
   factory DiagnosticOptions.fromJson(Map<String, Object?> json) {
-    final identifierJson = (json['identifier']! as Map<String, Object?>);
+    final identifierJson = json['identifier']!;
     final identifier = (identifierJson as String);
-    final interFileDependenciesJson =
-        (json['interFileDependencies']! as Map<String, Object?>);
+    final interFileDependenciesJson = json['interFileDependencies']!;
     final interFileDependencies = (interFileDependenciesJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
-    final workspaceDiagnosticsJson =
-        (json['workspaceDiagnostics']! as Map<String, Object?>);
+    final workspaceDiagnosticsJson = json['workspaceDiagnostics']!;
     final workspaceDiagnostics = (workspaceDiagnosticsJson as bool);
+
     return DiagnosticOptions(
       identifier: identifier,
       interFileDependencies: interFileDependencies,
@@ -8324,10 +8503,11 @@ class PreviousResultId implements ToJson {
   PreviousResultId({required this.uri, required this.value});
 
   factory PreviousResultId.fromJson(Map<String, Object?> json) {
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
-    final valueJson = (json['value']! as Map<String, Object?>);
+    final valueJson = json['value']!;
     final value = (valueJson as String);
+
     return PreviousResultId(uri: uri, value: value);
   }
 
@@ -8355,16 +8535,17 @@ class NotebookDocument implements ToJson {
   });
 
   factory NotebookDocument.fromJson(Map<String, Object?> json) {
-    final cellsJson = (json['cells']! as Map<String, Object?>);
+    final cellsJson = json['cells']!;
     final cells = (cellsJson as List<NotebookCell>);
-    final metadataJson = (json['metadata']! as Map<String, Object?>);
+    final metadataJson = json['metadata']!;
     final metadata = (metadataJson as LSPObject);
-    final notebookTypeJson = (json['notebookType']! as Map<String, Object?>);
+    final notebookTypeJson = json['notebookType']!;
     final notebookType = (notebookTypeJson as String);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as int);
+
     return NotebookDocument(
       cells: cells,
       metadata: metadata,
@@ -8407,14 +8588,15 @@ class TextDocumentItem implements ToJson {
   });
 
   factory TextDocumentItem.fromJson(Map<String, Object?> json) {
-    final languageIdJson = (json['languageId']! as Map<String, Object?>);
+    final languageIdJson = json['languageId']!;
     final languageId = (languageIdJson as String);
-    final textJson = (json['text']! as Map<String, Object?>);
+    final textJson = json['text']!;
     final text = (textJson as String);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as int);
+
     return TextDocumentItem(
       languageId: languageId,
       text: text,
@@ -8453,10 +8635,11 @@ class VersionedNotebookDocumentIdentifier implements ToJson {
   factory VersionedNotebookDocumentIdentifier.fromJson(
     Map<String, Object?> json,
   ) {
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as int);
+
     return VersionedNotebookDocumentIdentifier(uri: uri, version: version);
   }
 
@@ -8478,10 +8661,11 @@ class NotebookDocumentChangeEvent implements ToJson {
   NotebookDocumentChangeEvent({required this.cells, required this.metadata});
 
   factory NotebookDocumentChangeEvent.fromJson(Map<String, Object?> json) {
-    final cellsJson = (json['cells']! as Map<String, Object?>);
+    final cellsJson = json['cells']!;
     final cells = (cellsJson as NotebookDocumentChangeEventCells);
-    final metadataJson = (json['metadata']! as Map<String, Object?>);
+    final metadataJson = json['metadata']!;
     final metadata = (metadataJson as LSPObject);
+
     return NotebookDocumentChangeEvent(cells: cells, metadata: metadata);
   }
 
@@ -8504,8 +8688,9 @@ class NotebookDocumentIdentifier implements ToJson {
   NotebookDocumentIdentifier({required this.uri});
 
   factory NotebookDocumentIdentifier.fromJson(Map<String, Object?> json) {
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return NotebookDocumentIdentifier(uri: uri);
   }
 
@@ -8528,17 +8713,17 @@ class InlineCompletionContext implements ToJson {
   });
 
   factory InlineCompletionContext.fromJson(Map<String, Object?> json) {
-    final selectedCompletionInfoJson =
-        (json['selectedCompletionInfo']! as Map<String, Object?>);
+    final selectedCompletionInfoJson = json['selectedCompletionInfo']!;
     final selectedCompletionInfo = SelectedCompletionInfo.fromJson(
-      selectedCompletionInfoJson,
+      (selectedCompletionInfoJson as Map<String, Object?>),
     );
-    final triggerKindJson = (json['triggerKind']! as Map<String, Object?>);
+    final triggerKindJson = json['triggerKind']!;
     // Handle enum type;
     final triggerKind = _i1.$enumDecode(
       _$InlineCompletionTriggerKindEnumMap,
       triggerKindJson,
     );
+
     return InlineCompletionContext(
       selectedCompletionInfo: selectedCompletionInfo,
       triggerKind: triggerKind,
@@ -8568,10 +8753,11 @@ class StringValue implements ToJson {
   StringValue({required this.kind, required this.value});
 
   factory StringValue.fromJson(Map<String, Object?> json) {
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final valueJson = (json['value']! as Map<String, Object?>);
+    final valueJson = json['value']!;
     final value = (valueJson as String);
+
     return StringValue(kind: kind, value: value);
   }
 
@@ -8593,9 +8779,9 @@ class InlineCompletionOptions implements WorkDoneProgressOptions {
   InlineCompletionOptions({required this.workDoneProgress});
 
   factory InlineCompletionOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return InlineCompletionOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -8617,13 +8803,13 @@ class Registration implements ToJson {
   });
 
   factory Registration.fromJson(Map<String, Object?> json) {
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final methodJson = (json['method']! as Map<String, Object?>);
+    final methodJson = json['method']!;
     final method = (methodJson as String);
-    final registerOptionsJson =
-        (json['registerOptions']! as Map<String, Object?>);
+    final registerOptionsJson = json['registerOptions']!;
     final registerOptions = (registerOptionsJson as LSPAny);
+
     return Registration(
       id: id,
       method: method,
@@ -8652,10 +8838,11 @@ class Unregistration implements ToJson {
   Unregistration({required this.id, required this.method});
 
   factory Unregistration.fromJson(Map<String, Object?> json) {
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final methodJson = (json['method']! as Map<String, Object?>);
+    final methodJson = json['method']!;
     final method = (methodJson as String);
+
     return Unregistration(id: id, method: method);
   }
 
@@ -8687,26 +8874,28 @@ class _InitializeParams implements WorkDoneProgressParams {
   });
 
   factory _InitializeParams.fromJson(Map<String, Object?> json) {
-    final capabilitiesJson = (json['capabilities']! as Map<String, Object?>);
-    final capabilities = ClientCapabilities.fromJson(capabilitiesJson);
-    final clientInfoJson = (json['clientInfo']! as Map<String, Object?>);
+    final capabilitiesJson = json['capabilities']!;
+    final capabilities = ClientCapabilities.fromJson(
+      (capabilitiesJson as Map<String, Object?>),
+    );
+    final clientInfoJson = json['clientInfo']!;
     final clientInfo = (clientInfoJson as _InitializeParamsClientInfo);
-    final initializationOptionsJson =
-        (json['initializationOptions']! as Map<String, Object?>);
+    final initializationOptionsJson = json['initializationOptions']!;
     final initializationOptions = (initializationOptionsJson as LSPAny);
-    final localeJson = (json['locale']! as Map<String, Object?>);
+    final localeJson = json['locale']!;
     final locale = (localeJson as String);
-    final processIdJson = (json['processId']! as Map<String, Object?>);
+    final processIdJson = json['processId']!;
     final processId = (processIdJson as OrRefType);
-    final rootPathJson = (json['rootPath']! as Map<String, Object?>);
+    final rootPathJson = json['rootPath']!;
     final rootPath = (rootPathJson as OrRefType);
-    final rootUriJson = (json['rootUri']! as Map<String, Object?>);
+    final rootUriJson = json['rootUri']!;
     final rootUri = (rootUriJson as OrRefType);
-    final traceJson = (json['trace']! as Map<String, Object?>);
+    final traceJson = json['trace']!;
     // Handle enum type;
     final trace = _i1.$enumDecode(_$TraceValuesEnumMap, traceJson);
-    final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
+    final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
+
     return _InitializeParams(
       capabilities: capabilities,
       clientInfo: clientInfo,
@@ -8768,9 +8957,9 @@ class WorkspaceFoldersInitializeParams implements ToJson {
   WorkspaceFoldersInitializeParams({required this.workspaceFolders});
 
   factory WorkspaceFoldersInitializeParams.fromJson(Map<String, Object?> json) {
-    final workspaceFoldersJson =
-        (json['workspaceFolders']! as Map<String, Object?>);
+    final workspaceFoldersJson = json['workspaceFolders']!;
     final workspaceFolders = (workspaceFoldersJson as OrRefType);
+
     return WorkspaceFoldersInitializeParams(workspaceFolders: workspaceFolders);
   }
 
@@ -8829,130 +9018,103 @@ class ServerCapabilities implements ToJson {
   });
 
   factory ServerCapabilities.fromJson(Map<String, Object?> json) {
-    final callHierarchyProviderJson =
-        (json['callHierarchyProvider']! as Map<String, Object?>);
+    final callHierarchyProviderJson = json['callHierarchyProvider']!;
     final callHierarchyProvider = (callHierarchyProviderJson as OrRefType);
-    final codeActionProviderJson =
-        (json['codeActionProvider']! as Map<String, Object?>);
+    final codeActionProviderJson = json['codeActionProvider']!;
     final codeActionProvider = (codeActionProviderJson as OrRefType);
-    final codeLensProviderJson =
-        (json['codeLensProvider']! as Map<String, Object?>);
-    final codeLensProvider = CodeLensOptions.fromJson(codeLensProviderJson);
-    final colorProviderJson = (json['colorProvider']! as Map<String, Object?>);
-    final colorProvider = (colorProviderJson as OrRefType);
-    final completionProviderJson =
-        (json['completionProvider']! as Map<String, Object?>);
-    final completionProvider = CompletionOptions.fromJson(
-      completionProviderJson,
+    final codeLensProviderJson = json['codeLensProvider']!;
+    final codeLensProvider = CodeLensOptions.fromJson(
+      (codeLensProviderJson as Map<String, Object?>),
     );
-    final declarationProviderJson =
-        (json['declarationProvider']! as Map<String, Object?>);
+    final colorProviderJson = json['colorProvider']!;
+    final colorProvider = (colorProviderJson as OrRefType);
+    final completionProviderJson = json['completionProvider']!;
+    final completionProvider = CompletionOptions.fromJson(
+      (completionProviderJson as Map<String, Object?>),
+    );
+    final declarationProviderJson = json['declarationProvider']!;
     final declarationProvider = (declarationProviderJson as OrRefType);
-    final definitionProviderJson =
-        (json['definitionProvider']! as Map<String, Object?>);
+    final definitionProviderJson = json['definitionProvider']!;
     final definitionProvider = (definitionProviderJson as OrRefType);
-    final diagnosticProviderJson =
-        (json['diagnosticProvider']! as Map<String, Object?>);
+    final diagnosticProviderJson = json['diagnosticProvider']!;
     final diagnosticProvider = (diagnosticProviderJson as OrRefType);
-    final documentFormattingProviderJson =
-        (json['documentFormattingProvider']! as Map<String, Object?>);
+    final documentFormattingProviderJson = json['documentFormattingProvider']!;
     final documentFormattingProvider =
         (documentFormattingProviderJson as OrRefType);
-    final documentHighlightProviderJson =
-        (json['documentHighlightProvider']! as Map<String, Object?>);
+    final documentHighlightProviderJson = json['documentHighlightProvider']!;
     final documentHighlightProvider =
         (documentHighlightProviderJson as OrRefType);
-    final documentLinkProviderJson =
-        (json['documentLinkProvider']! as Map<String, Object?>);
+    final documentLinkProviderJson = json['documentLinkProvider']!;
     final documentLinkProvider = DocumentLinkOptions.fromJson(
-      documentLinkProviderJson,
+      (documentLinkProviderJson as Map<String, Object?>),
     );
     final documentOnTypeFormattingProviderJson =
-        (json['documentOnTypeFormattingProvider']! as Map<String, Object?>);
+        json['documentOnTypeFormattingProvider']!;
     final documentOnTypeFormattingProvider =
         DocumentOnTypeFormattingOptions.fromJson(
-          documentOnTypeFormattingProviderJson,
+          (documentOnTypeFormattingProviderJson as Map<String, Object?>),
         );
     final documentRangeFormattingProviderJson =
-        (json['documentRangeFormattingProvider']! as Map<String, Object?>);
+        json['documentRangeFormattingProvider']!;
     final documentRangeFormattingProvider =
         (documentRangeFormattingProviderJson as OrRefType);
-    final documentSymbolProviderJson =
-        (json['documentSymbolProvider']! as Map<String, Object?>);
+    final documentSymbolProviderJson = json['documentSymbolProvider']!;
     final documentSymbolProvider = (documentSymbolProviderJson as OrRefType);
-    final executeCommandProviderJson =
-        (json['executeCommandProvider']! as Map<String, Object?>);
+    final executeCommandProviderJson = json['executeCommandProvider']!;
     final executeCommandProvider = ExecuteCommandOptions.fromJson(
-      executeCommandProviderJson,
+      (executeCommandProviderJson as Map<String, Object?>),
     );
-    final experimentalJson = (json['experimental']! as Map<String, Object?>);
+    final experimentalJson = json['experimental']!;
     final experimental = (experimentalJson as LSPAny);
-    final foldingRangeProviderJson =
-        (json['foldingRangeProvider']! as Map<String, Object?>);
+    final foldingRangeProviderJson = json['foldingRangeProvider']!;
     final foldingRangeProvider = (foldingRangeProviderJson as OrRefType);
-    final hoverProviderJson = (json['hoverProvider']! as Map<String, Object?>);
+    final hoverProviderJson = json['hoverProvider']!;
     final hoverProvider = (hoverProviderJson as OrRefType);
-    final implementationProviderJson =
-        (json['implementationProvider']! as Map<String, Object?>);
+    final implementationProviderJson = json['implementationProvider']!;
     final implementationProvider = (implementationProviderJson as OrRefType);
-    final inlayHintProviderJson =
-        (json['inlayHintProvider']! as Map<String, Object?>);
+    final inlayHintProviderJson = json['inlayHintProvider']!;
     final inlayHintProvider = (inlayHintProviderJson as OrRefType);
-    final inlineCompletionProviderJson =
-        (json['inlineCompletionProvider']! as Map<String, Object?>);
+    final inlineCompletionProviderJson = json['inlineCompletionProvider']!;
     final inlineCompletionProvider =
         (inlineCompletionProviderJson as OrRefType);
-    final inlineValueProviderJson =
-        (json['inlineValueProvider']! as Map<String, Object?>);
+    final inlineValueProviderJson = json['inlineValueProvider']!;
     final inlineValueProvider = (inlineValueProviderJson as OrRefType);
-    final linkedEditingRangeProviderJson =
-        (json['linkedEditingRangeProvider']! as Map<String, Object?>);
+    final linkedEditingRangeProviderJson = json['linkedEditingRangeProvider']!;
     final linkedEditingRangeProvider =
         (linkedEditingRangeProviderJson as OrRefType);
-    final monikerProviderJson =
-        (json['monikerProvider']! as Map<String, Object?>);
+    final monikerProviderJson = json['monikerProvider']!;
     final monikerProvider = (monikerProviderJson as OrRefType);
-    final notebookDocumentSyncJson =
-        (json['notebookDocumentSync']! as Map<String, Object?>);
+    final notebookDocumentSyncJson = json['notebookDocumentSync']!;
     final notebookDocumentSync = (notebookDocumentSyncJson as OrRefType);
-    final positionEncodingJson =
-        (json['positionEncoding']! as Map<String, Object?>);
+    final positionEncodingJson = json['positionEncoding']!;
     // Handle enum type;
     final positionEncoding = _i1.$enumDecode(
       _$PositionEncodingKindEnumMap,
       positionEncodingJson,
     );
-    final referencesProviderJson =
-        (json['referencesProvider']! as Map<String, Object?>);
+    final referencesProviderJson = json['referencesProvider']!;
     final referencesProvider = (referencesProviderJson as OrRefType);
-    final renameProviderJson =
-        (json['renameProvider']! as Map<String, Object?>);
+    final renameProviderJson = json['renameProvider']!;
     final renameProvider = (renameProviderJson as OrRefType);
-    final selectionRangeProviderJson =
-        (json['selectionRangeProvider']! as Map<String, Object?>);
+    final selectionRangeProviderJson = json['selectionRangeProvider']!;
     final selectionRangeProvider = (selectionRangeProviderJson as OrRefType);
-    final semanticTokensProviderJson =
-        (json['semanticTokensProvider']! as Map<String, Object?>);
+    final semanticTokensProviderJson = json['semanticTokensProvider']!;
     final semanticTokensProvider = (semanticTokensProviderJson as OrRefType);
-    final signatureHelpProviderJson =
-        (json['signatureHelpProvider']! as Map<String, Object?>);
+    final signatureHelpProviderJson = json['signatureHelpProvider']!;
     final signatureHelpProvider = SignatureHelpOptions.fromJson(
-      signatureHelpProviderJson,
+      (signatureHelpProviderJson as Map<String, Object?>),
     );
-    final textDocumentSyncJson =
-        (json['textDocumentSync']! as Map<String, Object?>);
+    final textDocumentSyncJson = json['textDocumentSync']!;
     final textDocumentSync = (textDocumentSyncJson as OrRefType);
-    final typeDefinitionProviderJson =
-        (json['typeDefinitionProvider']! as Map<String, Object?>);
+    final typeDefinitionProviderJson = json['typeDefinitionProvider']!;
     final typeDefinitionProvider = (typeDefinitionProviderJson as OrRefType);
-    final typeHierarchyProviderJson =
-        (json['typeHierarchyProvider']! as Map<String, Object?>);
+    final typeHierarchyProviderJson = json['typeHierarchyProvider']!;
     final typeHierarchyProvider = (typeHierarchyProviderJson as OrRefType);
-    final workspaceJson = (json['workspace']! as Map<String, Object?>);
+    final workspaceJson = json['workspace']!;
     final workspace = (workspaceJson as ServerCapabilitiesWorkspace);
-    final workspaceSymbolProviderJson =
-        (json['workspaceSymbolProvider']! as Map<String, Object?>);
+    final workspaceSymbolProviderJson = json['workspaceSymbolProvider']!;
     final workspaceSymbolProvider = (workspaceSymbolProviderJson as OrRefType);
+
     return ServerCapabilities(
       callHierarchyProvider: callHierarchyProvider,
       codeActionProvider: codeActionProvider,
@@ -9133,10 +9295,11 @@ class VersionedTextDocumentIdentifier implements TextDocumentIdentifier {
   VersionedTextDocumentIdentifier({required this.uri, required this.version});
 
   factory VersionedTextDocumentIdentifier.fromJson(Map<String, Object?> json) {
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as int);
+
     return VersionedTextDocumentIdentifier(uri: uri, version: version);
   }
 
@@ -9158,8 +9321,9 @@ class SaveOptions implements ToJson {
   SaveOptions({required this.includeText});
 
   factory SaveOptions.fromJson(Map<String, Object?> json) {
-    final includeTextJson = (json['includeText']! as Map<String, Object?>);
+    final includeTextJson = json['includeText']!;
     final includeText = (includeTextJson as bool);
+
     return SaveOptions(includeText: includeText);
   }
 
@@ -9177,11 +9341,12 @@ class FileEvent implements ToJson {
   FileEvent({required this.type, required this.uri});
 
   factory FileEvent.fromJson(Map<String, Object?> json) {
-    final typeJson = (json['type']! as Map<String, Object?>);
+    final typeJson = json['type']!;
     // Handle enum type;
     final type = _i1.$enumDecode(_$FileChangeTypeEnumMap, typeJson);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+
     return FileEvent(type: type, uri: uri);
   }
 
@@ -9201,11 +9366,12 @@ class FileSystemWatcher implements ToJson {
   FileSystemWatcher({required this.globPattern, required this.kind});
 
   factory FileSystemWatcher.fromJson(Map<String, Object?> json) {
-    final globPatternJson = (json['globPattern']! as Map<String, Object?>);
+    final globPatternJson = json['globPattern']!;
     final globPattern = (globPatternJson as GlobPattern);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$WatchKindEnumMap, kindJson);
+
     return FileSystemWatcher(globPattern: globPattern, kind: kind);
   }
 
@@ -9240,28 +9406,29 @@ class Diagnostic implements ToJson {
   });
 
   factory Diagnostic.fromJson(Map<String, Object?> json) {
-    final codeJson = (json['code']! as Map<String, Object?>);
+    final codeJson = json['code']!;
     final code = (codeJson as OrRefType);
-    final codeDescriptionJson =
-        (json['codeDescription']! as Map<String, Object?>);
-    final codeDescription = CodeDescription.fromJson(codeDescriptionJson);
-    final dataJson = (json['data']! as Map<String, Object?>);
+    final codeDescriptionJson = json['codeDescription']!;
+    final codeDescription = CodeDescription.fromJson(
+      (codeDescriptionJson as Map<String, Object?>),
+    );
+    final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
-    final messageJson = (json['message']! as Map<String, Object?>);
+    final messageJson = json['message']!;
     final message = (messageJson as String);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final relatedInformationJson =
-        (json['relatedInformation']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final relatedInformationJson = json['relatedInformation']!;
     final relatedInformation =
         (relatedInformationJson as List<DiagnosticRelatedInformation>);
-    final severityJson = (json['severity']! as Map<String, Object?>);
+    final severityJson = json['severity']!;
     // Handle enum type;
     final severity = _i1.$enumDecode(_$DiagnosticSeverityEnumMap, severityJson);
-    final sourceJson = (json['source']! as Map<String, Object?>);
+    final sourceJson = json['source']!;
     final source = (sourceJson as String);
-    final tagsJson = (json['tags']! as Map<String, Object?>);
+    final tagsJson = json['tags']!;
     final tags = (tagsJson as List<DiagnosticTag>);
+
     return Diagnostic(
       code: code,
       codeDescription: codeDescription,
@@ -9326,15 +9493,15 @@ class CompletionContext implements ToJson {
   });
 
   factory CompletionContext.fromJson(Map<String, Object?> json) {
-    final triggerCharacterJson =
-        (json['triggerCharacter']! as Map<String, Object?>);
+    final triggerCharacterJson = json['triggerCharacter']!;
     final triggerCharacter = (triggerCharacterJson as String);
-    final triggerKindJson = (json['triggerKind']! as Map<String, Object?>);
+    final triggerKindJson = json['triggerKind']!;
     // Handle enum type;
     final triggerKind = _i1.$enumDecode(
       _$CompletionTriggerKindEnumMap,
       triggerKindJson,
     );
+
     return CompletionContext(
       triggerCharacter: triggerCharacter,
       triggerKind: triggerKind,
@@ -9361,10 +9528,11 @@ class CompletionItemLabelDetails implements ToJson {
   CompletionItemLabelDetails({required this.description, required this.detail});
 
   factory CompletionItemLabelDetails.fromJson(Map<String, Object?> json) {
-    final descriptionJson = (json['description']! as Map<String, Object?>);
+    final descriptionJson = json['description']!;
     final description = (descriptionJson as String);
-    final detailJson = (json['detail']! as Map<String, Object?>);
+    final detailJson = json['detail']!;
     final detail = (detailJson as String);
+
     return CompletionItemLabelDetails(description: description, detail: detail);
   }
 
@@ -9394,12 +9562,13 @@ class InsertReplaceEdit implements ToJson {
   });
 
   factory InsertReplaceEdit.fromJson(Map<String, Object?> json) {
-    final insertJson = (json['insert']! as Map<String, Object?>);
-    final insert = Range.fromJson(insertJson);
-    final newTextJson = (json['newText']! as Map<String, Object?>);
+    final insertJson = json['insert']!;
+    final insert = Range.fromJson((insertJson as Map<String, Object?>));
+    final newTextJson = json['newText']!;
     final newText = (newTextJson as String);
-    final replaceJson = (json['replace']! as Map<String, Object?>);
-    final replace = Range.fromJson(replaceJson);
+    final replaceJson = json['replace']!;
+    final replace = Range.fromJson((replaceJson as Map<String, Object?>));
+
     return InsertReplaceEdit(
       insert: insert,
       newText: newText,
@@ -9433,22 +9602,18 @@ class CompletionOptions implements WorkDoneProgressOptions {
   });
 
   factory CompletionOptions.fromJson(Map<String, Object?> json) {
-    final allCommitCharactersJson =
-        (json['allCommitCharacters']! as Map<String, Object?>);
+    final allCommitCharactersJson = json['allCommitCharacters']!;
     final allCommitCharacters = (allCommitCharactersJson as List<String>);
-    final completionItemJson =
-        (json['completionItem']! as Map<String, Object?>);
+    final completionItemJson = json['completionItem']!;
     final completionItem =
         (completionItemJson as CompletionOptionsCompletionItem);
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final triggerCharactersJson =
-        (json['triggerCharacters']! as Map<String, Object?>);
+    final triggerCharactersJson = json['triggerCharacters']!;
     final triggerCharacters = (triggerCharactersJson as List<String>);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return CompletionOptions(
       allCommitCharacters: allCommitCharacters,
       completionItem: completionItem,
@@ -9501,9 +9666,9 @@ class HoverOptions implements WorkDoneProgressOptions {
   HoverOptions({required this.workDoneProgress});
 
   factory HoverOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return HoverOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -9528,20 +9693,21 @@ class SignatureHelpContext implements ToJson {
   });
 
   factory SignatureHelpContext.fromJson(Map<String, Object?> json) {
-    final activeSignatureHelpJson =
-        (json['activeSignatureHelp']! as Map<String, Object?>);
-    final activeSignatureHelp = SignatureHelp.fromJson(activeSignatureHelpJson);
-    final isRetriggerJson = (json['isRetrigger']! as Map<String, Object?>);
+    final activeSignatureHelpJson = json['activeSignatureHelp']!;
+    final activeSignatureHelp = SignatureHelp.fromJson(
+      (activeSignatureHelpJson as Map<String, Object?>),
+    );
+    final isRetriggerJson = json['isRetrigger']!;
     final isRetrigger = (isRetriggerJson as bool);
-    final triggerCharacterJson =
-        (json['triggerCharacter']! as Map<String, Object?>);
+    final triggerCharacterJson = json['triggerCharacter']!;
     final triggerCharacter = (triggerCharacterJson as String);
-    final triggerKindJson = (json['triggerKind']! as Map<String, Object?>);
+    final triggerKindJson = json['triggerKind']!;
     // Handle enum type;
     final triggerKind = _i1.$enumDecode(
       _$SignatureHelpTriggerKindEnumMap,
       triggerKindJson,
     );
+
     return SignatureHelpContext(
       activeSignatureHelp: activeSignatureHelp,
       isRetrigger: isRetrigger,
@@ -9586,15 +9752,15 @@ class SignatureInformation implements ToJson {
   });
 
   factory SignatureInformation.fromJson(Map<String, Object?> json) {
-    final activeParameterJson =
-        (json['activeParameter']! as Map<String, Object?>);
+    final activeParameterJson = json['activeParameter']!;
     final activeParameter = (activeParameterJson as int);
-    final documentationJson = (json['documentation']! as Map<String, Object?>);
+    final documentationJson = json['documentation']!;
     final documentation = (documentationJson as OrRefType);
-    final labelJson = (json['label']! as Map<String, Object?>);
+    final labelJson = json['label']!;
     final label = (labelJson as String);
-    final parametersJson = (json['parameters']! as Map<String, Object?>);
+    final parametersJson = json['parameters']!;
     final parameters = (parametersJson as List<ParameterInformation>);
+
     return SignatureInformation(
       activeParameter: activeParameter,
       documentation: documentation,
@@ -9633,15 +9799,13 @@ class SignatureHelpOptions implements WorkDoneProgressOptions {
   });
 
   factory SignatureHelpOptions.fromJson(Map<String, Object?> json) {
-    final retriggerCharactersJson =
-        (json['retriggerCharacters']! as Map<String, Object?>);
+    final retriggerCharactersJson = json['retriggerCharacters']!;
     final retriggerCharacters = (retriggerCharactersJson as List<String>);
-    final triggerCharactersJson =
-        (json['triggerCharacters']! as Map<String, Object?>);
+    final triggerCharactersJson = json['triggerCharacters']!;
     final triggerCharacters = (triggerCharactersJson as List<String>);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return SignatureHelpOptions(
       retriggerCharacters: retriggerCharacters,
       triggerCharacters: triggerCharacters,
@@ -9673,9 +9837,9 @@ class DefinitionOptions implements WorkDoneProgressOptions {
   DefinitionOptions({required this.workDoneProgress});
 
   factory DefinitionOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DefinitionOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -9694,9 +9858,9 @@ class ReferenceContext implements ToJson {
   ReferenceContext({required this.includeDeclaration});
 
   factory ReferenceContext.fromJson(Map<String, Object?> json) {
-    final includeDeclarationJson =
-        (json['includeDeclaration']! as Map<String, Object?>);
+    final includeDeclarationJson = json['includeDeclaration']!;
     final includeDeclaration = (includeDeclarationJson as bool);
+
     return ReferenceContext(includeDeclaration: includeDeclaration);
   }
 
@@ -9714,9 +9878,9 @@ class ReferenceOptions implements WorkDoneProgressOptions {
   ReferenceOptions({required this.workDoneProgress});
 
   factory ReferenceOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return ReferenceOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -9734,9 +9898,9 @@ class DocumentHighlightOptions implements WorkDoneProgressOptions {
   DocumentHighlightOptions({required this.workDoneProgress});
 
   factory DocumentHighlightOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentHighlightOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -9759,15 +9923,16 @@ class BaseSymbolInformation implements ToJson {
   });
 
   factory BaseSymbolInformation.fromJson(Map<String, Object?> json) {
-    final containerNameJson = (json['containerName']! as Map<String, Object?>);
+    final containerNameJson = json['containerName']!;
     final containerName = (containerNameJson as String);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final nameJson = (json['name']! as Map<String, Object?>);
+    final nameJson = json['name']!;
     final name = (nameJson as String);
-    final tagsJson = (json['tags']! as Map<String, Object?>);
+    final tagsJson = json['tags']!;
     final tags = (tagsJson as List<SymbolTag>);
+
     return BaseSymbolInformation(
       containerName: containerName,
       kind: kind,
@@ -9803,11 +9968,11 @@ class DocumentSymbolOptions implements WorkDoneProgressOptions {
   DocumentSymbolOptions({required this.label, required this.workDoneProgress});
 
   factory DocumentSymbolOptions.fromJson(Map<String, Object?> json) {
-    final labelJson = (json['label']! as Map<String, Object?>);
+    final labelJson = json['label']!;
     final label = (labelJson as String);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentSymbolOptions(
       label: label,
       workDoneProgress: workDoneProgress,
@@ -9838,16 +10003,17 @@ class CodeActionContext implements ToJson {
   });
 
   factory CodeActionContext.fromJson(Map<String, Object?> json) {
-    final diagnosticsJson = (json['diagnostics']! as Map<String, Object?>);
+    final diagnosticsJson = json['diagnostics']!;
     final diagnostics = (diagnosticsJson as List<Diagnostic>);
-    final onlyJson = (json['only']! as Map<String, Object?>);
+    final onlyJson = json['only']!;
     final only = (onlyJson as List<CodeActionKind>);
-    final triggerKindJson = (json['triggerKind']! as Map<String, Object?>);
+    final triggerKindJson = json['triggerKind']!;
     // Handle enum type;
     final triggerKind = _i1.$enumDecode(
       _$CodeActionTriggerKindEnumMap,
       triggerKindJson,
     );
+
     return CodeActionContext(
       diagnostics: diagnostics,
       only: only,
@@ -9887,15 +10053,13 @@ class CodeActionOptions implements WorkDoneProgressOptions {
   });
 
   factory CodeActionOptions.fromJson(Map<String, Object?> json) {
-    final codeActionKindsJson =
-        (json['codeActionKinds']! as Map<String, Object?>);
+    final codeActionKindsJson = json['codeActionKinds']!;
     final codeActionKinds = (codeActionKindsJson as List<CodeActionKind>);
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return CodeActionOptions(
       codeActionKinds: codeActionKinds,
       resolveProvider: resolveProvider,
@@ -9930,12 +10094,11 @@ class WorkspaceSymbolOptions implements WorkDoneProgressOptions {
   });
 
   factory WorkspaceSymbolOptions.fromJson(Map<String, Object?> json) {
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return WorkspaceSymbolOptions(
       resolveProvider: resolveProvider,
       workDoneProgress: workDoneProgress,
@@ -9964,12 +10127,11 @@ class CodeLensOptions implements WorkDoneProgressOptions {
   });
 
   factory CodeLensOptions.fromJson(Map<String, Object?> json) {
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return CodeLensOptions(
       resolveProvider: resolveProvider,
       workDoneProgress: workDoneProgress,
@@ -9996,12 +10158,11 @@ class DocumentLinkOptions implements WorkDoneProgressOptions {
   });
 
   factory DocumentLinkOptions.fromJson(Map<String, Object?> json) {
-    final resolveProviderJson =
-        (json['resolveProvider']! as Map<String, Object?>);
+    final resolveProviderJson = json['resolveProvider']!;
     final resolveProvider = (resolveProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentLinkOptions(
       resolveProvider: resolveProvider,
       workDoneProgress: workDoneProgress,
@@ -10031,19 +10192,17 @@ class FormattingOptions implements ToJson {
   });
 
   factory FormattingOptions.fromJson(Map<String, Object?> json) {
-    final insertFinalNewlineJson =
-        (json['insertFinalNewline']! as Map<String, Object?>);
+    final insertFinalNewlineJson = json['insertFinalNewline']!;
     final insertFinalNewline = (insertFinalNewlineJson as bool);
-    final insertSpacesJson = (json['insertSpaces']! as Map<String, Object?>);
+    final insertSpacesJson = json['insertSpaces']!;
     final insertSpaces = (insertSpacesJson as bool);
-    final tabSizeJson = (json['tabSize']! as Map<String, Object?>);
+    final tabSizeJson = json['tabSize']!;
     final tabSize = (tabSizeJson as int);
-    final trimFinalNewlinesJson =
-        (json['trimFinalNewlines']! as Map<String, Object?>);
+    final trimFinalNewlinesJson = json['trimFinalNewlines']!;
     final trimFinalNewlines = (trimFinalNewlinesJson as bool);
-    final trimTrailingWhitespaceJson =
-        (json['trimTrailingWhitespace']! as Map<String, Object?>);
+    final trimTrailingWhitespaceJson = json['trimTrailingWhitespace']!;
     final trimTrailingWhitespace = (trimTrailingWhitespaceJson as bool);
+
     return FormattingOptions(
       insertFinalNewline: insertFinalNewline,
       insertSpaces: insertSpaces,
@@ -10082,9 +10241,9 @@ class DocumentFormattingOptions implements WorkDoneProgressOptions {
   DocumentFormattingOptions({required this.workDoneProgress});
 
   factory DocumentFormattingOptions.fromJson(Map<String, Object?> json) {
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentFormattingOptions(workDoneProgress: workDoneProgress);
   }
 
@@ -10105,11 +10264,11 @@ class DocumentRangeFormattingOptions implements WorkDoneProgressOptions {
   });
 
   factory DocumentRangeFormattingOptions.fromJson(Map<String, Object?> json) {
-    final rangesSupportJson = (json['rangesSupport']! as Map<String, Object?>);
+    final rangesSupportJson = json['rangesSupport']!;
     final rangesSupport = (rangesSupportJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return DocumentRangeFormattingOptions(
       rangesSupport: rangesSupport,
       workDoneProgress: workDoneProgress,
@@ -10137,12 +10296,11 @@ class DocumentOnTypeFormattingOptions implements ToJson {
   });
 
   factory DocumentOnTypeFormattingOptions.fromJson(Map<String, Object?> json) {
-    final firstTriggerCharacterJson =
-        (json['firstTriggerCharacter']! as Map<String, Object?>);
+    final firstTriggerCharacterJson = json['firstTriggerCharacter']!;
     final firstTriggerCharacter = (firstTriggerCharacterJson as String);
-    final moreTriggerCharacterJson =
-        (json['moreTriggerCharacter']! as Map<String, Object?>);
+    final moreTriggerCharacterJson = json['moreTriggerCharacter']!;
     final moreTriggerCharacter = (moreTriggerCharacterJson as List<String>);
+
     return DocumentOnTypeFormattingOptions(
       firstTriggerCharacter: firstTriggerCharacter,
       moreTriggerCharacter: moreTriggerCharacter,
@@ -10169,12 +10327,11 @@ class RenameOptions implements WorkDoneProgressOptions {
   });
 
   factory RenameOptions.fromJson(Map<String, Object?> json) {
-    final prepareProviderJson =
-        (json['prepareProvider']! as Map<String, Object?>);
+    final prepareProviderJson = json['prepareProvider']!;
     final prepareProvider = (prepareProviderJson as bool);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return RenameOptions(
       prepareProvider: prepareProvider,
       workDoneProgress: workDoneProgress,
@@ -10202,11 +10359,11 @@ class ExecuteCommandOptions implements WorkDoneProgressOptions {
   });
 
   factory ExecuteCommandOptions.fromJson(Map<String, Object?> json) {
-    final commandsJson = (json['commands']! as Map<String, Object?>);
+    final commandsJson = json['commands']!;
     final commands = (commandsJson as List<String>);
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return ExecuteCommandOptions(
       commands: commands,
       workDoneProgress: workDoneProgress,
@@ -10233,11 +10390,11 @@ class SemanticTokensLegend implements ToJson {
   });
 
   factory SemanticTokensLegend.fromJson(Map<String, Object?> json) {
-    final tokenModifiersJson =
-        (json['tokenModifiers']! as Map<String, Object?>);
+    final tokenModifiersJson = json['tokenModifiers']!;
     final tokenModifiers = (tokenModifiersJson as List<String>);
-    final tokenTypesJson = (json['tokenTypes']! as Map<String, Object?>);
+    final tokenTypesJson = json['tokenTypes']!;
     final tokenTypes = (tokenTypesJson as List<String>);
+
     return SemanticTokensLegend(
       tokenModifiers: tokenModifiers,
       tokenTypes: tokenTypes,
@@ -10268,10 +10425,11 @@ class OptionalVersionedTextDocumentIdentifier
   factory OptionalVersionedTextDocumentIdentifier.fromJson(
     Map<String, Object?> json,
   ) {
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as OrRefType);
+
     return OptionalVersionedTextDocumentIdentifier(uri: uri, version: version);
   }
 
@@ -10303,12 +10461,13 @@ class AnnotatedTextEdit implements TextEdit {
   });
 
   factory AnnotatedTextEdit.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = (json['annotationId']! as Map<String, Object?>);
+    final annotationIdJson = json['annotationId']!;
     final annotationId = (annotationIdJson as ChangeAnnotationIdentifier);
-    final newTextJson = (json['newText']! as Map<String, Object?>);
+    final newTextJson = json['newText']!;
     final newText = (newTextJson as String);
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+
     return AnnotatedTextEdit(
       annotationId: annotationId,
       newText: newText,
@@ -10339,10 +10498,11 @@ class ResourceOperation implements ToJson {
   ResourceOperation({required this.annotationId, required this.kind});
 
   factory ResourceOperation.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = (json['annotationId']! as Map<String, Object?>);
+    final annotationIdJson = json['annotationId']!;
     final annotationId = (annotationIdJson as ChangeAnnotationIdentifier);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
+
     return ResourceOperation(annotationId: annotationId, kind: kind);
   }
 
@@ -10364,11 +10524,11 @@ class CreateFileOptions implements ToJson {
   CreateFileOptions({required this.ignoreIfExists, required this.overwrite});
 
   factory CreateFileOptions.fromJson(Map<String, Object?> json) {
-    final ignoreIfExistsJson =
-        (json['ignoreIfExists']! as Map<String, Object?>);
+    final ignoreIfExistsJson = json['ignoreIfExists']!;
     final ignoreIfExists = (ignoreIfExistsJson as bool);
-    final overwriteJson = (json['overwrite']! as Map<String, Object?>);
+    final overwriteJson = json['overwrite']!;
     final overwrite = (overwriteJson as bool);
+
     return CreateFileOptions(
       ignoreIfExists: ignoreIfExists,
       overwrite: overwrite,
@@ -10392,11 +10552,11 @@ class RenameFileOptions implements ToJson {
   RenameFileOptions({required this.ignoreIfExists, required this.overwrite});
 
   factory RenameFileOptions.fromJson(Map<String, Object?> json) {
-    final ignoreIfExistsJson =
-        (json['ignoreIfExists']! as Map<String, Object?>);
+    final ignoreIfExistsJson = json['ignoreIfExists']!;
     final ignoreIfExists = (ignoreIfExistsJson as bool);
-    final overwriteJson = (json['overwrite']! as Map<String, Object?>);
+    final overwriteJson = json['overwrite']!;
     final overwrite = (overwriteJson as bool);
+
     return RenameFileOptions(
       ignoreIfExists: ignoreIfExists,
       overwrite: overwrite,
@@ -10420,11 +10580,11 @@ class DeleteFileOptions implements ToJson {
   DeleteFileOptions({required this.ignoreIfNotExists, required this.recursive});
 
   factory DeleteFileOptions.fromJson(Map<String, Object?> json) {
-    final ignoreIfNotExistsJson =
-        (json['ignoreIfNotExists']! as Map<String, Object?>);
+    final ignoreIfNotExistsJson = json['ignoreIfNotExists']!;
     final ignoreIfNotExists = (ignoreIfNotExistsJson as bool);
-    final recursiveJson = (json['recursive']! as Map<String, Object?>);
+    final recursiveJson = json['recursive']!;
     final recursive = (recursiveJson as bool);
+
     return DeleteFileOptions(
       ignoreIfNotExists: ignoreIfNotExists,
       recursive: recursive,
@@ -10454,16 +10614,19 @@ class FileOperationPattern implements ToJson {
   });
 
   factory FileOperationPattern.fromJson(Map<String, Object?> json) {
-    final globJson = (json['glob']! as Map<String, Object?>);
+    final globJson = json['glob']!;
     final glob = (globJson as String);
-    final matchesJson = (json['matches']! as Map<String, Object?>);
+    final matchesJson = json['matches']!;
     // Handle enum type;
     final matches = _i1.$enumDecode(
       _$FileOperationPatternKindEnumMap,
       matchesJson,
     );
-    final optionsJson = (json['options']! as Map<String, Object?>);
-    final options = FileOperationPatternOptions.fromJson(optionsJson);
+    final optionsJson = json['options']!;
+    final options = FileOperationPatternOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
+    );
+
     return FileOperationPattern(glob: glob, matches: matches, options: options);
   }
 
@@ -10507,16 +10670,17 @@ class WorkspaceFullDocumentDiagnosticReport
   factory WorkspaceFullDocumentDiagnosticReport.fromJson(
     Map<String, Object?> json,
   ) {
-    final itemsJson = (json['items']! as Map<String, Object?>);
+    final itemsJson = json['items']!;
     final items = (itemsJson as List<Diagnostic>);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final resultIdJson = (json['resultId']! as Map<String, Object?>);
+    final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as OrRefType);
+
     return WorkspaceFullDocumentDiagnosticReport(
       items: items,
       kind: kind,
@@ -10566,14 +10730,15 @@ class WorkspaceUnchangedDocumentDiagnosticReport
   factory WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
     Map<String, Object?> json,
   ) {
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final resultIdJson = (json['resultId']! as Map<String, Object?>);
+    final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
-    final uriJson = (json['uri']! as Map<String, Object?>);
+    final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as OrRefType);
+
     return WorkspaceUnchangedDocumentDiagnosticReport(
       kind: kind,
       resultId: resultId,
@@ -10619,16 +10784,18 @@ class NotebookCell implements ToJson {
   });
 
   factory NotebookCell.fromJson(Map<String, Object?> json) {
-    final documentJson = (json['document']! as Map<String, Object?>);
+    final documentJson = json['document']!;
     final document = (documentJson as Uri);
-    final executionSummaryJson =
-        (json['executionSummary']! as Map<String, Object?>);
-    final executionSummary = ExecutionSummary.fromJson(executionSummaryJson);
-    final kindJson = (json['kind']! as Map<String, Object?>);
+    final executionSummaryJson = json['executionSummary']!;
+    final executionSummary = ExecutionSummary.fromJson(
+      (executionSummaryJson as Map<String, Object?>),
+    );
+    final kindJson = json['kind']!;
     // Handle enum type;
     final kind = _i1.$enumDecode(_$NotebookCellKindEnumMap, kindJson);
-    final metadataJson = (json['metadata']! as Map<String, Object?>);
+    final metadataJson = json['metadata']!;
     final metadata = (metadataJson as LSPObject);
+
     return NotebookCell(
       document: document,
       executionSummary: executionSummary,
@@ -10666,12 +10833,13 @@ class NotebookCellArrayChange implements ToJson {
   });
 
   factory NotebookCellArrayChange.fromJson(Map<String, Object?> json) {
-    final cellsJson = (json['cells']! as Map<String, Object?>);
+    final cellsJson = json['cells']!;
     final cells = (cellsJson as List<NotebookCell>);
-    final deleteCountJson = (json['deleteCount']! as Map<String, Object?>);
+    final deleteCountJson = json['deleteCount']!;
     final deleteCount = (deleteCountJson as int);
-    final startJson = (json['start']! as Map<String, Object?>);
+    final startJson = json['start']!;
     final start = (startJson as int);
+
     return NotebookCellArrayChange(
       cells: cells,
       deleteCount: deleteCount,
@@ -10700,10 +10868,11 @@ class SelectedCompletionInfo implements ToJson {
   SelectedCompletionInfo({required this.range, required this.text});
 
   factory SelectedCompletionInfo.fromJson(Map<String, Object?> json) {
-    final rangeJson = (json['range']! as Map<String, Object?>);
-    final range = Range.fromJson(rangeJson);
-    final textJson = (json['text']! as Map<String, Object?>);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final textJson = json['text']!;
     final text = (textJson as String);
+
     return SelectedCompletionInfo(range: range, text: text);
   }
 
@@ -10731,23 +10900,29 @@ class ClientCapabilities implements ToJson {
   });
 
   factory ClientCapabilities.fromJson(Map<String, Object?> json) {
-    final experimentalJson = (json['experimental']! as Map<String, Object?>);
+    final experimentalJson = json['experimental']!;
     final experimental = (experimentalJson as LSPAny);
-    final generalJson = (json['general']! as Map<String, Object?>);
-    final general = GeneralClientCapabilities.fromJson(generalJson);
-    final notebookDocumentJson =
-        (json['notebookDocument']! as Map<String, Object?>);
+    final generalJson = json['general']!;
+    final general = GeneralClientCapabilities.fromJson(
+      (generalJson as Map<String, Object?>),
+    );
+    final notebookDocumentJson = json['notebookDocument']!;
     final notebookDocument = NotebookDocumentClientCapabilities.fromJson(
-      notebookDocumentJson,
+      (notebookDocumentJson as Map<String, Object?>),
     );
-    final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
+    final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentClientCapabilities.fromJson(
-      textDocumentJson,
+      (textDocumentJson as Map<String, Object?>),
     );
-    final windowJson = (json['window']! as Map<String, Object?>);
-    final window = WindowClientCapabilities.fromJson(windowJson);
-    final workspaceJson = (json['workspace']! as Map<String, Object?>);
-    final workspace = WorkspaceClientCapabilities.fromJson(workspaceJson);
+    final windowJson = json['window']!;
+    final window = WindowClientCapabilities.fromJson(
+      (windowJson as Map<String, Object?>),
+    );
+    final workspaceJson = json['workspace']!;
+    final workspace = WorkspaceClientCapabilities.fromJson(
+      (workspaceJson as Map<String, Object?>),
+    );
+
     return ClientCapabilities(
       experimental: experimental,
       general: general,
@@ -10794,18 +10969,18 @@ class TextDocumentSyncOptions implements ToJson {
   });
 
   factory TextDocumentSyncOptions.fromJson(Map<String, Object?> json) {
-    final changeJson = (json['change']! as Map<String, Object?>);
+    final changeJson = json['change']!;
     // Handle enum type;
     final change = _i1.$enumDecode(_$TextDocumentSyncKindEnumMap, changeJson);
-    final openCloseJson = (json['openClose']! as Map<String, Object?>);
+    final openCloseJson = json['openClose']!;
     final openClose = (openCloseJson as bool);
-    final saveJson = (json['save']! as Map<String, Object?>);
+    final saveJson = json['save']!;
     final save = (saveJson as OrRefType);
-    final willSaveJson = (json['willSave']! as Map<String, Object?>);
+    final willSaveJson = json['willSave']!;
     final willSave = (willSaveJson as bool);
-    final willSaveWaitUntilJson =
-        (json['willSaveWaitUntil']! as Map<String, Object?>);
+    final willSaveWaitUntilJson = json['willSaveWaitUntil']!;
     final willSaveWaitUntil = (willSaveWaitUntilJson as bool);
+
     return TextDocumentSyncOptions(
       change: change,
       openClose: openClose,
@@ -10857,11 +11032,11 @@ class NotebookDocumentSyncOptions implements ToJson {
   });
 
   factory NotebookDocumentSyncOptions.fromJson(Map<String, Object?> json) {
-    final notebookSelectorJson =
-        (json['notebookSelector']! as Map<String, Object?>);
+    final notebookSelectorJson = json['notebookSelector']!;
     final notebookSelector = (notebookSelectorJson as List<OrRefType>);
-    final saveJson = (json['save']! as Map<String, Object?>);
+    final saveJson = json['save']!;
     final save = (saveJson as bool);
+
     return NotebookDocumentSyncOptions(
       notebookSelector: notebookSelector,
       save: save,
@@ -10894,13 +11069,13 @@ class NotebookDocumentSyncRegistrationOptions
   factory NotebookDocumentSyncRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final idJson = (json['id']! as Map<String, Object?>);
+    final idJson = json['id']!;
     final id = (idJson as String);
-    final notebookSelectorJson =
-        (json['notebookSelector']! as Map<String, Object?>);
+    final notebookSelectorJson = json['notebookSelector']!;
     final notebookSelector = (notebookSelectorJson as List<OrRefType>);
-    final saveJson = (json['save']! as Map<String, Object?>);
+    final saveJson = json['save']!;
     final save = (saveJson as bool);
+
     return NotebookDocumentSyncRegistrationOptions(
       id: id,
       notebookSelector: notebookSelector,
@@ -10937,11 +11112,11 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
   factory WorkspaceFoldersServerCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final changeNotificationsJson =
-        (json['changeNotifications']! as Map<String, Object?>);
+    final changeNotificationsJson = json['changeNotifications']!;
     final changeNotifications = (changeNotificationsJson as OrRefType);
-    final supportedJson = (json['supported']! as Map<String, Object?>);
+    final supportedJson = json['supported']!;
     final supported = (supportedJson as bool);
+
     return WorkspaceFoldersServerCapabilities(
       changeNotifications: changeNotifications,
       supported: supported,
@@ -10978,24 +11153,31 @@ class FileOperationOptions implements ToJson {
   });
 
   factory FileOperationOptions.fromJson(Map<String, Object?> json) {
-    final didCreateJson = (json['didCreate']! as Map<String, Object?>);
-    final didCreate = FileOperationRegistrationOptions.fromJson(didCreateJson);
-    final didDeleteJson = (json['didDelete']! as Map<String, Object?>);
-    final didDelete = FileOperationRegistrationOptions.fromJson(didDeleteJson);
-    final didRenameJson = (json['didRename']! as Map<String, Object?>);
-    final didRename = FileOperationRegistrationOptions.fromJson(didRenameJson);
-    final willCreateJson = (json['willCreate']! as Map<String, Object?>);
+    final didCreateJson = json['didCreate']!;
+    final didCreate = FileOperationRegistrationOptions.fromJson(
+      (didCreateJson as Map<String, Object?>),
+    );
+    final didDeleteJson = json['didDelete']!;
+    final didDelete = FileOperationRegistrationOptions.fromJson(
+      (didDeleteJson as Map<String, Object?>),
+    );
+    final didRenameJson = json['didRename']!;
+    final didRename = FileOperationRegistrationOptions.fromJson(
+      (didRenameJson as Map<String, Object?>),
+    );
+    final willCreateJson = json['willCreate']!;
     final willCreate = FileOperationRegistrationOptions.fromJson(
-      willCreateJson,
+      (willCreateJson as Map<String, Object?>),
     );
-    final willDeleteJson = (json['willDelete']! as Map<String, Object?>);
+    final willDeleteJson = json['willDelete']!;
     final willDelete = FileOperationRegistrationOptions.fromJson(
-      willDeleteJson,
+      (willDeleteJson as Map<String, Object?>),
     );
-    final willRenameJson = (json['willRename']! as Map<String, Object?>);
+    final willRenameJson = json['willRename']!;
     final willRename = FileOperationRegistrationOptions.fromJson(
-      willRenameJson,
+      (willRenameJson as Map<String, Object?>),
     );
+
     return FileOperationOptions(
       didCreate: didCreate,
       didDelete: didDelete,
@@ -11036,8 +11218,9 @@ class CodeDescription implements ToJson {
   CodeDescription({required this.href});
 
   factory CodeDescription.fromJson(Map<String, Object?> json) {
-    final hrefJson = (json['href']! as Map<String, Object?>);
+    final hrefJson = json['href']!;
     final href = (hrefJson as Uri);
+
     return CodeDescription(href: href);
   }
 
@@ -11057,10 +11240,11 @@ class DiagnosticRelatedInformation implements ToJson {
   DiagnosticRelatedInformation({required this.location, required this.message});
 
   factory DiagnosticRelatedInformation.fromJson(Map<String, Object?> json) {
-    final locationJson = (json['location']! as Map<String, Object?>);
-    final location = Location.fromJson(locationJson);
-    final messageJson = (json['message']! as Map<String, Object?>);
+    final locationJson = json['location']!;
+    final location = Location.fromJson((locationJson as Map<String, Object?>));
+    final messageJson = json['message']!;
     final message = (messageJson as String);
+
     return DiagnosticRelatedInformation(location: location, message: message);
   }
 
@@ -11082,10 +11266,11 @@ class ParameterInformation implements ToJson {
   ParameterInformation({required this.documentation, required this.label});
 
   factory ParameterInformation.fromJson(Map<String, Object?> json) {
-    final documentationJson = (json['documentation']! as Map<String, Object?>);
+    final documentationJson = json['documentation']!;
     final documentation = (documentationJson as OrRefType);
-    final labelJson = (json['label']! as Map<String, Object?>);
+    final labelJson = json['label']!;
     final label = (labelJson as OrRefType);
+
     return ParameterInformation(documentation: documentation, label: label);
   }
 
@@ -11119,10 +11304,11 @@ class NotebookCellTextDocumentFilter implements ToJson {
   });
 
   factory NotebookCellTextDocumentFilter.fromJson(Map<String, Object?> json) {
-    final languageJson = (json['language']! as Map<String, Object?>);
+    final languageJson = json['language']!;
     final language = (languageJson as String);
-    final notebookJson = (json['notebook']! as Map<String, Object?>);
+    final notebookJson = json['notebook']!;
     final notebook = (notebookJson as OrRefType);
+
     return NotebookCellTextDocumentFilter(
       language: language,
       notebook: notebook,
@@ -11151,8 +11337,9 @@ class FileOperationPatternOptions implements ToJson {
   FileOperationPatternOptions({required this.ignoreCase});
 
   factory FileOperationPatternOptions.fromJson(Map<String, Object?> json) {
-    final ignoreCaseJson = (json['ignoreCase']! as Map<String, Object?>);
+    final ignoreCaseJson = json['ignoreCase']!;
     final ignoreCase = (ignoreCaseJson as bool);
+
     return FileOperationPatternOptions(ignoreCase: ignoreCase);
   }
 
@@ -11169,11 +11356,11 @@ class ExecutionSummary implements ToJson {
   ExecutionSummary({required this.executionOrder, required this.success});
 
   factory ExecutionSummary.fromJson(Map<String, Object?> json) {
-    final executionOrderJson =
-        (json['executionOrder']! as Map<String, Object?>);
+    final executionOrderJson = json['executionOrder']!;
     final executionOrder = (executionOrderJson as int);
-    final successJson = (json['success']! as Map<String, Object?>);
+    final successJson = json['success']!;
     final success = (successJson as bool);
+
     return ExecutionSummary(executionOrder: executionOrder, success: success);
   }
 
@@ -11211,64 +11398,63 @@ class WorkspaceClientCapabilities implements ToJson {
   });
 
   factory WorkspaceClientCapabilities.fromJson(Map<String, Object?> json) {
-    final applyEditJson = (json['applyEdit']! as Map<String, Object?>);
+    final applyEditJson = json['applyEdit']!;
     final applyEdit = (applyEditJson as bool);
-    final codeLensJson = (json['codeLens']! as Map<String, Object?>);
-    final codeLens = CodeLensWorkspaceClientCapabilities.fromJson(codeLensJson);
-    final configurationJson = (json['configuration']! as Map<String, Object?>);
-    final configuration = (configurationJson as bool);
-    final diagnosticsJson = (json['diagnostics']! as Map<String, Object?>);
-    final diagnostics = DiagnosticWorkspaceClientCapabilities.fromJson(
-      diagnosticsJson,
+    final codeLensJson = json['codeLens']!;
+    final codeLens = CodeLensWorkspaceClientCapabilities.fromJson(
+      (codeLensJson as Map<String, Object?>),
     );
-    final didChangeConfigurationJson =
-        (json['didChangeConfiguration']! as Map<String, Object?>);
+    final configurationJson = json['configuration']!;
+    final configuration = (configurationJson as bool);
+    final diagnosticsJson = json['diagnostics']!;
+    final diagnostics = DiagnosticWorkspaceClientCapabilities.fromJson(
+      (diagnosticsJson as Map<String, Object?>),
+    );
+    final didChangeConfigurationJson = json['didChangeConfiguration']!;
     final didChangeConfiguration =
         DidChangeConfigurationClientCapabilities.fromJson(
-          didChangeConfigurationJson,
+          (didChangeConfigurationJson as Map<String, Object?>),
         );
-    final didChangeWatchedFilesJson =
-        (json['didChangeWatchedFiles']! as Map<String, Object?>);
+    final didChangeWatchedFilesJson = json['didChangeWatchedFiles']!;
     final didChangeWatchedFiles =
         DidChangeWatchedFilesClientCapabilities.fromJson(
-          didChangeWatchedFilesJson,
+          (didChangeWatchedFilesJson as Map<String, Object?>),
         );
-    final executeCommandJson =
-        (json['executeCommand']! as Map<String, Object?>);
+    final executeCommandJson = json['executeCommand']!;
     final executeCommand = ExecuteCommandClientCapabilities.fromJson(
-      executeCommandJson,
+      (executeCommandJson as Map<String, Object?>),
     );
-    final fileOperationsJson =
-        (json['fileOperations']! as Map<String, Object?>);
+    final fileOperationsJson = json['fileOperations']!;
     final fileOperations = FileOperationClientCapabilities.fromJson(
-      fileOperationsJson,
+      (fileOperationsJson as Map<String, Object?>),
     );
-    final foldingRangeJson = (json['foldingRange']! as Map<String, Object?>);
+    final foldingRangeJson = json['foldingRange']!;
     final foldingRange = FoldingRangeWorkspaceClientCapabilities.fromJson(
-      foldingRangeJson,
+      (foldingRangeJson as Map<String, Object?>),
     );
-    final inlayHintJson = (json['inlayHint']! as Map<String, Object?>);
+    final inlayHintJson = json['inlayHint']!;
     final inlayHint = InlayHintWorkspaceClientCapabilities.fromJson(
-      inlayHintJson,
+      (inlayHintJson as Map<String, Object?>),
     );
-    final inlineValueJson = (json['inlineValue']! as Map<String, Object?>);
+    final inlineValueJson = json['inlineValue']!;
     final inlineValue = InlineValueWorkspaceClientCapabilities.fromJson(
-      inlineValueJson,
+      (inlineValueJson as Map<String, Object?>),
     );
-    final semanticTokensJson =
-        (json['semanticTokens']! as Map<String, Object?>);
+    final semanticTokensJson = json['semanticTokens']!;
     final semanticTokens = SemanticTokensWorkspaceClientCapabilities.fromJson(
-      semanticTokensJson,
+      (semanticTokensJson as Map<String, Object?>),
     );
-    final symbolJson = (json['symbol']! as Map<String, Object?>);
-    final symbol = WorkspaceSymbolClientCapabilities.fromJson(symbolJson);
-    final workspaceEditJson = (json['workspaceEdit']! as Map<String, Object?>);
+    final symbolJson = json['symbol']!;
+    final symbol = WorkspaceSymbolClientCapabilities.fromJson(
+      (symbolJson as Map<String, Object?>),
+    );
+    final workspaceEditJson = json['workspaceEdit']!;
     final workspaceEdit = WorkspaceEditClientCapabilities.fromJson(
-      workspaceEditJson,
+      (workspaceEditJson as Map<String, Object?>),
     );
-    final workspaceFoldersJson =
-        (json['workspaceFolders']! as Map<String, Object?>);
+    final workspaceFoldersJson = json['workspaceFolders']!;
     final workspaceFolders = (workspaceFoldersJson as bool);
+
     return WorkspaceClientCapabilities(
       applyEdit: applyEdit,
       codeLens: codeLens,
@@ -11394,119 +11580,132 @@ class TextDocumentClientCapabilities implements ToJson {
   });
 
   factory TextDocumentClientCapabilities.fromJson(Map<String, Object?> json) {
-    final callHierarchyJson = (json['callHierarchy']! as Map<String, Object?>);
+    final callHierarchyJson = json['callHierarchy']!;
     final callHierarchy = CallHierarchyClientCapabilities.fromJson(
-      callHierarchyJson,
+      (callHierarchyJson as Map<String, Object?>),
     );
-    final codeActionJson = (json['codeAction']! as Map<String, Object?>);
-    final codeAction = CodeActionClientCapabilities.fromJson(codeActionJson);
-    final codeLensJson = (json['codeLens']! as Map<String, Object?>);
-    final codeLens = CodeLensClientCapabilities.fromJson(codeLensJson);
-    final colorProviderJson = (json['colorProvider']! as Map<String, Object?>);
+    final codeActionJson = json['codeAction']!;
+    final codeAction = CodeActionClientCapabilities.fromJson(
+      (codeActionJson as Map<String, Object?>),
+    );
+    final codeLensJson = json['codeLens']!;
+    final codeLens = CodeLensClientCapabilities.fromJson(
+      (codeLensJson as Map<String, Object?>),
+    );
+    final colorProviderJson = json['colorProvider']!;
     final colorProvider = DocumentColorClientCapabilities.fromJson(
-      colorProviderJson,
+      (colorProviderJson as Map<String, Object?>),
     );
-    final completionJson = (json['completion']! as Map<String, Object?>);
-    final completion = CompletionClientCapabilities.fromJson(completionJson);
-    final declarationJson = (json['declaration']! as Map<String, Object?>);
-    final declaration = DeclarationClientCapabilities.fromJson(declarationJson);
-    final definitionJson = (json['definition']! as Map<String, Object?>);
-    final definition = DefinitionClientCapabilities.fromJson(definitionJson);
-    final diagnosticJson = (json['diagnostic']! as Map<String, Object?>);
-    final diagnostic = DiagnosticClientCapabilities.fromJson(diagnosticJson);
-    final documentHighlightJson =
-        (json['documentHighlight']! as Map<String, Object?>);
+    final completionJson = json['completion']!;
+    final completion = CompletionClientCapabilities.fromJson(
+      (completionJson as Map<String, Object?>),
+    );
+    final declarationJson = json['declaration']!;
+    final declaration = DeclarationClientCapabilities.fromJson(
+      (declarationJson as Map<String, Object?>),
+    );
+    final definitionJson = json['definition']!;
+    final definition = DefinitionClientCapabilities.fromJson(
+      (definitionJson as Map<String, Object?>),
+    );
+    final diagnosticJson = json['diagnostic']!;
+    final diagnostic = DiagnosticClientCapabilities.fromJson(
+      (diagnosticJson as Map<String, Object?>),
+    );
+    final documentHighlightJson = json['documentHighlight']!;
     final documentHighlight = DocumentHighlightClientCapabilities.fromJson(
-      documentHighlightJson,
+      (documentHighlightJson as Map<String, Object?>),
     );
-    final documentLinkJson = (json['documentLink']! as Map<String, Object?>);
+    final documentLinkJson = json['documentLink']!;
     final documentLink = DocumentLinkClientCapabilities.fromJson(
-      documentLinkJson,
+      (documentLinkJson as Map<String, Object?>),
     );
-    final documentSymbolJson =
-        (json['documentSymbol']! as Map<String, Object?>);
+    final documentSymbolJson = json['documentSymbol']!;
     final documentSymbol = DocumentSymbolClientCapabilities.fromJson(
-      documentSymbolJson,
+      (documentSymbolJson as Map<String, Object?>),
     );
-    final foldingRangeJson = (json['foldingRange']! as Map<String, Object?>);
+    final foldingRangeJson = json['foldingRange']!;
     final foldingRange = FoldingRangeClientCapabilities.fromJson(
-      foldingRangeJson,
+      (foldingRangeJson as Map<String, Object?>),
     );
-    final formattingJson = (json['formatting']! as Map<String, Object?>);
+    final formattingJson = json['formatting']!;
     final formatting = DocumentFormattingClientCapabilities.fromJson(
-      formattingJson,
+      (formattingJson as Map<String, Object?>),
     );
-    final hoverJson = (json['hover']! as Map<String, Object?>);
-    final hover = HoverClientCapabilities.fromJson(hoverJson);
-    final implementationJson =
-        (json['implementation']! as Map<String, Object?>);
+    final hoverJson = json['hover']!;
+    final hover = HoverClientCapabilities.fromJson(
+      (hoverJson as Map<String, Object?>),
+    );
+    final implementationJson = json['implementation']!;
     final implementation = ImplementationClientCapabilities.fromJson(
-      implementationJson,
+      (implementationJson as Map<String, Object?>),
     );
-    final inlayHintJson = (json['inlayHint']! as Map<String, Object?>);
-    final inlayHint = InlayHintClientCapabilities.fromJson(inlayHintJson);
-    final inlineCompletionJson =
-        (json['inlineCompletion']! as Map<String, Object?>);
+    final inlayHintJson = json['inlayHint']!;
+    final inlayHint = InlayHintClientCapabilities.fromJson(
+      (inlayHintJson as Map<String, Object?>),
+    );
+    final inlineCompletionJson = json['inlineCompletion']!;
     final inlineCompletion = InlineCompletionClientCapabilities.fromJson(
-      inlineCompletionJson,
+      (inlineCompletionJson as Map<String, Object?>),
     );
-    final inlineValueJson = (json['inlineValue']! as Map<String, Object?>);
-    final inlineValue = InlineValueClientCapabilities.fromJson(inlineValueJson);
-    final linkedEditingRangeJson =
-        (json['linkedEditingRange']! as Map<String, Object?>);
+    final inlineValueJson = json['inlineValue']!;
+    final inlineValue = InlineValueClientCapabilities.fromJson(
+      (inlineValueJson as Map<String, Object?>),
+    );
+    final linkedEditingRangeJson = json['linkedEditingRange']!;
     final linkedEditingRange = LinkedEditingRangeClientCapabilities.fromJson(
-      linkedEditingRangeJson,
+      (linkedEditingRangeJson as Map<String, Object?>),
     );
-    final monikerJson = (json['moniker']! as Map<String, Object?>);
-    final moniker = MonikerClientCapabilities.fromJson(monikerJson);
-    final onTypeFormattingJson =
-        (json['onTypeFormatting']! as Map<String, Object?>);
+    final monikerJson = json['moniker']!;
+    final moniker = MonikerClientCapabilities.fromJson(
+      (monikerJson as Map<String, Object?>),
+    );
+    final onTypeFormattingJson = json['onTypeFormatting']!;
     final onTypeFormatting =
         DocumentOnTypeFormattingClientCapabilities.fromJson(
-          onTypeFormattingJson,
+          (onTypeFormattingJson as Map<String, Object?>),
         );
-    final publishDiagnosticsJson =
-        (json['publishDiagnostics']! as Map<String, Object?>);
+    final publishDiagnosticsJson = json['publishDiagnostics']!;
     final publishDiagnostics = PublishDiagnosticsClientCapabilities.fromJson(
-      publishDiagnosticsJson,
+      (publishDiagnosticsJson as Map<String, Object?>),
     );
-    final rangeFormattingJson =
-        (json['rangeFormatting']! as Map<String, Object?>);
+    final rangeFormattingJson = json['rangeFormatting']!;
     final rangeFormatting = DocumentRangeFormattingClientCapabilities.fromJson(
-      rangeFormattingJson,
+      (rangeFormattingJson as Map<String, Object?>),
     );
-    final referencesJson = (json['references']! as Map<String, Object?>);
-    final references = ReferenceClientCapabilities.fromJson(referencesJson);
-    final renameJson = (json['rename']! as Map<String, Object?>);
-    final rename = RenameClientCapabilities.fromJson(renameJson);
-    final selectionRangeJson =
-        (json['selectionRange']! as Map<String, Object?>);
+    final referencesJson = json['references']!;
+    final references = ReferenceClientCapabilities.fromJson(
+      (referencesJson as Map<String, Object?>),
+    );
+    final renameJson = json['rename']!;
+    final rename = RenameClientCapabilities.fromJson(
+      (renameJson as Map<String, Object?>),
+    );
+    final selectionRangeJson = json['selectionRange']!;
     final selectionRange = SelectionRangeClientCapabilities.fromJson(
-      selectionRangeJson,
+      (selectionRangeJson as Map<String, Object?>),
     );
-    final semanticTokensJson =
-        (json['semanticTokens']! as Map<String, Object?>);
+    final semanticTokensJson = json['semanticTokens']!;
     final semanticTokens = SemanticTokensClientCapabilities.fromJson(
-      semanticTokensJson,
+      (semanticTokensJson as Map<String, Object?>),
     );
-    final signatureHelpJson = (json['signatureHelp']! as Map<String, Object?>);
+    final signatureHelpJson = json['signatureHelp']!;
     final signatureHelp = SignatureHelpClientCapabilities.fromJson(
-      signatureHelpJson,
+      (signatureHelpJson as Map<String, Object?>),
     );
-    final synchronizationJson =
-        (json['synchronization']! as Map<String, Object?>);
+    final synchronizationJson = json['synchronization']!;
     final synchronization = TextDocumentSyncClientCapabilities.fromJson(
-      synchronizationJson,
+      (synchronizationJson as Map<String, Object?>),
     );
-    final typeDefinitionJson =
-        (json['typeDefinition']! as Map<String, Object?>);
+    final typeDefinitionJson = json['typeDefinition']!;
     final typeDefinition = TypeDefinitionClientCapabilities.fromJson(
-      typeDefinitionJson,
+      (typeDefinitionJson as Map<String, Object?>),
     );
-    final typeHierarchyJson = (json['typeHierarchy']! as Map<String, Object?>);
+    final typeHierarchyJson = json['typeHierarchy']!;
     final typeHierarchy = TypeHierarchyClientCapabilities.fromJson(
-      typeHierarchyJson,
+      (typeHierarchyJson as Map<String, Object?>),
     );
+
     return TextDocumentClientCapabilities(
       callHierarchy: callHierarchy,
       codeAction: codeAction,
@@ -11666,11 +11865,11 @@ class NotebookDocumentClientCapabilities implements ToJson {
   factory NotebookDocumentClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final synchronizationJson =
-        (json['synchronization']! as Map<String, Object?>);
+    final synchronizationJson = json['synchronization']!;
     final synchronization = NotebookDocumentSyncClientCapabilities.fromJson(
-      synchronizationJson,
+      (synchronizationJson as Map<String, Object?>),
     );
+
     return NotebookDocumentClientCapabilities(synchronization: synchronization);
   }
 
@@ -11692,17 +11891,17 @@ class WindowClientCapabilities implements ToJson {
   });
 
   factory WindowClientCapabilities.fromJson(Map<String, Object?> json) {
-    final showDocumentJson = (json['showDocument']! as Map<String, Object?>);
+    final showDocumentJson = json['showDocument']!;
     final showDocument = ShowDocumentClientCapabilities.fromJson(
-      showDocumentJson,
+      (showDocumentJson as Map<String, Object?>),
     );
-    final showMessageJson = (json['showMessage']! as Map<String, Object?>);
+    final showMessageJson = json['showMessage']!;
     final showMessage = ShowMessageRequestClientCapabilities.fromJson(
-      showMessageJson,
+      (showMessageJson as Map<String, Object?>),
     );
-    final workDoneProgressJson =
-        (json['workDoneProgress']! as Map<String, Object?>);
+    final workDoneProgressJson = json['workDoneProgress']!;
     final workDoneProgress = (workDoneProgressJson as bool);
+
     return WindowClientCapabilities(
       showDocument: showDocument,
       showMessage: showMessage,
@@ -11744,22 +11943,22 @@ class GeneralClientCapabilities implements ToJson {
   });
 
   factory GeneralClientCapabilities.fromJson(Map<String, Object?> json) {
-    final markdownJson = (json['markdown']! as Map<String, Object?>);
-    final markdown = MarkdownClientCapabilities.fromJson(markdownJson);
-    final positionEncodingsJson =
-        (json['positionEncodings']! as Map<String, Object?>);
+    final markdownJson = json['markdown']!;
+    final markdown = MarkdownClientCapabilities.fromJson(
+      (markdownJson as Map<String, Object?>),
+    );
+    final positionEncodingsJson = json['positionEncodings']!;
     final positionEncodings =
         (positionEncodingsJson as List<PositionEncodingKind>);
-    final regularExpressionsJson =
-        (json['regularExpressions']! as Map<String, Object?>);
+    final regularExpressionsJson = json['regularExpressions']!;
     final regularExpressions = RegularExpressionsClientCapabilities.fromJson(
-      regularExpressionsJson,
+      (regularExpressionsJson as Map<String, Object?>),
     );
-    final staleRequestSupportJson =
-        (json['staleRequestSupport']! as Map<String, Object?>);
+    final staleRequestSupportJson = json['staleRequestSupport']!;
     final staleRequestSupport =
         (staleRequestSupportJson
             as GeneralClientCapabilitiesStaleRequestSupport);
+
     return GeneralClientCapabilities(
       markdown: markdown,
       positionEncodings: positionEncodings,
@@ -11810,10 +12009,11 @@ class RelativePattern implements ToJson {
   RelativePattern({required this.baseUri, required this.pattern});
 
   factory RelativePattern.fromJson(Map<String, Object?> json) {
-    final baseUriJson = (json['baseUri']! as Map<String, Object?>);
+    final baseUriJson = json['baseUri']!;
     final baseUri = (baseUriJson as OrRefType);
-    final patternJson = (json['pattern']! as Map<String, Object?>);
+    final patternJson = json['pattern']!;
     final pattern = (patternJson as Pattern);
+
     return RelativePattern(baseUri: baseUri, pattern: pattern);
   }
 
@@ -11840,28 +12040,24 @@ class WorkspaceEditClientCapabilities implements ToJson {
   });
 
   factory WorkspaceEditClientCapabilities.fromJson(Map<String, Object?> json) {
-    final changeAnnotationSupportJson =
-        (json['changeAnnotationSupport']! as Map<String, Object?>);
+    final changeAnnotationSupportJson = json['changeAnnotationSupport']!;
     final changeAnnotationSupport =
         (changeAnnotationSupportJson
             as WorkspaceEditClientCapabilitiesChangeAnnotationSupport);
-    final documentChangesJson =
-        (json['documentChanges']! as Map<String, Object?>);
+    final documentChangesJson = json['documentChanges']!;
     final documentChanges = (documentChangesJson as bool);
-    final failureHandlingJson =
-        (json['failureHandling']! as Map<String, Object?>);
+    final failureHandlingJson = json['failureHandling']!;
     // Handle enum type;
     final failureHandling = _i1.$enumDecode(
       _$FailureHandlingKindEnumMap,
       failureHandlingJson,
     );
-    final normalizesLineEndingsJson =
-        (json['normalizesLineEndings']! as Map<String, Object?>);
+    final normalizesLineEndingsJson = json['normalizesLineEndings']!;
     final normalizesLineEndings = (normalizesLineEndingsJson as bool);
-    final resourceOperationsJson =
-        (json['resourceOperations']! as Map<String, Object?>);
+    final resourceOperationsJson = json['resourceOperations']!;
     final resourceOperations =
         (resourceOperationsJson as List<ResourceOperationKind>);
+
     return WorkspaceEditClientCapabilities(
       changeAnnotationSupport: changeAnnotationSupport,
       documentChanges: documentChanges,
@@ -11909,9 +12105,9 @@ class DidChangeConfigurationClientCapabilities implements ToJson {
   factory DidChangeConfigurationClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return DidChangeConfigurationClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -11935,12 +12131,11 @@ class DidChangeWatchedFilesClientCapabilities implements ToJson {
   factory DidChangeWatchedFilesClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final relativePatternSupportJson =
-        (json['relativePatternSupport']! as Map<String, Object?>);
+    final relativePatternSupportJson = json['relativePatternSupport']!;
     final relativePatternSupport = (relativePatternSupportJson as bool);
+
     return DidChangeWatchedFilesClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       relativePatternSupport: relativePatternSupport,
@@ -11975,19 +12170,18 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
   factory WorkspaceSymbolClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final resolveSupportJson =
-        (json['resolveSupport']! as Map<String, Object?>);
+    final resolveSupportJson = json['resolveSupport']!;
     final resolveSupport =
         (resolveSupportJson as WorkspaceSymbolClientCapabilitiesResolveSupport);
-    final symbolKindJson = (json['symbolKind']! as Map<String, Object?>);
+    final symbolKindJson = json['symbolKind']!;
     final symbolKind =
         (symbolKindJson as WorkspaceSymbolClientCapabilitiesSymbolKind);
-    final tagSupportJson = (json['tagSupport']! as Map<String, Object?>);
+    final tagSupportJson = json['tagSupport']!;
     final tagSupport =
         (tagSupportJson as WorkspaceSymbolClientCapabilitiesTagSupport);
+
     return WorkspaceSymbolClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       resolveSupport: resolveSupport,
@@ -12025,9 +12219,9 @@ class ExecuteCommandClientCapabilities implements ToJson {
   ExecuteCommandClientCapabilities({required this.dynamicRegistration});
 
   factory ExecuteCommandClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return ExecuteCommandClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -12049,9 +12243,9 @@ class SemanticTokensWorkspaceClientCapabilities implements ToJson {
   factory SemanticTokensWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final refreshSupportJson =
-        (json['refreshSupport']! as Map<String, Object?>);
+    final refreshSupportJson = json['refreshSupport']!;
     final refreshSupport = (refreshSupportJson as bool);
+
     return SemanticTokensWorkspaceClientCapabilities(
       refreshSupport: refreshSupport,
     );
@@ -12078,9 +12272,9 @@ class CodeLensWorkspaceClientCapabilities implements ToJson {
   factory CodeLensWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final refreshSupportJson =
-        (json['refreshSupport']! as Map<String, Object?>);
+    final refreshSupportJson = json['refreshSupport']!;
     final refreshSupport = (refreshSupportJson as bool);
+
     return CodeLensWorkspaceClientCapabilities(refreshSupport: refreshSupport);
   }
 
@@ -12115,21 +12309,21 @@ class FileOperationClientCapabilities implements ToJson {
   });
 
   factory FileOperationClientCapabilities.fromJson(Map<String, Object?> json) {
-    final didCreateJson = (json['didCreate']! as Map<String, Object?>);
+    final didCreateJson = json['didCreate']!;
     final didCreate = (didCreateJson as bool);
-    final didDeleteJson = (json['didDelete']! as Map<String, Object?>);
+    final didDeleteJson = json['didDelete']!;
     final didDelete = (didDeleteJson as bool);
-    final didRenameJson = (json['didRename']! as Map<String, Object?>);
+    final didRenameJson = json['didRename']!;
     final didRename = (didRenameJson as bool);
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final willCreateJson = (json['willCreate']! as Map<String, Object?>);
+    final willCreateJson = json['willCreate']!;
     final willCreate = (willCreateJson as bool);
-    final willDeleteJson = (json['willDelete']! as Map<String, Object?>);
+    final willDeleteJson = json['willDelete']!;
     final willDelete = (willDeleteJson as bool);
-    final willRenameJson = (json['willRename']! as Map<String, Object?>);
+    final willRenameJson = json['willRename']!;
     final willRename = (willRenameJson as bool);
+
     return FileOperationClientCapabilities(
       didCreate: didCreate,
       didDelete: didDelete,
@@ -12177,9 +12371,9 @@ class InlineValueWorkspaceClientCapabilities implements ToJson {
   factory InlineValueWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final refreshSupportJson =
-        (json['refreshSupport']! as Map<String, Object?>);
+    final refreshSupportJson = json['refreshSupport']!;
     final refreshSupport = (refreshSupportJson as bool);
+
     return InlineValueWorkspaceClientCapabilities(
       refreshSupport: refreshSupport,
     );
@@ -12207,9 +12401,9 @@ class InlayHintWorkspaceClientCapabilities implements ToJson {
   factory InlayHintWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final refreshSupportJson =
-        (json['refreshSupport']! as Map<String, Object?>);
+    final refreshSupportJson = json['refreshSupport']!;
     final refreshSupport = (refreshSupportJson as bool);
+
     return InlayHintWorkspaceClientCapabilities(refreshSupport: refreshSupport);
   }
 
@@ -12235,9 +12429,9 @@ class DiagnosticWorkspaceClientCapabilities implements ToJson {
   factory DiagnosticWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final refreshSupportJson =
-        (json['refreshSupport']! as Map<String, Object?>);
+    final refreshSupportJson = json['refreshSupport']!;
     final refreshSupport = (refreshSupportJson as bool);
+
     return DiagnosticWorkspaceClientCapabilities(
       refreshSupport: refreshSupport,
     );
@@ -12265,9 +12459,9 @@ class FoldingRangeWorkspaceClientCapabilities implements ToJson {
   factory FoldingRangeWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final refreshSupportJson =
-        (json['refreshSupport']! as Map<String, Object?>);
+    final refreshSupportJson = json['refreshSupport']!;
     final refreshSupport = (refreshSupportJson as bool);
+
     return FoldingRangeWorkspaceClientCapabilities(
       refreshSupport: refreshSupport,
     );
@@ -12299,16 +12493,15 @@ class TextDocumentSyncClientCapabilities implements ToJson {
   factory TextDocumentSyncClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final didSaveJson = (json['didSave']! as Map<String, Object?>);
+    final didSaveJson = json['didSave']!;
     final didSave = (didSaveJson as bool);
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final willSaveJson = (json['willSave']! as Map<String, Object?>);
+    final willSaveJson = json['willSave']!;
     final willSave = (willSaveJson as bool);
-    final willSaveWaitUntilJson =
-        (json['willSaveWaitUntil']! as Map<String, Object?>);
+    final willSaveWaitUntilJson = json['willSaveWaitUntil']!;
     final willSaveWaitUntil = (willSaveWaitUntilJson as bool);
+
     return TextDocumentSyncClientCapabilities(
       didSave: didSave,
       dynamicRegistration: dynamicRegistration,
@@ -12349,32 +12542,27 @@ class CompletionClientCapabilities implements ToJson {
   });
 
   factory CompletionClientCapabilities.fromJson(Map<String, Object?> json) {
-    final completionItemJson =
-        (json['completionItem']! as Map<String, Object?>);
+    final completionItemJson = json['completionItem']!;
     final completionItem =
         (completionItemJson as CompletionClientCapabilitiesCompletionItem);
-    final completionItemKindJson =
-        (json['completionItemKind']! as Map<String, Object?>);
+    final completionItemKindJson = json['completionItemKind']!;
     final completionItemKind =
         (completionItemKindJson
             as CompletionClientCapabilitiesCompletionItemKind);
-    final completionListJson =
-        (json['completionList']! as Map<String, Object?>);
+    final completionListJson = json['completionList']!;
     final completionList =
         (completionListJson as CompletionClientCapabilitiesCompletionList);
-    final contextSupportJson =
-        (json['contextSupport']! as Map<String, Object?>);
+    final contextSupportJson = json['contextSupport']!;
     final contextSupport = (contextSupportJson as bool);
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final insertTextModeJson =
-        (json['insertTextMode']! as Map<String, Object?>);
+    final insertTextModeJson = json['insertTextMode']!;
     // Handle enum type;
     final insertTextMode = _i1.$enumDecode(
       _$InsertTextModeEnumMap,
       insertTextModeJson,
     );
+
     return CompletionClientCapabilities(
       completionItem: completionItem,
       completionItemKind: completionItemKind,
@@ -12422,11 +12610,11 @@ class HoverClientCapabilities implements ToJson {
   });
 
   factory HoverClientCapabilities.fromJson(Map<String, Object?> json) {
-    final contentFormatJson = (json['contentFormat']! as Map<String, Object?>);
+    final contentFormatJson = json['contentFormat']!;
     final contentFormat = (contentFormatJson as List<MarkupKind>);
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return HoverClientCapabilities(
       contentFormat: contentFormat,
       dynamicRegistration: dynamicRegistration,
@@ -12455,17 +12643,15 @@ class SignatureHelpClientCapabilities implements ToJson {
   });
 
   factory SignatureHelpClientCapabilities.fromJson(Map<String, Object?> json) {
-    final contextSupportJson =
-        (json['contextSupport']! as Map<String, Object?>);
+    final contextSupportJson = json['contextSupport']!;
     final contextSupport = (contextSupportJson as bool);
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final signatureInformationJson =
-        (json['signatureInformation']! as Map<String, Object?>);
+    final signatureInformationJson = json['signatureInformation']!;
     final signatureInformation =
         (signatureInformationJson
             as SignatureHelpClientCapabilitiesSignatureInformation);
+
     return SignatureHelpClientCapabilities(
       contextSupport: contextSupport,
       dynamicRegistration: dynamicRegistration,
@@ -12502,11 +12688,11 @@ class DeclarationClientCapabilities implements ToJson {
   });
 
   factory DeclarationClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final linkSupportJson = (json['linkSupport']! as Map<String, Object?>);
+    final linkSupportJson = json['linkSupport']!;
     final linkSupport = (linkSupportJson as bool);
+
     return DeclarationClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       linkSupport: linkSupport,
@@ -12536,11 +12722,11 @@ class DefinitionClientCapabilities implements ToJson {
   });
 
   factory DefinitionClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final linkSupportJson = (json['linkSupport']! as Map<String, Object?>);
+    final linkSupportJson = json['linkSupport']!;
     final linkSupport = (linkSupportJson as bool);
+
     return DefinitionClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       linkSupport: linkSupport,
@@ -12568,11 +12754,11 @@ class TypeDefinitionClientCapabilities implements ToJson {
   });
 
   factory TypeDefinitionClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final linkSupportJson = (json['linkSupport']! as Map<String, Object?>);
+    final linkSupportJson = json['linkSupport']!;
     final linkSupport = (linkSupportJson as bool);
+
     return TypeDefinitionClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       linkSupport: linkSupport,
@@ -12602,11 +12788,11 @@ class ImplementationClientCapabilities implements ToJson {
   });
 
   factory ImplementationClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final linkSupportJson = (json['linkSupport']! as Map<String, Object?>);
+    final linkSupportJson = json['linkSupport']!;
     final linkSupport = (linkSupportJson as bool);
+
     return ImplementationClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       linkSupport: linkSupport,
@@ -12633,9 +12819,9 @@ class ReferenceClientCapabilities implements ToJson {
   ReferenceClientCapabilities({required this.dynamicRegistration});
 
   factory ReferenceClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return ReferenceClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -12657,9 +12843,9 @@ class DocumentHighlightClientCapabilities implements ToJson {
   factory DocumentHighlightClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return DocumentHighlightClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -12685,21 +12871,21 @@ class DocumentSymbolClientCapabilities implements ToJson {
   });
 
   factory DocumentSymbolClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
     final hierarchicalDocumentSymbolSupportJson =
-        (json['hierarchicalDocumentSymbolSupport']! as Map<String, Object?>);
+        json['hierarchicalDocumentSymbolSupport']!;
     final hierarchicalDocumentSymbolSupport =
         (hierarchicalDocumentSymbolSupportJson as bool);
-    final labelSupportJson = (json['labelSupport']! as Map<String, Object?>);
+    final labelSupportJson = json['labelSupport']!;
     final labelSupport = (labelSupportJson as bool);
-    final symbolKindJson = (json['symbolKind']! as Map<String, Object?>);
+    final symbolKindJson = json['symbolKind']!;
     final symbolKind =
         (symbolKindJson as WorkspaceSymbolClientCapabilitiesSymbolKind);
-    final tagSupportJson = (json['tagSupport']! as Map<String, Object?>);
+    final tagSupportJson = json['tagSupport']!;
     final tagSupport =
         (tagSupportJson as WorkspaceSymbolClientCapabilitiesTagSupport);
+
     return DocumentSymbolClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       hierarchicalDocumentSymbolSupport: hierarchicalDocumentSymbolSupport,
@@ -12749,30 +12935,25 @@ class CodeActionClientCapabilities implements ToJson {
   });
 
   factory CodeActionClientCapabilities.fromJson(Map<String, Object?> json) {
-    final codeActionLiteralSupportJson =
-        (json['codeActionLiteralSupport']! as Map<String, Object?>);
+    final codeActionLiteralSupportJson = json['codeActionLiteralSupport']!;
     final codeActionLiteralSupport =
         (codeActionLiteralSupportJson
             as CodeActionClientCapabilitiesCodeActionLiteralSupport);
-    final dataSupportJson = (json['dataSupport']! as Map<String, Object?>);
+    final dataSupportJson = json['dataSupport']!;
     final dataSupport = (dataSupportJson as bool);
-    final disabledSupportJson =
-        (json['disabledSupport']! as Map<String, Object?>);
+    final disabledSupportJson = json['disabledSupport']!;
     final disabledSupport = (disabledSupportJson as bool);
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final honorsChangeAnnotationsJson =
-        (json['honorsChangeAnnotations']! as Map<String, Object?>);
+    final honorsChangeAnnotationsJson = json['honorsChangeAnnotations']!;
     final honorsChangeAnnotations = (honorsChangeAnnotationsJson as bool);
-    final isPreferredSupportJson =
-        (json['isPreferredSupport']! as Map<String, Object?>);
+    final isPreferredSupportJson = json['isPreferredSupport']!;
     final isPreferredSupport = (isPreferredSupportJson as bool);
-    final resolveSupportJson =
-        (json['resolveSupport']! as Map<String, Object?>);
+    final resolveSupportJson = json['resolveSupport']!;
     final resolveSupport =
         (resolveSupportJson
             as CompletionClientCapabilitiesCompletionItemResolveSupport);
+
     return CodeActionClientCapabilities(
       codeActionLiteralSupport: codeActionLiteralSupport,
       dataSupport: dataSupport,
@@ -12830,9 +13011,9 @@ class CodeLensClientCapabilities implements ToJson {
   CodeLensClientCapabilities({required this.dynamicRegistration});
 
   factory CodeLensClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return CodeLensClientCapabilities(dynamicRegistration: dynamicRegistration);
   }
 
@@ -12853,12 +13034,11 @@ class DocumentLinkClientCapabilities implements ToJson {
   });
 
   factory DocumentLinkClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final tooltipSupportJson =
-        (json['tooltipSupport']! as Map<String, Object?>);
+    final tooltipSupportJson = json['tooltipSupport']!;
     final tooltipSupport = (tooltipSupportJson as bool);
+
     return DocumentLinkClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       tooltipSupport: tooltipSupport,
@@ -12882,9 +13062,9 @@ class DocumentColorClientCapabilities implements ToJson {
   DocumentColorClientCapabilities({required this.dynamicRegistration});
 
   factory DocumentColorClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return DocumentColorClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -12908,9 +13088,9 @@ class DocumentFormattingClientCapabilities implements ToJson {
   factory DocumentFormattingClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return DocumentFormattingClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -12935,11 +13115,11 @@ class DocumentRangeFormattingClientCapabilities implements ToJson {
   factory DocumentRangeFormattingClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final rangesSupportJson = (json['rangesSupport']! as Map<String, Object?>);
+    final rangesSupportJson = json['rangesSupport']!;
     final rangesSupport = (rangesSupportJson as bool);
+
     return DocumentRangeFormattingClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       rangesSupport: rangesSupport,
@@ -12968,9 +13148,9 @@ class DocumentOnTypeFormattingClientCapabilities implements ToJson {
   factory DocumentOnTypeFormattingClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return DocumentOnTypeFormattingClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -12994,22 +13174,20 @@ class RenameClientCapabilities implements ToJson {
   });
 
   factory RenameClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final honorsChangeAnnotationsJson =
-        (json['honorsChangeAnnotations']! as Map<String, Object?>);
+    final honorsChangeAnnotationsJson = json['honorsChangeAnnotations']!;
     final honorsChangeAnnotations = (honorsChangeAnnotationsJson as bool);
-    final prepareSupportJson =
-        (json['prepareSupport']! as Map<String, Object?>);
+    final prepareSupportJson = json['prepareSupport']!;
     final prepareSupport = (prepareSupportJson as bool);
     final prepareSupportDefaultBehaviorJson =
-        (json['prepareSupportDefaultBehavior']! as Map<String, Object?>);
+        json['prepareSupportDefaultBehavior']!;
     // Handle enum type;
     final prepareSupportDefaultBehavior = _i1.$enumDecode(
       _$PrepareSupportDefaultBehaviorEnumMap,
       prepareSupportDefaultBehaviorJson,
     );
+
     return RenameClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       honorsChangeAnnotations: honorsChangeAnnotations,
@@ -13054,22 +13232,20 @@ class FoldingRangeClientCapabilities implements ToJson {
   });
 
   factory FoldingRangeClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final foldingRangeJson = (json['foldingRange']! as Map<String, Object?>);
+    final foldingRangeJson = json['foldingRange']!;
     final foldingRange =
         (foldingRangeJson as FoldingRangeClientCapabilitiesFoldingRange);
-    final foldingRangeKindJson =
-        (json['foldingRangeKind']! as Map<String, Object?>);
+    final foldingRangeKindJson = json['foldingRangeKind']!;
     final foldingRangeKind =
         (foldingRangeKindJson
             as FoldingRangeClientCapabilitiesFoldingRangeKind);
-    final lineFoldingOnlyJson =
-        (json['lineFoldingOnly']! as Map<String, Object?>);
+    final lineFoldingOnlyJson = json['lineFoldingOnly']!;
     final lineFoldingOnly = (lineFoldingOnlyJson as bool);
-    final rangeLimitJson = (json['rangeLimit']! as Map<String, Object?>);
+    final rangeLimitJson = json['rangeLimit']!;
     final rangeLimit = (rangeLimitJson as int);
+
     return FoldingRangeClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       foldingRange: foldingRange,
@@ -13113,9 +13289,9 @@ class SelectionRangeClientCapabilities implements ToJson {
   SelectionRangeClientCapabilities({required this.dynamicRegistration});
 
   factory SelectionRangeClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return SelectionRangeClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -13146,20 +13322,18 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
   factory PublishDiagnosticsClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final codeDescriptionSupportJson =
-        (json['codeDescriptionSupport']! as Map<String, Object?>);
+    final codeDescriptionSupportJson = json['codeDescriptionSupport']!;
     final codeDescriptionSupport = (codeDescriptionSupportJson as bool);
-    final dataSupportJson = (json['dataSupport']! as Map<String, Object?>);
+    final dataSupportJson = json['dataSupport']!;
     final dataSupport = (dataSupportJson as bool);
-    final relatedInformationJson =
-        (json['relatedInformation']! as Map<String, Object?>);
+    final relatedInformationJson = json['relatedInformation']!;
     final relatedInformation = (relatedInformationJson as bool);
-    final tagSupportJson = (json['tagSupport']! as Map<String, Object?>);
+    final tagSupportJson = json['tagSupport']!;
     final tagSupport =
         (tagSupportJson as PublishDiagnosticsClientCapabilitiesTagSupport);
-    final versionSupportJson =
-        (json['versionSupport']! as Map<String, Object?>);
+    final versionSupportJson = json['versionSupport']!;
     final versionSupport = (versionSupportJson as bool);
+
     return PublishDiagnosticsClientCapabilities(
       codeDescriptionSupport: codeDescriptionSupport,
       dataSupport: dataSupport,
@@ -13204,9 +13378,9 @@ class CallHierarchyClientCapabilities implements ToJson {
   CallHierarchyClientCapabilities({required this.dynamicRegistration});
 
   factory CallHierarchyClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return CallHierarchyClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -13239,30 +13413,25 @@ class SemanticTokensClientCapabilities implements ToJson {
   });
 
   factory SemanticTokensClientCapabilities.fromJson(Map<String, Object?> json) {
-    final augmentsSyntaxTokensJson =
-        (json['augmentsSyntaxTokens']! as Map<String, Object?>);
+    final augmentsSyntaxTokensJson = json['augmentsSyntaxTokens']!;
     final augmentsSyntaxTokens = (augmentsSyntaxTokensJson as bool);
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final formatsJson = (json['formats']! as Map<String, Object?>);
+    final formatsJson = json['formats']!;
     final formats = (formatsJson as List<TokenFormat>);
-    final multilineTokenSupportJson =
-        (json['multilineTokenSupport']! as Map<String, Object?>);
+    final multilineTokenSupportJson = json['multilineTokenSupport']!;
     final multilineTokenSupport = (multilineTokenSupportJson as bool);
-    final overlappingTokenSupportJson =
-        (json['overlappingTokenSupport']! as Map<String, Object?>);
+    final overlappingTokenSupportJson = json['overlappingTokenSupport']!;
     final overlappingTokenSupport = (overlappingTokenSupportJson as bool);
-    final requestsJson = (json['requests']! as Map<String, Object?>);
+    final requestsJson = json['requests']!;
     final requests = (requestsJson as SemanticTokensClientCapabilitiesRequests);
-    final serverCancelSupportJson =
-        (json['serverCancelSupport']! as Map<String, Object?>);
+    final serverCancelSupportJson = json['serverCancelSupport']!;
     final serverCancelSupport = (serverCancelSupportJson as bool);
-    final tokenModifiersJson =
-        (json['tokenModifiers']! as Map<String, Object?>);
+    final tokenModifiersJson = json['tokenModifiers']!;
     final tokenModifiers = (tokenModifiersJson as List<String>);
-    final tokenTypesJson = (json['tokenTypes']! as Map<String, Object?>);
+    final tokenTypesJson = json['tokenTypes']!;
     final tokenTypes = (tokenTypesJson as List<String>);
+
     return SemanticTokensClientCapabilities(
       augmentsSyntaxTokens: augmentsSyntaxTokens,
       dynamicRegistration: dynamicRegistration,
@@ -13335,9 +13504,9 @@ class LinkedEditingRangeClientCapabilities implements ToJson {
   factory LinkedEditingRangeClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return LinkedEditingRangeClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -13361,9 +13530,9 @@ class MonikerClientCapabilities implements ToJson {
   MonikerClientCapabilities({required this.dynamicRegistration});
 
   factory MonikerClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return MonikerClientCapabilities(dynamicRegistration: dynamicRegistration);
   }
 
@@ -13383,9 +13552,9 @@ class TypeHierarchyClientCapabilities implements ToJson {
   TypeHierarchyClientCapabilities({required this.dynamicRegistration});
 
   factory TypeHierarchyClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return TypeHierarchyClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -13409,9 +13578,9 @@ class InlineValueClientCapabilities implements ToJson {
   InlineValueClientCapabilities({required this.dynamicRegistration});
 
   factory InlineValueClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return InlineValueClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -13436,14 +13605,13 @@ class InlayHintClientCapabilities implements ToJson {
   });
 
   factory InlayHintClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final resolveSupportJson =
-        (json['resolveSupport']! as Map<String, Object?>);
+    final resolveSupportJson = json['resolveSupport']!;
     final resolveSupport =
         (resolveSupportJson
             as CompletionClientCapabilitiesCompletionItemResolveSupport);
+
     return InlayHintClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       resolveSupport: resolveSupport,
@@ -13471,12 +13639,11 @@ class DiagnosticClientCapabilities implements ToJson {
   });
 
   factory DiagnosticClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final relatedDocumentSupportJson =
-        (json['relatedDocumentSupport']! as Map<String, Object?>);
+    final relatedDocumentSupportJson = json['relatedDocumentSupport']!;
     final relatedDocumentSupport = (relatedDocumentSupportJson as bool);
+
     return DiagnosticClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       relatedDocumentSupport: relatedDocumentSupport,
@@ -13507,9 +13674,9 @@ class InlineCompletionClientCapabilities implements ToJson {
   factory InlineCompletionClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
+
     return InlineCompletionClientCapabilities(
       dynamicRegistration: dynamicRegistration,
     );
@@ -13536,12 +13703,11 @@ class NotebookDocumentSyncClientCapabilities implements ToJson {
   factory NotebookDocumentSyncClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson =
-        (json['dynamicRegistration']! as Map<String, Object?>);
+    final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
-    final executionSummarySupportJson =
-        (json['executionSummarySupport']! as Map<String, Object?>);
+    final executionSummarySupportJson = json['executionSummarySupport']!;
     final executionSummarySupport = (executionSummarySupportJson as bool);
+
     return NotebookDocumentSyncClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       executionSummarySupport: executionSummarySupport,
@@ -13570,11 +13736,11 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   factory ShowMessageRequestClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final messageActionItemJson =
-        (json['messageActionItem']! as Map<String, Object?>);
+    final messageActionItemJson = json['messageActionItem']!;
     final messageActionItem =
         (messageActionItemJson
             as ShowMessageRequestClientCapabilitiesMessageActionItem);
+
     return ShowMessageRequestClientCapabilities(
       messageActionItem: messageActionItem,
     );
@@ -13595,8 +13761,9 @@ class ShowDocumentClientCapabilities implements ToJson {
   ShowDocumentClientCapabilities({required this.support});
 
   factory ShowDocumentClientCapabilities.fromJson(Map<String, Object?> json) {
-    final supportJson = (json['support']! as Map<String, Object?>);
+    final supportJson = json['support']!;
     final support = (supportJson as bool);
+
     return ShowDocumentClientCapabilities(support: support);
   }
 
@@ -13620,10 +13787,11 @@ class RegularExpressionsClientCapabilities implements ToJson {
   factory RegularExpressionsClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final engineJson = (json['engine']! as Map<String, Object?>);
+    final engineJson = json['engine']!;
     final engine = (engineJson as String);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as String);
+
     return RegularExpressionsClientCapabilities(
       engine: engine,
       version: version,
@@ -13652,12 +13820,13 @@ class MarkdownClientCapabilities implements ToJson {
   });
 
   factory MarkdownClientCapabilities.fromJson(Map<String, Object?> json) {
-    final allowedTagsJson = (json['allowedTags']! as Map<String, Object?>);
+    final allowedTagsJson = json['allowedTags']!;
     final allowedTags = (allowedTagsJson as List<String>);
-    final parserJson = (json['parser']! as Map<String, Object?>);
+    final parserJson = json['parser']!;
     final parser = (parserJson as String);
-    final versionJson = (json['version']! as Map<String, Object?>);
+    final versionJson = json['version']!;
     final version = (versionJson as String);
+
     return MarkdownClientCapabilities(
       allowedTags: allowedTags,
       parser: parser,

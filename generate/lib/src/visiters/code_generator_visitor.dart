@@ -460,7 +460,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final varJsonName = '${propertyName}Json';
 
       final key = literalString(propertyName);
-      final mapAsPart = refer('json').index(key).nullChecked.asA(mapTypeRef);
+      final mapAsPart = refer('json').index(key).nullChecked;
       // final varJson = json['key'] as Map<String, Object?>?;
       final finalJson = declareFinal(varJsonName).assign(mapAsPart);
       fromJsonBody.addExpression(finalJson);
@@ -494,7 +494,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       if (isComplexType) {
         // If the type is complex, we need to call its fromJson method
         final fromJsonCall = refer(dartType).property('fromJson');
-        final fromJsonCallExpr = fromJsonCall.call([refer(varJsonName)]);
+        final fromJsonCallExpr = fromJsonCall.call([
+          refer(varJsonName).asA(mapTypeRef),
+        ]);
         final fieldAssignment = declareFinal(
           propertyName,
         ).assign(fromJsonCallExpr);
@@ -514,6 +516,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       constructorNamedArgs,
     );
 
+    fromJsonBody.statements.add(const Code('\n'));
     fromJsonBody.addExpression(constructorInvocation.returned);
 
     final constructor = Constructor((cb) {
