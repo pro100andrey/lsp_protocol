@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
@@ -11,118 +9,124 @@ import 'visitor.dart';
 /// A concrete visitor that generates Dart code from MetaProtocol.
 class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   // Pass protocol for initial setup, but main logic is in visit methods
-  DartCodeGeneratorVisitor(this.protocol)
+  DartCodeGeneratorVisitor(MetaProtocol protocol)
     : _structures = Map.fromEntries(
         protocol.structures.map((s) => MapEntry(s.name, s)),
       ),
       _enumerations = Map.fromEntries(
         protocol.enumerations.map((e) => MapEntry(e.name, e)),
       ),
-      _literals = {} {
-    // Initialize the type resolver with the known structures and enumerations
-
+      _literals = {},
+      _collectedPropertiesCache = {} {
     _typeResolverVisitor = TypeResolverVisitor(
       _structures,
       _enumerations,
       _literals,
     );
-
-    void collectLiterals(MetaProperty property, String prefix) {
-      if (property.type is LiteralRef) {
-        final ref = property.type as LiteralRef;
-
-        // Check if the literal is already collected
-        if (_literals.containsKey(ref)) {
-          return; // Already collected, skip
-        }
-
-        final typeName = '$prefix${capitalize(property.name)}';
-
-        _literals[ref] = (
-          name: typeName,
-          properties: ref.value.properties,
-          documentation: property.documentation,
-        );
-
-        if (ref.value.properties.isNotEmpty) {
-          // Recursively collect properties of the literal
-          for (final subProperty in ref.value.properties) {
-            collectLiterals(subProperty, typeName);
-          }
-        }
-      }
-    }
-
-    for (final structure in protocol.structures) {
-      for (final property in structure.properties) {
-        collectLiterals(property, structure.name);
-      }
-    }
   }
-
-  final MetaProtocol protocol;
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
   final Map<LiteralRef, MetaLiteralDefinition> _literals;
+  final Map<String, Map<String, MetaProperty>> _collectedPropertiesCache;
 
   late final TypeResolverVisitor _typeResolverVisitor;
 
-  final Map<String, Map<String, MetaProperty>> _collectedPropertiesCache = {};
-
   Reference get toJsonClassRef => refer('ToJson');
 
-  Reference get encodeEnumRef => refer(
-    r'$enumDecode',
-    '...utils/enum_helpers.dart',
-  );
+  void _collectLiterals(MetaProperty property, String prefix) {
+    if (property.type is ArrayRef) {
+      final ref = property.type as ArrayRef;
+
+      if (ref.element is LiteralRef) {
+        final literalRef = ref.element as LiteralRef;
+        _processLiteralRef(literalRef, property, prefix);
+      }
+    }
+
+    if (property.type is LiteralRef) {
+      final ref = property.type as LiteralRef;
+      _processLiteralRef(ref, property, prefix);
+    }
+  }
+
+  void _processLiteralRef(
+    LiteralRef literalRef,
+    MetaProperty containingProperty,
+    String parentTypeName,
+  ) {
+    if (_literals.containsKey(literalRef)) {
+      return;
+    }
+
+    final typeName = '$parentTypeName${capitalize(containingProperty.name)}';
+
+    // Store the literal definition
+    _literals[literalRef] = (
+      name: typeName,
+      properties: literalRef.value.properties,
+      documentation: containingProperty.documentation,
+    );
+
+    // Recursively collect nested literals within this new literal's properties
+    for (final subProperty in literalRef.value.properties) {
+      _collectLiterals(subProperty, typeName);
+    }
+  }
 
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
-      b.docs.addAll(_header());
+      for (final structure in protocol.structures) {
+        for (final property in structure.properties) {
+          _collectLiterals(property, structure.name);
+        }
+      }
 
+      // Generate default header comments
+      b.docs.addAll(_header());
       // Generate the base class for JSON serialization
       b.body.add(_generateToJsonClass());
-
       // Generate the OrRef class
       b.body.add(_generateOrRefClass());
-
       // Generate type aliases
       for (final typeAlias in protocol.typeAliases) {
         b.body.add(visitTypeAlias(typeAlias));
       }
-
       // Generate classes from structures
       for (final structure in protocol.structures) {
-        // Collect literals embedded in structures
         b.body.add(visitStructure(structure));
       }
-
       // Generate enums
       for (final enumeration in protocol.enumerations) {
         b.body.add(visitEnumeration(enumeration));
-
         b.body.add(_generateEnumMap(enumeration));
       }
-
-      // Generate literal classes (after collecting them from structures)
+      // Generate literal classes
       for (final literal in _literals.values) {
-        // Create a MetaLiteralDefinition from the collected data
         b.body.add(visitLiteralDefinition(literal));
       }
-
+      // Generate the main protocol class
       for (final request in protocol.requests) {
-        // Use the visitor to generate the class for the request
         b.body.add(visitRequest(request));
       }
-
+      // Generate notifications
       for (final notification in protocol.notifications) {
-        // Use the visitor to generate the class for the notification
         b.body.add(visitNotification(notification));
       }
     },
   );
+
+  List<String> _header() => [
+    '/// Do not edit it manually.',
+    '',
+    '// ignore_for_file: prefer_expression_function_bodies',
+    '// ignore_for_file: one_member_abstracts',
+    '// ignore_for_file: unused_element',
+    '// ignore_for_file: doc_directive_unknown',
+    '// ignore_for_file: directives_ordering',
+    '// ignore_for_file: unnecessary_parenthesis',
+  ];
 
   @override
   TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {
@@ -288,6 +292,11 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     return declareConst(refName).assign(mapLiteral).statement;
   }
 
+  @override
+  Spec visitNotification(MetaNotification notification) => const CodeExpression(
+    Code('// MetaNotification visitor not implemented for generation\n'),
+  );
+
   // --- MetaProtocolVisitor stub implementations
   // (not used for direct generation here) ---
   @override
@@ -300,21 +309,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     Code('// MetaRequest visitor not implemented for generation\n'),
   );
 
-  // final formattedDescription = formatDocComment(request.documentation) ?? [];
-
-  //   final name = request.method.split('/').map(capitalize).join();
-
-  //   return Class((cb) {
-  //     cb
-  //       ..docs.addAll(formattedDescription)
-  //       ..name = name;
-  //   });
-
-  @override
-  Spec visitNotification(MetaNotification notification) => const CodeExpression(
-    Code('// MetaNotification visitor not implemented for generation\n'),
-  );
-
   @override
   Spec visitProperty(MetaProperty property) => const CodeExpression(
     Code('// MetaProperty visitor not implemented for generation\n'),
@@ -324,17 +318,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Spec visitEnumMember(MetaEnumMember enumMember) => const CodeExpression(
     Code('// MetaEnumMember visitor not implemented for generation\n'),
   );
-
-  List<String> _header() => [
-    '/// Do not edit it manually.',
-    '',
-    '// ignore_for_file: prefer_expression_function_bodies',
-    '// ignore_for_file: one_member_abstracts',
-    '// ignore_for_file: unused_element',
-    '// ignore_for_file: doc_directive_unknown',
-    '// ignore_for_file: directives_ordering',
-    '// ignore_for_file: unnecessary_parenthesis',
-  ];
 
   /// Generates the base ToJson class.
   Class _generateToJsonClass() => Class((cb) {
@@ -393,7 +376,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       }
     }
 
-    // Add properties directly defined in the current structure (override parents/mixins)
+    // Add properties directly defined in the current structure
+    // (override parents/mixins)
     for (final property in structure.properties) {
       collectedProperties[property.name] = property;
     }
@@ -430,12 +414,28 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final isEnum = _enumerations.containsKey(dartType);
 
       if (isEnum) {
-        // throw UnimplementedError(
-        //   'Enum handling is not implemented yet for $dartType',
-        // );
+        fromJsonBody.addExpression(
+          const CodeExpression(Code('// Handle enum type')),
+        );
+
+        final encodeEnumRef = refer(
+          r'$enumDecode',
+          '../utils/enum_helpers.dart',
+        );
+        //$enumDecode(_$TypeKindEnumMap, json['kind']),
+        final enumMapRef = refer('_\$${dartType}EnumMap');
+
+        final fieldAssignment = declareFinal(propertyName).assign(
+          encodeEnumRef.call([
+            enumMapRef,
+            refer(varJsonName),
+          ]),
+        );
+        fromJsonBody.addExpression(fieldAssignment);
+        continue;
       }
 
-      final isComplexType = _structures.containsKey(dartType) || isEnum;
+      final isComplexType = _structures.containsKey(dartType);
 
       if (isComplexType) {
         // If the type is complex, we need to call its fromJson method

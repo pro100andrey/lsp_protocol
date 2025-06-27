@@ -77,11 +77,10 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   @override
   // ignore: prefer_expression_function_bodies
   String visitLiteralRef(LiteralRef ref) {
- 
     final literal = _literals[ref];
 
     if (literal == null) {
-      return _applyOptional('Literal', ref.optional);
+      throw ArgumentError('LiteralRef not found: $ref');
     }
 
     return _applyOptional(literal.name, ref.optional);

@@ -6,7 +6,9 @@
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: directives_ordering
 // ignore_for_file: unnecessary_parenthesis
-library;
+library; // ignore_for_file: no_leading_underscores_for_library_prefixes
+
+import '../utils/enum_helpers.dart' as _i1;
 
 abstract class ToJson {
   Map<String, dynamic> toJson() {
@@ -743,7 +745,8 @@ class FoldingRange implements ToJson {
     final endLineJson = (json['endLine']! as Map<String, Object?>);
     final endLine = (endLineJson as int);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = FoldingRangeKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$FoldingRangeKindEnumMap, kindJson);
     final startCharacterJson =
         (json['startCharacter']! as Map<String, Object?>);
     final startCharacter = (startCharacterJson as int);
@@ -1162,7 +1165,8 @@ class CallHierarchyItem implements ToJson {
     final detailJson = (json['detail']! as Map<String, Object?>);
     final detail = (detailJson as String);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = SymbolKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final nameJson = (json['name']! as Map<String, Object?>);
     final name = (nameJson as String);
     final rangeJson = (json['range']! as Map<String, Object?>);
@@ -2120,11 +2124,13 @@ class Moniker implements ToJson {
     final identifierJson = (json['identifier']! as Map<String, Object?>);
     final identifier = (identifierJson as String);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = MonikerKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$MonikerKindEnumMap, kindJson);
     final schemeJson = (json['scheme']! as Map<String, Object?>);
     final scheme = (schemeJson as String);
     final uniqueJson = (json['unique']! as Map<String, Object?>);
-    final unique = UniquenessLevel.fromJson(uniqueJson);
+    // Handle enum type;
+    final unique = _i1.$enumDecode(_$UniquenessLevelEnumMap, uniqueJson);
     return Moniker(
       identifier: identifier,
       kind: kind,
@@ -2247,7 +2253,8 @@ class TypeHierarchyItem implements ToJson {
     final detailJson = (json['detail']! as Map<String, Object?>);
     final detail = (detailJson as String);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = SymbolKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final nameJson = (json['name']! as Map<String, Object?>);
     final name = (nameJson as String);
     final rangeJson = (json['range']! as Map<String, Object?>);
@@ -2591,7 +2598,8 @@ class InlayHint implements ToJson {
     final dataJson = (json['data']! as Map<String, Object?>);
     final data = (dataJson as LSPAny);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = InlayHintKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$InlayHintKindEnumMap, kindJson);
     final labelJson = (json['label']! as Map<String, Object?>);
     final label = (labelJson as OrRefType);
     final paddingLeftJson = (json['paddingLeft']! as Map<String, Object?>);
@@ -3367,7 +3375,8 @@ class InitializeParams
     final rootUriJson = (json['rootUri']! as Map<String, Object?>);
     final rootUri = (rootUriJson as OrRefType);
     final traceJson = (json['trace']! as Map<String, Object?>);
-    final trace = TraceValues.fromJson(traceJson);
+    // Handle enum type;
+    final trace = _i1.$enumDecode(_$TraceValuesEnumMap, traceJson);
     final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
     final workDoneToken = (workDoneTokenJson as ProgressToken);
     final workspaceFoldersJson =
@@ -3553,7 +3562,8 @@ class ShowMessageParams implements ToJson {
     final messageJson = (json['message']! as Map<String, Object?>);
     final message = (messageJson as String);
     final typeJson = (json['type']! as Map<String, Object?>);
-    final type = MessageType.fromJson(typeJson);
+    // Handle enum type;
+    final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
     return ShowMessageParams(message: message, type: type);
   }
 
@@ -3582,7 +3592,8 @@ class ShowMessageRequestParams implements ToJson {
     final messageJson = (json['message']! as Map<String, Object?>);
     final message = (messageJson as String);
     final typeJson = (json['type']! as Map<String, Object?>);
-    final type = MessageType.fromJson(typeJson);
+    // Handle enum type;
+    final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
     return ShowMessageRequestParams(
       actions: actions,
       message: message,
@@ -3631,7 +3642,8 @@ class LogMessageParams implements ToJson {
     final messageJson = (json['message']! as Map<String, Object?>);
     final message = (messageJson as String);
     final typeJson = (json['type']! as Map<String, Object?>);
-    final type = MessageType.fromJson(typeJson);
+    // Handle enum type;
+    final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
     return LogMessageParams(message: message, type: type);
   }
 
@@ -3725,7 +3737,11 @@ class TextDocumentChangeRegistrationOptions
         (json['documentSelector']! as Map<String, Object?>);
     final documentSelector = (documentSelectorJson as OrRefType);
     final syncKindJson = (json['syncKind']! as Map<String, Object?>);
-    final syncKind = TextDocumentSyncKind.fromJson(syncKindJson);
+    // Handle enum type;
+    final syncKind = _i1.$enumDecode(
+      _$TextDocumentSyncKindEnumMap,
+      syncKindJson,
+    );
     return TextDocumentChangeRegistrationOptions(
       documentSelector: documentSelector,
       syncKind: syncKind,
@@ -3836,7 +3852,8 @@ class WillSaveTextDocumentParams implements ToJson {
 
   factory WillSaveTextDocumentParams.fromJson(Map<String, Object?> json) {
     final reasonJson = (json['reason']! as Map<String, Object?>);
-    final reason = TextDocumentSaveReason.fromJson(reasonJson);
+    // Handle enum type;
+    final reason = _i1.$enumDecode(_$TextDocumentSaveReasonEnumMap, reasonJson);
     final textDocumentJson = (json['textDocument']! as Map<String, Object?>);
     final textDocument = TextDocumentIdentifier.fromJson(textDocumentJson);
     return WillSaveTextDocumentParams(
@@ -4072,12 +4089,21 @@ class CompletionItem implements ToJson {
     final insertText = (insertTextJson as String);
     final insertTextFormatJson =
         (json['insertTextFormat']! as Map<String, Object?>);
-    final insertTextFormat = InsertTextFormat.fromJson(insertTextFormatJson);
+    // Handle enum type;
+    final insertTextFormat = _i1.$enumDecode(
+      _$InsertTextFormatEnumMap,
+      insertTextFormatJson,
+    );
     final insertTextModeJson =
         (json['insertTextMode']! as Map<String, Object?>);
-    final insertTextMode = InsertTextMode.fromJson(insertTextModeJson);
+    // Handle enum type;
+    final insertTextMode = _i1.$enumDecode(
+      _$InsertTextModeEnumMap,
+      insertTextModeJson,
+    );
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = CompletionItemKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$CompletionItemKindEnumMap, kindJson);
     final labelJson = (json['label']! as Map<String, Object?>);
     final label = (labelJson as String);
     final labelDetailsJson = (json['labelDetails']! as Map<String, Object?>);
@@ -4886,7 +4912,8 @@ class DocumentHighlight implements ToJson {
 
   factory DocumentHighlight.fromJson(Map<String, Object?> json) {
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = DocumentHighlightKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$DocumentHighlightKindEnumMap, kindJson);
     final rangeJson = (json['range']! as Map<String, Object?>);
     final range = Range.fromJson(rangeJson);
     return DocumentHighlight(kind: kind, range: range);
@@ -5001,7 +5028,8 @@ class SymbolInformation implements BaseSymbolInformation {
     final deprecatedJson = (json['deprecated']! as Map<String, Object?>);
     final deprecated = (deprecatedJson as bool);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = SymbolKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final locationJson = (json['location']! as Map<String, Object?>);
     final location = Location.fromJson(locationJson);
     final nameJson = (json['name']! as Map<String, Object?>);
@@ -5082,7 +5110,8 @@ class DocumentSymbol implements ToJson {
     final detailJson = (json['detail']! as Map<String, Object?>);
     final detail = (detailJson as String);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = SymbolKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final nameJson = (json['name']! as Map<String, Object?>);
     final name = (nameJson as String);
     final rangeJson = (json['range']! as Map<String, Object?>);
@@ -5310,7 +5339,8 @@ class CodeAction implements ToJson {
     final isPreferredJson = (json['isPreferred']! as Map<String, Object?>);
     final isPreferred = (isPreferredJson as bool);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = CodeActionKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$CodeActionKindEnumMap, kindJson);
     final titleJson = (json['title']! as Map<String, Object?>);
     final title = (titleJson as String);
     return CodeAction(
@@ -5497,7 +5527,8 @@ class WorkspaceSymbol implements BaseSymbolInformation {
     final dataJson = (json['data']! as Map<String, Object?>);
     final data = (dataJson as LSPAny);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = SymbolKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final locationJson = (json['location']! as Map<String, Object?>);
     final location = (locationJson as OrRefType);
     final nameJson = (json['name']! as Map<String, Object?>);
@@ -6564,7 +6595,8 @@ class SetTraceParams implements ToJson {
 
   factory SetTraceParams.fromJson(Map<String, Object?> json) {
     final valueJson = (json['value']! as Map<String, Object?>);
-    final value = TraceValues.fromJson(valueJson);
+    // Handle enum type;
+    final value = _i1.$enumDecode(_$TraceValuesEnumMap, valueJson);
     return SetTraceParams(value: value);
   }
 
@@ -7790,7 +7822,8 @@ class MarkupContent implements ToJson {
 
   factory MarkupContent.fromJson(Map<String, Object?> json) {
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = MarkupKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$MarkupKindEnumMap, kindJson);
     final valueJson = (json['value']! as Map<String, Object?>);
     final value = (valueJson as String);
     return MarkupContent(kind: kind, value: value);
@@ -8291,7 +8324,11 @@ class InlineCompletionContext implements ToJson {
       selectedCompletionInfoJson,
     );
     final triggerKindJson = (json['triggerKind']! as Map<String, Object?>);
-    final triggerKind = InlineCompletionTriggerKind.fromJson(triggerKindJson);
+    // Handle enum type;
+    final triggerKind = _i1.$enumDecode(
+      _$InlineCompletionTriggerKindEnumMap,
+      triggerKindJson,
+    );
     return InlineCompletionContext(
       selectedCompletionInfo: selectedCompletionInfo,
       triggerKind: triggerKind,
@@ -8456,7 +8493,8 @@ class _InitializeParams implements WorkDoneProgressParams {
     final rootUriJson = (json['rootUri']! as Map<String, Object?>);
     final rootUri = (rootUriJson as OrRefType);
     final traceJson = (json['trace']! as Map<String, Object?>);
-    final trace = TraceValues.fromJson(traceJson);
+    // Handle enum type;
+    final trace = _i1.$enumDecode(_$TraceValuesEnumMap, traceJson);
     final workDoneTokenJson = (json['workDoneToken']! as Map<String, Object?>);
     final workDoneToken = (workDoneTokenJson as ProgressToken);
     return _InitializeParams(
@@ -8669,7 +8707,9 @@ class ServerCapabilities implements ToJson {
     final notebookDocumentSync = (notebookDocumentSyncJson as OrRefType);
     final positionEncodingJson =
         (json['positionEncoding']! as Map<String, Object?>);
-    final positionEncoding = PositionEncodingKind.fromJson(
+    // Handle enum type;
+    final positionEncoding = _i1.$enumDecode(
+      _$PositionEncodingKindEnumMap,
       positionEncodingJson,
     );
     final referencesProviderJson =
@@ -8928,7 +8968,8 @@ class FileEvent implements ToJson {
 
   factory FileEvent.fromJson(Map<String, Object?> json) {
     final typeJson = (json['type']! as Map<String, Object?>);
-    final type = FileChangeType.fromJson(typeJson);
+    // Handle enum type;
+    final type = _i1.$enumDecode(_$FileChangeTypeEnumMap, typeJson);
     final uriJson = (json['uri']! as Map<String, Object?>);
     final uri = (uriJson as Uri);
     return FileEvent(type: type, uri: uri);
@@ -8953,7 +8994,8 @@ class FileSystemWatcher implements ToJson {
     final globPatternJson = (json['globPattern']! as Map<String, Object?>);
     final globPattern = (globPatternJson as GlobPattern);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = WatchKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$WatchKindEnumMap, kindJson);
     return FileSystemWatcher(globPattern: globPattern, kind: kind);
   }
 
@@ -9004,7 +9046,8 @@ class Diagnostic implements ToJson {
     final relatedInformation =
         (relatedInformationJson as List<DiagnosticRelatedInformation>);
     final severityJson = (json['severity']! as Map<String, Object?>);
-    final severity = DiagnosticSeverity.fromJson(severityJson);
+    // Handle enum type;
+    final severity = _i1.$enumDecode(_$DiagnosticSeverityEnumMap, severityJson);
     final sourceJson = (json['source']! as Map<String, Object?>);
     final source = (sourceJson as String);
     final tagsJson = (json['tags']! as Map<String, Object?>);
@@ -9077,7 +9120,11 @@ class CompletionContext implements ToJson {
         (json['triggerCharacter']! as Map<String, Object?>);
     final triggerCharacter = (triggerCharacterJson as String);
     final triggerKindJson = (json['triggerKind']! as Map<String, Object?>);
-    final triggerKind = CompletionTriggerKind.fromJson(triggerKindJson);
+    // Handle enum type;
+    final triggerKind = _i1.$enumDecode(
+      _$CompletionTriggerKindEnumMap,
+      triggerKindJson,
+    );
     return CompletionContext(
       triggerCharacter: triggerCharacter,
       triggerKind: triggerKind,
@@ -9280,7 +9327,11 @@ class SignatureHelpContext implements ToJson {
         (json['triggerCharacter']! as Map<String, Object?>);
     final triggerCharacter = (triggerCharacterJson as String);
     final triggerKindJson = (json['triggerKind']! as Map<String, Object?>);
-    final triggerKind = SignatureHelpTriggerKind.fromJson(triggerKindJson);
+    // Handle enum type;
+    final triggerKind = _i1.$enumDecode(
+      _$SignatureHelpTriggerKindEnumMap,
+      triggerKindJson,
+    );
     return SignatureHelpContext(
       activeSignatureHelp: activeSignatureHelp,
       isRetrigger: isRetrigger,
@@ -9501,7 +9552,8 @@ class BaseSymbolInformation implements ToJson {
     final containerNameJson = (json['containerName']! as Map<String, Object?>);
     final containerName = (containerNameJson as String);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = SymbolKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final nameJson = (json['name']! as Map<String, Object?>);
     final name = (nameJson as String);
     final tagsJson = (json['tags']! as Map<String, Object?>);
@@ -9581,7 +9633,11 @@ class CodeActionContext implements ToJson {
     final onlyJson = (json['only']! as Map<String, Object?>);
     final only = (onlyJson as List<CodeActionKind>);
     final triggerKindJson = (json['triggerKind']! as Map<String, Object?>);
-    final triggerKind = CodeActionTriggerKind.fromJson(triggerKindJson);
+    // Handle enum type;
+    final triggerKind = _i1.$enumDecode(
+      _$CodeActionTriggerKindEnumMap,
+      triggerKindJson,
+    );
     return CodeActionContext(
       diagnostics: diagnostics,
       only: only,
@@ -10191,7 +10247,11 @@ class FileOperationPattern implements ToJson {
     final globJson = (json['glob']! as Map<String, Object?>);
     final glob = (globJson as String);
     final matchesJson = (json['matches']! as Map<String, Object?>);
-    final matches = FileOperationPatternKind.fromJson(matchesJson);
+    // Handle enum type;
+    final matches = _i1.$enumDecode(
+      _$FileOperationPatternKindEnumMap,
+      matchesJson,
+    );
     final optionsJson = (json['options']! as Map<String, Object?>);
     final options = FileOperationPatternOptions.fromJson(optionsJson);
     return FileOperationPattern(glob: glob, matches: matches, options: options);
@@ -10355,7 +10415,8 @@ class NotebookCell implements ToJson {
         (json['executionSummary']! as Map<String, Object?>);
     final executionSummary = ExecutionSummary.fromJson(executionSummaryJson);
     final kindJson = (json['kind']! as Map<String, Object?>);
-    final kind = NotebookCellKind.fromJson(kindJson);
+    // Handle enum type;
+    final kind = _i1.$enumDecode(_$NotebookCellKindEnumMap, kindJson);
     final metadataJson = (json['metadata']! as Map<String, Object?>);
     final metadata = (metadataJson as LSPObject);
     return NotebookCell(
@@ -10524,7 +10585,8 @@ class TextDocumentSyncOptions implements ToJson {
 
   factory TextDocumentSyncOptions.fromJson(Map<String, Object?> json) {
     final changeJson = (json['change']! as Map<String, Object?>);
-    final change = TextDocumentSyncKind.fromJson(changeJson);
+    // Handle enum type;
+    final change = _i1.$enumDecode(_$TextDocumentSyncKindEnumMap, changeJson);
     final openCloseJson = (json['openClose']! as Map<String, Object?>);
     final openClose = (openCloseJson as bool);
     final saveJson = (json['save']! as Map<String, Object?>);
@@ -11578,7 +11640,11 @@ class WorkspaceEditClientCapabilities implements ToJson {
     final documentChanges = (documentChangesJson as bool);
     final failureHandlingJson =
         (json['failureHandling']! as Map<String, Object?>);
-    final failureHandling = FailureHandlingKind.fromJson(failureHandlingJson);
+    // Handle enum type;
+    final failureHandling = _i1.$enumDecode(
+      _$FailureHandlingKindEnumMap,
+      failureHandlingJson,
+    );
     final normalizesLineEndingsJson =
         (json['normalizesLineEndings']! as Map<String, Object?>);
     final normalizesLineEndings = (normalizesLineEndingsJson as bool);
@@ -12094,7 +12160,11 @@ class CompletionClientCapabilities implements ToJson {
     final dynamicRegistration = (dynamicRegistrationJson as bool);
     final insertTextModeJson =
         (json['insertTextMode']! as Map<String, Object?>);
-    final insertTextMode = InsertTextMode.fromJson(insertTextModeJson);
+    // Handle enum type;
+    final insertTextMode = _i1.$enumDecode(
+      _$InsertTextModeEnumMap,
+      insertTextModeJson,
+    );
     return CompletionClientCapabilities(
       completionItem: completionItem,
       completionItemKind: completionItemKind,
@@ -12725,10 +12795,11 @@ class RenameClientCapabilities implements ToJson {
     final prepareSupport = (prepareSupportJson as bool);
     final prepareSupportDefaultBehaviorJson =
         (json['prepareSupportDefaultBehavior']! as Map<String, Object?>);
-    final prepareSupportDefaultBehavior =
-        PrepareSupportDefaultBehavior.fromJson(
-          prepareSupportDefaultBehaviorJson,
-        );
+    // Handle enum type;
+    final prepareSupportDefaultBehavior = _i1.$enumDecode(
+      _$PrepareSupportDefaultBehaviorEnumMap,
+      prepareSupportDefaultBehaviorJson,
+    );
     return RenameClientCapabilities(
       dynamicRegistration: dynamicRegistration,
       honorsChangeAnnotations: honorsChangeAnnotations,
@@ -14367,7 +14438,7 @@ class NotebookDocumentChangeEventCells {
   final List<NotebookCell> data;
 
   /// Changes to the text content of notebook cells.
-  final List<Literal> textContent;
+  final List<NotebookDocumentChangeEventCellsTextContent> textContent;
 
   @override
   Map<String, dynamic> toJson() {
@@ -14391,6 +14462,23 @@ class NotebookDocumentChangeEventCellsStructure {
 
   /// Additional closed cell text documents.
   final List<TextDocumentIdentifier> didClose;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Changes to the text content of notebook cells.
+class NotebookDocumentChangeEventCellsTextContent {
+  NotebookDocumentChangeEventCellsTextContent({
+    required this.document,
+    required this.changes,
+  });
+
+  final VersionedTextDocumentIdentifier document;
+
+  final List<TextDocumentContentChangeEvent> changes;
 
   @override
   Map<String, dynamic> toJson() {
