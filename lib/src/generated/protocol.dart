@@ -10,6 +10,216 @@ library; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import '../utils/enum_helpers.dart' as _i1;
 
+/// This class contains methods for handling requests.
+enum Method {
+  /// Method: textDocument/implementation
+  textDocumentImplementation('textDocument/implementation'),
+
+  /// Method: textDocument/typeDefinition
+  textDocumentTypeDefinition('textDocument/typeDefinition'),
+
+  /// Method: workspace/workspaceFolders
+  workspaceWorkspaceFolders('workspace/workspaceFolders'),
+
+  /// Method: workspace/configuration
+  workspaceConfiguration('workspace/configuration'),
+
+  /// Method: textDocument/documentColor
+  textDocumentDocumentColor('textDocument/documentColor'),
+
+  /// Method: textDocument/colorPresentation
+  textDocumentColorPresentation('textDocument/colorPresentation'),
+
+  /// Method: textDocument/foldingRange
+  textDocumentFoldingRange('textDocument/foldingRange'),
+
+  /// Method: workspace/foldingRange/refresh
+  workspaceFoldingRangeRefresh('workspace/foldingRange/refresh'),
+
+  /// Method: textDocument/declaration
+  textDocumentDeclaration('textDocument/declaration'),
+
+  /// Method: textDocument/selectionRange
+  textDocumentSelectionRange('textDocument/selectionRange'),
+
+  /// Method: window/workDoneProgress/create
+  windowWorkDoneProgressCreate('window/workDoneProgress/create'),
+
+  /// Method: textDocument/prepareCallHierarchy
+  textDocumentPrepareCallHierarchy('textDocument/prepareCallHierarchy'),
+
+  /// Method: callHierarchy/incomingCalls
+  callHierarchyIncomingCalls('callHierarchy/incomingCalls'),
+
+  /// Method: callHierarchy/outgoingCalls
+  callHierarchyOutgoingCalls('callHierarchy/outgoingCalls'),
+
+  /// Method: textDocument/semanticTokens/full
+  textDocumentSemanticTokensFull('textDocument/semanticTokens/full'),
+
+  /// Method: textDocument/semanticTokens/full/delta
+  textDocumentSemanticTokensFullDelta('textDocument/semanticTokens/full/delta'),
+
+  /// Method: textDocument/semanticTokens/range
+  textDocumentSemanticTokensRange('textDocument/semanticTokens/range'),
+
+  /// Method: workspace/semanticTokens/refresh
+  workspaceSemanticTokensRefresh('workspace/semanticTokens/refresh'),
+
+  /// Method: window/showDocument
+  windowShowDocument('window/showDocument'),
+
+  /// Method: textDocument/linkedEditingRange
+  textDocumentLinkedEditingRange('textDocument/linkedEditingRange'),
+
+  /// Method: workspace/willCreateFiles
+  workspaceWillCreateFiles('workspace/willCreateFiles'),
+
+  /// Method: workspace/willRenameFiles
+  workspaceWillRenameFiles('workspace/willRenameFiles'),
+
+  /// Method: workspace/willDeleteFiles
+  workspaceWillDeleteFiles('workspace/willDeleteFiles'),
+
+  /// Method: textDocument/moniker
+  textDocumentMoniker('textDocument/moniker'),
+
+  /// Method: textDocument/prepareTypeHierarchy
+  textDocumentPrepareTypeHierarchy('textDocument/prepareTypeHierarchy'),
+
+  /// Method: typeHierarchy/supertypes
+  typeHierarchySupertypes('typeHierarchy/supertypes'),
+
+  /// Method: typeHierarchy/subtypes
+  typeHierarchySubtypes('typeHierarchy/subtypes'),
+
+  /// Method: textDocument/inlineValue
+  textDocumentInlineValue('textDocument/inlineValue'),
+
+  /// Method: workspace/inlineValue/refresh
+  workspaceInlineValueRefresh('workspace/inlineValue/refresh'),
+
+  /// Method: textDocument/inlayHint
+  textDocumentInlayHint('textDocument/inlayHint'),
+
+  /// Method: inlayHint/resolve
+  inlayHintResolve('inlayHint/resolve'),
+
+  /// Method: workspace/inlayHint/refresh
+  workspaceInlayHintRefresh('workspace/inlayHint/refresh'),
+
+  /// Method: textDocument/diagnostic
+  textDocumentDiagnostic('textDocument/diagnostic'),
+
+  /// Method: workspace/diagnostic
+  workspaceDiagnostic('workspace/diagnostic'),
+
+  /// Method: workspace/diagnostic/refresh
+  workspaceDiagnosticRefresh('workspace/diagnostic/refresh'),
+
+  /// Method: textDocument/inlineCompletion
+  textDocumentInlineCompletion('textDocument/inlineCompletion'),
+
+  /// Method: client/registerCapability
+  clientRegisterCapability('client/registerCapability'),
+
+  /// Method: client/unregisterCapability
+  clientUnregisterCapability('client/unregisterCapability'),
+
+  /// Method: initialize
+  initialize('initialize'),
+
+  /// Method: shutdown
+  shutdown('shutdown'),
+
+  /// Method: window/showMessageRequest
+  windowShowMessageRequest('window/showMessageRequest'),
+
+  /// Method: textDocument/willSaveWaitUntil
+  textDocumentWillSaveWaitUntil('textDocument/willSaveWaitUntil'),
+
+  /// Method: textDocument/completion
+  textDocumentCompletion('textDocument/completion'),
+
+  /// Method: completionItem/resolve
+  completionItemResolve('completionItem/resolve'),
+
+  /// Method: textDocument/hover
+  textDocumentHover('textDocument/hover'),
+
+  /// Method: textDocument/signatureHelp
+  textDocumentSignatureHelp('textDocument/signatureHelp'),
+
+  /// Method: textDocument/definition
+  textDocumentDefinition('textDocument/definition'),
+
+  /// Method: textDocument/references
+  textDocumentReferences('textDocument/references'),
+
+  /// Method: textDocument/documentHighlight
+  textDocumentDocumentHighlight('textDocument/documentHighlight'),
+
+  /// Method: textDocument/documentSymbol
+  textDocumentDocumentSymbol('textDocument/documentSymbol'),
+
+  /// Method: textDocument/codeAction
+  textDocumentCodeAction('textDocument/codeAction'),
+
+  /// Method: codeAction/resolve
+  codeActionResolve('codeAction/resolve'),
+
+  /// Method: workspace/symbol
+  workspaceSymbol('workspace/symbol'),
+
+  /// Method: workspaceSymbol/resolve
+  workspaceSymbolResolve('workspaceSymbol/resolve'),
+
+  /// Method: textDocument/codeLens
+  textDocumentCodeLens('textDocument/codeLens'),
+
+  /// Method: codeLens/resolve
+  codeLensResolve('codeLens/resolve'),
+
+  /// Method: workspace/codeLens/refresh
+  workspaceCodeLensRefresh('workspace/codeLens/refresh'),
+
+  /// Method: textDocument/documentLink
+  textDocumentDocumentLink('textDocument/documentLink'),
+
+  /// Method: documentLink/resolve
+  documentLinkResolve('documentLink/resolve'),
+
+  /// Method: textDocument/formatting
+  textDocumentFormatting('textDocument/formatting'),
+
+  /// Method: textDocument/rangeFormatting
+  textDocumentRangeFormatting('textDocument/rangeFormatting'),
+
+  /// Method: textDocument/rangesFormatting
+  textDocumentRangesFormatting('textDocument/rangesFormatting'),
+
+  /// Method: textDocument/onTypeFormatting
+  textDocumentOnTypeFormatting('textDocument/onTypeFormatting'),
+
+  /// Method: textDocument/rename
+  textDocumentRename('textDocument/rename'),
+
+  /// Method: textDocument/prepareRename
+  textDocumentPrepareRename('textDocument/prepareRename'),
+
+  /// Method: workspace/executeCommand
+  workspaceExecuteCommand('workspace/executeCommand'),
+
+  /// Method: workspace/applyEdit
+  workspaceApplyEdit('workspace/applyEdit');
+
+  // The list of all methods in this enumeration.
+  const Method(this.value);
+
+  // The type of this enumeration.
+  final String value;
+}
+
 abstract class ToJson {
   Map<String, dynamic> toJson() {
     throw UnimplementedError();
@@ -14967,73 +15177,6 @@ class ShowMessageRequestClientCapabilitiesMessageActionItem {
   }
 }
 
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
-// MetaRequest visitor not implemented for generation
 // MetaNotification visitor not implemented for generation
 // MetaNotification visitor not implemented for generation
 // MetaNotification visitor not implemented for generation

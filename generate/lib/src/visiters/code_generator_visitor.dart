@@ -66,7 +66,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       return;
     }
 
-    final typeName = '$parentTypeName${capitalize(containingProperty.name)}';
+    final typeName =
+        '$parentTypeName${upperFirstLetter(containingProperty.name)}';
 
     // Store the literal definition
     _literals[literalRef] = (
@@ -86,6 +87,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     (b) {
       // Generate default header comments
       b.docs.addAll(_header());
+
+      b.body.add(_generateMethodEnum(protocol.requests));
       // Generate the base class for JSON serialization
       b.body.add(_generateToJsonClass());
       // Generate the OrRef class
@@ -106,10 +109,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       // Generate literal classes
       for (final literal in _literals.values) {
         b.body.add(visitLiteralDefinition(literal));
-      }
-      // Generate the main protocol class
-      for (final request in protocol.requests) {
-        b.body.add(visitRequest(request));
       }
       // Generate notifications
       for (final notification in protocol.notifications) {
@@ -210,6 +209,61 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     });
   }
 
+  Spec _generateMethodEnum(List<MetaRequest> requests) => Enum((eb) {
+    eb
+      ..name = 'Method'
+      ..docs.add('/// This class contains methods for handling requests.')
+      ..constructors.add(
+        Constructor(
+          (ecb) {
+            ecb
+              ..constant = true
+              ..requiredParameters.add(
+                Parameter(
+                  (pb) {
+                    pb
+                      ..name = 'value'
+                      ..named = true
+                      ..toThis = true;
+                  },
+                ),
+              )
+              ..docs.add('// The list of all methods in this enumeration.');
+          },
+        ),
+      )
+      ..fields.add(
+        Field(
+          (fb) {
+            fb
+              ..name = 'value'
+              ..modifier = FieldModifier.final$
+              ..type = refer('String')
+              ..docs.add('// The type of this enumeration.');
+          },
+        ),
+      );
+
+    for (final request in requests) {
+      final method = _getMethodName(request);
+      final methodPath = request.method;
+
+      eb.values.add(
+        EnumValue((evb) {
+          evb.name = method;
+          evb.arguments.add(literalString(methodPath));
+          evb.docs.add('/// Method: $methodPath');
+        }),
+      );
+    }
+  });
+
+  String _getMethodName(MetaRequest request) {
+    final parts = request.method.split('/').map(upperFirstLetter).join();
+
+    return lowerFirstLetter(parts);
+  }
+
   @override
   Enum visitEnumeration(MetaEnumeration enumeration) {
     final formattedDescription =
@@ -258,7 +312,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
           EnumValue(
             (evb) {
               evb.arguments.add(refer(m.value.literal));
-              evb.name = '${uncapitalize(m.name)}Value';
+              evb.name = '${lowerFirstLetter(m.name)}Value';
             },
           ),
         );
@@ -274,7 +328,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
     final entries = enumeration.values.map(
       (m) => MapEntry(
-        refer('${enumeration.name}.${uncapitalize(m.name)}Value'),
+        refer('${enumeration.name}.${lowerFirstLetter(m.name)}Value'),
         refer(m.value.literal),
       ),
     );
@@ -303,9 +357,11 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   );
 
   @override
-  Spec visitRequest(MetaRequest request) => const CodeExpression(
-    Code('// MetaRequest visitor not implemented for generation\n'),
-  );
+  Spec visitRequest(MetaRequest request) {
+    throw UnimplementedError(
+      'MetaRequest visitor not implemented for generation: ${request.method}',
+    );
+  }
 
   @override
   Spec visitProperty(MetaProperty property) => const CodeExpression(
@@ -608,6 +664,6 @@ String _specToCode(Spec spec) {
 }
 
 // Utility functions (assuming they are in 'utils.dart' or can be placed here)
-String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+String upperFirstLetter(String s) => s[0].toUpperCase() + s.substring(1);
 
-String uncapitalize(String s) => s[0].toLowerCase() + s.substring(1);
+String lowerFirstLetter(String s) => s[0].toLowerCase() + s.substring(1);
