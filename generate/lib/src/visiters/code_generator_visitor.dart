@@ -18,6 +18,13 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ),
       _literals = {},
       _collectedPropertiesCache = {} {
+    // Collect all properties from structures and literals
+    for (final structure in protocol.structures) {
+      for (final property in structure.properties) {
+        _collectLiterals(property, structure.name);
+      }
+    }
+
     _typeResolverVisitor = TypeResolverVisitor(
       _structures,
       _enumerations,
@@ -77,12 +84,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
-      for (final structure in protocol.structures) {
-        for (final property in structure.properties) {
-          _collectLiterals(property, structure.name);
-        }
-      }
-
       // Generate default header comments
       b.docs.addAll(_header());
       // Generate the base class for JSON serialization
@@ -203,10 +204,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         inheritedPropertyNames: inheritedPropertyNames,
       );
 
-      _addFromJsonConstructor(
-        cb: cb,
-        allFields: allFields,
-      );
+      _addFromJsonConstructor(cb: cb, allFields: allFields);
 
       _generateMethods(cb);
     });
