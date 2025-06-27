@@ -72,6 +72,11 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   Reference get toJsonClassRef => refer('ToJson');
 
+  Reference get encodeEnumRef => refer(
+    r'$enumDecode',
+    '...utils/enum_helpers.dart',
+  );
+
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
@@ -97,6 +102,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       // Generate enums
       for (final enumeration in protocol.enumerations) {
         b.body.add(visitEnumeration(enumeration));
+
+        b.body.add(_generateEnumMap(enumeration));
       }
 
       // Generate literal classes (after collecting them from structures)
@@ -192,6 +199,11 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         inheritedPropertyNames: inheritedPropertyNames,
       );
 
+      _addFromJsonConstructor(
+        cb: cb,
+        allFields: allFields,
+      );
+
       _generateMethods(cb);
     });
   }
@@ -273,6 +285,16 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     Code('// MetaRequest visitor not implemented for generation\n'),
   );
 
+  // final formattedDescription = formatDocComment(request.documentation) ?? [];
+
+  //   final name = request.method.split('/').map(capitalize).join();
+
+  //   return Class((cb) {
+  //     cb
+  //       ..docs.addAll(formattedDescription)
+  //       ..name = name;
+  //   });
+
   @override
   Spec visitNotification(MetaNotification notification) => const CodeExpression(
     Code('// MetaNotification visitor not implemented for generation\n'),
@@ -290,14 +312,13 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   List<String> _header() => [
     '/// Do not edit it manually.',
-    '///',
-    '/// To regenerate, run `dart run lsp_meta:generate`.',
     '',
     '// ignore_for_file: prefer_expression_function_bodies',
     '// ignore_for_file: one_member_abstracts',
     '// ignore_for_file: unused_element',
     '// ignore_for_file: doc_directive_unknown',
-    '// ignore_for_file: directives_ordering', // Added for better formatting
+    '// ignore_for_file: directives_ordering',
+    '// ignore_for_file: unnecessary_parenthesis',
   ];
 
   /// Generates the base ToJson class.
@@ -323,6 +344,36 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ..name = 'OrRefType'
       ..sealed = true;
   });
+
+  // const _$MessageDirectionEnumMap = {
+  //   MessageDirection.both: 'both',
+  //   MessageDirection.clientToServer: 'clientToServer',
+  //   MessageDirection.serverToClient: 'serverToClient',
+  // };
+
+  /// Generate enumeration helper function.
+  Spec _generateEnumMap(MetaEnumeration enumeration) {
+    final refName = '_\$${enumeration.name}EnumMap';
+
+    final entries = enumeration.values.map(
+      (value) {
+        final valueName = '${enumeration.name}.${value.name}';
+        final argumentValue = switch (value.value) {
+          IsInt(:final value) => '$value',
+          IsString(:final value) => "'$value'",
+        };
+        return MapEntry(valueName, argumentValue);
+      },
+    );
+
+    final map = Map.fromEntries(entries);
+
+    final mapLiteral = literalConstMap(map);
+
+    final t = declareConst(refName).assign(mapLiteral);
+
+    return t;
+  }
 
   /// Recursively collects all properties for a given structure,
   /// including those inherited from extended structures and mixins.
@@ -365,6 +416,82 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     _collectedPropertiesCache[structure.name] = collectedProperties;
 
     return collectedProperties;
+  }
+
+  void _addFromJsonConstructor({
+    required ClassBuilder cb,
+    required List<MetaProperty> allFields,
+  }) {
+    final fromJsonBody = BlockBuilder();
+    final constructorNamedArgs = <String, Expression>{};
+
+    for (final field in allFields) {
+      final propertyName = field.name;
+      final propertyType = field.type;
+      final dartType = propertyType.resolveType(_typeResolverVisitor);
+
+      // Add to constructor arguments list
+      constructorNamedArgs[propertyName] = refer(propertyName);
+
+      final mapTypeRef = refer('Map<String, Object?>');
+      final varJsonName = '${propertyName}Json';
+
+      final key = literalString(propertyName);
+      final mapAsPart = refer('json').index(key).nullChecked.asA(mapTypeRef);
+      // final varJson = json['key'] as Map<String, Object?>?;
+      final finalJson = declareFinal(varJsonName).assign(mapAsPart);
+      fromJsonBody.addExpression(finalJson);
+
+      final isEnum = _enumerations.containsKey(dartType);
+
+      if (isEnum) {
+        // throw UnimplementedError(
+        //   'Enum handling is not implemented yet for $dartType',
+        // );
+      }
+
+      final isComplexType = _structures.containsKey(dartType) || isEnum;
+
+      if (isComplexType) {
+        // If the type is complex, we need to call its fromJson method
+        final fromJsonCall = refer(dartType).property('fromJson');
+        final fromJsonCallExpr = fromJsonCall.call([refer(varJsonName)]);
+        final fieldAssignment = declareFinal(
+          propertyName,
+        ).assign(fromJsonCallExpr);
+
+        fromJsonBody.addExpression(fieldAssignment);
+      } else {
+        // For simple types, we can directly assign
+        final value = refer(varJsonName).asA(refer(dartType));
+        final fieldAssignment = declareFinal(propertyName).assign(value);
+        fromJsonBody.addExpression(fieldAssignment);
+      }
+    }
+
+    final constructorInvocation = InvokeExpression.newOf(
+      refer(cb.name!),
+      [],
+      constructorNamedArgs,
+    );
+
+    fromJsonBody.addExpression(constructorInvocation.returned);
+
+    final constructor = Constructor((cb) {
+      cb
+        ..name = 'fromJson'
+        ..factory = true
+        ..requiredParameters.add(
+          Parameter((pb) {
+            pb
+              ..name = 'json'
+              ..type = refer('Map<String, Object?>');
+          }),
+        )
+        ..body = fromJsonBody.build();
+    });
+
+    cb.constructors.add(constructor);
   }
 
   void _addStructFields({
@@ -472,18 +599,29 @@ class ProtocolGenerator {
     final generatorVisitor = DartCodeGeneratorVisitor(protocol);
     // Start the visitation process from the root MetaProtocol object
     final library = protocol.accept(generatorVisitor) as Library;
-
-    final emitter = DartEmitter(allocator: Allocator.simplePrefixing());
-    final formatter = DartFormatter(
-      languageVersion: DartFormatter.latestLanguageVersion,
-      pageWidth: DartFormatter.defaultPageWidth,
-    );
-
-    final dartCode = library.accept(emitter).toString();
-    final result = formatter.format(dartCode);
+    final result = _specToCode(library);
 
     return result;
   }
+}
+
+String _specToCode(Spec spec) {
+  final emitter = DartEmitter(
+    allocator: Allocator.simplePrefixing(),
+    useNullSafetySyntax: true,
+    orderDirectives: true,
+  );
+
+  final formatter = DartFormatter(
+    languageVersion: DartFormatter.latestLanguageVersion,
+    pageWidth: DartFormatter.defaultPageWidth,
+    trailingCommas: TrailingCommas.automate,
+  );
+
+  final dartCode = spec.accept(emitter).toString();
+  final result = formatter.format(dartCode);
+
+  return result;
 }
 
 // Utility functions (assuming they are in 'utils.dart' or can be placed here)

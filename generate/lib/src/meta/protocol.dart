@@ -157,7 +157,18 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
     'for type resolution. Use its specific visit methods instead.',
   );
 
- 
+  bool isOptional() => switch (this) {
+    final TypeRef ref => ref.optional,
+    final ArrayRef ref => ref.optional,
+    final BaseRef ref => ref.optional,
+    final OrRef ref => ref.optional,
+    final AndRef ref => ref.optional,
+    final MapRef ref => ref.optional,
+    final LiteralRef ref => ref.optional,
+    final StringLiteralRef ref => ref.optional,
+    final TupleRef ref => ref.optional,
+  };
+
   R resolveType<R>(MetaReferenceVisitor<R> visitor) => switch (this) {
     final TypeRef ref => visitor.visitTypeRef(ref),
     final ArrayRef ref => visitor.visitArrayRef(ref),
