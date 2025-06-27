@@ -147,7 +147,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     return Class((cb) {
       cb
         ..docs.addAll(formattedDescription)
-        ..name = literalDefinition.name;
+        ..name = literalDefinition.name
+        ..implements.add(toJsonClassRef);
 
       _addStructFields(
         cb: cb,
@@ -155,7 +156,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         inheritedPropertyNames: {},
       );
 
-      _generateMethods(cb);
+      _generateToJson(cb: cb, allFields: literalDefinition.properties);
     });
   }
 
@@ -205,7 +206,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
       _addFromJsonConstructor(cb: cb, allFields: allFields);
 
-      _generateMethods(cb);
+      _generateToJson(cb: cb, allFields: allFields);
     });
   }
 
@@ -539,7 +540,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   void _addStructFields({
     required ClassBuilder cb,
     required List<MetaProperty> allFields,
-    required Set<String> inheritedPropertyNames,
+    Set<String> inheritedPropertyNames = const {},
   }) {
     cb.fields.addAll(
       allFields.map(
@@ -584,17 +585,27 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     );
   }
 
-  void _generateMethods(ClassBuilder cb) {
+  void _generateToJson({
+    required ClassBuilder cb,
+    required List<MetaProperty> allFields,
+  }) {
+    final toJsonBody = BlockBuilder();
+    final map = literalMap({}, refer('String'), refer('Object?'));
+    final jsonMap = declareFinal('json').assign(map);
+
+    toJsonBody.addExpression(jsonMap);
+    toJsonBody.statements.add(const Code('\n'));
+    // return json;
+    toJsonBody.addExpression(refer('json').returned);
+
     cb.methods.add(
-      Method(
-        (mb) {
-          mb
-            ..name = 'toJson'
-            ..annotations.add(refer('override'))
-            ..returns = refer('Map<String, dynamic>')
-            ..body = const Code('return {};'); // Implement toJson logic here
-        },
-      ),
+      Method((mb) {
+        mb
+          ..name = 'toJson'
+          ..annotations.add(refer('override'))
+          ..returns = refer('Map<String, Object?>')
+          ..body = toJsonBody.build();
+      }),
     );
   }
 

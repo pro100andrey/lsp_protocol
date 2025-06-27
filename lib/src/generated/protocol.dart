@@ -405,8 +405,10 @@ class ImplementationParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -428,8 +430,10 @@ class Location implements ToJson {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -475,8 +479,10 @@ class ImplementationRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -530,8 +536,10 @@ class TypeDefinitionParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -577,8 +585,10 @@ class TypeDefinitionRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -603,8 +613,10 @@ class WorkspaceFolder implements ToJson {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -625,8 +637,10 @@ class DidChangeWorkspaceFoldersParams implements ToJson {
   final WorkspaceFoldersChangeEvent event;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -644,8 +658,10 @@ class ConfigurationParams implements ToJson {
   final List<ConfigurationItem> items;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -688,8 +704,10 @@ class DocumentColorParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -713,8 +731,10 @@ class ColorInformation implements ToJson {
   final Range range;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -758,8 +778,10 @@ class DocumentColorRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -816,8 +838,10 @@ class ColorPresentationParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -860,8 +884,10 @@ class ColorPresentation implements ToJson {
   final TextEdit textEdit;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -878,8 +904,10 @@ class WorkDoneProgressOptions implements ToJson {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -899,8 +927,10 @@ class TextDocumentRegistrationOptions implements ToJson {
   final OrRefType documentSelector;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -943,8 +973,10 @@ class FoldingRangeParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1017,8 +1049,10 @@ class FoldingRange implements ToJson {
   final int startLine;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1062,8 +1096,10 @@ class FoldingRangeRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1117,8 +1153,10 @@ class DeclarationParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1162,8 +1200,10 @@ class DeclarationRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1213,8 +1253,10 @@ class SelectionRangeParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1242,8 +1284,10 @@ class SelectionRange implements ToJson {
   final Range range;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1289,8 +1333,10 @@ class SelectionRangeRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1308,8 +1354,10 @@ class WorkDoneProgressCreateParams implements ToJson {
   final ProgressToken token;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1327,8 +1375,10 @@ class WorkDoneProgressCancelParams implements ToJson {
   final ProgressToken token;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1372,8 +1422,10 @@ class CallHierarchyPrepareParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1454,8 +1506,10 @@ class CallHierarchyItem implements ToJson {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1501,8 +1555,10 @@ class CallHierarchyRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1543,8 +1599,10 @@ class CallHierarchyIncomingCallsParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1570,8 +1628,10 @@ class CallHierarchyIncomingCall implements ToJson {
   final List<Range> fromRanges;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1612,8 +1672,10 @@ class CallHierarchyOutgoingCallsParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1643,8 +1705,10 @@ class CallHierarchyOutgoingCall implements ToJson {
   final CallHierarchyItem to;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1687,8 +1751,10 @@ class SemanticTokensParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1715,8 +1781,10 @@ class SemanticTokens implements ToJson {
   final String resultId;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1734,8 +1802,10 @@ class SemanticTokensPartialResult implements ToJson {
   final List<int> data;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1809,8 +1879,10 @@ class SemanticTokensRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1862,8 +1934,10 @@ class SemanticTokensDeltaParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1887,8 +1961,10 @@ class SemanticTokensDelta implements ToJson {
   final String resultId;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1906,8 +1982,10 @@ class SemanticTokensDeltaPartialResult implements ToJson {
   final List<SemanticTokensEdit> edits;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -1957,8 +2035,10 @@ class SemanticTokensRangeParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2009,8 +2089,10 @@ class ShowDocumentParams implements ToJson {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2030,8 +2112,10 @@ class ShowDocumentResult implements ToJson {
   final bool success;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2073,8 +2157,10 @@ class LinkedEditingRangeParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2103,8 +2189,10 @@ class LinkedEditingRanges implements ToJson {
   final String wordPattern;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2150,8 +2238,10 @@ class LinkedEditingRangeRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2172,8 +2262,10 @@ class CreateFilesParams implements ToJson {
   final List<FileCreate> files;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2240,8 +2332,10 @@ class WorkspaceEdit implements ToJson {
   final List<OrRefType> documentChanges;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2261,8 +2355,10 @@ class FileOperationRegistrationOptions implements ToJson {
   final List<FileOperationFilter> filters;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2284,8 +2380,10 @@ class RenameFilesParams implements ToJson {
   final List<FileRename> files;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2306,8 +2404,10 @@ class DeleteFilesParams implements ToJson {
   final List<FileDelete> files;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2361,8 +2461,10 @@ class MonikerParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2410,8 +2512,10 @@ class Moniker implements ToJson {
   final UniquenessLevel unique;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2443,8 +2547,10 @@ class MonikerRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2488,8 +2594,10 @@ class TypeHierarchyPrepareParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2570,8 +2678,10 @@ class TypeHierarchyItem implements ToJson {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2617,8 +2727,10 @@ class TypeHierarchyRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2659,8 +2771,10 @@ class TypeHierarchySupertypesParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2701,8 +2815,10 @@ class TypeHierarchySubtypesParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2753,8 +2869,10 @@ class InlineValueParams implements WorkDoneProgressParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2800,8 +2918,10 @@ class InlineValueRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2842,8 +2962,10 @@ class InlayHintParams implements WorkDoneProgressParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2932,8 +3054,10 @@ class InlayHint implements ToJson {
   final OrRefType tooltip;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -2988,8 +3112,10 @@ class InlayHintRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3047,8 +3173,10 @@ class DocumentDiagnosticParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3071,8 +3199,10 @@ class DocumentDiagnosticReportPartialResult implements ToJson {
   final Map<Uri, OrRefType> relatedDocuments;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3091,8 +3221,10 @@ class DiagnosticServerCancellationData implements ToJson {
   final bool retriggerRequest;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3166,8 +3298,10 @@ class DiagnosticRegistrationOptions
   final bool workspaceDiagnostics;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3216,8 +3350,10 @@ class WorkspaceDiagnosticParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3236,8 +3372,10 @@ class WorkspaceDiagnosticReport implements ToJson {
   final List<WorkspaceDocumentDiagnosticReport> items;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3258,8 +3396,10 @@ class WorkspaceDiagnosticReportPartialResult implements ToJson {
   final List<WorkspaceDocumentDiagnosticReport> items;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3292,8 +3432,10 @@ class DidOpenNotebookDocumentParams implements ToJson {
   final NotebookDocument notebookDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3341,8 +3483,10 @@ class DidChangeNotebookDocumentParams implements ToJson {
   final VersionedNotebookDocumentIdentifier notebookDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3364,8 +3508,10 @@ class DidSaveNotebookDocumentParams implements ToJson {
   final NotebookDocumentIdentifier notebookDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3400,8 +3546,10 @@ class DidCloseNotebookDocumentParams implements ToJson {
   final NotebookDocumentIdentifier notebookDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3455,8 +3603,10 @@ class InlineCompletionParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3477,8 +3627,10 @@ class InlineCompletionList implements ToJson {
   final List<InlineCompletionItem> items;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3527,8 +3679,10 @@ class InlineCompletionItem implements ToJson {
   final Range range;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3576,8 +3730,10 @@ class InlineCompletionRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3594,8 +3750,10 @@ class RegistrationParams implements ToJson {
   final List<Registration> registrations;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3612,8 +3770,10 @@ class UnregistrationParams implements ToJson {
   final List<Unregistration> unregisterations;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3726,8 +3886,10 @@ class InitializeParams
   final OrRefType workspaceFolders;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3754,8 +3916,10 @@ class InitializeResult implements ToJson {
   final InitializeResultServerInfo serverInfo;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3777,8 +3941,10 @@ class InitializeError implements ToJson {
   final bool retry;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3790,8 +3956,10 @@ class InitializedParams implements ToJson {
   }
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3810,8 +3978,10 @@ class DidChangeConfigurationParams implements ToJson {
   final LSPAny settings;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3830,8 +4000,10 @@ class DidChangeConfigurationRegistrationOptions implements ToJson {
   final OrRefType section;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3856,8 +4028,10 @@ class ShowMessageParams implements ToJson {
   final MessageType type;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3894,8 +4068,10 @@ class ShowMessageRequestParams implements ToJson {
   final MessageType type;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3913,8 +4089,10 @@ class MessageActionItem implements ToJson {
   final String title;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3939,8 +4117,10 @@ class LogMessageParams implements ToJson {
   final MessageType type;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -3961,8 +4141,10 @@ class DidOpenTextDocumentParams implements ToJson {
   final TextDocumentItem textDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4005,8 +4187,10 @@ class DidChangeTextDocumentParams implements ToJson {
   final VersionedTextDocumentIdentifier textDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4045,8 +4229,10 @@ class TextDocumentChangeRegistrationOptions
   final TextDocumentSyncKind syncKind;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4067,8 +4253,10 @@ class DidCloseTextDocumentParams implements ToJson {
   final TextDocumentIdentifier textDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4095,8 +4283,10 @@ class DidSaveTextDocumentParams implements ToJson {
   final TextDocumentIdentifier textDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4132,8 +4322,10 @@ class TextDocumentSaveRegistrationOptions
   final bool includeText;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4166,8 +4358,10 @@ class WillSaveTextDocumentParams implements ToJson {
   final TextDocumentIdentifier textDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4192,8 +4386,10 @@ class TextEdit implements ToJson {
   final Range range;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4212,8 +4408,10 @@ class DidChangeWatchedFilesParams implements ToJson {
   final List<FileEvent> changes;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4234,8 +4432,10 @@ class DidChangeWatchedFilesRegistrationOptions implements ToJson {
   final List<FileSystemWatcher> watchers;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4274,8 +4474,10 @@ class PublishDiagnosticsParams implements ToJson {
   final int version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4341,8 +4543,10 @@ class CompletionParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4567,8 +4771,10 @@ class CompletionItem implements ToJson {
   final String textEditText;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4617,8 +4823,10 @@ class CompletionList implements ToJson {
   final List<CompletionItem> items;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4701,8 +4909,10 @@ class CompletionRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4745,8 +4955,10 @@ class HoverParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4771,8 +4983,10 @@ class Hover implements ToJson {
   final Range range;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4805,8 +5019,10 @@ class HoverRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4861,8 +5077,10 @@ class SignatureHelpParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4911,8 +5129,10 @@ class SignatureHelp implements ToJson {
   final List<SignatureInformation> signatures;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -4965,8 +5185,10 @@ class SignatureHelpRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5021,8 +5243,10 @@ class DefinitionParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5055,8 +5279,10 @@ class DefinitionRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5119,8 +5345,10 @@ class ReferenceParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5153,8 +5381,10 @@ class ReferenceRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5209,8 +5439,10 @@ class DocumentHighlightParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5237,8 +5469,10 @@ class DocumentHighlight implements ToJson {
   final Range range;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5273,8 +5507,10 @@ class DocumentHighlightRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5317,8 +5553,10 @@ class DocumentSymbolParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5394,8 +5632,10 @@ class SymbolInformation implements BaseSymbolInformation {
   final List<SymbolTag> tags;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5482,8 +5722,10 @@ class DocumentSymbol implements ToJson {
   final List<SymbolTag> tags;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5528,8 +5770,10 @@ class DocumentSymbolRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5587,8 +5831,10 @@ class CodeActionParams implements WorkDoneProgressParams, PartialResultParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5623,8 +5869,10 @@ class Command implements ToJson {
   final String title;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5723,8 +5971,10 @@ class CodeAction implements ToJson {
   final String title;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5777,8 +6027,10 @@ class CodeActionRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5820,8 +6072,10 @@ class WorkspaceSymbolParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5894,8 +6148,10 @@ class WorkspaceSymbol implements BaseSymbolInformation {
   final List<SymbolTag> tags;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5930,8 +6186,10 @@ class WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -5973,8 +6231,10 @@ class CodeLensParams implements WorkDoneProgressParams, PartialResultParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6009,8 +6269,10 @@ class CodeLens implements ToJson {
   final Range range;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6051,8 +6313,10 @@ class CodeLensRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6095,8 +6359,10 @@ class DocumentLinkParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6147,8 +6413,10 @@ class DocumentLink implements ToJson {
   final String tooltip;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6189,8 +6457,10 @@ class DocumentLinkRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6232,8 +6502,10 @@ class DocumentFormattingParams implements WorkDoneProgressParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6268,8 +6540,10 @@ class DocumentFormattingRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6318,8 +6592,10 @@ class DocumentRangeFormattingParams implements WorkDoneProgressParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6363,8 +6639,10 @@ class DocumentRangeFormattingRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6414,8 +6692,10 @@ class DocumentRangesFormattingParams implements WorkDoneProgressParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6468,8 +6748,10 @@ class DocumentOnTypeFormattingParams implements ToJson {
   final TextDocumentIdentifier textDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6515,8 +6797,10 @@ class DocumentOnTypeFormattingRegistrationOptions
   final List<String> moreTriggerCharacter;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6564,8 +6848,10 @@ class RenameParams implements WorkDoneProgressParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6607,8 +6893,10 @@ class RenameRegistrationOptions
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6650,8 +6938,10 @@ class PrepareRenameParams
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6689,8 +6979,10 @@ class ExecuteCommandParams implements WorkDoneProgressParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6723,8 +7015,10 @@ class ExecuteCommandRegistrationOptions implements ExecuteCommandOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6749,8 +7043,10 @@ class ApplyWorkspaceEditParams implements ToJson {
   final String label;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6793,8 +7089,10 @@ class ApplyWorkspaceEditResult implements ToJson {
   final String failureReason;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6854,8 +7152,10 @@ class WorkDoneProgressBegin implements ToJson {
   final String title;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6906,8 +7206,10 @@ class WorkDoneProgressReport implements ToJson {
   final int percentage;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6930,8 +7232,10 @@ class WorkDoneProgressEnd implements ToJson {
   final String message;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6949,8 +7253,10 @@ class SetTraceParams implements ToJson {
   final TraceValues value;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6971,8 +7277,10 @@ class LogTraceParams implements ToJson {
   final String verbose;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -6990,8 +7298,10 @@ class CancelParams implements ToJson {
   final OrRefType id;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7014,8 +7324,10 @@ class ProgressParams implements ToJson {
   final LSPAny value;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7048,8 +7360,10 @@ class TextDocumentPositionParams implements ToJson {
   final TextDocumentIdentifier textDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7067,8 +7381,10 @@ class WorkDoneProgressParams implements ToJson {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7087,8 +7403,10 @@ class PartialResultParams implements ToJson {
   final ProgressToken partialResultToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7147,8 +7465,10 @@ class LocationLink implements ToJson {
   final Uri targetUri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7177,8 +7497,10 @@ class Range implements ToJson {
   final Position start;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7196,8 +7518,10 @@ class ImplementationOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7217,8 +7541,10 @@ class StaticRegistrationOptions implements ToJson {
   final String id;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7236,8 +7562,10 @@ class TypeDefinitionOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7261,8 +7589,10 @@ class WorkspaceFoldersChangeEvent implements ToJson {
   final List<WorkspaceFolder> removed;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7285,8 +7615,10 @@ class ConfigurationItem implements ToJson {
   final String section;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7305,8 +7637,10 @@ class TextDocumentIdentifier implements ToJson {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7345,8 +7679,10 @@ class Color implements ToJson {
   final double red;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7364,8 +7700,10 @@ class DocumentColorOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7383,8 +7721,10 @@ class FoldingRangeOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7402,8 +7742,10 @@ class DeclarationOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7460,8 +7802,10 @@ class Position implements ToJson {
   final int line;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7479,8 +7823,10 @@ class SelectionRangeOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7500,8 +7846,10 @@ class CallHierarchyOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7548,8 +7896,10 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7586,8 +7936,10 @@ class SemanticTokensEdit implements ToJson {
   final int start;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7605,8 +7957,10 @@ class LinkedEditingRangeOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7626,8 +7980,10 @@ class FileCreate implements ToJson {
   final String uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7659,8 +8015,10 @@ class TextDocumentEdit implements ToJson {
   final OptionalVersionedTextDocumentIdentifier textDocument;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7708,8 +8066,10 @@ class CreateFile implements ResourceOperation {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7764,8 +8124,10 @@ class RenameFile implements ResourceOperation {
   final RenameFileOptions options;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7813,8 +8175,10 @@ class DeleteFile implements ResourceOperation {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7855,8 +8219,10 @@ class ChangeAnnotation implements ToJson {
   final bool needsConfirmation;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7884,8 +8250,10 @@ class FileOperationFilter implements ToJson {
   final String scheme;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7911,8 +8279,10 @@ class FileRename implements ToJson {
   final String oldUri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7932,8 +8302,10 @@ class FileDelete implements ToJson {
   final String uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7951,8 +8323,10 @@ class MonikerOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -7972,8 +8346,10 @@ class TypeHierarchyOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8004,8 +8380,10 @@ class InlineValueContext implements ToJson {
   final Range stoppedLocation;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8030,8 +8408,10 @@ class InlineValueText implements ToJson {
   final String text;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8073,8 +8453,10 @@ class InlineValueVariableLookup implements ToJson {
   final String variableName;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8110,8 +8492,10 @@ class InlineValueEvaluatableExpression implements ToJson {
   final Range range;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8131,8 +8515,10 @@ class InlineValueOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8189,8 +8575,10 @@ class InlayHintLabelPart implements ToJson {
   final String value;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8226,8 +8614,10 @@ class MarkupContent implements ToJson {
   final String value;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8259,8 +8649,10 @@ class InlayHintOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8317,8 +8709,10 @@ class RelatedFullDocumentDiagnosticReport
   final String resultId;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8368,8 +8762,10 @@ class RelatedUnchangedDocumentDiagnosticReport
   final String resultId;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8408,8 +8804,10 @@ class FullDocumentDiagnosticReport implements ToJson {
   final String resultId;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8442,8 +8840,10 @@ class UnchangedDocumentDiagnosticReport implements ToJson {
   final String resultId;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8492,8 +8892,10 @@ class DiagnosticOptions implements WorkDoneProgressOptions {
   final bool workspaceDiagnostics;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8518,8 +8920,10 @@ class PreviousResultId implements ToJson {
   final String value;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8573,8 +8977,10 @@ class NotebookDocument implements ToJson {
   final int version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8619,8 +9025,10 @@ class TextDocumentItem implements ToJson {
   final int version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8650,8 +9058,10 @@ class VersionedNotebookDocumentIdentifier implements ToJson {
   final int version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8677,8 +9087,10 @@ class NotebookDocumentChangeEvent implements ToJson {
   final LSPObject metadata;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8698,8 +9110,10 @@ class NotebookDocumentIdentifier implements ToJson {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8738,8 +9152,10 @@ class InlineCompletionContext implements ToJson {
   final InlineCompletionTriggerKind triggerKind;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8768,8 +9184,10 @@ class StringValue implements ToJson {
   final String value;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8789,8 +9207,10 @@ class InlineCompletionOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8828,8 +9248,10 @@ class Registration implements ToJson {
   final LSPAny registerOptions;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8854,8 +9276,10 @@ class Unregistration implements ToJson {
   final String method;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8948,8 +9372,10 @@ class _InitializeParams implements WorkDoneProgressParams {
   final ProgressToken workDoneToken;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -8971,8 +9397,10 @@ class WorkspaceFoldersInitializeParams implements ToJson {
   final OrRefType workspaceFolders;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9285,8 +9713,10 @@ class ServerCapabilities implements ToJson {
   final OrRefType workspaceSymbolProvider;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9311,8 +9741,10 @@ class VersionedTextDocumentIdentifier implements TextDocumentIdentifier {
   final int version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9331,8 +9763,10 @@ class SaveOptions implements ToJson {
   final bool includeText;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9357,8 +9791,10 @@ class FileEvent implements ToJson {
   final Uri uri;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9385,8 +9821,10 @@ class FileSystemWatcher implements ToJson {
   final WatchKind kind;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9479,8 +9917,10 @@ class Diagnostic implements ToJson {
   final List<DiagnosticTag> tags;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9517,8 +9957,10 @@ class CompletionContext implements ToJson {
   final CompletionTriggerKind triggerKind;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9547,8 +9989,10 @@ class CompletionItemLabelDetails implements ToJson {
   final String detail;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9586,8 +10030,10 @@ class InsertReplaceEdit implements ToJson {
   final Range replace;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9656,8 +10102,10 @@ class CompletionOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9676,8 +10124,10 @@ class HoverOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9736,8 +10186,10 @@ class SignatureHelpContext implements ToJson {
   final SignatureHelpTriggerKind triggerKind;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9785,8 +10237,10 @@ class SignatureInformation implements ToJson {
   final List<ParameterInformation> parameters;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9827,8 +10281,10 @@ class SignatureHelpOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9847,8 +10303,10 @@ class DefinitionOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9868,8 +10326,10 @@ class ReferenceContext implements ToJson {
   final bool includeDeclaration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9888,8 +10348,10 @@ class ReferenceOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9908,8 +10370,10 @@ class DocumentHighlightOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9958,8 +10422,10 @@ class BaseSymbolInformation implements ToJson {
   final List<SymbolTag> tags;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -9988,8 +10454,10 @@ class DocumentSymbolOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10039,8 +10507,10 @@ class CodeActionContext implements ToJson {
   final CodeActionTriggerKind triggerKind;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10081,8 +10551,10 @@ class CodeActionOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10114,8 +10586,10 @@ class WorkspaceSymbolOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10145,8 +10619,10 @@ class CodeLensOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10176,8 +10652,10 @@ class DocumentLinkOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10231,8 +10709,10 @@ class FormattingOptions implements ToJson {
   final bool trimTrailingWhitespace;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10251,8 +10731,10 @@ class DocumentFormattingOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10283,8 +10765,10 @@ class DocumentRangeFormattingOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10314,8 +10798,10 @@ class DocumentOnTypeFormattingOptions implements ToJson {
   final List<String> moreTriggerCharacter;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10346,8 +10832,10 @@ class RenameOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10377,8 +10865,10 @@ class ExecuteCommandOptions implements WorkDoneProgressOptions {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10408,8 +10898,10 @@ class SemanticTokensLegend implements ToJson {
   final List<String> tokenTypes;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10446,8 +10938,10 @@ class OptionalVersionedTextDocumentIdentifier
   final OrRefType version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10488,8 +10982,10 @@ class AnnotatedTextEdit implements TextEdit {
   final Range range;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10514,8 +11010,10 @@ class ResourceOperation implements ToJson {
   final String kind;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10542,8 +11040,10 @@ class CreateFileOptions implements ToJson {
   final bool overwrite;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10570,8 +11070,10 @@ class RenameFileOptions implements ToJson {
   final bool overwrite;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10598,8 +11100,10 @@ class DeleteFileOptions implements ToJson {
   final bool recursive;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10650,8 +11154,10 @@ class FileOperationPattern implements ToJson {
   final FileOperationPatternOptions options;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10711,8 +11217,10 @@ class WorkspaceFullDocumentDiagnosticReport
   final OrRefType version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10765,8 +11273,10 @@ class WorkspaceUnchangedDocumentDiagnosticReport
   final OrRefType version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10818,8 +11328,10 @@ class NotebookCell implements ToJson {
   final LSPObject metadata;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10857,8 +11369,10 @@ class NotebookCellArrayChange implements ToJson {
   final int start;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10883,8 +11397,10 @@ class SelectedCompletionInfo implements ToJson {
   final String text;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -10954,8 +11470,10 @@ class ClientCapabilities implements ToJson {
   final WorkspaceClientCapabilities workspace;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11013,8 +11531,10 @@ class TextDocumentSyncOptions implements ToJson {
   final bool willSaveWaitUntil;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11051,8 +11571,10 @@ class NotebookDocumentSyncOptions implements ToJson {
   final bool save;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11098,8 +11620,10 @@ class NotebookDocumentSyncRegistrationOptions
   final bool save;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11135,8 +11659,10 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
   final bool supported;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11207,8 +11733,10 @@ class FileOperationOptions implements ToJson {
   final FileOperationRegistrationOptions willRename;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11228,8 +11756,10 @@ class CodeDescription implements ToJson {
   final Uri href;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11255,8 +11785,10 @@ class DiagnosticRelatedInformation implements ToJson {
   final String message;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11289,8 +11821,10 @@ class ParameterInformation implements ToJson {
   final OrRefType label;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11326,8 +11860,10 @@ class NotebookCellTextDocumentFilter implements ToJson {
   final OrRefType notebook;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11347,8 +11883,10 @@ class FileOperationPatternOptions implements ToJson {
   final bool ignoreCase;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11372,8 +11910,10 @@ class ExecutionSummary implements ToJson {
   final bool success;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11538,8 +12078,10 @@ class WorkspaceClientCapabilities implements ToJson {
   final bool workspaceFolders;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11852,8 +12394,10 @@ class TextDocumentClientCapabilities implements ToJson {
   final TypeHierarchyClientCapabilities typeHierarchy;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11878,8 +12422,10 @@ class NotebookDocumentClientCapabilities implements ToJson {
   final NotebookDocumentSyncClientCapabilities synchronization;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11927,8 +12473,10 @@ class WindowClientCapabilities implements ToJson {
   final bool workDoneProgress;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -11996,8 +12544,10 @@ class GeneralClientCapabilities implements ToJson {
   final GeneralClientCapabilitiesStaleRequestSupport staleRequestSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12025,8 +12575,10 @@ class RelativePattern implements ToJson {
   final Pattern pattern;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12094,8 +12646,10 @@ class WorkspaceEditClientCapabilities implements ToJson {
   final List<ResourceOperationKind> resourceOperations;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12117,8 +12671,10 @@ class DidChangeConfigurationClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12153,8 +12709,10 @@ class DidChangeWatchedFilesClientCapabilities implements ToJson {
   final bool relativePatternSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12209,8 +12767,10 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
   final WorkspaceSymbolClientCapabilitiesTagSupport tagSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12231,8 +12791,10 @@ class ExecuteCommandClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12260,8 +12822,10 @@ class SemanticTokensWorkspaceClientCapabilities implements ToJson {
   final bool refreshSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12287,8 +12851,10 @@ class CodeLensWorkspaceClientCapabilities implements ToJson {
   final bool refreshSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12358,8 +12924,10 @@ class FileOperationClientCapabilities implements ToJson {
   final bool willRename;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12388,8 +12956,10 @@ class InlineValueWorkspaceClientCapabilities implements ToJson {
   final bool refreshSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12416,8 +12986,10 @@ class InlayHintWorkspaceClientCapabilities implements ToJson {
   final bool refreshSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12446,8 +13018,10 @@ class DiagnosticWorkspaceClientCapabilities implements ToJson {
   final bool refreshSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12477,8 +13051,10 @@ class FoldingRangeWorkspaceClientCapabilities implements ToJson {
   final bool refreshSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12525,8 +13101,10 @@ class TextDocumentSyncClientCapabilities implements ToJson {
   final bool willSaveWaitUntil;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12598,8 +13176,10 @@ class CompletionClientCapabilities implements ToJson {
   final InsertTextMode insertTextMode;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12629,8 +13209,10 @@ class HoverClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12675,8 +13257,10 @@ class SignatureHelpClientCapabilities implements ToJson {
   signatureInformation;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12709,8 +13293,10 @@ class DeclarationClientCapabilities implements ToJson {
   final bool linkSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12741,8 +13327,10 @@ class DefinitionClientCapabilities implements ToJson {
   final bool linkSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12775,8 +13363,10 @@ class TypeDefinitionClientCapabilities implements ToJson {
   final bool linkSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12809,8 +13399,10 @@ class ImplementationClientCapabilities implements ToJson {
   final bool linkSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12831,8 +13423,10 @@ class ReferenceClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12855,8 +13449,10 @@ class DocumentHighlightClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -12917,8 +13513,10 @@ class DocumentSymbolClientCapabilities implements ToJson {
   final WorkspaceSymbolClientCapabilitiesTagSupport tagSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13001,8 +13599,10 @@ class CodeActionClientCapabilities implements ToJson {
   final CompletionClientCapabilitiesCompletionItemResolveSupport resolveSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13021,8 +13621,10 @@ class CodeLensClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13053,8 +13655,10 @@ class DocumentLinkClientCapabilities implements ToJson {
   final bool tooltipSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13076,8 +13680,10 @@ class DocumentColorClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13100,8 +13706,10 @@ class DocumentFormattingClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13134,8 +13742,10 @@ class DocumentRangeFormattingClientCapabilities implements ToJson {
   final bool rangesSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13160,8 +13770,10 @@ class DocumentOnTypeFormattingClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13217,8 +13829,10 @@ class RenameClientCapabilities implements ToJson {
   final PrepareSupportDefaultBehavior prepareSupportDefaultBehavior;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13280,8 +13894,10 @@ class FoldingRangeClientCapabilities implements ToJson {
   final int rangeLimit;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13304,8 +13920,10 @@ class SelectionRangeClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13368,8 +13986,10 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
   final bool versionSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13393,8 +14013,10 @@ class CallHierarchyClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13491,8 +14113,10 @@ class SemanticTokensClientCapabilities implements ToJson {
   final List<String> tokenTypes;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13519,8 +14143,10 @@ class LinkedEditingRangeClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13542,8 +14168,10 @@ class MonikerClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13567,8 +14195,10 @@ class TypeHierarchyClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13591,8 +14221,10 @@ class InlineValueClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13625,8 +14257,10 @@ class InlayHintClientCapabilities implements ToJson {
   final CompletionClientCapabilitiesCompletionItemResolveSupport resolveSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13661,8 +14295,10 @@ class DiagnosticClientCapabilities implements ToJson {
   final bool relatedDocumentSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13687,8 +14323,10 @@ class InlineCompletionClientCapabilities implements ToJson {
   final bool dynamicRegistration;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13724,8 +14362,10 @@ class NotebookDocumentSyncClientCapabilities implements ToJson {
   final bool executionSummarySupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13750,8 +14390,10 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   final ShowMessageRequestClientCapabilitiesMessageActionItem messageActionItem;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13771,8 +14413,10 @@ class ShowDocumentClientCapabilities implements ToJson {
   final bool support;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13805,8 +14449,10 @@ class RegularExpressionsClientCapabilities implements ToJson {
   final String version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -13845,8 +14491,10 @@ class MarkdownClientCapabilities implements ToJson {
   final String version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -14715,7 +15363,7 @@ const _$TokenFormatEnumMap = <TokenFormat, String>{
 
 /// Information about the server.
 /// @since 3.15.0
-class InitializeResultServerInfo {
+class InitializeResultServerInfo implements ToJson {
   InitializeResultServerInfo({required this.name, required this.version});
 
   /// The name of the server as defined by the server.
@@ -14725,8 +15373,10 @@ class InitializeResultServerInfo {
   final String version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -14739,7 +15389,7 @@ class InitializeResultServerInfo {
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
 /// @since 3.17.0
-class CompletionListItemDefaults {
+class CompletionListItemDefaults implements ToJson {
   CompletionListItemDefaults({
     required this.commitCharacters,
     required this.editRange,
@@ -14769,8 +15419,10 @@ class CompletionListItemDefaults {
   final LSPAny data;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -14788,7 +15440,7 @@ class CompletionListItemDefaults {
 /// returned, the client should show the user an error message with `reason` in
 /// the editor.
 /// @since 3.16.0
-class CodeActionDisabled {
+class CodeActionDisabled implements ToJson {
   CodeActionDisabled({required this.reason});
 
   /// Human readable description of why the code action is currently disabled.
@@ -14796,13 +15448,15 @@ class CodeActionDisabled {
   final String reason;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Changes to cells
-class NotebookDocumentChangeEventCells {
+class NotebookDocumentChangeEventCells implements ToJson {
   NotebookDocumentChangeEventCells({
     required this.structure,
     required this.data,
@@ -14820,13 +15474,15 @@ class NotebookDocumentChangeEventCells {
   final List<NotebookDocumentChangeEventCellsTextContent> textContent;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Changes to the cell structure to add or remove cells.
-class NotebookDocumentChangeEventCellsStructure {
+class NotebookDocumentChangeEventCellsStructure implements ToJson {
   NotebookDocumentChangeEventCellsStructure({
     required this.array,
     required this.didOpen,
@@ -14843,13 +15499,15 @@ class NotebookDocumentChangeEventCellsStructure {
   final List<TextDocumentIdentifier> didClose;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Changes to the text content of notebook cells.
-class NotebookDocumentChangeEventCellsTextContent {
+class NotebookDocumentChangeEventCellsTextContent implements ToJson {
   NotebookDocumentChangeEventCellsTextContent({
     required this.document,
     required this.changes,
@@ -14860,14 +15518,16 @@ class NotebookDocumentChangeEventCellsTextContent {
   final List<TextDocumentContentChangeEvent> changes;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Information about the client
 /// @since 3.15.0
-class _InitializeParamsClientInfo {
+class _InitializeParamsClientInfo implements ToJson {
   _InitializeParamsClientInfo({required this.name, required this.version});
 
   /// The name of the client as defined by the client.
@@ -14877,13 +15537,15 @@ class _InitializeParamsClientInfo {
   final String version;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Workspace specific server capabilities.
-class ServerCapabilitiesWorkspace {
+class ServerCapabilitiesWorkspace implements ToJson {
   ServerCapabilitiesWorkspace({
     required this.workspaceFolders,
     required this.fileOperations,
@@ -14899,14 +15561,16 @@ class ServerCapabilitiesWorkspace {
   final FileOperationOptions fileOperations;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// The server supports the following `CompletionItem` specific capabilities.
 /// @since 3.17.0
-class CompletionOptionsCompletionItem {
+class CompletionOptionsCompletionItem implements ToJson {
   CompletionOptionsCompletionItem({required this.labelDetailsSupport});
 
   /// The server has support for completion item label details (see also
@@ -14916,8 +15580,10 @@ class CompletionOptionsCompletionItem {
   final bool labelDetailsSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -14925,7 +15591,7 @@ class CompletionOptionsCompletionItem {
 /// a request for which the client will not process the response anymore since
 /// the information is outdated).
 /// @since 3.17.0
-class GeneralClientCapabilitiesStaleRequestSupport {
+class GeneralClientCapabilitiesStaleRequestSupport implements ToJson {
   GeneralClientCapabilitiesStaleRequestSupport({
     required this.cancel,
     required this.retryOnContentModified,
@@ -14939,15 +15605,17 @@ class GeneralClientCapabilitiesStaleRequestSupport {
   final List<String> retryOnContentModified;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Whether the client in general supports change annotations on text edits,
 /// create file, rename file and delete file changes.
 /// @since 3.16.0
-class WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
+class WorkspaceEditClientCapabilitiesChangeAnnotationSupport implements ToJson {
   WorkspaceEditClientCapabilitiesChangeAnnotationSupport({
     required this.groupsOnLabel,
   });
@@ -14958,14 +15626,16 @@ class WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
   final bool groupsOnLabel;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
 /// request.
-class WorkspaceSymbolClientCapabilitiesSymbolKind {
+class WorkspaceSymbolClientCapabilitiesSymbolKind implements ToJson {
   WorkspaceSymbolClientCapabilitiesSymbolKind({required this.valueSet});
 
   /// The symbol kind values the client supports. When this property exists
@@ -14977,23 +15647,27 @@ class WorkspaceSymbolClientCapabilitiesSymbolKind {
   final List<SymbolKind> valueSet;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// The client supports tags on `SymbolInformation`. Clients supporting tags
 /// have to handle unknown tags gracefully.
 /// @since 3.16.0
-class WorkspaceSymbolClientCapabilitiesTagSupport {
+class WorkspaceSymbolClientCapabilitiesTagSupport implements ToJson {
   WorkspaceSymbolClientCapabilitiesTagSupport({required this.valueSet});
 
   /// The tags supported by the client.
   final List<SymbolTag> valueSet;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -15001,7 +15675,7 @@ class WorkspaceSymbolClientCapabilitiesTagSupport {
 /// request `workspaceSymbol/resolve` to the server to resolve additional
 /// properties.
 /// @since 3.17.0
-class WorkspaceSymbolClientCapabilitiesResolveSupport {
+class WorkspaceSymbolClientCapabilitiesResolveSupport implements ToJson {
   WorkspaceSymbolClientCapabilitiesResolveSupport({required this.properties});
 
   /// The properties that a client can resolve lazily. Usually
@@ -15009,13 +15683,15 @@ class WorkspaceSymbolClientCapabilitiesResolveSupport {
   final List<String> properties;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// The client supports the following `CompletionItem` specific capabilities.
-class CompletionClientCapabilitiesCompletionItem {
+class CompletionClientCapabilitiesCompletionItem implements ToJson {
   CompletionClientCapabilitiesCompletionItem({
     required this.snippetSupport,
     required this.commitCharactersSupport,
@@ -15080,8 +15756,10 @@ class CompletionClientCapabilitiesCompletionItem {
   final bool labelDetailsSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -15090,7 +15768,7 @@ class CompletionClientCapabilitiesCompletionItem {
 /// preserve unknown tags when sending a completion item back to the server in
 /// a resolve call.
 /// @since 3.15.0
-class CompletionClientCapabilitiesCompletionItemTagSupport {
+class CompletionClientCapabilitiesCompletionItemTagSupport implements ToJson {
   CompletionClientCapabilitiesCompletionItemTagSupport({
     required this.valueSet,
   });
@@ -15099,8 +15777,10 @@ class CompletionClientCapabilitiesCompletionItemTagSupport {
   final List<CompletionItemTag> valueSet;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -15108,7 +15788,8 @@ class CompletionClientCapabilitiesCompletionItemTagSupport {
 /// item. Before version 3.16.0 only the predefined properties `documentation`
 /// and `details` could be resolved lazily.
 /// @since 3.16.0
-class CompletionClientCapabilitiesCompletionItemResolveSupport {
+class CompletionClientCapabilitiesCompletionItemResolveSupport
+    implements ToJson {
   CompletionClientCapabilitiesCompletionItemResolveSupport({
     required this.properties,
   });
@@ -15117,8 +15798,10 @@ class CompletionClientCapabilitiesCompletionItemResolveSupport {
   final List<String> properties;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -15126,7 +15809,8 @@ class CompletionClientCapabilitiesCompletionItemResolveSupport {
 /// override the whitespace handling mode as defined by the client (see
 /// `insertTextMode`).
 /// @since 3.16.0
-class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
+class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
+    implements ToJson {
   CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({
     required this.valueSet,
   });
@@ -15134,12 +15818,14 @@ class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
   final List<InsertTextMode> valueSet;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
-class CompletionClientCapabilitiesCompletionItemKind {
+class CompletionClientCapabilitiesCompletionItemKind implements ToJson {
   CompletionClientCapabilitiesCompletionItemKind({required this.valueSet});
 
   /// The completion item kind values the client supports. When this property
@@ -15151,14 +15837,16 @@ class CompletionClientCapabilitiesCompletionItemKind {
   final List<CompletionItemKind> valueSet;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// The client supports the following `CompletionList` specific capabilities.
 /// @since 3.17.0
-class CompletionClientCapabilitiesCompletionList {
+class CompletionClientCapabilitiesCompletionList implements ToJson {
   CompletionClientCapabilitiesCompletionList({required this.itemDefaults});
 
   /// The client supports the following itemDefaults on a completion list.
@@ -15169,14 +15857,16 @@ class CompletionClientCapabilitiesCompletionList {
   final List<String> itemDefaults;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// The client supports the following `SignatureInformation` specific
 /// properties.
-class SignatureHelpClientCapabilitiesSignatureInformation {
+class SignatureHelpClientCapabilitiesSignatureInformation implements ToJson {
   SignatureHelpClientCapabilitiesSignatureInformation({
     required this.documentationFormat,
     required this.parameterInformation,
@@ -15197,13 +15887,16 @@ class SignatureHelpClientCapabilitiesSignatureInformation {
   final bool activeParameterSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Client capabilities specific to parameter information.
-class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
+class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
+    implements ToJson {
   SignatureHelpClientCapabilitiesSignatureInformationParameterInformation({
     required this.labelOffsetSupport,
   });
@@ -15214,8 +15907,10 @@ class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
   final bool labelOffsetSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -15223,7 +15918,7 @@ class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
 /// response of the `textDocument/codeAction` request. If the property is not
 /// set the request can only return `Command` literals.
 /// @since 3.8.0
-class CodeActionClientCapabilitiesCodeActionLiteralSupport {
+class CodeActionClientCapabilitiesCodeActionLiteralSupport implements ToJson {
   CodeActionClientCapabilitiesCodeActionLiteralSupport({
     required this.codeActionKind,
   });
@@ -15233,13 +15928,16 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupport {
   codeActionKind;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// The code action kind is support with the following value set.
-class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind {
+class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
+    implements ToJson {
   CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind({
     required this.valueSet,
   });
@@ -15250,14 +15948,16 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind {
   final List<CodeActionKind> valueSet;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Specific options for the folding range kind.
 /// @since 3.17.0
-class FoldingRangeClientCapabilitiesFoldingRangeKind {
+class FoldingRangeClientCapabilitiesFoldingRangeKind implements ToJson {
   FoldingRangeClientCapabilitiesFoldingRangeKind({required this.valueSet});
 
   /// The folding range kind values the client supports. When this property
@@ -15266,14 +15966,16 @@ class FoldingRangeClientCapabilitiesFoldingRangeKind {
   final List<FoldingRangeKind> valueSet;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Specific options for the folding range.
 /// @since 3.17.0
-class FoldingRangeClientCapabilitiesFoldingRange {
+class FoldingRangeClientCapabilitiesFoldingRange implements ToJson {
   FoldingRangeClientCapabilitiesFoldingRange({required this.collapsedText});
 
   /// If set, the client signals that it supports setting collapsedText on
@@ -15282,23 +15984,27 @@ class FoldingRangeClientCapabilitiesFoldingRange {
   final bool collapsedText;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Client supports the tag property to provide meta data about a diagnostic.
 /// Clients supporting tags have to handle unknown tags gracefully.
 /// @since 3.15.0
-class PublishDiagnosticsClientCapabilitiesTagSupport {
+class PublishDiagnosticsClientCapabilitiesTagSupport implements ToJson {
   PublishDiagnosticsClientCapabilitiesTagSupport({required this.valueSet});
 
   /// The tags supported by the client.
   final List<DiagnosticTag> valueSet;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
@@ -15310,7 +16016,7 @@ class PublishDiagnosticsClientCapabilitiesTagSupport {
 /// set to true but the server only provides a range provider the client might
 /// not render a minimap correctly or might even decide to not show any
 /// semantic tokens at all.
-class SemanticTokensClientCapabilitiesRequests {
+class SemanticTokensClientCapabilitiesRequests implements ToJson {
   SemanticTokensClientCapabilitiesRequests({
     required this.range,
     required this.full,
@@ -15325,13 +16031,15 @@ class SemanticTokensClientCapabilitiesRequests {
   final OrRefType full;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
 /// Capabilities specific to the `MessageActionItem` type.
-class ShowMessageRequestClientCapabilitiesMessageActionItem {
+class ShowMessageRequestClientCapabilitiesMessageActionItem implements ToJson {
   ShowMessageRequestClientCapabilitiesMessageActionItem({
     required this.additionalPropertiesSupport,
   });
@@ -15341,8 +16049,10 @@ class ShowMessageRequestClientCapabilitiesMessageActionItem {
   final bool additionalPropertiesSupport;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {};
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
   }
 }
 
