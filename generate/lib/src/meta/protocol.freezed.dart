@@ -2043,7 +2043,7 @@ as List<MetaReference>,
 /// @nodoc
 mixin _$MetaEnumMember {
 
- String get name;@IntOrStringSealedConverter() IntOrString get value; String? get documentation; String? get since;
+ String get name;@IntOrStringSealedConverter() EnumRawValue get value; String? get documentation; String? get since;
 /// Create a copy of MetaEnumMember
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2076,11 +2076,11 @@ abstract mixin class $MetaEnumMemberCopyWith<$Res>  {
   factory $MetaEnumMemberCopyWith(MetaEnumMember value, $Res Function(MetaEnumMember) _then) = _$MetaEnumMemberCopyWithImpl;
 @useResult
 $Res call({
- String name,@IntOrStringSealedConverter() IntOrString value, String? documentation, String? since
+ String name,@IntOrStringSealedConverter() EnumRawValue value, String? documentation, String? since
 });
 
 
-
+$EnumRawValueCopyWith<$Res> get value;
 
 }
 /// @nodoc
@@ -2097,12 +2097,21 @@ class _$MetaEnumMemberCopyWithImpl<$Res>
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as IntOrString,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as EnumRawValue,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
-
+/// Create a copy of MetaEnumMember
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EnumRawValueCopyWith<$Res> get value {
+  
+  return $EnumRawValueCopyWith<$Res>(_self.value, (value) {
+    return _then(_self.copyWith(value: value));
+  });
+}
 }
 
 
@@ -2114,7 +2123,7 @@ class _MetaEnumMember extends MetaEnumMember {
   factory _MetaEnumMember.fromJson(Map<String, dynamic> json) => _$MetaEnumMemberFromJson(json);
 
 @override final  String name;
-@override@IntOrStringSealedConverter() final  IntOrString value;
+@override@IntOrStringSealedConverter() final  EnumRawValue value;
 @override final  String? documentation;
 @override final  String? since;
 
@@ -2151,11 +2160,11 @@ abstract mixin class _$MetaEnumMemberCopyWith<$Res> implements $MetaEnumMemberCo
   factory _$MetaEnumMemberCopyWith(_MetaEnumMember value, $Res Function(_MetaEnumMember) _then) = __$MetaEnumMemberCopyWithImpl;
 @override @useResult
 $Res call({
- String name,@IntOrStringSealedConverter() IntOrString value, String? documentation, String? since
+ String name,@IntOrStringSealedConverter() EnumRawValue value, String? documentation, String? since
 });
 
 
-
+@override $EnumRawValueCopyWith<$Res> get value;
 
 }
 /// @nodoc
@@ -2172,9 +2181,251 @@ class __$MetaEnumMemberCopyWithImpl<$Res>
   return _then(_MetaEnumMember(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as IntOrString,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as EnumRawValue,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
 as String?,
+  ));
+}
+
+/// Create a copy of MetaEnumMember
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EnumRawValueCopyWith<$Res> get value {
+  
+  return $EnumRawValueCopyWith<$Res>(_self.value, (value) {
+    return _then(_self.copyWith(value: value));
+  });
+}
+}
+
+EnumRawValue _$EnumRawValueFromJson(
+  Map<String, dynamic> json
+) {
+        switch (json['runtimeType']) {
+                  case 'integer':
+          return EnumRawValueInteger.fromJson(
+            json
+          );
+                case 'string':
+          return EnumRawValueString.fromJson(
+            json
+          );
+        
+          default:
+            throw CheckedFromJsonException(
+  json,
+  'runtimeType',
+  'EnumRawValue',
+  'Invalid union type "${json['runtimeType']}"!'
+);
+        }
+      
+}
+
+/// @nodoc
+mixin _$EnumRawValue {
+
+ String get raw;
+/// Create a copy of EnumRawValue
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$EnumRawValueCopyWith<EnumRawValue> get copyWith => _$EnumRawValueCopyWithImpl<EnumRawValue>(this as EnumRawValue, _$identity);
+
+  /// Serializes this EnumRawValue to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EnumRawValue&&(identical(other.raw, raw) || other.raw == raw));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,raw);
+
+@override
+String toString() {
+  return 'EnumRawValue(raw: $raw)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $EnumRawValueCopyWith<$Res>  {
+  factory $EnumRawValueCopyWith(EnumRawValue value, $Res Function(EnumRawValue) _then) = _$EnumRawValueCopyWithImpl;
+@useResult
+$Res call({
+ String raw
+});
+
+
+
+
+}
+/// @nodoc
+class _$EnumRawValueCopyWithImpl<$Res>
+    implements $EnumRawValueCopyWith<$Res> {
+  _$EnumRawValueCopyWithImpl(this._self, this._then);
+
+  final EnumRawValue _self;
+  final $Res Function(EnumRawValue) _then;
+
+/// Create a copy of EnumRawValue
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? raw = null,}) {
+  return _then(_self.copyWith(
+raw: null == raw ? _self.raw : raw // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// @nodoc
+@JsonSerializable()
+
+class EnumRawValueInteger extends EnumRawValue {
+  const EnumRawValueInteger({required this.raw, final  String? $type}): $type = $type ?? 'integer',super._();
+  factory EnumRawValueInteger.fromJson(Map<String, dynamic> json) => _$EnumRawValueIntegerFromJson(json);
+
+@override final  String raw;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of EnumRawValue
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$EnumRawValueIntegerCopyWith<EnumRawValueInteger> get copyWith => _$EnumRawValueIntegerCopyWithImpl<EnumRawValueInteger>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$EnumRawValueIntegerToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EnumRawValueInteger&&(identical(other.raw, raw) || other.raw == raw));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,raw);
+
+@override
+String toString() {
+  return 'EnumRawValue.integer(raw: $raw)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $EnumRawValueIntegerCopyWith<$Res> implements $EnumRawValueCopyWith<$Res> {
+  factory $EnumRawValueIntegerCopyWith(EnumRawValueInteger value, $Res Function(EnumRawValueInteger) _then) = _$EnumRawValueIntegerCopyWithImpl;
+@override @useResult
+$Res call({
+ String raw
+});
+
+
+
+
+}
+/// @nodoc
+class _$EnumRawValueIntegerCopyWithImpl<$Res>
+    implements $EnumRawValueIntegerCopyWith<$Res> {
+  _$EnumRawValueIntegerCopyWithImpl(this._self, this._then);
+
+  final EnumRawValueInteger _self;
+  final $Res Function(EnumRawValueInteger) _then;
+
+/// Create a copy of EnumRawValue
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? raw = null,}) {
+  return _then(EnumRawValueInteger(
+raw: null == raw ? _self.raw : raw // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class EnumRawValueString extends EnumRawValue {
+  const EnumRawValueString({required this.raw, final  String? $type}): $type = $type ?? 'string',super._();
+  factory EnumRawValueString.fromJson(Map<String, dynamic> json) => _$EnumRawValueStringFromJson(json);
+
+@override final  String raw;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of EnumRawValue
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$EnumRawValueStringCopyWith<EnumRawValueString> get copyWith => _$EnumRawValueStringCopyWithImpl<EnumRawValueString>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$EnumRawValueStringToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EnumRawValueString&&(identical(other.raw, raw) || other.raw == raw));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,raw);
+
+@override
+String toString() {
+  return 'EnumRawValue.string(raw: $raw)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $EnumRawValueStringCopyWith<$Res> implements $EnumRawValueCopyWith<$Res> {
+  factory $EnumRawValueStringCopyWith(EnumRawValueString value, $Res Function(EnumRawValueString) _then) = _$EnumRawValueStringCopyWithImpl;
+@override @useResult
+$Res call({
+ String raw
+});
+
+
+
+
+}
+/// @nodoc
+class _$EnumRawValueStringCopyWithImpl<$Res>
+    implements $EnumRawValueStringCopyWith<$Res> {
+  _$EnumRawValueStringCopyWithImpl(this._self, this._then);
+
+  final EnumRawValueString _self;
+  final $Res Function(EnumRawValueString) _then;
+
+/// Create a copy of EnumRawValue
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? raw = null,}) {
+  return _then(EnumRawValueString(
+raw: null == raw ? _self.raw : raw // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

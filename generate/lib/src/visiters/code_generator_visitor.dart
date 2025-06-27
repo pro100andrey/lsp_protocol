@@ -215,7 +215,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     // Use resolveType for the enumeration's base type
     final typeName = enumeration.type.resolveType(_typeResolverVisitor);
 
-    return Enum((eb) {
+    final result = Enum((eb) {
       eb
         ..docs.addAll(formattedDescription)
         ..name = enumeration.name
@@ -251,26 +251,41 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         ),
       );
 
-      for (final value in enumeration.values) {
+      for (final m in enumeration.values) {
         eb.values.add(
           EnumValue(
             (evb) {
-              final argumentValue = switch (value.value) {
-                IsInt(:final value) => '$value',
-                IsString(:final value) => "'$value'",
-              };
-
-              evb.arguments.add(
-                refer(
-                  argumentValue,
-                ),
-              );
-              evb.name = '${uncapitalize(value.name)}Value';
+              evb.arguments.add(refer(m.value.literal));
+              evb.name = '${uncapitalize(m.name)}Value';
             },
           ),
         );
       }
     });
+
+    return result;
+  }
+
+  /// Generate enumeration helper function.
+  Spec _generateEnumMap(MetaEnumeration enumeration) {
+    final refName = '_\$${enumeration.name}EnumMap';
+
+    final entries = enumeration.values.map(
+      (m) => MapEntry(
+        refer('${enumeration.name}.${uncapitalize(m.name)}Value'),
+        refer(m.value.literal),
+      ),
+    );
+
+    final map = Map.fromEntries(entries);
+
+    final mapLiteral = literalConstMap(
+      map,
+      refer(enumeration.name),
+      refer(enumeration.values.first.value.type),
+    );
+
+    return declareConst(refName).assign(mapLiteral).statement;
   }
 
   // --- MetaProtocolVisitor stub implementations
@@ -344,36 +359,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ..name = 'OrRefType'
       ..sealed = true;
   });
-
-  // const _$MessageDirectionEnumMap = {
-  //   MessageDirection.both: 'both',
-  //   MessageDirection.clientToServer: 'clientToServer',
-  //   MessageDirection.serverToClient: 'serverToClient',
-  // };
-
-  /// Generate enumeration helper function.
-  Spec _generateEnumMap(MetaEnumeration enumeration) {
-    final refName = '_\$${enumeration.name}EnumMap';
-
-    final entries = enumeration.values.map(
-      (value) {
-        final valueName = '${enumeration.name}.${value.name}';
-        final argumentValue = switch (value.value) {
-          IsInt(:final value) => '$value',
-          IsString(:final value) => "'$value'",
-        };
-        return MapEntry(valueName, argumentValue);
-      },
-    );
-
-    final map = Map.fromEntries(entries);
-
-    final mapLiteral = literalConstMap(map);
-
-    final t = declareConst(refName).assign(mapLiteral);
-
-    return t;
-  }
 
   /// Recursively collects all properties for a given structure,
   /// including those inherited from extended structures and mixins.

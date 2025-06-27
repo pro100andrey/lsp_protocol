@@ -269,7 +269,7 @@ abstract class MetaEnumMember extends BaseMeta with _$MetaEnumMember {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaEnumMember({
     required String name,
-    @IntOrStringSealedConverter() required IntOrString value,
+    @IntOrStringSealedConverter() required EnumRawValue value,
     String? documentation,
     String? since,
   }) = _MetaEnumMember;
@@ -281,6 +281,31 @@ abstract class MetaEnumMember extends BaseMeta with _$MetaEnumMember {
 
   @override
   T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitEnumMember(this);
+}
+
+@freezed
+sealed class EnumRawValue with _$EnumRawValue {
+  factory EnumRawValue.fromJson(Map<String, Object?> json) =>
+      _$EnumRawValueFromJson(json);
+  const factory EnumRawValue.integer({
+    required String raw,
+  }) = EnumRawValueInteger;
+
+  const factory EnumRawValue.string({
+    required String raw,
+  }) = EnumRawValueString;
+
+  const EnumRawValue._();
+
+  String get type => switch (this) {
+    EnumRawValueInteger() => 'int',
+    EnumRawValueString() => 'String',
+  };
+
+  String get literal => switch (this) {
+    EnumRawValueInteger(raw: final value) => value,
+    EnumRawValueString(raw: final value) => "'$value'",
+  };
 }
 
 @freezed
@@ -353,30 +378,17 @@ enum MessageDirection {
   final String messageDirection;
 }
 
-sealed class IntOrString {
-  const IntOrString();
-}
-
-class IsInt extends IntOrString {
-  const IsInt(this.value);
-  final int value;
-}
-
-class IsString extends IntOrString {
-  const IsString(this.value);
-  final String value;
-}
-
 // Custom converter for IntOrString sealed class
-class IntOrStringSealedConverter implements JsonConverter<IntOrString, Object> {
+class IntOrStringSealedConverter
+    implements JsonConverter<EnumRawValue, Object> {
   const IntOrStringSealedConverter();
 
   @override
-  IntOrString fromJson(Object json) {
+  EnumRawValue fromJson(Object json) {
     if (json is int) {
-      return IsInt(json);
+      return EnumRawValue.integer(raw: json.toString());
     } else if (json is String) {
-      return IsString(json);
+      return EnumRawValue.string(raw: json);
     }
     throw Exception(
       'Expected int or String for IntOrString, but got ${json.runtimeType}',
@@ -384,12 +396,5 @@ class IntOrStringSealedConverter implements JsonConverter<IntOrString, Object> {
   }
 
   @override
-  Object toJson(IntOrString object) {
-    if (object is IsInt) {
-      return object.value;
-    } else if (object is IsString) {
-      return object.value;
-    }
-    throw Exception('Unknown IntOrString type');
-  }
+  Object toJson(EnumRawValue object) => object.raw;
 }

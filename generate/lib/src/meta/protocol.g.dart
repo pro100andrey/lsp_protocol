@@ -412,6 +412,25 @@ Map<String, dynamic> _$MetaEnumMemberToJson(_MetaEnumMember instance) =>
       'since': instance.since,
     };
 
+EnumRawValueInteger _$EnumRawValueIntegerFromJson(Map<String, dynamic> json) =>
+    EnumRawValueInteger(
+      raw: json['raw'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$EnumRawValueIntegerToJson(
+  EnumRawValueInteger instance,
+) => <String, dynamic>{'raw': instance.raw, 'runtimeType': instance.$type};
+
+EnumRawValueString _$EnumRawValueStringFromJson(Map<String, dynamic> json) =>
+    EnumRawValueString(
+      raw: json['raw'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$EnumRawValueStringToJson(EnumRawValueString instance) =>
+    <String, dynamic>{'raw': instance.raw, 'runtimeType': instance.$type};
+
 _MetaEnumeration _$MetaEnumerationFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,

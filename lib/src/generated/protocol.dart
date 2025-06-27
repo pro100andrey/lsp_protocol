@@ -8,10 +8,8 @@
 // ignore_for_file: unnecessary_parenthesis
 library;
 
-
 abstract class ToJson {
   Map<String, dynamic> toJson() {
-    
     throw UnimplementedError();
   }
 }
@@ -13437,6 +13435,32 @@ enum SemanticTokenTypes {
   final String value;
 }
 
+const _$SemanticTokenTypesEnumMap = <SemanticTokenTypes, String>{
+  SemanticTokenTypes.namespaceValue: 'namespace',
+  SemanticTokenTypes.typeValue: 'type',
+  SemanticTokenTypes.classValue: 'class',
+  SemanticTokenTypes.enumValue: 'enum',
+  SemanticTokenTypes.interfaceValue: 'interface',
+  SemanticTokenTypes.structValue: 'struct',
+  SemanticTokenTypes.typeParameterValue: 'typeParameter',
+  SemanticTokenTypes.parameterValue: 'parameter',
+  SemanticTokenTypes.variableValue: 'variable',
+  SemanticTokenTypes.propertyValue: 'property',
+  SemanticTokenTypes.enumMemberValue: 'enumMember',
+  SemanticTokenTypes.eventValue: 'event',
+  SemanticTokenTypes.functionValue: 'function',
+  SemanticTokenTypes.methodValue: 'method',
+  SemanticTokenTypes.macroValue: 'macro',
+  SemanticTokenTypes.keywordValue: 'keyword',
+  SemanticTokenTypes.modifierValue: 'modifier',
+  SemanticTokenTypes.commentValue: 'comment',
+  SemanticTokenTypes.stringValue: 'string',
+  SemanticTokenTypes.numberValue: 'number',
+  SemanticTokenTypes.regexpValue: 'regexp',
+  SemanticTokenTypes.operatorValue: 'operator',
+  SemanticTokenTypes.decoratorValue: 'decorator',
+};
+
 /// A set of predefined token modifiers. This set is not fixed an clients can
 /// specify additional token types via the corresponding client capabilities.
 /// @since 3.16.0
@@ -13459,6 +13483,19 @@ enum SemanticTokenModifiers {
   final String value;
 }
 
+const _$SemanticTokenModifiersEnumMap = <SemanticTokenModifiers, String>{
+  SemanticTokenModifiers.declarationValue: 'declaration',
+  SemanticTokenModifiers.definitionValue: 'definition',
+  SemanticTokenModifiers.readonlyValue: 'readonly',
+  SemanticTokenModifiers.staticValue: 'static',
+  SemanticTokenModifiers.deprecatedValue: 'deprecated',
+  SemanticTokenModifiers.abstractValue: 'abstract',
+  SemanticTokenModifiers.asyncValue: 'async',
+  SemanticTokenModifiers.modificationValue: 'modification',
+  SemanticTokenModifiers.documentationValue: 'documentation',
+  SemanticTokenModifiers.defaultLibraryValue: 'defaultLibrary',
+};
+
 /// The document diagnostic report kinds.
 /// @since 3.17.0
 enum DocumentDiagnosticReportKind {
@@ -13471,6 +13508,12 @@ enum DocumentDiagnosticReportKind {
   // The type of this enumeration.
   final String value;
 }
+
+const _$DocumentDiagnosticReportKindEnumMap =
+    <DocumentDiagnosticReportKind, String>{
+      DocumentDiagnosticReportKind.fullValue: 'full',
+      DocumentDiagnosticReportKind.unchangedValue: 'unchanged',
+    };
 
 /// Predefined error codes.
 enum ErrorCodes {
@@ -13489,6 +13532,16 @@ enum ErrorCodes {
   final int value;
 }
 
+const _$ErrorCodesEnumMap = <ErrorCodes, int>{
+  ErrorCodes.parseErrorValue: -32700,
+  ErrorCodes.invalidRequestValue: -32600,
+  ErrorCodes.methodNotFoundValue: -32601,
+  ErrorCodes.invalidParamsValue: -32602,
+  ErrorCodes.internalErrorValue: -32603,
+  ErrorCodes.serverNotInitializedValue: -32002,
+  ErrorCodes.unknownErrorCodeValue: -32001,
+};
+
 enum LSPErrorCodes {
   requestFailedValue(-32803),
   serverCancelledValue(-32802),
@@ -13502,6 +13555,13 @@ enum LSPErrorCodes {
   final int value;
 }
 
+const _$LSPErrorCodesEnumMap = <LSPErrorCodes, int>{
+  LSPErrorCodes.requestFailedValue: -32803,
+  LSPErrorCodes.serverCancelledValue: -32802,
+  LSPErrorCodes.contentModifiedValue: -32801,
+  LSPErrorCodes.requestCancelledValue: -32800,
+};
+
 /// A set of predefined range kinds.
 enum FoldingRangeKind {
   commentValue('comment'),
@@ -13514,6 +13574,12 @@ enum FoldingRangeKind {
   // The type of this enumeration.
   final String value;
 }
+
+const _$FoldingRangeKindEnumMap = <FoldingRangeKind, String>{
+  FoldingRangeKind.commentValue: 'comment',
+  FoldingRangeKind.importsValue: 'imports',
+  FoldingRangeKind.regionValue: 'region',
+};
 
 /// A symbol kind.
 enum SymbolKind {
@@ -13551,6 +13617,35 @@ enum SymbolKind {
   final int value;
 }
 
+const _$SymbolKindEnumMap = <SymbolKind, int>{
+  SymbolKind.fileValue: 1,
+  SymbolKind.moduleValue: 2,
+  SymbolKind.namespaceValue: 3,
+  SymbolKind.packageValue: 4,
+  SymbolKind.classValue: 5,
+  SymbolKind.methodValue: 6,
+  SymbolKind.propertyValue: 7,
+  SymbolKind.fieldValue: 8,
+  SymbolKind.constructorValue: 9,
+  SymbolKind.enumValue: 10,
+  SymbolKind.interfaceValue: 11,
+  SymbolKind.functionValue: 12,
+  SymbolKind.variableValue: 13,
+  SymbolKind.constantValue: 14,
+  SymbolKind.stringValue: 15,
+  SymbolKind.numberValue: 16,
+  SymbolKind.booleanValue: 17,
+  SymbolKind.arrayValue: 18,
+  SymbolKind.objectValue: 19,
+  SymbolKind.keyValue: 20,
+  SymbolKind.nullValue: 21,
+  SymbolKind.enumMemberValue: 22,
+  SymbolKind.structValue: 23,
+  SymbolKind.eventValue: 24,
+  SymbolKind.operatorValue: 25,
+  SymbolKind.typeParameterValue: 26,
+};
+
 /// Symbol tags are extra annotations that tweak the rendering of a symbol.
 /// @since 3.16
 enum SymbolTag {
@@ -13562,6 +13657,8 @@ enum SymbolTag {
   // The type of this enumeration.
   final int value;
 }
+
+const _$SymbolTagEnumMap = <SymbolTag, int>{SymbolTag.deprecatedValue: 1};
 
 /// Moniker uniqueness level to define scope of the moniker.
 /// @since 3.16.0
@@ -13579,6 +13676,14 @@ enum UniquenessLevel {
   final String value;
 }
 
+const _$UniquenessLevelEnumMap = <UniquenessLevel, String>{
+  UniquenessLevel.documentValue: 'document',
+  UniquenessLevel.projectValue: 'project',
+  UniquenessLevel.groupValue: 'group',
+  UniquenessLevel.schemeValue: 'scheme',
+  UniquenessLevel.globalValue: 'global',
+};
+
 /// The moniker kind.
 /// @since 3.16.0
 enum MonikerKind {
@@ -13593,6 +13698,12 @@ enum MonikerKind {
   final String value;
 }
 
+const _$MonikerKindEnumMap = <MonikerKind, String>{
+  MonikerKind.importValue: 'import',
+  MonikerKind.exportValue: 'export',
+  MonikerKind.localValue: 'local',
+};
+
 /// Inlay hint kinds.
 /// @since 3.17.0
 enum InlayHintKind {
@@ -13605,6 +13716,11 @@ enum InlayHintKind {
   // The type of this enumeration.
   final int value;
 }
+
+const _$InlayHintKindEnumMap = <InlayHintKind, int>{
+  InlayHintKind.typeValue: 1,
+  InlayHintKind.parameterValue: 2,
+};
 
 /// The message type
 enum MessageType {
@@ -13621,6 +13737,14 @@ enum MessageType {
   final int value;
 }
 
+const _$MessageTypeEnumMap = <MessageType, int>{
+  MessageType.errorValue: 1,
+  MessageType.warningValue: 2,
+  MessageType.infoValue: 3,
+  MessageType.logValue: 4,
+  MessageType.debugValue: 5,
+};
+
 /// Defines how the host (editor) should sync document changes to the language
 /// server.
 enum TextDocumentSyncKind {
@@ -13635,6 +13759,12 @@ enum TextDocumentSyncKind {
   final int value;
 }
 
+const _$TextDocumentSyncKindEnumMap = <TextDocumentSyncKind, int>{
+  TextDocumentSyncKind.noneValue: 0,
+  TextDocumentSyncKind.fullValue: 1,
+  TextDocumentSyncKind.incrementalValue: 2,
+};
+
 /// Represents reasons why a text document is saved.
 enum TextDocumentSaveReason {
   manualValue(1),
@@ -13647,6 +13777,12 @@ enum TextDocumentSaveReason {
   // The type of this enumeration.
   final int value;
 }
+
+const _$TextDocumentSaveReasonEnumMap = <TextDocumentSaveReason, int>{
+  TextDocumentSaveReason.manualValue: 1,
+  TextDocumentSaveReason.afterDelayValue: 2,
+  TextDocumentSaveReason.focusOutValue: 3,
+};
 
 /// The kind of a completion entry.
 enum CompletionItemKind {
@@ -13683,6 +13819,34 @@ enum CompletionItemKind {
   final int value;
 }
 
+const _$CompletionItemKindEnumMap = <CompletionItemKind, int>{
+  CompletionItemKind.textValue: 1,
+  CompletionItemKind.methodValue: 2,
+  CompletionItemKind.functionValue: 3,
+  CompletionItemKind.constructorValue: 4,
+  CompletionItemKind.fieldValue: 5,
+  CompletionItemKind.variableValue: 6,
+  CompletionItemKind.classValue: 7,
+  CompletionItemKind.interfaceValue: 8,
+  CompletionItemKind.moduleValue: 9,
+  CompletionItemKind.propertyValue: 10,
+  CompletionItemKind.unitValue: 11,
+  CompletionItemKind.valueValue: 12,
+  CompletionItemKind.enumValue: 13,
+  CompletionItemKind.keywordValue: 14,
+  CompletionItemKind.snippetValue: 15,
+  CompletionItemKind.colorValue: 16,
+  CompletionItemKind.fileValue: 17,
+  CompletionItemKind.referenceValue: 18,
+  CompletionItemKind.folderValue: 19,
+  CompletionItemKind.enumMemberValue: 20,
+  CompletionItemKind.constantValue: 21,
+  CompletionItemKind.structValue: 22,
+  CompletionItemKind.eventValue: 23,
+  CompletionItemKind.operatorValue: 24,
+  CompletionItemKind.typeParameterValue: 25,
+};
+
 /// Completion item tags are extra annotations that tweak the rendering of a
 /// completion item.
 /// @since 3.15.0
@@ -13695,6 +13859,10 @@ enum CompletionItemTag {
   // The type of this enumeration.
   final int value;
 }
+
+const _$CompletionItemTagEnumMap = <CompletionItemTag, int>{
+  CompletionItemTag.deprecatedValue: 1,
+};
 
 /// Defines whether the insert text in a completion item should be interpreted
 /// as plain text or a snippet.
@@ -13709,6 +13877,11 @@ enum InsertTextFormat {
   final int value;
 }
 
+const _$InsertTextFormatEnumMap = <InsertTextFormat, int>{
+  InsertTextFormat.plainTextValue: 1,
+  InsertTextFormat.snippetValue: 2,
+};
+
 /// How whitespace and indentation is handled during completion item insertion.
 /// @since 3.16.0
 enum InsertTextMode {
@@ -13722,6 +13895,11 @@ enum InsertTextMode {
   final int value;
 }
 
+const _$InsertTextModeEnumMap = <InsertTextMode, int>{
+  InsertTextMode.asIsValue: 1,
+  InsertTextMode.adjustIndentationValue: 2,
+};
+
 /// A document highlight kind.
 enum DocumentHighlightKind {
   textValue(1),
@@ -13734,6 +13912,12 @@ enum DocumentHighlightKind {
   // The type of this enumeration.
   final int value;
 }
+
+const _$DocumentHighlightKindEnumMap = <DocumentHighlightKind, int>{
+  DocumentHighlightKind.textValue: 1,
+  DocumentHighlightKind.readValue: 2,
+  DocumentHighlightKind.writeValue: 3,
+};
 
 /// A set of predefined code action kinds
 enum CodeActionKind {
@@ -13754,6 +13938,18 @@ enum CodeActionKind {
   final String value;
 }
 
+const _$CodeActionKindEnumMap = <CodeActionKind, String>{
+  CodeActionKind.emptyValue: '',
+  CodeActionKind.quickFixValue: 'quickfix',
+  CodeActionKind.refactorValue: 'refactor',
+  CodeActionKind.refactorExtractValue: 'refactor.extract',
+  CodeActionKind.refactorInlineValue: 'refactor.inline',
+  CodeActionKind.refactorRewriteValue: 'refactor.rewrite',
+  CodeActionKind.sourceValue: 'source',
+  CodeActionKind.sourceOrganizeImportsValue: 'source.organizeImports',
+  CodeActionKind.sourceFixAllValue: 'source.fixAll',
+};
+
 enum TraceValues {
   offValue('off'),
   messagesValue('messages'),
@@ -13765,6 +13961,12 @@ enum TraceValues {
   // The type of this enumeration.
   final String value;
 }
+
+const _$TraceValuesEnumMap = <TraceValues, String>{
+  TraceValues.offValue: 'off',
+  TraceValues.messagesValue: 'messages',
+  TraceValues.verboseValue: 'verbose',
+};
 
 /// Describes the content type that a client supports in various result
 /// literals like `Hover`, `ParameterInfo` or `CompletionItem`.
@@ -13781,6 +13983,11 @@ enum MarkupKind {
   final String value;
 }
 
+const _$MarkupKindEnumMap = <MarkupKind, String>{
+  MarkupKind.plainTextValue: 'plaintext',
+  MarkupKind.markdownValue: 'markdown',
+};
+
 /// Describes how an {@link InlineCompletionItemProvider inline completion
 /// provider} was triggered.
 /// @since 3.18.0 @proposed
@@ -13794,6 +14001,11 @@ enum InlineCompletionTriggerKind {
   // The type of this enumeration.
   final int value;
 }
+
+const _$InlineCompletionTriggerKindEnumMap = <InlineCompletionTriggerKind, int>{
+  InlineCompletionTriggerKind.invokedValue: 0,
+  InlineCompletionTriggerKind.automaticValue: 1,
+};
 
 /// A set of predefined position encoding kinds.
 /// @since 3.17.0
@@ -13809,6 +14021,12 @@ enum PositionEncodingKind {
   final String value;
 }
 
+const _$PositionEncodingKindEnumMap = <PositionEncodingKind, String>{
+  PositionEncodingKind.uTF8Value: 'utf-8',
+  PositionEncodingKind.uTF16Value: 'utf-16',
+  PositionEncodingKind.uTF32Value: 'utf-32',
+};
+
 /// The file event type
 enum FileChangeType {
   createdValue(1),
@@ -13822,6 +14040,12 @@ enum FileChangeType {
   final int value;
 }
 
+const _$FileChangeTypeEnumMap = <FileChangeType, int>{
+  FileChangeType.createdValue: 1,
+  FileChangeType.changedValue: 2,
+  FileChangeType.deletedValue: 3,
+};
+
 enum WatchKind {
   createValue(1),
   changeValue(2),
@@ -13833,6 +14057,12 @@ enum WatchKind {
   // The type of this enumeration.
   final int value;
 }
+
+const _$WatchKindEnumMap = <WatchKind, int>{
+  WatchKind.createValue: 1,
+  WatchKind.changeValue: 2,
+  WatchKind.deleteValue: 4,
+};
 
 /// The diagnostic's severity.
 enum DiagnosticSeverity {
@@ -13848,6 +14078,13 @@ enum DiagnosticSeverity {
   final int value;
 }
 
+const _$DiagnosticSeverityEnumMap = <DiagnosticSeverity, int>{
+  DiagnosticSeverity.errorValue: 1,
+  DiagnosticSeverity.warningValue: 2,
+  DiagnosticSeverity.informationValue: 3,
+  DiagnosticSeverity.hintValue: 4,
+};
+
 /// The diagnostic tags.
 /// @since 3.15.0
 enum DiagnosticTag {
@@ -13861,6 +14098,11 @@ enum DiagnosticTag {
   final int value;
 }
 
+const _$DiagnosticTagEnumMap = <DiagnosticTag, int>{
+  DiagnosticTag.unnecessaryValue: 1,
+  DiagnosticTag.deprecatedValue: 2,
+};
+
 /// How a completion was triggered
 enum CompletionTriggerKind {
   invokedValue(1),
@@ -13873,6 +14115,12 @@ enum CompletionTriggerKind {
   // The type of this enumeration.
   final int value;
 }
+
+const _$CompletionTriggerKindEnumMap = <CompletionTriggerKind, int>{
+  CompletionTriggerKind.invokedValue: 1,
+  CompletionTriggerKind.triggerCharacterValue: 2,
+  CompletionTriggerKind.triggerForIncompleteCompletionsValue: 3,
+};
 
 /// How a signature help was triggered.
 /// @since 3.15.0
@@ -13888,6 +14136,12 @@ enum SignatureHelpTriggerKind {
   final int value;
 }
 
+const _$SignatureHelpTriggerKindEnumMap = <SignatureHelpTriggerKind, int>{
+  SignatureHelpTriggerKind.invokedValue: 1,
+  SignatureHelpTriggerKind.triggerCharacterValue: 2,
+  SignatureHelpTriggerKind.contentChangeValue: 3,
+};
+
 /// The reason why code actions were requested.
 /// @since 3.17.0
 enum CodeActionTriggerKind {
@@ -13900,6 +14154,11 @@ enum CodeActionTriggerKind {
   // The type of this enumeration.
   final int value;
 }
+
+const _$CodeActionTriggerKindEnumMap = <CodeActionTriggerKind, int>{
+  CodeActionTriggerKind.invokedValue: 1,
+  CodeActionTriggerKind.automaticValue: 2,
+};
 
 /// A pattern kind describing if a glob pattern matches a file a folder or both.
 /// @since 3.16.0
@@ -13914,6 +14173,11 @@ enum FileOperationPatternKind {
   final String value;
 }
 
+const _$FileOperationPatternKindEnumMap = <FileOperationPatternKind, String>{
+  FileOperationPatternKind.fileValue: 'file',
+  FileOperationPatternKind.folderValue: 'folder',
+};
+
 /// A notebook cell kind.
 /// @since 3.17.0
 enum NotebookCellKind {
@@ -13927,6 +14191,11 @@ enum NotebookCellKind {
   final int value;
 }
 
+const _$NotebookCellKindEnumMap = <NotebookCellKind, int>{
+  NotebookCellKind.markupValue: 1,
+  NotebookCellKind.codeValue: 2,
+};
+
 enum ResourceOperationKind {
   createValue('create'),
   renameValue('rename'),
@@ -13938,6 +14207,12 @@ enum ResourceOperationKind {
   // The type of this enumeration.
   final String value;
 }
+
+const _$ResourceOperationKindEnumMap = <ResourceOperationKind, String>{
+  ResourceOperationKind.createValue: 'create',
+  ResourceOperationKind.renameValue: 'rename',
+  ResourceOperationKind.deleteValue: 'delete',
+};
 
 enum FailureHandlingKind {
   abortValue('abort'),
@@ -13952,6 +14227,13 @@ enum FailureHandlingKind {
   final String value;
 }
 
+const _$FailureHandlingKindEnumMap = <FailureHandlingKind, String>{
+  FailureHandlingKind.abortValue: 'abort',
+  FailureHandlingKind.transactionalValue: 'transactional',
+  FailureHandlingKind.textOnlyTransactionalValue: 'textOnlyTransactional',
+  FailureHandlingKind.undoValue: 'undo',
+};
+
 enum PrepareSupportDefaultBehavior {
   identifierValue(1);
 
@@ -13962,6 +14244,11 @@ enum PrepareSupportDefaultBehavior {
   final int value;
 }
 
+const _$PrepareSupportDefaultBehaviorEnumMap =
+    <PrepareSupportDefaultBehavior, int>{
+      PrepareSupportDefaultBehavior.identifierValue: 1,
+    };
+
 enum TokenFormat {
   relativeValue('relative');
 
@@ -13971,6 +14258,10 @@ enum TokenFormat {
   // The type of this enumeration.
   final String value;
 }
+
+const _$TokenFormatEnumMap = <TokenFormat, String>{
+  TokenFormat.relativeValue: 'relative',
+};
 
 /// Information about the server.
 /// @since 3.15.0
