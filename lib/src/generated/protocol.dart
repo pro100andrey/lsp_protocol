@@ -1,11 +1,9 @@
 /// Do not edit it manually.
 
-// ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: one_member_abstracts
-// ignore_for_file: unused_element
 // ignore_for_file: doc_directive_unknown
-// ignore_for_file: directives_ordering
 // ignore_for_file: unnecessary_parenthesis
+// ignore_for_file: lines_longer_than_80_chars
 library; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import '../utils/enum_helpers.dart' as _i1;
@@ -355,6 +353,7 @@ typedef NotebookDocumentFilter = OrRefType;
 /// @since 3.17.0
 typedef Pattern = String;
 
+/// Struct
 class ImplementationParams
     implements
         TextDocumentPositionParams,
@@ -412,6 +411,7 @@ class ImplementationParams
   }
 }
 
+/// Struct
 /// Represents a location inside a resource, such as a line inside a text file.
 class Location implements ToJson {
   Location({required this.range, required this.uri});
@@ -437,6 +437,7 @@ class Location implements ToJson {
   }
 }
 
+/// Struct
 class ImplementationRegistrationOptions
     implements
         TextDocumentRegistrationOptions,
@@ -486,6 +487,7 @@ class ImplementationRegistrationOptions
   }
 }
 
+/// Struct
 class TypeDefinitionParams
     implements
         TextDocumentPositionParams,
@@ -543,6 +545,7 @@ class TypeDefinitionParams
   }
 }
 
+/// Struct
 class TypeDefinitionRegistrationOptions
     implements
         TextDocumentRegistrationOptions,
@@ -592,6 +595,7 @@ class TypeDefinitionRegistrationOptions
   }
 }
 
+/// Struct
 /// A workspace folder inside a client.
 class WorkspaceFolder implements ToJson {
   WorkspaceFolder({required this.name, required this.uri});
@@ -620,6 +624,7 @@ class WorkspaceFolder implements ToJson {
   }
 }
 
+/// Struct
 /// The parameters of a `workspace/didChangeWorkspaceFolders` notification.
 class DidChangeWorkspaceFoldersParams implements ToJson {
   DidChangeWorkspaceFoldersParams({required this.event});
@@ -644,6 +649,7 @@ class DidChangeWorkspaceFoldersParams implements ToJson {
   }
 }
 
+/// Struct
 /// The parameters of a configuration request.
 class ConfigurationParams implements ToJson {
   ConfigurationParams({required this.items});
@@ -665,6 +671,7 @@ class ConfigurationParams implements ToJson {
   }
 }
 
+/// Struct
 /// Parameters for a {@link DocumentColorRequest}.
 class DocumentColorParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -711,6 +718,7 @@ class DocumentColorParams
   }
 }
 
+/// Struct
 /// Represents a color range from a document.
 class ColorInformation implements ToJson {
   ColorInformation({required this.color, required this.range});
@@ -738,6 +746,7 @@ class ColorInformation implements ToJson {
   }
 }
 
+/// Struct
 class DocumentColorRegistrationOptions
     implements
         TextDocumentRegistrationOptions,
@@ -785,6 +794,7 @@ class DocumentColorRegistrationOptions
   }
 }
 
+/// Struct
 /// Parameters for a {@link ColorPresentationRequest}.
 class ColorPresentationParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -845,6 +855,7 @@ class ColorPresentationParams
   }
 }
 
+/// Struct
 class ColorPresentation implements ToJson {
   ColorPresentation({
     required this.additionalTextEdits,
@@ -891,6 +902,7 @@ class ColorPresentation implements ToJson {
   }
 }
 
+/// Struct
 class WorkDoneProgressOptions implements ToJson {
   WorkDoneProgressOptions({required this.workDoneProgress});
 
@@ -911,6 +923,7 @@ class WorkDoneProgressOptions implements ToJson {
   }
 }
 
+/// Struct
 /// General text document registration options.
 class TextDocumentRegistrationOptions implements ToJson {
   TextDocumentRegistrationOptions({required this.documentSelector});
@@ -934,6 +947,7 @@ class TextDocumentRegistrationOptions implements ToJson {
   }
 }
 
+/// Struct
 /// Parameters for a {@link FoldingRangeRequest}.
 class FoldingRangeParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -980,6 +994,7 @@ class FoldingRangeParams
   }
 }
 
+/// Struct
 /// Represents a folding range. To be valid, start and end line must be bigger
 /// than zero and smaller than the number of lines in the document. Clients are
 /// free to ignore invalid ranges.
@@ -1056,6 +1071,7 @@ class FoldingRange implements ToJson {
   }
 }
 
+/// Struct
 class FoldingRangeRegistrationOptions
     implements
         TextDocumentRegistrationOptions,
@@ -1103,6 +1119,7 @@ class FoldingRangeRegistrationOptions
   }
 }
 
+/// Struct
 class DeclarationParams
     implements
         TextDocumentPositionParams,
@@ -1160,6 +1177,7 @@ class DeclarationParams
   }
 }
 
+/// Struct
 class DeclarationRegistrationOptions
     implements
         DeclarationOptions,
@@ -1207,6 +1225,7 @@ class DeclarationRegistrationOptions
   }
 }
 
+/// Struct
 /// A parameter literal used in selection range requests.
 class SelectionRangeParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -1260,6 +1279,7 @@ class SelectionRangeParams
   }
 }
 
+/// Struct
 /// A selection range represents a part of a selection hierarchy. A selection
 /// range may have a parent selection range that contains it.
 class SelectionRange implements ToJson {
@@ -1291,6 +1311,7 @@ class SelectionRange implements ToJson {
   }
 }
 
+/// Struct
 class SelectionRangeRegistrationOptions
     implements
         SelectionRangeOptions,
@@ -1340,6 +1361,7 @@ class SelectionRangeRegistrationOptions
   }
 }
 
+/// Struct
 class WorkDoneProgressCreateParams implements ToJson {
   WorkDoneProgressCreateParams({required this.token});
 
@@ -1361,6 +1383,7 @@ class WorkDoneProgressCreateParams implements ToJson {
   }
 }
 
+/// Struct
 class WorkDoneProgressCancelParams implements ToJson {
   WorkDoneProgressCancelParams({required this.token});
 
@@ -1382,6 +1405,7 @@ class WorkDoneProgressCancelParams implements ToJson {
   }
 }
 
+/// Struct
 /// The parameter of a `textDocument/prepareCallHierarchy` request.
 /// @since 3.16.0
 class CallHierarchyPrepareParams
@@ -1429,6 +1453,7 @@ class CallHierarchyPrepareParams
   }
 }
 
+/// Struct
 /// Represents programming constructs like functions or constructors in the
 /// context of call hierarchy.
 /// @since 3.16.0
@@ -1513,6 +1538,7 @@ class CallHierarchyItem implements ToJson {
   }
 }
 
+/// Struct
 /// Call hierarchy options used during static or dynamic registration.
 /// @since 3.16.0
 class CallHierarchyRegistrationOptions
@@ -1562,6 +1588,7 @@ class CallHierarchyRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameter of a `callHierarchy/incomingCalls` request.
 /// @since 3.16.0
 class CallHierarchyIncomingCallsParams
@@ -1606,6 +1633,7 @@ class CallHierarchyIncomingCallsParams
   }
 }
 
+/// Struct
 /// Represents an incoming call, e.g. a caller of a method or constructor.
 /// @since 3.16.0
 class CallHierarchyIncomingCall implements ToJson {
@@ -1635,6 +1663,7 @@ class CallHierarchyIncomingCall implements ToJson {
   }
 }
 
+/// Struct
 /// The parameter of a `callHierarchy/outgoingCalls` request.
 /// @since 3.16.0
 class CallHierarchyOutgoingCallsParams
@@ -1679,6 +1708,7 @@ class CallHierarchyOutgoingCallsParams
   }
 }
 
+/// Struct
 /// Represents an outgoing call, e.g. calling a getter from a method or a
 /// method from a constructor etc.
 /// @since 3.16.0
@@ -1712,6 +1742,7 @@ class CallHierarchyOutgoingCall implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -1758,6 +1789,7 @@ class SemanticTokensParams
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokens implements ToJson {
   SemanticTokens({required this.data, required this.resultId});
@@ -1788,6 +1820,7 @@ class SemanticTokens implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensPartialResult implements ToJson {
   SemanticTokensPartialResult({required this.data});
@@ -1809,6 +1842,7 @@ class SemanticTokensPartialResult implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensRegistrationOptions
     implements
@@ -1886,6 +1920,7 @@ class SemanticTokensRegistrationOptions
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensDeltaParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -1941,6 +1976,7 @@ class SemanticTokensDeltaParams
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensDelta implements ToJson {
   SemanticTokensDelta({required this.edits, required this.resultId});
@@ -1968,6 +2004,7 @@ class SemanticTokensDelta implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensDeltaPartialResult implements ToJson {
   SemanticTokensDeltaPartialResult({required this.edits});
@@ -1989,6 +2026,7 @@ class SemanticTokensDeltaPartialResult implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensRangeParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -2042,6 +2080,7 @@ class SemanticTokensRangeParams
   }
 }
 
+/// Struct
 /// Params to show a resource in the UI.
 /// @since 3.16.0
 class ShowDocumentParams implements ToJson {
@@ -2096,6 +2135,7 @@ class ShowDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// The result of a showDocument request.
 /// @since 3.16.0
 class ShowDocumentResult implements ToJson {
@@ -2119,6 +2159,7 @@ class ShowDocumentResult implements ToJson {
   }
 }
 
+/// Struct
 class LinkedEditingRangeParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
   LinkedEditingRangeParams({
@@ -2164,6 +2205,7 @@ class LinkedEditingRangeParams
   }
 }
 
+/// Struct
 /// The result of a linked editing range request.
 /// @since 3.16.0
 class LinkedEditingRanges implements ToJson {
@@ -2196,6 +2238,7 @@ class LinkedEditingRanges implements ToJson {
   }
 }
 
+/// Struct
 class LinkedEditingRangeRegistrationOptions
     implements
         TextDocumentRegistrationOptions,
@@ -2245,6 +2288,7 @@ class LinkedEditingRangeRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters sent in notifications/requests for user-initiated creation
 /// of files.
 /// @since 3.16.0
@@ -2269,6 +2313,7 @@ class CreateFilesParams implements ToJson {
   }
 }
 
+/// Struct
 /// A workspace edit represents changes to many resources managed in the
 /// workspace. The edit should either provide `changes` or `documentChanges`.
 /// If documentChanges are present they are preferred over `changes` if the
@@ -2339,6 +2384,7 @@ class WorkspaceEdit implements ToJson {
   }
 }
 
+/// Struct
 /// The options to register for file operations.
 /// @since 3.16.0
 class FileOperationRegistrationOptions implements ToJson {
@@ -2362,6 +2408,7 @@ class FileOperationRegistrationOptions implements ToJson {
   }
 }
 
+/// Struct
 /// The parameters sent in notifications/requests for user-initiated renames of
 /// files.
 /// @since 3.16.0
@@ -2387,6 +2434,7 @@ class RenameFilesParams implements ToJson {
   }
 }
 
+/// Struct
 /// The parameters sent in notifications/requests for user-initiated deletes of
 /// files.
 /// @since 3.16.0
@@ -2411,6 +2459,7 @@ class DeleteFilesParams implements ToJson {
   }
 }
 
+/// Struct
 class MonikerParams
     implements
         TextDocumentPositionParams,
@@ -2468,6 +2517,7 @@ class MonikerParams
   }
 }
 
+/// Struct
 /// Moniker definition to match LSIF 0.5 moniker definition.
 /// @since 3.16.0
 class Moniker implements ToJson {
@@ -2519,6 +2569,7 @@ class Moniker implements ToJson {
   }
 }
 
+/// Struct
 class MonikerRegistrationOptions
     implements TextDocumentRegistrationOptions, MonikerOptions {
   MonikerRegistrationOptions({
@@ -2554,6 +2605,7 @@ class MonikerRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameter of a `textDocument/prepareTypeHierarchy` request.
 /// @since 3.17.0
 class TypeHierarchyPrepareParams
@@ -2601,6 +2653,7 @@ class TypeHierarchyPrepareParams
   }
 }
 
+/// Struct
 /// @since 3.17.0
 class TypeHierarchyItem implements ToJson {
   TypeHierarchyItem({
@@ -2685,6 +2738,7 @@ class TypeHierarchyItem implements ToJson {
   }
 }
 
+/// Struct
 /// Type hierarchy options used during static or dynamic registration.
 /// @since 3.17.0
 class TypeHierarchyRegistrationOptions
@@ -2734,6 +2788,7 @@ class TypeHierarchyRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameter of a `typeHierarchy/supertypes` request.
 /// @since 3.17.0
 class TypeHierarchySupertypesParams
@@ -2778,6 +2833,7 @@ class TypeHierarchySupertypesParams
   }
 }
 
+/// Struct
 /// The parameter of a `typeHierarchy/subtypes` request.
 /// @since 3.17.0
 class TypeHierarchySubtypesParams
@@ -2822,6 +2878,7 @@ class TypeHierarchySubtypesParams
   }
 }
 
+/// Struct
 /// A parameter literal used in inline value requests.
 /// @since 3.17.0
 class InlineValueParams implements WorkDoneProgressParams {
@@ -2876,6 +2933,7 @@ class InlineValueParams implements WorkDoneProgressParams {
   }
 }
 
+/// Struct
 /// Inline value options used during static or dynamic registration.
 /// @since 3.17.0
 class InlineValueRegistrationOptions
@@ -2925,6 +2983,7 @@ class InlineValueRegistrationOptions
   }
 }
 
+/// Struct
 /// A parameter literal used in inlay hint requests.
 /// @since 3.17.0
 class InlayHintParams implements WorkDoneProgressParams {
@@ -2969,6 +3028,7 @@ class InlayHintParams implements WorkDoneProgressParams {
   }
 }
 
+/// Struct
 /// Inlay hint information.
 /// @since 3.17.0
 class InlayHint implements ToJson {
@@ -3061,6 +3121,7 @@ class InlayHint implements ToJson {
   }
 }
 
+/// Struct
 /// Inlay hint options used during static or dynamic registration.
 /// @since 3.17.0
 class InlayHintRegistrationOptions
@@ -3119,6 +3180,7 @@ class InlayHintRegistrationOptions
   }
 }
 
+/// Struct
 /// Parameters of the document diagnostic request.
 /// @since 3.17.0
 class DocumentDiagnosticParams
@@ -3180,6 +3242,7 @@ class DocumentDiagnosticParams
   }
 }
 
+/// Struct
 /// A partial result for a document diagnostic report.
 /// @since 3.17.0
 class DocumentDiagnosticReportPartialResult implements ToJson {
@@ -3206,6 +3269,7 @@ class DocumentDiagnosticReportPartialResult implements ToJson {
   }
 }
 
+/// Struct
 /// Cancellation data returned from a diagnostic request.
 /// @since 3.17.0
 class DiagnosticServerCancellationData implements ToJson {
@@ -3228,6 +3292,7 @@ class DiagnosticServerCancellationData implements ToJson {
   }
 }
 
+/// Struct
 /// Diagnostic registration options.
 /// @since 3.17.0
 class DiagnosticRegistrationOptions
@@ -3305,6 +3370,7 @@ class DiagnosticRegistrationOptions
   }
 }
 
+/// Struct
 /// Parameters of the workspace diagnostic request.
 /// @since 3.17.0
 class WorkspaceDiagnosticParams
@@ -3357,6 +3423,7 @@ class WorkspaceDiagnosticParams
   }
 }
 
+/// Struct
 /// A workspace diagnostic report.
 /// @since 3.17.0
 class WorkspaceDiagnosticReport implements ToJson {
@@ -3379,6 +3446,7 @@ class WorkspaceDiagnosticReport implements ToJson {
   }
 }
 
+/// Struct
 /// A partial result for a workspace diagnostic report.
 /// @since 3.17.0
 class WorkspaceDiagnosticReportPartialResult implements ToJson {
@@ -3403,6 +3471,7 @@ class WorkspaceDiagnosticReportPartialResult implements ToJson {
   }
 }
 
+/// Struct
 /// The params sent in an open notebook document notification.
 /// @since 3.17.0
 class DidOpenNotebookDocumentParams implements ToJson {
@@ -3439,6 +3508,7 @@ class DidOpenNotebookDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// The params sent in a change notebook document notification.
 /// @since 3.17.0
 class DidChangeNotebookDocumentParams implements ToJson {
@@ -3490,6 +3560,7 @@ class DidChangeNotebookDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// The params sent in a save notebook document notification.
 /// @since 3.17.0
 class DidSaveNotebookDocumentParams implements ToJson {
@@ -3515,6 +3586,7 @@ class DidSaveNotebookDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// The params sent in a close notebook document notification.
 /// @since 3.17.0
 class DidCloseNotebookDocumentParams implements ToJson {
@@ -3553,6 +3625,7 @@ class DidCloseNotebookDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// A parameter literal used in inline completion requests.
 /// @since 3.18.0 @proposed
 class InlineCompletionParams
@@ -3610,6 +3683,7 @@ class InlineCompletionParams
   }
 }
 
+/// Struct
 /// Represents a collection of {@link InlineCompletionItem inline completion
 /// items} to be presented in the editor.
 /// @since 3.18.0 @proposed
@@ -3634,6 +3708,7 @@ class InlineCompletionList implements ToJson {
   }
 }
 
+/// Struct
 /// An inline completion item represents a text snippet that is proposed inline
 /// to complete text that is being typed.
 /// @since 3.18.0 @proposed
@@ -3686,6 +3761,7 @@ class InlineCompletionItem implements ToJson {
   }
 }
 
+/// Struct
 /// Inline completion options used during static or dynamic registration.
 /// @since 3.18.0 @proposed
 class InlineCompletionRegistrationOptions
@@ -3737,6 +3813,7 @@ class InlineCompletionRegistrationOptions
   }
 }
 
+/// Struct
 class RegistrationParams implements ToJson {
   RegistrationParams({required this.registrations});
 
@@ -3757,6 +3834,7 @@ class RegistrationParams implements ToJson {
   }
 }
 
+/// Struct
 class UnregistrationParams implements ToJson {
   UnregistrationParams({required this.unregisterations});
 
@@ -3777,6 +3855,7 @@ class UnregistrationParams implements ToJson {
   }
 }
 
+/// Struct
 class InitializeParams
     implements _InitializeParams, WorkspaceFoldersInitializeParams {
   InitializeParams({
@@ -3798,7 +3877,7 @@ class InitializeParams
       (capabilitiesJson as Map<String, Object?>),
     );
     final clientInfoJson = json['clientInfo']!;
-    final clientInfo = (clientInfoJson as _InitializeParamsClientInfo);
+    final clientInfo = (clientInfoJson as InitializeParamsClientInfo);
     final initializationOptionsJson = json['initializationOptions']!;
     final initializationOptions = (initializationOptionsJson as LSPAny);
     final localeJson = json['locale']!;
@@ -3838,7 +3917,7 @@ class InitializeParams
   /// Information about the client
   /// @since 3.15.0
   @override
-  final _InitializeParamsClientInfo clientInfo;
+  final InitializeParamsClientInfo clientInfo;
 
   /// User provided initialization options.
   @override
@@ -3893,6 +3972,7 @@ class InitializeParams
   }
 }
 
+/// Struct
 /// The result returned from an initialize request.
 class InitializeResult implements ToJson {
   InitializeResult({required this.capabilities, required this.serverInfo});
@@ -3923,6 +4003,7 @@ class InitializeResult implements ToJson {
   }
 }
 
+/// Struct
 /// The data type of the ResponseError if the initialize request fails.
 class InitializeError implements ToJson {
   InitializeError({required this.retry});
@@ -3948,6 +4029,7 @@ class InitializeError implements ToJson {
   }
 }
 
+/// Struct
 class InitializedParams implements ToJson {
   InitializedParams();
 
@@ -3963,6 +4045,7 @@ class InitializedParams implements ToJson {
   }
 }
 
+/// Struct
 /// The parameters of a change configuration notification.
 class DidChangeConfigurationParams implements ToJson {
   DidChangeConfigurationParams({required this.settings});
@@ -3985,6 +4068,7 @@ class DidChangeConfigurationParams implements ToJson {
   }
 }
 
+/// Struct
 class DidChangeConfigurationRegistrationOptions implements ToJson {
   DidChangeConfigurationRegistrationOptions({required this.section});
 
@@ -4007,6 +4091,7 @@ class DidChangeConfigurationRegistrationOptions implements ToJson {
   }
 }
 
+/// Struct
 /// The parameters of a notification message.
 class ShowMessageParams implements ToJson {
   ShowMessageParams({required this.message, required this.type});
@@ -4035,6 +4120,7 @@ class ShowMessageParams implements ToJson {
   }
 }
 
+/// Struct
 class ShowMessageRequestParams implements ToJson {
   ShowMessageRequestParams({
     required this.actions,
@@ -4075,6 +4161,7 @@ class ShowMessageRequestParams implements ToJson {
   }
 }
 
+/// Struct
 class MessageActionItem implements ToJson {
   MessageActionItem({required this.title});
 
@@ -4096,6 +4183,7 @@ class MessageActionItem implements ToJson {
   }
 }
 
+/// Struct
 /// The log message parameters.
 class LogMessageParams implements ToJson {
   LogMessageParams({required this.message, required this.type});
@@ -4124,6 +4212,7 @@ class LogMessageParams implements ToJson {
   }
 }
 
+/// Struct
 /// The parameters sent in an open text document notification
 class DidOpenTextDocumentParams implements ToJson {
   DidOpenTextDocumentParams({required this.textDocument});
@@ -4148,6 +4237,7 @@ class DidOpenTextDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// The change text document notification's parameters.
 class DidChangeTextDocumentParams implements ToJson {
   DidChangeTextDocumentParams({
@@ -4194,6 +4284,7 @@ class DidChangeTextDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// Describe options to be used when registered for text document change events.
 class TextDocumentChangeRegistrationOptions
     implements TextDocumentRegistrationOptions {
@@ -4236,6 +4327,7 @@ class TextDocumentChangeRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters sent in a close text document notification
 class DidCloseTextDocumentParams implements ToJson {
   DidCloseTextDocumentParams({required this.textDocument});
@@ -4260,6 +4352,7 @@ class DidCloseTextDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// The parameters sent in a save text document notification
 class DidSaveTextDocumentParams implements ToJson {
   DidSaveTextDocumentParams({required this.text, required this.textDocument});
@@ -4290,6 +4383,7 @@ class DidSaveTextDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// Save registration options.
 class TextDocumentSaveRegistrationOptions
     implements TextDocumentRegistrationOptions, SaveOptions {
@@ -4329,6 +4423,7 @@ class TextDocumentSaveRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters sent in a will save text document notification.
 class WillSaveTextDocumentParams implements ToJson {
   WillSaveTextDocumentParams({
@@ -4365,6 +4460,7 @@ class WillSaveTextDocumentParams implements ToJson {
   }
 }
 
+/// Struct
 /// A text edit applicable to a text document.
 class TextEdit implements ToJson {
   TextEdit({required this.newText, required this.range});
@@ -4393,6 +4489,7 @@ class TextEdit implements ToJson {
   }
 }
 
+/// Struct
 /// The watched files change notification's parameters.
 class DidChangeWatchedFilesParams implements ToJson {
   DidChangeWatchedFilesParams({required this.changes});
@@ -4415,6 +4512,7 @@ class DidChangeWatchedFilesParams implements ToJson {
   }
 }
 
+/// Struct
 /// Describe options to be used when registered for text document change events.
 class DidChangeWatchedFilesRegistrationOptions implements ToJson {
   DidChangeWatchedFilesRegistrationOptions({required this.watchers});
@@ -4439,6 +4537,7 @@ class DidChangeWatchedFilesRegistrationOptions implements ToJson {
   }
 }
 
+/// Struct
 /// The publish diagnostic notification's parameters.
 class PublishDiagnosticsParams implements ToJson {
   PublishDiagnosticsParams({
@@ -4481,6 +4580,7 @@ class PublishDiagnosticsParams implements ToJson {
   }
 }
 
+/// Struct
 /// Completion parameters
 class CompletionParams
     implements
@@ -4550,6 +4650,7 @@ class CompletionParams
   }
 }
 
+/// Struct
 /// A completion item represents a text snippet that is proposed to complete
 /// text that is being typed.
 class CompletionItem implements ToJson {
@@ -4778,6 +4879,7 @@ class CompletionItem implements ToJson {
   }
 }
 
+/// Struct
 /// Represents a collection of {@link CompletionItem completion items} to be
 /// presented in the editor.
 class CompletionList implements ToJson {
@@ -4830,6 +4932,7 @@ class CompletionList implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options for a {@link CompletionRequest}.
 class CompletionRegistrationOptions
     implements TextDocumentRegistrationOptions, CompletionOptions {
@@ -4916,6 +5019,7 @@ class CompletionRegistrationOptions
   }
 }
 
+/// Struct
 /// Parameters for a {@link HoverRequest}.
 class HoverParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
@@ -4962,6 +5066,7 @@ class HoverParams
   }
 }
 
+/// Struct
 /// The result of a hover request.
 class Hover implements ToJson {
   Hover({required this.contents, required this.range});
@@ -4990,6 +5095,7 @@ class Hover implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options for a {@link HoverRequest}.
 class HoverRegistrationOptions
     implements TextDocumentRegistrationOptions, HoverOptions {
@@ -5026,6 +5132,7 @@ class HoverRegistrationOptions
   }
 }
 
+/// Struct
 /// Parameters for a {@link SignatureHelpRequest}.
 class SignatureHelpParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
@@ -5084,6 +5191,7 @@ class SignatureHelpParams
   }
 }
 
+/// Struct
 /// Signature help represents the signature of something callable. There can be
 /// multiple signature but only one active and only one active parameter.
 class SignatureHelp implements ToJson {
@@ -5136,6 +5244,7 @@ class SignatureHelp implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options for a {@link SignatureHelpRequest}.
 class SignatureHelpRegistrationOptions
     implements TextDocumentRegistrationOptions, SignatureHelpOptions {
@@ -5192,6 +5301,7 @@ class SignatureHelpRegistrationOptions
   }
 }
 
+/// Struct
 /// Parameters for a {@link DefinitionRequest}.
 class DefinitionParams
     implements
@@ -5250,6 +5360,7 @@ class DefinitionParams
   }
 }
 
+/// Struct
 /// Registration options for a {@link DefinitionRequest}.
 class DefinitionRegistrationOptions
     implements TextDocumentRegistrationOptions, DefinitionOptions {
@@ -5286,6 +5397,7 @@ class DefinitionRegistrationOptions
   }
 }
 
+/// Struct
 /// Parameters for a {@link ReferencesRequest}.
 class ReferenceParams
     implements
@@ -5352,6 +5464,7 @@ class ReferenceParams
   }
 }
 
+/// Struct
 /// Registration options for a {@link ReferencesRequest}.
 class ReferenceRegistrationOptions
     implements TextDocumentRegistrationOptions, ReferenceOptions {
@@ -5388,6 +5501,7 @@ class ReferenceRegistrationOptions
   }
 }
 
+/// Struct
 /// Parameters for a {@link DocumentHighlightRequest}.
 class DocumentHighlightParams
     implements
@@ -5446,6 +5560,7 @@ class DocumentHighlightParams
   }
 }
 
+/// Struct
 /// A document highlight is a range inside a text document which deserves
 /// special attention. Usually a document highlight is visualized by changing
 /// the background color of its range.
@@ -5476,6 +5591,7 @@ class DocumentHighlight implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options for a {@link DocumentHighlightRequest}.
 class DocumentHighlightRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentHighlightOptions {
@@ -5514,6 +5630,7 @@ class DocumentHighlightRegistrationOptions
   }
 }
 
+/// Struct
 /// Parameters for a {@link DocumentSymbolRequest}.
 class DocumentSymbolParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -5560,6 +5677,7 @@ class DocumentSymbolParams
   }
 }
 
+/// Struct
 /// Represents information about programming constructs like variables,
 /// classes, interfaces etc.
 class SymbolInformation implements BaseSymbolInformation {
@@ -5639,6 +5757,7 @@ class SymbolInformation implements BaseSymbolInformation {
   }
 }
 
+/// Struct
 /// Represents programming constructs like variables, classes, interfaces etc.
 /// that appear in a document. Document symbols can be hierarchical and they
 /// have two ranges: one that encloses its definition and one that points to
@@ -5729,6 +5848,7 @@ class DocumentSymbol implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options for a {@link DocumentSymbolRequest}.
 class DocumentSymbolRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentSymbolOptions {
@@ -5777,6 +5897,7 @@ class DocumentSymbolRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters of a {@link CodeActionRequest}.
 class CodeActionParams implements WorkDoneProgressParams, PartialResultParams {
   CodeActionParams({
@@ -5838,6 +5959,7 @@ class CodeActionParams implements WorkDoneProgressParams, PartialResultParams {
   }
 }
 
+/// Struct
 /// Represents a reference to a command. Provides a title which will be used to
 /// represent a command in the UI and, optionally, an array of arguments which
 /// will be passed to the command handler function when invoked.
@@ -5876,6 +5998,7 @@ class Command implements ToJson {
   }
 }
 
+/// Struct
 /// A code action represents a change that can be performed in code, e.g. to
 /// fix a problem or to refactor code.
 /// A CodeAction must set either `edit` and/or a `command`. If both are
@@ -5978,6 +6101,7 @@ class CodeAction implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options for a {@link CodeActionRequest}.
 class CodeActionRegistrationOptions
     implements TextDocumentRegistrationOptions, CodeActionOptions {
@@ -6034,6 +6158,7 @@ class CodeActionRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters of a {@link WorkspaceSymbolRequest}.
 class WorkspaceSymbolParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -6079,6 +6204,7 @@ class WorkspaceSymbolParams
   }
 }
 
+/// Struct
 /// A special workspace symbol that supports locations without a range.
 /// See also SymbolInformation.
 /// @since 3.17.0
@@ -6155,6 +6281,7 @@ class WorkspaceSymbol implements BaseSymbolInformation {
   }
 }
 
+/// Struct
 /// Registration options for a {@link WorkspaceSymbolRequest}.
 class WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolOptions {
   WorkspaceSymbolRegistrationOptions({
@@ -6193,6 +6320,7 @@ class WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolOptions {
   }
 }
 
+/// Struct
 /// The parameters of a {@link CodeLensRequest}.
 class CodeLensParams implements WorkDoneProgressParams, PartialResultParams {
   CodeLensParams({
@@ -6238,6 +6366,7 @@ class CodeLensParams implements WorkDoneProgressParams, PartialResultParams {
   }
 }
 
+/// Struct
 /// A code lens represents a {@link Command command} that should be shown along
 /// with source text, like the number of references, a way to run tests, etc.
 /// A code lens is _unresolved_ when no command is associated to it. For
@@ -6276,6 +6405,7 @@ class CodeLens implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options for a {@link CodeLensRequest}.
 class CodeLensRegistrationOptions
     implements TextDocumentRegistrationOptions, CodeLensOptions {
@@ -6320,6 +6450,7 @@ class CodeLensRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters of a {@link DocumentLinkRequest}.
 class DocumentLinkParams
     implements WorkDoneProgressParams, PartialResultParams {
@@ -6366,6 +6497,7 @@ class DocumentLinkParams
   }
 }
 
+/// Struct
 /// A document link is a range in a text document that links to an internal or
 /// external resource, like another text document or a web site.
 class DocumentLink implements ToJson {
@@ -6420,6 +6552,7 @@ class DocumentLink implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options for a {@link DocumentLinkRequest}.
 class DocumentLinkRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentLinkOptions {
@@ -6464,6 +6597,7 @@ class DocumentLinkRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters of a {@link DocumentFormattingRequest}.
 class DocumentFormattingParams implements WorkDoneProgressParams {
   DocumentFormattingParams({
@@ -6509,6 +6643,7 @@ class DocumentFormattingParams implements WorkDoneProgressParams {
   }
 }
 
+/// Struct
 /// Registration options for a {@link DocumentFormattingRequest}.
 class DocumentFormattingRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentFormattingOptions {
@@ -6547,6 +6682,7 @@ class DocumentFormattingRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters of a {@link DocumentRangeFormattingRequest}.
 class DocumentRangeFormattingParams implements WorkDoneProgressParams {
   DocumentRangeFormattingParams({
@@ -6599,6 +6735,7 @@ class DocumentRangeFormattingParams implements WorkDoneProgressParams {
   }
 }
 
+/// Struct
 /// Registration options for a {@link DocumentRangeFormattingRequest}.
 class DocumentRangeFormattingRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentRangeFormattingOptions {
@@ -6646,6 +6783,7 @@ class DocumentRangeFormattingRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters of a {@link DocumentRangesFormattingRequest}.
 /// @since 3.18.0 @proposed
 class DocumentRangesFormattingParams implements WorkDoneProgressParams {
@@ -6699,6 +6837,7 @@ class DocumentRangesFormattingParams implements WorkDoneProgressParams {
   }
 }
 
+/// Struct
 /// The parameters of a {@link DocumentOnTypeFormattingRequest}.
 class DocumentOnTypeFormattingParams implements ToJson {
   DocumentOnTypeFormattingParams({
@@ -6755,6 +6894,7 @@ class DocumentOnTypeFormattingParams implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options for a {@link DocumentOnTypeFormattingRequest}.
 class DocumentOnTypeFormattingRegistrationOptions
     implements
@@ -6804,6 +6944,7 @@ class DocumentOnTypeFormattingRegistrationOptions
   }
 }
 
+/// Struct
 /// The parameters of a {@link RenameRequest}.
 class RenameParams implements WorkDoneProgressParams {
   RenameParams({
@@ -6855,6 +6996,7 @@ class RenameParams implements WorkDoneProgressParams {
   }
 }
 
+/// Struct
 /// Registration options for a {@link RenameRequest}.
 class RenameRegistrationOptions
     implements TextDocumentRegistrationOptions, RenameOptions {
@@ -6900,6 +7042,7 @@ class RenameRegistrationOptions
   }
 }
 
+/// Struct
 class PrepareRenameParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
   PrepareRenameParams({
@@ -6945,6 +7088,7 @@ class PrepareRenameParams
   }
 }
 
+/// Struct
 /// The parameters of a {@link ExecuteCommandRequest}.
 class ExecuteCommandParams implements WorkDoneProgressParams {
   ExecuteCommandParams({
@@ -6986,6 +7130,7 @@ class ExecuteCommandParams implements WorkDoneProgressParams {
   }
 }
 
+/// Struct
 /// Registration options for a {@link ExecuteCommandRequest}.
 class ExecuteCommandRegistrationOptions implements ExecuteCommandOptions {
   ExecuteCommandRegistrationOptions({
@@ -7022,6 +7167,7 @@ class ExecuteCommandRegistrationOptions implements ExecuteCommandOptions {
   }
 }
 
+/// Struct
 /// The parameters passed via an apply workspace edit request.
 class ApplyWorkspaceEditParams implements ToJson {
   ApplyWorkspaceEditParams({required this.edit, required this.label});
@@ -7050,6 +7196,7 @@ class ApplyWorkspaceEditParams implements ToJson {
   }
 }
 
+/// Struct
 /// The result returned from the apply workspace edit request.
 /// @since 3.17 renamed from ApplyWorkspaceEditResponse
 class ApplyWorkspaceEditResult implements ToJson {
@@ -7096,6 +7243,7 @@ class ApplyWorkspaceEditResult implements ToJson {
   }
 }
 
+/// Struct
 class WorkDoneProgressBegin implements ToJson {
   WorkDoneProgressBegin({
     required this.cancellable,
@@ -7159,6 +7307,7 @@ class WorkDoneProgressBegin implements ToJson {
   }
 }
 
+/// Struct
 class WorkDoneProgressReport implements ToJson {
   WorkDoneProgressReport({
     required this.cancellable,
@@ -7213,6 +7362,7 @@ class WorkDoneProgressReport implements ToJson {
   }
 }
 
+/// Struct
 class WorkDoneProgressEnd implements ToJson {
   WorkDoneProgressEnd({required this.kind, required this.message});
 
@@ -7239,6 +7389,7 @@ class WorkDoneProgressEnd implements ToJson {
   }
 }
 
+/// Struct
 class SetTraceParams implements ToJson {
   SetTraceParams({required this.value});
 
@@ -7260,6 +7411,7 @@ class SetTraceParams implements ToJson {
   }
 }
 
+/// Struct
 class LogTraceParams implements ToJson {
   LogTraceParams({required this.message, required this.verbose});
 
@@ -7284,6 +7436,7 @@ class LogTraceParams implements ToJson {
   }
 }
 
+/// Struct
 class CancelParams implements ToJson {
   CancelParams({required this.id});
 
@@ -7305,6 +7458,7 @@ class CancelParams implements ToJson {
   }
 }
 
+/// Struct
 class ProgressParams implements ToJson {
   ProgressParams({required this.token, required this.value});
 
@@ -7331,6 +7485,7 @@ class ProgressParams implements ToJson {
   }
 }
 
+/// Struct
 /// A parameter literal used in requests to pass a text document and a position
 /// inside that document.
 class TextDocumentPositionParams implements ToJson {
@@ -7367,6 +7522,7 @@ class TextDocumentPositionParams implements ToJson {
   }
 }
 
+/// Struct
 class WorkDoneProgressParams implements ToJson {
   WorkDoneProgressParams({required this.workDoneToken});
 
@@ -7388,6 +7544,7 @@ class WorkDoneProgressParams implements ToJson {
   }
 }
 
+/// Struct
 class PartialResultParams implements ToJson {
   PartialResultParams({required this.partialResultToken});
 
@@ -7410,6 +7567,7 @@ class PartialResultParams implements ToJson {
   }
 }
 
+/// Struct
 /// Represents the connection of two locations. Provides additional metadata
 /// over normal {@link Location locations}, including an origin range.
 class LocationLink implements ToJson {
@@ -7472,6 +7630,7 @@ class LocationLink implements ToJson {
   }
 }
 
+/// Struct
 /// A range in a text document expressed as (zero-based) start and end
 /// positions.
 /// If you want to specify a range that contains a line including the line
@@ -7504,6 +7663,7 @@ class Range implements ToJson {
   }
 }
 
+/// Struct
 class ImplementationOptions implements WorkDoneProgressOptions {
   ImplementationOptions({required this.workDoneProgress});
 
@@ -7525,6 +7685,7 @@ class ImplementationOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Static registration options to be returned in the initialize request.
 class StaticRegistrationOptions implements ToJson {
   StaticRegistrationOptions({required this.id});
@@ -7548,6 +7709,7 @@ class StaticRegistrationOptions implements ToJson {
   }
 }
 
+/// Struct
 class TypeDefinitionOptions implements WorkDoneProgressOptions {
   TypeDefinitionOptions({required this.workDoneProgress});
 
@@ -7569,6 +7731,7 @@ class TypeDefinitionOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// The workspace folder change event.
 class WorkspaceFoldersChangeEvent implements ToJson {
   WorkspaceFoldersChangeEvent({required this.added, required this.removed});
@@ -7596,6 +7759,7 @@ class WorkspaceFoldersChangeEvent implements ToJson {
   }
 }
 
+/// Struct
 class ConfigurationItem implements ToJson {
   ConfigurationItem({required this.scopeUri, required this.section});
 
@@ -7622,6 +7786,7 @@ class ConfigurationItem implements ToJson {
   }
 }
 
+/// Struct
 /// A literal to identify a text document in the client.
 class TextDocumentIdentifier implements ToJson {
   TextDocumentIdentifier({required this.uri});
@@ -7644,6 +7809,7 @@ class TextDocumentIdentifier implements ToJson {
   }
 }
 
+/// Struct
 /// Represents a color in RGBA space.
 class Color implements ToJson {
   Color({
@@ -7686,6 +7852,7 @@ class Color implements ToJson {
   }
 }
 
+/// Struct
 class DocumentColorOptions implements WorkDoneProgressOptions {
   DocumentColorOptions({required this.workDoneProgress});
 
@@ -7707,6 +7874,7 @@ class DocumentColorOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 class FoldingRangeOptions implements WorkDoneProgressOptions {
   FoldingRangeOptions({required this.workDoneProgress});
 
@@ -7728,6 +7896,7 @@ class FoldingRangeOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 class DeclarationOptions implements WorkDoneProgressOptions {
   DeclarationOptions({required this.workDoneProgress});
 
@@ -7749,6 +7918,7 @@ class DeclarationOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Position in a text document expressed as zero-based line and character
 /// offset. Prior to 3.17 the offsets were always based on a UTF-16 string
 /// representation. So a string of the form `a𐐀b` the character offset of the
@@ -7809,6 +7979,7 @@ class Position implements ToJson {
   }
 }
 
+/// Struct
 class SelectionRangeOptions implements WorkDoneProgressOptions {
   SelectionRangeOptions({required this.workDoneProgress});
 
@@ -7830,6 +8001,7 @@ class SelectionRangeOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Call hierarchy options used during static registration.
 /// @since 3.16.0
 class CallHierarchyOptions implements WorkDoneProgressOptions {
@@ -7853,6 +8025,7 @@ class CallHierarchyOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensOptions implements WorkDoneProgressOptions {
   SemanticTokensOptions({
@@ -7903,6 +8076,7 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensEdit implements ToJson {
   SemanticTokensEdit({
@@ -7943,6 +8117,7 @@ class SemanticTokensEdit implements ToJson {
   }
 }
 
+/// Struct
 class LinkedEditingRangeOptions implements WorkDoneProgressOptions {
   LinkedEditingRangeOptions({required this.workDoneProgress});
 
@@ -7964,6 +8139,7 @@ class LinkedEditingRangeOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Represents information on a file/folder create.
 /// @since 3.16.0
 class FileCreate implements ToJson {
@@ -7987,6 +8163,7 @@ class FileCreate implements ToJson {
   }
 }
 
+/// Struct
 /// Describes textual changes on a text document. A TextDocumentEdit describes
 /// all changes on a document version Si and after they are applied move the
 /// document to version Si+1. So the creator of a TextDocumentEdit doesn't need
@@ -8022,6 +8199,7 @@ class TextDocumentEdit implements ToJson {
   }
 }
 
+/// Struct
 /// Create file operation.
 class CreateFile implements ResourceOperation {
   CreateFile({
@@ -8073,6 +8251,7 @@ class CreateFile implements ResourceOperation {
   }
 }
 
+/// Struct
 /// Rename file operation
 class RenameFile implements ResourceOperation {
   RenameFile({
@@ -8131,6 +8310,7 @@ class RenameFile implements ResourceOperation {
   }
 }
 
+/// Struct
 /// Delete file operation
 class DeleteFile implements ResourceOperation {
   DeleteFile({
@@ -8182,6 +8362,7 @@ class DeleteFile implements ResourceOperation {
   }
 }
 
+/// Struct
 /// Additional information that describes document changes.
 /// @since 3.16.0
 class ChangeAnnotation implements ToJson {
@@ -8226,6 +8407,7 @@ class ChangeAnnotation implements ToJson {
   }
 }
 
+/// Struct
 /// A filter to describe in which file operation requests or notifications the
 /// server is interested in receiving.
 /// @since 3.16.0
@@ -8257,6 +8439,7 @@ class FileOperationFilter implements ToJson {
   }
 }
 
+/// Struct
 /// Represents information on a file/folder rename.
 /// @since 3.16.0
 class FileRename implements ToJson {
@@ -8286,6 +8469,7 @@ class FileRename implements ToJson {
   }
 }
 
+/// Struct
 /// Represents information on a file/folder delete.
 /// @since 3.16.0
 class FileDelete implements ToJson {
@@ -8309,6 +8493,7 @@ class FileDelete implements ToJson {
   }
 }
 
+/// Struct
 class MonikerOptions implements WorkDoneProgressOptions {
   MonikerOptions({required this.workDoneProgress});
 
@@ -8330,6 +8515,7 @@ class MonikerOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Type hierarchy options used during static registration.
 /// @since 3.17.0
 class TypeHierarchyOptions implements WorkDoneProgressOptions {
@@ -8353,6 +8539,7 @@ class TypeHierarchyOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// @since 3.17.0
 class InlineValueContext implements ToJson {
   InlineValueContext({required this.frameId, required this.stoppedLocation});
@@ -8387,6 +8574,7 @@ class InlineValueContext implements ToJson {
   }
 }
 
+/// Struct
 /// Provide inline value as text.
 /// @since 3.17.0
 class InlineValueText implements ToJson {
@@ -8415,6 +8603,7 @@ class InlineValueText implements ToJson {
   }
 }
 
+/// Struct
 /// Provide inline value through a variable lookup. If only a range is
 /// specified, the variable name will be extracted from the underlying
 /// document. An optional variable name can be used to override the extracted
@@ -8460,6 +8649,7 @@ class InlineValueVariableLookup implements ToJson {
   }
 }
 
+/// Struct
 /// Provide an inline value through an expression evaluation. If only a range
 /// is specified, the expression will be extracted from the underlying
 /// document. An optional expression can be used to override the extracted
@@ -8499,6 +8689,7 @@ class InlineValueEvaluatableExpression implements ToJson {
   }
 }
 
+/// Struct
 /// Inline value options used during static registration.
 /// @since 3.17.0
 class InlineValueOptions implements WorkDoneProgressOptions {
@@ -8522,6 +8713,7 @@ class InlineValueOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// An inlay hint label part allows for interactive and composite labels of
 /// inlay hints.
 /// @since 3.17.0
@@ -8582,6 +8774,7 @@ class InlayHintLabelPart implements ToJson {
   }
 }
 
+/// Struct
 /// A `MarkupContent` literal represents a string value which content is
 /// interpreted base on its kind flag. Currently the protocol supports
 /// `plaintext` and `markdown` as markup kinds.
@@ -8621,6 +8814,7 @@ class MarkupContent implements ToJson {
   }
 }
 
+/// Struct
 /// Inlay hint options used during static registration.
 /// @since 3.17.0
 class InlayHintOptions implements WorkDoneProgressOptions {
@@ -8656,6 +8850,7 @@ class InlayHintOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// A full diagnostic report with a set of related documents.
 /// @since 3.17.0
 class RelatedFullDocumentDiagnosticReport
@@ -8716,6 +8911,7 @@ class RelatedFullDocumentDiagnosticReport
   }
 }
 
+/// Struct
 /// An unchanged diagnostic report with a set of related documents.
 /// @since 3.17.0
 class RelatedUnchangedDocumentDiagnosticReport
@@ -8769,6 +8965,7 @@ class RelatedUnchangedDocumentDiagnosticReport
   }
 }
 
+/// Struct
 /// A diagnostic report with a full set of problems.
 /// @since 3.17.0
 class FullDocumentDiagnosticReport implements ToJson {
@@ -8811,6 +9008,7 @@ class FullDocumentDiagnosticReport implements ToJson {
   }
 }
 
+/// Struct
 /// A diagnostic report indicating that the last returned report is still
 /// accurate.
 /// @since 3.17.0
@@ -8847,6 +9045,7 @@ class UnchangedDocumentDiagnosticReport implements ToJson {
   }
 }
 
+/// Struct
 /// Diagnostic options.
 /// @since 3.17.0
 class DiagnosticOptions implements WorkDoneProgressOptions {
@@ -8899,6 +9098,7 @@ class DiagnosticOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// A previous result id in a workspace pull request.
 /// @since 3.17.0
 class PreviousResultId implements ToJson {
@@ -8927,6 +9127,7 @@ class PreviousResultId implements ToJson {
   }
 }
 
+/// Struct
 /// A notebook document.
 /// @since 3.17.0
 class NotebookDocument implements ToJson {
@@ -8984,6 +9185,7 @@ class NotebookDocument implements ToJson {
   }
 }
 
+/// Struct
 /// An item to transfer a text document from the client to the server.
 class TextDocumentItem implements ToJson {
   TextDocumentItem({
@@ -9032,6 +9234,7 @@ class TextDocumentItem implements ToJson {
   }
 }
 
+/// Struct
 /// A versioned notebook document identifier.
 /// @since 3.17.0
 class VersionedNotebookDocumentIdentifier implements ToJson {
@@ -9065,6 +9268,7 @@ class VersionedNotebookDocumentIdentifier implements ToJson {
   }
 }
 
+/// Struct
 /// A change event for a notebook document.
 /// @since 3.17.0
 class NotebookDocumentChangeEvent implements ToJson {
@@ -9094,6 +9298,7 @@ class NotebookDocumentChangeEvent implements ToJson {
   }
 }
 
+/// Struct
 /// A literal to identify a notebook document in the client.
 /// @since 3.17.0
 class NotebookDocumentIdentifier implements ToJson {
@@ -9117,6 +9322,7 @@ class NotebookDocumentIdentifier implements ToJson {
   }
 }
 
+/// Struct
 /// Provides information about the context in which an inline completion was
 /// requested.
 /// @since 3.18.0 @proposed
@@ -9159,6 +9365,7 @@ class InlineCompletionContext implements ToJson {
   }
 }
 
+/// Struct
 /// A string value used as a snippet is a template which allows to insert text
 /// and to control the editor cursor when insertion happens.
 /// A snippet can define tab stops and placeholders with `$1`, `$2` and
@@ -9191,6 +9398,7 @@ class StringValue implements ToJson {
   }
 }
 
+/// Struct
 /// Inline completion options used during static registration.
 /// @since 3.18.0 @proposed
 class InlineCompletionOptions implements WorkDoneProgressOptions {
@@ -9214,6 +9422,7 @@ class InlineCompletionOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// General parameters to register for a notification or to register a provider.
 class Registration implements ToJson {
   Registration({
@@ -9255,6 +9464,7 @@ class Registration implements ToJson {
   }
 }
 
+/// Struct
 /// General parameters to unregister a request or notification.
 class Unregistration implements ToJson {
   Unregistration({required this.id, required this.method});
@@ -9283,6 +9493,7 @@ class Unregistration implements ToJson {
   }
 }
 
+/// Struct
 /// The initialize parameters
 class _InitializeParams implements WorkDoneProgressParams {
   _InitializeParams({
@@ -9303,7 +9514,7 @@ class _InitializeParams implements WorkDoneProgressParams {
       (capabilitiesJson as Map<String, Object?>),
     );
     final clientInfoJson = json['clientInfo']!;
-    final clientInfo = (clientInfoJson as _InitializeParamsClientInfo);
+    final clientInfo = (clientInfoJson as InitializeParamsClientInfo);
     final initializationOptionsJson = json['initializationOptions']!;
     final initializationOptions = (initializationOptionsJson as LSPAny);
     final localeJson = json['locale']!;
@@ -9338,7 +9549,7 @@ class _InitializeParams implements WorkDoneProgressParams {
 
   /// Information about the client
   /// @since 3.15.0
-  final _InitializeParamsClientInfo clientInfo;
+  final InitializeParamsClientInfo clientInfo;
 
   /// User provided initialization options.
   final LSPAny initializationOptions;
@@ -9379,6 +9590,7 @@ class _InitializeParams implements WorkDoneProgressParams {
   }
 }
 
+/// Struct
 class WorkspaceFoldersInitializeParams implements ToJson {
   WorkspaceFoldersInitializeParams({required this.workspaceFolders});
 
@@ -9404,6 +9616,7 @@ class WorkspaceFoldersInitializeParams implements ToJson {
   }
 }
 
+/// Struct
 /// Defines the capabilities provided by a language server.
 class ServerCapabilities implements ToJson {
   ServerCapabilities({
@@ -9720,6 +9933,7 @@ class ServerCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// A text document identifier to denote a specific version of a text document.
 class VersionedTextDocumentIdentifier implements TextDocumentIdentifier {
   VersionedTextDocumentIdentifier({required this.uri, required this.version});
@@ -9748,6 +9962,7 @@ class VersionedTextDocumentIdentifier implements TextDocumentIdentifier {
   }
 }
 
+/// Struct
 /// Save options.
 class SaveOptions implements ToJson {
   SaveOptions({required this.includeText});
@@ -9770,6 +9985,7 @@ class SaveOptions implements ToJson {
   }
 }
 
+/// Struct
 /// An event describing a file change.
 class FileEvent implements ToJson {
   FileEvent({required this.type, required this.uri});
@@ -9798,6 +10014,7 @@ class FileEvent implements ToJson {
   }
 }
 
+/// Struct
 class FileSystemWatcher implements ToJson {
   FileSystemWatcher({required this.globPattern, required this.kind});
 
@@ -9828,6 +10045,7 @@ class FileSystemWatcher implements ToJson {
   }
 }
 
+/// Struct
 /// Represents a diagnostic, such as a compiler error or warning. Diagnostic
 /// objects are only valid in the scope of a resource.
 class Diagnostic implements ToJson {
@@ -9924,6 +10142,7 @@ class Diagnostic implements ToJson {
   }
 }
 
+/// Struct
 /// Contains additional information about the context in which a completion
 /// request is triggered.
 class CompletionContext implements ToJson {
@@ -9964,6 +10183,7 @@ class CompletionContext implements ToJson {
   }
 }
 
+/// Struct
 /// Additional details for a completion item label.
 /// @since 3.17.0
 class CompletionItemLabelDetails implements ToJson {
@@ -9996,6 +10216,7 @@ class CompletionItemLabelDetails implements ToJson {
   }
 }
 
+/// Struct
 /// A special text edit to provide an insert and a replace operation.
 /// @since 3.16.0
 class InsertReplaceEdit implements ToJson {
@@ -10037,6 +10258,7 @@ class InsertReplaceEdit implements ToJson {
   }
 }
 
+/// Struct
 /// Completion options.
 class CompletionOptions implements WorkDoneProgressOptions {
   CompletionOptions({
@@ -10109,6 +10331,7 @@ class CompletionOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Hover options.
 class HoverOptions implements WorkDoneProgressOptions {
   HoverOptions({required this.workDoneProgress});
@@ -10131,6 +10354,7 @@ class HoverOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Additional information about the context in which a signature help request
 /// was triggered.
 /// @since 3.15.0
@@ -10193,6 +10417,7 @@ class SignatureHelpContext implements ToJson {
   }
 }
 
+/// Struct
 /// Represents the signature of something callable. A signature can have a
 /// label, like a function-name, a doc-comment, and a set of parameters.
 class SignatureInformation implements ToJson {
@@ -10244,6 +10469,7 @@ class SignatureInformation implements ToJson {
   }
 }
 
+/// Struct
 /// Server Capabilities for a {@link SignatureHelpRequest}.
 class SignatureHelpOptions implements WorkDoneProgressOptions {
   SignatureHelpOptions({
@@ -10288,6 +10514,7 @@ class SignatureHelpOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Server Capabilities for a {@link DefinitionRequest}.
 class DefinitionOptions implements WorkDoneProgressOptions {
   DefinitionOptions({required this.workDoneProgress});
@@ -10310,6 +10537,7 @@ class DefinitionOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Value-object that contains additional information when requesting
 /// references.
 class ReferenceContext implements ToJson {
@@ -10333,6 +10561,7 @@ class ReferenceContext implements ToJson {
   }
 }
 
+/// Struct
 /// Reference options.
 class ReferenceOptions implements WorkDoneProgressOptions {
   ReferenceOptions({required this.workDoneProgress});
@@ -10355,6 +10584,7 @@ class ReferenceOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Provider options for a {@link DocumentHighlightRequest}.
 class DocumentHighlightOptions implements WorkDoneProgressOptions {
   DocumentHighlightOptions({required this.workDoneProgress});
@@ -10377,6 +10607,7 @@ class DocumentHighlightOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// A base for all symbol information.
 class BaseSymbolInformation implements ToJson {
   BaseSymbolInformation({
@@ -10429,6 +10660,7 @@ class BaseSymbolInformation implements ToJson {
   }
 }
 
+/// Struct
 /// Provider options for a {@link DocumentSymbolRequest}.
 class DocumentSymbolOptions implements WorkDoneProgressOptions {
   DocumentSymbolOptions({required this.label, required this.workDoneProgress});
@@ -10461,6 +10693,7 @@ class DocumentSymbolOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Contains additional diagnostic information about the context in which a
 /// {@link CodeActionProvider.provideCodeActions code action} is run.
 class CodeActionContext implements ToJson {
@@ -10514,6 +10747,7 @@ class CodeActionContext implements ToJson {
   }
 }
 
+/// Struct
 /// Provider options for a {@link CodeActionRequest}.
 class CodeActionOptions implements WorkDoneProgressOptions {
   CodeActionOptions({
@@ -10558,6 +10792,7 @@ class CodeActionOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Server capabilities for a {@link WorkspaceSymbolRequest}.
 class WorkspaceSymbolOptions implements WorkDoneProgressOptions {
   WorkspaceSymbolOptions({
@@ -10593,6 +10828,7 @@ class WorkspaceSymbolOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Code Lens provider options of a {@link CodeLensRequest}.
 class CodeLensOptions implements WorkDoneProgressOptions {
   CodeLensOptions({
@@ -10626,6 +10862,7 @@ class CodeLensOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Provider options for a {@link DocumentLinkRequest}.
 class DocumentLinkOptions implements WorkDoneProgressOptions {
   DocumentLinkOptions({
@@ -10659,6 +10896,7 @@ class DocumentLinkOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Value-object describing what options formatting should use.
 class FormattingOptions implements ToJson {
   FormattingOptions({
@@ -10716,6 +10954,7 @@ class FormattingOptions implements ToJson {
   }
 }
 
+/// Struct
 /// Provider options for a {@link DocumentFormattingRequest}.
 class DocumentFormattingOptions implements WorkDoneProgressOptions {
   DocumentFormattingOptions({required this.workDoneProgress});
@@ -10738,6 +10977,7 @@ class DocumentFormattingOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Provider options for a {@link DocumentRangeFormattingRequest}.
 class DocumentRangeFormattingOptions implements WorkDoneProgressOptions {
   DocumentRangeFormattingOptions({
@@ -10772,6 +11012,7 @@ class DocumentRangeFormattingOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// Provider options for a {@link DocumentOnTypeFormattingRequest}.
 class DocumentOnTypeFormattingOptions implements ToJson {
   DocumentOnTypeFormattingOptions({
@@ -10805,6 +11046,7 @@ class DocumentOnTypeFormattingOptions implements ToJson {
   }
 }
 
+/// Struct
 /// Provider options for a {@link RenameRequest}.
 class RenameOptions implements WorkDoneProgressOptions {
   RenameOptions({
@@ -10839,6 +11081,7 @@ class RenameOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// The server capabilities of a {@link ExecuteCommandRequest}.
 class ExecuteCommandOptions implements WorkDoneProgressOptions {
   ExecuteCommandOptions({
@@ -10872,6 +11115,7 @@ class ExecuteCommandOptions implements WorkDoneProgressOptions {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensLegend implements ToJson {
   SemanticTokensLegend({
@@ -10905,6 +11149,7 @@ class SemanticTokensLegend implements ToJson {
   }
 }
 
+/// Struct
 /// A text document identifier to optionally denote a specific version of a
 /// text document.
 class OptionalVersionedTextDocumentIdentifier
@@ -10945,6 +11190,7 @@ class OptionalVersionedTextDocumentIdentifier
   }
 }
 
+/// Struct
 /// A special text edit with an additional change annotation.
 /// @since 3.16.0.
 class AnnotatedTextEdit implements TextEdit {
@@ -10989,6 +11235,7 @@ class AnnotatedTextEdit implements TextEdit {
   }
 }
 
+/// Struct
 /// A generic resource operation.
 class ResourceOperation implements ToJson {
   ResourceOperation({required this.annotationId, required this.kind});
@@ -11017,6 +11264,7 @@ class ResourceOperation implements ToJson {
   }
 }
 
+/// Struct
 /// Options to create a file.
 class CreateFileOptions implements ToJson {
   CreateFileOptions({required this.ignoreIfExists, required this.overwrite});
@@ -11047,6 +11295,7 @@ class CreateFileOptions implements ToJson {
   }
 }
 
+/// Struct
 /// Rename file options
 class RenameFileOptions implements ToJson {
   RenameFileOptions({required this.ignoreIfExists, required this.overwrite});
@@ -11077,6 +11326,7 @@ class RenameFileOptions implements ToJson {
   }
 }
 
+/// Struct
 /// Delete file options
 class DeleteFileOptions implements ToJson {
   DeleteFileOptions({required this.ignoreIfNotExists, required this.recursive});
@@ -11107,6 +11357,7 @@ class DeleteFileOptions implements ToJson {
   }
 }
 
+/// Struct
 /// A pattern to describe in which file operation requests or notifications the
 /// server is interested in receiving.
 /// @since 3.16.0
@@ -11161,6 +11412,7 @@ class FileOperationPattern implements ToJson {
   }
 }
 
+/// Struct
 /// A full document diagnostic report for a workspace diagnostic result.
 /// @since 3.17.0
 class WorkspaceFullDocumentDiagnosticReport
@@ -11224,6 +11476,7 @@ class WorkspaceFullDocumentDiagnosticReport
   }
 }
 
+/// Struct
 /// An unchanged document diagnostic report for a workspace diagnostic result.
 /// @since 3.17.0
 class WorkspaceUnchangedDocumentDiagnosticReport
@@ -11280,6 +11533,7 @@ class WorkspaceUnchangedDocumentDiagnosticReport
   }
 }
 
+/// Struct
 /// A notebook cell.
 /// A cell's document URI must be unique across ALL notebook cells and can
 /// therefore be used to uniquely identify a notebook cell or the cell's text
@@ -11335,6 +11589,7 @@ class NotebookCell implements ToJson {
   }
 }
 
+/// Struct
 /// A change describing how to move a `NotebookCell` array from state S to S'.
 /// @since 3.17.0
 class NotebookCellArrayChange implements ToJson {
@@ -11376,6 +11631,7 @@ class NotebookCellArrayChange implements ToJson {
   }
 }
 
+/// Struct
 /// Describes the currently selected completion item.
 /// @since 3.18.0 @proposed
 class SelectedCompletionInfo implements ToJson {
@@ -11404,6 +11660,7 @@ class SelectedCompletionInfo implements ToJson {
   }
 }
 
+/// Struct
 /// Defines the capabilities provided by the client.
 class ClientCapabilities implements ToJson {
   ClientCapabilities({
@@ -11477,6 +11734,7 @@ class ClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class TextDocumentSyncOptions implements ToJson {
   TextDocumentSyncOptions({
     required this.change,
@@ -11538,6 +11796,7 @@ class TextDocumentSyncOptions implements ToJson {
   }
 }
 
+/// Struct
 /// Options specific to a notebook plus its cells to be synced to the server.
 /// If a selector provides a notebook document filter but no cell selector all
 /// cells of a matching notebook document will be synced.
@@ -11578,6 +11837,7 @@ class NotebookDocumentSyncOptions implements ToJson {
   }
 }
 
+/// Struct
 /// Registration options specific to a notebook.
 /// @since 3.17.0
 class NotebookDocumentSyncRegistrationOptions
@@ -11627,6 +11887,7 @@ class NotebookDocumentSyncRegistrationOptions
   }
 }
 
+/// Struct
 class WorkspaceFoldersServerCapabilities implements ToJson {
   WorkspaceFoldersServerCapabilities({
     required this.changeNotifications,
@@ -11666,6 +11927,7 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Options for notifications/requests for user operations on files.
 /// @since 3.16.0
 class FileOperationOptions implements ToJson {
@@ -11740,6 +12002,7 @@ class FileOperationOptions implements ToJson {
   }
 }
 
+/// Struct
 /// Structure to capture a description for an error code.
 /// @since 3.16.0
 class CodeDescription implements ToJson {
@@ -11763,6 +12026,7 @@ class CodeDescription implements ToJson {
   }
 }
 
+/// Struct
 /// Represents a related message and source code location for a diagnostic.
 /// This should be used to point to code locations that cause or related to a
 /// diagnostics, e.g when duplicating a symbol in a scope.
@@ -11792,6 +12056,7 @@ class DiagnosticRelatedInformation implements ToJson {
   }
 }
 
+/// Struct
 /// Represents a parameter of a callable-signature. A parameter can have a
 /// label and a doc-comment.
 class ParameterInformation implements ToJson {
@@ -11828,6 +12093,7 @@ class ParameterInformation implements ToJson {
   }
 }
 
+/// Struct
 /// A notebook cell text document filter denotes a cell text document by
 /// different properties.
 /// @since 3.17.0
@@ -11867,6 +12133,7 @@ class NotebookCellTextDocumentFilter implements ToJson {
   }
 }
 
+/// Struct
 /// Matching options for the file operation pattern.
 /// @since 3.16.0
 class FileOperationPatternOptions implements ToJson {
@@ -11890,6 +12157,7 @@ class FileOperationPatternOptions implements ToJson {
   }
 }
 
+/// Struct
 class ExecutionSummary implements ToJson {
   ExecutionSummary({required this.executionOrder, required this.success});
 
@@ -11917,6 +12185,7 @@ class ExecutionSummary implements ToJson {
   }
 }
 
+/// Struct
 /// Workspace specific client capabilities.
 class WorkspaceClientCapabilities implements ToJson {
   WorkspaceClientCapabilities({
@@ -12085,6 +12354,7 @@ class WorkspaceClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Text document specific client capabilities.
 class TextDocumentClientCapabilities implements ToJson {
   TextDocumentClientCapabilities({
@@ -12401,6 +12671,7 @@ class TextDocumentClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Capabilities specific to the notebook document support.
 /// @since 3.17.0
 class NotebookDocumentClientCapabilities implements ToJson {
@@ -12429,6 +12700,7 @@ class NotebookDocumentClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class WindowClientCapabilities implements ToJson {
   WindowClientCapabilities({
     required this.showDocument,
@@ -12480,6 +12752,7 @@ class WindowClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// General client capabilities.
 /// @since 3.16.0
 class GeneralClientCapabilities implements ToJson {
@@ -12551,6 +12824,7 @@ class GeneralClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// A relative pattern is a helper to construct glob patterns that are matched
 /// relatively to a base URI. The common value for a `baseUri` is a workspace
 /// folder root, but it can be another absolute URI as well.
@@ -12582,6 +12856,7 @@ class RelativePattern implements ToJson {
   }
 }
 
+/// Struct
 class WorkspaceEditClientCapabilities implements ToJson {
   WorkspaceEditClientCapabilities({
     required this.changeAnnotationSupport,
@@ -12653,6 +12928,7 @@ class WorkspaceEditClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class DidChangeConfigurationClientCapabilities implements ToJson {
   DidChangeConfigurationClientCapabilities({required this.dynamicRegistration});
 
@@ -12678,6 +12954,7 @@ class DidChangeConfigurationClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class DidChangeWatchedFilesClientCapabilities implements ToJson {
   DidChangeWatchedFilesClientCapabilities({
     required this.dynamicRegistration,
@@ -12716,6 +12993,7 @@ class DidChangeWatchedFilesClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities for a {@link WorkspaceSymbolRequest}.
 class WorkspaceSymbolClientCapabilities implements ToJson {
   WorkspaceSymbolClientCapabilities({
@@ -12774,6 +13052,7 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// The client capabilities of a {@link ExecuteCommandRequest}.
 class ExecuteCommandClientCapabilities implements ToJson {
   ExecuteCommandClientCapabilities({required this.dynamicRegistration});
@@ -12798,6 +13077,7 @@ class ExecuteCommandClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensWorkspaceClientCapabilities implements ToJson {
   SemanticTokensWorkspaceClientCapabilities({required this.refreshSupport});
@@ -12829,6 +13109,7 @@ class SemanticTokensWorkspaceClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class CodeLensWorkspaceClientCapabilities implements ToJson {
   CodeLensWorkspaceClientCapabilities({required this.refreshSupport});
@@ -12858,6 +13139,7 @@ class CodeLensWorkspaceClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Capabilities relating to events from file operations by the user in the
 /// client.
 /// These events do not come from the file system, they come from user
@@ -12931,6 +13213,7 @@ class FileOperationClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client workspace capabilities specific to inline values.
 /// @since 3.17.0
 class InlineValueWorkspaceClientCapabilities implements ToJson {
@@ -12963,6 +13246,7 @@ class InlineValueWorkspaceClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client workspace capabilities specific to inlay hints.
 /// @since 3.17.0
 class InlayHintWorkspaceClientCapabilities implements ToJson {
@@ -12993,6 +13277,7 @@ class InlayHintWorkspaceClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Workspace client capabilities specific to diagnostic pull requests.
 /// @since 3.17.0
 class DiagnosticWorkspaceClientCapabilities implements ToJson {
@@ -13025,6 +13310,7 @@ class DiagnosticWorkspaceClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client workspace capabilities specific to folding ranges
 /// @since 3.18.0 @proposed
 class FoldingRangeWorkspaceClientCapabilities implements ToJson {
@@ -13058,6 +13344,7 @@ class FoldingRangeWorkspaceClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class TextDocumentSyncClientCapabilities implements ToJson {
   TextDocumentSyncClientCapabilities({
     required this.didSave,
@@ -13108,6 +13395,7 @@ class TextDocumentSyncClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Completion client capabilities
 class CompletionClientCapabilities implements ToJson {
   CompletionClientCapabilities({
@@ -13183,6 +13471,7 @@ class CompletionClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class HoverClientCapabilities implements ToJson {
   HoverClientCapabilities({
     required this.contentFormat,
@@ -13216,6 +13505,7 @@ class HoverClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client Capabilities for a {@link SignatureHelpRequest}.
 class SignatureHelpClientCapabilities implements ToJson {
   SignatureHelpClientCapabilities({
@@ -13264,6 +13554,7 @@ class SignatureHelpClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.14.0
 class DeclarationClientCapabilities implements ToJson {
   DeclarationClientCapabilities({
@@ -13300,6 +13591,7 @@ class DeclarationClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client Capabilities for a {@link DefinitionRequest}.
 class DefinitionClientCapabilities implements ToJson {
   DefinitionClientCapabilities({
@@ -13334,6 +13626,7 @@ class DefinitionClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Since 3.6.0
 class TypeDefinitionClientCapabilities implements ToJson {
   TypeDefinitionClientCapabilities({
@@ -13370,6 +13663,7 @@ class TypeDefinitionClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.6.0
 class ImplementationClientCapabilities implements ToJson {
   ImplementationClientCapabilities({
@@ -13406,6 +13700,7 @@ class ImplementationClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client Capabilities for a {@link ReferencesRequest}.
 class ReferenceClientCapabilities implements ToJson {
   ReferenceClientCapabilities({required this.dynamicRegistration});
@@ -13430,6 +13725,7 @@ class ReferenceClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client Capabilities for a {@link DocumentHighlightRequest}.
 class DocumentHighlightClientCapabilities implements ToJson {
   DocumentHighlightClientCapabilities({required this.dynamicRegistration});
@@ -13456,6 +13752,7 @@ class DocumentHighlightClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client Capabilities for a {@link DocumentSymbolRequest}.
 class DocumentSymbolClientCapabilities implements ToJson {
   DocumentSymbolClientCapabilities({
@@ -13520,6 +13817,7 @@ class DocumentSymbolClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// The Client Capabilities of a {@link CodeActionRequest}.
 class CodeActionClientCapabilities implements ToJson {
   CodeActionClientCapabilities({
@@ -13606,6 +13904,7 @@ class CodeActionClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// The client capabilities  of a {@link CodeLensRequest}.
 class CodeLensClientCapabilities implements ToJson {
   CodeLensClientCapabilities({required this.dynamicRegistration});
@@ -13628,6 +13927,7 @@ class CodeLensClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// The client capabilities of a {@link DocumentLinkRequest}.
 class DocumentLinkClientCapabilities implements ToJson {
   DocumentLinkClientCapabilities({
@@ -13662,6 +13962,7 @@ class DocumentLinkClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class DocumentColorClientCapabilities implements ToJson {
   DocumentColorClientCapabilities({required this.dynamicRegistration});
 
@@ -13687,6 +13988,7 @@ class DocumentColorClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities of a {@link DocumentFormattingRequest}.
 class DocumentFormattingClientCapabilities implements ToJson {
   DocumentFormattingClientCapabilities({required this.dynamicRegistration});
@@ -13713,6 +14015,7 @@ class DocumentFormattingClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities of a {@link DocumentRangeFormattingRequest}.
 class DocumentRangeFormattingClientCapabilities implements ToJson {
   DocumentRangeFormattingClientCapabilities({
@@ -13749,6 +14052,7 @@ class DocumentRangeFormattingClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities of a {@link DocumentOnTypeFormattingRequest}.
 class DocumentOnTypeFormattingClientCapabilities implements ToJson {
   DocumentOnTypeFormattingClientCapabilities({
@@ -13777,6 +14081,7 @@ class DocumentOnTypeFormattingClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class RenameClientCapabilities implements ToJson {
   RenameClientCapabilities({
     required this.dynamicRegistration,
@@ -13836,6 +14141,7 @@ class RenameClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class FoldingRangeClientCapabilities implements ToJson {
   FoldingRangeClientCapabilities({
     required this.dynamicRegistration,
@@ -13901,6 +14207,7 @@ class FoldingRangeClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 class SelectionRangeClientCapabilities implements ToJson {
   SelectionRangeClientCapabilities({required this.dynamicRegistration});
 
@@ -13927,6 +14234,7 @@ class SelectionRangeClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// The publish diagnostic client capabilities.
 class PublishDiagnosticsClientCapabilities implements ToJson {
   PublishDiagnosticsClientCapabilities({
@@ -13993,6 +14301,7 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class CallHierarchyClientCapabilities implements ToJson {
   CallHierarchyClientCapabilities({required this.dynamicRegistration});
@@ -14020,6 +14329,7 @@ class CallHierarchyClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.16.0
 class SemanticTokensClientCapabilities implements ToJson {
   SemanticTokensClientCapabilities({
@@ -14120,6 +14430,7 @@ class SemanticTokensClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities for the linked editing range request.
 /// @since 3.16.0
 class LinkedEditingRangeClientCapabilities implements ToJson {
@@ -14150,6 +14461,7 @@ class LinkedEditingRangeClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities specific to the moniker request.
 /// @since 3.16.0
 class MonikerClientCapabilities implements ToJson {
@@ -14175,6 +14487,7 @@ class MonikerClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// @since 3.17.0
 class TypeHierarchyClientCapabilities implements ToJson {
   TypeHierarchyClientCapabilities({required this.dynamicRegistration});
@@ -14202,6 +14515,7 @@ class TypeHierarchyClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities specific to inline values.
 /// @since 3.17.0
 class InlineValueClientCapabilities implements ToJson {
@@ -14228,6 +14542,7 @@ class InlineValueClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Inlay hint client capabilities.
 /// @since 3.17.0
 class InlayHintClientCapabilities implements ToJson {
@@ -14264,6 +14579,7 @@ class InlayHintClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities specific to diagnostic pull requests.
 /// @since 3.17.0
 class DiagnosticClientCapabilities implements ToJson {
@@ -14302,6 +14618,7 @@ class DiagnosticClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities specific to inline completions.
 /// @since 3.18.0 @proposed
 class InlineCompletionClientCapabilities implements ToJson {
@@ -14330,6 +14647,7 @@ class InlineCompletionClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Notebook specific client capabilities.
 /// @since 3.17.0
 class NotebookDocumentSyncClientCapabilities implements ToJson {
@@ -14369,6 +14687,7 @@ class NotebookDocumentSyncClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Show message request client capabilities
 class ShowMessageRequestClientCapabilities implements ToJson {
   ShowMessageRequestClientCapabilities({required this.messageActionItem});
@@ -14397,6 +14716,7 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities for the showDocument request.
 /// @since 3.16.0
 class ShowDocumentClientCapabilities implements ToJson {
@@ -14420,6 +14740,7 @@ class ShowDocumentClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities specific to regular expressions.
 /// @since 3.16.0
 class RegularExpressionsClientCapabilities implements ToJson {
@@ -14456,6 +14777,7 @@ class RegularExpressionsClientCapabilities implements ToJson {
   }
 }
 
+/// Struct
 /// Client capabilities specific to the used markdown parser.
 /// @since 3.16.0
 class MarkdownClientCapabilities implements ToJson {
@@ -15361,6 +15683,7 @@ const _$TokenFormatEnumMap = <TokenFormat, String>{
   TokenFormat.relativeValue: 'relative',
 };
 
+/// Literal
 /// Information about the server.
 /// @since 3.15.0
 class InitializeResultServerInfo implements ToJson {
@@ -15380,6 +15703,7 @@ class InitializeResultServerInfo implements ToJson {
   }
 }
 
+/// Literal
 /// In many cases the items of an actual completion result share the same value
 /// for properties like `commitCharacters` or the range of a text edit. A
 /// completion list can therefore define item defaults which will be used if a
@@ -15426,6 +15750,7 @@ class CompletionListItemDefaults implements ToJson {
   }
 }
 
+/// Literal
 /// Marks that the code action cannot currently be applied.
 /// Clients should follow the following guidelines regarding disabled code
 /// actions:
@@ -15455,6 +15780,7 @@ class CodeActionDisabled implements ToJson {
   }
 }
 
+/// Literal
 /// Changes to cells
 class NotebookDocumentChangeEventCells implements ToJson {
   NotebookDocumentChangeEventCells({
@@ -15481,6 +15807,7 @@ class NotebookDocumentChangeEventCells implements ToJson {
   }
 }
 
+/// Literal
 /// Changes to the cell structure to add or remove cells.
 class NotebookDocumentChangeEventCellsStructure implements ToJson {
   NotebookDocumentChangeEventCellsStructure({
@@ -15506,6 +15833,7 @@ class NotebookDocumentChangeEventCellsStructure implements ToJson {
   }
 }
 
+/// Literal
 /// Changes to the text content of notebook cells.
 class NotebookDocumentChangeEventCellsTextContent implements ToJson {
   NotebookDocumentChangeEventCellsTextContent({
@@ -15525,10 +15853,11 @@ class NotebookDocumentChangeEventCellsTextContent implements ToJson {
   }
 }
 
+/// Literal
 /// Information about the client
 /// @since 3.15.0
-class _InitializeParamsClientInfo implements ToJson {
-  _InitializeParamsClientInfo({required this.name, required this.version});
+class InitializeParamsClientInfo implements ToJson {
+  InitializeParamsClientInfo({required this.name, required this.version});
 
   /// The name of the client as defined by the client.
   final String name;
@@ -15544,6 +15873,7 @@ class _InitializeParamsClientInfo implements ToJson {
   }
 }
 
+/// Literal
 /// Workspace specific server capabilities.
 class ServerCapabilitiesWorkspace implements ToJson {
   ServerCapabilitiesWorkspace({
@@ -15568,6 +15898,7 @@ class ServerCapabilitiesWorkspace implements ToJson {
   }
 }
 
+/// Literal
 /// The server supports the following `CompletionItem` specific capabilities.
 /// @since 3.17.0
 class CompletionOptionsCompletionItem implements ToJson {
@@ -15587,6 +15918,7 @@ class CompletionOptionsCompletionItem implements ToJson {
   }
 }
 
+/// Literal
 /// Client capability that signals how the client handles stale requests (e.g.
 /// a request for which the client will not process the response anymore since
 /// the information is outdated).
@@ -15612,6 +15944,7 @@ class GeneralClientCapabilitiesStaleRequestSupport implements ToJson {
   }
 }
 
+/// Literal
 /// Whether the client in general supports change annotations on text edits,
 /// create file, rename file and delete file changes.
 /// @since 3.16.0
@@ -15633,6 +15966,7 @@ class WorkspaceEditClientCapabilitiesChangeAnnotationSupport implements ToJson {
   }
 }
 
+/// Literal
 /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
 /// request.
 class WorkspaceSymbolClientCapabilitiesSymbolKind implements ToJson {
@@ -15654,6 +15988,7 @@ class WorkspaceSymbolClientCapabilitiesSymbolKind implements ToJson {
   }
 }
 
+/// Literal
 /// The client supports tags on `SymbolInformation`. Clients supporting tags
 /// have to handle unknown tags gracefully.
 /// @since 3.16.0
@@ -15671,6 +16006,7 @@ class WorkspaceSymbolClientCapabilitiesTagSupport implements ToJson {
   }
 }
 
+/// Literal
 /// The client support partial workspace symbols. The client will send the
 /// request `workspaceSymbol/resolve` to the server to resolve additional
 /// properties.
@@ -15690,6 +16026,7 @@ class WorkspaceSymbolClientCapabilitiesResolveSupport implements ToJson {
   }
 }
 
+/// Literal
 /// The client supports the following `CompletionItem` specific capabilities.
 class CompletionClientCapabilitiesCompletionItem implements ToJson {
   CompletionClientCapabilitiesCompletionItem({
@@ -15763,6 +16100,7 @@ class CompletionClientCapabilitiesCompletionItem implements ToJson {
   }
 }
 
+/// Literal
 /// Client supports the tag property on a completion item. Clients supporting
 /// tags have to handle unknown tags gracefully. Clients especially need to
 /// preserve unknown tags when sending a completion item back to the server in
@@ -15784,6 +16122,7 @@ class CompletionClientCapabilitiesCompletionItemTagSupport implements ToJson {
   }
 }
 
+/// Literal
 /// Indicates which properties a client can resolve lazily on a completion
 /// item. Before version 3.16.0 only the predefined properties `documentation`
 /// and `details` could be resolved lazily.
@@ -15805,6 +16144,7 @@ class CompletionClientCapabilitiesCompletionItemResolveSupport
   }
 }
 
+/// Literal
 /// The client supports the `insertTextMode` property on a completion item to
 /// override the whitespace handling mode as defined by the client (see
 /// `insertTextMode`).
@@ -15825,6 +16165,7 @@ class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
   }
 }
 
+/// Literal
 class CompletionClientCapabilitiesCompletionItemKind implements ToJson {
   CompletionClientCapabilitiesCompletionItemKind({required this.valueSet});
 
@@ -15844,6 +16185,7 @@ class CompletionClientCapabilitiesCompletionItemKind implements ToJson {
   }
 }
 
+/// Literal
 /// The client supports the following `CompletionList` specific capabilities.
 /// @since 3.17.0
 class CompletionClientCapabilitiesCompletionList implements ToJson {
@@ -15864,6 +16206,7 @@ class CompletionClientCapabilitiesCompletionList implements ToJson {
   }
 }
 
+/// Literal
 /// The client supports the following `SignatureInformation` specific
 /// properties.
 class SignatureHelpClientCapabilitiesSignatureInformation implements ToJson {
@@ -15894,6 +16237,7 @@ class SignatureHelpClientCapabilitiesSignatureInformation implements ToJson {
   }
 }
 
+/// Literal
 /// Client capabilities specific to parameter information.
 class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
     implements ToJson {
@@ -15914,6 +16258,7 @@ class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
   }
 }
 
+/// Literal
 /// The client support code action literals of type `CodeAction` as a valid
 /// response of the `textDocument/codeAction` request. If the property is not
 /// set the request can only return `Command` literals.
@@ -15935,6 +16280,7 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupport implements ToJson {
   }
 }
 
+/// Literal
 /// The code action kind is support with the following value set.
 class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
     implements ToJson {
@@ -15955,6 +16301,7 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
   }
 }
 
+/// Literal
 /// Specific options for the folding range kind.
 /// @since 3.17.0
 class FoldingRangeClientCapabilitiesFoldingRangeKind implements ToJson {
@@ -15973,6 +16320,7 @@ class FoldingRangeClientCapabilitiesFoldingRangeKind implements ToJson {
   }
 }
 
+/// Literal
 /// Specific options for the folding range.
 /// @since 3.17.0
 class FoldingRangeClientCapabilitiesFoldingRange implements ToJson {
@@ -15991,6 +16339,7 @@ class FoldingRangeClientCapabilitiesFoldingRange implements ToJson {
   }
 }
 
+/// Literal
 /// Client supports the tag property to provide meta data about a diagnostic.
 /// Clients supporting tags have to handle unknown tags gracefully.
 /// @since 3.15.0
@@ -16008,6 +16357,7 @@ class PublishDiagnosticsClientCapabilitiesTagSupport implements ToJson {
   }
 }
 
+/// Literal
 /// Which requests the client supports and might send to the server depending
 /// on the server's capability. Please note that clients might not show
 /// semantic tokens or degrade some of the user experience if a range or full
@@ -16038,6 +16388,7 @@ class SemanticTokensClientCapabilitiesRequests implements ToJson {
   }
 }
 
+/// Literal
 /// Capabilities specific to the `MessageActionItem` type.
 class ShowMessageRequestClientCapabilitiesMessageActionItem implements ToJson {
   ShowMessageRequestClientCapabilitiesMessageActionItem({

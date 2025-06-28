@@ -42,18 +42,21 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Reference get toJsonClassRef => refer('ToJson');
 
   void _collectLiterals(MetaProperty property, String prefix) {
+    // remove first letter from prefix if equal to '_'
+    final fixedPrefix = prefix.startsWith('_') ? prefix.substring(1) : prefix;
+
     if (property.type is ArrayRef) {
       final ref = property.type as ArrayRef;
 
       if (ref.element is LiteralRef) {
         final literalRef = ref.element as LiteralRef;
-        _processLiteralRef(literalRef, property, prefix);
+        _processLiteralRef(literalRef, property, fixedPrefix);
       }
     }
 
     if (property.type is LiteralRef) {
       final ref = property.type as LiteralRef;
-      _processLiteralRef(ref, property, prefix);
+      _processLiteralRef(ref, property, fixedPrefix);
     }
   }
 
@@ -120,12 +123,10 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   List<String> _header() => [
     '/// Do not edit it manually.',
     '',
-    '// ignore_for_file: prefer_expression_function_bodies',
     '// ignore_for_file: one_member_abstracts',
-    '// ignore_for_file: unused_element',
     '// ignore_for_file: doc_directive_unknown',
-    '// ignore_for_file: directives_ordering',
     '// ignore_for_file: unnecessary_parenthesis',
+    '// ignore_for_file: lines_longer_than_80_chars',
   ];
 
   @override
@@ -144,9 +145,10 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Class visitLiteralDefinition(MetaLiteralDefinition literalDefinition) {
     final formattedDescription =
         formatDocComment(literalDefinition.documentation) ?? [];
+
     return Class((cb) {
       cb
-        ..docs.addAll(formattedDescription)
+        ..docs.addAll(['/// Literal'] + formattedDescription)
         ..name = literalDefinition.name
         ..implements.add(toJsonClassRef);
 
@@ -194,7 +196,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
     return Class((cb) {
       cb
-        ..docs.addAll(formattedDescription)
+        ..docs.addAll(['/// Struct'] + formattedDescription)
         ..name = structure.name
         ..implements.addAll(toImplements);
 
@@ -204,7 +206,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         inheritedPropertyNames: inheritedPropertyNames,
       );
 
-      _addFromJsonConstructor(cb: cb, allFields: allFields);
+      _addFromJsonFactory(cb: cb, allFields: allFields);
 
       _generateToJson(cb: cb, allFields: allFields);
     });
@@ -442,7 +444,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     return collectedProperties;
   }
 
-  void _addFromJsonConstructor({
+  void _addFromJsonFactory({
     required ClassBuilder cb,
     required List<MetaProperty> allFields,
   }) {

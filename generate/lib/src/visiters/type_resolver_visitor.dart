@@ -63,7 +63,10 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
     // 'and' types represent intersection. Dart doesn't have direct intersection
     // types. Common workarounds include extending a common base class or using
     // Object.
-    return _applyOptional('Object', ref.optional);
+    throw UnimplementedError(
+      'Intersection types are not directly supported in Dart. '
+      'Consider using a common base class or Object.',
+    );
   }
 
   @override
@@ -71,6 +74,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
     // Recursively resolve key and value types
     final keyType = ref.key.resolveType(this);
     final valueType = ref.value.resolveType(this);
+    
     return _applyOptional('Map<$keyType, $valueType>', ref.optional);
   }
 
