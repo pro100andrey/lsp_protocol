@@ -4,6 +4,7 @@
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unused_element
 library; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import '../utils/enum_helpers.dart' as _i1;
@@ -407,6 +408,10 @@ class ImplementationParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -433,6 +438,8 @@ class Location implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['range'] = range.toJson();
+    json['uri'] = uri;
     return json;
   }
 }
@@ -483,6 +490,9 @@ class ImplementationRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -541,6 +551,10 @@ class TypeDefinitionParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -591,6 +605,9 @@ class TypeDefinitionRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -620,6 +637,8 @@ class WorkspaceFolder implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['name'] = name;
+    json['uri'] = uri;
     return json;
   }
 }
@@ -645,6 +664,7 @@ class DidChangeWorkspaceFoldersParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['event'] = event.toJson();
     return json;
   }
 }
@@ -667,6 +687,7 @@ class ConfigurationParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['items'] = items;
     return json;
   }
 }
@@ -714,6 +735,9 @@ class DocumentColorParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -742,6 +766,8 @@ class ColorInformation implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['color'] = color.toJson();
+    json['range'] = range.toJson();
     return json;
   }
 }
@@ -790,6 +816,9 @@ class DocumentColorRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -851,6 +880,11 @@ class ColorPresentationParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['color'] = color.toJson();
+    json['partialResultToken'] = partialResultToken;
+    json['range'] = range.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -898,6 +932,9 @@ class ColorPresentation implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['additionalTextEdits'] = additionalTextEdits;
+    json['label'] = label;
+    json['textEdit'] = textEdit.toJson();
     return json;
   }
 }
@@ -919,6 +956,7 @@ class WorkDoneProgressOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -943,6 +981,7 @@ class TextDocumentRegistrationOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
     return json;
   }
 }
@@ -990,6 +1029,9 @@ class FoldingRangeParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -1016,7 +1058,7 @@ class FoldingRange implements ToJson {
     final endLineJson = json['endLine']!;
     final endLine = (endLineJson as int);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$FoldingRangeKindEnumMap, kindJson);
     final startCharacterJson = json['startCharacter']!;
     final startCharacter = (startCharacterJson as int);
@@ -1067,6 +1109,12 @@ class FoldingRange implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['collapsedText'] = collapsedText;
+    json['endCharacter'] = endCharacter;
+    json['endLine'] = endLine;
+    json['kind'] = kind.value;
+    json['startCharacter'] = startCharacter;
+    json['startLine'] = startLine;
     return json;
   }
 }
@@ -1115,6 +1163,9 @@ class FoldingRangeRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -1173,6 +1224,10 @@ class DeclarationParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -1221,6 +1276,9 @@ class DeclarationRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -1275,6 +1333,10 @@ class SelectionRangeParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['positions'] = positions;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -1307,6 +1369,8 @@ class SelectionRange implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['parent'] = parent.toJson();
+    json['range'] = range.toJson();
     return json;
   }
 }
@@ -1357,6 +1421,9 @@ class SelectionRangeRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -1379,6 +1446,7 @@ class WorkDoneProgressCreateParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['token'] = token;
     return json;
   }
 }
@@ -1401,6 +1469,7 @@ class WorkDoneProgressCancelParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['token'] = token;
     return json;
   }
 }
@@ -1449,6 +1518,9 @@ class CallHierarchyPrepareParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -1475,7 +1547,7 @@ class CallHierarchyItem implements ToJson {
     final detailJson = json['detail']!;
     final detail = (detailJson as String);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final nameJson = json['name']!;
     final name = (nameJson as String);
@@ -1534,6 +1606,14 @@ class CallHierarchyItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['data'] = data;
+    json['detail'] = detail;
+    json['kind'] = kind.value;
+    json['name'] = name;
+    json['range'] = range.toJson();
+    json['selectionRange'] = selectionRange.toJson();
+    json['tags'] = tags;
+    json['uri'] = uri;
     return json;
   }
 }
@@ -1584,6 +1664,9 @@ class CallHierarchyRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -1629,6 +1712,9 @@ class CallHierarchyIncomingCallsParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['item'] = item.toJson();
+    json['partialResultToken'] = partialResultToken;
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -1659,6 +1745,8 @@ class CallHierarchyIncomingCall implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['from'] = from.toJson();
+    json['fromRanges'] = fromRanges;
     return json;
   }
 }
@@ -1704,6 +1792,9 @@ class CallHierarchyOutgoingCallsParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['item'] = item.toJson();
+    json['partialResultToken'] = partialResultToken;
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -1738,6 +1829,8 @@ class CallHierarchyOutgoingCall implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['fromRanges'] = fromRanges;
+    json['to'] = to.toJson();
     return json;
   }
 }
@@ -1785,6 +1878,9 @@ class SemanticTokensParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -1816,6 +1912,8 @@ class SemanticTokens implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['data'] = data;
+    json['resultId'] = resultId;
     return json;
   }
 }
@@ -1838,6 +1936,7 @@ class SemanticTokensPartialResult implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['data'] = data;
     return json;
   }
 }
@@ -1916,6 +2015,12 @@ class SemanticTokensRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['full'] = full;
+    json['id'] = id;
+    json['legend'] = legend.toJson();
+    json['range'] = range;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -1972,6 +2077,10 @@ class SemanticTokensDeltaParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['previousResultId'] = previousResultId;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -2000,6 +2109,8 @@ class SemanticTokensDelta implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['edits'] = edits;
+    json['resultId'] = resultId;
     return json;
   }
 }
@@ -2022,6 +2133,7 @@ class SemanticTokensDeltaPartialResult implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['edits'] = edits;
     return json;
   }
 }
@@ -2076,6 +2188,10 @@ class SemanticTokensRangeParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['range'] = range.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -2131,6 +2247,10 @@ class ShowDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['external'] = external;
+    json['selection'] = selection.toJson();
+    json['takeFocus'] = takeFocus;
+    json['uri'] = uri;
     return json;
   }
 }
@@ -2155,6 +2275,7 @@ class ShowDocumentResult implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['success'] = success;
     return json;
   }
 }
@@ -2201,6 +2322,9 @@ class LinkedEditingRangeParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -2234,6 +2358,8 @@ class LinkedEditingRanges implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['ranges'] = ranges;
+    json['wordPattern'] = wordPattern;
     return json;
   }
 }
@@ -2284,6 +2410,9 @@ class LinkedEditingRangeRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -2309,6 +2438,7 @@ class CreateFilesParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['files'] = files;
     return json;
   }
 }
@@ -2380,6 +2510,9 @@ class WorkspaceEdit implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['changeAnnotations'] = changeAnnotations;
+    json['changes'] = changes;
+    json['documentChanges'] = documentChanges;
     return json;
   }
 }
@@ -2404,6 +2537,7 @@ class FileOperationRegistrationOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['filters'] = filters;
     return json;
   }
 }
@@ -2430,6 +2564,7 @@ class RenameFilesParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['files'] = files;
     return json;
   }
 }
@@ -2455,6 +2590,7 @@ class DeleteFilesParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['files'] = files;
     return json;
   }
 }
@@ -2513,6 +2649,10 @@ class MonikerParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -2532,12 +2672,12 @@ class Moniker implements ToJson {
     final identifierJson = json['identifier']!;
     final identifier = (identifierJson as String);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$MonikerKindEnumMap, kindJson);
     final schemeJson = json['scheme']!;
     final scheme = (schemeJson as String);
     final uniqueJson = json['unique']!;
-    // Handle enum type;
+    // Handle enum type
     final unique = _i1.$enumDecode(_$UniquenessLevelEnumMap, uniqueJson);
 
     return Moniker(
@@ -2565,6 +2705,10 @@ class Moniker implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['identifier'] = identifier;
+    json['kind'] = kind.value;
+    json['scheme'] = scheme;
+    json['unique'] = unique.value;
     return json;
   }
 }
@@ -2601,6 +2745,8 @@ class MonikerRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -2649,6 +2795,9 @@ class TypeHierarchyPrepareParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -2673,7 +2822,7 @@ class TypeHierarchyItem implements ToJson {
     final detailJson = json['detail']!;
     final detail = (detailJson as String);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final nameJson = json['name']!;
     final name = (nameJson as String);
@@ -2734,6 +2883,14 @@ class TypeHierarchyItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['data'] = data;
+    json['detail'] = detail;
+    json['kind'] = kind.value;
+    json['name'] = name;
+    json['range'] = range.toJson();
+    json['selectionRange'] = selectionRange.toJson();
+    json['tags'] = tags;
+    json['uri'] = uri;
     return json;
   }
 }
@@ -2784,6 +2941,9 @@ class TypeHierarchyRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -2829,6 +2989,9 @@ class TypeHierarchySupertypesParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['item'] = item.toJson();
+    json['partialResultToken'] = partialResultToken;
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -2874,6 +3037,9 @@ class TypeHierarchySubtypesParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['item'] = item.toJson();
+    json['partialResultToken'] = partialResultToken;
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -2929,6 +3095,10 @@ class InlineValueParams implements WorkDoneProgressParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['context'] = context.toJson();
+    json['range'] = range.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -2979,6 +3149,9 @@ class InlineValueRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -3024,6 +3197,9 @@ class InlayHintParams implements WorkDoneProgressParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['range'] = range.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -3047,7 +3223,7 @@ class InlayHint implements ToJson {
     final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$InlayHintKindEnumMap, kindJson);
     final labelJson = json['label']!;
     final label = (labelJson as OrRefType);
@@ -3117,6 +3293,14 @@ class InlayHint implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['data'] = data;
+    json['kind'] = kind.value;
+    json['label'] = label;
+    json['paddingLeft'] = paddingLeft;
+    json['paddingRight'] = paddingRight;
+    json['position'] = position.toJson();
+    json['textEdits'] = textEdits;
+    json['tooltip'] = tooltip;
     return json;
   }
 }
@@ -3176,6 +3360,10 @@ class InlayHintRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -3238,6 +3426,11 @@ class DocumentDiagnosticParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['identifier'] = identifier;
+    json['partialResultToken'] = partialResultToken;
+    json['previousResultId'] = previousResultId;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -3265,6 +3458,7 @@ class DocumentDiagnosticReportPartialResult implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['relatedDocuments'] = relatedDocuments;
     return json;
   }
 }
@@ -3288,6 +3482,7 @@ class DiagnosticServerCancellationData implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['retriggerRequest'] = retriggerRequest;
     return json;
   }
 }
@@ -3366,6 +3561,12 @@ class DiagnosticRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['identifier'] = identifier;
+    json['interFileDependencies'] = interFileDependencies;
+    json['workDoneProgress'] = workDoneProgress;
+    json['workspaceDiagnostics'] = workspaceDiagnostics;
     return json;
   }
 }
@@ -3419,6 +3620,10 @@ class WorkspaceDiagnosticParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['identifier'] = identifier;
+    json['partialResultToken'] = partialResultToken;
+    json['previousResultIds'] = previousResultIds;
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -3442,6 +3647,7 @@ class WorkspaceDiagnosticReport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['items'] = items;
     return json;
   }
 }
@@ -3467,6 +3673,7 @@ class WorkspaceDiagnosticReportPartialResult implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['items'] = items;
     return json;
   }
 }
@@ -3504,6 +3711,8 @@ class DidOpenNotebookDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['cellTextDocuments'] = cellTextDocuments;
+    json['notebookDocument'] = notebookDocument.toJson();
     return json;
   }
 }
@@ -3556,6 +3765,8 @@ class DidChangeNotebookDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['change'] = change.toJson();
+    json['notebookDocument'] = notebookDocument.toJson();
     return json;
   }
 }
@@ -3582,6 +3793,7 @@ class DidSaveNotebookDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['notebookDocument'] = notebookDocument.toJson();
     return json;
   }
 }
@@ -3621,6 +3833,8 @@ class DidCloseNotebookDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['cellTextDocuments'] = cellTextDocuments;
+    json['notebookDocument'] = notebookDocument.toJson();
     return json;
   }
 }
@@ -3679,6 +3893,10 @@ class InlineCompletionParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['context'] = context.toJson();
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -3704,6 +3922,7 @@ class InlineCompletionList implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['items'] = items;
     return json;
   }
 }
@@ -3757,6 +3976,10 @@ class InlineCompletionItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['command'] = command.toJson();
+    json['filterText'] = filterText;
+    json['insertText'] = insertText;
+    json['range'] = range.toJson();
     return json;
   }
 }
@@ -3809,6 +4032,9 @@ class InlineCompletionRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['id'] = id;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -3830,6 +4056,7 @@ class RegistrationParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['registrations'] = registrations;
     return json;
   }
 }
@@ -3851,6 +4078,7 @@ class UnregistrationParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['unregisterations'] = unregisterations;
     return json;
   }
 }
@@ -3889,7 +4117,7 @@ class InitializeParams
     final rootUriJson = json['rootUri']!;
     final rootUri = (rootUriJson as OrRefType);
     final traceJson = json['trace']!;
-    // Handle enum type;
+    // Handle enum type
     final trace = _i1.$enumDecode(_$TraceValuesEnumMap, traceJson);
     final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
@@ -3968,6 +4196,16 @@ class InitializeParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['capabilities'] = capabilities.toJson();
+    json['clientInfo'] = clientInfo;
+    json['initializationOptions'] = initializationOptions;
+    json['locale'] = locale;
+    json['processId'] = processId;
+    json['rootPath'] = rootPath;
+    json['rootUri'] = rootUri;
+    json['trace'] = trace.value;
+    json['workDoneToken'] = workDoneToken;
+    json['workspaceFolders'] = workspaceFolders;
     return json;
   }
 }
@@ -3999,6 +4237,8 @@ class InitializeResult implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['capabilities'] = capabilities.toJson();
+    json['serverInfo'] = serverInfo;
     return json;
   }
 }
@@ -4025,6 +4265,7 @@ class InitializeError implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['retry'] = retry;
     return json;
   }
 }
@@ -4034,6 +4275,9 @@ class InitializedParams implements ToJson {
   InitializedParams();
 
   factory InitializedParams.fromJson(Map<String, Object?> json) {
+    // No fields to parse
+    final _ = json;
+
     return InitializedParams();
   }
 
@@ -4064,6 +4308,7 @@ class DidChangeConfigurationParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['settings'] = settings;
     return json;
   }
 }
@@ -4087,6 +4332,7 @@ class DidChangeConfigurationRegistrationOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['section'] = section;
     return json;
   }
 }
@@ -4100,7 +4346,7 @@ class ShowMessageParams implements ToJson {
     final messageJson = json['message']!;
     final message = (messageJson as String);
     final typeJson = json['type']!;
-    // Handle enum type;
+    // Handle enum type
     final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
 
     return ShowMessageParams(message: message, type: type);
@@ -4116,6 +4362,8 @@ class ShowMessageParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['message'] = message;
+    json['type'] = type.value;
     return json;
   }
 }
@@ -4134,7 +4382,7 @@ class ShowMessageRequestParams implements ToJson {
     final messageJson = json['message']!;
     final message = (messageJson as String);
     final typeJson = json['type']!;
-    // Handle enum type;
+    // Handle enum type
     final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
 
     return ShowMessageRequestParams(
@@ -4157,6 +4405,9 @@ class ShowMessageRequestParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['actions'] = actions;
+    json['message'] = message;
+    json['type'] = type.value;
     return json;
   }
 }
@@ -4179,6 +4430,7 @@ class MessageActionItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['title'] = title;
     return json;
   }
 }
@@ -4192,7 +4444,7 @@ class LogMessageParams implements ToJson {
     final messageJson = json['message']!;
     final message = (messageJson as String);
     final typeJson = json['type']!;
-    // Handle enum type;
+    // Handle enum type
     final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
 
     return LogMessageParams(message: message, type: type);
@@ -4208,6 +4460,8 @@ class LogMessageParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['message'] = message;
+    json['type'] = type.value;
     return json;
   }
 }
@@ -4233,6 +4487,7 @@ class DidOpenTextDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['textDocument'] = textDocument.toJson();
     return json;
   }
 }
@@ -4280,6 +4535,8 @@ class DidChangeTextDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['contentChanges'] = contentChanges;
+    json['textDocument'] = textDocument.toJson();
     return json;
   }
 }
@@ -4299,7 +4556,7 @@ class TextDocumentChangeRegistrationOptions
     final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
     final syncKindJson = json['syncKind']!;
-    // Handle enum type;
+    // Handle enum type
     final syncKind = _i1.$enumDecode(
       _$TextDocumentSyncKindEnumMap,
       syncKindJson,
@@ -4323,6 +4580,8 @@ class TextDocumentChangeRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['syncKind'] = syncKind.value;
     return json;
   }
 }
@@ -4348,6 +4607,7 @@ class DidCloseTextDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['textDocument'] = textDocument.toJson();
     return json;
   }
 }
@@ -4379,6 +4639,8 @@ class DidSaveTextDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['text'] = text;
+    json['textDocument'] = textDocument.toJson();
     return json;
   }
 }
@@ -4419,6 +4681,8 @@ class TextDocumentSaveRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['includeText'] = includeText;
     return json;
   }
 }
@@ -4433,7 +4697,7 @@ class WillSaveTextDocumentParams implements ToJson {
 
   factory WillSaveTextDocumentParams.fromJson(Map<String, Object?> json) {
     final reasonJson = json['reason']!;
-    // Handle enum type;
+    // Handle enum type
     final reason = _i1.$enumDecode(_$TextDocumentSaveReasonEnumMap, reasonJson);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
@@ -4456,6 +4720,8 @@ class WillSaveTextDocumentParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['reason'] = reason.value;
+    json['textDocument'] = textDocument.toJson();
     return json;
   }
 }
@@ -4485,6 +4751,8 @@ class TextEdit implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['newText'] = newText;
+    json['range'] = range.toJson();
     return json;
   }
 }
@@ -4508,6 +4776,7 @@ class DidChangeWatchedFilesParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['changes'] = changes;
     return json;
   }
 }
@@ -4533,6 +4802,7 @@ class DidChangeWatchedFilesRegistrationOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['watchers'] = watchers;
     return json;
   }
 }
@@ -4576,6 +4846,9 @@ class PublishDiagnosticsParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['diagnostics'] = diagnostics;
+    json['uri'] = uri;
+    json['version'] = version;
     return json;
   }
 }
@@ -4646,6 +4919,11 @@ class CompletionParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['context'] = context.toJson();
+    json['partialResultToken'] = partialResultToken;
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -4696,19 +4974,19 @@ class CompletionItem implements ToJson {
     final insertTextJson = json['insertText']!;
     final insertText = (insertTextJson as String);
     final insertTextFormatJson = json['insertTextFormat']!;
-    // Handle enum type;
+    // Handle enum type
     final insertTextFormat = _i1.$enumDecode(
       _$InsertTextFormatEnumMap,
       insertTextFormatJson,
     );
     final insertTextModeJson = json['insertTextMode']!;
-    // Handle enum type;
+    // Handle enum type
     final insertTextMode = _i1.$enumDecode(
       _$InsertTextModeEnumMap,
       insertTextModeJson,
     );
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$CompletionItemKindEnumMap, kindJson);
     final labelJson = json['label']!;
     final label = (labelJson as String);
@@ -4875,6 +5153,25 @@ class CompletionItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['additionalTextEdits'] = additionalTextEdits;
+    json['command'] = command.toJson();
+    json['commitCharacters'] = commitCharacters;
+    json['data'] = data;
+    json['deprecated'] = deprecated;
+    json['detail'] = detail;
+    json['documentation'] = documentation;
+    json['filterText'] = filterText;
+    json['insertText'] = insertText;
+    json['insertTextFormat'] = insertTextFormat.value;
+    json['insertTextMode'] = insertTextMode.value;
+    json['kind'] = kind.value;
+    json['label'] = label;
+    json['labelDetails'] = labelDetails.toJson();
+    json['preselect'] = preselect;
+    json['sortText'] = sortText;
+    json['tags'] = tags;
+    json['textEdit'] = textEdit;
+    json['textEditText'] = textEditText;
     return json;
   }
 }
@@ -4928,6 +5225,9 @@ class CompletionList implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['isIncomplete'] = isIncomplete;
+    json['itemDefaults'] = itemDefaults;
+    json['items'] = items;
     return json;
   }
 }
@@ -5015,6 +5315,12 @@ class CompletionRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['allCommitCharacters'] = allCommitCharacters;
+    json['completionItem'] = completionItem;
+    json['documentSelector'] = documentSelector;
+    json['resolveProvider'] = resolveProvider;
+    json['triggerCharacters'] = triggerCharacters;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -5062,6 +5368,9 @@ class HoverParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -5091,6 +5400,8 @@ class Hover implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['contents'] = contents;
+    json['range'] = range.toJson();
     return json;
   }
 }
@@ -5128,6 +5439,8 @@ class HoverRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -5187,6 +5500,10 @@ class SignatureHelpParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['context'] = context.toJson();
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -5240,6 +5557,9 @@ class SignatureHelp implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['activeParameter'] = activeParameter;
+    json['activeSignature'] = activeSignature;
+    json['signatures'] = signatures;
     return json;
   }
 }
@@ -5297,6 +5617,10 @@ class SignatureHelpRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['retriggerCharacters'] = retriggerCharacters;
+    json['triggerCharacters'] = triggerCharacters;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -5356,6 +5680,10 @@ class DefinitionParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -5393,6 +5721,8 @@ class DefinitionRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -5460,6 +5790,11 @@ class ReferenceParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['context'] = context.toJson();
+    json['partialResultToken'] = partialResultToken;
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -5497,6 +5832,8 @@ class ReferenceRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -5556,6 +5893,10 @@ class DocumentHighlightParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -5569,7 +5910,7 @@ class DocumentHighlight implements ToJson {
 
   factory DocumentHighlight.fromJson(Map<String, Object?> json) {
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$DocumentHighlightKindEnumMap, kindJson);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
@@ -5587,6 +5928,8 @@ class DocumentHighlight implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['kind'] = kind.value;
+    json['range'] = range.toJson();
     return json;
   }
 }
@@ -5626,6 +5969,8 @@ class DocumentHighlightRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -5673,6 +6018,9 @@ class DocumentSymbolParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -5696,7 +6044,7 @@ class SymbolInformation implements BaseSymbolInformation {
     final deprecatedJson = json['deprecated']!;
     final deprecated = (deprecatedJson as bool);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final locationJson = json['location']!;
     final location = Location.fromJson((locationJson as Map<String, Object?>));
@@ -5753,6 +6101,12 @@ class SymbolInformation implements BaseSymbolInformation {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['containerName'] = containerName;
+    json['deprecated'] = deprecated;
+    json['kind'] = kind.value;
+    json['location'] = location.toJson();
+    json['name'] = name;
+    json['tags'] = tags;
     return json;
   }
 }
@@ -5782,7 +6136,7 @@ class DocumentSymbol implements ToJson {
     final detailJson = json['detail']!;
     final detail = (detailJson as String);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final nameJson = json['name']!;
     final name = (nameJson as String);
@@ -5844,6 +6198,14 @@ class DocumentSymbol implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['children'] = children;
+    json['deprecated'] = deprecated;
+    json['detail'] = detail;
+    json['kind'] = kind.value;
+    json['name'] = name;
+    json['range'] = range.toJson();
+    json['selectionRange'] = selectionRange.toJson();
+    json['tags'] = tags;
     return json;
   }
 }
@@ -5893,6 +6255,9 @@ class DocumentSymbolRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['label'] = label;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -5955,6 +6320,11 @@ class CodeActionParams implements WorkDoneProgressParams, PartialResultParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['context'] = context.toJson();
+    json['partialResultToken'] = partialResultToken;
+    json['range'] = range.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -5994,6 +6364,9 @@ class Command implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['arguments'] = arguments;
+    json['command'] = command;
+    json['title'] = title;
     return json;
   }
 }
@@ -6029,7 +6402,7 @@ class CodeAction implements ToJson {
     final isPreferredJson = json['isPreferred']!;
     final isPreferred = (isPreferredJson as bool);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$CodeActionKindEnumMap, kindJson);
     final titleJson = json['title']!;
     final title = (titleJson as String);
@@ -6097,6 +6470,14 @@ class CodeAction implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['command'] = command.toJson();
+    json['data'] = data;
+    json['diagnostics'] = diagnostics;
+    json['disabled'] = disabled;
+    json['edit'] = edit.toJson();
+    json['isPreferred'] = isPreferred;
+    json['kind'] = kind.value;
+    json['title'] = title;
     return json;
   }
 }
@@ -6154,6 +6535,10 @@ class CodeActionRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['codeActionKinds'] = codeActionKinds;
+    json['documentSelector'] = documentSelector;
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -6200,6 +6585,9 @@ class WorkspaceSymbolParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['query'] = query;
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -6224,7 +6612,7 @@ class WorkspaceSymbol implements BaseSymbolInformation {
     final dataJson = json['data']!;
     final data = (dataJson as LSPAny);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final locationJson = json['location']!;
     final location = (locationJson as OrRefType);
@@ -6277,6 +6665,12 @@ class WorkspaceSymbol implements BaseSymbolInformation {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['containerName'] = containerName;
+    json['data'] = data;
+    json['kind'] = kind.value;
+    json['location'] = location;
+    json['name'] = name;
+    json['tags'] = tags;
     return json;
   }
 }
@@ -6316,6 +6710,8 @@ class WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -6362,6 +6758,9 @@ class CodeLensParams implements WorkDoneProgressParams, PartialResultParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -6401,6 +6800,9 @@ class CodeLens implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['command'] = command.toJson();
+    json['data'] = data;
+    json['range'] = range.toJson();
     return json;
   }
 }
@@ -6446,6 +6848,9 @@ class CodeLensRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -6493,6 +6898,9 @@ class DocumentLinkParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -6548,6 +6956,10 @@ class DocumentLink implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['data'] = data;
+    json['range'] = range.toJson();
+    json['target'] = target;
+    json['tooltip'] = tooltip;
     return json;
   }
 }
@@ -6593,6 +7005,9 @@ class DocumentLinkRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -6639,6 +7054,9 @@ class DocumentFormattingParams implements WorkDoneProgressParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['options'] = options.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -6678,6 +7096,8 @@ class DocumentFormattingRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -6731,6 +7151,10 @@ class DocumentRangeFormattingParams implements WorkDoneProgressParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['options'] = options.toJson();
+    json['range'] = range.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -6779,6 +7203,9 @@ class DocumentRangeFormattingRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['rangesSupport'] = rangesSupport;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -6833,6 +7260,10 @@ class DocumentRangesFormattingParams implements WorkDoneProgressParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['options'] = options.toJson();
+    json['ranges'] = ranges;
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -6890,6 +7321,10 @@ class DocumentOnTypeFormattingParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['ch'] = ch;
+    json['options'] = options.toJson();
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
     return json;
   }
 }
@@ -6940,6 +7375,9 @@ class DocumentOnTypeFormattingRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['firstTriggerCharacter'] = firstTriggerCharacter;
+    json['moreTriggerCharacter'] = moreTriggerCharacter;
     return json;
   }
 }
@@ -6992,6 +7430,10 @@ class RenameParams implements WorkDoneProgressParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['newName'] = newName;
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -7038,6 +7480,9 @@ class RenameRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentSelector'] = documentSelector;
+    json['prepareProvider'] = prepareProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -7084,6 +7529,9 @@ class PrepareRenameParams
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -7126,6 +7574,9 @@ class ExecuteCommandParams implements WorkDoneProgressParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['arguments'] = arguments;
+    json['command'] = command;
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -7163,6 +7614,8 @@ class ExecuteCommandRegistrationOptions implements ExecuteCommandOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['commands'] = commands;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -7192,6 +7645,8 @@ class ApplyWorkspaceEditParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['edit'] = edit.toJson();
+    json['label'] = label;
     return json;
   }
 }
@@ -7239,6 +7694,9 @@ class ApplyWorkspaceEditResult implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['applied'] = applied;
+    json['failedChange'] = failedChange;
+    json['failureReason'] = failureReason;
     return json;
   }
 }
@@ -7303,6 +7761,11 @@ class WorkDoneProgressBegin implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['cancellable'] = cancellable;
+    json['kind'] = kind;
+    json['message'] = message;
+    json['percentage'] = percentage;
+    json['title'] = title;
     return json;
   }
 }
@@ -7358,6 +7821,10 @@ class WorkDoneProgressReport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['cancellable'] = cancellable;
+    json['kind'] = kind;
+    json['message'] = message;
+    json['percentage'] = percentage;
     return json;
   }
 }
@@ -7385,6 +7852,8 @@ class WorkDoneProgressEnd implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['kind'] = kind;
+    json['message'] = message;
     return json;
   }
 }
@@ -7395,7 +7864,7 @@ class SetTraceParams implements ToJson {
 
   factory SetTraceParams.fromJson(Map<String, Object?> json) {
     final valueJson = json['value']!;
-    // Handle enum type;
+    // Handle enum type
     final value = _i1.$enumDecode(_$TraceValuesEnumMap, valueJson);
 
     return SetTraceParams(value: value);
@@ -7407,6 +7876,7 @@ class SetTraceParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['value'] = value.value;
     return json;
   }
 }
@@ -7432,6 +7902,8 @@ class LogTraceParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['message'] = message;
+    json['verbose'] = verbose;
     return json;
   }
 }
@@ -7454,6 +7926,7 @@ class CancelParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['id'] = id;
     return json;
   }
 }
@@ -7481,6 +7954,8 @@ class ProgressParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['token'] = token;
+    json['value'] = value;
     return json;
   }
 }
@@ -7518,6 +7993,8 @@ class TextDocumentPositionParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['position'] = position.toJson();
+    json['textDocument'] = textDocument.toJson();
     return json;
   }
 }
@@ -7540,6 +8017,7 @@ class WorkDoneProgressParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -7563,6 +8041,7 @@ class PartialResultParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['partialResultToken'] = partialResultToken;
     return json;
   }
 }
@@ -7626,6 +8105,10 @@ class LocationLink implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['originSelectionRange'] = originSelectionRange.toJson();
+    json['targetRange'] = targetRange.toJson();
+    json['targetSelectionRange'] = targetSelectionRange.toJson();
+    json['targetUri'] = targetUri;
     return json;
   }
 }
@@ -7659,6 +8142,8 @@ class Range implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['end'] = end.toJson();
+    json['start'] = start.toJson();
     return json;
   }
 }
@@ -7681,6 +8166,7 @@ class ImplementationOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -7705,6 +8191,7 @@ class StaticRegistrationOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['id'] = id;
     return json;
   }
 }
@@ -7727,6 +8214,7 @@ class TypeDefinitionOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -7755,6 +8243,8 @@ class WorkspaceFoldersChangeEvent implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['added'] = added;
+    json['removed'] = removed;
     return json;
   }
 }
@@ -7782,6 +8272,8 @@ class ConfigurationItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['scopeUri'] = scopeUri;
+    json['section'] = section;
     return json;
   }
 }
@@ -7805,6 +8297,7 @@ class TextDocumentIdentifier implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['uri'] = uri;
     return json;
   }
 }
@@ -7848,6 +8341,10 @@ class Color implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['alpha'] = alpha;
+    json['blue'] = blue;
+    json['green'] = green;
+    json['red'] = red;
     return json;
   }
 }
@@ -7870,6 +8367,7 @@ class DocumentColorOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -7892,6 +8390,7 @@ class FoldingRangeOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -7914,6 +8413,7 @@ class DeclarationOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -7975,6 +8475,8 @@ class Position implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['character'] = character;
+    json['line'] = line;
     return json;
   }
 }
@@ -7997,6 +8499,7 @@ class SelectionRangeOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -8021,6 +8524,7 @@ class CallHierarchyOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -8072,6 +8576,10 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['full'] = full;
+    json['legend'] = legend.toJson();
+    json['range'] = range;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -8113,6 +8621,9 @@ class SemanticTokensEdit implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['data'] = data;
+    json['deleteCount'] = deleteCount;
+    json['start'] = start;
     return json;
   }
 }
@@ -8135,6 +8646,7 @@ class LinkedEditingRangeOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -8159,6 +8671,7 @@ class FileCreate implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['uri'] = uri;
     return json;
   }
 }
@@ -8195,6 +8708,8 @@ class TextDocumentEdit implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['edits'] = edits;
+    json['textDocument'] = textDocument.toJson();
     return json;
   }
 }
@@ -8248,6 +8763,10 @@ class CreateFile implements ResourceOperation {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['annotationId'] = annotationId;
+    json['kind'] = kind;
+    json['options'] = options.toJson();
+    json['uri'] = uri;
     return json;
   }
 }
@@ -8308,6 +8827,11 @@ class RenameFile implements ResourceOperation {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['annotationId'] = annotationId;
+    json['kind'] = kind;
+    json['newUri'] = newUri;
+    json['oldUri'] = oldUri;
+    json['options'] = options.toJson();
     return json;
   }
 }
@@ -8361,6 +8885,10 @@ class DeleteFile implements ResourceOperation {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['annotationId'] = annotationId;
+    json['kind'] = kind;
+    json['options'] = options.toJson();
+    json['uri'] = uri;
     return json;
   }
 }
@@ -8406,6 +8934,9 @@ class ChangeAnnotation implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['description'] = description;
+    json['label'] = label;
+    json['needsConfirmation'] = needsConfirmation;
     return json;
   }
 }
@@ -8438,6 +8969,8 @@ class FileOperationFilter implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['pattern'] = pattern.toJson();
+    json['scheme'] = scheme;
     return json;
   }
 }
@@ -8468,6 +9001,8 @@ class FileRename implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['newUri'] = newUri;
+    json['oldUri'] = oldUri;
     return json;
   }
 }
@@ -8492,6 +9027,7 @@ class FileDelete implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['uri'] = uri;
     return json;
   }
 }
@@ -8514,6 +9050,7 @@ class MonikerOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -8538,6 +9075,7 @@ class TypeHierarchyOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -8573,6 +9111,8 @@ class InlineValueContext implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['frameId'] = frameId;
+    json['stoppedLocation'] = stoppedLocation.toJson();
     return json;
   }
 }
@@ -8602,6 +9142,8 @@ class InlineValueText implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['range'] = range.toJson();
+    json['text'] = text;
     return json;
   }
 }
@@ -8648,6 +9190,9 @@ class InlineValueVariableLookup implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['caseSensitiveLookup'] = caseSensitiveLookup;
+    json['range'] = range.toJson();
+    json['variableName'] = variableName;
     return json;
   }
 }
@@ -8688,6 +9233,8 @@ class InlineValueEvaluatableExpression implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['expression'] = expression;
+    json['range'] = range.toJson();
     return json;
   }
 }
@@ -8712,6 +9259,7 @@ class InlineValueOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -8773,6 +9321,10 @@ class InlayHintLabelPart implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['command'] = command.toJson();
+    json['location'] = location.toJson();
+    json['tooltip'] = tooltip;
+    json['value'] = value;
     return json;
   }
 }
@@ -8795,7 +9347,7 @@ class MarkupContent implements ToJson {
 
   factory MarkupContent.fromJson(Map<String, Object?> json) {
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$MarkupKindEnumMap, kindJson);
     final valueJson = json['value']!;
     final value = (valueJson as String);
@@ -8813,6 +9365,8 @@ class MarkupContent implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['kind'] = kind.value;
+    json['value'] = value;
     return json;
   }
 }
@@ -8849,6 +9403,8 @@ class InlayHintOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -8910,6 +9466,10 @@ class RelatedFullDocumentDiagnosticReport
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['items'] = items;
+    json['kind'] = kind;
+    json['relatedDocuments'] = relatedDocuments;
+    json['resultId'] = resultId;
     return json;
   }
 }
@@ -8964,6 +9524,9 @@ class RelatedUnchangedDocumentDiagnosticReport
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['kind'] = kind;
+    json['relatedDocuments'] = relatedDocuments;
+    json['resultId'] = resultId;
     return json;
   }
 }
@@ -9007,6 +9570,9 @@ class FullDocumentDiagnosticReport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['items'] = items;
+    json['kind'] = kind;
+    json['resultId'] = resultId;
     return json;
   }
 }
@@ -9044,6 +9610,8 @@ class UnchangedDocumentDiagnosticReport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['kind'] = kind;
+    json['resultId'] = resultId;
     return json;
   }
 }
@@ -9097,6 +9665,10 @@ class DiagnosticOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['identifier'] = identifier;
+    json['interFileDependencies'] = interFileDependencies;
+    json['workDoneProgress'] = workDoneProgress;
+    json['workspaceDiagnostics'] = workspaceDiagnostics;
     return json;
   }
 }
@@ -9126,6 +9698,8 @@ class PreviousResultId implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['uri'] = uri;
+    json['value'] = value;
     return json;
   }
 }
@@ -9184,6 +9758,11 @@ class NotebookDocument implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['cells'] = cells;
+    json['metadata'] = metadata;
+    json['notebookType'] = notebookType;
+    json['uri'] = uri;
+    json['version'] = version;
     return json;
   }
 }
@@ -9233,6 +9812,10 @@ class TextDocumentItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['languageId'] = languageId;
+    json['text'] = text;
+    json['uri'] = uri;
+    json['version'] = version;
     return json;
   }
 }
@@ -9267,6 +9850,8 @@ class VersionedNotebookDocumentIdentifier implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['uri'] = uri;
+    json['version'] = version;
     return json;
   }
 }
@@ -9297,6 +9882,8 @@ class NotebookDocumentChangeEvent implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['cells'] = cells;
+    json['metadata'] = metadata;
     return json;
   }
 }
@@ -9321,6 +9908,7 @@ class NotebookDocumentIdentifier implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['uri'] = uri;
     return json;
   }
 }
@@ -9341,7 +9929,7 @@ class InlineCompletionContext implements ToJson {
       (selectedCompletionInfoJson as Map<String, Object?>),
     );
     final triggerKindJson = json['triggerKind']!;
-    // Handle enum type;
+    // Handle enum type
     final triggerKind = _i1.$enumDecode(
       _$InlineCompletionTriggerKindEnumMap,
       triggerKindJson,
@@ -9364,6 +9952,8 @@ class InlineCompletionContext implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['selectedCompletionInfo'] = selectedCompletionInfo.toJson();
+    json['triggerKind'] = triggerKind.value;
     return json;
   }
 }
@@ -9397,6 +9987,8 @@ class StringValue implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['kind'] = kind;
+    json['value'] = value;
     return json;
   }
 }
@@ -9421,6 +10013,7 @@ class InlineCompletionOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -9463,6 +10056,9 @@ class Registration implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['id'] = id;
+    json['method'] = method;
+    json['registerOptions'] = registerOptions;
     return json;
   }
 }
@@ -9492,6 +10088,8 @@ class Unregistration implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['id'] = id;
+    json['method'] = method;
     return json;
   }
 }
@@ -9529,7 +10127,7 @@ class _InitializeParams implements WorkDoneProgressParams {
     final rootUriJson = json['rootUri']!;
     final rootUri = (rootUriJson as OrRefType);
     final traceJson = json['trace']!;
-    // Handle enum type;
+    // Handle enum type
     final trace = _i1.$enumDecode(_$TraceValuesEnumMap, traceJson);
     final workDoneTokenJson = json['workDoneToken']!;
     final workDoneToken = (workDoneTokenJson as ProgressToken);
@@ -9589,6 +10187,15 @@ class _InitializeParams implements WorkDoneProgressParams {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['capabilities'] = capabilities.toJson();
+    json['clientInfo'] = clientInfo;
+    json['initializationOptions'] = initializationOptions;
+    json['locale'] = locale;
+    json['processId'] = processId;
+    json['rootPath'] = rootPath;
+    json['rootUri'] = rootUri;
+    json['trace'] = trace.value;
+    json['workDoneToken'] = workDoneToken;
     return json;
   }
 }
@@ -9615,6 +10222,7 @@ class WorkspaceFoldersInitializeParams implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workspaceFolders'] = workspaceFolders;
     return json;
   }
 }
@@ -9731,7 +10339,7 @@ class ServerCapabilities implements ToJson {
     final notebookDocumentSyncJson = json['notebookDocumentSync']!;
     final notebookDocumentSync = (notebookDocumentSyncJson as OrRefType);
     final positionEncodingJson = json['positionEncoding']!;
-    // Handle enum type;
+    // Handle enum type
     final positionEncoding = _i1.$enumDecode(
       _$PositionEncodingKindEnumMap,
       positionEncodingJson,
@@ -9932,6 +10540,43 @@ class ServerCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['callHierarchyProvider'] = callHierarchyProvider;
+    json['codeActionProvider'] = codeActionProvider;
+    json['codeLensProvider'] = codeLensProvider.toJson();
+    json['colorProvider'] = colorProvider;
+    json['completionProvider'] = completionProvider.toJson();
+    json['declarationProvider'] = declarationProvider;
+    json['definitionProvider'] = definitionProvider;
+    json['diagnosticProvider'] = diagnosticProvider;
+    json['documentFormattingProvider'] = documentFormattingProvider;
+    json['documentHighlightProvider'] = documentHighlightProvider;
+    json['documentLinkProvider'] = documentLinkProvider.toJson();
+    json['documentOnTypeFormattingProvider'] = documentOnTypeFormattingProvider
+        .toJson();
+    json['documentRangeFormattingProvider'] = documentRangeFormattingProvider;
+    json['documentSymbolProvider'] = documentSymbolProvider;
+    json['executeCommandProvider'] = executeCommandProvider.toJson();
+    json['experimental'] = experimental;
+    json['foldingRangeProvider'] = foldingRangeProvider;
+    json['hoverProvider'] = hoverProvider;
+    json['implementationProvider'] = implementationProvider;
+    json['inlayHintProvider'] = inlayHintProvider;
+    json['inlineCompletionProvider'] = inlineCompletionProvider;
+    json['inlineValueProvider'] = inlineValueProvider;
+    json['linkedEditingRangeProvider'] = linkedEditingRangeProvider;
+    json['monikerProvider'] = monikerProvider;
+    json['notebookDocumentSync'] = notebookDocumentSync;
+    json['positionEncoding'] = positionEncoding.value;
+    json['referencesProvider'] = referencesProvider;
+    json['renameProvider'] = renameProvider;
+    json['selectionRangeProvider'] = selectionRangeProvider;
+    json['semanticTokensProvider'] = semanticTokensProvider;
+    json['signatureHelpProvider'] = signatureHelpProvider.toJson();
+    json['textDocumentSync'] = textDocumentSync;
+    json['typeDefinitionProvider'] = typeDefinitionProvider;
+    json['typeHierarchyProvider'] = typeHierarchyProvider;
+    json['workspace'] = workspace;
+    json['workspaceSymbolProvider'] = workspaceSymbolProvider;
     return json;
   }
 }
@@ -9961,6 +10606,8 @@ class VersionedTextDocumentIdentifier implements TextDocumentIdentifier {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['uri'] = uri;
+    json['version'] = version;
     return json;
   }
 }
@@ -9984,6 +10631,7 @@ class SaveOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['includeText'] = includeText;
     return json;
   }
 }
@@ -9995,7 +10643,7 @@ class FileEvent implements ToJson {
 
   factory FileEvent.fromJson(Map<String, Object?> json) {
     final typeJson = json['type']!;
-    // Handle enum type;
+    // Handle enum type
     final type = _i1.$enumDecode(_$FileChangeTypeEnumMap, typeJson);
     final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
@@ -10013,6 +10661,8 @@ class FileEvent implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['type'] = type.value;
+    json['uri'] = uri;
     return json;
   }
 }
@@ -10025,7 +10675,7 @@ class FileSystemWatcher implements ToJson {
     final globPatternJson = json['globPattern']!;
     final globPattern = (globPatternJson as GlobPattern);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$WatchKindEnumMap, kindJson);
 
     return FileSystemWatcher(globPattern: globPattern, kind: kind);
@@ -10044,6 +10694,8 @@ class FileSystemWatcher implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['globPattern'] = globPattern;
+    json['kind'] = kind.value;
     return json;
   }
 }
@@ -10081,7 +10733,7 @@ class Diagnostic implements ToJson {
     final relatedInformation =
         (relatedInformationJson as List<DiagnosticRelatedInformation>);
     final severityJson = json['severity']!;
-    // Handle enum type;
+    // Handle enum type
     final severity = _i1.$enumDecode(_$DiagnosticSeverityEnumMap, severityJson);
     final sourceJson = json['source']!;
     final source = (sourceJson as String);
@@ -10141,6 +10793,15 @@ class Diagnostic implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['code'] = code;
+    json['codeDescription'] = codeDescription.toJson();
+    json['data'] = data;
+    json['message'] = message;
+    json['range'] = range.toJson();
+    json['relatedInformation'] = relatedInformation;
+    json['severity'] = severity.value;
+    json['source'] = source;
+    json['tags'] = tags;
     return json;
   }
 }
@@ -10158,7 +10819,7 @@ class CompletionContext implements ToJson {
     final triggerCharacterJson = json['triggerCharacter']!;
     final triggerCharacter = (triggerCharacterJson as String);
     final triggerKindJson = json['triggerKind']!;
-    // Handle enum type;
+    // Handle enum type
     final triggerKind = _i1.$enumDecode(
       _$CompletionTriggerKindEnumMap,
       triggerKindJson,
@@ -10182,6 +10843,8 @@ class CompletionContext implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['triggerCharacter'] = triggerCharacter;
+    json['triggerKind'] = triggerKind.value;
     return json;
   }
 }
@@ -10215,6 +10878,8 @@ class CompletionItemLabelDetails implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['description'] = description;
+    json['detail'] = detail;
     return json;
   }
 }
@@ -10257,6 +10922,9 @@ class InsertReplaceEdit implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['insert'] = insert.toJson();
+    json['newText'] = newText;
+    json['replace'] = replace.toJson();
     return json;
   }
 }
@@ -10330,6 +10998,11 @@ class CompletionOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['allCommitCharacters'] = allCommitCharacters;
+    json['completionItem'] = completionItem;
+    json['resolveProvider'] = resolveProvider;
+    json['triggerCharacters'] = triggerCharacters;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10353,6 +11026,7 @@ class HoverOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10379,7 +11053,7 @@ class SignatureHelpContext implements ToJson {
     final triggerCharacterJson = json['triggerCharacter']!;
     final triggerCharacter = (triggerCharacterJson as String);
     final triggerKindJson = json['triggerKind']!;
-    // Handle enum type;
+    // Handle enum type
     final triggerKind = _i1.$enumDecode(
       _$SignatureHelpTriggerKindEnumMap,
       triggerKindJson,
@@ -10416,6 +11090,10 @@ class SignatureHelpContext implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['activeSignatureHelp'] = activeSignatureHelp.toJson();
+    json['isRetrigger'] = isRetrigger;
+    json['triggerCharacter'] = triggerCharacter;
+    json['triggerKind'] = triggerKind.value;
     return json;
   }
 }
@@ -10468,6 +11146,10 @@ class SignatureInformation implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['activeParameter'] = activeParameter;
+    json['documentation'] = documentation;
+    json['label'] = label;
+    json['parameters'] = parameters;
     return json;
   }
 }
@@ -10513,6 +11195,9 @@ class SignatureHelpOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['retriggerCharacters'] = retriggerCharacters;
+    json['triggerCharacters'] = triggerCharacters;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10536,6 +11221,7 @@ class DefinitionOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10560,6 +11246,7 @@ class ReferenceContext implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['includeDeclaration'] = includeDeclaration;
     return json;
   }
 }
@@ -10583,6 +11270,7 @@ class ReferenceOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10606,6 +11294,7 @@ class DocumentHighlightOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10624,7 +11313,7 @@ class BaseSymbolInformation implements ToJson {
     final containerNameJson = json['containerName']!;
     final containerName = (containerNameJson as String);
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final nameJson = json['name']!;
     final name = (nameJson as String);
@@ -10659,6 +11348,10 @@ class BaseSymbolInformation implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['containerName'] = containerName;
+    json['kind'] = kind.value;
+    json['name'] = name;
+    json['tags'] = tags;
     return json;
   }
 }
@@ -10692,6 +11385,8 @@ class DocumentSymbolOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['label'] = label;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10712,7 +11407,7 @@ class CodeActionContext implements ToJson {
     final onlyJson = json['only']!;
     final only = (onlyJson as List<CodeActionKind>);
     final triggerKindJson = json['triggerKind']!;
-    // Handle enum type;
+    // Handle enum type
     final triggerKind = _i1.$enumDecode(
       _$CodeActionTriggerKindEnumMap,
       triggerKindJson,
@@ -10746,6 +11441,9 @@ class CodeActionContext implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['diagnostics'] = diagnostics;
+    json['only'] = only;
+    json['triggerKind'] = triggerKind.value;
     return json;
   }
 }
@@ -10791,6 +11489,9 @@ class CodeActionOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['codeActionKinds'] = codeActionKinds;
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10827,6 +11528,8 @@ class WorkspaceSymbolOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10861,6 +11564,8 @@ class CodeLensOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10895,6 +11600,8 @@ class DocumentLinkOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['resolveProvider'] = resolveProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -10953,6 +11660,11 @@ class FormattingOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['insertFinalNewline'] = insertFinalNewline;
+    json['insertSpaces'] = insertSpaces;
+    json['tabSize'] = tabSize;
+    json['trimFinalNewlines'] = trimFinalNewlines;
+    json['trimTrailingWhitespace'] = trimTrailingWhitespace;
     return json;
   }
 }
@@ -10976,6 +11688,7 @@ class DocumentFormattingOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -11011,6 +11724,8 @@ class DocumentRangeFormattingOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['rangesSupport'] = rangesSupport;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -11045,6 +11760,8 @@ class DocumentOnTypeFormattingOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['firstTriggerCharacter'] = firstTriggerCharacter;
+    json['moreTriggerCharacter'] = moreTriggerCharacter;
     return json;
   }
 }
@@ -11080,6 +11797,8 @@ class RenameOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['prepareProvider'] = prepareProvider;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -11114,6 +11833,8 @@ class ExecuteCommandOptions implements WorkDoneProgressOptions {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['commands'] = commands;
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -11148,6 +11869,8 @@ class SemanticTokensLegend implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['tokenModifiers'] = tokenModifiers;
+    json['tokenTypes'] = tokenTypes;
     return json;
   }
 }
@@ -11189,6 +11912,8 @@ class OptionalVersionedTextDocumentIdentifier
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['uri'] = uri;
+    json['version'] = version;
     return json;
   }
 }
@@ -11234,6 +11959,9 @@ class AnnotatedTextEdit implements TextEdit {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['annotationId'] = annotationId;
+    json['newText'] = newText;
+    json['range'] = range.toJson();
     return json;
   }
 }
@@ -11263,6 +11991,8 @@ class ResourceOperation implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['annotationId'] = annotationId;
+    json['kind'] = kind;
     return json;
   }
 }
@@ -11294,6 +12024,8 @@ class CreateFileOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['ignoreIfExists'] = ignoreIfExists;
+    json['overwrite'] = overwrite;
     return json;
   }
 }
@@ -11325,6 +12057,8 @@ class RenameFileOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['ignoreIfExists'] = ignoreIfExists;
+    json['overwrite'] = overwrite;
     return json;
   }
 }
@@ -11356,6 +12090,8 @@ class DeleteFileOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['ignoreIfNotExists'] = ignoreIfNotExists;
+    json['recursive'] = recursive;
     return json;
   }
 }
@@ -11375,7 +12111,7 @@ class FileOperationPattern implements ToJson {
     final globJson = json['glob']!;
     final glob = (globJson as String);
     final matchesJson = json['matches']!;
-    // Handle enum type;
+    // Handle enum type
     final matches = _i1.$enumDecode(
       _$FileOperationPatternKindEnumMap,
       matchesJson,
@@ -11411,6 +12147,9 @@ class FileOperationPattern implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['glob'] = glob;
+    json['matches'] = matches.value;
+    json['options'] = options.toJson();
     return json;
   }
 }
@@ -11475,6 +12214,11 @@ class WorkspaceFullDocumentDiagnosticReport
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['items'] = items;
+    json['kind'] = kind;
+    json['resultId'] = resultId;
+    json['uri'] = uri;
+    json['version'] = version;
     return json;
   }
 }
@@ -11532,6 +12276,10 @@ class WorkspaceUnchangedDocumentDiagnosticReport
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['kind'] = kind;
+    json['resultId'] = resultId;
+    json['uri'] = uri;
+    json['version'] = version;
     return json;
   }
 }
@@ -11558,7 +12306,7 @@ class NotebookCell implements ToJson {
       (executionSummaryJson as Map<String, Object?>),
     );
     final kindJson = json['kind']!;
-    // Handle enum type;
+    // Handle enum type
     final kind = _i1.$enumDecode(_$NotebookCellKindEnumMap, kindJson);
     final metadataJson = json['metadata']!;
     final metadata = (metadataJson as LSPObject);
@@ -11588,6 +12336,10 @@ class NotebookCell implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['document'] = document;
+    json['executionSummary'] = executionSummary.toJson();
+    json['kind'] = kind.value;
+    json['metadata'] = metadata;
     return json;
   }
 }
@@ -11630,6 +12382,9 @@ class NotebookCellArrayChange implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['cells'] = cells;
+    json['deleteCount'] = deleteCount;
+    json['start'] = start;
     return json;
   }
 }
@@ -11659,6 +12414,8 @@ class SelectedCompletionInfo implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['range'] = range.toJson();
+    json['text'] = text;
     return json;
   }
 }
@@ -11733,6 +12490,12 @@ class ClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['experimental'] = experimental;
+    json['general'] = general.toJson();
+    json['notebookDocument'] = notebookDocument.toJson();
+    json['textDocument'] = textDocument.toJson();
+    json['window'] = window.toJson();
+    json['workspace'] = workspace.toJson();
     return json;
   }
 }
@@ -11749,7 +12512,7 @@ class TextDocumentSyncOptions implements ToJson {
 
   factory TextDocumentSyncOptions.fromJson(Map<String, Object?> json) {
     final changeJson = json['change']!;
-    // Handle enum type;
+    // Handle enum type
     final change = _i1.$enumDecode(_$TextDocumentSyncKindEnumMap, changeJson);
     final openCloseJson = json['openClose']!;
     final openClose = (openCloseJson as bool);
@@ -11795,6 +12558,11 @@ class TextDocumentSyncOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['change'] = change.value;
+    json['openClose'] = openClose;
+    json['save'] = save;
+    json['willSave'] = willSave;
+    json['willSaveWaitUntil'] = willSaveWaitUntil;
     return json;
   }
 }
@@ -11836,6 +12604,8 @@ class NotebookDocumentSyncOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['notebookSelector'] = notebookSelector;
+    json['save'] = save;
     return json;
   }
 }
@@ -11886,6 +12656,9 @@ class NotebookDocumentSyncRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['id'] = id;
+    json['notebookSelector'] = notebookSelector;
+    json['save'] = save;
     return json;
   }
 }
@@ -11926,6 +12699,8 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['changeNotifications'] = changeNotifications;
+    json['supported'] = supported;
     return json;
   }
 }
@@ -12001,6 +12776,12 @@ class FileOperationOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['didCreate'] = didCreate.toJson();
+    json['didDelete'] = didDelete.toJson();
+    json['didRename'] = didRename.toJson();
+    json['willCreate'] = willCreate.toJson();
+    json['willDelete'] = willDelete.toJson();
+    json['willRename'] = willRename.toJson();
     return json;
   }
 }
@@ -12025,6 +12806,7 @@ class CodeDescription implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['href'] = href;
     return json;
   }
 }
@@ -12055,6 +12837,8 @@ class DiagnosticRelatedInformation implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['location'] = location.toJson();
+    json['message'] = message;
     return json;
   }
 }
@@ -12092,6 +12876,8 @@ class ParameterInformation implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentation'] = documentation;
+    json['label'] = label;
     return json;
   }
 }
@@ -12132,6 +12918,8 @@ class NotebookCellTextDocumentFilter implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['language'] = language;
+    json['notebook'] = notebook;
     return json;
   }
 }
@@ -12156,6 +12944,7 @@ class FileOperationPatternOptions implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['ignoreCase'] = ignoreCase;
     return json;
   }
 }
@@ -12184,6 +12973,8 @@ class ExecutionSummary implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['executionOrder'] = executionOrder;
+    json['success'] = success;
     return json;
   }
 }
@@ -12353,6 +13144,21 @@ class WorkspaceClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['applyEdit'] = applyEdit;
+    json['codeLens'] = codeLens.toJson();
+    json['configuration'] = configuration;
+    json['diagnostics'] = diagnostics.toJson();
+    json['didChangeConfiguration'] = didChangeConfiguration.toJson();
+    json['didChangeWatchedFiles'] = didChangeWatchedFiles.toJson();
+    json['executeCommand'] = executeCommand.toJson();
+    json['fileOperations'] = fileOperations.toJson();
+    json['foldingRange'] = foldingRange.toJson();
+    json['inlayHint'] = inlayHint.toJson();
+    json['inlineValue'] = inlineValue.toJson();
+    json['semanticTokens'] = semanticTokens.toJson();
+    json['symbol'] = symbol.toJson();
+    json['workspaceEdit'] = workspaceEdit.toJson();
+    json['workspaceFolders'] = workspaceFolders;
     return json;
   }
 }
@@ -12670,6 +13476,37 @@ class TextDocumentClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['callHierarchy'] = callHierarchy.toJson();
+    json['codeAction'] = codeAction.toJson();
+    json['codeLens'] = codeLens.toJson();
+    json['colorProvider'] = colorProvider.toJson();
+    json['completion'] = completion.toJson();
+    json['declaration'] = declaration.toJson();
+    json['definition'] = definition.toJson();
+    json['diagnostic'] = diagnostic.toJson();
+    json['documentHighlight'] = documentHighlight.toJson();
+    json['documentLink'] = documentLink.toJson();
+    json['documentSymbol'] = documentSymbol.toJson();
+    json['foldingRange'] = foldingRange.toJson();
+    json['formatting'] = formatting.toJson();
+    json['hover'] = hover.toJson();
+    json['implementation'] = implementation.toJson();
+    json['inlayHint'] = inlayHint.toJson();
+    json['inlineCompletion'] = inlineCompletion.toJson();
+    json['inlineValue'] = inlineValue.toJson();
+    json['linkedEditingRange'] = linkedEditingRange.toJson();
+    json['moniker'] = moniker.toJson();
+    json['onTypeFormatting'] = onTypeFormatting.toJson();
+    json['publishDiagnostics'] = publishDiagnostics.toJson();
+    json['rangeFormatting'] = rangeFormatting.toJson();
+    json['references'] = references.toJson();
+    json['rename'] = rename.toJson();
+    json['selectionRange'] = selectionRange.toJson();
+    json['semanticTokens'] = semanticTokens.toJson();
+    json['signatureHelp'] = signatureHelp.toJson();
+    json['synchronization'] = synchronization.toJson();
+    json['typeDefinition'] = typeDefinition.toJson();
+    json['typeHierarchy'] = typeHierarchy.toJson();
     return json;
   }
 }
@@ -12699,6 +13536,7 @@ class NotebookDocumentClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['synchronization'] = synchronization.toJson();
     return json;
   }
 }
@@ -12751,6 +13589,9 @@ class WindowClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['showDocument'] = showDocument.toJson();
+    json['showMessage'] = showMessage.toJson();
+    json['workDoneProgress'] = workDoneProgress;
     return json;
   }
 }
@@ -12823,6 +13664,10 @@ class GeneralClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['markdown'] = markdown.toJson();
+    json['positionEncodings'] = positionEncodings;
+    json['regularExpressions'] = regularExpressions.toJson();
+    json['staleRequestSupport'] = staleRequestSupport;
     return json;
   }
 }
@@ -12855,6 +13700,8 @@ class RelativePattern implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['baseUri'] = baseUri;
+    json['pattern'] = pattern;
     return json;
   }
 }
@@ -12877,7 +13724,7 @@ class WorkspaceEditClientCapabilities implements ToJson {
     final documentChangesJson = json['documentChanges']!;
     final documentChanges = (documentChangesJson as bool);
     final failureHandlingJson = json['failureHandling']!;
-    // Handle enum type;
+    // Handle enum type
     final failureHandling = _i1.$enumDecode(
       _$FailureHandlingKindEnumMap,
       failureHandlingJson,
@@ -12927,6 +13774,11 @@ class WorkspaceEditClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['changeAnnotationSupport'] = changeAnnotationSupport;
+    json['documentChanges'] = documentChanges;
+    json['failureHandling'] = failureHandling.value;
+    json['normalizesLineEndings'] = normalizesLineEndings;
+    json['resourceOperations'] = resourceOperations;
     return json;
   }
 }
@@ -12953,6 +13805,7 @@ class DidChangeConfigurationClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -12992,6 +13845,8 @@ class DidChangeWatchedFilesClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['relativePatternSupport'] = relativePatternSupport;
     return json;
   }
 }
@@ -13051,6 +13906,10 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['resolveSupport'] = resolveSupport;
+    json['symbolKind'] = symbolKind;
+    json['tagSupport'] = tagSupport;
     return json;
   }
 }
@@ -13076,6 +13935,7 @@ class ExecuteCommandClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -13108,6 +13968,7 @@ class SemanticTokensWorkspaceClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['refreshSupport'] = refreshSupport;
     return json;
   }
 }
@@ -13138,6 +13999,7 @@ class CodeLensWorkspaceClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['refreshSupport'] = refreshSupport;
     return json;
   }
 }
@@ -13212,6 +14074,13 @@ class FileOperationClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['didCreate'] = didCreate;
+    json['didDelete'] = didDelete;
+    json['didRename'] = didRename;
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['willCreate'] = willCreate;
+    json['willDelete'] = willDelete;
+    json['willRename'] = willRename;
     return json;
   }
 }
@@ -13245,6 +14114,7 @@ class InlineValueWorkspaceClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['refreshSupport'] = refreshSupport;
     return json;
   }
 }
@@ -13276,6 +14146,7 @@ class InlayHintWorkspaceClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['refreshSupport'] = refreshSupport;
     return json;
   }
 }
@@ -13309,6 +14180,7 @@ class DiagnosticWorkspaceClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['refreshSupport'] = refreshSupport;
     return json;
   }
 }
@@ -13343,6 +14215,7 @@ class FoldingRangeWorkspaceClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['refreshSupport'] = refreshSupport;
     return json;
   }
 }
@@ -13394,6 +14267,10 @@ class TextDocumentSyncClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['didSave'] = didSave;
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['willSave'] = willSave;
+    json['willSaveWaitUntil'] = willSaveWaitUntil;
     return json;
   }
 }
@@ -13426,7 +14303,7 @@ class CompletionClientCapabilities implements ToJson {
     final dynamicRegistrationJson = json['dynamicRegistration']!;
     final dynamicRegistration = (dynamicRegistrationJson as bool);
     final insertTextModeJson = json['insertTextMode']!;
-    // Handle enum type;
+    // Handle enum type
     final insertTextMode = _i1.$enumDecode(
       _$InsertTextModeEnumMap,
       insertTextModeJson,
@@ -13470,6 +14347,12 @@ class CompletionClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['completionItem'] = completionItem;
+    json['completionItemKind'] = completionItemKind;
+    json['completionList'] = completionList;
+    json['contextSupport'] = contextSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['insertTextMode'] = insertTextMode.value;
     return json;
   }
 }
@@ -13504,6 +14387,8 @@ class HoverClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['contentFormat'] = contentFormat;
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -13553,6 +14438,9 @@ class SignatureHelpClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['contextSupport'] = contextSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['signatureInformation'] = signatureInformation;
     return json;
   }
 }
@@ -13590,6 +14478,8 @@ class DeclarationClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['linkSupport'] = linkSupport;
     return json;
   }
 }
@@ -13625,6 +14515,8 @@ class DefinitionClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['linkSupport'] = linkSupport;
     return json;
   }
 }
@@ -13662,6 +14554,8 @@ class TypeDefinitionClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['linkSupport'] = linkSupport;
     return json;
   }
 }
@@ -13699,6 +14593,8 @@ class ImplementationClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['linkSupport'] = linkSupport;
     return json;
   }
 }
@@ -13724,6 +14620,7 @@ class ReferenceClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -13751,6 +14648,7 @@ class DocumentHighlightClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -13816,6 +14714,12 @@ class DocumentSymbolClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['hierarchicalDocumentSymbolSupport'] =
+        hierarchicalDocumentSymbolSupport;
+    json['labelSupport'] = labelSupport;
+    json['symbolKind'] = symbolKind;
+    json['tagSupport'] = tagSupport;
     return json;
   }
 }
@@ -13903,6 +14807,13 @@ class CodeActionClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['codeActionLiteralSupport'] = codeActionLiteralSupport;
+    json['dataSupport'] = dataSupport;
+    json['disabledSupport'] = disabledSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['honorsChangeAnnotations'] = honorsChangeAnnotations;
+    json['isPreferredSupport'] = isPreferredSupport;
+    json['resolveSupport'] = resolveSupport;
     return json;
   }
 }
@@ -13926,6 +14837,7 @@ class CodeLensClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -13961,6 +14873,8 @@ class DocumentLinkClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['tooltipSupport'] = tooltipSupport;
     return json;
   }
 }
@@ -13987,6 +14901,7 @@ class DocumentColorClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14014,6 +14929,7 @@ class DocumentFormattingClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14051,6 +14967,8 @@ class DocumentRangeFormattingClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['rangesSupport'] = rangesSupport;
     return json;
   }
 }
@@ -14080,6 +14998,7 @@ class DocumentOnTypeFormattingClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14102,7 +15021,7 @@ class RenameClientCapabilities implements ToJson {
     final prepareSupport = (prepareSupportJson as bool);
     final prepareSupportDefaultBehaviorJson =
         json['prepareSupportDefaultBehavior']!;
-    // Handle enum type;
+    // Handle enum type
     final prepareSupportDefaultBehavior = _i1.$enumDecode(
       _$PrepareSupportDefaultBehaviorEnumMap,
       prepareSupportDefaultBehaviorJson,
@@ -14140,6 +15059,10 @@ class RenameClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['honorsChangeAnnotations'] = honorsChangeAnnotations;
+    json['prepareSupport'] = prepareSupport;
+    json['prepareSupportDefaultBehavior'] = prepareSupportDefaultBehavior.value;
     return json;
   }
 }
@@ -14206,6 +15129,11 @@ class FoldingRangeClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['foldingRange'] = foldingRange;
+    json['foldingRangeKind'] = foldingRangeKind;
+    json['lineFoldingOnly'] = lineFoldingOnly;
+    json['rangeLimit'] = rangeLimit;
     return json;
   }
 }
@@ -14233,6 +15161,7 @@ class SelectionRangeClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14300,6 +15229,11 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['codeDescriptionSupport'] = codeDescriptionSupport;
+    json['dataSupport'] = dataSupport;
+    json['relatedInformation'] = relatedInformation;
+    json['tagSupport'] = tagSupport;
+    json['versionSupport'] = versionSupport;
     return json;
   }
 }
@@ -14328,6 +15262,7 @@ class CallHierarchyClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14429,6 +15364,15 @@ class SemanticTokensClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['augmentsSyntaxTokens'] = augmentsSyntaxTokens;
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['formats'] = formats;
+    json['multilineTokenSupport'] = multilineTokenSupport;
+    json['overlappingTokenSupport'] = overlappingTokenSupport;
+    json['requests'] = requests;
+    json['serverCancelSupport'] = serverCancelSupport;
+    json['tokenModifiers'] = tokenModifiers;
+    json['tokenTypes'] = tokenTypes;
     return json;
   }
 }
@@ -14460,6 +15404,7 @@ class LinkedEditingRangeClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14486,6 +15431,7 @@ class MonikerClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14514,6 +15460,7 @@ class TypeHierarchyClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14541,6 +15488,7 @@ class InlineValueClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14578,6 +15526,8 @@ class InlayHintClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['resolveSupport'] = resolveSupport;
     return json;
   }
 }
@@ -14617,6 +15567,8 @@ class DiagnosticClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['relatedDocumentSupport'] = relatedDocumentSupport;
     return json;
   }
 }
@@ -14646,6 +15598,7 @@ class InlineCompletionClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
     return json;
   }
 }
@@ -14686,6 +15639,8 @@ class NotebookDocumentSyncClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['dynamicRegistration'] = dynamicRegistration;
+    json['executionSummarySupport'] = executionSummarySupport;
     return json;
   }
 }
@@ -14715,6 +15670,7 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['messageActionItem'] = messageActionItem;
     return json;
   }
 }
@@ -14739,6 +15695,7 @@ class ShowDocumentClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['support'] = support;
     return json;
   }
 }
@@ -14776,6 +15733,8 @@ class RegularExpressionsClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['engine'] = engine;
+    json['version'] = version;
     return json;
   }
 }
@@ -14819,6 +15778,9 @@ class MarkdownClientCapabilities implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['allowedTags'] = allowedTags;
+    json['parser'] = parser;
+    json['version'] = version;
     return json;
   }
 }
@@ -14858,7 +15820,7 @@ enum SemanticTokenTypes {
   final String value;
 }
 
-const _$SemanticTokenTypesEnumMap = <SemanticTokenTypes, String>{
+const _$SemanticTokenTypesEnumMap = {
   SemanticTokenTypes.namespaceValue: 'namespace',
   SemanticTokenTypes.typeValue: 'type',
   SemanticTokenTypes.classValue: 'class',
@@ -14906,7 +15868,7 @@ enum SemanticTokenModifiers {
   final String value;
 }
 
-const _$SemanticTokenModifiersEnumMap = <SemanticTokenModifiers, String>{
+const _$SemanticTokenModifiersEnumMap = {
   SemanticTokenModifiers.declarationValue: 'declaration',
   SemanticTokenModifiers.definitionValue: 'definition',
   SemanticTokenModifiers.readonlyValue: 'readonly',
@@ -14932,11 +15894,10 @@ enum DocumentDiagnosticReportKind {
   final String value;
 }
 
-const _$DocumentDiagnosticReportKindEnumMap =
-    <DocumentDiagnosticReportKind, String>{
-      DocumentDiagnosticReportKind.fullValue: 'full',
-      DocumentDiagnosticReportKind.unchangedValue: 'unchanged',
-    };
+const _$DocumentDiagnosticReportKindEnumMap = {
+  DocumentDiagnosticReportKind.fullValue: 'full',
+  DocumentDiagnosticReportKind.unchangedValue: 'unchanged',
+};
 
 /// Predefined error codes.
 enum ErrorCodes {
@@ -14955,7 +15916,7 @@ enum ErrorCodes {
   final int value;
 }
 
-const _$ErrorCodesEnumMap = <ErrorCodes, int>{
+const _$ErrorCodesEnumMap = {
   ErrorCodes.parseErrorValue: -32700,
   ErrorCodes.invalidRequestValue: -32600,
   ErrorCodes.methodNotFoundValue: -32601,
@@ -14978,7 +15939,7 @@ enum LSPErrorCodes {
   final int value;
 }
 
-const _$LSPErrorCodesEnumMap = <LSPErrorCodes, int>{
+const _$LSPErrorCodesEnumMap = {
   LSPErrorCodes.requestFailedValue: -32803,
   LSPErrorCodes.serverCancelledValue: -32802,
   LSPErrorCodes.contentModifiedValue: -32801,
@@ -14998,7 +15959,7 @@ enum FoldingRangeKind {
   final String value;
 }
 
-const _$FoldingRangeKindEnumMap = <FoldingRangeKind, String>{
+const _$FoldingRangeKindEnumMap = {
   FoldingRangeKind.commentValue: 'comment',
   FoldingRangeKind.importsValue: 'imports',
   FoldingRangeKind.regionValue: 'region',
@@ -15040,7 +16001,7 @@ enum SymbolKind {
   final int value;
 }
 
-const _$SymbolKindEnumMap = <SymbolKind, int>{
+const _$SymbolKindEnumMap = {
   SymbolKind.fileValue: 1,
   SymbolKind.moduleValue: 2,
   SymbolKind.namespaceValue: 3,
@@ -15081,7 +16042,7 @@ enum SymbolTag {
   final int value;
 }
 
-const _$SymbolTagEnumMap = <SymbolTag, int>{SymbolTag.deprecatedValue: 1};
+const _$SymbolTagEnumMap = {SymbolTag.deprecatedValue: 1};
 
 /// Moniker uniqueness level to define scope of the moniker.
 /// @since 3.16.0
@@ -15099,7 +16060,7 @@ enum UniquenessLevel {
   final String value;
 }
 
-const _$UniquenessLevelEnumMap = <UniquenessLevel, String>{
+const _$UniquenessLevelEnumMap = {
   UniquenessLevel.documentValue: 'document',
   UniquenessLevel.projectValue: 'project',
   UniquenessLevel.groupValue: 'group',
@@ -15121,7 +16082,7 @@ enum MonikerKind {
   final String value;
 }
 
-const _$MonikerKindEnumMap = <MonikerKind, String>{
+const _$MonikerKindEnumMap = {
   MonikerKind.importValue: 'import',
   MonikerKind.exportValue: 'export',
   MonikerKind.localValue: 'local',
@@ -15140,7 +16101,7 @@ enum InlayHintKind {
   final int value;
 }
 
-const _$InlayHintKindEnumMap = <InlayHintKind, int>{
+const _$InlayHintKindEnumMap = {
   InlayHintKind.typeValue: 1,
   InlayHintKind.parameterValue: 2,
 };
@@ -15160,7 +16121,7 @@ enum MessageType {
   final int value;
 }
 
-const _$MessageTypeEnumMap = <MessageType, int>{
+const _$MessageTypeEnumMap = {
   MessageType.errorValue: 1,
   MessageType.warningValue: 2,
   MessageType.infoValue: 3,
@@ -15182,7 +16143,7 @@ enum TextDocumentSyncKind {
   final int value;
 }
 
-const _$TextDocumentSyncKindEnumMap = <TextDocumentSyncKind, int>{
+const _$TextDocumentSyncKindEnumMap = {
   TextDocumentSyncKind.noneValue: 0,
   TextDocumentSyncKind.fullValue: 1,
   TextDocumentSyncKind.incrementalValue: 2,
@@ -15201,7 +16162,7 @@ enum TextDocumentSaveReason {
   final int value;
 }
 
-const _$TextDocumentSaveReasonEnumMap = <TextDocumentSaveReason, int>{
+const _$TextDocumentSaveReasonEnumMap = {
   TextDocumentSaveReason.manualValue: 1,
   TextDocumentSaveReason.afterDelayValue: 2,
   TextDocumentSaveReason.focusOutValue: 3,
@@ -15242,7 +16203,7 @@ enum CompletionItemKind {
   final int value;
 }
 
-const _$CompletionItemKindEnumMap = <CompletionItemKind, int>{
+const _$CompletionItemKindEnumMap = {
   CompletionItemKind.textValue: 1,
   CompletionItemKind.methodValue: 2,
   CompletionItemKind.functionValue: 3,
@@ -15283,9 +16244,7 @@ enum CompletionItemTag {
   final int value;
 }
 
-const _$CompletionItemTagEnumMap = <CompletionItemTag, int>{
-  CompletionItemTag.deprecatedValue: 1,
-};
+const _$CompletionItemTagEnumMap = {CompletionItemTag.deprecatedValue: 1};
 
 /// Defines whether the insert text in a completion item should be interpreted
 /// as plain text or a snippet.
@@ -15300,7 +16259,7 @@ enum InsertTextFormat {
   final int value;
 }
 
-const _$InsertTextFormatEnumMap = <InsertTextFormat, int>{
+const _$InsertTextFormatEnumMap = {
   InsertTextFormat.plainTextValue: 1,
   InsertTextFormat.snippetValue: 2,
 };
@@ -15318,7 +16277,7 @@ enum InsertTextMode {
   final int value;
 }
 
-const _$InsertTextModeEnumMap = <InsertTextMode, int>{
+const _$InsertTextModeEnumMap = {
   InsertTextMode.asIsValue: 1,
   InsertTextMode.adjustIndentationValue: 2,
 };
@@ -15336,7 +16295,7 @@ enum DocumentHighlightKind {
   final int value;
 }
 
-const _$DocumentHighlightKindEnumMap = <DocumentHighlightKind, int>{
+const _$DocumentHighlightKindEnumMap = {
   DocumentHighlightKind.textValue: 1,
   DocumentHighlightKind.readValue: 2,
   DocumentHighlightKind.writeValue: 3,
@@ -15361,7 +16320,7 @@ enum CodeActionKind {
   final String value;
 }
 
-const _$CodeActionKindEnumMap = <CodeActionKind, String>{
+const _$CodeActionKindEnumMap = {
   CodeActionKind.emptyValue: '',
   CodeActionKind.quickFixValue: 'quickfix',
   CodeActionKind.refactorValue: 'refactor',
@@ -15385,7 +16344,7 @@ enum TraceValues {
   final String value;
 }
 
-const _$TraceValuesEnumMap = <TraceValues, String>{
+const _$TraceValuesEnumMap = {
   TraceValues.offValue: 'off',
   TraceValues.messagesValue: 'messages',
   TraceValues.verboseValue: 'verbose',
@@ -15406,7 +16365,7 @@ enum MarkupKind {
   final String value;
 }
 
-const _$MarkupKindEnumMap = <MarkupKind, String>{
+const _$MarkupKindEnumMap = {
   MarkupKind.plainTextValue: 'plaintext',
   MarkupKind.markdownValue: 'markdown',
 };
@@ -15425,7 +16384,7 @@ enum InlineCompletionTriggerKind {
   final int value;
 }
 
-const _$InlineCompletionTriggerKindEnumMap = <InlineCompletionTriggerKind, int>{
+const _$InlineCompletionTriggerKindEnumMap = {
   InlineCompletionTriggerKind.invokedValue: 0,
   InlineCompletionTriggerKind.automaticValue: 1,
 };
@@ -15444,7 +16403,7 @@ enum PositionEncodingKind {
   final String value;
 }
 
-const _$PositionEncodingKindEnumMap = <PositionEncodingKind, String>{
+const _$PositionEncodingKindEnumMap = {
   PositionEncodingKind.uTF8Value: 'utf-8',
   PositionEncodingKind.uTF16Value: 'utf-16',
   PositionEncodingKind.uTF32Value: 'utf-32',
@@ -15463,7 +16422,7 @@ enum FileChangeType {
   final int value;
 }
 
-const _$FileChangeTypeEnumMap = <FileChangeType, int>{
+const _$FileChangeTypeEnumMap = {
   FileChangeType.createdValue: 1,
   FileChangeType.changedValue: 2,
   FileChangeType.deletedValue: 3,
@@ -15481,7 +16440,7 @@ enum WatchKind {
   final int value;
 }
 
-const _$WatchKindEnumMap = <WatchKind, int>{
+const _$WatchKindEnumMap = {
   WatchKind.createValue: 1,
   WatchKind.changeValue: 2,
   WatchKind.deleteValue: 4,
@@ -15501,7 +16460,7 @@ enum DiagnosticSeverity {
   final int value;
 }
 
-const _$DiagnosticSeverityEnumMap = <DiagnosticSeverity, int>{
+const _$DiagnosticSeverityEnumMap = {
   DiagnosticSeverity.errorValue: 1,
   DiagnosticSeverity.warningValue: 2,
   DiagnosticSeverity.informationValue: 3,
@@ -15521,7 +16480,7 @@ enum DiagnosticTag {
   final int value;
 }
 
-const _$DiagnosticTagEnumMap = <DiagnosticTag, int>{
+const _$DiagnosticTagEnumMap = {
   DiagnosticTag.unnecessaryValue: 1,
   DiagnosticTag.deprecatedValue: 2,
 };
@@ -15539,7 +16498,7 @@ enum CompletionTriggerKind {
   final int value;
 }
 
-const _$CompletionTriggerKindEnumMap = <CompletionTriggerKind, int>{
+const _$CompletionTriggerKindEnumMap = {
   CompletionTriggerKind.invokedValue: 1,
   CompletionTriggerKind.triggerCharacterValue: 2,
   CompletionTriggerKind.triggerForIncompleteCompletionsValue: 3,
@@ -15559,7 +16518,7 @@ enum SignatureHelpTriggerKind {
   final int value;
 }
 
-const _$SignatureHelpTriggerKindEnumMap = <SignatureHelpTriggerKind, int>{
+const _$SignatureHelpTriggerKindEnumMap = {
   SignatureHelpTriggerKind.invokedValue: 1,
   SignatureHelpTriggerKind.triggerCharacterValue: 2,
   SignatureHelpTriggerKind.contentChangeValue: 3,
@@ -15578,7 +16537,7 @@ enum CodeActionTriggerKind {
   final int value;
 }
 
-const _$CodeActionTriggerKindEnumMap = <CodeActionTriggerKind, int>{
+const _$CodeActionTriggerKindEnumMap = {
   CodeActionTriggerKind.invokedValue: 1,
   CodeActionTriggerKind.automaticValue: 2,
 };
@@ -15596,7 +16555,7 @@ enum FileOperationPatternKind {
   final String value;
 }
 
-const _$FileOperationPatternKindEnumMap = <FileOperationPatternKind, String>{
+const _$FileOperationPatternKindEnumMap = {
   FileOperationPatternKind.fileValue: 'file',
   FileOperationPatternKind.folderValue: 'folder',
 };
@@ -15614,7 +16573,7 @@ enum NotebookCellKind {
   final int value;
 }
 
-const _$NotebookCellKindEnumMap = <NotebookCellKind, int>{
+const _$NotebookCellKindEnumMap = {
   NotebookCellKind.markupValue: 1,
   NotebookCellKind.codeValue: 2,
 };
@@ -15631,7 +16590,7 @@ enum ResourceOperationKind {
   final String value;
 }
 
-const _$ResourceOperationKindEnumMap = <ResourceOperationKind, String>{
+const _$ResourceOperationKindEnumMap = {
   ResourceOperationKind.createValue: 'create',
   ResourceOperationKind.renameValue: 'rename',
   ResourceOperationKind.deleteValue: 'delete',
@@ -15650,7 +16609,7 @@ enum FailureHandlingKind {
   final String value;
 }
 
-const _$FailureHandlingKindEnumMap = <FailureHandlingKind, String>{
+const _$FailureHandlingKindEnumMap = {
   FailureHandlingKind.abortValue: 'abort',
   FailureHandlingKind.transactionalValue: 'transactional',
   FailureHandlingKind.textOnlyTransactionalValue: 'textOnlyTransactional',
@@ -15667,10 +16626,9 @@ enum PrepareSupportDefaultBehavior {
   final int value;
 }
 
-const _$PrepareSupportDefaultBehaviorEnumMap =
-    <PrepareSupportDefaultBehavior, int>{
-      PrepareSupportDefaultBehavior.identifierValue: 1,
-    };
+const _$PrepareSupportDefaultBehaviorEnumMap = {
+  PrepareSupportDefaultBehavior.identifierValue: 1,
+};
 
 enum TokenFormat {
   relativeValue('relative');
@@ -15682,15 +16640,22 @@ enum TokenFormat {
   final String value;
 }
 
-const _$TokenFormatEnumMap = <TokenFormat, String>{
-  TokenFormat.relativeValue: 'relative',
-};
+const _$TokenFormatEnumMap = {TokenFormat.relativeValue: 'relative'};
 
 /// Literal
 /// Information about the server.
 /// @since 3.15.0
 class InitializeResultServerInfo implements ToJson {
   InitializeResultServerInfo({required this.name, required this.version});
+
+  factory InitializeResultServerInfo.fromJson(Map<String, Object?> json) {
+    final nameJson = json['name']!;
+    final name = (nameJson as String);
+    final versionJson = json['version']!;
+    final version = (versionJson as String);
+
+    return InitializeResultServerInfo(name: name, version: version);
+  }
 
   /// The name of the server as defined by the server.
   final String name;
@@ -15702,6 +16667,8 @@ class InitializeResultServerInfo implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['name'] = name;
+    json['version'] = version;
     return json;
   }
 }
@@ -15724,6 +16691,35 @@ class CompletionListItemDefaults implements ToJson {
     required this.insertTextMode,
     required this.data,
   });
+
+  factory CompletionListItemDefaults.fromJson(Map<String, Object?> json) {
+    final commitCharactersJson = json['commitCharacters']!;
+    final commitCharacters = (commitCharactersJson as List<String>);
+    final editRangeJson = json['editRange']!;
+    final editRange = (editRangeJson as OrRefType);
+    final insertTextFormatJson = json['insertTextFormat']!;
+    // Handle enum type
+    final insertTextFormat = _i1.$enumDecode(
+      _$InsertTextFormatEnumMap,
+      insertTextFormatJson,
+    );
+    final insertTextModeJson = json['insertTextMode']!;
+    // Handle enum type
+    final insertTextMode = _i1.$enumDecode(
+      _$InsertTextModeEnumMap,
+      insertTextModeJson,
+    );
+    final dataJson = json['data']!;
+    final data = (dataJson as LSPAny);
+
+    return CompletionListItemDefaults(
+      commitCharacters: commitCharacters,
+      editRange: editRange,
+      insertTextFormat: insertTextFormat,
+      insertTextMode: insertTextMode,
+      data: data,
+    );
+  }
 
   /// A default commit character set.
   /// @since 3.17.0
@@ -15749,6 +16745,11 @@ class CompletionListItemDefaults implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['commitCharacters'] = commitCharacters;
+    json['editRange'] = editRange;
+    json['insertTextFormat'] = insertTextFormat.value;
+    json['insertTextMode'] = insertTextMode.value;
+    json['data'] = data;
     return json;
   }
 }
@@ -15771,6 +16772,13 @@ class CompletionListItemDefaults implements ToJson {
 class CodeActionDisabled implements ToJson {
   CodeActionDisabled({required this.reason});
 
+  factory CodeActionDisabled.fromJson(Map<String, Object?> json) {
+    final reasonJson = json['reason']!;
+    final reason = (reasonJson as String);
+
+    return CodeActionDisabled(reason: reason);
+  }
+
   /// Human readable description of why the code action is currently disabled.
   /// This is displayed in the code actions UI.
   final String reason;
@@ -15779,6 +16787,7 @@ class CodeActionDisabled implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['reason'] = reason;
     return json;
   }
 }
@@ -15791,6 +16800,23 @@ class NotebookDocumentChangeEventCells implements ToJson {
     required this.data,
     required this.textContent,
   });
+
+  factory NotebookDocumentChangeEventCells.fromJson(Map<String, Object?> json) {
+    final structureJson = json['structure']!;
+    final structure =
+        (structureJson as NotebookDocumentChangeEventCellsStructure);
+    final dataJson = json['data']!;
+    final data = (dataJson as List<NotebookCell>);
+    final textContentJson = json['textContent']!;
+    final textContent =
+        (textContentJson as List<NotebookDocumentChangeEventCellsTextContent>);
+
+    return NotebookDocumentChangeEventCells(
+      structure: structure,
+      data: data,
+      textContent: textContent,
+    );
+  }
 
   /// Changes to the cell structure to add or remove cells.
   final NotebookDocumentChangeEventCellsStructure structure;
@@ -15806,6 +16832,9 @@ class NotebookDocumentChangeEventCells implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['structure'] = structure;
+    json['data'] = data;
+    json['textContent'] = textContent;
     return json;
   }
 }
@@ -15818,6 +16847,25 @@ class NotebookDocumentChangeEventCellsStructure implements ToJson {
     required this.didOpen,
     required this.didClose,
   });
+
+  factory NotebookDocumentChangeEventCellsStructure.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final arrayJson = json['array']!;
+    final array = NotebookCellArrayChange.fromJson(
+      (arrayJson as Map<String, Object?>),
+    );
+    final didOpenJson = json['didOpen']!;
+    final didOpen = (didOpenJson as List<TextDocumentItem>);
+    final didCloseJson = json['didClose']!;
+    final didClose = (didCloseJson as List<TextDocumentIdentifier>);
+
+    return NotebookDocumentChangeEventCellsStructure(
+      array: array,
+      didOpen: didOpen,
+      didClose: didClose,
+    );
+  }
 
   /// The change to the cell array.
   final NotebookCellArrayChange array;
@@ -15832,6 +16880,9 @@ class NotebookDocumentChangeEventCellsStructure implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['array'] = array.toJson();
+    json['didOpen'] = didOpen;
+    json['didClose'] = didClose;
     return json;
   }
 }
@@ -15844,6 +16895,22 @@ class NotebookDocumentChangeEventCellsTextContent implements ToJson {
     required this.changes,
   });
 
+  factory NotebookDocumentChangeEventCellsTextContent.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final documentJson = json['document']!;
+    final document = VersionedTextDocumentIdentifier.fromJson(
+      (documentJson as Map<String, Object?>),
+    );
+    final changesJson = json['changes']!;
+    final changes = (changesJson as List<TextDocumentContentChangeEvent>);
+
+    return NotebookDocumentChangeEventCellsTextContent(
+      document: document,
+      changes: changes,
+    );
+  }
+
   final VersionedTextDocumentIdentifier document;
 
   final List<TextDocumentContentChangeEvent> changes;
@@ -15852,6 +16919,8 @@ class NotebookDocumentChangeEventCellsTextContent implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['document'] = document.toJson();
+    json['changes'] = changes;
     return json;
   }
 }
@@ -15861,6 +16930,15 @@ class NotebookDocumentChangeEventCellsTextContent implements ToJson {
 /// @since 3.15.0
 class InitializeParamsClientInfo implements ToJson {
   InitializeParamsClientInfo({required this.name, required this.version});
+
+  factory InitializeParamsClientInfo.fromJson(Map<String, Object?> json) {
+    final nameJson = json['name']!;
+    final name = (nameJson as String);
+    final versionJson = json['version']!;
+    final version = (versionJson as String);
+
+    return InitializeParamsClientInfo(name: name, version: version);
+  }
 
   /// The name of the client as defined by the client.
   final String name;
@@ -15872,6 +16950,8 @@ class InitializeParamsClientInfo implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['name'] = name;
+    json['version'] = version;
     return json;
   }
 }
@@ -15883,6 +16963,22 @@ class ServerCapabilitiesWorkspace implements ToJson {
     required this.workspaceFolders,
     required this.fileOperations,
   });
+
+  factory ServerCapabilitiesWorkspace.fromJson(Map<String, Object?> json) {
+    final workspaceFoldersJson = json['workspaceFolders']!;
+    final workspaceFolders = WorkspaceFoldersServerCapabilities.fromJson(
+      (workspaceFoldersJson as Map<String, Object?>),
+    );
+    final fileOperationsJson = json['fileOperations']!;
+    final fileOperations = FileOperationOptions.fromJson(
+      (fileOperationsJson as Map<String, Object?>),
+    );
+
+    return ServerCapabilitiesWorkspace(
+      workspaceFolders: workspaceFolders,
+      fileOperations: fileOperations,
+    );
+  }
 
   /// The server supports workspace folder.
   /// @since 3.6.0
@@ -15897,6 +16993,8 @@ class ServerCapabilitiesWorkspace implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['workspaceFolders'] = workspaceFolders.toJson();
+    json['fileOperations'] = fileOperations.toJson();
     return json;
   }
 }
@@ -15906,6 +17004,15 @@ class ServerCapabilitiesWorkspace implements ToJson {
 /// @since 3.17.0
 class CompletionOptionsCompletionItem implements ToJson {
   CompletionOptionsCompletionItem({required this.labelDetailsSupport});
+
+  factory CompletionOptionsCompletionItem.fromJson(Map<String, Object?> json) {
+    final labelDetailsSupportJson = json['labelDetailsSupport']!;
+    final labelDetailsSupport = (labelDetailsSupportJson as bool);
+
+    return CompletionOptionsCompletionItem(
+      labelDetailsSupport: labelDetailsSupport,
+    );
+  }
 
   /// The server has support for completion item label details (see also
   /// `CompletionItemLabelDetails`) when receiving a completion item in a
@@ -15917,6 +17024,7 @@ class CompletionOptionsCompletionItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['labelDetailsSupport'] = labelDetailsSupport;
     return json;
   }
 }
@@ -15932,6 +17040,20 @@ class GeneralClientCapabilitiesStaleRequestSupport implements ToJson {
     required this.retryOnContentModified,
   });
 
+  factory GeneralClientCapabilitiesStaleRequestSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final cancelJson = json['cancel']!;
+    final cancel = (cancelJson as bool);
+    final retryOnContentModifiedJson = json['retryOnContentModified']!;
+    final retryOnContentModified = (retryOnContentModifiedJson as List<String>);
+
+    return GeneralClientCapabilitiesStaleRequestSupport(
+      cancel: cancel,
+      retryOnContentModified: retryOnContentModified,
+    );
+  }
+
   /// The client will actively cancel the request.
   final bool cancel;
 
@@ -15943,6 +17065,8 @@ class GeneralClientCapabilitiesStaleRequestSupport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['cancel'] = cancel;
+    json['retryOnContentModified'] = retryOnContentModified;
     return json;
   }
 }
@@ -15956,6 +17080,17 @@ class WorkspaceEditClientCapabilitiesChangeAnnotationSupport implements ToJson {
     required this.groupsOnLabel,
   });
 
+  factory WorkspaceEditClientCapabilitiesChangeAnnotationSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final groupsOnLabelJson = json['groupsOnLabel']!;
+    final groupsOnLabel = (groupsOnLabelJson as bool);
+
+    return WorkspaceEditClientCapabilitiesChangeAnnotationSupport(
+      groupsOnLabel: groupsOnLabel,
+    );
+  }
+
   /// Whether the client groups edits with equal labels into tree nodes, for
   /// instance all edits labelled with "Changes in Strings" would be a tree
   /// node.
@@ -15965,6 +17100,7 @@ class WorkspaceEditClientCapabilitiesChangeAnnotationSupport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['groupsOnLabel'] = groupsOnLabel;
     return json;
   }
 }
@@ -15974,6 +17110,15 @@ class WorkspaceEditClientCapabilitiesChangeAnnotationSupport implements ToJson {
 /// request.
 class WorkspaceSymbolClientCapabilitiesSymbolKind implements ToJson {
   WorkspaceSymbolClientCapabilitiesSymbolKind({required this.valueSet});
+
+  factory WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<SymbolKind>);
+
+    return WorkspaceSymbolClientCapabilitiesSymbolKind(valueSet: valueSet);
+  }
 
   /// The symbol kind values the client supports. When this property exists
   /// the client also guarantees that it will handle values outside its set
@@ -15987,6 +17132,7 @@ class WorkspaceSymbolClientCapabilitiesSymbolKind implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['valueSet'] = valueSet;
     return json;
   }
 }
@@ -15998,6 +17144,15 @@ class WorkspaceSymbolClientCapabilitiesSymbolKind implements ToJson {
 class WorkspaceSymbolClientCapabilitiesTagSupport implements ToJson {
   WorkspaceSymbolClientCapabilitiesTagSupport({required this.valueSet});
 
+  factory WorkspaceSymbolClientCapabilitiesTagSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<SymbolTag>);
+
+    return WorkspaceSymbolClientCapabilitiesTagSupport(valueSet: valueSet);
+  }
+
   /// The tags supported by the client.
   final List<SymbolTag> valueSet;
 
@@ -16005,6 +17160,7 @@ class WorkspaceSymbolClientCapabilitiesTagSupport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['valueSet'] = valueSet;
     return json;
   }
 }
@@ -16017,6 +17173,17 @@ class WorkspaceSymbolClientCapabilitiesTagSupport implements ToJson {
 class WorkspaceSymbolClientCapabilitiesResolveSupport implements ToJson {
   WorkspaceSymbolClientCapabilitiesResolveSupport({required this.properties});
 
+  factory WorkspaceSymbolClientCapabilitiesResolveSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final propertiesJson = json['properties']!;
+    final properties = (propertiesJson as List<String>);
+
+    return WorkspaceSymbolClientCapabilitiesResolveSupport(
+      properties: properties,
+    );
+  }
+
   /// The properties that a client can resolve lazily. Usually
   /// `location.range`
   final List<String> properties;
@@ -16025,6 +17192,7 @@ class WorkspaceSymbolClientCapabilitiesResolveSupport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['properties'] = properties;
     return json;
   }
 }
@@ -16044,6 +17212,50 @@ class CompletionClientCapabilitiesCompletionItem implements ToJson {
     required this.insertTextModeSupport,
     required this.labelDetailsSupport,
   });
+
+  factory CompletionClientCapabilitiesCompletionItem.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final snippetSupportJson = json['snippetSupport']!;
+    final snippetSupport = (snippetSupportJson as bool);
+    final commitCharactersSupportJson = json['commitCharactersSupport']!;
+    final commitCharactersSupport = (commitCharactersSupportJson as bool);
+    final documentationFormatJson = json['documentationFormat']!;
+    final documentationFormat = (documentationFormatJson as List<MarkupKind>);
+    final deprecatedSupportJson = json['deprecatedSupport']!;
+    final deprecatedSupport = (deprecatedSupportJson as bool);
+    final preselectSupportJson = json['preselectSupport']!;
+    final preselectSupport = (preselectSupportJson as bool);
+    final tagSupportJson = json['tagSupport']!;
+    final tagSupport =
+        (tagSupportJson
+            as CompletionClientCapabilitiesCompletionItemTagSupport);
+    final insertReplaceSupportJson = json['insertReplaceSupport']!;
+    final insertReplaceSupport = (insertReplaceSupportJson as bool);
+    final resolveSupportJson = json['resolveSupport']!;
+    final resolveSupport =
+        (resolveSupportJson
+            as CompletionClientCapabilitiesCompletionItemResolveSupport);
+    final insertTextModeSupportJson = json['insertTextModeSupport']!;
+    final insertTextModeSupport =
+        (insertTextModeSupportJson
+            as CompletionClientCapabilitiesCompletionItemInsertTextModeSupport);
+    final labelDetailsSupportJson = json['labelDetailsSupport']!;
+    final labelDetailsSupport = (labelDetailsSupportJson as bool);
+
+    return CompletionClientCapabilitiesCompletionItem(
+      snippetSupport: snippetSupport,
+      commitCharactersSupport: commitCharactersSupport,
+      documentationFormat: documentationFormat,
+      deprecatedSupport: deprecatedSupport,
+      preselectSupport: preselectSupport,
+      tagSupport: tagSupport,
+      insertReplaceSupport: insertReplaceSupport,
+      resolveSupport: resolveSupport,
+      insertTextModeSupport: insertTextModeSupport,
+      labelDetailsSupport: labelDetailsSupport,
+    );
+  }
 
   /// Client supports snippets as insert text.
   /// A snippet can define tab stops and placeholders with `$1`, `$2` and
@@ -16099,6 +17311,16 @@ class CompletionClientCapabilitiesCompletionItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['snippetSupport'] = snippetSupport;
+    json['commitCharactersSupport'] = commitCharactersSupport;
+    json['documentationFormat'] = documentationFormat;
+    json['deprecatedSupport'] = deprecatedSupport;
+    json['preselectSupport'] = preselectSupport;
+    json['tagSupport'] = tagSupport;
+    json['insertReplaceSupport'] = insertReplaceSupport;
+    json['resolveSupport'] = resolveSupport;
+    json['insertTextModeSupport'] = insertTextModeSupport;
+    json['labelDetailsSupport'] = labelDetailsSupport;
     return json;
   }
 }
@@ -16114,6 +17336,17 @@ class CompletionClientCapabilitiesCompletionItemTagSupport implements ToJson {
     required this.valueSet,
   });
 
+  factory CompletionClientCapabilitiesCompletionItemTagSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<CompletionItemTag>);
+
+    return CompletionClientCapabilitiesCompletionItemTagSupport(
+      valueSet: valueSet,
+    );
+  }
+
   /// The tags supported by the client.
   final List<CompletionItemTag> valueSet;
 
@@ -16121,6 +17354,7 @@ class CompletionClientCapabilitiesCompletionItemTagSupport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['valueSet'] = valueSet;
     return json;
   }
 }
@@ -16136,6 +17370,17 @@ class CompletionClientCapabilitiesCompletionItemResolveSupport
     required this.properties,
   });
 
+  factory CompletionClientCapabilitiesCompletionItemResolveSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final propertiesJson = json['properties']!;
+    final properties = (propertiesJson as List<String>);
+
+    return CompletionClientCapabilitiesCompletionItemResolveSupport(
+      properties: properties,
+    );
+  }
+
   /// The properties that a client can resolve lazily.
   final List<String> properties;
 
@@ -16143,6 +17388,7 @@ class CompletionClientCapabilitiesCompletionItemResolveSupport
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['properties'] = properties;
     return json;
   }
 }
@@ -16158,12 +17404,24 @@ class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
     required this.valueSet,
   });
 
+  factory CompletionClientCapabilitiesCompletionItemInsertTextModeSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<InsertTextMode>);
+
+    return CompletionClientCapabilitiesCompletionItemInsertTextModeSupport(
+      valueSet: valueSet,
+    );
+  }
+
   final List<InsertTextMode> valueSet;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['valueSet'] = valueSet;
     return json;
   }
 }
@@ -16171,6 +17429,15 @@ class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
 /// Literal
 class CompletionClientCapabilitiesCompletionItemKind implements ToJson {
   CompletionClientCapabilitiesCompletionItemKind({required this.valueSet});
+
+  factory CompletionClientCapabilitiesCompletionItemKind.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<CompletionItemKind>);
+
+    return CompletionClientCapabilitiesCompletionItemKind(valueSet: valueSet);
+  }
 
   /// The completion item kind values the client supports. When this property
   /// exists the client also guarantees that it will handle values outside
@@ -16184,6 +17451,7 @@ class CompletionClientCapabilitiesCompletionItemKind implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['valueSet'] = valueSet;
     return json;
   }
 }
@@ -16193,6 +17461,17 @@ class CompletionClientCapabilitiesCompletionItemKind implements ToJson {
 /// @since 3.17.0
 class CompletionClientCapabilitiesCompletionList implements ToJson {
   CompletionClientCapabilitiesCompletionList({required this.itemDefaults});
+
+  factory CompletionClientCapabilitiesCompletionList.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final itemDefaultsJson = json['itemDefaults']!;
+    final itemDefaults = (itemDefaultsJson as List<String>);
+
+    return CompletionClientCapabilitiesCompletionList(
+      itemDefaults: itemDefaults,
+    );
+  }
 
   /// The client supports the following itemDefaults on a completion list.
   /// The value lists the supported property names of the
@@ -16205,6 +17484,7 @@ class CompletionClientCapabilitiesCompletionList implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['itemDefaults'] = itemDefaults;
     return json;
   }
 }
@@ -16218,6 +17498,25 @@ class SignatureHelpClientCapabilitiesSignatureInformation implements ToJson {
     required this.parameterInformation,
     required this.activeParameterSupport,
   });
+
+  factory SignatureHelpClientCapabilitiesSignatureInformation.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final documentationFormatJson = json['documentationFormat']!;
+    final documentationFormat = (documentationFormatJson as List<MarkupKind>);
+    final parameterInformationJson = json['parameterInformation']!;
+    final parameterInformation =
+        (parameterInformationJson
+            as SignatureHelpClientCapabilitiesSignatureInformationParameterInformation);
+    final activeParameterSupportJson = json['activeParameterSupport']!;
+    final activeParameterSupport = (activeParameterSupportJson as bool);
+
+    return SignatureHelpClientCapabilitiesSignatureInformation(
+      documentationFormat: documentationFormat,
+      parameterInformation: parameterInformation,
+      activeParameterSupport: activeParameterSupport,
+    );
+  }
 
   /// Client supports the following content formats for the documentation
   /// property. The order describes the preferred format of the client.
@@ -16236,6 +17535,9 @@ class SignatureHelpClientCapabilitiesSignatureInformation implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['documentationFormat'] = documentationFormat;
+    json['parameterInformation'] = parameterInformation;
+    json['activeParameterSupport'] = activeParameterSupport;
     return json;
   }
 }
@@ -16248,6 +17550,17 @@ class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
     required this.labelOffsetSupport,
   });
 
+  factory SignatureHelpClientCapabilitiesSignatureInformationParameterInformation.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final labelOffsetSupportJson = json['labelOffsetSupport']!;
+    final labelOffsetSupport = (labelOffsetSupportJson as bool);
+
+    return SignatureHelpClientCapabilitiesSignatureInformationParameterInformation(
+      labelOffsetSupport: labelOffsetSupport,
+    );
+  }
+
   /// The client supports processing label offsets instead of a simple label
   /// string.
   /// @since 3.14.0
@@ -16257,6 +17570,7 @@ class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['labelOffsetSupport'] = labelOffsetSupport;
     return json;
   }
 }
@@ -16271,6 +17585,19 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupport implements ToJson {
     required this.codeActionKind,
   });
 
+  factory CodeActionClientCapabilitiesCodeActionLiteralSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final codeActionKindJson = json['codeActionKind']!;
+    final codeActionKind =
+        (codeActionKindJson
+            as CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind);
+
+    return CodeActionClientCapabilitiesCodeActionLiteralSupport(
+      codeActionKind: codeActionKind,
+    );
+  }
+
   /// The code action kind is support with the following value set.
   final CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
   codeActionKind;
@@ -16279,6 +17606,7 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['codeActionKind'] = codeActionKind;
     return json;
   }
 }
@@ -16291,6 +17619,17 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
     required this.valueSet,
   });
 
+  factory CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<CodeActionKind>);
+
+    return CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind(
+      valueSet: valueSet,
+    );
+  }
+
   /// The code action kind values the client supports. When this property
   /// exists the client also guarantees that it will handle values outside
   /// its set gracefully and falls back to a default value when unknown.
@@ -16300,6 +17639,7 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['valueSet'] = valueSet;
     return json;
   }
 }
@@ -16310,6 +17650,15 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
 class FoldingRangeClientCapabilitiesFoldingRangeKind implements ToJson {
   FoldingRangeClientCapabilitiesFoldingRangeKind({required this.valueSet});
 
+  factory FoldingRangeClientCapabilitiesFoldingRangeKind.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<FoldingRangeKind>);
+
+    return FoldingRangeClientCapabilitiesFoldingRangeKind(valueSet: valueSet);
+  }
+
   /// The folding range kind values the client supports. When this property
   /// exists the client also guarantees that it will handle values outside
   /// its set gracefully and falls back to a default value when unknown.
@@ -16319,6 +17668,7 @@ class FoldingRangeClientCapabilitiesFoldingRangeKind implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['valueSet'] = valueSet;
     return json;
   }
 }
@@ -16329,6 +17679,17 @@ class FoldingRangeClientCapabilitiesFoldingRangeKind implements ToJson {
 class FoldingRangeClientCapabilitiesFoldingRange implements ToJson {
   FoldingRangeClientCapabilitiesFoldingRange({required this.collapsedText});
 
+  factory FoldingRangeClientCapabilitiesFoldingRange.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final collapsedTextJson = json['collapsedText']!;
+    final collapsedText = (collapsedTextJson as bool);
+
+    return FoldingRangeClientCapabilitiesFoldingRange(
+      collapsedText: collapsedText,
+    );
+  }
+
   /// If set, the client signals that it supports setting collapsedText on
   /// folding ranges to display custom labels instead of the default text.
   /// @since 3.17.0
@@ -16338,6 +17699,7 @@ class FoldingRangeClientCapabilitiesFoldingRange implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['collapsedText'] = collapsedText;
     return json;
   }
 }
@@ -16349,6 +17711,15 @@ class FoldingRangeClientCapabilitiesFoldingRange implements ToJson {
 class PublishDiagnosticsClientCapabilitiesTagSupport implements ToJson {
   PublishDiagnosticsClientCapabilitiesTagSupport({required this.valueSet});
 
+  factory PublishDiagnosticsClientCapabilitiesTagSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<DiagnosticTag>);
+
+    return PublishDiagnosticsClientCapabilitiesTagSupport(valueSet: valueSet);
+  }
+
   /// The tags supported by the client.
   final List<DiagnosticTag> valueSet;
 
@@ -16356,6 +17727,7 @@ class PublishDiagnosticsClientCapabilitiesTagSupport implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['valueSet'] = valueSet;
     return json;
   }
 }
@@ -16375,6 +17747,17 @@ class SemanticTokensClientCapabilitiesRequests implements ToJson {
     required this.full,
   });
 
+  factory SemanticTokensClientCapabilitiesRequests.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final rangeJson = json['range']!;
+    final range = (rangeJson as OrRefType);
+    final fullJson = json['full']!;
+    final full = (fullJson as OrRefType);
+
+    return SemanticTokensClientCapabilitiesRequests(range: range, full: full);
+  }
+
   /// The client will send the `textDocument/semanticTokens/range` request if
   /// the server provides a corresponding handler.
   final OrRefType range;
@@ -16387,6 +17770,8 @@ class SemanticTokensClientCapabilitiesRequests implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['range'] = range;
+    json['full'] = full;
     return json;
   }
 }
@@ -16398,6 +17783,19 @@ class ShowMessageRequestClientCapabilitiesMessageActionItem implements ToJson {
     required this.additionalPropertiesSupport,
   });
 
+  factory ShowMessageRequestClientCapabilitiesMessageActionItem.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final additionalPropertiesSupportJson =
+        json['additionalPropertiesSupport']!;
+    final additionalPropertiesSupport =
+        (additionalPropertiesSupportJson as bool);
+
+    return ShowMessageRequestClientCapabilitiesMessageActionItem(
+      additionalPropertiesSupport: additionalPropertiesSupport,
+    );
+  }
+
   /// Whether the client supports additional attributes which are preserved
   /// and send back to the server in the request's response.
   final bool additionalPropertiesSupport;
@@ -16406,6 +17804,7 @@ class ShowMessageRequestClientCapabilitiesMessageActionItem implements ToJson {
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 
+    json['additionalPropertiesSupport'] = additionalPropertiesSupport;
     return json;
   }
 }

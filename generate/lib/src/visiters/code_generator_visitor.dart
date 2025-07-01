@@ -125,6 +125,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     '// ignore_for_file: doc_directive_unknown',
     '// ignore_for_file: unnecessary_parenthesis',
     '// ignore_for_file: lines_longer_than_80_chars',
+    '// ignore_for_file: unused_element',
   ];
 
   @override
@@ -155,6 +156,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         allFields: literalDefinition.properties,
         inheritedPropertyNames: {},
       );
+
+      _addFromJsonFactory(cb: cb, allFields: literalDefinition.properties);
 
       _generateToJson(cb: cb, allFields: literalDefinition.properties);
     });
@@ -330,12 +333,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     );
 
     final map = Map.fromEntries(entries);
-
-    final mapLiteral = literalConstMap(
-      map,
-      refer(enumeration.name),
-      refer(enumeration.values.first.value.type),
-    );
+    final mapLiteral = literalConstMap(map);
 
     return declareConst(refName).assign(mapLiteral).statement;
   }
@@ -428,9 +426,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   /// Returns a map where keys are property names and values are MetaProperty
   /// objects.
   Map<String, MetaProperty> _collectAllProperties(MetaStructure structure) {
-
     final collectedProperties = <String, MetaProperty>{};
-
     final inheritedProperties = _collectInheritedProperties(structure);
 
     collectedProperties.addAll(inheritedProperties);
@@ -442,101 +438,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     }
 
     return collectedProperties;
-  }
-
-  void _addFromJsonFactory({
-    required ClassBuilder cb,
-    required List<MetaProperty> allFields,
-  }) {
-    final fromJsonBody = BlockBuilder();
-    final constructorNamedArgs = <String, Expression>{};
-
-    for (final field in allFields) {
-      final propertyName = field.name;
-      final propertyType = field.type;
-      final dartType = propertyType.resolveType(_typeResolverVisitor);
-
-      // Add to constructor arguments list
-      constructorNamedArgs[propertyName] = refer(propertyName);
-
-      final mapTypeRef = refer('Map<String, Object?>');
-      final varJsonName = '${propertyName}Json';
-
-      final key = literalString(propertyName);
-      final mapAsPart = refer('json').index(key).nullChecked;
-      // final varJson = json['key'] as Map<String, Object?>?;
-      final finalJson = declareFinal(varJsonName).assign(mapAsPart);
-      fromJsonBody.addExpression(finalJson);
-
-      final isEnum = _enumerations.containsKey(dartType);
-
-      if (isEnum) {
-        fromJsonBody.addExpression(
-          const CodeExpression(Code('// Handle enum type')),
-        );
-
-        final encodeEnumRef = refer(
-          r'$enumDecode',
-          '../utils/enum_helpers.dart',
-        );
-        //$enumDecode(_$TypeKindEnumMap, json['kind']),
-        final enumMapRef = refer('_\$${dartType}EnumMap');
-
-        final fieldAssignment = declareFinal(propertyName).assign(
-          encodeEnumRef.call([
-            enumMapRef,
-            refer(varJsonName),
-          ]),
-        );
-        fromJsonBody.addExpression(fieldAssignment);
-        continue;
-      }
-
-      final isComplexType = _structures.containsKey(dartType);
-
-      if (isComplexType) {
-        // If the type is complex, we need to call its fromJson method
-        final fromJsonCall = refer(dartType).property('fromJson');
-        final fromJsonCallExpr = fromJsonCall.call([
-          refer(varJsonName).asA(mapTypeRef),
-        ]);
-        final fieldAssignment = declareFinal(
-          propertyName,
-        ).assign(fromJsonCallExpr);
-
-        fromJsonBody.addExpression(fieldAssignment);
-      } else {
-        // For simple types, we can directly assign
-        final value = refer(varJsonName).asA(refer(dartType));
-        final fieldAssignment = declareFinal(propertyName).assign(value);
-        fromJsonBody.addExpression(fieldAssignment);
-      }
-    }
-
-    final constructorInvocation = InvokeExpression.newOf(
-      refer(cb.name!),
-      [],
-      constructorNamedArgs,
-    );
-
-    fromJsonBody.statements.add(const Code('\n'));
-    fromJsonBody.addExpression(constructorInvocation.returned);
-
-    final constructor = Constructor((cb) {
-      cb
-        ..name = 'fromJson'
-        ..factory = true
-        ..requiredParameters.add(
-          Parameter((pb) {
-            pb
-              ..name = 'json'
-              ..type = refer('Map<String, Object?>');
-          }),
-        )
-        ..body = fromJsonBody.build();
-    });
-
-    cb.constructors.add(constructor);
   }
 
   void _addStructFields({
@@ -587,6 +488,107 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     );
   }
 
+  void _addFromJsonFactory({
+    required ClassBuilder cb,
+    required List<MetaProperty> allFields,
+  }) {
+    final fromJsonBody = BlockBuilder();
+    final constructorNamedArgs = <String, Expression>{};
+
+    for (final field in allFields) {
+      final propertyName = field.name;
+      final propertyType = field.type;
+      final dartType = propertyType.resolveType(_typeResolverVisitor);
+
+      // Add to constructor arguments list
+      constructorNamedArgs[propertyName] = refer(propertyName);
+
+      final mapTypeRef = refer('Map<String, Object?>');
+      final varJsonName = '${propertyName}Json';
+
+      final key = literalString(propertyName);
+      final mapAsPart = refer('json').index(key).nullChecked;
+      // final varJson = json['key'] as Map<String, Object?>?;
+      final finalJson = declareFinal(varJsonName).assign(mapAsPart);
+      fromJsonBody.addExpression(finalJson);
+
+      final isEnum = _enumerations.containsKey(dartType);
+
+      if (isEnum) {
+        fromJsonBody.statements.add(const Code('// Handle enum type'));
+
+        final encodeEnumRef = refer(
+          r'$enumDecode',
+          '../utils/enum_helpers.dart',
+        );
+        //$enumDecode(_$TypeKindEnumMap, json['kind']),
+        final enumMapRef = refer('_\$${dartType}EnumMap');
+
+        final fieldAssignment = declareFinal(propertyName).assign(
+          encodeEnumRef.call([
+            enumMapRef,
+            refer(varJsonName),
+          ]),
+        );
+
+        fromJsonBody.addExpression(fieldAssignment);
+
+        continue;
+      }
+
+      final isComplexType = _structures.containsKey(dartType);
+
+      if (isComplexType) {
+        // If the type is complex, we need to call its fromJson method
+        final fromJsonCall = refer(dartType).property('fromJson');
+        final fromJsonCallExpr = fromJsonCall.call([
+          refer(varJsonName).asA(mapTypeRef),
+        ]);
+        final fieldAssignment = declareFinal(
+          propertyName,
+        ).assign(fromJsonCallExpr);
+
+        fromJsonBody.addExpression(fieldAssignment);
+      } else {
+        // For simple types, we can directly assign
+        final value = refer(varJsonName).asA(refer(dartType));
+        final fieldAssignment = declareFinal(propertyName).assign(value);
+
+        fromJsonBody.addExpression(fieldAssignment);
+      }
+    }
+
+    final constructorInvocation = InvokeExpression.newOf(
+      refer(cb.name!),
+      [],
+      constructorNamedArgs,
+    );
+
+    if (allFields.isEmpty) {
+      fromJsonBody.statements.add(const Code('// No fields to parse'));
+      fromJsonBody.addExpression(declareFinal('_').assign(refer('json')));
+    }
+
+    fromJsonBody.statements.add(const Code('\n'));
+    fromJsonBody.addExpression(constructorInvocation.returned);
+
+    final constructor = Constructor((cb) {
+      cb
+        ..name = 'fromJson'
+        ..factory = true
+        ..requiredParameters.add(
+          Parameter((pb) {
+            pb
+              ..name = 'json'
+              ..type = refer('Map<String, Object?>');
+          }),
+        )
+        ..body = fromJsonBody.build();
+    });
+
+    cb.constructors.add(constructor);
+  }
+
   void _generateToJson({
     required ClassBuilder cb,
     required List<MetaProperty> allFields,
@@ -597,6 +599,41 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
     toJsonBody.addExpression(jsonMap);
     toJsonBody.statements.add(const Code('\n'));
+
+    for (final field in allFields) {
+      final propertyName = field.name;
+      final propertyType = field.type;
+      final dartType = propertyType.resolveType(_typeResolverVisitor);
+
+      // Add to json map
+      final key = literalString(propertyName);
+      final valueRef = refer(propertyName);
+
+      if (_enumerations.containsKey(dartType)) {
+        // Handle enum type
+        toJsonBody.addExpression(
+          refer('json')
+              .index(key)
+              .assign(
+                valueRef.property('value'),
+              ),
+        );
+        continue;
+      }
+
+      if (_structures.containsKey(dartType)) {
+        // If the type is complex, we need to call its toJson method
+        final toJsonCall = valueRef.property('toJson');
+        final toJsonCallExpr = toJsonCall.call([]);
+        toJsonBody.addExpression(
+          refer('json').index(key).assign(toJsonCallExpr),
+        );
+      } else {
+        // For simple types, we can directly assign
+        toJsonBody.addExpression(refer('json').index(key).assign(valueRef));
+      }
+    }
+
     // return json;
     toJsonBody.addExpression(refer('json').returned);
 
