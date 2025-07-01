@@ -16,8 +16,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       _enumerations = Map.fromEntries(
         protocol.enumerations.map((e) => MapEntry(e.name, e)),
       ),
-      _literals = {},
-      _collectedPropertiesCache = {} {
+      _literals = {} {
     // Collect all properties from structures and literals
     for (final structure in protocol.structures) {
       for (final property in structure.properties) {
@@ -35,7 +34,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
   final Map<LiteralRef, MetaLiteralDefinition> _literals;
-  final Map<String, Map<String, MetaProperty>> _collectedPropertiesCache;
 
   late final TypeResolverVisitor _typeResolverVisitor;
 
@@ -168,14 +166,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final allFields = allPropertiesMap.values.toList(growable: false)
       ..sort((a, b) => a.name.compareTo(b.name));
 
-    final inheritedPropertyNames = <String>{};
-    final directPropertyNames = structure.properties.map((p) => p.name).toSet();
-
-    for (final propertyName in allPropertiesMap.keys) {
-      if (!directPropertyNames.contains(propertyName)) {
-        inheritedPropertyNames.add(propertyName);
-      }
-    }
+    final inheritedPropertyNames = _collectInheritedProperties(
+      structure,
+    ).keys.toSet();
 
     final isInherited =
         structure.extends$.isNotEmpty || structure.mixins$.isNotEmpty;
@@ -400,16 +393,10 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ..sealed = true;
   });
 
-  /// Recursively collects all properties for a given structure,
-  /// including those inherited from extended structures and mixins.
-  /// Returns a map where keys are property names and values are MetaProperty
-  /// objects.
-  Map<String, MetaProperty> _collectAllProperties(MetaStructure structure) {
-    if (_collectedPropertiesCache.containsKey(structure.name)) {
-      return _collectedPropertiesCache[structure.name]!;
-    }
-
-    final collectedProperties = <String, MetaProperty>{};
+  Map<String, MetaProperty> _collectInheritedProperties(
+    MetaStructure structure,
+  ) {
+    final inheritedProperties = <String, MetaProperty>{};
 
     // Collect from extended structures first (bottom-up)
     for (final extendRef in structure.extends$) {
@@ -418,7 +405,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final extendedStructure = _structures[extendedStructureName];
       if (extendedStructure != null) {
         final parentProperties = _collectAllProperties(extendedStructure);
-        collectedProperties.addAll(parentProperties);
+        inheritedProperties.addAll(parentProperties);
       }
     }
 
@@ -429,17 +416,30 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final mixinStructure = _structures[mixinStructureName];
       if (mixinStructure != null) {
         final mixinProperties = _collectAllProperties(mixinStructure);
-        collectedProperties.addAll(mixinProperties);
+        inheritedProperties.addAll(mixinProperties);
       }
     }
+
+    return inheritedProperties;
+  }
+
+  /// Recursively collects all properties for a given structure,
+  /// including those inherited from extended structures and mixins.
+  /// Returns a map where keys are property names and values are MetaProperty
+  /// objects.
+  Map<String, MetaProperty> _collectAllProperties(MetaStructure structure) {
+
+    final collectedProperties = <String, MetaProperty>{};
+
+    final inheritedProperties = _collectInheritedProperties(structure);
+
+    collectedProperties.addAll(inheritedProperties);
 
     // Add properties directly defined in the current structure
     // (override parents/mixins)
     for (final property in structure.properties) {
       collectedProperties[property.name] = property;
     }
-
-    _collectedPropertiesCache[structure.name] = collectedProperties;
 
     return collectedProperties;
   }

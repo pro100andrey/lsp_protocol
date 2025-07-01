@@ -8235,6 +8235,7 @@ class CreateFile implements ResourceOperation {
   final ChangeAnnotationIdentifier annotationId;
 
   /// A create
+  @override
   final String kind;
 
   /// Additional options
@@ -8291,6 +8292,7 @@ class RenameFile implements ResourceOperation {
   final ChangeAnnotationIdentifier annotationId;
 
   /// A rename
+  @override
   final String kind;
 
   /// The new location.
@@ -8346,6 +8348,7 @@ class DeleteFile implements ResourceOperation {
   final ChangeAnnotationIdentifier annotationId;
 
   /// A delete
+  @override
   final String kind;
 
   /// Delete options.
