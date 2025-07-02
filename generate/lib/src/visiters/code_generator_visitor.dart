@@ -44,6 +44,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Reference get _toJsonMethodRef => refer('toJson');
   Reference get _overrideRef => refer('override');
   Reference get _stringRef => refer('String');
+  Reference get _mapJsonRef => refer('Map<String, Object?>');
 
   void _collectLiterals(MetaProperty property, String prefix) {
     // remove first letter from prefix if equal to '_'
@@ -173,7 +174,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Class visitStructure(MetaStructure structure) {
     final allPropertiesMap = _collectAllProperties(structure);
     final allFields = allPropertiesMap.values.toList(growable: false)
-      ..sort((a, b) => a.name.compareTo(b.name));
+      ..sort((a, b) => a.optional ? 1 : 0);
 
     final inheritedPropertyNames = _collectInheritedProperties(
       structure,
@@ -493,7 +494,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
               pb
                 ..name = property.name
                 ..named = true
-                ..required = true
+                ..required = !property.optional
                 ..toThis = true;
             }),
           ),
@@ -522,7 +523,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       constructorNamedArgs[propertyName] = refer(propertyName);
 
       final mapTypeRef = refer(
-        _applyOptional('Map<String, Object?>', isOptional),
+        _applyOptional(_mapJsonRef.symbol!, isOptional),
       );
       final varJsonName = '${propertyName}Json';
 
@@ -530,7 +531,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final mapAsPart = isOptional
           ? _jsonRef.index(key)
           : _jsonRef.index(key).nullChecked;
-      // final varJson = json['key'] as Map<String, Object?>?;
+
       final finalJson = declareFinal(varJsonName).assign(mapAsPart);
       fromJsonBody.addExpression(finalJson);
 
@@ -606,7 +607,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
           Parameter((pb) {
             pb
               ..name = _jsonRef.symbol!
-              ..type = refer('Map<String, Object?>');
+              ..type = _mapJsonRef;
           }),
         )
         ..body = fromJsonBody.build();
@@ -673,7 +674,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         mb
           ..name = _toJsonMethodRef.symbol
           ..annotations.add(_overrideRef)
-          ..returns = refer('Map<String, Object?>')
+          ..returns = _mapJsonRef
           ..body = toJsonBody.build();
       }),
     );

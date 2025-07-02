@@ -361,44 +361,44 @@ class ImplementationParams
         WorkDoneProgressParams,
         PartialResultParams {
   ImplementationParams({
-    required this.partialResultToken,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory ImplementationParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return ImplementationParams(
-      partialResultToken: partialResultToken,
-      position: position,
       textDocument: textDocument,
+      position: position,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// An optional token that a server can use to report partial results (e.g.
-  /// streaming) to the client.
+  /// The text document.
   @override
-  final ProgressToken? partialResultToken;
+  final TextDocumentIdentifier textDocument;
 
   /// The position inside the text document.
   @override
   final Position position;
 
-  /// The text document.
+  /// An optional token that a server can use to report partial results (e.g.
+  /// streaming) to the client.
   @override
-  final TextDocumentIdentifier textDocument;
+  final ProgressToken? partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -407,9 +407,9 @@ class ImplementationParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -419,26 +419,26 @@ class ImplementationParams
 /// Struct
 /// Represents a location inside a resource, such as a line inside a text file.
 class Location implements ToJson {
-  Location({required this.range, required this.uri});
+  Location({required this.uri, required this.range});
 
   factory Location.fromJson(Map<String, Object?> json) {
-    final rangeJson = json['range']!;
-    final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
 
-    return Location(range: range, uri: uri);
+    return Location(uri: uri, range: range);
   }
 
-  final Range range;
-
   final Uri uri;
+
+  final Range range;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['range'] = range.toJson();
     json['uri'] = uri;
+    json['range'] = range.toJson();
 
     return json;
   }
@@ -452,8 +452,8 @@ class ImplementationRegistrationOptions
         StaticRegistrationOptions {
   ImplementationRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory ImplementationRegistrationOptions.fromJson(
@@ -504,44 +504,44 @@ class TypeDefinitionParams
         WorkDoneProgressParams,
         PartialResultParams {
   TypeDefinitionParams({
-    required this.partialResultToken,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory TypeDefinitionParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return TypeDefinitionParams(
-      partialResultToken: partialResultToken,
-      position: position,
       textDocument: textDocument,
+      position: position,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// An optional token that a server can use to report partial results (e.g.
-  /// streaming) to the client.
+  /// The text document.
   @override
-  final ProgressToken? partialResultToken;
+  final TextDocumentIdentifier textDocument;
 
   /// The position inside the text document.
   @override
   final Position position;
 
-  /// The text document.
+  /// An optional token that a server can use to report partial results (e.g.
+  /// streaming) to the client.
   @override
-  final TextDocumentIdentifier textDocument;
+  final ProgressToken? partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -550,9 +550,9 @@ class TypeDefinitionParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -567,8 +567,8 @@ class TypeDefinitionRegistrationOptions
         StaticRegistrationOptions {
   TypeDefinitionRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory TypeDefinitionRegistrationOptions.fromJson(
@@ -615,29 +615,29 @@ class TypeDefinitionRegistrationOptions
 /// Struct
 /// A workspace folder inside a client.
 class WorkspaceFolder implements ToJson {
-  WorkspaceFolder({required this.name, required this.uri});
+  WorkspaceFolder({required this.uri, required this.name});
 
   factory WorkspaceFolder.fromJson(Map<String, Object?> json) {
-    final nameJson = json['name']!;
-    final name = (nameJson as String);
     final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+    final nameJson = json['name']!;
+    final name = (nameJson as String);
 
-    return WorkspaceFolder(name: name, uri: uri);
+    return WorkspaceFolder(uri: uri, name: name);
   }
+
+  /// The associated URI for this workspace folder.
+  final Uri uri;
 
   /// The name of the workspace folder. Used to refer to this workspace
   /// folder in the user interface.
   final String name;
 
-  /// The associated URI for this workspace folder.
-  final Uri uri;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['name'] = name;
     json['uri'] = uri;
+    json['name'] = name;
 
     return json;
   }
@@ -697,35 +697,35 @@ class ConfigurationParams implements ToJson {
 class DocumentColorParams
     implements WorkDoneProgressParams, PartialResultParams {
   DocumentColorParams({
-    required this.partialResultToken,
     required this.textDocument,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory DocumentColorParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DocumentColorParams(
-      partialResultToken: partialResultToken,
       textDocument: textDocument,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -734,8 +734,8 @@ class DocumentColorParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
     json['textDocument'] = textDocument.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -745,28 +745,28 @@ class DocumentColorParams
 /// Struct
 /// Represents a color range from a document.
 class ColorInformation implements ToJson {
-  ColorInformation({required this.color, required this.range});
+  ColorInformation({required this.range, required this.color});
 
   factory ColorInformation.fromJson(Map<String, Object?> json) {
-    final colorJson = json['color']!;
-    final color = Color.fromJson((colorJson as Map<String, Object?>));
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final colorJson = json['color']!;
+    final color = Color.fromJson((colorJson as Map<String, Object?>));
 
-    return ColorInformation(color: color, range: range);
+    return ColorInformation(range: range, color: color);
   }
-
-  /// The actual color value for this color range.
-  final Color color;
 
   /// The range in the document where this color appears.
   final Range range;
 
+  /// The actual color value for this color range.
+  final Color color;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['color'] = color.toJson();
     json['range'] = range.toJson();
+    json['color'] = color.toJson();
 
     return json;
   }
@@ -780,8 +780,8 @@ class DocumentColorRegistrationOptions
         StaticRegistrationOptions {
   DocumentColorRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory DocumentColorRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -828,49 +828,49 @@ class DocumentColorRegistrationOptions
 class ColorPresentationParams
     implements WorkDoneProgressParams, PartialResultParams {
   ColorPresentationParams({
-    required this.color,
-    required this.partialResultToken,
-    required this.range,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.color,
+    required this.range,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory ColorPresentationParams.fromJson(Map<String, Object?> json) {
-    final colorJson = json['color']!;
-    final color = Color.fromJson((colorJson as Map<String, Object?>));
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final rangeJson = json['range']!;
-    final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final colorJson = json['color']!;
+    final color = Color.fromJson((colorJson as Map<String, Object?>));
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return ColorPresentationParams(
-      color: color,
-      partialResultToken: partialResultToken,
-      range: range,
       textDocument: textDocument,
+      color: color,
+      range: range,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
 
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
+
   /// The color to request presentations for.
   final Color color;
+
+  /// The range where the color would be inserted. Serves as a context.
+  final Range range;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// The range where the color would be inserted. Serves as a context.
-  final Range range;
-
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -879,10 +879,10 @@ class ColorPresentationParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['color'] = color.toJson();
-    json['partialResultToken'] = partialResultToken;
-    json['range'] = range.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['color'] = color.toJson();
+    json['range'] = range.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -892,36 +892,36 @@ class ColorPresentationParams
 /// Struct
 class ColorPresentation implements ToJson {
   ColorPresentation({
-    required this.additionalTextEdits,
     required this.label,
-    required this.textEdit,
+    this.additionalTextEdits,
+    this.textEdit,
   });
 
   factory ColorPresentation.fromJson(Map<String, Object?> json) {
-    final additionalTextEditsJson = json['additionalTextEdits'];
-    final additionalTextEdits = (additionalTextEditsJson as List<TextEdit>?);
     final labelJson = json['label']!;
     final label = (labelJson as String);
+    final additionalTextEditsJson = json['additionalTextEdits'];
+    final additionalTextEdits = (additionalTextEditsJson as List<TextEdit>?);
     final textEditJson = json['textEdit'];
     final textEdit = (textEditJson as TextEdit?);
 
     return ColorPresentation(
-      additionalTextEdits: additionalTextEdits,
       label: label,
+      additionalTextEdits: additionalTextEdits,
       textEdit: textEdit,
     );
   }
+
+  /// The label of this color presentation. It will be shown on the color
+  /// picker header. By default this is also the text that is inserted when
+  /// selecting this color presentation.
+  final String label;
 
   /// An optional array of additional {@link TextEdit text edits} that are
   /// applied when selecting this color presentation. Edits must not overlap
   /// with the main {@link ColorPresentation.textEdit edit} nor with
   /// themselves.
   final List<TextEdit>? additionalTextEdits;
-
-  /// The label of this color presentation. It will be shown on the color
-  /// picker header. By default this is also the text that is inserted when
-  /// selecting this color presentation.
-  final String label;
 
   /// An {@link TextEdit edit} which is applied to a document when selecting
   /// this presentation for the color. When `falsy` the {@link
@@ -931,8 +931,8 @@ class ColorPresentation implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['additionalTextEdits'] = additionalTextEdits;
     json['label'] = label;
+    json['additionalTextEdits'] = additionalTextEdits;
     json['textEdit'] = textEdit?.toJson();
 
     return json;
@@ -941,7 +941,7 @@ class ColorPresentation implements ToJson {
 
 /// Struct
 class WorkDoneProgressOptions implements ToJson {
-  WorkDoneProgressOptions({required this.workDoneProgress});
+  WorkDoneProgressOptions({this.workDoneProgress});
 
   factory WorkDoneProgressOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -991,35 +991,35 @@ class TextDocumentRegistrationOptions implements ToJson {
 class FoldingRangeParams
     implements WorkDoneProgressParams, PartialResultParams {
   FoldingRangeParams({
-    required this.partialResultToken,
     required this.textDocument,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory FoldingRangeParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return FoldingRangeParams(
-      partialResultToken: partialResultToken,
       textDocument: textDocument,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -1028,8 +1028,8 @@ class FoldingRangeParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
     json['textDocument'] = textDocument.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -1042,37 +1042,47 @@ class FoldingRangeParams
 /// free to ignore invalid ranges.
 class FoldingRange implements ToJson {
   FoldingRange({
-    required this.collapsedText,
-    required this.endCharacter,
-    required this.endLine,
-    required this.kind,
-    required this.startCharacter,
     required this.startLine,
+    required this.endLine,
+    this.collapsedText,
+    this.kind,
+    this.endCharacter,
+    this.startCharacter,
   });
 
   factory FoldingRange.fromJson(Map<String, Object?> json) {
-    final collapsedTextJson = json['collapsedText'];
-    final collapsedText = (collapsedTextJson as String?);
-    final endCharacterJson = json['endCharacter'];
-    final endCharacter = (endCharacterJson as int?);
-    final endLineJson = json['endLine']!;
-    final endLine = (endLineJson as int);
-    final kindJson = json['kind'];
-    final kind = (kindJson as FoldingRangeKind?);
-    final startCharacterJson = json['startCharacter'];
-    final startCharacter = (startCharacterJson as int?);
     final startLineJson = json['startLine']!;
     final startLine = (startLineJson as int);
+    final endLineJson = json['endLine']!;
+    final endLine = (endLineJson as int);
+    final collapsedTextJson = json['collapsedText'];
+    final collapsedText = (collapsedTextJson as String?);
+    final kindJson = json['kind'];
+    final kind = (kindJson as FoldingRangeKind?);
+    final endCharacterJson = json['endCharacter'];
+    final endCharacter = (endCharacterJson as int?);
+    final startCharacterJson = json['startCharacter'];
+    final startCharacter = (startCharacterJson as int?);
 
     return FoldingRange(
-      collapsedText: collapsedText,
-      endCharacter: endCharacter,
-      endLine: endLine,
-      kind: kind,
-      startCharacter: startCharacter,
       startLine: startLine,
+      endLine: endLine,
+      collapsedText: collapsedText,
+      kind: kind,
+      endCharacter: endCharacter,
+      startCharacter: startCharacter,
     );
   }
+
+  /// The zero-based start line of the range to fold. The folded area starts
+  /// after the line's last character. To be valid, the end must be zero or
+  /// larger and smaller than the number of lines in the document.
+  final int startLine;
+
+  /// The zero-based end line of the range to fold. The folded area ends with
+  /// the line's last character. To be valid, the end must be zero or larger
+  /// and smaller than the number of lines in the document.
+  final int endLine;
 
   /// The text that the client should show when the specified range is
   /// collapsed. If not defined or not supported by the client, a default
@@ -1080,39 +1090,29 @@ class FoldingRange implements ToJson {
   /// @since 3.17.0
   final String? collapsedText;
 
-  /// The zero-based character offset before the folded range ends. If not
-  /// defined, defaults to the length of the end line.
-  final int? endCharacter;
-
-  /// The zero-based end line of the range to fold. The folded area ends with
-  /// the line's last character. To be valid, the end must be zero or larger
-  /// and smaller than the number of lines in the document.
-  final int endLine;
-
   /// Describes the kind of the folding range such as `comment' or 'region'.
   /// The kind is used to categorize folding ranges and used by commands like
   /// 'Fold all comments'. See {@link FoldingRangeKind} for an enumeration of
   /// standardized kinds.
   final FoldingRangeKind? kind;
 
+  /// The zero-based character offset before the folded range ends. If not
+  /// defined, defaults to the length of the end line.
+  final int? endCharacter;
+
   /// The zero-based character offset from where the folded range starts. If
   /// not defined, defaults to the length of the start line.
   final int? startCharacter;
 
-  /// The zero-based start line of the range to fold. The folded area starts
-  /// after the line's last character. To be valid, the end must be zero or
-  /// larger and smaller than the number of lines in the document.
-  final int startLine;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['collapsedText'] = collapsedText;
-    json['endCharacter'] = endCharacter;
-    json['endLine'] = endLine;
-    json['kind'] = kind?.value;
-    json['startCharacter'] = startCharacter;
     json['startLine'] = startLine;
+    json['endLine'] = endLine;
+    json['collapsedText'] = collapsedText;
+    json['kind'] = kind?.value;
+    json['endCharacter'] = endCharacter;
+    json['startCharacter'] = startCharacter;
 
     return json;
   }
@@ -1126,8 +1126,8 @@ class FoldingRangeRegistrationOptions
         StaticRegistrationOptions {
   FoldingRangeRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory FoldingRangeRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -1176,44 +1176,44 @@ class DeclarationParams
         WorkDoneProgressParams,
         PartialResultParams {
   DeclarationParams({
-    required this.partialResultToken,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory DeclarationParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DeclarationParams(
-      partialResultToken: partialResultToken,
-      position: position,
       textDocument: textDocument,
+      position: position,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// An optional token that a server can use to report partial results (e.g.
-  /// streaming) to the client.
+  /// The text document.
   @override
-  final ProgressToken? partialResultToken;
+  final TextDocumentIdentifier textDocument;
 
   /// The position inside the text document.
   @override
   final Position position;
 
-  /// The text document.
+  /// An optional token that a server can use to report partial results (e.g.
+  /// streaming) to the client.
   @override
-  final TextDocumentIdentifier textDocument;
+  final ProgressToken? partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -1222,9 +1222,9 @@ class DeclarationParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -1239,8 +1239,8 @@ class DeclarationRegistrationOptions
         StaticRegistrationOptions {
   DeclarationRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory DeclarationRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -1287,42 +1287,42 @@ class DeclarationRegistrationOptions
 class SelectionRangeParams
     implements WorkDoneProgressParams, PartialResultParams {
   SelectionRangeParams({
-    required this.partialResultToken,
-    required this.positions,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.positions,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory SelectionRangeParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final positionsJson = json['positions']!;
-    final positions = (positionsJson as List<Position>);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionsJson = json['positions']!;
+    final positions = (positionsJson as List<Position>);
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return SelectionRangeParams(
-      partialResultToken: partialResultToken,
-      positions: positions,
       textDocument: textDocument,
+      positions: positions,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
+
+  /// The positions inside the text document.
+  final List<Position> positions;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// The positions inside the text document.
-  final List<Position> positions;
-
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -1331,9 +1331,9 @@ class SelectionRangeParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
-    json['positions'] = positions;
     json['textDocument'] = textDocument.toJson();
+    json['positions'] = positions;
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -1344,29 +1344,29 @@ class SelectionRangeParams
 /// A selection range represents a part of a selection hierarchy. A selection
 /// range may have a parent selection range that contains it.
 class SelectionRange implements ToJson {
-  SelectionRange({required this.parent, required this.range});
+  SelectionRange({required this.range, this.parent});
 
   factory SelectionRange.fromJson(Map<String, Object?> json) {
-    final parentJson = json['parent'];
-    final parent = (parentJson as SelectionRange?);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final parentJson = json['parent'];
+    final parent = (parentJson as SelectionRange?);
 
-    return SelectionRange(parent: parent, range: range);
+    return SelectionRange(range: range, parent: parent);
   }
+
+  /// The {@link Range range} of this selection range.
+  final Range range;
 
   /// The parent selection range containing this range. Therefore
   /// `parent.range` must contain `this.range`.
   final SelectionRange? parent;
 
-  /// The {@link Range range} of this selection range.
-  final Range range;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['parent'] = parent?.toJson();
     json['range'] = range.toJson();
+    json['parent'] = parent?.toJson();
 
     return json;
   }
@@ -1380,8 +1380,8 @@ class SelectionRangeRegistrationOptions
         StaticRegistrationOptions {
   SelectionRangeRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory SelectionRangeRegistrationOptions.fromJson(
@@ -1477,35 +1477,35 @@ class WorkDoneProgressCancelParams implements ToJson {
 class CallHierarchyPrepareParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
   CallHierarchyPrepareParams({
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.workDoneToken,
   });
 
   factory CallHierarchyPrepareParams.fromJson(Map<String, Object?> json) {
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return CallHierarchyPrepareParams(
-      position: position,
       textDocument: textDocument,
+      position: position,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The position inside the text document.
-  @override
-  final Position position;
-
   /// The text document.
   @override
   final TextDocumentIdentifier textDocument;
+
+  /// The position inside the text document.
+  @override
+  final Position position;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -1514,8 +1514,8 @@ class CallHierarchyPrepareParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -1528,61 +1528,57 @@ class CallHierarchyPrepareParams
 /// @since 3.16.0
 class CallHierarchyItem implements ToJson {
   CallHierarchyItem({
-    required this.data,
-    required this.detail,
-    required this.kind,
     required this.name,
+    required this.kind,
+    required this.uri,
     required this.range,
     required this.selectionRange,
-    required this.tags,
-    required this.uri,
+    this.data,
+    this.detail,
+    this.tags,
   });
 
   factory CallHierarchyItem.fromJson(Map<String, Object?> json) {
-    final dataJson = json['data'];
-    final data = (dataJson as LSPAny?);
-    final detailJson = json['detail'];
-    final detail = (detailJson as String?);
+    final nameJson = json['name']!;
+    final name = (nameJson as String);
     final kindJson = json['kind']!;
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final nameJson = json['name']!;
-    final name = (nameJson as String);
+    final uriJson = json['uri']!;
+    final uri = (uriJson as Uri);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final selectionRangeJson = json['selectionRange']!;
     final selectionRange = Range.fromJson(
       (selectionRangeJson as Map<String, Object?>),
     );
+    final dataJson = json['data'];
+    final data = (dataJson as LSPAny?);
+    final detailJson = json['detail'];
+    final detail = (detailJson as String?);
     final tagsJson = json['tags'];
     final tags = (tagsJson as List<SymbolTag>?);
-    final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
 
     return CallHierarchyItem(
-      data: data,
-      detail: detail,
-      kind: kind,
       name: name,
+      kind: kind,
+      uri: uri,
       range: range,
       selectionRange: selectionRange,
+      data: data,
+      detail: detail,
       tags: tags,
-      uri: uri,
     );
   }
 
-  /// A data entry field that is preserved between a call hierarchy prepare
-  /// and incoming calls or outgoing calls requests.
-  final LSPAny? data;
-
-  /// More detail for this item, e.g. the signature of a function.
-  final String? detail;
+  /// The name of this item.
+  final String name;
 
   /// The kind of this item.
   final SymbolKind kind;
 
-  /// The name of this item.
-  final String name;
+  /// The resource identifier of this item.
+  final Uri uri;
 
   /// The range enclosing this symbol not including leading/trailing
   /// whitespace but everything else, e.g. comments and code.
@@ -1593,23 +1589,27 @@ class CallHierarchyItem implements ToJson {
   /// {@link CallHierarchyItem.range `range`}.
   final Range selectionRange;
 
+  /// A data entry field that is preserved between a call hierarchy prepare
+  /// and incoming calls or outgoing calls requests.
+  final LSPAny? data;
+
+  /// More detail for this item, e.g. the signature of a function.
+  final String? detail;
+
   /// Tags for this item.
   final List<SymbolTag>? tags;
-
-  /// The resource identifier of this item.
-  final Uri uri;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['data'] = data;
-    json['detail'] = detail;
-    json['kind'] = kind.value;
     json['name'] = name;
+    json['kind'] = kind.value;
+    json['uri'] = uri;
     json['range'] = range.toJson();
     json['selectionRange'] = selectionRange.toJson();
+    json['data'] = data;
+    json['detail'] = detail;
     json['tags'] = tags;
-    json['uri'] = uri;
 
     return json;
   }
@@ -1625,8 +1625,8 @@ class CallHierarchyRegistrationOptions
         StaticRegistrationOptions {
   CallHierarchyRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory CallHierarchyRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -1675,8 +1675,8 @@ class CallHierarchyIncomingCallsParams
     implements WorkDoneProgressParams, PartialResultParams {
   CallHierarchyIncomingCallsParams({
     required this.item,
-    required this.partialResultToken,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory CallHierarchyIncomingCallsParams.fromJson(Map<String, Object?> json) {
@@ -1755,8 +1755,8 @@ class CallHierarchyOutgoingCallsParams
     implements WorkDoneProgressParams, PartialResultParams {
   CallHierarchyOutgoingCallsParams({
     required this.item,
-    required this.partialResultToken,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory CallHierarchyOutgoingCallsParams.fromJson(Map<String, Object?> json) {
@@ -1801,16 +1801,19 @@ class CallHierarchyOutgoingCallsParams
 /// method from a constructor etc.
 /// @since 3.16.0
 class CallHierarchyOutgoingCall implements ToJson {
-  CallHierarchyOutgoingCall({required this.fromRanges, required this.to});
+  CallHierarchyOutgoingCall({required this.to, required this.fromRanges});
 
   factory CallHierarchyOutgoingCall.fromJson(Map<String, Object?> json) {
-    final fromRangesJson = json['fromRanges']!;
-    final fromRanges = (fromRangesJson as List<Range>);
     final toJson = json['to']!;
     final to = CallHierarchyItem.fromJson((toJson as Map<String, Object?>));
+    final fromRangesJson = json['fromRanges']!;
+    final fromRanges = (fromRangesJson as List<Range>);
 
-    return CallHierarchyOutgoingCall(fromRanges: fromRanges, to: to);
+    return CallHierarchyOutgoingCall(to: to, fromRanges: fromRanges);
   }
+
+  /// The item that is called.
+  final CallHierarchyItem to;
 
   /// The range at which this item is called. This is the range relative to
   /// the caller, e.g the item passed to {@link
@@ -1819,14 +1822,11 @@ class CallHierarchyOutgoingCall implements ToJson {
   /// CallHierarchyOutgoingCall.to `this.to`}.
   final List<Range> fromRanges;
 
-  /// The item that is called.
-  final CallHierarchyItem to;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['fromRanges'] = fromRanges;
     json['to'] = to.toJson();
+    json['fromRanges'] = fromRanges;
 
     return json;
   }
@@ -1837,35 +1837,35 @@ class CallHierarchyOutgoingCall implements ToJson {
 class SemanticTokensParams
     implements WorkDoneProgressParams, PartialResultParams {
   SemanticTokensParams({
-    required this.partialResultToken,
     required this.textDocument,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory SemanticTokensParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return SemanticTokensParams(
-      partialResultToken: partialResultToken,
       textDocument: textDocument,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -1874,8 +1874,8 @@ class SemanticTokensParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
     json['textDocument'] = textDocument.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -1885,7 +1885,7 @@ class SemanticTokensParams
 /// Struct
 /// @since 3.16.0
 class SemanticTokens implements ToJson {
-  SemanticTokens({required this.data, required this.resultId});
+  SemanticTokens({required this.data, this.resultId});
 
   factory SemanticTokens.fromJson(Map<String, Object?> json) {
     final dataJson = json['data']!;
@@ -1947,11 +1947,11 @@ class SemanticTokensRegistrationOptions
         StaticRegistrationOptions {
   SemanticTokensRegistrationOptions({
     required this.documentSelector,
-    required this.full,
-    required this.id,
     required this.legend,
-    required this.range,
-    required this.workDoneProgress,
+    this.id,
+    this.full,
+    this.range,
+    this.workDoneProgress,
   });
 
   factory SemanticTokensRegistrationOptions.fromJson(
@@ -1959,14 +1959,14 @@ class SemanticTokensRegistrationOptions
   ) {
     final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
-    final fullJson = json['full'];
-    final full = (fullJson as OrRefType?);
-    final idJson = json['id'];
-    final id = (idJson as String?);
     final legendJson = json['legend']!;
     final legend = SemanticTokensLegend.fromJson(
       (legendJson as Map<String, Object?>),
     );
+    final idJson = json['id'];
+    final id = (idJson as String?);
+    final fullJson = json['full'];
+    final full = (fullJson as OrRefType?);
     final rangeJson = json['range'];
     final range = (rangeJson as OrRefType?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1974,9 +1974,9 @@ class SemanticTokensRegistrationOptions
 
     return SemanticTokensRegistrationOptions(
       documentSelector: documentSelector,
-      full: full,
-      id: id,
       legend: legend,
+      id: id,
+      full: full,
       range: range,
       workDoneProgress: workDoneProgress,
     );
@@ -1987,18 +1987,18 @@ class SemanticTokensRegistrationOptions
   @override
   final OrRefType documentSelector;
 
-  /// Server supports providing semantic tokens for a full document.
+  /// The legend used by the server
   @override
-  final OrRefType? full;
+  final SemanticTokensLegend legend;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
   final String? id;
 
-  /// The legend used by the server
+  /// Server supports providing semantic tokens for a full document.
   @override
-  final SemanticTokensLegend legend;
+  final OrRefType? full;
 
   /// Server supports providing semantic tokens for a specific range of a
   /// document.
@@ -2012,9 +2012,9 @@ class SemanticTokensRegistrationOptions
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['documentSelector'] = documentSelector;
-    json['full'] = full;
-    json['id'] = id;
     json['legend'] = legend.toJson();
+    json['id'] = id;
+    json['full'] = full;
     json['range'] = range;
     json['workDoneProgress'] = workDoneProgress;
 
@@ -2027,44 +2027,44 @@ class SemanticTokensRegistrationOptions
 class SemanticTokensDeltaParams
     implements WorkDoneProgressParams, PartialResultParams {
   SemanticTokensDeltaParams({
-    required this.partialResultToken,
-    required this.previousResultId,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.previousResultId,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory SemanticTokensDeltaParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final previousResultIdJson = json['previousResultId']!;
-    final previousResultId = (previousResultIdJson as String);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final previousResultIdJson = json['previousResultId']!;
+    final previousResultId = (previousResultIdJson as String);
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return SemanticTokensDeltaParams(
-      partialResultToken: partialResultToken,
-      previousResultId: previousResultId,
       textDocument: textDocument,
+      previousResultId: previousResultId,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// An optional token that a server can use to report partial results (e.g.
-  /// streaming) to the client.
-  @override
-  final ProgressToken? partialResultToken;
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
 
   /// The result id of a previous response. The result Id can either point to
   /// a full response or a delta response depending on what was received
   /// last.
   final String previousResultId;
 
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
+  /// An optional token that a server can use to report partial results (e.g.
+  /// streaming) to the client.
+  @override
+  final ProgressToken? partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -2073,9 +2073,9 @@ class SemanticTokensDeltaParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
-    json['previousResultId'] = previousResultId;
     json['textDocument'] = textDocument.toJson();
+    json['previousResultId'] = previousResultId;
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -2085,7 +2085,7 @@ class SemanticTokensDeltaParams
 /// Struct
 /// @since 3.16.0
 class SemanticTokensDelta implements ToJson {
-  SemanticTokensDelta({required this.edits, required this.resultId});
+  SemanticTokensDelta({required this.edits, this.resultId});
 
   factory SemanticTokensDelta.fromJson(Map<String, Object?> json) {
     final editsJson = json['edits']!;
@@ -2140,42 +2140,42 @@ class SemanticTokensDeltaPartialResult implements ToJson {
 class SemanticTokensRangeParams
     implements WorkDoneProgressParams, PartialResultParams {
   SemanticTokensRangeParams({
-    required this.partialResultToken,
-    required this.range,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.range,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory SemanticTokensRangeParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final rangeJson = json['range']!;
-    final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return SemanticTokensRangeParams(
-      partialResultToken: partialResultToken,
-      range: range,
       textDocument: textDocument,
+      range: range,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
+
+  /// The range the semantic tokens are requested for.
+  final Range range;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// The range the semantic tokens are requested for.
-  final Range range;
-
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -2184,9 +2184,9 @@ class SemanticTokensRangeParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
-    json['range'] = range.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['range'] = range.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -2198,34 +2198,32 @@ class SemanticTokensRangeParams
 /// @since 3.16.0
 class ShowDocumentParams implements ToJson {
   ShowDocumentParams({
-    required this.external,
-    required this.selection,
-    required this.takeFocus,
     required this.uri,
+    this.selection,
+    this.takeFocus,
+    this.external,
   });
 
   factory ShowDocumentParams.fromJson(Map<String, Object?> json) {
-    final externalJson = json['external'];
-    final external = (externalJson as bool?);
+    final uriJson = json['uri']!;
+    final uri = (uriJson as Uri);
     final selectionJson = json['selection'];
     final selection = (selectionJson as Range?);
     final takeFocusJson = json['takeFocus'];
     final takeFocus = (takeFocusJson as bool?);
-    final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final externalJson = json['external'];
+    final external = (externalJson as bool?);
 
     return ShowDocumentParams(
-      external: external,
+      uri: uri,
       selection: selection,
       takeFocus: takeFocus,
-      uri: uri,
+      external: external,
     );
   }
 
-  /// Indicates to show the resource in an external program. To show, for
-  /// example, `https://code.visualstudio.com/` in the default WEB browser
-  /// set `external` to `true`.
-  final bool? external;
+  /// The uri to show.
+  final Uri uri;
 
   /// An optional selection range if the document is a text document. Clients
   /// might ignore the property if an external program is started or the file
@@ -2237,16 +2235,18 @@ class ShowDocumentParams implements ToJson {
   /// if an external program is started.
   final bool? takeFocus;
 
-  /// The uri to show.
-  final Uri uri;
+  /// Indicates to show the resource in an external program. To show, for
+  /// example, `https://code.visualstudio.com/` in the default WEB browser
+  /// set `external` to `true`.
+  final bool? external;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['external'] = external;
+    json['uri'] = uri;
     json['selection'] = selection?.toJson();
     json['takeFocus'] = takeFocus;
-    json['uri'] = uri;
+    json['external'] = external;
 
     return json;
   }
@@ -2281,35 +2281,35 @@ class ShowDocumentResult implements ToJson {
 class LinkedEditingRangeParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
   LinkedEditingRangeParams({
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.workDoneToken,
   });
 
   factory LinkedEditingRangeParams.fromJson(Map<String, Object?> json) {
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return LinkedEditingRangeParams(
-      position: position,
       textDocument: textDocument,
+      position: position,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The position inside the text document.
-  @override
-  final Position position;
-
   /// The text document.
   @override
   final TextDocumentIdentifier textDocument;
+
+  /// The position inside the text document.
+  @override
+  final Position position;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -2318,8 +2318,8 @@ class LinkedEditingRangeParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -2330,7 +2330,7 @@ class LinkedEditingRangeParams
 /// The result of a linked editing range request.
 /// @since 3.16.0
 class LinkedEditingRanges implements ToJson {
-  LinkedEditingRanges({required this.ranges, required this.wordPattern});
+  LinkedEditingRanges({required this.ranges, this.wordPattern});
 
   factory LinkedEditingRanges.fromJson(Map<String, Object?> json) {
     final rangesJson = json['ranges']!;
@@ -2369,8 +2369,8 @@ class LinkedEditingRangeRegistrationOptions
         StaticRegistrationOptions {
   LinkedEditingRangeRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory LinkedEditingRangeRegistrationOptions.fromJson(
@@ -2455,26 +2455,22 @@ class CreateFilesParams implements ToJson {
 /// from the failure is described by the client capability:
 /// `workspace.workspaceEdit.failureHandling`
 class WorkspaceEdit implements ToJson {
-  WorkspaceEdit({
-    required this.changeAnnotations,
-    required this.changes,
-    required this.documentChanges,
-  });
+  WorkspaceEdit({this.changeAnnotations, this.documentChanges, this.changes});
 
   factory WorkspaceEdit.fromJson(Map<String, Object?> json) {
     final changeAnnotationsJson = json['changeAnnotations'];
     final changeAnnotations =
         (changeAnnotationsJson
             as Map<ChangeAnnotationIdentifier, ChangeAnnotation>?);
-    final changesJson = json['changes'];
-    final changes = (changesJson as Map<Uri, List<TextEdit>>?);
     final documentChangesJson = json['documentChanges'];
     final documentChanges = (documentChangesJson as List<OrRefType>?);
+    final changesJson = json['changes'];
+    final changes = (changesJson as Map<Uri, List<TextEdit>>?);
 
     return WorkspaceEdit(
       changeAnnotations: changeAnnotations,
-      changes: changes,
       documentChanges: documentChanges,
+      changes: changes,
     );
   }
 
@@ -2485,9 +2481,6 @@ class WorkspaceEdit implements ToJson {
   /// `workspace.changeAnnotationSupport`.
   /// @since 3.16.0
   final Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations;
-
-  /// Holds changes to existing resources.
-  final Map<Uri, List<TextEdit>>? changes;
 
   /// Depending on the client capability
   /// `workspace.workspaceEdit.resourceOperations` document changes are
@@ -2503,12 +2496,15 @@ class WorkspaceEdit implements ToJson {
   /// `TextEdit`s using the `changes` property are supported.
   final List<OrRefType>? documentChanges;
 
+  /// Holds changes to existing resources.
+  final Map<Uri, List<TextEdit>>? changes;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['changeAnnotations'] = changeAnnotations;
-    json['changes'] = changes;
     json['documentChanges'] = documentChanges;
+    json['changes'] = changes;
 
     return json;
   }
@@ -2599,44 +2595,44 @@ class MonikerParams
         WorkDoneProgressParams,
         PartialResultParams {
   MonikerParams({
-    required this.partialResultToken,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory MonikerParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return MonikerParams(
-      partialResultToken: partialResultToken,
-      position: position,
       textDocument: textDocument,
+      position: position,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// An optional token that a server can use to report partial results (e.g.
-  /// streaming) to the client.
+  /// The text document.
   @override
-  final ProgressToken? partialResultToken;
+  final TextDocumentIdentifier textDocument;
 
   /// The position inside the text document.
   @override
   final Position position;
 
-  /// The text document.
+  /// An optional token that a server can use to report partial results (e.g.
+  /// streaming) to the client.
   @override
-  final TextDocumentIdentifier textDocument;
+  final ProgressToken? partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -2645,9 +2641,9 @@ class MonikerParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -2659,51 +2655,51 @@ class MonikerParams
 /// @since 3.16.0
 class Moniker implements ToJson {
   Moniker({
-    required this.identifier,
-    required this.kind,
     required this.scheme,
+    required this.identifier,
     required this.unique,
+    this.kind,
   });
 
   factory Moniker.fromJson(Map<String, Object?> json) {
-    final identifierJson = json['identifier']!;
-    final identifier = (identifierJson as String);
-    final kindJson = json['kind'];
-    final kind = (kindJson as MonikerKind?);
     final schemeJson = json['scheme']!;
     final scheme = (schemeJson as String);
+    final identifierJson = json['identifier']!;
+    final identifier = (identifierJson as String);
     final uniqueJson = json['unique']!;
     // Handle enum type
     final unique = _i1.$enumDecode(_$UniquenessLevelEnumMap, uniqueJson);
+    final kindJson = json['kind'];
+    final kind = (kindJson as MonikerKind?);
 
     return Moniker(
-      identifier: identifier,
-      kind: kind,
       scheme: scheme,
+      identifier: identifier,
       unique: unique,
+      kind: kind,
     );
   }
+
+  /// The scheme of the moniker. For example tsc or .Net
+  final String scheme;
 
   /// The identifier of the moniker. The value is opaque in LSIF however
   /// schema owners are allowed to define the structure if they want.
   final String identifier;
 
-  /// The moniker kind if known.
-  final MonikerKind? kind;
-
-  /// The scheme of the moniker. For example tsc or .Net
-  final String scheme;
-
   /// The scope in which the moniker is unique
   final UniquenessLevel unique;
+
+  /// The moniker kind if known.
+  final MonikerKind? kind;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['identifier'] = identifier;
-    json['kind'] = kind?.value;
     json['scheme'] = scheme;
+    json['identifier'] = identifier;
     json['unique'] = unique.value;
+    json['kind'] = kind?.value;
 
     return json;
   }
@@ -2714,7 +2710,7 @@ class MonikerRegistrationOptions
     implements TextDocumentRegistrationOptions, MonikerOptions {
   MonikerRegistrationOptions({
     required this.documentSelector,
-    required this.workDoneProgress,
+    this.workDoneProgress,
   });
 
   factory MonikerRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -2753,35 +2749,35 @@ class MonikerRegistrationOptions
 class TypeHierarchyPrepareParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
   TypeHierarchyPrepareParams({
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.workDoneToken,
   });
 
   factory TypeHierarchyPrepareParams.fromJson(Map<String, Object?> json) {
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return TypeHierarchyPrepareParams(
-      position: position,
       textDocument: textDocument,
+      position: position,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The position inside the text document.
-  @override
-  final Position position;
-
   /// The text document.
   @override
   final TextDocumentIdentifier textDocument;
+
+  /// The position inside the text document.
+  @override
+  final Position position;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -2790,8 +2786,8 @@ class TypeHierarchyPrepareParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -2802,63 +2798,57 @@ class TypeHierarchyPrepareParams
 /// @since 3.17.0
 class TypeHierarchyItem implements ToJson {
   TypeHierarchyItem({
-    required this.data,
-    required this.detail,
-    required this.kind,
     required this.name,
+    required this.kind,
+    required this.uri,
     required this.range,
     required this.selectionRange,
-    required this.tags,
-    required this.uri,
+    this.data,
+    this.detail,
+    this.tags,
   });
 
   factory TypeHierarchyItem.fromJson(Map<String, Object?> json) {
-    final dataJson = json['data'];
-    final data = (dataJson as LSPAny?);
-    final detailJson = json['detail'];
-    final detail = (detailJson as String?);
+    final nameJson = json['name']!;
+    final name = (nameJson as String);
     final kindJson = json['kind']!;
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final nameJson = json['name']!;
-    final name = (nameJson as String);
+    final uriJson = json['uri']!;
+    final uri = (uriJson as Uri);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final selectionRangeJson = json['selectionRange']!;
     final selectionRange = Range.fromJson(
       (selectionRangeJson as Map<String, Object?>),
     );
+    final dataJson = json['data'];
+    final data = (dataJson as LSPAny?);
+    final detailJson = json['detail'];
+    final detail = (detailJson as String?);
     final tagsJson = json['tags'];
     final tags = (tagsJson as List<SymbolTag>?);
-    final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
 
     return TypeHierarchyItem(
-      data: data,
-      detail: detail,
-      kind: kind,
       name: name,
+      kind: kind,
+      uri: uri,
       range: range,
       selectionRange: selectionRange,
+      data: data,
+      detail: detail,
       tags: tags,
-      uri: uri,
     );
   }
 
-  /// A data entry field that is preserved between a type hierarchy prepare
-  /// and supertypes or subtypes requests. It could also be used to identify
-  /// the type hierarchy in the server, helping improve the performance on
-  /// resolving supertypes and subtypes.
-  final LSPAny? data;
-
-  /// More detail for this item, e.g. the signature of a function.
-  final String? detail;
+  /// The name of this item.
+  final String name;
 
   /// The kind of this item.
   final SymbolKind kind;
 
-  /// The name of this item.
-  final String name;
+  /// The resource identifier of this item.
+  final Uri uri;
 
   /// The range enclosing this symbol not including leading/trailing
   /// whitespace but everything else, e.g. comments and code.
@@ -2869,23 +2859,29 @@ class TypeHierarchyItem implements ToJson {
   /// {@link TypeHierarchyItem.range `range`}.
   final Range selectionRange;
 
+  /// A data entry field that is preserved between a type hierarchy prepare
+  /// and supertypes or subtypes requests. It could also be used to identify
+  /// the type hierarchy in the server, helping improve the performance on
+  /// resolving supertypes and subtypes.
+  final LSPAny? data;
+
+  /// More detail for this item, e.g. the signature of a function.
+  final String? detail;
+
   /// Tags for this item.
   final List<SymbolTag>? tags;
-
-  /// The resource identifier of this item.
-  final Uri uri;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['data'] = data;
-    json['detail'] = detail;
-    json['kind'] = kind.value;
     json['name'] = name;
+    json['kind'] = kind.value;
+    json['uri'] = uri;
     json['range'] = range.toJson();
     json['selectionRange'] = selectionRange.toJson();
+    json['data'] = data;
+    json['detail'] = detail;
     json['tags'] = tags;
-    json['uri'] = uri;
 
     return json;
   }
@@ -2901,8 +2897,8 @@ class TypeHierarchyRegistrationOptions
         StaticRegistrationOptions {
   TypeHierarchyRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory TypeHierarchyRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -2951,8 +2947,8 @@ class TypeHierarchySupertypesParams
     implements WorkDoneProgressParams, PartialResultParams {
   TypeHierarchySupertypesParams({
     required this.item,
-    required this.partialResultToken,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory TypeHierarchySupertypesParams.fromJson(Map<String, Object?> json) {
@@ -2999,8 +2995,8 @@ class TypeHierarchySubtypesParams
     implements WorkDoneProgressParams, PartialResultParams {
   TypeHierarchySubtypesParams({
     required this.item,
-    required this.partialResultToken,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory TypeHierarchySubtypesParams.fromJson(Map<String, Object?> json) {
@@ -3045,43 +3041,43 @@ class TypeHierarchySubtypesParams
 /// @since 3.17.0
 class InlineValueParams implements WorkDoneProgressParams {
   InlineValueParams({
-    required this.context,
-    required this.range,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.range,
+    required this.context,
+    this.workDoneToken,
   });
 
   factory InlineValueParams.fromJson(Map<String, Object?> json) {
-    final contextJson = json['context']!;
-    final context = InlineValueContext.fromJson(
-      (contextJson as Map<String, Object?>),
-    );
-    final rangeJson = json['range']!;
-    final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
+    );
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final contextJson = json['context']!;
+    final context = InlineValueContext.fromJson(
+      (contextJson as Map<String, Object?>),
     );
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return InlineValueParams(
-      context: context,
-      range: range,
       textDocument: textDocument,
+      range: range,
+      context: context,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// Additional information about the context in which inline values were
-  /// requested.
-  final InlineValueContext context;
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
 
   /// The document range for which inline values should be computed.
   final Range range;
 
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
+  /// Additional information about the context in which inline values were
+  /// requested.
+  final InlineValueContext context;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -3090,9 +3086,9 @@ class InlineValueParams implements WorkDoneProgressParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['context'] = context.toJson();
-    json['range'] = range.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['range'] = range.toJson();
+    json['context'] = context.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -3109,8 +3105,8 @@ class InlineValueRegistrationOptions
         StaticRegistrationOptions {
   InlineValueRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory InlineValueRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -3157,33 +3153,33 @@ class InlineValueRegistrationOptions
 /// @since 3.17.0
 class InlayHintParams implements WorkDoneProgressParams {
   InlayHintParams({
-    required this.range,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.range,
+    this.workDoneToken,
   });
 
   factory InlayHintParams.fromJson(Map<String, Object?> json) {
-    final rangeJson = json['range']!;
-    final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return InlayHintParams(
-      range: range,
       textDocument: textDocument,
+      range: range,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The document range for which inlay hints should be computed.
-  final Range range;
-
   /// The text document.
   final TextDocumentIdentifier textDocument;
+
+  /// The document range for which inlay hints should be computed.
+  final Range range;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -3192,8 +3188,8 @@ class InlayHintParams implements WorkDoneProgressParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['range'] = range.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['range'] = range.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -3205,64 +3201,59 @@ class InlayHintParams implements WorkDoneProgressParams {
 /// @since 3.17.0
 class InlayHint implements ToJson {
   InlayHint({
-    required this.data,
-    required this.kind,
-    required this.label,
-    required this.paddingLeft,
-    required this.paddingRight,
     required this.position,
-    required this.textEdits,
-    required this.tooltip,
+    required this.label,
+    this.data,
+    this.paddingRight,
+    this.paddingLeft,
+    this.tooltip,
+    this.textEdits,
+    this.kind,
   });
 
   factory InlayHint.fromJson(Map<String, Object?> json) {
-    final dataJson = json['data'];
-    final data = (dataJson as LSPAny?);
-    final kindJson = json['kind'];
-    final kind = (kindJson as InlayHintKind?);
-    final labelJson = json['label']!;
-    final label = (labelJson as OrRefType);
-    final paddingLeftJson = json['paddingLeft'];
-    final paddingLeft = (paddingLeftJson as bool?);
-    final paddingRightJson = json['paddingRight'];
-    final paddingRight = (paddingRightJson as bool?);
     final positionJson = json['position']!;
     final position = Position.fromJson((positionJson as Map<String, Object?>));
-    final textEditsJson = json['textEdits'];
-    final textEdits = (textEditsJson as List<TextEdit>?);
+    final labelJson = json['label']!;
+    final label = (labelJson as OrRefType);
+    final dataJson = json['data'];
+    final data = (dataJson as LSPAny?);
+    final paddingRightJson = json['paddingRight'];
+    final paddingRight = (paddingRightJson as bool?);
+    final paddingLeftJson = json['paddingLeft'];
+    final paddingLeft = (paddingLeftJson as bool?);
     final tooltipJson = json['tooltip'];
     final tooltip = (tooltipJson as OrRefType?);
+    final textEditsJson = json['textEdits'];
+    final textEdits = (textEditsJson as List<TextEdit>?);
+    final kindJson = json['kind'];
+    final kind = (kindJson as InlayHintKind?);
 
     return InlayHint(
-      data: data,
-      kind: kind,
-      label: label,
-      paddingLeft: paddingLeft,
-      paddingRight: paddingRight,
       position: position,
-      textEdits: textEdits,
+      label: label,
+      data: data,
+      paddingRight: paddingRight,
+      paddingLeft: paddingLeft,
       tooltip: tooltip,
+      textEdits: textEdits,
+      kind: kind,
     );
   }
 
-  /// A data entry field that is preserved on an inlay hint between a
-  /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
-  final LSPAny? data;
-
-  /// The kind of this hint. Can be omitted in which case the client should
-  /// fall back to a reasonable default.
-  final InlayHintKind? kind;
+  /// The position of this hint.
+  /// If multiple hints have the same position, they will be shown in the
+  /// order they appear in the response.
+  final Position position;
 
   /// The label of this hint. A human readable string or an array of
   /// InlayHintLabelPart label parts.
   /// *Note* that neither the string nor the label part can be empty.
   final OrRefType label;
 
-  /// Render padding before the hint.
-  /// Note: Padding should use the editor's background color, not the
-  /// background color of the hint itself. That means padding can be used to
-  /// visually align/separate an inlay hint.
-  final bool? paddingLeft;
+  /// A data entry field that is preserved on an inlay hint between a
+  /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
+  final LSPAny? data;
 
   /// Render padding after the hint.
   /// Note: Padding should use the editor's background color, not the
@@ -3270,10 +3261,14 @@ class InlayHint implements ToJson {
   /// visually align/separate an inlay hint.
   final bool? paddingRight;
 
-  /// The position of this hint.
-  /// If multiple hints have the same position, they will be shown in the
-  /// order they appear in the response.
-  final Position position;
+  /// Render padding before the hint.
+  /// Note: Padding should use the editor's background color, not the
+  /// background color of the hint itself. That means padding can be used to
+  /// visually align/separate an inlay hint.
+  final bool? paddingLeft;
+
+  /// The tooltip text when you hover over this item.
+  final OrRefType? tooltip;
 
   /// Optional text edits that are performed when accepting this inlay hint.
   /// *Note* that edits are expected to change the document so that the inlay
@@ -3281,20 +3276,21 @@ class InlayHint implements ToJson {
   /// hint itself is now obsolete.
   final List<TextEdit>? textEdits;
 
-  /// The tooltip text when you hover over this item.
-  final OrRefType? tooltip;
+  /// The kind of this hint. Can be omitted in which case the client should
+  /// fall back to a reasonable default.
+  final InlayHintKind? kind;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['data'] = data;
-    json['kind'] = kind?.value;
-    json['label'] = label;
-    json['paddingLeft'] = paddingLeft;
-    json['paddingRight'] = paddingRight;
     json['position'] = position.toJson();
-    json['textEdits'] = textEdits;
+    json['label'] = label;
+    json['data'] = data;
+    json['paddingRight'] = paddingRight;
+    json['paddingLeft'] = paddingLeft;
     json['tooltip'] = tooltip;
+    json['textEdits'] = textEdits;
+    json['kind'] = kind?.value;
 
     return json;
   }
@@ -3310,9 +3306,9 @@ class InlayHintRegistrationOptions
         StaticRegistrationOptions {
   InlayHintRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.resolveProvider,
-    required this.workDoneProgress,
+    this.id,
+    this.resolveProvider,
+    this.workDoneProgress,
   });
 
   factory InlayHintRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -3369,35 +3365,41 @@ class InlayHintRegistrationOptions
 class DocumentDiagnosticParams
     implements WorkDoneProgressParams, PartialResultParams {
   DocumentDiagnosticParams({
-    required this.identifier,
-    required this.partialResultToken,
-    required this.previousResultId,
     required this.textDocument,
-    required this.workDoneToken,
+    this.previousResultId,
+    this.identifier,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory DocumentDiagnosticParams.fromJson(Map<String, Object?> json) {
-    final identifierJson = json['identifier'];
-    final identifier = (identifierJson as String?);
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final previousResultIdJson = json['previousResultId'];
-    final previousResultId = (previousResultIdJson as String?);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final previousResultIdJson = json['previousResultId'];
+    final previousResultId = (previousResultIdJson as String?);
+    final identifierJson = json['identifier'];
+    final identifier = (identifierJson as String?);
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DocumentDiagnosticParams(
+      textDocument: textDocument,
+      previousResultId: previousResultId,
       identifier: identifier,
       partialResultToken: partialResultToken,
-      previousResultId: previousResultId,
-      textDocument: textDocument,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
+
+  /// The result id of a previous response if provided.
+  final String? previousResultId;
 
   /// The additional identifier  provided during registration.
   final String? identifier;
@@ -3407,12 +3409,6 @@ class DocumentDiagnosticParams
   @override
   final ProgressToken? partialResultToken;
 
-  /// The result id of a previous response if provided.
-  final String? previousResultId;
-
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
-
   /// An optional token that a server can use to report work done progress.
   @override
   final ProgressToken? workDoneToken;
@@ -3420,10 +3416,10 @@ class DocumentDiagnosticParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['textDocument'] = textDocument.toJson();
+    json['previousResultId'] = previousResultId;
     json['identifier'] = identifier;
     json['partialResultToken'] = partialResultToken;
-    json['previousResultId'] = previousResultId;
-    json['textDocument'] = textDocument.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -3492,34 +3488,34 @@ class DiagnosticRegistrationOptions
         StaticRegistrationOptions {
   DiagnosticRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.identifier,
     required this.interFileDependencies,
-    required this.workDoneProgress,
     required this.workspaceDiagnostics,
+    this.id,
+    this.identifier,
+    this.workDoneProgress,
   });
 
   factory DiagnosticRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
+    final interFileDependenciesJson = json['interFileDependencies']!;
+    final interFileDependencies = (interFileDependenciesJson as bool);
+    final workspaceDiagnosticsJson = json['workspaceDiagnostics']!;
+    final workspaceDiagnostics = (workspaceDiagnosticsJson as bool);
     final idJson = json['id'];
     final id = (idJson as String?);
     final identifierJson = json['identifier'];
     final identifier = (identifierJson as String?);
-    final interFileDependenciesJson = json['interFileDependencies']!;
-    final interFileDependencies = (interFileDependenciesJson as bool);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
-    final workspaceDiagnosticsJson = json['workspaceDiagnostics']!;
-    final workspaceDiagnostics = (workspaceDiagnosticsJson as bool);
 
     return DiagnosticRegistrationOptions(
       documentSelector: documentSelector,
+      interFileDependencies: interFileDependencies,
+      workspaceDiagnostics: workspaceDiagnostics,
       id: id,
       identifier: identifier,
-      interFileDependencies: interFileDependencies,
       workDoneProgress: workDoneProgress,
-      workspaceDiagnostics: workspaceDiagnostics,
     );
   }
 
@@ -3527,6 +3523,17 @@ class DiagnosticRegistrationOptions
   /// to null the document selector provided on the client side will be used.
   @override
   final OrRefType documentSelector;
+
+  /// Whether the language has inter file dependencies meaning that editing
+  /// code in one file can result in a different diagnostic set in another
+  /// file. Inter file dependencies are common for most programming languages
+  /// and typically uncommon for linters.
+  @override
+  final bool interFileDependencies;
+
+  /// The server provides support for workspace diagnostics as well.
+  @override
+  final bool workspaceDiagnostics;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -3538,29 +3545,18 @@ class DiagnosticRegistrationOptions
   @override
   final String? identifier;
 
-  /// Whether the language has inter file dependencies meaning that editing
-  /// code in one file can result in a different diagnostic set in another
-  /// file. Inter file dependencies are common for most programming languages
-  /// and typically uncommon for linters.
-  @override
-  final bool interFileDependencies;
-
   @override
   final bool? workDoneProgress;
-
-  /// The server provides support for workspace diagnostics as well.
-  @override
-  final bool workspaceDiagnostics;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['documentSelector'] = documentSelector;
+    json['interFileDependencies'] = interFileDependencies;
+    json['workspaceDiagnostics'] = workspaceDiagnostics;
     json['id'] = id;
     json['identifier'] = identifier;
-    json['interFileDependencies'] = interFileDependencies;
     json['workDoneProgress'] = workDoneProgress;
-    json['workspaceDiagnostics'] = workspaceDiagnostics;
 
     return json;
   }
@@ -3572,29 +3568,32 @@ class DiagnosticRegistrationOptions
 class WorkspaceDiagnosticParams
     implements WorkDoneProgressParams, PartialResultParams {
   WorkspaceDiagnosticParams({
-    required this.identifier,
-    required this.partialResultToken,
     required this.previousResultIds,
-    required this.workDoneToken,
+    this.identifier,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory WorkspaceDiagnosticParams.fromJson(Map<String, Object?> json) {
+    final previousResultIdsJson = json['previousResultIds']!;
+    final previousResultIds = (previousResultIdsJson as List<PreviousResultId>);
     final identifierJson = json['identifier'];
     final identifier = (identifierJson as String?);
     final partialResultTokenJson = json['partialResultToken'];
     final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final previousResultIdsJson = json['previousResultIds']!;
-    final previousResultIds = (previousResultIdsJson as List<PreviousResultId>);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return WorkspaceDiagnosticParams(
+      previousResultIds: previousResultIds,
       identifier: identifier,
       partialResultToken: partialResultToken,
-      previousResultIds: previousResultIds,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The currently known diagnostic reports with their previous result ids.
+  final List<PreviousResultId> previousResultIds;
 
   /// The additional identifier provided during registration.
   final String? identifier;
@@ -3604,9 +3603,6 @@ class WorkspaceDiagnosticParams
   @override
   final ProgressToken? partialResultToken;
 
-  /// The currently known diagnostic reports with their previous result ids.
-  final List<PreviousResultId> previousResultIds;
-
   /// An optional token that a server can use to report work done progress.
   @override
   final ProgressToken? workDoneToken;
@@ -3614,9 +3610,9 @@ class WorkspaceDiagnosticParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['previousResultIds'] = previousResultIds;
     json['identifier'] = identifier;
     json['partialResultToken'] = partialResultToken;
-    json['previousResultIds'] = previousResultIds;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -3678,35 +3674,35 @@ class WorkspaceDiagnosticReportPartialResult implements ToJson {
 /// @since 3.17.0
 class DidOpenNotebookDocumentParams implements ToJson {
   DidOpenNotebookDocumentParams({
-    required this.cellTextDocuments,
     required this.notebookDocument,
+    required this.cellTextDocuments,
   });
 
   factory DidOpenNotebookDocumentParams.fromJson(Map<String, Object?> json) {
-    final cellTextDocumentsJson = json['cellTextDocuments']!;
-    final cellTextDocuments = (cellTextDocumentsJson as List<TextDocumentItem>);
     final notebookDocumentJson = json['notebookDocument']!;
     final notebookDocument = NotebookDocument.fromJson(
       (notebookDocumentJson as Map<String, Object?>),
     );
+    final cellTextDocumentsJson = json['cellTextDocuments']!;
+    final cellTextDocuments = (cellTextDocumentsJson as List<TextDocumentItem>);
 
     return DidOpenNotebookDocumentParams(
-      cellTextDocuments: cellTextDocuments,
       notebookDocument: notebookDocument,
+      cellTextDocuments: cellTextDocuments,
     );
   }
-
-  /// The text documents that represent the content of a notebook cell.
-  final List<TextDocumentItem> cellTextDocuments;
 
   /// The notebook document that got opened.
   final NotebookDocument notebookDocument;
 
+  /// The text documents that represent the content of a notebook cell.
+  final List<TextDocumentItem> cellTextDocuments;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['cellTextDocuments'] = cellTextDocuments;
     json['notebookDocument'] = notebookDocument.toJson();
+    json['cellTextDocuments'] = cellTextDocuments;
 
     return json;
   }
@@ -3717,25 +3713,31 @@ class DidOpenNotebookDocumentParams implements ToJson {
 /// @since 3.17.0
 class DidChangeNotebookDocumentParams implements ToJson {
   DidChangeNotebookDocumentParams({
-    required this.change,
     required this.notebookDocument,
+    required this.change,
   });
 
   factory DidChangeNotebookDocumentParams.fromJson(Map<String, Object?> json) {
-    final changeJson = json['change']!;
-    final change = NotebookDocumentChangeEvent.fromJson(
-      (changeJson as Map<String, Object?>),
-    );
     final notebookDocumentJson = json['notebookDocument']!;
     final notebookDocument = VersionedNotebookDocumentIdentifier.fromJson(
       (notebookDocumentJson as Map<String, Object?>),
     );
+    final changeJson = json['change']!;
+    final change = NotebookDocumentChangeEvent.fromJson(
+      (changeJson as Map<String, Object?>),
+    );
 
     return DidChangeNotebookDocumentParams(
-      change: change,
       notebookDocument: notebookDocument,
+      change: change,
     );
   }
+
+  /// The notebook document that did change. The version number points to the
+  /// version after all provided changes have been applied. If only the text
+  /// document content of a cell changes the notebook version doesn't
+  /// necessarily have to change.
+  final VersionedNotebookDocumentIdentifier notebookDocument;
 
   /// The actual changes to the notebook document.
   /// The changes describe single state changes to the notebook document. So
@@ -3750,17 +3752,11 @@ class DidChangeNotebookDocumentParams implements ToJson {
   /// the order you receive them.
   final NotebookDocumentChangeEvent change;
 
-  /// The notebook document that did change. The version number points to the
-  /// version after all provided changes have been applied. If only the text
-  /// document content of a cell changes the notebook version doesn't
-  /// necessarily have to change.
-  final VersionedNotebookDocumentIdentifier notebookDocument;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['change'] = change.toJson();
     json['notebookDocument'] = notebookDocument.toJson();
+    json['change'] = change.toJson();
 
     return json;
   }
@@ -3798,37 +3794,37 @@ class DidSaveNotebookDocumentParams implements ToJson {
 /// @since 3.17.0
 class DidCloseNotebookDocumentParams implements ToJson {
   DidCloseNotebookDocumentParams({
-    required this.cellTextDocuments,
     required this.notebookDocument,
+    required this.cellTextDocuments,
   });
 
   factory DidCloseNotebookDocumentParams.fromJson(Map<String, Object?> json) {
-    final cellTextDocumentsJson = json['cellTextDocuments']!;
-    final cellTextDocuments =
-        (cellTextDocumentsJson as List<TextDocumentIdentifier>);
     final notebookDocumentJson = json['notebookDocument']!;
     final notebookDocument = NotebookDocumentIdentifier.fromJson(
       (notebookDocumentJson as Map<String, Object?>),
     );
+    final cellTextDocumentsJson = json['cellTextDocuments']!;
+    final cellTextDocuments =
+        (cellTextDocumentsJson as List<TextDocumentIdentifier>);
 
     return DidCloseNotebookDocumentParams(
-      cellTextDocuments: cellTextDocuments,
       notebookDocument: notebookDocument,
+      cellTextDocuments: cellTextDocuments,
     );
   }
+
+  /// The notebook document that got closed.
+  final NotebookDocumentIdentifier notebookDocument;
 
   /// The text documents that represent the content of a notebook cell that
   /// got closed.
   final List<TextDocumentIdentifier> cellTextDocuments;
 
-  /// The notebook document that got closed.
-  final NotebookDocumentIdentifier notebookDocument;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['cellTextDocuments'] = cellTextDocuments;
     json['notebookDocument'] = notebookDocument.toJson();
+    json['cellTextDocuments'] = cellTextDocuments;
 
     return json;
   }
@@ -3840,45 +3836,45 @@ class DidCloseNotebookDocumentParams implements ToJson {
 class InlineCompletionParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
   InlineCompletionParams({
-    required this.context,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    required this.context,
+    this.workDoneToken,
   });
 
   factory InlineCompletionParams.fromJson(Map<String, Object?> json) {
-    final contextJson = json['context']!;
-    final context = InlineCompletionContext.fromJson(
-      (contextJson as Map<String, Object?>),
-    );
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
+    );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final contextJson = json['context']!;
+    final context = InlineCompletionContext.fromJson(
+      (contextJson as Map<String, Object?>),
     );
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return InlineCompletionParams(
-      context: context,
-      position: position,
       textDocument: textDocument,
+      position: position,
+      context: context,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// Additional information about the context in which inline completions
-  /// were requested.
-  final InlineCompletionContext context;
+  /// The text document.
+  @override
+  final TextDocumentIdentifier textDocument;
 
   /// The position inside the text document.
   @override
   final Position position;
 
-  /// The text document.
-  @override
-  final TextDocumentIdentifier textDocument;
+  /// Additional information about the context in which inline completions
+  /// were requested.
+  final InlineCompletionContext context;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -3887,9 +3883,9 @@ class InlineCompletionParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['context'] = context.toJson();
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
+    json['context'] = context.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -3928,52 +3924,52 @@ class InlineCompletionList implements ToJson {
 /// @since 3.18.0 @proposed
 class InlineCompletionItem implements ToJson {
   InlineCompletionItem({
-    required this.command,
-    required this.filterText,
     required this.insertText,
-    required this.range,
+    this.command,
+    this.range,
+    this.filterText,
   });
 
   factory InlineCompletionItem.fromJson(Map<String, Object?> json) {
-    final commandJson = json['command'];
-    final command = (commandJson as Command?);
-    final filterTextJson = json['filterText'];
-    final filterText = (filterTextJson as String?);
     final insertTextJson = json['insertText']!;
     final insertText = (insertTextJson as OrRefType);
+    final commandJson = json['command'];
+    final command = (commandJson as Command?);
     final rangeJson = json['range'];
     final range = (rangeJson as Range?);
+    final filterTextJson = json['filterText'];
+    final filterText = (filterTextJson as String?);
 
     return InlineCompletionItem(
-      command: command,
-      filterText: filterText,
       insertText: insertText,
+      command: command,
       range: range,
+      filterText: filterText,
     );
   }
+
+  /// The text to replace the range with. Must be set.
+  final OrRefType insertText;
 
   /// An optional {@link Command} that is executed *after* inserting this
   /// completion.
   final Command? command;
+
+  /// The range to replace. Must begin and end on the same line.
+  final Range? range;
 
   /// A text that is used to decide if this inline completion should be
   /// shown. When `falsy` the {@link InlineCompletionItem.insertText} is
   /// used.
   final String? filterText;
 
-  /// The text to replace the range with. Must be set.
-  final OrRefType insertText;
-
-  /// The range to replace. Must begin and end on the same line.
-  final Range? range;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['command'] = command?.toJson();
-    json['filterText'] = filterText;
     json['insertText'] = insertText;
+    json['command'] = command?.toJson();
     json['range'] = range?.toJson();
+    json['filterText'] = filterText;
 
     return json;
   }
@@ -3989,8 +3985,8 @@ class InlineCompletionRegistrationOptions
         StaticRegistrationOptions {
   InlineCompletionRegistrationOptions({
     required this.documentSelector,
-    required this.id,
-    required this.workDoneProgress,
+    this.id,
+    this.workDoneProgress,
   });
 
   factory InlineCompletionRegistrationOptions.fromJson(
@@ -4082,76 +4078,55 @@ class UnregistrationParams implements ToJson {
 class InitializeParams
     implements _InitializeParams, WorkspaceFoldersInitializeParams {
   InitializeParams({
-    required this.capabilities,
-    required this.clientInfo,
-    required this.initializationOptions,
-    required this.locale,
     required this.processId,
-    required this.rootPath,
     required this.rootUri,
-    required this.trace,
-    required this.workDoneToken,
-    required this.workspaceFolders,
+    required this.capabilities,
+    this.workspaceFolders,
+    this.trace,
+    this.initializationOptions,
+    this.rootPath,
+    this.locale,
+    this.clientInfo,
+    this.workDoneToken,
   });
 
   factory InitializeParams.fromJson(Map<String, Object?> json) {
+    final processIdJson = json['processId']!;
+    final processId = (processIdJson as OrRefType);
+    final rootUriJson = json['rootUri']!;
+    final rootUri = (rootUriJson as OrRefType);
     final capabilitiesJson = json['capabilities']!;
     final capabilities = ClientCapabilities.fromJson(
       (capabilitiesJson as Map<String, Object?>),
     );
-    final clientInfoJson = json['clientInfo'];
-    final clientInfo = (clientInfoJson as InitializeParamsClientInfo?);
-    final initializationOptionsJson = json['initializationOptions'];
-    final initializationOptions = (initializationOptionsJson as LSPAny?);
-    final localeJson = json['locale'];
-    final locale = (localeJson as String?);
-    final processIdJson = json['processId']!;
-    final processId = (processIdJson as OrRefType);
-    final rootPathJson = json['rootPath'];
-    final rootPath = (rootPathJson as OrRefType?);
-    final rootUriJson = json['rootUri']!;
-    final rootUri = (rootUriJson as OrRefType);
-    final traceJson = json['trace'];
-    final trace = (traceJson as TraceValues?);
-    final workDoneTokenJson = json['workDoneToken'];
-    final workDoneToken = (workDoneTokenJson as ProgressToken?);
     final workspaceFoldersJson = json['workspaceFolders'];
     final workspaceFolders = (workspaceFoldersJson as OrRefType?);
+    final traceJson = json['trace'];
+    final trace = (traceJson as TraceValues?);
+    final initializationOptionsJson = json['initializationOptions'];
+    final initializationOptions = (initializationOptionsJson as LSPAny?);
+    final rootPathJson = json['rootPath'];
+    final rootPath = (rootPathJson as OrRefType?);
+    final localeJson = json['locale'];
+    final locale = (localeJson as String?);
+    final clientInfoJson = json['clientInfo'];
+    final clientInfo = (clientInfoJson as InitializeParamsClientInfo?);
+    final workDoneTokenJson = json['workDoneToken'];
+    final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return InitializeParams(
-      capabilities: capabilities,
-      clientInfo: clientInfo,
-      initializationOptions: initializationOptions,
-      locale: locale,
       processId: processId,
-      rootPath: rootPath,
       rootUri: rootUri,
-      trace: trace,
-      workDoneToken: workDoneToken,
+      capabilities: capabilities,
       workspaceFolders: workspaceFolders,
+      trace: trace,
+      initializationOptions: initializationOptions,
+      rootPath: rootPath,
+      locale: locale,
+      clientInfo: clientInfo,
+      workDoneToken: workDoneToken,
     );
   }
-
-  /// The capabilities provided by the client (editor or tool)
-  @override
-  final ClientCapabilities capabilities;
-
-  /// Information about the client
-  /// @since 3.15.0
-  @override
-  final InitializeParamsClientInfo? clientInfo;
-
-  /// User provided initialization options.
-  @override
-  final LSPAny? initializationOptions;
-
-  /// The locale the client is currently showing the user interface in. This
-  /// must not necessarily be the locale of the operating system.
-  /// Uses IETF language tags as the value's syntax (See
-  /// https://en.wikipedia.org/wiki/IETF_language_tag)
-  /// @since 3.16.0
-  @override
-  final String? locale;
 
   /// The process Id of the parent process that started the server.
   /// Is `null` if the process has not been started by another process. If
@@ -4159,24 +4134,15 @@ class InitializeParams
   @override
   final OrRefType processId;
 
-  /// The rootPath of the workspace. Is null if no folder is open.
-  /// @deprecated in favour of rootUri.
-  @override
-  final OrRefType? rootPath;
-
   /// The rootUri of the workspace. Is null if no folder is open. If both
   /// `rootPath` and `rootUri` are set `rootUri` wins.
   /// @deprecated in favour of workspaceFolders.
   @override
   final OrRefType rootUri;
 
-  /// The initial trace setting. If omitted trace is disabled ('off').
+  /// The capabilities provided by the client (editor or tool)
   @override
-  final TraceValues? trace;
-
-  /// An optional token that a server can use to report work done progress.
-  @override
-  final ProgressToken? workDoneToken;
+  final ClientCapabilities capabilities;
 
   /// The workspace folders configured in the client when the server starts.
   /// This property is only available if the client supports workspace
@@ -4186,19 +4152,49 @@ class InitializeParams
   @override
   final OrRefType? workspaceFolders;
 
+  /// The initial trace setting. If omitted trace is disabled ('off').
+  @override
+  final TraceValues? trace;
+
+  /// User provided initialization options.
+  @override
+  final LSPAny? initializationOptions;
+
+  /// The rootPath of the workspace. Is null if no folder is open.
+  /// @deprecated in favour of rootUri.
+  @override
+  final OrRefType? rootPath;
+
+  /// The locale the client is currently showing the user interface in. This
+  /// must not necessarily be the locale of the operating system.
+  /// Uses IETF language tags as the value's syntax (See
+  /// https://en.wikipedia.org/wiki/IETF_language_tag)
+  /// @since 3.16.0
+  @override
+  final String? locale;
+
+  /// Information about the client
+  /// @since 3.15.0
+  @override
+  final InitializeParamsClientInfo? clientInfo;
+
+  /// An optional token that a server can use to report work done progress.
+  @override
+  final ProgressToken? workDoneToken;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['capabilities'] = capabilities.toJson();
-    json['clientInfo'] = clientInfo;
-    json['initializationOptions'] = initializationOptions;
-    json['locale'] = locale;
     json['processId'] = processId;
-    json['rootPath'] = rootPath;
     json['rootUri'] = rootUri;
-    json['trace'] = trace?.value;
-    json['workDoneToken'] = workDoneToken;
+    json['capabilities'] = capabilities.toJson();
     json['workspaceFolders'] = workspaceFolders;
+    json['trace'] = trace?.value;
+    json['initializationOptions'] = initializationOptions;
+    json['rootPath'] = rootPath;
+    json['locale'] = locale;
+    json['clientInfo'] = clientInfo;
+    json['workDoneToken'] = workDoneToken;
 
     return json;
   }
@@ -4207,7 +4203,7 @@ class InitializeParams
 /// Struct
 /// The result returned from an initialize request.
 class InitializeResult implements ToJson {
-  InitializeResult({required this.capabilities, required this.serverInfo});
+  InitializeResult({required this.capabilities, this.serverInfo});
 
   factory InitializeResult.fromJson(Map<String, Object?> json) {
     final capabilitiesJson = json['capabilities']!;
@@ -4309,7 +4305,7 @@ class DidChangeConfigurationParams implements ToJson {
 
 /// Struct
 class DidChangeConfigurationRegistrationOptions implements ToJson {
-  DidChangeConfigurationRegistrationOptions({required this.section});
+  DidChangeConfigurationRegistrationOptions({this.section});
 
   factory DidChangeConfigurationRegistrationOptions.fromJson(
     Map<String, Object?> json,
@@ -4334,29 +4330,29 @@ class DidChangeConfigurationRegistrationOptions implements ToJson {
 /// Struct
 /// The parameters of a notification message.
 class ShowMessageParams implements ToJson {
-  ShowMessageParams({required this.message, required this.type});
+  ShowMessageParams({required this.type, required this.message});
 
   factory ShowMessageParams.fromJson(Map<String, Object?> json) {
-    final messageJson = json['message']!;
-    final message = (messageJson as String);
     final typeJson = json['type']!;
     // Handle enum type
     final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
+    final messageJson = json['message']!;
+    final message = (messageJson as String);
 
-    return ShowMessageParams(message: message, type: type);
+    return ShowMessageParams(type: type, message: message);
   }
-
-  /// The actual message.
-  final String message;
 
   /// The message type. See {@link MessageType}
   final MessageType type;
 
+  /// The actual message.
+  final String message;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['message'] = message;
     json['type'] = type.value;
+    json['message'] = message;
 
     return json;
   }
@@ -4365,42 +4361,42 @@ class ShowMessageParams implements ToJson {
 /// Struct
 class ShowMessageRequestParams implements ToJson {
   ShowMessageRequestParams({
-    required this.actions,
-    required this.message,
     required this.type,
+    required this.message,
+    this.actions,
   });
 
   factory ShowMessageRequestParams.fromJson(Map<String, Object?> json) {
-    final actionsJson = json['actions'];
-    final actions = (actionsJson as List<MessageActionItem>?);
-    final messageJson = json['message']!;
-    final message = (messageJson as String);
     final typeJson = json['type']!;
     // Handle enum type
     final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
+    final messageJson = json['message']!;
+    final message = (messageJson as String);
+    final actionsJson = json['actions'];
+    final actions = (actionsJson as List<MessageActionItem>?);
 
     return ShowMessageRequestParams(
-      actions: actions,
-      message: message,
       type: type,
+      message: message,
+      actions: actions,
     );
   }
-
-  /// The message action items to present.
-  final List<MessageActionItem>? actions;
-
-  /// The actual message.
-  final String message;
 
   /// The message type. See {@link MessageType}
   final MessageType type;
 
+  /// The actual message.
+  final String message;
+
+  /// The message action items to present.
+  final List<MessageActionItem>? actions;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['actions'] = actions;
-    json['message'] = message;
     json['type'] = type.value;
+    json['message'] = message;
+    json['actions'] = actions;
 
     return json;
   }
@@ -4432,29 +4428,29 @@ class MessageActionItem implements ToJson {
 /// Struct
 /// The log message parameters.
 class LogMessageParams implements ToJson {
-  LogMessageParams({required this.message, required this.type});
+  LogMessageParams({required this.type, required this.message});
 
   factory LogMessageParams.fromJson(Map<String, Object?> json) {
-    final messageJson = json['message']!;
-    final message = (messageJson as String);
     final typeJson = json['type']!;
     // Handle enum type
     final type = _i1.$enumDecode(_$MessageTypeEnumMap, typeJson);
+    final messageJson = json['message']!;
+    final message = (messageJson as String);
 
-    return LogMessageParams(message: message, type: type);
+    return LogMessageParams(type: type, message: message);
   }
-
-  /// The actual message.
-  final String message;
 
   /// The message type. See {@link MessageType}
   final MessageType type;
 
+  /// The actual message.
+  final String message;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['message'] = message;
     json['type'] = type.value;
+    json['message'] = message;
 
     return json;
   }
@@ -4490,24 +4486,28 @@ class DidOpenTextDocumentParams implements ToJson {
 /// The change text document notification's parameters.
 class DidChangeTextDocumentParams implements ToJson {
   DidChangeTextDocumentParams({
-    required this.contentChanges,
     required this.textDocument,
+    required this.contentChanges,
   });
 
   factory DidChangeTextDocumentParams.fromJson(Map<String, Object?> json) {
-    final contentChangesJson = json['contentChanges']!;
-    final contentChanges =
-        (contentChangesJson as List<TextDocumentContentChangeEvent>);
     final textDocumentJson = json['textDocument']!;
     final textDocument = VersionedTextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final contentChangesJson = json['contentChanges']!;
+    final contentChanges =
+        (contentChangesJson as List<TextDocumentContentChangeEvent>);
 
     return DidChangeTextDocumentParams(
-      contentChanges: contentChanges,
       textDocument: textDocument,
+      contentChanges: contentChanges,
     );
   }
+
+  /// The document that did change. The version number points to the version
+  /// after all provided content changes have been applied.
+  final VersionedTextDocumentIdentifier textDocument;
 
   /// The actual content changes. The content changes describe single state
   /// changes to the document. So if there are two content changes c1 (at
@@ -4521,15 +4521,11 @@ class DidChangeTextDocumentParams implements ToJson {
   /// the order you receive them.
   final List<TextDocumentContentChangeEvent> contentChanges;
 
-  /// The document that did change. The version number points to the version
-  /// after all provided content changes have been applied.
-  final VersionedTextDocumentIdentifier textDocument;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['contentChanges'] = contentChanges;
     json['textDocument'] = textDocument.toJson();
+    json['contentChanges'] = contentChanges;
 
     return json;
   }
@@ -4609,31 +4605,31 @@ class DidCloseTextDocumentParams implements ToJson {
 /// Struct
 /// The parameters sent in a save text document notification
 class DidSaveTextDocumentParams implements ToJson {
-  DidSaveTextDocumentParams({required this.text, required this.textDocument});
+  DidSaveTextDocumentParams({required this.textDocument, this.text});
 
   factory DidSaveTextDocumentParams.fromJson(Map<String, Object?> json) {
-    final textJson = json['text'];
-    final text = (textJson as String?);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final textJson = json['text'];
+    final text = (textJson as String?);
 
-    return DidSaveTextDocumentParams(text: text, textDocument: textDocument);
+    return DidSaveTextDocumentParams(textDocument: textDocument, text: text);
   }
+
+  /// The document that was saved.
+  final TextDocumentIdentifier textDocument;
 
   /// Optional the content when saved. Depends on the includeText value when
   /// the save notification was requested.
   final String? text;
 
-  /// The document that was saved.
-  final TextDocumentIdentifier textDocument;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['text'] = text;
     json['textDocument'] = textDocument.toJson();
+    json['text'] = text;
 
     return json;
   }
@@ -4645,7 +4641,7 @@ class TextDocumentSaveRegistrationOptions
     implements TextDocumentRegistrationOptions, SaveOptions {
   TextDocumentSaveRegistrationOptions({
     required this.documentSelector,
-    required this.includeText,
+    this.includeText,
   });
 
   factory TextDocumentSaveRegistrationOptions.fromJson(
@@ -4685,36 +4681,36 @@ class TextDocumentSaveRegistrationOptions
 /// The parameters sent in a will save text document notification.
 class WillSaveTextDocumentParams implements ToJson {
   WillSaveTextDocumentParams({
-    required this.reason,
     required this.textDocument,
+    required this.reason,
   });
 
   factory WillSaveTextDocumentParams.fromJson(Map<String, Object?> json) {
-    final reasonJson = json['reason']!;
-    // Handle enum type
-    final reason = _i1.$enumDecode(_$TextDocumentSaveReasonEnumMap, reasonJson);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final reasonJson = json['reason']!;
+    // Handle enum type
+    final reason = _i1.$enumDecode(_$TextDocumentSaveReasonEnumMap, reasonJson);
 
     return WillSaveTextDocumentParams(
-      reason: reason,
       textDocument: textDocument,
+      reason: reason,
     );
   }
-
-  /// The 'TextDocumentSaveReason'.
-  final TextDocumentSaveReason reason;
 
   /// The document that will be saved.
   final TextDocumentIdentifier textDocument;
 
+  /// The 'TextDocumentSaveReason'.
+  final TextDocumentSaveReason reason;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['reason'] = reason.value;
     json['textDocument'] = textDocument.toJson();
+    json['reason'] = reason.value;
 
     return json;
   }
@@ -4723,29 +4719,29 @@ class WillSaveTextDocumentParams implements ToJson {
 /// Struct
 /// A text edit applicable to a text document.
 class TextEdit implements ToJson {
-  TextEdit({required this.newText, required this.range});
+  TextEdit({required this.range, required this.newText});
 
   factory TextEdit.fromJson(Map<String, Object?> json) {
-    final newTextJson = json['newText']!;
-    final newText = (newTextJson as String);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final newTextJson = json['newText']!;
+    final newText = (newTextJson as String);
 
-    return TextEdit(newText: newText, range: range);
+    return TextEdit(range: range, newText: newText);
   }
-
-  /// The string to be inserted. For delete operations use an empty string.
-  final String newText;
 
   /// The range of the text document to be manipulated. To insert text into a
   /// document create a range where start === end.
   final Range range;
 
+  /// The string to be inserted. For delete operations use an empty string.
+  final String newText;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['newText'] = newText;
     json['range'] = range.toJson();
+    json['newText'] = newText;
 
     return json;
   }
@@ -4805,31 +4801,31 @@ class DidChangeWatchedFilesRegistrationOptions implements ToJson {
 /// The publish diagnostic notification's parameters.
 class PublishDiagnosticsParams implements ToJson {
   PublishDiagnosticsParams({
-    required this.diagnostics,
     required this.uri,
-    required this.version,
+    required this.diagnostics,
+    this.version,
   });
 
   factory PublishDiagnosticsParams.fromJson(Map<String, Object?> json) {
-    final diagnosticsJson = json['diagnostics']!;
-    final diagnostics = (diagnosticsJson as List<Diagnostic>);
     final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+    final diagnosticsJson = json['diagnostics']!;
+    final diagnostics = (diagnosticsJson as List<Diagnostic>);
     final versionJson = json['version'];
     final version = (versionJson as int?);
 
     return PublishDiagnosticsParams(
-      diagnostics: diagnostics,
       uri: uri,
+      diagnostics: diagnostics,
       version: version,
     );
   }
 
-  /// An array of diagnostic information items.
-  final List<Diagnostic> diagnostics;
-
   /// The URI for which diagnostic information is reported.
   final Uri uri;
+
+  /// An array of diagnostic information items.
+  final List<Diagnostic> diagnostics;
 
   /// Optional the version number of the document the diagnostics are
   /// published for.
@@ -4839,8 +4835,8 @@ class PublishDiagnosticsParams implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['diagnostics'] = diagnostics;
     json['uri'] = uri;
+    json['diagnostics'] = diagnostics;
     json['version'] = version;
 
     return json;
@@ -4855,35 +4851,43 @@ class CompletionParams
         WorkDoneProgressParams,
         PartialResultParams {
   CompletionParams({
-    required this.context,
-    required this.partialResultToken,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.context,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory CompletionParams.fromJson(Map<String, Object?> json) {
-    final contextJson = json['context'];
-    final context = (contextJson as CompletionContext?);
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final contextJson = json['context'];
+    final context = (contextJson as CompletionContext?);
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return CompletionParams(
+      textDocument: textDocument,
+      position: position,
       context: context,
       partialResultToken: partialResultToken,
-      position: position,
-      textDocument: textDocument,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  @override
+  final TextDocumentIdentifier textDocument;
+
+  /// The position inside the text document.
+  @override
+  final Position position;
 
   /// The completion context. This is only available if the client specifies
   /// to send this using the client capability
@@ -4895,14 +4899,6 @@ class CompletionParams
   @override
   final ProgressToken? partialResultToken;
 
-  /// The position inside the text document.
-  @override
-  final Position position;
-
-  /// The text document.
-  @override
-  final TextDocumentIdentifier textDocument;
-
   /// An optional token that a server can use to report work done progress.
   @override
   final ProgressToken? workDoneToken;
@@ -4910,10 +4906,10 @@ class CompletionParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
     json['context'] = context?.toJson();
     json['partialResultToken'] = partialResultToken;
-    json['position'] = position.toJson();
-    json['textDocument'] = textDocument.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -4925,99 +4921,100 @@ class CompletionParams
 /// text that is being typed.
 class CompletionItem implements ToJson {
   CompletionItem({
-    required this.additionalTextEdits,
-    required this.command,
-    required this.commitCharacters,
-    required this.data,
-    required this.deprecated,
-    required this.detail,
-    required this.documentation,
-    required this.filterText,
-    required this.insertText,
-    required this.insertTextFormat,
-    required this.insertTextMode,
-    required this.kind,
     required this.label,
-    required this.labelDetails,
-    required this.preselect,
-    required this.sortText,
-    required this.tags,
-    required this.textEdit,
-    required this.textEditText,
+    this.data,
+    this.command,
+    this.commitCharacters,
+    this.additionalTextEdits,
+    this.textEditText,
+    this.textEdit,
+    this.insertTextMode,
+    this.insertTextFormat,
+    this.insertText,
+    this.filterText,
+    this.sortText,
+    this.preselect,
+    this.deprecated,
+    this.documentation,
+    this.detail,
+    this.tags,
+    this.kind,
+    this.labelDetails,
   });
 
   factory CompletionItem.fromJson(Map<String, Object?> json) {
-    final additionalTextEditsJson = json['additionalTextEdits'];
-    final additionalTextEdits = (additionalTextEditsJson as List<TextEdit>?);
+    final labelJson = json['label']!;
+    final label = (labelJson as String);
+    final dataJson = json['data'];
+    final data = (dataJson as LSPAny?);
     final commandJson = json['command'];
     final command = (commandJson as Command?);
     final commitCharactersJson = json['commitCharacters'];
     final commitCharacters = (commitCharactersJson as List<String>?);
-    final dataJson = json['data'];
-    final data = (dataJson as LSPAny?);
-    final deprecatedJson = json['deprecated'];
-    final deprecated = (deprecatedJson as bool?);
-    final detailJson = json['detail'];
-    final detail = (detailJson as String?);
-    final documentationJson = json['documentation'];
-    final documentation = (documentationJson as OrRefType?);
-    final filterTextJson = json['filterText'];
-    final filterText = (filterTextJson as String?);
-    final insertTextJson = json['insertText'];
-    final insertText = (insertTextJson as String?);
-    final insertTextFormatJson = json['insertTextFormat'];
-    final insertTextFormat = (insertTextFormatJson as InsertTextFormat?);
-    final insertTextModeJson = json['insertTextMode'];
-    final insertTextMode = (insertTextModeJson as InsertTextMode?);
-    final kindJson = json['kind'];
-    final kind = (kindJson as CompletionItemKind?);
-    final labelJson = json['label']!;
-    final label = (labelJson as String);
-    final labelDetailsJson = json['labelDetails'];
-    final labelDetails = (labelDetailsJson as CompletionItemLabelDetails?);
-    final preselectJson = json['preselect'];
-    final preselect = (preselectJson as bool?);
-    final sortTextJson = json['sortText'];
-    final sortText = (sortTextJson as String?);
-    final tagsJson = json['tags'];
-    final tags = (tagsJson as List<CompletionItemTag>?);
-    final textEditJson = json['textEdit'];
-    final textEdit = (textEditJson as OrRefType?);
+    final additionalTextEditsJson = json['additionalTextEdits'];
+    final additionalTextEdits = (additionalTextEditsJson as List<TextEdit>?);
     final textEditTextJson = json['textEditText'];
     final textEditText = (textEditTextJson as String?);
+    final textEditJson = json['textEdit'];
+    final textEdit = (textEditJson as OrRefType?);
+    final insertTextModeJson = json['insertTextMode'];
+    final insertTextMode = (insertTextModeJson as InsertTextMode?);
+    final insertTextFormatJson = json['insertTextFormat'];
+    final insertTextFormat = (insertTextFormatJson as InsertTextFormat?);
+    final insertTextJson = json['insertText'];
+    final insertText = (insertTextJson as String?);
+    final filterTextJson = json['filterText'];
+    final filterText = (filterTextJson as String?);
+    final sortTextJson = json['sortText'];
+    final sortText = (sortTextJson as String?);
+    final preselectJson = json['preselect'];
+    final preselect = (preselectJson as bool?);
+    final deprecatedJson = json['deprecated'];
+    final deprecated = (deprecatedJson as bool?);
+    final documentationJson = json['documentation'];
+    final documentation = (documentationJson as OrRefType?);
+    final detailJson = json['detail'];
+    final detail = (detailJson as String?);
+    final tagsJson = json['tags'];
+    final tags = (tagsJson as List<CompletionItemTag>?);
+    final kindJson = json['kind'];
+    final kind = (kindJson as CompletionItemKind?);
+    final labelDetailsJson = json['labelDetails'];
+    final labelDetails = (labelDetailsJson as CompletionItemLabelDetails?);
 
     return CompletionItem(
-      additionalTextEdits: additionalTextEdits,
+      label: label,
+      data: data,
       command: command,
       commitCharacters: commitCharacters,
-      data: data,
-      deprecated: deprecated,
-      detail: detail,
-      documentation: documentation,
-      filterText: filterText,
-      insertText: insertText,
-      insertTextFormat: insertTextFormat,
-      insertTextMode: insertTextMode,
-      kind: kind,
-      label: label,
-      labelDetails: labelDetails,
-      preselect: preselect,
-      sortText: sortText,
-      tags: tags,
-      textEdit: textEdit,
+      additionalTextEdits: additionalTextEdits,
       textEditText: textEditText,
+      textEdit: textEdit,
+      insertTextMode: insertTextMode,
+      insertTextFormat: insertTextFormat,
+      insertText: insertText,
+      filterText: filterText,
+      sortText: sortText,
+      preselect: preselect,
+      deprecated: deprecated,
+      documentation: documentation,
+      detail: detail,
+      tags: tags,
+      kind: kind,
+      labelDetails: labelDetails,
     );
   }
 
-  /// An optional array of additional {@link TextEdit text edits} that are
-  /// applied when selecting this completion. Edits must not overlap
-  /// (including the same insert position) with the main {@link
-  /// CompletionItem.textEdit edit} nor with themselves.
-  /// Additional text edits should be used to change text unrelated to the
-  /// current cursor position (for example adding an import statement at the
-  /// top of the file if the completion item will insert an unqualified
-  /// type).
-  final List<TextEdit>? additionalTextEdits;
+  /// The label of this completion item.
+  /// The label property is also by default the text that is inserted when
+  /// selecting this completion.
+  /// If label details are provided the label itself should be an unqualified
+  /// name of the completion item.
+  final String label;
+
+  /// A data entry field that is preserved on a completion item between a
+  /// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
+  final LSPAny? data;
 
   /// An optional {@link Command command} that is executed *after* inserting
   /// this completion. *Note* that additional modifications to the current
@@ -5031,76 +5028,24 @@ class CompletionItem implements ToJson {
   /// characters will be ignored.
   final List<String>? commitCharacters;
 
-  /// A data entry field that is preserved on a completion item between a
-  /// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
-  final LSPAny? data;
+  /// An optional array of additional {@link TextEdit text edits} that are
+  /// applied when selecting this completion. Edits must not overlap
+  /// (including the same insert position) with the main {@link
+  /// CompletionItem.textEdit edit} nor with themselves.
+  /// Additional text edits should be used to change text unrelated to the
+  /// current cursor position (for example adding an import statement at the
+  /// top of the file if the completion item will insert an unqualified
+  /// type).
+  final List<TextEdit>? additionalTextEdits;
 
-  /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
-  final bool? deprecated;
-
-  /// A human-readable string with additional information about this item,
-  /// like type or symbol information.
-  final String? detail;
-
-  /// A human-readable string that represents a doc-comment.
-  final OrRefType? documentation;
-
-  /// A string that should be used when filtering a set of completion items.
-  /// When `falsy` the {@link CompletionItem.label label} is used.
-  final String? filterText;
-
-  /// A string that should be inserted into a document when selecting this
-  /// completion. When `falsy` the {@link CompletionItem.label label} is
-  /// used.
-  /// The `insertText` is subject to interpretation by the client side. Some
-  /// tools might not take the string literally. For example VS Code when
-  /// code complete is requested in this example `con<cursor position>` and a
-  /// completion item with an `insertText` of `console` is provided it will
-  /// only insert `sole`. Therefore it is recommended to use `textEdit`
-  /// instead since it avoids additional client side interpretation.
-  final String? insertText;
-
-  /// The format of the insert text. The format applies to both the
-  /// `insertText` property and the `newText` property of a provided
-  /// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
-  /// Please note that the insertTextFormat doesn't apply to
-  /// `additionalTextEdits`.
-  final InsertTextFormat? insertTextFormat;
-
-  /// How whitespace and indentation is handled during completion item
-  /// insertion. If not provided the clients default value depends on the
-  /// `textDocument.completion.insertTextMode` client capability.
-  /// @since 3.16.0
-  final InsertTextMode? insertTextMode;
-
-  /// The kind of this completion item. Based of the kind an icon is chosen
-  /// by the editor.
-  final CompletionItemKind? kind;
-
-  /// The label of this completion item.
-  /// The label property is also by default the text that is inserted when
-  /// selecting this completion.
-  /// If label details are provided the label itself should be an unqualified
-  /// name of the completion item.
-  final String label;
-
-  /// Additional details for the label
+  /// The edit text used if the completion item is part of a CompletionList
+  /// and CompletionList defines an item default for the text edit range.
+  /// Clients will only honor this property if they opt into completion list
+  /// item defaults using the capability `completionList.itemDefaults`.
+  /// If not provided and a list's default range is provided the label
+  /// property is used as a text.
   /// @since 3.17.0
-  final CompletionItemLabelDetails? labelDetails;
-
-  /// Select this item when showing.
-  /// *Note* that only one completion item can be selected and that the tool
-  /// / client decides which item that is. The rule is that the *first* item
-  /// of those that match best is selected.
-  final bool? preselect;
-
-  /// A string that should be used when comparing this item with other items.
-  /// When `falsy` the {@link CompletionItem.label label} is used.
-  final String? sortText;
-
-  /// Tags for this completion item.
-  /// @since 3.15.0
-  final List<CompletionItemTag>? tags;
+  final String? textEditText;
 
   /// An {@link TextEdit edit} which is applied to a document when selecting
   /// this completion. When an edit is provided the value of {@link
@@ -5121,37 +5066,88 @@ class CompletionItem implements ToJson {
   /// @since 3.16.0 additional type `InsertReplaceEdit`
   final OrRefType? textEdit;
 
-  /// The edit text used if the completion item is part of a CompletionList
-  /// and CompletionList defines an item default for the text edit range.
-  /// Clients will only honor this property if they opt into completion list
-  /// item defaults using the capability `completionList.itemDefaults`.
-  /// If not provided and a list's default range is provided the label
-  /// property is used as a text.
+  /// How whitespace and indentation is handled during completion item
+  /// insertion. If not provided the clients default value depends on the
+  /// `textDocument.completion.insertTextMode` client capability.
+  /// @since 3.16.0
+  final InsertTextMode? insertTextMode;
+
+  /// The format of the insert text. The format applies to both the
+  /// `insertText` property and the `newText` property of a provided
+  /// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
+  /// Please note that the insertTextFormat doesn't apply to
+  /// `additionalTextEdits`.
+  final InsertTextFormat? insertTextFormat;
+
+  /// A string that should be inserted into a document when selecting this
+  /// completion. When `falsy` the {@link CompletionItem.label label} is
+  /// used.
+  /// The `insertText` is subject to interpretation by the client side. Some
+  /// tools might not take the string literally. For example VS Code when
+  /// code complete is requested in this example `con<cursor position>` and a
+  /// completion item with an `insertText` of `console` is provided it will
+  /// only insert `sole`. Therefore it is recommended to use `textEdit`
+  /// instead since it avoids additional client side interpretation.
+  final String? insertText;
+
+  /// A string that should be used when filtering a set of completion items.
+  /// When `falsy` the {@link CompletionItem.label label} is used.
+  final String? filterText;
+
+  /// A string that should be used when comparing this item with other items.
+  /// When `falsy` the {@link CompletionItem.label label} is used.
+  final String? sortText;
+
+  /// Select this item when showing.
+  /// *Note* that only one completion item can be selected and that the tool
+  /// / client decides which item that is. The rule is that the *first* item
+  /// of those that match best is selected.
+  final bool? preselect;
+
+  /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
+  final bool? deprecated;
+
+  /// A human-readable string that represents a doc-comment.
+  final OrRefType? documentation;
+
+  /// A human-readable string with additional information about this item,
+  /// like type or symbol information.
+  final String? detail;
+
+  /// Tags for this completion item.
+  /// @since 3.15.0
+  final List<CompletionItemTag>? tags;
+
+  /// The kind of this completion item. Based of the kind an icon is chosen
+  /// by the editor.
+  final CompletionItemKind? kind;
+
+  /// Additional details for the label
   /// @since 3.17.0
-  final String? textEditText;
+  final CompletionItemLabelDetails? labelDetails;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['additionalTextEdits'] = additionalTextEdits;
+    json['label'] = label;
+    json['data'] = data;
     json['command'] = command?.toJson();
     json['commitCharacters'] = commitCharacters;
-    json['data'] = data;
-    json['deprecated'] = deprecated;
-    json['detail'] = detail;
-    json['documentation'] = documentation;
-    json['filterText'] = filterText;
-    json['insertText'] = insertText;
-    json['insertTextFormat'] = insertTextFormat?.value;
-    json['insertTextMode'] = insertTextMode?.value;
-    json['kind'] = kind?.value;
-    json['label'] = label;
-    json['labelDetails'] = labelDetails?.toJson();
-    json['preselect'] = preselect;
-    json['sortText'] = sortText;
-    json['tags'] = tags;
-    json['textEdit'] = textEdit;
+    json['additionalTextEdits'] = additionalTextEdits;
     json['textEditText'] = textEditText;
+    json['textEdit'] = textEdit;
+    json['insertTextMode'] = insertTextMode?.value;
+    json['insertTextFormat'] = insertTextFormat?.value;
+    json['insertText'] = insertText;
+    json['filterText'] = filterText;
+    json['sortText'] = sortText;
+    json['preselect'] = preselect;
+    json['deprecated'] = deprecated;
+    json['documentation'] = documentation;
+    json['detail'] = detail;
+    json['tags'] = tags;
+    json['kind'] = kind?.value;
+    json['labelDetails'] = labelDetails?.toJson();
 
     return json;
   }
@@ -5163,22 +5159,22 @@ class CompletionItem implements ToJson {
 class CompletionList implements ToJson {
   CompletionList({
     required this.isIncomplete,
-    required this.itemDefaults,
     required this.items,
+    this.itemDefaults,
   });
 
   factory CompletionList.fromJson(Map<String, Object?> json) {
     final isIncompleteJson = json['isIncomplete']!;
     final isIncomplete = (isIncompleteJson as bool);
-    final itemDefaultsJson = json['itemDefaults'];
-    final itemDefaults = (itemDefaultsJson as CompletionListItemDefaults?);
     final itemsJson = json['items']!;
     final items = (itemsJson as List<CompletionItem>);
+    final itemDefaultsJson = json['itemDefaults'];
+    final itemDefaults = (itemDefaultsJson as CompletionListItemDefaults?);
 
     return CompletionList(
       isIncomplete: isIncomplete,
-      itemDefaults: itemDefaults,
       items: items,
+      itemDefaults: itemDefaults,
     );
   }
 
@@ -5187,6 +5183,9 @@ class CompletionList implements ToJson {
   /// Recomputed lists have all their items replaced (not appended) in the
   /// incomplete completion sessions.
   final bool isIncomplete;
+
+  /// The completion items.
+  final List<CompletionItem> items;
 
   /// In many cases the items of an actual completion result share the same
   /// value for properties like `commitCharacters` or the range of a text
@@ -5199,15 +5198,12 @@ class CompletionList implements ToJson {
   /// @since 3.17.0
   final CompletionListItemDefaults? itemDefaults;
 
-  /// The completion items.
-  final List<CompletionItem> items;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['isIncomplete'] = isIncomplete;
-    json['itemDefaults'] = itemDefaults;
     json['items'] = items;
+    json['itemDefaults'] = itemDefaults;
 
     return json;
   }
@@ -5218,38 +5214,54 @@ class CompletionList implements ToJson {
 class CompletionRegistrationOptions
     implements TextDocumentRegistrationOptions, CompletionOptions {
   CompletionRegistrationOptions({
-    required this.allCommitCharacters,
-    required this.completionItem,
     required this.documentSelector,
-    required this.resolveProvider,
-    required this.triggerCharacters,
-    required this.workDoneProgress,
+    this.completionItem,
+    this.resolveProvider,
+    this.allCommitCharacters,
+    this.triggerCharacters,
+    this.workDoneProgress,
   });
 
   factory CompletionRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final allCommitCharactersJson = json['allCommitCharacters'];
-    final allCommitCharacters = (allCommitCharactersJson as List<String>?);
+    final documentSelectorJson = json['documentSelector']!;
+    final documentSelector = (documentSelectorJson as OrRefType);
     final completionItemJson = json['completionItem'];
     final completionItem =
         (completionItemJson as CompletionOptionsCompletionItem?);
-    final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as OrRefType);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
+    final allCommitCharactersJson = json['allCommitCharacters'];
+    final allCommitCharacters = (allCommitCharactersJson as List<String>?);
     final triggerCharactersJson = json['triggerCharacters'];
     final triggerCharacters = (triggerCharactersJson as List<String>?);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
     return CompletionRegistrationOptions(
-      allCommitCharacters: allCommitCharacters,
-      completionItem: completionItem,
       documentSelector: documentSelector,
+      completionItem: completionItem,
       resolveProvider: resolveProvider,
+      allCommitCharacters: allCommitCharacters,
       triggerCharacters: triggerCharacters,
       workDoneProgress: workDoneProgress,
     );
   }
+
+  /// A document selector to identify the scope of the registration. If set
+  /// to null the document selector provided on the client side will be used.
+  @override
+  final OrRefType documentSelector;
+
+  /// The server supports the following `CompletionItem` specific
+  /// capabilities.
+  /// @since 3.17.0
+  @override
+  final CompletionOptionsCompletionItem? completionItem;
+
+  /// The server provides support to resolve additional information for a
+  /// completion item.
+  @override
+  final bool? resolveProvider;
 
   /// The list of all possible characters that commit a completion. This
   /// field can be used if clients don't support individual commit characters
@@ -5260,22 +5272,6 @@ class CompletionRegistrationOptions
   /// @since 3.2.0
   @override
   final List<String>? allCommitCharacters;
-
-  /// The server supports the following `CompletionItem` specific
-  /// capabilities.
-  /// @since 3.17.0
-  @override
-  final CompletionOptionsCompletionItem? completionItem;
-
-  /// A document selector to identify the scope of the registration. If set
-  /// to null the document selector provided on the client side will be used.
-  @override
-  final OrRefType documentSelector;
-
-  /// The server provides support to resolve additional information for a
-  /// completion item.
-  @override
-  final bool? resolveProvider;
 
   /// Most tools trigger completion request automatically without explicitly
   /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
@@ -5295,10 +5291,10 @@ class CompletionRegistrationOptions
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['allCommitCharacters'] = allCommitCharacters;
-    json['completionItem'] = completionItem;
     json['documentSelector'] = documentSelector;
+    json['completionItem'] = completionItem;
     json['resolveProvider'] = resolveProvider;
+    json['allCommitCharacters'] = allCommitCharacters;
     json['triggerCharacters'] = triggerCharacters;
     json['workDoneProgress'] = workDoneProgress;
 
@@ -5311,35 +5307,35 @@ class CompletionRegistrationOptions
 class HoverParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
   HoverParams({
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.workDoneToken,
   });
 
   factory HoverParams.fromJson(Map<String, Object?> json) {
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return HoverParams(
-      position: position,
       textDocument: textDocument,
+      position: position,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The position inside the text document.
-  @override
-  final Position position;
-
   /// The text document.
   @override
   final TextDocumentIdentifier textDocument;
+
+  /// The position inside the text document.
+  @override
+  final Position position;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -5348,8 +5344,8 @@ class HoverParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -5359,7 +5355,7 @@ class HoverParams
 /// Struct
 /// The result of a hover request.
 class Hover implements ToJson {
-  Hover({required this.contents, required this.range});
+  Hover({required this.contents, this.range});
 
   factory Hover.fromJson(Map<String, Object?> json) {
     final contentsJson = json['contents']!;
@@ -5393,7 +5389,7 @@ class HoverRegistrationOptions
     implements TextDocumentRegistrationOptions, HoverOptions {
   HoverRegistrationOptions({
     required this.documentSelector,
-    required this.workDoneProgress,
+    this.workDoneProgress,
   });
 
   factory HoverRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -5431,45 +5427,45 @@ class HoverRegistrationOptions
 class SignatureHelpParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
   SignatureHelpParams({
-    required this.context,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.context,
+    this.workDoneToken,
   });
 
   factory SignatureHelpParams.fromJson(Map<String, Object?> json) {
-    final contextJson = json['context'];
-    final context = (contextJson as SignatureHelpContext?);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final contextJson = json['context'];
+    final context = (contextJson as SignatureHelpContext?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return SignatureHelpParams(
-      context: context,
-      position: position,
       textDocument: textDocument,
+      position: position,
+      context: context,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  @override
+  final TextDocumentIdentifier textDocument;
+
+  /// The position inside the text document.
+  @override
+  final Position position;
 
   /// The signature help context. This is only available if the client
   /// specifies to send this using the client capability
   /// `textDocument.signatureHelp.contextSupport === true`
   /// @since 3.15.0
   final SignatureHelpContext? context;
-
-  /// The position inside the text document.
-  @override
-  final Position position;
-
-  /// The text document.
-  @override
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -5478,9 +5474,9 @@ class SignatureHelpParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['context'] = context?.toJson();
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
+    json['context'] = context?.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -5492,25 +5488,28 @@ class SignatureHelpParams
 /// multiple signature but only one active and only one active parameter.
 class SignatureHelp implements ToJson {
   SignatureHelp({
-    required this.activeParameter,
-    required this.activeSignature,
     required this.signatures,
+    this.activeParameter,
+    this.activeSignature,
   });
 
   factory SignatureHelp.fromJson(Map<String, Object?> json) {
+    final signaturesJson = json['signatures']!;
+    final signatures = (signaturesJson as List<SignatureInformation>);
     final activeParameterJson = json['activeParameter'];
     final activeParameter = (activeParameterJson as int?);
     final activeSignatureJson = json['activeSignature'];
     final activeSignature = (activeSignatureJson as int?);
-    final signaturesJson = json['signatures']!;
-    final signatures = (signaturesJson as List<SignatureInformation>);
 
     return SignatureHelp(
+      signatures: signatures,
       activeParameter: activeParameter,
       activeSignature: activeSignature,
-      signatures: signatures,
     );
   }
+
+  /// One or more signatures.
+  final List<SignatureInformation> signatures;
 
   /// The active parameter of the active signature. If omitted or the value
   /// lies outside the range of `signatures[activeSignature].parameters`
@@ -5529,15 +5528,12 @@ class SignatureHelp implements ToJson {
   /// to better express this.
   final int? activeSignature;
 
-  /// One or more signatures.
-  final List<SignatureInformation> signatures;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['signatures'] = signatures;
     json['activeParameter'] = activeParameter;
     json['activeSignature'] = activeSignature;
-    json['signatures'] = signatures;
 
     return json;
   }
@@ -5549,9 +5545,9 @@ class SignatureHelpRegistrationOptions
     implements TextDocumentRegistrationOptions, SignatureHelpOptions {
   SignatureHelpRegistrationOptions({
     required this.documentSelector,
-    required this.retriggerCharacters,
-    required this.triggerCharacters,
-    required this.workDoneProgress,
+    this.retriggerCharacters,
+    this.triggerCharacters,
+    this.workDoneProgress,
   });
 
   factory SignatureHelpRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -5612,44 +5608,44 @@ class DefinitionParams
         WorkDoneProgressParams,
         PartialResultParams {
   DefinitionParams({
-    required this.partialResultToken,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory DefinitionParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DefinitionParams(
-      partialResultToken: partialResultToken,
-      position: position,
       textDocument: textDocument,
+      position: position,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// An optional token that a server can use to report partial results (e.g.
-  /// streaming) to the client.
+  /// The text document.
   @override
-  final ProgressToken? partialResultToken;
+  final TextDocumentIdentifier textDocument;
 
   /// The position inside the text document.
   @override
   final Position position;
 
-  /// The text document.
+  /// An optional token that a server can use to report partial results (e.g.
+  /// streaming) to the client.
   @override
-  final TextDocumentIdentifier textDocument;
+  final ProgressToken? partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -5658,9 +5654,9 @@ class DefinitionParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -5673,7 +5669,7 @@ class DefinitionRegistrationOptions
     implements TextDocumentRegistrationOptions, DefinitionOptions {
   DefinitionRegistrationOptions({
     required this.documentSelector,
-    required this.workDoneProgress,
+    this.workDoneProgress,
   });
 
   factory DefinitionRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -5714,37 +5710,45 @@ class ReferenceParams
         WorkDoneProgressParams,
         PartialResultParams {
   ReferenceParams({
-    required this.context,
-    required this.partialResultToken,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    required this.context,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory ReferenceParams.fromJson(Map<String, Object?> json) {
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final contextJson = json['context']!;
     final context = ReferenceContext.fromJson(
       (contextJson as Map<String, Object?>),
     );
     final partialResultTokenJson = json['partialResultToken'];
     final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
-    final textDocumentJson = json['textDocument']!;
-    final textDocument = TextDocumentIdentifier.fromJson(
-      (textDocumentJson as Map<String, Object?>),
-    );
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return ReferenceParams(
+      textDocument: textDocument,
+      position: position,
       context: context,
       partialResultToken: partialResultToken,
-      position: position,
-      textDocument: textDocument,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  @override
+  final TextDocumentIdentifier textDocument;
+
+  /// The position inside the text document.
+  @override
+  final Position position;
 
   final ReferenceContext context;
 
@@ -5753,14 +5757,6 @@ class ReferenceParams
   @override
   final ProgressToken? partialResultToken;
 
-  /// The position inside the text document.
-  @override
-  final Position position;
-
-  /// The text document.
-  @override
-  final TextDocumentIdentifier textDocument;
-
   /// An optional token that a server can use to report work done progress.
   @override
   final ProgressToken? workDoneToken;
@@ -5768,10 +5764,10 @@ class ReferenceParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
     json['context'] = context.toJson();
     json['partialResultToken'] = partialResultToken;
-    json['position'] = position.toJson();
-    json['textDocument'] = textDocument.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -5784,7 +5780,7 @@ class ReferenceRegistrationOptions
     implements TextDocumentRegistrationOptions, ReferenceOptions {
   ReferenceRegistrationOptions({
     required this.documentSelector,
-    required this.workDoneProgress,
+    this.workDoneProgress,
   });
 
   factory ReferenceRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -5825,44 +5821,44 @@ class DocumentHighlightParams
         WorkDoneProgressParams,
         PartialResultParams {
   DocumentHighlightParams({
-    required this.partialResultToken,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory DocumentHighlightParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DocumentHighlightParams(
-      partialResultToken: partialResultToken,
-      position: position,
       textDocument: textDocument,
+      position: position,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// An optional token that a server can use to report partial results (e.g.
-  /// streaming) to the client.
+  /// The text document.
   @override
-  final ProgressToken? partialResultToken;
+  final TextDocumentIdentifier textDocument;
 
   /// The position inside the text document.
   @override
   final Position position;
 
-  /// The text document.
+  /// An optional token that a server can use to report partial results (e.g.
+  /// streaming) to the client.
   @override
-  final TextDocumentIdentifier textDocument;
+  final ProgressToken? partialResultToken;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -5871,9 +5867,9 @@ class DocumentHighlightParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -5885,28 +5881,28 @@ class DocumentHighlightParams
 /// special attention. Usually a document highlight is visualized by changing
 /// the background color of its range.
 class DocumentHighlight implements ToJson {
-  DocumentHighlight({required this.kind, required this.range});
+  DocumentHighlight({required this.range, this.kind});
 
   factory DocumentHighlight.fromJson(Map<String, Object?> json) {
-    final kindJson = json['kind'];
-    final kind = (kindJson as DocumentHighlightKind?);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final kindJson = json['kind'];
+    final kind = (kindJson as DocumentHighlightKind?);
 
-    return DocumentHighlight(kind: kind, range: range);
+    return DocumentHighlight(range: range, kind: kind);
   }
-
-  /// The highlight kind, default is {@link DocumentHighlightKind.Text text}.
-  final DocumentHighlightKind? kind;
 
   /// The range this highlight applies to.
   final Range range;
 
+  /// The highlight kind, default is {@link DocumentHighlightKind.Text text}.
+  final DocumentHighlightKind? kind;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['kind'] = kind?.value;
     json['range'] = range.toJson();
+    json['kind'] = kind?.value;
 
     return json;
   }
@@ -5918,7 +5914,7 @@ class DocumentHighlightRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentHighlightOptions {
   DocumentHighlightRegistrationOptions({
     required this.documentSelector,
-    required this.workDoneProgress,
+    this.workDoneProgress,
   });
 
   factory DocumentHighlightRegistrationOptions.fromJson(
@@ -5958,35 +5954,35 @@ class DocumentHighlightRegistrationOptions
 class DocumentSymbolParams
     implements WorkDoneProgressParams, PartialResultParams {
   DocumentSymbolParams({
-    required this.partialResultToken,
     required this.textDocument,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory DocumentSymbolParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DocumentSymbolParams(
-      partialResultToken: partialResultToken,
       textDocument: textDocument,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The text document.
+  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// The text document.
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -5995,8 +5991,8 @@ class DocumentSymbolParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
     json['textDocument'] = textDocument.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -6008,49 +6004,42 @@ class DocumentSymbolParams
 /// classes, interfaces etc.
 class SymbolInformation implements BaseSymbolInformation {
   SymbolInformation({
-    required this.containerName,
-    required this.deprecated,
+    required this.name,
     required this.kind,
     required this.location,
-    required this.name,
-    required this.tags,
+    this.deprecated,
+    this.containerName,
+    this.tags,
   });
 
   factory SymbolInformation.fromJson(Map<String, Object?> json) {
-    final containerNameJson = json['containerName'];
-    final containerName = (containerNameJson as String?);
-    final deprecatedJson = json['deprecated'];
-    final deprecated = (deprecatedJson as bool?);
+    final nameJson = json['name']!;
+    final name = (nameJson as String);
     final kindJson = json['kind']!;
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final locationJson = json['location']!;
     final location = Location.fromJson((locationJson as Map<String, Object?>));
-    final nameJson = json['name']!;
-    final name = (nameJson as String);
+    final deprecatedJson = json['deprecated'];
+    final deprecated = (deprecatedJson as bool?);
+    final containerNameJson = json['containerName'];
+    final containerName = (containerNameJson as String?);
     final tagsJson = json['tags'];
     final tags = (tagsJson as List<SymbolTag>?);
 
     return SymbolInformation(
-      containerName: containerName,
-      deprecated: deprecated,
+      name: name,
       kind: kind,
       location: location,
-      name: name,
+      deprecated: deprecated,
+      containerName: containerName,
       tags: tags,
     );
   }
 
-  /// The name of the symbol containing this symbol. This information is for
-  /// user interface purposes (e.g. to render a qualifier in the user
-  /// interface if necessary). It can't be used to re-infer a hierarchy for
-  /// the document symbols.
+  /// The name of this symbol.
   @override
-  final String? containerName;
-
-  /// Indicates if this symbol is deprecated.
-  /// @deprecated Use tags instead
-  final bool? deprecated;
+  final String name;
 
   /// The kind of this symbol.
   @override
@@ -6066,9 +6055,16 @@ class SymbolInformation implements BaseSymbolInformation {
   /// hierarchy of the symbols.
   final Location location;
 
-  /// The name of this symbol.
+  /// Indicates if this symbol is deprecated.
+  /// @deprecated Use tags instead
+  final bool? deprecated;
+
+  /// The name of the symbol containing this symbol. This information is for
+  /// user interface purposes (e.g. to render a qualifier in the user
+  /// interface if necessary). It can't be used to re-infer a hierarchy for
+  /// the document symbols.
   @override
-  final String name;
+  final String? containerName;
 
   /// Tags for this symbol.
   /// @since 3.16.0
@@ -6078,11 +6074,11 @@ class SymbolInformation implements BaseSymbolInformation {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['containerName'] = containerName;
-    json['deprecated'] = deprecated;
+    json['name'] = name;
     json['kind'] = kind.value;
     json['location'] = location.toJson();
-    json['name'] = name;
+    json['deprecated'] = deprecated;
+    json['containerName'] = containerName;
     json['tags'] = tags;
 
     return json;
@@ -6096,66 +6092,56 @@ class SymbolInformation implements BaseSymbolInformation {
 /// its most interesting range, e.g. the range of an identifier.
 class DocumentSymbol implements ToJson {
   DocumentSymbol({
-    required this.children,
-    required this.deprecated,
-    required this.detail,
-    required this.kind,
     required this.name,
+    required this.kind,
     required this.range,
     required this.selectionRange,
-    required this.tags,
+    this.children,
+    this.deprecated,
+    this.tags,
+    this.detail,
   });
 
   factory DocumentSymbol.fromJson(Map<String, Object?> json) {
-    final childrenJson = json['children'];
-    final children = (childrenJson as List<DocumentSymbol>?);
-    final deprecatedJson = json['deprecated'];
-    final deprecated = (deprecatedJson as bool?);
-    final detailJson = json['detail'];
-    final detail = (detailJson as String?);
+    final nameJson = json['name']!;
+    final name = (nameJson as String);
     final kindJson = json['kind']!;
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final nameJson = json['name']!;
-    final name = (nameJson as String);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final selectionRangeJson = json['selectionRange']!;
     final selectionRange = Range.fromJson(
       (selectionRangeJson as Map<String, Object?>),
     );
+    final childrenJson = json['children'];
+    final children = (childrenJson as List<DocumentSymbol>?);
+    final deprecatedJson = json['deprecated'];
+    final deprecated = (deprecatedJson as bool?);
     final tagsJson = json['tags'];
     final tags = (tagsJson as List<SymbolTag>?);
+    final detailJson = json['detail'];
+    final detail = (detailJson as String?);
 
     return DocumentSymbol(
-      children: children,
-      deprecated: deprecated,
-      detail: detail,
-      kind: kind,
       name: name,
+      kind: kind,
       range: range,
       selectionRange: selectionRange,
+      children: children,
+      deprecated: deprecated,
       tags: tags,
+      detail: detail,
     );
   }
-
-  /// Children of this symbol, e.g. properties of a class.
-  final List<DocumentSymbol>? children;
-
-  /// Indicates if this symbol is deprecated.
-  /// @deprecated Use tags instead
-  final bool? deprecated;
-
-  /// More detail for this symbol, e.g the signature of a function.
-  final String? detail;
-
-  /// The kind of this symbol.
-  final SymbolKind kind;
 
   /// The name of this symbol. Will be displayed in the user interface and
   /// therefore must not be an empty string or a string only consisting of
   /// white spaces.
   final String name;
+
+  /// The kind of this symbol.
+  final SymbolKind kind;
 
   /// The range enclosing this symbol not including leading/trailing
   /// whitespace but everything else like comments. This information is
@@ -6168,21 +6154,31 @@ class DocumentSymbol implements ToJson {
   /// `range`.
   final Range selectionRange;
 
+  /// Children of this symbol, e.g. properties of a class.
+  final List<DocumentSymbol>? children;
+
+  /// Indicates if this symbol is deprecated.
+  /// @deprecated Use tags instead
+  final bool? deprecated;
+
   /// Tags for this document symbol.
   /// @since 3.16.0
   final List<SymbolTag>? tags;
 
+  /// More detail for this symbol, e.g the signature of a function.
+  final String? detail;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['children'] = children;
-    json['deprecated'] = deprecated;
-    json['detail'] = detail;
-    json['kind'] = kind.value;
     json['name'] = name;
+    json['kind'] = kind.value;
     json['range'] = range.toJson();
     json['selectionRange'] = selectionRange.toJson();
+    json['children'] = children;
+    json['deprecated'] = deprecated;
     json['tags'] = tags;
+    json['detail'] = detail;
 
     return json;
   }
@@ -6194,8 +6190,8 @@ class DocumentSymbolRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentSymbolOptions {
   DocumentSymbolRegistrationOptions({
     required this.documentSelector,
-    required this.label,
-    required this.workDoneProgress,
+    this.label,
+    this.workDoneProgress,
   });
 
   factory DocumentSymbolRegistrationOptions.fromJson(
@@ -6244,37 +6240,43 @@ class DocumentSymbolRegistrationOptions
 /// The parameters of a {@link CodeActionRequest}.
 class CodeActionParams implements WorkDoneProgressParams, PartialResultParams {
   CodeActionParams({
-    required this.context,
-    required this.partialResultToken,
-    required this.range,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.range,
+    required this.context,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory CodeActionParams.fromJson(Map<String, Object?> json) {
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final contextJson = json['context']!;
     final context = CodeActionContext.fromJson(
       (contextJson as Map<String, Object?>),
     );
     final partialResultTokenJson = json['partialResultToken'];
     final partialResultToken = (partialResultTokenJson as ProgressToken?);
-    final rangeJson = json['range']!;
-    final range = Range.fromJson((rangeJson as Map<String, Object?>));
-    final textDocumentJson = json['textDocument']!;
-    final textDocument = TextDocumentIdentifier.fromJson(
-      (textDocumentJson as Map<String, Object?>),
-    );
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return CodeActionParams(
+      textDocument: textDocument,
+      range: range,
       context: context,
       partialResultToken: partialResultToken,
-      range: range,
-      textDocument: textDocument,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The document in which the command was invoked.
+  final TextDocumentIdentifier textDocument;
+
+  /// The range for which the command was invoked.
+  final Range range;
 
   /// Context carrying additional information.
   final CodeActionContext context;
@@ -6284,12 +6286,6 @@ class CodeActionParams implements WorkDoneProgressParams, PartialResultParams {
   @override
   final ProgressToken? partialResultToken;
 
-  /// The range for which the command was invoked.
-  final Range range;
-
-  /// The document in which the command was invoked.
-  final TextDocumentIdentifier textDocument;
-
   /// An optional token that a server can use to report work done progress.
   @override
   final ProgressToken? workDoneToken;
@@ -6297,10 +6293,10 @@ class CodeActionParams implements WorkDoneProgressParams, PartialResultParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['textDocument'] = textDocument.toJson();
+    json['range'] = range.toJson();
     json['context'] = context.toJson();
     json['partialResultToken'] = partialResultToken;
-    json['range'] = range.toJson();
-    json['textDocument'] = textDocument.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -6312,38 +6308,34 @@ class CodeActionParams implements WorkDoneProgressParams, PartialResultParams {
 /// represent a command in the UI and, optionally, an array of arguments which
 /// will be passed to the command handler function when invoked.
 class Command implements ToJson {
-  Command({
-    required this.arguments,
-    required this.command,
-    required this.title,
-  });
+  Command({required this.title, required this.command, this.arguments});
 
   factory Command.fromJson(Map<String, Object?> json) {
-    final argumentsJson = json['arguments'];
-    final arguments = (argumentsJson as List<LSPAny>?);
-    final commandJson = json['command']!;
-    final command = (commandJson as String);
     final titleJson = json['title']!;
     final title = (titleJson as String);
+    final commandJson = json['command']!;
+    final command = (commandJson as String);
+    final argumentsJson = json['arguments'];
+    final arguments = (argumentsJson as List<LSPAny>?);
 
-    return Command(arguments: arguments, command: command, title: title);
+    return Command(title: title, command: command, arguments: arguments);
   }
-
-  /// Arguments that the command handler should be invoked with.
-  final List<LSPAny>? arguments;
-
-  /// The identifier of the actual command handler.
-  final String command;
 
   /// Title of the command, like `save`.
   final String title;
 
+  /// The identifier of the actual command handler.
+  final String command;
+
+  /// Arguments that the command handler should be invoked with.
+  final List<LSPAny>? arguments;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['arguments'] = arguments;
-    json['command'] = command;
     json['title'] = title;
+    json['command'] = command;
+    json['arguments'] = arguments;
 
     return json;
   }
@@ -6356,57 +6348,60 @@ class Command implements ToJson {
 /// supplied, the `edit` is applied first, then the `command` is executed.
 class CodeAction implements ToJson {
   CodeAction({
-    required this.command,
-    required this.data,
-    required this.diagnostics,
-    required this.disabled,
-    required this.edit,
-    required this.isPreferred,
-    required this.kind,
     required this.title,
+    this.data,
+    this.command,
+    this.edit,
+    this.disabled,
+    this.isPreferred,
+    this.diagnostics,
+    this.kind,
   });
 
   factory CodeAction.fromJson(Map<String, Object?> json) {
-    final commandJson = json['command'];
-    final command = (commandJson as Command?);
-    final dataJson = json['data'];
-    final data = (dataJson as LSPAny?);
-    final diagnosticsJson = json['diagnostics'];
-    final diagnostics = (diagnosticsJson as List<Diagnostic>?);
-    final disabledJson = json['disabled'];
-    final disabled = (disabledJson as CodeActionDisabled?);
-    final editJson = json['edit'];
-    final edit = (editJson as WorkspaceEdit?);
-    final isPreferredJson = json['isPreferred'];
-    final isPreferred = (isPreferredJson as bool?);
-    final kindJson = json['kind'];
-    final kind = (kindJson as CodeActionKind?);
     final titleJson = json['title']!;
     final title = (titleJson as String);
+    final dataJson = json['data'];
+    final data = (dataJson as LSPAny?);
+    final commandJson = json['command'];
+    final command = (commandJson as Command?);
+    final editJson = json['edit'];
+    final edit = (editJson as WorkspaceEdit?);
+    final disabledJson = json['disabled'];
+    final disabled = (disabledJson as CodeActionDisabled?);
+    final isPreferredJson = json['isPreferred'];
+    final isPreferred = (isPreferredJson as bool?);
+    final diagnosticsJson = json['diagnostics'];
+    final diagnostics = (diagnosticsJson as List<Diagnostic>?);
+    final kindJson = json['kind'];
+    final kind = (kindJson as CodeActionKind?);
 
     return CodeAction(
-      command: command,
-      data: data,
-      diagnostics: diagnostics,
-      disabled: disabled,
-      edit: edit,
-      isPreferred: isPreferred,
-      kind: kind,
       title: title,
+      data: data,
+      command: command,
+      edit: edit,
+      disabled: disabled,
+      isPreferred: isPreferred,
+      diagnostics: diagnostics,
+      kind: kind,
     );
   }
 
-  /// A command this code action executes. If a code action provides an edit
-  /// and a command, first the edit is executed and then the command.
-  final Command? command;
+  /// A short, human-readable, title for this code action.
+  final String title;
 
   /// A data entry field that is preserved on a code action between a
   /// `textDocument/codeAction` and a `codeAction/resolve` request.
   /// @since 3.16.0
   final LSPAny? data;
 
-  /// The diagnostics that this code action resolves.
-  final List<Diagnostic>? diagnostics;
+  /// A command this code action executes. If a code action provides an edit
+  /// and a command, first the edit is executed and then the command.
+  final Command? command;
+
+  /// The workspace edit this code action performs.
+  final WorkspaceEdit? edit;
 
   /// Marks that the code action cannot currently be applied.
   /// Clients should follow the following guidelines regarding disabled code
@@ -6425,9 +6420,6 @@ class CodeAction implements ToJson {
   /// @since 3.16.0
   final CodeActionDisabled? disabled;
 
-  /// The workspace edit this code action performs.
-  final WorkspaceEdit? edit;
-
   /// Marks this as a preferred action. Preferred actions are used by the
   /// `auto fix` command and can be targeted by keybindings.
   /// A quick fix should be marked preferred if it properly addresses the
@@ -6436,24 +6428,24 @@ class CodeAction implements ToJson {
   /// @since 3.15.0
   final bool? isPreferred;
 
+  /// The diagnostics that this code action resolves.
+  final List<Diagnostic>? diagnostics;
+
   /// The kind of the code action.
   /// Used to filter code actions.
   final CodeActionKind? kind;
 
-  /// A short, human-readable, title for this code action.
-  final String title;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['command'] = command?.toJson();
-    json['data'] = data;
-    json['diagnostics'] = diagnostics;
-    json['disabled'] = disabled;
-    json['edit'] = edit?.toJson();
-    json['isPreferred'] = isPreferred;
-    json['kind'] = kind?.value;
     json['title'] = title;
+    json['data'] = data;
+    json['command'] = command?.toJson();
+    json['edit'] = edit?.toJson();
+    json['disabled'] = disabled;
+    json['isPreferred'] = isPreferred;
+    json['diagnostics'] = diagnostics;
+    json['kind'] = kind?.value;
 
     return json;
   }
@@ -6464,35 +6456,29 @@ class CodeAction implements ToJson {
 class CodeActionRegistrationOptions
     implements TextDocumentRegistrationOptions, CodeActionOptions {
   CodeActionRegistrationOptions({
-    required this.codeActionKinds,
     required this.documentSelector,
-    required this.resolveProvider,
-    required this.workDoneProgress,
+    this.resolveProvider,
+    this.codeActionKinds,
+    this.workDoneProgress,
   });
 
   factory CodeActionRegistrationOptions.fromJson(Map<String, Object?> json) {
-    final codeActionKindsJson = json['codeActionKinds'];
-    final codeActionKinds = (codeActionKindsJson as List<CodeActionKind>?);
     final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as OrRefType);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
+    final codeActionKindsJson = json['codeActionKinds'];
+    final codeActionKinds = (codeActionKindsJson as List<CodeActionKind>?);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
     return CodeActionRegistrationOptions(
-      codeActionKinds: codeActionKinds,
       documentSelector: documentSelector,
       resolveProvider: resolveProvider,
+      codeActionKinds: codeActionKinds,
       workDoneProgress: workDoneProgress,
     );
   }
-
-  /// CodeActionKinds that this server may return.
-  /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
-  /// the server may list out every specific kind they provide.
-  @override
-  final List<CodeActionKind>? codeActionKinds;
 
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
@@ -6505,15 +6491,21 @@ class CodeActionRegistrationOptions
   @override
   final bool? resolveProvider;
 
+  /// CodeActionKinds that this server may return.
+  /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+  /// the server may list out every specific kind they provide.
+  @override
+  final List<CodeActionKind>? codeActionKinds;
+
   @override
   final bool? workDoneProgress;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['codeActionKinds'] = codeActionKinds;
     json['documentSelector'] = documentSelector;
     json['resolveProvider'] = resolveProvider;
+    json['codeActionKinds'] = codeActionKinds;
     json['workDoneProgress'] = workDoneProgress;
 
     return json;
@@ -6525,34 +6517,34 @@ class CodeActionRegistrationOptions
 class WorkspaceSymbolParams
     implements WorkDoneProgressParams, PartialResultParams {
   WorkspaceSymbolParams({
-    required this.partialResultToken,
     required this.query,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory WorkspaceSymbolParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final queryJson = json['query']!;
     final query = (queryJson as String);
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return WorkspaceSymbolParams(
-      partialResultToken: partialResultToken,
       query: query,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// A query string to filter symbols by. Clients may send an empty string
+  /// here to request all symbols.
+  final String query;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// A query string to filter symbols by. Clients may send an empty string
-  /// here to request all symbols.
-  final String query;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -6561,8 +6553,8 @@ class WorkspaceSymbolParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
     json['query'] = query;
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -6575,49 +6567,42 @@ class WorkspaceSymbolParams
 /// @since 3.17.0
 class WorkspaceSymbol implements BaseSymbolInformation {
   WorkspaceSymbol({
-    required this.containerName,
-    required this.data,
+    required this.name,
     required this.kind,
     required this.location,
-    required this.name,
-    required this.tags,
+    this.data,
+    this.containerName,
+    this.tags,
   });
 
   factory WorkspaceSymbol.fromJson(Map<String, Object?> json) {
-    final containerNameJson = json['containerName'];
-    final containerName = (containerNameJson as String?);
-    final dataJson = json['data'];
-    final data = (dataJson as LSPAny?);
+    final nameJson = json['name']!;
+    final name = (nameJson as String);
     final kindJson = json['kind']!;
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final locationJson = json['location']!;
     final location = (locationJson as OrRefType);
-    final nameJson = json['name']!;
-    final name = (nameJson as String);
+    final dataJson = json['data'];
+    final data = (dataJson as LSPAny?);
+    final containerNameJson = json['containerName'];
+    final containerName = (containerNameJson as String?);
     final tagsJson = json['tags'];
     final tags = (tagsJson as List<SymbolTag>?);
 
     return WorkspaceSymbol(
-      containerName: containerName,
-      data: data,
+      name: name,
       kind: kind,
       location: location,
-      name: name,
+      data: data,
+      containerName: containerName,
       tags: tags,
     );
   }
 
-  /// The name of the symbol containing this symbol. This information is for
-  /// user interface purposes (e.g. to render a qualifier in the user
-  /// interface if necessary). It can't be used to re-infer a hierarchy for
-  /// the document symbols.
+  /// The name of this symbol.
   @override
-  final String? containerName;
-
-  /// A data entry field that is preserved on a workspace symbol between a
-  /// workspace symbol request and a workspace symbol resolve request.
-  final LSPAny? data;
+  final String name;
 
   /// The kind of this symbol.
   @override
@@ -6629,9 +6614,16 @@ class WorkspaceSymbol implements BaseSymbolInformation {
   /// See SymbolInformation#location for more details.
   final OrRefType location;
 
-  /// The name of this symbol.
+  /// A data entry field that is preserved on a workspace symbol between a
+  /// workspace symbol request and a workspace symbol resolve request.
+  final LSPAny? data;
+
+  /// The name of the symbol containing this symbol. This information is for
+  /// user interface purposes (e.g. to render a qualifier in the user
+  /// interface if necessary). It can't be used to re-infer a hierarchy for
+  /// the document symbols.
   @override
-  final String name;
+  final String? containerName;
 
   /// Tags for this symbol.
   /// @since 3.16.0
@@ -6641,11 +6633,11 @@ class WorkspaceSymbol implements BaseSymbolInformation {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['containerName'] = containerName;
-    json['data'] = data;
+    json['name'] = name;
     json['kind'] = kind.value;
     json['location'] = location;
-    json['name'] = name;
+    json['data'] = data;
+    json['containerName'] = containerName;
     json['tags'] = tags;
 
     return json;
@@ -6656,8 +6648,8 @@ class WorkspaceSymbol implements BaseSymbolInformation {
 /// Registration options for a {@link WorkspaceSymbolRequest}.
 class WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolOptions {
   WorkspaceSymbolRegistrationOptions({
-    required this.resolveProvider,
-    required this.workDoneProgress,
+    this.resolveProvider,
+    this.workDoneProgress,
   });
 
   factory WorkspaceSymbolRegistrationOptions.fromJson(
@@ -6697,35 +6689,35 @@ class WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolOptions {
 /// The parameters of a {@link CodeLensRequest}.
 class CodeLensParams implements WorkDoneProgressParams, PartialResultParams {
   CodeLensParams({
-    required this.partialResultToken,
     required this.textDocument,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory CodeLensParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return CodeLensParams(
-      partialResultToken: partialResultToken,
       textDocument: textDocument,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The document to request code lens for.
+  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// The document to request code lens for.
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -6734,8 +6726,8 @@ class CodeLensParams implements WorkDoneProgressParams, PartialResultParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
     json['textDocument'] = textDocument.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -6749,36 +6741,36 @@ class CodeLensParams implements WorkDoneProgressParams, PartialResultParams {
 /// performance reasons the creation of a code lens and resolving should be
 /// done in two stages.
 class CodeLens implements ToJson {
-  CodeLens({required this.command, required this.data, required this.range});
+  CodeLens({required this.range, this.data, this.command});
 
   factory CodeLens.fromJson(Map<String, Object?> json) {
-    final commandJson = json['command'];
-    final command = (commandJson as Command?);
-    final dataJson = json['data'];
-    final data = (dataJson as LSPAny?);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final dataJson = json['data'];
+    final data = (dataJson as LSPAny?);
+    final commandJson = json['command'];
+    final command = (commandJson as Command?);
 
-    return CodeLens(command: command, data: data, range: range);
+    return CodeLens(range: range, data: data, command: command);
   }
-
-  /// The command this code lens represents.
-  final Command? command;
-
-  /// A data entry field that is preserved on a code lens item between a
-  /// {@link CodeLensRequest} and a {@link CodeLensResolveRequest}
-  final LSPAny? data;
 
   /// The range in which this code lens is valid. Should only span a single
   /// line.
   final Range range;
 
+  /// A data entry field that is preserved on a code lens item between a
+  /// {@link CodeLensRequest} and a {@link CodeLensResolveRequest}
+  final LSPAny? data;
+
+  /// The command this code lens represents.
+  final Command? command;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['command'] = command?.toJson();
-    json['data'] = data;
     json['range'] = range.toJson();
+    json['data'] = data;
+    json['command'] = command?.toJson();
 
     return json;
   }
@@ -6790,8 +6782,8 @@ class CodeLensRegistrationOptions
     implements TextDocumentRegistrationOptions, CodeLensOptions {
   CodeLensRegistrationOptions({
     required this.documentSelector,
-    required this.resolveProvider,
-    required this.workDoneProgress,
+    this.resolveProvider,
+    this.workDoneProgress,
   });
 
   factory CodeLensRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -6837,35 +6829,35 @@ class CodeLensRegistrationOptions
 class DocumentLinkParams
     implements WorkDoneProgressParams, PartialResultParams {
   DocumentLinkParams({
-    required this.partialResultToken,
     required this.textDocument,
-    required this.workDoneToken,
+    this.partialResultToken,
+    this.workDoneToken,
   });
 
   factory DocumentLinkParams.fromJson(Map<String, Object?> json) {
-    final partialResultTokenJson = json['partialResultToken'];
-    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final partialResultTokenJson = json['partialResultToken'];
+    final partialResultToken = (partialResultTokenJson as ProgressToken?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DocumentLinkParams(
-      partialResultToken: partialResultToken,
       textDocument: textDocument,
+      partialResultToken: partialResultToken,
       workDoneToken: workDoneToken,
     );
   }
+
+  /// The document to provide document links for.
+  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report partial results (e.g.
   /// streaming) to the client.
   @override
   final ProgressToken? partialResultToken;
-
-  /// The document to provide document links for.
-  final TextDocumentIdentifier textDocument;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -6874,8 +6866,8 @@ class DocumentLinkParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['partialResultToken'] = partialResultToken;
     json['textDocument'] = textDocument.toJson();
+    json['partialResultToken'] = partialResultToken;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -6886,40 +6878,32 @@ class DocumentLinkParams
 /// A document link is a range in a text document that links to an internal or
 /// external resource, like another text document or a web site.
 class DocumentLink implements ToJson {
-  DocumentLink({
-    required this.data,
-    required this.range,
-    required this.target,
-    required this.tooltip,
-  });
+  DocumentLink({required this.range, this.data, this.tooltip, this.target});
 
   factory DocumentLink.fromJson(Map<String, Object?> json) {
-    final dataJson = json['data'];
-    final data = (dataJson as LSPAny?);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
-    final targetJson = json['target'];
-    final target = (targetJson as Uri?);
+    final dataJson = json['data'];
+    final data = (dataJson as LSPAny?);
     final tooltipJson = json['tooltip'];
     final tooltip = (tooltipJson as String?);
+    final targetJson = json['target'];
+    final target = (targetJson as Uri?);
 
     return DocumentLink(
-      data: data,
       range: range,
-      target: target,
+      data: data,
       tooltip: tooltip,
+      target: target,
     );
   }
-
-  /// A data entry field that is preserved on a document link between a
-  /// DocumentLinkRequest and a DocumentLinkResolveRequest.
-  final LSPAny? data;
 
   /// The range this link applies to.
   final Range range;
 
-  /// The uri this link points to. If missing a resolve request is sent later.
-  final Uri? target;
+  /// A data entry field that is preserved on a document link between a
+  /// DocumentLinkRequest and a DocumentLinkResolveRequest.
+  final LSPAny? data;
 
   /// The tooltip text when you hover over this link.
   /// If a tooltip is provided, is will be displayed in a string that
@@ -6929,13 +6913,16 @@ class DocumentLink implements ToJson {
   /// @since 3.15.0
   final String? tooltip;
 
+  /// The uri this link points to. If missing a resolve request is sent later.
+  final Uri? target;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['data'] = data;
     json['range'] = range.toJson();
-    json['target'] = target;
+    json['data'] = data;
     json['tooltip'] = tooltip;
+    json['target'] = target;
 
     return json;
   }
@@ -6947,8 +6934,8 @@ class DocumentLinkRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentLinkOptions {
   DocumentLinkRegistrationOptions({
     required this.documentSelector,
-    required this.resolveProvider,
-    required this.workDoneProgress,
+    this.resolveProvider,
+    this.workDoneProgress,
   });
 
   factory DocumentLinkRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -6993,35 +6980,35 @@ class DocumentLinkRegistrationOptions
 /// The parameters of a {@link DocumentFormattingRequest}.
 class DocumentFormattingParams implements WorkDoneProgressParams {
   DocumentFormattingParams({
-    required this.options,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.options,
+    this.workDoneToken,
   });
 
   factory DocumentFormattingParams.fromJson(Map<String, Object?> json) {
-    final optionsJson = json['options']!;
-    final options = FormattingOptions.fromJson(
-      (optionsJson as Map<String, Object?>),
-    );
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
+    );
+    final optionsJson = json['options']!;
+    final options = FormattingOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
     );
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DocumentFormattingParams(
-      options: options,
       textDocument: textDocument,
+      options: options,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The format options.
-  final FormattingOptions options;
-
   /// The document to format.
   final TextDocumentIdentifier textDocument;
+
+  /// The format options.
+  final FormattingOptions options;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -7030,8 +7017,8 @@ class DocumentFormattingParams implements WorkDoneProgressParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['options'] = options.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['options'] = options.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -7044,7 +7031,7 @@ class DocumentFormattingRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentFormattingOptions {
   DocumentFormattingRegistrationOptions({
     required this.documentSelector,
-    required this.workDoneProgress,
+    this.workDoneProgress,
   });
 
   factory DocumentFormattingRegistrationOptions.fromJson(
@@ -7083,42 +7070,42 @@ class DocumentFormattingRegistrationOptions
 /// The parameters of a {@link DocumentRangeFormattingRequest}.
 class DocumentRangeFormattingParams implements WorkDoneProgressParams {
   DocumentRangeFormattingParams({
-    required this.options,
-    required this.range,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.range,
+    required this.options,
+    this.workDoneToken,
   });
 
   factory DocumentRangeFormattingParams.fromJson(Map<String, Object?> json) {
-    final optionsJson = json['options']!;
-    final options = FormattingOptions.fromJson(
-      (optionsJson as Map<String, Object?>),
-    );
-    final rangeJson = json['range']!;
-    final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
+    );
+    final rangeJson = json['range']!;
+    final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final optionsJson = json['options']!;
+    final options = FormattingOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
     );
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DocumentRangeFormattingParams(
-      options: options,
-      range: range,
       textDocument: textDocument,
+      range: range,
+      options: options,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The format options
-  final FormattingOptions options;
+  /// The document to format.
+  final TextDocumentIdentifier textDocument;
 
   /// The range to format
   final Range range;
 
-  /// The document to format.
-  final TextDocumentIdentifier textDocument;
+  /// The format options
+  final FormattingOptions options;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -7127,9 +7114,9 @@ class DocumentRangeFormattingParams implements WorkDoneProgressParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['options'] = options.toJson();
-    json['range'] = range.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['range'] = range.toJson();
+    json['options'] = options.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -7142,8 +7129,8 @@ class DocumentRangeFormattingRegistrationOptions
     implements TextDocumentRegistrationOptions, DocumentRangeFormattingOptions {
   DocumentRangeFormattingRegistrationOptions({
     required this.documentSelector,
-    required this.rangesSupport,
-    required this.workDoneProgress,
+    this.rangesSupport,
+    this.workDoneProgress,
   });
 
   factory DocumentRangeFormattingRegistrationOptions.fromJson(
@@ -7192,42 +7179,42 @@ class DocumentRangeFormattingRegistrationOptions
 /// @since 3.18.0 @proposed
 class DocumentRangesFormattingParams implements WorkDoneProgressParams {
   DocumentRangesFormattingParams({
-    required this.options,
-    required this.ranges,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.ranges,
+    required this.options,
+    this.workDoneToken,
   });
 
   factory DocumentRangesFormattingParams.fromJson(Map<String, Object?> json) {
-    final optionsJson = json['options']!;
-    final options = FormattingOptions.fromJson(
-      (optionsJson as Map<String, Object?>),
-    );
-    final rangesJson = json['ranges']!;
-    final ranges = (rangesJson as List<Range>);
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
+    );
+    final rangesJson = json['ranges']!;
+    final ranges = (rangesJson as List<Range>);
+    final optionsJson = json['options']!;
+    final options = FormattingOptions.fromJson(
+      (optionsJson as Map<String, Object?>),
     );
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return DocumentRangesFormattingParams(
-      options: options,
-      ranges: ranges,
       textDocument: textDocument,
+      ranges: ranges,
+      options: options,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The format options
-  final FormattingOptions options;
+  /// The document to format.
+  final TextDocumentIdentifier textDocument;
 
   /// The ranges to format
   final List<Range> ranges;
 
-  /// The document to format.
-  final TextDocumentIdentifier textDocument;
+  /// The format options
+  final FormattingOptions options;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -7236,9 +7223,9 @@ class DocumentRangesFormattingParams implements WorkDoneProgressParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['options'] = options.toJson();
-    json['ranges'] = ranges;
     json['textDocument'] = textDocument.toJson();
+    json['ranges'] = ranges;
+    json['options'] = options.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -7249,33 +7236,41 @@ class DocumentRangesFormattingParams implements WorkDoneProgressParams {
 /// The parameters of a {@link DocumentOnTypeFormattingRequest}.
 class DocumentOnTypeFormattingParams implements ToJson {
   DocumentOnTypeFormattingParams({
+    required this.textDocument,
+    required this.position,
     required this.ch,
     required this.options,
-    required this.position,
-    required this.textDocument,
   });
 
   factory DocumentOnTypeFormattingParams.fromJson(Map<String, Object?> json) {
+    final textDocumentJson = json['textDocument']!;
+    final textDocument = TextDocumentIdentifier.fromJson(
+      (textDocumentJson as Map<String, Object?>),
+    );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final chJson = json['ch']!;
     final ch = (chJson as String);
     final optionsJson = json['options']!;
     final options = FormattingOptions.fromJson(
       (optionsJson as Map<String, Object?>),
     );
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
-    final textDocumentJson = json['textDocument']!;
-    final textDocument = TextDocumentIdentifier.fromJson(
-      (textDocumentJson as Map<String, Object?>),
-    );
 
     return DocumentOnTypeFormattingParams(
+      textDocument: textDocument,
+      position: position,
       ch: ch,
       options: options,
-      position: position,
-      textDocument: textDocument,
     );
   }
+
+  /// The document to format.
+  final TextDocumentIdentifier textDocument;
+
+  /// The position around which the on type formatting should happen. This is
+  /// not necessarily the exact position where the character denoted by the
+  /// property `ch` got typed.
+  final Position position;
 
   /// The character that has been typed that triggered the formatting on type
   /// request. That is not necessarily the last character that got inserted
@@ -7286,21 +7281,13 @@ class DocumentOnTypeFormattingParams implements ToJson {
   /// The formatting options.
   final FormattingOptions options;
 
-  /// The position around which the on type formatting should happen. This is
-  /// not necessarily the exact position where the character denoted by the
-  /// property `ch` got typed.
-  final Position position;
-
-  /// The document to format.
-  final TextDocumentIdentifier textDocument;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
     json['ch'] = ch;
     json['options'] = options.toJson();
-    json['position'] = position.toJson();
-    json['textDocument'] = textDocument.toJson();
 
     return json;
   }
@@ -7315,7 +7302,7 @@ class DocumentOnTypeFormattingRegistrationOptions
   DocumentOnTypeFormattingRegistrationOptions({
     required this.documentSelector,
     required this.firstTriggerCharacter,
-    required this.moreTriggerCharacter,
+    this.moreTriggerCharacter,
   });
 
   factory DocumentOnTypeFormattingRegistrationOptions.fromJson(
@@ -7363,41 +7350,41 @@ class DocumentOnTypeFormattingRegistrationOptions
 /// The parameters of a {@link RenameRequest}.
 class RenameParams implements WorkDoneProgressParams {
   RenameParams({
-    required this.newName,
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    required this.newName,
+    this.workDoneToken,
   });
 
   factory RenameParams.fromJson(Map<String, Object?> json) {
-    final newNameJson = json['newName']!;
-    final newName = (newNameJson as String);
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
+    final newNameJson = json['newName']!;
+    final newName = (newNameJson as String);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return RenameParams(
-      newName: newName,
-      position: position,
       textDocument: textDocument,
+      position: position,
+      newName: newName,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The new name of the symbol. If the given name is not valid the request
-  /// must return a {@link ResponseError} with an appropriate message set.
-  final String newName;
+  /// The document to rename.
+  final TextDocumentIdentifier textDocument;
 
   /// The position at which this request was sent.
   final Position position;
 
-  /// The document to rename.
-  final TextDocumentIdentifier textDocument;
+  /// The new name of the symbol. If the given name is not valid the request
+  /// must return a {@link ResponseError} with an appropriate message set.
+  final String newName;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -7406,9 +7393,9 @@ class RenameParams implements WorkDoneProgressParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['newName'] = newName;
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
+    json['newName'] = newName;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -7421,8 +7408,8 @@ class RenameRegistrationOptions
     implements TextDocumentRegistrationOptions, RenameOptions {
   RenameRegistrationOptions({
     required this.documentSelector,
-    required this.prepareProvider,
-    required this.workDoneProgress,
+    this.prepareProvider,
+    this.workDoneProgress,
   });
 
   factory RenameRegistrationOptions.fromJson(Map<String, Object?> json) {
@@ -7468,35 +7455,35 @@ class RenameRegistrationOptions
 class PrepareRenameParams
     implements TextDocumentPositionParams, WorkDoneProgressParams {
   PrepareRenameParams({
-    required this.position,
     required this.textDocument,
-    required this.workDoneToken,
+    required this.position,
+    this.workDoneToken,
   });
 
   factory PrepareRenameParams.fromJson(Map<String, Object?> json) {
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return PrepareRenameParams(
-      position: position,
       textDocument: textDocument,
+      position: position,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// The position inside the text document.
-  @override
-  final Position position;
-
   /// The text document.
   @override
   final TextDocumentIdentifier textDocument;
+
+  /// The position inside the text document.
+  @override
+  final Position position;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -7505,8 +7492,8 @@ class PrepareRenameParams
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -7517,31 +7504,31 @@ class PrepareRenameParams
 /// The parameters of a {@link ExecuteCommandRequest}.
 class ExecuteCommandParams implements WorkDoneProgressParams {
   ExecuteCommandParams({
-    required this.arguments,
     required this.command,
-    required this.workDoneToken,
+    this.arguments,
+    this.workDoneToken,
   });
 
   factory ExecuteCommandParams.fromJson(Map<String, Object?> json) {
-    final argumentsJson = json['arguments'];
-    final arguments = (argumentsJson as List<LSPAny>?);
     final commandJson = json['command']!;
     final command = (commandJson as String);
+    final argumentsJson = json['arguments'];
+    final arguments = (argumentsJson as List<LSPAny>?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return ExecuteCommandParams(
-      arguments: arguments,
       command: command,
+      arguments: arguments,
       workDoneToken: workDoneToken,
     );
   }
 
-  /// Arguments that the command should be invoked with.
-  final List<LSPAny>? arguments;
-
   /// The identifier of the actual command handler.
   final String command;
+
+  /// Arguments that the command should be invoked with.
+  final List<LSPAny>? arguments;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -7550,8 +7537,8 @@ class ExecuteCommandParams implements WorkDoneProgressParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['arguments'] = arguments;
     json['command'] = command;
+    json['arguments'] = arguments;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -7563,7 +7550,7 @@ class ExecuteCommandParams implements WorkDoneProgressParams {
 class ExecuteCommandRegistrationOptions implements ExecuteCommandOptions {
   ExecuteCommandRegistrationOptions({
     required this.commands,
-    required this.workDoneProgress,
+    this.workDoneProgress,
   });
 
   factory ExecuteCommandRegistrationOptions.fromJson(
@@ -7600,7 +7587,7 @@ class ExecuteCommandRegistrationOptions implements ExecuteCommandOptions {
 /// Struct
 /// The parameters passed via an apply workspace edit request.
 class ApplyWorkspaceEditParams implements ToJson {
-  ApplyWorkspaceEditParams({required this.edit, required this.label});
+  ApplyWorkspaceEditParams({required this.edit, this.label});
 
   factory ApplyWorkspaceEditParams.fromJson(Map<String, Object?> json) {
     final editJson = json['edit']!;
@@ -7634,8 +7621,8 @@ class ApplyWorkspaceEditParams implements ToJson {
 class ApplyWorkspaceEditResult implements ToJson {
   ApplyWorkspaceEditResult({
     required this.applied,
-    required this.failedChange,
-    required this.failureReason,
+    this.failedChange,
+    this.failureReason,
   });
 
   factory ApplyWorkspaceEditResult.fromJson(Map<String, Object?> json) {
@@ -7681,46 +7668,40 @@ class ApplyWorkspaceEditResult implements ToJson {
 /// Struct
 class WorkDoneProgressBegin implements ToJson {
   WorkDoneProgressBegin({
-    required this.cancellable,
     required this.kind,
-    required this.message,
-    required this.percentage,
     required this.title,
+    this.percentage,
+    this.message,
+    this.cancellable,
   });
 
   factory WorkDoneProgressBegin.fromJson(Map<String, Object?> json) {
-    final cancellableJson = json['cancellable'];
-    final cancellable = (cancellableJson as bool?);
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final messageJson = json['message'];
-    final message = (messageJson as String?);
-    final percentageJson = json['percentage'];
-    final percentage = (percentageJson as int?);
     final titleJson = json['title']!;
     final title = (titleJson as String);
+    final percentageJson = json['percentage'];
+    final percentage = (percentageJson as int?);
+    final messageJson = json['message'];
+    final message = (messageJson as String?);
+    final cancellableJson = json['cancellable'];
+    final cancellable = (cancellableJson as bool?);
 
     return WorkDoneProgressBegin(
-      cancellable: cancellable,
       kind: kind,
-      message: message,
-      percentage: percentage,
       title: title,
+      percentage: percentage,
+      message: message,
+      cancellable: cancellable,
     );
   }
 
-  /// Controls if a cancel button should show to allow the user to cancel the
-  /// long running operation. Clients that don't support cancellation are
-  /// allowed to ignore the setting.
-  final bool? cancellable;
-
   final String kind;
 
-  /// Optional, more detailed associated progress message. Contains
-  /// complementary information to the `title`.
-  /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
-  /// If unset, the previous progress message (if any) is still valid.
-  final String? message;
+  /// Mandatory title of the progress operation. Used to briefly inform about
+  /// the kind of operation being performed.
+  /// Examples: "Indexing" or "Linking dependencies".
+  final String title;
 
   /// Optional progress percentage to display (value 100 is considered 100%).
   /// If not provided infinite progress is assumed and clients are allowed to
@@ -7729,19 +7710,25 @@ class WorkDoneProgressBegin implements ToJson {
   /// that are not following this rule. The value range is [0, 100].
   final int? percentage;
 
-  /// Mandatory title of the progress operation. Used to briefly inform about
-  /// the kind of operation being performed.
-  /// Examples: "Indexing" or "Linking dependencies".
-  final String title;
+  /// Optional, more detailed associated progress message. Contains
+  /// complementary information to the `title`.
+  /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+  /// If unset, the previous progress message (if any) is still valid.
+  final String? message;
+
+  /// Controls if a cancel button should show to allow the user to cancel the
+  /// long running operation. Clients that don't support cancellation are
+  /// allowed to ignore the setting.
+  final bool? cancellable;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['cancellable'] = cancellable;
     json['kind'] = kind;
-    json['message'] = message;
-    json['percentage'] = percentage;
     json['title'] = title;
+    json['percentage'] = percentage;
+    json['message'] = message;
+    json['cancellable'] = cancellable;
 
     return json;
   }
@@ -7750,42 +7737,31 @@ class WorkDoneProgressBegin implements ToJson {
 /// Struct
 class WorkDoneProgressReport implements ToJson {
   WorkDoneProgressReport({
-    required this.cancellable,
     required this.kind,
-    required this.message,
-    required this.percentage,
+    this.percentage,
+    this.message,
+    this.cancellable,
   });
 
   factory WorkDoneProgressReport.fromJson(Map<String, Object?> json) {
-    final cancellableJson = json['cancellable'];
-    final cancellable = (cancellableJson as bool?);
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final messageJson = json['message'];
-    final message = (messageJson as String?);
     final percentageJson = json['percentage'];
     final percentage = (percentageJson as int?);
+    final messageJson = json['message'];
+    final message = (messageJson as String?);
+    final cancellableJson = json['cancellable'];
+    final cancellable = (cancellableJson as bool?);
 
     return WorkDoneProgressReport(
-      cancellable: cancellable,
       kind: kind,
-      message: message,
       percentage: percentage,
+      message: message,
+      cancellable: cancellable,
     );
   }
 
-  /// Controls enablement state of a cancel button.
-  /// Clients that don't support cancellation or don't support controlling
-  /// the button's enablement state are allowed to ignore the property.
-  final bool? cancellable;
-
   final String kind;
-
-  /// Optional, more detailed associated progress message. Contains
-  /// complementary information to the `title`.
-  /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
-  /// If unset, the previous progress message (if any) is still valid.
-  final String? message;
 
   /// Optional progress percentage to display (value 100 is considered 100%).
   /// If not provided infinite progress is assumed and clients are allowed to
@@ -7794,13 +7770,24 @@ class WorkDoneProgressReport implements ToJson {
   /// that are not following this rule. The value range is [0, 100].
   final int? percentage;
 
+  /// Optional, more detailed associated progress message. Contains
+  /// complementary information to the `title`.
+  /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+  /// If unset, the previous progress message (if any) is still valid.
+  final String? message;
+
+  /// Controls enablement state of a cancel button.
+  /// Clients that don't support cancellation or don't support controlling
+  /// the button's enablement state are allowed to ignore the property.
+  final bool? cancellable;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['cancellable'] = cancellable;
     json['kind'] = kind;
-    json['message'] = message;
     json['percentage'] = percentage;
+    json['message'] = message;
+    json['cancellable'] = cancellable;
 
     return json;
   }
@@ -7808,7 +7795,7 @@ class WorkDoneProgressReport implements ToJson {
 
 /// Struct
 class WorkDoneProgressEnd implements ToJson {
-  WorkDoneProgressEnd({required this.kind, required this.message});
+  WorkDoneProgressEnd({required this.kind, this.message});
 
   factory WorkDoneProgressEnd.fromJson(Map<String, Object?> json) {
     final kindJson = json['kind']!;
@@ -7860,7 +7847,7 @@ class SetTraceParams implements ToJson {
 
 /// Struct
 class LogTraceParams implements ToJson {
-  LogTraceParams({required this.message, required this.verbose});
+  LogTraceParams({required this.message, this.verbose});
 
   factory LogTraceParams.fromJson(Map<String, Object?> json) {
     final messageJson = json['message']!;
@@ -7942,35 +7929,35 @@ class ProgressParams implements ToJson {
 /// inside that document.
 class TextDocumentPositionParams implements ToJson {
   TextDocumentPositionParams({
-    required this.position,
     required this.textDocument,
+    required this.position,
   });
 
   factory TextDocumentPositionParams.fromJson(Map<String, Object?> json) {
-    final positionJson = json['position']!;
-    final position = Position.fromJson((positionJson as Map<String, Object?>));
     final textDocumentJson = json['textDocument']!;
     final textDocument = TextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final positionJson = json['position']!;
+    final position = Position.fromJson((positionJson as Map<String, Object?>));
 
     return TextDocumentPositionParams(
-      position: position,
       textDocument: textDocument,
+      position: position,
     );
   }
-
-  /// The position inside the text document.
-  final Position position;
 
   /// The text document.
   final TextDocumentIdentifier textDocument;
 
+  /// The position inside the text document.
+  final Position position;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['position'] = position.toJson();
     json['textDocument'] = textDocument.toJson();
+    json['position'] = position.toJson();
 
     return json;
   }
@@ -7978,7 +7965,7 @@ class TextDocumentPositionParams implements ToJson {
 
 /// Struct
 class WorkDoneProgressParams implements ToJson {
-  WorkDoneProgressParams({required this.workDoneToken});
+  WorkDoneProgressParams({this.workDoneToken});
 
   factory WorkDoneProgressParams.fromJson(Map<String, Object?> json) {
     final workDoneTokenJson = json['workDoneToken'];
@@ -8001,7 +7988,7 @@ class WorkDoneProgressParams implements ToJson {
 
 /// Struct
 class PartialResultParams implements ToJson {
-  PartialResultParams({required this.partialResultToken});
+  PartialResultParams({this.partialResultToken});
 
   factory PartialResultParams.fromJson(Map<String, Object?> json) {
     final partialResultTokenJson = json['partialResultToken'];
@@ -8028,15 +8015,15 @@ class PartialResultParams implements ToJson {
 /// over normal {@link Location locations}, including an origin range.
 class LocationLink implements ToJson {
   LocationLink({
-    required this.originSelectionRange,
+    required this.targetUri,
     required this.targetRange,
     required this.targetSelectionRange,
-    required this.targetUri,
+    this.originSelectionRange,
   });
 
   factory LocationLink.fromJson(Map<String, Object?> json) {
-    final originSelectionRangeJson = json['originSelectionRange'];
-    final originSelectionRange = (originSelectionRangeJson as Range?);
+    final targetUriJson = json['targetUri']!;
+    final targetUri = (targetUriJson as Uri);
     final targetRangeJson = json['targetRange']!;
     final targetRange = Range.fromJson(
       (targetRangeJson as Map<String, Object?>),
@@ -8045,21 +8032,19 @@ class LocationLink implements ToJson {
     final targetSelectionRange = Range.fromJson(
       (targetSelectionRangeJson as Map<String, Object?>),
     );
-    final targetUriJson = json['targetUri']!;
-    final targetUri = (targetUriJson as Uri);
+    final originSelectionRangeJson = json['originSelectionRange'];
+    final originSelectionRange = (originSelectionRangeJson as Range?);
 
     return LocationLink(
-      originSelectionRange: originSelectionRange,
+      targetUri: targetUri,
       targetRange: targetRange,
       targetSelectionRange: targetSelectionRange,
-      targetUri: targetUri,
+      originSelectionRange: originSelectionRange,
     );
   }
 
-  /// Span of the origin of this link.
-  /// Used as the underlined span for mouse interaction. Defaults to the word
-  /// range at the definition position.
-  final Range? originSelectionRange;
+  /// The target resource identifier of this link.
+  final Uri targetUri;
 
   /// The full target range of this link. If the target for example is a
   /// symbol then target range is the range enclosing this symbol not
@@ -8073,16 +8058,18 @@ class LocationLink implements ToJson {
   /// `targetRange`. See also `DocumentSymbol#range`
   final Range targetSelectionRange;
 
-  /// The target resource identifier of this link.
-  final Uri targetUri;
+  /// Span of the origin of this link.
+  /// Used as the underlined span for mouse interaction. Defaults to the word
+  /// range at the definition position.
+  final Range? originSelectionRange;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['originSelectionRange'] = originSelectionRange?.toJson();
+    json['targetUri'] = targetUri;
     json['targetRange'] = targetRange.toJson();
     json['targetSelectionRange'] = targetSelectionRange.toJson();
-    json['targetUri'] = targetUri;
+    json['originSelectionRange'] = originSelectionRange?.toJson();
 
     return json;
   }
@@ -8096,28 +8083,28 @@ class LocationLink implements ToJson {
 /// line. For example: ```ts { start: { line: 5, character: 23 } end : { line
 /// 6, character : 0 } } ```
 class Range implements ToJson {
-  Range({required this.end, required this.start});
+  Range({required this.start, required this.end});
 
   factory Range.fromJson(Map<String, Object?> json) {
-    final endJson = json['end']!;
-    final end = Position.fromJson((endJson as Map<String, Object?>));
     final startJson = json['start']!;
     final start = Position.fromJson((startJson as Map<String, Object?>));
+    final endJson = json['end']!;
+    final end = Position.fromJson((endJson as Map<String, Object?>));
 
-    return Range(end: end, start: start);
+    return Range(start: start, end: end);
   }
-
-  /// The range's end position.
-  final Position end;
 
   /// The range's start position.
   final Position start;
 
+  /// The range's end position.
+  final Position end;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['end'] = end.toJson();
     json['start'] = start.toJson();
+    json['end'] = end.toJson();
 
     return json;
   }
@@ -8125,7 +8112,7 @@ class Range implements ToJson {
 
 /// Struct
 class ImplementationOptions implements WorkDoneProgressOptions {
-  ImplementationOptions({required this.workDoneProgress});
+  ImplementationOptions({this.workDoneProgress});
 
   factory ImplementationOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -8149,7 +8136,7 @@ class ImplementationOptions implements WorkDoneProgressOptions {
 /// Struct
 /// Static registration options to be returned in the initialize request.
 class StaticRegistrationOptions implements ToJson {
-  StaticRegistrationOptions({required this.id});
+  StaticRegistrationOptions({this.id});
 
   factory StaticRegistrationOptions.fromJson(Map<String, Object?> json) {
     final idJson = json['id'];
@@ -8173,7 +8160,7 @@ class StaticRegistrationOptions implements ToJson {
 
 /// Struct
 class TypeDefinitionOptions implements WorkDoneProgressOptions {
-  TypeDefinitionOptions({required this.workDoneProgress});
+  TypeDefinitionOptions({this.workDoneProgress});
 
   factory TypeDefinitionOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -8226,28 +8213,28 @@ class WorkspaceFoldersChangeEvent implements ToJson {
 
 /// Struct
 class ConfigurationItem implements ToJson {
-  ConfigurationItem({required this.scopeUri, required this.section});
+  ConfigurationItem({this.section, this.scopeUri});
 
   factory ConfigurationItem.fromJson(Map<String, Object?> json) {
-    final scopeUriJson = json['scopeUri'];
-    final scopeUri = (scopeUriJson as Uri?);
     final sectionJson = json['section'];
     final section = (sectionJson as String?);
+    final scopeUriJson = json['scopeUri'];
+    final scopeUri = (scopeUriJson as Uri?);
 
-    return ConfigurationItem(scopeUri: scopeUri, section: section);
+    return ConfigurationItem(section: section, scopeUri: scopeUri);
   }
-
-  /// The scope to get the configuration section for.
-  final Uri? scopeUri;
 
   /// The configuration section asked for.
   final String? section;
 
+  /// The scope to get the configuration section for.
+  final Uri? scopeUri;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['scopeUri'] = scopeUri;
     json['section'] = section;
+    json['scopeUri'] = scopeUri;
 
     return json;
   }
@@ -8281,44 +8268,44 @@ class TextDocumentIdentifier implements ToJson {
 /// Represents a color in RGBA space.
 class Color implements ToJson {
   Color({
-    required this.alpha,
-    required this.blue,
-    required this.green,
     required this.red,
+    required this.green,
+    required this.blue,
+    required this.alpha,
   });
 
   factory Color.fromJson(Map<String, Object?> json) {
-    final alphaJson = json['alpha']!;
-    final alpha = (alphaJson as double);
-    final blueJson = json['blue']!;
-    final blue = (blueJson as double);
-    final greenJson = json['green']!;
-    final green = (greenJson as double);
     final redJson = json['red']!;
     final red = (redJson as double);
+    final greenJson = json['green']!;
+    final green = (greenJson as double);
+    final blueJson = json['blue']!;
+    final blue = (blueJson as double);
+    final alphaJson = json['alpha']!;
+    final alpha = (alphaJson as double);
 
-    return Color(alpha: alpha, blue: blue, green: green, red: red);
+    return Color(red: red, green: green, blue: blue, alpha: alpha);
   }
-
-  /// The alpha component of this color in the range [0-1].
-  final double alpha;
-
-  /// The blue component of this color in the range [0-1].
-  final double blue;
-
-  /// The green component of this color in the range [0-1].
-  final double green;
 
   /// The red component of this color in the range [0-1].
   final double red;
 
+  /// The green component of this color in the range [0-1].
+  final double green;
+
+  /// The blue component of this color in the range [0-1].
+  final double blue;
+
+  /// The alpha component of this color in the range [0-1].
+  final double alpha;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['alpha'] = alpha;
-    json['blue'] = blue;
-    json['green'] = green;
     json['red'] = red;
+    json['green'] = green;
+    json['blue'] = blue;
+    json['alpha'] = alpha;
 
     return json;
   }
@@ -8326,7 +8313,7 @@ class Color implements ToJson {
 
 /// Struct
 class DocumentColorOptions implements WorkDoneProgressOptions {
-  DocumentColorOptions({required this.workDoneProgress});
+  DocumentColorOptions({this.workDoneProgress});
 
   factory DocumentColorOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -8349,7 +8336,7 @@ class DocumentColorOptions implements WorkDoneProgressOptions {
 
 /// Struct
 class FoldingRangeOptions implements WorkDoneProgressOptions {
-  FoldingRangeOptions({required this.workDoneProgress});
+  FoldingRangeOptions({this.workDoneProgress});
 
   factory FoldingRangeOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -8372,7 +8359,7 @@ class FoldingRangeOptions implements WorkDoneProgressOptions {
 
 /// Struct
 class DeclarationOptions implements WorkDoneProgressOptions {
-  DeclarationOptions({required this.workDoneProgress});
+  DeclarationOptions({this.workDoneProgress});
 
   factory DeclarationOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -8422,16 +8409,22 @@ class DeclarationOptions implements WorkDoneProgressOptions {
 /// offset.
 /// @since 3.17.0 - support for negotiated position encoding.
 class Position implements ToJson {
-  Position({required this.character, required this.line});
+  Position({required this.line, required this.character});
 
   factory Position.fromJson(Map<String, Object?> json) {
-    final characterJson = json['character']!;
-    final character = (characterJson as int);
     final lineJson = json['line']!;
     final line = (lineJson as int);
+    final characterJson = json['character']!;
+    final character = (characterJson as int);
 
-    return Position(character: character, line: line);
+    return Position(line: line, character: character);
   }
+
+  /// Line position in a document (zero-based).
+  /// If a line number is greater than the number of lines in a document, it
+  /// defaults back to the number of lines in the document. If a line number
+  /// is negative, it defaults to 0.
+  final int line;
 
   /// Character offset on a line in a document (zero-based).
   /// The meaning of this offset is determined by the negotiated
@@ -8440,17 +8433,11 @@ class Position implements ToJson {
   /// to the line length.
   final int character;
 
-  /// Line position in a document (zero-based).
-  /// If a line number is greater than the number of lines in a document, it
-  /// defaults back to the number of lines in the document. If a line number
-  /// is negative, it defaults to 0.
-  final int line;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['character'] = character;
     json['line'] = line;
+    json['character'] = character;
 
     return json;
   }
@@ -8458,7 +8445,7 @@ class Position implements ToJson {
 
 /// Struct
 class SelectionRangeOptions implements WorkDoneProgressOptions {
-  SelectionRangeOptions({required this.workDoneProgress});
+  SelectionRangeOptions({this.workDoneProgress});
 
   factory SelectionRangeOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -8483,7 +8470,7 @@ class SelectionRangeOptions implements WorkDoneProgressOptions {
 /// Call hierarchy options used during static registration.
 /// @since 3.16.0
 class CallHierarchyOptions implements WorkDoneProgressOptions {
-  CallHierarchyOptions({required this.workDoneProgress});
+  CallHierarchyOptions({this.workDoneProgress});
 
   factory CallHierarchyOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -8508,37 +8495,37 @@ class CallHierarchyOptions implements WorkDoneProgressOptions {
 /// @since 3.16.0
 class SemanticTokensOptions implements WorkDoneProgressOptions {
   SemanticTokensOptions({
-    required this.full,
     required this.legend,
-    required this.range,
-    required this.workDoneProgress,
+    this.full,
+    this.range,
+    this.workDoneProgress,
   });
 
   factory SemanticTokensOptions.fromJson(Map<String, Object?> json) {
-    final fullJson = json['full'];
-    final full = (fullJson as OrRefType?);
     final legendJson = json['legend']!;
     final legend = SemanticTokensLegend.fromJson(
       (legendJson as Map<String, Object?>),
     );
+    final fullJson = json['full'];
+    final full = (fullJson as OrRefType?);
     final rangeJson = json['range'];
     final range = (rangeJson as OrRefType?);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
     return SemanticTokensOptions(
-      full: full,
       legend: legend,
+      full: full,
       range: range,
       workDoneProgress: workDoneProgress,
     );
   }
 
-  /// Server supports providing semantic tokens for a full document.
-  final OrRefType? full;
-
   /// The legend used by the server
   final SemanticTokensLegend legend;
+
+  /// Server supports providing semantic tokens for a full document.
+  final OrRefType? full;
 
   /// Server supports providing semantic tokens for a specific range of a
   /// document.
@@ -8550,8 +8537,8 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['full'] = full;
     json['legend'] = legend.toJson();
+    json['full'] = full;
     json['range'] = range;
     json['workDoneProgress'] = workDoneProgress;
 
@@ -8563,41 +8550,41 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
 /// @since 3.16.0
 class SemanticTokensEdit implements ToJson {
   SemanticTokensEdit({
-    required this.data,
-    required this.deleteCount,
     required this.start,
+    required this.deleteCount,
+    this.data,
   });
 
   factory SemanticTokensEdit.fromJson(Map<String, Object?> json) {
-    final dataJson = json['data'];
-    final data = (dataJson as List<int>?);
-    final deleteCountJson = json['deleteCount']!;
-    final deleteCount = (deleteCountJson as int);
     final startJson = json['start']!;
     final start = (startJson as int);
+    final deleteCountJson = json['deleteCount']!;
+    final deleteCount = (deleteCountJson as int);
+    final dataJson = json['data'];
+    final data = (dataJson as List<int>?);
 
     return SemanticTokensEdit(
-      data: data,
-      deleteCount: deleteCount,
       start: start,
+      deleteCount: deleteCount,
+      data: data,
     );
   }
-
-  /// The elements to insert.
-  final List<int>? data;
-
-  /// The count of elements to remove.
-  final int deleteCount;
 
   /// The start offset of the edit.
   final int start;
 
+  /// The count of elements to remove.
+  final int deleteCount;
+
+  /// The elements to insert.
+  final List<int>? data;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['data'] = data;
-    json['deleteCount'] = deleteCount;
     json['start'] = start;
+    json['deleteCount'] = deleteCount;
+    json['data'] = data;
 
     return json;
   }
@@ -8605,7 +8592,7 @@ class SemanticTokensEdit implements ToJson {
 
 /// Struct
 class LinkedEditingRangeOptions implements WorkDoneProgressOptions {
-  LinkedEditingRangeOptions({required this.workDoneProgress});
+  LinkedEditingRangeOptions({this.workDoneProgress});
 
   factory LinkedEditingRangeOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -8658,32 +8645,32 @@ class FileCreate implements ToJson {
 /// to sort the array of edits or do any kind of ordering. However the edits
 /// must be non overlapping.
 class TextDocumentEdit implements ToJson {
-  TextDocumentEdit({required this.edits, required this.textDocument});
+  TextDocumentEdit({required this.textDocument, required this.edits});
 
   factory TextDocumentEdit.fromJson(Map<String, Object?> json) {
-    final editsJson = json['edits']!;
-    final edits = (editsJson as List<OrRefType>);
     final textDocumentJson = json['textDocument']!;
     final textDocument = OptionalVersionedTextDocumentIdentifier.fromJson(
       (textDocumentJson as Map<String, Object?>),
     );
+    final editsJson = json['edits']!;
+    final edits = (editsJson as List<OrRefType>);
 
-    return TextDocumentEdit(edits: edits, textDocument: textDocument);
+    return TextDocumentEdit(textDocument: textDocument, edits: edits);
   }
+
+  /// The text document to change.
+  final OptionalVersionedTextDocumentIdentifier textDocument;
 
   /// The edits to be applied.
   /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
   /// client capability.
   final List<OrRefType> edits;
 
-  /// The text document to change.
-  final OptionalVersionedTextDocumentIdentifier textDocument;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['edits'] = edits;
     json['textDocument'] = textDocument.toJson();
+    json['edits'] = edits;
 
     return json;
   }
@@ -8693,52 +8680,52 @@ class TextDocumentEdit implements ToJson {
 /// Create file operation.
 class CreateFile implements ResourceOperation {
   CreateFile({
-    required this.annotationId,
     required this.kind,
-    required this.options,
     required this.uri,
+    this.options,
+    this.annotationId,
   });
 
   factory CreateFile.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = json['annotationId'];
-    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier?);
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final optionsJson = json['options'];
-    final options = (optionsJson as CreateFileOptions?);
     final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+    final optionsJson = json['options'];
+    final options = (optionsJson as CreateFileOptions?);
+    final annotationIdJson = json['annotationId'];
+    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier?);
 
     return CreateFile(
-      annotationId: annotationId,
       kind: kind,
-      options: options,
       uri: uri,
+      options: options,
+      annotationId: annotationId,
     );
   }
+
+  /// A create
+  @override
+  final String kind;
+
+  /// The resource to create.
+  final Uri uri;
+
+  /// Additional options
+  final CreateFileOptions? options;
 
   /// An optional annotation identifier describing the operation.
   /// @since 3.16.0
   @override
   final ChangeAnnotationIdentifier? annotationId;
 
-  /// A create
-  @override
-  final String kind;
-
-  /// Additional options
-  final CreateFileOptions? options;
-
-  /// The resource to create.
-  final Uri uri;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['annotationId'] = annotationId;
     json['kind'] = kind;
-    json['options'] = options?.toJson();
     json['uri'] = uri;
+    json['options'] = options?.toJson();
+    json['annotationId'] = annotationId;
 
     return json;
   }
@@ -8748,60 +8735,60 @@ class CreateFile implements ResourceOperation {
 /// Rename file operation
 class RenameFile implements ResourceOperation {
   RenameFile({
-    required this.annotationId,
     required this.kind,
-    required this.newUri,
     required this.oldUri,
-    required this.options,
+    required this.newUri,
+    this.options,
+    this.annotationId,
   });
 
   factory RenameFile.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = json['annotationId'];
-    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier?);
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final newUriJson = json['newUri']!;
-    final newUri = (newUriJson as Uri);
     final oldUriJson = json['oldUri']!;
     final oldUri = (oldUriJson as Uri);
+    final newUriJson = json['newUri']!;
+    final newUri = (newUriJson as Uri);
     final optionsJson = json['options'];
     final options = (optionsJson as RenameFileOptions?);
+    final annotationIdJson = json['annotationId'];
+    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier?);
 
     return RenameFile(
-      annotationId: annotationId,
       kind: kind,
-      newUri: newUri,
       oldUri: oldUri,
+      newUri: newUri,
       options: options,
+      annotationId: annotationId,
     );
   }
+
+  /// A rename
+  @override
+  final String kind;
+
+  /// The old (existing) location.
+  final Uri oldUri;
+
+  /// The new location.
+  final Uri newUri;
+
+  /// Rename options.
+  final RenameFileOptions? options;
 
   /// An optional annotation identifier describing the operation.
   /// @since 3.16.0
   @override
   final ChangeAnnotationIdentifier? annotationId;
 
-  /// A rename
-  @override
-  final String kind;
-
-  /// The new location.
-  final Uri newUri;
-
-  /// The old (existing) location.
-  final Uri oldUri;
-
-  /// Rename options.
-  final RenameFileOptions? options;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['annotationId'] = annotationId;
     json['kind'] = kind;
-    json['newUri'] = newUri;
     json['oldUri'] = oldUri;
+    json['newUri'] = newUri;
     json['options'] = options?.toJson();
+    json['annotationId'] = annotationId;
 
     return json;
   }
@@ -8811,52 +8798,52 @@ class RenameFile implements ResourceOperation {
 /// Delete file operation
 class DeleteFile implements ResourceOperation {
   DeleteFile({
-    required this.annotationId,
     required this.kind,
-    required this.options,
     required this.uri,
+    this.options,
+    this.annotationId,
   });
 
   factory DeleteFile.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = json['annotationId'];
-    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier?);
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final optionsJson = json['options'];
-    final options = (optionsJson as DeleteFileOptions?);
     final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+    final optionsJson = json['options'];
+    final options = (optionsJson as DeleteFileOptions?);
+    final annotationIdJson = json['annotationId'];
+    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier?);
 
     return DeleteFile(
-      annotationId: annotationId,
       kind: kind,
-      options: options,
       uri: uri,
+      options: options,
+      annotationId: annotationId,
     );
   }
+
+  /// A delete
+  @override
+  final String kind;
+
+  /// The file to delete.
+  final Uri uri;
+
+  /// Delete options.
+  final DeleteFileOptions? options;
 
   /// An optional annotation identifier describing the operation.
   /// @since 3.16.0
   @override
   final ChangeAnnotationIdentifier? annotationId;
 
-  /// A delete
-  @override
-  final String kind;
-
-  /// Delete options.
-  final DeleteFileOptions? options;
-
-  /// The file to delete.
-  final Uri uri;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['annotationId'] = annotationId;
     json['kind'] = kind;
-    json['options'] = options?.toJson();
     json['uri'] = uri;
+    json['options'] = options?.toJson();
+    json['annotationId'] = annotationId;
 
     return json;
   }
@@ -8867,33 +8854,33 @@ class DeleteFile implements ResourceOperation {
 /// @since 3.16.0
 class ChangeAnnotation implements ToJson {
   ChangeAnnotation({
-    required this.description,
     required this.label,
-    required this.needsConfirmation,
+    this.description,
+    this.needsConfirmation,
   });
 
   factory ChangeAnnotation.fromJson(Map<String, Object?> json) {
-    final descriptionJson = json['description'];
-    final description = (descriptionJson as String?);
     final labelJson = json['label']!;
     final label = (labelJson as String);
+    final descriptionJson = json['description'];
+    final description = (descriptionJson as String?);
     final needsConfirmationJson = json['needsConfirmation'];
     final needsConfirmation = (needsConfirmationJson as bool?);
 
     return ChangeAnnotation(
-      description: description,
       label: label,
+      description: description,
       needsConfirmation: needsConfirmation,
     );
   }
 
-  /// A human-readable string which is rendered less prominent in the user
-  /// interface.
-  final String? description;
-
   /// A human-readable string describing the actual change. The string is
   /// rendered prominent in the user interface.
   final String label;
+
+  /// A human-readable string which is rendered less prominent in the user
+  /// interface.
+  final String? description;
 
   /// A flag which indicates that user confirmation is needed before applying
   /// the change.
@@ -8902,8 +8889,8 @@ class ChangeAnnotation implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['description'] = description;
     json['label'] = label;
+    json['description'] = description;
     json['needsConfirmation'] = needsConfirmation;
 
     return json;
@@ -8915,7 +8902,7 @@ class ChangeAnnotation implements ToJson {
 /// server is interested in receiving.
 /// @since 3.16.0
 class FileOperationFilter implements ToJson {
-  FileOperationFilter({required this.pattern, required this.scheme});
+  FileOperationFilter({required this.pattern, this.scheme});
 
   factory FileOperationFilter.fromJson(Map<String, Object?> json) {
     final patternJson = json['pattern']!;
@@ -8948,29 +8935,29 @@ class FileOperationFilter implements ToJson {
 /// Represents information on a file/folder rename.
 /// @since 3.16.0
 class FileRename implements ToJson {
-  FileRename({required this.newUri, required this.oldUri});
+  FileRename({required this.oldUri, required this.newUri});
 
   factory FileRename.fromJson(Map<String, Object?> json) {
-    final newUriJson = json['newUri']!;
-    final newUri = (newUriJson as String);
     final oldUriJson = json['oldUri']!;
     final oldUri = (oldUriJson as String);
+    final newUriJson = json['newUri']!;
+    final newUri = (newUriJson as String);
 
-    return FileRename(newUri: newUri, oldUri: oldUri);
+    return FileRename(oldUri: oldUri, newUri: newUri);
   }
-
-  /// A file:// URI for the new location of the file/folder being renamed.
-  final String newUri;
 
   /// A file:// URI for the original location of the file/folder being
   /// renamed.
   final String oldUri;
 
+  /// A file:// URI for the new location of the file/folder being renamed.
+  final String newUri;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['newUri'] = newUri;
     json['oldUri'] = oldUri;
+    json['newUri'] = newUri;
 
     return json;
   }
@@ -9003,7 +8990,7 @@ class FileDelete implements ToJson {
 
 /// Struct
 class MonikerOptions implements WorkDoneProgressOptions {
-  MonikerOptions({required this.workDoneProgress});
+  MonikerOptions({this.workDoneProgress});
 
   factory MonikerOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -9028,7 +9015,7 @@ class MonikerOptions implements WorkDoneProgressOptions {
 /// Type hierarchy options used during static registration.
 /// @since 3.17.0
 class TypeHierarchyOptions implements WorkDoneProgressOptions {
-  TypeHierarchyOptions({required this.workDoneProgress});
+  TypeHierarchyOptions({this.workDoneProgress});
 
   factory TypeHierarchyOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -9125,32 +9112,32 @@ class InlineValueText implements ToJson {
 /// @since 3.17.0
 class InlineValueVariableLookup implements ToJson {
   InlineValueVariableLookup({
-    required this.caseSensitiveLookup,
     required this.range,
-    required this.variableName,
+    required this.caseSensitiveLookup,
+    this.variableName,
   });
 
   factory InlineValueVariableLookup.fromJson(Map<String, Object?> json) {
-    final caseSensitiveLookupJson = json['caseSensitiveLookup']!;
-    final caseSensitiveLookup = (caseSensitiveLookupJson as bool);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final caseSensitiveLookupJson = json['caseSensitiveLookup']!;
+    final caseSensitiveLookup = (caseSensitiveLookupJson as bool);
     final variableNameJson = json['variableName'];
     final variableName = (variableNameJson as String?);
 
     return InlineValueVariableLookup(
-      caseSensitiveLookup: caseSensitiveLookup,
       range: range,
+      caseSensitiveLookup: caseSensitiveLookup,
       variableName: variableName,
     );
   }
 
-  /// How to perform the lookup.
-  final bool caseSensitiveLookup;
-
   /// The document range for which the inline value applies. The range is
   /// used to extract the variable name from the underlying document.
   final Range range;
+
+  /// How to perform the lookup.
+  final bool caseSensitiveLookup;
 
   /// If specified the name of the variable to look up.
   final String? variableName;
@@ -9158,8 +9145,8 @@ class InlineValueVariableLookup implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['caseSensitiveLookup'] = caseSensitiveLookup;
     json['range'] = range.toJson();
+    json['caseSensitiveLookup'] = caseSensitiveLookup;
     json['variableName'] = variableName;
 
     return json;
@@ -9173,36 +9160,33 @@ class InlineValueVariableLookup implements ToJson {
 /// expression.
 /// @since 3.17.0
 class InlineValueEvaluatableExpression implements ToJson {
-  InlineValueEvaluatableExpression({
-    required this.expression,
-    required this.range,
-  });
+  InlineValueEvaluatableExpression({required this.range, this.expression});
 
   factory InlineValueEvaluatableExpression.fromJson(Map<String, Object?> json) {
-    final expressionJson = json['expression'];
-    final expression = (expressionJson as String?);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final expressionJson = json['expression'];
+    final expression = (expressionJson as String?);
 
     return InlineValueEvaluatableExpression(
-      expression: expression,
       range: range,
+      expression: expression,
     );
   }
-
-  /// If specified the expression overrides the extracted expression.
-  final String? expression;
 
   /// The document range for which the inline value applies. The range is
   /// used to extract the evaluatable expression from the underlying
   /// document.
   final Range range;
 
+  /// If specified the expression overrides the extracted expression.
+  final String? expression;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['expression'] = expression;
     json['range'] = range.toJson();
+    json['expression'] = expression;
 
     return json;
   }
@@ -9212,7 +9196,7 @@ class InlineValueEvaluatableExpression implements ToJson {
 /// Inline value options used during static registration.
 /// @since 3.17.0
 class InlineValueOptions implements WorkDoneProgressOptions {
-  InlineValueOptions({required this.workDoneProgress});
+  InlineValueOptions({this.workDoneProgress});
 
   factory InlineValueOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -9239,29 +9223,32 @@ class InlineValueOptions implements WorkDoneProgressOptions {
 /// @since 3.17.0
 class InlayHintLabelPart implements ToJson {
   InlayHintLabelPart({
-    required this.command,
-    required this.location,
-    required this.tooltip,
     required this.value,
+    this.command,
+    this.location,
+    this.tooltip,
   });
 
   factory InlayHintLabelPart.fromJson(Map<String, Object?> json) {
+    final valueJson = json['value']!;
+    final value = (valueJson as String);
     final commandJson = json['command'];
     final command = (commandJson as Command?);
     final locationJson = json['location'];
     final location = (locationJson as Location?);
     final tooltipJson = json['tooltip'];
     final tooltip = (tooltipJson as OrRefType?);
-    final valueJson = json['value']!;
-    final value = (valueJson as String);
 
     return InlayHintLabelPart(
+      value: value,
       command: command,
       location: location,
       tooltip: tooltip,
-      value: value,
     );
   }
+
+  /// The value of this label part.
+  final String value;
 
   /// An optional command for this label part.
   /// Depending on the client capability `inlayHint.resolveSupport` clients
@@ -9283,16 +9270,13 @@ class InlayHintLabelPart implements ToJson {
   /// property late using the resolve request.
   final OrRefType? tooltip;
 
-  /// The value of this label part.
-  final String value;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['value'] = value;
     json['command'] = command?.toJson();
     json['location'] = location?.toJson();
     json['tooltip'] = tooltip;
-    json['value'] = value;
 
     return json;
   }
@@ -9344,10 +9328,7 @@ class MarkupContent implements ToJson {
 /// Inlay hint options used during static registration.
 /// @since 3.17.0
 class InlayHintOptions implements WorkDoneProgressOptions {
-  InlayHintOptions({
-    required this.resolveProvider,
-    required this.workDoneProgress,
-  });
+  InlayHintOptions({this.resolveProvider, this.workDoneProgress});
 
   factory InlayHintOptions.fromJson(Map<String, Object?> json) {
     final resolveProviderJson = json['resolveProvider'];
@@ -9384,39 +9365,39 @@ class InlayHintOptions implements WorkDoneProgressOptions {
 class RelatedFullDocumentDiagnosticReport
     implements FullDocumentDiagnosticReport {
   RelatedFullDocumentDiagnosticReport({
-    required this.items,
     required this.kind,
-    required this.relatedDocuments,
-    required this.resultId,
+    required this.items,
+    this.relatedDocuments,
+    this.resultId,
   });
 
   factory RelatedFullDocumentDiagnosticReport.fromJson(
     Map<String, Object?> json,
   ) {
-    final itemsJson = json['items']!;
-    final items = (itemsJson as List<Diagnostic>);
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
+    final itemsJson = json['items']!;
+    final items = (itemsJson as List<Diagnostic>);
     final relatedDocumentsJson = json['relatedDocuments'];
     final relatedDocuments = (relatedDocumentsJson as Map<Uri, OrRefType>?);
     final resultIdJson = json['resultId'];
     final resultId = (resultIdJson as String?);
 
     return RelatedFullDocumentDiagnosticReport(
-      items: items,
       kind: kind,
+      items: items,
       relatedDocuments: relatedDocuments,
       resultId: resultId,
     );
   }
 
-  /// The actual items.
-  @override
-  final List<Diagnostic> items;
-
   /// A full document diagnostic report.
   @override
   final String kind;
+
+  /// The actual items.
+  @override
+  final List<Diagnostic> items;
 
   /// Diagnostics of related documents. This information is useful in
   /// programming languages where code in a file A can generate diagnostics
@@ -9434,8 +9415,8 @@ class RelatedFullDocumentDiagnosticReport
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['items'] = items;
     json['kind'] = kind;
+    json['items'] = items;
     json['relatedDocuments'] = relatedDocuments;
     json['resultId'] = resultId;
 
@@ -9450,8 +9431,8 @@ class RelatedUnchangedDocumentDiagnosticReport
     implements UnchangedDocumentDiagnosticReport {
   RelatedUnchangedDocumentDiagnosticReport({
     required this.kind,
-    required this.relatedDocuments,
     required this.resultId,
+    this.relatedDocuments,
   });
 
   factory RelatedUnchangedDocumentDiagnosticReport.fromJson(
@@ -9459,15 +9440,15 @@ class RelatedUnchangedDocumentDiagnosticReport
   ) {
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final relatedDocumentsJson = json['relatedDocuments'];
-    final relatedDocuments = (relatedDocumentsJson as Map<Uri, OrRefType>?);
     final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
+    final relatedDocumentsJson = json['relatedDocuments'];
+    final relatedDocuments = (relatedDocumentsJson as Map<Uri, OrRefType>?);
 
     return RelatedUnchangedDocumentDiagnosticReport(
       kind: kind,
-      relatedDocuments: relatedDocuments,
       resultId: resultId,
+      relatedDocuments: relatedDocuments,
     );
   }
 
@@ -9475,6 +9456,11 @@ class RelatedUnchangedDocumentDiagnosticReport
   /// A server can only return `unchanged` if result ids are provided.
   @override
   final String kind;
+
+  /// A result id which will be sent on the next diagnostic request for the
+  /// same document.
+  @override
+  final String resultId;
 
   /// Diagnostics of related documents. This information is useful in
   /// programming languages where code in a file A can generate diagnostics
@@ -9484,17 +9470,12 @@ class RelatedUnchangedDocumentDiagnosticReport
   /// @since 3.17.0
   final Map<Uri, OrRefType>? relatedDocuments;
 
-  /// A result id which will be sent on the next diagnostic request for the
-  /// same document.
-  @override
-  final String resultId;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['kind'] = kind;
-    json['relatedDocuments'] = relatedDocuments;
     json['resultId'] = resultId;
+    json['relatedDocuments'] = relatedDocuments;
 
     return json;
   }
@@ -9505,31 +9486,31 @@ class RelatedUnchangedDocumentDiagnosticReport
 /// @since 3.17.0
 class FullDocumentDiagnosticReport implements ToJson {
   FullDocumentDiagnosticReport({
-    required this.items,
     required this.kind,
-    required this.resultId,
+    required this.items,
+    this.resultId,
   });
 
   factory FullDocumentDiagnosticReport.fromJson(Map<String, Object?> json) {
-    final itemsJson = json['items']!;
-    final items = (itemsJson as List<Diagnostic>);
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
+    final itemsJson = json['items']!;
+    final items = (itemsJson as List<Diagnostic>);
     final resultIdJson = json['resultId'];
     final resultId = (resultIdJson as String?);
 
     return FullDocumentDiagnosticReport(
-      items: items,
       kind: kind,
+      items: items,
       resultId: resultId,
     );
   }
 
-  /// The actual items.
-  final List<Diagnostic> items;
-
   /// A full document diagnostic report.
   final String kind;
+
+  /// The actual items.
+  final List<Diagnostic> items;
 
   /// An optional result id. If provided it will be sent on the next
   /// diagnostic request for the same document.
@@ -9538,8 +9519,8 @@ class FullDocumentDiagnosticReport implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['items'] = items;
     json['kind'] = kind;
+    json['items'] = items;
     json['resultId'] = resultId;
 
     return json;
@@ -9590,33 +9571,29 @@ class UnchangedDocumentDiagnosticReport implements ToJson {
 /// @since 3.17.0
 class DiagnosticOptions implements WorkDoneProgressOptions {
   DiagnosticOptions({
-    required this.identifier,
     required this.interFileDependencies,
-    required this.workDoneProgress,
     required this.workspaceDiagnostics,
+    this.identifier,
+    this.workDoneProgress,
   });
 
   factory DiagnosticOptions.fromJson(Map<String, Object?> json) {
-    final identifierJson = json['identifier'];
-    final identifier = (identifierJson as String?);
     final interFileDependenciesJson = json['interFileDependencies']!;
     final interFileDependencies = (interFileDependenciesJson as bool);
-    final workDoneProgressJson = json['workDoneProgress'];
-    final workDoneProgress = (workDoneProgressJson as bool?);
     final workspaceDiagnosticsJson = json['workspaceDiagnostics']!;
     final workspaceDiagnostics = (workspaceDiagnosticsJson as bool);
+    final identifierJson = json['identifier'];
+    final identifier = (identifierJson as String?);
+    final workDoneProgressJson = json['workDoneProgress'];
+    final workDoneProgress = (workDoneProgressJson as bool?);
 
     return DiagnosticOptions(
-      identifier: identifier,
       interFileDependencies: interFileDependencies,
-      workDoneProgress: workDoneProgress,
       workspaceDiagnostics: workspaceDiagnostics,
+      identifier: identifier,
+      workDoneProgress: workDoneProgress,
     );
   }
-
-  /// An optional identifier under which the diagnostics are managed by the
-  /// client.
-  final String? identifier;
 
   /// Whether the language has inter file dependencies meaning that editing
   /// code in one file can result in a different diagnostic set in another
@@ -9624,19 +9601,23 @@ class DiagnosticOptions implements WorkDoneProgressOptions {
   /// and typically uncommon for linters.
   final bool interFileDependencies;
 
-  @override
-  final bool? workDoneProgress;
-
   /// The server provides support for workspace diagnostics as well.
   final bool workspaceDiagnostics;
+
+  /// An optional identifier under which the diagnostics are managed by the
+  /// client.
+  final String? identifier;
+
+  @override
+  final bool? workDoneProgress;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['identifier'] = identifier;
     json['interFileDependencies'] = interFileDependencies;
-    json['workDoneProgress'] = workDoneProgress;
     json['workspaceDiagnostics'] = workspaceDiagnostics;
+    json['identifier'] = identifier;
+    json['workDoneProgress'] = workDoneProgress;
 
     return json;
   }
@@ -9678,33 +9659,43 @@ class PreviousResultId implements ToJson {
 /// @since 3.17.0
 class NotebookDocument implements ToJson {
   NotebookDocument({
-    required this.cells,
-    required this.metadata,
-    required this.notebookType,
     required this.uri,
+    required this.notebookType,
     required this.version,
+    required this.cells,
+    this.metadata,
   });
 
   factory NotebookDocument.fromJson(Map<String, Object?> json) {
+    final uriJson = json['uri']!;
+    final uri = (uriJson as Uri);
+    final notebookTypeJson = json['notebookType']!;
+    final notebookType = (notebookTypeJson as String);
+    final versionJson = json['version']!;
+    final version = (versionJson as int);
     final cellsJson = json['cells']!;
     final cells = (cellsJson as List<NotebookCell>);
     final metadataJson = json['metadata'];
     final metadata = (metadataJson as LSPObject?);
-    final notebookTypeJson = json['notebookType']!;
-    final notebookType = (notebookTypeJson as String);
-    final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
-    final versionJson = json['version']!;
-    final version = (versionJson as int);
 
     return NotebookDocument(
+      uri: uri,
+      notebookType: notebookType,
+      version: version,
       cells: cells,
       metadata: metadata,
-      notebookType: notebookType,
-      uri: uri,
-      version: version,
     );
   }
+
+  /// The notebook document's uri.
+  final Uri uri;
+
+  /// The type of the notebook.
+  final String notebookType;
+
+  /// The version number of this document (it will increase after each
+  /// change, including undo/redo).
+  final int version;
 
   /// The cells of a notebook.
   final List<NotebookCell> cells;
@@ -9713,24 +9704,14 @@ class NotebookDocument implements ToJson {
   /// Note: should always be an object literal (e.g. LSPObject)
   final LSPObject? metadata;
 
-  /// The type of the notebook.
-  final String notebookType;
-
-  /// The notebook document's uri.
-  final Uri uri;
-
-  /// The version number of this document (it will increase after each
-  /// change, including undo/redo).
-  final int version;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['uri'] = uri;
+    json['notebookType'] = notebookType;
+    json['version'] = version;
     json['cells'] = cells;
     json['metadata'] = metadata;
-    json['notebookType'] = notebookType;
-    json['uri'] = uri;
-    json['version'] = version;
 
     return json;
   }
@@ -9740,50 +9721,50 @@ class NotebookDocument implements ToJson {
 /// An item to transfer a text document from the client to the server.
 class TextDocumentItem implements ToJson {
   TextDocumentItem({
-    required this.languageId,
-    required this.text,
     required this.uri,
+    required this.languageId,
     required this.version,
+    required this.text,
   });
 
   factory TextDocumentItem.fromJson(Map<String, Object?> json) {
-    final languageIdJson = json['languageId']!;
-    final languageId = (languageIdJson as String);
-    final textJson = json['text']!;
-    final text = (textJson as String);
     final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
+    final languageIdJson = json['languageId']!;
+    final languageId = (languageIdJson as String);
     final versionJson = json['version']!;
     final version = (versionJson as int);
+    final textJson = json['text']!;
+    final text = (textJson as String);
 
     return TextDocumentItem(
-      languageId: languageId,
-      text: text,
       uri: uri,
+      languageId: languageId,
       version: version,
+      text: text,
     );
   }
 
-  /// The text document's language identifier.
-  final String languageId;
-
-  /// The content of the opened text document.
-  final String text;
-
   /// The text document's uri.
   final Uri uri;
+
+  /// The text document's language identifier.
+  final String languageId;
 
   /// The version number of this document (it will increase after each
   /// change, including undo/redo).
   final int version;
 
+  /// The content of the opened text document.
+  final String text;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['languageId'] = languageId;
-    json['text'] = text;
     json['uri'] = uri;
+    json['languageId'] = languageId;
     json['version'] = version;
+    json['text'] = text;
 
     return json;
   }
@@ -9794,32 +9775,32 @@ class TextDocumentItem implements ToJson {
 /// @since 3.17.0
 class VersionedNotebookDocumentIdentifier implements ToJson {
   VersionedNotebookDocumentIdentifier({
-    required this.uri,
     required this.version,
+    required this.uri,
   });
 
   factory VersionedNotebookDocumentIdentifier.fromJson(
     Map<String, Object?> json,
   ) {
-    final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
     final versionJson = json['version']!;
     final version = (versionJson as int);
+    final uriJson = json['uri']!;
+    final uri = (uriJson as Uri);
 
-    return VersionedNotebookDocumentIdentifier(uri: uri, version: version);
+    return VersionedNotebookDocumentIdentifier(version: version, uri: uri);
   }
-
-  /// The notebook document's uri.
-  final Uri uri;
 
   /// The version number of this notebook document.
   final int version;
 
+  /// The notebook document's uri.
+  final Uri uri;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['uri'] = uri;
     json['version'] = version;
+    json['uri'] = uri;
 
     return json;
   }
@@ -9829,7 +9810,7 @@ class VersionedNotebookDocumentIdentifier implements ToJson {
 /// A change event for a notebook document.
 /// @since 3.17.0
 class NotebookDocumentChangeEvent implements ToJson {
-  NotebookDocumentChangeEvent({required this.cells, required this.metadata});
+  NotebookDocumentChangeEvent({this.cells, this.metadata});
 
   factory NotebookDocumentChangeEvent.fromJson(Map<String, Object?> json) {
     final cellsJson = json['cells'];
@@ -9888,39 +9869,39 @@ class NotebookDocumentIdentifier implements ToJson {
 /// @since 3.18.0 @proposed
 class InlineCompletionContext implements ToJson {
   InlineCompletionContext({
-    required this.selectedCompletionInfo,
     required this.triggerKind,
+    this.selectedCompletionInfo,
   });
 
   factory InlineCompletionContext.fromJson(Map<String, Object?> json) {
-    final selectedCompletionInfoJson = json['selectedCompletionInfo'];
-    final selectedCompletionInfo =
-        (selectedCompletionInfoJson as SelectedCompletionInfo?);
     final triggerKindJson = json['triggerKind']!;
     // Handle enum type
     final triggerKind = _i1.$enumDecode(
       _$InlineCompletionTriggerKindEnumMap,
       triggerKindJson,
     );
+    final selectedCompletionInfoJson = json['selectedCompletionInfo'];
+    final selectedCompletionInfo =
+        (selectedCompletionInfoJson as SelectedCompletionInfo?);
 
     return InlineCompletionContext(
-      selectedCompletionInfo: selectedCompletionInfo,
       triggerKind: triggerKind,
+      selectedCompletionInfo: selectedCompletionInfo,
     );
   }
+
+  /// Describes how the inline completion was triggered.
+  final InlineCompletionTriggerKind triggerKind;
 
   /// Provides information about the currently selected item in the
   /// autocomplete widget if it is visible.
   final SelectedCompletionInfo? selectedCompletionInfo;
 
-  /// Describes how the inline completion was triggered.
-  final InlineCompletionTriggerKind triggerKind;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['selectedCompletionInfo'] = selectedCompletionInfo?.toJson();
     json['triggerKind'] = triggerKind.value;
+    json['selectedCompletionInfo'] = selectedCompletionInfo?.toJson();
 
     return json;
   }
@@ -9965,7 +9946,7 @@ class StringValue implements ToJson {
 /// Inline completion options used during static registration.
 /// @since 3.18.0 @proposed
 class InlineCompletionOptions implements WorkDoneProgressOptions {
-  InlineCompletionOptions({required this.workDoneProgress});
+  InlineCompletionOptions({this.workDoneProgress});
 
   factory InlineCompletionOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -9989,11 +9970,7 @@ class InlineCompletionOptions implements WorkDoneProgressOptions {
 /// Struct
 /// General parameters to register for a notification or to register a provider.
 class Registration implements ToJson {
-  Registration({
-    required this.id,
-    required this.method,
-    required this.registerOptions,
-  });
+  Registration({required this.id, required this.method, this.registerOptions});
 
   factory Registration.fromJson(Map<String, Object?> json) {
     final idJson = json['id']!;
@@ -10066,61 +10043,74 @@ class Unregistration implements ToJson {
 /// The initialize parameters
 class _InitializeParams implements WorkDoneProgressParams {
   _InitializeParams({
-    required this.capabilities,
-    required this.clientInfo,
-    required this.initializationOptions,
-    required this.locale,
     required this.processId,
-    required this.rootPath,
     required this.rootUri,
-    required this.trace,
-    required this.workDoneToken,
+    required this.capabilities,
+    this.trace,
+    this.initializationOptions,
+    this.rootPath,
+    this.locale,
+    this.clientInfo,
+    this.workDoneToken,
   });
 
   factory _InitializeParams.fromJson(Map<String, Object?> json) {
+    final processIdJson = json['processId']!;
+    final processId = (processIdJson as OrRefType);
+    final rootUriJson = json['rootUri']!;
+    final rootUri = (rootUriJson as OrRefType);
     final capabilitiesJson = json['capabilities']!;
     final capabilities = ClientCapabilities.fromJson(
       (capabilitiesJson as Map<String, Object?>),
     );
-    final clientInfoJson = json['clientInfo'];
-    final clientInfo = (clientInfoJson as InitializeParamsClientInfo?);
-    final initializationOptionsJson = json['initializationOptions'];
-    final initializationOptions = (initializationOptionsJson as LSPAny?);
-    final localeJson = json['locale'];
-    final locale = (localeJson as String?);
-    final processIdJson = json['processId']!;
-    final processId = (processIdJson as OrRefType);
-    final rootPathJson = json['rootPath'];
-    final rootPath = (rootPathJson as OrRefType?);
-    final rootUriJson = json['rootUri']!;
-    final rootUri = (rootUriJson as OrRefType);
     final traceJson = json['trace'];
     final trace = (traceJson as TraceValues?);
+    final initializationOptionsJson = json['initializationOptions'];
+    final initializationOptions = (initializationOptionsJson as LSPAny?);
+    final rootPathJson = json['rootPath'];
+    final rootPath = (rootPathJson as OrRefType?);
+    final localeJson = json['locale'];
+    final locale = (localeJson as String?);
+    final clientInfoJson = json['clientInfo'];
+    final clientInfo = (clientInfoJson as InitializeParamsClientInfo?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
     return _InitializeParams(
-      capabilities: capabilities,
-      clientInfo: clientInfo,
-      initializationOptions: initializationOptions,
-      locale: locale,
       processId: processId,
-      rootPath: rootPath,
       rootUri: rootUri,
+      capabilities: capabilities,
       trace: trace,
+      initializationOptions: initializationOptions,
+      rootPath: rootPath,
+      locale: locale,
+      clientInfo: clientInfo,
       workDoneToken: workDoneToken,
     );
   }
 
+  /// The process Id of the parent process that started the server.
+  /// Is `null` if the process has not been started by another process. If
+  /// the parent process is not alive then the server should exit.
+  final OrRefType processId;
+
+  /// The rootUri of the workspace. Is null if no folder is open. If both
+  /// `rootPath` and `rootUri` are set `rootUri` wins.
+  /// @deprecated in favour of workspaceFolders.
+  final OrRefType rootUri;
+
   /// The capabilities provided by the client (editor or tool)
   final ClientCapabilities capabilities;
 
-  /// Information about the client
-  /// @since 3.15.0
-  final InitializeParamsClientInfo? clientInfo;
+  /// The initial trace setting. If omitted trace is disabled ('off').
+  final TraceValues? trace;
 
   /// User provided initialization options.
   final LSPAny? initializationOptions;
+
+  /// The rootPath of the workspace. Is null if no folder is open.
+  /// @deprecated in favour of rootUri.
+  final OrRefType? rootPath;
 
   /// The locale the client is currently showing the user interface in. This
   /// must not necessarily be the locale of the operating system.
@@ -10129,22 +10119,9 @@ class _InitializeParams implements WorkDoneProgressParams {
   /// @since 3.16.0
   final String? locale;
 
-  /// The process Id of the parent process that started the server.
-  /// Is `null` if the process has not been started by another process. If
-  /// the parent process is not alive then the server should exit.
-  final OrRefType processId;
-
-  /// The rootPath of the workspace. Is null if no folder is open.
-  /// @deprecated in favour of rootUri.
-  final OrRefType? rootPath;
-
-  /// The rootUri of the workspace. Is null if no folder is open. If both
-  /// `rootPath` and `rootUri` are set `rootUri` wins.
-  /// @deprecated in favour of workspaceFolders.
-  final OrRefType rootUri;
-
-  /// The initial trace setting. If omitted trace is disabled ('off').
-  final TraceValues? trace;
+  /// Information about the client
+  /// @since 3.15.0
+  final InitializeParamsClientInfo? clientInfo;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -10153,14 +10130,14 @@ class _InitializeParams implements WorkDoneProgressParams {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['capabilities'] = capabilities.toJson();
-    json['clientInfo'] = clientInfo;
-    json['initializationOptions'] = initializationOptions;
-    json['locale'] = locale;
     json['processId'] = processId;
-    json['rootPath'] = rootPath;
     json['rootUri'] = rootUri;
+    json['capabilities'] = capabilities.toJson();
     json['trace'] = trace?.value;
+    json['initializationOptions'] = initializationOptions;
+    json['rootPath'] = rootPath;
+    json['locale'] = locale;
+    json['clientInfo'] = clientInfo;
     json['workDoneToken'] = workDoneToken;
 
     return json;
@@ -10169,7 +10146,7 @@ class _InitializeParams implements WorkDoneProgressParams {
 
 /// Struct
 class WorkspaceFoldersInitializeParams implements ToJson {
-  WorkspaceFoldersInitializeParams({required this.workspaceFolders});
+  WorkspaceFoldersInitializeParams({this.workspaceFolders});
 
   factory WorkspaceFoldersInitializeParams.fromJson(Map<String, Object?> json) {
     final workspaceFoldersJson = json['workspaceFolders'];
@@ -10198,70 +10175,88 @@ class WorkspaceFoldersInitializeParams implements ToJson {
 /// Defines the capabilities provided by a language server.
 class ServerCapabilities implements ToJson {
   ServerCapabilities({
-    required this.callHierarchyProvider,
-    required this.codeActionProvider,
-    required this.codeLensProvider,
-    required this.colorProvider,
-    required this.completionProvider,
-    required this.declarationProvider,
-    required this.definitionProvider,
-    required this.diagnosticProvider,
-    required this.documentFormattingProvider,
-    required this.documentHighlightProvider,
-    required this.documentLinkProvider,
-    required this.documentOnTypeFormattingProvider,
-    required this.documentRangeFormattingProvider,
-    required this.documentSymbolProvider,
-    required this.executeCommandProvider,
-    required this.experimental,
-    required this.foldingRangeProvider,
-    required this.hoverProvider,
-    required this.implementationProvider,
-    required this.inlayHintProvider,
-    required this.inlineCompletionProvider,
-    required this.inlineValueProvider,
-    required this.linkedEditingRangeProvider,
-    required this.monikerProvider,
-    required this.notebookDocumentSync,
-    required this.positionEncoding,
-    required this.referencesProvider,
-    required this.renameProvider,
-    required this.selectionRangeProvider,
-    required this.semanticTokensProvider,
-    required this.signatureHelpProvider,
-    required this.textDocumentSync,
-    required this.typeDefinitionProvider,
-    required this.typeHierarchyProvider,
-    required this.workspace,
-    required this.workspaceSymbolProvider,
+    this.workspaceSymbolProvider,
+    this.documentHighlightProvider,
+    this.documentFormattingProvider,
+    this.codeActionProvider,
+    this.completionProvider,
+    this.workspace,
+    this.inlineCompletionProvider,
+    this.diagnosticProvider,
+    this.inlayHintProvider,
+    this.definitionProvider,
+    this.declarationProvider,
+    this.monikerProvider,
+    this.semanticTokensProvider,
+    this.linkedEditingRangeProvider,
+    this.callHierarchyProvider,
+    this.executeCommandProvider,
+    this.textDocumentSync,
+    this.foldingRangeProvider,
+    this.renameProvider,
+    this.documentOnTypeFormattingProvider,
+    this.documentRangeFormattingProvider,
+    this.experimental,
+    this.selectionRangeProvider,
+    this.colorProvider,
+    this.documentLinkProvider,
+    this.codeLensProvider,
+    this.notebookDocumentSync,
+    this.documentSymbolProvider,
+    this.positionEncoding,
+    this.referencesProvider,
+    this.implementationProvider,
+    this.typeDefinitionProvider,
+    this.inlineValueProvider,
+    this.typeHierarchyProvider,
+    this.signatureHelpProvider,
+    this.hoverProvider,
   });
 
   factory ServerCapabilities.fromJson(Map<String, Object?> json) {
-    final callHierarchyProviderJson = json['callHierarchyProvider'];
-    final callHierarchyProvider = (callHierarchyProviderJson as OrRefType?);
-    final codeActionProviderJson = json['codeActionProvider'];
-    final codeActionProvider = (codeActionProviderJson as OrRefType?);
-    final codeLensProviderJson = json['codeLensProvider'];
-    final codeLensProvider = (codeLensProviderJson as CodeLensOptions?);
-    final colorProviderJson = json['colorProvider'];
-    final colorProvider = (colorProviderJson as OrRefType?);
-    final completionProviderJson = json['completionProvider'];
-    final completionProvider = (completionProviderJson as CompletionOptions?);
-    final declarationProviderJson = json['declarationProvider'];
-    final declarationProvider = (declarationProviderJson as OrRefType?);
-    final definitionProviderJson = json['definitionProvider'];
-    final definitionProvider = (definitionProviderJson as OrRefType?);
-    final diagnosticProviderJson = json['diagnosticProvider'];
-    final diagnosticProvider = (diagnosticProviderJson as OrRefType?);
-    final documentFormattingProviderJson = json['documentFormattingProvider'];
-    final documentFormattingProvider =
-        (documentFormattingProviderJson as OrRefType?);
+    final workspaceSymbolProviderJson = json['workspaceSymbolProvider'];
+    final workspaceSymbolProvider = (workspaceSymbolProviderJson as OrRefType?);
     final documentHighlightProviderJson = json['documentHighlightProvider'];
     final documentHighlightProvider =
         (documentHighlightProviderJson as OrRefType?);
-    final documentLinkProviderJson = json['documentLinkProvider'];
-    final documentLinkProvider =
-        (documentLinkProviderJson as DocumentLinkOptions?);
+    final documentFormattingProviderJson = json['documentFormattingProvider'];
+    final documentFormattingProvider =
+        (documentFormattingProviderJson as OrRefType?);
+    final codeActionProviderJson = json['codeActionProvider'];
+    final codeActionProvider = (codeActionProviderJson as OrRefType?);
+    final completionProviderJson = json['completionProvider'];
+    final completionProvider = (completionProviderJson as CompletionOptions?);
+    final workspaceJson = json['workspace'];
+    final workspace = (workspaceJson as ServerCapabilitiesWorkspace?);
+    final inlineCompletionProviderJson = json['inlineCompletionProvider'];
+    final inlineCompletionProvider =
+        (inlineCompletionProviderJson as OrRefType?);
+    final diagnosticProviderJson = json['diagnosticProvider'];
+    final diagnosticProvider = (diagnosticProviderJson as OrRefType?);
+    final inlayHintProviderJson = json['inlayHintProvider'];
+    final inlayHintProvider = (inlayHintProviderJson as OrRefType?);
+    final definitionProviderJson = json['definitionProvider'];
+    final definitionProvider = (definitionProviderJson as OrRefType?);
+    final declarationProviderJson = json['declarationProvider'];
+    final declarationProvider = (declarationProviderJson as OrRefType?);
+    final monikerProviderJson = json['monikerProvider'];
+    final monikerProvider = (monikerProviderJson as OrRefType?);
+    final semanticTokensProviderJson = json['semanticTokensProvider'];
+    final semanticTokensProvider = (semanticTokensProviderJson as OrRefType?);
+    final linkedEditingRangeProviderJson = json['linkedEditingRangeProvider'];
+    final linkedEditingRangeProvider =
+        (linkedEditingRangeProviderJson as OrRefType?);
+    final callHierarchyProviderJson = json['callHierarchyProvider'];
+    final callHierarchyProvider = (callHierarchyProviderJson as OrRefType?);
+    final executeCommandProviderJson = json['executeCommandProvider'];
+    final executeCommandProvider =
+        (executeCommandProviderJson as ExecuteCommandOptions?);
+    final textDocumentSyncJson = json['textDocumentSync'];
+    final textDocumentSync = (textDocumentSyncJson as OrRefType?);
+    final foldingRangeProviderJson = json['foldingRangeProvider'];
+    final foldingRangeProvider = (foldingRangeProviderJson as OrRefType?);
+    final renameProviderJson = json['renameProvider'];
+    final renameProvider = (renameProviderJson as OrRefType?);
     final documentOnTypeFormattingProviderJson =
         json['documentOnTypeFormattingProvider'];
     final documentOnTypeFormattingProvider =
@@ -10271,133 +10266,148 @@ class ServerCapabilities implements ToJson {
         json['documentRangeFormattingProvider'];
     final documentRangeFormattingProvider =
         (documentRangeFormattingProviderJson as OrRefType?);
-    final documentSymbolProviderJson = json['documentSymbolProvider'];
-    final documentSymbolProvider = (documentSymbolProviderJson as OrRefType?);
-    final executeCommandProviderJson = json['executeCommandProvider'];
-    final executeCommandProvider =
-        (executeCommandProviderJson as ExecuteCommandOptions?);
     final experimentalJson = json['experimental'];
     final experimental = (experimentalJson as LSPAny?);
-    final foldingRangeProviderJson = json['foldingRangeProvider'];
-    final foldingRangeProvider = (foldingRangeProviderJson as OrRefType?);
-    final hoverProviderJson = json['hoverProvider'];
-    final hoverProvider = (hoverProviderJson as OrRefType?);
-    final implementationProviderJson = json['implementationProvider'];
-    final implementationProvider = (implementationProviderJson as OrRefType?);
-    final inlayHintProviderJson = json['inlayHintProvider'];
-    final inlayHintProvider = (inlayHintProviderJson as OrRefType?);
-    final inlineCompletionProviderJson = json['inlineCompletionProvider'];
-    final inlineCompletionProvider =
-        (inlineCompletionProviderJson as OrRefType?);
-    final inlineValueProviderJson = json['inlineValueProvider'];
-    final inlineValueProvider = (inlineValueProviderJson as OrRefType?);
-    final linkedEditingRangeProviderJson = json['linkedEditingRangeProvider'];
-    final linkedEditingRangeProvider =
-        (linkedEditingRangeProviderJson as OrRefType?);
-    final monikerProviderJson = json['monikerProvider'];
-    final monikerProvider = (monikerProviderJson as OrRefType?);
+    final selectionRangeProviderJson = json['selectionRangeProvider'];
+    final selectionRangeProvider = (selectionRangeProviderJson as OrRefType?);
+    final colorProviderJson = json['colorProvider'];
+    final colorProvider = (colorProviderJson as OrRefType?);
+    final documentLinkProviderJson = json['documentLinkProvider'];
+    final documentLinkProvider =
+        (documentLinkProviderJson as DocumentLinkOptions?);
+    final codeLensProviderJson = json['codeLensProvider'];
+    final codeLensProvider = (codeLensProviderJson as CodeLensOptions?);
     final notebookDocumentSyncJson = json['notebookDocumentSync'];
     final notebookDocumentSync = (notebookDocumentSyncJson as OrRefType?);
+    final documentSymbolProviderJson = json['documentSymbolProvider'];
+    final documentSymbolProvider = (documentSymbolProviderJson as OrRefType?);
     final positionEncodingJson = json['positionEncoding'];
     final positionEncoding = (positionEncodingJson as PositionEncodingKind?);
     final referencesProviderJson = json['referencesProvider'];
     final referencesProvider = (referencesProviderJson as OrRefType?);
-    final renameProviderJson = json['renameProvider'];
-    final renameProvider = (renameProviderJson as OrRefType?);
-    final selectionRangeProviderJson = json['selectionRangeProvider'];
-    final selectionRangeProvider = (selectionRangeProviderJson as OrRefType?);
-    final semanticTokensProviderJson = json['semanticTokensProvider'];
-    final semanticTokensProvider = (semanticTokensProviderJson as OrRefType?);
+    final implementationProviderJson = json['implementationProvider'];
+    final implementationProvider = (implementationProviderJson as OrRefType?);
+    final typeDefinitionProviderJson = json['typeDefinitionProvider'];
+    final typeDefinitionProvider = (typeDefinitionProviderJson as OrRefType?);
+    final inlineValueProviderJson = json['inlineValueProvider'];
+    final inlineValueProvider = (inlineValueProviderJson as OrRefType?);
+    final typeHierarchyProviderJson = json['typeHierarchyProvider'];
+    final typeHierarchyProvider = (typeHierarchyProviderJson as OrRefType?);
     final signatureHelpProviderJson = json['signatureHelpProvider'];
     final signatureHelpProvider =
         (signatureHelpProviderJson as SignatureHelpOptions?);
-    final textDocumentSyncJson = json['textDocumentSync'];
-    final textDocumentSync = (textDocumentSyncJson as OrRefType?);
-    final typeDefinitionProviderJson = json['typeDefinitionProvider'];
-    final typeDefinitionProvider = (typeDefinitionProviderJson as OrRefType?);
-    final typeHierarchyProviderJson = json['typeHierarchyProvider'];
-    final typeHierarchyProvider = (typeHierarchyProviderJson as OrRefType?);
-    final workspaceJson = json['workspace'];
-    final workspace = (workspaceJson as ServerCapabilitiesWorkspace?);
-    final workspaceSymbolProviderJson = json['workspaceSymbolProvider'];
-    final workspaceSymbolProvider = (workspaceSymbolProviderJson as OrRefType?);
+    final hoverProviderJson = json['hoverProvider'];
+    final hoverProvider = (hoverProviderJson as OrRefType?);
 
     return ServerCapabilities(
-      callHierarchyProvider: callHierarchyProvider,
-      codeActionProvider: codeActionProvider,
-      codeLensProvider: codeLensProvider,
-      colorProvider: colorProvider,
-      completionProvider: completionProvider,
-      declarationProvider: declarationProvider,
-      definitionProvider: definitionProvider,
-      diagnosticProvider: diagnosticProvider,
-      documentFormattingProvider: documentFormattingProvider,
+      workspaceSymbolProvider: workspaceSymbolProvider,
       documentHighlightProvider: documentHighlightProvider,
-      documentLinkProvider: documentLinkProvider,
+      documentFormattingProvider: documentFormattingProvider,
+      codeActionProvider: codeActionProvider,
+      completionProvider: completionProvider,
+      workspace: workspace,
+      inlineCompletionProvider: inlineCompletionProvider,
+      diagnosticProvider: diagnosticProvider,
+      inlayHintProvider: inlayHintProvider,
+      definitionProvider: definitionProvider,
+      declarationProvider: declarationProvider,
+      monikerProvider: monikerProvider,
+      semanticTokensProvider: semanticTokensProvider,
+      linkedEditingRangeProvider: linkedEditingRangeProvider,
+      callHierarchyProvider: callHierarchyProvider,
+      executeCommandProvider: executeCommandProvider,
+      textDocumentSync: textDocumentSync,
+      foldingRangeProvider: foldingRangeProvider,
+      renameProvider: renameProvider,
       documentOnTypeFormattingProvider: documentOnTypeFormattingProvider,
       documentRangeFormattingProvider: documentRangeFormattingProvider,
-      documentSymbolProvider: documentSymbolProvider,
-      executeCommandProvider: executeCommandProvider,
       experimental: experimental,
-      foldingRangeProvider: foldingRangeProvider,
-      hoverProvider: hoverProvider,
-      implementationProvider: implementationProvider,
-      inlayHintProvider: inlayHintProvider,
-      inlineCompletionProvider: inlineCompletionProvider,
-      inlineValueProvider: inlineValueProvider,
-      linkedEditingRangeProvider: linkedEditingRangeProvider,
-      monikerProvider: monikerProvider,
+      selectionRangeProvider: selectionRangeProvider,
+      colorProvider: colorProvider,
+      documentLinkProvider: documentLinkProvider,
+      codeLensProvider: codeLensProvider,
       notebookDocumentSync: notebookDocumentSync,
+      documentSymbolProvider: documentSymbolProvider,
       positionEncoding: positionEncoding,
       referencesProvider: referencesProvider,
-      renameProvider: renameProvider,
-      selectionRangeProvider: selectionRangeProvider,
-      semanticTokensProvider: semanticTokensProvider,
-      signatureHelpProvider: signatureHelpProvider,
-      textDocumentSync: textDocumentSync,
+      implementationProvider: implementationProvider,
       typeDefinitionProvider: typeDefinitionProvider,
+      inlineValueProvider: inlineValueProvider,
       typeHierarchyProvider: typeHierarchyProvider,
-      workspace: workspace,
-      workspaceSymbolProvider: workspaceSymbolProvider,
+      signatureHelpProvider: signatureHelpProvider,
+      hoverProvider: hoverProvider,
     );
   }
 
-  /// The server provides call hierarchy support.
-  /// @since 3.16.0
-  final OrRefType? callHierarchyProvider;
+  /// The server provides workspace symbol support.
+  final OrRefType? workspaceSymbolProvider;
+
+  /// The server provides document highlight support.
+  final OrRefType? documentHighlightProvider;
+
+  /// The server provides document formatting.
+  final OrRefType? documentFormattingProvider;
 
   /// The server provides code actions. CodeActionOptions may only be
   /// specified if the client states that it supports
   /// `codeActionLiteralSupport` in its initial `initialize` request.
   final OrRefType? codeActionProvider;
 
-  /// The server provides code lens.
-  final CodeLensOptions? codeLensProvider;
-
-  /// The server provides color provider support.
-  final OrRefType? colorProvider;
-
   /// The server provides completion support.
   final CompletionOptions? completionProvider;
 
-  /// The server provides Goto Declaration support.
-  final OrRefType? declarationProvider;
+  /// Workspace specific server capabilities.
+  final ServerCapabilitiesWorkspace? workspace;
 
-  /// The server provides goto definition support.
-  final OrRefType? definitionProvider;
+  /// Inline completion options used during static registration.
+  /// @since 3.18.0 @proposed
+  final OrRefType? inlineCompletionProvider;
 
   /// The server has support for pull model diagnostics.
   /// @since 3.17.0
   final OrRefType? diagnosticProvider;
 
-  /// The server provides document formatting.
-  final OrRefType? documentFormattingProvider;
+  /// The server provides inlay hints.
+  /// @since 3.17.0
+  final OrRefType? inlayHintProvider;
 
-  /// The server provides document highlight support.
-  final OrRefType? documentHighlightProvider;
+  /// The server provides goto definition support.
+  final OrRefType? definitionProvider;
 
-  /// The server provides document link support.
-  final DocumentLinkOptions? documentLinkProvider;
+  /// The server provides Goto Declaration support.
+  final OrRefType? declarationProvider;
+
+  /// The server provides moniker support.
+  /// @since 3.16.0
+  final OrRefType? monikerProvider;
+
+  /// The server provides semantic tokens support.
+  /// @since 3.16.0
+  final OrRefType? semanticTokensProvider;
+
+  /// The server provides linked editing range support.
+  /// @since 3.16.0
+  final OrRefType? linkedEditingRangeProvider;
+
+  /// The server provides call hierarchy support.
+  /// @since 3.16.0
+  final OrRefType? callHierarchyProvider;
+
+  /// The server provides execute command support.
+  final ExecuteCommandOptions? executeCommandProvider;
+
+  /// Defines how text documents are synced. Is either a detailed structure
+  /// defining each notification or for backwards compatibility the
+  /// TextDocumentSyncKind number.
+  final OrRefType? textDocumentSync;
+
+  /// The server provides folding provider support.
+  final OrRefType? foldingRangeProvider;
+
+  /// The server provides rename support. RenameOptions may only be specified
+  /// if the client states that it supports `prepareSupport` in its initial
+  /// `initialize` request.
+  final OrRefType? renameProvider;
 
   /// The server provides document formatting on typing.
   final DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
@@ -10405,47 +10415,27 @@ class ServerCapabilities implements ToJson {
   /// The server provides document range formatting.
   final OrRefType? documentRangeFormattingProvider;
 
-  /// The server provides document symbol support.
-  final OrRefType? documentSymbolProvider;
-
-  /// The server provides execute command support.
-  final ExecuteCommandOptions? executeCommandProvider;
-
   /// Experimental server capabilities.
   final LSPAny? experimental;
 
-  /// The server provides folding provider support.
-  final OrRefType? foldingRangeProvider;
+  /// The server provides selection range support.
+  final OrRefType? selectionRangeProvider;
 
-  /// The server provides hover support.
-  final OrRefType? hoverProvider;
+  /// The server provides color provider support.
+  final OrRefType? colorProvider;
 
-  /// The server provides Goto Implementation support.
-  final OrRefType? implementationProvider;
+  /// The server provides document link support.
+  final DocumentLinkOptions? documentLinkProvider;
 
-  /// The server provides inlay hints.
-  /// @since 3.17.0
-  final OrRefType? inlayHintProvider;
-
-  /// Inline completion options used during static registration.
-  /// @since 3.18.0 @proposed
-  final OrRefType? inlineCompletionProvider;
-
-  /// The server provides inline values.
-  /// @since 3.17.0
-  final OrRefType? inlineValueProvider;
-
-  /// The server provides linked editing range support.
-  /// @since 3.16.0
-  final OrRefType? linkedEditingRangeProvider;
-
-  /// The server provides moniker support.
-  /// @since 3.16.0
-  final OrRefType? monikerProvider;
+  /// The server provides code lens.
+  final CodeLensOptions? codeLensProvider;
 
   /// Defines how notebook documents are synced.
   /// @since 3.17.0
   final OrRefType? notebookDocumentSync;
+
+  /// The server provides document symbol support.
+  final OrRefType? documentSymbolProvider;
 
   /// The position encoding the server picked from the encodings offered by
   /// the client via the client capability `general.positionEncodings`.
@@ -10458,79 +10448,66 @@ class ServerCapabilities implements ToJson {
   /// The server provides find references support.
   final OrRefType? referencesProvider;
 
-  /// The server provides rename support. RenameOptions may only be specified
-  /// if the client states that it supports `prepareSupport` in its initial
-  /// `initialize` request.
-  final OrRefType? renameProvider;
-
-  /// The server provides selection range support.
-  final OrRefType? selectionRangeProvider;
-
-  /// The server provides semantic tokens support.
-  /// @since 3.16.0
-  final OrRefType? semanticTokensProvider;
-
-  /// The server provides signature help support.
-  final SignatureHelpOptions? signatureHelpProvider;
-
-  /// Defines how text documents are synced. Is either a detailed structure
-  /// defining each notification or for backwards compatibility the
-  /// TextDocumentSyncKind number.
-  final OrRefType? textDocumentSync;
+  /// The server provides Goto Implementation support.
+  final OrRefType? implementationProvider;
 
   /// The server provides Goto Type Definition support.
   final OrRefType? typeDefinitionProvider;
+
+  /// The server provides inline values.
+  /// @since 3.17.0
+  final OrRefType? inlineValueProvider;
 
   /// The server provides type hierarchy support.
   /// @since 3.17.0
   final OrRefType? typeHierarchyProvider;
 
-  /// Workspace specific server capabilities.
-  final ServerCapabilitiesWorkspace? workspace;
+  /// The server provides signature help support.
+  final SignatureHelpOptions? signatureHelpProvider;
 
-  /// The server provides workspace symbol support.
-  final OrRefType? workspaceSymbolProvider;
+  /// The server provides hover support.
+  final OrRefType? hoverProvider;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['callHierarchyProvider'] = callHierarchyProvider;
-    json['codeActionProvider'] = codeActionProvider;
-    json['codeLensProvider'] = codeLensProvider?.toJson();
-    json['colorProvider'] = colorProvider;
-    json['completionProvider'] = completionProvider?.toJson();
-    json['declarationProvider'] = declarationProvider;
-    json['definitionProvider'] = definitionProvider;
-    json['diagnosticProvider'] = diagnosticProvider;
-    json['documentFormattingProvider'] = documentFormattingProvider;
+    json['workspaceSymbolProvider'] = workspaceSymbolProvider;
     json['documentHighlightProvider'] = documentHighlightProvider;
-    json['documentLinkProvider'] = documentLinkProvider?.toJson();
+    json['documentFormattingProvider'] = documentFormattingProvider;
+    json['codeActionProvider'] = codeActionProvider;
+    json['completionProvider'] = completionProvider?.toJson();
+    json['workspace'] = workspace;
+    json['inlineCompletionProvider'] = inlineCompletionProvider;
+    json['diagnosticProvider'] = diagnosticProvider;
+    json['inlayHintProvider'] = inlayHintProvider;
+    json['definitionProvider'] = definitionProvider;
+    json['declarationProvider'] = declarationProvider;
+    json['monikerProvider'] = monikerProvider;
+    json['semanticTokensProvider'] = semanticTokensProvider;
+    json['linkedEditingRangeProvider'] = linkedEditingRangeProvider;
+    json['callHierarchyProvider'] = callHierarchyProvider;
+    json['executeCommandProvider'] = executeCommandProvider?.toJson();
+    json['textDocumentSync'] = textDocumentSync;
+    json['foldingRangeProvider'] = foldingRangeProvider;
+    json['renameProvider'] = renameProvider;
     json['documentOnTypeFormattingProvider'] = documentOnTypeFormattingProvider
         ?.toJson();
     json['documentRangeFormattingProvider'] = documentRangeFormattingProvider;
-    json['documentSymbolProvider'] = documentSymbolProvider;
-    json['executeCommandProvider'] = executeCommandProvider?.toJson();
     json['experimental'] = experimental;
-    json['foldingRangeProvider'] = foldingRangeProvider;
-    json['hoverProvider'] = hoverProvider;
-    json['implementationProvider'] = implementationProvider;
-    json['inlayHintProvider'] = inlayHintProvider;
-    json['inlineCompletionProvider'] = inlineCompletionProvider;
-    json['inlineValueProvider'] = inlineValueProvider;
-    json['linkedEditingRangeProvider'] = linkedEditingRangeProvider;
-    json['monikerProvider'] = monikerProvider;
+    json['selectionRangeProvider'] = selectionRangeProvider;
+    json['colorProvider'] = colorProvider;
+    json['documentLinkProvider'] = documentLinkProvider?.toJson();
+    json['codeLensProvider'] = codeLensProvider?.toJson();
     json['notebookDocumentSync'] = notebookDocumentSync;
+    json['documentSymbolProvider'] = documentSymbolProvider;
     json['positionEncoding'] = positionEncoding?.value;
     json['referencesProvider'] = referencesProvider;
-    json['renameProvider'] = renameProvider;
-    json['selectionRangeProvider'] = selectionRangeProvider;
-    json['semanticTokensProvider'] = semanticTokensProvider;
-    json['signatureHelpProvider'] = signatureHelpProvider?.toJson();
-    json['textDocumentSync'] = textDocumentSync;
+    json['implementationProvider'] = implementationProvider;
     json['typeDefinitionProvider'] = typeDefinitionProvider;
+    json['inlineValueProvider'] = inlineValueProvider;
     json['typeHierarchyProvider'] = typeHierarchyProvider;
-    json['workspace'] = workspace;
-    json['workspaceSymbolProvider'] = workspaceSymbolProvider;
+    json['signatureHelpProvider'] = signatureHelpProvider?.toJson();
+    json['hoverProvider'] = hoverProvider;
 
     return json;
   }
@@ -10570,7 +10547,7 @@ class VersionedTextDocumentIdentifier implements TextDocumentIdentifier {
 /// Struct
 /// Save options.
 class SaveOptions implements ToJson {
-  SaveOptions({required this.includeText});
+  SaveOptions({this.includeText});
 
   factory SaveOptions.fromJson(Map<String, Object?> json) {
     final includeTextJson = json['includeText'];
@@ -10594,29 +10571,29 @@ class SaveOptions implements ToJson {
 /// Struct
 /// An event describing a file change.
 class FileEvent implements ToJson {
-  FileEvent({required this.type, required this.uri});
+  FileEvent({required this.uri, required this.type});
 
   factory FileEvent.fromJson(Map<String, Object?> json) {
+    final uriJson = json['uri']!;
+    final uri = (uriJson as Uri);
     final typeJson = json['type']!;
     // Handle enum type
     final type = _i1.$enumDecode(_$FileChangeTypeEnumMap, typeJson);
-    final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
 
-    return FileEvent(type: type, uri: uri);
+    return FileEvent(uri: uri, type: type);
   }
-
-  /// The change type.
-  final FileChangeType type;
 
   /// The file's uri.
   final Uri uri;
 
+  /// The change type.
+  final FileChangeType type;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['type'] = type.value;
     json['uri'] = uri;
+    json['type'] = type.value;
 
     return json;
   }
@@ -10624,7 +10601,7 @@ class FileEvent implements ToJson {
 
 /// Struct
 class FileSystemWatcher implements ToJson {
-  FileSystemWatcher({required this.globPattern, required this.kind});
+  FileSystemWatcher({required this.globPattern, this.kind});
 
   factory FileSystemWatcher.fromJson(Map<String, Object?> json) {
     final globPatternJson = json['globPattern']!;
@@ -10659,58 +10636,56 @@ class FileSystemWatcher implements ToJson {
 /// objects are only valid in the scope of a resource.
 class Diagnostic implements ToJson {
   Diagnostic({
-    required this.code,
-    required this.codeDescription,
-    required this.data,
-    required this.message,
     required this.range,
-    required this.relatedInformation,
-    required this.severity,
-    required this.source,
-    required this.tags,
+    required this.message,
+    this.data,
+    this.relatedInformation,
+    this.tags,
+    this.source,
+    this.codeDescription,
+    this.code,
+    this.severity,
   });
 
   factory Diagnostic.fromJson(Map<String, Object?> json) {
-    final codeJson = json['code'];
-    final code = (codeJson as OrRefType?);
-    final codeDescriptionJson = json['codeDescription'];
-    final codeDescription = (codeDescriptionJson as CodeDescription?);
-    final dataJson = json['data'];
-    final data = (dataJson as LSPAny?);
-    final messageJson = json['message']!;
-    final message = (messageJson as String);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final messageJson = json['message']!;
+    final message = (messageJson as String);
+    final dataJson = json['data'];
+    final data = (dataJson as LSPAny?);
     final relatedInformationJson = json['relatedInformation'];
     final relatedInformation =
         (relatedInformationJson as List<DiagnosticRelatedInformation>?);
-    final severityJson = json['severity'];
-    final severity = (severityJson as DiagnosticSeverity?);
-    final sourceJson = json['source'];
-    final source = (sourceJson as String?);
     final tagsJson = json['tags'];
     final tags = (tagsJson as List<DiagnosticTag>?);
+    final sourceJson = json['source'];
+    final source = (sourceJson as String?);
+    final codeDescriptionJson = json['codeDescription'];
+    final codeDescription = (codeDescriptionJson as CodeDescription?);
+    final codeJson = json['code'];
+    final code = (codeJson as OrRefType?);
+    final severityJson = json['severity'];
+    final severity = (severityJson as DiagnosticSeverity?);
 
     return Diagnostic(
-      code: code,
-      codeDescription: codeDescription,
-      data: data,
-      message: message,
       range: range,
+      message: message,
+      data: data,
       relatedInformation: relatedInformation,
-      severity: severity,
-      source: source,
       tags: tags,
+      source: source,
+      codeDescription: codeDescription,
+      code: code,
+      severity: severity,
     );
   }
 
-  /// The diagnostic's code, which usually appear in the user interface.
-  final OrRefType? code;
+  /// The range at which the message applies
+  final Range range;
 
-  /// An optional property to describe the error code. Requires the code
-  /// field (above) to be present/not null.
-  /// @since 3.16.0
-  final CodeDescription? codeDescription;
+  /// The diagnostic's message. It usually appears in the user interface
+  final String message;
 
   /// A data entry field that is preserved between a
   /// `textDocument/publishDiagnostics` notification and
@@ -10718,40 +10693,42 @@ class Diagnostic implements ToJson {
   /// @since 3.16.0
   final LSPAny? data;
 
-  /// The diagnostic's message. It usually appears in the user interface
-  final String message;
-
-  /// The range at which the message applies
-  final Range range;
-
   /// An array of related diagnostic information, e.g. when symbol-names
   /// within a scope collide all definitions can be marked via this property.
   final List<DiagnosticRelatedInformation>? relatedInformation;
-
-  /// The diagnostic's severity. Can be omitted. If omitted it is up to the
-  /// client to interpret diagnostics as error, warning, info or hint.
-  final DiagnosticSeverity? severity;
-
-  /// A human-readable string describing the source of this diagnostic, e.g.
-  /// 'typescript' or 'super lint'. It usually appears in the user interface.
-  final String? source;
 
   /// Additional metadata about the diagnostic.
   /// @since 3.15.0
   final List<DiagnosticTag>? tags;
 
+  /// A human-readable string describing the source of this diagnostic, e.g.
+  /// 'typescript' or 'super lint'. It usually appears in the user interface.
+  final String? source;
+
+  /// An optional property to describe the error code. Requires the code
+  /// field (above) to be present/not null.
+  /// @since 3.16.0
+  final CodeDescription? codeDescription;
+
+  /// The diagnostic's code, which usually appear in the user interface.
+  final OrRefType? code;
+
+  /// The diagnostic's severity. Can be omitted. If omitted it is up to the
+  /// client to interpret diagnostics as error, warning, info or hint.
+  final DiagnosticSeverity? severity;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['code'] = code;
-    json['codeDescription'] = codeDescription?.toJson();
-    json['data'] = data;
-    json['message'] = message;
     json['range'] = range.toJson();
+    json['message'] = message;
+    json['data'] = data;
     json['relatedInformation'] = relatedInformation;
-    json['severity'] = severity?.value;
-    json['source'] = source;
     json['tags'] = tags;
+    json['source'] = source;
+    json['codeDescription'] = codeDescription?.toJson();
+    json['code'] = code;
+    json['severity'] = severity?.value;
 
     return json;
   }
@@ -10761,40 +10738,37 @@ class Diagnostic implements ToJson {
 /// Contains additional information about the context in which a completion
 /// request is triggered.
 class CompletionContext implements ToJson {
-  CompletionContext({
-    required this.triggerCharacter,
-    required this.triggerKind,
-  });
+  CompletionContext({required this.triggerKind, this.triggerCharacter});
 
   factory CompletionContext.fromJson(Map<String, Object?> json) {
-    final triggerCharacterJson = json['triggerCharacter'];
-    final triggerCharacter = (triggerCharacterJson as String?);
     final triggerKindJson = json['triggerKind']!;
     // Handle enum type
     final triggerKind = _i1.$enumDecode(
       _$CompletionTriggerKindEnumMap,
       triggerKindJson,
     );
+    final triggerCharacterJson = json['triggerCharacter'];
+    final triggerCharacter = (triggerCharacterJson as String?);
 
     return CompletionContext(
-      triggerCharacter: triggerCharacter,
       triggerKind: triggerKind,
+      triggerCharacter: triggerCharacter,
     );
   }
+
+  /// How the completion was triggered.
+  final CompletionTriggerKind triggerKind;
 
   /// The trigger character (a single character) that has trigger code
   /// complete. Is undefined if `triggerKind !==
   /// CompletionTriggerKind.TriggerCharacter`
   final String? triggerCharacter;
 
-  /// How the completion was triggered.
-  final CompletionTriggerKind triggerKind;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['triggerCharacter'] = triggerCharacter;
     json['triggerKind'] = triggerKind.value;
+    json['triggerCharacter'] = triggerCharacter;
 
     return json;
   }
@@ -10804,7 +10778,7 @@ class CompletionContext implements ToJson {
 /// Additional details for a completion item label.
 /// @since 3.17.0
 class CompletionItemLabelDetails implements ToJson {
-  CompletionItemLabelDetails({required this.description, required this.detail});
+  CompletionItemLabelDetails({this.description, this.detail});
 
   factory CompletionItemLabelDetails.fromJson(Map<String, Object?> json) {
     final descriptionJson = json['description'];
@@ -10840,31 +10814,31 @@ class CompletionItemLabelDetails implements ToJson {
 /// @since 3.16.0
 class InsertReplaceEdit implements ToJson {
   InsertReplaceEdit({
-    required this.insert,
     required this.newText,
+    required this.insert,
     required this.replace,
   });
 
   factory InsertReplaceEdit.fromJson(Map<String, Object?> json) {
-    final insertJson = json['insert']!;
-    final insert = Range.fromJson((insertJson as Map<String, Object?>));
     final newTextJson = json['newText']!;
     final newText = (newTextJson as String);
+    final insertJson = json['insert']!;
+    final insert = Range.fromJson((insertJson as Map<String, Object?>));
     final replaceJson = json['replace']!;
     final replace = Range.fromJson((replaceJson as Map<String, Object?>));
 
     return InsertReplaceEdit(
-      insert: insert,
       newText: newText,
+      insert: insert,
       replace: replace,
     );
   }
 
-  /// The range if the insert is requested
-  final Range insert;
-
   /// The string to be inserted.
   final String newText;
+
+  /// The range if the insert is requested
+  final Range insert;
 
   /// The range if the replace is requested.
   final Range replace;
@@ -10872,8 +10846,8 @@ class InsertReplaceEdit implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['insert'] = insert.toJson();
     json['newText'] = newText;
+    json['insert'] = insert.toJson();
     json['replace'] = replace.toJson();
 
     return json;
@@ -10884,43 +10858,34 @@ class InsertReplaceEdit implements ToJson {
 /// Completion options.
 class CompletionOptions implements WorkDoneProgressOptions {
   CompletionOptions({
-    required this.allCommitCharacters,
-    required this.completionItem,
-    required this.resolveProvider,
-    required this.triggerCharacters,
-    required this.workDoneProgress,
+    this.completionItem,
+    this.resolveProvider,
+    this.allCommitCharacters,
+    this.triggerCharacters,
+    this.workDoneProgress,
   });
 
   factory CompletionOptions.fromJson(Map<String, Object?> json) {
-    final allCommitCharactersJson = json['allCommitCharacters'];
-    final allCommitCharacters = (allCommitCharactersJson as List<String>?);
     final completionItemJson = json['completionItem'];
     final completionItem =
         (completionItemJson as CompletionOptionsCompletionItem?);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
+    final allCommitCharactersJson = json['allCommitCharacters'];
+    final allCommitCharacters = (allCommitCharactersJson as List<String>?);
     final triggerCharactersJson = json['triggerCharacters'];
     final triggerCharacters = (triggerCharactersJson as List<String>?);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
     return CompletionOptions(
-      allCommitCharacters: allCommitCharacters,
       completionItem: completionItem,
       resolveProvider: resolveProvider,
+      allCommitCharacters: allCommitCharacters,
       triggerCharacters: triggerCharacters,
       workDoneProgress: workDoneProgress,
     );
   }
-
-  /// The list of all possible characters that commit a completion. This
-  /// field can be used if clients don't support individual commit characters
-  /// per completion item. See
-  /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
-  /// If a server provides both `allCommitCharacters` and commit characters
-  /// on an individual completion item the ones on the completion item win.
-  /// @since 3.2.0
-  final List<String>? allCommitCharacters;
 
   /// The server supports the following `CompletionItem` specific
   /// capabilities.
@@ -10930,6 +10895,15 @@ class CompletionOptions implements WorkDoneProgressOptions {
   /// The server provides support to resolve additional information for a
   /// completion item.
   final bool? resolveProvider;
+
+  /// The list of all possible characters that commit a completion. This
+  /// field can be used if clients don't support individual commit characters
+  /// per completion item. See
+  /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
+  /// If a server provides both `allCommitCharacters` and commit characters
+  /// on an individual completion item the ones on the completion item win.
+  /// @since 3.2.0
+  final List<String>? allCommitCharacters;
 
   /// Most tools trigger completion request automatically without explicitly
   /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
@@ -10948,9 +10922,9 @@ class CompletionOptions implements WorkDoneProgressOptions {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['allCommitCharacters'] = allCommitCharacters;
     json['completionItem'] = completionItem;
     json['resolveProvider'] = resolveProvider;
+    json['allCommitCharacters'] = allCommitCharacters;
     json['triggerCharacters'] = triggerCharacters;
     json['workDoneProgress'] = workDoneProgress;
 
@@ -10961,7 +10935,7 @@ class CompletionOptions implements WorkDoneProgressOptions {
 /// Struct
 /// Hover options.
 class HoverOptions implements WorkDoneProgressOptions {
-  HoverOptions({required this.workDoneProgress});
+  HoverOptions({this.workDoneProgress});
 
   factory HoverOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -10988,38 +10962,36 @@ class HoverOptions implements WorkDoneProgressOptions {
 /// @since 3.15.0
 class SignatureHelpContext implements ToJson {
   SignatureHelpContext({
-    required this.activeSignatureHelp,
-    required this.isRetrigger,
-    required this.triggerCharacter,
     required this.triggerKind,
+    required this.isRetrigger,
+    this.activeSignatureHelp,
+    this.triggerCharacter,
   });
 
   factory SignatureHelpContext.fromJson(Map<String, Object?> json) {
-    final activeSignatureHelpJson = json['activeSignatureHelp'];
-    final activeSignatureHelp = (activeSignatureHelpJson as SignatureHelp?);
-    final isRetriggerJson = json['isRetrigger']!;
-    final isRetrigger = (isRetriggerJson as bool);
-    final triggerCharacterJson = json['triggerCharacter'];
-    final triggerCharacter = (triggerCharacterJson as String?);
     final triggerKindJson = json['triggerKind']!;
     // Handle enum type
     final triggerKind = _i1.$enumDecode(
       _$SignatureHelpTriggerKindEnumMap,
       triggerKindJson,
     );
+    final isRetriggerJson = json['isRetrigger']!;
+    final isRetrigger = (isRetriggerJson as bool);
+    final activeSignatureHelpJson = json['activeSignatureHelp'];
+    final activeSignatureHelp = (activeSignatureHelpJson as SignatureHelp?);
+    final triggerCharacterJson = json['triggerCharacter'];
+    final triggerCharacter = (triggerCharacterJson as String?);
 
     return SignatureHelpContext(
-      activeSignatureHelp: activeSignatureHelp,
-      isRetrigger: isRetrigger,
-      triggerCharacter: triggerCharacter,
       triggerKind: triggerKind,
+      isRetrigger: isRetrigger,
+      activeSignatureHelp: activeSignatureHelp,
+      triggerCharacter: triggerCharacter,
     );
   }
 
-  /// The currently active `SignatureHelp`.
-  /// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field
-  /// updated based on the user navigating through available signatures.
-  final SignatureHelp? activeSignatureHelp;
+  /// Action that caused signature help to be triggered.
+  final SignatureHelpTriggerKind triggerKind;
 
   /// `true` if signature help was already showing when it was triggered.
   /// Retriggers occurs when the signature help is already active and can be
@@ -11027,21 +10999,23 @@ class SignatureHelpContext implements ToJson {
   /// document content changes.
   final bool isRetrigger;
 
+  /// The currently active `SignatureHelp`.
+  /// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field
+  /// updated based on the user navigating through available signatures.
+  final SignatureHelp? activeSignatureHelp;
+
   /// Character that caused signature help to be triggered.
   /// This is undefined when `triggerKind !==
   /// SignatureHelpTriggerKind.TriggerCharacter`
   final String? triggerCharacter;
 
-  /// Action that caused signature help to be triggered.
-  final SignatureHelpTriggerKind triggerKind;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['activeSignatureHelp'] = activeSignatureHelp?.toJson();
-    json['isRetrigger'] = isRetrigger;
-    json['triggerCharacter'] = triggerCharacter;
     json['triggerKind'] = triggerKind.value;
+    json['isRetrigger'] = isRetrigger;
+    json['activeSignatureHelp'] = activeSignatureHelp?.toJson();
+    json['triggerCharacter'] = triggerCharacter;
 
     return json;
   }
@@ -11052,52 +11026,52 @@ class SignatureHelpContext implements ToJson {
 /// label, like a function-name, a doc-comment, and a set of parameters.
 class SignatureInformation implements ToJson {
   SignatureInformation({
-    required this.activeParameter,
-    required this.documentation,
     required this.label,
-    required this.parameters,
+    this.activeParameter,
+    this.parameters,
+    this.documentation,
   });
 
   factory SignatureInformation.fromJson(Map<String, Object?> json) {
-    final activeParameterJson = json['activeParameter'];
-    final activeParameter = (activeParameterJson as int?);
-    final documentationJson = json['documentation'];
-    final documentation = (documentationJson as OrRefType?);
     final labelJson = json['label']!;
     final label = (labelJson as String);
+    final activeParameterJson = json['activeParameter'];
+    final activeParameter = (activeParameterJson as int?);
     final parametersJson = json['parameters'];
     final parameters = (parametersJson as List<ParameterInformation>?);
+    final documentationJson = json['documentation'];
+    final documentation = (documentationJson as OrRefType?);
 
     return SignatureInformation(
-      activeParameter: activeParameter,
-      documentation: documentation,
       label: label,
+      activeParameter: activeParameter,
       parameters: parameters,
+      documentation: documentation,
     );
   }
+
+  /// The label of this signature. Will be shown in the UI.
+  final String label;
 
   /// The index of the active parameter.
   /// If provided, this is used in place of `SignatureHelp.activeParameter`.
   /// @since 3.16.0
   final int? activeParameter;
 
+  /// The parameters of this signature.
+  final List<ParameterInformation>? parameters;
+
   /// The human-readable doc-comment of this signature. Will be shown in the
   /// UI but can be omitted.
   final OrRefType? documentation;
 
-  /// The label of this signature. Will be shown in the UI.
-  final String label;
-
-  /// The parameters of this signature.
-  final List<ParameterInformation>? parameters;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['activeParameter'] = activeParameter;
-    json['documentation'] = documentation;
     json['label'] = label;
+    json['activeParameter'] = activeParameter;
     json['parameters'] = parameters;
+    json['documentation'] = documentation;
 
     return json;
   }
@@ -11107,9 +11081,9 @@ class SignatureInformation implements ToJson {
 /// Server Capabilities for a {@link SignatureHelpRequest}.
 class SignatureHelpOptions implements WorkDoneProgressOptions {
   SignatureHelpOptions({
-    required this.retriggerCharacters,
-    required this.triggerCharacters,
-    required this.workDoneProgress,
+    this.retriggerCharacters,
+    this.triggerCharacters,
+    this.workDoneProgress,
   });
 
   factory SignatureHelpOptions.fromJson(Map<String, Object?> json) {
@@ -11154,7 +11128,7 @@ class SignatureHelpOptions implements WorkDoneProgressOptions {
 /// Struct
 /// Server Capabilities for a {@link DefinitionRequest}.
 class DefinitionOptions implements WorkDoneProgressOptions {
-  DefinitionOptions({required this.workDoneProgress});
+  DefinitionOptions({this.workDoneProgress});
 
   factory DefinitionOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -11203,7 +11177,7 @@ class ReferenceContext implements ToJson {
 /// Struct
 /// Reference options.
 class ReferenceOptions implements WorkDoneProgressOptions {
-  ReferenceOptions({required this.workDoneProgress});
+  ReferenceOptions({this.workDoneProgress});
 
   factory ReferenceOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -11227,7 +11201,7 @@ class ReferenceOptions implements WorkDoneProgressOptions {
 /// Struct
 /// Provider options for a {@link DocumentHighlightRequest}.
 class DocumentHighlightOptions implements WorkDoneProgressOptions {
-  DocumentHighlightOptions({required this.workDoneProgress});
+  DocumentHighlightOptions({this.workDoneProgress});
 
   factory DocumentHighlightOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -11252,42 +11226,42 @@ class DocumentHighlightOptions implements WorkDoneProgressOptions {
 /// A base for all symbol information.
 class BaseSymbolInformation implements ToJson {
   BaseSymbolInformation({
-    required this.containerName,
-    required this.kind,
     required this.name,
-    required this.tags,
+    required this.kind,
+    this.containerName,
+    this.tags,
   });
 
   factory BaseSymbolInformation.fromJson(Map<String, Object?> json) {
-    final containerNameJson = json['containerName'];
-    final containerName = (containerNameJson as String?);
+    final nameJson = json['name']!;
+    final name = (nameJson as String);
     final kindJson = json['kind']!;
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
-    final nameJson = json['name']!;
-    final name = (nameJson as String);
+    final containerNameJson = json['containerName'];
+    final containerName = (containerNameJson as String?);
     final tagsJson = json['tags'];
     final tags = (tagsJson as List<SymbolTag>?);
 
     return BaseSymbolInformation(
-      containerName: containerName,
-      kind: kind,
       name: name,
+      kind: kind,
+      containerName: containerName,
       tags: tags,
     );
   }
+
+  /// The name of this symbol.
+  final String name;
+
+  /// The kind of this symbol.
+  final SymbolKind kind;
 
   /// The name of the symbol containing this symbol. This information is for
   /// user interface purposes (e.g. to render a qualifier in the user
   /// interface if necessary). It can't be used to re-infer a hierarchy for
   /// the document symbols.
   final String? containerName;
-
-  /// The kind of this symbol.
-  final SymbolKind kind;
-
-  /// The name of this symbol.
-  final String name;
 
   /// Tags for this symbol.
   /// @since 3.16.0
@@ -11296,9 +11270,9 @@ class BaseSymbolInformation implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['containerName'] = containerName;
-    json['kind'] = kind.value;
     json['name'] = name;
+    json['kind'] = kind.value;
+    json['containerName'] = containerName;
     json['tags'] = tags;
 
     return json;
@@ -11308,7 +11282,7 @@ class BaseSymbolInformation implements ToJson {
 /// Struct
 /// Provider options for a {@link DocumentSymbolRequest}.
 class DocumentSymbolOptions implements WorkDoneProgressOptions {
-  DocumentSymbolOptions({required this.label, required this.workDoneProgress});
+  DocumentSymbolOptions({this.label, this.workDoneProgress});
 
   factory DocumentSymbolOptions.fromJson(Map<String, Object?> json) {
     final labelJson = json['label'];
@@ -11344,24 +11318,20 @@ class DocumentSymbolOptions implements WorkDoneProgressOptions {
 /// Contains additional diagnostic information about the context in which a
 /// {@link CodeActionProvider.provideCodeActions code action} is run.
 class CodeActionContext implements ToJson {
-  CodeActionContext({
-    required this.diagnostics,
-    required this.only,
-    required this.triggerKind,
-  });
+  CodeActionContext({required this.diagnostics, this.triggerKind, this.only});
 
   factory CodeActionContext.fromJson(Map<String, Object?> json) {
     final diagnosticsJson = json['diagnostics']!;
     final diagnostics = (diagnosticsJson as List<Diagnostic>);
-    final onlyJson = json['only'];
-    final only = (onlyJson as List<CodeActionKind>?);
     final triggerKindJson = json['triggerKind'];
     final triggerKind = (triggerKindJson as CodeActionTriggerKind?);
+    final onlyJson = json['only'];
+    final only = (onlyJson as List<CodeActionKind>?);
 
     return CodeActionContext(
       diagnostics: diagnostics,
-      only: only,
       triggerKind: triggerKind,
+      only: only,
     );
   }
 
@@ -11373,21 +11343,21 @@ class CodeActionContext implements ToJson {
   /// compute code actions is the provided range.
   final List<Diagnostic> diagnostics;
 
+  /// The reason why code actions were requested.
+  /// @since 3.17.0
+  final CodeActionTriggerKind? triggerKind;
+
   /// Requested kind of actions to return.
   /// Actions not of this kind are filtered out by the client before being
   /// shown. So servers can omit computing them.
   final List<CodeActionKind>? only;
 
-  /// The reason why code actions were requested.
-  /// @since 3.17.0
-  final CodeActionTriggerKind? triggerKind;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['diagnostics'] = diagnostics;
-    json['only'] = only;
     json['triggerKind'] = triggerKind?.value;
+    json['only'] = only;
 
     return json;
   }
@@ -11397,35 +11367,35 @@ class CodeActionContext implements ToJson {
 /// Provider options for a {@link CodeActionRequest}.
 class CodeActionOptions implements WorkDoneProgressOptions {
   CodeActionOptions({
-    required this.codeActionKinds,
-    required this.resolveProvider,
-    required this.workDoneProgress,
+    this.resolveProvider,
+    this.codeActionKinds,
+    this.workDoneProgress,
   });
 
   factory CodeActionOptions.fromJson(Map<String, Object?> json) {
-    final codeActionKindsJson = json['codeActionKinds'];
-    final codeActionKinds = (codeActionKindsJson as List<CodeActionKind>?);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
+    final codeActionKindsJson = json['codeActionKinds'];
+    final codeActionKinds = (codeActionKindsJson as List<CodeActionKind>?);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
     return CodeActionOptions(
-      codeActionKinds: codeActionKinds,
       resolveProvider: resolveProvider,
+      codeActionKinds: codeActionKinds,
       workDoneProgress: workDoneProgress,
     );
   }
-
-  /// CodeActionKinds that this server may return.
-  /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
-  /// the server may list out every specific kind they provide.
-  final List<CodeActionKind>? codeActionKinds;
 
   /// The server provides support to resolve additional information for a
   /// code action.
   /// @since 3.16.0
   final bool? resolveProvider;
+
+  /// CodeActionKinds that this server may return.
+  /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+  /// the server may list out every specific kind they provide.
+  final List<CodeActionKind>? codeActionKinds;
 
   @override
   final bool? workDoneProgress;
@@ -11433,8 +11403,8 @@ class CodeActionOptions implements WorkDoneProgressOptions {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['codeActionKinds'] = codeActionKinds;
     json['resolveProvider'] = resolveProvider;
+    json['codeActionKinds'] = codeActionKinds;
     json['workDoneProgress'] = workDoneProgress;
 
     return json;
@@ -11444,10 +11414,7 @@ class CodeActionOptions implements WorkDoneProgressOptions {
 /// Struct
 /// Server capabilities for a {@link WorkspaceSymbolRequest}.
 class WorkspaceSymbolOptions implements WorkDoneProgressOptions {
-  WorkspaceSymbolOptions({
-    required this.resolveProvider,
-    required this.workDoneProgress,
-  });
+  WorkspaceSymbolOptions({this.resolveProvider, this.workDoneProgress});
 
   factory WorkspaceSymbolOptions.fromJson(Map<String, Object?> json) {
     final resolveProviderJson = json['resolveProvider'];
@@ -11482,10 +11449,7 @@ class WorkspaceSymbolOptions implements WorkDoneProgressOptions {
 /// Struct
 /// Code Lens provider options of a {@link CodeLensRequest}.
 class CodeLensOptions implements WorkDoneProgressOptions {
-  CodeLensOptions({
-    required this.resolveProvider,
-    required this.workDoneProgress,
-  });
+  CodeLensOptions({this.resolveProvider, this.workDoneProgress});
 
   factory CodeLensOptions.fromJson(Map<String, Object?> json) {
     final resolveProviderJson = json['resolveProvider'];
@@ -11518,10 +11482,7 @@ class CodeLensOptions implements WorkDoneProgressOptions {
 /// Struct
 /// Provider options for a {@link DocumentLinkRequest}.
 class DocumentLinkOptions implements WorkDoneProgressOptions {
-  DocumentLinkOptions({
-    required this.resolveProvider,
-    required this.workDoneProgress,
-  });
+  DocumentLinkOptions({this.resolveProvider, this.workDoneProgress});
 
   factory DocumentLinkOptions.fromJson(Map<String, Object?> json) {
     final resolveProviderJson = json['resolveProvider'];
@@ -11555,47 +11516,47 @@ class DocumentLinkOptions implements WorkDoneProgressOptions {
 /// Value-object describing what options formatting should use.
 class FormattingOptions implements ToJson {
   FormattingOptions({
-    required this.insertFinalNewline,
-    required this.insertSpaces,
     required this.tabSize,
-    required this.trimFinalNewlines,
-    required this.trimTrailingWhitespace,
+    required this.insertSpaces,
+    this.trimFinalNewlines,
+    this.insertFinalNewline,
+    this.trimTrailingWhitespace,
   });
 
   factory FormattingOptions.fromJson(Map<String, Object?> json) {
-    final insertFinalNewlineJson = json['insertFinalNewline'];
-    final insertFinalNewline = (insertFinalNewlineJson as bool?);
-    final insertSpacesJson = json['insertSpaces']!;
-    final insertSpaces = (insertSpacesJson as bool);
     final tabSizeJson = json['tabSize']!;
     final tabSize = (tabSizeJson as int);
+    final insertSpacesJson = json['insertSpaces']!;
+    final insertSpaces = (insertSpacesJson as bool);
     final trimFinalNewlinesJson = json['trimFinalNewlines'];
     final trimFinalNewlines = (trimFinalNewlinesJson as bool?);
+    final insertFinalNewlineJson = json['insertFinalNewline'];
+    final insertFinalNewline = (insertFinalNewlineJson as bool?);
     final trimTrailingWhitespaceJson = json['trimTrailingWhitespace'];
     final trimTrailingWhitespace = (trimTrailingWhitespaceJson as bool?);
 
     return FormattingOptions(
-      insertFinalNewline: insertFinalNewline,
-      insertSpaces: insertSpaces,
       tabSize: tabSize,
+      insertSpaces: insertSpaces,
       trimFinalNewlines: trimFinalNewlines,
+      insertFinalNewline: insertFinalNewline,
       trimTrailingWhitespace: trimTrailingWhitespace,
     );
   }
 
-  /// Insert a newline character at the end of the file if one does not exist.
-  /// @since 3.15.0
-  final bool? insertFinalNewline;
+  /// Size of a tab in spaces.
+  final int tabSize;
 
   /// Prefer spaces over tabs.
   final bool insertSpaces;
 
-  /// Size of a tab in spaces.
-  final int tabSize;
-
   /// Trim all newlines after the final newline at the end of the file.
   /// @since 3.15.0
   final bool? trimFinalNewlines;
+
+  /// Insert a newline character at the end of the file if one does not exist.
+  /// @since 3.15.0
+  final bool? insertFinalNewline;
 
   /// Trim trailing whitespace on a line.
   /// @since 3.15.0
@@ -11604,10 +11565,10 @@ class FormattingOptions implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['insertFinalNewline'] = insertFinalNewline;
-    json['insertSpaces'] = insertSpaces;
     json['tabSize'] = tabSize;
+    json['insertSpaces'] = insertSpaces;
     json['trimFinalNewlines'] = trimFinalNewlines;
+    json['insertFinalNewline'] = insertFinalNewline;
     json['trimTrailingWhitespace'] = trimTrailingWhitespace;
 
     return json;
@@ -11617,7 +11578,7 @@ class FormattingOptions implements ToJson {
 /// Struct
 /// Provider options for a {@link DocumentFormattingRequest}.
 class DocumentFormattingOptions implements WorkDoneProgressOptions {
-  DocumentFormattingOptions({required this.workDoneProgress});
+  DocumentFormattingOptions({this.workDoneProgress});
 
   factory DocumentFormattingOptions.fromJson(Map<String, Object?> json) {
     final workDoneProgressJson = json['workDoneProgress'];
@@ -11641,10 +11602,7 @@ class DocumentFormattingOptions implements WorkDoneProgressOptions {
 /// Struct
 /// Provider options for a {@link DocumentRangeFormattingRequest}.
 class DocumentRangeFormattingOptions implements WorkDoneProgressOptions {
-  DocumentRangeFormattingOptions({
-    required this.rangesSupport,
-    required this.workDoneProgress,
-  });
+  DocumentRangeFormattingOptions({this.rangesSupport, this.workDoneProgress});
 
   factory DocumentRangeFormattingOptions.fromJson(Map<String, Object?> json) {
     final rangesSupportJson = json['rangesSupport'];
@@ -11680,7 +11638,7 @@ class DocumentRangeFormattingOptions implements WorkDoneProgressOptions {
 class DocumentOnTypeFormattingOptions implements ToJson {
   DocumentOnTypeFormattingOptions({
     required this.firstTriggerCharacter,
-    required this.moreTriggerCharacter,
+    this.moreTriggerCharacter,
   });
 
   factory DocumentOnTypeFormattingOptions.fromJson(Map<String, Object?> json) {
@@ -11714,10 +11672,7 @@ class DocumentOnTypeFormattingOptions implements ToJson {
 /// Struct
 /// Provider options for a {@link RenameRequest}.
 class RenameOptions implements WorkDoneProgressOptions {
-  RenameOptions({
-    required this.prepareProvider,
-    required this.workDoneProgress,
-  });
+  RenameOptions({this.prepareProvider, this.workDoneProgress});
 
   factory RenameOptions.fromJson(Map<String, Object?> json) {
     final prepareProviderJson = json['prepareProvider'];
@@ -11751,10 +11706,7 @@ class RenameOptions implements WorkDoneProgressOptions {
 /// Struct
 /// The server capabilities of a {@link ExecuteCommandRequest}.
 class ExecuteCommandOptions implements WorkDoneProgressOptions {
-  ExecuteCommandOptions({
-    required this.commands,
-    required this.workDoneProgress,
-  });
+  ExecuteCommandOptions({required this.commands, this.workDoneProgress});
 
   factory ExecuteCommandOptions.fromJson(Map<String, Object?> json) {
     final commandsJson = json['commands']!;
@@ -11788,33 +11740,33 @@ class ExecuteCommandOptions implements WorkDoneProgressOptions {
 /// @since 3.16.0
 class SemanticTokensLegend implements ToJson {
   SemanticTokensLegend({
-    required this.tokenModifiers,
     required this.tokenTypes,
+    required this.tokenModifiers,
   });
 
   factory SemanticTokensLegend.fromJson(Map<String, Object?> json) {
-    final tokenModifiersJson = json['tokenModifiers']!;
-    final tokenModifiers = (tokenModifiersJson as List<String>);
     final tokenTypesJson = json['tokenTypes']!;
     final tokenTypes = (tokenTypesJson as List<String>);
+    final tokenModifiersJson = json['tokenModifiers']!;
+    final tokenModifiers = (tokenModifiersJson as List<String>);
 
     return SemanticTokensLegend(
-      tokenModifiers: tokenModifiers,
       tokenTypes: tokenTypes,
+      tokenModifiers: tokenModifiers,
     );
   }
-
-  /// The token modifiers a server uses.
-  final List<String> tokenModifiers;
 
   /// The token types a server uses.
   final List<String> tokenTypes;
 
+  /// The token modifiers a server uses.
+  final List<String> tokenModifiers;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['tokenModifiers'] = tokenModifiers;
     json['tokenTypes'] = tokenTypes;
+    json['tokenModifiers'] = tokenModifiers;
 
     return json;
   }
@@ -11868,44 +11820,44 @@ class OptionalVersionedTextDocumentIdentifier
 /// @since 3.16.0.
 class AnnotatedTextEdit implements TextEdit {
   AnnotatedTextEdit({
-    required this.annotationId,
-    required this.newText,
     required this.range,
+    required this.newText,
+    required this.annotationId,
   });
 
   factory AnnotatedTextEdit.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = json['annotationId']!;
-    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier);
-    final newTextJson = json['newText']!;
-    final newText = (newTextJson as String);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
+    final newTextJson = json['newText']!;
+    final newText = (newTextJson as String);
+    final annotationIdJson = json['annotationId']!;
+    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier);
 
     return AnnotatedTextEdit(
-      annotationId: annotationId,
-      newText: newText,
       range: range,
+      newText: newText,
+      annotationId: annotationId,
     );
   }
-
-  /// The actual identifier of the change annotation
-  final ChangeAnnotationIdentifier annotationId;
-
-  /// The string to be inserted. For delete operations use an empty string.
-  @override
-  final String newText;
 
   /// The range of the text document to be manipulated. To insert text into a
   /// document create a range where start === end.
   @override
   final Range range;
 
+  /// The string to be inserted. For delete operations use an empty string.
+  @override
+  final String newText;
+
+  /// The actual identifier of the change annotation
+  final ChangeAnnotationIdentifier annotationId;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['annotationId'] = annotationId;
-    json['newText'] = newText;
     json['range'] = range.toJson();
+    json['newText'] = newText;
+    json['annotationId'] = annotationId;
 
     return json;
   }
@@ -11914,29 +11866,29 @@ class AnnotatedTextEdit implements TextEdit {
 /// Struct
 /// A generic resource operation.
 class ResourceOperation implements ToJson {
-  ResourceOperation({required this.annotationId, required this.kind});
+  ResourceOperation({required this.kind, this.annotationId});
 
   factory ResourceOperation.fromJson(Map<String, Object?> json) {
-    final annotationIdJson = json['annotationId'];
-    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier?);
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
+    final annotationIdJson = json['annotationId'];
+    final annotationId = (annotationIdJson as ChangeAnnotationIdentifier?);
 
-    return ResourceOperation(annotationId: annotationId, kind: kind);
+    return ResourceOperation(kind: kind, annotationId: annotationId);
   }
+
+  /// The resource operation kind.
+  final String kind;
 
   /// An optional annotation identifier describing the operation.
   /// @since 3.16.0
   final ChangeAnnotationIdentifier? annotationId;
 
-  /// The resource operation kind.
-  final String kind;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['annotationId'] = annotationId;
     json['kind'] = kind;
+    json['annotationId'] = annotationId;
 
     return json;
   }
@@ -11945,7 +11897,7 @@ class ResourceOperation implements ToJson {
 /// Struct
 /// Options to create a file.
 class CreateFileOptions implements ToJson {
-  CreateFileOptions({required this.ignoreIfExists, required this.overwrite});
+  CreateFileOptions({this.ignoreIfExists, this.overwrite});
 
   factory CreateFileOptions.fromJson(Map<String, Object?> json) {
     final ignoreIfExistsJson = json['ignoreIfExists'];
@@ -11978,7 +11930,7 @@ class CreateFileOptions implements ToJson {
 /// Struct
 /// Rename file options
 class RenameFileOptions implements ToJson {
-  RenameFileOptions({required this.ignoreIfExists, required this.overwrite});
+  RenameFileOptions({this.ignoreIfExists, this.overwrite});
 
   factory RenameFileOptions.fromJson(Map<String, Object?> json) {
     final ignoreIfExistsJson = json['ignoreIfExists'];
@@ -12011,7 +11963,7 @@ class RenameFileOptions implements ToJson {
 /// Struct
 /// Delete file options
 class DeleteFileOptions implements ToJson {
-  DeleteFileOptions({required this.ignoreIfNotExists, required this.recursive});
+  DeleteFileOptions({this.ignoreIfNotExists, this.recursive});
 
   factory DeleteFileOptions.fromJson(Map<String, Object?> json) {
     final ignoreIfNotExistsJson = json['ignoreIfNotExists'];
@@ -12046,21 +11998,17 @@ class DeleteFileOptions implements ToJson {
 /// server is interested in receiving.
 /// @since 3.16.0
 class FileOperationPattern implements ToJson {
-  FileOperationPattern({
-    required this.glob,
-    required this.matches,
-    required this.options,
-  });
+  FileOperationPattern({required this.glob, this.options, this.matches});
 
   factory FileOperationPattern.fromJson(Map<String, Object?> json) {
     final globJson = json['glob']!;
     final glob = (globJson as String);
-    final matchesJson = json['matches'];
-    final matches = (matchesJson as FileOperationPatternKind?);
     final optionsJson = json['options'];
     final options = (optionsJson as FileOperationPatternOptions?);
+    final matchesJson = json['matches'];
+    final matches = (matchesJson as FileOperationPatternKind?);
 
-    return FileOperationPattern(glob: glob, matches: matches, options: options);
+    return FileOperationPattern(glob: glob, options: options, matches: matches);
   }
 
   /// The glob pattern to match. Glob patterns can have the following syntax:
@@ -12075,19 +12023,19 @@ class FileOperationPattern implements ToJson {
   /// `example.0`)
   final String glob;
 
+  /// Additional options used during matching.
+  final FileOperationPatternOptions? options;
+
   /// Whether to match files or folders with this pattern.
   /// Matches both if undefined.
   final FileOperationPatternKind? matches;
-
-  /// Additional options used during matching.
-  final FileOperationPatternOptions? options;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['glob'] = glob;
-    json['matches'] = matches?.value;
     json['options'] = options?.toJson();
+    json['matches'] = matches?.value;
 
     return json;
   }
@@ -12099,48 +12047,43 @@ class FileOperationPattern implements ToJson {
 class WorkspaceFullDocumentDiagnosticReport
     implements FullDocumentDiagnosticReport {
   WorkspaceFullDocumentDiagnosticReport({
-    required this.items,
     required this.kind,
-    required this.resultId,
+    required this.items,
     required this.uri,
     required this.version,
+    this.resultId,
   });
 
   factory WorkspaceFullDocumentDiagnosticReport.fromJson(
     Map<String, Object?> json,
   ) {
-    final itemsJson = json['items']!;
-    final items = (itemsJson as List<Diagnostic>);
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
-    final resultIdJson = json['resultId'];
-    final resultId = (resultIdJson as String?);
+    final itemsJson = json['items']!;
+    final items = (itemsJson as List<Diagnostic>);
     final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
     final versionJson = json['version']!;
     final version = (versionJson as OrRefType);
+    final resultIdJson = json['resultId'];
+    final resultId = (resultIdJson as String?);
 
     return WorkspaceFullDocumentDiagnosticReport(
-      items: items,
       kind: kind,
-      resultId: resultId,
+      items: items,
       uri: uri,
       version: version,
+      resultId: resultId,
     );
   }
-
-  /// The actual items.
-  @override
-  final List<Diagnostic> items;
 
   /// A full document diagnostic report.
   @override
   final String kind;
 
-  /// An optional result id. If provided it will be sent on the next
-  /// diagnostic request for the same document.
+  /// The actual items.
   @override
-  final String? resultId;
+  final List<Diagnostic> items;
 
   /// The URI for which diagnostic information is reported.
   final Uri uri;
@@ -12149,14 +12092,19 @@ class WorkspaceFullDocumentDiagnosticReport
   /// document is not marked as open `null` can be provided.
   final OrRefType version;
 
+  /// An optional result id. If provided it will be sent on the next
+  /// diagnostic request for the same document.
+  @override
+  final String? resultId;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['items'] = items;
     json['kind'] = kind;
-    json['resultId'] = resultId;
+    json['items'] = items;
     json['uri'] = uri;
     json['version'] = version;
+    json['resultId'] = resultId;
 
     return json;
   }
@@ -12231,39 +12179,39 @@ class WorkspaceUnchangedDocumentDiagnosticReport
 /// @since 3.17.0
 class NotebookCell implements ToJson {
   NotebookCell({
-    required this.document,
-    required this.executionSummary,
     required this.kind,
-    required this.metadata,
+    required this.document,
+    this.executionSummary,
+    this.metadata,
   });
 
   factory NotebookCell.fromJson(Map<String, Object?> json) {
+    final kindJson = json['kind']!;
+    // Handle enum type
+    final kind = _i1.$enumDecode(_$NotebookCellKindEnumMap, kindJson);
     final documentJson = json['document']!;
     final document = (documentJson as Uri);
     final executionSummaryJson = json['executionSummary'];
     final executionSummary = (executionSummaryJson as ExecutionSummary?);
-    final kindJson = json['kind']!;
-    // Handle enum type
-    final kind = _i1.$enumDecode(_$NotebookCellKindEnumMap, kindJson);
     final metadataJson = json['metadata'];
     final metadata = (metadataJson as LSPObject?);
 
     return NotebookCell(
+      kind: kind,
       document: document,
       executionSummary: executionSummary,
-      kind: kind,
       metadata: metadata,
     );
   }
+
+  /// The cell's kind
+  final NotebookCellKind kind;
 
   /// The URI of the cell's text document content.
   final Uri document;
 
   /// Additional execution summary information if supported by the client.
   final ExecutionSummary? executionSummary;
-
-  /// The cell's kind
-  final NotebookCellKind kind;
 
   /// Additional metadata stored with the cell.
   /// Note: should always be an object literal (e.g. LSPObject)
@@ -12272,9 +12220,9 @@ class NotebookCell implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['kind'] = kind.value;
     json['document'] = document;
     json['executionSummary'] = executionSummary?.toJson();
-    json['kind'] = kind.value;
     json['metadata'] = metadata;
 
     return json;
@@ -12286,41 +12234,41 @@ class NotebookCell implements ToJson {
 /// @since 3.17.0
 class NotebookCellArrayChange implements ToJson {
   NotebookCellArrayChange({
-    required this.cells,
-    required this.deleteCount,
     required this.start,
+    required this.deleteCount,
+    this.cells,
   });
 
   factory NotebookCellArrayChange.fromJson(Map<String, Object?> json) {
-    final cellsJson = json['cells'];
-    final cells = (cellsJson as List<NotebookCell>?);
-    final deleteCountJson = json['deleteCount']!;
-    final deleteCount = (deleteCountJson as int);
     final startJson = json['start']!;
     final start = (startJson as int);
+    final deleteCountJson = json['deleteCount']!;
+    final deleteCount = (deleteCountJson as int);
+    final cellsJson = json['cells'];
+    final cells = (cellsJson as List<NotebookCell>?);
 
     return NotebookCellArrayChange(
-      cells: cells,
-      deleteCount: deleteCount,
       start: start,
+      deleteCount: deleteCount,
+      cells: cells,
     );
   }
-
-  /// The new cells, if any
-  final List<NotebookCell>? cells;
-
-  /// The deleted cells
-  final int deleteCount;
 
   /// The start oftest of the cell that changed.
   final int start;
 
+  /// The deleted cells
+  final int deleteCount;
+
+  /// The new cells, if any
+  final List<NotebookCell>? cells;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['cells'] = cells;
-    json['deleteCount'] = deleteCount;
     json['start'] = start;
+    json['deleteCount'] = deleteCount;
+    json['cells'] = cells;
 
     return json;
   }
@@ -12361,12 +12309,12 @@ class SelectedCompletionInfo implements ToJson {
 /// Defines the capabilities provided by the client.
 class ClientCapabilities implements ToJson {
   ClientCapabilities({
-    required this.experimental,
-    required this.general,
-    required this.notebookDocument,
-    required this.textDocument,
-    required this.window,
-    required this.workspace,
+    this.experimental,
+    this.general,
+    this.window,
+    this.notebookDocument,
+    this.textDocument,
+    this.workspace,
   });
 
   factory ClientCapabilities.fromJson(Map<String, Object?> json) {
@@ -12374,22 +12322,22 @@ class ClientCapabilities implements ToJson {
     final experimental = (experimentalJson as LSPAny?);
     final generalJson = json['general'];
     final general = (generalJson as GeneralClientCapabilities?);
+    final windowJson = json['window'];
+    final window = (windowJson as WindowClientCapabilities?);
     final notebookDocumentJson = json['notebookDocument'];
     final notebookDocument =
         (notebookDocumentJson as NotebookDocumentClientCapabilities?);
     final textDocumentJson = json['textDocument'];
     final textDocument = (textDocumentJson as TextDocumentClientCapabilities?);
-    final windowJson = json['window'];
-    final window = (windowJson as WindowClientCapabilities?);
     final workspaceJson = json['workspace'];
     final workspace = (workspaceJson as WorkspaceClientCapabilities?);
 
     return ClientCapabilities(
       experimental: experimental,
       general: general,
+      window: window,
       notebookDocument: notebookDocument,
       textDocument: textDocument,
-      window: window,
       workspace: workspace,
     );
   }
@@ -12401,15 +12349,15 @@ class ClientCapabilities implements ToJson {
   /// @since 3.16.0
   final GeneralClientCapabilities? general;
 
+  /// Window specific client capabilities.
+  final WindowClientCapabilities? window;
+
   /// Capabilities specific to the notebook document support.
   /// @since 3.17.0
   final NotebookDocumentClientCapabilities? notebookDocument;
 
   /// Text document specific client capabilities.
   final TextDocumentClientCapabilities? textDocument;
-
-  /// Window specific client capabilities.
-  final WindowClientCapabilities? window;
 
   /// Workspace specific client capabilities.
   final WorkspaceClientCapabilities? workspace;
@@ -12419,9 +12367,9 @@ class ClientCapabilities implements ToJson {
     final json = <String, Object?>{};
     json['experimental'] = experimental;
     json['general'] = general?.toJson();
+    json['window'] = window?.toJson();
     json['notebookDocument'] = notebookDocument?.toJson();
     json['textDocument'] = textDocument?.toJson();
-    json['window'] = window?.toJson();
     json['workspace'] = workspace?.toJson();
 
     return json;
@@ -12431,33 +12379,45 @@ class ClientCapabilities implements ToJson {
 /// Struct
 class TextDocumentSyncOptions implements ToJson {
   TextDocumentSyncOptions({
-    required this.change,
-    required this.openClose,
-    required this.save,
-    required this.willSave,
-    required this.willSaveWaitUntil,
+    this.save,
+    this.willSaveWaitUntil,
+    this.willSave,
+    this.change,
+    this.openClose,
   });
 
   factory TextDocumentSyncOptions.fromJson(Map<String, Object?> json) {
+    final saveJson = json['save'];
+    final save = (saveJson as OrRefType?);
+    final willSaveWaitUntilJson = json['willSaveWaitUntil'];
+    final willSaveWaitUntil = (willSaveWaitUntilJson as bool?);
+    final willSaveJson = json['willSave'];
+    final willSave = (willSaveJson as bool?);
     final changeJson = json['change'];
     final change = (changeJson as TextDocumentSyncKind?);
     final openCloseJson = json['openClose'];
     final openClose = (openCloseJson as bool?);
-    final saveJson = json['save'];
-    final save = (saveJson as OrRefType?);
-    final willSaveJson = json['willSave'];
-    final willSave = (willSaveJson as bool?);
-    final willSaveWaitUntilJson = json['willSaveWaitUntil'];
-    final willSaveWaitUntil = (willSaveWaitUntilJson as bool?);
 
     return TextDocumentSyncOptions(
+      save: save,
+      willSaveWaitUntil: willSaveWaitUntil,
+      willSave: willSave,
       change: change,
       openClose: openClose,
-      save: save,
-      willSave: willSave,
-      willSaveWaitUntil: willSaveWaitUntil,
     );
   }
+
+  /// If present save notifications are sent to the server. If omitted the
+  /// notification should not be sent.
+  final OrRefType? save;
+
+  /// If present will save wait until requests are sent to the server. If
+  /// omitted the request should not be sent.
+  final bool? willSaveWaitUntil;
+
+  /// If present will save notifications are sent to the server. If omitted
+  /// the notification should not be sent.
+  final bool? willSave;
 
   /// Change notifications are sent to the server. See
   /// TextDocumentSyncKind.None, TextDocumentSyncKind.Full and
@@ -12469,26 +12429,14 @@ class TextDocumentSyncOptions implements ToJson {
   /// close notification should not be sent.
   final bool? openClose;
 
-  /// If present save notifications are sent to the server. If omitted the
-  /// notification should not be sent.
-  final OrRefType? save;
-
-  /// If present will save notifications are sent to the server. If omitted
-  /// the notification should not be sent.
-  final bool? willSave;
-
-  /// If present will save wait until requests are sent to the server. If
-  /// omitted the request should not be sent.
-  final bool? willSaveWaitUntil;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
+    json['save'] = save;
+    json['willSaveWaitUntil'] = willSaveWaitUntil;
+    json['willSave'] = willSave;
     json['change'] = change?.value;
     json['openClose'] = openClose;
-    json['save'] = save;
-    json['willSave'] = willSave;
-    json['willSaveWaitUntil'] = willSaveWaitUntil;
 
     return json;
   }
@@ -12503,10 +12451,7 @@ class TextDocumentSyncOptions implements ToJson {
 /// synced.
 /// @since 3.17.0
 class NotebookDocumentSyncOptions implements ToJson {
-  NotebookDocumentSyncOptions({
-    required this.notebookSelector,
-    required this.save,
-  });
+  NotebookDocumentSyncOptions({required this.notebookSelector, this.save});
 
   factory NotebookDocumentSyncOptions.fromJson(Map<String, Object?> json) {
     final notebookSelectorJson = json['notebookSelector']!;
@@ -12543,36 +12488,36 @@ class NotebookDocumentSyncOptions implements ToJson {
 class NotebookDocumentSyncRegistrationOptions
     implements NotebookDocumentSyncOptions, StaticRegistrationOptions {
   NotebookDocumentSyncRegistrationOptions({
-    required this.id,
     required this.notebookSelector,
-    required this.save,
+    this.id,
+    this.save,
   });
 
   factory NotebookDocumentSyncRegistrationOptions.fromJson(
     Map<String, Object?> json,
   ) {
-    final idJson = json['id'];
-    final id = (idJson as String?);
     final notebookSelectorJson = json['notebookSelector']!;
     final notebookSelector = (notebookSelectorJson as List<OrRefType>);
+    final idJson = json['id'];
+    final id = (idJson as String?);
     final saveJson = json['save'];
     final save = (saveJson as bool?);
 
     return NotebookDocumentSyncRegistrationOptions(
-      id: id,
       notebookSelector: notebookSelector,
+      id: id,
       save: save,
     );
   }
+
+  /// The notebooks to be synced
+  @override
+  final List<OrRefType> notebookSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
   @override
   final String? id;
-
-  /// The notebooks to be synced
-  @override
-  final List<OrRefType> notebookSelector;
 
   /// Whether save notification should be forwarded to the server. Will only
   /// be honored if mode === `notebook`.
@@ -12582,8 +12527,8 @@ class NotebookDocumentSyncRegistrationOptions
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['id'] = id;
     json['notebookSelector'] = notebookSelector;
+    json['id'] = id;
     json['save'] = save;
 
     return json;
@@ -12593,8 +12538,8 @@ class NotebookDocumentSyncRegistrationOptions
 /// Struct
 class WorkspaceFoldersServerCapabilities implements ToJson {
   WorkspaceFoldersServerCapabilities({
-    required this.changeNotifications,
-    required this.supported,
+    this.changeNotifications,
+    this.supported,
   });
 
   factory WorkspaceFoldersServerCapabilities.fromJson(
@@ -12637,43 +12582,46 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
 /// @since 3.16.0
 class FileOperationOptions implements ToJson {
   FileOperationOptions({
-    required this.didCreate,
-    required this.didDelete,
-    required this.didRename,
-    required this.willCreate,
-    required this.willDelete,
-    required this.willRename,
+    this.willDelete,
+    this.didDelete,
+    this.willRename,
+    this.didRename,
+    this.willCreate,
+    this.didCreate,
   });
 
   factory FileOperationOptions.fromJson(Map<String, Object?> json) {
-    final didCreateJson = json['didCreate'];
-    final didCreate = (didCreateJson as FileOperationRegistrationOptions?);
+    final willDeleteJson = json['willDelete'];
+    final willDelete = (willDeleteJson as FileOperationRegistrationOptions?);
     final didDeleteJson = json['didDelete'];
     final didDelete = (didDeleteJson as FileOperationRegistrationOptions?);
+    final willRenameJson = json['willRename'];
+    final willRename = (willRenameJson as FileOperationRegistrationOptions?);
     final didRenameJson = json['didRename'];
     final didRename = (didRenameJson as FileOperationRegistrationOptions?);
     final willCreateJson = json['willCreate'];
     final willCreate = (willCreateJson as FileOperationRegistrationOptions?);
-    final willDeleteJson = json['willDelete'];
-    final willDelete = (willDeleteJson as FileOperationRegistrationOptions?);
-    final willRenameJson = json['willRename'];
-    final willRename = (willRenameJson as FileOperationRegistrationOptions?);
+    final didCreateJson = json['didCreate'];
+    final didCreate = (didCreateJson as FileOperationRegistrationOptions?);
 
     return FileOperationOptions(
-      didCreate: didCreate,
+      willDelete: willDelete,
       didDelete: didDelete,
+      willRename: willRename,
       didRename: didRename,
       willCreate: willCreate,
-      willDelete: willDelete,
-      willRename: willRename,
+      didCreate: didCreate,
     );
   }
 
-  /// The server is interested in receiving didCreateFiles notifications.
-  final FileOperationRegistrationOptions? didCreate;
+  /// The server is interested in receiving willDeleteFiles file requests.
+  final FileOperationRegistrationOptions? willDelete;
 
   /// The server is interested in receiving didDeleteFiles file notifications.
   final FileOperationRegistrationOptions? didDelete;
+
+  /// The server is interested in receiving willRenameFiles requests.
+  final FileOperationRegistrationOptions? willRename;
 
   /// The server is interested in receiving didRenameFiles notifications.
   final FileOperationRegistrationOptions? didRename;
@@ -12681,21 +12629,18 @@ class FileOperationOptions implements ToJson {
   /// The server is interested in receiving willCreateFiles requests.
   final FileOperationRegistrationOptions? willCreate;
 
-  /// The server is interested in receiving willDeleteFiles file requests.
-  final FileOperationRegistrationOptions? willDelete;
-
-  /// The server is interested in receiving willRenameFiles requests.
-  final FileOperationRegistrationOptions? willRename;
+  /// The server is interested in receiving didCreateFiles notifications.
+  final FileOperationRegistrationOptions? didCreate;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['didCreate'] = didCreate?.toJson();
+    json['willDelete'] = willDelete?.toJson();
     json['didDelete'] = didDelete?.toJson();
+    json['willRename'] = willRename?.toJson();
     json['didRename'] = didRename?.toJson();
     json['willCreate'] = willCreate?.toJson();
-    json['willDelete'] = willDelete?.toJson();
-    json['willRename'] = willRename?.toJson();
+    json['didCreate'] = didCreate?.toJson();
 
     return json;
   }
@@ -12762,20 +12707,16 @@ class DiagnosticRelatedInformation implements ToJson {
 /// Represents a parameter of a callable-signature. A parameter can have a
 /// label and a doc-comment.
 class ParameterInformation implements ToJson {
-  ParameterInformation({required this.documentation, required this.label});
+  ParameterInformation({required this.label, this.documentation});
 
   factory ParameterInformation.fromJson(Map<String, Object?> json) {
-    final documentationJson = json['documentation'];
-    final documentation = (documentationJson as OrRefType?);
     final labelJson = json['label']!;
     final label = (labelJson as OrRefType);
+    final documentationJson = json['documentation'];
+    final documentation = (documentationJson as OrRefType?);
 
-    return ParameterInformation(documentation: documentation, label: label);
+    return ParameterInformation(label: label, documentation: documentation);
   }
-
-  /// The human-readable doc-comment of this parameter. Will be shown in the
-  /// UI but can be omitted.
-  final OrRefType? documentation;
 
   /// The label of this parameter information.
   /// Either a string or an inclusive start and exclusive end offsets within
@@ -12787,11 +12728,15 @@ class ParameterInformation implements ToJson {
   /// label part in the `SignatureInformation.label`.
   final OrRefType label;
 
+  /// The human-readable doc-comment of this parameter. Will be shown in the
+  /// UI but can be omitted.
+  final OrRefType? documentation;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['documentation'] = documentation;
     json['label'] = label;
+    json['documentation'] = documentation;
 
     return json;
   }
@@ -12802,38 +12747,35 @@ class ParameterInformation implements ToJson {
 /// different properties.
 /// @since 3.17.0
 class NotebookCellTextDocumentFilter implements ToJson {
-  NotebookCellTextDocumentFilter({
-    required this.language,
-    required this.notebook,
-  });
+  NotebookCellTextDocumentFilter({required this.notebook, this.language});
 
   factory NotebookCellTextDocumentFilter.fromJson(Map<String, Object?> json) {
-    final languageJson = json['language'];
-    final language = (languageJson as String?);
     final notebookJson = json['notebook']!;
     final notebook = (notebookJson as OrRefType);
+    final languageJson = json['language'];
+    final language = (languageJson as String?);
 
     return NotebookCellTextDocumentFilter(
-      language: language,
       notebook: notebook,
+      language: language,
     );
   }
-
-  /// A language id like `python`.
-  /// Will be matched against the language id of the notebook cell document.
-  /// '*' matches every language.
-  final String? language;
 
   /// A filter that matches against the notebook containing the notebook
   /// cell. If a string value is provided it matches against the notebook
   /// type. '*' matches every notebook.
   final OrRefType notebook;
 
+  /// A language id like `python`.
+  /// Will be matched against the language id of the notebook cell document.
+  /// '*' matches every language.
+  final String? language;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['language'] = language;
     json['notebook'] = notebook;
+    json['language'] = language;
 
     return json;
   }
@@ -12843,7 +12785,7 @@ class NotebookCellTextDocumentFilter implements ToJson {
 /// Matching options for the file operation pattern.
 /// @since 3.16.0
 class FileOperationPatternOptions implements ToJson {
-  FileOperationPatternOptions({required this.ignoreCase});
+  FileOperationPatternOptions({this.ignoreCase});
 
   factory FileOperationPatternOptions.fromJson(Map<String, Object?> json) {
     final ignoreCaseJson = json['ignoreCase'];
@@ -12866,7 +12808,7 @@ class FileOperationPatternOptions implements ToJson {
 
 /// Struct
 class ExecutionSummary implements ToJson {
-  ExecutionSummary({required this.executionOrder, required this.success});
+  ExecutionSummary({required this.executionOrder, this.success});
 
   factory ExecutionSummary.fromJson(Map<String, Object?> json) {
     final executionOrderJson = json['executionOrder']!;
@@ -12898,121 +12840,93 @@ class ExecutionSummary implements ToJson {
 /// Workspace specific client capabilities.
 class WorkspaceClientCapabilities implements ToJson {
   WorkspaceClientCapabilities({
-    required this.applyEdit,
-    required this.codeLens,
-    required this.configuration,
-    required this.diagnostics,
-    required this.didChangeConfiguration,
-    required this.didChangeWatchedFiles,
-    required this.executeCommand,
-    required this.fileOperations,
-    required this.foldingRange,
-    required this.inlayHint,
-    required this.inlineValue,
-    required this.semanticTokens,
-    required this.symbol,
-    required this.workspaceEdit,
-    required this.workspaceFolders,
+    this.foldingRange,
+    this.diagnostics,
+    this.inlayHint,
+    this.inlineValue,
+    this.fileOperations,
+    this.codeLens,
+    this.semanticTokens,
+    this.configuration,
+    this.workspaceFolders,
+    this.executeCommand,
+    this.symbol,
+    this.didChangeWatchedFiles,
+    this.didChangeConfiguration,
+    this.workspaceEdit,
+    this.applyEdit,
   });
 
   factory WorkspaceClientCapabilities.fromJson(Map<String, Object?> json) {
-    final applyEditJson = json['applyEdit'];
-    final applyEdit = (applyEditJson as bool?);
-    final codeLensJson = json['codeLens'];
-    final codeLens = (codeLensJson as CodeLensWorkspaceClientCapabilities?);
-    final configurationJson = json['configuration'];
-    final configuration = (configurationJson as bool?);
-    final diagnosticsJson = json['diagnostics'];
-    final diagnostics =
-        (diagnosticsJson as DiagnosticWorkspaceClientCapabilities?);
-    final didChangeConfigurationJson = json['didChangeConfiguration'];
-    final didChangeConfiguration =
-        (didChangeConfigurationJson
-            as DidChangeConfigurationClientCapabilities?);
-    final didChangeWatchedFilesJson = json['didChangeWatchedFiles'];
-    final didChangeWatchedFiles =
-        (didChangeWatchedFilesJson as DidChangeWatchedFilesClientCapabilities?);
-    final executeCommandJson = json['executeCommand'];
-    final executeCommand =
-        (executeCommandJson as ExecuteCommandClientCapabilities?);
-    final fileOperationsJson = json['fileOperations'];
-    final fileOperations =
-        (fileOperationsJson as FileOperationClientCapabilities?);
     final foldingRangeJson = json['foldingRange'];
     final foldingRange =
         (foldingRangeJson as FoldingRangeWorkspaceClientCapabilities?);
+    final diagnosticsJson = json['diagnostics'];
+    final diagnostics =
+        (diagnosticsJson as DiagnosticWorkspaceClientCapabilities?);
     final inlayHintJson = json['inlayHint'];
     final inlayHint = (inlayHintJson as InlayHintWorkspaceClientCapabilities?);
     final inlineValueJson = json['inlineValue'];
     final inlineValue =
         (inlineValueJson as InlineValueWorkspaceClientCapabilities?);
+    final fileOperationsJson = json['fileOperations'];
+    final fileOperations =
+        (fileOperationsJson as FileOperationClientCapabilities?);
+    final codeLensJson = json['codeLens'];
+    final codeLens = (codeLensJson as CodeLensWorkspaceClientCapabilities?);
     final semanticTokensJson = json['semanticTokens'];
     final semanticTokens =
         (semanticTokensJson as SemanticTokensWorkspaceClientCapabilities?);
+    final configurationJson = json['configuration'];
+    final configuration = (configurationJson as bool?);
+    final workspaceFoldersJson = json['workspaceFolders'];
+    final workspaceFolders = (workspaceFoldersJson as bool?);
+    final executeCommandJson = json['executeCommand'];
+    final executeCommand =
+        (executeCommandJson as ExecuteCommandClientCapabilities?);
     final symbolJson = json['symbol'];
     final symbol = (symbolJson as WorkspaceSymbolClientCapabilities?);
+    final didChangeWatchedFilesJson = json['didChangeWatchedFiles'];
+    final didChangeWatchedFiles =
+        (didChangeWatchedFilesJson as DidChangeWatchedFilesClientCapabilities?);
+    final didChangeConfigurationJson = json['didChangeConfiguration'];
+    final didChangeConfiguration =
+        (didChangeConfigurationJson
+            as DidChangeConfigurationClientCapabilities?);
     final workspaceEditJson = json['workspaceEdit'];
     final workspaceEdit =
         (workspaceEditJson as WorkspaceEditClientCapabilities?);
-    final workspaceFoldersJson = json['workspaceFolders'];
-    final workspaceFolders = (workspaceFoldersJson as bool?);
+    final applyEditJson = json['applyEdit'];
+    final applyEdit = (applyEditJson as bool?);
 
     return WorkspaceClientCapabilities(
-      applyEdit: applyEdit,
-      codeLens: codeLens,
-      configuration: configuration,
-      diagnostics: diagnostics,
-      didChangeConfiguration: didChangeConfiguration,
-      didChangeWatchedFiles: didChangeWatchedFiles,
-      executeCommand: executeCommand,
-      fileOperations: fileOperations,
       foldingRange: foldingRange,
+      diagnostics: diagnostics,
       inlayHint: inlayHint,
       inlineValue: inlineValue,
+      fileOperations: fileOperations,
+      codeLens: codeLens,
       semanticTokens: semanticTokens,
-      symbol: symbol,
-      workspaceEdit: workspaceEdit,
+      configuration: configuration,
       workspaceFolders: workspaceFolders,
+      executeCommand: executeCommand,
+      symbol: symbol,
+      didChangeWatchedFiles: didChangeWatchedFiles,
+      didChangeConfiguration: didChangeConfiguration,
+      workspaceEdit: workspaceEdit,
+      applyEdit: applyEdit,
     );
   }
-
-  /// The client supports applying batch edits to the workspace by supporting
-  /// the request 'workspace/applyEdit'
-  final bool? applyEdit;
-
-  /// Capabilities specific to the code lens requests scoped to the workspace.
-  /// @since 3.16.0.
-  final CodeLensWorkspaceClientCapabilities? codeLens;
-
-  /// The client supports `workspace/configuration` requests.
-  /// @since 3.6.0
-  final bool? configuration;
-
-  /// Capabilities specific to the diagnostic requests scoped to the
-  /// workspace.
-  /// @since 3.17.0.
-  final DiagnosticWorkspaceClientCapabilities? diagnostics;
-
-  /// Capabilities specific to the `workspace/didChangeConfiguration`
-  /// notification.
-  final DidChangeConfigurationClientCapabilities? didChangeConfiguration;
-
-  /// Capabilities specific to the `workspace/didChangeWatchedFiles`
-  /// notification.
-  final DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles;
-
-  /// Capabilities specific to the `workspace/executeCommand` request.
-  final ExecuteCommandClientCapabilities? executeCommand;
-
-  /// The client has support for file notifications/requests for user
-  /// operations on files.
-  /// Since 3.16.0
-  final FileOperationClientCapabilities? fileOperations;
 
   /// Capabilities specific to the folding range requests scoped to the
   /// workspace.
   /// @since 3.18.0 @proposed
   final FoldingRangeWorkspaceClientCapabilities? foldingRange;
+
+  /// Capabilities specific to the diagnostic requests scoped to the
+  /// workspace.
+  /// @since 3.17.0.
+  final DiagnosticWorkspaceClientCapabilities? diagnostics;
 
   /// Capabilities specific to the inlay hint requests scoped to the
   /// workspace.
@@ -13024,39 +12938,67 @@ class WorkspaceClientCapabilities implements ToJson {
   /// @since 3.17.0.
   final InlineValueWorkspaceClientCapabilities? inlineValue;
 
+  /// The client has support for file notifications/requests for user
+  /// operations on files.
+  /// Since 3.16.0
+  final FileOperationClientCapabilities? fileOperations;
+
+  /// Capabilities specific to the code lens requests scoped to the workspace.
+  /// @since 3.16.0.
+  final CodeLensWorkspaceClientCapabilities? codeLens;
+
   /// Capabilities specific to the semantic token requests scoped to the
   /// workspace.
   /// @since 3.16.0.
   final SemanticTokensWorkspaceClientCapabilities? semanticTokens;
 
-  /// Capabilities specific to the `workspace/symbol` request.
-  final WorkspaceSymbolClientCapabilities? symbol;
-
-  /// Capabilities specific to `WorkspaceEdit`s.
-  final WorkspaceEditClientCapabilities? workspaceEdit;
+  /// The client supports `workspace/configuration` requests.
+  /// @since 3.6.0
+  final bool? configuration;
 
   /// The client has support for workspace folders.
   /// @since 3.6.0
   final bool? workspaceFolders;
 
+  /// Capabilities specific to the `workspace/executeCommand` request.
+  final ExecuteCommandClientCapabilities? executeCommand;
+
+  /// Capabilities specific to the `workspace/symbol` request.
+  final WorkspaceSymbolClientCapabilities? symbol;
+
+  /// Capabilities specific to the `workspace/didChangeWatchedFiles`
+  /// notification.
+  final DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles;
+
+  /// Capabilities specific to the `workspace/didChangeConfiguration`
+  /// notification.
+  final DidChangeConfigurationClientCapabilities? didChangeConfiguration;
+
+  /// Capabilities specific to `WorkspaceEdit`s.
+  final WorkspaceEditClientCapabilities? workspaceEdit;
+
+  /// The client supports applying batch edits to the workspace by supporting
+  /// the request 'workspace/applyEdit'
+  final bool? applyEdit;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['applyEdit'] = applyEdit;
-    json['codeLens'] = codeLens?.toJson();
-    json['configuration'] = configuration;
-    json['diagnostics'] = diagnostics?.toJson();
-    json['didChangeConfiguration'] = didChangeConfiguration?.toJson();
-    json['didChangeWatchedFiles'] = didChangeWatchedFiles?.toJson();
-    json['executeCommand'] = executeCommand?.toJson();
-    json['fileOperations'] = fileOperations?.toJson();
     json['foldingRange'] = foldingRange?.toJson();
+    json['diagnostics'] = diagnostics?.toJson();
     json['inlayHint'] = inlayHint?.toJson();
     json['inlineValue'] = inlineValue?.toJson();
+    json['fileOperations'] = fileOperations?.toJson();
+    json['codeLens'] = codeLens?.toJson();
     json['semanticTokens'] = semanticTokens?.toJson();
-    json['symbol'] = symbol?.toJson();
-    json['workspaceEdit'] = workspaceEdit?.toJson();
+    json['configuration'] = configuration;
     json['workspaceFolders'] = workspaceFolders;
+    json['executeCommand'] = executeCommand?.toJson();
+    json['symbol'] = symbol?.toJson();
+    json['didChangeWatchedFiles'] = didChangeWatchedFiles?.toJson();
+    json['didChangeConfiguration'] = didChangeConfiguration?.toJson();
+    json['workspaceEdit'] = workspaceEdit?.toJson();
+    json['applyEdit'] = applyEdit;
 
     return json;
   }
@@ -13066,299 +13008,299 @@ class WorkspaceClientCapabilities implements ToJson {
 /// Text document specific client capabilities.
 class TextDocumentClientCapabilities implements ToJson {
   TextDocumentClientCapabilities({
-    required this.callHierarchy,
-    required this.codeAction,
-    required this.codeLens,
-    required this.colorProvider,
-    required this.completion,
-    required this.declaration,
-    required this.definition,
-    required this.diagnostic,
-    required this.documentHighlight,
-    required this.documentLink,
-    required this.documentSymbol,
-    required this.foldingRange,
-    required this.formatting,
-    required this.hover,
-    required this.implementation,
-    required this.inlayHint,
-    required this.inlineCompletion,
-    required this.inlineValue,
-    required this.linkedEditingRange,
-    required this.moniker,
-    required this.onTypeFormatting,
-    required this.publishDiagnostics,
-    required this.rangeFormatting,
-    required this.references,
-    required this.rename,
-    required this.selectionRange,
-    required this.semanticTokens,
-    required this.signatureHelp,
-    required this.synchronization,
-    required this.typeDefinition,
-    required this.typeHierarchy,
+    this.inlineCompletion,
+    this.diagnostic,
+    this.inlayHint,
+    this.inlineValue,
+    this.typeHierarchy,
+    this.moniker,
+    this.linkedEditingRange,
+    this.semanticTokens,
+    this.callHierarchy,
+    this.publishDiagnostics,
+    this.selectionRange,
+    this.foldingRange,
+    this.rename,
+    this.onTypeFormatting,
+    this.rangeFormatting,
+    this.formatting,
+    this.colorProvider,
+    this.documentLink,
+    this.codeLens,
+    this.codeAction,
+    this.documentSymbol,
+    this.documentHighlight,
+    this.references,
+    this.implementation,
+    this.typeDefinition,
+    this.definition,
+    this.declaration,
+    this.signatureHelp,
+    this.hover,
+    this.completion,
+    this.synchronization,
   });
 
   factory TextDocumentClientCapabilities.fromJson(Map<String, Object?> json) {
-    final callHierarchyJson = json['callHierarchy'];
-    final callHierarchy =
-        (callHierarchyJson as CallHierarchyClientCapabilities?);
-    final codeActionJson = json['codeAction'];
-    final codeAction = (codeActionJson as CodeActionClientCapabilities?);
-    final codeLensJson = json['codeLens'];
-    final codeLens = (codeLensJson as CodeLensClientCapabilities?);
-    final colorProviderJson = json['colorProvider'];
-    final colorProvider =
-        (colorProviderJson as DocumentColorClientCapabilities?);
-    final completionJson = json['completion'];
-    final completion = (completionJson as CompletionClientCapabilities?);
-    final declarationJson = json['declaration'];
-    final declaration = (declarationJson as DeclarationClientCapabilities?);
-    final definitionJson = json['definition'];
-    final definition = (definitionJson as DefinitionClientCapabilities?);
-    final diagnosticJson = json['diagnostic'];
-    final diagnostic = (diagnosticJson as DiagnosticClientCapabilities?);
-    final documentHighlightJson = json['documentHighlight'];
-    final documentHighlight =
-        (documentHighlightJson as DocumentHighlightClientCapabilities?);
-    final documentLinkJson = json['documentLink'];
-    final documentLink = (documentLinkJson as DocumentLinkClientCapabilities?);
-    final documentSymbolJson = json['documentSymbol'];
-    final documentSymbol =
-        (documentSymbolJson as DocumentSymbolClientCapabilities?);
-    final foldingRangeJson = json['foldingRange'];
-    final foldingRange = (foldingRangeJson as FoldingRangeClientCapabilities?);
-    final formattingJson = json['formatting'];
-    final formatting =
-        (formattingJson as DocumentFormattingClientCapabilities?);
-    final hoverJson = json['hover'];
-    final hover = (hoverJson as HoverClientCapabilities?);
-    final implementationJson = json['implementation'];
-    final implementation =
-        (implementationJson as ImplementationClientCapabilities?);
-    final inlayHintJson = json['inlayHint'];
-    final inlayHint = (inlayHintJson as InlayHintClientCapabilities?);
     final inlineCompletionJson = json['inlineCompletion'];
     final inlineCompletion =
         (inlineCompletionJson as InlineCompletionClientCapabilities?);
+    final diagnosticJson = json['diagnostic'];
+    final diagnostic = (diagnosticJson as DiagnosticClientCapabilities?);
+    final inlayHintJson = json['inlayHint'];
+    final inlayHint = (inlayHintJson as InlayHintClientCapabilities?);
     final inlineValueJson = json['inlineValue'];
     final inlineValue = (inlineValueJson as InlineValueClientCapabilities?);
-    final linkedEditingRangeJson = json['linkedEditingRange'];
-    final linkedEditingRange =
-        (linkedEditingRangeJson as LinkedEditingRangeClientCapabilities?);
-    final monikerJson = json['moniker'];
-    final moniker = (monikerJson as MonikerClientCapabilities?);
-    final onTypeFormattingJson = json['onTypeFormatting'];
-    final onTypeFormatting =
-        (onTypeFormattingJson as DocumentOnTypeFormattingClientCapabilities?);
-    final publishDiagnosticsJson = json['publishDiagnostics'];
-    final publishDiagnostics =
-        (publishDiagnosticsJson as PublishDiagnosticsClientCapabilities?);
-    final rangeFormattingJson = json['rangeFormatting'];
-    final rangeFormatting =
-        (rangeFormattingJson as DocumentRangeFormattingClientCapabilities?);
-    final referencesJson = json['references'];
-    final references = (referencesJson as ReferenceClientCapabilities?);
-    final renameJson = json['rename'];
-    final rename = (renameJson as RenameClientCapabilities?);
-    final selectionRangeJson = json['selectionRange'];
-    final selectionRange =
-        (selectionRangeJson as SelectionRangeClientCapabilities?);
-    final semanticTokensJson = json['semanticTokens'];
-    final semanticTokens =
-        (semanticTokensJson as SemanticTokensClientCapabilities?);
-    final signatureHelpJson = json['signatureHelp'];
-    final signatureHelp =
-        (signatureHelpJson as SignatureHelpClientCapabilities?);
-    final synchronizationJson = json['synchronization'];
-    final synchronization =
-        (synchronizationJson as TextDocumentSyncClientCapabilities?);
-    final typeDefinitionJson = json['typeDefinition'];
-    final typeDefinition =
-        (typeDefinitionJson as TypeDefinitionClientCapabilities?);
     final typeHierarchyJson = json['typeHierarchy'];
     final typeHierarchy =
         (typeHierarchyJson as TypeHierarchyClientCapabilities?);
+    final monikerJson = json['moniker'];
+    final moniker = (monikerJson as MonikerClientCapabilities?);
+    final linkedEditingRangeJson = json['linkedEditingRange'];
+    final linkedEditingRange =
+        (linkedEditingRangeJson as LinkedEditingRangeClientCapabilities?);
+    final semanticTokensJson = json['semanticTokens'];
+    final semanticTokens =
+        (semanticTokensJson as SemanticTokensClientCapabilities?);
+    final callHierarchyJson = json['callHierarchy'];
+    final callHierarchy =
+        (callHierarchyJson as CallHierarchyClientCapabilities?);
+    final publishDiagnosticsJson = json['publishDiagnostics'];
+    final publishDiagnostics =
+        (publishDiagnosticsJson as PublishDiagnosticsClientCapabilities?);
+    final selectionRangeJson = json['selectionRange'];
+    final selectionRange =
+        (selectionRangeJson as SelectionRangeClientCapabilities?);
+    final foldingRangeJson = json['foldingRange'];
+    final foldingRange = (foldingRangeJson as FoldingRangeClientCapabilities?);
+    final renameJson = json['rename'];
+    final rename = (renameJson as RenameClientCapabilities?);
+    final onTypeFormattingJson = json['onTypeFormatting'];
+    final onTypeFormatting =
+        (onTypeFormattingJson as DocumentOnTypeFormattingClientCapabilities?);
+    final rangeFormattingJson = json['rangeFormatting'];
+    final rangeFormatting =
+        (rangeFormattingJson as DocumentRangeFormattingClientCapabilities?);
+    final formattingJson = json['formatting'];
+    final formatting =
+        (formattingJson as DocumentFormattingClientCapabilities?);
+    final colorProviderJson = json['colorProvider'];
+    final colorProvider =
+        (colorProviderJson as DocumentColorClientCapabilities?);
+    final documentLinkJson = json['documentLink'];
+    final documentLink = (documentLinkJson as DocumentLinkClientCapabilities?);
+    final codeLensJson = json['codeLens'];
+    final codeLens = (codeLensJson as CodeLensClientCapabilities?);
+    final codeActionJson = json['codeAction'];
+    final codeAction = (codeActionJson as CodeActionClientCapabilities?);
+    final documentSymbolJson = json['documentSymbol'];
+    final documentSymbol =
+        (documentSymbolJson as DocumentSymbolClientCapabilities?);
+    final documentHighlightJson = json['documentHighlight'];
+    final documentHighlight =
+        (documentHighlightJson as DocumentHighlightClientCapabilities?);
+    final referencesJson = json['references'];
+    final references = (referencesJson as ReferenceClientCapabilities?);
+    final implementationJson = json['implementation'];
+    final implementation =
+        (implementationJson as ImplementationClientCapabilities?);
+    final typeDefinitionJson = json['typeDefinition'];
+    final typeDefinition =
+        (typeDefinitionJson as TypeDefinitionClientCapabilities?);
+    final definitionJson = json['definition'];
+    final definition = (definitionJson as DefinitionClientCapabilities?);
+    final declarationJson = json['declaration'];
+    final declaration = (declarationJson as DeclarationClientCapabilities?);
+    final signatureHelpJson = json['signatureHelp'];
+    final signatureHelp =
+        (signatureHelpJson as SignatureHelpClientCapabilities?);
+    final hoverJson = json['hover'];
+    final hover = (hoverJson as HoverClientCapabilities?);
+    final completionJson = json['completion'];
+    final completion = (completionJson as CompletionClientCapabilities?);
+    final synchronizationJson = json['synchronization'];
+    final synchronization =
+        (synchronizationJson as TextDocumentSyncClientCapabilities?);
 
     return TextDocumentClientCapabilities(
-      callHierarchy: callHierarchy,
-      codeAction: codeAction,
-      codeLens: codeLens,
-      colorProvider: colorProvider,
-      completion: completion,
-      declaration: declaration,
-      definition: definition,
-      diagnostic: diagnostic,
-      documentHighlight: documentHighlight,
-      documentLink: documentLink,
-      documentSymbol: documentSymbol,
-      foldingRange: foldingRange,
-      formatting: formatting,
-      hover: hover,
-      implementation: implementation,
-      inlayHint: inlayHint,
       inlineCompletion: inlineCompletion,
+      diagnostic: diagnostic,
+      inlayHint: inlayHint,
       inlineValue: inlineValue,
-      linkedEditingRange: linkedEditingRange,
-      moniker: moniker,
-      onTypeFormatting: onTypeFormatting,
-      publishDiagnostics: publishDiagnostics,
-      rangeFormatting: rangeFormatting,
-      references: references,
-      rename: rename,
-      selectionRange: selectionRange,
-      semanticTokens: semanticTokens,
-      signatureHelp: signatureHelp,
-      synchronization: synchronization,
-      typeDefinition: typeDefinition,
       typeHierarchy: typeHierarchy,
+      moniker: moniker,
+      linkedEditingRange: linkedEditingRange,
+      semanticTokens: semanticTokens,
+      callHierarchy: callHierarchy,
+      publishDiagnostics: publishDiagnostics,
+      selectionRange: selectionRange,
+      foldingRange: foldingRange,
+      rename: rename,
+      onTypeFormatting: onTypeFormatting,
+      rangeFormatting: rangeFormatting,
+      formatting: formatting,
+      colorProvider: colorProvider,
+      documentLink: documentLink,
+      codeLens: codeLens,
+      codeAction: codeAction,
+      documentSymbol: documentSymbol,
+      documentHighlight: documentHighlight,
+      references: references,
+      implementation: implementation,
+      typeDefinition: typeDefinition,
+      definition: definition,
+      declaration: declaration,
+      signatureHelp: signatureHelp,
+      hover: hover,
+      completion: completion,
+      synchronization: synchronization,
     );
   }
+
+  /// Client capabilities specific to inline completions.
+  /// @since 3.18.0 @proposed
+  final InlineCompletionClientCapabilities? inlineCompletion;
+
+  /// Capabilities specific to the diagnostic pull model.
+  /// @since 3.17.0
+  final DiagnosticClientCapabilities? diagnostic;
+
+  /// Capabilities specific to the `textDocument/inlayHint` request.
+  /// @since 3.17.0
+  final InlayHintClientCapabilities? inlayHint;
+
+  /// Capabilities specific to the `textDocument/inlineValue` request.
+  /// @since 3.17.0
+  final InlineValueClientCapabilities? inlineValue;
+
+  /// Capabilities specific to the various type hierarchy requests.
+  /// @since 3.17.0
+  final TypeHierarchyClientCapabilities? typeHierarchy;
+
+  /// Client capabilities specific to the `textDocument/moniker` request.
+  /// @since 3.16.0
+  final MonikerClientCapabilities? moniker;
+
+  /// Capabilities specific to the `textDocument/linkedEditingRange` request.
+  /// @since 3.16.0
+  final LinkedEditingRangeClientCapabilities? linkedEditingRange;
+
+  /// Capabilities specific to the various semantic token request.
+  /// @since 3.16.0
+  final SemanticTokensClientCapabilities? semanticTokens;
 
   /// Capabilities specific to the various call hierarchy requests.
   /// @since 3.16.0
   final CallHierarchyClientCapabilities? callHierarchy;
 
-  /// Capabilities specific to the `textDocument/codeAction` request.
-  final CodeActionClientCapabilities? codeAction;
+  /// Capabilities specific to the `textDocument/publishDiagnostics`
+  /// notification.
+  final PublishDiagnosticsClientCapabilities? publishDiagnostics;
 
-  /// Capabilities specific to the `textDocument/codeLens` request.
-  final CodeLensClientCapabilities? codeLens;
+  /// Capabilities specific to the `textDocument/selectionRange` request.
+  /// @since 3.15.0
+  final SelectionRangeClientCapabilities? selectionRange;
+
+  /// Capabilities specific to the `textDocument/foldingRange` request.
+  /// @since 3.10.0
+  final FoldingRangeClientCapabilities? foldingRange;
+
+  /// Capabilities specific to the `textDocument/rename` request.
+  final RenameClientCapabilities? rename;
+
+  /// Capabilities specific to the `textDocument/onTypeFormatting` request.
+  final DocumentOnTypeFormattingClientCapabilities? onTypeFormatting;
+
+  /// Capabilities specific to the `textDocument/rangeFormatting` request.
+  final DocumentRangeFormattingClientCapabilities? rangeFormatting;
+
+  /// Capabilities specific to the `textDocument/formatting` request.
+  final DocumentFormattingClientCapabilities? formatting;
 
   /// Capabilities specific to the `textDocument/documentColor` and the
   /// `textDocument/colorPresentation` request.
   /// @since 3.6.0
   final DocumentColorClientCapabilities? colorProvider;
 
-  /// Capabilities specific to the `textDocument/completion` request.
-  final CompletionClientCapabilities? completion;
-
-  /// Capabilities specific to the `textDocument/declaration` request.
-  /// @since 3.14.0
-  final DeclarationClientCapabilities? declaration;
-
-  /// Capabilities specific to the `textDocument/definition` request.
-  final DefinitionClientCapabilities? definition;
-
-  /// Capabilities specific to the diagnostic pull model.
-  /// @since 3.17.0
-  final DiagnosticClientCapabilities? diagnostic;
-
-  /// Capabilities specific to the `textDocument/documentHighlight` request.
-  final DocumentHighlightClientCapabilities? documentHighlight;
-
   /// Capabilities specific to the `textDocument/documentLink` request.
   final DocumentLinkClientCapabilities? documentLink;
+
+  /// Capabilities specific to the `textDocument/codeLens` request.
+  final CodeLensClientCapabilities? codeLens;
+
+  /// Capabilities specific to the `textDocument/codeAction` request.
+  final CodeActionClientCapabilities? codeAction;
 
   /// Capabilities specific to the `textDocument/documentSymbol` request.
   final DocumentSymbolClientCapabilities? documentSymbol;
 
-  /// Capabilities specific to the `textDocument/foldingRange` request.
-  /// @since 3.10.0
-  final FoldingRangeClientCapabilities? foldingRange;
+  /// Capabilities specific to the `textDocument/documentHighlight` request.
+  final DocumentHighlightClientCapabilities? documentHighlight;
 
-  /// Capabilities specific to the `textDocument/formatting` request.
-  final DocumentFormattingClientCapabilities? formatting;
-
-  /// Capabilities specific to the `textDocument/hover` request.
-  final HoverClientCapabilities? hover;
+  /// Capabilities specific to the `textDocument/references` request.
+  final ReferenceClientCapabilities? references;
 
   /// Capabilities specific to the `textDocument/implementation` request.
   /// @since 3.6.0
   final ImplementationClientCapabilities? implementation;
 
-  /// Capabilities specific to the `textDocument/inlayHint` request.
-  /// @since 3.17.0
-  final InlayHintClientCapabilities? inlayHint;
-
-  /// Client capabilities specific to inline completions.
-  /// @since 3.18.0 @proposed
-  final InlineCompletionClientCapabilities? inlineCompletion;
-
-  /// Capabilities specific to the `textDocument/inlineValue` request.
-  /// @since 3.17.0
-  final InlineValueClientCapabilities? inlineValue;
-
-  /// Capabilities specific to the `textDocument/linkedEditingRange` request.
-  /// @since 3.16.0
-  final LinkedEditingRangeClientCapabilities? linkedEditingRange;
-
-  /// Client capabilities specific to the `textDocument/moniker` request.
-  /// @since 3.16.0
-  final MonikerClientCapabilities? moniker;
-
-  /// Capabilities specific to the `textDocument/onTypeFormatting` request.
-  final DocumentOnTypeFormattingClientCapabilities? onTypeFormatting;
-
-  /// Capabilities specific to the `textDocument/publishDiagnostics`
-  /// notification.
-  final PublishDiagnosticsClientCapabilities? publishDiagnostics;
-
-  /// Capabilities specific to the `textDocument/rangeFormatting` request.
-  final DocumentRangeFormattingClientCapabilities? rangeFormatting;
-
-  /// Capabilities specific to the `textDocument/references` request.
-  final ReferenceClientCapabilities? references;
-
-  /// Capabilities specific to the `textDocument/rename` request.
-  final RenameClientCapabilities? rename;
-
-  /// Capabilities specific to the `textDocument/selectionRange` request.
-  /// @since 3.15.0
-  final SelectionRangeClientCapabilities? selectionRange;
-
-  /// Capabilities specific to the various semantic token request.
-  /// @since 3.16.0
-  final SemanticTokensClientCapabilities? semanticTokens;
-
-  /// Capabilities specific to the `textDocument/signatureHelp` request.
-  final SignatureHelpClientCapabilities? signatureHelp;
-
-  /// Defines which synchronization capabilities the client supports.
-  final TextDocumentSyncClientCapabilities? synchronization;
-
   /// Capabilities specific to the `textDocument/typeDefinition` request.
   /// @since 3.6.0
   final TypeDefinitionClientCapabilities? typeDefinition;
 
-  /// Capabilities specific to the various type hierarchy requests.
-  /// @since 3.17.0
-  final TypeHierarchyClientCapabilities? typeHierarchy;
+  /// Capabilities specific to the `textDocument/definition` request.
+  final DefinitionClientCapabilities? definition;
+
+  /// Capabilities specific to the `textDocument/declaration` request.
+  /// @since 3.14.0
+  final DeclarationClientCapabilities? declaration;
+
+  /// Capabilities specific to the `textDocument/signatureHelp` request.
+  final SignatureHelpClientCapabilities? signatureHelp;
+
+  /// Capabilities specific to the `textDocument/hover` request.
+  final HoverClientCapabilities? hover;
+
+  /// Capabilities specific to the `textDocument/completion` request.
+  final CompletionClientCapabilities? completion;
+
+  /// Defines which synchronization capabilities the client supports.
+  final TextDocumentSyncClientCapabilities? synchronization;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['callHierarchy'] = callHierarchy?.toJson();
-    json['codeAction'] = codeAction?.toJson();
-    json['codeLens'] = codeLens?.toJson();
-    json['colorProvider'] = colorProvider?.toJson();
-    json['completion'] = completion?.toJson();
-    json['declaration'] = declaration?.toJson();
-    json['definition'] = definition?.toJson();
-    json['diagnostic'] = diagnostic?.toJson();
-    json['documentHighlight'] = documentHighlight?.toJson();
-    json['documentLink'] = documentLink?.toJson();
-    json['documentSymbol'] = documentSymbol?.toJson();
-    json['foldingRange'] = foldingRange?.toJson();
-    json['formatting'] = formatting?.toJson();
-    json['hover'] = hover?.toJson();
-    json['implementation'] = implementation?.toJson();
-    json['inlayHint'] = inlayHint?.toJson();
     json['inlineCompletion'] = inlineCompletion?.toJson();
+    json['diagnostic'] = diagnostic?.toJson();
+    json['inlayHint'] = inlayHint?.toJson();
     json['inlineValue'] = inlineValue?.toJson();
-    json['linkedEditingRange'] = linkedEditingRange?.toJson();
-    json['moniker'] = moniker?.toJson();
-    json['onTypeFormatting'] = onTypeFormatting?.toJson();
-    json['publishDiagnostics'] = publishDiagnostics?.toJson();
-    json['rangeFormatting'] = rangeFormatting?.toJson();
-    json['references'] = references?.toJson();
-    json['rename'] = rename?.toJson();
-    json['selectionRange'] = selectionRange?.toJson();
-    json['semanticTokens'] = semanticTokens?.toJson();
-    json['signatureHelp'] = signatureHelp?.toJson();
-    json['synchronization'] = synchronization?.toJson();
-    json['typeDefinition'] = typeDefinition?.toJson();
     json['typeHierarchy'] = typeHierarchy?.toJson();
+    json['moniker'] = moniker?.toJson();
+    json['linkedEditingRange'] = linkedEditingRange?.toJson();
+    json['semanticTokens'] = semanticTokens?.toJson();
+    json['callHierarchy'] = callHierarchy?.toJson();
+    json['publishDiagnostics'] = publishDiagnostics?.toJson();
+    json['selectionRange'] = selectionRange?.toJson();
+    json['foldingRange'] = foldingRange?.toJson();
+    json['rename'] = rename?.toJson();
+    json['onTypeFormatting'] = onTypeFormatting?.toJson();
+    json['rangeFormatting'] = rangeFormatting?.toJson();
+    json['formatting'] = formatting?.toJson();
+    json['colorProvider'] = colorProvider?.toJson();
+    json['documentLink'] = documentLink?.toJson();
+    json['codeLens'] = codeLens?.toJson();
+    json['codeAction'] = codeAction?.toJson();
+    json['documentSymbol'] = documentSymbol?.toJson();
+    json['documentHighlight'] = documentHighlight?.toJson();
+    json['references'] = references?.toJson();
+    json['implementation'] = implementation?.toJson();
+    json['typeDefinition'] = typeDefinition?.toJson();
+    json['definition'] = definition?.toJson();
+    json['declaration'] = declaration?.toJson();
+    json['signatureHelp'] = signatureHelp?.toJson();
+    json['hover'] = hover?.toJson();
+    json['completion'] = completion?.toJson();
+    json['synchronization'] = synchronization?.toJson();
 
     return json;
   }
@@ -13397,9 +13339,9 @@ class NotebookDocumentClientCapabilities implements ToJson {
 /// Struct
 class WindowClientCapabilities implements ToJson {
   WindowClientCapabilities({
-    required this.showDocument,
-    required this.showMessage,
-    required this.workDoneProgress,
+    this.showDocument,
+    this.showMessage,
+    this.workDoneProgress,
   });
 
   factory WindowClientCapabilities.fromJson(Map<String, Object?> json) {
@@ -13451,18 +13393,18 @@ class WindowClientCapabilities implements ToJson {
 /// @since 3.16.0
 class GeneralClientCapabilities implements ToJson {
   GeneralClientCapabilities({
-    required this.markdown,
-    required this.positionEncodings,
-    required this.regularExpressions,
-    required this.staleRequestSupport,
+    this.positionEncodings,
+    this.markdown,
+    this.regularExpressions,
+    this.staleRequestSupport,
   });
 
   factory GeneralClientCapabilities.fromJson(Map<String, Object?> json) {
-    final markdownJson = json['markdown'];
-    final markdown = (markdownJson as MarkdownClientCapabilities?);
     final positionEncodingsJson = json['positionEncodings'];
     final positionEncodings =
         (positionEncodingsJson as List<PositionEncodingKind>?);
+    final markdownJson = json['markdown'];
+    final markdown = (markdownJson as MarkdownClientCapabilities?);
     final regularExpressionsJson = json['regularExpressions'];
     final regularExpressions =
         (regularExpressionsJson as RegularExpressionsClientCapabilities?);
@@ -13472,16 +13414,12 @@ class GeneralClientCapabilities implements ToJson {
             as GeneralClientCapabilitiesStaleRequestSupport?);
 
     return GeneralClientCapabilities(
-      markdown: markdown,
       positionEncodings: positionEncodings,
+      markdown: markdown,
       regularExpressions: regularExpressions,
       staleRequestSupport: staleRequestSupport,
     );
   }
-
-  /// Client capabilities specific to the client's markdown parser.
-  /// @since 3.16.0
-  final MarkdownClientCapabilities? markdown;
 
   /// The position encodings supported by the client. Client and server have
   /// to agree on the same position encoding to ensure that offsets (e.g.
@@ -13497,6 +13435,10 @@ class GeneralClientCapabilities implements ToJson {
   /// @since 3.17.0
   final List<PositionEncodingKind>? positionEncodings;
 
+  /// Client capabilities specific to the client's markdown parser.
+  /// @since 3.16.0
+  final MarkdownClientCapabilities? markdown;
+
   /// Client capabilities specific to regular expressions.
   /// @since 3.16.0
   final RegularExpressionsClientCapabilities? regularExpressions;
@@ -13510,8 +13452,8 @@ class GeneralClientCapabilities implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['markdown'] = markdown?.toJson();
     json['positionEncodings'] = positionEncodings;
+    json['markdown'] = markdown?.toJson();
     json['regularExpressions'] = regularExpressions?.toJson();
     json['staleRequestSupport'] = staleRequestSupport;
 
@@ -13556,11 +13498,11 @@ class RelativePattern implements ToJson {
 /// Struct
 class WorkspaceEditClientCapabilities implements ToJson {
   WorkspaceEditClientCapabilities({
-    required this.changeAnnotationSupport,
-    required this.documentChanges,
-    required this.failureHandling,
-    required this.normalizesLineEndings,
-    required this.resourceOperations,
+    this.changeAnnotationSupport,
+    this.normalizesLineEndings,
+    this.failureHandling,
+    this.resourceOperations,
+    this.documentChanges,
   });
 
   factory WorkspaceEditClientCapabilities.fromJson(Map<String, Object?> json) {
@@ -13568,22 +13510,22 @@ class WorkspaceEditClientCapabilities implements ToJson {
     final changeAnnotationSupport =
         (changeAnnotationSupportJson
             as WorkspaceEditClientCapabilitiesChangeAnnotationSupport?);
-    final documentChangesJson = json['documentChanges'];
-    final documentChanges = (documentChangesJson as bool?);
-    final failureHandlingJson = json['failureHandling'];
-    final failureHandling = (failureHandlingJson as FailureHandlingKind?);
     final normalizesLineEndingsJson = json['normalizesLineEndings'];
     final normalizesLineEndings = (normalizesLineEndingsJson as bool?);
+    final failureHandlingJson = json['failureHandling'];
+    final failureHandling = (failureHandlingJson as FailureHandlingKind?);
     final resourceOperationsJson = json['resourceOperations'];
     final resourceOperations =
         (resourceOperationsJson as List<ResourceOperationKind>?);
+    final documentChangesJson = json['documentChanges'];
+    final documentChanges = (documentChangesJson as bool?);
 
     return WorkspaceEditClientCapabilities(
       changeAnnotationSupport: changeAnnotationSupport,
-      documentChanges: documentChanges,
-      failureHandling: failureHandling,
       normalizesLineEndings: normalizesLineEndings,
+      failureHandling: failureHandling,
       resourceOperations: resourceOperations,
+      documentChanges: documentChanges,
     );
   }
 
@@ -13593,14 +13535,6 @@ class WorkspaceEditClientCapabilities implements ToJson {
   final WorkspaceEditClientCapabilitiesChangeAnnotationSupport?
   changeAnnotationSupport;
 
-  /// The client supports versioned document changes in `WorkspaceEdit`s
-  final bool? documentChanges;
-
-  /// The failure handling strategy of a client if applying the workspace
-  /// edit fails.
-  /// @since 3.13.0
-  final FailureHandlingKind? failureHandling;
-
   /// Whether the client normalizes line endings to the client specific
   /// setting. If set to `true` the client will normalize line ending
   /// characters in a workspace edit to the client-specified new line
@@ -13608,19 +13542,27 @@ class WorkspaceEditClientCapabilities implements ToJson {
   /// @since 3.16.0
   final bool? normalizesLineEndings;
 
+  /// The failure handling strategy of a client if applying the workspace
+  /// edit fails.
+  /// @since 3.13.0
+  final FailureHandlingKind? failureHandling;
+
   /// The resource operations the client supports. Clients should at least
   /// support 'create', 'rename' and 'delete' files and folders.
   /// @since 3.13.0
   final List<ResourceOperationKind>? resourceOperations;
 
+  /// The client supports versioned document changes in `WorkspaceEdit`s
+  final bool? documentChanges;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['changeAnnotationSupport'] = changeAnnotationSupport;
-    json['documentChanges'] = documentChanges;
-    json['failureHandling'] = failureHandling?.value;
     json['normalizesLineEndings'] = normalizesLineEndings;
+    json['failureHandling'] = failureHandling?.value;
     json['resourceOperations'] = resourceOperations;
+    json['documentChanges'] = documentChanges;
 
     return json;
   }
@@ -13628,7 +13570,7 @@ class WorkspaceEditClientCapabilities implements ToJson {
 
 /// Struct
 class DidChangeConfigurationClientCapabilities implements ToJson {
-  DidChangeConfigurationClientCapabilities({required this.dynamicRegistration});
+  DidChangeConfigurationClientCapabilities({this.dynamicRegistration});
 
   factory DidChangeConfigurationClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -13656,39 +13598,39 @@ class DidChangeConfigurationClientCapabilities implements ToJson {
 /// Struct
 class DidChangeWatchedFilesClientCapabilities implements ToJson {
   DidChangeWatchedFilesClientCapabilities({
-    required this.dynamicRegistration,
-    required this.relativePatternSupport,
+    this.relativePatternSupport,
+    this.dynamicRegistration,
   });
 
   factory DidChangeWatchedFilesClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final relativePatternSupportJson = json['relativePatternSupport'];
     final relativePatternSupport = (relativePatternSupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return DidChangeWatchedFilesClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       relativePatternSupport: relativePatternSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Did change watched files notification supports dynamic registration.
-  /// Please note that the current protocol doesn't support static
-  /// configuration for file changes from the server side.
-  final bool? dynamicRegistration;
 
   /// Whether the client has support for {@link RelativePattern relative
   /// pattern} or not.
   /// @since 3.17.0
   final bool? relativePatternSupport;
 
+  /// Did change watched files notification supports dynamic registration.
+  /// Please note that the current protocol doesn't support static
+  /// configuration for file changes from the server side.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['relativePatternSupport'] = relativePatternSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -13698,38 +13640,35 @@ class DidChangeWatchedFilesClientCapabilities implements ToJson {
 /// Client capabilities for a {@link WorkspaceSymbolRequest}.
 class WorkspaceSymbolClientCapabilities implements ToJson {
   WorkspaceSymbolClientCapabilities({
-    required this.dynamicRegistration,
-    required this.resolveSupport,
-    required this.symbolKind,
-    required this.tagSupport,
+    this.resolveSupport,
+    this.tagSupport,
+    this.symbolKind,
+    this.dynamicRegistration,
   });
 
   factory WorkspaceSymbolClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final resolveSupportJson = json['resolveSupport'];
     final resolveSupport =
         (resolveSupportJson
             as WorkspaceSymbolClientCapabilitiesResolveSupport?);
-    final symbolKindJson = json['symbolKind'];
-    final symbolKind =
-        (symbolKindJson as WorkspaceSymbolClientCapabilitiesSymbolKind?);
     final tagSupportJson = json['tagSupport'];
     final tagSupport =
         (tagSupportJson as WorkspaceSymbolClientCapabilitiesTagSupport?);
+    final symbolKindJson = json['symbolKind'];
+    final symbolKind =
+        (symbolKindJson as WorkspaceSymbolClientCapabilitiesSymbolKind?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return WorkspaceSymbolClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       resolveSupport: resolveSupport,
-      symbolKind: symbolKind,
       tagSupport: tagSupport,
+      symbolKind: symbolKind,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Symbol request supports dynamic registration.
-  final bool? dynamicRegistration;
 
   /// The client support partial workspace symbols. The client will send the
   /// request `workspaceSymbol/resolve` to the server to resolve additional
@@ -13737,22 +13676,25 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
   /// @since 3.17.0
   final WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport;
 
-  /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
-  /// request.
-  final WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind;
-
   /// The client supports tags on `SymbolInformation`. Clients supporting
   /// tags have to handle unknown tags gracefully.
   /// @since 3.16.0
   final WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport;
 
+  /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
+  /// request.
+  final WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind;
+
+  /// Symbol request supports dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['resolveSupport'] = resolveSupport;
-    json['symbolKind'] = symbolKind;
     json['tagSupport'] = tagSupport;
+    json['symbolKind'] = symbolKind;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -13761,7 +13703,7 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
 /// Struct
 /// The client capabilities of a {@link ExecuteCommandRequest}.
 class ExecuteCommandClientCapabilities implements ToJson {
-  ExecuteCommandClientCapabilities({required this.dynamicRegistration});
+  ExecuteCommandClientCapabilities({this.dynamicRegistration});
 
   factory ExecuteCommandClientCapabilities.fromJson(Map<String, Object?> json) {
     final dynamicRegistrationJson = json['dynamicRegistration'];
@@ -13787,7 +13729,7 @@ class ExecuteCommandClientCapabilities implements ToJson {
 /// Struct
 /// @since 3.16.0
 class SemanticTokensWorkspaceClientCapabilities implements ToJson {
-  SemanticTokensWorkspaceClientCapabilities({required this.refreshSupport});
+  SemanticTokensWorkspaceClientCapabilities({this.refreshSupport});
 
   factory SemanticTokensWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -13820,7 +13762,7 @@ class SemanticTokensWorkspaceClientCapabilities implements ToJson {
 /// Struct
 /// @since 3.16.0
 class CodeLensWorkspaceClientCapabilities implements ToJson {
-  CodeLensWorkspaceClientCapabilities({required this.refreshSupport});
+  CodeLensWorkspaceClientCapabilities({this.refreshSupport});
 
   factory CodeLensWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -13856,74 +13798,74 @@ class CodeLensWorkspaceClientCapabilities implements ToJson {
 /// @since 3.16.0
 class FileOperationClientCapabilities implements ToJson {
   FileOperationClientCapabilities({
-    required this.didCreate,
-    required this.didDelete,
-    required this.didRename,
-    required this.dynamicRegistration,
-    required this.willCreate,
-    required this.willDelete,
-    required this.willRename,
+    this.willDelete,
+    this.didDelete,
+    this.willRename,
+    this.didRename,
+    this.willCreate,
+    this.didCreate,
+    this.dynamicRegistration,
   });
 
   factory FileOperationClientCapabilities.fromJson(Map<String, Object?> json) {
-    final didCreateJson = json['didCreate'];
-    final didCreate = (didCreateJson as bool?);
-    final didDeleteJson = json['didDelete'];
-    final didDelete = (didDeleteJson as bool?);
-    final didRenameJson = json['didRename'];
-    final didRename = (didRenameJson as bool?);
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
-    final willCreateJson = json['willCreate'];
-    final willCreate = (willCreateJson as bool?);
     final willDeleteJson = json['willDelete'];
     final willDelete = (willDeleteJson as bool?);
+    final didDeleteJson = json['didDelete'];
+    final didDelete = (didDeleteJson as bool?);
     final willRenameJson = json['willRename'];
     final willRename = (willRenameJson as bool?);
+    final didRenameJson = json['didRename'];
+    final didRename = (didRenameJson as bool?);
+    final willCreateJson = json['willCreate'];
+    final willCreate = (willCreateJson as bool?);
+    final didCreateJson = json['didCreate'];
+    final didCreate = (didCreateJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return FileOperationClientCapabilities(
-      didCreate: didCreate,
-      didDelete: didDelete,
-      didRename: didRename,
-      dynamicRegistration: dynamicRegistration,
-      willCreate: willCreate,
       willDelete: willDelete,
+      didDelete: didDelete,
       willRename: willRename,
+      didRename: didRename,
+      willCreate: willCreate,
+      didCreate: didCreate,
+      dynamicRegistration: dynamicRegistration,
     );
   }
 
-  /// The client has support for sending didCreateFiles notifications.
-  final bool? didCreate;
+  /// The client has support for sending willDeleteFiles requests.
+  final bool? willDelete;
 
   /// The client has support for sending didDeleteFiles notifications.
   final bool? didDelete;
 
+  /// The client has support for sending willRenameFiles requests.
+  final bool? willRename;
+
   /// The client has support for sending didRenameFiles notifications.
   final bool? didRename;
+
+  /// The client has support for sending willCreateFiles requests.
+  final bool? willCreate;
+
+  /// The client has support for sending didCreateFiles notifications.
+  final bool? didCreate;
 
   /// Whether the client supports dynamic registration for file
   /// requests/notifications.
   final bool? dynamicRegistration;
 
-  /// The client has support for sending willCreateFiles requests.
-  final bool? willCreate;
-
-  /// The client has support for sending willDeleteFiles requests.
-  final bool? willDelete;
-
-  /// The client has support for sending willRenameFiles requests.
-  final bool? willRename;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['didCreate'] = didCreate;
-    json['didDelete'] = didDelete;
-    json['didRename'] = didRename;
-    json['dynamicRegistration'] = dynamicRegistration;
-    json['willCreate'] = willCreate;
     json['willDelete'] = willDelete;
+    json['didDelete'] = didDelete;
     json['willRename'] = willRename;
+    json['didRename'] = didRename;
+    json['willCreate'] = willCreate;
+    json['didCreate'] = didCreate;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -13933,7 +13875,7 @@ class FileOperationClientCapabilities implements ToJson {
 /// Client workspace capabilities specific to inline values.
 /// @since 3.17.0
 class InlineValueWorkspaceClientCapabilities implements ToJson {
-  InlineValueWorkspaceClientCapabilities({required this.refreshSupport});
+  InlineValueWorkspaceClientCapabilities({this.refreshSupport});
 
   factory InlineValueWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -13967,7 +13909,7 @@ class InlineValueWorkspaceClientCapabilities implements ToJson {
 /// Client workspace capabilities specific to inlay hints.
 /// @since 3.17.0
 class InlayHintWorkspaceClientCapabilities implements ToJson {
-  InlayHintWorkspaceClientCapabilities({required this.refreshSupport});
+  InlayHintWorkspaceClientCapabilities({this.refreshSupport});
 
   factory InlayHintWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -13999,7 +13941,7 @@ class InlayHintWorkspaceClientCapabilities implements ToJson {
 /// Workspace client capabilities specific to diagnostic pull requests.
 /// @since 3.17.0
 class DiagnosticWorkspaceClientCapabilities implements ToJson {
-  DiagnosticWorkspaceClientCapabilities({required this.refreshSupport});
+  DiagnosticWorkspaceClientCapabilities({this.refreshSupport});
 
   factory DiagnosticWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -14033,7 +13975,7 @@ class DiagnosticWorkspaceClientCapabilities implements ToJson {
 /// Client workspace capabilities specific to folding ranges
 /// @since 3.18.0 @proposed
 class FoldingRangeWorkspaceClientCapabilities implements ToJson {
-  FoldingRangeWorkspaceClientCapabilities({required this.refreshSupport});
+  FoldingRangeWorkspaceClientCapabilities({this.refreshSupport});
 
   factory FoldingRangeWorkspaceClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -14067,10 +14009,10 @@ class FoldingRangeWorkspaceClientCapabilities implements ToJson {
 /// Struct
 class TextDocumentSyncClientCapabilities implements ToJson {
   TextDocumentSyncClientCapabilities({
-    required this.didSave,
-    required this.dynamicRegistration,
-    required this.willSave,
-    required this.willSaveWaitUntil,
+    this.didSave,
+    this.willSaveWaitUntil,
+    this.willSave,
+    this.dynamicRegistration,
   });
 
   factory TextDocumentSyncClientCapabilities.fromJson(
@@ -14078,42 +14020,42 @@ class TextDocumentSyncClientCapabilities implements ToJson {
   ) {
     final didSaveJson = json['didSave'];
     final didSave = (didSaveJson as bool?);
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
-    final willSaveJson = json['willSave'];
-    final willSave = (willSaveJson as bool?);
     final willSaveWaitUntilJson = json['willSaveWaitUntil'];
     final willSaveWaitUntil = (willSaveWaitUntilJson as bool?);
+    final willSaveJson = json['willSave'];
+    final willSave = (willSaveJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return TextDocumentSyncClientCapabilities(
       didSave: didSave,
-      dynamicRegistration: dynamicRegistration,
-      willSave: willSave,
       willSaveWaitUntil: willSaveWaitUntil,
+      willSave: willSave,
+      dynamicRegistration: dynamicRegistration,
     );
   }
 
   /// The client supports did save notifications.
   final bool? didSave;
 
-  /// Whether text document synchronization supports dynamic registration.
-  final bool? dynamicRegistration;
-
-  /// The client supports sending will save notifications.
-  final bool? willSave;
-
   /// The client supports sending a will save request and waits for a
   /// response providing text edits which will be applied to the document
   /// before it is saved.
   final bool? willSaveWaitUntil;
 
+  /// The client supports sending will save notifications.
+  final bool? willSave;
+
+  /// Whether text document synchronization supports dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['didSave'] = didSave;
-    json['dynamicRegistration'] = dynamicRegistration;
-    json['willSave'] = willSave;
     json['willSaveWaitUntil'] = willSaveWaitUntil;
+    json['willSave'] = willSave;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14123,47 +14065,41 @@ class TextDocumentSyncClientCapabilities implements ToJson {
 /// Completion client capabilities
 class CompletionClientCapabilities implements ToJson {
   CompletionClientCapabilities({
-    required this.completionItem,
-    required this.completionItemKind,
-    required this.completionList,
-    required this.contextSupport,
-    required this.dynamicRegistration,
-    required this.insertTextMode,
+    this.completionList,
+    this.contextSupport,
+    this.insertTextMode,
+    this.completionItemKind,
+    this.completionItem,
+    this.dynamicRegistration,
   });
 
   factory CompletionClientCapabilities.fromJson(Map<String, Object?> json) {
-    final completionItemJson = json['completionItem'];
-    final completionItem =
-        (completionItemJson as CompletionClientCapabilitiesCompletionItem?);
-    final completionItemKindJson = json['completionItemKind'];
-    final completionItemKind =
-        (completionItemKindJson
-            as CompletionClientCapabilitiesCompletionItemKind?);
     final completionListJson = json['completionList'];
     final completionList =
         (completionListJson as CompletionClientCapabilitiesCompletionList?);
     final contextSupportJson = json['contextSupport'];
     final contextSupport = (contextSupportJson as bool?);
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final insertTextModeJson = json['insertTextMode'];
     final insertTextMode = (insertTextModeJson as InsertTextMode?);
+    final completionItemKindJson = json['completionItemKind'];
+    final completionItemKind =
+        (completionItemKindJson
+            as CompletionClientCapabilitiesCompletionItemKind?);
+    final completionItemJson = json['completionItem'];
+    final completionItem =
+        (completionItemJson as CompletionClientCapabilitiesCompletionItem?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return CompletionClientCapabilities(
-      completionItem: completionItem,
-      completionItemKind: completionItemKind,
       completionList: completionList,
       contextSupport: contextSupport,
-      dynamicRegistration: dynamicRegistration,
       insertTextMode: insertTextMode,
+      completionItemKind: completionItemKind,
+      completionItem: completionItem,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// The client supports the following `CompletionItem` specific
-  /// capabilities.
-  final CompletionClientCapabilitiesCompletionItem? completionItem;
-
-  final CompletionClientCapabilitiesCompletionItemKind? completionItemKind;
 
   /// The client supports the following `CompletionList` specific
   /// capabilities.
@@ -14174,24 +14110,30 @@ class CompletionClientCapabilities implements ToJson {
   /// `textDocument/completion` request.
   final bool? contextSupport;
 
-  /// Whether completion supports dynamic registration.
-  final bool? dynamicRegistration;
-
   /// Defines how the client handles whitespace and indentation when
   /// accepting a completion item that uses multi line text in either
   /// `insertText` or `textEdit`.
   /// @since 3.17.0
   final InsertTextMode? insertTextMode;
 
+  final CompletionClientCapabilitiesCompletionItemKind? completionItemKind;
+
+  /// The client supports the following `CompletionItem` specific
+  /// capabilities.
+  final CompletionClientCapabilitiesCompletionItem? completionItem;
+
+  /// Whether completion supports dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['completionItem'] = completionItem;
-    json['completionItemKind'] = completionItemKind;
     json['completionList'] = completionList;
     json['contextSupport'] = contextSupport;
-    json['dynamicRegistration'] = dynamicRegistration;
     json['insertTextMode'] = insertTextMode?.value;
+    json['completionItemKind'] = completionItemKind;
+    json['completionItem'] = completionItem;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14199,10 +14141,7 @@ class CompletionClientCapabilities implements ToJson {
 
 /// Struct
 class HoverClientCapabilities implements ToJson {
-  HoverClientCapabilities({
-    required this.contentFormat,
-    required this.dynamicRegistration,
-  });
+  HoverClientCapabilities({this.contentFormat, this.dynamicRegistration});
 
   factory HoverClientCapabilities.fromJson(Map<String, Object?> json) {
     final contentFormatJson = json['contentFormat'];
@@ -14237,25 +14176,25 @@ class HoverClientCapabilities implements ToJson {
 /// Client Capabilities for a {@link SignatureHelpRequest}.
 class SignatureHelpClientCapabilities implements ToJson {
   SignatureHelpClientCapabilities({
-    required this.contextSupport,
-    required this.dynamicRegistration,
-    required this.signatureInformation,
+    this.contextSupport,
+    this.signatureInformation,
+    this.dynamicRegistration,
   });
 
   factory SignatureHelpClientCapabilities.fromJson(Map<String, Object?> json) {
     final contextSupportJson = json['contextSupport'];
     final contextSupport = (contextSupportJson as bool?);
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final signatureInformationJson = json['signatureInformation'];
     final signatureInformation =
         (signatureInformationJson
             as SignatureHelpClientCapabilitiesSignatureInformation?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return SignatureHelpClientCapabilities(
       contextSupport: contextSupport,
-      dynamicRegistration: dynamicRegistration,
       signatureInformation: signatureInformation,
+      dynamicRegistration: dynamicRegistration,
     );
   }
 
@@ -14266,20 +14205,20 @@ class SignatureHelpClientCapabilities implements ToJson {
   /// @since 3.15.0
   final bool? contextSupport;
 
-  /// Whether signature help supports dynamic registration.
-  final bool? dynamicRegistration;
-
   /// The client supports the following `SignatureInformation` specific
   /// properties.
   final SignatureHelpClientCapabilitiesSignatureInformation?
   signatureInformation;
 
+  /// Whether signature help supports dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['contextSupport'] = contextSupport;
-    json['dynamicRegistration'] = dynamicRegistration;
     json['signatureInformation'] = signatureInformation;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14288,37 +14227,34 @@ class SignatureHelpClientCapabilities implements ToJson {
 /// Struct
 /// @since 3.14.0
 class DeclarationClientCapabilities implements ToJson {
-  DeclarationClientCapabilities({
-    required this.dynamicRegistration,
-    required this.linkSupport,
-  });
+  DeclarationClientCapabilities({this.linkSupport, this.dynamicRegistration});
 
   factory DeclarationClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final linkSupportJson = json['linkSupport'];
     final linkSupport = (linkSupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return DeclarationClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       linkSupport: linkSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
+
+  /// The client supports additional metadata in the form of declaration
+  /// links.
+  final bool? linkSupport;
 
   /// Whether declaration supports dynamic registration. If this is set to
   /// `true` the client supports the new `DeclarationRegistrationOptions`
   /// return value for the corresponding server capability as well.
   final bool? dynamicRegistration;
 
-  /// The client supports additional metadata in the form of declaration
-  /// links.
-  final bool? linkSupport;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['linkSupport'] = linkSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14327,35 +14263,32 @@ class DeclarationClientCapabilities implements ToJson {
 /// Struct
 /// Client Capabilities for a {@link DefinitionRequest}.
 class DefinitionClientCapabilities implements ToJson {
-  DefinitionClientCapabilities({
-    required this.dynamicRegistration,
-    required this.linkSupport,
-  });
+  DefinitionClientCapabilities({this.linkSupport, this.dynamicRegistration});
 
   factory DefinitionClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final linkSupportJson = json['linkSupport'];
     final linkSupport = (linkSupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return DefinitionClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       linkSupport: linkSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Whether definition supports dynamic registration.
-  final bool? dynamicRegistration;
 
   /// The client supports additional metadata in the form of definition links.
   /// @since 3.14.0
   final bool? linkSupport;
 
+  /// Whether definition supports dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['linkSupport'] = linkSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14365,36 +14298,36 @@ class DefinitionClientCapabilities implements ToJson {
 /// Since 3.6.0
 class TypeDefinitionClientCapabilities implements ToJson {
   TypeDefinitionClientCapabilities({
-    required this.dynamicRegistration,
-    required this.linkSupport,
+    this.linkSupport,
+    this.dynamicRegistration,
   });
 
   factory TypeDefinitionClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final linkSupportJson = json['linkSupport'];
     final linkSupport = (linkSupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return TypeDefinitionClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       linkSupport: linkSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
+
+  /// The client supports additional metadata in the form of definition links.
+  /// Since 3.14.0
+  final bool? linkSupport;
 
   /// Whether implementation supports dynamic registration. If this is set to
   /// `true` the client supports the new `TypeDefinitionRegistrationOptions`
   /// return value for the corresponding server capability as well.
   final bool? dynamicRegistration;
 
-  /// The client supports additional metadata in the form of definition links.
-  /// Since 3.14.0
-  final bool? linkSupport;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['linkSupport'] = linkSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14404,36 +14337,36 @@ class TypeDefinitionClientCapabilities implements ToJson {
 /// @since 3.6.0
 class ImplementationClientCapabilities implements ToJson {
   ImplementationClientCapabilities({
-    required this.dynamicRegistration,
-    required this.linkSupport,
+    this.linkSupport,
+    this.dynamicRegistration,
   });
 
   factory ImplementationClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final linkSupportJson = json['linkSupport'];
     final linkSupport = (linkSupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return ImplementationClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       linkSupport: linkSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
+
+  /// The client supports additional metadata in the form of definition links.
+  /// @since 3.14.0
+  final bool? linkSupport;
 
   /// Whether implementation supports dynamic registration. If this is set to
   /// `true` the client supports the new `ImplementationRegistrationOptions`
   /// return value for the corresponding server capability as well.
   final bool? dynamicRegistration;
 
-  /// The client supports additional metadata in the form of definition links.
-  /// @since 3.14.0
-  final bool? linkSupport;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['linkSupport'] = linkSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14442,7 +14375,7 @@ class ImplementationClientCapabilities implements ToJson {
 /// Struct
 /// Client Capabilities for a {@link ReferencesRequest}.
 class ReferenceClientCapabilities implements ToJson {
-  ReferenceClientCapabilities({required this.dynamicRegistration});
+  ReferenceClientCapabilities({this.dynamicRegistration});
 
   factory ReferenceClientCapabilities.fromJson(Map<String, Object?> json) {
     final dynamicRegistrationJson = json['dynamicRegistration'];
@@ -14468,7 +14401,7 @@ class ReferenceClientCapabilities implements ToJson {
 /// Struct
 /// Client Capabilities for a {@link DocumentHighlightRequest}.
 class DocumentHighlightClientCapabilities implements ToJson {
-  DocumentHighlightClientCapabilities({required this.dynamicRegistration});
+  DocumentHighlightClientCapabilities({this.dynamicRegistration});
 
   factory DocumentHighlightClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -14497,52 +14430,42 @@ class DocumentHighlightClientCapabilities implements ToJson {
 /// Client Capabilities for a {@link DocumentSymbolRequest}.
 class DocumentSymbolClientCapabilities implements ToJson {
   DocumentSymbolClientCapabilities({
-    required this.dynamicRegistration,
-    required this.hierarchicalDocumentSymbolSupport,
-    required this.labelSupport,
-    required this.symbolKind,
-    required this.tagSupport,
+    this.labelSupport,
+    this.tagSupport,
+    this.hierarchicalDocumentSymbolSupport,
+    this.symbolKind,
+    this.dynamicRegistration,
   });
 
   factory DocumentSymbolClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
+    final labelSupportJson = json['labelSupport'];
+    final labelSupport = (labelSupportJson as bool?);
+    final tagSupportJson = json['tagSupport'];
+    final tagSupport =
+        (tagSupportJson as WorkspaceSymbolClientCapabilitiesTagSupport?);
     final hierarchicalDocumentSymbolSupportJson =
         json['hierarchicalDocumentSymbolSupport'];
     final hierarchicalDocumentSymbolSupport =
         (hierarchicalDocumentSymbolSupportJson as bool?);
-    final labelSupportJson = json['labelSupport'];
-    final labelSupport = (labelSupportJson as bool?);
     final symbolKindJson = json['symbolKind'];
     final symbolKind =
         (symbolKindJson as WorkspaceSymbolClientCapabilitiesSymbolKind?);
-    final tagSupportJson = json['tagSupport'];
-    final tagSupport =
-        (tagSupportJson as WorkspaceSymbolClientCapabilitiesTagSupport?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return DocumentSymbolClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
-      hierarchicalDocumentSymbolSupport: hierarchicalDocumentSymbolSupport,
       labelSupport: labelSupport,
-      symbolKind: symbolKind,
       tagSupport: tagSupport,
+      hierarchicalDocumentSymbolSupport: hierarchicalDocumentSymbolSupport,
+      symbolKind: symbolKind,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Whether document symbol supports dynamic registration.
-  final bool? dynamicRegistration;
-
-  /// The client supports hierarchical document symbols.
-  final bool? hierarchicalDocumentSymbolSupport;
 
   /// The client supports an additional label presented in the UI when
   /// registering a document symbol provider.
   /// @since 3.16.0
   final bool? labelSupport;
-
-  /// Specific capabilities for the `SymbolKind` in the
-  /// `textDocument/documentSymbol` request.
-  final WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind;
 
   /// The client supports tags on `SymbolInformation`. Tags are supported on
   /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
@@ -14550,15 +14473,25 @@ class DocumentSymbolClientCapabilities implements ToJson {
   /// @since 3.16.0
   final WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport;
 
+  /// The client supports hierarchical document symbols.
+  final bool? hierarchicalDocumentSymbolSupport;
+
+  /// Specific capabilities for the `SymbolKind` in the
+  /// `textDocument/documentSymbol` request.
+  final WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind;
+
+  /// Whether document symbol supports dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
+    json['labelSupport'] = labelSupport;
+    json['tagSupport'] = tagSupport;
     json['hierarchicalDocumentSymbolSupport'] =
         hierarchicalDocumentSymbolSupport;
-    json['labelSupport'] = labelSupport;
     json['symbolKind'] = symbolKind;
-    json['tagSupport'] = tagSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14568,52 +14501,58 @@ class DocumentSymbolClientCapabilities implements ToJson {
 /// The Client Capabilities of a {@link CodeActionRequest}.
 class CodeActionClientCapabilities implements ToJson {
   CodeActionClientCapabilities({
-    required this.codeActionLiteralSupport,
-    required this.dataSupport,
-    required this.disabledSupport,
-    required this.dynamicRegistration,
-    required this.honorsChangeAnnotations,
-    required this.isPreferredSupport,
-    required this.resolveSupport,
+    this.honorsChangeAnnotations,
+    this.resolveSupport,
+    this.dataSupport,
+    this.disabledSupport,
+    this.isPreferredSupport,
+    this.codeActionLiteralSupport,
+    this.dynamicRegistration,
   });
 
   factory CodeActionClientCapabilities.fromJson(Map<String, Object?> json) {
-    final codeActionLiteralSupportJson = json['codeActionLiteralSupport'];
-    final codeActionLiteralSupport =
-        (codeActionLiteralSupportJson
-            as CodeActionClientCapabilitiesCodeActionLiteralSupport?);
-    final dataSupportJson = json['dataSupport'];
-    final dataSupport = (dataSupportJson as bool?);
-    final disabledSupportJson = json['disabledSupport'];
-    final disabledSupport = (disabledSupportJson as bool?);
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final honorsChangeAnnotationsJson = json['honorsChangeAnnotations'];
     final honorsChangeAnnotations = (honorsChangeAnnotationsJson as bool?);
-    final isPreferredSupportJson = json['isPreferredSupport'];
-    final isPreferredSupport = (isPreferredSupportJson as bool?);
     final resolveSupportJson = json['resolveSupport'];
     final resolveSupport =
         (resolveSupportJson
             as CompletionClientCapabilitiesCompletionItemResolveSupport?);
+    final dataSupportJson = json['dataSupport'];
+    final dataSupport = (dataSupportJson as bool?);
+    final disabledSupportJson = json['disabledSupport'];
+    final disabledSupport = (disabledSupportJson as bool?);
+    final isPreferredSupportJson = json['isPreferredSupport'];
+    final isPreferredSupport = (isPreferredSupportJson as bool?);
+    final codeActionLiteralSupportJson = json['codeActionLiteralSupport'];
+    final codeActionLiteralSupport =
+        (codeActionLiteralSupportJson
+            as CodeActionClientCapabilitiesCodeActionLiteralSupport?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return CodeActionClientCapabilities(
-      codeActionLiteralSupport: codeActionLiteralSupport,
+      honorsChangeAnnotations: honorsChangeAnnotations,
+      resolveSupport: resolveSupport,
       dataSupport: dataSupport,
       disabledSupport: disabledSupport,
-      dynamicRegistration: dynamicRegistration,
-      honorsChangeAnnotations: honorsChangeAnnotations,
       isPreferredSupport: isPreferredSupport,
-      resolveSupport: resolveSupport,
+      codeActionLiteralSupport: codeActionLiteralSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
 
-  /// The client support code action literals of type `CodeAction` as a valid
-  /// response of the `textDocument/codeAction` request. If the property is
-  /// not set the request can only return `Command` literals.
-  /// @since 3.8.0
-  final CodeActionClientCapabilitiesCodeActionLiteralSupport?
-  codeActionLiteralSupport;
+  /// Whether the client honors the change annotations in text edits and
+  /// resource operations returned via the `CodeAction#edit` property by for
+  /// example presenting the workspace edit in the user interface and asking
+  /// for confirmation.
+  /// @since 3.16.0
+  final bool? honorsChangeAnnotations;
+
+  /// Whether the client supports resolving additional code action properties
+  /// via a separate `codeAction/resolve` request.
+  /// @since 3.16.0
+  final CompletionClientCapabilitiesCompletionItemResolveSupport?
+  resolveSupport;
 
   /// Whether code action supports the `data` property which is preserved
   /// between a `textDocument/codeAction` and a `codeAction/resolve` request.
@@ -14624,36 +14563,30 @@ class CodeActionClientCapabilities implements ToJson {
   /// @since 3.16.0
   final bool? disabledSupport;
 
-  /// Whether code action supports dynamic registration.
-  final bool? dynamicRegistration;
-
-  /// Whether the client honors the change annotations in text edits and
-  /// resource operations returned via the `CodeAction#edit` property by for
-  /// example presenting the workspace edit in the user interface and asking
-  /// for confirmation.
-  /// @since 3.16.0
-  final bool? honorsChangeAnnotations;
-
   /// Whether code action supports the `isPreferred` property.
   /// @since 3.15.0
   final bool? isPreferredSupport;
 
-  /// Whether the client supports resolving additional code action properties
-  /// via a separate `codeAction/resolve` request.
-  /// @since 3.16.0
-  final CompletionClientCapabilitiesCompletionItemResolveSupport?
-  resolveSupport;
+  /// The client support code action literals of type `CodeAction` as a valid
+  /// response of the `textDocument/codeAction` request. If the property is
+  /// not set the request can only return `Command` literals.
+  /// @since 3.8.0
+  final CodeActionClientCapabilitiesCodeActionLiteralSupport?
+  codeActionLiteralSupport;
+
+  /// Whether code action supports dynamic registration.
+  final bool? dynamicRegistration;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['codeActionLiteralSupport'] = codeActionLiteralSupport;
+    json['honorsChangeAnnotations'] = honorsChangeAnnotations;
+    json['resolveSupport'] = resolveSupport;
     json['dataSupport'] = dataSupport;
     json['disabledSupport'] = disabledSupport;
-    json['dynamicRegistration'] = dynamicRegistration;
-    json['honorsChangeAnnotations'] = honorsChangeAnnotations;
     json['isPreferredSupport'] = isPreferredSupport;
-    json['resolveSupport'] = resolveSupport;
+    json['codeActionLiteralSupport'] = codeActionLiteralSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14662,7 +14595,7 @@ class CodeActionClientCapabilities implements ToJson {
 /// Struct
 /// The client capabilities  of a {@link CodeLensRequest}.
 class CodeLensClientCapabilities implements ToJson {
-  CodeLensClientCapabilities({required this.dynamicRegistration});
+  CodeLensClientCapabilities({this.dynamicRegistration});
 
   factory CodeLensClientCapabilities.fromJson(Map<String, Object?> json) {
     final dynamicRegistrationJson = json['dynamicRegistration'];
@@ -14687,34 +14620,34 @@ class CodeLensClientCapabilities implements ToJson {
 /// The client capabilities of a {@link DocumentLinkRequest}.
 class DocumentLinkClientCapabilities implements ToJson {
   DocumentLinkClientCapabilities({
-    required this.dynamicRegistration,
-    required this.tooltipSupport,
+    this.tooltipSupport,
+    this.dynamicRegistration,
   });
 
   factory DocumentLinkClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final tooltipSupportJson = json['tooltipSupport'];
     final tooltipSupport = (tooltipSupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return DocumentLinkClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       tooltipSupport: tooltipSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Whether document link supports dynamic registration.
-  final bool? dynamicRegistration;
 
   /// Whether the client supports the `tooltip` property on `DocumentLink`.
   /// @since 3.15.0
   final bool? tooltipSupport;
 
+  /// Whether document link supports dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['tooltipSupport'] = tooltipSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14722,7 +14655,7 @@ class DocumentLinkClientCapabilities implements ToJson {
 
 /// Struct
 class DocumentColorClientCapabilities implements ToJson {
-  DocumentColorClientCapabilities({required this.dynamicRegistration});
+  DocumentColorClientCapabilities({this.dynamicRegistration});
 
   factory DocumentColorClientCapabilities.fromJson(Map<String, Object?> json) {
     final dynamicRegistrationJson = json['dynamicRegistration'];
@@ -14750,7 +14683,7 @@ class DocumentColorClientCapabilities implements ToJson {
 /// Struct
 /// Client capabilities of a {@link DocumentFormattingRequest}.
 class DocumentFormattingClientCapabilities implements ToJson {
-  DocumentFormattingClientCapabilities({required this.dynamicRegistration});
+  DocumentFormattingClientCapabilities({this.dynamicRegistration});
 
   factory DocumentFormattingClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -14779,36 +14712,36 @@ class DocumentFormattingClientCapabilities implements ToJson {
 /// Client capabilities of a {@link DocumentRangeFormattingRequest}.
 class DocumentRangeFormattingClientCapabilities implements ToJson {
   DocumentRangeFormattingClientCapabilities({
-    required this.dynamicRegistration,
-    required this.rangesSupport,
+    this.rangesSupport,
+    this.dynamicRegistration,
   });
 
   factory DocumentRangeFormattingClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final rangesSupportJson = json['rangesSupport'];
     final rangesSupport = (rangesSupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return DocumentRangeFormattingClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       rangesSupport: rangesSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Whether range formatting supports dynamic registration.
-  final bool? dynamicRegistration;
 
   /// Whether the client supports formatting multiple ranges at once.
   /// @since 3.18.0 @proposed
   final bool? rangesSupport;
 
+  /// Whether range formatting supports dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['rangesSupport'] = rangesSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14817,9 +14750,7 @@ class DocumentRangeFormattingClientCapabilities implements ToJson {
 /// Struct
 /// Client capabilities of a {@link DocumentOnTypeFormattingRequest}.
 class DocumentOnTypeFormattingClientCapabilities implements ToJson {
-  DocumentOnTypeFormattingClientCapabilities({
-    required this.dynamicRegistration,
-  });
+  DocumentOnTypeFormattingClientCapabilities({this.dynamicRegistration});
 
   factory DocumentOnTypeFormattingClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -14847,34 +14778,31 @@ class DocumentOnTypeFormattingClientCapabilities implements ToJson {
 /// Struct
 class RenameClientCapabilities implements ToJson {
   RenameClientCapabilities({
-    required this.dynamicRegistration,
-    required this.honorsChangeAnnotations,
-    required this.prepareSupport,
-    required this.prepareSupportDefaultBehavior,
+    this.honorsChangeAnnotations,
+    this.prepareSupportDefaultBehavior,
+    this.prepareSupport,
+    this.dynamicRegistration,
   });
 
   factory RenameClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final honorsChangeAnnotationsJson = json['honorsChangeAnnotations'];
     final honorsChangeAnnotations = (honorsChangeAnnotationsJson as bool?);
-    final prepareSupportJson = json['prepareSupport'];
-    final prepareSupport = (prepareSupportJson as bool?);
     final prepareSupportDefaultBehaviorJson =
         json['prepareSupportDefaultBehavior'];
     final prepareSupportDefaultBehavior =
         (prepareSupportDefaultBehaviorJson as PrepareSupportDefaultBehavior?);
+    final prepareSupportJson = json['prepareSupport'];
+    final prepareSupport = (prepareSupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return RenameClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       honorsChangeAnnotations: honorsChangeAnnotations,
-      prepareSupport: prepareSupport,
       prepareSupportDefaultBehavior: prepareSupportDefaultBehavior,
+      prepareSupport: prepareSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Whether rename supports dynamic registration.
-  final bool? dynamicRegistration;
 
   /// Whether the client honors the change annotations in text edits and
   /// resource operations returned via the rename request's workspace edit by
@@ -14883,24 +14811,27 @@ class RenameClientCapabilities implements ToJson {
   /// @since 3.16.0
   final bool? honorsChangeAnnotations;
 
-  /// Client supports testing for validity of rename operations before
-  /// execution.
-  /// @since 3.12.0
-  final bool? prepareSupport;
-
   /// Client supports the default behavior result.
   /// The value indicates the default behavior used by the client.
   /// @since 3.16.0
   final PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior;
 
+  /// Client supports testing for validity of rename operations before
+  /// execution.
+  /// @since 3.12.0
+  final bool? prepareSupport;
+
+  /// Whether rename supports dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['honorsChangeAnnotations'] = honorsChangeAnnotations;
-    json['prepareSupport'] = prepareSupport;
     json['prepareSupportDefaultBehavior'] =
         prepareSupportDefaultBehavior?.value;
+    json['prepareSupport'] = prepareSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14909,16 +14840,14 @@ class RenameClientCapabilities implements ToJson {
 /// Struct
 class FoldingRangeClientCapabilities implements ToJson {
   FoldingRangeClientCapabilities({
-    required this.dynamicRegistration,
-    required this.foldingRange,
-    required this.foldingRangeKind,
-    required this.lineFoldingOnly,
-    required this.rangeLimit,
+    this.foldingRange,
+    this.foldingRangeKind,
+    this.lineFoldingOnly,
+    this.rangeLimit,
+    this.dynamicRegistration,
   });
 
   factory FoldingRangeClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final foldingRangeJson = json['foldingRange'];
     final foldingRange =
         (foldingRangeJson as FoldingRangeClientCapabilitiesFoldingRange?);
@@ -14930,21 +14859,17 @@ class FoldingRangeClientCapabilities implements ToJson {
     final lineFoldingOnly = (lineFoldingOnlyJson as bool?);
     final rangeLimitJson = json['rangeLimit'];
     final rangeLimit = (rangeLimitJson as int?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return FoldingRangeClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       foldingRange: foldingRange,
       foldingRangeKind: foldingRangeKind,
       lineFoldingOnly: lineFoldingOnly,
       rangeLimit: rangeLimit,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Whether implementation supports dynamic registration for folding range
-  /// providers. If this is set to `true` the client supports the new
-  /// `FoldingRangeRegistrationOptions` return value for the corresponding
-  /// server capability as well.
-  final bool? dynamicRegistration;
 
   /// Specific options for the folding range.
   /// @since 3.17.0
@@ -14964,14 +14889,20 @@ class FoldingRangeClientCapabilities implements ToJson {
   /// the limit.
   final int? rangeLimit;
 
+  /// Whether implementation supports dynamic registration for folding range
+  /// providers. If this is set to `true` the client supports the new
+  /// `FoldingRangeRegistrationOptions` return value for the corresponding
+  /// server capability as well.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['foldingRange'] = foldingRange;
     json['foldingRangeKind'] = foldingRangeKind;
     json['lineFoldingOnly'] = lineFoldingOnly;
     json['rangeLimit'] = rangeLimit;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -14979,7 +14910,7 @@ class FoldingRangeClientCapabilities implements ToJson {
 
 /// Struct
 class SelectionRangeClientCapabilities implements ToJson {
-  SelectionRangeClientCapabilities({required this.dynamicRegistration});
+  SelectionRangeClientCapabilities({this.dynamicRegistration});
 
   factory SelectionRangeClientCapabilities.fromJson(Map<String, Object?> json) {
     final dynamicRegistrationJson = json['dynamicRegistration'];
@@ -15009,40 +14940,36 @@ class SelectionRangeClientCapabilities implements ToJson {
 /// The publish diagnostic client capabilities.
 class PublishDiagnosticsClientCapabilities implements ToJson {
   PublishDiagnosticsClientCapabilities({
-    required this.codeDescriptionSupport,
-    required this.dataSupport,
-    required this.relatedInformation,
-    required this.tagSupport,
-    required this.versionSupport,
+    this.dataSupport,
+    this.codeDescriptionSupport,
+    this.versionSupport,
+    this.tagSupport,
+    this.relatedInformation,
   });
 
   factory PublishDiagnosticsClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final codeDescriptionSupportJson = json['codeDescriptionSupport'];
-    final codeDescriptionSupport = (codeDescriptionSupportJson as bool?);
     final dataSupportJson = json['dataSupport'];
     final dataSupport = (dataSupportJson as bool?);
-    final relatedInformationJson = json['relatedInformation'];
-    final relatedInformation = (relatedInformationJson as bool?);
+    final codeDescriptionSupportJson = json['codeDescriptionSupport'];
+    final codeDescriptionSupport = (codeDescriptionSupportJson as bool?);
+    final versionSupportJson = json['versionSupport'];
+    final versionSupport = (versionSupportJson as bool?);
     final tagSupportJson = json['tagSupport'];
     final tagSupport =
         (tagSupportJson as PublishDiagnosticsClientCapabilitiesTagSupport?);
-    final versionSupportJson = json['versionSupport'];
-    final versionSupport = (versionSupportJson as bool?);
+    final relatedInformationJson = json['relatedInformation'];
+    final relatedInformation = (relatedInformationJson as bool?);
 
     return PublishDiagnosticsClientCapabilities(
-      codeDescriptionSupport: codeDescriptionSupport,
       dataSupport: dataSupport,
-      relatedInformation: relatedInformation,
-      tagSupport: tagSupport,
+      codeDescriptionSupport: codeDescriptionSupport,
       versionSupport: versionSupport,
+      tagSupport: tagSupport,
+      relatedInformation: relatedInformation,
     );
   }
-
-  /// Client supports a codeDescription property
-  /// @since 3.16.0
-  final bool? codeDescriptionSupport;
 
   /// Whether code action supports the `data` property which is preserved
   /// between a `textDocument/publishDiagnostics` and
@@ -15050,8 +14977,14 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
   /// @since 3.16.0
   final bool? dataSupport;
 
-  /// Whether the clients accepts diagnostics with related information.
-  final bool? relatedInformation;
+  /// Client supports a codeDescription property
+  /// @since 3.16.0
+  final bool? codeDescriptionSupport;
+
+  /// Whether the client interprets the version property of the
+  /// `textDocument/publishDiagnostics` notification's parameter.
+  /// @since 3.15.0
+  final bool? versionSupport;
 
   /// Client supports the tag property to provide meta data about a
   /// diagnostic. Clients supporting tags have to handle unknown tags
@@ -15059,19 +14992,17 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
   /// @since 3.15.0
   final PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport;
 
-  /// Whether the client interprets the version property of the
-  /// `textDocument/publishDiagnostics` notification's parameter.
-  /// @since 3.15.0
-  final bool? versionSupport;
+  /// Whether the clients accepts diagnostics with related information.
+  final bool? relatedInformation;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['codeDescriptionSupport'] = codeDescriptionSupport;
     json['dataSupport'] = dataSupport;
-    json['relatedInformation'] = relatedInformation;
-    json['tagSupport'] = tagSupport;
+    json['codeDescriptionSupport'] = codeDescriptionSupport;
     json['versionSupport'] = versionSupport;
+    json['tagSupport'] = tagSupport;
+    json['relatedInformation'] = relatedInformation;
 
     return json;
   }
@@ -15080,7 +15011,7 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
 /// Struct
 /// @since 3.16.0
 class CallHierarchyClientCapabilities implements ToJson {
-  CallHierarchyClientCapabilities({required this.dynamicRegistration});
+  CallHierarchyClientCapabilities({this.dynamicRegistration});
 
   factory CallHierarchyClientCapabilities.fromJson(Map<String, Object?> json) {
     final dynamicRegistrationJson = json['dynamicRegistration'];
@@ -15110,72 +15041,49 @@ class CallHierarchyClientCapabilities implements ToJson {
 /// @since 3.16.0
 class SemanticTokensClientCapabilities implements ToJson {
   SemanticTokensClientCapabilities({
-    required this.augmentsSyntaxTokens,
-    required this.dynamicRegistration,
-    required this.formats,
-    required this.multilineTokenSupport,
-    required this.overlappingTokenSupport,
     required this.requests,
-    required this.serverCancelSupport,
-    required this.tokenModifiers,
     required this.tokenTypes,
+    required this.tokenModifiers,
+    required this.formats,
+    this.augmentsSyntaxTokens,
+    this.serverCancelSupport,
+    this.multilineTokenSupport,
+    this.overlappingTokenSupport,
+    this.dynamicRegistration,
   });
 
   factory SemanticTokensClientCapabilities.fromJson(Map<String, Object?> json) {
-    final augmentsSyntaxTokensJson = json['augmentsSyntaxTokens'];
-    final augmentsSyntaxTokens = (augmentsSyntaxTokensJson as bool?);
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
+    final requestsJson = json['requests']!;
+    final requests = (requestsJson as SemanticTokensClientCapabilitiesRequests);
+    final tokenTypesJson = json['tokenTypes']!;
+    final tokenTypes = (tokenTypesJson as List<String>);
+    final tokenModifiersJson = json['tokenModifiers']!;
+    final tokenModifiers = (tokenModifiersJson as List<String>);
     final formatsJson = json['formats']!;
     final formats = (formatsJson as List<TokenFormat>);
+    final augmentsSyntaxTokensJson = json['augmentsSyntaxTokens'];
+    final augmentsSyntaxTokens = (augmentsSyntaxTokensJson as bool?);
+    final serverCancelSupportJson = json['serverCancelSupport'];
+    final serverCancelSupport = (serverCancelSupportJson as bool?);
     final multilineTokenSupportJson = json['multilineTokenSupport'];
     final multilineTokenSupport = (multilineTokenSupportJson as bool?);
     final overlappingTokenSupportJson = json['overlappingTokenSupport'];
     final overlappingTokenSupport = (overlappingTokenSupportJson as bool?);
-    final requestsJson = json['requests']!;
-    final requests = (requestsJson as SemanticTokensClientCapabilitiesRequests);
-    final serverCancelSupportJson = json['serverCancelSupport'];
-    final serverCancelSupport = (serverCancelSupportJson as bool?);
-    final tokenModifiersJson = json['tokenModifiers']!;
-    final tokenModifiers = (tokenModifiersJson as List<String>);
-    final tokenTypesJson = json['tokenTypes']!;
-    final tokenTypes = (tokenTypesJson as List<String>);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return SemanticTokensClientCapabilities(
-      augmentsSyntaxTokens: augmentsSyntaxTokens,
-      dynamicRegistration: dynamicRegistration,
+      requests: requests,
+      tokenTypes: tokenTypes,
+      tokenModifiers: tokenModifiers,
       formats: formats,
+      augmentsSyntaxTokens: augmentsSyntaxTokens,
+      serverCancelSupport: serverCancelSupport,
       multilineTokenSupport: multilineTokenSupport,
       overlappingTokenSupport: overlappingTokenSupport,
-      requests: requests,
-      serverCancelSupport: serverCancelSupport,
-      tokenModifiers: tokenModifiers,
-      tokenTypes: tokenTypes,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Whether the client uses semantic tokens to augment existing syntax
-  /// tokens. If set to `true` client side created syntax tokens and semantic
-  /// tokens are both used for colorization. If set to `false` the client
-  /// only uses the returned semantic tokens for colorization.
-  /// If the value is `undefined` then the client behavior is not specified.
-  /// @since 3.17.0
-  final bool? augmentsSyntaxTokens;
-
-  /// Whether implementation supports dynamic registration. If this is set to
-  /// `true` the client supports the new `(TextDocumentRegistrationOptions &
-  /// StaticRegistrationOptions)` return value for the corresponding server
-  /// capability as well.
-  final bool? dynamicRegistration;
-
-  /// The token formats the clients supports.
-  final List<TokenFormat> formats;
-
-  /// Whether the client supports tokens that can span multiple lines.
-  final bool? multilineTokenSupport;
-
-  /// Whether the client supports tokens that can overlap each other.
-  final bool? overlappingTokenSupport;
 
   /// Which requests the client supports and might send to the server
   /// depending on the server's capability. Please note that clients might
@@ -15187,30 +15095,53 @@ class SemanticTokensClientCapabilities implements ToJson {
   /// even decide to not show any semantic tokens at all.
   final SemanticTokensClientCapabilitiesRequests requests;
 
+  /// The token types that the client supports.
+  final List<String> tokenTypes;
+
+  /// The token modifiers that the client supports.
+  final List<String> tokenModifiers;
+
+  /// The token formats the clients supports.
+  final List<TokenFormat> formats;
+
+  /// Whether the client uses semantic tokens to augment existing syntax
+  /// tokens. If set to `true` client side created syntax tokens and semantic
+  /// tokens are both used for colorization. If set to `false` the client
+  /// only uses the returned semantic tokens for colorization.
+  /// If the value is `undefined` then the client behavior is not specified.
+  /// @since 3.17.0
+  final bool? augmentsSyntaxTokens;
+
   /// Whether the client allows the server to actively cancel a semantic
   /// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
   /// If a server does the client needs to retrigger the request.
   /// @since 3.17.0
   final bool? serverCancelSupport;
 
-  /// The token modifiers that the client supports.
-  final List<String> tokenModifiers;
+  /// Whether the client supports tokens that can span multiple lines.
+  final bool? multilineTokenSupport;
 
-  /// The token types that the client supports.
-  final List<String> tokenTypes;
+  /// Whether the client supports tokens that can overlap each other.
+  final bool? overlappingTokenSupport;
+
+  /// Whether implementation supports dynamic registration. If this is set to
+  /// `true` the client supports the new `(TextDocumentRegistrationOptions &
+  /// StaticRegistrationOptions)` return value for the corresponding server
+  /// capability as well.
+  final bool? dynamicRegistration;
 
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['augmentsSyntaxTokens'] = augmentsSyntaxTokens;
-    json['dynamicRegistration'] = dynamicRegistration;
+    json['requests'] = requests;
+    json['tokenTypes'] = tokenTypes;
+    json['tokenModifiers'] = tokenModifiers;
     json['formats'] = formats;
+    json['augmentsSyntaxTokens'] = augmentsSyntaxTokens;
+    json['serverCancelSupport'] = serverCancelSupport;
     json['multilineTokenSupport'] = multilineTokenSupport;
     json['overlappingTokenSupport'] = overlappingTokenSupport;
-    json['requests'] = requests;
-    json['serverCancelSupport'] = serverCancelSupport;
-    json['tokenModifiers'] = tokenModifiers;
-    json['tokenTypes'] = tokenTypes;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -15220,7 +15151,7 @@ class SemanticTokensClientCapabilities implements ToJson {
 /// Client capabilities for the linked editing range request.
 /// @since 3.16.0
 class LinkedEditingRangeClientCapabilities implements ToJson {
-  LinkedEditingRangeClientCapabilities({required this.dynamicRegistration});
+  LinkedEditingRangeClientCapabilities({this.dynamicRegistration});
 
   factory LinkedEditingRangeClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -15252,7 +15183,7 @@ class LinkedEditingRangeClientCapabilities implements ToJson {
 /// Client capabilities specific to the moniker request.
 /// @since 3.16.0
 class MonikerClientCapabilities implements ToJson {
-  MonikerClientCapabilities({required this.dynamicRegistration});
+  MonikerClientCapabilities({this.dynamicRegistration});
 
   factory MonikerClientCapabilities.fromJson(Map<String, Object?> json) {
     final dynamicRegistrationJson = json['dynamicRegistration'];
@@ -15278,7 +15209,7 @@ class MonikerClientCapabilities implements ToJson {
 /// Struct
 /// @since 3.17.0
 class TypeHierarchyClientCapabilities implements ToJson {
-  TypeHierarchyClientCapabilities({required this.dynamicRegistration});
+  TypeHierarchyClientCapabilities({this.dynamicRegistration});
 
   factory TypeHierarchyClientCapabilities.fromJson(Map<String, Object?> json) {
     final dynamicRegistrationJson = json['dynamicRegistration'];
@@ -15308,7 +15239,7 @@ class TypeHierarchyClientCapabilities implements ToJson {
 /// Client capabilities specific to inline values.
 /// @since 3.17.0
 class InlineValueClientCapabilities implements ToJson {
-  InlineValueClientCapabilities({required this.dynamicRegistration});
+  InlineValueClientCapabilities({this.dynamicRegistration});
 
   factory InlineValueClientCapabilities.fromJson(Map<String, Object?> json) {
     final dynamicRegistrationJson = json['dynamicRegistration'];
@@ -15336,37 +15267,34 @@ class InlineValueClientCapabilities implements ToJson {
 /// Inlay hint client capabilities.
 /// @since 3.17.0
 class InlayHintClientCapabilities implements ToJson {
-  InlayHintClientCapabilities({
-    required this.dynamicRegistration,
-    required this.resolveSupport,
-  });
+  InlayHintClientCapabilities({this.resolveSupport, this.dynamicRegistration});
 
   factory InlayHintClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final resolveSupportJson = json['resolveSupport'];
     final resolveSupport =
         (resolveSupportJson
             as CompletionClientCapabilitiesCompletionItemResolveSupport?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return InlayHintClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       resolveSupport: resolveSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
-
-  /// Whether inlay hints support dynamic registration.
-  final bool? dynamicRegistration;
 
   /// Indicates which properties a client can resolve lazily on an inlay hint.
   final CompletionClientCapabilitiesCompletionItemResolveSupport?
   resolveSupport;
 
+  /// Whether inlay hints support dynamic registration.
+  final bool? dynamicRegistration;
+
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['resolveSupport'] = resolveSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -15377,21 +15305,25 @@ class InlayHintClientCapabilities implements ToJson {
 /// @since 3.17.0
 class DiagnosticClientCapabilities implements ToJson {
   DiagnosticClientCapabilities({
-    required this.dynamicRegistration,
-    required this.relatedDocumentSupport,
+    this.relatedDocumentSupport,
+    this.dynamicRegistration,
   });
 
   factory DiagnosticClientCapabilities.fromJson(Map<String, Object?> json) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final relatedDocumentSupportJson = json['relatedDocumentSupport'];
     final relatedDocumentSupport = (relatedDocumentSupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return DiagnosticClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       relatedDocumentSupport: relatedDocumentSupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
+
+  /// Whether the clients supports related documents for document diagnostic
+  /// pulls.
+  final bool? relatedDocumentSupport;
 
   /// Whether implementation supports dynamic registration. If this is set to
   /// `true` the client supports the new `(TextDocumentRegistrationOptions &
@@ -15399,15 +15331,11 @@ class DiagnosticClientCapabilities implements ToJson {
   /// capability as well.
   final bool? dynamicRegistration;
 
-  /// Whether the clients supports related documents for document diagnostic
-  /// pulls.
-  final bool? relatedDocumentSupport;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['relatedDocumentSupport'] = relatedDocumentSupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -15417,7 +15345,7 @@ class DiagnosticClientCapabilities implements ToJson {
 /// Client capabilities specific to inline completions.
 /// @since 3.18.0 @proposed
 class InlineCompletionClientCapabilities implements ToJson {
-  InlineCompletionClientCapabilities({required this.dynamicRegistration});
+  InlineCompletionClientCapabilities({this.dynamicRegistration});
 
   factory InlineCompletionClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -15448,23 +15376,26 @@ class InlineCompletionClientCapabilities implements ToJson {
 /// @since 3.17.0
 class NotebookDocumentSyncClientCapabilities implements ToJson {
   NotebookDocumentSyncClientCapabilities({
-    required this.dynamicRegistration,
-    required this.executionSummarySupport,
+    this.executionSummarySupport,
+    this.dynamicRegistration,
   });
 
   factory NotebookDocumentSyncClientCapabilities.fromJson(
     Map<String, Object?> json,
   ) {
-    final dynamicRegistrationJson = json['dynamicRegistration'];
-    final dynamicRegistration = (dynamicRegistrationJson as bool?);
     final executionSummarySupportJson = json['executionSummarySupport'];
     final executionSummarySupport = (executionSummarySupportJson as bool?);
+    final dynamicRegistrationJson = json['dynamicRegistration'];
+    final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
     return NotebookDocumentSyncClientCapabilities(
-      dynamicRegistration: dynamicRegistration,
       executionSummarySupport: executionSummarySupport,
+      dynamicRegistration: dynamicRegistration,
     );
   }
+
+  /// The client supports sending execution summary data per cell.
+  final bool? executionSummarySupport;
 
   /// Whether implementation supports dynamic registration. If this is set to
   /// `true` the client supports the new `(TextDocumentRegistrationOptions &
@@ -15472,14 +15403,11 @@ class NotebookDocumentSyncClientCapabilities implements ToJson {
   /// capability as well.
   final bool? dynamicRegistration;
 
-  /// The client supports sending execution summary data per cell.
-  final bool? executionSummarySupport;
-
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['dynamicRegistration'] = dynamicRegistration;
     json['executionSummarySupport'] = executionSummarySupport;
+    json['dynamicRegistration'] = dynamicRegistration;
 
     return json;
   }
@@ -15488,7 +15416,7 @@ class NotebookDocumentSyncClientCapabilities implements ToJson {
 /// Struct
 /// Show message request client capabilities
 class ShowMessageRequestClientCapabilities implements ToJson {
-  ShowMessageRequestClientCapabilities({required this.messageActionItem});
+  ShowMessageRequestClientCapabilities({this.messageActionItem});
 
   factory ShowMessageRequestClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -15545,10 +15473,7 @@ class ShowDocumentClientCapabilities implements ToJson {
 /// Client capabilities specific to regular expressions.
 /// @since 3.16.0
 class RegularExpressionsClientCapabilities implements ToJson {
-  RegularExpressionsClientCapabilities({
-    required this.engine,
-    required this.version,
-  });
+  RegularExpressionsClientCapabilities({required this.engine, this.version});
 
   factory RegularExpressionsClientCapabilities.fromJson(
     Map<String, Object?> json,
@@ -15585,32 +15510,32 @@ class RegularExpressionsClientCapabilities implements ToJson {
 /// @since 3.16.0
 class MarkdownClientCapabilities implements ToJson {
   MarkdownClientCapabilities({
-    required this.allowedTags,
     required this.parser,
-    required this.version,
+    this.allowedTags,
+    this.version,
   });
 
   factory MarkdownClientCapabilities.fromJson(Map<String, Object?> json) {
-    final allowedTagsJson = json['allowedTags'];
-    final allowedTags = (allowedTagsJson as List<String>?);
     final parserJson = json['parser']!;
     final parser = (parserJson as String);
+    final allowedTagsJson = json['allowedTags'];
+    final allowedTags = (allowedTagsJson as List<String>?);
     final versionJson = json['version'];
     final version = (versionJson as String?);
 
     return MarkdownClientCapabilities(
-      allowedTags: allowedTags,
       parser: parser,
+      allowedTags: allowedTags,
       version: version,
     );
   }
 
+  /// The name of the parser.
+  final String parser;
+
   /// A list of HTML tags that the client allows / supports in Markdown.
   /// @since 3.17.0
   final List<String>? allowedTags;
-
-  /// The name of the parser.
-  final String parser;
 
   /// The version of the parser.
   final String? version;
@@ -15618,8 +15543,8 @@ class MarkdownClientCapabilities implements ToJson {
   @override
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
-    json['allowedTags'] = allowedTags;
     json['parser'] = parser;
+    json['allowedTags'] = allowedTags;
     json['version'] = version;
 
     return json;
@@ -16487,7 +16412,7 @@ const _$TokenFormatEnumMap = {TokenFormat.relativeValue: 'relative'};
 /// Information about the server.
 /// @since 3.15.0
 class InitializeResultServerInfo implements ToJson {
-  InitializeResultServerInfo({required this.name, required this.version});
+  InitializeResultServerInfo({required this.name, this.version});
 
   factory InitializeResultServerInfo.fromJson(Map<String, Object?> json) {
     final nameJson = json['name']!;
@@ -16526,11 +16451,11 @@ class InitializeResultServerInfo implements ToJson {
 /// @since 3.17.0
 class CompletionListItemDefaults implements ToJson {
   CompletionListItemDefaults({
-    required this.commitCharacters,
-    required this.editRange,
-    required this.insertTextFormat,
-    required this.insertTextMode,
-    required this.data,
+    this.commitCharacters,
+    this.editRange,
+    this.insertTextFormat,
+    this.insertTextMode,
+    this.data,
   });
 
   factory CompletionListItemDefaults.fromJson(Map<String, Object?> json) {
@@ -16629,9 +16554,9 @@ class CodeActionDisabled implements ToJson {
 /// Changes to cells
 class NotebookDocumentChangeEventCells implements ToJson {
   NotebookDocumentChangeEventCells({
-    required this.structure,
-    required this.data,
-    required this.textContent,
+    this.structure,
+    this.data,
+    this.textContent,
   });
 
   factory NotebookDocumentChangeEventCells.fromJson(Map<String, Object?> json) {
@@ -16677,8 +16602,8 @@ class NotebookDocumentChangeEventCells implements ToJson {
 class NotebookDocumentChangeEventCellsStructure implements ToJson {
   NotebookDocumentChangeEventCellsStructure({
     required this.array,
-    required this.didOpen,
-    required this.didClose,
+    this.didOpen,
+    this.didClose,
   });
 
   factory NotebookDocumentChangeEventCellsStructure.fromJson(
@@ -16762,7 +16687,7 @@ class NotebookDocumentChangeEventCellsTextContent implements ToJson {
 /// Information about the client
 /// @since 3.15.0
 class InitializeParamsClientInfo implements ToJson {
-  InitializeParamsClientInfo({required this.name, required this.version});
+  InitializeParamsClientInfo({required this.name, this.version});
 
   factory InitializeParamsClientInfo.fromJson(Map<String, Object?> json) {
     final nameJson = json['name']!;
@@ -16792,10 +16717,7 @@ class InitializeParamsClientInfo implements ToJson {
 /// Literal
 /// Workspace specific server capabilities.
 class ServerCapabilitiesWorkspace implements ToJson {
-  ServerCapabilitiesWorkspace({
-    required this.workspaceFolders,
-    required this.fileOperations,
-  });
+  ServerCapabilitiesWorkspace({this.workspaceFolders, this.fileOperations});
 
   factory ServerCapabilitiesWorkspace.fromJson(Map<String, Object?> json) {
     final workspaceFoldersJson = json['workspaceFolders'];
@@ -16833,7 +16755,7 @@ class ServerCapabilitiesWorkspace implements ToJson {
 /// The server supports the following `CompletionItem` specific capabilities.
 /// @since 3.17.0
 class CompletionOptionsCompletionItem implements ToJson {
-  CompletionOptionsCompletionItem({required this.labelDetailsSupport});
+  CompletionOptionsCompletionItem({this.labelDetailsSupport});
 
   factory CompletionOptionsCompletionItem.fromJson(Map<String, Object?> json) {
     final labelDetailsSupportJson = json['labelDetailsSupport'];
@@ -16906,9 +16828,7 @@ class GeneralClientCapabilitiesStaleRequestSupport implements ToJson {
 /// create file, rename file and delete file changes.
 /// @since 3.16.0
 class WorkspaceEditClientCapabilitiesChangeAnnotationSupport implements ToJson {
-  WorkspaceEditClientCapabilitiesChangeAnnotationSupport({
-    required this.groupsOnLabel,
-  });
+  WorkspaceEditClientCapabilitiesChangeAnnotationSupport({this.groupsOnLabel});
 
   factory WorkspaceEditClientCapabilitiesChangeAnnotationSupport.fromJson(
     Map<String, Object?> json,
@@ -16939,7 +16859,7 @@ class WorkspaceEditClientCapabilitiesChangeAnnotationSupport implements ToJson {
 /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
 /// request.
 class WorkspaceSymbolClientCapabilitiesSymbolKind implements ToJson {
-  WorkspaceSymbolClientCapabilitiesSymbolKind({required this.valueSet});
+  WorkspaceSymbolClientCapabilitiesSymbolKind({this.valueSet});
 
   factory WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(
     Map<String, Object?> json,
@@ -17031,16 +16951,16 @@ class WorkspaceSymbolClientCapabilitiesResolveSupport implements ToJson {
 /// The client supports the following `CompletionItem` specific capabilities.
 class CompletionClientCapabilitiesCompletionItem implements ToJson {
   CompletionClientCapabilitiesCompletionItem({
-    required this.snippetSupport,
-    required this.commitCharactersSupport,
-    required this.documentationFormat,
-    required this.deprecatedSupport,
-    required this.preselectSupport,
-    required this.tagSupport,
-    required this.insertReplaceSupport,
-    required this.resolveSupport,
-    required this.insertTextModeSupport,
-    required this.labelDetailsSupport,
+    this.snippetSupport,
+    this.commitCharactersSupport,
+    this.documentationFormat,
+    this.deprecatedSupport,
+    this.preselectSupport,
+    this.tagSupport,
+    this.insertReplaceSupport,
+    this.resolveSupport,
+    this.insertTextModeSupport,
+    this.labelDetailsSupport,
   });
 
   factory CompletionClientCapabilitiesCompletionItem.fromJson(
@@ -17259,7 +17179,7 @@ class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
 
 /// Literal
 class CompletionClientCapabilitiesCompletionItemKind implements ToJson {
-  CompletionClientCapabilitiesCompletionItemKind({required this.valueSet});
+  CompletionClientCapabilitiesCompletionItemKind({this.valueSet});
 
   factory CompletionClientCapabilitiesCompletionItemKind.fromJson(
     Map<String, Object?> json,
@@ -17291,7 +17211,7 @@ class CompletionClientCapabilitiesCompletionItemKind implements ToJson {
 /// The client supports the following `CompletionList` specific capabilities.
 /// @since 3.17.0
 class CompletionClientCapabilitiesCompletionList implements ToJson {
-  CompletionClientCapabilitiesCompletionList({required this.itemDefaults});
+  CompletionClientCapabilitiesCompletionList({this.itemDefaults});
 
   factory CompletionClientCapabilitiesCompletionList.fromJson(
     Map<String, Object?> json,
@@ -17325,9 +17245,9 @@ class CompletionClientCapabilitiesCompletionList implements ToJson {
 /// properties.
 class SignatureHelpClientCapabilitiesSignatureInformation implements ToJson {
   SignatureHelpClientCapabilitiesSignatureInformation({
-    required this.documentationFormat,
-    required this.parameterInformation,
-    required this.activeParameterSupport,
+    this.documentationFormat,
+    this.parameterInformation,
+    this.activeParameterSupport,
   });
 
   factory SignatureHelpClientCapabilitiesSignatureInformation.fromJson(
@@ -17378,7 +17298,7 @@ class SignatureHelpClientCapabilitiesSignatureInformation implements ToJson {
 class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
     implements ToJson {
   SignatureHelpClientCapabilitiesSignatureInformationParameterInformation({
-    required this.labelOffsetSupport,
+    this.labelOffsetSupport,
   });
 
   factory SignatureHelpClientCapabilitiesSignatureInformationParameterInformation.fromJson(
@@ -17479,7 +17399,7 @@ class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
 /// Specific options for the folding range kind.
 /// @since 3.17.0
 class FoldingRangeClientCapabilitiesFoldingRangeKind implements ToJson {
-  FoldingRangeClientCapabilitiesFoldingRangeKind({required this.valueSet});
+  FoldingRangeClientCapabilitiesFoldingRangeKind({this.valueSet});
 
   factory FoldingRangeClientCapabilitiesFoldingRangeKind.fromJson(
     Map<String, Object?> json,
@@ -17508,7 +17428,7 @@ class FoldingRangeClientCapabilitiesFoldingRangeKind implements ToJson {
 /// Specific options for the folding range.
 /// @since 3.17.0
 class FoldingRangeClientCapabilitiesFoldingRange implements ToJson {
-  FoldingRangeClientCapabilitiesFoldingRange({required this.collapsedText});
+  FoldingRangeClientCapabilitiesFoldingRange({this.collapsedText});
 
   factory FoldingRangeClientCapabilitiesFoldingRange.fromJson(
     Map<String, Object?> json,
@@ -17573,10 +17493,7 @@ class PublishDiagnosticsClientCapabilitiesTagSupport implements ToJson {
 /// not render a minimap correctly or might even decide to not show any
 /// semantic tokens at all.
 class SemanticTokensClientCapabilitiesRequests implements ToJson {
-  SemanticTokensClientCapabilitiesRequests({
-    required this.range,
-    required this.full,
-  });
+  SemanticTokensClientCapabilitiesRequests({this.range, this.full});
 
   factory SemanticTokensClientCapabilitiesRequests.fromJson(
     Map<String, Object?> json,
@@ -17611,7 +17528,7 @@ class SemanticTokensClientCapabilitiesRequests implements ToJson {
 /// Capabilities specific to the `MessageActionItem` type.
 class ShowMessageRequestClientCapabilitiesMessageActionItem implements ToJson {
   ShowMessageRequestClientCapabilitiesMessageActionItem({
-    required this.additionalPropertiesSupport,
+    this.additionalPropertiesSupport,
   });
 
   factory ShowMessageRequestClientCapabilitiesMessageActionItem.fromJson(
