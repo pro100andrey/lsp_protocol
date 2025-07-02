@@ -512,16 +512,24 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     for (final field in allFields) {
       final propertyName = field.name;
       final propertyType = field.type;
-      final dartType = propertyType.resolveType(_typeResolverVisitor);
+      final isOptional = field.optional;
+      final dartType = _applyOptional(
+        propertyType.resolveType(_typeResolverVisitor),
+        isOptional,
+      );
 
       // Add to constructor arguments list
       constructorNamedArgs[propertyName] = refer(propertyName);
 
-      final mapTypeRef = refer('Map<String, Object?>');
+      final mapTypeRef = refer(
+        _applyOptional('Map<String, Object?>', isOptional),
+      );
       final varJsonName = '${propertyName}Json';
 
       final key = literalString(propertyName);
-      final mapAsPart = _jsonRef.index(key).nullChecked;
+      final mapAsPart = isOptional
+          ? _jsonRef.index(key)
+          : _jsonRef.index(key).nullChecked;
       // final varJson = json['key'] as Map<String, Object?>?;
       final finalJson = declareFinal(varJsonName).assign(mapAsPart);
       fromJsonBody.addExpression(finalJson);
@@ -616,7 +624,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final jsonMap = declareFinal('json').assign(map);
 
     toJsonBody.addExpression(jsonMap);
-    toJsonBody.statements.add(const Code('\n'));
 
     for (final field in allFields) {
       final propertyName = field.name;
@@ -636,6 +643,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         toJsonBody.addExpression(
           _jsonRef.index(key).assign(value),
         );
+
         continue;
       }
 
@@ -654,6 +662,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         toJsonBody.addExpression(_jsonRef.index(key).assign(valueRef));
       }
     }
+
+    toJsonBody.statements.add(const Code('\n'));
 
     // return json;
     toJsonBody.addExpression(_jsonRef.returned);
