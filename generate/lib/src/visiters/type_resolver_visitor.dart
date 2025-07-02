@@ -22,40 +22,35 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
       typeName, // Return as is if not a known primitive (e.g., custom structures/enums)
   };
 
-  /// Appends '?' if the type is optional.
-  String _applyOptional(String type, bool isOptional) =>
-      isOptional ? '$type?' : type;
-
   @override
   String visitTypeRef(TypeRef ref) {
     final structure = _structures[ref.name];
 
     if (structure != null) {
-      return _applyOptional(structure.name, ref.optional);
+      return structure.name;
     }
 
     final enumeration = _enumerations[ref.name];
     if (enumeration != null) {
       // Enums are generated as Dart enums, so their name is the Dart type.
-      return _applyOptional(enumeration.name, ref.optional);
+      return enumeration.name;
     }
 
-    return _applyOptional(_resolveDartPrimitiveType(ref.name), ref.optional);
+    return _resolveDartPrimitiveType(ref.name);
   }
 
   @override
   String visitArrayRef(ArrayRef ref) {
     // Recursively resolve the element type
     final elementType = ref.element.resolveType(this);
-    return _applyOptional('List<$elementType>', ref.optional);
+    return 'List<$elementType>';
   }
 
   @override
-  String visitBaseRef(BaseRef ref) =>
-      _applyOptional(_resolveDartPrimitiveType(ref.name), ref.optional);
+  String visitBaseRef(BaseRef ref) => _resolveDartPrimitiveType(ref.name);
 
   @override
-  String visitOrRef(OrRef ref) => _applyOptional('OrRefType', ref.optional);
+  String visitOrRef(OrRef ref) => 'OrRefType';
 
   @override
   // ignore: prefer_expression_function_bodies
@@ -74,8 +69,8 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
     // Recursively resolve key and value types
     final keyType = ref.key.resolveType(this);
     final valueType = ref.value.resolveType(this);
-    
-    return _applyOptional('Map<$keyType, $valueType>', ref.optional);
+
+    return 'Map<$keyType, $valueType>';
   }
 
   @override
@@ -87,17 +82,16 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
       throw ArgumentError('LiteralRef not found: $ref');
     }
 
-    return _applyOptional(literal.name, ref.optional);
+    return literal.name;
   }
 
   @override
-  String visitStringLiteralRef(StringLiteralRef ref) =>
-      _applyOptional('String', ref.optional);
+  String visitStringLiteralRef(StringLiteralRef ref) => 'String';
 
   @override
   // ignore: prefer_expression_function_bodies
   String visitTupleRef(TupleRef ref) {
     // Tuples are often represented as List<Object> or a specific data class.
-    return _applyOptional('Object', ref.optional);
+    return 'Object';
   }
 }

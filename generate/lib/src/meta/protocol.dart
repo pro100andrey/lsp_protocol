@@ -88,35 +88,30 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
   const factory MetaReference.type({
     required TypeKind kind,
     required String name,
-    @Default(false) bool optional,
   }) = TypeRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('array')
   const factory MetaReference.array({
     required MetaReference element,
-    @Default(false) bool optional,
   }) = ArrayRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('base')
   const factory MetaReference.base({
     required String name,
-    @Default(false) bool optional,
   }) = BaseRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('or')
   const factory MetaReference.or({
     required List<MetaReference> items,
-    @Default(false) bool optional,
   }) = OrRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('and')
   const factory MetaReference.and({
     required List<TypeRef> items,
-    @Default(false) bool optional,
   }) = AndRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
@@ -124,28 +119,24 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
   const factory MetaReference.map({
     required TypeRef key,
     required MetaReference value,
-    @Default(false) bool optional,
   }) = MapRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('literal')
   const factory MetaReference.literal({
     required MetaLiteral value,
-    @Default(false) bool optional,
   }) = LiteralRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('stringLiteral')
   const factory MetaReference.stringLiteral({
     required String value,
-    @Default(false) bool optional,
   }) = StringLiteralRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('tuple')
   const factory MetaReference.tuple({
     required List<TypeRef> items,
-    @Default(false) bool optional,
   }) = TupleRef;
 
   factory MetaReference.fromJson(Map<String, Object?> json) =>
@@ -156,18 +147,6 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
     'MetaReference should not be visited directly by MetaProtocolVisitor '
     'for type resolution. Use its specific visit methods instead.',
   );
-
-  bool isOptional() => switch (this) {
-    final TypeRef ref => ref.optional,
-    final ArrayRef ref => ref.optional,
-    final BaseRef ref => ref.optional,
-    final OrRef ref => ref.optional,
-    final AndRef ref => ref.optional,
-    final MapRef ref => ref.optional,
-    final LiteralRef ref => ref.optional,
-    final StringLiteralRef ref => ref.optional,
-    final TupleRef ref => ref.optional,
-  };
 
   R resolveType<R>(MetaReferenceVisitor<R> visitor) => switch (this) {
     final TypeRef ref => visitor.visitTypeRef(ref),

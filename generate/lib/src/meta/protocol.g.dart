@@ -112,18 +112,16 @@ const _$MessageDirectionEnumMap = {
 };
 
 TypeRef _$TypeRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['kind', 'name', 'optional']);
+  $checkKeys(json, allowedKeys: const ['kind', 'name']);
   return TypeRef(
     kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
     name: json['name'] as String,
-    optional: json['optional'] as bool? ?? false,
   );
 }
 
 Map<String, dynamic> _$TypeRefToJson(TypeRef instance) => <String, dynamic>{
   'kind': _$TypeKindEnumMap[instance.kind]!,
   'name': instance.name,
-  'optional': instance.optional,
 };
 
 const _$TypeKindEnumMap = {
@@ -139,75 +137,63 @@ const _$TypeKindEnumMap = {
 };
 
 ArrayRef _$ArrayRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['element', 'optional', 'kind']);
+  $checkKeys(json, allowedKeys: const ['element', 'kind']);
   return ArrayRef(
     element: MetaReference.fromJson(json['element'] as Map<String, dynamic>),
-    optional: json['optional'] as bool? ?? false,
     $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$ArrayRefToJson(ArrayRef instance) => <String, dynamic>{
   'element': instance.element,
-  'optional': instance.optional,
   'kind': instance.$type,
 };
 
 BaseRef _$BaseRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['name', 'optional', 'kind']);
-  return BaseRef(
-    name: json['name'] as String,
-    optional: json['optional'] as bool? ?? false,
-    $type: json['kind'] as String?,
-  );
+  $checkKeys(json, allowedKeys: const ['name', 'kind']);
+  return BaseRef(name: json['name'] as String, $type: json['kind'] as String?);
 }
 
 Map<String, dynamic> _$BaseRefToJson(BaseRef instance) => <String, dynamic>{
   'name': instance.name,
-  'optional': instance.optional,
   'kind': instance.$type,
 };
 
 OrRef _$OrRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['items', 'optional', 'kind']);
+  $checkKeys(json, allowedKeys: const ['items', 'kind']);
   return OrRef(
     items: (json['items'] as List<dynamic>)
         .map((e) => MetaReference.fromJson(e as Map<String, dynamic>))
         .toList(),
-    optional: json['optional'] as bool? ?? false,
     $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$OrRefToJson(OrRef instance) => <String, dynamic>{
   'items': instance.items,
-  'optional': instance.optional,
   'kind': instance.$type,
 };
 
 AndRef _$AndRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['items', 'optional', 'kind']);
+  $checkKeys(json, allowedKeys: const ['items', 'kind']);
   return AndRef(
     items: (json['items'] as List<dynamic>)
         .map((e) => TypeRef.fromJson(e as Map<String, dynamic>))
         .toList(),
-    optional: json['optional'] as bool? ?? false,
     $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$AndRefToJson(AndRef instance) => <String, dynamic>{
   'items': instance.items,
-  'optional': instance.optional,
   'kind': instance.$type,
 };
 
 MapRef _$MapRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['key', 'value', 'optional', 'kind']);
+  $checkKeys(json, allowedKeys: const ['key', 'value', 'kind']);
   return MapRef(
     key: TypeRef.fromJson(json['key'] as Map<String, dynamic>),
     value: MetaReference.fromJson(json['value'] as Map<String, dynamic>),
-    optional: json['optional'] as bool? ?? false,
     $type: json['kind'] as String?,
   );
 }
@@ -215,56 +201,43 @@ MapRef _$MapRefFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$MapRefToJson(MapRef instance) => <String, dynamic>{
   'key': instance.key,
   'value': instance.value,
-  'optional': instance.optional,
   'kind': instance.$type,
 };
 
 LiteralRef _$LiteralRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['value', 'optional', 'kind']);
+  $checkKeys(json, allowedKeys: const ['value', 'kind']);
   return LiteralRef(
     value: MetaLiteral.fromJson(json['value'] as Map<String, dynamic>),
-    optional: json['optional'] as bool? ?? false,
     $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$LiteralRefToJson(LiteralRef instance) =>
-    <String, dynamic>{
-      'value': instance.value,
-      'optional': instance.optional,
-      'kind': instance.$type,
-    };
+    <String, dynamic>{'value': instance.value, 'kind': instance.$type};
 
 StringLiteralRef _$StringLiteralRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['value', 'optional', 'kind']);
+  $checkKeys(json, allowedKeys: const ['value', 'kind']);
   return StringLiteralRef(
     value: json['value'] as String,
-    optional: json['optional'] as bool? ?? false,
     $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$StringLiteralRefToJson(StringLiteralRef instance) =>
-    <String, dynamic>{
-      'value': instance.value,
-      'optional': instance.optional,
-      'kind': instance.$type,
-    };
+    <String, dynamic>{'value': instance.value, 'kind': instance.$type};
 
 TupleRef _$TupleRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['items', 'optional', 'kind']);
+  $checkKeys(json, allowedKeys: const ['items', 'kind']);
   return TupleRef(
     items: (json['items'] as List<dynamic>)
         .map((e) => TypeRef.fromJson(e as Map<String, dynamic>))
         .toList(),
-    optional: json['optional'] as bool? ?? false,
     $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$TupleRefToJson(TupleRef instance) => <String, dynamic>{
   'items': instance.items,
-  'optional': instance.optional,
   'kind': instance.$type,
 };
 

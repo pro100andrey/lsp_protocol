@@ -37,7 +37,13 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   late final TypeResolverVisitor _typeResolverVisitor;
 
-  Reference get toJsonClassRef => refer('ToJson');
+  Reference get _toJsonRef => refer('ToJson');
+  Reference get _orRefTypeRef => refer('OrRefType');
+  Reference get _jsonRef => refer('json');
+  Reference get _fromJsonMethodRef => refer('fromJson');
+  Reference get _toJsonMethodRef => refer('toJson');
+  Reference get _overrideRef => refer('override');
+  Reference get _stringRef => refer('String');
 
   void _collectLiterals(MetaProperty property, String prefix) {
     // remove first letter from prefix if equal to '_'
@@ -149,15 +155,15 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       cb
         ..docs.addAll(['/// Literal'] + formattedDescription)
         ..name = literalDefinition.name
-        ..implements.add(toJsonClassRef);
+        ..implements.add(_toJsonRef);
 
-      _addStructFields(
+      _generateFields(
         cb: cb,
         allFields: literalDefinition.properties,
         inheritedPropertyNames: {},
       );
 
-      _addFromJsonFactory(cb: cb, allFields: literalDefinition.properties);
+      _generateFromJsonFactory(cb: cb, allFields: literalDefinition.properties);
 
       _generateToJson(cb: cb, allFields: literalDefinition.properties);
     });
@@ -177,7 +183,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         structure.extends$.isNotEmpty || structure.mixins$.isNotEmpty;
 
     final toImplements = [
-      if (!isInherited) toJsonClassRef,
+      if (!isInherited) _toJsonRef,
       // Use resolveType for extends and mixins references
       ...structure.extends$.map(
         (e) => refer(e.resolveType(_typeResolverVisitor)),
@@ -196,13 +202,13 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         ..name = structure.name
         ..implements.addAll(toImplements);
 
-      _addStructFields(
+      _generateFields(
         cb: cb,
         allFields: allFields,
         inheritedPropertyNames: inheritedPropertyNames,
       );
 
-      _addFromJsonFactory(cb: cb, allFields: allFields);
+      _generateFromJsonFactory(cb: cb, allFields: allFields);
 
       _generateToJson(cb: cb, allFields: allFields);
     });
@@ -237,7 +243,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
             fb
               ..name = 'value'
               ..modifier = FieldModifier.final$
-              ..type = refer('String')
+              ..type = _stringRef
               ..docs.add('// The type of this enumeration.');
           },
         ),
@@ -370,13 +376,13 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   /// Generates the base ToJson class.
   Class _generateToJsonClass() => Class((cb) {
     cb
-      ..name = toJsonClassRef.symbol
+      ..name = _toJsonRef.symbol
       ..abstract = true
       ..methods.add(
         Method(
           (mb) {
             mb
-              ..name = 'toJson'
+              ..name = _toJsonMethodRef.symbol
               ..returns = refer('Map<String, dynamic>')
               ..body = const Code('throw UnimplementedError();');
           },
@@ -387,7 +393,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   /// Generate Or Ref class.
   Class _generateOrRefClass() => Class((cb) {
     cb
-      ..name = 'OrRefType'
+      ..name = _orRefTypeRef.symbol
       ..sealed = true;
   });
 
@@ -440,7 +446,11 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     return collectedProperties;
   }
 
-  void _addStructFields({
+  /// Appends '?' if the type is optional.
+  String _applyOptional(String type, bool isOptional) =>
+      isOptional ? '$type?' : type;
+
+  void _generateFields({
     required ClassBuilder cb,
     required List<MetaProperty> allFields,
     Set<String> inheritedPropertyNames = const {},
@@ -452,7 +462,11 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
               formatDocComment(property.documentation, maxLineLength: 76) ?? [];
 
           // Use the type resolver for property types
-          final propType = property.type.resolveType(_typeResolverVisitor);
+          final propType = _applyOptional(
+            property.type.resolveType(_typeResolverVisitor),
+            property.optional,
+          );
+
           final propName = property.name;
 
           return Field(
@@ -463,7 +477,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
                 ..name = propName
                 ..type = refer(propType);
               if (inheritedPropertyNames.contains(propName)) {
-                fb.annotations.add(refer('override'));
+                fb.annotations.add(_overrideRef);
               }
             },
           );
@@ -488,7 +502,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     );
   }
 
-  void _addFromJsonFactory({
+  void _generateFromJsonFactory({
     required ClassBuilder cb,
     required List<MetaProperty> allFields,
   }) {
@@ -507,7 +521,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final varJsonName = '${propertyName}Json';
 
       final key = literalString(propertyName);
-      final mapAsPart = refer('json').index(key).nullChecked;
+      final mapAsPart = _jsonRef.index(key).nullChecked;
       // final varJson = json['key'] as Map<String, Object?>?;
       final finalJson = declareFinal(varJsonName).assign(mapAsPart);
       fromJsonBody.addExpression(finalJson);
@@ -540,10 +554,14 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
       if (isComplexType) {
         // If the type is complex, we need to call its fromJson method
-        final fromJsonCall = refer(dartType).property('fromJson');
+        final fromJsonCall = refer(
+          dartType,
+        ).property(_fromJsonMethodRef.symbol!);
+
         final fromJsonCallExpr = fromJsonCall.call([
           refer(varJsonName).asA(mapTypeRef),
         ]);
+
         final fieldAssignment = declareFinal(
           propertyName,
         ).assign(fromJsonCallExpr);
@@ -574,12 +592,12 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
     final constructor = Constructor((cb) {
       cb
-        ..name = 'fromJson'
+        ..name = _fromJsonMethodRef.symbol
         ..factory = true
         ..requiredParameters.add(
           Parameter((pb) {
             pb
-              ..name = 'json'
+              ..name = _jsonRef.symbol!
               ..type = refer('Map<String, Object?>');
           }),
         )
@@ -594,7 +612,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     required List<MetaProperty> allFields,
   }) {
     final toJsonBody = BlockBuilder();
-    final map = literalMap({}, refer('String'), refer('Object?'));
+    final map = literalMap({}, _stringRef, refer('Object?'));
     final jsonMap = declareFinal('json').assign(map);
 
     toJsonBody.addExpression(jsonMap);
@@ -610,38 +628,41 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final valueRef = refer(propertyName);
 
       if (_enumerations.containsKey(dartType)) {
+        final value = field.optional
+            ? valueRef.nullSafeProperty('value')
+            : valueRef.property('value');
+
         // Handle enum type
         toJsonBody.addExpression(
-          refer('json')
-              .index(key)
-              .assign(
-                valueRef.property('value'),
-              ),
+          _jsonRef.index(key).assign(value),
         );
         continue;
       }
 
       if (_structures.containsKey(dartType)) {
         // If the type is complex, we need to call its toJson method
-        final toJsonCall = valueRef.property('toJson');
+        final toJsonCall = field.optional
+            ? valueRef.nullSafeProperty(_toJsonMethodRef.symbol!)
+            : valueRef.property(_toJsonMethodRef.symbol!);
+
         final toJsonCallExpr = toJsonCall.call([]);
         toJsonBody.addExpression(
-          refer('json').index(key).assign(toJsonCallExpr),
+          _jsonRef.index(key).assign(toJsonCallExpr),
         );
       } else {
         // For simple types, we can directly assign
-        toJsonBody.addExpression(refer('json').index(key).assign(valueRef));
+        toJsonBody.addExpression(_jsonRef.index(key).assign(valueRef));
       }
     }
 
     // return json;
-    toJsonBody.addExpression(refer('json').returned);
+    toJsonBody.addExpression(_jsonRef.returned);
 
     cb.methods.add(
       Method((mb) {
         mb
-          ..name = 'toJson'
-          ..annotations.add(refer('override'))
+          ..name = _toJsonMethodRef.symbol
+          ..annotations.add(_overrideRef)
           ..returns = refer('Map<String, Object?>')
           ..body = toJsonBody.build();
       }),
