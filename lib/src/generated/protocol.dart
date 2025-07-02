@@ -220,11 +220,13 @@ enum Method {
 }
 
 abstract class ToJson {
+  /// Converts this object to a JSON map.
   Map<String, dynamic> toJson() {
     throw UnimplementedError();
   }
 }
 
+/// Represents a reference type that can be one of multiple types.
 sealed class OrRefType {}
 
 /// The definition of a symbol represented as one or many {@link Location

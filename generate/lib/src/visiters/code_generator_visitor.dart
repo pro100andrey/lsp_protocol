@@ -46,50 +46,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Reference get _stringRef => refer('String');
   Reference get _mapJsonRef => refer('Map<String, Object?>');
 
-  void _collectLiterals(MetaProperty property, String prefix) {
-    // remove first letter from prefix if equal to '_'
-    final fixedPrefix = prefix.startsWith('_') ? prefix.substring(1) : prefix;
-
-    if (property.type is ArrayRef) {
-      final ref = property.type as ArrayRef;
-
-      if (ref.element is LiteralRef) {
-        final literalRef = ref.element as LiteralRef;
-        _processLiteralRef(literalRef, property, fixedPrefix);
-      }
-    }
-
-    if (property.type is LiteralRef) {
-      final ref = property.type as LiteralRef;
-      _processLiteralRef(ref, property, fixedPrefix);
-    }
-  }
-
-  void _processLiteralRef(
-    LiteralRef literalRef,
-    MetaProperty containingProperty,
-    String parentTypeName,
-  ) {
-    if (_literals.containsKey(literalRef)) {
-      return;
-    }
-
-    final typeName =
-        '$parentTypeName${upperFirstLetter(containingProperty.name)}';
-
-    // Store the literal definition
-    _literals[literalRef] = (
-      name: typeName,
-      properties: literalRef.value.properties,
-      documentation: containingProperty.documentation,
-    );
-
-    // Recursively collect nested literals within this new literal's properties
-    for (final subProperty in literalRef.value.properties) {
-      _collectLiterals(subProperty, typeName);
-    }
-  }
-
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
@@ -214,6 +170,50 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
       _generateToJson(cb: cb, allFields: allFields);
     });
+  }
+
+  void _collectLiterals(MetaProperty property, String prefix) {
+    // remove first letter from prefix if equal to '_'
+    final fixedPrefix = prefix.startsWith('_') ? prefix.substring(1) : prefix;
+
+    if (property.type is ArrayRef) {
+      final ref = property.type as ArrayRef;
+
+      if (ref.element is LiteralRef) {
+        final literalRef = ref.element as LiteralRef;
+        _processLiteralRef(literalRef, property, fixedPrefix);
+      }
+    }
+
+    if (property.type is LiteralRef) {
+      final ref = property.type as LiteralRef;
+      _processLiteralRef(ref, property, fixedPrefix);
+    }
+  }
+
+  void _processLiteralRef(
+    LiteralRef literalRef,
+    MetaProperty containingProperty,
+    String parentTypeName,
+  ) {
+    if (_literals.containsKey(literalRef)) {
+      return;
+    }
+
+    final typeName =
+        '$parentTypeName${upperFirstLetter(containingProperty.name)}';
+
+    // Store the literal definition
+    _literals[literalRef] = (
+      name: typeName,
+      properties: literalRef.value.properties,
+      documentation: containingProperty.documentation,
+    );
+
+    // Recursively collect nested literals within this new literal's properties
+    for (final subProperty in literalRef.value.properties) {
+      _collectLiterals(subProperty, typeName);
+    }
   }
 
   Spec _generateMethodEnum(List<MetaRequest> requests) => Enum((eb) {
@@ -385,6 +385,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
           (mb) {
             mb
               ..name = _toJsonMethodRef.symbol
+              ..docs.add(
+                '/// Converts this object to a JSON map.',
+              )
               ..returns = refer('Map<String, dynamic>')
               ..body = const Code('throw UnimplementedError();');
           },
@@ -395,6 +398,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   /// Generate Or Ref class.
   Class _generateOrRefClass() => Class((cb) {
     cb
+      ..docs.add(
+        '/// Represents a reference type that can be one of multiple types.',
+      )
       ..name = _orRefTypeRef.symbol
       ..sealed = true;
   });
