@@ -17555,30 +17555,3 @@ class ShowMessageRequestClientCapabilitiesMessageActionItem implements ToJson {
     return json;
   }
 }
-
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation
-// MetaNotification visitor not implemented for generation

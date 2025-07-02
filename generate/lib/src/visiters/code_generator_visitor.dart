@@ -119,9 +119,10 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.add(visitLiteralDefinition(literal));
       }
       // Generate notifications
-      for (final notification in protocol.notifications) {
-        b.body.add(visitNotification(notification));
-      }
+
+      // for (final notification in protocol.notifications) {
+      //   b.body.add(visitNotification(notification));
+      // }
     },
   );
 
