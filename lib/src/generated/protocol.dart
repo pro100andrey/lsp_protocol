@@ -248,7 +248,7 @@ typedef LSPArray = List<LSPAny>;
 /// value `undefined` can't be converted into JSON preserving the property
 /// name. However for convenience it is allowed and assumed that all these
 /// properties are optional as well. @since 3.17.0
-typedef LSPAny = OrRefType;
+typedef LSPAny = dynamic;
 
 /// The declaration of a symbol representation as one or many {@link Location
 /// locations}.

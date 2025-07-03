@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
@@ -94,7 +96,28 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   @override
   TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {
-    final typeName = typeAlias.type.resolveType(_typeResolverVisitor);
+    final typeName = typeAlias.name == 'LSPAny'
+        ? 'dynamic'
+        : typeAlias.type.resolveType(_typeResolverVisitor);
+
+    if (typeAlias.type is OrRef) {
+      final ref = typeAlias.type as OrRef;
+
+      print('${typeAlias.name}:');
+
+      for (final item in ref.items) {
+        if (item is LiteralRef) {
+          print('   Literal:');
+          for (final prop in item.value.properties) {
+            print(
+              '     ${prop.name}: ${prop.type.resolveType(_typeResolverVisitor)}',
+            );
+          }
+        } else {
+          print('   type1: ${item.resolveType(_typeResolverVisitor)}');
+        }
+      }
+    }
 
     return TypeDef((b) {
       b

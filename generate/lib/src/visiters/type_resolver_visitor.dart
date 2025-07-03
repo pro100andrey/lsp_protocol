@@ -15,11 +15,12 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
     'decimal' => 'double',
     'string' => 'String',
     'boolean' => 'bool',
-    'null' =>
-      'String', // Consider `dynamic` or a dedicated `Null` type if needed
+    // Consider `dynamic` or a dedicated `Null` type if needed
+    'null' => 'String',
     'URI' || 'DocumentUri' => 'Uri',
-    _ =>
-      typeName, // Return as is if not a known primitive (e.g., custom structures/enums)
+
+    // Return as is if not a known primitive (e.g., custom structures/enums)
+    _ => typeName,
   };
 
   @override
@@ -35,6 +36,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
       // Enums are generated as Dart enums, so their name is the Dart type.
       return enumeration.name;
     }
+    
 
     return _resolveDartPrimitiveType(ref.name);
   }
