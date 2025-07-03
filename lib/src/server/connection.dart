@@ -6,6 +6,7 @@ import 'package:json_rpc_2/json_rpc_2.dart';
 import 'package:stream_channel/stream_channel.dart';
 
 import '../generated/protocol.dart';
+import 'console.dart';
 
 class Connection {
   Connection(
@@ -23,17 +24,19 @@ class Connection {
 
     final channel = StreamChannel.withGuarantees(parser.stream, outSink);
 
-    peer = Peer(channel);
+    _peer = Peer(channel);
+    console = Console(this);
   }
 
-  late final Peer peer;
+  late final Peer _peer;
+  late final Console console;
 
-  Future<Object?> listen() => peer.listen();
+  Future<Object?> listen() => _peer.listen();
 
   void onInitialize(
     Future<InitializeResult> Function(InitializeParams) handler,
   ) {
-    peer.registerMethod(Method.initialize.value, (params) async {
+    _peer.registerMethod(RequestMethod.initialize.value, (params) async {
       final parameters = params as Parameters;
       final initParams = InitializeParams.fromJson(parameters.value);
 
@@ -41,22 +44,54 @@ class Connection {
     });
   }
 
+  void onDidOpenTextDocument(
+    Future<void> Function(DidOpenTextDocumentParams) handler,
+  ) {
+    _peer.registerMethod(NotificationMethod.textDocumentDidOpen.value, (
+      params,
+    ) async {
+      final parameters = params as Parameters;
+      final openParams = DidOpenTextDocumentParams.fromJson(parameters.value);
+
+      await handler(openParams);
+    });
+  }
+
+  void onDidChangeTextDocument(
+    Future Function(DidChangeTextDocumentParams) handler,
+  ) {
+    _peer.registerMethod(NotificationMethod.textDocumentDidChange.value, (
+      params,
+    ) async {
+      final parameters = params as Parameters;
+      final changeParams = DidChangeTextDocumentParams.fromJson(
+        parameters.value,
+      );
+
+      await handler(changeParams);
+    });
+  }
+
   void onRequest<R>(
     String method,
     Future<R> Function(Parameters) handler,
   ) {
-    peer.registerMethod(method, (params) async => handler(params));
+    _peer.registerMethod(method, (params) async => handler(params));
   }
 
   void onNotification<R>(
     String method,
     Future<R> Function(Parameters) handler,
   ) {
-    peer.registerMethod(method, (params) async => handler(params));
+    _peer.registerMethod(method, (params) async => handler(params));
   }
 
   void sendNotification(String method, Object? params) =>
-      peer.sendNotification(method, params);
+      _peer.sendNotification(method, params);
+
+  void sendDiagnostics(PublishDiagnosticsParams params) {
+    _peer.sendNotification('textDocument/publishDiagnostics', params.toJson());
+  }
 }
 
 void _serialize(String data, EventSink<List<int>> sink) {

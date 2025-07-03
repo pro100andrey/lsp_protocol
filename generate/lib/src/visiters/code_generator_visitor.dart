@@ -54,7 +54,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       // Generate default header comments
       b.docs.addAll(_header());
 
-      b.body.add(_generateMethodEnum(protocol.requests));
+      b.body.add(_generateRequestMethodEnum(protocol.requests));
+
+      b.body.add(_generateNotificationMethodEnum(protocol.notifications));
       // Generate the base class for JSON serialization
       b.body.add(_generateToJsonClass());
       // Generate the OrRef class
@@ -238,9 +240,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     }
   }
 
-  Spec _generateMethodEnum(List<MetaRequest> requests) => Enum((eb) {
+  Spec _generateRequestMethodEnum(List<MetaRequest> requests) => Enum((eb) {
     eb
-      ..name = 'Method'
+      ..name = 'RequestMethod'
       ..docs.add('/// This class contains methods for handling requests.')
       ..constructors.add(
         Constructor(
@@ -274,21 +276,91 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       );
 
     for (final request in requests) {
-      final method = _getMethodName(request);
+      final method = _getMethodName(request.method);
       final methodPath = request.method;
+      final doc = [
+        '/// Method: $methodPath',
+        '///',
+        ...?formatDocComment(request.documentation),
+      ];
 
       eb.values.add(
         EnumValue((evb) {
           evb.name = method;
           evb.arguments.add(literalString(methodPath));
-          evb.docs.add('/// Method: $methodPath');
+          evb.docs.addAll(doc);
         }),
       );
     }
   });
 
-  String _getMethodName(MetaRequest request) {
-    final parts = request.method.split('/').map(upperFirstLetter).join();
+  Spec _generateNotificationMethodEnum(List<MetaNotification> notifications) =>
+      Enum((eb) {
+        eb
+          ..name = 'NotificationMethod'
+          ..docs.add(
+            '/// This class contains methods for handling notifications.',
+          )
+          ..constructors.add(
+            Constructor(
+              (ecb) {
+                ecb
+                  ..constant = true
+                  ..requiredParameters.add(
+                    Parameter(
+                      (pb) {
+                        pb
+                          ..name = 'value'
+                          ..named = true
+                          ..toThis = true;
+                      },
+                    ),
+                  )
+                  ..docs.add('// The list of all methods in this enumeration.');
+              },
+            ),
+          )
+          ..fields.add(
+            Field(
+              (fb) {
+                fb
+                  ..name = 'value'
+                  ..modifier = FieldModifier.final$
+                  ..type = _stringRef
+                  ..docs.add('// The type of this enumeration.');
+              },
+            ),
+          );
+
+        for (final notification in notifications) {
+          final method = _getMethodName(notification.method);
+          final methodPath = notification.method;
+
+          final doc = [
+            '/// Method: $methodPath',
+            '///',
+            ...?formatDocComment(notification.documentation),
+          ];
+
+          eb.values.add(
+            EnumValue((evb) {
+              evb.name = method;
+
+              evb.arguments.add(
+                literalString(methodPath, raw: methodPath.startsWith(r'$/')),
+              );
+              evb.docs.addAll(doc);
+            }),
+          );
+        }
+      });
+
+  String _getMethodName(String method) {
+    final parts = method
+        .replaceAll(r'$/', '')
+        .split('/')
+        .map(upperFirstLetter)
+        .join();
 
     return lowerFirstLetter(parts);
   }
