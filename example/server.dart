@@ -16,6 +16,7 @@ Future<void> main() async {
       final testDocumentSync = TextDocumentSyncOptions(
         openClose: true,
       );
+      // TODO(Andrii): Unknown type for textDocumentSync
       // Handle initialization
       return InitializeResult(
         capabilities: ServerCapabilities(
@@ -41,7 +42,21 @@ Future<void> main() async {
     })
     ..onDidChangeTextDocument(
       (params) async {
-        final contentChanges = params.contentChanges;
+        // TODO(Andrii): Unknown type for contentChanges.
+        final _ = params.contentChanges;
+
+        // Our custom validation logic
+        final diagnostics = _validateTextDocument(
+          'not supported',
+          params.textDocument.uri.toString(),
+        );
+
+        connection.sendDiagnostics(
+          PublishDiagnosticsParams(
+            diagnostics: diagnostics,
+            uri: params.textDocument.uri,
+          ),
+        );
       },
     );
 
