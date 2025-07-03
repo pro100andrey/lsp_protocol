@@ -15,7 +15,7 @@ abstract class MetaReferenceVisitor<T> {
   T visitTupleRef(TupleRef ref);
 }
 
-abstract class MetaProtocolVisitor<T> implements MetaReferenceVisitor<T> {
+abstract class MetaProtocolVisitor<T>  {
   const MetaProtocolVisitor();
 
   T visitProtocol(MetaProtocol protocol);

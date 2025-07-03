@@ -373,30 +373,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     Code('// MetaNotification visitor not implemented for generation\n'),
   );
 
-  // --- MetaProtocolVisitor stub implementations
-  // (not used for direct generation here) ---
-  @override
-  Spec visitMetaData(MetaData metaData) => const CodeExpression(
-    Code('// MetaData visitor not implemented for generation'),
-  );
-
-  @override
-  Spec visitRequest(MetaRequest request) {
-    throw UnimplementedError(
-      'MetaRequest visitor not implemented for generation: ${request.method}',
-    );
-  }
-
-  @override
-  Spec visitProperty(MetaProperty property) => const CodeExpression(
-    Code('// MetaProperty visitor not implemented for generation\n'),
-  );
-
-  @override
-  Spec visitEnumMember(MetaEnumMember enumMember) => const CodeExpression(
-    Code('// MetaEnumMember visitor not implemented for generation\n'),
-  );
-
   /// Generates the base ToJson class.
   Class _generateToJsonClass() => Class((cb) {
     cb
@@ -710,35 +686,29 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   }
 
   @override
+  Spec visitMetaData(MetaData metaData) => const CodeExpression(
+    Code('// MetaData visitor not implemented for generation'),
+  );
+
+  @override
+  Spec visitRequest(MetaRequest request) {
+    throw UnimplementedError(
+      'MetaRequest visitor not implemented for generation: ${request.method}',
+    );
+  }
+
+  @override
+  Spec visitProperty(MetaProperty property) => const CodeExpression(
+    Code('// MetaProperty visitor not implemented for generation\n'),
+  );
+
+  @override
+  Spec visitEnumMember(MetaEnumMember enumMember) => const CodeExpression(
+    Code('// MetaEnumMember visitor not implemented for generation\n'),
+  );
+
+  @override
   Class visitLiteral(MetaLiteral literal) => throw UnimplementedError();
-
-  @override
-  Spec visitAndRef(AndRef ref) => throw UnimplementedError();
-
-  @override
-  Spec visitArrayRef(ArrayRef ref) => throw UnimplementedError();
-
-  @override
-  Spec visitBaseRef(BaseRef ref) => throw UnimplementedError();
-
-  @override
-  Spec visitLiteralRef(LiteralRef ref) => throw UnimplementedError();
-
-  @override
-  Spec visitMapRef(MapRef ref) => throw UnimplementedError();
-
-  @override
-  Spec visitOrRef(OrRef ref) => throw UnimplementedError();
-
-  @override
-  Spec visitStringLiteralRef(StringLiteralRef ref) =>
-      throw UnimplementedError();
-
-  @override
-  Spec visitTupleRef(TupleRef ref) => throw UnimplementedError();
-
-  @override
-  Spec visitTypeRef(TypeRef ref) => throw UnimplementedError();
 }
 
 /// The main entry point for the protocol generation.
