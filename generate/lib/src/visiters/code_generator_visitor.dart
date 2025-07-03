@@ -109,9 +109,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         if (item is LiteralRef) {
           print('   Literal:');
           for (final prop in item.value.properties) {
-            print(
-              '     ${prop.name}: ${prop.type.resolveType(_typeResolverVisitor)}',
-            );
+            final type = prop.type.resolveType(_typeResolverVisitor);
+            print('     ${prop.name}: $type');
           }
         } else {
           print('   type1: ${item.resolveType(_typeResolverVisitor)}');
