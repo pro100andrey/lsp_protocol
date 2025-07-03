@@ -7,3 +7,4 @@
 pubspec.lock
 
 lsp_downloads/
+node_modules/
