@@ -5,6 +5,8 @@ import 'package:async/async.dart';
 import 'package:json_rpc_2/json_rpc_2.dart';
 import 'package:stream_channel/stream_channel.dart';
 
+import '../generated/protocol.dart';
+
 class Connection {
   Connection(
     Stream<List<int>> stream,
@@ -25,6 +27,19 @@ class Connection {
   }
 
   late final Peer peer;
+
+  Future<Object?> listen() => peer.listen();
+
+  void onInitialize(
+    Future<InitializeResult> Function(InitializeParams) handler,
+  ) {
+    peer.registerMethod(Method.initialize.value, (params) async {
+      final parameters = params as Parameters;
+      final initParams = InitializeParams.fromJson(parameters.value);
+
+      return handler(initParams);
+    });
+  }
 
   void onRequest<R>(
     String method,
