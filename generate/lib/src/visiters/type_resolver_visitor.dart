@@ -1,13 +1,25 @@
+import 'package:collection/collection.dart';
+
 import '../meta/protocol.dart';
 import 'visitor.dart';
 
 /// A concrete visitor that resolves MetaReference types to their Dart String
 /// representations.
 class TypeResolverVisitor implements MetaReferenceVisitor<String> {
-  TypeResolverVisitor(this._structures, this._enumerations, this._literals);
+  TypeResolverVisitor(
+    Map<String, MetaStructure> structures,
+    Map<String, MetaEnumeration> enumerations,
+    Map<LiteralRef, MetaLiteralDefinition> literals,
+    Map<String, OrMapReference> orMapReferences,
+  ) : _structures = structures,
+      _enumerations = enumerations,
+      _literals = literals,
+      _orMapReferences = orMapReferences;
+
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
   final Map<LiteralRef, MetaLiteralDefinition> _literals;
+  final Map<String, OrMapReference> _orMapReferences;
 
   /// Resolves primitive meta-types (like 'integer', 'string') to Dart types.
   String _resolveDartPrimitiveType(String typeName) => switch (typeName) {
@@ -36,7 +48,6 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
       // Enums are generated as Dart enums, so their name is the Dart type.
       return enumeration.name;
     }
-    
 
     return _resolveDartPrimitiveType(ref.name);
   }
@@ -52,7 +63,17 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   String visitBaseRef(BaseRef ref) => _resolveDartPrimitiveType(ref.name);
 
   @override
-  String visitOrRef(OrRef ref) => 'OrRefType';
+  String visitOrRef(OrRef ref) {
+    final orMapReference = _orMapReferences.values.firstWhereOrNull(
+      (orMap) => orMap.orRef == ref,
+    );
+
+    if (orMapReference != null) {
+      return orMapReference.name;
+    }
+
+    return 'Object';
+  }
 
   @override
   // ignore: prefer_expression_function_bodies

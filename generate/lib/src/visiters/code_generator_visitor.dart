@@ -18,7 +18,8 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       _enumerations = Map.fromEntries(
         protocol.enumerations.map((e) => MapEntry(e.name, e)),
       ),
-      _literals = {} {
+      _literals = {},
+      _orMapReferences = {} {
     // Collect all properties from structures and literals
     for (final structure in protocol.structures) {
       for (final property in structure.properties) {
@@ -26,16 +27,90 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       }
     }
 
+    for (final alias in protocol.typeAliases) {
+      final type = alias.type;
+      if (type is OrRef) {
+        _orMapReferences[alias.name] = (
+          orRef: type,
+          name: 'Base${upperFirstLetter(alias.name)}',
+        );
+      }
+    }
+
     _typeResolverVisitor = TypeResolverVisitor(
       _structures,
       _enumerations,
       _literals,
+      _orMapReferences,
     );
+
+    for (final struct in protocol.structures) {
+      for (final property in struct.properties) {
+        if (property.type is OrRef) {
+          final orRef = property.type as OrRef;
+
+          final types = [];
+
+          for (final item in orRef.items) {
+            final type = upperFirstLetter(_resolveType(item));
+            types.add(type);
+          }
+
+          types.sort();
+
+          final name = types.join('Or');
+
+          if (_orMapReferences.containsKey(name)) {
+            final existingOrRef = _orMapReferences[name]!.orRef;
+            if (existingOrRef != orRef) {
+              throw ArgumentError(
+                'OrRef type with name "$name" already exists.',
+              );
+            }
+          }
+
+          _orMapReferences[name] = (
+            orRef: orRef,
+            name: name,
+          );
+        }
+      }
+    }
+  }
+
+  String _resolveType(MetaReference item) {
+    switch (item) {
+      case TypeRef(:final name):
+        return name;
+      case ArrayRef(:final element):
+        return _resolveType(element);
+      case BaseRef(:final name):
+        return name;
+      case OrRef(:final items):
+        return items.map((i) => i.resolveType(_typeResolverVisitor)).join();
+      case AndRef(:final items):
+        return items.map((i) => i.resolveType(_typeResolverVisitor)).join();
+      case MapRef(:final key, :final value):
+        return 'Map${_resolveType(key)}${_resolveType(value)}';
+      case LiteralRef():
+        final literal = _literals[item];
+        if (literal != null) {
+          return literal.name;
+        } else {
+          throw ArgumentError('LiteralRef not found: $item');
+        }
+
+      case StringLiteralRef():
+        return 'String';
+      case TupleRef(:final items):
+        return items.map((i) => i.resolveType(_typeResolverVisitor)).join();
+    }
   }
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
   final Map<LiteralRef, MetaLiteralDefinition> _literals;
+  final Map<String, OrMapReference> _orMapReferences;
 
   late final TypeResolverVisitor _typeResolverVisitor;
 
@@ -48,22 +123,55 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Reference get _stringRef => refer('String');
   Reference get _mapJsonRef => refer('Map<String, Object?>');
 
+  final orMap = <String, List<String>>{};
+
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
+      for (final alias in protocol.typeAliases) {
+        final type = alias.type;
+        if (type case OrRef(:final items)) {
+          _orMapReferences[alias.name] = (
+            orRef: type,
+            name: 'Base${upperFirstLetter(alias.name)}',
+          );
+
+          for (final item in items) {
+            if (item is! LiteralRef) {
+              final type = item.resolveType(_typeResolverVisitor);
+
+              orMap.putIfAbsent(alias.name, () => []).add(type);
+            } else {
+              // Handle LiteralRef
+
+              print('LiteralRef found in type alias: ${alias.name}');
+            }
+          }
+        }
+      }
+
+      print('\nOrRef types:');
+
+      for (final entry in orMap.entries) {
+        print('${entry.key} -> ${entry.value}');
+      }
+
       // Generate default header comments
       b.docs.addAll(_header());
 
-      b.body.add(_generateRequestMethodEnum(protocol.requests));
-
-      b.body.add(_generateNotificationMethodEnum(protocol.notifications));
       // Generate the base class for JSON serialization
       b.body.add(_generateToJsonClass());
       // Generate the OrRef class
-      b.body.add(_generateOrRefClass());
+      // b.body.add(_generateOrRefClass());
       // Generate type aliases
       for (final typeAlias in protocol.typeAliases) {
         b.body.add(visitTypeAlias(typeAlias));
+      }
+
+      final baseNames = _orMapReferences.values.map((ref) => ref.name);
+
+      for (final baseOrClass in baseNames) {
+        b.body.add(generateBaseOrClass(baseOrClass));
       }
       // Generate classes from structures
       for (final structure in protocol.structures) {
@@ -78,6 +186,10 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       for (final literal in _literals.values) {
         b.body.add(visitLiteralDefinition(literal));
       }
+
+      b.body.add(_generateRequestMethodEnum(protocol.requests));
+
+      b.body.add(_generateNotificationMethodEnum(protocol.notifications));
       // Generate notifications
 
       // for (final notification in protocol.notifications) {
@@ -98,9 +210,10 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   @override
   TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {
-    final typeName = typeAlias.name == 'LSPAny'
-        ? 'dynamic'
-        : typeAlias.type.resolveType(_typeResolverVisitor);
+    final orBaseType = _orMapReferences[typeAlias.name]?.name;
+
+    final typeName =
+        orBaseType ?? typeAlias.type.resolveType(_typeResolverVisitor)!;
 
     if (typeAlias.type is OrRef) {
       final ref = typeAlias.type as OrRef;
@@ -112,7 +225,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
           print('   Literal:');
           for (final prop in item.value.properties) {
             final type = prop.type.resolveType(_typeResolverVisitor);
-            print('     ${prop.name}: $type${prop.optional ? '?': ''}:');
+            print('     ${prop.name}: $type${prop.optional ? '?' : ''}:');
           }
         } else {
           print('   ${item.runtimeType}:');
@@ -204,19 +317,29 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   void _collectLiterals(MetaProperty property, String prefix) {
     // remove first letter from prefix if equal to '_'
     final fixedPrefix = prefix.startsWith('_') ? prefix.substring(1) : prefix;
+    final type = property.type;
 
-    if (property.type is ArrayRef) {
-      final ref = property.type as ArrayRef;
+    switch (type) {
+      case ArrayRef(:final element) when element is LiteralRef:
+        _processLiteralRef(element, property, fixedPrefix);
+      
+      // case ArrayRef(:final element) when element is OrRef:
+      //   for (final item in element.items) {
+      //     if (item is LiteralRef) {
+      //       _processLiteralRef(item, property, fixedPrefix);
+      //     }
+      //   }
 
-      if (ref.element is LiteralRef) {
-        final literalRef = ref.element as LiteralRef;
-        _processLiteralRef(literalRef, property, fixedPrefix);
-      }
-    }
-
-    if (property.type is LiteralRef) {
-      final ref = property.type as LiteralRef;
-      _processLiteralRef(ref, property, fixedPrefix);
+      case OrRef(:final items):
+        for (final item in items) {
+          if (item is LiteralRef) {
+            _processLiteralRef(item, property, fixedPrefix);
+          }
+        }
+      case LiteralRef():
+        _processLiteralRef(type, property, fixedPrefix);
+      case _:
+        break;
     }
   }
 
@@ -470,6 +593,16 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       );
   });
 
+  Class generateBaseOrClass(String name) => Class((cb) {
+    cb
+      ..name = name
+      ..docs.add(
+        '/// Represents a base class for OrRef types.',
+      )
+      ..sealed = true
+      ..abstract = true;
+  });
+
   /// Generate Or Ref class.
   Class _generateOrRefClass() => Class((cb) {
     cb
@@ -538,35 +671,33 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     required List<MetaProperty> allFields,
     Set<String> inheritedPropertyNames = const {},
   }) {
-    cb.fields.addAll(
-      allFields.map(
-        (property) {
-          final propDocs =
-              formatDocComment(property.documentation, maxLineLength: 76) ?? [];
+    for (final field in allFields) {
+      final fr = Field((fb) {
+        final doc = [
+          if (field.type is OrRef) '/// Represents a union type.',
+          ...?formatDocComment(field.documentation, maxLineLength: 76),
+        ];
 
-          // Use the type resolver for property types
-          final propType = _applyOptional(
-            property.type.resolveType(_typeResolverVisitor),
-            property.optional,
-          );
+        // Use the type resolver for property types
+        final propType = _applyOptional(
+          field.type.resolveType(_typeResolverVisitor),
+          field.optional,
+        );
 
-          final propName = property.name;
+        final propName = field.name;
 
-          return Field(
-            (fb) {
-              fb
-                ..docs.addAll(propDocs)
-                ..modifier = FieldModifier.final$
-                ..name = propName
-                ..type = refer(propType);
-              if (inheritedPropertyNames.contains(propName)) {
-                fb.annotations.add(_overrideRef);
-              }
-            },
-          );
-        },
-      ),
-    );
+        fb
+          ..docs.addAll(doc)
+          ..modifier = FieldModifier.final$
+          ..name = propName
+          ..type = refer(propType);
+        if (inheritedPropertyNames.contains(propName)) {
+          fb.annotations.add(_overrideRef);
+        }
+      });
+
+      cb.fields.add(fr);
+    }
 
     cb.constructors.add(
       Constructor((cb) {

@@ -11,6 +11,11 @@ typedef MetaLiteralDefinition = ({
   String? documentation,
 });
 
+typedef OrMapReference = ({
+  OrRef orRef,
+  String name,
+});
+
 sealed class BaseMeta {
   const BaseMeta();
 

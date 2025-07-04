@@ -19,9 +19,7 @@ Future<void> main() async {
       // TODO(Andrii): Unknown type for textDocumentSync
       // Handle initialization
       return InitializeResult(
-        capabilities: ServerCapabilities(
-          textDocumentSync: testDocumentSync as OrRefType,
-        ),
+        capabilities: ServerCapabilities(),
       );
     })
     ..onDidOpenTextDocument((params) async {
