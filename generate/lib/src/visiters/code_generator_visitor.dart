@@ -603,16 +603,6 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ..abstract = true;
   });
 
-  /// Generate Or Ref class.
-  Class _generateOrRefClass() => Class((cb) {
-    cb
-      ..docs.add(
-        '/// Represents a reference type that can be one of multiple types.',
-      )
-      ..name = _orRefTypeRef.symbol
-      ..sealed = true;
-  });
-
   Map<String, MetaProperty> _collectInheritedProperties(
     MetaStructure structure,
   ) {
