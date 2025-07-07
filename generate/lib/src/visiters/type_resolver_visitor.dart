@@ -1,25 +1,29 @@
 import 'package:collection/collection.dart';
 
 import '../meta/protocol.dart';
+import 'symbols.dart';
 import 'visitor.dart';
 
 /// A concrete visitor that resolves MetaReference types to their Dart String
 /// representations.
 class TypeResolverVisitor implements MetaReferenceVisitor<String> {
-  TypeResolverVisitor(
-    Map<String, MetaStructure> structures,
-    Map<String, MetaEnumeration> enumerations,
-    Map<LiteralRef, MetaLiteralDefinition> literals,
-    Map<String, OrMapReference> orMapReferences,
-  ) : _structures = structures,
-      _enumerations = enumerations,
-      _literals = literals,
-      _orMapReferences = orMapReferences;
+  TypeResolverVisitor({
+    required Map<String, MetaStructure> structures,
+    required Map<String, MetaEnumeration> enumerations,
+    required Map<LiteralRef, MetaLiteralDefinition> literals,
+    required Map<String, OrMapReference> orMapReferences,
+    required Symbols symbols,
+  })  : _structures = structures,
+       _enumerations = enumerations,
+       _literals = literals,
+       _orMapReferences = orMapReferences,
+       _symbols = symbols;
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
   final Map<LiteralRef, MetaLiteralDefinition> _literals;
   final Map<String, OrMapReference> _orMapReferences;
+  final Symbols _symbols;
 
   /// Resolves primitive meta-types (like 'integer', 'string') to Dart types.
   String _resolveDartPrimitiveType(String typeName) => switch (typeName) {

@@ -5,11 +5,12 @@ import 'package:dart_style/dart_style.dart';
 
 import '../meta/protocol.dart';
 import '../utils.dart';
+import 'symbols.dart';
 import 'type_resolver_visitor.dart';
 import 'visitor.dart';
 
 /// A concrete visitor that generates Dart code from MetaProtocol.
-class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
+final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   // Pass protocol for initial setup, but main logic is in visit methods
   DartCodeGeneratorVisitor(MetaProtocol protocol)
     : _structures = Map.fromEntries(
@@ -18,8 +19,11 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       _enumerations = Map.fromEntries(
         protocol.enumerations.map((e) => MapEntry(e.name, e)),
       ),
+      _symbols = Symbols(),
       _literals = {},
       _orMapReferences = {} {
+    _symbols.processProtocol(protocol);
+
     // Collect all properties from structures and literals
     for (final structure in protocol.structures) {
       for (final property in structure.properties) {
@@ -38,10 +42,11 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     }
 
     _typeResolverVisitor = TypeResolverVisitor(
-      _structures,
-      _enumerations,
-      _literals,
-      _orMapReferences,
+      structures: _structures,
+      enumerations: _enumerations,
+      literals: _literals,
+      orMapReferences: _orMapReferences,
+      symbols: _symbols,
     );
 
     for (final struct in protocol.structures) {
@@ -114,8 +119,9 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   late final TypeResolverVisitor _typeResolverVisitor;
 
+  final Symbols _symbols;
+
   Reference get _toJsonRef => refer('ToJson');
-  Reference get _orRefTypeRef => refer('OrRefType');
   Reference get _jsonRef => refer('json');
   Reference get _fromJsonMethodRef => refer('fromJson');
   Reference get _toJsonMethodRef => refer('toJson');
@@ -322,7 +328,7 @@ class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     switch (type) {
       case ArrayRef(:final element) when element is LiteralRef:
         _processLiteralRef(element, property, fixedPrefix);
-      
+
       // case ArrayRef(:final element) when element is OrRef:
       //   for (final item in element.items) {
       //     if (item is LiteralRef) {
