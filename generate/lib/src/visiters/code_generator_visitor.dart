@@ -188,9 +188,11 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.add(visitEnumeration(enumeration));
         b.body.add(_generateEnumMap(enumeration));
       }
+
+      
       // Generate literal classes
-      for (final literal in _literals.values) {
-        b.body.add(visitLiteralDefinition(literal));
+      for (final literal in _symbols.literals) {
+        b.body.add(_generateLiteral(literal));
       }
 
       b.body.add(_generateRequestMethodEnum(protocol.requests));
@@ -249,6 +251,34 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         ..docs.addAll(formatDocComment(typeAlias.documentation) ?? [])
         ..name = typeAlias.name
         ..definition = refer(typeName);
+    });
+  }
+
+
+  Class _generateLiteral(LiteralSymbol symbol) {
+
+    final ref = symbol.literalRef;
+    final property = symbol.property;
+    final name = _symbols.getLiteralName(ref);
+
+    final formattedDescription =
+        formatDocComment(property.documentation) ?? [];
+
+    return Class((cb) {
+      cb
+        ..docs.addAll(['/// Literal'] + formattedDescription)
+        ..name = name
+        ..implements.add(_toJsonRef);
+
+      _generateFields(
+        cb: cb,
+        allFields: ref.value.properties,
+        inheritedPropertyNames: {},
+      );
+
+      _generateFromJsonFactory(cb: cb, allFields: ref.value.properties);
+
+      _generateToJson(cb: cb, allFields: ref.value.properties);
     });
   }
 

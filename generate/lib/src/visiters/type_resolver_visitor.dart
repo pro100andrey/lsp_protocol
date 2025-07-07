@@ -13,7 +13,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
     required Map<LiteralRef, MetaLiteralDefinition> literals,
     required Map<String, OrMapReference> orMapReferences,
     required Symbols symbols,
-  })  : _structures = structures,
+  }) : _structures = structures,
        _enumerations = enumerations,
        _literals = literals,
        _orMapReferences = orMapReferences,
@@ -103,13 +103,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   @override
   // ignore: prefer_expression_function_bodies
   String visitLiteralRef(LiteralRef ref) {
-    final literal = _literals[ref];
-
-    if (literal == null) {
-      throw ArgumentError('LiteralRef not found: $ref');
-    }
-
-    return literal.name;
+    return _symbols.getLiteralName(ref);
   }
 
   @override
