@@ -5,7 +5,7 @@ import 'package:dart_style/dart_style.dart';
 
 import '../meta/protocol.dart';
 import '../utils.dart';
-import 'literals_map.dart';
+import '../symbols/literals_map.dart';
 import 'type_resolver_visitor.dart';
 import 'visitor.dart';
 

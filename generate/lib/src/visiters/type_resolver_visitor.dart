@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 
 import '../meta/protocol.dart';
-import 'literals_map.dart';
+import '../symbols/literals_map.dart';
 import 'visitor.dart';
 
 /// A concrete visitor that resolves MetaReference types to their Dart String
