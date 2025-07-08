@@ -3,6 +3,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
+import '../extensions/string.dart';
 import '../meta/protocol.dart';
 import '../symbols/literals_map.dart';
 import '../utils.dart';
@@ -29,7 +30,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       if (type is OrRef) {
         _orMapReferences[alias.name] = (
           orRef: type,
-          name: 'Base${upperFirstLetter(alias.name)}',
+          name: 'Base${alias.name.upperFirstLetter()}',
         );
       }
     }
@@ -49,7 +50,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
           final types = [];
 
           for (final item in orRef.items) {
-            final type = upperFirstLetter(_resolveType(item));
+            final type = _resolveType(item).upperFirstLetter();
             types.add(type);
           }
 
@@ -126,7 +127,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         if (type case OrRef(:final items)) {
           _orMapReferences[alias.name] = (
             orRef: type,
-            name: 'Base${upperFirstLetter(alias.name)}',
+            name: 'Base${alias.name.upperFirstLetter()}',
           );
 
           for (final item in items) {
@@ -429,10 +430,10 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final parts = method
         .replaceAll(r'$/', '')
         .split('/')
-        .map(upperFirstLetter)
+        .map((part) => part.upperFirstLetter())
         .join();
 
-    return lowerFirstLetter(parts);
+    return parts.lowerFirstLetter();
   }
 
   @override
@@ -483,7 +484,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
           EnumValue(
             (evb) {
               evb.arguments.add(refer(m.value.literal));
-              evb.name = '${lowerFirstLetter(m.name)}Value';
+              evb.name = '${m.name.lowerFirstLetter()}Value';
             },
           ),
         );
@@ -499,7 +500,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
     final entries = enumeration.values.map(
       (m) => MapEntry(
-        refer('${enumeration.name}.${lowerFirstLetter(m.name)}Value'),
+        refer('${enumeration.name}.${m.name.lowerFirstLetter()}Value'),
         refer(m.value.literal),
       ),
     );
@@ -886,8 +887,3 @@ String _specToCode(Spec spec) {
 
   return result;
 }
-
-// Utility functions (assuming they are in 'utils.dart' or can be placed here)
-String upperFirstLetter(String s) => s[0].toUpperCase() + s.substring(1);
-
-String lowerFirstLetter(String s) => s[0].toLowerCase() + s.substring(1);
