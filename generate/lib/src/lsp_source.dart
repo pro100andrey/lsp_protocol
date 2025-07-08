@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-  
+
 import 'downloader.dart';
 
 const _version = '3.17';

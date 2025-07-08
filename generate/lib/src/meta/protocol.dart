@@ -5,11 +5,7 @@ import '../visiters/visitor.dart';
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
-
-typedef OrMapReference = ({
-  OrRef orRef,
-  String name,
-});
+typedef OrMapReference = ({OrRef orRef, String name});
 
 sealed class BaseMeta {
   const BaseMeta();

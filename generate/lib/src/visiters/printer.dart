@@ -19,6 +19,7 @@ String metaReferenceDescription(MetaReference ref) {
     case BaseRef(name: final typeName):
       return typeName;
     case LiteralRef(:final value):
+      // ignore: lines_longer_than_80_chars
       return 'Literal(${value.properties.map((e) => '${metaReferenceDescription(e.type)} ${e.name}').join(', ')})';
     case ArrayRef(element: final element):
       return 'List<${metaReferenceDescription(element)}>';

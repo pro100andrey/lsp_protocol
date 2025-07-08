@@ -59,11 +59,9 @@ final class LiteralsMap {
         : throw ArgumentError(
             'Owner must be a MetaStructure, got: ${owner.runtimeType}',
           );
-          
+
     // Remove _ from the start of the name if it exists.
-    return ownerName.startsWith('_')
-        ? ownerName.substring(1)
-        : ownerName;
+    return ownerName.startsWith('_') ? ownerName.substring(1) : ownerName;
   }
 
   void processProtocol(MetaProtocol protocol) {
