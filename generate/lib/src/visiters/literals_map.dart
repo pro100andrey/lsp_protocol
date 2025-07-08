@@ -9,10 +9,31 @@ typedef LiteralSymbol = ({
   LiteralRef literalRef,
 });
 
-final class Symbols {
-
-  List<LiteralSymbol> get literals => _literalSymbols;
+final class LiteralsMap {
+  final _duplicateLiteralRefs = <LiteralRef, List<LiteralSymbol>>{};
+  final _groupedByLiteralRef = <LiteralRef, List<LiteralSymbol>>{};
   final _literalSymbols = <LiteralSymbol>[];
+
+  List<LiteralSymbol> get literals {
+    final copy = List<LiteralSymbol>.from(_literalSymbols);
+    // Remove duplicates from the list of literal symbols.
+
+    for (final e in _groupedByLiteralRef.entries) {
+      final ref = e.key;
+      final symbols = e.value;
+
+      if (symbols.length > 1) {
+        // If there are duplicates, keep only the first one.
+        final firstSymbol = symbols.first;
+        copy
+          ..removeWhere((s) => s.literalRef == ref)
+          ..add(firstSymbol);
+      }
+    }
+
+    // Return a copy to avoid external modifications.
+    return List<LiteralSymbol>.unmodifiable(copy);
+  }
 
   String getLiteralName(LiteralRef literalRef) {
     final refs = _literalSymbols
@@ -34,16 +55,20 @@ final class Symbols {
     final property = ref.property;
 
     final ownerName = owner is MetaStructure
-        ? 'Literal${property.name.upperFirstLetter()}'
+        ? '${owner.name}${property.name.upperFirstLetter()}'
         : throw ArgumentError(
             'Owner must be a MetaStructure, got: ${owner.runtimeType}',
           );
-
-    return ownerName;
+          
+    // Remove _ from the start of the name if it exists.
+    return ownerName.startsWith('_')
+        ? ownerName.substring(1)
+        : ownerName;
   }
 
   void processProtocol(MetaProtocol protocol) {
     _collectLiterals(protocol);
+    _collectDuplicateLiteralRefs();
 
     print('');
   }
@@ -76,6 +101,39 @@ final class Symbols {
           .join(':');
 
       print('# $ownerName.${property.name} [$properties]');
+    }
+  }
+
+  void _collectDuplicateLiteralRefs() {
+    // Group literal symbols by their LiteralRef to find duplicates.
+
+    for (final symbol in _literalSymbols) {
+      _groupedByLiteralRef.putIfAbsent(symbol.literalRef, () => []).add(symbol);
+    }
+
+    // Filter out those with only one occurrence.
+
+    for (final e in _groupedByLiteralRef.entries) {
+      final ref = e.key;
+      final symbols = e.value;
+
+      if (symbols.length > 1) {
+        _duplicateLiteralRefs[ref] = symbols;
+      }
+    }
+
+    for (final e in _duplicateLiteralRefs.entries) {
+      final literalRef = e.key;
+      final symbols = e.value;
+
+      // Guard against multiple references to the same literal.
+      final props = symbols.map((s) => s.property.name).toList();
+      final uniqueProps = props.toSet();
+      if (uniqueProps.length != 1) {
+        throw ArgumentError(
+          'LiteralRef $literalRef has multiple properties: $props',
+        );
+      }
     }
   }
 

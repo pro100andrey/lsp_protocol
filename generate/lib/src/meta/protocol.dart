@@ -5,11 +5,6 @@ import '../visiters/visitor.dart';
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
-typedef MetaLiteralDefinition = ({
-  String name,
-  List<MetaProperty> properties,
-  String? documentation,
-});
 
 typedef OrMapReference = ({
   OrRef orRef,

@@ -25,7 +25,6 @@ abstract class MetaProtocolVisitor<T>  {
   T visitStructure(MetaStructure structure);
   T visitEnumeration(MetaEnumeration enumeration);
   T visitTypeAlias(MetaTypeAlias typeAlias);
-  T visitLiteralDefinition(MetaLiteralDefinition literalDefinition);
 
   T visitProperty(MetaProperty property);
   T visitEnumMember(MetaEnumMember enumMember);

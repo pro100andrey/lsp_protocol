@@ -4104,7 +4104,7 @@ class InitializeParams
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
-    final clientInfo = (clientInfoJson as LiteralClientInfo?);
+    final clientInfo = (clientInfoJson as InitializeParamsClientInfo?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
@@ -4174,7 +4174,7 @@ class InitializeParams
   /// Information about the client
   /// @since 3.15.0
   @override
-  final LiteralClientInfo? clientInfo;
+  final InitializeParamsClientInfo? clientInfo;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -4209,7 +4209,7 @@ class InitializeResult implements ToJson {
       (capabilitiesJson as Map<String, Object?>),
     );
     final serverInfoJson = json['serverInfo'];
-    final serverInfo = (serverInfoJson as LiteralServerInfo?);
+    final serverInfo = (serverInfoJson as InitializeResultServerInfo?);
 
     return InitializeResult(capabilities: capabilities, serverInfo: serverInfo);
   }
@@ -4219,7 +4219,7 @@ class InitializeResult implements ToJson {
 
   /// Information about the server.
   /// @since 3.15.0
-  final LiteralServerInfo? serverInfo;
+  final InitializeResultServerInfo? serverInfo;
 
   @override
   Map<String, Object?> toJson() {
@@ -5172,7 +5172,7 @@ class CompletionList implements ToJson {
     final itemsJson = json['items']!;
     final items = (itemsJson as List<CompletionItem>);
     final itemDefaultsJson = json['itemDefaults'];
-    final itemDefaults = (itemDefaultsJson as LiteralItemDefaults?);
+    final itemDefaults = (itemDefaultsJson as CompletionListItemDefaults?);
 
     return CompletionList(
       isIncomplete: isIncomplete,
@@ -5199,7 +5199,7 @@ class CompletionList implements ToJson {
   /// Servers are only allowed to return default values if the client signals
   /// support for this via the `completionList.itemDefaults` capability.
   /// @since 3.17.0
-  final LiteralItemDefaults? itemDefaults;
+  final CompletionListItemDefaults? itemDefaults;
 
   @override
   Map<String, Object?> toJson() {
@@ -5229,7 +5229,8 @@ class CompletionRegistrationOptions
     final documentSelectorJson = json['documentSelector']!;
     final documentSelector = (documentSelectorJson as DocumentSelectorOrNull);
     final completionItemJson = json['completionItem'];
-    final completionItem = (completionItemJson as LiteralCompletionItem?);
+    final completionItem =
+        (completionItemJson as CompletionOptionsCompletionItem?);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final allCommitCharactersJson = json['allCommitCharacters'];
@@ -5259,7 +5260,7 @@ class CompletionRegistrationOptions
   /// capabilities.
   /// @since 3.17.0
   @override
-  final LiteralCompletionItem? completionItem;
+  final CompletionOptionsCompletionItem? completionItem;
 
   /// The server provides support to resolve additional information for a
   /// completion item.
@@ -6379,7 +6380,7 @@ class CodeAction implements ToJson {
     final editJson = json['edit'];
     final edit = (editJson as WorkspaceEdit?);
     final disabledJson = json['disabled'];
-    final disabled = (disabledJson as LiteralDisabled?);
+    final disabled = (disabledJson as CodeActionDisabled?);
     final isPreferredJson = json['isPreferred'];
     final isPreferred = (isPreferredJson as bool?);
     final diagnosticsJson = json['diagnostics'];
@@ -6429,7 +6430,7 @@ class CodeAction implements ToJson {
   /// returned, the client should show the user an error message with
   /// `reason` in the editor.
   /// @since 3.16.0
-  final LiteralDisabled? disabled;
+  final CodeActionDisabled? disabled;
 
   /// Marks this as a preferred action. Preferred actions are used by the
   /// `auto fix` command and can be targeted by keybindings.
@@ -9837,7 +9838,7 @@ class NotebookDocumentChangeEvent implements ToJson {
 
   factory NotebookDocumentChangeEvent.fromJson(Map<String, Object?> json) {
     final cellsJson = json['cells'];
-    final cells = (cellsJson as LiteralCells?);
+    final cells = (cellsJson as NotebookDocumentChangeEventCells?);
     final metadataJson = json['metadata'];
     final metadata = (metadataJson as LSPObject?);
 
@@ -9845,7 +9846,7 @@ class NotebookDocumentChangeEvent implements ToJson {
   }
 
   /// Changes to cells
-  final LiteralCells? cells;
+  final NotebookDocumentChangeEventCells? cells;
 
   /// The changed meta data if any.
   /// Note: should always be an object literal (e.g. LSPObject)
@@ -10095,7 +10096,7 @@ class _InitializeParams implements WorkDoneProgressParams {
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
-    final clientInfo = (clientInfoJson as LiteralClientInfo?);
+    final clientInfo = (clientInfoJson as InitializeParamsClientInfo?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
@@ -10147,7 +10148,7 @@ class _InitializeParams implements WorkDoneProgressParams {
 
   /// Information about the client
   /// @since 3.15.0
-  final LiteralClientInfo? clientInfo;
+  final InitializeParamsClientInfo? clientInfo;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -10256,7 +10257,7 @@ class ServerCapabilities implements ToJson {
     final completionProviderJson = json['completionProvider'];
     final completionProvider = (completionProviderJson as CompletionOptions?);
     final workspaceJson = json['workspace'];
-    final workspace = (workspaceJson as LiteralWorkspace?);
+    final workspace = (workspaceJson as ServerCapabilitiesWorkspace?);
     final inlineCompletionProviderJson = json['inlineCompletionProvider'];
     final inlineCompletionProvider =
         (inlineCompletionProviderJson as BooleanOrInlineCompletionOptions?);
@@ -10425,7 +10426,7 @@ class ServerCapabilities implements ToJson {
   final CompletionOptions? completionProvider;
 
   /// Workspace specific server capabilities.
-  final LiteralWorkspace? workspace;
+  final ServerCapabilitiesWorkspace? workspace;
 
   /// Represents a union type.
   /// Inline completion options used during static registration.
@@ -10973,7 +10974,8 @@ class CompletionOptions implements WorkDoneProgressOptions {
 
   factory CompletionOptions.fromJson(Map<String, Object?> json) {
     final completionItemJson = json['completionItem'];
-    final completionItem = (completionItemJson as LiteralCompletionItem?);
+    final completionItem =
+        (completionItemJson as CompletionOptionsCompletionItem?);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final allCommitCharactersJson = json['allCommitCharacters'];
@@ -10995,7 +10997,7 @@ class CompletionOptions implements WorkDoneProgressOptions {
   /// The server supports the following `CompletionItem` specific
   /// capabilities.
   /// @since 3.17.0
-  final LiteralCompletionItem? completionItem;
+  final CompletionOptionsCompletionItem? completionItem;
 
   /// The server provides support to resolve additional information for a
   /// completion item.
@@ -13524,7 +13526,8 @@ class GeneralClientCapabilities implements ToJson {
         (regularExpressionsJson as RegularExpressionsClientCapabilities?);
     final staleRequestSupportJson = json['staleRequestSupport'];
     final staleRequestSupport =
-        (staleRequestSupportJson as LiteralStaleRequestSupport?);
+        (staleRequestSupportJson
+            as GeneralClientCapabilitiesStaleRequestSupport?);
 
     return GeneralClientCapabilities(
       positionEncodings: positionEncodings,
@@ -13560,7 +13563,7 @@ class GeneralClientCapabilities implements ToJson {
   /// (e.g. a request for which the client will not process the response
   /// anymore since the information is outdated).
   /// @since 3.17.0
-  final LiteralStaleRequestSupport? staleRequestSupport;
+  final GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport;
 
   @override
   Map<String, Object?> toJson() {
@@ -13622,7 +13625,8 @@ class WorkspaceEditClientCapabilities implements ToJson {
   factory WorkspaceEditClientCapabilities.fromJson(Map<String, Object?> json) {
     final changeAnnotationSupportJson = json['changeAnnotationSupport'];
     final changeAnnotationSupport =
-        (changeAnnotationSupportJson as LiteralChangeAnnotationSupport?);
+        (changeAnnotationSupportJson
+            as WorkspaceEditClientCapabilitiesChangeAnnotationSupport?);
     final normalizesLineEndingsJson = json['normalizesLineEndings'];
     final normalizesLineEndings = (normalizesLineEndingsJson as bool?);
     final failureHandlingJson = json['failureHandling'];
@@ -13645,7 +13649,8 @@ class WorkspaceEditClientCapabilities implements ToJson {
   /// Whether the client in general supports change annotations on text
   /// edits, create file, rename file and delete file changes.
   /// @since 3.16.0
-  final LiteralChangeAnnotationSupport? changeAnnotationSupport;
+  final WorkspaceEditClientCapabilitiesChangeAnnotationSupport?
+  changeAnnotationSupport;
 
   /// Whether the client normalizes line endings to the client specific
   /// setting. If set to `true` the client will normalize line ending
@@ -13762,11 +13767,15 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
     Map<String, Object?> json,
   ) {
     final resolveSupportJson = json['resolveSupport'];
-    final resolveSupport = (resolveSupportJson as LiteralResolveSupport?);
+    final resolveSupport =
+        (resolveSupportJson
+            as WorkspaceSymbolClientCapabilitiesResolveSupport?);
     final tagSupportJson = json['tagSupport'];
-    final tagSupport = (tagSupportJson as LiteralTagSupport?);
+    final tagSupport =
+        (tagSupportJson as WorkspaceSymbolClientCapabilitiesTagSupport?);
     final symbolKindJson = json['symbolKind'];
-    final symbolKind = (symbolKindJson as LiteralSymbolKind?);
+    final symbolKind =
+        (symbolKindJson as WorkspaceSymbolClientCapabilitiesSymbolKind?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
@@ -13782,16 +13791,16 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
   /// request `workspaceSymbol/resolve` to the server to resolve additional
   /// properties.
   /// @since 3.17.0
-  final LiteralResolveSupport? resolveSupport;
+  final WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport;
 
   /// The client supports tags on `SymbolInformation`. Clients supporting
   /// tags have to handle unknown tags gracefully.
   /// @since 3.16.0
-  final LiteralTagSupport? tagSupport;
+  final WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport;
 
   /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
   /// request.
-  final LiteralSymbolKind? symbolKind;
+  final WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind;
 
   /// Symbol request supports dynamic registration.
   final bool? dynamicRegistration;
@@ -14183,16 +14192,19 @@ class CompletionClientCapabilities implements ToJson {
 
   factory CompletionClientCapabilities.fromJson(Map<String, Object?> json) {
     final completionListJson = json['completionList'];
-    final completionList = (completionListJson as LiteralCompletionList?);
+    final completionList =
+        (completionListJson as CompletionClientCapabilitiesCompletionList?);
     final contextSupportJson = json['contextSupport'];
     final contextSupport = (contextSupportJson as bool?);
     final insertTextModeJson = json['insertTextMode'];
     final insertTextMode = (insertTextModeJson as InsertTextMode?);
     final completionItemKindJson = json['completionItemKind'];
     final completionItemKind =
-        (completionItemKindJson as LiteralCompletionItemKind?);
+        (completionItemKindJson
+            as CompletionClientCapabilitiesCompletionItemKind?);
     final completionItemJson = json['completionItem'];
-    final completionItem = (completionItemJson as LiteralCompletionItem?);
+    final completionItem =
+        (completionItemJson as CompletionClientCapabilitiesCompletionItem?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
@@ -14209,7 +14221,7 @@ class CompletionClientCapabilities implements ToJson {
   /// The client supports the following `CompletionList` specific
   /// capabilities.
   /// @since 3.17.0
-  final LiteralCompletionList? completionList;
+  final CompletionClientCapabilitiesCompletionList? completionList;
 
   /// The client supports to send additional context information for a
   /// `textDocument/completion` request.
@@ -14221,11 +14233,11 @@ class CompletionClientCapabilities implements ToJson {
   /// @since 3.17.0
   final InsertTextMode? insertTextMode;
 
-  final LiteralCompletionItemKind? completionItemKind;
+  final CompletionClientCapabilitiesCompletionItemKind? completionItemKind;
 
   /// The client supports the following `CompletionItem` specific
   /// capabilities.
-  final LiteralCompletionItem? completionItem;
+  final CompletionClientCapabilitiesCompletionItem? completionItem;
 
   /// Whether completion supports dynamic registration.
   final bool? dynamicRegistration;
@@ -14291,7 +14303,8 @@ class SignatureHelpClientCapabilities implements ToJson {
     final contextSupport = (contextSupportJson as bool?);
     final signatureInformationJson = json['signatureInformation'];
     final signatureInformation =
-        (signatureInformationJson as LiteralSignatureInformation?);
+        (signatureInformationJson
+            as SignatureHelpClientCapabilitiesSignatureInformation?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
@@ -14311,7 +14324,8 @@ class SignatureHelpClientCapabilities implements ToJson {
 
   /// The client supports the following `SignatureInformation` specific
   /// properties.
-  final LiteralSignatureInformation? signatureInformation;
+  final SignatureHelpClientCapabilitiesSignatureInformation?
+  signatureInformation;
 
   /// Whether signature help supports dynamic registration.
   final bool? dynamicRegistration;
@@ -14544,13 +14558,15 @@ class DocumentSymbolClientCapabilities implements ToJson {
     final labelSupportJson = json['labelSupport'];
     final labelSupport = (labelSupportJson as bool?);
     final tagSupportJson = json['tagSupport'];
-    final tagSupport = (tagSupportJson as LiteralTagSupport?);
+    final tagSupport =
+        (tagSupportJson as WorkspaceSymbolClientCapabilitiesTagSupport?);
     final hierarchicalDocumentSymbolSupportJson =
         json['hierarchicalDocumentSymbolSupport'];
     final hierarchicalDocumentSymbolSupport =
         (hierarchicalDocumentSymbolSupportJson as bool?);
     final symbolKindJson = json['symbolKind'];
-    final symbolKind = (symbolKindJson as LiteralSymbolKind?);
+    final symbolKind =
+        (symbolKindJson as WorkspaceSymbolClientCapabilitiesSymbolKind?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
@@ -14572,14 +14588,14 @@ class DocumentSymbolClientCapabilities implements ToJson {
   /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
   /// Clients supporting tags have to handle unknown tags gracefully.
   /// @since 3.16.0
-  final LiteralTagSupport? tagSupport;
+  final WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport;
 
   /// The client supports hierarchical document symbols.
   final bool? hierarchicalDocumentSymbolSupport;
 
   /// Specific capabilities for the `SymbolKind` in the
   /// `textDocument/documentSymbol` request.
-  final LiteralSymbolKind? symbolKind;
+  final WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind;
 
   /// Whether document symbol supports dynamic registration.
   final bool? dynamicRegistration;
@@ -14615,7 +14631,8 @@ class CodeActionClientCapabilities implements ToJson {
     final honorsChangeAnnotationsJson = json['honorsChangeAnnotations'];
     final honorsChangeAnnotations = (honorsChangeAnnotationsJson as bool?);
     final resolveSupportJson = json['resolveSupport'];
-    final resolveSupport = (resolveSupportJson as LiteralResolveSupport?);
+    final resolveSupport =
+        (resolveSupportJson as CodeActionClientCapabilitiesResolveSupport?);
     final dataSupportJson = json['dataSupport'];
     final dataSupport = (dataSupportJson as bool?);
     final disabledSupportJson = json['disabledSupport'];
@@ -14624,7 +14641,8 @@ class CodeActionClientCapabilities implements ToJson {
     final isPreferredSupport = (isPreferredSupportJson as bool?);
     final codeActionLiteralSupportJson = json['codeActionLiteralSupport'];
     final codeActionLiteralSupport =
-        (codeActionLiteralSupportJson as LiteralCodeActionLiteralSupport?);
+        (codeActionLiteralSupportJson
+            as CodeActionClientCapabilitiesCodeActionLiteralSupport?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
@@ -14649,7 +14667,7 @@ class CodeActionClientCapabilities implements ToJson {
   /// Whether the client supports resolving additional code action properties
   /// via a separate `codeAction/resolve` request.
   /// @since 3.16.0
-  final LiteralResolveSupport? resolveSupport;
+  final CodeActionClientCapabilitiesResolveSupport? resolveSupport;
 
   /// Whether code action supports the `data` property which is preserved
   /// between a `textDocument/codeAction` and a `codeAction/resolve` request.
@@ -14668,7 +14686,8 @@ class CodeActionClientCapabilities implements ToJson {
   /// response of the `textDocument/codeAction` request. If the property is
   /// not set the request can only return `Command` literals.
   /// @since 3.8.0
-  final LiteralCodeActionLiteralSupport? codeActionLiteralSupport;
+  final CodeActionClientCapabilitiesCodeActionLiteralSupport?
+  codeActionLiteralSupport;
 
   /// Whether code action supports dynamic registration.
   final bool? dynamicRegistration;
@@ -14945,9 +14964,12 @@ class FoldingRangeClientCapabilities implements ToJson {
 
   factory FoldingRangeClientCapabilities.fromJson(Map<String, Object?> json) {
     final foldingRangeJson = json['foldingRange'];
-    final foldingRange = (foldingRangeJson as LiteralFoldingRange?);
+    final foldingRange =
+        (foldingRangeJson as FoldingRangeClientCapabilitiesFoldingRange?);
     final foldingRangeKindJson = json['foldingRangeKind'];
-    final foldingRangeKind = (foldingRangeKindJson as LiteralFoldingRangeKind?);
+    final foldingRangeKind =
+        (foldingRangeKindJson
+            as FoldingRangeClientCapabilitiesFoldingRangeKind?);
     final lineFoldingOnlyJson = json['lineFoldingOnly'];
     final lineFoldingOnly = (lineFoldingOnlyJson as bool?);
     final rangeLimitJson = json['rangeLimit'];
@@ -14966,11 +14988,11 @@ class FoldingRangeClientCapabilities implements ToJson {
 
   /// Specific options for the folding range.
   /// @since 3.17.0
-  final LiteralFoldingRange? foldingRange;
+  final FoldingRangeClientCapabilitiesFoldingRange? foldingRange;
 
   /// Specific options for the folding range kind.
   /// @since 3.17.0
-  final LiteralFoldingRangeKind? foldingRangeKind;
+  final FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind;
 
   /// If set, the client signals that it only supports folding complete
   /// lines. If set, client will ignore specified `startCharacter` and
@@ -15050,7 +15072,8 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
     final versionSupportJson = json['versionSupport'];
     final versionSupport = (versionSupportJson as bool?);
     final tagSupportJson = json['tagSupport'];
-    final tagSupport = (tagSupportJson as LiteralTagSupport?);
+    final tagSupport =
+        (tagSupportJson as PublishDiagnosticsClientCapabilitiesTagSupport?);
     final relatedInformationJson = json['relatedInformation'];
     final relatedInformation = (relatedInformationJson as bool?);
 
@@ -15082,7 +15105,7 @@ class PublishDiagnosticsClientCapabilities implements ToJson {
   /// diagnostic. Clients supporting tags have to handle unknown tags
   /// gracefully.
   /// @since 3.15.0
-  final LiteralTagSupport? tagSupport;
+  final PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport;
 
   /// Whether the clients accepts diagnostics with related information.
   final bool? relatedInformation;
@@ -15146,7 +15169,7 @@ class SemanticTokensClientCapabilities implements ToJson {
 
   factory SemanticTokensClientCapabilities.fromJson(Map<String, Object?> json) {
     final requestsJson = json['requests']!;
-    final requests = (requestsJson as LiteralRequests);
+    final requests = (requestsJson as SemanticTokensClientCapabilitiesRequests);
     final tokenTypesJson = json['tokenTypes']!;
     final tokenTypes = (tokenTypesJson as List<String>);
     final tokenModifiersJson = json['tokenModifiers']!;
@@ -15185,7 +15208,7 @@ class SemanticTokensClientCapabilities implements ToJson {
   /// `request.range` are both set to true but the server only provides a
   /// range provider the client might not render a minimap correctly or might
   /// even decide to not show any semantic tokens at all.
-  final LiteralRequests requests;
+  final SemanticTokensClientCapabilitiesRequests requests;
 
   /// The token types that the client supports.
   final List<String> tokenTypes;
@@ -15363,7 +15386,8 @@ class InlayHintClientCapabilities implements ToJson {
 
   factory InlayHintClientCapabilities.fromJson(Map<String, Object?> json) {
     final resolveSupportJson = json['resolveSupport'];
-    final resolveSupport = (resolveSupportJson as LiteralResolveSupport?);
+    final resolveSupport =
+        (resolveSupportJson as CodeActionClientCapabilitiesResolveSupport?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
@@ -15374,7 +15398,7 @@ class InlayHintClientCapabilities implements ToJson {
   }
 
   /// Indicates which properties a client can resolve lazily on an inlay hint.
-  final LiteralResolveSupport? resolveSupport;
+  final CodeActionClientCapabilitiesResolveSupport? resolveSupport;
 
   /// Whether inlay hints support dynamic registration.
   final bool? dynamicRegistration;
@@ -15512,7 +15536,8 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   ) {
     final messageActionItemJson = json['messageActionItem'];
     final messageActionItem =
-        (messageActionItemJson as LiteralMessageActionItem?);
+        (messageActionItemJson
+            as ShowMessageRequestClientCapabilitiesMessageActionItem?);
 
     return ShowMessageRequestClientCapabilities(
       messageActionItem: messageActionItem,
@@ -15520,7 +15545,8 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   }
 
   /// Capabilities specific to the `MessageActionItem` type.
-  final LiteralMessageActionItem? messageActionItem;
+  final ShowMessageRequestClientCapabilitiesMessageActionItem?
+  messageActionItem;
 
   @override
   Map<String, Object?> toJson() {
@@ -16498,16 +16524,16 @@ const _$TokenFormatEnumMap = {TokenFormat.relativeValue: 'relative'};
 /// Literal
 /// Information about the server.
 /// @since 3.15.0
-class LiteralServerInfo implements ToJson {
-  LiteralServerInfo({required this.name, this.version});
+class InitializeResultServerInfo implements ToJson {
+  InitializeResultServerInfo({required this.name, this.version});
 
-  factory LiteralServerInfo.fromJson(Map<String, Object?> json) {
+  factory InitializeResultServerInfo.fromJson(Map<String, Object?> json) {
     final nameJson = json['name']!;
     final name = (nameJson as String);
     final versionJson = json['version'];
     final version = (versionJson as String?);
 
-    return LiteralServerInfo(name: name, version: version);
+    return InitializeResultServerInfo(name: name, version: version);
   }
 
   /// The name of the server as defined by the server.
@@ -16536,8 +16562,8 @@ class LiteralServerInfo implements ToJson {
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
 /// @since 3.17.0
-class LiteralItemDefaults implements ToJson {
-  LiteralItemDefaults({
+class CompletionListItemDefaults implements ToJson {
+  CompletionListItemDefaults({
     this.commitCharacters,
     this.editRange,
     this.insertTextFormat,
@@ -16545,7 +16571,7 @@ class LiteralItemDefaults implements ToJson {
     this.data,
   });
 
-  factory LiteralItemDefaults.fromJson(Map<String, Object?> json) {
+  factory CompletionListItemDefaults.fromJson(Map<String, Object?> json) {
     final commitCharactersJson = json['commitCharacters'];
     final commitCharacters = (commitCharactersJson as List<String>?);
     final editRangeJson = json['editRange'];
@@ -16557,7 +16583,7 @@ class LiteralItemDefaults implements ToJson {
     final dataJson = json['data'];
     final data = (dataJson as LSPAny?);
 
-    return LiteralItemDefaults(
+    return CompletionListItemDefaults(
       commitCharacters: commitCharacters,
       editRange: editRange,
       insertTextFormat: insertTextFormat,
@@ -16615,14 +16641,14 @@ class LiteralItemDefaults implements ToJson {
 /// returned, the client should show the user an error message with `reason` in
 /// the editor.
 /// @since 3.16.0
-class LiteralDisabled implements ToJson {
-  LiteralDisabled({required this.reason});
+class CodeActionDisabled implements ToJson {
+  CodeActionDisabled({required this.reason});
 
-  factory LiteralDisabled.fromJson(Map<String, Object?> json) {
+  factory CodeActionDisabled.fromJson(Map<String, Object?> json) {
     final reasonJson = json['reason']!;
     final reason = (reasonJson as String);
 
-    return LiteralDisabled(reason: reason);
+    return CodeActionDisabled(reason: reason);
   }
 
   /// Human readable description of why the code action is currently disabled.
@@ -16643,14 +16669,14 @@ class LiteralDisabled implements ToJson {
 /// location without a range depends on the client capability
 /// `workspace.symbol.resolveSupport`.
 /// See SymbolInformation#location for more details.
-class LiteralLocation implements ToJson {
-  LiteralLocation({required this.uri});
+class WorkspaceSymbolLocation implements ToJson {
+  WorkspaceSymbolLocation({required this.uri});
 
-  factory LiteralLocation.fromJson(Map<String, Object?> json) {
+  factory WorkspaceSymbolLocation.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
     final uri = (uriJson as Uri);
 
-    return LiteralLocation(uri: uri);
+    return WorkspaceSymbolLocation(uri: uri);
   }
 
   final Uri uri;
@@ -16665,36 +16691,15 @@ class LiteralLocation implements ToJson {
 }
 
 /// Literal
-/// Server supports providing semantic tokens for a specific range of a
-/// document.
-class LiteralRange implements ToJson {
-  LiteralRange();
-
-  factory LiteralRange.fromJson(Map<String, Object?> json) {
-    // No fields to parse
-    final _ = json;
-
-    return LiteralRange();
-  }
-
-  @override
-  Map<String, Object?> toJson() {
-    final json = <String, Object?>{};
-
-    return json;
-  }
-}
-
-/// Literal
 /// Server supports providing semantic tokens for a full document.
-class LiteralFull implements ToJson {
-  LiteralFull({this.delta});
+class SemanticTokensOptionsFull implements ToJson {
+  SemanticTokensOptionsFull({this.delta});
 
-  factory LiteralFull.fromJson(Map<String, Object?> json) {
+  factory SemanticTokensOptionsFull.fromJson(Map<String, Object?> json) {
     final deltaJson = json['delta'];
     final delta = (deltaJson as bool?);
 
-    return LiteralFull(delta: delta);
+    return SemanticTokensOptionsFull(delta: delta);
   }
 
   /// The server supports deltas for full documents.
@@ -16711,18 +16716,23 @@ class LiteralFull implements ToJson {
 
 /// Literal
 /// Changes to cells
-class LiteralCells implements ToJson {
-  LiteralCells({this.structure, this.data, this.textContent});
+class NotebookDocumentChangeEventCells implements ToJson {
+  NotebookDocumentChangeEventCells({
+    this.structure,
+    this.data,
+    this.textContent,
+  });
 
-  factory LiteralCells.fromJson(Map<String, Object?> json) {
+  factory NotebookDocumentChangeEventCells.fromJson(Map<String, Object?> json) {
     final structureJson = json['structure'];
-    final structure = (structureJson as LiteralStructure?);
+    final structure = (structureJson as NotebookDocumentChangeEventStructure?);
     final dataJson = json['data'];
     final data = (dataJson as List<NotebookCell>?);
     final textContentJson = json['textContent'];
-    final textContent = (textContentJson as List<LiteralTextContent>?);
+    final textContent =
+        (textContentJson as List<NotebookDocumentChangeEventTextContent>?);
 
-    return LiteralCells(
+    return NotebookDocumentChangeEventCells(
       structure: structure,
       data: data,
       textContent: textContent,
@@ -16730,14 +16740,14 @@ class LiteralCells implements ToJson {
   }
 
   /// Changes to the cell structure to add or remove cells.
-  final LiteralStructure? structure;
+  final NotebookDocumentChangeEventStructure? structure;
 
   /// Changes to notebook cells properties like its kind, execution summary
   /// or metadata.
   final List<NotebookCell>? data;
 
   /// Changes to the text content of notebook cells.
-  final List<LiteralTextContent>? textContent;
+  final List<NotebookDocumentChangeEventTextContent>? textContent;
 
   @override
   Map<String, Object?> toJson() {
@@ -16753,16 +16763,16 @@ class LiteralCells implements ToJson {
 /// Literal
 /// Information about the client
 /// @since 3.15.0
-class LiteralClientInfo implements ToJson {
-  LiteralClientInfo({required this.name, this.version});
+class InitializeParamsClientInfo implements ToJson {
+  InitializeParamsClientInfo({required this.name, this.version});
 
-  factory LiteralClientInfo.fromJson(Map<String, Object?> json) {
+  factory InitializeParamsClientInfo.fromJson(Map<String, Object?> json) {
     final nameJson = json['name']!;
     final name = (nameJson as String);
     final versionJson = json['version'];
     final version = (versionJson as String?);
 
-    return LiteralClientInfo(name: name, version: version);
+    return InitializeParamsClientInfo(name: name, version: version);
   }
 
   /// The name of the client as defined by the client.
@@ -16783,17 +16793,17 @@ class LiteralClientInfo implements ToJson {
 
 /// Literal
 /// Workspace specific server capabilities.
-class LiteralWorkspace implements ToJson {
-  LiteralWorkspace({this.workspaceFolders, this.fileOperations});
+class ServerCapabilitiesWorkspace implements ToJson {
+  ServerCapabilitiesWorkspace({this.workspaceFolders, this.fileOperations});
 
-  factory LiteralWorkspace.fromJson(Map<String, Object?> json) {
+  factory ServerCapabilitiesWorkspace.fromJson(Map<String, Object?> json) {
     final workspaceFoldersJson = json['workspaceFolders'];
     final workspaceFolders =
         (workspaceFoldersJson as WorkspaceFoldersServerCapabilities?);
     final fileOperationsJson = json['fileOperations'];
     final fileOperations = (fileOperationsJson as FileOperationOptions?);
 
-    return LiteralWorkspace(
+    return ServerCapabilitiesWorkspace(
       workspaceFolders: workspaceFolders,
       fileOperations: fileOperations,
     );
@@ -16821,14 +16831,16 @@ class LiteralWorkspace implements ToJson {
 /// Literal
 /// The server supports the following `CompletionItem` specific capabilities.
 /// @since 3.17.0
-class LiteralCompletionItem implements ToJson {
-  LiteralCompletionItem({this.labelDetailsSupport});
+class CompletionOptionsCompletionItem implements ToJson {
+  CompletionOptionsCompletionItem({this.labelDetailsSupport});
 
-  factory LiteralCompletionItem.fromJson(Map<String, Object?> json) {
+  factory CompletionOptionsCompletionItem.fromJson(Map<String, Object?> json) {
     final labelDetailsSupportJson = json['labelDetailsSupport'];
     final labelDetailsSupport = (labelDetailsSupportJson as bool?);
 
-    return LiteralCompletionItem(labelDetailsSupport: labelDetailsSupport);
+    return CompletionOptionsCompletionItem(
+      labelDetailsSupport: labelDetailsSupport,
+    );
   }
 
   /// The server has support for completion item label details (see also
@@ -16851,19 +16863,21 @@ class LiteralCompletionItem implements ToJson {
 /// a request for which the client will not process the response anymore since
 /// the information is outdated).
 /// @since 3.17.0
-class LiteralStaleRequestSupport implements ToJson {
-  LiteralStaleRequestSupport({
+class GeneralClientCapabilitiesStaleRequestSupport implements ToJson {
+  GeneralClientCapabilitiesStaleRequestSupport({
     required this.cancel,
     required this.retryOnContentModified,
   });
 
-  factory LiteralStaleRequestSupport.fromJson(Map<String, Object?> json) {
+  factory GeneralClientCapabilitiesStaleRequestSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
     final cancelJson = json['cancel']!;
     final cancel = (cancelJson as bool);
     final retryOnContentModifiedJson = json['retryOnContentModified']!;
     final retryOnContentModified = (retryOnContentModifiedJson as List<String>);
 
-    return LiteralStaleRequestSupport(
+    return GeneralClientCapabilitiesStaleRequestSupport(
       cancel: cancel,
       retryOnContentModified: retryOnContentModified,
     );
@@ -16890,14 +16904,18 @@ class LiteralStaleRequestSupport implements ToJson {
 /// Whether the client in general supports change annotations on text edits,
 /// create file, rename file and delete file changes.
 /// @since 3.16.0
-class LiteralChangeAnnotationSupport implements ToJson {
-  LiteralChangeAnnotationSupport({this.groupsOnLabel});
+class WorkspaceEditClientCapabilitiesChangeAnnotationSupport implements ToJson {
+  WorkspaceEditClientCapabilitiesChangeAnnotationSupport({this.groupsOnLabel});
 
-  factory LiteralChangeAnnotationSupport.fromJson(Map<String, Object?> json) {
+  factory WorkspaceEditClientCapabilitiesChangeAnnotationSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
     final groupsOnLabelJson = json['groupsOnLabel'];
     final groupsOnLabel = (groupsOnLabelJson as bool?);
 
-    return LiteralChangeAnnotationSupport(groupsOnLabel: groupsOnLabel);
+    return WorkspaceEditClientCapabilitiesChangeAnnotationSupport(
+      groupsOnLabel: groupsOnLabel,
+    );
   }
 
   /// Whether the client groups edits with equal labels into tree nodes, for
@@ -16915,74 +16933,22 @@ class LiteralChangeAnnotationSupport implements ToJson {
 }
 
 /// Literal
-/// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
-/// request.
-class LiteralSymbolKind implements ToJson {
-  LiteralSymbolKind({this.valueSet});
-
-  factory LiteralSymbolKind.fromJson(Map<String, Object?> json) {
-    final valueSetJson = json['valueSet'];
-    final valueSet = (valueSetJson as List<SymbolKind>?);
-
-    return LiteralSymbolKind(valueSet: valueSet);
-  }
-
-  /// The symbol kind values the client supports. When this property exists
-  /// the client also guarantees that it will handle values outside its set
-  /// gracefully and falls back to a default value when unknown.
-  /// If this property is not present the client only supports the symbol
-  /// kinds from `File` to `Array` as defined in the initial version of the
-  /// protocol.
-  final List<SymbolKind>? valueSet;
-
-  @override
-  Map<String, Object?> toJson() {
-    final json = <String, Object?>{};
-    json['valueSet'] = valueSet;
-
-    return json;
-  }
-}
-
-/// Literal
-/// The client supports tags on `SymbolInformation`. Clients supporting tags
-/// have to handle unknown tags gracefully.
-/// @since 3.16.0
-class LiteralTagSupport implements ToJson {
-  LiteralTagSupport({required this.valueSet});
-
-  factory LiteralTagSupport.fromJson(Map<String, Object?> json) {
-    final valueSetJson = json['valueSet']!;
-    final valueSet = (valueSetJson as List<SymbolTag>);
-
-    return LiteralTagSupport(valueSet: valueSet);
-  }
-
-  /// The tags supported by the client.
-  final List<SymbolTag> valueSet;
-
-  @override
-  Map<String, Object?> toJson() {
-    final json = <String, Object?>{};
-    json['valueSet'] = valueSet;
-
-    return json;
-  }
-}
-
-/// Literal
 /// The client support partial workspace symbols. The client will send the
 /// request `workspaceSymbol/resolve` to the server to resolve additional
 /// properties.
 /// @since 3.17.0
-class LiteralResolveSupport implements ToJson {
-  LiteralResolveSupport({required this.properties});
+class WorkspaceSymbolClientCapabilitiesResolveSupport implements ToJson {
+  WorkspaceSymbolClientCapabilitiesResolveSupport({required this.properties});
 
-  factory LiteralResolveSupport.fromJson(Map<String, Object?> json) {
+  factory WorkspaceSymbolClientCapabilitiesResolveSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
     final propertiesJson = json['properties']!;
     final properties = (propertiesJson as List<String>);
 
-    return LiteralResolveSupport(properties: properties);
+    return WorkspaceSymbolClientCapabilitiesResolveSupport(
+      properties: properties,
+    );
   }
 
   /// The properties that a client can resolve lazily. Usually
@@ -16999,14 +16965,142 @@ class LiteralResolveSupport implements ToJson {
 }
 
 /// Literal
-class LiteralCompletionItemKind implements ToJson {
-  LiteralCompletionItemKind({this.valueSet});
+/// The client supports the following `CompletionItem` specific capabilities.
+class CompletionClientCapabilitiesCompletionItem implements ToJson {
+  CompletionClientCapabilitiesCompletionItem({
+    this.snippetSupport,
+    this.commitCharactersSupport,
+    this.documentationFormat,
+    this.deprecatedSupport,
+    this.preselectSupport,
+    this.tagSupport,
+    this.insertReplaceSupport,
+    this.resolveSupport,
+    this.insertTextModeSupport,
+    this.labelDetailsSupport,
+  });
 
-  factory LiteralCompletionItemKind.fromJson(Map<String, Object?> json) {
+  factory CompletionClientCapabilitiesCompletionItem.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final snippetSupportJson = json['snippetSupport'];
+    final snippetSupport = (snippetSupportJson as bool?);
+    final commitCharactersSupportJson = json['commitCharactersSupport'];
+    final commitCharactersSupport = (commitCharactersSupportJson as bool?);
+    final documentationFormatJson = json['documentationFormat'];
+    final documentationFormat = (documentationFormatJson as List<MarkupKind>?);
+    final deprecatedSupportJson = json['deprecatedSupport'];
+    final deprecatedSupport = (deprecatedSupportJson as bool?);
+    final preselectSupportJson = json['preselectSupport'];
+    final preselectSupport = (preselectSupportJson as bool?);
+    final tagSupportJson = json['tagSupport'];
+    final tagSupport =
+        (tagSupportJson as CompletionClientCapabilitiesTagSupport?);
+    final insertReplaceSupportJson = json['insertReplaceSupport'];
+    final insertReplaceSupport = (insertReplaceSupportJson as bool?);
+    final resolveSupportJson = json['resolveSupport'];
+    final resolveSupport =
+        (resolveSupportJson as CodeActionClientCapabilitiesResolveSupport?);
+    final insertTextModeSupportJson = json['insertTextModeSupport'];
+    final insertTextModeSupport =
+        (insertTextModeSupportJson
+            as CompletionClientCapabilitiesInsertTextModeSupport?);
+    final labelDetailsSupportJson = json['labelDetailsSupport'];
+    final labelDetailsSupport = (labelDetailsSupportJson as bool?);
+
+    return CompletionClientCapabilitiesCompletionItem(
+      snippetSupport: snippetSupport,
+      commitCharactersSupport: commitCharactersSupport,
+      documentationFormat: documentationFormat,
+      deprecatedSupport: deprecatedSupport,
+      preselectSupport: preselectSupport,
+      tagSupport: tagSupport,
+      insertReplaceSupport: insertReplaceSupport,
+      resolveSupport: resolveSupport,
+      insertTextModeSupport: insertTextModeSupport,
+      labelDetailsSupport: labelDetailsSupport,
+    );
+  }
+
+  /// Client supports snippets as insert text.
+  /// A snippet can define tab stops and placeholders with `$1`, `$2` and
+  /// `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of
+  /// the snippet. Placeholders with equal identifiers are linked, that is
+  /// typing in one will update others too.
+  final bool? snippetSupport;
+
+  /// Client supports commit characters on a completion item.
+  final bool? commitCharactersSupport;
+
+  /// Client supports the following content formats for the documentation
+  /// property. The order describes the preferred format of the client.
+  final List<MarkupKind>? documentationFormat;
+
+  /// Client supports the deprecated property on a completion item.
+  final bool? deprecatedSupport;
+
+  /// Client supports the preselect property on a completion item.
+  final bool? preselectSupport;
+
+  /// Client supports the tag property on a completion item. Clients
+  /// supporting tags have to handle unknown tags gracefully. Clients
+  /// especially need to preserve unknown tags when sending a completion item
+  /// back to the server in a resolve call.
+  /// @since 3.15.0
+  final CompletionClientCapabilitiesTagSupport? tagSupport;
+
+  /// Client support insert replace edit to control different behavior if a
+  /// completion item is inserted in the text or should replace text.
+  /// @since 3.16.0
+  final bool? insertReplaceSupport;
+
+  /// Indicates which properties a client can resolve lazily on a completion
+  /// item. Before version 3.16.0 only the predefined properties
+  /// `documentation` and `details` could be resolved lazily.
+  /// @since 3.16.0
+  final CodeActionClientCapabilitiesResolveSupport? resolveSupport;
+
+  /// The client supports the `insertTextMode` property on a completion item
+  /// to override the whitespace handling mode as defined by the client (see
+  /// `insertTextMode`).
+  /// @since 3.16.0
+  final CompletionClientCapabilitiesInsertTextModeSupport?
+  insertTextModeSupport;
+
+  /// The client has support for completion item label details (see also
+  /// `CompletionItemLabelDetails`).
+  /// @since 3.17.0
+  final bool? labelDetailsSupport;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    json['snippetSupport'] = snippetSupport;
+    json['commitCharactersSupport'] = commitCharactersSupport;
+    json['documentationFormat'] = documentationFormat;
+    json['deprecatedSupport'] = deprecatedSupport;
+    json['preselectSupport'] = preselectSupport;
+    json['tagSupport'] = tagSupport;
+    json['insertReplaceSupport'] = insertReplaceSupport;
+    json['resolveSupport'] = resolveSupport;
+    json['insertTextModeSupport'] = insertTextModeSupport;
+    json['labelDetailsSupport'] = labelDetailsSupport;
+
+    return json;
+  }
+}
+
+/// Literal
+class CompletionClientCapabilitiesCompletionItemKind implements ToJson {
+  CompletionClientCapabilitiesCompletionItemKind({this.valueSet});
+
+  factory CompletionClientCapabilitiesCompletionItemKind.fromJson(
+    Map<String, Object?> json,
+  ) {
     final valueSetJson = json['valueSet'];
     final valueSet = (valueSetJson as List<CompletionItemKind>?);
 
-    return LiteralCompletionItemKind(valueSet: valueSet);
+    return CompletionClientCapabilitiesCompletionItemKind(valueSet: valueSet);
   }
 
   /// The completion item kind values the client supports. When this property
@@ -17029,14 +17123,18 @@ class LiteralCompletionItemKind implements ToJson {
 /// Literal
 /// The client supports the following `CompletionList` specific capabilities.
 /// @since 3.17.0
-class LiteralCompletionList implements ToJson {
-  LiteralCompletionList({this.itemDefaults});
+class CompletionClientCapabilitiesCompletionList implements ToJson {
+  CompletionClientCapabilitiesCompletionList({this.itemDefaults});
 
-  factory LiteralCompletionList.fromJson(Map<String, Object?> json) {
+  factory CompletionClientCapabilitiesCompletionList.fromJson(
+    Map<String, Object?> json,
+  ) {
     final itemDefaultsJson = json['itemDefaults'];
     final itemDefaults = (itemDefaultsJson as List<String>?);
 
-    return LiteralCompletionList(itemDefaults: itemDefaults);
+    return CompletionClientCapabilitiesCompletionList(
+      itemDefaults: itemDefaults,
+    );
   }
 
   /// The client supports the following itemDefaults on a completion list.
@@ -17058,23 +17156,26 @@ class LiteralCompletionList implements ToJson {
 /// Literal
 /// The client supports the following `SignatureInformation` specific
 /// properties.
-class LiteralSignatureInformation implements ToJson {
-  LiteralSignatureInformation({
+class SignatureHelpClientCapabilitiesSignatureInformation implements ToJson {
+  SignatureHelpClientCapabilitiesSignatureInformation({
     this.documentationFormat,
     this.parameterInformation,
     this.activeParameterSupport,
   });
 
-  factory LiteralSignatureInformation.fromJson(Map<String, Object?> json) {
+  factory SignatureHelpClientCapabilitiesSignatureInformation.fromJson(
+    Map<String, Object?> json,
+  ) {
     final documentationFormatJson = json['documentationFormat'];
     final documentationFormat = (documentationFormatJson as List<MarkupKind>?);
     final parameterInformationJson = json['parameterInformation'];
     final parameterInformation =
-        (parameterInformationJson as LiteralParameterInformation?);
+        (parameterInformationJson
+            as SignatureHelpClientCapabilitiesParameterInformation?);
     final activeParameterSupportJson = json['activeParameterSupport'];
     final activeParameterSupport = (activeParameterSupportJson as bool?);
 
-    return LiteralSignatureInformation(
+    return SignatureHelpClientCapabilitiesSignatureInformation(
       documentationFormat: documentationFormat,
       parameterInformation: parameterInformation,
       activeParameterSupport: activeParameterSupport,
@@ -17086,7 +17187,8 @@ class LiteralSignatureInformation implements ToJson {
   final List<MarkupKind>? documentationFormat;
 
   /// Client capabilities specific to parameter information.
-  final LiteralParameterInformation? parameterInformation;
+  final SignatureHelpClientCapabilitiesParameterInformation?
+  parameterInformation;
 
   /// The client supports the `activeParameter` property on
   /// `SignatureInformation` literal.
@@ -17104,24 +17206,30 @@ class LiteralSignatureInformation implements ToJson {
   }
 }
 
-
 /// Literal
 /// The client support code action literals of type `CodeAction` as a valid
 /// response of the `textDocument/codeAction` request. If the property is not
 /// set the request can only return `Command` literals.
 /// @since 3.8.0
-class LiteralCodeActionLiteralSupport implements ToJson {
-  LiteralCodeActionLiteralSupport({required this.codeActionKind});
+class CodeActionClientCapabilitiesCodeActionLiteralSupport implements ToJson {
+  CodeActionClientCapabilitiesCodeActionLiteralSupport({
+    required this.codeActionKind,
+  });
 
-  factory LiteralCodeActionLiteralSupport.fromJson(Map<String, Object?> json) {
+  factory CodeActionClientCapabilitiesCodeActionLiteralSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
     final codeActionKindJson = json['codeActionKind']!;
-    final codeActionKind = (codeActionKindJson as LiteralCodeActionKind);
+    final codeActionKind =
+        (codeActionKindJson as CodeActionClientCapabilitiesCodeActionKind);
 
-    return LiteralCodeActionLiteralSupport(codeActionKind: codeActionKind);
+    return CodeActionClientCapabilitiesCodeActionLiteralSupport(
+      codeActionKind: codeActionKind,
+    );
   }
 
   /// The code action kind is support with the following value set.
-  final LiteralCodeActionKind codeActionKind;
+  final CodeActionClientCapabilitiesCodeActionKind codeActionKind;
 
   @override
   Map<String, Object?> toJson() {
@@ -17132,18 +17240,19 @@ class LiteralCodeActionLiteralSupport implements ToJson {
   }
 }
 
-
 /// Literal
 /// Specific options for the folding range kind.
 /// @since 3.17.0
-class LiteralFoldingRangeKind implements ToJson {
-  LiteralFoldingRangeKind({this.valueSet});
+class FoldingRangeClientCapabilitiesFoldingRangeKind implements ToJson {
+  FoldingRangeClientCapabilitiesFoldingRangeKind({this.valueSet});
 
-  factory LiteralFoldingRangeKind.fromJson(Map<String, Object?> json) {
+  factory FoldingRangeClientCapabilitiesFoldingRangeKind.fromJson(
+    Map<String, Object?> json,
+  ) {
     final valueSetJson = json['valueSet'];
     final valueSet = (valueSetJson as List<FoldingRangeKind>?);
 
-    return LiteralFoldingRangeKind(valueSet: valueSet);
+    return FoldingRangeClientCapabilitiesFoldingRangeKind(valueSet: valueSet);
   }
 
   /// The folding range kind values the client supports. When this property
@@ -17163,14 +17272,18 @@ class LiteralFoldingRangeKind implements ToJson {
 /// Literal
 /// Specific options for the folding range.
 /// @since 3.17.0
-class LiteralFoldingRange implements ToJson {
-  LiteralFoldingRange({this.collapsedText});
+class FoldingRangeClientCapabilitiesFoldingRange implements ToJson {
+  FoldingRangeClientCapabilitiesFoldingRange({this.collapsedText});
 
-  factory LiteralFoldingRange.fromJson(Map<String, Object?> json) {
+  factory FoldingRangeClientCapabilitiesFoldingRange.fromJson(
+    Map<String, Object?> json,
+  ) {
     final collapsedTextJson = json['collapsedText'];
     final collapsedText = (collapsedTextJson as bool?);
 
-    return LiteralFoldingRange(collapsedText: collapsedText);
+    return FoldingRangeClientCapabilitiesFoldingRange(
+      collapsedText: collapsedText,
+    );
   }
 
   /// If set, the client signals that it supports setting collapsedText on
@@ -17188,6 +17301,34 @@ class LiteralFoldingRange implements ToJson {
 }
 
 /// Literal
+/// Client supports the tag property to provide meta data about a diagnostic.
+/// Clients supporting tags have to handle unknown tags gracefully.
+/// @since 3.15.0
+class PublishDiagnosticsClientCapabilitiesTagSupport implements ToJson {
+  PublishDiagnosticsClientCapabilitiesTagSupport({required this.valueSet});
+
+  factory PublishDiagnosticsClientCapabilitiesTagSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<DiagnosticTag>);
+
+    return PublishDiagnosticsClientCapabilitiesTagSupport(valueSet: valueSet);
+  }
+
+  /// The tags supported by the client.
+  final List<DiagnosticTag> valueSet;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    json['valueSet'] = valueSet;
+
+    return json;
+  }
+}
+
+/// Literal
 /// Which requests the client supports and might send to the server depending
 /// on the server's capability. Please note that clients might not show
 /// semantic tokens or degrade some of the user experience if a range or full
@@ -17196,16 +17337,18 @@ class LiteralFoldingRange implements ToJson {
 /// set to true but the server only provides a range provider the client might
 /// not render a minimap correctly or might even decide to not show any
 /// semantic tokens at all.
-class LiteralRequests implements ToJson {
-  LiteralRequests({this.range, this.full});
+class SemanticTokensClientCapabilitiesRequests implements ToJson {
+  SemanticTokensClientCapabilitiesRequests({this.range, this.full});
 
-  factory LiteralRequests.fromJson(Map<String, Object?> json) {
+  factory SemanticTokensClientCapabilitiesRequests.fromJson(
+    Map<String, Object?> json,
+  ) {
     final rangeJson = json['range'];
     final range = (rangeJson as BooleanOrSemanticTokensOptionsRange?);
     final fullJson = json['full'];
     final full = (fullJson as Object?);
 
-    return LiteralRequests(range: range, full: full);
+    return SemanticTokensClientCapabilitiesRequests(range: range, full: full);
   }
 
   /// Represents a union type.
@@ -17230,15 +17373,19 @@ class LiteralRequests implements ToJson {
 
 /// Literal
 /// Capabilities specific to the `MessageActionItem` type.
-class LiteralMessageActionItem implements ToJson {
-  LiteralMessageActionItem({this.additionalPropertiesSupport});
+class ShowMessageRequestClientCapabilitiesMessageActionItem implements ToJson {
+  ShowMessageRequestClientCapabilitiesMessageActionItem({
+    this.additionalPropertiesSupport,
+  });
 
-  factory LiteralMessageActionItem.fromJson(Map<String, Object?> json) {
+  factory ShowMessageRequestClientCapabilitiesMessageActionItem.fromJson(
+    Map<String, Object?> json,
+  ) {
     final additionalPropertiesSupportJson = json['additionalPropertiesSupport'];
     final additionalPropertiesSupport =
         (additionalPropertiesSupportJson as bool?);
 
-    return LiteralMessageActionItem(
+    return ShowMessageRequestClientCapabilitiesMessageActionItem(
       additionalPropertiesSupport: additionalPropertiesSupport,
     );
   }
@@ -17259,16 +17406,16 @@ class LiteralMessageActionItem implements ToJson {
 /// Literal
 /// A default edit range.
 /// @since 3.17.0
-class LiteralEditRange implements ToJson {
-  LiteralEditRange({required this.insert, required this.replace});
+class CompletionListEditRange implements ToJson {
+  CompletionListEditRange({required this.insert, required this.replace});
 
-  factory LiteralEditRange.fromJson(Map<String, Object?> json) {
+  factory CompletionListEditRange.fromJson(Map<String, Object?> json) {
     final insertJson = json['insert']!;
     final insert = Range.fromJson((insertJson as Map<String, Object?>));
     final replaceJson = json['replace']!;
     final replace = Range.fromJson((replaceJson as Map<String, Object?>));
 
-    return LiteralEditRange(insert: insert, replace: replace);
+    return CompletionListEditRange(insert: insert, replace: replace);
   }
 
   final Range insert;
@@ -17287,10 +17434,16 @@ class LiteralEditRange implements ToJson {
 
 /// Literal
 /// Changes to the cell structure to add or remove cells.
-class LiteralStructure implements ToJson {
-  LiteralStructure({required this.array, this.didOpen, this.didClose});
+class NotebookDocumentChangeEventStructure implements ToJson {
+  NotebookDocumentChangeEventStructure({
+    required this.array,
+    this.didOpen,
+    this.didClose,
+  });
 
-  factory LiteralStructure.fromJson(Map<String, Object?> json) {
+  factory NotebookDocumentChangeEventStructure.fromJson(
+    Map<String, Object?> json,
+  ) {
     final arrayJson = json['array']!;
     final array = NotebookCellArrayChange.fromJson(
       (arrayJson as Map<String, Object?>),
@@ -17300,7 +17453,11 @@ class LiteralStructure implements ToJson {
     final didCloseJson = json['didClose'];
     final didClose = (didCloseJson as List<TextDocumentIdentifier>?);
 
-    return LiteralStructure(array: array, didOpen: didOpen, didClose: didClose);
+    return NotebookDocumentChangeEventStructure(
+      array: array,
+      didOpen: didOpen,
+      didClose: didClose,
+    );
   }
 
   /// The change to the cell array.
@@ -17325,10 +17482,15 @@ class LiteralStructure implements ToJson {
 
 /// Literal
 /// Changes to the text content of notebook cells.
-class LiteralTextContent implements ToJson {
-  LiteralTextContent({required this.document, required this.changes});
+class NotebookDocumentChangeEventTextContent implements ToJson {
+  NotebookDocumentChangeEventTextContent({
+    required this.document,
+    required this.changes,
+  });
 
-  factory LiteralTextContent.fromJson(Map<String, Object?> json) {
+  factory NotebookDocumentChangeEventTextContent.fromJson(
+    Map<String, Object?> json,
+  ) {
     final documentJson = json['document']!;
     final document = VersionedTextDocumentIdentifier.fromJson(
       (documentJson as Map<String, Object?>),
@@ -17336,7 +17498,10 @@ class LiteralTextContent implements ToJson {
     final changesJson = json['changes']!;
     final changes = (changesJson as List<TextDocumentContentChangeEvent>);
 
-    return LiteralTextContent(document: document, changes: changes);
+    return NotebookDocumentChangeEventTextContent(
+      document: document,
+      changes: changes,
+    );
   }
 
   final VersionedTextDocumentIdentifier document;
@@ -17354,18 +17519,52 @@ class LiteralTextContent implements ToJson {
 }
 
 /// Literal
+/// Client supports the tag property on a completion item. Clients supporting
+/// tags have to handle unknown tags gracefully. Clients especially need to
+/// preserve unknown tags when sending a completion item back to the server in
+/// a resolve call.
+/// @since 3.15.0
+class CompletionClientCapabilitiesTagSupport implements ToJson {
+  CompletionClientCapabilitiesTagSupport({required this.valueSet});
+
+  factory CompletionClientCapabilitiesTagSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<CompletionItemTag>);
+
+    return CompletionClientCapabilitiesTagSupport(valueSet: valueSet);
+  }
+
+  /// The tags supported by the client.
+  final List<CompletionItemTag> valueSet;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    json['valueSet'] = valueSet;
+
+    return json;
+  }
+}
+
+/// Literal
 /// The client supports the `insertTextMode` property on a completion item to
 /// override the whitespace handling mode as defined by the client (see
 /// `insertTextMode`).
 /// @since 3.16.0
-class LiteralInsertTextModeSupport implements ToJson {
-  LiteralInsertTextModeSupport({required this.valueSet});
+class CompletionClientCapabilitiesInsertTextModeSupport implements ToJson {
+  CompletionClientCapabilitiesInsertTextModeSupport({required this.valueSet});
 
-  factory LiteralInsertTextModeSupport.fromJson(Map<String, Object?> json) {
+  factory CompletionClientCapabilitiesInsertTextModeSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
     final valueSetJson = json['valueSet']!;
     final valueSet = (valueSetJson as List<InsertTextMode>);
 
-    return LiteralInsertTextModeSupport(valueSet: valueSet);
+    return CompletionClientCapabilitiesInsertTextModeSupport(
+      valueSet: valueSet,
+    );
   }
 
   final List<InsertTextMode> valueSet;
@@ -17381,14 +17580,20 @@ class LiteralInsertTextModeSupport implements ToJson {
 
 /// Literal
 /// Client capabilities specific to parameter information.
-class LiteralParameterInformation implements ToJson {
-  LiteralParameterInformation({this.labelOffsetSupport});
+class SignatureHelpClientCapabilitiesParameterInformation implements ToJson {
+  SignatureHelpClientCapabilitiesParameterInformation({
+    this.labelOffsetSupport,
+  });
 
-  factory LiteralParameterInformation.fromJson(Map<String, Object?> json) {
+  factory SignatureHelpClientCapabilitiesParameterInformation.fromJson(
+    Map<String, Object?> json,
+  ) {
     final labelOffsetSupportJson = json['labelOffsetSupport'];
     final labelOffsetSupport = (labelOffsetSupportJson as bool?);
 
-    return LiteralParameterInformation(labelOffsetSupport: labelOffsetSupport);
+    return SignatureHelpClientCapabilitiesParameterInformation(
+      labelOffsetSupport: labelOffsetSupport,
+    );
   }
 
   /// The client supports processing label offsets instead of a simple label
@@ -17407,14 +17612,16 @@ class LiteralParameterInformation implements ToJson {
 
 /// Literal
 /// The code action kind is support with the following value set.
-class LiteralCodeActionKind implements ToJson {
-  LiteralCodeActionKind({required this.valueSet});
+class CodeActionClientCapabilitiesCodeActionKind implements ToJson {
+  CodeActionClientCapabilitiesCodeActionKind({required this.valueSet});
 
-  factory LiteralCodeActionKind.fromJson(Map<String, Object?> json) {
+  factory CodeActionClientCapabilitiesCodeActionKind.fromJson(
+    Map<String, Object?> json,
+  ) {
     final valueSetJson = json['valueSet']!;
     final valueSet = (valueSetJson as List<CodeActionKind>);
 
-    return LiteralCodeActionKind(valueSet: valueSet);
+    return CodeActionClientCapabilitiesCodeActionKind(valueSet: valueSet);
   }
 
   /// The code action kind values the client supports. When this property
@@ -17431,6 +17638,142 @@ class LiteralCodeActionKind implements ToJson {
   }
 }
 
+/// Literal
+/// The client will send the `textDocument/semanticTokens/full` request if the
+/// server provides a corresponding handler.
+class SemanticTokensClientCapabilitiesFull implements ToJson {
+  SemanticTokensClientCapabilitiesFull({this.delta});
+
+  factory SemanticTokensClientCapabilitiesFull.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final deltaJson = json['delta'];
+    final delta = (deltaJson as bool?);
+
+    return SemanticTokensClientCapabilitiesFull(delta: delta);
+  }
+
+  /// The client will send the `textDocument/semanticTokens/full/delta`
+  /// request if the server provides a corresponding handler.
+  final bool? delta;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    json['delta'] = delta;
+
+    return json;
+  }
+}
+
+/// Literal
+/// Server supports providing semantic tokens for a specific range of a
+/// document.
+class SemanticTokensOptionsRange implements ToJson {
+  SemanticTokensOptionsRange();
+
+  factory SemanticTokensOptionsRange.fromJson(Map<String, Object?> json) {
+    // No fields to parse
+    final _ = json;
+
+    return SemanticTokensOptionsRange();
+  }
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+
+    return json;
+  }
+}
+
+/// Literal
+/// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
+/// request.
+class WorkspaceSymbolClientCapabilitiesSymbolKind implements ToJson {
+  WorkspaceSymbolClientCapabilitiesSymbolKind({this.valueSet});
+
+  factory WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet'];
+    final valueSet = (valueSetJson as List<SymbolKind>?);
+
+    return WorkspaceSymbolClientCapabilitiesSymbolKind(valueSet: valueSet);
+  }
+
+  /// The symbol kind values the client supports. When this property exists
+  /// the client also guarantees that it will handle values outside its set
+  /// gracefully and falls back to a default value when unknown.
+  /// If this property is not present the client only supports the symbol
+  /// kinds from `File` to `Array` as defined in the initial version of the
+  /// protocol.
+  final List<SymbolKind>? valueSet;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    json['valueSet'] = valueSet;
+
+    return json;
+  }
+}
+
+/// Literal
+/// The client supports tags on `SymbolInformation`. Clients supporting tags
+/// have to handle unknown tags gracefully.
+/// @since 3.16.0
+class WorkspaceSymbolClientCapabilitiesTagSupport implements ToJson {
+  WorkspaceSymbolClientCapabilitiesTagSupport({required this.valueSet});
+
+  factory WorkspaceSymbolClientCapabilitiesTagSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final valueSetJson = json['valueSet']!;
+    final valueSet = (valueSetJson as List<SymbolTag>);
+
+    return WorkspaceSymbolClientCapabilitiesTagSupport(valueSet: valueSet);
+  }
+
+  /// The tags supported by the client.
+  final List<SymbolTag> valueSet;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    json['valueSet'] = valueSet;
+
+    return json;
+  }
+}
+
+/// Literal
+/// Whether the client supports resolving additional code action properties via
+/// a separate `codeAction/resolve` request.
+/// @since 3.16.0
+class CodeActionClientCapabilitiesResolveSupport implements ToJson {
+  CodeActionClientCapabilitiesResolveSupport({required this.properties});
+
+  factory CodeActionClientCapabilitiesResolveSupport.fromJson(
+    Map<String, Object?> json,
+  ) {
+    final propertiesJson = json['properties']!;
+    final properties = (propertiesJson as List<String>);
+
+    return CodeActionClientCapabilitiesResolveSupport(properties: properties);
+  }
+
+  /// The properties that a client can resolve lazily.
+  final List<String> properties;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    json['properties'] = properties;
+
+    return json;
+  }
+}
 
 /// This class contains methods for handling requests.
 enum RequestMethod {

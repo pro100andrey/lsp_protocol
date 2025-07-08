@@ -5,7 +5,7 @@ import 'package:dart_style/dart_style.dart';
 
 import '../meta/protocol.dart';
 import '../utils.dart';
-import 'symbols.dart';
+import 'literals_map.dart';
 import 'type_resolver_visitor.dart';
 import 'visitor.dart';
 
@@ -19,17 +19,10 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       _enumerations = Map.fromEntries(
         protocol.enumerations.map((e) => MapEntry(e.name, e)),
       ),
-      _symbols = Symbols(),
-      _literals = {},
-      _orMapReferences = {} {
-    _symbols.processProtocol(protocol);
+      _literalsMap = LiteralsMap(),
 
-    // Collect all properties from structures and literals
-    for (final structure in protocol.structures) {
-      for (final property in structure.properties) {
-        _collectLiterals(property, structure.name);
-      }
-    }
+      _orMapReferences = {} {
+    _literalsMap.processProtocol(protocol);
 
     for (final alias in protocol.typeAliases) {
       final type = alias.type;
@@ -44,9 +37,8 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     _typeResolverVisitor = TypeResolverVisitor(
       structures: _structures,
       enumerations: _enumerations,
-      literals: _literals,
       orMapReferences: _orMapReferences,
-      symbols: _symbols,
+      literalsMap: _literalsMap,
     );
 
     for (final struct in protocol.structures) {
@@ -98,12 +90,8 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       case MapRef(:final key, :final value):
         return 'Map${_resolveType(key)}${_resolveType(value)}';
       case LiteralRef():
-        final literal = _literals[item];
-        if (literal != null) {
-          return literal.name;
-        } else {
-          throw ArgumentError('LiteralRef not found: $item');
-        }
+        final name = _literalsMap.getLiteralName(item);
+        return name;
 
       case StringLiteralRef():
         return 'String';
@@ -114,12 +102,11 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
-  final Map<LiteralRef, MetaLiteralDefinition> _literals;
   final Map<String, OrMapReference> _orMapReferences;
 
   late final TypeResolverVisitor _typeResolverVisitor;
 
-  final Symbols _symbols;
+  final LiteralsMap _literalsMap;
 
   Reference get _toJsonRef => refer('ToJson');
   Reference get _jsonRef => refer('json');
@@ -189,9 +176,8 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.add(_generateEnumMap(enumeration));
       }
 
-      
       // Generate literal classes
-      for (final literal in _symbols.literals) {
+      for (final literal in _literalsMap.literals) {
         b.body.add(_generateLiteral(literal));
       }
 
@@ -223,28 +209,28 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final typeName =
         orBaseType ?? typeAlias.type.resolveType(_typeResolverVisitor)!;
 
-    if (typeAlias.type is OrRef) {
-      final ref = typeAlias.type as OrRef;
+    // if (typeAlias.type is OrRef) {
+    //   final ref = typeAlias.type as OrRef;
 
-      print('${typeAlias.name}:');
+    //   print('${typeAlias.name}:');
 
-      for (final item in ref.items) {
-        if (item is LiteralRef) {
-          print('   Literal:');
-          for (final prop in item.value.properties) {
-            final type = prop.type.resolveType(_typeResolverVisitor);
-            print('     ${prop.name}: $type${prop.optional ? '?' : ''}:');
-          }
-        } else {
-          print('   ${item.runtimeType}:');
-          print('     ${item.resolveType(_typeResolverVisitor)} ');
-        }
-      }
-    } else {
-      print(
-        '${typeAlias.name} -> $typeName}',
-      );
-    }
+    //   for (final item in ref.items) {
+    //     if (item is LiteralRef) {
+    //       print('   Literal:');
+    //       for (final prop in item.value.properties) {
+    //         final type = prop.type.resolveType(_typeResolverVisitor);
+    //         print('     ${prop.name}: $type${prop.optional ? '?' : ''}:');
+    //       }
+    //     } else {
+    //       print('   ${item.runtimeType}:');
+    //       print('     ${item.resolveType(_typeResolverVisitor)} ');
+    //     }
+    //   }
+    // } else {
+    //   print(
+    //     '${typeAlias.name} -> $typeName}',
+    //   );
+    // }
 
     return TypeDef((b) {
       b
@@ -254,15 +240,12 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     });
   }
 
-
   Class _generateLiteral(LiteralSymbol symbol) {
-
     final ref = symbol.literalRef;
     final property = symbol.property;
-    final name = _symbols.getLiteralName(ref);
+    final name = _literalsMap.getLiteralName(ref);
 
-    final formattedDescription =
-        formatDocComment(property.documentation) ?? [];
+    final formattedDescription = formatDocComment(property.documentation) ?? [];
 
     return Class((cb) {
       cb
@@ -279,29 +262,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       _generateFromJsonFactory(cb: cb, allFields: ref.value.properties);
 
       _generateToJson(cb: cb, allFields: ref.value.properties);
-    });
-  }
-
-  @override
-  Class visitLiteralDefinition(MetaLiteralDefinition literalDefinition) {
-    final formattedDescription =
-        formatDocComment(literalDefinition.documentation) ?? [];
-
-    return Class((cb) {
-      cb
-        ..docs.addAll(['/// Literal'] + formattedDescription)
-        ..name = literalDefinition.name
-        ..implements.add(_toJsonRef);
-
-      _generateFields(
-        cb: cb,
-        allFields: literalDefinition.properties,
-        inheritedPropertyNames: {},
-      );
-
-      _generateFromJsonFactory(cb: cb, allFields: literalDefinition.properties);
-
-      _generateToJson(cb: cb, allFields: literalDefinition.properties);
     });
   }
 
@@ -348,60 +308,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
       _generateToJson(cb: cb, allFields: allFields);
     });
-  }
-
-  void _collectLiterals(MetaProperty property, String prefix) {
-    // remove first letter from prefix if equal to '_'
-    final fixedPrefix = prefix.startsWith('_') ? prefix.substring(1) : prefix;
-    final type = property.type;
-
-    switch (type) {
-      case ArrayRef(:final element) when element is LiteralRef:
-        _processLiteralRef(element, property, fixedPrefix);
-
-      // case ArrayRef(:final element) when element is OrRef:
-      //   for (final item in element.items) {
-      //     if (item is LiteralRef) {
-      //       _processLiteralRef(item, property, fixedPrefix);
-      //     }
-      //   }
-
-      case OrRef(:final items):
-        for (final item in items) {
-          if (item is LiteralRef) {
-            _processLiteralRef(item, property, fixedPrefix);
-          }
-        }
-      case LiteralRef():
-        _processLiteralRef(type, property, fixedPrefix);
-      case _:
-        break;
-    }
-  }
-
-  void _processLiteralRef(
-    LiteralRef literalRef,
-    MetaProperty containingProperty,
-    String parentTypeName,
-  ) {
-    if (_literals.containsKey(literalRef)) {
-      return;
-    }
-
-    final typeName =
-        '$parentTypeName${upperFirstLetter(containingProperty.name)}';
-
-    // Store the literal definition
-    _literals[literalRef] = (
-      name: typeName,
-      properties: literalRef.value.properties,
-      documentation: containingProperty.documentation,
-    );
-
-    // Recursively collect nested literals within this new literal's properties
-    for (final subProperty in literalRef.value.properties) {
-      _collectLiterals(subProperty, typeName);
-    }
   }
 
   Spec _generateRequestMethodEnum(List<MetaRequest> requests) => Enum((eb) {

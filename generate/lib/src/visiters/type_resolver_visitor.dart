@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 
 import '../meta/protocol.dart';
-import 'symbols.dart';
+import 'literals_map.dart';
 import 'visitor.dart';
 
 /// A concrete visitor that resolves MetaReference types to their Dart String
@@ -10,20 +10,20 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   TypeResolverVisitor({
     required Map<String, MetaStructure> structures,
     required Map<String, MetaEnumeration> enumerations,
-    required Map<LiteralRef, MetaLiteralDefinition> literals,
+
     required Map<String, OrMapReference> orMapReferences,
-    required Symbols symbols,
+    required LiteralsMap literalsMap,
   }) : _structures = structures,
        _enumerations = enumerations,
-       _literals = literals,
+
        _orMapReferences = orMapReferences,
-       _symbols = symbols;
+       _literalsMap = literalsMap;
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
-  final Map<LiteralRef, MetaLiteralDefinition> _literals;
+
   final Map<String, OrMapReference> _orMapReferences;
-  final Symbols _symbols;
+  final LiteralsMap _literalsMap;
 
   /// Resolves primitive meta-types (like 'integer', 'string') to Dart types.
   String _resolveDartPrimitiveType(String typeName) => switch (typeName) {
@@ -103,7 +103,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   @override
   // ignore: prefer_expression_function_bodies
   String visitLiteralRef(LiteralRef ref) {
-    return _symbols.getLiteralName(ref);
+    return _literalsMap.getLiteralName(ref);
   }
 
   @override
