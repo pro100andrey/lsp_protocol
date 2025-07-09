@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../meta/protocol.dart';
 
@@ -67,8 +68,6 @@ final class LiteralsMap {
   void processProtocol(MetaProtocol protocol) {
     _collectLiterals(protocol);
     _collectDuplicateLiteralRefs();
-
-    print('');
   }
 
   void _collectLiterals(MetaProtocol protocol) {
@@ -83,22 +82,6 @@ final class LiteralsMap {
       for (final property in ref.value.properties) {
         _processMetaProperty(property: property, owner: owner);
       }
-    }
-
-    for (final literals in _literalSymbols) {
-      final owner = literals.owner;
-      final literalRef = literals.literalRef;
-      final property = literals.property;
-
-      final ownerName = owner is MetaStructure
-          ? 'S^${owner.name}'
-          : 'UnknownOwner';
-
-      final properties = literalRef.value.properties
-          .map((p) => p.name)
-          .join(':');
-
-      print('# $ownerName.${property.name} [$properties]');
     }
   }
 
@@ -197,49 +180,4 @@ final class LiteralsMap {
       });
     });
   }
-}
-
-extension MetaReferenceExtensions on MetaReference {
-  void on<T extends MetaReference>(
-    void Function(T ref) callback,
-  ) {
-    if (this is T) {
-      callback(this as T);
-    }
-  }
-
-  void onLiteralRef(
-    void Function(LiteralRef ref) callback,
-  ) => on<LiteralRef>(callback);
-
-  void onTypeRef(
-    void Function(TypeRef ref) callback,
-  ) => on<TypeRef>(callback);
-  void onArrayRef(
-    void Function(ArrayRef ref) callback,
-  ) => on<ArrayRef>(callback);
-
-  void onBaseRef(
-    void Function(BaseRef ref) callback,
-  ) => on<BaseRef>(callback);
-
-  void onOrRef(
-    void Function(OrRef ref) callback,
-  ) => on<OrRef>(callback);
-
-  void onAndRef(
-    void Function(AndRef ref) callback,
-  ) => on<AndRef>(callback);
-
-  void onMapRef(
-    void Function(MapRef ref) callback,
-  ) => on<MapRef>(callback);
-
-  void onTupleRef(
-    void Function(TupleRef ref) callback,
-  ) => on<TupleRef>(callback);
-
-  void onStringLiteralRef(
-    void Function(StringLiteralRef ref) callback,
-  ) => on<StringLiteralRef>(callback);
 }
