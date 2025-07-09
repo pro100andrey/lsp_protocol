@@ -89,50 +89,58 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('array')
   const factory MetaReference.array({
+    required TypeKind kind,
     required MetaReference element,
   }) = ArrayRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('base')
   const factory MetaReference.base({
+    required TypeKind kind,
     required String name,
   }) = BaseRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('or')
   const factory MetaReference.or({
+    required TypeKind kind,
     required List<MetaReference> items,
   }) = OrRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('and')
   const factory MetaReference.and({
+    required TypeKind kind,
     required List<TypeRef> items,
   }) = AndRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('map')
   const factory MetaReference.map({
-    required TypeRef key,
+    required TypeKind kind,
+    required MetaReference key,
     required MetaReference value,
   }) = MapRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('literal')
   const factory MetaReference.literal({
+    required TypeKind kind,
     required MetaLiteral value,
   }) = LiteralRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('stringLiteral')
   const factory MetaReference.stringLiteral({
+    required TypeKind kind,
     required String value,
   }) = StringLiteralRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('tuple')
   const factory MetaReference.tuple({
-    required List<TypeRef> items,
+    required TypeKind kind,
+    required List<MetaReference> items,
   }) = TupleRef;
 
   factory MetaReference.fromJson(Map<String, Object?> json) =>

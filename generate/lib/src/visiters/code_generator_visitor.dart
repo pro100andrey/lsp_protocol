@@ -6,6 +6,7 @@ import 'package:dart_style/dart_style.dart';
 import '../extensions/string.dart';
 import '../meta/protocol.dart';
 import '../symbols/literals_map.dart';
+import '../symbols/sealed_map.dart';
 import '../utils.dart';
 import 'type_resolver_visitor.dart';
 import 'visitor.dart';
@@ -21,9 +22,11 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         protocol.enumerations.map((e) => MapEntry(e.name, e)),
       ),
       _literalsMap = LiteralsMap(),
+      _sealedMap = SealedMap(),
 
       _orMapReferences = {} {
     _literalsMap.processProtocol(protocol);
+    _sealedMap.processProtocol(protocol);
 
     for (final alias in protocol.typeAliases) {
       final type = alias.type;
@@ -97,7 +100,9 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       case StringLiteralRef():
         return 'String';
       case TupleRef(:final items):
-        return items.map((i) => i.resolveType(_typeResolverVisitor)).join();
+        return items.map((i) {
+          return i.resolveType(_typeResolverVisitor);
+        }).join();
     }
   }
 
@@ -108,6 +113,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   late final TypeResolverVisitor _typeResolverVisitor;
 
   final LiteralsMap _literalsMap;
+  final SealedMap _sealedMap;
 
   Reference get _toJsonRef => refer('ToJson');
   Reference get _jsonRef => refer('json');

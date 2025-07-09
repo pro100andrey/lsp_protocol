@@ -631,7 +631,12 @@ MetaReference _$MetaReferenceFromJson(
 /// @nodoc
 mixin _$MetaReference {
 
-
+ TypeKind get kind;
+/// Create a copy of MetaReference
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<MetaReference> get copyWith => _$MetaReferenceCopyWithImpl<MetaReference>(this as MetaReference, _$identity);
 
   /// Serializes this MetaReference to a JSON map.
   Map<String, dynamic> toJson();
@@ -639,24 +644,50 @@ mixin _$MetaReference {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaReference);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaReference&&(identical(other.kind, kind) || other.kind == kind));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,kind);
 
 @override
 String toString() {
-  return 'MetaReference()';
+  return 'MetaReference(kind: $kind)';
 }
 
 
 }
 
 /// @nodoc
-class $MetaReferenceCopyWith<$Res>  {
-$MetaReferenceCopyWith(MetaReference _, $Res Function(MetaReference) __);
+abstract mixin class $MetaReferenceCopyWith<$Res>  {
+  factory $MetaReferenceCopyWith(MetaReference value, $Res Function(MetaReference) _then) = _$MetaReferenceCopyWithImpl;
+@useResult
+$Res call({
+ TypeKind kind
+});
+
+
+
+
+}
+/// @nodoc
+class _$MetaReferenceCopyWithImpl<$Res>
+    implements $MetaReferenceCopyWith<$Res> {
+  _$MetaReferenceCopyWithImpl(this._self, this._then);
+
+  final MetaReference _self;
+  final $Res Function(MetaReference) _then;
+
+/// Create a copy of MetaReference
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,}) {
+  return _then(_self.copyWith(
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as TypeKind,
+  ));
+}
+
 }
 
 
@@ -667,12 +698,12 @@ class TypeRef extends MetaReference {
   const TypeRef({required this.kind, required this.name}): super._();
   factory TypeRef.fromJson(Map<String, dynamic> json) => _$TypeRefFromJson(json);
 
- final  TypeKind kind;
+@override final  TypeKind kind;
  final  String name;
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $TypeRefCopyWith<TypeRef> get copyWith => _$TypeRefCopyWithImpl<TypeRef>(this, _$identity);
 
@@ -701,7 +732,7 @@ String toString() {
 /// @nodoc
 abstract mixin class $TypeRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
   factory $TypeRefCopyWith(TypeRef value, $Res Function(TypeRef) _then) = _$TypeRefCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
  TypeKind kind, String name
 });
@@ -720,7 +751,7 @@ class _$TypeRefCopyWithImpl<$Res>
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? name = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? name = null,}) {
   return _then(TypeRef(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as TypeKind,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -735,18 +766,15 @@ as String,
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
 class ArrayRef extends MetaReference {
-  const ArrayRef({required this.element, final  String? $type}): $type = $type ?? 'array',super._();
+  const ArrayRef({required this.kind, required this.element}): super._();
   factory ArrayRef.fromJson(Map<String, dynamic> json) => _$ArrayRefFromJson(json);
 
+@override final  TypeKind kind;
  final  MetaReference element;
-
-@JsonKey(name: 'kind')
-final String $type;
-
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $ArrayRefCopyWith<ArrayRef> get copyWith => _$ArrayRefCopyWithImpl<ArrayRef>(this, _$identity);
 
@@ -757,16 +785,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ArrayRef&&(identical(other.element, element) || other.element == element));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ArrayRef&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.element, element) || other.element == element));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,element);
+int get hashCode => Object.hash(runtimeType,kind,element);
 
 @override
 String toString() {
-  return 'MetaReference.array(element: $element)';
+  return 'MetaReference.array(kind: $kind, element: $element)';
 }
 
 
@@ -775,9 +803,9 @@ String toString() {
 /// @nodoc
 abstract mixin class $ArrayRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
   factory $ArrayRefCopyWith(ArrayRef value, $Res Function(ArrayRef) _then) = _$ArrayRefCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
- MetaReference element
+ TypeKind kind, MetaReference element
 });
 
 
@@ -794,9 +822,10 @@ class _$ArrayRefCopyWithImpl<$Res>
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? element = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? element = null,}) {
   return _then(ArrayRef(
-element: null == element ? _self.element : element // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as TypeKind,element: null == element ? _self.element : element // ignore: cast_nullable_to_non_nullable
 as MetaReference,
   ));
 }
@@ -817,18 +846,15 @@ $MetaReferenceCopyWith<$Res> get element {
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
 class BaseRef extends MetaReference {
-  const BaseRef({required this.name, final  String? $type}): $type = $type ?? 'base',super._();
+  const BaseRef({required this.kind, required this.name}): super._();
   factory BaseRef.fromJson(Map<String, dynamic> json) => _$BaseRefFromJson(json);
 
+@override final  TypeKind kind;
  final  String name;
-
-@JsonKey(name: 'kind')
-final String $type;
-
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $BaseRefCopyWith<BaseRef> get copyWith => _$BaseRefCopyWithImpl<BaseRef>(this, _$identity);
 
@@ -839,16 +865,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BaseRef&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BaseRef&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.name, name) || other.name == name));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name);
+int get hashCode => Object.hash(runtimeType,kind,name);
 
 @override
 String toString() {
-  return 'MetaReference.base(name: $name)';
+  return 'MetaReference.base(kind: $kind, name: $name)';
 }
 
 
@@ -857,9 +883,9 @@ String toString() {
 /// @nodoc
 abstract mixin class $BaseRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
   factory $BaseRefCopyWith(BaseRef value, $Res Function(BaseRef) _then) = _$BaseRefCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
- String name
+ TypeKind kind, String name
 });
 
 
@@ -876,9 +902,10 @@ class _$BaseRefCopyWithImpl<$Res>
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? name = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? name = null,}) {
   return _then(BaseRef(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as TypeKind,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -890,9 +917,10 @@ as String,
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
 class OrRef extends MetaReference {
-  const OrRef({required final  List<MetaReference> items, final  String? $type}): _items = items,$type = $type ?? 'or',super._();
+  const OrRef({required this.kind, required final  List<MetaReference> items}): _items = items,super._();
   factory OrRef.fromJson(Map<String, dynamic> json) => _$OrRefFromJson(json);
 
+@override final  TypeKind kind;
  final  List<MetaReference> _items;
  List<MetaReference> get items {
   if (_items is EqualUnmodifiableListView) return _items;
@@ -901,13 +929,9 @@ class OrRef extends MetaReference {
 }
 
 
-@JsonKey(name: 'kind')
-final String $type;
-
-
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $OrRefCopyWith<OrRef> get copyWith => _$OrRefCopyWithImpl<OrRef>(this, _$identity);
 
@@ -918,16 +942,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrRef&&const DeepCollectionEquality().equals(other._items, _items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrRef&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._items, _items));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items));
+int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(_items));
 
 @override
 String toString() {
-  return 'MetaReference.or(items: $items)';
+  return 'MetaReference.or(kind: $kind, items: $items)';
 }
 
 
@@ -936,9 +960,9 @@ String toString() {
 /// @nodoc
 abstract mixin class $OrRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
   factory $OrRefCopyWith(OrRef value, $Res Function(OrRef) _then) = _$OrRefCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
- List<MetaReference> items
+ TypeKind kind, List<MetaReference> items
 });
 
 
@@ -955,9 +979,10 @@ class _$OrRefCopyWithImpl<$Res>
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? items = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,}) {
   return _then(OrRef(
-items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as TypeKind,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<MetaReference>,
   ));
 }
@@ -969,9 +994,10 @@ as List<MetaReference>,
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
 class AndRef extends MetaReference {
-  const AndRef({required final  List<TypeRef> items, final  String? $type}): _items = items,$type = $type ?? 'and',super._();
+  const AndRef({required this.kind, required final  List<TypeRef> items}): _items = items,super._();
   factory AndRef.fromJson(Map<String, dynamic> json) => _$AndRefFromJson(json);
 
+@override final  TypeKind kind;
  final  List<TypeRef> _items;
  List<TypeRef> get items {
   if (_items is EqualUnmodifiableListView) return _items;
@@ -980,13 +1006,9 @@ class AndRef extends MetaReference {
 }
 
 
-@JsonKey(name: 'kind')
-final String $type;
-
-
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $AndRefCopyWith<AndRef> get copyWith => _$AndRefCopyWithImpl<AndRef>(this, _$identity);
 
@@ -997,16 +1019,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AndRef&&const DeepCollectionEquality().equals(other._items, _items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AndRef&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._items, _items));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items));
+int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(_items));
 
 @override
 String toString() {
-  return 'MetaReference.and(items: $items)';
+  return 'MetaReference.and(kind: $kind, items: $items)';
 }
 
 
@@ -1015,9 +1037,9 @@ String toString() {
 /// @nodoc
 abstract mixin class $AndRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
   factory $AndRefCopyWith(AndRef value, $Res Function(AndRef) _then) = _$AndRefCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
- List<TypeRef> items
+ TypeKind kind, List<TypeRef> items
 });
 
 
@@ -1034,9 +1056,10 @@ class _$AndRefCopyWithImpl<$Res>
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? items = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,}) {
   return _then(AndRef(
-items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as TypeKind,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<TypeRef>,
   ));
 }
@@ -1048,19 +1071,16 @@ as List<TypeRef>,
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
 class MapRef extends MetaReference {
-  const MapRef({required this.key, required this.value, final  String? $type}): $type = $type ?? 'map',super._();
+  const MapRef({required this.kind, required this.key, required this.value}): super._();
   factory MapRef.fromJson(Map<String, dynamic> json) => _$MapRefFromJson(json);
 
- final  TypeRef key;
+@override final  TypeKind kind;
+ final  MetaReference key;
  final  MetaReference value;
-
-@JsonKey(name: 'kind')
-final String $type;
-
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $MapRefCopyWith<MapRef> get copyWith => _$MapRefCopyWithImpl<MapRef>(this, _$identity);
 
@@ -1071,16 +1091,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapRef&&const DeepCollectionEquality().equals(other.key, key)&&(identical(other.value, value) || other.value == value));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapRef&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.key, key) || other.key == key)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(key),value);
+int get hashCode => Object.hash(runtimeType,kind,key,value);
 
 @override
 String toString() {
-  return 'MetaReference.map(key: $key, value: $value)';
+  return 'MetaReference.map(kind: $kind, key: $key, value: $value)';
 }
 
 
@@ -1089,13 +1109,13 @@ String toString() {
 /// @nodoc
 abstract mixin class $MapRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
   factory $MapRefCopyWith(MapRef value, $Res Function(MapRef) _then) = _$MapRefCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
- TypeRef key, MetaReference value
+ TypeKind kind, MetaReference key, MetaReference value
 });
 
 
-$MetaReferenceCopyWith<$Res> get value;
+$MetaReferenceCopyWith<$Res> get key;$MetaReferenceCopyWith<$Res> get value;
 
 }
 /// @nodoc
@@ -1108,15 +1128,25 @@ class _$MapRefCopyWithImpl<$Res>
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? key = freezed,Object? value = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? key = null,Object? value = null,}) {
   return _then(MapRef(
-key: freezed == key ? _self.key : key // ignore: cast_nullable_to_non_nullable
-as TypeRef,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as TypeKind,key: null == key ? _self.key : key // ignore: cast_nullable_to_non_nullable
+as MetaReference,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as MetaReference,
   ));
 }
 
 /// Create a copy of MetaReference
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res> get key {
+  
+  return $MetaReferenceCopyWith<$Res>(_self.key, (value) {
+    return _then(_self.copyWith(key: value));
+  });
+}/// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -1132,18 +1162,15 @@ $MetaReferenceCopyWith<$Res> get value {
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
 class LiteralRef extends MetaReference {
-  const LiteralRef({required this.value, final  String? $type}): $type = $type ?? 'literal',super._();
+  const LiteralRef({required this.kind, required this.value}): super._();
   factory LiteralRef.fromJson(Map<String, dynamic> json) => _$LiteralRefFromJson(json);
 
+@override final  TypeKind kind;
  final  MetaLiteral value;
-
-@JsonKey(name: 'kind')
-final String $type;
-
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $LiteralRefCopyWith<LiteralRef> get copyWith => _$LiteralRefCopyWithImpl<LiteralRef>(this, _$identity);
 
@@ -1154,16 +1181,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiteralRef&&(identical(other.value, value) || other.value == value));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiteralRef&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,value);
+int get hashCode => Object.hash(runtimeType,kind,value);
 
 @override
 String toString() {
-  return 'MetaReference.literal(value: $value)';
+  return 'MetaReference.literal(kind: $kind, value: $value)';
 }
 
 
@@ -1172,9 +1199,9 @@ String toString() {
 /// @nodoc
 abstract mixin class $LiteralRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
   factory $LiteralRefCopyWith(LiteralRef value, $Res Function(LiteralRef) _then) = _$LiteralRefCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
- MetaLiteral value
+ TypeKind kind, MetaLiteral value
 });
 
 
@@ -1191,9 +1218,10 @@ class _$LiteralRefCopyWithImpl<$Res>
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? value = null,}) {
   return _then(LiteralRef(
-value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as TypeKind,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as MetaLiteral,
   ));
 }
@@ -1214,18 +1242,15 @@ $MetaLiteralCopyWith<$Res> get value {
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
 class StringLiteralRef extends MetaReference {
-  const StringLiteralRef({required this.value, final  String? $type}): $type = $type ?? 'stringLiteral',super._();
+  const StringLiteralRef({required this.kind, required this.value}): super._();
   factory StringLiteralRef.fromJson(Map<String, dynamic> json) => _$StringLiteralRefFromJson(json);
 
+@override final  TypeKind kind;
  final  String value;
-
-@JsonKey(name: 'kind')
-final String $type;
-
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $StringLiteralRefCopyWith<StringLiteralRef> get copyWith => _$StringLiteralRefCopyWithImpl<StringLiteralRef>(this, _$identity);
 
@@ -1236,16 +1261,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StringLiteralRef&&(identical(other.value, value) || other.value == value));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StringLiteralRef&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,value);
+int get hashCode => Object.hash(runtimeType,kind,value);
 
 @override
 String toString() {
-  return 'MetaReference.stringLiteral(value: $value)';
+  return 'MetaReference.stringLiteral(kind: $kind, value: $value)';
 }
 
 
@@ -1254,9 +1279,9 @@ String toString() {
 /// @nodoc
 abstract mixin class $StringLiteralRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
   factory $StringLiteralRefCopyWith(StringLiteralRef value, $Res Function(StringLiteralRef) _then) = _$StringLiteralRefCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
- String value
+ TypeKind kind, String value
 });
 
 
@@ -1273,9 +1298,10 @@ class _$StringLiteralRefCopyWithImpl<$Res>
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? value = null,}) {
   return _then(StringLiteralRef(
-value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as TypeKind,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -1287,24 +1313,21 @@ as String,
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
 class TupleRef extends MetaReference {
-  const TupleRef({required final  List<TypeRef> items, final  String? $type}): _items = items,$type = $type ?? 'tuple',super._();
+  const TupleRef({required this.kind, required final  List<MetaReference> items}): _items = items,super._();
   factory TupleRef.fromJson(Map<String, dynamic> json) => _$TupleRefFromJson(json);
 
- final  List<TypeRef> _items;
- List<TypeRef> get items {
+@override final  TypeKind kind;
+ final  List<MetaReference> _items;
+ List<MetaReference> get items {
   if (_items is EqualUnmodifiableListView) return _items;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_items);
 }
 
 
-@JsonKey(name: 'kind')
-final String $type;
-
-
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $TupleRefCopyWith<TupleRef> get copyWith => _$TupleRefCopyWithImpl<TupleRef>(this, _$identity);
 
@@ -1315,16 +1338,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TupleRef&&const DeepCollectionEquality().equals(other._items, _items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TupleRef&&(identical(other.kind, kind) || other.kind == kind)&&const DeepCollectionEquality().equals(other._items, _items));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items));
+int get hashCode => Object.hash(runtimeType,kind,const DeepCollectionEquality().hash(_items));
 
 @override
 String toString() {
-  return 'MetaReference.tuple(items: $items)';
+  return 'MetaReference.tuple(kind: $kind, items: $items)';
 }
 
 
@@ -1333,9 +1356,9 @@ String toString() {
 /// @nodoc
 abstract mixin class $TupleRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Res> {
   factory $TupleRefCopyWith(TupleRef value, $Res Function(TupleRef) _then) = _$TupleRefCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
- List<TypeRef> items
+ TypeKind kind, List<MetaReference> items
 });
 
 
@@ -1352,10 +1375,11 @@ class _$TupleRefCopyWithImpl<$Res>
 
 /// Create a copy of MetaReference
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? items = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,}) {
   return _then(TupleRef(
-items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<TypeRef>,
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as TypeKind,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<MetaReference>,
   ));
 }
 

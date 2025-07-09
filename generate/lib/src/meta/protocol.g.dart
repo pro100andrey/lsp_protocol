@@ -137,108 +137,117 @@ const _$TypeKindEnumMap = {
 };
 
 ArrayRef _$ArrayRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['element', 'kind']);
+  $checkKeys(json, allowedKeys: const ['kind', 'element']);
   return ArrayRef(
+    kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
     element: MetaReference.fromJson(json['element'] as Map<String, dynamic>),
-    $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$ArrayRefToJson(ArrayRef instance) => <String, dynamic>{
+  'kind': _$TypeKindEnumMap[instance.kind]!,
   'element': instance.element,
-  'kind': instance.$type,
 };
 
 BaseRef _$BaseRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['name', 'kind']);
-  return BaseRef(name: json['name'] as String, $type: json['kind'] as String?);
+  $checkKeys(json, allowedKeys: const ['kind', 'name']);
+  return BaseRef(
+    kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
+    name: json['name'] as String,
+  );
 }
 
 Map<String, dynamic> _$BaseRefToJson(BaseRef instance) => <String, dynamic>{
+  'kind': _$TypeKindEnumMap[instance.kind]!,
   'name': instance.name,
-  'kind': instance.$type,
 };
 
 OrRef _$OrRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['items', 'kind']);
+  $checkKeys(json, allowedKeys: const ['kind', 'items']);
   return OrRef(
+    kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
     items: (json['items'] as List<dynamic>)
         .map((e) => MetaReference.fromJson(e as Map<String, dynamic>))
         .toList(),
-    $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$OrRefToJson(OrRef instance) => <String, dynamic>{
+  'kind': _$TypeKindEnumMap[instance.kind]!,
   'items': instance.items,
-  'kind': instance.$type,
 };
 
 AndRef _$AndRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['items', 'kind']);
+  $checkKeys(json, allowedKeys: const ['kind', 'items']);
   return AndRef(
+    kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
     items: (json['items'] as List<dynamic>)
         .map((e) => TypeRef.fromJson(e as Map<String, dynamic>))
         .toList(),
-    $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$AndRefToJson(AndRef instance) => <String, dynamic>{
+  'kind': _$TypeKindEnumMap[instance.kind]!,
   'items': instance.items,
-  'kind': instance.$type,
 };
 
 MapRef _$MapRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['key', 'value', 'kind']);
+  $checkKeys(json, allowedKeys: const ['kind', 'key', 'value']);
   return MapRef(
-    key: TypeRef.fromJson(json['key'] as Map<String, dynamic>),
+    kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
+    key: MetaReference.fromJson(json['key'] as Map<String, dynamic>),
     value: MetaReference.fromJson(json['value'] as Map<String, dynamic>),
-    $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$MapRefToJson(MapRef instance) => <String, dynamic>{
+  'kind': _$TypeKindEnumMap[instance.kind]!,
   'key': instance.key,
   'value': instance.value,
-  'kind': instance.$type,
 };
 
 LiteralRef _$LiteralRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['value', 'kind']);
+  $checkKeys(json, allowedKeys: const ['kind', 'value']);
   return LiteralRef(
+    kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
     value: MetaLiteral.fromJson(json['value'] as Map<String, dynamic>),
-    $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$LiteralRefToJson(LiteralRef instance) =>
-    <String, dynamic>{'value': instance.value, 'kind': instance.$type};
+    <String, dynamic>{
+      'kind': _$TypeKindEnumMap[instance.kind]!,
+      'value': instance.value,
+    };
 
 StringLiteralRef _$StringLiteralRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['value', 'kind']);
+  $checkKeys(json, allowedKeys: const ['kind', 'value']);
   return StringLiteralRef(
+    kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
     value: json['value'] as String,
-    $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$StringLiteralRefToJson(StringLiteralRef instance) =>
-    <String, dynamic>{'value': instance.value, 'kind': instance.$type};
+    <String, dynamic>{
+      'kind': _$TypeKindEnumMap[instance.kind]!,
+      'value': instance.value,
+    };
 
 TupleRef _$TupleRefFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, allowedKeys: const ['items', 'kind']);
+  $checkKeys(json, allowedKeys: const ['kind', 'items']);
   return TupleRef(
+    kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
     items: (json['items'] as List<dynamic>)
-        .map((e) => TypeRef.fromJson(e as Map<String, dynamic>))
+        .map((e) => MetaReference.fromJson(e as Map<String, dynamic>))
         .toList(),
-    $type: json['kind'] as String?,
   );
 }
 
 Map<String, dynamic> _$TupleRefToJson(TupleRef instance) => <String, dynamic>{
+  'kind': _$TypeKindEnumMap[instance.kind]!,
   'items': instance.items,
-  'kind': instance.$type,
 };
 
 _MetaLiteral _$MetaLiteralFromJson(Map<String, dynamic> json) {

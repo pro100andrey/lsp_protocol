@@ -25,20 +25,6 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   final Map<String, OrMapReference> _orMapReferences;
   final LiteralsMap _literalsMap;
 
-  /// Resolves primitive meta-types (like 'integer', 'string') to Dart types.
-  String _resolveDartPrimitiveType(String typeName) => switch (typeName) {
-    'integer' || 'uinteger' => 'int',
-    'decimal' => 'double',
-    'string' => 'String',
-    'boolean' => 'bool',
-    // Consider `dynamic` or a dedicated `Null` type if needed
-    'null' => 'String',
-    'URI' || 'DocumentUri' => 'Uri',
-
-    // Return as is if not a known primitive (e.g., custom structures/enums)
-    _ => typeName,
-  };
-
   @override
   String visitTypeRef(TypeRef ref) {
     final structure = _structures[ref.name];
@@ -53,7 +39,19 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
       return enumeration.name;
     }
 
-    return _resolveDartPrimitiveType(ref.name);
+    switch (ref.name) {
+      case 'LSPObject':
+        return 'Object';
+      case 'LSPArray':
+        return 'List<Object>';
+    }
+
+    final isLiteral = _literalsMap.isLiteralByName(ref.name);
+
+    throw ArgumentError(
+      'Unknown type reference: ${ref.name}. '
+      'Ensure it is defined in the protocol.',
+    );
   }
 
   @override
@@ -64,7 +62,18 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   }
 
   @override
-  String visitBaseRef(BaseRef ref) => _resolveDartPrimitiveType(ref.name);
+  String visitBaseRef(BaseRef ref) => switch (ref.name) {
+    'integer' => 'int',
+    'uinteger' => 'int',
+    'string' => 'String',
+    'decimal' => 'double',
+    'boolean' => 'bool',
+    'null' => 'Null',
+    _ => throw ArgumentError(
+      'Unknown base type: ${ref.name}. '
+      'Ensure it is a valid Dart base type.',
+    ),
+  };
 
   @override
   String visitOrRef(OrRef ref) {

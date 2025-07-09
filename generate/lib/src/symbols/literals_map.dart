@@ -36,6 +36,17 @@ final class LiteralsMap {
     return List<LiteralSymbol>.unmodifiable(copy);
   }
 
+  bool isLiteralByName(String name) {
+    for (final symbol in literals) {
+      final literalName = getLiteralName(symbol.literalRef);
+      if (literalName == name) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   String getLiteralName(LiteralRef literalRef) {
     final refs = _literalSymbols
         .where(
