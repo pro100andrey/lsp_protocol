@@ -4,33 +4,16 @@ import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../meta/protocol.dart';
 
-typedef SealedSymbol = ({String name, BaseMeta owner, OrRef ref});
-
 final class SealedMap {
-  final _literalSymbols = <SealedSymbol>[];
-  final _literalSymbolsByRef = <OrRef, SealedSymbol>{};
+  final _orRefs = <OrRef, String>{};
+
+  Iterable<OrRef> get refs => _orRefs.keys;
 
   void processProtocol(MetaProtocol protocol) {
     _collectSealedClasses(protocol);
   }
 
-  String nameForOrRef(OrRef orRef) {
-    final symbols = _literalSymbols
-        .where((symbol) => symbol.ref == orRef)
-        .toList(growable: false);
-
-    if (symbols.isEmpty) {
-      throw ArgumentError('No symbols found for OrRef $orRef');
-    }
-
-    // Guard against multiple references to the same OrRef.
-    final owners = symbols.map((s) => s.owner);
-    if (owners.length != 1) {
-      final orName = _resolveReferenceName(orRef.items.first);
-      print('-> Multiple owners found for OrRef $orName ${owners.length}');
-    }
-
-    // final owner = owners.first;
+  String typeNameForOrRef(OrRef orRef) {
     final name = _resolveReferenceName(orRef);
 
     return name;
@@ -85,32 +68,51 @@ final class SealedMap {
 
     print('Beginning to add symbol: $name for owner: $ownerName');
 
-    if (_literalSymbolsByRef.containsKey(ref)) {
+    if (_orRefs.containsKey(ref)) {
       // If the symbol already exists, we can skip adding it again.
       print('Symbol $name already exists for owner $ownerName, skipping.');
       return;
     }
 
-    final symbol = (name: name, owner: owner, ref: ref);
-
-    _literalSymbols.add(symbol);
-    _literalSymbolsByRef[ref] = symbol;
+    _orRefs[ref] = name;
 
     // Guard against nested OrRefs
     _guardAgainstNestedOrRefs(orRef: ref, owner: owner);
   }
 
-  String _resolveReferenceName(MetaReference ref) => ref
-      .when(
-        literalRef: (ref) => 'Literal',
-        typeRef: (ref) => ref.name,
-        orRef: (ref) => ref.items.map(_resolveReferenceName).join('Or'),
-        arrayRef: (ref) => 'ArrayOf${_resolveReferenceName(ref.element)}s',
-        baseRef: (ref) => ref.name,
-        tupleRef: (ref) =>
-            'TupleOf${ref.items.map(_resolveReferenceName).join('And')}',
-      )
-      .upperFirstLetter();
+  final _renameMap = {
+    'DocumentSelectorOrNull': 'BaseDocumentSelector',
+    'LocationOrArrayOfLocations': 'BaseDefinition',
+    'LSPObjectOrLSPArrayOrStringOrIntegerOrUintegerOrDecimalOrBooleanOrNull':
+        'BaseLSPObject',
+  };
+
+  String _resolveReferenceName(MetaReference ref) {
+    final name = ref
+        .when(
+          literalRef: _resolveLiteralReferenceName,
+          typeRef: (ref) => ref.name,
+          orRef: (ref) => ref.items.map(_resolveReferenceName).join('Or'),
+          arrayRef: (ref) => 'ArrayOf${_resolveReferenceName(ref.element)}s',
+          baseRef: (ref) => ref.name,
+          tupleRef: (ref) =>
+              'TupleOf${ref.items.map(_resolveReferenceName).join('And')}',
+        )
+        .upperFirstLetter();
+
+    return _renameMap[name] ?? name;
+  }
+
+  String _resolveLiteralReferenceName(LiteralRef ref) {
+    final properties = ref.value.properties
+        .map(
+          (prop) =>
+              '${prop.name.upperFirstLetter()}_${_resolveReferenceName(prop.type)}',
+        )
+        .join();
+
+    return properties;
+  }
 
   String _resolveOwnerName(BaseMeta owner) => switch (owner) {
     final MetaStructure structure => '${structure.name}(Struct)',

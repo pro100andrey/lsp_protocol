@@ -1,3 +1,6 @@
+import 'package:code_builder/code_builder.dart';
+import 'package:dart_style/dart_style.dart';
+
 List<String>? formatDocComment(String? input, {int maxLineLength = 80}) {
   if (input == null || input.trim().isEmpty) {
     return null;
@@ -49,4 +52,28 @@ List<String>? formatDocComment(String? input, {int maxLineLength = 80}) {
   }
 
   return lines;
+}
+
+String specToCode(Spec spec, {bool format = true}) {
+  final emitter = DartEmitter(
+    allocator: Allocator.simplePrefixing(),
+    useNullSafetySyntax: true,
+    orderDirectives: true,
+  );
+
+  final dartCode = spec.accept(emitter).toString();
+
+  if (!format) {
+    return dartCode;
+  }
+
+  final formatter = DartFormatter(
+    languageVersion: DartFormatter.latestLanguageVersion,
+    pageWidth: DartFormatter.defaultPageWidth,
+    trailingCommas: TrailingCommas.automate,
+  );
+
+  final result = formatter.format(dartCode);
+
+  return result;
 }

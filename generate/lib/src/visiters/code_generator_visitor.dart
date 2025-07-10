@@ -1,11 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:code_builder/code_builder.dart';
-import 'package:dart_style/dart_style.dart';
 
 import '../extensions/string.dart';
 import '../meta/protocol.dart';
-import '../symbols/literals_map.dart';
 import '../symbols/sealed_map.dart';
 import '../utils.dart';
 import 'type_resolver_visitor.dart';
@@ -20,16 +18,15 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ),
       _enumerations = Map.fromEntries(
         protocol.enumerations.map((e) => MapEntry(e.name, e)),
-      ),
-      _literalsMap = LiteralsMap(),
-      _sealedMap = SealedMap() {
-    _literalsMap.processProtocol(protocol);
+      ) {
+    _sealedMap = SealedMap();
     _sealedMap.processProtocol(protocol);
 
     _typeResolverVisitor = TypeResolverVisitor(
       structures: _structures,
       enumerations: _enumerations,
-      literalsMap: _literalsMap,
+
+      sealedMap: _sealedMap,
     );
   }
 
@@ -38,8 +35,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   late final TypeResolverVisitor _typeResolverVisitor;
 
-  final LiteralsMap _literalsMap;
-  final SealedMap _sealedMap;
+  late final SealedMap _sealedMap;
 
   Reference get _toJsonRef => refer('ToJson');
   Reference get _jsonRef => refer('json');
@@ -54,7 +50,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
-
       print('\nOrRef types:');
 
       for (final entry in orMap.entries) {
@@ -67,17 +62,15 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       // Generate the base class for JSON serialization
       b.body.add(_generateToJsonClass());
       // Generate the OrRef class
-      // b.body.add(_generateOrRefClass());
+      b.body.add(_generateBaseOrClass());
       // Generate type aliases
-      for (final typeAlias in protocol.typeAliases) {
-        b.body.add(visitTypeAlias(typeAlias));
-      }
-
-      // final baseNames = _orMapReferences.values.map((ref) => ref.name);
-
-      // for (final baseOrClass in baseNames) {
-      //   b.body.add(generateBaseOrClass(baseOrClass));
+      // for (final typeAlias in protocol.typeAliases) {
+      //   b.body.add(visitTypeAlias(typeAlias));
       // }
+
+      for (final ref in _sealedMap.refs) {
+        b.body.add(generateBaseOrClass(ref));
+      }
       // Generate classes from structures
       for (final structure in protocol.structures) {
         b.body.add(visitStructure(structure));
@@ -86,11 +79,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       for (final enumeration in protocol.enumerations) {
         b.body.add(visitEnumeration(enumeration));
         b.body.add(_generateEnumMap(enumeration));
-      }
-
-      // Generate literal classes
-      for (final literal in _literalsMap.literals) {
-        b.body.add(_generateLiteral(literal));
       }
 
       b.body.add(_generateRequestMethodEnum(protocol.requests));
@@ -121,31 +109,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       ..name = typeAlias.name
       ..definition = refer('Object');
   });
-
-  Class _generateLiteral(LiteralSymbol symbol) {
-    final ref = symbol.literalRef;
-    final property = symbol.property;
-    final name = _literalsMap.getLiteralName(ref);
-
-    final formattedDescription = formatDocComment(property.documentation) ?? [];
-
-    return Class((cb) {
-      cb
-        ..docs.addAll(['/// Literal'] + formattedDescription)
-        ..name = name
-        ..implements.add(_toJsonRef);
-
-      _generateFields(
-        cb: cb,
-        allFields: ref.value.properties,
-        inheritedPropertyNames: {},
-      );
-
-      _generateFromJsonFactory(cb: cb, allFields: ref.value.properties);
-
-      _generateToJson(cb: cb, allFields: ref.value.properties);
-    });
-  }
 
   @override
   Class visitStructure(MetaStructure structure) {
@@ -397,6 +360,64 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     Code('// MetaNotification visitor not implemented for generation\n'),
   );
 
+  Class _generateBaseOrClass() => Class((cb) {
+    cb
+      ..name = 'BaseOr'
+      ..types.add(
+        TypeReference((p0) {
+          p0
+            ..symbol = 'T'
+            ..bound = _toJsonRef
+            ..isNullable = false;
+        }),
+      )
+      ..abstract = true
+      ..implements.add(_toJsonRef)
+      ..docs.add(
+        '/// Represents a base class for OrRef types.',
+      )
+      ..sealed = true;
+
+    cb.fields.add(
+      Field((fb) {
+        fb
+          ..name = 'value'
+          ..modifier = FieldModifier.final$
+          ..type = refer('T');
+      }),
+    );
+
+    cb.constructors.add(
+      Constructor((cb) {
+        cb
+          ..constant = true
+          ..requiredParameters.add(
+            Parameter((pb) {
+              pb
+                ..name = 'value'
+                ..toThis = true;
+            }),
+          );
+      }),
+    );
+
+    //  final body = BlockBuilder()
+    // ..addExpression(
+    //   refer('value').property(_toJsonMethodRef.symbol!).call([]),
+    // );
+
+    cb.methods.add(
+      Method((mb) {
+        mb
+          ..name = _toJsonMethodRef.symbol
+          ..annotations.add(_overrideRef)
+          ..returns = _mapJsonRef
+          ..lambda = true
+          ..body = refer('value').property('toJson').call([]).code;
+      }),
+    );
+  });
+
   /// Generates the base ToJson class.
   Class _generateToJsonClass() => Class((cb) {
     cb
@@ -417,15 +438,20 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       );
   });
 
-  Class generateBaseOrClass(String name) => Class((cb) {
-    cb
-      ..name = name
-      ..docs.add(
-        '/// Represents a base class for OrRef types.',
-      )
-      ..sealed = true
-      ..abstract = true;
-  });
+  Class generateBaseOrClass(OrRef symbol) {
+    final typeName = _sealedMap.typeNameForOrRef(symbol);
+
+    return Class((cb) {
+      cb
+        ..name = typeName
+        ..implements.add(_toJsonRef)
+        ..docs.add(
+          '/// Represents a base class for OrRef types.',
+        )
+        ..sealed = true
+        ..abstract = true;
+    });
+  }
 
   Map<String, MetaProperty> _collectInheritedProperties(
     MetaStructure structure,
@@ -744,27 +770,8 @@ class ProtocolGenerator {
     final generatorVisitor = DartCodeGeneratorVisitor(protocol);
     // Start the visitation process from the root MetaProtocol object
     final library = protocol.accept(generatorVisitor) as Library;
-    final result = _specToCode(library);
+    final result = specToCode(library);
 
     return result;
   }
-}
-
-String _specToCode(Spec spec) {
-  final emitter = DartEmitter(
-    allocator: Allocator.simplePrefixing(),
-    useNullSafetySyntax: true,
-    orderDirectives: true,
-  );
-
-  final formatter = DartFormatter(
-    languageVersion: DartFormatter.latestLanguageVersion,
-    pageWidth: DartFormatter.defaultPageWidth,
-    trailingCommas: TrailingCommas.automate,
-  );
-
-  final dartCode = spec.accept(emitter).toString();
-  final result = formatter.format(dartCode);
-
-  return result;
 }

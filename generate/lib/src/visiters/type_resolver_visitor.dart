@@ -1,7 +1,8 @@
-import 'package:collection/collection.dart';
+import 'package:code_builder/code_builder.dart';
 
 import '../meta/protocol.dart';
-import '../symbols/literals_map.dart';
+import '../symbols/sealed_map.dart';
+import '../utils.dart';
 import 'visitor.dart';
 
 /// A concrete visitor that resolves MetaReference types to their Dart String
@@ -12,18 +13,19 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
     required Map<String, MetaEnumeration> enumerations,
 
     // required Map<String, OrMapReference> orMapReferences,
-    required LiteralsMap literalsMap,
+    required SealedMap sealedMap,
   }) : _structures = structures,
        _enumerations = enumerations,
 
-      //  _orMapReferences = orMapReferences,
-       _literalsMap = literalsMap;
+       //  _orMapReferences = orMapReferences,
+       _sealedMap = sealedMap;
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
 
   // final Map<String, OrMapReference> _orMapReferences;
-  final LiteralsMap _literalsMap;
+
+  final SealedMap _sealedMap;
 
   @override
   String visitTypeRef(TypeRef ref) {
@@ -79,6 +81,8 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
 
   @override
   String visitOrRef(OrRef ref) {
+    final orName = _sealedMap.typeNameForOrRef(ref);
+
     // final orMapReference = _orMapReferences.values.firstWhereOrNull(
     //   (orMap) => orMap.orRef == ref,
     // );
@@ -87,7 +91,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
     //   return orMapReference.name;
     // }
 
-    return 'Object';
+    return orName;
   }
 
   @override
@@ -112,18 +116,29 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   }
 
   @override
-  // ignore: prefer_expression_function_bodies
   String visitLiteralRef(LiteralRef ref) {
-    return _literalsMap.getLiteralName(ref);
+    final record = RecordType(
+      (rb) {
+        final entries = <MapEntry<String, Reference>>[];
+        for (final prop in ref.value.properties) {
+          final propType = prop.type.resolveType(this);
+          final propName = prop.name;
+
+          entries.add(MapEntry(propName, refer(propType)));
+
+          rb.namedFieldTypes.addEntries(entries);
+        }
+      },
+    );
+
+    final result = specToCode(record, format: false);
+
+    return result;
   }
 
   @override
   String visitStringLiteralRef(StringLiteralRef ref) => 'String';
 
   @override
-  // ignore: prefer_expression_function_bodies
-  String visitTupleRef(TupleRef ref) {
-    // Tuples are often represented as List<Object> or a specific data class.
-    return 'Object';
-  }
+  String visitTupleRef(TupleRef ref) => 'Tuple';
 }
