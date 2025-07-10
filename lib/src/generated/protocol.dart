@@ -396,14 +396,14 @@ class Location implements ToJson {
 
   factory Location.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
 
     return Location(uri: uri, range: range);
   }
 
-  final Uri uri;
+  final String uri;
 
   final Range range;
 
@@ -594,7 +594,7 @@ class WorkspaceFolder implements ToJson {
 
   factory WorkspaceFolder.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final nameJson = json['name']!;
     final name = (nameJson as String);
 
@@ -602,7 +602,7 @@ class WorkspaceFolder implements ToJson {
   }
 
   /// The associated URI for this workspace folder.
-  final Uri uri;
+  final String uri;
 
   /// The name of the workspace folder. Used to refer to this workspace
   /// folder in the user interface.
@@ -1525,7 +1525,7 @@ class CallHierarchyItem implements ToJson {
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final selectionRangeJson = json['selectionRange']!;
@@ -1558,7 +1558,7 @@ class CallHierarchyItem implements ToJson {
   final SymbolKind kind;
 
   /// The resource identifier of this item.
-  final Uri uri;
+  final String uri;
 
   /// The range enclosing this symbol not including leading/trailing
   /// whitespace but everything else, e.g. comments and code.
@@ -2190,7 +2190,7 @@ class ShowDocumentParams implements ToJson {
 
   factory ShowDocumentParams.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final selectionJson = json['selection'];
     final selection = (selectionJson as Range?);
     final takeFocusJson = json['takeFocus'];
@@ -2207,7 +2207,7 @@ class ShowDocumentParams implements ToJson {
   }
 
   /// The uri to show.
-  final Uri uri;
+  final String uri;
 
   /// An optional selection range if the document is a text document. Clients
   /// might ignore the property if an external program is started or the file
@@ -2450,7 +2450,7 @@ class WorkspaceEdit implements ToJson {
     final documentChangesJson = json['documentChanges'];
     final documentChanges = (documentChangesJson as List<Object>?);
     final changesJson = json['changes'];
-    final changes = (changesJson as Map<Uri, List<TextEdit>>?);
+    final changes = (changesJson as Map<String, List<TextEdit>>?);
 
     return WorkspaceEdit(
       changeAnnotations: changeAnnotations,
@@ -2482,7 +2482,7 @@ class WorkspaceEdit implements ToJson {
   final List<Object>? documentChanges;
 
   /// Holds changes to existing resources.
-  final Map<Uri, List<TextEdit>>? changes;
+  final Map<String, List<TextEdit>>? changes;
 
   @override
   Map<String, Object?> toJson() {
@@ -2801,7 +2801,7 @@ class TypeHierarchyItem implements ToJson {
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final rangeJson = json['range']!;
     final range = Range.fromJson((rangeJson as Map<String, Object?>));
     final selectionRangeJson = json['selectionRange']!;
@@ -2834,7 +2834,7 @@ class TypeHierarchyItem implements ToJson {
   final SymbolKind kind;
 
   /// The resource identifier of this item.
-  final Uri uri;
+  final String uri;
 
   /// The range enclosing this symbol not including leading/trailing
   /// whitespace but everything else, e.g. comments and code.
@@ -3427,14 +3427,14 @@ class DocumentDiagnosticReportPartialResult implements ToJson {
     Map<String, Object?> json,
   ) {
     final relatedDocumentsJson = json['relatedDocuments']!;
-    final relatedDocuments = (relatedDocumentsJson as Map<Uri, Object>);
+    final relatedDocuments = (relatedDocumentsJson as Map<String, Object>);
 
     return DocumentDiagnosticReportPartialResult(
       relatedDocuments: relatedDocuments,
     );
   }
 
-  final Map<Uri, Object> relatedDocuments;
+  final Map<String, Object> relatedDocuments;
 
   @override
   Map<String, Object?> toJson() {
@@ -4809,7 +4809,7 @@ class PublishDiagnosticsParams implements ToJson {
 
   factory PublishDiagnosticsParams.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final diagnosticsJson = json['diagnostics']!;
     final diagnostics = (diagnosticsJson as List<Diagnostic>);
     final versionJson = json['version'];
@@ -4823,7 +4823,7 @@ class PublishDiagnosticsParams implements ToJson {
   }
 
   /// The URI for which diagnostic information is reported.
-  final Uri uri;
+  final String uri;
 
   /// An array of diagnostic information items.
   final List<Diagnostic> diagnostics;
@@ -6903,7 +6903,7 @@ class DocumentLink implements ToJson {
     final tooltipJson = json['tooltip'];
     final tooltip = (tooltipJson as String?);
     final targetJson = json['target'];
-    final target = (targetJson as Uri?);
+    final target = (targetJson as String?);
 
     return DocumentLink(
       range: range,
@@ -6929,7 +6929,7 @@ class DocumentLink implements ToJson {
   final String? tooltip;
 
   /// The uri this link points to. If missing a resolve request is sent later.
-  final Uri? target;
+  final String? target;
 
   @override
   Map<String, Object?> toJson() {
@@ -8044,7 +8044,7 @@ class LocationLink implements ToJson {
 
   factory LocationLink.fromJson(Map<String, Object?> json) {
     final targetUriJson = json['targetUri']!;
-    final targetUri = (targetUriJson as Uri);
+    final targetUri = (targetUriJson as String);
     final targetRangeJson = json['targetRange']!;
     final targetRange = Range.fromJson(
       (targetRangeJson as Map<String, Object?>),
@@ -8065,7 +8065,7 @@ class LocationLink implements ToJson {
   }
 
   /// The target resource identifier of this link.
-  final Uri targetUri;
+  final String targetUri;
 
   /// The full target range of this link. If the target for example is a
   /// symbol then target range is the range enclosing this symbol not
@@ -8240,7 +8240,7 @@ class ConfigurationItem implements ToJson {
     final sectionJson = json['section'];
     final section = (sectionJson as String?);
     final scopeUriJson = json['scopeUri'];
-    final scopeUri = (scopeUriJson as Uri?);
+    final scopeUri = (scopeUriJson as String?);
 
     return ConfigurationItem(section: section, scopeUri: scopeUri);
   }
@@ -8249,7 +8249,7 @@ class ConfigurationItem implements ToJson {
   final String? section;
 
   /// The scope to get the configuration section for.
-  final Uri? scopeUri;
+  final String? scopeUri;
 
   @override
   Map<String, Object?> toJson() {
@@ -8268,13 +8268,13 @@ class TextDocumentIdentifier implements ToJson {
 
   factory TextDocumentIdentifier.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
 
     return TextDocumentIdentifier(uri: uri);
   }
 
   /// The text document's uri.
-  final Uri uri;
+  final String uri;
 
   @override
   Map<String, Object?> toJson() {
@@ -8713,7 +8713,7 @@ class CreateFile implements ResourceOperation {
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final optionsJson = json['options'];
     final options = (optionsJson as CreateFileOptions?);
     final annotationIdJson = json['annotationId'];
@@ -8732,7 +8732,7 @@ class CreateFile implements ResourceOperation {
   final String kind;
 
   /// The resource to create.
-  final Uri uri;
+  final String uri;
 
   /// Additional options
   final CreateFileOptions? options;
@@ -8769,9 +8769,9 @@ class RenameFile implements ResourceOperation {
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
     final oldUriJson = json['oldUri']!;
-    final oldUri = (oldUriJson as Uri);
+    final oldUri = (oldUriJson as String);
     final newUriJson = json['newUri']!;
-    final newUri = (newUriJson as Uri);
+    final newUri = (newUriJson as String);
     final optionsJson = json['options'];
     final options = (optionsJson as RenameFileOptions?);
     final annotationIdJson = json['annotationId'];
@@ -8791,10 +8791,10 @@ class RenameFile implements ResourceOperation {
   final String kind;
 
   /// The old (existing) location.
-  final Uri oldUri;
+  final String oldUri;
 
   /// The new location.
-  final Uri newUri;
+  final String newUri;
 
   /// Rename options.
   final RenameFileOptions? options;
@@ -8831,7 +8831,7 @@ class DeleteFile implements ResourceOperation {
     final kindJson = json['kind']!;
     final kind = (kindJson as String);
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final optionsJson = json['options'];
     final options = (optionsJson as DeleteFileOptions?);
     final annotationIdJson = json['annotationId'];
@@ -8850,7 +8850,7 @@ class DeleteFile implements ResourceOperation {
   final String kind;
 
   /// The file to delete.
-  final Uri uri;
+  final String uri;
 
   /// Delete options.
   final DeleteFileOptions? options;
@@ -9403,7 +9403,7 @@ class RelatedFullDocumentDiagnosticReport
     final itemsJson = json['items']!;
     final items = (itemsJson as List<Diagnostic>);
     final relatedDocumentsJson = json['relatedDocuments'];
-    final relatedDocuments = (relatedDocumentsJson as Map<Uri, Object>?);
+    final relatedDocuments = (relatedDocumentsJson as Map<String, Object>?);
     final resultIdJson = json['resultId'];
     final resultId = (resultIdJson as String?);
 
@@ -9429,7 +9429,7 @@ class RelatedFullDocumentDiagnosticReport
   /// where marco definitions in a file a.cpp and result in errors in a
   /// header file b.hpp.
   /// @since 3.17.0
-  final Map<Uri, Object>? relatedDocuments;
+  final Map<String, Object>? relatedDocuments;
 
   /// An optional result id. If provided it will be sent on the next
   /// diagnostic request for the same document.
@@ -9467,7 +9467,7 @@ class RelatedUnchangedDocumentDiagnosticReport
     final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
     final relatedDocumentsJson = json['relatedDocuments'];
-    final relatedDocuments = (relatedDocumentsJson as Map<Uri, Object>?);
+    final relatedDocuments = (relatedDocumentsJson as Map<String, Object>?);
 
     return RelatedUnchangedDocumentDiagnosticReport(
       kind: kind,
@@ -9492,7 +9492,7 @@ class RelatedUnchangedDocumentDiagnosticReport
   /// where marco definitions in a file a.cpp and result in errors in a
   /// header file b.hpp.
   /// @since 3.17.0
-  final Map<Uri, Object>? relatedDocuments;
+  final Map<String, Object>? relatedDocuments;
 
   @override
   Map<String, Object?> toJson() {
@@ -9655,7 +9655,7 @@ class PreviousResultId implements ToJson {
 
   factory PreviousResultId.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final valueJson = json['value']!;
     final value = (valueJson as String);
 
@@ -9663,7 +9663,7 @@ class PreviousResultId implements ToJson {
   }
 
   /// The URI for which the client knowns a result id.
-  final Uri uri;
+  final String uri;
 
   /// The value of the previous result id.
   final String value;
@@ -9692,7 +9692,7 @@ class NotebookDocument implements ToJson {
 
   factory NotebookDocument.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final notebookTypeJson = json['notebookType']!;
     final notebookType = (notebookTypeJson as String);
     final versionJson = json['version']!;
@@ -9700,7 +9700,7 @@ class NotebookDocument implements ToJson {
     final cellsJson = json['cells']!;
     final cells = (cellsJson as List<NotebookCell>);
     final metadataJson = json['metadata'];
-    final metadata = (metadataJson as LSPObject?);
+    final metadata = (metadataJson as Object?);
 
     return NotebookDocument(
       uri: uri,
@@ -9712,7 +9712,7 @@ class NotebookDocument implements ToJson {
   }
 
   /// The notebook document's uri.
-  final Uri uri;
+  final String uri;
 
   /// The type of the notebook.
   final String notebookType;
@@ -9726,7 +9726,7 @@ class NotebookDocument implements ToJson {
 
   /// Additional metadata stored with the notebook document.
   /// Note: should always be an object literal (e.g. LSPObject)
-  final LSPObject? metadata;
+  final Object? metadata;
 
   @override
   Map<String, Object?> toJson() {
@@ -9753,7 +9753,7 @@ class TextDocumentItem implements ToJson {
 
   factory TextDocumentItem.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final languageIdJson = json['languageId']!;
     final languageId = (languageIdJson as String);
     final versionJson = json['version']!;
@@ -9770,7 +9770,7 @@ class TextDocumentItem implements ToJson {
   }
 
   /// The text document's uri.
-  final Uri uri;
+  final String uri;
 
   /// The text document's language identifier.
   final String languageId;
@@ -9809,7 +9809,7 @@ class VersionedNotebookDocumentIdentifier implements ToJson {
     final versionJson = json['version']!;
     final version = (versionJson as int);
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
 
     return VersionedNotebookDocumentIdentifier(version: version, uri: uri);
   }
@@ -9818,7 +9818,7 @@ class VersionedNotebookDocumentIdentifier implements ToJson {
   final int version;
 
   /// The notebook document's uri.
-  final Uri uri;
+  final String uri;
 
   @override
   Map<String, Object?> toJson() {
@@ -9840,7 +9840,7 @@ class NotebookDocumentChangeEvent implements ToJson {
     final cellsJson = json['cells'];
     final cells = (cellsJson as NotebookDocumentChangeEventCells?);
     final metadataJson = json['metadata'];
-    final metadata = (metadataJson as LSPObject?);
+    final metadata = (metadataJson as Object?);
 
     return NotebookDocumentChangeEvent(cells: cells, metadata: metadata);
   }
@@ -9850,7 +9850,7 @@ class NotebookDocumentChangeEvent implements ToJson {
 
   /// The changed meta data if any.
   /// Note: should always be an object literal (e.g. LSPObject)
-  final LSPObject? metadata;
+  final Object? metadata;
 
   @override
   Map<String, Object?> toJson() {
@@ -9870,13 +9870,13 @@ class NotebookDocumentIdentifier implements ToJson {
 
   factory NotebookDocumentIdentifier.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
 
     return NotebookDocumentIdentifier(uri: uri);
   }
 
   /// The notebook document's uri.
-  final Uri uri;
+  final String uri;
 
   @override
   Map<String, Object?> toJson() {
@@ -10626,7 +10626,7 @@ class VersionedTextDocumentIdentifier implements TextDocumentIdentifier {
 
   factory VersionedTextDocumentIdentifier.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final versionJson = json['version']!;
     final version = (versionJson as int);
 
@@ -10635,7 +10635,7 @@ class VersionedTextDocumentIdentifier implements TextDocumentIdentifier {
 
   /// The text document's uri.
   @override
-  final Uri uri;
+  final String uri;
 
   /// The version number of this document.
   final int version;
@@ -10681,7 +10681,7 @@ class FileEvent implements ToJson {
 
   factory FileEvent.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final typeJson = json['type']!;
     // Handle enum type
     final type = _i1.$enumDecode(_$FileChangeTypeEnumMap, typeJson);
@@ -10690,7 +10690,7 @@ class FileEvent implements ToJson {
   }
 
   /// The file's uri.
-  final Uri uri;
+  final String uri;
 
   /// The change type.
   final FileChangeType type;
@@ -11894,7 +11894,7 @@ class OptionalVersionedTextDocumentIdentifier
     Map<String, Object?> json,
   ) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final versionJson = json['version']!;
     final version = (versionJson as IntegerOrNull);
 
@@ -11903,7 +11903,7 @@ class OptionalVersionedTextDocumentIdentifier
 
   /// The text document's uri.
   @override
-  final Uri uri;
+  final String uri;
 
   /// Represents a union type.
   /// The version number of this document. If a versioned text document
@@ -12171,7 +12171,7 @@ class WorkspaceFullDocumentDiagnosticReport
     final itemsJson = json['items']!;
     final items = (itemsJson as List<Diagnostic>);
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final versionJson = json['version']!;
     final version = (versionJson as IntegerOrNull);
     final resultIdJson = json['resultId'];
@@ -12195,7 +12195,7 @@ class WorkspaceFullDocumentDiagnosticReport
   final List<Diagnostic> items;
 
   /// The URI for which diagnostic information is reported.
-  final Uri uri;
+  final String uri;
 
   /// Represents a union type.
   /// The version number for which the diagnostics are reported. If the
@@ -12240,7 +12240,7 @@ class WorkspaceUnchangedDocumentDiagnosticReport
     final resultIdJson = json['resultId']!;
     final resultId = (resultIdJson as String);
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
     final versionJson = json['version']!;
     final version = (versionJson as IntegerOrNull);
 
@@ -12263,7 +12263,7 @@ class WorkspaceUnchangedDocumentDiagnosticReport
   final String resultId;
 
   /// The URI for which diagnostic information is reported.
-  final Uri uri;
+  final String uri;
 
   /// Represents a union type.
   /// The version number for which the diagnostics are reported. If the
@@ -12301,11 +12301,11 @@ class NotebookCell implements ToJson {
     // Handle enum type
     final kind = _i1.$enumDecode(_$NotebookCellKindEnumMap, kindJson);
     final documentJson = json['document']!;
-    final document = (documentJson as Uri);
+    final document = (documentJson as String);
     final executionSummaryJson = json['executionSummary'];
     final executionSummary = (executionSummaryJson as ExecutionSummary?);
     final metadataJson = json['metadata'];
-    final metadata = (metadataJson as LSPObject?);
+    final metadata = (metadataJson as Object?);
 
     return NotebookCell(
       kind: kind,
@@ -12319,14 +12319,14 @@ class NotebookCell implements ToJson {
   final NotebookCellKind kind;
 
   /// The URI of the cell's text document content.
-  final Uri document;
+  final String document;
 
   /// Additional execution summary information if supported by the client.
   final ExecutionSummary? executionSummary;
 
   /// Additional metadata stored with the cell.
   /// Note: should always be an object literal (e.g. LSPObject)
-  final LSPObject? metadata;
+  final Object? metadata;
 
   @override
   Map<String, Object?> toJson() {
@@ -12767,13 +12767,13 @@ class CodeDescription implements ToJson {
 
   factory CodeDescription.fromJson(Map<String, Object?> json) {
     final hrefJson = json['href']!;
-    final href = (hrefJson as Uri);
+    final href = (hrefJson as String);
 
     return CodeDescription(href: href);
   }
 
   /// An URI to open with more information about the diagnostic error.
-  final Uri href;
+  final String href;
 
   @override
   Map<String, Object?> toJson() {
@@ -16674,12 +16674,12 @@ class WorkspaceSymbolLocation implements ToJson {
 
   factory WorkspaceSymbolLocation.fromJson(Map<String, Object?> json) {
     final uriJson = json['uri']!;
-    final uri = (uriJson as Uri);
+    final uri = (uriJson as String);
 
     return WorkspaceSymbolLocation(uri: uri);
   }
 
-  final Uri uri;
+  final String uri;
 
   @override
   Map<String, Object?> toJson() {

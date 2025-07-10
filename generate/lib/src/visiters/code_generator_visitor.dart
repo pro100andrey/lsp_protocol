@@ -100,9 +100,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       case StringLiteralRef():
         return 'String';
       case TupleRef(:final items):
-        return items.map((i) {
-          return i.resolveType(_typeResolverVisitor);
-        }).join();
+        return items.map((i) => i.resolveType(_typeResolverVisitor)).join();
     }
   }
 

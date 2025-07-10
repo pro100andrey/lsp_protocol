@@ -55,7 +55,7 @@ abstract class MetaRequest extends BaseMeta with _$MetaRequest {
   const factory MetaRequest({
     required String method,
     required MessageDirection messageDirection,
-    TypeRef? params,
+    MetaReference? params,
     MetaReference? result,
     String? documentation,
     MetaReference? partialResult,
@@ -63,7 +63,7 @@ abstract class MetaRequest extends BaseMeta with _$MetaRequest {
     String? since,
     bool? proposed,
     String? registrationMethod,
-    TypeRef? errorData,
+    MetaReference? errorData,
   }) = _MetaRequest;
 
   const MetaRequest._();
@@ -111,7 +111,7 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
   @FreezedUnionValue('and')
   const factory MetaReference.and({
     required TypeKind kind,
-    required List<TypeRef> items,
+    required List<MetaReference> items,
   }) = AndRef;
 
   @JsonSerializable(disallowUnrecognizedKeys: true)
@@ -186,9 +186,9 @@ abstract class MetaNotification extends BaseMeta with _$MetaNotification {
   const factory MetaNotification({
     @JsonSerializable(disallowUnrecognizedKeys: true) required String method,
     required MessageDirection messageDirection,
-    TypeRef? params,
+    MetaReference? params,
     String? documentation,
-    TypeRef? registrationOptions,
+    MetaReference? registrationOptions,
     String? since,
     String? registrationMethod,
   }) = _MetaNotification;
@@ -296,7 +296,7 @@ abstract class MetaEnumeration extends BaseMeta with _$MetaEnumeration {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaEnumeration({
     required String name,
-    required TypeRef type,
+    required MetaReference type,
     required List<MetaEnumMember> values,
     bool? supportsCustomValues,
     String? documentation,

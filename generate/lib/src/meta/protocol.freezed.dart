@@ -345,7 +345,7 @@ as String,
 /// @nodoc
 mixin _$MetaRequest {
 
- String get method; MessageDirection get messageDirection; TypeRef? get params; MetaReference? get result; String? get documentation; MetaReference? get partialResult; MetaReference? get registrationOptions; String? get since; bool? get proposed; String? get registrationMethod; TypeRef? get errorData;
+ String get method; MessageDirection get messageDirection; MetaReference? get params; MetaReference? get result; String? get documentation; MetaReference? get partialResult; MetaReference? get registrationOptions; String? get since; bool? get proposed; String? get registrationMethod; MetaReference? get errorData;
 /// Create a copy of MetaRequest
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -358,12 +358,12 @@ $MetaRequestCopyWith<MetaRequest> get copyWith => _$MetaRequestCopyWithImpl<Meta
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaRequest&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&const DeepCollectionEquality().equals(other.params, params)&&(identical(other.result, result) || other.result == result)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.partialResult, partialResult) || other.partialResult == partialResult)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod)&&const DeepCollectionEquality().equals(other.errorData, errorData));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaRequest&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&(identical(other.params, params) || other.params == params)&&(identical(other.result, result) || other.result == result)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.partialResult, partialResult) || other.partialResult == partialResult)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod)&&(identical(other.errorData, errorData) || other.errorData == errorData));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,method,messageDirection,const DeepCollectionEquality().hash(params),result,documentation,partialResult,registrationOptions,since,proposed,registrationMethod,const DeepCollectionEquality().hash(errorData));
+int get hashCode => Object.hash(runtimeType,method,messageDirection,params,result,documentation,partialResult,registrationOptions,since,proposed,registrationMethod,errorData);
 
 @override
 String toString() {
@@ -378,11 +378,11 @@ abstract mixin class $MetaRequestCopyWith<$Res>  {
   factory $MetaRequestCopyWith(MetaRequest value, $Res Function(MetaRequest) _then) = _$MetaRequestCopyWithImpl;
 @useResult
 $Res call({
- String method, MessageDirection messageDirection, TypeRef? params, MetaReference? result, String? documentation, MetaReference? partialResult, MetaReference? registrationOptions, String? since, bool? proposed, String? registrationMethod, TypeRef? errorData
+ String method, MessageDirection messageDirection, MetaReference? params, MetaReference? result, String? documentation, MetaReference? partialResult, MetaReference? registrationOptions, String? since, bool? proposed, String? registrationMethod, MetaReference? errorData
 });
 
 
-$MetaReferenceCopyWith<$Res>? get result;$MetaReferenceCopyWith<$Res>? get partialResult;$MetaReferenceCopyWith<$Res>? get registrationOptions;
+$MetaReferenceCopyWith<$Res>? get params;$MetaReferenceCopyWith<$Res>? get result;$MetaReferenceCopyWith<$Res>? get partialResult;$MetaReferenceCopyWith<$Res>? get registrationOptions;$MetaReferenceCopyWith<$Res>? get errorData;
 
 }
 /// @nodoc
@@ -400,7 +400,7 @@ class _$MetaRequestCopyWithImpl<$Res>
 method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
 as String,messageDirection: null == messageDirection ? _self.messageDirection : messageDirection // ignore: cast_nullable_to_non_nullable
 as MessageDirection,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
-as TypeRef?,result: freezed == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
+as MetaReference?,result: freezed == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
 as MetaReference?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,partialResult: freezed == partialResult ? _self.partialResult : partialResult // ignore: cast_nullable_to_non_nullable
 as MetaReference?,registrationOptions: freezed == registrationOptions ? _self.registrationOptions : registrationOptions // ignore: cast_nullable_to_non_nullable
@@ -408,10 +408,22 @@ as MetaReference?,since: freezed == since ? _self.since : since // ignore: cast_
 as String?,proposed: freezed == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool?,registrationMethod: freezed == registrationMethod ? _self.registrationMethod : registrationMethod // ignore: cast_nullable_to_non_nullable
 as String?,errorData: freezed == errorData ? _self.errorData : errorData // ignore: cast_nullable_to_non_nullable
-as TypeRef?,
+as MetaReference?,
   ));
 }
 /// Create a copy of MetaRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
+  }
+
+  return $MetaReferenceCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of MetaRequest
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -447,6 +459,18 @@ $MetaReferenceCopyWith<$Res>? get registrationOptions {
   return $MetaReferenceCopyWith<$Res>(_self.registrationOptions!, (value) {
     return _then(_self.copyWith(registrationOptions: value));
   });
+}/// Create a copy of MetaRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res>? get errorData {
+    if (_self.errorData == null) {
+    return null;
+  }
+
+  return $MetaReferenceCopyWith<$Res>(_self.errorData!, (value) {
+    return _then(_self.copyWith(errorData: value));
+  });
 }
 }
 
@@ -460,7 +484,7 @@ class _MetaRequest extends MetaRequest {
 
 @override final  String method;
 @override final  MessageDirection messageDirection;
-@override final  TypeRef? params;
+@override final  MetaReference? params;
 @override final  MetaReference? result;
 @override final  String? documentation;
 @override final  MetaReference? partialResult;
@@ -468,7 +492,7 @@ class _MetaRequest extends MetaRequest {
 @override final  String? since;
 @override final  bool? proposed;
 @override final  String? registrationMethod;
-@override final  TypeRef? errorData;
+@override final  MetaReference? errorData;
 
 /// Create a copy of MetaRequest
 /// with the given fields replaced by the non-null parameter values.
@@ -483,12 +507,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaRequest&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&const DeepCollectionEquality().equals(other.params, params)&&(identical(other.result, result) || other.result == result)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.partialResult, partialResult) || other.partialResult == partialResult)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod)&&const DeepCollectionEquality().equals(other.errorData, errorData));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaRequest&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&(identical(other.params, params) || other.params == params)&&(identical(other.result, result) || other.result == result)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.partialResult, partialResult) || other.partialResult == partialResult)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod)&&(identical(other.errorData, errorData) || other.errorData == errorData));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,method,messageDirection,const DeepCollectionEquality().hash(params),result,documentation,partialResult,registrationOptions,since,proposed,registrationMethod,const DeepCollectionEquality().hash(errorData));
+int get hashCode => Object.hash(runtimeType,method,messageDirection,params,result,documentation,partialResult,registrationOptions,since,proposed,registrationMethod,errorData);
 
 @override
 String toString() {
@@ -503,11 +527,11 @@ abstract mixin class _$MetaRequestCopyWith<$Res> implements $MetaRequestCopyWith
   factory _$MetaRequestCopyWith(_MetaRequest value, $Res Function(_MetaRequest) _then) = __$MetaRequestCopyWithImpl;
 @override @useResult
 $Res call({
- String method, MessageDirection messageDirection, TypeRef? params, MetaReference? result, String? documentation, MetaReference? partialResult, MetaReference? registrationOptions, String? since, bool? proposed, String? registrationMethod, TypeRef? errorData
+ String method, MessageDirection messageDirection, MetaReference? params, MetaReference? result, String? documentation, MetaReference? partialResult, MetaReference? registrationOptions, String? since, bool? proposed, String? registrationMethod, MetaReference? errorData
 });
 
 
-@override $MetaReferenceCopyWith<$Res>? get result;@override $MetaReferenceCopyWith<$Res>? get partialResult;@override $MetaReferenceCopyWith<$Res>? get registrationOptions;
+@override $MetaReferenceCopyWith<$Res>? get params;@override $MetaReferenceCopyWith<$Res>? get result;@override $MetaReferenceCopyWith<$Res>? get partialResult;@override $MetaReferenceCopyWith<$Res>? get registrationOptions;@override $MetaReferenceCopyWith<$Res>? get errorData;
 
 }
 /// @nodoc
@@ -525,7 +549,7 @@ class __$MetaRequestCopyWithImpl<$Res>
 method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
 as String,messageDirection: null == messageDirection ? _self.messageDirection : messageDirection // ignore: cast_nullable_to_non_nullable
 as MessageDirection,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
-as TypeRef?,result: freezed == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
+as MetaReference?,result: freezed == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
 as MetaReference?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,partialResult: freezed == partialResult ? _self.partialResult : partialResult // ignore: cast_nullable_to_non_nullable
 as MetaReference?,registrationOptions: freezed == registrationOptions ? _self.registrationOptions : registrationOptions // ignore: cast_nullable_to_non_nullable
@@ -533,11 +557,23 @@ as MetaReference?,since: freezed == since ? _self.since : since // ignore: cast_
 as String?,proposed: freezed == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool?,registrationMethod: freezed == registrationMethod ? _self.registrationMethod : registrationMethod // ignore: cast_nullable_to_non_nullable
 as String?,errorData: freezed == errorData ? _self.errorData : errorData // ignore: cast_nullable_to_non_nullable
-as TypeRef?,
+as MetaReference?,
   ));
 }
 
 /// Create a copy of MetaRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
+  }
+
+  return $MetaReferenceCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of MetaRequest
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -572,6 +608,18 @@ $MetaReferenceCopyWith<$Res>? get registrationOptions {
 
   return $MetaReferenceCopyWith<$Res>(_self.registrationOptions!, (value) {
     return _then(_self.copyWith(registrationOptions: value));
+  });
+}/// Create a copy of MetaRequest
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res>? get errorData {
+    if (_self.errorData == null) {
+    return null;
+  }
+
+  return $MetaReferenceCopyWith<$Res>(_self.errorData!, (value) {
+    return _then(_self.copyWith(errorData: value));
   });
 }
 }
@@ -994,12 +1042,12 @@ as List<MetaReference>,
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
 class AndRef extends MetaReference {
-  const AndRef({required this.kind, required final  List<TypeRef> items}): _items = items,super._();
+  const AndRef({required this.kind, required final  List<MetaReference> items}): _items = items,super._();
   factory AndRef.fromJson(Map<String, dynamic> json) => _$AndRefFromJson(json);
 
 @override final  TypeKind kind;
- final  List<TypeRef> _items;
- List<TypeRef> get items {
+ final  List<MetaReference> _items;
+ List<MetaReference> get items {
   if (_items is EqualUnmodifiableListView) return _items;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_items);
@@ -1039,7 +1087,7 @@ abstract mixin class $AndRefCopyWith<$Res> implements $MetaReferenceCopyWith<$Re
   factory $AndRefCopyWith(AndRef value, $Res Function(AndRef) _then) = _$AndRefCopyWithImpl;
 @override @useResult
 $Res call({
- TypeKind kind, List<TypeRef> items
+ TypeKind kind, List<MetaReference> items
 });
 
 
@@ -1060,7 +1108,7 @@ class _$AndRefCopyWithImpl<$Res>
   return _then(AndRef(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as TypeKind,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<TypeRef>,
+as List<MetaReference>,
   ));
 }
 
@@ -1529,7 +1577,7 @@ as List<MetaProperty>,
 /// @nodoc
 mixin _$MetaNotification {
 
-@JsonSerializable(disallowUnrecognizedKeys: true) String get method; MessageDirection get messageDirection; TypeRef? get params; String? get documentation; TypeRef? get registrationOptions; String? get since; String? get registrationMethod;
+@JsonSerializable(disallowUnrecognizedKeys: true) String get method; MessageDirection get messageDirection; MetaReference? get params; String? get documentation; MetaReference? get registrationOptions; String? get since; String? get registrationMethod;
 /// Create a copy of MetaNotification
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1542,12 +1590,12 @@ $MetaNotificationCopyWith<MetaNotification> get copyWith => _$MetaNotificationCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaNotification&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&const DeepCollectionEquality().equals(other.params, params)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&const DeepCollectionEquality().equals(other.registrationOptions, registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaNotification&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&(identical(other.params, params) || other.params == params)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,method,messageDirection,const DeepCollectionEquality().hash(params),documentation,const DeepCollectionEquality().hash(registrationOptions),since,registrationMethod);
+int get hashCode => Object.hash(runtimeType,method,messageDirection,params,documentation,registrationOptions,since,registrationMethod);
 
 @override
 String toString() {
@@ -1562,11 +1610,11 @@ abstract mixin class $MetaNotificationCopyWith<$Res>  {
   factory $MetaNotificationCopyWith(MetaNotification value, $Res Function(MetaNotification) _then) = _$MetaNotificationCopyWithImpl;
 @useResult
 $Res call({
-@JsonSerializable(disallowUnrecognizedKeys: true) String method, MessageDirection messageDirection, TypeRef? params, String? documentation, TypeRef? registrationOptions, String? since, String? registrationMethod
+@JsonSerializable(disallowUnrecognizedKeys: true) String method, MessageDirection messageDirection, MetaReference? params, String? documentation, MetaReference? registrationOptions, String? since, String? registrationMethod
 });
 
 
-
+$MetaReferenceCopyWith<$Res>? get params;$MetaReferenceCopyWith<$Res>? get registrationOptions;
 
 }
 /// @nodoc
@@ -1584,14 +1632,38 @@ class _$MetaNotificationCopyWithImpl<$Res>
 method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
 as String,messageDirection: null == messageDirection ? _self.messageDirection : messageDirection // ignore: cast_nullable_to_non_nullable
 as MessageDirection,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
-as TypeRef?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as MetaReference?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,registrationOptions: freezed == registrationOptions ? _self.registrationOptions : registrationOptions // ignore: cast_nullable_to_non_nullable
-as TypeRef?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as MetaReference?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
 as String?,registrationMethod: freezed == registrationMethod ? _self.registrationMethod : registrationMethod // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
+/// Create a copy of MetaNotification
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
+  }
 
+  return $MetaReferenceCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of MetaNotification
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res>? get registrationOptions {
+    if (_self.registrationOptions == null) {
+    return null;
+  }
+
+  return $MetaReferenceCopyWith<$Res>(_self.registrationOptions!, (value) {
+    return _then(_self.copyWith(registrationOptions: value));
+  });
+}
 }
 
 
@@ -1604,9 +1676,9 @@ class _MetaNotification extends MetaNotification {
 
 @override@JsonSerializable(disallowUnrecognizedKeys: true) final  String method;
 @override final  MessageDirection messageDirection;
-@override final  TypeRef? params;
+@override final  MetaReference? params;
 @override final  String? documentation;
-@override final  TypeRef? registrationOptions;
+@override final  MetaReference? registrationOptions;
 @override final  String? since;
 @override final  String? registrationMethod;
 
@@ -1623,12 +1695,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaNotification&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&const DeepCollectionEquality().equals(other.params, params)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&const DeepCollectionEquality().equals(other.registrationOptions, registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaNotification&&(identical(other.method, method) || other.method == method)&&(identical(other.messageDirection, messageDirection) || other.messageDirection == messageDirection)&&(identical(other.params, params) || other.params == params)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.registrationOptions, registrationOptions) || other.registrationOptions == registrationOptions)&&(identical(other.since, since) || other.since == since)&&(identical(other.registrationMethod, registrationMethod) || other.registrationMethod == registrationMethod));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,method,messageDirection,const DeepCollectionEquality().hash(params),documentation,const DeepCollectionEquality().hash(registrationOptions),since,registrationMethod);
+int get hashCode => Object.hash(runtimeType,method,messageDirection,params,documentation,registrationOptions,since,registrationMethod);
 
 @override
 String toString() {
@@ -1643,11 +1715,11 @@ abstract mixin class _$MetaNotificationCopyWith<$Res> implements $MetaNotificati
   factory _$MetaNotificationCopyWith(_MetaNotification value, $Res Function(_MetaNotification) _then) = __$MetaNotificationCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonSerializable(disallowUnrecognizedKeys: true) String method, MessageDirection messageDirection, TypeRef? params, String? documentation, TypeRef? registrationOptions, String? since, String? registrationMethod
+@JsonSerializable(disallowUnrecognizedKeys: true) String method, MessageDirection messageDirection, MetaReference? params, String? documentation, MetaReference? registrationOptions, String? since, String? registrationMethod
 });
 
 
-
+@override $MetaReferenceCopyWith<$Res>? get params;@override $MetaReferenceCopyWith<$Res>? get registrationOptions;
 
 }
 /// @nodoc
@@ -1665,15 +1737,39 @@ class __$MetaNotificationCopyWithImpl<$Res>
 method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
 as String,messageDirection: null == messageDirection ? _self.messageDirection : messageDirection // ignore: cast_nullable_to_non_nullable
 as MessageDirection,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
-as TypeRef?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
+as MetaReference?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,registrationOptions: freezed == registrationOptions ? _self.registrationOptions : registrationOptions // ignore: cast_nullable_to_non_nullable
-as TypeRef?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as MetaReference?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
 as String?,registrationMethod: freezed == registrationMethod ? _self.registrationMethod : registrationMethod // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
 
+/// Create a copy of MetaNotification
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
+  }
 
+  return $MetaReferenceCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of MetaNotification
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res>? get registrationOptions {
+    if (_self.registrationOptions == null) {
+    return null;
+  }
+
+  return $MetaReferenceCopyWith<$Res>(_self.registrationOptions!, (value) {
+    return _then(_self.copyWith(registrationOptions: value));
+  });
+}
 }
 
 
@@ -2411,7 +2507,7 @@ as String,
 /// @nodoc
 mixin _$MetaEnumeration {
 
- String get name; TypeRef get type; List<MetaEnumMember> get values; bool? get supportsCustomValues; String? get documentation; String? get since; bool get proposed;
+ String get name; MetaReference get type; List<MetaEnumMember> get values; bool? get supportsCustomValues; String? get documentation; String? get since; bool get proposed;
 /// Create a copy of MetaEnumeration
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2424,12 +2520,12 @@ $MetaEnumerationCopyWith<MetaEnumeration> get copyWith => _$MetaEnumerationCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaEnumeration&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.type, type)&&const DeepCollectionEquality().equals(other.values, values)&&(identical(other.supportsCustomValues, supportsCustomValues) || other.supportsCustomValues == supportsCustomValues)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaEnumeration&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other.values, values)&&(identical(other.supportsCustomValues, supportsCustomValues) || other.supportsCustomValues == supportsCustomValues)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(type),const DeepCollectionEquality().hash(values),supportsCustomValues,documentation,since,proposed);
+int get hashCode => Object.hash(runtimeType,name,type,const DeepCollectionEquality().hash(values),supportsCustomValues,documentation,since,proposed);
 
 @override
 String toString() {
@@ -2444,11 +2540,11 @@ abstract mixin class $MetaEnumerationCopyWith<$Res>  {
   factory $MetaEnumerationCopyWith(MetaEnumeration value, $Res Function(MetaEnumeration) _then) = _$MetaEnumerationCopyWithImpl;
 @useResult
 $Res call({
- String name, TypeRef type, List<MetaEnumMember> values, bool? supportsCustomValues, String? documentation, String? since, bool proposed
+ String name, MetaReference type, List<MetaEnumMember> values, bool? supportsCustomValues, String? documentation, String? since, bool proposed
 });
 
 
-
+$MetaReferenceCopyWith<$Res> get type;
 
 }
 /// @nodoc
@@ -2461,11 +2557,11 @@ class _$MetaEnumerationCopyWithImpl<$Res>
 
 /// Create a copy of MetaEnumeration
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? type = freezed,Object? values = null,Object? supportsCustomValues = freezed,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? type = null,Object? values = null,Object? supportsCustomValues = freezed,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as TypeRef,values: null == values ? _self.values : values // ignore: cast_nullable_to_non_nullable
+as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as MetaReference,values: null == values ? _self.values : values // ignore: cast_nullable_to_non_nullable
 as List<MetaEnumMember>,supportsCustomValues: freezed == supportsCustomValues ? _self.supportsCustomValues : supportsCustomValues // ignore: cast_nullable_to_non_nullable
 as bool?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
@@ -2473,7 +2569,16 @@ as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cas
 as bool,
   ));
 }
-
+/// Create a copy of MetaEnumeration
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res> get type {
+  
+  return $MetaReferenceCopyWith<$Res>(_self.type, (value) {
+    return _then(_self.copyWith(type: value));
+  });
+}
 }
 
 
@@ -2485,7 +2590,7 @@ class _MetaEnumeration extends MetaEnumeration {
   factory _MetaEnumeration.fromJson(Map<String, dynamic> json) => _$MetaEnumerationFromJson(json);
 
 @override final  String name;
-@override final  TypeRef type;
+@override final  MetaReference type;
  final  List<MetaEnumMember> _values;
 @override List<MetaEnumMember> get values {
   if (_values is EqualUnmodifiableListView) return _values;
@@ -2511,12 +2616,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaEnumeration&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.type, type)&&const DeepCollectionEquality().equals(other._values, _values)&&(identical(other.supportsCustomValues, supportsCustomValues) || other.supportsCustomValues == supportsCustomValues)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaEnumeration&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other._values, _values)&&(identical(other.supportsCustomValues, supportsCustomValues) || other.supportsCustomValues == supportsCustomValues)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.proposed, proposed) || other.proposed == proposed));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(type),const DeepCollectionEquality().hash(_values),supportsCustomValues,documentation,since,proposed);
+int get hashCode => Object.hash(runtimeType,name,type,const DeepCollectionEquality().hash(_values),supportsCustomValues,documentation,since,proposed);
 
 @override
 String toString() {
@@ -2531,11 +2636,11 @@ abstract mixin class _$MetaEnumerationCopyWith<$Res> implements $MetaEnumeration
   factory _$MetaEnumerationCopyWith(_MetaEnumeration value, $Res Function(_MetaEnumeration) _then) = __$MetaEnumerationCopyWithImpl;
 @override @useResult
 $Res call({
- String name, TypeRef type, List<MetaEnumMember> values, bool? supportsCustomValues, String? documentation, String? since, bool proposed
+ String name, MetaReference type, List<MetaEnumMember> values, bool? supportsCustomValues, String? documentation, String? since, bool proposed
 });
 
 
-
+@override $MetaReferenceCopyWith<$Res> get type;
 
 }
 /// @nodoc
@@ -2548,11 +2653,11 @@ class __$MetaEnumerationCopyWithImpl<$Res>
 
 /// Create a copy of MetaEnumeration
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? type = freezed,Object? values = null,Object? supportsCustomValues = freezed,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? type = null,Object? values = null,Object? supportsCustomValues = freezed,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
   return _then(_MetaEnumeration(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as TypeRef,values: null == values ? _self._values : values // ignore: cast_nullable_to_non_nullable
+as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as MetaReference,values: null == values ? _self._values : values // ignore: cast_nullable_to_non_nullable
 as List<MetaEnumMember>,supportsCustomValues: freezed == supportsCustomValues ? _self.supportsCustomValues : supportsCustomValues // ignore: cast_nullable_to_non_nullable
 as bool?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
@@ -2561,7 +2666,16 @@ as bool,
   ));
 }
 
-
+/// Create a copy of MetaEnumeration
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaReferenceCopyWith<$Res> get type {
+  
+  return $MetaReferenceCopyWith<$Res>(_self.type, (value) {
+    return _then(_self.copyWith(type: value));
+  });
+}
 }
 
 

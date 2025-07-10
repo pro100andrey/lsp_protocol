@@ -46,12 +46,12 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
         return 'List<Object>';
     }
 
-    final isLiteral = _literalsMap.isLiteralByName(ref.name);
+    return ref.name;
 
-    throw ArgumentError(
-      'Unknown type reference: ${ref.name}. '
-      'Ensure it is defined in the protocol.',
-    );
+    // throw ArgumentError(
+    //   'Unknown type reference: ${ref.name}. '
+    //   'Ensure it is defined in the protocol.',
+    // );
   }
 
   @override
@@ -69,6 +69,8 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
     'decimal' => 'double',
     'boolean' => 'bool',
     'null' => 'Null',
+    'DocumentUri' => 'String',
+    'URI' => 'String',
     _ => throw ArgumentError(
       'Unknown base type: ${ref.name}. '
       'Ensure it is a valid Dart base type.',

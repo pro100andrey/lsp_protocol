@@ -68,7 +68,7 @@ _MetaRequest _$MetaRequestFromJson(Map<String, dynamic> json) {
     ),
     params: json['params'] == null
         ? null
-        : TypeRef.fromJson(json['params'] as Map<String, dynamic>),
+        : MetaReference.fromJson(json['params'] as Map<String, dynamic>),
     result: json['result'] == null
         ? null
         : MetaReference.fromJson(json['result'] as Map<String, dynamic>),
@@ -86,7 +86,7 @@ _MetaRequest _$MetaRequestFromJson(Map<String, dynamic> json) {
     registrationMethod: json['registrationMethod'] as String?,
     errorData: json['errorData'] == null
         ? null
-        : TypeRef.fromJson(json['errorData'] as Map<String, dynamic>),
+        : MetaReference.fromJson(json['errorData'] as Map<String, dynamic>),
   );
 }
 
@@ -182,7 +182,7 @@ AndRef _$AndRefFromJson(Map<String, dynamic> json) {
   return AndRef(
     kind: $enumDecode(_$TypeKindEnumMap, json['kind']),
     items: (json['items'] as List<dynamic>)
-        .map((e) => TypeRef.fromJson(e as Map<String, dynamic>))
+        .map((e) => MetaReference.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -271,11 +271,11 @@ _MetaNotification _$MetaNotificationFromJson(Map<String, dynamic> json) =>
       ),
       params: json['params'] == null
           ? null
-          : TypeRef.fromJson(json['params'] as Map<String, dynamic>),
+          : MetaReference.fromJson(json['params'] as Map<String, dynamic>),
       documentation: json['documentation'] as String?,
       registrationOptions: json['registrationOptions'] == null
           ? null
-          : TypeRef.fromJson(
+          : MetaReference.fromJson(
               json['registrationOptions'] as Map<String, dynamic>,
             ),
       since: json['since'] as String?,
@@ -428,7 +428,7 @@ _MetaEnumeration _$MetaEnumerationFromJson(Map<String, dynamic> json) {
   );
   return _MetaEnumeration(
     name: json['name'] as String,
-    type: TypeRef.fromJson(json['type'] as Map<String, dynamic>),
+    type: MetaReference.fromJson(json['type'] as Map<String, dynamic>),
     values: (json['values'] as List<dynamic>)
         .map((e) => MetaEnumMember.fromJson(e as Map<String, dynamic>))
         .toList(),

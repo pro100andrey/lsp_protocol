@@ -25,7 +25,7 @@ Future<void> main() async {
     ..onDidOpenTextDocument((params) async {
       final diagnostics = _validateTextDocument(
         params.textDocument.text,
-        params.textDocument.uri.toString(),
+        params.textDocument.uri,
       );
 
       // Send back an event notifying the client of issues we want them to
@@ -46,7 +46,7 @@ Future<void> main() async {
         // Our custom validation logic
         final diagnostics = _validateTextDocument(
           'not supported',
-          params.textDocument.uri.toString(),
+          params.textDocument.uri,
         );
 
         connection.sendDiagnostics(
