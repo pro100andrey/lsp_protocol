@@ -11,18 +11,18 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
     required Map<String, MetaStructure> structures,
     required Map<String, MetaEnumeration> enumerations,
 
-    required Map<String, OrMapReference> orMapReferences,
+    // required Map<String, OrMapReference> orMapReferences,
     required LiteralsMap literalsMap,
   }) : _structures = structures,
        _enumerations = enumerations,
 
-       _orMapReferences = orMapReferences,
+      //  _orMapReferences = orMapReferences,
        _literalsMap = literalsMap;
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
 
-  final Map<String, OrMapReference> _orMapReferences;
+  // final Map<String, OrMapReference> _orMapReferences;
   final LiteralsMap _literalsMap;
 
   @override
@@ -79,13 +79,13 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
 
   @override
   String visitOrRef(OrRef ref) {
-    final orMapReference = _orMapReferences.values.firstWhereOrNull(
-      (orMap) => orMap.orRef == ref,
-    );
+    // final orMapReference = _orMapReferences.values.firstWhereOrNull(
+    //   (orMap) => orMap.orRef == ref,
+    // );
 
-    if (orMapReference != null) {
-      return orMapReference.name;
-    }
+    // if (orMapReference != null) {
+    //   return orMapReference.name;
+    // }
 
     return 'Object';
   }

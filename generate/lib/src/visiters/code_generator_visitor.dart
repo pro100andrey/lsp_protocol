@@ -22,91 +22,19 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         protocol.enumerations.map((e) => MapEntry(e.name, e)),
       ),
       _literalsMap = LiteralsMap(),
-      _sealedMap = SealedMap(),
-
-      _orMapReferences = {} {
+      _sealedMap = SealedMap() {
     _literalsMap.processProtocol(protocol);
     _sealedMap.processProtocol(protocol);
-
-    for (final alias in protocol.typeAliases) {
-      final type = alias.type;
-      if (type is OrRef) {
-        _orMapReferences[alias.name] = (
-          orRef: type,
-          name: 'Base${alias.name.upperFirstLetter()}',
-        );
-      }
-    }
 
     _typeResolverVisitor = TypeResolverVisitor(
       structures: _structures,
       enumerations: _enumerations,
-      orMapReferences: _orMapReferences,
       literalsMap: _literalsMap,
     );
-
-    for (final struct in protocol.structures) {
-      for (final property in struct.properties) {
-        if (property.type is OrRef) {
-          final orRef = property.type as OrRef;
-
-          final types = [];
-
-          for (final item in orRef.items) {
-            final type = _resolveType(item).upperFirstLetter();
-            types.add(type);
-          }
-
-          types.sort();
-
-          final name = types.join('Or');
-
-          if (_orMapReferences.containsKey(name)) {
-            final existingOrRef = _orMapReferences[name]!.orRef;
-            if (existingOrRef != orRef) {
-              throw ArgumentError(
-                'OrRef type with name "$name" already exists.',
-              );
-            }
-          }
-
-          _orMapReferences[name] = (
-            orRef: orRef,
-            name: name,
-          );
-        }
-      }
-    }
-  }
-
-  String _resolveType(MetaReference item) {
-    switch (item) {
-      case TypeRef(:final name):
-        return name;
-      case ArrayRef(:final element):
-        return _resolveType(element);
-      case BaseRef(:final name):
-        return name;
-      case OrRef(:final items):
-        return items.map((i) => i.resolveType(_typeResolverVisitor)).join();
-      case AndRef(:final items):
-        return items.map((i) => i.resolveType(_typeResolverVisitor)).join();
-      case MapRef(:final key, :final value):
-        return 'Map${_resolveType(key)}${_resolveType(value)}';
-      case LiteralRef():
-        final name = _literalsMap.getLiteralName(item);
-        return name;
-
-      case StringLiteralRef():
-        return 'String';
-      case TupleRef(:final items):
-        return items.map((i) => i.resolveType(_typeResolverVisitor)).join();
-    }
   }
 
   final Map<String, MetaStructure> _structures;
   final Map<String, MetaEnumeration> _enumerations;
-  final Map<String, OrMapReference> _orMapReferences;
 
   late final TypeResolverVisitor _typeResolverVisitor;
 
@@ -126,27 +54,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
-      for (final alias in protocol.typeAliases) {
-        final type = alias.type;
-        if (type case OrRef(:final items)) {
-          _orMapReferences[alias.name] = (
-            orRef: type,
-            name: 'Base${alias.name.upperFirstLetter()}',
-          );
-
-          for (final item in items) {
-            if (item is! LiteralRef) {
-              final type = item.resolveType(_typeResolverVisitor);
-
-              orMap.putIfAbsent(alias.name, () => []).add(type);
-            } else {
-              // Handle LiteralRef
-
-              print('LiteralRef found in type alias: ${alias.name}');
-            }
-          }
-        }
-      }
 
       print('\nOrRef types:');
 
@@ -166,11 +73,11 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.add(visitTypeAlias(typeAlias));
       }
 
-      final baseNames = _orMapReferences.values.map((ref) => ref.name);
+      // final baseNames = _orMapReferences.values.map((ref) => ref.name);
 
-      for (final baseOrClass in baseNames) {
-        b.body.add(generateBaseOrClass(baseOrClass));
-      }
+      // for (final baseOrClass in baseNames) {
+      //   b.body.add(generateBaseOrClass(baseOrClass));
+      // }
       // Generate classes from structures
       for (final structure in protocol.structures) {
         b.body.add(visitStructure(structure));
@@ -208,42 +115,12 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   ];
 
   @override
-  TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {
-    final orBaseType = _orMapReferences[typeAlias.name]?.name;
-
-    final typeName =
-        orBaseType ?? typeAlias.type.resolveType(_typeResolverVisitor)!;
-
-    // if (typeAlias.type is OrRef) {
-    //   final ref = typeAlias.type as OrRef;
-
-    //   print('${typeAlias.name}:');
-
-    //   for (final item in ref.items) {
-    //     if (item is LiteralRef) {
-    //       print('   Literal:');
-    //       for (final prop in item.value.properties) {
-    //         final type = prop.type.resolveType(_typeResolverVisitor);
-    //         print('     ${prop.name}: $type${prop.optional ? '?' : ''}:');
-    //       }
-    //     } else {
-    //       print('   ${item.runtimeType}:');
-    //       print('     ${item.resolveType(_typeResolverVisitor)} ');
-    //     }
-    //   }
-    // } else {
-    //   print(
-    //     '${typeAlias.name} -> $typeName}',
-    //   );
-    // }
-
-    return TypeDef((b) {
-      b
-        ..docs.addAll(formatDocComment(typeAlias.documentation) ?? [])
-        ..name = typeAlias.name
-        ..definition = refer(typeName);
-    });
-  }
+  TypeDef visitTypeAlias(MetaTypeAlias typeAlias) => TypeDef((b) {
+    b
+      ..docs.addAll(formatDocComment(typeAlias.documentation) ?? [])
+      ..name = typeAlias.name
+      ..definition = refer('Object');
+  });
 
   Class _generateLiteral(LiteralSymbol symbol) {
     final ref = symbol.literalRef;
