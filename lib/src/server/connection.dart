@@ -36,40 +36,40 @@ class Connection {
   void onInitialize(
     Future<InitializeResult> Function(InitializeParams) handler,
   ) {
-    _peer.registerMethod(RequestMethod.initialize.value, (params) async {
-      final parameters = params as Parameters;
-      final initParams = InitializeParams.fromJson(parameters.value);
+    // _peer.registerMethod(RequestMethod.initialize.value, (params) async {
+    //   final parameters = params as Parameters;
+    //   final initParams = InitializeParams.fromJson(parameters.value);
 
-      return handler(initParams);
-    });
+    //   return handler(initParams);
+    // });
   }
 
   void onDidOpenTextDocument(
     Future<void> Function(DidOpenTextDocumentParams) handler,
   ) {
-    _peer.registerMethod(NotificationMethod.textDocumentDidOpen.value, (
-      params,
-    ) async {
-      final parameters = params as Parameters;
-      final openParams = DidOpenTextDocumentParams.fromJson(parameters.value);
+    // _peer.registerMethod(NotificationMethod.textDocumentDidOpen.value, (
+    //   params,
+    // ) async {
+    //   final parameters = params as Parameters;
+    //   final openParams = DidOpenTextDocumentParams.fromJson(parameters.value);
 
-      await handler(openParams);
-    });
+    //   await handler(openParams);
+    // });
   }
 
   void onDidChangeTextDocument(
     Future Function(DidChangeTextDocumentParams) handler,
   ) {
-    _peer.registerMethod(NotificationMethod.textDocumentDidChange.value, (
-      params,
-    ) async {
-      final parameters = params as Parameters;
-      final changeParams = DidChangeTextDocumentParams.fromJson(
-        parameters.value,
-      );
+    // _peer.registerMethod(NotificationMethod.textDocumentDidChange.value, (
+    //   params,
+    // ) async {
+    //   final parameters = params as Parameters;
+    //   final changeParams = DidChangeTextDocumentParams.fromJson(
+    //     parameters.value,
+    //   );
 
-      await handler(changeParams);
-    });
+    //   await handler(changeParams);
+    // });
   }
 
   void onRequest<R>(

@@ -1,8 +1,6 @@
-import 'package:code_builder/code_builder.dart';
-
+import '../generator_helper.dart';
 import '../meta/protocol.dart';
 import '../symbols/sealed_map.dart';
-import '../utils.dart';
 import 'visitor.dart';
 
 /// A concrete visitor that resolves MetaReference types to their Dart String
@@ -117,21 +115,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
 
   @override
   String visitLiteralRef(LiteralRef ref) {
-    final record = RecordType(
-      (rb) {
-        final entries = <MapEntry<String, Reference>>[];
-        for (final prop in ref.value.properties) {
-          final propType = prop.type.resolveType(this);
-          final propName = prop.name;
-
-          entries.add(MapEntry(propName, refer(propType)));
-
-          rb.namedFieldTypes.addEntries(entries);
-        }
-      },
-    );
-
-    final result = specToCode(record, format: false);
+    final result = literalToRecord(ref, this);
 
     return result;
   }

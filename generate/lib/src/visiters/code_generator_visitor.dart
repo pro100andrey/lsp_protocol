@@ -3,6 +3,7 @@
 import 'package:code_builder/code_builder.dart';
 
 import '../extensions/string.dart';
+import '../generator_helper.dart';
 import '../meta/protocol.dart';
 import '../symbols/sealed_map.dart';
 import '../utils.dart';
@@ -64,9 +65,9 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       // Generate the OrRef class
       b.body.add(_generateBaseOrClass());
       // Generate type aliases
-      // for (final typeAlias in protocol.typeAliases) {
-      //   b.body.add(visitTypeAlias(typeAlias));
-      // }
+      for (final typeAlias in protocol.typeAliases) {
+        b.body.add(visitTypeAlias(typeAlias));
+      }
 
       for (final ref in _sealedMap.refs) {
         b.body.add(generateBaseOrClass(ref));
@@ -81,9 +82,9 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.add(_generateEnumMap(enumeration));
       }
 
-      b.body.add(_generateRequestMethodEnum(protocol.requests));
+      // b.body.add(_generateRequestMethodEnum(protocol.requests));
 
-      b.body.add(_generateNotificationMethodEnum(protocol.notifications));
+      // b.body.add(_generateNotificationMethodEnum(protocol.notifications));
       // Generate notifications
 
       // for (final notification in protocol.notifications) {
@@ -564,23 +565,23 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final constructorNamedArgs = <String, Expression>{};
 
     for (final field in allFields) {
-      final propertyName = field.name;
+      final fieldName = field.name;
       final propertyType = field.type;
       final isOptional = field.optional;
-      final dartType = _applyOptional(
+      final type = _applyOptional(
         propertyType.resolveType(_typeResolverVisitor),
         isOptional,
       );
 
       // Add to constructor arguments list
-      constructorNamedArgs[propertyName] = refer(propertyName);
+      constructorNamedArgs[fieldName] = refer(fieldName);
 
       final mapTypeRef = refer(
         _applyOptional(_mapJsonRef.symbol!, isOptional),
       );
-      final varJsonName = '${propertyName}Json';
+      final varJsonName = '${fieldName}Json';
 
-      final key = literalString(propertyName);
+      final key = literalString(fieldName);
       final mapAsPart = isOptional
           ? _jsonRef.index(key)
           : _jsonRef.index(key).nullChecked;
@@ -588,7 +589,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final finalJson = declareFinal(varJsonName).assign(mapAsPart);
       fromJsonBody.addExpression(finalJson);
 
-      final isEnum = _enumerations.containsKey(dartType);
+      final isEnum = _enumerations.containsKey(type);
 
       if (isEnum) {
         fromJsonBody.statements.add(const Code('// Handle enum type'));
@@ -598,13 +599,10 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
           '../utils/enum_helpers.dart',
         );
         //$enumDecode(_$TypeKindEnumMap, json['kind']),
-        final enumMapRef = refer('_\$${dartType}EnumMap');
+        final enumMapRef = refer('_\$${type}EnumMap');
 
-        final fieldAssignment = declareFinal(propertyName).assign(
-          encodeEnumRef.call([
-            enumMapRef,
-            refer(varJsonName),
-          ]),
+        final fieldAssignment = declareFinal(fieldName).assign(
+          encodeEnumRef.call([enumMapRef, refer(varJsonName)]),
         );
 
         fromJsonBody.addExpression(fieldAssignment);
@@ -612,27 +610,25 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         continue;
       }
 
-      final isComplexType = _structures.containsKey(dartType);
+      final isComplexType = _structures.containsKey(type);
 
       if (isComplexType) {
         // If the type is complex, we need to call its fromJson method
-        final fromJsonCall = refer(
-          dartType,
-        ).property(_fromJsonMethodRef.symbol!);
+        final fromJsonCall = refer(type).property(_fromJsonMethodRef.symbol!);
 
         final fromJsonCallExpr = fromJsonCall.call([
           refer(varJsonName).asA(mapTypeRef),
         ]);
 
         final fieldAssignment = declareFinal(
-          propertyName,
+          fieldName,
         ).assign(fromJsonCallExpr);
 
         fromJsonBody.addExpression(fieldAssignment);
       } else {
         // For simple types, we can directly assign
-        final value = refer(varJsonName).asA(refer(dartType));
-        final fieldAssignment = declareFinal(propertyName).assign(value);
+        final value = refer(varJsonName).asA(refer(type));
+        final fieldAssignment = declareFinal(fieldName).assign(value);
 
         fromJsonBody.addExpression(fieldAssignment);
       }

@@ -26,14 +26,132 @@ sealed class BaseOr<T extends ToJson> implements ToJson {
   Map<String, Object?> toJson() => value.toJson();
 }
 
-  class InlineValueTextOrType extends BaseOr<InlineValueText> {
-    const InlineValueTextOrType(super.value);
+/// The definition of a symbol represented as one or many {@link Location
+/// locations}. For most programming languages there is only one location at
+/// which a symbol is defined.
+/// Servers should prefer returning `DefinitionLink` over `Definition` if
+/// supported by the client.
+typedef Definition = Object;
 
-    factory InlineValueTextOrType.fromJson(Map<String, dynamic> json) {
-      final value = InlineValueText.fromJson(json);
-      return InlineValueTextOrType(value);
-    }
-  }
+/// Information about where a symbol is defined.
+/// Provides additional metadata over normal {@link Location location}
+/// definitions, including the range of the defining symbol
+typedef DefinitionLink = Object;
+
+/// LSP arrays. @since 3.17.0
+typedef LSPArray = Object;
+
+/// The LSP any type. Please note that strictly speaking a property with the
+/// value `undefined` can't be converted into JSON preserving the property
+/// name. However for convenience it is allowed and assumed that all these
+/// properties are optional as well. @since 3.17.0
+typedef LSPAny = Object;
+
+/// The declaration of a symbol representation as one or many {@link Location
+/// locations}.
+typedef Declaration = Object;
+
+/// Information about where a symbol is declared.
+/// Provides additional metadata over normal {@link Location location}
+/// declarations, including the range of the declaring symbol.
+/// Servers should prefer returning `DeclarationLink` over `Declaration` if
+/// supported by the client.
+typedef DeclarationLink = Object;
+
+/// Inline value information can be provided by different means: - directly as
+/// a text value (class InlineValueText). - as a name to use for a variable
+/// lookup (class InlineValueVariableLookup) - as an evaluatable expression
+/// (class InlineValueEvaluatableExpression) The InlineValue types combines all
+/// inline value types into one type.
+/// @since 3.17.0
+typedef InlineValue = Object;
+
+/// The result of a document diagnostic pull request. A report can either be a
+/// full report containing all diagnostics for the requested document or an
+/// unchanged report indicating that nothing has changed in terms of
+/// diagnostics in comparison to the last pull request.
+/// @since 3.17.0
+typedef DocumentDiagnosticReport = Object;
+typedef PrepareRenameResult = Object;
+
+/// A document selector is the combination of one or many document filters.
+/// @sample `let sel:DocumentSelector = [{ language: 'typescript' }, {
+/// language: 'json', pattern: '**∕tsconfig.json' }]`;
+/// The use of a string as a document filter is deprecated @since 3.16.0.
+typedef DocumentSelector = Object;
+typedef ProgressToken = Object;
+
+/// An identifier to refer to a change annotation stored with a workspace edit.
+typedef ChangeAnnotationIdentifier = Object;
+
+/// A workspace diagnostic document report.
+/// @since 3.17.0
+typedef WorkspaceDocumentDiagnosticReport = Object;
+
+/// An event describing a change to a text document. If only a text is provided
+/// it is considered to be the full content of the document.
+typedef TextDocumentContentChangeEvent = Object;
+
+/// MarkedString can be used to render human readable text. It is either a
+/// markdown string or a code-block that provides a language and a code
+/// snippet. The language identifier is semantically equal to the optional
+/// language identifier in fenced code blocks in GitHub issues. See
+/// https://help.github.com/articles/creating-and-highlighting-code-blocks/#syntax-highlighting
+/// The pair of a language and a value is an equivalent to markdown:
+/// ```${language} ${value} ```
+/// Note that markdown strings will be sanitized - that means html will be
+/// escaped. @deprecated use MarkupContent instead.
+typedef MarkedString = Object;
+
+/// A document filter describes a top level text document or a notebook cell
+/// document.
+/// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
+typedef DocumentFilter = Object;
+
+/// LSP object definition. @since 3.17.0
+typedef LSPObject = Object;
+
+/// The glob pattern. Either a string pattern or a relative pattern.
+/// @since 3.17.0
+typedef GlobPattern = Object;
+
+/// A document filter denotes a document by different properties like the
+/// {@link TextDocument.languageId language}, the {@link Uri.scheme scheme} of
+/// its resource, or a glob-pattern that is applied to the {@link
+/// TextDocument.fileName path}.
+/// Glob patterns can have the following syntax: - `*` to match zero or more
+/// characters in a path segment - `?` to match on one character in a path
+/// segment - `**` to match any number of path segments, including none - `{}`
+/// to group sub patterns into an OR expression. (e.g. `**​/*.{ts,js}` matches
+/// all TypeScript and JavaScript files) - `[]` to declare a range of
+/// characters to match in a path segment (e.g., `example.[0-9]` to match on
+/// `example.0`, `example.1`, …) - `[!...]` to negate a range of characters to
+/// match in a path segment (e.g., `example.[!0-9]` to match on `example.a`,
+/// `example.b`, but not `example.0`)
+/// @sample A language filter that applies to typescript files on disk: `{
+/// language: 'typescript', scheme: 'file' }` @sample A language filter that
+/// applies to all package.json paths: `{ language: 'json', pattern:
+/// '**package.json' }`
+/// @since 3.17.0
+typedef TextDocumentFilter = Object;
+
+/// A notebook document filter denotes a notebook document by different
+/// properties. The properties will be match against the notebook's URI (same
+/// as with documents)
+/// @since 3.17.0
+typedef NotebookDocumentFilter = Object;
+
+/// The glob pattern to watch relative to the base path. Glob patterns can have
+/// the following syntax: - `*` to match zero or more characters in a path
+/// segment - `?` to match on one character in a path segment - `**` to match
+/// any number of path segments, including none - `{}` to group conditions
+/// (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript files) - `[]`
+/// to declare a range of characters to match in a path segment (e.g.,
+/// `example.[0-9]` to match on `example.0`, `example.1`, …) - `[!...]` to
+/// negate a range of characters to match in a path segment (e.g.,
+/// `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
+/// @since 3.17.0
+typedef Pattern = Object;
 
 /// Represents a base class for OrRef types.
 sealed class BaseDefinition implements ToJson {}
@@ -9672,7 +9790,7 @@ class NotebookDocument implements ToJson {
     final cellsJson = json['cells']!;
     final cells = (cellsJson as List<NotebookCell>);
     final metadataJson = json['metadata'];
-    final metadata = metadataJson;
+    final metadata = (metadataJson as Object?);
 
     return NotebookDocument(
       uri: uri,
@@ -9829,7 +9947,7 @@ class NotebookDocumentChangeEvent implements ToJson {
               textContent,
             })?);
     final metadataJson = json['metadata'];
-    final metadata = metadataJson;
+    final metadata = (metadataJson as Object?);
 
     return NotebookDocumentChangeEvent(cells: cells, metadata: metadata);
   }
@@ -12320,7 +12438,7 @@ class NotebookCell implements ToJson {
     final executionSummaryJson = json['executionSummary'];
     final executionSummary = (executionSummaryJson as ExecutionSummary?);
     final metadataJson = json['metadata'];
-    final metadata = metadataJson;
+    final metadata = (metadataJson as Object?);
 
     return NotebookCell(
       kind: kind,
@@ -16567,646 +16685,3 @@ enum TokenFormat {
 }
 
 const _$TokenFormatEnumMap = {TokenFormat.relativeValue: 'relative'};
-
-/// This class contains methods for handling requests.
-enum RequestMethod {
-  /// Method: textDocument/implementation
-  ///
-  /// A request to resolve the implementation locations of a symbol at a given
-  /// text document position. The request's parameter is of type {@link
-  /// TextDocumentPositionParams} the response is of type {@link Definition} or a
-  /// Thenable that resolves to such.
-  textDocumentImplementation('textDocument/implementation'),
-
-  /// Method: textDocument/typeDefinition
-  ///
-  /// A request to resolve the type definition locations of a symbol at a given
-  /// text document position. The request's parameter is of type {@link
-  /// TextDocumentPositionParams} the response is of type {@link Definition} or a
-  /// Thenable that resolves to such.
-  textDocumentTypeDefinition('textDocument/typeDefinition'),
-
-  /// Method: workspace/workspaceFolders
-  ///
-  /// The `workspace/workspaceFolders` is sent from the server to the client to
-  /// fetch the open workspace folders.
-  workspaceWorkspaceFolders('workspace/workspaceFolders'),
-
-  /// Method: workspace/configuration
-  ///
-  /// The 'workspace/configuration' request is sent from the server to the client
-  /// to fetch a certain configuration setting.
-  /// This pull model replaces the old push model where the client signaled
-  /// configuration change via an event. If the server still needs to react to
-  /// configuration changes (since the server caches the result of
-  /// `workspace/configuration` requests) the server should register for an empty
-  /// configuration change event and empty the cache if such an event is
-  /// received.
-  workspaceConfiguration('workspace/configuration'),
-
-  /// Method: textDocument/documentColor
-  ///
-  /// A request to list all color symbols found in a given text document. The
-  /// request's parameter is of type {@link DocumentColorParams} the response is
-  /// of type {@link ColorInformation ColorInformation[]} or a Thenable that
-  /// resolves to such.
-  textDocumentDocumentColor('textDocument/documentColor'),
-
-  /// Method: textDocument/colorPresentation
-  ///
-  /// A request to list all presentation for a color. The request's parameter is
-  /// of type {@link ColorPresentationParams} the response is of type {@link
-  /// ColorInformation ColorInformation[]} or a Thenable that resolves to such.
-  textDocumentColorPresentation('textDocument/colorPresentation'),
-
-  /// Method: textDocument/foldingRange
-  ///
-  /// A request to provide folding ranges in a document. The request's parameter
-  /// is of type {@link FoldingRangeParams}, the response is of type {@link
-  /// FoldingRangeList} or a Thenable that resolves to such.
-  textDocumentFoldingRange('textDocument/foldingRange'),
-
-  /// Method: workspace/foldingRange/refresh
-  ///
-  /// @since 3.18.0 @proposed
-  workspaceFoldingRangeRefresh('workspace/foldingRange/refresh'),
-
-  /// Method: textDocument/declaration
-  ///
-  /// A request to resolve the type definition locations of a symbol at a given
-  /// text document position. The request's parameter is of type {@link
-  /// TextDocumentPositionParams} the response is of type {@link Declaration} or
-  /// a typed array of {@link DeclarationLink} or a Thenable that resolves to
-  /// such.
-  textDocumentDeclaration('textDocument/declaration'),
-
-  /// Method: textDocument/selectionRange
-  ///
-  /// A request to provide selection ranges in a document. The request's
-  /// parameter is of type {@link SelectionRangeParams}, the response is of type
-  /// {@link SelectionRange SelectionRange[]} or a Thenable that resolves to
-  /// such.
-  textDocumentSelectionRange('textDocument/selectionRange'),
-
-  /// Method: window/workDoneProgress/create
-  ///
-  /// The `window/workDoneProgress/create` request is sent from the server to the
-  /// client to initiate progress reporting from the server.
-  windowWorkDoneProgressCreate('window/workDoneProgress/create'),
-
-  /// Method: textDocument/prepareCallHierarchy
-  ///
-  /// A request to result a `CallHierarchyItem` in a document at a given
-  /// position. Can be used as an input to an incoming or outgoing call
-  /// hierarchy.
-  /// @since 3.16.0
-  textDocumentPrepareCallHierarchy('textDocument/prepareCallHierarchy'),
-
-  /// Method: callHierarchy/incomingCalls
-  ///
-  /// A request to resolve the incoming calls for a given `CallHierarchyItem`.
-  /// @since 3.16.0
-  callHierarchyIncomingCalls('callHierarchy/incomingCalls'),
-
-  /// Method: callHierarchy/outgoingCalls
-  ///
-  /// A request to resolve the outgoing calls for a given `CallHierarchyItem`.
-  /// @since 3.16.0
-  callHierarchyOutgoingCalls('callHierarchy/outgoingCalls'),
-
-  /// Method: textDocument/semanticTokens/full
-  ///
-  /// @since 3.16.0
-  textDocumentSemanticTokensFull('textDocument/semanticTokens/full'),
-
-  /// Method: textDocument/semanticTokens/full/delta
-  ///
-  /// @since 3.16.0
-  textDocumentSemanticTokensFullDelta('textDocument/semanticTokens/full/delta'),
-
-  /// Method: textDocument/semanticTokens/range
-  ///
-  /// @since 3.16.0
-  textDocumentSemanticTokensRange('textDocument/semanticTokens/range'),
-
-  /// Method: workspace/semanticTokens/refresh
-  ///
-  /// @since 3.16.0
-  workspaceSemanticTokensRefresh('workspace/semanticTokens/refresh'),
-
-  /// Method: window/showDocument
-  ///
-  /// A request to show a document. This request might open an external program
-  /// depending on the value of the URI to open. For example a request to open
-  /// `https://code.visualstudio.com/` will very likely open the URI in a WEB
-  /// browser.
-  /// @since 3.16.0
-  windowShowDocument('window/showDocument'),
-
-  /// Method: textDocument/linkedEditingRange
-  ///
-  /// A request to provide ranges that can be edited together.
-  /// @since 3.16.0
-  textDocumentLinkedEditingRange('textDocument/linkedEditingRange'),
-
-  /// Method: workspace/willCreateFiles
-  ///
-  /// The will create files request is sent from the client to the server before
-  /// files are actually created as long as the creation is triggered from within
-  /// the client.
-  /// The request can return a `WorkspaceEdit` which will be applied to workspace
-  /// before the files are created. Hence the `WorkspaceEdit` can not manipulate
-  /// the content of the file to be created.
-  /// @since 3.16.0
-  workspaceWillCreateFiles('workspace/willCreateFiles'),
-
-  /// Method: workspace/willRenameFiles
-  ///
-  /// The will rename files request is sent from the client to the server before
-  /// files are actually renamed as long as the rename is triggered from within
-  /// the client.
-  /// @since 3.16.0
-  workspaceWillRenameFiles('workspace/willRenameFiles'),
-
-  /// Method: workspace/willDeleteFiles
-  ///
-  /// The did delete files notification is sent from the client to the server
-  /// when files were deleted from within the client.
-  /// @since 3.16.0
-  workspaceWillDeleteFiles('workspace/willDeleteFiles'),
-
-  /// Method: textDocument/moniker
-  ///
-  /// A request to get the moniker of a symbol at a given text document position.
-  /// The request parameter is of type {@link TextDocumentPositionParams}. The
-  /// response is of type {@link Moniker Moniker[]} or `null`.
-  textDocumentMoniker('textDocument/moniker'),
-
-  /// Method: textDocument/prepareTypeHierarchy
-  ///
-  /// A request to result a `TypeHierarchyItem` in a document at a given
-  /// position. Can be used as an input to a subtypes or supertypes type
-  /// hierarchy.
-  /// @since 3.17.0
-  textDocumentPrepareTypeHierarchy('textDocument/prepareTypeHierarchy'),
-
-  /// Method: typeHierarchy/supertypes
-  ///
-  /// A request to resolve the supertypes for a given `TypeHierarchyItem`.
-  /// @since 3.17.0
-  typeHierarchySupertypes('typeHierarchy/supertypes'),
-
-  /// Method: typeHierarchy/subtypes
-  ///
-  /// A request to resolve the subtypes for a given `TypeHierarchyItem`.
-  /// @since 3.17.0
-  typeHierarchySubtypes('typeHierarchy/subtypes'),
-
-  /// Method: textDocument/inlineValue
-  ///
-  /// A request to provide inline values in a document. The request's parameter
-  /// is of type {@link InlineValueParams}, the response is of type {@link
-  /// InlineValue InlineValue[]} or a Thenable that resolves to such.
-  /// @since 3.17.0
-  textDocumentInlineValue('textDocument/inlineValue'),
-
-  /// Method: workspace/inlineValue/refresh
-  ///
-  /// @since 3.17.0
-  workspaceInlineValueRefresh('workspace/inlineValue/refresh'),
-
-  /// Method: textDocument/inlayHint
-  ///
-  /// A request to provide inlay hints in a document. The request's parameter is
-  /// of type {@link InlayHintsParams}, the response is of type {@link InlayHint
-  /// InlayHint[]} or a Thenable that resolves to such.
-  /// @since 3.17.0
-  textDocumentInlayHint('textDocument/inlayHint'),
-
-  /// Method: inlayHint/resolve
-  ///
-  /// A request to resolve additional properties for an inlay hint. The request's
-  /// parameter is of type {@link InlayHint}, the response is of type {@link
-  /// InlayHint} or a Thenable that resolves to such.
-  /// @since 3.17.0
-  inlayHintResolve('inlayHint/resolve'),
-
-  /// Method: workspace/inlayHint/refresh
-  ///
-  /// @since 3.17.0
-  workspaceInlayHintRefresh('workspace/inlayHint/refresh'),
-
-  /// Method: textDocument/diagnostic
-  ///
-  /// The document diagnostic request definition.
-  /// @since 3.17.0
-  textDocumentDiagnostic('textDocument/diagnostic'),
-
-  /// Method: workspace/diagnostic
-  ///
-  /// The workspace diagnostic request definition.
-  /// @since 3.17.0
-  workspaceDiagnostic('workspace/diagnostic'),
-
-  /// Method: workspace/diagnostic/refresh
-  ///
-  /// The diagnostic refresh request definition.
-  /// @since 3.17.0
-  workspaceDiagnosticRefresh('workspace/diagnostic/refresh'),
-
-  /// Method: textDocument/inlineCompletion
-  ///
-  /// A request to provide inline completions in a document. The request's
-  /// parameter is of type {@link InlineCompletionParams}, the response is of
-  /// type {@link InlineCompletion InlineCompletion[]} or a Thenable that
-  /// resolves to such.
-  /// @since 3.18.0 @proposed
-  textDocumentInlineCompletion('textDocument/inlineCompletion'),
-
-  /// Method: client/registerCapability
-  ///
-  /// The `client/registerCapability` request is sent from the server to the
-  /// client to register a new capability handler on the client side.
-  clientRegisterCapability('client/registerCapability'),
-
-  /// Method: client/unregisterCapability
-  ///
-  /// The `client/unregisterCapability` request is sent from the server to the
-  /// client to unregister a previously registered capability handler on the
-  /// client side.
-  clientUnregisterCapability('client/unregisterCapability'),
-
-  /// Method: initialize
-  ///
-  /// The initialize request is sent from the client to the server. It is sent
-  /// once as the request after starting up the server. The requests parameter is
-  /// of type {@link InitializeParams} the response if of type {@link
-  /// InitializeResult} of a Thenable that resolves to such.
-  initialize('initialize'),
-
-  /// Method: shutdown
-  ///
-  /// A shutdown request is sent from the client to the server. It is sent once
-  /// when the client decides to shutdown the server. The only notification that
-  /// is sent after a shutdown request is the exit event.
-  shutdown('shutdown'),
-
-  /// Method: window/showMessageRequest
-  ///
-  /// The show message request is sent from the server to the client to show a
-  /// message and a set of options actions to the user.
-  windowShowMessageRequest('window/showMessageRequest'),
-
-  /// Method: textDocument/willSaveWaitUntil
-  ///
-  /// A document will save request is sent from the client to the server before
-  /// the document is actually saved. The request can return an array of
-  /// TextEdits which will be applied to the text document before it is saved.
-  /// Please note that clients might drop results if computing the text edits
-  /// took too long or if a server constantly fails on this request. This is done
-  /// to keep the save fast and reliable.
-  textDocumentWillSaveWaitUntil('textDocument/willSaveWaitUntil'),
-
-  /// Method: textDocument/completion
-  ///
-  /// Request to request completion at a given text document position. The
-  /// request's parameter is of type {@link TextDocumentPosition} the response is
-  /// of type {@link CompletionItem CompletionItem[]} or {@link CompletionList}
-  /// or a Thenable that resolves to such.
-  /// The request can delay the computation of the {@link CompletionItem.detail
-  /// `detail`} and {@link CompletionItem.documentation `documentation`}
-  /// properties to the `completionItem/resolve` request. However, properties
-  /// that are needed for the initial sorting and filtering, like `sortText`,
-  /// `filterText`, `insertText`, and `textEdit`, must not be changed during
-  /// resolve.
-  textDocumentCompletion('textDocument/completion'),
-
-  /// Method: completionItem/resolve
-  ///
-  /// Request to resolve additional information for a given completion item.The
-  /// request's parameter is of type {@link CompletionItem} the response is of
-  /// type {@link CompletionItem} or a Thenable that resolves to such.
-  completionItemResolve('completionItem/resolve'),
-
-  /// Method: textDocument/hover
-  ///
-  /// Request to request hover information at a given text document position. The
-  /// request's parameter is of type {@link TextDocumentPosition} the response is
-  /// of type {@link Hover} or a Thenable that resolves to such.
-  textDocumentHover('textDocument/hover'),
-
-  /// Method: textDocument/signatureHelp
-  ///
-  textDocumentSignatureHelp('textDocument/signatureHelp'),
-
-  /// Method: textDocument/definition
-  ///
-  /// A request to resolve the definition location of a symbol at a given text
-  /// document position. The request's parameter is of type {@link
-  /// TextDocumentPosition} the response is of either type {@link Definition} or
-  /// a typed array of {@link DefinitionLink} or a Thenable that resolves to
-  /// such.
-  textDocumentDefinition('textDocument/definition'),
-
-  /// Method: textDocument/references
-  ///
-  /// A request to resolve project-wide references for the symbol denoted by the
-  /// given text document position. The request's parameter is of type {@link
-  /// ReferenceParams} the response is of type {@link Location Location[]} or a
-  /// Thenable that resolves to such.
-  textDocumentReferences('textDocument/references'),
-
-  /// Method: textDocument/documentHighlight
-  ///
-  /// Request to resolve a {@link DocumentHighlight} for a given text document
-  /// position. The request's parameter is of type {@link TextDocumentPosition}
-  /// the request response is an array of type {@link DocumentHighlight} or a
-  /// Thenable that resolves to such.
-  textDocumentDocumentHighlight('textDocument/documentHighlight'),
-
-  /// Method: textDocument/documentSymbol
-  ///
-  /// A request to list all symbols found in a given text document. The request's
-  /// parameter is of type {@link TextDocumentIdentifier} the response is of type
-  /// {@link SymbolInformation SymbolInformation[]} or a Thenable that resolves
-  /// to such.
-  textDocumentDocumentSymbol('textDocument/documentSymbol'),
-
-  /// Method: textDocument/codeAction
-  ///
-  /// A request to provide commands for the given text document and range.
-  textDocumentCodeAction('textDocument/codeAction'),
-
-  /// Method: codeAction/resolve
-  ///
-  /// Request to resolve additional information for a given code action.The
-  /// request's parameter is of type {@link CodeAction} the response is of type
-  /// {@link CodeAction} or a Thenable that resolves to such.
-  codeActionResolve('codeAction/resolve'),
-
-  /// Method: workspace/symbol
-  ///
-  /// A request to list project-wide symbols matching the query string given by
-  /// the {@link WorkspaceSymbolParams}. The response is of type {@link
-  /// SymbolInformation SymbolInformation[]} or a Thenable that resolves to such.
-  /// @since 3.17.0 - support for WorkspaceSymbol in the returned data. Clients
-  /// need to advertise support for WorkspaceSymbols via the client capability
-  /// `workspace.symbol.resolveSupport`.
-  workspaceSymbol('workspace/symbol'),
-
-  /// Method: workspaceSymbol/resolve
-  ///
-  /// A request to resolve the range inside the workspace symbol's location.
-  /// @since 3.17.0
-  workspaceSymbolResolve('workspaceSymbol/resolve'),
-
-  /// Method: textDocument/codeLens
-  ///
-  /// A request to provide code lens for the given text document.
-  textDocumentCodeLens('textDocument/codeLens'),
-
-  /// Method: codeLens/resolve
-  ///
-  /// A request to resolve a command for a given code lens.
-  codeLensResolve('codeLens/resolve'),
-
-  /// Method: workspace/codeLens/refresh
-  ///
-  /// A request to refresh all code actions
-  /// @since 3.16.0
-  workspaceCodeLensRefresh('workspace/codeLens/refresh'),
-
-  /// Method: textDocument/documentLink
-  ///
-  /// A request to provide document links
-  textDocumentDocumentLink('textDocument/documentLink'),
-
-  /// Method: documentLink/resolve
-  ///
-  /// Request to resolve additional information for a given document link. The
-  /// request's parameter is of type {@link DocumentLink} the response is of type
-  /// {@link DocumentLink} or a Thenable that resolves to such.
-  documentLinkResolve('documentLink/resolve'),
-
-  /// Method: textDocument/formatting
-  ///
-  /// A request to format a whole document.
-  textDocumentFormatting('textDocument/formatting'),
-
-  /// Method: textDocument/rangeFormatting
-  ///
-  /// A request to format a range in a document.
-  textDocumentRangeFormatting('textDocument/rangeFormatting'),
-
-  /// Method: textDocument/rangesFormatting
-  ///
-  /// A request to format ranges in a document.
-  /// @since 3.18.0 @proposed
-  textDocumentRangesFormatting('textDocument/rangesFormatting'),
-
-  /// Method: textDocument/onTypeFormatting
-  ///
-  /// A request to format a document on type.
-  textDocumentOnTypeFormatting('textDocument/onTypeFormatting'),
-
-  /// Method: textDocument/rename
-  ///
-  /// A request to rename a symbol.
-  textDocumentRename('textDocument/rename'),
-
-  /// Method: textDocument/prepareRename
-  ///
-  /// A request to test and perform the setup necessary for a rename.
-  /// @since 3.16 - support for default behavior
-  textDocumentPrepareRename('textDocument/prepareRename'),
-
-  /// Method: workspace/executeCommand
-  ///
-  /// A request send from the client to the server to execute a command. The
-  /// request might return a workspace edit which the client will apply to the
-  /// workspace.
-  workspaceExecuteCommand('workspace/executeCommand'),
-
-  /// Method: workspace/applyEdit
-  ///
-  /// A request sent from the server to the client to modified certain resources.
-  workspaceApplyEdit('workspace/applyEdit');
-
-  // The list of all methods in this enumeration.
-  const RequestMethod(this.value);
-
-  // The type of this enumeration.
-  final String value;
-}
-
-/// This class contains methods for handling notifications.
-enum NotificationMethod {
-  /// Method: workspace/didChangeWorkspaceFolders
-  ///
-  /// The `workspace/didChangeWorkspaceFolders` notification is sent from the
-  /// client to the server when the workspace folder configuration changes.
-  workspaceDidChangeWorkspaceFolders('workspace/didChangeWorkspaceFolders'),
-
-  /// Method: window/workDoneProgress/cancel
-  ///
-  /// The `window/workDoneProgress/cancel` notification is sent from the client
-  /// to the server to cancel a progress initiated on the server side.
-  windowWorkDoneProgressCancel('window/workDoneProgress/cancel'),
-
-  /// Method: workspace/didCreateFiles
-  ///
-  /// The did create files notification is sent from the client to the server
-  /// when files were created from within the client.
-  /// @since 3.16.0
-  workspaceDidCreateFiles('workspace/didCreateFiles'),
-
-  /// Method: workspace/didRenameFiles
-  ///
-  /// The did rename files notification is sent from the client to the server
-  /// when files were renamed from within the client.
-  /// @since 3.16.0
-  workspaceDidRenameFiles('workspace/didRenameFiles'),
-
-  /// Method: workspace/didDeleteFiles
-  ///
-  /// The will delete files request is sent from the client to the server before
-  /// files are actually deleted as long as the deletion is triggered from within
-  /// the client.
-  /// @since 3.16.0
-  workspaceDidDeleteFiles('workspace/didDeleteFiles'),
-
-  /// Method: notebookDocument/didOpen
-  ///
-  /// A notification sent when a notebook opens.
-  /// @since 3.17.0
-  notebookDocumentDidOpen('notebookDocument/didOpen'),
-
-  /// Method: notebookDocument/didChange
-  ///
-  notebookDocumentDidChange('notebookDocument/didChange'),
-
-  /// Method: notebookDocument/didSave
-  ///
-  /// A notification sent when a notebook document is saved.
-  /// @since 3.17.0
-  notebookDocumentDidSave('notebookDocument/didSave'),
-
-  /// Method: notebookDocument/didClose
-  ///
-  /// A notification sent when a notebook closes.
-  /// @since 3.17.0
-  notebookDocumentDidClose('notebookDocument/didClose'),
-
-  /// Method: initialized
-  ///
-  /// The initialized notification is sent from the client to the server after
-  /// the client is fully initialized and the server is allowed to send requests
-  /// from the server to the client.
-  initialized('initialized'),
-
-  /// Method: exit
-  ///
-  /// The exit event is sent from the client to the server to ask the server to
-  /// exit its process.
-  exit('exit'),
-
-  /// Method: workspace/didChangeConfiguration
-  ///
-  /// The configuration change notification is sent from the client to the server
-  /// when the client's configuration has changed. The notification contains the
-  /// changed configuration as defined by the language client.
-  workspaceDidChangeConfiguration('workspace/didChangeConfiguration'),
-
-  /// Method: window/showMessage
-  ///
-  /// The show message notification is sent from a server to a client to ask the
-  /// client to display a particular message in the user interface.
-  windowShowMessage('window/showMessage'),
-
-  /// Method: window/logMessage
-  ///
-  /// The log message notification is sent from the server to the client to ask
-  /// the client to log a particular message.
-  windowLogMessage('window/logMessage'),
-
-  /// Method: telemetry/event
-  ///
-  /// The telemetry event notification is sent from the server to the client to
-  /// ask the client to log telemetry data.
-  telemetryEvent('telemetry/event'),
-
-  /// Method: textDocument/didOpen
-  ///
-  /// The document open notification is sent from the client to the server to
-  /// signal newly opened text documents. The document's truth is now managed by
-  /// the client and the server must not try to read the document's truth using
-  /// the document's uri. Open in this sense means it is managed by the client.
-  /// It doesn't necessarily mean that its content is presented in an editor. An
-  /// open notification must not be sent more than once without a corresponding
-  /// close notification send before. This means open and close notification must
-  /// be balanced and the max open count is one.
-  textDocumentDidOpen('textDocument/didOpen'),
-
-  /// Method: textDocument/didChange
-  ///
-  /// The document change notification is sent from the client to the server to
-  /// signal changes to a text document.
-  textDocumentDidChange('textDocument/didChange'),
-
-  /// Method: textDocument/didClose
-  ///
-  /// The document close notification is sent from the client to the server when
-  /// the document got closed in the client. The document's truth now exists
-  /// where the document's uri points to (e.g. if the document's uri is a file
-  /// uri the truth now exists on disk). As with the open notification the close
-  /// notification is about managing the document's content. Receiving a close
-  /// notification doesn't mean that the document was open in an editor before. A
-  /// close notification requires a previous open notification to be sent.
-  textDocumentDidClose('textDocument/didClose'),
-
-  /// Method: textDocument/didSave
-  ///
-  /// The document save notification is sent from the client to the server when
-  /// the document got saved in the client.
-  textDocumentDidSave('textDocument/didSave'),
-
-  /// Method: textDocument/willSave
-  ///
-  /// A document will save notification is sent from the client to the server
-  /// before the document is actually saved.
-  textDocumentWillSave('textDocument/willSave'),
-
-  /// Method: workspace/didChangeWatchedFiles
-  ///
-  /// The watched files notification is sent from the client to the server when
-  /// the client detects changes to file watched by the language client.
-  workspaceDidChangeWatchedFiles('workspace/didChangeWatchedFiles'),
-
-  /// Method: textDocument/publishDiagnostics
-  ///
-  /// Diagnostics notification are sent from the server to the client to signal
-  /// results of validation runs.
-  textDocumentPublishDiagnostics('textDocument/publishDiagnostics'),
-
-  /// Method: $/setTrace
-  ///
-  setTrace(r'$/setTrace'),
-
-  /// Method: $/logTrace
-  ///
-  logTrace(r'$/logTrace'),
-
-  /// Method: $/cancelRequest
-  ///
-  cancelRequest(r'$/cancelRequest'),
-
-  /// Method: $/progress
-  ///
-  progress(r'$/progress');
-
-  // The list of all methods in this enumeration.
-  const NotificationMethod(this.value);
-
-  // The type of this enumeration.
-  final String value;
-}

@@ -54,26 +54,3 @@ List<String>? formatDocComment(String? input, {int maxLineLength = 80}) {
   return lines;
 }
 
-String specToCode(Spec spec, {bool format = true}) {
-  final emitter = DartEmitter(
-    allocator: Allocator.simplePrefixing(),
-    useNullSafetySyntax: true,
-    orderDirectives: true,
-  );
-
-  final dartCode = spec.accept(emitter).toString();
-
-  if (!format) {
-    return dartCode;
-  }
-
-  final formatter = DartFormatter(
-    languageVersion: DartFormatter.latestLanguageVersion,
-    pageWidth: DartFormatter.defaultPageWidth,
-    trailingCommas: TrailingCommas.automate,
-  );
-
-  final result = formatter.format(dartCode);
-
-  return result;
-}
