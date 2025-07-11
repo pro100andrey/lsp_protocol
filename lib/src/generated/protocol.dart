@@ -154,222 +154,393 @@ typedef NotebookDocumentFilter = Object;
 typedef Pattern = Object;
 
 /// Represents a base class for OrRef types.
-sealed class BaseDefinition implements ToJson {}
+/// Owned by: TextDocumentRegistrationOptions(documentSelector)
+///
+/// Type: DocumentSelector
+/// Type: Null
+sealed class DocumentSelectorBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BaseLSPObject implements ToJson {}
+/// Owned by: WorkspaceEdit(documentChanges)
+///
+/// Type: TextDocumentEdit
+/// Type: CreateFile
+/// Type: RenameFile
+/// Type: DeleteFile
+sealed class DocumentChangesBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class InlineValueTextOrInlineValueVariableLookupOrInlineValueEvaluatableExpression
-    implements ToJson {}
+/// Owned by: InlayHint(label)
+///
+/// Type: String
+/// Type: ArrayOfInlayHintLabelParts
+sealed class LabelBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class RelatedFullDocumentDiagnosticReportOrRelatedUnchangedDocumentDiagnosticReport
-    implements ToJson {}
+/// Owned by: InlayHint(tooltip)
+/// Owned by: CompletionItem(documentation)
+/// Owned by: InlayHintLabelPart(tooltip)
+/// Owned by: SignatureInformation(documentation)
+/// Owned by: ParameterInformation(documentation)
+///
+/// Type: String
+/// Type: MarkupContent
+sealed class TooltipOrDocumentationBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class RangeOrRange_RangePlaceholder_StringOrDefaultBehavior_Boolean
-    implements ToJson {}
+/// Owned by: DocumentDiagnosticReportPartialResult(relatedDocuments)
+/// Owned by: RelatedFullDocumentDiagnosticReport(relatedDocuments)
+/// Owned by: RelatedUnchangedDocumentDiagnosticReport(relatedDocuments)
+///
+/// Type: FullDocumentDiagnosticReport
+/// Type: UnchangedDocumentDiagnosticReport
+sealed class RelatedDocumentsBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class IntegerOrString implements ToJson {}
+/// Owned by: InlineCompletionItem(insertText)
+///
+/// Type: String
+/// Type: StringValue
+sealed class InsertTextBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class WorkspaceFullDocumentDiagnosticReportOrWorkspaceUnchangedDocumentDiagnosticReport
-    implements ToJson {}
+/// Owned by: DidChangeConfigurationRegistrationOptions(section)
+///
+/// Type: String
+/// Type: ArrayOfStrings
+sealed class SectionBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class Range_RangeRangeLength_UintegerText_StringOrText_String
-    implements ToJson {}
+/// Owned by: CompletionItem(textEdit)
+///
+/// Type: TextEdit
+/// Type: InsertReplaceEdit
+sealed class TextEditBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class StringOrLanguage_StringValue_String implements ToJson {}
+/// Owned by: CompletionList(editRange)
+///
+/// Type: Range
+/// Type: ({Range insert, Range replace})
+sealed class EditRangeBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class TextDocumentFilterOrNotebookCellTextDocumentFilter
-    implements ToJson {}
+/// Owned by: Hover(contents)
+///
+/// Type: MarkupContent
+/// Type: MarkedString
+/// Type: ArrayOfMarkedStrings
+sealed class ContentsBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class PatternOrRelativePattern implements ToJson {}
+/// Owned by: WorkspaceSymbol(location)
+///
+/// Type: Location
+/// Type: ({String uri})
+sealed class LocationBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class Language_StringScheme_StringPattern_StringOrLanguage_StringScheme_StringPattern_StringOrLanguage_StringScheme_StringPattern_String
-    implements ToJson {}
+/// Owned by: SemanticTokensOptions(range)
+/// Owned by: SemanticTokensClientCapabilities(range)
+///
+/// Type: Boolean
+/// Type: ()
+sealed class RangeBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class NotebookType_StringScheme_StringPattern_StringOrNotebookType_StringScheme_StringPattern_StringOrNotebookType_StringScheme_StringPattern_String
-    implements ToJson {}
+/// Owned by: SemanticTokensOptions(full)
+///
+/// Type: Boolean
+/// Type: ({bool delta})
+sealed class FullBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BaseDocumentSelector implements ToJson {}
+/// Owned by: TextDocumentEdit(edits)
+///
+/// Type: TextEdit
+/// Type: AnnotatedTextEdit
+sealed class EditsBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class TextDocumentEditOrCreateFileOrRenameFileOrDeleteFile
-    implements ToJson {}
+/// Owned by: _InitializeParams(processId)
+/// Owned by: OptionalVersionedTextDocumentIdentifier(version)
+/// Owned by: WorkspaceFullDocumentDiagnosticReport(version)
+/// Owned by: WorkspaceUnchangedDocumentDiagnosticReport(version)
+///
+/// Type: Integer
+/// Type: Null
+sealed class ProcessIdOrVersionBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class StringOrArrayOfInlayHintLabelParts implements ToJson {}
+/// Owned by: _InitializeParams(rootPath)
+///
+/// Type: String
+/// Type: Null
+sealed class RootPathBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class StringOrMarkupContent implements ToJson {}
+/// Owned by: _InitializeParams(rootUri)
+///
+/// Type: DocumentUri
+/// Type: Null
+sealed class RootUriBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class StringOrStringValue implements ToJson {}
+/// Owned by: WorkspaceFoldersInitializeParams(workspaceFolders)
+///
+/// Type: ArrayOfWorkspaceFolders
+/// Type: Null
+sealed class WorkspaceFoldersBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class StringOrArrayOfStrings implements ToJson {}
+/// Owned by: ServerCapabilities(textDocumentSync)
+///
+/// Type: TextDocumentSyncOptions
+/// Type: TextDocumentSyncKind
+sealed class TextDocumentSyncBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class TextEditOrInsertReplaceEdit implements ToJson {}
+/// Owned by: ServerCapabilities(notebookDocumentSync)
+///
+/// Type: NotebookDocumentSyncOptions
+/// Type: NotebookDocumentSyncRegistrationOptions
+sealed class NotebookDocumentSyncBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class RangeOrInsert_RangeReplace_Range implements ToJson {}
+/// Owned by: ServerCapabilities(hoverProvider)
+///
+/// Type: Boolean
+/// Type: HoverOptions
+sealed class HoverProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class MarkupContentOrMarkedStringOrArrayOfMarkedStrings
-    implements ToJson {}
+/// Owned by: ServerCapabilities(declarationProvider)
+///
+/// Type: Boolean
+/// Type: DeclarationOptions
+/// Type: DeclarationRegistrationOptions
+sealed class DeclarationProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class LocationOrUri_DocumentUri implements ToJson {}
+/// Owned by: ServerCapabilities(definitionProvider)
+///
+/// Type: Boolean
+/// Type: DefinitionOptions
+sealed class DefinitionProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOr implements ToJson {}
+/// Owned by: ServerCapabilities(typeDefinitionProvider)
+///
+/// Type: Boolean
+/// Type: TypeDefinitionOptions
+/// Type: TypeDefinitionRegistrationOptions
+sealed class TypeDefinitionProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrDelta_Boolean implements ToJson {}
+/// Owned by: ServerCapabilities(implementationProvider)
+///
+/// Type: Boolean
+/// Type: ImplementationOptions
+/// Type: ImplementationRegistrationOptions
+sealed class ImplementationProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class TextEditOrAnnotatedTextEdit implements ToJson {}
+/// Owned by: ServerCapabilities(referencesProvider)
+///
+/// Type: Boolean
+/// Type: ReferenceOptions
+sealed class ReferencesProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class IntegerOrNull implements ToJson {}
+/// Owned by: ServerCapabilities(documentHighlightProvider)
+///
+/// Type: Boolean
+/// Type: DocumentHighlightOptions
+sealed class DocumentHighlightProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class StringOrNull implements ToJson {}
+/// Owned by: ServerCapabilities(documentSymbolProvider)
+///
+/// Type: Boolean
+/// Type: DocumentSymbolOptions
+sealed class DocumentSymbolProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class DocumentUriOrNull implements ToJson {}
+/// Owned by: ServerCapabilities(codeActionProvider)
+///
+/// Type: Boolean
+/// Type: CodeActionOptions
+sealed class CodeActionProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class ArrayOfWorkspaceFoldersOrNull implements ToJson {}
+/// Owned by: ServerCapabilities(colorProvider)
+///
+/// Type: Boolean
+/// Type: DocumentColorOptions
+/// Type: DocumentColorRegistrationOptions
+sealed class ColorProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class TextDocumentSyncOptionsOrTextDocumentSyncKind implements ToJson {}
+/// Owned by: ServerCapabilities(workspaceSymbolProvider)
+///
+/// Type: Boolean
+/// Type: WorkspaceSymbolOptions
+sealed class WorkspaceSymbolProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class NotebookDocumentSyncOptionsOrNotebookDocumentSyncRegistrationOptions
-    implements ToJson {}
+/// Owned by: ServerCapabilities(documentFormattingProvider)
+///
+/// Type: Boolean
+/// Type: DocumentFormattingOptions
+sealed class DocumentFormattingProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrHoverOptions implements ToJson {}
+/// Owned by: ServerCapabilities(documentRangeFormattingProvider)
+///
+/// Type: Boolean
+/// Type: DocumentRangeFormattingOptions
+sealed class DocumentRangeFormattingProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrDeclarationOptionsOrDeclarationRegistrationOptions
-    implements ToJson {}
+/// Owned by: ServerCapabilities(renameProvider)
+///
+/// Type: Boolean
+/// Type: RenameOptions
+sealed class RenameProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrDefinitionOptions implements ToJson {}
+/// Owned by: ServerCapabilities(foldingRangeProvider)
+///
+/// Type: Boolean
+/// Type: FoldingRangeOptions
+/// Type: FoldingRangeRegistrationOptions
+sealed class FoldingRangeProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrTypeDefinitionOptionsOrTypeDefinitionRegistrationOptions
-    implements ToJson {}
+/// Owned by: ServerCapabilities(selectionRangeProvider)
+///
+/// Type: Boolean
+/// Type: SelectionRangeOptions
+/// Type: SelectionRangeRegistrationOptions
+sealed class SelectionRangeProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrImplementationOptionsOrImplementationRegistrationOptions
-    implements ToJson {}
+/// Owned by: ServerCapabilities(callHierarchyProvider)
+///
+/// Type: Boolean
+/// Type: CallHierarchyOptions
+/// Type: CallHierarchyRegistrationOptions
+sealed class CallHierarchyProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrReferenceOptions implements ToJson {}
+/// Owned by: ServerCapabilities(linkedEditingRangeProvider)
+///
+/// Type: Boolean
+/// Type: LinkedEditingRangeOptions
+/// Type: LinkedEditingRangeRegistrationOptions
+sealed class LinkedEditingRangeProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrDocumentHighlightOptions implements ToJson {}
+/// Owned by: ServerCapabilities(semanticTokensProvider)
+///
+/// Type: SemanticTokensOptions
+/// Type: SemanticTokensRegistrationOptions
+sealed class SemanticTokensProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrDocumentSymbolOptions implements ToJson {}
+/// Owned by: ServerCapabilities(monikerProvider)
+///
+/// Type: Boolean
+/// Type: MonikerOptions
+/// Type: MonikerRegistrationOptions
+sealed class MonikerProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrCodeActionOptions implements ToJson {}
+/// Owned by: ServerCapabilities(typeHierarchyProvider)
+///
+/// Type: Boolean
+/// Type: TypeHierarchyOptions
+/// Type: TypeHierarchyRegistrationOptions
+sealed class TypeHierarchyProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrDocumentColorOptionsOrDocumentColorRegistrationOptions
-    implements ToJson {}
+/// Owned by: ServerCapabilities(inlineValueProvider)
+///
+/// Type: Boolean
+/// Type: InlineValueOptions
+/// Type: InlineValueRegistrationOptions
+sealed class InlineValueProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrWorkspaceSymbolOptions implements ToJson {}
+/// Owned by: ServerCapabilities(inlayHintProvider)
+///
+/// Type: Boolean
+/// Type: InlayHintOptions
+/// Type: InlayHintRegistrationOptions
+sealed class InlayHintProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrDocumentFormattingOptions implements ToJson {}
+/// Owned by: ServerCapabilities(diagnosticProvider)
+///
+/// Type: DiagnosticOptions
+/// Type: DiagnosticRegistrationOptions
+sealed class DiagnosticProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrDocumentRangeFormattingOptions implements ToJson {}
+/// Owned by: ServerCapabilities(inlineCompletionProvider)
+///
+/// Type: Boolean
+/// Type: InlineCompletionOptions
+sealed class InlineCompletionProviderBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrRenameOptions implements ToJson {}
+/// Owned by: TextDocumentSyncOptions(save)
+///
+/// Type: Boolean
+/// Type: SaveOptions
+sealed class SaveBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrFoldingRangeOptionsOrFoldingRangeRegistrationOptions
-    implements ToJson {}
+/// Owned by: NotebookDocumentSyncOptions(notebookSelector)
+///
+/// Type: ({NotebookBase notebook, List<({String language})> cells})
+/// Type: ({NotebookBase notebook, List<({String language})> cells})
+sealed class NotebookSelectorBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrSelectionRangeOptionsOrSelectionRangeRegistrationOptions
-    implements ToJson {}
+/// Owned by: WorkspaceFoldersServerCapabilities(changeNotifications)
+///
+/// Type: String
+/// Type: Boolean
+sealed class ChangeNotificationsBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrCallHierarchyOptionsOrCallHierarchyRegistrationOptions
-    implements ToJson {}
+/// Owned by: ParameterInformation(label)
+///
+/// Type: String
+/// Type: TupleOfUintegerAndUinteger
+sealed class LabelBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrLinkedEditingRangeOptionsOrLinkedEditingRangeRegistrationOptions
-    implements ToJson {}
+/// Owned by: NotebookCellTextDocumentFilter(notebook)
+///
+/// Type: String
+/// Type: NotebookDocumentFilter
+sealed class NotebookBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class SemanticTokensOptionsOrSemanticTokensRegistrationOptions
-    implements ToJson {}
+/// Owned by: RelativePattern(baseUri)
+///
+/// Type: WorkspaceFolder
+/// Type: URI
+sealed class BaseUriBase implements ToJson {}
 
 /// Represents a base class for OrRef types.
-sealed class BooleanOrMonikerOptionsOrMonikerRegistrationOptions
-    implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class BooleanOrTypeHierarchyOptionsOrTypeHierarchyRegistrationOptions
-    implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class BooleanOrInlineValueOptionsOrInlineValueRegistrationOptions
-    implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class BooleanOrInlayHintOptionsOrInlayHintRegistrationOptions
-    implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class DiagnosticOptionsOrDiagnosticRegistrationOptions
-    implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class BooleanOrInlineCompletionOptions implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class BooleanOrSaveOptions implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class Notebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_StringsOrNotebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_Strings
-    implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class StringOrBoolean implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class StringOrTupleOfUintegerAndUinteger implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class StringOrNotebookDocumentFilter implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class WorkspaceFolderOrURI implements ToJson {}
-
-/// Represents a base class for OrRef types.
-sealed class BooleanOrDelta_Boolean implements ToJson {}
+/// Owned by: SemanticTokensClientCapabilities(full)
+///
+/// Type: Boolean
+/// Type: ({bool delta})
+sealed class FullBase implements ToJson {}
 
 /// Struct
 class ImplementationParams
@@ -477,7 +648,7 @@ class ImplementationRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -494,7 +665,7 @@ class ImplementationRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -593,7 +764,7 @@ class TypeDefinitionRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -610,7 +781,7 @@ class TypeDefinitionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -805,7 +976,7 @@ class DocumentColorRegistrationOptions
 
   factory DocumentColorRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -822,7 +993,7 @@ class DocumentColorRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -988,7 +1159,7 @@ class TextDocumentRegistrationOptions implements ToJson {
 
   factory TextDocumentRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
 
     return TextDocumentRegistrationOptions(documentSelector: documentSelector);
   }
@@ -996,7 +1167,7 @@ class TextDocumentRegistrationOptions implements ToJson {
   /// Represents a union type.
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   @override
   Map<String, Object?> toJson() {
@@ -1153,7 +1324,7 @@ class FoldingRangeRegistrationOptions
 
   factory FoldingRangeRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1170,7 +1341,7 @@ class FoldingRangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -1267,7 +1438,7 @@ class DeclarationRegistrationOptions
 
   factory DeclarationRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1284,7 +1455,7 @@ class DeclarationRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -1411,7 +1582,7 @@ class SelectionRangeRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1428,7 +1599,7 @@ class SelectionRangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -1655,7 +1826,7 @@ class CallHierarchyRegistrationOptions
 
   factory CallHierarchyRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1672,7 +1843,7 @@ class CallHierarchyRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -1983,7 +2154,7 @@ class SemanticTokensRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final legendJson = json['legend']!;
     final legend = SemanticTokensLegend.fromJson(
       (legendJson as Map<String, Object?>),
@@ -1991,9 +2162,9 @@ class SemanticTokensRegistrationOptions
     final idJson = json['id'];
     final id = (idJson as String?);
     final fullJson = json['full'];
-    final full = (fullJson as BooleanOrDelta_Boolean?);
+    final full = (fullJson as FullBase?);
     final rangeJson = json['range'];
-    final range = (rangeJson as BooleanOr?);
+    final range = (rangeJson as RangeBase?);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -2011,7 +2182,7 @@ class SemanticTokensRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The legend used by the server
   @override
@@ -2025,13 +2196,13 @@ class SemanticTokensRegistrationOptions
   /// Represents a union type.
   /// Server supports providing semantic tokens for a full document.
   @override
-  final BooleanOrDelta_Boolean? full;
+  final FullBase? full;
 
   /// Represents a union type.
   /// Server supports providing semantic tokens for a specific range of a
   /// document.
   @override
-  final BooleanOr? range;
+  final RangeBase? range;
 
   @override
   final bool? workDoneProgress;
@@ -2405,7 +2576,7 @@ class LinkedEditingRangeRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -2422,7 +2593,7 @@ class LinkedEditingRangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -2492,9 +2663,7 @@ class WorkspaceEdit implements ToJson {
         (changeAnnotationsJson
             as Map<ChangeAnnotationIdentifier, ChangeAnnotation>?);
     final documentChangesJson = json['documentChanges'];
-    final documentChanges =
-        (documentChangesJson
-            as List<TextDocumentEditOrCreateFileOrRenameFileOrDeleteFile>?);
+    final documentChanges = (documentChangesJson as List<DocumentChangesBase>?);
     final changesJson = json['changes'];
     final changes = (changesJson as Map<String, List<TextEdit>>?);
 
@@ -2525,8 +2694,7 @@ class WorkspaceEdit implements ToJson {
   /// If a client neither supports `documentChanges` nor
   /// `workspace.workspaceEdit.resourceOperations` then only plain
   /// `TextEdit`s using the `changes` property are supported.
-  final List<TextDocumentEditOrCreateFileOrRenameFileOrDeleteFile>?
-  documentChanges;
+  final List<DocumentChangesBase>? documentChanges;
 
   /// Holds changes to existing resources.
   final Map<String, List<TextEdit>>? changes;
@@ -2747,7 +2915,7 @@ class MonikerRegistrationOptions
 
   factory MonikerRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -2761,7 +2929,7 @@ class MonikerRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -2936,7 +3104,7 @@ class TypeHierarchyRegistrationOptions
 
   factory TypeHierarchyRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -2953,7 +3121,7 @@ class TypeHierarchyRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -3145,7 +3313,7 @@ class InlineValueRegistrationOptions
 
   factory InlineValueRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -3162,7 +3330,7 @@ class InlineValueRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -3250,7 +3418,7 @@ class InlayHint implements ToJson {
     final positionJson = json['position']!;
     final position = Position.fromJson((positionJson as Map<String, Object?>));
     final labelJson = json['label']!;
-    final label = (labelJson as StringOrArrayOfInlayHintLabelParts);
+    final label = (labelJson as LabelBase);
     final dataJson = json['data'];
     final data = (dataJson as LSPAny?);
     final paddingRightJson = json['paddingRight'];
@@ -3258,7 +3426,7 @@ class InlayHint implements ToJson {
     final paddingLeftJson = json['paddingLeft'];
     final paddingLeft = (paddingLeftJson as bool?);
     final tooltipJson = json['tooltip'];
-    final tooltip = (tooltipJson as StringOrMarkupContent?);
+    final tooltip = (tooltipJson as TooltipOrDocumentationBase?);
     final textEditsJson = json['textEdits'];
     final textEdits = (textEditsJson as List<TextEdit>?);
     final kindJson = json['kind'];
@@ -3285,7 +3453,7 @@ class InlayHint implements ToJson {
   /// The label of this hint. A human readable string or an array of
   /// InlayHintLabelPart label parts.
   /// *Note* that neither the string nor the label part can be empty.
-  final StringOrArrayOfInlayHintLabelParts label;
+  final LabelBase label;
 
   /// A data entry field that is preserved on an inlay hint between a
   /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
@@ -3305,7 +3473,7 @@ class InlayHint implements ToJson {
 
   /// Represents a union type.
   /// The tooltip text when you hover over this item.
-  final StringOrMarkupContent? tooltip;
+  final TooltipOrDocumentationBase? tooltip;
 
   /// Optional text edits that are performed when accepting this inlay hint.
   /// *Note* that edits are expected to change the document so that the inlay
@@ -3350,7 +3518,7 @@ class InlayHintRegistrationOptions
 
   factory InlayHintRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final resolveProviderJson = json['resolveProvider'];
@@ -3370,7 +3538,7 @@ class InlayHintRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -3475,22 +3643,14 @@ class DocumentDiagnosticReportPartialResult implements ToJson {
   ) {
     final relatedDocumentsJson = json['relatedDocuments']!;
     final relatedDocuments =
-        (relatedDocumentsJson
-            as Map<
-              String,
-              FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport
-            >);
+        (relatedDocumentsJson as Map<String, RelatedDocumentsBase>);
 
     return DocumentDiagnosticReportPartialResult(
       relatedDocuments: relatedDocuments,
     );
   }
 
-  final Map<
-    String,
-    FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport
-  >
-  relatedDocuments;
+  final Map<String, RelatedDocumentsBase> relatedDocuments;
 
   @override
   Map<String, Object?> toJson() {
@@ -3544,7 +3704,7 @@ class DiagnosticRegistrationOptions
 
   factory DiagnosticRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final interFileDependenciesJson = json['interFileDependencies']!;
     final interFileDependencies = (interFileDependenciesJson as bool);
     final workspaceDiagnosticsJson = json['workspaceDiagnostics']!;
@@ -3570,7 +3730,7 @@ class DiagnosticRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// Whether the language has inter file dependencies meaning that editing
   /// code in one file can result in a different diagnostic set in another
@@ -3980,7 +4140,7 @@ class InlineCompletionItem implements ToJson {
 
   factory InlineCompletionItem.fromJson(Map<String, Object?> json) {
     final insertTextJson = json['insertText']!;
-    final insertText = (insertTextJson as StringOrStringValue);
+    final insertText = (insertTextJson as InsertTextBase);
     final commandJson = json['command'];
     final command = (commandJson as Command?);
     final rangeJson = json['range'];
@@ -3998,7 +4158,7 @@ class InlineCompletionItem implements ToJson {
 
   /// Represents a union type.
   /// The text to replace the range with. Must be set.
-  final StringOrStringValue insertText;
+  final InsertTextBase insertText;
 
   /// An optional {@link Command} that is executed *after* inserting this
   /// completion.
@@ -4042,7 +4202,7 @@ class InlineCompletionRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -4059,7 +4219,7 @@ class InlineCompletionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -4142,22 +4302,21 @@ class InitializeParams
 
   factory InitializeParams.fromJson(Map<String, Object?> json) {
     final processIdJson = json['processId']!;
-    final processId = (processIdJson as IntegerOrNull);
+    final processId = (processIdJson as ProcessIdOrVersionBase);
     final rootUriJson = json['rootUri']!;
-    final rootUri = (rootUriJson as DocumentUriOrNull);
+    final rootUri = (rootUriJson as RootUriBase);
     final capabilitiesJson = json['capabilities']!;
     final capabilities = ClientCapabilities.fromJson(
       (capabilitiesJson as Map<String, Object?>),
     );
     final workspaceFoldersJson = json['workspaceFolders'];
-    final workspaceFolders =
-        (workspaceFoldersJson as ArrayOfWorkspaceFoldersOrNull?);
+    final workspaceFolders = (workspaceFoldersJson as WorkspaceFoldersBase?);
     final traceJson = json['trace'];
     final trace = (traceJson as TraceValues?);
     final initializationOptionsJson = json['initializationOptions'];
     final initializationOptions = (initializationOptionsJson as LSPAny?);
     final rootPathJson = json['rootPath'];
-    final rootPath = (rootPathJson as StringOrNull?);
+    final rootPath = (rootPathJson as RootPathBase?);
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
@@ -4184,14 +4343,14 @@ class InitializeParams
   /// Is `null` if the process has not been started by another process. If
   /// the parent process is not alive then the server should exit.
   @override
-  final IntegerOrNull processId;
+  final ProcessIdOrVersionBase processId;
 
   /// Represents a union type.
   /// The rootUri of the workspace. Is null if no folder is open. If both
   /// `rootPath` and `rootUri` are set `rootUri` wins.
   /// @deprecated in favour of workspaceFolders.
   @override
-  final DocumentUriOrNull rootUri;
+  final RootUriBase rootUri;
 
   /// The capabilities provided by the client (editor or tool)
   @override
@@ -4204,7 +4363,7 @@ class InitializeParams
   /// none are configured.
   /// @since 3.6.0
   @override
-  final ArrayOfWorkspaceFoldersOrNull? workspaceFolders;
+  final WorkspaceFoldersBase? workspaceFolders;
 
   /// The initial trace setting. If omitted trace is disabled ('off').
   @override
@@ -4218,7 +4377,7 @@ class InitializeParams
   /// The rootPath of the workspace. Is null if no folder is open.
   /// @deprecated in favour of rootUri.
   @override
-  final StringOrNull? rootPath;
+  final RootPathBase? rootPath;
 
   /// The locale the client is currently showing the user interface in. This
   /// must not necessarily be the locale of the operating system.
@@ -4366,13 +4525,13 @@ class DidChangeConfigurationRegistrationOptions implements ToJson {
     Map<String, Object?> json,
   ) {
     final sectionJson = json['section'];
-    final section = (sectionJson as StringOrArrayOfStrings?);
+    final section = (sectionJson as SectionBase?);
 
     return DidChangeConfigurationRegistrationOptions(section: section);
   }
 
   /// Represents a union type.
-  final StringOrArrayOfStrings? section;
+  final SectionBase? section;
 
   @override
   Map<String, Object?> toJson() {
@@ -4600,7 +4759,7 @@ class TextDocumentChangeRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final syncKindJson = json['syncKind']!;
     // Handle enum type
     final syncKind = _i1.$enumDecode(
@@ -4618,7 +4777,7 @@ class TextDocumentChangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// How documents are synced to the server.
   final TextDocumentSyncKind syncKind;
@@ -4705,7 +4864,7 @@ class TextDocumentSaveRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final includeTextJson = json['includeText'];
     final includeText = (includeTextJson as bool?);
 
@@ -4719,7 +4878,7 @@ class TextDocumentSaveRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The client is supposed to include the content on save.
   @override
@@ -5014,7 +5173,7 @@ class CompletionItem implements ToJson {
     final textEditTextJson = json['textEditText'];
     final textEditText = (textEditTextJson as String?);
     final textEditJson = json['textEdit'];
-    final textEdit = (textEditJson as TextEditOrInsertReplaceEdit?);
+    final textEdit = (textEditJson as TextEditBase?);
     final insertTextModeJson = json['insertTextMode'];
     final insertTextMode = (insertTextModeJson as InsertTextMode?);
     final insertTextFormatJson = json['insertTextFormat'];
@@ -5030,7 +5189,7 @@ class CompletionItem implements ToJson {
     final deprecatedJson = json['deprecated'];
     final deprecated = (deprecatedJson as bool?);
     final documentationJson = json['documentation'];
-    final documentation = (documentationJson as StringOrMarkupContent?);
+    final documentation = (documentationJson as TooltipOrDocumentationBase?);
     final detailJson = json['detail'];
     final detail = (detailJson as String?);
     final tagsJson = json['tags'];
@@ -5123,7 +5282,7 @@ class CompletionItem implements ToJson {
   /// prefix of the edit's replace range, that means it must be contained and
   /// starting at the same position.
   /// @since 3.16.0 additional type `InsertReplaceEdit`
-  final TextEditOrInsertReplaceEdit? textEdit;
+  final TextEditBase? textEdit;
 
   /// How whitespace and indentation is handled during completion item
   /// insertion. If not provided the clients default value depends on the
@@ -5168,7 +5327,7 @@ class CompletionItem implements ToJson {
 
   /// Represents a union type.
   /// A human-readable string that represents a doc-comment.
-  final StringOrMarkupContent? documentation;
+  final TooltipOrDocumentationBase? documentation;
 
   /// A human-readable string with additional information about this item,
   /// like type or symbol information.
@@ -5233,7 +5392,7 @@ class CompletionList implements ToJson {
         (itemDefaultsJson
             as ({
               List<String> commitCharacters,
-              RangeOrInsert_RangeReplace_Range editRange,
+              EditRangeBase editRange,
               InsertTextFormat insertTextFormat,
               InsertTextMode insertTextMode,
               LSPAny data,
@@ -5266,7 +5425,7 @@ class CompletionList implements ToJson {
   /// @since 3.17.0
   final ({
     List<String> commitCharacters,
-    RangeOrInsert_RangeReplace_Range editRange,
+    EditRangeBase editRange,
     InsertTextFormat insertTextFormat,
     InsertTextMode insertTextMode,
     LSPAny data,
@@ -5299,7 +5458,7 @@ class CompletionRegistrationOptions
 
   factory CompletionRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final completionItemJson = json['completionItem'];
     final completionItem =
         (completionItemJson as ({bool labelDetailsSupport})?);
@@ -5326,7 +5485,7 @@ class CompletionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The server supports the following `CompletionItem` specific
   /// capabilities.
@@ -5435,8 +5594,7 @@ class Hover implements ToJson {
 
   factory Hover.fromJson(Map<String, Object?> json) {
     final contentsJson = json['contents']!;
-    final contents =
-        (contentsJson as MarkupContentOrMarkedStringOrArrayOfMarkedStrings);
+    final contents = (contentsJson as ContentsBase);
     final rangeJson = json['range'];
     final range = (rangeJson as Range?);
 
@@ -5445,7 +5603,7 @@ class Hover implements ToJson {
 
   /// Represents a union type.
   /// The hover's content
-  final MarkupContentOrMarkedStringOrArrayOfMarkedStrings contents;
+  final ContentsBase contents;
 
   /// An optional range inside the text document that is used to visualize
   /// the hover, e.g. by changing the background color.
@@ -5472,7 +5630,7 @@ class HoverRegistrationOptions
 
   factory HoverRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -5486,7 +5644,7 @@ class HoverRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -5631,7 +5789,7 @@ class SignatureHelpRegistrationOptions
 
   factory SignatureHelpRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final retriggerCharactersJson = json['retriggerCharacters'];
     final retriggerCharacters = (retriggerCharactersJson as List<String>?);
     final triggerCharactersJson = json['triggerCharacters'];
@@ -5651,7 +5809,7 @@ class SignatureHelpRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// List of characters that re-trigger signature help.
   /// These trigger characters are only active when signature help is already
@@ -5754,7 +5912,7 @@ class DefinitionRegistrationOptions
 
   factory DefinitionRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -5768,7 +5926,7 @@ class DefinitionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -5866,7 +6024,7 @@ class ReferenceRegistrationOptions
 
   factory ReferenceRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -5880,7 +6038,7 @@ class ReferenceRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -6003,7 +6161,7 @@ class DocumentHighlightRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -6017,7 +6175,7 @@ class DocumentHighlightRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -6281,7 +6439,7 @@ class DocumentSymbolRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final labelJson = json['label'];
     final label = (labelJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -6298,7 +6456,7 @@ class DocumentSymbolRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// A human-readable string that is shown when multiple outlines trees are
   /// shown for the same document.
@@ -6548,7 +6706,7 @@ class CodeActionRegistrationOptions
 
   factory CodeActionRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final codeActionKindsJson = json['codeActionKinds'];
@@ -6568,7 +6726,7 @@ class CodeActionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// The server provides support to resolve additional information for a
   /// code action.
@@ -6667,7 +6825,7 @@ class WorkspaceSymbol implements BaseSymbolInformation {
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final locationJson = json['location']!;
-    final location = (locationJson as LocationOrUri_DocumentUri);
+    final location = (locationJson as LocationBase);
     final dataJson = json['data'];
     final data = (dataJson as LSPAny?);
     final containerNameJson = json['containerName'];
@@ -6698,7 +6856,7 @@ class WorkspaceSymbol implements BaseSymbolInformation {
   /// location without a range depends on the client capability
   /// `workspace.symbol.resolveSupport`.
   /// See SymbolInformation#location for more details.
-  final LocationOrUri_DocumentUri location;
+  final LocationBase location;
 
   /// A data entry field that is preserved on a workspace symbol between a
   /// workspace symbol request and a workspace symbol resolve request.
@@ -6874,7 +7032,7 @@ class CodeLensRegistrationOptions
 
   factory CodeLensRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -6891,7 +7049,7 @@ class CodeLensRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// Code lens has a resolve provider as well.
   @override
@@ -7027,7 +7185,7 @@ class DocumentLinkRegistrationOptions
 
   factory DocumentLinkRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -7044,7 +7202,7 @@ class DocumentLinkRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// Document links have a resolve provider as well.
   @override
@@ -7126,7 +7284,7 @@ class DocumentFormattingRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -7140,7 +7298,7 @@ class DocumentFormattingRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -7226,7 +7384,7 @@ class DocumentRangeFormattingRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final rangesSupportJson = json['rangesSupport'];
     final rangesSupport = (rangesSupportJson as bool?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -7243,7 +7401,7 @@ class DocumentRangeFormattingRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// Whether the server supports formatting multiple ranges at once.
   /// @since 3.18.0 @proposed
@@ -7399,7 +7557,7 @@ class DocumentOnTypeFormattingRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final firstTriggerCharacterJson = json['firstTriggerCharacter']!;
     final firstTriggerCharacter = (firstTriggerCharacterJson as String);
     final moreTriggerCharacterJson = json['moreTriggerCharacter'];
@@ -7416,7 +7574,7 @@ class DocumentOnTypeFormattingRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// A character on which formatting should be triggered, like `{`.
   @override
@@ -7505,7 +7663,7 @@ class RenameRegistrationOptions
 
   factory RenameRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as BaseDocumentSelector);
+    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final prepareProviderJson = json['prepareProvider'];
     final prepareProvider = (prepareProviderJson as bool?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -7522,7 +7680,7 @@ class RenameRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final BaseDocumentSelector documentSelector;
+  final DocumentSelectorBase documentSelector;
 
   /// Renames should be checked and tested before being executed.
   /// @since version 3.12.0
@@ -7970,14 +8128,14 @@ class CancelParams implements ToJson {
 
   factory CancelParams.fromJson(Map<String, Object?> json) {
     final idJson = json['id']!;
-    final id = (idJson as IntegerOrString);
+    final id = (idJson as ProgressToken);
 
     return CancelParams(id: id);
   }
 
   /// Represents a union type.
   /// The request id to cancel.
-  final IntegerOrString id;
+  final ProgressToken id;
 
   @override
   Map<String, Object?> toJson() {
@@ -8600,9 +8758,9 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
       (legendJson as Map<String, Object?>),
     );
     final fullJson = json['full'];
-    final full = (fullJson as BooleanOrDelta_Boolean?);
+    final full = (fullJson as FullBase?);
     final rangeJson = json['range'];
-    final range = (rangeJson as BooleanOr?);
+    final range = (rangeJson as RangeBase?);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -8619,12 +8777,12 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
 
   /// Represents a union type.
   /// Server supports providing semantic tokens for a full document.
-  final BooleanOrDelta_Boolean? full;
+  final FullBase? full;
 
   /// Represents a union type.
   /// Server supports providing semantic tokens for a specific range of a
   /// document.
-  final BooleanOr? range;
+  final RangeBase? range;
 
   @override
   final bool? workDoneProgress;
@@ -8748,7 +8906,7 @@ class TextDocumentEdit implements ToJson {
       (textDocumentJson as Map<String, Object?>),
     );
     final editsJson = json['edits']!;
-    final edits = (editsJson as List<TextEditOrAnnotatedTextEdit>);
+    final edits = (editsJson as List<EditsBase>);
 
     return TextDocumentEdit(textDocument: textDocument, edits: edits);
   }
@@ -8759,7 +8917,7 @@ class TextDocumentEdit implements ToJson {
   /// The edits to be applied.
   /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
   /// client capability.
-  final List<TextEditOrAnnotatedTextEdit> edits;
+  final List<EditsBase> edits;
 
   @override
   Map<String, Object?> toJson() {
@@ -9332,7 +9490,7 @@ class InlayHintLabelPart implements ToJson {
     final locationJson = json['location'];
     final location = (locationJson as Location?);
     final tooltipJson = json['tooltip'];
-    final tooltip = (tooltipJson as StringOrMarkupContent?);
+    final tooltip = (tooltipJson as TooltipOrDocumentationBase?);
 
     return InlayHintLabelPart(
       value: value,
@@ -9364,7 +9522,7 @@ class InlayHintLabelPart implements ToJson {
   /// The tooltip text when you hover over this label part. Depending on the
   /// client capability `inlayHint.resolveSupport` clients might resolve this
   /// property late using the resolve request.
-  final StringOrMarkupContent? tooltip;
+  final TooltipOrDocumentationBase? tooltip;
 
   @override
   Map<String, Object?> toJson() {
@@ -9476,11 +9634,7 @@ class RelatedFullDocumentDiagnosticReport
     final items = (itemsJson as List<Diagnostic>);
     final relatedDocumentsJson = json['relatedDocuments'];
     final relatedDocuments =
-        (relatedDocumentsJson
-            as Map<
-              String,
-              FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport
-            >?);
+        (relatedDocumentsJson as Map<String, RelatedDocumentsBase>?);
     final resultIdJson = json['resultId'];
     final resultId = (resultIdJson as String?);
 
@@ -9506,11 +9660,7 @@ class RelatedFullDocumentDiagnosticReport
   /// where marco definitions in a file a.cpp and result in errors in a
   /// header file b.hpp.
   /// @since 3.17.0
-  final Map<
-    String,
-    FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport
-  >?
-  relatedDocuments;
+  final Map<String, RelatedDocumentsBase>? relatedDocuments;
 
   /// An optional result id. If provided it will be sent on the next
   /// diagnostic request for the same document.
@@ -9549,11 +9699,7 @@ class RelatedUnchangedDocumentDiagnosticReport
     final resultId = (resultIdJson as String);
     final relatedDocumentsJson = json['relatedDocuments'];
     final relatedDocuments =
-        (relatedDocumentsJson
-            as Map<
-              String,
-              FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport
-            >?);
+        (relatedDocumentsJson as Map<String, RelatedDocumentsBase>?);
 
     return RelatedUnchangedDocumentDiagnosticReport(
       kind: kind,
@@ -9578,11 +9724,7 @@ class RelatedUnchangedDocumentDiagnosticReport
   /// where marco definitions in a file a.cpp and result in errors in a
   /// header file b.hpp.
   /// @since 3.17.0
-  final Map<
-    String,
-    FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport
-  >?
-  relatedDocuments;
+  final Map<String, RelatedDocumentsBase>? relatedDocuments;
 
   @override
   Map<String, Object?> toJson() {
@@ -10203,9 +10345,9 @@ class _InitializeParams implements WorkDoneProgressParams {
 
   factory _InitializeParams.fromJson(Map<String, Object?> json) {
     final processIdJson = json['processId']!;
-    final processId = (processIdJson as IntegerOrNull);
+    final processId = (processIdJson as ProcessIdOrVersionBase);
     final rootUriJson = json['rootUri']!;
-    final rootUri = (rootUriJson as DocumentUriOrNull);
+    final rootUri = (rootUriJson as RootUriBase);
     final capabilitiesJson = json['capabilities']!;
     final capabilities = ClientCapabilities.fromJson(
       (capabilitiesJson as Map<String, Object?>),
@@ -10215,7 +10357,7 @@ class _InitializeParams implements WorkDoneProgressParams {
     final initializationOptionsJson = json['initializationOptions'];
     final initializationOptions = (initializationOptionsJson as LSPAny?);
     final rootPathJson = json['rootPath'];
-    final rootPath = (rootPathJson as StringOrNull?);
+    final rootPath = (rootPathJson as RootPathBase?);
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
@@ -10240,13 +10382,13 @@ class _InitializeParams implements WorkDoneProgressParams {
   /// The process Id of the parent process that started the server.
   /// Is `null` if the process has not been started by another process. If
   /// the parent process is not alive then the server should exit.
-  final IntegerOrNull processId;
+  final ProcessIdOrVersionBase processId;
 
   /// Represents a union type.
   /// The rootUri of the workspace. Is null if no folder is open. If both
   /// `rootPath` and `rootUri` are set `rootUri` wins.
   /// @deprecated in favour of workspaceFolders.
-  final DocumentUriOrNull rootUri;
+  final RootUriBase rootUri;
 
   /// The capabilities provided by the client (editor or tool)
   final ClientCapabilities capabilities;
@@ -10260,7 +10402,7 @@ class _InitializeParams implements WorkDoneProgressParams {
   /// Represents a union type.
   /// The rootPath of the workspace. Is null if no folder is open.
   /// @deprecated in favour of rootUri.
-  final StringOrNull? rootPath;
+  final RootPathBase? rootPath;
 
   /// The locale the client is currently showing the user interface in. This
   /// must not necessarily be the locale of the operating system.
@@ -10300,8 +10442,7 @@ class WorkspaceFoldersInitializeParams implements ToJson {
 
   factory WorkspaceFoldersInitializeParams.fromJson(Map<String, Object?> json) {
     final workspaceFoldersJson = json['workspaceFolders'];
-    final workspaceFolders =
-        (workspaceFoldersJson as ArrayOfWorkspaceFoldersOrNull?);
+    final workspaceFolders = (workspaceFoldersJson as WorkspaceFoldersBase?);
 
     return WorkspaceFoldersInitializeParams(workspaceFolders: workspaceFolders);
   }
@@ -10312,7 +10453,7 @@ class WorkspaceFoldersInitializeParams implements ToJson {
   /// folders. It can be `null` if the client supports workspace folders but
   /// none are configured.
   /// @since 3.6.0
-  final ArrayOfWorkspaceFoldersOrNull? workspaceFolders;
+  final WorkspaceFoldersBase? workspaceFolders;
 
   @override
   Map<String, Object?> toJson() {
@@ -10368,16 +10509,16 @@ class ServerCapabilities implements ToJson {
   factory ServerCapabilities.fromJson(Map<String, Object?> json) {
     final workspaceSymbolProviderJson = json['workspaceSymbolProvider'];
     final workspaceSymbolProvider =
-        (workspaceSymbolProviderJson as BooleanOrWorkspaceSymbolOptions?);
+        (workspaceSymbolProviderJson as WorkspaceSymbolProviderBase?);
     final documentHighlightProviderJson = json['documentHighlightProvider'];
     final documentHighlightProvider =
-        (documentHighlightProviderJson as BooleanOrDocumentHighlightOptions?);
+        (documentHighlightProviderJson as DocumentHighlightProviderBase?);
     final documentFormattingProviderJson = json['documentFormattingProvider'];
     final documentFormattingProvider =
-        (documentFormattingProviderJson as BooleanOrDocumentFormattingOptions?);
+        (documentFormattingProviderJson as DocumentFormattingProviderBase?);
     final codeActionProviderJson = json['codeActionProvider'];
     final codeActionProvider =
-        (codeActionProviderJson as BooleanOrCodeActionOptions?);
+        (codeActionProviderJson as CodeActionProviderBase?);
     final completionProviderJson = json['completionProvider'];
     final completionProvider = (completionProviderJson as CompletionOptions?);
     final workspaceJson = json['workspace'];
@@ -10389,51 +10530,39 @@ class ServerCapabilities implements ToJson {
             })?);
     final inlineCompletionProviderJson = json['inlineCompletionProvider'];
     final inlineCompletionProvider =
-        (inlineCompletionProviderJson as BooleanOrInlineCompletionOptions?);
+        (inlineCompletionProviderJson as InlineCompletionProviderBase?);
     final diagnosticProviderJson = json['diagnosticProvider'];
     final diagnosticProvider =
-        (diagnosticProviderJson
-            as DiagnosticOptionsOrDiagnosticRegistrationOptions?);
+        (diagnosticProviderJson as DiagnosticProviderBase?);
     final inlayHintProviderJson = json['inlayHintProvider'];
-    final inlayHintProvider =
-        (inlayHintProviderJson
-            as BooleanOrInlayHintOptionsOrInlayHintRegistrationOptions?);
+    final inlayHintProvider = (inlayHintProviderJson as InlayHintProviderBase?);
     final definitionProviderJson = json['definitionProvider'];
     final definitionProvider =
-        (definitionProviderJson as BooleanOrDefinitionOptions?);
+        (definitionProviderJson as DefinitionProviderBase?);
     final declarationProviderJson = json['declarationProvider'];
     final declarationProvider =
-        (declarationProviderJson
-            as BooleanOrDeclarationOptionsOrDeclarationRegistrationOptions?);
+        (declarationProviderJson as DeclarationProviderBase?);
     final monikerProviderJson = json['monikerProvider'];
-    final monikerProvider =
-        (monikerProviderJson
-            as BooleanOrMonikerOptionsOrMonikerRegistrationOptions?);
+    final monikerProvider = (monikerProviderJson as MonikerProviderBase?);
     final semanticTokensProviderJson = json['semanticTokensProvider'];
     final semanticTokensProvider =
-        (semanticTokensProviderJson
-            as SemanticTokensOptionsOrSemanticTokensRegistrationOptions?);
+        (semanticTokensProviderJson as SemanticTokensProviderBase?);
     final linkedEditingRangeProviderJson = json['linkedEditingRangeProvider'];
     final linkedEditingRangeProvider =
-        (linkedEditingRangeProviderJson
-            as BooleanOrLinkedEditingRangeOptionsOrLinkedEditingRangeRegistrationOptions?);
+        (linkedEditingRangeProviderJson as LinkedEditingRangeProviderBase?);
     final callHierarchyProviderJson = json['callHierarchyProvider'];
     final callHierarchyProvider =
-        (callHierarchyProviderJson
-            as BooleanOrCallHierarchyOptionsOrCallHierarchyRegistrationOptions?);
+        (callHierarchyProviderJson as CallHierarchyProviderBase?);
     final executeCommandProviderJson = json['executeCommandProvider'];
     final executeCommandProvider =
         (executeCommandProviderJson as ExecuteCommandOptions?);
     final textDocumentSyncJson = json['textDocumentSync'];
-    final textDocumentSync =
-        (textDocumentSyncJson
-            as TextDocumentSyncOptionsOrTextDocumentSyncKind?);
+    final textDocumentSync = (textDocumentSyncJson as TextDocumentSyncBase?);
     final foldingRangeProviderJson = json['foldingRangeProvider'];
     final foldingRangeProvider =
-        (foldingRangeProviderJson
-            as BooleanOrFoldingRangeOptionsOrFoldingRangeRegistrationOptions?);
+        (foldingRangeProviderJson as FoldingRangeProviderBase?);
     final renameProviderJson = json['renameProvider'];
-    final renameProvider = (renameProviderJson as BooleanOrRenameOptions?);
+    final renameProvider = (renameProviderJson as RenameProviderBase?);
     final documentOnTypeFormattingProviderJson =
         json['documentOnTypeFormattingProvider'];
     final documentOnTypeFormattingProvider =
@@ -10443,17 +10572,14 @@ class ServerCapabilities implements ToJson {
         json['documentRangeFormattingProvider'];
     final documentRangeFormattingProvider =
         (documentRangeFormattingProviderJson
-            as BooleanOrDocumentRangeFormattingOptions?);
+            as DocumentRangeFormattingProviderBase?);
     final experimentalJson = json['experimental'];
     final experimental = (experimentalJson as LSPAny?);
     final selectionRangeProviderJson = json['selectionRangeProvider'];
     final selectionRangeProvider =
-        (selectionRangeProviderJson
-            as BooleanOrSelectionRangeOptionsOrSelectionRangeRegistrationOptions?);
+        (selectionRangeProviderJson as SelectionRangeProviderBase?);
     final colorProviderJson = json['colorProvider'];
-    final colorProvider =
-        (colorProviderJson
-            as BooleanOrDocumentColorOptionsOrDocumentColorRegistrationOptions?);
+    final colorProvider = (colorProviderJson as ColorProviderBase?);
     final documentLinkProviderJson = json['documentLinkProvider'];
     final documentLinkProvider =
         (documentLinkProviderJson as DocumentLinkOptions?);
@@ -10461,37 +10587,32 @@ class ServerCapabilities implements ToJson {
     final codeLensProvider = (codeLensProviderJson as CodeLensOptions?);
     final notebookDocumentSyncJson = json['notebookDocumentSync'];
     final notebookDocumentSync =
-        (notebookDocumentSyncJson
-            as NotebookDocumentSyncOptionsOrNotebookDocumentSyncRegistrationOptions?);
+        (notebookDocumentSyncJson as NotebookDocumentSyncBase?);
     final documentSymbolProviderJson = json['documentSymbolProvider'];
     final documentSymbolProvider =
-        (documentSymbolProviderJson as BooleanOrDocumentSymbolOptions?);
+        (documentSymbolProviderJson as DocumentSymbolProviderBase?);
     final positionEncodingJson = json['positionEncoding'];
     final positionEncoding = (positionEncodingJson as PositionEncodingKind?);
     final referencesProviderJson = json['referencesProvider'];
     final referencesProvider =
-        (referencesProviderJson as BooleanOrReferenceOptions?);
+        (referencesProviderJson as ReferencesProviderBase?);
     final implementationProviderJson = json['implementationProvider'];
     final implementationProvider =
-        (implementationProviderJson
-            as BooleanOrImplementationOptionsOrImplementationRegistrationOptions?);
+        (implementationProviderJson as ImplementationProviderBase?);
     final typeDefinitionProviderJson = json['typeDefinitionProvider'];
     final typeDefinitionProvider =
-        (typeDefinitionProviderJson
-            as BooleanOrTypeDefinitionOptionsOrTypeDefinitionRegistrationOptions?);
+        (typeDefinitionProviderJson as TypeDefinitionProviderBase?);
     final inlineValueProviderJson = json['inlineValueProvider'];
     final inlineValueProvider =
-        (inlineValueProviderJson
-            as BooleanOrInlineValueOptionsOrInlineValueRegistrationOptions?);
+        (inlineValueProviderJson as InlineValueProviderBase?);
     final typeHierarchyProviderJson = json['typeHierarchyProvider'];
     final typeHierarchyProvider =
-        (typeHierarchyProviderJson
-            as BooleanOrTypeHierarchyOptionsOrTypeHierarchyRegistrationOptions?);
+        (typeHierarchyProviderJson as TypeHierarchyProviderBase?);
     final signatureHelpProviderJson = json['signatureHelpProvider'];
     final signatureHelpProvider =
         (signatureHelpProviderJson as SignatureHelpOptions?);
     final hoverProviderJson = json['hoverProvider'];
-    final hoverProvider = (hoverProviderJson as BooleanOrHoverOptions?);
+    final hoverProvider = (hoverProviderJson as HoverProviderBase?);
 
     return ServerCapabilities(
       workspaceSymbolProvider: workspaceSymbolProvider,
@@ -10535,21 +10656,21 @@ class ServerCapabilities implements ToJson {
 
   /// Represents a union type.
   /// The server provides workspace symbol support.
-  final BooleanOrWorkspaceSymbolOptions? workspaceSymbolProvider;
+  final WorkspaceSymbolProviderBase? workspaceSymbolProvider;
 
   /// Represents a union type.
   /// The server provides document highlight support.
-  final BooleanOrDocumentHighlightOptions? documentHighlightProvider;
+  final DocumentHighlightProviderBase? documentHighlightProvider;
 
   /// Represents a union type.
   /// The server provides document formatting.
-  final BooleanOrDocumentFormattingOptions? documentFormattingProvider;
+  final DocumentFormattingProviderBase? documentFormattingProvider;
 
   /// Represents a union type.
   /// The server provides code actions. CodeActionOptions may only be
   /// specified if the client states that it supports
   /// `codeActionLiteralSupport` in its initial `initialize` request.
-  final BooleanOrCodeActionOptions? codeActionProvider;
+  final CodeActionProviderBase? codeActionProvider;
 
   /// The server provides completion support.
   final CompletionOptions? completionProvider;
@@ -10564,50 +10685,45 @@ class ServerCapabilities implements ToJson {
   /// Represents a union type.
   /// Inline completion options used during static registration.
   /// @since 3.18.0 @proposed
-  final BooleanOrInlineCompletionOptions? inlineCompletionProvider;
+  final InlineCompletionProviderBase? inlineCompletionProvider;
 
   /// Represents a union type.
   /// The server has support for pull model diagnostics.
   /// @since 3.17.0
-  final DiagnosticOptionsOrDiagnosticRegistrationOptions? diagnosticProvider;
+  final DiagnosticProviderBase? diagnosticProvider;
 
   /// Represents a union type.
   /// The server provides inlay hints.
   /// @since 3.17.0
-  final BooleanOrInlayHintOptionsOrInlayHintRegistrationOptions?
-  inlayHintProvider;
+  final InlayHintProviderBase? inlayHintProvider;
 
   /// Represents a union type.
   /// The server provides goto definition support.
-  final BooleanOrDefinitionOptions? definitionProvider;
+  final DefinitionProviderBase? definitionProvider;
 
   /// Represents a union type.
   /// The server provides Goto Declaration support.
-  final BooleanOrDeclarationOptionsOrDeclarationRegistrationOptions?
-  declarationProvider;
+  final DeclarationProviderBase? declarationProvider;
 
   /// Represents a union type.
   /// The server provides moniker support.
   /// @since 3.16.0
-  final BooleanOrMonikerOptionsOrMonikerRegistrationOptions? monikerProvider;
+  final MonikerProviderBase? monikerProvider;
 
   /// Represents a union type.
   /// The server provides semantic tokens support.
   /// @since 3.16.0
-  final SemanticTokensOptionsOrSemanticTokensRegistrationOptions?
-  semanticTokensProvider;
+  final SemanticTokensProviderBase? semanticTokensProvider;
 
   /// Represents a union type.
   /// The server provides linked editing range support.
   /// @since 3.16.0
-  final BooleanOrLinkedEditingRangeOptionsOrLinkedEditingRangeRegistrationOptions?
-  linkedEditingRangeProvider;
+  final LinkedEditingRangeProviderBase? linkedEditingRangeProvider;
 
   /// Represents a union type.
   /// The server provides call hierarchy support.
   /// @since 3.16.0
-  final BooleanOrCallHierarchyOptionsOrCallHierarchyRegistrationOptions?
-  callHierarchyProvider;
+  final CallHierarchyProviderBase? callHierarchyProvider;
 
   /// The server provides execute command support.
   final ExecuteCommandOptions? executeCommandProvider;
@@ -10616,39 +10732,35 @@ class ServerCapabilities implements ToJson {
   /// Defines how text documents are synced. Is either a detailed structure
   /// defining each notification or for backwards compatibility the
   /// TextDocumentSyncKind number.
-  final TextDocumentSyncOptionsOrTextDocumentSyncKind? textDocumentSync;
+  final TextDocumentSyncBase? textDocumentSync;
 
   /// Represents a union type.
   /// The server provides folding provider support.
-  final BooleanOrFoldingRangeOptionsOrFoldingRangeRegistrationOptions?
-  foldingRangeProvider;
+  final FoldingRangeProviderBase? foldingRangeProvider;
 
   /// Represents a union type.
   /// The server provides rename support. RenameOptions may only be specified
   /// if the client states that it supports `prepareSupport` in its initial
   /// `initialize` request.
-  final BooleanOrRenameOptions? renameProvider;
+  final RenameProviderBase? renameProvider;
 
   /// The server provides document formatting on typing.
   final DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
 
   /// Represents a union type.
   /// The server provides document range formatting.
-  final BooleanOrDocumentRangeFormattingOptions?
-  documentRangeFormattingProvider;
+  final DocumentRangeFormattingProviderBase? documentRangeFormattingProvider;
 
   /// Experimental server capabilities.
   final LSPAny? experimental;
 
   /// Represents a union type.
   /// The server provides selection range support.
-  final BooleanOrSelectionRangeOptionsOrSelectionRangeRegistrationOptions?
-  selectionRangeProvider;
+  final SelectionRangeProviderBase? selectionRangeProvider;
 
   /// Represents a union type.
   /// The server provides color provider support.
-  final BooleanOrDocumentColorOptionsOrDocumentColorRegistrationOptions?
-  colorProvider;
+  final ColorProviderBase? colorProvider;
 
   /// The server provides document link support.
   final DocumentLinkOptions? documentLinkProvider;
@@ -10659,12 +10771,11 @@ class ServerCapabilities implements ToJson {
   /// Represents a union type.
   /// Defines how notebook documents are synced.
   /// @since 3.17.0
-  final NotebookDocumentSyncOptionsOrNotebookDocumentSyncRegistrationOptions?
-  notebookDocumentSync;
+  final NotebookDocumentSyncBase? notebookDocumentSync;
 
   /// Represents a union type.
   /// The server provides document symbol support.
-  final BooleanOrDocumentSymbolOptions? documentSymbolProvider;
+  final DocumentSymbolProviderBase? documentSymbolProvider;
 
   /// The position encoding the server picked from the encodings offered by
   /// the client via the client capability `general.positionEncodings`.
@@ -10676,36 +10787,32 @@ class ServerCapabilities implements ToJson {
 
   /// Represents a union type.
   /// The server provides find references support.
-  final BooleanOrReferenceOptions? referencesProvider;
+  final ReferencesProviderBase? referencesProvider;
 
   /// Represents a union type.
   /// The server provides Goto Implementation support.
-  final BooleanOrImplementationOptionsOrImplementationRegistrationOptions?
-  implementationProvider;
+  final ImplementationProviderBase? implementationProvider;
 
   /// Represents a union type.
   /// The server provides Goto Type Definition support.
-  final BooleanOrTypeDefinitionOptionsOrTypeDefinitionRegistrationOptions?
-  typeDefinitionProvider;
+  final TypeDefinitionProviderBase? typeDefinitionProvider;
 
   /// Represents a union type.
   /// The server provides inline values.
   /// @since 3.17.0
-  final BooleanOrInlineValueOptionsOrInlineValueRegistrationOptions?
-  inlineValueProvider;
+  final InlineValueProviderBase? inlineValueProvider;
 
   /// Represents a union type.
   /// The server provides type hierarchy support.
   /// @since 3.17.0
-  final BooleanOrTypeHierarchyOptionsOrTypeHierarchyRegistrationOptions?
-  typeHierarchyProvider;
+  final TypeHierarchyProviderBase? typeHierarchyProvider;
 
   /// The server provides signature help support.
   final SignatureHelpOptions? signatureHelpProvider;
 
   /// Represents a union type.
   /// The server provides hover support.
-  final BooleanOrHoverOptions? hoverProvider;
+  final HoverProviderBase? hoverProvider;
 
   @override
   Map<String, Object?> toJson() {
@@ -10903,7 +11010,7 @@ class Diagnostic implements ToJson {
     final codeDescriptionJson = json['codeDescription'];
     final codeDescription = (codeDescriptionJson as CodeDescription?);
     final codeJson = json['code'];
-    final code = (codeJson as IntegerOrString?);
+    final code = (codeJson as ProgressToken?);
     final severityJson = json['severity'];
     final severity = (severityJson as DiagnosticSeverity?);
 
@@ -10951,7 +11058,7 @@ class Diagnostic implements ToJson {
 
   /// Represents a union type.
   /// The diagnostic's code, which usually appear in the user interface.
-  final IntegerOrString? code;
+  final ProgressToken? code;
 
   /// The diagnostic's severity. Can be omitted. If omitted it is up to the
   /// client to interpret diagnostics as error, warning, info or hint.
@@ -11280,7 +11387,7 @@ class SignatureInformation implements ToJson {
     final parametersJson = json['parameters'];
     final parameters = (parametersJson as List<ParameterInformation>?);
     final documentationJson = json['documentation'];
-    final documentation = (documentationJson as StringOrMarkupContent?);
+    final documentation = (documentationJson as TooltipOrDocumentationBase?);
 
     return SignatureInformation(
       label: label,
@@ -11304,7 +11411,7 @@ class SignatureInformation implements ToJson {
   /// Represents a union type.
   /// The human-readable doc-comment of this signature. Will be shown in the
   /// UI but can be omitted.
-  final StringOrMarkupContent? documentation;
+  final TooltipOrDocumentationBase? documentation;
 
   @override
   Map<String, Object?> toJson() {
@@ -12029,7 +12136,7 @@ class OptionalVersionedTextDocumentIdentifier
     final uriJson = json['uri']!;
     final uri = (uriJson as String);
     final versionJson = json['version']!;
-    final version = (versionJson as IntegerOrNull);
+    final version = (versionJson as ProcessIdOrVersionBase);
 
     return OptionalVersionedTextDocumentIdentifier(uri: uri, version: version);
   }
@@ -12045,7 +12152,7 @@ class OptionalVersionedTextDocumentIdentifier
   /// before) the server can send `null` to indicate that the version is
   /// unknown and the content on disk is the truth (as specified with
   /// document content ownership).
-  final IntegerOrNull version;
+  final ProcessIdOrVersionBase version;
 
   @override
   Map<String, Object?> toJson() {
@@ -12306,7 +12413,7 @@ class WorkspaceFullDocumentDiagnosticReport
     final uriJson = json['uri']!;
     final uri = (uriJson as String);
     final versionJson = json['version']!;
-    final version = (versionJson as IntegerOrNull);
+    final version = (versionJson as ProcessIdOrVersionBase);
     final resultIdJson = json['resultId'];
     final resultId = (resultIdJson as String?);
 
@@ -12333,7 +12440,7 @@ class WorkspaceFullDocumentDiagnosticReport
   /// Represents a union type.
   /// The version number for which the diagnostics are reported. If the
   /// document is not marked as open `null` can be provided.
-  final IntegerOrNull version;
+  final ProcessIdOrVersionBase version;
 
   /// An optional result id. If provided it will be sent on the next
   /// diagnostic request for the same document.
@@ -12375,7 +12482,7 @@ class WorkspaceUnchangedDocumentDiagnosticReport
     final uriJson = json['uri']!;
     final uri = (uriJson as String);
     final versionJson = json['version']!;
-    final version = (versionJson as IntegerOrNull);
+    final version = (versionJson as ProcessIdOrVersionBase);
 
     return WorkspaceUnchangedDocumentDiagnosticReport(
       kind: kind,
@@ -12401,7 +12508,7 @@ class WorkspaceUnchangedDocumentDiagnosticReport
   /// Represents a union type.
   /// The version number for which the diagnostics are reported. If the
   /// document is not marked as open `null` can be provided.
-  final IntegerOrNull version;
+  final ProcessIdOrVersionBase version;
 
   @override
   Map<String, Object?> toJson() {
@@ -12632,7 +12739,7 @@ class TextDocumentSyncOptions implements ToJson {
 
   factory TextDocumentSyncOptions.fromJson(Map<String, Object?> json) {
     final saveJson = json['save'];
-    final save = (saveJson as BooleanOrSaveOptions?);
+    final save = (saveJson as SaveBase?);
     final willSaveWaitUntilJson = json['willSaveWaitUntil'];
     final willSaveWaitUntil = (willSaveWaitUntilJson as bool?);
     final willSaveJson = json['willSave'];
@@ -12654,7 +12761,7 @@ class TextDocumentSyncOptions implements ToJson {
   /// Represents a union type.
   /// If present save notifications are sent to the server. If omitted the
   /// notification should not be sent.
-  final BooleanOrSaveOptions? save;
+  final SaveBase? save;
 
   /// If present will save wait until requests are sent to the server. If
   /// omitted the request should not be sent.
@@ -12701,10 +12808,7 @@ class NotebookDocumentSyncOptions implements ToJson {
   factory NotebookDocumentSyncOptions.fromJson(Map<String, Object?> json) {
     final notebookSelectorJson = json['notebookSelector']!;
     final notebookSelector =
-        (notebookSelectorJson
-            as List<
-              Notebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_StringsOrNotebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_Strings
-            >);
+        (notebookSelectorJson as List<NotebookSelectorBase>);
     final saveJson = json['save'];
     final save = (saveJson as bool?);
 
@@ -12715,10 +12819,7 @@ class NotebookDocumentSyncOptions implements ToJson {
   }
 
   /// The notebooks to be synced
-  final List<
-    Notebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_StringsOrNotebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_Strings
-  >
-  notebookSelector;
+  final List<NotebookSelectorBase> notebookSelector;
 
   /// Whether save notification should be forwarded to the server. Will only
   /// be honored if mode === `notebook`.
@@ -12750,10 +12851,7 @@ class NotebookDocumentSyncRegistrationOptions
   ) {
     final notebookSelectorJson = json['notebookSelector']!;
     final notebookSelector =
-        (notebookSelectorJson
-            as List<
-              Notebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_StringsOrNotebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_Strings
-            >);
+        (notebookSelectorJson as List<NotebookSelectorBase>);
     final idJson = json['id'];
     final id = (idJson as String?);
     final saveJson = json['save'];
@@ -12768,10 +12866,7 @@ class NotebookDocumentSyncRegistrationOptions
 
   /// The notebooks to be synced
   @override
-  final List<
-    Notebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_StringsOrNotebook_StringOrNotebookDocumentFilterCells_ArrayOfLanguage_Strings
-  >
-  notebookSelector;
+  final List<NotebookSelectorBase> notebookSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -12805,7 +12900,8 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
     Map<String, Object?> json,
   ) {
     final changeNotificationsJson = json['changeNotifications'];
-    final changeNotifications = (changeNotificationsJson as StringOrBoolean?);
+    final changeNotifications =
+        (changeNotificationsJson as ChangeNotificationsBase?);
     final supportedJson = json['supported'];
     final supported = (supportedJson as bool?);
 
@@ -12822,7 +12918,7 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
   /// notification is registered on the client side. The ID can be used to
   /// unregister for these events using the `client/unregisterCapability`
   /// request.
-  final StringOrBoolean? changeNotifications;
+  final ChangeNotificationsBase? changeNotifications;
 
   /// The server has support for workspace folders
   final bool? supported;
@@ -12971,9 +13067,9 @@ class ParameterInformation implements ToJson {
 
   factory ParameterInformation.fromJson(Map<String, Object?> json) {
     final labelJson = json['label']!;
-    final label = (labelJson as StringOrTupleOfUintegerAndUinteger);
+    final label = (labelJson as LabelBase);
     final documentationJson = json['documentation'];
-    final documentation = (documentationJson as StringOrMarkupContent?);
+    final documentation = (documentationJson as TooltipOrDocumentationBase?);
 
     return ParameterInformation(label: label, documentation: documentation);
   }
@@ -12987,12 +13083,12 @@ class ParameterInformation implements ToJson {
   /// *Note*: a label of type string should be a substring of its containing
   /// signature label. Its intended use case is to highlight the parameter
   /// label part in the `SignatureInformation.label`.
-  final StringOrTupleOfUintegerAndUinteger label;
+  final LabelBase label;
 
   /// Represents a union type.
   /// The human-readable doc-comment of this parameter. Will be shown in the
   /// UI but can be omitted.
-  final StringOrMarkupContent? documentation;
+  final TooltipOrDocumentationBase? documentation;
 
   @override
   Map<String, Object?> toJson() {
@@ -13013,7 +13109,7 @@ class NotebookCellTextDocumentFilter implements ToJson {
 
   factory NotebookCellTextDocumentFilter.fromJson(Map<String, Object?> json) {
     final notebookJson = json['notebook']!;
-    final notebook = (notebookJson as StringOrNotebookDocumentFilter);
+    final notebook = (notebookJson as NotebookBase);
     final languageJson = json['language'];
     final language = (languageJson as String?);
 
@@ -13027,7 +13123,7 @@ class NotebookCellTextDocumentFilter implements ToJson {
   /// A filter that matches against the notebook containing the notebook
   /// cell. If a string value is provided it matches against the notebook
   /// type. '*' matches every notebook.
-  final StringOrNotebookDocumentFilter notebook;
+  final NotebookBase notebook;
 
   /// A language id like `python`.
   /// Will be matched against the language id of the notebook cell document.
@@ -13735,7 +13831,7 @@ class RelativePattern implements ToJson {
 
   factory RelativePattern.fromJson(Map<String, Object?> json) {
     final baseUriJson = json['baseUri']!;
-    final baseUri = (baseUriJson as WorkspaceFolderOrURI);
+    final baseUri = (baseUriJson as BaseUriBase);
     final patternJson = json['pattern']!;
     final pattern = (patternJson as Pattern);
 
@@ -13745,7 +13841,7 @@ class RelativePattern implements ToJson {
   /// Represents a union type.
   /// A workspace folder or a base URI to which this pattern will be matched
   /// against relatively.
-  final WorkspaceFolderOrURI baseUri;
+  final BaseUriBase baseUri;
 
   /// The actual glob pattern;
   final Pattern pattern;
@@ -15336,8 +15432,7 @@ class SemanticTokensClientCapabilities implements ToJson {
 
   factory SemanticTokensClientCapabilities.fromJson(Map<String, Object?> json) {
     final requestsJson = json['requests']!;
-    final requests =
-        (requestsJson as ({BooleanOr range, BooleanOrDelta_Boolean full}));
+    final requests = (requestsJson as ({RangeBase range, FullBase full}));
     final tokenTypesJson = json['tokenTypes']!;
     final tokenTypes = (tokenTypesJson as List<String>);
     final tokenModifiersJson = json['tokenModifiers']!;
@@ -15376,7 +15471,7 @@ class SemanticTokensClientCapabilities implements ToJson {
   /// `request.range` are both set to true but the server only provides a
   /// range provider the client might not render a minimap correctly or might
   /// even decide to not show any semantic tokens at all.
-  final ({BooleanOr range, BooleanOrDelta_Boolean full}) requests;
+  final ({RangeBase range, FullBase full}) requests;
 
   /// The token types that the client supports.
   final List<String> tokenTypes;

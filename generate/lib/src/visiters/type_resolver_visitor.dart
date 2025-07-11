@@ -7,38 +7,14 @@ import 'visitor.dart';
 /// representations.
 class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   TypeResolverVisitor({
-    required Map<String, MetaStructure> structures,
-    required Map<String, MetaEnumeration> enumerations,
-
     // required Map<String, OrMapReference> orMapReferences,
     required SealedMap sealedMap,
-  }) : _structures = structures,
-       _enumerations = enumerations,
-
-       //  _orMapReferences = orMapReferences,
-       _sealedMap = sealedMap;
-
-  final Map<String, MetaStructure> _structures;
-  final Map<String, MetaEnumeration> _enumerations;
-
-  // final Map<String, OrMapReference> _orMapReferences;
+  }) : _sealedMap = sealedMap;
 
   final SealedMap _sealedMap;
 
   @override
   String visitTypeRef(TypeRef ref) {
-    final structure = _structures[ref.name];
-
-    if (structure != null) {
-      return structure.name;
-    }
-
-    final enumeration = _enumerations[ref.name];
-    if (enumeration != null) {
-      // Enums are generated as Dart enums, so their name is the Dart type.
-      return enumeration.name;
-    }
-
     switch (ref.name) {
       case 'LSPObject':
         return 'Object';

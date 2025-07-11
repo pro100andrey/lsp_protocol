@@ -1,17 +1,65 @@
 // ignore_for_file: avoid_print
 
+import 'package:collection/collection.dart';
+import 'package:equatable/equatable.dart';
+
 import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
+import '../generator_helper.dart';
 import '../meta/protocol.dart';
+import '../visiters/type_resolver_visitor.dart';
+
+sealed class OrOwner extends Equatable {}
+
+final class TypeAliasOwner extends OrOwner {
+  TypeAliasOwner(this.typeAlias);
+
+  final MetaTypeAlias typeAlias;
+
+  @override
+  List<Object?> get props => [typeAlias];
+}
+
+final class StructOwner extends OrOwner {
+  StructOwner(this.struct, this.property);
+
+  final MetaStructure struct;
+  final MetaProperty property;
+
+  @override
+  List<Object?> get props => [property, struct];
+}
 
 final class SealedMap {
-  final _orRefs = <OrRef, String>{};
+  final _orRefs = <OrRef, List<OrOwner>>{};
 
-  Iterable<OrRef> get refs => _orRefs.keys;
+  late final _visitor = TypeResolverVisitor(
+    sealedMap: this,
+  );
+
+  Iterable<OrRef> get refs {
+    // skip when value owner is Alias
+    final filteredOrRefs = _orRefs.entries
+        .where(
+          (entry) => entry.value.every((owner) => owner is! TypeAliasOwner),
+        )
+        .map((entry) => entry.key);
+
+    return filteredOrRefs;
+  }
 
   void processProtocol(MetaProtocol protocol) {
     _collectSealedClasses(protocol);
   }
+
+  List<String> ownersForOrRef(OrRef orRef) {
+    final owners = _orRefs[orRef]!;
+
+    return owners.map(_resolveOwnerName).toList();
+  }
+
+  List<String> typeNamesForOrRef(OrRef orRef) =>
+      orRef.items.map(_resolveReferenceName).toList();
 
   String typeNameForOrRef(OrRef orRef) {
     final name = _resolveReferenceName(orRef);
@@ -26,55 +74,43 @@ final class SealedMap {
 
   void _processStructure(MetaStructure structure) {
     for (final property in structure.properties) {
-      _processMetaProperty(property: property, owner: structure);
+      property.type.onLiteralRef((literalRef) {
+        for (final prop in literalRef.value.properties) {
+          prop.type.onOrRef((orRef) {
+            _addSymbol(owner: StructOwner(structure, prop), ref: orRef);
+          });
+        }
+      });
+
+      property.type.onMapRef((mapRef) {
+        mapRef.value.onOrRef((orRef) {
+          _addSymbol(owner: StructOwner(structure, property), ref: orRef);
+        });
+      });
+
+      property.type.onOrRef((orRef) {
+        _addSymbol(owner: StructOwner(structure, property), ref: orRef);
+      });
+
+      property.type.onArrayRef((arrayRef) {
+        arrayRef.element.onOrRef((orRef) {
+          _addSymbol(owner: StructOwner(structure, property), ref: orRef);
+        });
+      });
     }
   }
 
   void _processTypeAlias(MetaTypeAlias typeAlias) {
     typeAlias.type.onOrRef((orRef) {
-      _addSymbol(owner: typeAlias, ref: orRef);
-    });
-  }
-
-  void _processMetaProperty({
-    required MetaProperty property,
-    required BaseMeta owner,
-  }) {
-    property.type.onLiteralRef((literalRef) {
-      for (final prop in literalRef.value.properties) {
-        prop.type.onOrRef((orRef) {
-          _addSymbol(owner: owner, ref: orRef);
-        });
-      }
-    });
-
-    property.type.onOrRef((orRef) {
-      _addSymbol(owner: owner, ref: orRef);
-    });
-
-    property.type.onArrayRef((arrayRef) {
-      arrayRef.element.onOrRef((orRef) {
-        _addSymbol(owner: owner, ref: orRef);
-      });
+      _addSymbol(owner: TypeAliasOwner(typeAlias), ref: orRef);
     });
   }
 
   void _addSymbol({
-    required BaseMeta owner,
+    required OrOwner owner,
     required OrRef ref,
   }) {
-    final name = _resolveReferenceName(ref);
-    final ownerName = _resolveOwnerName(owner);
-
-    print('Beginning to add symbol: $name for owner: $ownerName');
-
-    if (_orRefs.containsKey(ref)) {
-      // If the symbol already exists, we can skip adding it again.
-      print('Symbol $name already exists for owner $ownerName, skipping.');
-      return;
-    }
-
-    _orRefs[ref] = name;
+    _orRefs.putIfAbsent(ref, () => []).add(owner);
 
     // Guard against nested OrRefs
     _guardAgainstNestedOrRefs(orRef: ref, owner: owner);
@@ -90,9 +126,9 @@ final class SealedMap {
   String _resolveReferenceName(MetaReference ref) {
     final name = ref
         .when(
-          literalRef: _resolveLiteralReferenceName,
+          literalRef: (ref) => literalToRecord(ref, _visitor),
           typeRef: (ref) => ref.name,
-          orRef: (ref) => ref.items.map(_resolveReferenceName).join('Or'),
+          orRef: resolveOrRefName,
           arrayRef: (ref) => 'ArrayOf${_resolveReferenceName(ref.element)}s',
           baseRef: (ref) => ref.name,
           tupleRef: (ref) =>
@@ -103,28 +139,39 @@ final class SealedMap {
     return _renameMap[name] ?? name;
   }
 
-  String _resolveLiteralReferenceName(LiteralRef ref) {
-    final properties = ref.value.properties
-        .map(
-          (prop) =>
-              '${prop.name.upperFirstLetter()}_${_resolveReferenceName(prop.type)}',
-        )
-        .join();
+  String resolveOrRefName(OrRef orRef) {
+    final owners = _orRefs[orRef]!;
 
-    return properties;
+    final alias = owners.firstWhereOrNull(
+      (owner) => owner is TypeAliasOwner,
+    );
+
+    if (alias is TypeAliasOwner) {
+      return alias.typeAlias.name;
+    }
+
+    if (owners case [StructOwner(:final property)]) {
+      return '${property.name.upperFirstLetter()}Base';
+    }
+
+    final ownerNames = owners
+        .cast<StructOwner>()
+        .map((e) => e.property.name.upperFirstLetter())
+        .toSet();
+
+    final result = '${ownerNames.join('Or')}Base';
+
+    return result;
   }
 
-  String _resolveOwnerName(BaseMeta owner) => switch (owner) {
-    final MetaStructure structure => '${structure.name}(Struct)',
-    final MetaTypeAlias typeAlias => '${typeAlias.name}(Alias)',
-    _ => throw ArgumentError(
-      'Unknown owner type: ${owner.runtimeType}',
-    ),
+  String _resolveOwnerName(OrOwner owner) => switch (owner) {
+    final StructOwner owner => '${owner.struct.name}(${owner.property.name})',
+    final TypeAliasOwner owner => '${owner.typeAlias.name}(Alias)',
   };
 
   void _guardAgainstNestedOrRefs({
     required OrRef orRef,
-    required BaseMeta owner,
+    required OrOwner owner,
   }) {
     for (final item in orRef.items) {
       if (item is OrRef) {

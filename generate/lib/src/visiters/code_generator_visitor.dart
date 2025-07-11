@@ -24,9 +24,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     _sealedMap.processProtocol(protocol);
 
     _typeResolverVisitor = TypeResolverVisitor(
-      structures: _structures,
-      enumerations: _enumerations,
-
       sealedMap: _sealedMap,
     );
   }
@@ -51,8 +48,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
-      print('\nOrRef types:');
-
       for (final entry in orMap.entries) {
         print('${entry.key} -> ${entry.value}');
       }
@@ -446,9 +441,20 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       cb
         ..name = typeName
         ..implements.add(_toJsonRef)
-        ..docs.add(
+        ..docs.addAll([
           '/// Represents a base class for OrRef types.',
-        )
+          ..._sealedMap
+              .ownersForOrRef(symbol)
+              .map(
+                (owner) => '/// Owned by: $owner',
+              ),
+          '///',
+          ..._sealedMap
+              .typeNamesForOrRef(symbol)
+              .map(
+                (type) => '/// Type: $type',
+              ),
+        ])
         ..sealed = true
         ..abstract = true;
     });

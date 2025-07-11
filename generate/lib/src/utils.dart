@@ -1,6 +1,3 @@
-import 'package:code_builder/code_builder.dart';
-import 'package:dart_style/dart_style.dart';
-
 List<String>? formatDocComment(String? input, {int maxLineLength = 80}) {
   if (input == null || input.trim().isEmpty) {
     return null;
@@ -53,4 +50,3 @@ List<String>? formatDocComment(String? input, {int maxLineLength = 80}) {
 
   return lines;
 }
-
