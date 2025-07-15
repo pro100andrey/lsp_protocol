@@ -99,12 +99,17 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   ];
 
   @override
-  TypeDef visitTypeAlias(MetaTypeAlias typeAlias) => TypeDef((b) {
+  TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {
+
+    final definitionName = typeAlias.type.resolveType(_typeResolverVisitor);
+
+    return TypeDef((b) {
     b
       ..docs.addAll(formatDocComment(typeAlias.documentation) ?? [])
       ..name = typeAlias.name
-      ..definition = refer('Object');
+      ..definition = refer(definitionName);
   });
+  }
 
   @override
   Class visitStructure(MetaStructure structure) {
@@ -427,7 +432,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
               ..docs.add(
                 '/// Converts this object to a JSON map.',
               )
-              ..returns = refer('Map<String, dynamic>')
+              ..returns = _mapJsonRef
               ..body = const Code('throw UnimplementedError();');
           },
         ),
@@ -442,7 +447,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         ..name = typeName
         ..implements.add(_toJsonRef)
         ..docs.addAll([
-          '/// Represents a base class for OrRef types.',
           ..._sealedMap
               .ownersForOrRef(symbol)
               .map(
@@ -509,9 +513,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     return collectedProperties;
   }
 
-  /// Appends '?' if the type is optional.
-  String _applyOptional(String type, bool isOptional) =>
-      isOptional ? '$type?' : type;
+
 
   void _generateFields({
     required ClassBuilder cb,
@@ -526,9 +528,9 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         ];
 
         // Use the type resolver for property types
-        final propType = _applyOptional(
+        final propType = applyOptional(
           field.type.resolveType(_typeResolverVisitor),
-          field.optional,
+          isOptional: field.optional,
         );
 
         final propName = field.name;
@@ -574,16 +576,16 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final fieldName = field.name;
       final propertyType = field.type;
       final isOptional = field.optional;
-      final type = _applyOptional(
+      final type = applyOptional(
         propertyType.resolveType(_typeResolverVisitor),
-        isOptional,
+        isOptional: isOptional,
       );
 
       // Add to constructor arguments list
       constructorNamedArgs[fieldName] = refer(fieldName);
 
       final mapTypeRef = refer(
-        _applyOptional(_mapJsonRef.symbol!, isOptional),
+        applyOptional(_mapJsonRef.symbol!, isOptional: isOptional),
       );
       final varJsonName = '${fieldName}Json';
 

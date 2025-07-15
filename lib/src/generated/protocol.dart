@@ -11,7 +11,7 @@ import '../utils/enum_helpers.dart' as _i1;
 
 abstract class ToJson {
   /// Converts this object to a JSON map.
-  Map<String, dynamic> toJson() {
+  Map<String, Object?> toJson() {
     throw UnimplementedError();
   }
 }
@@ -31,32 +31,32 @@ sealed class BaseOr<T extends ToJson> implements ToJson {
 /// which a symbol is defined.
 /// Servers should prefer returning `DefinitionLink` over `Definition` if
 /// supported by the client.
-typedef Definition = Object;
+typedef Definition = DefinitionBase;
 
 /// Information about where a symbol is defined.
 /// Provides additional metadata over normal {@link Location location}
 /// definitions, including the range of the defining symbol
-typedef DefinitionLink = Object;
+typedef DefinitionLink = LocationLink;
 
 /// LSP arrays. @since 3.17.0
-typedef LSPArray = Object;
+typedef LSPArray = List<LSPAny>;
 
 /// The LSP any type. Please note that strictly speaking a property with the
 /// value `undefined` can't be converted into JSON preserving the property
 /// name. However for convenience it is allowed and assumed that all these
 /// properties are optional as well. @since 3.17.0
-typedef LSPAny = Object;
+typedef LSPAny = LSPAnyBase;
 
 /// The declaration of a symbol representation as one or many {@link Location
 /// locations}.
-typedef Declaration = Object;
+typedef Declaration = DefinitionBase;
 
 /// Information about where a symbol is declared.
 /// Provides additional metadata over normal {@link Location location}
 /// declarations, including the range of the declaring symbol.
 /// Servers should prefer returning `DeclarationLink` over `Declaration` if
 /// supported by the client.
-typedef DeclarationLink = Object;
+typedef DeclarationLink = LocationLink;
 
 /// Inline value information can be provided by different means: - directly as
 /// a text value (class InlineValueText). - as a name to use for a variable
@@ -64,33 +64,34 @@ typedef DeclarationLink = Object;
 /// (class InlineValueEvaluatableExpression) The InlineValue types combines all
 /// inline value types into one type.
 /// @since 3.17.0
-typedef InlineValue = Object;
+typedef InlineValue = InlineValueBase;
 
 /// The result of a document diagnostic pull request. A report can either be a
 /// full report containing all diagnostics for the requested document or an
 /// unchanged report indicating that nothing has changed in terms of
 /// diagnostics in comparison to the last pull request.
 /// @since 3.17.0
-typedef DocumentDiagnosticReport = Object;
-typedef PrepareRenameResult = Object;
+typedef DocumentDiagnosticReport = DocumentDiagnosticReportBase;
+typedef PrepareRenameResult = PrepareRenameResultBase;
 
 /// A document selector is the combination of one or many document filters.
 /// @sample `let sel:DocumentSelector = [{ language: 'typescript' }, {
 /// language: 'json', pattern: '**∕tsconfig.json' }]`;
 /// The use of a string as a document filter is deprecated @since 3.16.0.
-typedef DocumentSelector = Object;
-typedef ProgressToken = Object;
+typedef DocumentSelector = List<DocumentFilter>;
+typedef ProgressToken = ProgressTokenBase;
 
 /// An identifier to refer to a change annotation stored with a workspace edit.
-typedef ChangeAnnotationIdentifier = Object;
+typedef ChangeAnnotationIdentifier = String;
 
 /// A workspace diagnostic document report.
 /// @since 3.17.0
-typedef WorkspaceDocumentDiagnosticReport = Object;
+typedef WorkspaceDocumentDiagnosticReport =
+    WorkspaceDocumentDiagnosticReportBase;
 
 /// An event describing a change to a text document. If only a text is provided
 /// it is considered to be the full content of the document.
-typedef TextDocumentContentChangeEvent = Object;
+typedef TextDocumentContentChangeEvent = TextDocumentContentChangeEventBase;
 
 /// MarkedString can be used to render human readable text. It is either a
 /// markdown string or a code-block that provides a language and a code
@@ -101,19 +102,19 @@ typedef TextDocumentContentChangeEvent = Object;
 /// ```${language} ${value} ```
 /// Note that markdown strings will be sanitized - that means html will be
 /// escaped. @deprecated use MarkupContent instead.
-typedef MarkedString = Object;
+typedef MarkedString = MarkedStringBase;
 
 /// A document filter describes a top level text document or a notebook cell
 /// document.
 /// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
-typedef DocumentFilter = Object;
+typedef DocumentFilter = DocumentFilterBase;
 
 /// LSP object definition. @since 3.17.0
-typedef LSPObject = Object;
+typedef LSPObject = Map<String, LSPAny>;
 
 /// The glob pattern. Either a string pattern or a relative pattern.
 /// @since 3.17.0
-typedef GlobPattern = Object;
+typedef GlobPattern = GlobPatternBase;
 
 /// A document filter denotes a document by different properties like the
 /// {@link TextDocument.languageId language}, the {@link Uri.scheme scheme} of
@@ -133,13 +134,13 @@ typedef GlobPattern = Object;
 /// applies to all package.json paths: `{ language: 'json', pattern:
 /// '**package.json' }`
 /// @since 3.17.0
-typedef TextDocumentFilter = Object;
+typedef TextDocumentFilter = TextDocumentFilterBase;
 
 /// A notebook document filter denotes a notebook document by different
 /// properties. The properties will be match against the notebook's URI (same
 /// as with documents)
 /// @since 3.17.0
-typedef NotebookDocumentFilter = Object;
+typedef NotebookDocumentFilter = NotebookDocumentFilterBase;
 
 /// The glob pattern to watch relative to the base path. Glob patterns can have
 /// the following syntax: - `*` to match zero or more characters in a path
@@ -151,16 +152,105 @@ typedef NotebookDocumentFilter = Object;
 /// negate a range of characters to match in a path segment (e.g.,
 /// `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
 /// @since 3.17.0
-typedef Pattern = Object;
+typedef Pattern = String;
 
-/// Represents a base class for OrRef types.
+/// Owned by: Definition(Alias)
+/// Owned by: Declaration(Alias)
+///
+/// Type: Location
+/// Type: Array<Location>
+sealed class DefinitionBase implements ToJson {}
+
+/// Owned by: LSPAny(Alias)
+///
+/// Type: LSPObject
+/// Type: LSPArray
+/// Type: String
+/// Type: Integer
+/// Type: Uinteger
+/// Type: Decimal
+/// Type: Boolean
+/// Type: Null
+sealed class LSPAnyBase implements ToJson {}
+
+/// Owned by: InlineValue(Alias)
+///
+/// Type: InlineValueText
+/// Type: InlineValueVariableLookup
+/// Type: InlineValueEvaluatableExpression
+sealed class InlineValueBase implements ToJson {}
+
+/// Owned by: DocumentDiagnosticReport(Alias)
+///
+/// Type: RelatedFullDocumentDiagnosticReport
+/// Type: RelatedUnchangedDocumentDiagnosticReport
+sealed class DocumentDiagnosticReportBase implements ToJson {}
+
+/// Owned by: PrepareRenameResult(Alias)
+///
+/// Type: Range
+/// Type: ({Range range, String placeholder})
+/// Type: ({bool defaultBehavior})
+sealed class PrepareRenameResultBase implements ToJson {}
+
+/// Owned by: ProgressToken(Alias)
+/// Owned by: CancelParams(id)
+/// Owned by: Diagnostic(code)
+///
+/// Type: Integer
+/// Type: String
+sealed class ProgressTokenBase implements ToJson {}
+
+/// Owned by: WorkspaceDocumentDiagnosticReport(Alias)
+///
+/// Type: WorkspaceFullDocumentDiagnosticReport
+/// Type: WorkspaceUnchangedDocumentDiagnosticReport
+sealed class WorkspaceDocumentDiagnosticReportBase implements ToJson {}
+
+/// Owned by: TextDocumentContentChangeEvent(Alias)
+///
+/// Type: ({Range range, int? rangeLength, String text})
+/// Type: ({String text})
+sealed class TextDocumentContentChangeEventBase implements ToJson {}
+
+/// Owned by: MarkedString(Alias)
+///
+/// Type: String
+/// Type: ({String language, String value})
+sealed class MarkedStringBase implements ToJson {}
+
+/// Owned by: DocumentFilter(Alias)
+///
+/// Type: TextDocumentFilterBase
+/// Type: NotebookCellTextDocumentFilter
+sealed class DocumentFilterBase implements ToJson {}
+
+/// Owned by: GlobPattern(Alias)
+///
+/// Type: Pattern
+/// Type: RelativePattern
+sealed class GlobPatternBase implements ToJson {}
+
+/// Owned by: TextDocumentFilter(Alias)
+///
+/// Type: ({String language, String? scheme, String? pattern})
+/// Type: ({String? language, String scheme, String? pattern})
+/// Type: ({String? language, String? scheme, String pattern})
+sealed class TextDocumentFilterBase implements ToJson {}
+
+/// Owned by: NotebookDocumentFilter(Alias)
+///
+/// Type: ({String notebookType, String? scheme, String? pattern})
+/// Type: ({String? notebookType, String scheme, String? pattern})
+/// Type: ({String? notebookType, String? scheme, String pattern})
+sealed class NotebookDocumentFilterBase implements ToJson {}
+
 /// Owned by: TextDocumentRegistrationOptions(documentSelector)
 ///
 /// Type: DocumentSelector
 /// Type: Null
 sealed class DocumentSelectorBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: WorkspaceEdit(documentChanges)
 ///
 /// Type: TextDocumentEdit
@@ -169,14 +259,12 @@ sealed class DocumentSelectorBase implements ToJson {}
 /// Type: DeleteFile
 sealed class DocumentChangesBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: InlayHint(label)
 ///
 /// Type: String
-/// Type: ArrayOfInlayHintLabelParts
+/// Type: Array<InlayHintLabelPart>
 sealed class LabelBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: InlayHint(tooltip)
 /// Owned by: CompletionItem(documentation)
 /// Owned by: InlayHintLabelPart(tooltip)
@@ -187,7 +275,6 @@ sealed class LabelBase implements ToJson {}
 /// Type: MarkupContent
 sealed class TooltipOrDocumentationBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: DocumentDiagnosticReportPartialResult(relatedDocuments)
 /// Owned by: RelatedFullDocumentDiagnosticReport(relatedDocuments)
 /// Owned by: RelatedUnchangedDocumentDiagnosticReport(relatedDocuments)
@@ -196,50 +283,43 @@ sealed class TooltipOrDocumentationBase implements ToJson {}
 /// Type: UnchangedDocumentDiagnosticReport
 sealed class RelatedDocumentsBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: InlineCompletionItem(insertText)
 ///
 /// Type: String
 /// Type: StringValue
 sealed class InsertTextBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: DidChangeConfigurationRegistrationOptions(section)
 ///
 /// Type: String
-/// Type: ArrayOfStrings
+/// Type: Array<String>
 sealed class SectionBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: CompletionItem(textEdit)
 ///
 /// Type: TextEdit
 /// Type: InsertReplaceEdit
 sealed class TextEditBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: CompletionList(editRange)
 ///
 /// Type: Range
 /// Type: ({Range insert, Range replace})
 sealed class EditRangeBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: Hover(contents)
 ///
 /// Type: MarkupContent
-/// Type: MarkedString
-/// Type: ArrayOfMarkedStrings
+/// Type: MarkedStringBase
+/// Type: Array<MarkedStringBase>
 sealed class ContentsBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: WorkspaceSymbol(location)
 ///
 /// Type: Location
 /// Type: ({String uri})
 sealed class LocationBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: SemanticTokensOptions(range)
 /// Owned by: SemanticTokensClientCapabilities(range)
 ///
@@ -247,21 +327,18 @@ sealed class LocationBase implements ToJson {}
 /// Type: ()
 sealed class RangeBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: SemanticTokensOptions(full)
 ///
 /// Type: Boolean
-/// Type: ({bool delta})
+/// Type: ({bool? delta})
 sealed class FullBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: TextDocumentEdit(edits)
 ///
 /// Type: TextEdit
 /// Type: AnnotatedTextEdit
 sealed class EditsBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: _InitializeParams(processId)
 /// Owned by: OptionalVersionedTextDocumentIdentifier(version)
 /// Owned by: WorkspaceFullDocumentDiagnosticReport(version)
@@ -271,49 +348,42 @@ sealed class EditsBase implements ToJson {}
 /// Type: Null
 sealed class ProcessIdOrVersionBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: _InitializeParams(rootPath)
 ///
 /// Type: String
 /// Type: Null
 sealed class RootPathBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: _InitializeParams(rootUri)
 ///
 /// Type: DocumentUri
 /// Type: Null
 sealed class RootUriBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: WorkspaceFoldersInitializeParams(workspaceFolders)
 ///
-/// Type: ArrayOfWorkspaceFolders
+/// Type: Array<WorkspaceFolder>
 /// Type: Null
 sealed class WorkspaceFoldersBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(textDocumentSync)
 ///
 /// Type: TextDocumentSyncOptions
 /// Type: TextDocumentSyncKind
 sealed class TextDocumentSyncBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(notebookDocumentSync)
 ///
 /// Type: NotebookDocumentSyncOptions
 /// Type: NotebookDocumentSyncRegistrationOptions
 sealed class NotebookDocumentSyncBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(hoverProvider)
 ///
 /// Type: Boolean
 /// Type: HoverOptions
 sealed class HoverProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(declarationProvider)
 ///
 /// Type: Boolean
@@ -321,14 +391,12 @@ sealed class HoverProviderBase implements ToJson {}
 /// Type: DeclarationRegistrationOptions
 sealed class DeclarationProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(definitionProvider)
 ///
 /// Type: Boolean
 /// Type: DefinitionOptions
 sealed class DefinitionProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(typeDefinitionProvider)
 ///
 /// Type: Boolean
@@ -336,7 +404,6 @@ sealed class DefinitionProviderBase implements ToJson {}
 /// Type: TypeDefinitionRegistrationOptions
 sealed class TypeDefinitionProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(implementationProvider)
 ///
 /// Type: Boolean
@@ -344,35 +411,30 @@ sealed class TypeDefinitionProviderBase implements ToJson {}
 /// Type: ImplementationRegistrationOptions
 sealed class ImplementationProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(referencesProvider)
 ///
 /// Type: Boolean
 /// Type: ReferenceOptions
 sealed class ReferencesProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(documentHighlightProvider)
 ///
 /// Type: Boolean
 /// Type: DocumentHighlightOptions
 sealed class DocumentHighlightProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(documentSymbolProvider)
 ///
 /// Type: Boolean
 /// Type: DocumentSymbolOptions
 sealed class DocumentSymbolProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(codeActionProvider)
 ///
 /// Type: Boolean
 /// Type: CodeActionOptions
 sealed class CodeActionProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(colorProvider)
 ///
 /// Type: Boolean
@@ -380,35 +442,30 @@ sealed class CodeActionProviderBase implements ToJson {}
 /// Type: DocumentColorRegistrationOptions
 sealed class ColorProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(workspaceSymbolProvider)
 ///
 /// Type: Boolean
 /// Type: WorkspaceSymbolOptions
 sealed class WorkspaceSymbolProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(documentFormattingProvider)
 ///
 /// Type: Boolean
 /// Type: DocumentFormattingOptions
 sealed class DocumentFormattingProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(documentRangeFormattingProvider)
 ///
 /// Type: Boolean
 /// Type: DocumentRangeFormattingOptions
 sealed class DocumentRangeFormattingProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(renameProvider)
 ///
 /// Type: Boolean
 /// Type: RenameOptions
 sealed class RenameProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(foldingRangeProvider)
 ///
 /// Type: Boolean
@@ -416,7 +473,6 @@ sealed class RenameProviderBase implements ToJson {}
 /// Type: FoldingRangeRegistrationOptions
 sealed class FoldingRangeProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(selectionRangeProvider)
 ///
 /// Type: Boolean
@@ -424,7 +480,6 @@ sealed class FoldingRangeProviderBase implements ToJson {}
 /// Type: SelectionRangeRegistrationOptions
 sealed class SelectionRangeProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(callHierarchyProvider)
 ///
 /// Type: Boolean
@@ -432,7 +487,6 @@ sealed class SelectionRangeProviderBase implements ToJson {}
 /// Type: CallHierarchyRegistrationOptions
 sealed class CallHierarchyProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(linkedEditingRangeProvider)
 ///
 /// Type: Boolean
@@ -440,14 +494,12 @@ sealed class CallHierarchyProviderBase implements ToJson {}
 /// Type: LinkedEditingRangeRegistrationOptions
 sealed class LinkedEditingRangeProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(semanticTokensProvider)
 ///
 /// Type: SemanticTokensOptions
 /// Type: SemanticTokensRegistrationOptions
 sealed class SemanticTokensProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(monikerProvider)
 ///
 /// Type: Boolean
@@ -455,7 +507,6 @@ sealed class SemanticTokensProviderBase implements ToJson {}
 /// Type: MonikerRegistrationOptions
 sealed class MonikerProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(typeHierarchyProvider)
 ///
 /// Type: Boolean
@@ -463,7 +514,6 @@ sealed class MonikerProviderBase implements ToJson {}
 /// Type: TypeHierarchyRegistrationOptions
 sealed class TypeHierarchyProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(inlineValueProvider)
 ///
 /// Type: Boolean
@@ -471,7 +521,6 @@ sealed class TypeHierarchyProviderBase implements ToJson {}
 /// Type: InlineValueRegistrationOptions
 sealed class InlineValueProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(inlayHintProvider)
 ///
 /// Type: Boolean
@@ -479,67 +528,58 @@ sealed class InlineValueProviderBase implements ToJson {}
 /// Type: InlayHintRegistrationOptions
 sealed class InlayHintProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(diagnosticProvider)
 ///
 /// Type: DiagnosticOptions
 /// Type: DiagnosticRegistrationOptions
 sealed class DiagnosticProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ServerCapabilities(inlineCompletionProvider)
 ///
 /// Type: Boolean
 /// Type: InlineCompletionOptions
 sealed class InlineCompletionProviderBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: TextDocumentSyncOptions(save)
 ///
 /// Type: Boolean
 /// Type: SaveOptions
 sealed class SaveBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: NotebookDocumentSyncOptions(notebookSelector)
 ///
-/// Type: ({NotebookBase notebook, List<({String language})> cells})
-/// Type: ({NotebookBase notebook, List<({String language})> cells})
+/// Type: ({NotebookBase notebook, List<({String language})>? cells})
+/// Type: ({NotebookBase? notebook, List<({String language})> cells})
 sealed class NotebookSelectorBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: WorkspaceFoldersServerCapabilities(changeNotifications)
 ///
 /// Type: String
 /// Type: Boolean
 sealed class ChangeNotificationsBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: ParameterInformation(label)
 ///
 /// Type: String
-/// Type: TupleOfUintegerAndUinteger
+/// Type: (int, int)
 sealed class LabelBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: NotebookCellTextDocumentFilter(notebook)
 ///
 /// Type: String
-/// Type: NotebookDocumentFilter
+/// Type: NotebookDocumentFilterBase
 sealed class NotebookBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: RelativePattern(baseUri)
 ///
 /// Type: WorkspaceFolder
 /// Type: URI
 sealed class BaseUriBase implements ToJson {}
 
-/// Represents a base class for OrRef types.
 /// Owned by: SemanticTokensClientCapabilities(full)
 ///
 /// Type: Boolean
-/// Type: ({bool delta})
+/// Type: ({bool? delta})
 sealed class FullBase implements ToJson {}
 
 /// Struct
@@ -4320,7 +4360,7 @@ class InitializeParams
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
-    final clientInfo = (clientInfoJson as ({String name, String version})?);
+    final clientInfo = (clientInfoJson as ({String name, String? version})?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
@@ -4390,7 +4430,7 @@ class InitializeParams
   /// Information about the client
   /// @since 3.15.0
   @override
-  final ({String name, String version})? clientInfo;
+  final ({String name, String? version})? clientInfo;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -4425,7 +4465,7 @@ class InitializeResult implements ToJson {
       (capabilitiesJson as Map<String, Object?>),
     );
     final serverInfoJson = json['serverInfo'];
-    final serverInfo = (serverInfoJson as ({String name, String version})?);
+    final serverInfo = (serverInfoJson as ({String name, String? version})?);
 
     return InitializeResult(capabilities: capabilities, serverInfo: serverInfo);
   }
@@ -4435,7 +4475,7 @@ class InitializeResult implements ToJson {
 
   /// Information about the server.
   /// @since 3.15.0
-  final ({String name, String version})? serverInfo;
+  final ({String name, String? version})? serverInfo;
 
   @override
   Map<String, Object?> toJson() {
@@ -5391,11 +5431,11 @@ class CompletionList implements ToJson {
     final itemDefaults =
         (itemDefaultsJson
             as ({
-              List<String> commitCharacters,
-              EditRangeBase editRange,
-              InsertTextFormat insertTextFormat,
-              InsertTextMode insertTextMode,
-              LSPAny data,
+              List<String>? commitCharacters,
+              EditRangeBase? editRange,
+              InsertTextFormat? insertTextFormat,
+              InsertTextMode? insertTextMode,
+              LSPAny? data,
             })?);
 
     return CompletionList(
@@ -5424,11 +5464,11 @@ class CompletionList implements ToJson {
   /// support for this via the `completionList.itemDefaults` capability.
   /// @since 3.17.0
   final ({
-    List<String> commitCharacters,
-    EditRangeBase editRange,
-    InsertTextFormat insertTextFormat,
-    InsertTextMode insertTextMode,
-    LSPAny data,
+    List<String>? commitCharacters,
+    EditRangeBase? editRange,
+    InsertTextFormat? insertTextFormat,
+    InsertTextMode? insertTextMode,
+    LSPAny? data,
   })?
   itemDefaults;
 
@@ -5461,7 +5501,7 @@ class CompletionRegistrationOptions
     final documentSelector = (documentSelectorJson as DocumentSelectorBase);
     final completionItemJson = json['completionItem'];
     final completionItem =
-        (completionItemJson as ({bool labelDetailsSupport})?);
+        (completionItemJson as ({bool? labelDetailsSupport})?);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final allCommitCharactersJson = json['allCommitCharacters'];
@@ -5491,7 +5531,7 @@ class CompletionRegistrationOptions
   /// capabilities.
   /// @since 3.17.0
   @override
-  final ({bool labelDetailsSupport})? completionItem;
+  final ({bool? labelDetailsSupport})? completionItem;
 
   /// The server provides support to resolve additional information for a
   /// completion item.
@@ -8128,14 +8168,14 @@ class CancelParams implements ToJson {
 
   factory CancelParams.fromJson(Map<String, Object?> json) {
     final idJson = json['id']!;
-    final id = (idJson as ProgressToken);
+    final id = (idJson as ProgressTokenBase);
 
     return CancelParams(id: id);
   }
 
   /// Represents a union type.
   /// The request id to cancel.
-  final ProgressToken id;
+  final ProgressTokenBase id;
 
   @override
   Map<String, Object?> toJson() {
@@ -9932,7 +9972,7 @@ class NotebookDocument implements ToJson {
     final cellsJson = json['cells']!;
     final cells = (cellsJson as List<NotebookCell>);
     final metadataJson = json['metadata'];
-    final metadata = (metadataJson as Object?);
+    final metadata = (metadataJson as LSPObject?);
 
     return NotebookDocument(
       uri: uri,
@@ -9958,7 +9998,7 @@ class NotebookDocument implements ToJson {
 
   /// Additional metadata stored with the notebook document.
   /// Note: should always be an object literal (e.g. LSPObject)
-  final Object? metadata;
+  final LSPObject? metadata;
 
   @override
   Map<String, Object?> toJson() {
@@ -10075,21 +10115,21 @@ class NotebookDocumentChangeEvent implements ToJson {
             as ({
               ({
                 NotebookCellArrayChange array,
-                List<TextDocumentItem> didOpen,
-                List<TextDocumentIdentifier> didClose,
-              })
+                List<TextDocumentItem>? didOpen,
+                List<TextDocumentIdentifier>? didClose,
+              })?
               structure,
-              List<NotebookCell> data,
+              List<NotebookCell>? data,
               List<
                 ({
                   VersionedTextDocumentIdentifier document,
                   List<TextDocumentContentChangeEvent> changes,
                 })
-              >
+              >?
               textContent,
             })?);
     final metadataJson = json['metadata'];
-    final metadata = (metadataJson as Object?);
+    final metadata = (metadataJson as LSPObject?);
 
     return NotebookDocumentChangeEvent(cells: cells, metadata: metadata);
   }
@@ -10098,24 +10138,24 @@ class NotebookDocumentChangeEvent implements ToJson {
   final ({
     ({
       NotebookCellArrayChange array,
-      List<TextDocumentItem> didOpen,
-      List<TextDocumentIdentifier> didClose,
-    })
+      List<TextDocumentItem>? didOpen,
+      List<TextDocumentIdentifier>? didClose,
+    })?
     structure,
-    List<NotebookCell> data,
+    List<NotebookCell>? data,
     List<
       ({
         VersionedTextDocumentIdentifier document,
         List<TextDocumentContentChangeEvent> changes,
       })
-    >
+    >?
     textContent,
   })?
   cells;
 
   /// The changed meta data if any.
   /// Note: should always be an object literal (e.g. LSPObject)
-  final Object? metadata;
+  final LSPObject? metadata;
 
   @override
   Map<String, Object?> toJson() {
@@ -10361,7 +10401,7 @@ class _InitializeParams implements WorkDoneProgressParams {
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
-    final clientInfo = (clientInfoJson as ({String name, String version})?);
+    final clientInfo = (clientInfoJson as ({String name, String? version})?);
     final workDoneTokenJson = json['workDoneToken'];
     final workDoneToken = (workDoneTokenJson as ProgressToken?);
 
@@ -10413,7 +10453,7 @@ class _InitializeParams implements WorkDoneProgressParams {
 
   /// Information about the client
   /// @since 3.15.0
-  final ({String name, String version})? clientInfo;
+  final ({String name, String? version})? clientInfo;
 
   /// An optional token that a server can use to report work done progress.
   @override
@@ -10525,8 +10565,8 @@ class ServerCapabilities implements ToJson {
     final workspace =
         (workspaceJson
             as ({
-              WorkspaceFoldersServerCapabilities workspaceFolders,
-              FileOperationOptions fileOperations,
+              WorkspaceFoldersServerCapabilities? workspaceFolders,
+              FileOperationOptions? fileOperations,
             })?);
     final inlineCompletionProviderJson = json['inlineCompletionProvider'];
     final inlineCompletionProvider =
@@ -10677,8 +10717,8 @@ class ServerCapabilities implements ToJson {
 
   /// Workspace specific server capabilities.
   final ({
-    WorkspaceFoldersServerCapabilities workspaceFolders,
-    FileOperationOptions fileOperations,
+    WorkspaceFoldersServerCapabilities? workspaceFolders,
+    FileOperationOptions? fileOperations,
   })?
   workspace;
 
@@ -11010,7 +11050,7 @@ class Diagnostic implements ToJson {
     final codeDescriptionJson = json['codeDescription'];
     final codeDescription = (codeDescriptionJson as CodeDescription?);
     final codeJson = json['code'];
-    final code = (codeJson as ProgressToken?);
+    final code = (codeJson as ProgressTokenBase?);
     final severityJson = json['severity'];
     final severity = (severityJson as DiagnosticSeverity?);
 
@@ -11058,7 +11098,7 @@ class Diagnostic implements ToJson {
 
   /// Represents a union type.
   /// The diagnostic's code, which usually appear in the user interface.
-  final ProgressToken? code;
+  final ProgressTokenBase? code;
 
   /// The diagnostic's severity. Can be omitted. If omitted it is up to the
   /// client to interpret diagnostics as error, warning, info or hint.
@@ -11215,7 +11255,7 @@ class CompletionOptions implements WorkDoneProgressOptions {
   factory CompletionOptions.fromJson(Map<String, Object?> json) {
     final completionItemJson = json['completionItem'];
     final completionItem =
-        (completionItemJson as ({bool labelDetailsSupport})?);
+        (completionItemJson as ({bool? labelDetailsSupport})?);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final allCommitCharactersJson = json['allCommitCharacters'];
@@ -11237,7 +11277,7 @@ class CompletionOptions implements WorkDoneProgressOptions {
   /// The server supports the following `CompletionItem` specific
   /// capabilities.
   /// @since 3.17.0
-  final ({bool labelDetailsSupport})? completionItem;
+  final ({bool? labelDetailsSupport})? completionItem;
 
   /// The server provides support to resolve additional information for a
   /// completion item.
@@ -12545,7 +12585,7 @@ class NotebookCell implements ToJson {
     final executionSummaryJson = json['executionSummary'];
     final executionSummary = (executionSummaryJson as ExecutionSummary?);
     final metadataJson = json['metadata'];
-    final metadata = (metadataJson as Object?);
+    final metadata = (metadataJson as LSPObject?);
 
     return NotebookCell(
       kind: kind,
@@ -12566,7 +12606,7 @@ class NotebookCell implements ToJson {
 
   /// Additional metadata stored with the cell.
   /// Note: should always be an object literal (e.g. LSPObject)
-  final Object? metadata;
+  final LSPObject? metadata;
 
   @override
   Map<String, Object?> toJson() {
@@ -13869,7 +13909,7 @@ class WorkspaceEditClientCapabilities implements ToJson {
   factory WorkspaceEditClientCapabilities.fromJson(Map<String, Object?> json) {
     final changeAnnotationSupportJson = json['changeAnnotationSupport'];
     final changeAnnotationSupport =
-        (changeAnnotationSupportJson as ({bool groupsOnLabel})?);
+        (changeAnnotationSupportJson as ({bool? groupsOnLabel})?);
     final normalizesLineEndingsJson = json['normalizesLineEndings'];
     final normalizesLineEndings = (normalizesLineEndingsJson as bool?);
     final failureHandlingJson = json['failureHandling'];
@@ -13892,7 +13932,7 @@ class WorkspaceEditClientCapabilities implements ToJson {
   /// Whether the client in general supports change annotations on text
   /// edits, create file, rename file and delete file changes.
   /// @since 3.16.0
-  final ({bool groupsOnLabel})? changeAnnotationSupport;
+  final ({bool? groupsOnLabel})? changeAnnotationSupport;
 
   /// Whether the client normalizes line endings to the client specific
   /// setting. If set to `true` the client will normalize line ending
@@ -14013,7 +14053,7 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
     final tagSupportJson = json['tagSupport'];
     final tagSupport = (tagSupportJson as ({List<SymbolTag> valueSet})?);
     final symbolKindJson = json['symbolKind'];
-    final symbolKind = (symbolKindJson as ({List<SymbolKind> valueSet})?);
+    final symbolKind = (symbolKindJson as ({List<SymbolKind>? valueSet})?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
@@ -14038,7 +14078,7 @@ class WorkspaceSymbolClientCapabilities implements ToJson {
 
   /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
   /// request.
-  final ({List<SymbolKind> valueSet})? symbolKind;
+  final ({List<SymbolKind>? valueSet})? symbolKind;
 
   /// Symbol request supports dynamic registration.
   final bool? dynamicRegistration;
@@ -14431,28 +14471,28 @@ class CompletionClientCapabilities implements ToJson {
   factory CompletionClientCapabilities.fromJson(Map<String, Object?> json) {
     final completionListJson = json['completionList'];
     final completionList =
-        (completionListJson as ({List<String> itemDefaults})?);
+        (completionListJson as ({List<String>? itemDefaults})?);
     final contextSupportJson = json['contextSupport'];
     final contextSupport = (contextSupportJson as bool?);
     final insertTextModeJson = json['insertTextMode'];
     final insertTextMode = (insertTextModeJson as InsertTextMode?);
     final completionItemKindJson = json['completionItemKind'];
     final completionItemKind =
-        (completionItemKindJson as ({List<CompletionItemKind> valueSet})?);
+        (completionItemKindJson as ({List<CompletionItemKind>? valueSet})?);
     final completionItemJson = json['completionItem'];
     final completionItem =
         (completionItemJson
             as ({
-              bool snippetSupport,
-              bool commitCharactersSupport,
-              List<MarkupKind> documentationFormat,
-              bool deprecatedSupport,
-              bool preselectSupport,
-              ({List<CompletionItemTag> valueSet}) tagSupport,
-              bool insertReplaceSupport,
-              ({List<String> properties}) resolveSupport,
-              ({List<InsertTextMode> valueSet}) insertTextModeSupport,
-              bool labelDetailsSupport,
+              bool? snippetSupport,
+              bool? commitCharactersSupport,
+              List<MarkupKind>? documentationFormat,
+              bool? deprecatedSupport,
+              bool? preselectSupport,
+              ({List<CompletionItemTag> valueSet})? tagSupport,
+              bool? insertReplaceSupport,
+              ({List<String> properties})? resolveSupport,
+              ({List<InsertTextMode> valueSet})? insertTextModeSupport,
+              bool? labelDetailsSupport,
             })?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
@@ -14470,7 +14510,7 @@ class CompletionClientCapabilities implements ToJson {
   /// The client supports the following `CompletionList` specific
   /// capabilities.
   /// @since 3.17.0
-  final ({List<String> itemDefaults})? completionList;
+  final ({List<String>? itemDefaults})? completionList;
 
   /// The client supports to send additional context information for a
   /// `textDocument/completion` request.
@@ -14482,21 +14522,21 @@ class CompletionClientCapabilities implements ToJson {
   /// @since 3.17.0
   final InsertTextMode? insertTextMode;
 
-  final ({List<CompletionItemKind> valueSet})? completionItemKind;
+  final ({List<CompletionItemKind>? valueSet})? completionItemKind;
 
   /// The client supports the following `CompletionItem` specific
   /// capabilities.
   final ({
-    bool snippetSupport,
-    bool commitCharactersSupport,
-    List<MarkupKind> documentationFormat,
-    bool deprecatedSupport,
-    bool preselectSupport,
-    ({List<CompletionItemTag> valueSet}) tagSupport,
-    bool insertReplaceSupport,
-    ({List<String> properties}) resolveSupport,
-    ({List<InsertTextMode> valueSet}) insertTextModeSupport,
-    bool labelDetailsSupport,
+    bool? snippetSupport,
+    bool? commitCharactersSupport,
+    List<MarkupKind>? documentationFormat,
+    bool? deprecatedSupport,
+    bool? preselectSupport,
+    ({List<CompletionItemTag> valueSet})? tagSupport,
+    bool? insertReplaceSupport,
+    ({List<String> properties})? resolveSupport,
+    ({List<InsertTextMode> valueSet})? insertTextModeSupport,
+    bool? labelDetailsSupport,
   })?
   completionItem;
 
@@ -14566,9 +14606,9 @@ class SignatureHelpClientCapabilities implements ToJson {
     final signatureInformation =
         (signatureInformationJson
             as ({
-              List<MarkupKind> documentationFormat,
-              ({bool labelOffsetSupport}) parameterInformation,
-              bool activeParameterSupport,
+              List<MarkupKind>? documentationFormat,
+              ({bool? labelOffsetSupport})? parameterInformation,
+              bool? activeParameterSupport,
             })?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
@@ -14590,9 +14630,9 @@ class SignatureHelpClientCapabilities implements ToJson {
   /// The client supports the following `SignatureInformation` specific
   /// properties.
   final ({
-    List<MarkupKind> documentationFormat,
-    ({bool labelOffsetSupport}) parameterInformation,
-    bool activeParameterSupport,
+    List<MarkupKind>? documentationFormat,
+    ({bool? labelOffsetSupport})? parameterInformation,
+    bool? activeParameterSupport,
   })?
   signatureInformation;
 
@@ -14833,7 +14873,7 @@ class DocumentSymbolClientCapabilities implements ToJson {
     final hierarchicalDocumentSymbolSupport =
         (hierarchicalDocumentSymbolSupportJson as bool?);
     final symbolKindJson = json['symbolKind'];
-    final symbolKind = (symbolKindJson as ({List<SymbolKind> valueSet})?);
+    final symbolKind = (symbolKindJson as ({List<SymbolKind>? valueSet})?);
     final dynamicRegistrationJson = json['dynamicRegistration'];
     final dynamicRegistration = (dynamicRegistrationJson as bool?);
 
@@ -14862,7 +14902,7 @@ class DocumentSymbolClientCapabilities implements ToJson {
 
   /// Specific capabilities for the `SymbolKind` in the
   /// `textDocument/documentSymbol` request.
-  final ({List<SymbolKind> valueSet})? symbolKind;
+  final ({List<SymbolKind>? valueSet})? symbolKind;
 
   /// Whether document symbol supports dynamic registration.
   final bool? dynamicRegistration;
@@ -15230,10 +15270,10 @@ class FoldingRangeClientCapabilities implements ToJson {
 
   factory FoldingRangeClientCapabilities.fromJson(Map<String, Object?> json) {
     final foldingRangeJson = json['foldingRange'];
-    final foldingRange = (foldingRangeJson as ({bool collapsedText})?);
+    final foldingRange = (foldingRangeJson as ({bool? collapsedText})?);
     final foldingRangeKindJson = json['foldingRangeKind'];
     final foldingRangeKind =
-        (foldingRangeKindJson as ({List<FoldingRangeKind> valueSet})?);
+        (foldingRangeKindJson as ({List<FoldingRangeKind>? valueSet})?);
     final lineFoldingOnlyJson = json['lineFoldingOnly'];
     final lineFoldingOnly = (lineFoldingOnlyJson as bool?);
     final rangeLimitJson = json['rangeLimit'];
@@ -15252,11 +15292,11 @@ class FoldingRangeClientCapabilities implements ToJson {
 
   /// Specific options for the folding range.
   /// @since 3.17.0
-  final ({bool collapsedText})? foldingRange;
+  final ({bool? collapsedText})? foldingRange;
 
   /// Specific options for the folding range kind.
   /// @since 3.17.0
-  final ({List<FoldingRangeKind> valueSet})? foldingRangeKind;
+  final ({List<FoldingRangeKind>? valueSet})? foldingRangeKind;
 
   /// If set, the client signals that it only supports folding complete
   /// lines. If set, client will ignore specified `startCharacter` and
@@ -15432,7 +15472,7 @@ class SemanticTokensClientCapabilities implements ToJson {
 
   factory SemanticTokensClientCapabilities.fromJson(Map<String, Object?> json) {
     final requestsJson = json['requests']!;
-    final requests = (requestsJson as ({RangeBase range, FullBase full}));
+    final requests = (requestsJson as ({RangeBase? range, FullBase? full}));
     final tokenTypesJson = json['tokenTypes']!;
     final tokenTypes = (tokenTypesJson as List<String>);
     final tokenModifiersJson = json['tokenModifiers']!;
@@ -15471,7 +15511,7 @@ class SemanticTokensClientCapabilities implements ToJson {
   /// `request.range` are both set to true but the server only provides a
   /// range provider the client might not render a minimap correctly or might
   /// even decide to not show any semantic tokens at all.
-  final ({RangeBase range, FullBase full}) requests;
+  final ({RangeBase? range, FullBase? full}) requests;
 
   /// The token types that the client supports.
   final List<String> tokenTypes;
@@ -15798,7 +15838,7 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   ) {
     final messageActionItemJson = json['messageActionItem'];
     final messageActionItem =
-        (messageActionItemJson as ({bool additionalPropertiesSupport})?);
+        (messageActionItemJson as ({bool? additionalPropertiesSupport})?);
 
     return ShowMessageRequestClientCapabilities(
       messageActionItem: messageActionItem,
@@ -15806,7 +15846,7 @@ class ShowMessageRequestClientCapabilities implements ToJson {
   }
 
   /// Capabilities specific to the `MessageActionItem` type.
-  final ({bool additionalPropertiesSupport})? messageActionItem;
+  final ({bool? additionalPropertiesSupport})? messageActionItem;
 
   @override
   Map<String, Object?> toJson() {

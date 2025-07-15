@@ -39,11 +39,10 @@ final class SealedMap {
 
   Iterable<OrRef> get refs {
     // skip when value owner is Alias
-    final filteredOrRefs = _orRefs.entries
-        .where(
-          (entry) => entry.value.every((owner) => owner is! TypeAliasOwner),
-        )
-        .map((entry) => entry.key);
+    final filteredOrRefs = _orRefs.keys;
+
+
+    final names = filteredOrRefs.map(resolveOrRefName).toList();
 
     return filteredOrRefs;
   }
@@ -117,10 +116,24 @@ final class SealedMap {
   }
 
   final _renameMap = {
-    'DocumentSelectorOrNull': 'BaseDocumentSelector',
-    'LocationOrArrayOfLocations': 'BaseDefinition',
-    'LSPObjectOrLSPArrayOrStringOrIntegerOrUintegerOrDecimalOrBooleanOrNull':
-        'BaseLSPObject',
+    'Declaration': _addOrPostfix('Declaration'),
+    'Definition': _addOrPostfix('Definition'),
+    'LSPAny': _addOrPostfix('LSPAny'),
+    'InlineValue': _addOrPostfix('InlineValue'),
+    'DocumentDiagnosticReport': _addOrPostfix('DocumentDiagnosticReport'),
+    'PrepareRenameResult': _addOrPostfix('PrepareRenameResult'),
+    'ProgressToken': _addOrPostfix('ProgressToken'),
+    'WorkspaceDocumentDiagnosticReport': _addOrPostfix(
+      'WorkspaceDocumentDiagnosticReport',
+    ),
+    'TextDocumentContentChangeEvent': _addOrPostfix(
+      'TextDocumentContentChangeEvent',
+    ),
+    'MarkedString': _addOrPostfix('MarkedString'),
+    'DocumentFilter': _addOrPostfix('DocumentFilter'),
+    'GlobPattern': _addOrPostfix('GlobPattern'),
+    'TextDocumentFilter': _addOrPostfix('TextDocumentFilter'),
+    'NotebookDocumentFilter': _addOrPostfix('NotebookDocumentFilter'),
   };
 
   String _resolveReferenceName(MetaReference ref) {
@@ -129,10 +142,9 @@ final class SealedMap {
           literalRef: (ref) => literalToRecord(ref, _visitor),
           typeRef: (ref) => ref.name,
           orRef: resolveOrRefName,
-          arrayRef: (ref) => 'ArrayOf${_resolveReferenceName(ref.element)}s',
+          arrayRef: (ref) => 'Array<${_resolveReferenceName(ref.element)}>',
           baseRef: (ref) => ref.name,
-          tupleRef: (ref) =>
-              'TupleOf${ref.items.map(_resolveReferenceName).join('And')}',
+          tupleRef: (ref) => tupleToRecord(ref, _visitor),
         )
         .upperFirstLetter();
 
@@ -151,7 +163,7 @@ final class SealedMap {
     }
 
     if (owners case [StructOwner(:final property)]) {
-      return '${property.name.upperFirstLetter()}Base';
+      return _addOrPostfix(property.name.upperFirstLetter());
     }
 
     final ownerNames = owners
@@ -159,7 +171,7 @@ final class SealedMap {
         .map((e) => e.property.name.upperFirstLetter())
         .toSet();
 
-    final result = '${ownerNames.join('Or')}Base';
+    final result = _addOrPostfix(ownerNames.join('Or'));
 
     return result;
   }
@@ -185,3 +197,5 @@ final class SealedMap {
     }
   }
 }
+
+String _addOrPostfix(String name) => '${name}Base';

@@ -14,21 +14,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   final SealedMap _sealedMap;
 
   @override
-  String visitTypeRef(TypeRef ref) {
-    switch (ref.name) {
-      case 'LSPObject':
-        return 'Object';
-      case 'LSPArray':
-        return 'List<Object>';
-    }
-
-    return ref.name;
-
-    // throw ArgumentError(
-    //   'Unknown type reference: ${ref.name}. '
-    //   'Ensure it is defined in the protocol.',
-    // );
-  }
+  String visitTypeRef(TypeRef ref) => ref.name;
 
   @override
   String visitArrayRef(ArrayRef ref) {
@@ -100,5 +86,5 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   String visitStringLiteralRef(StringLiteralRef ref) => 'String';
 
   @override
-  String visitTupleRef(TupleRef ref) => 'Tuple';
+  String visitTupleRef(TupleRef ref) => tupleToRecord(ref, this);
 }

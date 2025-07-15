@@ -29,14 +29,17 @@ String specToCode(Spec spec, {bool format = true}) {
 }
 
 String literalToRecord(LiteralRef ref, MetaReferenceVisitor visitor) {
-      final record = RecordType(
+  final record = RecordType(
     (rb) {
       final entries = <MapEntry<String, Reference>>[];
       for (final prop in ref.value.properties) {
         final propType = prop.type.resolveType(visitor);
         final propName = prop.name;
+        final typRefer = refer(
+          applyOptional(propType, isOptional: prop.optional),
+        );
 
-        entries.add(MapEntry(propName, refer(propType)));
+        entries.add(MapEntry(propName, typRefer));
 
         rb.namedFieldTypes.addEntries(entries);
       }
@@ -47,3 +50,25 @@ String literalToRecord(LiteralRef ref, MetaReferenceVisitor visitor) {
 
   return result;
 }
+
+String tupleToRecord(
+  TupleRef ref,
+  MetaReferenceVisitor visitor,
+) {
+  final record = RecordType(
+    (rb) {
+      for (final item in ref.items) {
+        final propType = item.resolveType(visitor);
+        rb.positionalFieldTypes.add(refer(propType));
+      }
+    },
+  );
+
+  final result = specToCode(record, format: false);
+
+  return result;
+}
+
+/// Appends '?' if the type is optional.
+String applyOptional(String type, {bool isOptional = false}) =>
+    isOptional ? '$type?' : type;
