@@ -66,6 +66,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
       for (final ref in _sealedMap.refs) {
         b.body.add(generateBaseOrClass(ref));
+        b.body.addAll(generateSubclassesForOrClass(ref));
       }
       // Generate classes from structures
       for (final structure in protocol.structures) {
@@ -100,15 +101,14 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   @override
   TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {
-
     final definitionName = typeAlias.type.resolveType(_typeResolverVisitor);
 
     return TypeDef((b) {
-    b
-      ..docs.addAll(formatDocComment(typeAlias.documentation) ?? [])
-      ..name = typeAlias.name
-      ..definition = refer(definitionName);
-  });
+      b
+        ..docs.addAll(formatDocComment(typeAlias.documentation) ?? [])
+        ..name = typeAlias.name
+        ..definition = refer(definitionName);
+    });
   }
 
   @override
@@ -379,26 +379,18 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       )
       ..sealed = true;
 
-    cb.fields.add(
-      Field((fb) {
-        fb
+    cb.methods.add(
+      Method((mb) {
+        mb
           ..name = 'value'
-          ..modifier = FieldModifier.final$
-          ..type = refer('T');
+          ..returns = refer('T')
+          ..type = MethodType.getter;
       }),
     );
 
     cb.constructors.add(
       Constructor((cb) {
-        cb
-          ..constant = true
-          ..requiredParameters.add(
-            Parameter((pb) {
-              pb
-                ..name = 'value'
-                ..toThis = true;
-            }),
-          );
+        cb.constant = true;
       }),
     );
 
@@ -439,16 +431,62 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
       );
   });
 
+  List<Spec> generateSubclassesForOrClass(OrRef symbol) {
+    final baseClassName = _sealedMap.typeNameForOrRef(symbol);
+    final owners = _sealedMap.ownersForOrRef(symbol);
+
+    final typeNamesForOrRef = _sealedMap.orTypesForOrRef(symbol);
+
+    final result = symbol.items.map(
+      (owner) {
+        final ownerType = owner.resolveType(_typeResolverVisitor);
+        final simpleType = _sealedMap.resolveOneSimpleType(owner);
+
+        print(ownerType);
+
+        return Class((cb) {
+          cb
+            ..name = '$simpleType$baseClassName'
+            ..extend = refer(baseClassName)
+            ..fields.add(
+              Field((fb) {
+                fb
+                  ..annotations.add(_overrideRef)
+                  ..name = 'value'
+                  ..modifier = FieldModifier.final$
+                  ..type = refer(ownerType);
+              }),
+            )
+            ..constructors.add(
+              Constructor((cb) {
+                cb
+                  ..constant = true
+                  ..requiredParameters.add(
+                    Parameter((pb) {
+                      pb
+                        ..name = 'value'
+                        ..toThis = true;
+                    }),
+                  );
+              }),
+            );
+        });
+      },
+    );
+
+    return result.toList(growable: false);
+  }
+
   Class generateBaseOrClass(OrRef symbol) {
     final typeName = _sealedMap.typeNameForOrRef(symbol);
 
     return Class((cb) {
       cb
         ..name = typeName
-        ..implements.add(_toJsonRef)
+        ..extend = refer('BaseOr')
         ..docs.addAll([
           ..._sealedMap
-              .ownersForOrRef(symbol)
+              .ownerNamesForOrRef(symbol)
               .map(
                 (owner) => '/// Owned by: $owner',
               ),
@@ -460,7 +498,11 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
               ),
         ])
         ..sealed = true
-        ..abstract = true;
+        ..constructors.add(
+          Constructor((cb) {
+            cb.constant = true;
+          }),
+        );
     });
   }
 
@@ -512,8 +554,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
     return collectedProperties;
   }
-
-
 
   void _generateFields({
     required ClassBuilder cb,

@@ -17,13 +17,10 @@ abstract class ToJson {
 }
 
 /// Represents a base class for OrRef types.
-sealed class BaseOr<T extends ToJson> implements ToJson {
-  const BaseOr(this.value);
+sealed class BaseOr<T> {
+  const BaseOr();
 
-  final T value;
-
-  @override
-  Map<String, Object?> toJson() => value.toJson();
+  T get value;
 }
 
 /// The definition of a symbol represented as one or many {@link Location
@@ -159,7 +156,23 @@ typedef Pattern = String;
 ///
 /// Type: Location
 /// Type: Array<Location>
-sealed class DefinitionBase implements ToJson {}
+sealed class DefinitionBase extends BaseOr {
+  const DefinitionBase();
+}
+
+class LocationDefinitionBase extends DefinitionBase {
+  const LocationDefinitionBase(this.value);
+
+  @override
+  final Location value;
+}
+
+class ListDefinitionBase extends DefinitionBase {
+  const ListDefinitionBase(this.value);
+
+  @override
+  final List<Location> value;
+}
 
 /// Owned by: LSPAny(Alias)
 ///
@@ -171,27 +184,153 @@ sealed class DefinitionBase implements ToJson {}
 /// Type: Decimal
 /// Type: Boolean
 /// Type: Null
-sealed class LSPAnyBase implements ToJson {}
+sealed class LSPAnyBase extends BaseOr {
+  const LSPAnyBase();
+}
+
+class LSPObjectLSPAnyBase extends LSPAnyBase {
+  const LSPObjectLSPAnyBase(this.value);
+
+  @override
+  final LSPObject value;
+}
+
+class LSPArrayLSPAnyBase extends LSPAnyBase {
+  const LSPArrayLSPAnyBase(this.value);
+
+  @override
+  final LSPArray value;
+}
+
+class StringLSPAnyBase extends LSPAnyBase {
+  const StringLSPAnyBase(this.value);
+
+  @override
+  final String value;
+}
+
+class IntegerLSPAnyBase extends LSPAnyBase {
+  const IntegerLSPAnyBase(this.value);
+
+  @override
+  final int value;
+}
+
+class UintegerLSPAnyBase extends LSPAnyBase {
+  const UintegerLSPAnyBase(this.value);
+
+  @override
+  final int value;
+}
+
+class DecimalLSPAnyBase extends LSPAnyBase {
+  const DecimalLSPAnyBase(this.value);
+
+  @override
+  final double value;
+}
+
+class BooleanLSPAnyBase extends LSPAnyBase {
+  const BooleanLSPAnyBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class NullLSPAnyBase extends LSPAnyBase {
+  const NullLSPAnyBase(this.value);
+
+  @override
+  final Null value;
+}
 
 /// Owned by: InlineValue(Alias)
 ///
 /// Type: InlineValueText
 /// Type: InlineValueVariableLookup
 /// Type: InlineValueEvaluatableExpression
-sealed class InlineValueBase implements ToJson {}
+sealed class InlineValueBase extends BaseOr {
+  const InlineValueBase();
+}
+
+class InlineValueTextInlineValueBase extends InlineValueBase {
+  const InlineValueTextInlineValueBase(this.value);
+
+  @override
+  final InlineValueText value;
+}
+
+class InlineValueVariableLookupInlineValueBase extends InlineValueBase {
+  const InlineValueVariableLookupInlineValueBase(this.value);
+
+  @override
+  final InlineValueVariableLookup value;
+}
+
+class InlineValueEvaluatableExpressionInlineValueBase extends InlineValueBase {
+  const InlineValueEvaluatableExpressionInlineValueBase(this.value);
+
+  @override
+  final InlineValueEvaluatableExpression value;
+}
 
 /// Owned by: DocumentDiagnosticReport(Alias)
 ///
 /// Type: RelatedFullDocumentDiagnosticReport
 /// Type: RelatedUnchangedDocumentDiagnosticReport
-sealed class DocumentDiagnosticReportBase implements ToJson {}
+sealed class DocumentDiagnosticReportBase extends BaseOr {
+  const DocumentDiagnosticReportBase();
+}
+
+class RelatedFullDocumentDiagnosticReportDocumentDiagnosticReportBase
+    extends DocumentDiagnosticReportBase {
+  const RelatedFullDocumentDiagnosticReportDocumentDiagnosticReportBase(
+    this.value,
+  );
+
+  @override
+  final RelatedFullDocumentDiagnosticReport value;
+}
+
+class RelatedUnchangedDocumentDiagnosticReportDocumentDiagnosticReportBase
+    extends DocumentDiagnosticReportBase {
+  const RelatedUnchangedDocumentDiagnosticReportDocumentDiagnosticReportBase(
+    this.value,
+  );
+
+  @override
+  final RelatedUnchangedDocumentDiagnosticReport value;
+}
 
 /// Owned by: PrepareRenameResult(Alias)
 ///
 /// Type: Range
 /// Type: ({Range range, String placeholder})
 /// Type: ({bool defaultBehavior})
-sealed class PrepareRenameResultBase implements ToJson {}
+sealed class PrepareRenameResultBase extends BaseOr {
+  const PrepareRenameResultBase();
+}
+
+class RangePrepareRenameResultBase extends PrepareRenameResultBase {
+  const RangePrepareRenameResultBase(this.value);
+
+  @override
+  final Range value;
+}
+
+class LiteralPrepareRenameResultBase extends PrepareRenameResultBase {
+  const LiteralPrepareRenameResultBase(this.value);
+
+  @override
+  final ({Range range, String placeholder}) value;
+}
+
+class LiteralPrepareRenameResultBase extends PrepareRenameResultBase {
+  const LiteralPrepareRenameResultBase(this.value);
+
+  @override
+  final ({bool defaultBehavior}) value;
+}
 
 /// Owned by: ProgressToken(Alias)
 /// Owned by: CancelParams(id)
@@ -199,57 +338,229 @@ sealed class PrepareRenameResultBase implements ToJson {}
 ///
 /// Type: Integer
 /// Type: String
-sealed class ProgressTokenBase implements ToJson {}
+sealed class ProgressTokenBase extends BaseOr {
+  const ProgressTokenBase();
+}
+
+class IntegerProgressTokenBase extends ProgressTokenBase {
+  const IntegerProgressTokenBase(this.value);
+
+  @override
+  final int value;
+}
+
+class StringProgressTokenBase extends ProgressTokenBase {
+  const StringProgressTokenBase(this.value);
+
+  @override
+  final String value;
+}
 
 /// Owned by: WorkspaceDocumentDiagnosticReport(Alias)
 ///
 /// Type: WorkspaceFullDocumentDiagnosticReport
 /// Type: WorkspaceUnchangedDocumentDiagnosticReport
-sealed class WorkspaceDocumentDiagnosticReportBase implements ToJson {}
+sealed class WorkspaceDocumentDiagnosticReportBase extends BaseOr {
+  const WorkspaceDocumentDiagnosticReportBase();
+}
+
+class WorkspaceFullDocumentDiagnosticReportWorkspaceDocumentDiagnosticReportBase
+    extends WorkspaceDocumentDiagnosticReportBase {
+  const WorkspaceFullDocumentDiagnosticReportWorkspaceDocumentDiagnosticReportBase(
+    this.value,
+  );
+
+  @override
+  final WorkspaceFullDocumentDiagnosticReport value;
+}
+
+class WorkspaceUnchangedDocumentDiagnosticReportWorkspaceDocumentDiagnosticReportBase
+    extends WorkspaceDocumentDiagnosticReportBase {
+  const WorkspaceUnchangedDocumentDiagnosticReportWorkspaceDocumentDiagnosticReportBase(
+    this.value,
+  );
+
+  @override
+  final WorkspaceUnchangedDocumentDiagnosticReport value;
+}
 
 /// Owned by: TextDocumentContentChangeEvent(Alias)
 ///
 /// Type: ({Range range, int? rangeLength, String text})
 /// Type: ({String text})
-sealed class TextDocumentContentChangeEventBase implements ToJson {}
+sealed class TextDocumentContentChangeEventBase extends BaseOr {
+  const TextDocumentContentChangeEventBase();
+}
+
+class LiteralTextDocumentContentChangeEventBase
+    extends TextDocumentContentChangeEventBase {
+  const LiteralTextDocumentContentChangeEventBase(this.value);
+
+  @override
+  final ({Range range, int? rangeLength, String text}) value;
+}
+
+class LiteralTextDocumentContentChangeEventBase
+    extends TextDocumentContentChangeEventBase {
+  const LiteralTextDocumentContentChangeEventBase(this.value);
+
+  @override
+  final ({String text}) value;
+}
 
 /// Owned by: MarkedString(Alias)
 ///
 /// Type: String
 /// Type: ({String language, String value})
-sealed class MarkedStringBase implements ToJson {}
+sealed class MarkedStringBase extends BaseOr {
+  const MarkedStringBase();
+}
+
+class StringMarkedStringBase extends MarkedStringBase {
+  const StringMarkedStringBase(this.value);
+
+  @override
+  final String value;
+}
+
+class LiteralMarkedStringBase extends MarkedStringBase {
+  const LiteralMarkedStringBase(this.value);
+
+  @override
+  final ({String language, String value}) value;
+}
 
 /// Owned by: DocumentFilter(Alias)
 ///
 /// Type: TextDocumentFilterBase
 /// Type: NotebookCellTextDocumentFilter
-sealed class DocumentFilterBase implements ToJson {}
+sealed class DocumentFilterBase extends BaseOr {
+  const DocumentFilterBase();
+}
+
+class TextDocumentFilterBaseDocumentFilterBase extends DocumentFilterBase {
+  const TextDocumentFilterBaseDocumentFilterBase(this.value);
+
+  @override
+  final TextDocumentFilter value;
+}
+
+class NotebookCellTextDocumentFilterDocumentFilterBase
+    extends DocumentFilterBase {
+  const NotebookCellTextDocumentFilterDocumentFilterBase(this.value);
+
+  @override
+  final NotebookCellTextDocumentFilter value;
+}
 
 /// Owned by: GlobPattern(Alias)
 ///
 /// Type: Pattern
 /// Type: RelativePattern
-sealed class GlobPatternBase implements ToJson {}
+sealed class GlobPatternBase extends BaseOr {
+  const GlobPatternBase();
+}
+
+class PatternGlobPatternBase extends GlobPatternBase {
+  const PatternGlobPatternBase(this.value);
+
+  @override
+  final Pattern value;
+}
+
+class RelativePatternGlobPatternBase extends GlobPatternBase {
+  const RelativePatternGlobPatternBase(this.value);
+
+  @override
+  final RelativePattern value;
+}
 
 /// Owned by: TextDocumentFilter(Alias)
 ///
 /// Type: ({String language, String? scheme, String? pattern})
 /// Type: ({String? language, String scheme, String? pattern})
 /// Type: ({String? language, String? scheme, String pattern})
-sealed class TextDocumentFilterBase implements ToJson {}
+sealed class TextDocumentFilterBase extends BaseOr {
+  const TextDocumentFilterBase();
+}
+
+class LiteralTextDocumentFilterBase extends TextDocumentFilterBase {
+  const LiteralTextDocumentFilterBase(this.value);
+
+  @override
+  final ({String language, String? scheme, String? pattern}) value;
+}
+
+class LiteralTextDocumentFilterBase extends TextDocumentFilterBase {
+  const LiteralTextDocumentFilterBase(this.value);
+
+  @override
+  final ({String? language, String scheme, String? pattern}) value;
+}
+
+class LiteralTextDocumentFilterBase extends TextDocumentFilterBase {
+  const LiteralTextDocumentFilterBase(this.value);
+
+  @override
+  final ({String? language, String? scheme, String pattern}) value;
+}
 
 /// Owned by: NotebookDocumentFilter(Alias)
 ///
 /// Type: ({String notebookType, String? scheme, String? pattern})
 /// Type: ({String? notebookType, String scheme, String? pattern})
 /// Type: ({String? notebookType, String? scheme, String pattern})
-sealed class NotebookDocumentFilterBase implements ToJson {}
+sealed class NotebookDocumentFilterBase extends BaseOr {
+  const NotebookDocumentFilterBase();
+}
+
+class LiteralNotebookDocumentFilterBase extends NotebookDocumentFilterBase {
+  const LiteralNotebookDocumentFilterBase(this.value);
+
+  @override
+  final ({String notebookType, String? scheme, String? pattern}) value;
+}
+
+class LiteralNotebookDocumentFilterBase extends NotebookDocumentFilterBase {
+  const LiteralNotebookDocumentFilterBase(this.value);
+
+  @override
+  final ({String? notebookType, String scheme, String? pattern}) value;
+}
+
+class LiteralNotebookDocumentFilterBase extends NotebookDocumentFilterBase {
+  const LiteralNotebookDocumentFilterBase(this.value);
+
+  @override
+  final ({String? notebookType, String? scheme, String pattern}) value;
+}
 
 /// Owned by: TextDocumentRegistrationOptions(documentSelector)
 ///
 /// Type: DocumentSelector
 /// Type: Null
-sealed class DocumentSelectorBase implements ToJson {}
+sealed class TextDocumentRegistrationOptionsDocumentSelectorBase
+    extends BaseOr {
+  const TextDocumentRegistrationOptionsDocumentSelectorBase();
+}
+
+class DocumentSelectorTextDocumentRegistrationOptionsDocumentSelectorBase
+    extends TextDocumentRegistrationOptionsDocumentSelectorBase {
+  const DocumentSelectorTextDocumentRegistrationOptionsDocumentSelectorBase(
+    this.value,
+  );
+
+  @override
+  final DocumentSelector value;
+}
+
+class NullTextDocumentRegistrationOptionsDocumentSelectorBase
+    extends TextDocumentRegistrationOptionsDocumentSelectorBase {
+  const NullTextDocumentRegistrationOptionsDocumentSelectorBase(this.value);
+
+  @override
+  final Null value;
+}
 
 /// Owned by: WorkspaceEdit(documentChanges)
 ///
@@ -257,13 +568,63 @@ sealed class DocumentSelectorBase implements ToJson {}
 /// Type: CreateFile
 /// Type: RenameFile
 /// Type: DeleteFile
-sealed class DocumentChangesBase implements ToJson {}
+sealed class WorkspaceEditDocumentChangesBase extends BaseOr {
+  const WorkspaceEditDocumentChangesBase();
+}
+
+class TextDocumentEditWorkspaceEditDocumentChangesBase
+    extends WorkspaceEditDocumentChangesBase {
+  const TextDocumentEditWorkspaceEditDocumentChangesBase(this.value);
+
+  @override
+  final TextDocumentEdit value;
+}
+
+class CreateFileWorkspaceEditDocumentChangesBase
+    extends WorkspaceEditDocumentChangesBase {
+  const CreateFileWorkspaceEditDocumentChangesBase(this.value);
+
+  @override
+  final CreateFile value;
+}
+
+class RenameFileWorkspaceEditDocumentChangesBase
+    extends WorkspaceEditDocumentChangesBase {
+  const RenameFileWorkspaceEditDocumentChangesBase(this.value);
+
+  @override
+  final RenameFile value;
+}
+
+class DeleteFileWorkspaceEditDocumentChangesBase
+    extends WorkspaceEditDocumentChangesBase {
+  const DeleteFileWorkspaceEditDocumentChangesBase(this.value);
+
+  @override
+  final DeleteFile value;
+}
 
 /// Owned by: InlayHint(label)
 ///
 /// Type: String
 /// Type: Array<InlayHintLabelPart>
-sealed class LabelBase implements ToJson {}
+sealed class InlayHintLabelBase extends BaseOr {
+  const InlayHintLabelBase();
+}
+
+class StringInlayHintLabelBase extends InlayHintLabelBase {
+  const StringInlayHintLabelBase(this.value);
+
+  @override
+  final String value;
+}
+
+class ListInlayHintLabelBase extends InlayHintLabelBase {
+  const ListInlayHintLabelBase(this.value);
+
+  @override
+  final List<InlayHintLabelPart> value;
+}
 
 /// Owned by: InlayHint(tooltip)
 /// Owned by: CompletionItem(documentation)
@@ -273,7 +634,24 @@ sealed class LabelBase implements ToJson {}
 ///
 /// Type: String
 /// Type: MarkupContent
-sealed class TooltipOrDocumentationBase implements ToJson {}
+sealed class TooltipOrDocumentationBase extends BaseOr {
+  const TooltipOrDocumentationBase();
+}
+
+class StringTooltipOrDocumentationBase extends TooltipOrDocumentationBase {
+  const StringTooltipOrDocumentationBase(this.value);
+
+  @override
+  final String value;
+}
+
+class MarkupContentTooltipOrDocumentationBase
+    extends TooltipOrDocumentationBase {
+  const MarkupContentTooltipOrDocumentationBase(this.value);
+
+  @override
+  final MarkupContent value;
+}
 
 /// Owned by: DocumentDiagnosticReportPartialResult(relatedDocuments)
 /// Owned by: RelatedFullDocumentDiagnosticReport(relatedDocuments)
@@ -281,63 +659,241 @@ sealed class TooltipOrDocumentationBase implements ToJson {}
 ///
 /// Type: FullDocumentDiagnosticReport
 /// Type: UnchangedDocumentDiagnosticReport
-sealed class RelatedDocumentsBase implements ToJson {}
+sealed class RelatedDocumentsBase extends BaseOr {
+  const RelatedDocumentsBase();
+}
+
+class FullDocumentDiagnosticReportRelatedDocumentsBase
+    extends RelatedDocumentsBase {
+  const FullDocumentDiagnosticReportRelatedDocumentsBase(this.value);
+
+  @override
+  final FullDocumentDiagnosticReport value;
+}
+
+class UnchangedDocumentDiagnosticReportRelatedDocumentsBase
+    extends RelatedDocumentsBase {
+  const UnchangedDocumentDiagnosticReportRelatedDocumentsBase(this.value);
+
+  @override
+  final UnchangedDocumentDiagnosticReport value;
+}
 
 /// Owned by: InlineCompletionItem(insertText)
 ///
 /// Type: String
 /// Type: StringValue
-sealed class InsertTextBase implements ToJson {}
+sealed class InlineCompletionItemInsertTextBase extends BaseOr {
+  const InlineCompletionItemInsertTextBase();
+}
+
+class StringInlineCompletionItemInsertTextBase
+    extends InlineCompletionItemInsertTextBase {
+  const StringInlineCompletionItemInsertTextBase(this.value);
+
+  @override
+  final String value;
+}
+
+class StringValueInlineCompletionItemInsertTextBase
+    extends InlineCompletionItemInsertTextBase {
+  const StringValueInlineCompletionItemInsertTextBase(this.value);
+
+  @override
+  final StringValue value;
+}
 
 /// Owned by: DidChangeConfigurationRegistrationOptions(section)
 ///
 /// Type: String
 /// Type: Array<String>
-sealed class SectionBase implements ToJson {}
+sealed class DidChangeConfigurationRegistrationOptionsSectionBase
+    extends BaseOr {
+  const DidChangeConfigurationRegistrationOptionsSectionBase();
+}
+
+class StringDidChangeConfigurationRegistrationOptionsSectionBase
+    extends DidChangeConfigurationRegistrationOptionsSectionBase {
+  const StringDidChangeConfigurationRegistrationOptionsSectionBase(this.value);
+
+  @override
+  final String value;
+}
+
+class ListDidChangeConfigurationRegistrationOptionsSectionBase
+    extends DidChangeConfigurationRegistrationOptionsSectionBase {
+  const ListDidChangeConfigurationRegistrationOptionsSectionBase(this.value);
+
+  @override
+  final List<String> value;
+}
 
 /// Owned by: CompletionItem(textEdit)
 ///
 /// Type: TextEdit
 /// Type: InsertReplaceEdit
-sealed class TextEditBase implements ToJson {}
+sealed class CompletionItemTextEditBase extends BaseOr {
+  const CompletionItemTextEditBase();
+}
+
+class TextEditCompletionItemTextEditBase extends CompletionItemTextEditBase {
+  const TextEditCompletionItemTextEditBase(this.value);
+
+  @override
+  final TextEdit value;
+}
+
+class InsertReplaceEditCompletionItemTextEditBase
+    extends CompletionItemTextEditBase {
+  const InsertReplaceEditCompletionItemTextEditBase(this.value);
+
+  @override
+  final InsertReplaceEdit value;
+}
 
 /// Owned by: CompletionList(editRange)
 ///
 /// Type: Range
 /// Type: ({Range insert, Range replace})
-sealed class EditRangeBase implements ToJson {}
+sealed class CompletionListEditRangeBase extends BaseOr {
+  const CompletionListEditRangeBase();
+}
+
+class RangeCompletionListEditRangeBase extends CompletionListEditRangeBase {
+  const RangeCompletionListEditRangeBase(this.value);
+
+  @override
+  final Range value;
+}
+
+class LiteralCompletionListEditRangeBase extends CompletionListEditRangeBase {
+  const LiteralCompletionListEditRangeBase(this.value);
+
+  @override
+  final ({Range insert, Range replace}) value;
+}
 
 /// Owned by: Hover(contents)
 ///
 /// Type: MarkupContent
 /// Type: MarkedStringBase
 /// Type: Array<MarkedStringBase>
-sealed class ContentsBase implements ToJson {}
+sealed class HoverContentsBase extends BaseOr {
+  const HoverContentsBase();
+}
+
+class MarkupContentHoverContentsBase extends HoverContentsBase {
+  const MarkupContentHoverContentsBase(this.value);
+
+  @override
+  final MarkupContent value;
+}
+
+class MarkedStringBaseHoverContentsBase extends HoverContentsBase {
+  const MarkedStringBaseHoverContentsBase(this.value);
+
+  @override
+  final MarkedString value;
+}
+
+class ListHoverContentsBase extends HoverContentsBase {
+  const ListHoverContentsBase(this.value);
+
+  @override
+  final List<MarkedString> value;
+}
 
 /// Owned by: WorkspaceSymbol(location)
 ///
 /// Type: Location
 /// Type: ({String uri})
-sealed class LocationBase implements ToJson {}
+sealed class WorkspaceSymbolLocationBase extends BaseOr {
+  const WorkspaceSymbolLocationBase();
+}
+
+class LocationWorkspaceSymbolLocationBase extends WorkspaceSymbolLocationBase {
+  const LocationWorkspaceSymbolLocationBase(this.value);
+
+  @override
+  final Location value;
+}
+
+class LiteralWorkspaceSymbolLocationBase extends WorkspaceSymbolLocationBase {
+  const LiteralWorkspaceSymbolLocationBase(this.value);
+
+  @override
+  final ({String uri}) value;
+}
 
 /// Owned by: SemanticTokensOptions(range)
 /// Owned by: SemanticTokensClientCapabilities(range)
 ///
 /// Type: Boolean
 /// Type: ()
-sealed class RangeBase implements ToJson {}
+sealed class RangeBase extends BaseOr {
+  const RangeBase();
+}
+
+class BooleanRangeBase extends RangeBase {
+  const BooleanRangeBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class LiteralRangeBase extends RangeBase {
+  const LiteralRangeBase(this.value);
+
+  @override
+  final () value;
+}
 
 /// Owned by: SemanticTokensOptions(full)
 ///
 /// Type: Boolean
 /// Type: ({bool? delta})
-sealed class FullBase implements ToJson {}
+sealed class SemanticTokensOptionsFullBase extends BaseOr {
+  const SemanticTokensOptionsFullBase();
+}
+
+class BooleanSemanticTokensOptionsFullBase
+    extends SemanticTokensOptionsFullBase {
+  const BooleanSemanticTokensOptionsFullBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class LiteralSemanticTokensOptionsFullBase
+    extends SemanticTokensOptionsFullBase {
+  const LiteralSemanticTokensOptionsFullBase(this.value);
+
+  @override
+  final ({bool? delta}) value;
+}
 
 /// Owned by: TextDocumentEdit(edits)
 ///
 /// Type: TextEdit
 /// Type: AnnotatedTextEdit
-sealed class EditsBase implements ToJson {}
+sealed class TextDocumentEditEditsBase extends BaseOr {
+  const TextDocumentEditEditsBase();
+}
+
+class TextEditTextDocumentEditEditsBase extends TextDocumentEditEditsBase {
+  const TextEditTextDocumentEditEditsBase(this.value);
+
+  @override
+  final TextEdit value;
+}
+
+class AnnotatedTextEditTextDocumentEditEditsBase
+    extends TextDocumentEditEditsBase {
+  const AnnotatedTextEditTextDocumentEditEditsBase(this.value);
+
+  @override
+  final AnnotatedTextEdit value;
+}
 
 /// Owned by: _InitializeParams(processId)
 /// Owned by: OptionalVersionedTextDocumentIdentifier(version)
@@ -346,241 +902,1096 @@ sealed class EditsBase implements ToJson {}
 ///
 /// Type: Integer
 /// Type: Null
-sealed class ProcessIdOrVersionBase implements ToJson {}
+sealed class ProcessIdOrVersionBase extends BaseOr {
+  const ProcessIdOrVersionBase();
+}
+
+class IntegerProcessIdOrVersionBase extends ProcessIdOrVersionBase {
+  const IntegerProcessIdOrVersionBase(this.value);
+
+  @override
+  final int value;
+}
+
+class NullProcessIdOrVersionBase extends ProcessIdOrVersionBase {
+  const NullProcessIdOrVersionBase(this.value);
+
+  @override
+  final Null value;
+}
 
 /// Owned by: _InitializeParams(rootPath)
 ///
 /// Type: String
 /// Type: Null
-sealed class RootPathBase implements ToJson {}
+sealed class _InitializeParamsRootPathBase extends BaseOr {
+  const _InitializeParamsRootPathBase();
+}
+
+class String_InitializeParamsRootPathBase
+    extends _InitializeParamsRootPathBase {
+  const String_InitializeParamsRootPathBase(this.value);
+
+  @override
+  final String value;
+}
+
+class Null_InitializeParamsRootPathBase extends _InitializeParamsRootPathBase {
+  const Null_InitializeParamsRootPathBase(this.value);
+
+  @override
+  final Null value;
+}
 
 /// Owned by: _InitializeParams(rootUri)
 ///
 /// Type: DocumentUri
 /// Type: Null
-sealed class RootUriBase implements ToJson {}
+sealed class _InitializeParamsRootUriBase extends BaseOr {
+  const _InitializeParamsRootUriBase();
+}
+
+class DocumentUri_InitializeParamsRootUriBase
+    extends _InitializeParamsRootUriBase {
+  const DocumentUri_InitializeParamsRootUriBase(this.value);
+
+  @override
+  final String value;
+}
+
+class Null_InitializeParamsRootUriBase extends _InitializeParamsRootUriBase {
+  const Null_InitializeParamsRootUriBase(this.value);
+
+  @override
+  final Null value;
+}
 
 /// Owned by: WorkspaceFoldersInitializeParams(workspaceFolders)
 ///
 /// Type: Array<WorkspaceFolder>
 /// Type: Null
-sealed class WorkspaceFoldersBase implements ToJson {}
+sealed class WorkspaceFoldersInitializeParamsWorkspaceFoldersBase
+    extends BaseOr {
+  const WorkspaceFoldersInitializeParamsWorkspaceFoldersBase();
+}
+
+class ListWorkspaceFoldersInitializeParamsWorkspaceFoldersBase
+    extends WorkspaceFoldersInitializeParamsWorkspaceFoldersBase {
+  const ListWorkspaceFoldersInitializeParamsWorkspaceFoldersBase(this.value);
+
+  @override
+  final List<WorkspaceFolder> value;
+}
+
+class NullWorkspaceFoldersInitializeParamsWorkspaceFoldersBase
+    extends WorkspaceFoldersInitializeParamsWorkspaceFoldersBase {
+  const NullWorkspaceFoldersInitializeParamsWorkspaceFoldersBase(this.value);
+
+  @override
+  final Null value;
+}
 
 /// Owned by: ServerCapabilities(textDocumentSync)
 ///
 /// Type: TextDocumentSyncOptions
 /// Type: TextDocumentSyncKind
-sealed class TextDocumentSyncBase implements ToJson {}
+sealed class ServerCapabilitiesTextDocumentSyncBase extends BaseOr {
+  const ServerCapabilitiesTextDocumentSyncBase();
+}
+
+class TextDocumentSyncOptionsServerCapabilitiesTextDocumentSyncBase
+    extends ServerCapabilitiesTextDocumentSyncBase {
+  const TextDocumentSyncOptionsServerCapabilitiesTextDocumentSyncBase(
+    this.value,
+  );
+
+  @override
+  final TextDocumentSyncOptions value;
+}
+
+class TextDocumentSyncKindServerCapabilitiesTextDocumentSyncBase
+    extends ServerCapabilitiesTextDocumentSyncBase {
+  const TextDocumentSyncKindServerCapabilitiesTextDocumentSyncBase(this.value);
+
+  @override
+  final TextDocumentSyncKind value;
+}
 
 /// Owned by: ServerCapabilities(notebookDocumentSync)
 ///
 /// Type: NotebookDocumentSyncOptions
 /// Type: NotebookDocumentSyncRegistrationOptions
-sealed class NotebookDocumentSyncBase implements ToJson {}
+sealed class ServerCapabilitiesNotebookDocumentSyncBase extends BaseOr {
+  const ServerCapabilitiesNotebookDocumentSyncBase();
+}
+
+class NotebookDocumentSyncOptionsServerCapabilitiesNotebookDocumentSyncBase
+    extends ServerCapabilitiesNotebookDocumentSyncBase {
+  const NotebookDocumentSyncOptionsServerCapabilitiesNotebookDocumentSyncBase(
+    this.value,
+  );
+
+  @override
+  final NotebookDocumentSyncOptions value;
+}
+
+class NotebookDocumentSyncRegistrationOptionsServerCapabilitiesNotebookDocumentSyncBase
+    extends ServerCapabilitiesNotebookDocumentSyncBase {
+  const NotebookDocumentSyncRegistrationOptionsServerCapabilitiesNotebookDocumentSyncBase(
+    this.value,
+  );
+
+  @override
+  final NotebookDocumentSyncRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(hoverProvider)
 ///
 /// Type: Boolean
 /// Type: HoverOptions
-sealed class HoverProviderBase implements ToJson {}
+sealed class ServerCapabilitiesHoverProviderBase extends BaseOr {
+  const ServerCapabilitiesHoverProviderBase();
+}
+
+class BooleanServerCapabilitiesHoverProviderBase
+    extends ServerCapabilitiesHoverProviderBase {
+  const BooleanServerCapabilitiesHoverProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class HoverOptionsServerCapabilitiesHoverProviderBase
+    extends ServerCapabilitiesHoverProviderBase {
+  const HoverOptionsServerCapabilitiesHoverProviderBase(this.value);
+
+  @override
+  final HoverOptions value;
+}
 
 /// Owned by: ServerCapabilities(declarationProvider)
 ///
 /// Type: Boolean
 /// Type: DeclarationOptions
 /// Type: DeclarationRegistrationOptions
-sealed class DeclarationProviderBase implements ToJson {}
+sealed class ServerCapabilitiesDeclarationProviderBase extends BaseOr {
+  const ServerCapabilitiesDeclarationProviderBase();
+}
+
+class BooleanServerCapabilitiesDeclarationProviderBase
+    extends ServerCapabilitiesDeclarationProviderBase {
+  const BooleanServerCapabilitiesDeclarationProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class DeclarationOptionsServerCapabilitiesDeclarationProviderBase
+    extends ServerCapabilitiesDeclarationProviderBase {
+  const DeclarationOptionsServerCapabilitiesDeclarationProviderBase(this.value);
+
+  @override
+  final DeclarationOptions value;
+}
+
+class DeclarationRegistrationOptionsServerCapabilitiesDeclarationProviderBase
+    extends ServerCapabilitiesDeclarationProviderBase {
+  const DeclarationRegistrationOptionsServerCapabilitiesDeclarationProviderBase(
+    this.value,
+  );
+
+  @override
+  final DeclarationRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(definitionProvider)
 ///
 /// Type: Boolean
 /// Type: DefinitionOptions
-sealed class DefinitionProviderBase implements ToJson {}
+sealed class ServerCapabilitiesDefinitionProviderBase extends BaseOr {
+  const ServerCapabilitiesDefinitionProviderBase();
+}
+
+class BooleanServerCapabilitiesDefinitionProviderBase
+    extends ServerCapabilitiesDefinitionProviderBase {
+  const BooleanServerCapabilitiesDefinitionProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class DefinitionOptionsServerCapabilitiesDefinitionProviderBase
+    extends ServerCapabilitiesDefinitionProviderBase {
+  const DefinitionOptionsServerCapabilitiesDefinitionProviderBase(this.value);
+
+  @override
+  final DefinitionOptions value;
+}
 
 /// Owned by: ServerCapabilities(typeDefinitionProvider)
 ///
 /// Type: Boolean
 /// Type: TypeDefinitionOptions
 /// Type: TypeDefinitionRegistrationOptions
-sealed class TypeDefinitionProviderBase implements ToJson {}
+sealed class ServerCapabilitiesTypeDefinitionProviderBase extends BaseOr {
+  const ServerCapabilitiesTypeDefinitionProviderBase();
+}
+
+class BooleanServerCapabilitiesTypeDefinitionProviderBase
+    extends ServerCapabilitiesTypeDefinitionProviderBase {
+  const BooleanServerCapabilitiesTypeDefinitionProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class TypeDefinitionOptionsServerCapabilitiesTypeDefinitionProviderBase
+    extends ServerCapabilitiesTypeDefinitionProviderBase {
+  const TypeDefinitionOptionsServerCapabilitiesTypeDefinitionProviderBase(
+    this.value,
+  );
+
+  @override
+  final TypeDefinitionOptions value;
+}
+
+class TypeDefinitionRegistrationOptionsServerCapabilitiesTypeDefinitionProviderBase
+    extends ServerCapabilitiesTypeDefinitionProviderBase {
+  const TypeDefinitionRegistrationOptionsServerCapabilitiesTypeDefinitionProviderBase(
+    this.value,
+  );
+
+  @override
+  final TypeDefinitionRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(implementationProvider)
 ///
 /// Type: Boolean
 /// Type: ImplementationOptions
 /// Type: ImplementationRegistrationOptions
-sealed class ImplementationProviderBase implements ToJson {}
+sealed class ServerCapabilitiesImplementationProviderBase extends BaseOr {
+  const ServerCapabilitiesImplementationProviderBase();
+}
+
+class BooleanServerCapabilitiesImplementationProviderBase
+    extends ServerCapabilitiesImplementationProviderBase {
+  const BooleanServerCapabilitiesImplementationProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class ImplementationOptionsServerCapabilitiesImplementationProviderBase
+    extends ServerCapabilitiesImplementationProviderBase {
+  const ImplementationOptionsServerCapabilitiesImplementationProviderBase(
+    this.value,
+  );
+
+  @override
+  final ImplementationOptions value;
+}
+
+class ImplementationRegistrationOptionsServerCapabilitiesImplementationProviderBase
+    extends ServerCapabilitiesImplementationProviderBase {
+  const ImplementationRegistrationOptionsServerCapabilitiesImplementationProviderBase(
+    this.value,
+  );
+
+  @override
+  final ImplementationRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(referencesProvider)
 ///
 /// Type: Boolean
 /// Type: ReferenceOptions
-sealed class ReferencesProviderBase implements ToJson {}
+sealed class ServerCapabilitiesReferencesProviderBase extends BaseOr {
+  const ServerCapabilitiesReferencesProviderBase();
+}
+
+class BooleanServerCapabilitiesReferencesProviderBase
+    extends ServerCapabilitiesReferencesProviderBase {
+  const BooleanServerCapabilitiesReferencesProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class ReferenceOptionsServerCapabilitiesReferencesProviderBase
+    extends ServerCapabilitiesReferencesProviderBase {
+  const ReferenceOptionsServerCapabilitiesReferencesProviderBase(this.value);
+
+  @override
+  final ReferenceOptions value;
+}
 
 /// Owned by: ServerCapabilities(documentHighlightProvider)
 ///
 /// Type: Boolean
 /// Type: DocumentHighlightOptions
-sealed class DocumentHighlightProviderBase implements ToJson {}
+sealed class ServerCapabilitiesDocumentHighlightProviderBase extends BaseOr {
+  const ServerCapabilitiesDocumentHighlightProviderBase();
+}
+
+class BooleanServerCapabilitiesDocumentHighlightProviderBase
+    extends ServerCapabilitiesDocumentHighlightProviderBase {
+  const BooleanServerCapabilitiesDocumentHighlightProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class DocumentHighlightOptionsServerCapabilitiesDocumentHighlightProviderBase
+    extends ServerCapabilitiesDocumentHighlightProviderBase {
+  const DocumentHighlightOptionsServerCapabilitiesDocumentHighlightProviderBase(
+    this.value,
+  );
+
+  @override
+  final DocumentHighlightOptions value;
+}
 
 /// Owned by: ServerCapabilities(documentSymbolProvider)
 ///
 /// Type: Boolean
 /// Type: DocumentSymbolOptions
-sealed class DocumentSymbolProviderBase implements ToJson {}
+sealed class ServerCapabilitiesDocumentSymbolProviderBase extends BaseOr {
+  const ServerCapabilitiesDocumentSymbolProviderBase();
+}
+
+class BooleanServerCapabilitiesDocumentSymbolProviderBase
+    extends ServerCapabilitiesDocumentSymbolProviderBase {
+  const BooleanServerCapabilitiesDocumentSymbolProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class DocumentSymbolOptionsServerCapabilitiesDocumentSymbolProviderBase
+    extends ServerCapabilitiesDocumentSymbolProviderBase {
+  const DocumentSymbolOptionsServerCapabilitiesDocumentSymbolProviderBase(
+    this.value,
+  );
+
+  @override
+  final DocumentSymbolOptions value;
+}
 
 /// Owned by: ServerCapabilities(codeActionProvider)
 ///
 /// Type: Boolean
 /// Type: CodeActionOptions
-sealed class CodeActionProviderBase implements ToJson {}
+sealed class ServerCapabilitiesCodeActionProviderBase extends BaseOr {
+  const ServerCapabilitiesCodeActionProviderBase();
+}
+
+class BooleanServerCapabilitiesCodeActionProviderBase
+    extends ServerCapabilitiesCodeActionProviderBase {
+  const BooleanServerCapabilitiesCodeActionProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class CodeActionOptionsServerCapabilitiesCodeActionProviderBase
+    extends ServerCapabilitiesCodeActionProviderBase {
+  const CodeActionOptionsServerCapabilitiesCodeActionProviderBase(this.value);
+
+  @override
+  final CodeActionOptions value;
+}
 
 /// Owned by: ServerCapabilities(colorProvider)
 ///
 /// Type: Boolean
 /// Type: DocumentColorOptions
 /// Type: DocumentColorRegistrationOptions
-sealed class ColorProviderBase implements ToJson {}
+sealed class ServerCapabilitiesColorProviderBase extends BaseOr {
+  const ServerCapabilitiesColorProviderBase();
+}
+
+class BooleanServerCapabilitiesColorProviderBase
+    extends ServerCapabilitiesColorProviderBase {
+  const BooleanServerCapabilitiesColorProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class DocumentColorOptionsServerCapabilitiesColorProviderBase
+    extends ServerCapabilitiesColorProviderBase {
+  const DocumentColorOptionsServerCapabilitiesColorProviderBase(this.value);
+
+  @override
+  final DocumentColorOptions value;
+}
+
+class DocumentColorRegistrationOptionsServerCapabilitiesColorProviderBase
+    extends ServerCapabilitiesColorProviderBase {
+  const DocumentColorRegistrationOptionsServerCapabilitiesColorProviderBase(
+    this.value,
+  );
+
+  @override
+  final DocumentColorRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(workspaceSymbolProvider)
 ///
 /// Type: Boolean
 /// Type: WorkspaceSymbolOptions
-sealed class WorkspaceSymbolProviderBase implements ToJson {}
+sealed class ServerCapabilitiesWorkspaceSymbolProviderBase extends BaseOr {
+  const ServerCapabilitiesWorkspaceSymbolProviderBase();
+}
+
+class BooleanServerCapabilitiesWorkspaceSymbolProviderBase
+    extends ServerCapabilitiesWorkspaceSymbolProviderBase {
+  const BooleanServerCapabilitiesWorkspaceSymbolProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class WorkspaceSymbolOptionsServerCapabilitiesWorkspaceSymbolProviderBase
+    extends ServerCapabilitiesWorkspaceSymbolProviderBase {
+  const WorkspaceSymbolOptionsServerCapabilitiesWorkspaceSymbolProviderBase(
+    this.value,
+  );
+
+  @override
+  final WorkspaceSymbolOptions value;
+}
 
 /// Owned by: ServerCapabilities(documentFormattingProvider)
 ///
 /// Type: Boolean
 /// Type: DocumentFormattingOptions
-sealed class DocumentFormattingProviderBase implements ToJson {}
+sealed class ServerCapabilitiesDocumentFormattingProviderBase extends BaseOr {
+  const ServerCapabilitiesDocumentFormattingProviderBase();
+}
+
+class BooleanServerCapabilitiesDocumentFormattingProviderBase
+    extends ServerCapabilitiesDocumentFormattingProviderBase {
+  const BooleanServerCapabilitiesDocumentFormattingProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class DocumentFormattingOptionsServerCapabilitiesDocumentFormattingProviderBase
+    extends ServerCapabilitiesDocumentFormattingProviderBase {
+  const DocumentFormattingOptionsServerCapabilitiesDocumentFormattingProviderBase(
+    this.value,
+  );
+
+  @override
+  final DocumentFormattingOptions value;
+}
 
 /// Owned by: ServerCapabilities(documentRangeFormattingProvider)
 ///
 /// Type: Boolean
 /// Type: DocumentRangeFormattingOptions
-sealed class DocumentRangeFormattingProviderBase implements ToJson {}
+sealed class ServerCapabilitiesDocumentRangeFormattingProviderBase
+    extends BaseOr {
+  const ServerCapabilitiesDocumentRangeFormattingProviderBase();
+}
+
+class BooleanServerCapabilitiesDocumentRangeFormattingProviderBase
+    extends ServerCapabilitiesDocumentRangeFormattingProviderBase {
+  const BooleanServerCapabilitiesDocumentRangeFormattingProviderBase(
+    this.value,
+  );
+
+  @override
+  final bool value;
+}
+
+class DocumentRangeFormattingOptionsServerCapabilitiesDocumentRangeFormattingProviderBase
+    extends ServerCapabilitiesDocumentRangeFormattingProviderBase {
+  const DocumentRangeFormattingOptionsServerCapabilitiesDocumentRangeFormattingProviderBase(
+    this.value,
+  );
+
+  @override
+  final DocumentRangeFormattingOptions value;
+}
 
 /// Owned by: ServerCapabilities(renameProvider)
 ///
 /// Type: Boolean
 /// Type: RenameOptions
-sealed class RenameProviderBase implements ToJson {}
+sealed class ServerCapabilitiesRenameProviderBase extends BaseOr {
+  const ServerCapabilitiesRenameProviderBase();
+}
+
+class BooleanServerCapabilitiesRenameProviderBase
+    extends ServerCapabilitiesRenameProviderBase {
+  const BooleanServerCapabilitiesRenameProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class RenameOptionsServerCapabilitiesRenameProviderBase
+    extends ServerCapabilitiesRenameProviderBase {
+  const RenameOptionsServerCapabilitiesRenameProviderBase(this.value);
+
+  @override
+  final RenameOptions value;
+}
 
 /// Owned by: ServerCapabilities(foldingRangeProvider)
 ///
 /// Type: Boolean
 /// Type: FoldingRangeOptions
 /// Type: FoldingRangeRegistrationOptions
-sealed class FoldingRangeProviderBase implements ToJson {}
+sealed class ServerCapabilitiesFoldingRangeProviderBase extends BaseOr {
+  const ServerCapabilitiesFoldingRangeProviderBase();
+}
+
+class BooleanServerCapabilitiesFoldingRangeProviderBase
+    extends ServerCapabilitiesFoldingRangeProviderBase {
+  const BooleanServerCapabilitiesFoldingRangeProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class FoldingRangeOptionsServerCapabilitiesFoldingRangeProviderBase
+    extends ServerCapabilitiesFoldingRangeProviderBase {
+  const FoldingRangeOptionsServerCapabilitiesFoldingRangeProviderBase(
+    this.value,
+  );
+
+  @override
+  final FoldingRangeOptions value;
+}
+
+class FoldingRangeRegistrationOptionsServerCapabilitiesFoldingRangeProviderBase
+    extends ServerCapabilitiesFoldingRangeProviderBase {
+  const FoldingRangeRegistrationOptionsServerCapabilitiesFoldingRangeProviderBase(
+    this.value,
+  );
+
+  @override
+  final FoldingRangeRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(selectionRangeProvider)
 ///
 /// Type: Boolean
 /// Type: SelectionRangeOptions
 /// Type: SelectionRangeRegistrationOptions
-sealed class SelectionRangeProviderBase implements ToJson {}
+sealed class ServerCapabilitiesSelectionRangeProviderBase extends BaseOr {
+  const ServerCapabilitiesSelectionRangeProviderBase();
+}
+
+class BooleanServerCapabilitiesSelectionRangeProviderBase
+    extends ServerCapabilitiesSelectionRangeProviderBase {
+  const BooleanServerCapabilitiesSelectionRangeProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class SelectionRangeOptionsServerCapabilitiesSelectionRangeProviderBase
+    extends ServerCapabilitiesSelectionRangeProviderBase {
+  const SelectionRangeOptionsServerCapabilitiesSelectionRangeProviderBase(
+    this.value,
+  );
+
+  @override
+  final SelectionRangeOptions value;
+}
+
+class SelectionRangeRegistrationOptionsServerCapabilitiesSelectionRangeProviderBase
+    extends ServerCapabilitiesSelectionRangeProviderBase {
+  const SelectionRangeRegistrationOptionsServerCapabilitiesSelectionRangeProviderBase(
+    this.value,
+  );
+
+  @override
+  final SelectionRangeRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(callHierarchyProvider)
 ///
 /// Type: Boolean
 /// Type: CallHierarchyOptions
 /// Type: CallHierarchyRegistrationOptions
-sealed class CallHierarchyProviderBase implements ToJson {}
+sealed class ServerCapabilitiesCallHierarchyProviderBase extends BaseOr {
+  const ServerCapabilitiesCallHierarchyProviderBase();
+}
+
+class BooleanServerCapabilitiesCallHierarchyProviderBase
+    extends ServerCapabilitiesCallHierarchyProviderBase {
+  const BooleanServerCapabilitiesCallHierarchyProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class CallHierarchyOptionsServerCapabilitiesCallHierarchyProviderBase
+    extends ServerCapabilitiesCallHierarchyProviderBase {
+  const CallHierarchyOptionsServerCapabilitiesCallHierarchyProviderBase(
+    this.value,
+  );
+
+  @override
+  final CallHierarchyOptions value;
+}
+
+class CallHierarchyRegistrationOptionsServerCapabilitiesCallHierarchyProviderBase
+    extends ServerCapabilitiesCallHierarchyProviderBase {
+  const CallHierarchyRegistrationOptionsServerCapabilitiesCallHierarchyProviderBase(
+    this.value,
+  );
+
+  @override
+  final CallHierarchyRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(linkedEditingRangeProvider)
 ///
 /// Type: Boolean
 /// Type: LinkedEditingRangeOptions
 /// Type: LinkedEditingRangeRegistrationOptions
-sealed class LinkedEditingRangeProviderBase implements ToJson {}
+sealed class ServerCapabilitiesLinkedEditingRangeProviderBase extends BaseOr {
+  const ServerCapabilitiesLinkedEditingRangeProviderBase();
+}
+
+class BooleanServerCapabilitiesLinkedEditingRangeProviderBase
+    extends ServerCapabilitiesLinkedEditingRangeProviderBase {
+  const BooleanServerCapabilitiesLinkedEditingRangeProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class LinkedEditingRangeOptionsServerCapabilitiesLinkedEditingRangeProviderBase
+    extends ServerCapabilitiesLinkedEditingRangeProviderBase {
+  const LinkedEditingRangeOptionsServerCapabilitiesLinkedEditingRangeProviderBase(
+    this.value,
+  );
+
+  @override
+  final LinkedEditingRangeOptions value;
+}
+
+class LinkedEditingRangeRegistrationOptionsServerCapabilitiesLinkedEditingRangeProviderBase
+    extends ServerCapabilitiesLinkedEditingRangeProviderBase {
+  const LinkedEditingRangeRegistrationOptionsServerCapabilitiesLinkedEditingRangeProviderBase(
+    this.value,
+  );
+
+  @override
+  final LinkedEditingRangeRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(semanticTokensProvider)
 ///
 /// Type: SemanticTokensOptions
 /// Type: SemanticTokensRegistrationOptions
-sealed class SemanticTokensProviderBase implements ToJson {}
+sealed class ServerCapabilitiesSemanticTokensProviderBase extends BaseOr {
+  const ServerCapabilitiesSemanticTokensProviderBase();
+}
+
+class SemanticTokensOptionsServerCapabilitiesSemanticTokensProviderBase
+    extends ServerCapabilitiesSemanticTokensProviderBase {
+  const SemanticTokensOptionsServerCapabilitiesSemanticTokensProviderBase(
+    this.value,
+  );
+
+  @override
+  final SemanticTokensOptions value;
+}
+
+class SemanticTokensRegistrationOptionsServerCapabilitiesSemanticTokensProviderBase
+    extends ServerCapabilitiesSemanticTokensProviderBase {
+  const SemanticTokensRegistrationOptionsServerCapabilitiesSemanticTokensProviderBase(
+    this.value,
+  );
+
+  @override
+  final SemanticTokensRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(monikerProvider)
 ///
 /// Type: Boolean
 /// Type: MonikerOptions
 /// Type: MonikerRegistrationOptions
-sealed class MonikerProviderBase implements ToJson {}
+sealed class ServerCapabilitiesMonikerProviderBase extends BaseOr {
+  const ServerCapabilitiesMonikerProviderBase();
+}
+
+class BooleanServerCapabilitiesMonikerProviderBase
+    extends ServerCapabilitiesMonikerProviderBase {
+  const BooleanServerCapabilitiesMonikerProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class MonikerOptionsServerCapabilitiesMonikerProviderBase
+    extends ServerCapabilitiesMonikerProviderBase {
+  const MonikerOptionsServerCapabilitiesMonikerProviderBase(this.value);
+
+  @override
+  final MonikerOptions value;
+}
+
+class MonikerRegistrationOptionsServerCapabilitiesMonikerProviderBase
+    extends ServerCapabilitiesMonikerProviderBase {
+  const MonikerRegistrationOptionsServerCapabilitiesMonikerProviderBase(
+    this.value,
+  );
+
+  @override
+  final MonikerRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(typeHierarchyProvider)
 ///
 /// Type: Boolean
 /// Type: TypeHierarchyOptions
 /// Type: TypeHierarchyRegistrationOptions
-sealed class TypeHierarchyProviderBase implements ToJson {}
+sealed class ServerCapabilitiesTypeHierarchyProviderBase extends BaseOr {
+  const ServerCapabilitiesTypeHierarchyProviderBase();
+}
+
+class BooleanServerCapabilitiesTypeHierarchyProviderBase
+    extends ServerCapabilitiesTypeHierarchyProviderBase {
+  const BooleanServerCapabilitiesTypeHierarchyProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class TypeHierarchyOptionsServerCapabilitiesTypeHierarchyProviderBase
+    extends ServerCapabilitiesTypeHierarchyProviderBase {
+  const TypeHierarchyOptionsServerCapabilitiesTypeHierarchyProviderBase(
+    this.value,
+  );
+
+  @override
+  final TypeHierarchyOptions value;
+}
+
+class TypeHierarchyRegistrationOptionsServerCapabilitiesTypeHierarchyProviderBase
+    extends ServerCapabilitiesTypeHierarchyProviderBase {
+  const TypeHierarchyRegistrationOptionsServerCapabilitiesTypeHierarchyProviderBase(
+    this.value,
+  );
+
+  @override
+  final TypeHierarchyRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(inlineValueProvider)
 ///
 /// Type: Boolean
 /// Type: InlineValueOptions
 /// Type: InlineValueRegistrationOptions
-sealed class InlineValueProviderBase implements ToJson {}
+sealed class ServerCapabilitiesInlineValueProviderBase extends BaseOr {
+  const ServerCapabilitiesInlineValueProviderBase();
+}
+
+class BooleanServerCapabilitiesInlineValueProviderBase
+    extends ServerCapabilitiesInlineValueProviderBase {
+  const BooleanServerCapabilitiesInlineValueProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class InlineValueOptionsServerCapabilitiesInlineValueProviderBase
+    extends ServerCapabilitiesInlineValueProviderBase {
+  const InlineValueOptionsServerCapabilitiesInlineValueProviderBase(this.value);
+
+  @override
+  final InlineValueOptions value;
+}
+
+class InlineValueRegistrationOptionsServerCapabilitiesInlineValueProviderBase
+    extends ServerCapabilitiesInlineValueProviderBase {
+  const InlineValueRegistrationOptionsServerCapabilitiesInlineValueProviderBase(
+    this.value,
+  );
+
+  @override
+  final InlineValueRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(inlayHintProvider)
 ///
 /// Type: Boolean
 /// Type: InlayHintOptions
 /// Type: InlayHintRegistrationOptions
-sealed class InlayHintProviderBase implements ToJson {}
+sealed class ServerCapabilitiesInlayHintProviderBase extends BaseOr {
+  const ServerCapabilitiesInlayHintProviderBase();
+}
+
+class BooleanServerCapabilitiesInlayHintProviderBase
+    extends ServerCapabilitiesInlayHintProviderBase {
+  const BooleanServerCapabilitiesInlayHintProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class InlayHintOptionsServerCapabilitiesInlayHintProviderBase
+    extends ServerCapabilitiesInlayHintProviderBase {
+  const InlayHintOptionsServerCapabilitiesInlayHintProviderBase(this.value);
+
+  @override
+  final InlayHintOptions value;
+}
+
+class InlayHintRegistrationOptionsServerCapabilitiesInlayHintProviderBase
+    extends ServerCapabilitiesInlayHintProviderBase {
+  const InlayHintRegistrationOptionsServerCapabilitiesInlayHintProviderBase(
+    this.value,
+  );
+
+  @override
+  final InlayHintRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(diagnosticProvider)
 ///
 /// Type: DiagnosticOptions
 /// Type: DiagnosticRegistrationOptions
-sealed class DiagnosticProviderBase implements ToJson {}
+sealed class ServerCapabilitiesDiagnosticProviderBase extends BaseOr {
+  const ServerCapabilitiesDiagnosticProviderBase();
+}
+
+class DiagnosticOptionsServerCapabilitiesDiagnosticProviderBase
+    extends ServerCapabilitiesDiagnosticProviderBase {
+  const DiagnosticOptionsServerCapabilitiesDiagnosticProviderBase(this.value);
+
+  @override
+  final DiagnosticOptions value;
+}
+
+class DiagnosticRegistrationOptionsServerCapabilitiesDiagnosticProviderBase
+    extends ServerCapabilitiesDiagnosticProviderBase {
+  const DiagnosticRegistrationOptionsServerCapabilitiesDiagnosticProviderBase(
+    this.value,
+  );
+
+  @override
+  final DiagnosticRegistrationOptions value;
+}
 
 /// Owned by: ServerCapabilities(inlineCompletionProvider)
 ///
 /// Type: Boolean
 /// Type: InlineCompletionOptions
-sealed class InlineCompletionProviderBase implements ToJson {}
+sealed class ServerCapabilitiesInlineCompletionProviderBase extends BaseOr {
+  const ServerCapabilitiesInlineCompletionProviderBase();
+}
+
+class BooleanServerCapabilitiesInlineCompletionProviderBase
+    extends ServerCapabilitiesInlineCompletionProviderBase {
+  const BooleanServerCapabilitiesInlineCompletionProviderBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class InlineCompletionOptionsServerCapabilitiesInlineCompletionProviderBase
+    extends ServerCapabilitiesInlineCompletionProviderBase {
+  const InlineCompletionOptionsServerCapabilitiesInlineCompletionProviderBase(
+    this.value,
+  );
+
+  @override
+  final InlineCompletionOptions value;
+}
 
 /// Owned by: TextDocumentSyncOptions(save)
 ///
 /// Type: Boolean
 /// Type: SaveOptions
-sealed class SaveBase implements ToJson {}
+sealed class TextDocumentSyncOptionsSaveBase extends BaseOr {
+  const TextDocumentSyncOptionsSaveBase();
+}
+
+class BooleanTextDocumentSyncOptionsSaveBase
+    extends TextDocumentSyncOptionsSaveBase {
+  const BooleanTextDocumentSyncOptionsSaveBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class SaveOptionsTextDocumentSyncOptionsSaveBase
+    extends TextDocumentSyncOptionsSaveBase {
+  const SaveOptionsTextDocumentSyncOptionsSaveBase(this.value);
+
+  @override
+  final SaveOptions value;
+}
 
 /// Owned by: NotebookDocumentSyncOptions(notebookSelector)
 ///
-/// Type: ({NotebookBase notebook, List<({String language})>? cells})
-/// Type: ({NotebookBase? notebook, List<({String language})> cells})
-sealed class NotebookSelectorBase implements ToJson {}
+/// Type: ({NotebookCellTextDocumentFilterNotebookBase notebook, List<({String language})>? cells})
+/// Type: ({NotebookCellTextDocumentFilterNotebookBase? notebook, List<({String language})> cells})
+sealed class NotebookDocumentSyncOptionsNotebookSelectorBase extends BaseOr {
+  const NotebookDocumentSyncOptionsNotebookSelectorBase();
+}
+
+class LiteralNotebookDocumentSyncOptionsNotebookSelectorBase
+    extends NotebookDocumentSyncOptionsNotebookSelectorBase {
+  const LiteralNotebookDocumentSyncOptionsNotebookSelectorBase(this.value);
+
+  @override
+  final ({
+    NotebookCellTextDocumentFilterNotebookBase notebook,
+    List<({String language})>? cells,
+  })
+  value;
+}
+
+class LiteralNotebookDocumentSyncOptionsNotebookSelectorBase
+    extends NotebookDocumentSyncOptionsNotebookSelectorBase {
+  const LiteralNotebookDocumentSyncOptionsNotebookSelectorBase(this.value);
+
+  @override
+  final ({
+    NotebookCellTextDocumentFilterNotebookBase? notebook,
+    List<({String language})> cells,
+  })
+  value;
+}
 
 /// Owned by: WorkspaceFoldersServerCapabilities(changeNotifications)
 ///
 /// Type: String
 /// Type: Boolean
-sealed class ChangeNotificationsBase implements ToJson {}
+sealed class WorkspaceFoldersServerCapabilitiesChangeNotificationsBase
+    extends BaseOr {
+  const WorkspaceFoldersServerCapabilitiesChangeNotificationsBase();
+}
+
+class StringWorkspaceFoldersServerCapabilitiesChangeNotificationsBase
+    extends WorkspaceFoldersServerCapabilitiesChangeNotificationsBase {
+  const StringWorkspaceFoldersServerCapabilitiesChangeNotificationsBase(
+    this.value,
+  );
+
+  @override
+  final String value;
+}
+
+class BooleanWorkspaceFoldersServerCapabilitiesChangeNotificationsBase
+    extends WorkspaceFoldersServerCapabilitiesChangeNotificationsBase {
+  const BooleanWorkspaceFoldersServerCapabilitiesChangeNotificationsBase(
+    this.value,
+  );
+
+  @override
+  final bool value;
+}
 
 /// Owned by: ParameterInformation(label)
 ///
 /// Type: String
 /// Type: (int, int)
-sealed class LabelBase implements ToJson {}
+sealed class ParameterInformationLabelBase extends BaseOr {
+  const ParameterInformationLabelBase();
+}
+
+class StringParameterInformationLabelBase
+    extends ParameterInformationLabelBase {
+  const StringParameterInformationLabelBase(this.value);
+
+  @override
+  final String value;
+}
+
+class TupleParameterInformationLabelBase extends ParameterInformationLabelBase {
+  const TupleParameterInformationLabelBase(this.value);
+
+  @override
+  final (int, int) value;
+}
 
 /// Owned by: NotebookCellTextDocumentFilter(notebook)
 ///
 /// Type: String
 /// Type: NotebookDocumentFilterBase
-sealed class NotebookBase implements ToJson {}
+sealed class NotebookCellTextDocumentFilterNotebookBase extends BaseOr {
+  const NotebookCellTextDocumentFilterNotebookBase();
+}
+
+class StringNotebookCellTextDocumentFilterNotebookBase
+    extends NotebookCellTextDocumentFilterNotebookBase {
+  const StringNotebookCellTextDocumentFilterNotebookBase(this.value);
+
+  @override
+  final String value;
+}
+
+class NotebookDocumentFilterBaseNotebookCellTextDocumentFilterNotebookBase
+    extends NotebookCellTextDocumentFilterNotebookBase {
+  const NotebookDocumentFilterBaseNotebookCellTextDocumentFilterNotebookBase(
+    this.value,
+  );
+
+  @override
+  final NotebookDocumentFilter value;
+}
 
 /// Owned by: RelativePattern(baseUri)
 ///
 /// Type: WorkspaceFolder
 /// Type: URI
-sealed class BaseUriBase implements ToJson {}
+sealed class RelativePatternBaseUriBase extends BaseOr {
+  const RelativePatternBaseUriBase();
+}
+
+class WorkspaceFolderRelativePatternBaseUriBase
+    extends RelativePatternBaseUriBase {
+  const WorkspaceFolderRelativePatternBaseUriBase(this.value);
+
+  @override
+  final WorkspaceFolder value;
+}
+
+class URIRelativePatternBaseUriBase extends RelativePatternBaseUriBase {
+  const URIRelativePatternBaseUriBase(this.value);
+
+  @override
+  final String value;
+}
 
 /// Owned by: SemanticTokensClientCapabilities(full)
 ///
 /// Type: Boolean
 /// Type: ({bool? delta})
-sealed class FullBase implements ToJson {}
+sealed class SemanticTokensClientCapabilitiesFullBase extends BaseOr {
+  const SemanticTokensClientCapabilitiesFullBase();
+}
+
+class BooleanSemanticTokensClientCapabilitiesFullBase
+    extends SemanticTokensClientCapabilitiesFullBase {
+  const BooleanSemanticTokensClientCapabilitiesFullBase(this.value);
+
+  @override
+  final bool value;
+}
+
+class LiteralSemanticTokensClientCapabilitiesFullBase
+    extends SemanticTokensClientCapabilitiesFullBase {
+  const LiteralSemanticTokensClientCapabilitiesFullBase(this.value);
+
+  @override
+  final ({bool? delta}) value;
+}
 
 /// Struct
 class ImplementationParams
@@ -688,7 +2099,9 @@ class ImplementationRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -705,7 +2118,7 @@ class ImplementationRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -804,7 +2217,9 @@ class TypeDefinitionRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -821,7 +2236,7 @@ class TypeDefinitionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -1016,7 +2431,9 @@ class DocumentColorRegistrationOptions
 
   factory DocumentColorRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1033,7 +2450,7 @@ class DocumentColorRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -1199,7 +2616,9 @@ class TextDocumentRegistrationOptions implements ToJson {
 
   factory TextDocumentRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
 
     return TextDocumentRegistrationOptions(documentSelector: documentSelector);
   }
@@ -1207,7 +2626,7 @@ class TextDocumentRegistrationOptions implements ToJson {
   /// Represents a union type.
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   @override
   Map<String, Object?> toJson() {
@@ -1364,7 +2783,9 @@ class FoldingRangeRegistrationOptions
 
   factory FoldingRangeRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1381,7 +2802,7 @@ class FoldingRangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -1478,7 +2899,9 @@ class DeclarationRegistrationOptions
 
   factory DeclarationRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1495,7 +2918,7 @@ class DeclarationRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -1622,7 +3045,9 @@ class SelectionRangeRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1639,7 +3064,7 @@ class SelectionRangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -1866,7 +3291,9 @@ class CallHierarchyRegistrationOptions
 
   factory CallHierarchyRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -1883,7 +3310,7 @@ class CallHierarchyRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -2194,7 +3621,9 @@ class SemanticTokensRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final legendJson = json['legend']!;
     final legend = SemanticTokensLegend.fromJson(
       (legendJson as Map<String, Object?>),
@@ -2202,7 +3631,7 @@ class SemanticTokensRegistrationOptions
     final idJson = json['id'];
     final id = (idJson as String?);
     final fullJson = json['full'];
-    final full = (fullJson as FullBase?);
+    final full = (fullJson as SemanticTokensOptionsFullBase?);
     final rangeJson = json['range'];
     final range = (rangeJson as RangeBase?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -2222,7 +3651,7 @@ class SemanticTokensRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The legend used by the server
   @override
@@ -2236,7 +3665,7 @@ class SemanticTokensRegistrationOptions
   /// Represents a union type.
   /// Server supports providing semantic tokens for a full document.
   @override
-  final FullBase? full;
+  final SemanticTokensOptionsFullBase? full;
 
   /// Represents a union type.
   /// Server supports providing semantic tokens for a specific range of a
@@ -2616,7 +4045,9 @@ class LinkedEditingRangeRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -2633,7 +4064,7 @@ class LinkedEditingRangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -2703,7 +4134,8 @@ class WorkspaceEdit implements ToJson {
         (changeAnnotationsJson
             as Map<ChangeAnnotationIdentifier, ChangeAnnotation>?);
     final documentChangesJson = json['documentChanges'];
-    final documentChanges = (documentChangesJson as List<DocumentChangesBase>?);
+    final documentChanges =
+        (documentChangesJson as List<WorkspaceEditDocumentChangesBase>?);
     final changesJson = json['changes'];
     final changes = (changesJson as Map<String, List<TextEdit>>?);
 
@@ -2734,7 +4166,7 @@ class WorkspaceEdit implements ToJson {
   /// If a client neither supports `documentChanges` nor
   /// `workspace.workspaceEdit.resourceOperations` then only plain
   /// `TextEdit`s using the `changes` property are supported.
-  final List<DocumentChangesBase>? documentChanges;
+  final List<WorkspaceEditDocumentChangesBase>? documentChanges;
 
   /// Holds changes to existing resources.
   final Map<String, List<TextEdit>>? changes;
@@ -2955,7 +4387,9 @@ class MonikerRegistrationOptions
 
   factory MonikerRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -2969,7 +4403,7 @@ class MonikerRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -3144,7 +4578,9 @@ class TypeHierarchyRegistrationOptions
 
   factory TypeHierarchyRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -3161,7 +4597,7 @@ class TypeHierarchyRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -3353,7 +4789,9 @@ class InlineValueRegistrationOptions
 
   factory InlineValueRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -3370,7 +4808,7 @@ class InlineValueRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -3458,7 +4896,7 @@ class InlayHint implements ToJson {
     final positionJson = json['position']!;
     final position = Position.fromJson((positionJson as Map<String, Object?>));
     final labelJson = json['label']!;
-    final label = (labelJson as LabelBase);
+    final label = (labelJson as InlayHintLabelBase);
     final dataJson = json['data'];
     final data = (dataJson as LSPAny?);
     final paddingRightJson = json['paddingRight'];
@@ -3493,7 +4931,7 @@ class InlayHint implements ToJson {
   /// The label of this hint. A human readable string or an array of
   /// InlayHintLabelPart label parts.
   /// *Note* that neither the string nor the label part can be empty.
-  final LabelBase label;
+  final InlayHintLabelBase label;
 
   /// A data entry field that is preserved on an inlay hint between a
   /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
@@ -3558,7 +4996,9 @@ class InlayHintRegistrationOptions
 
   factory InlayHintRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final resolveProviderJson = json['resolveProvider'];
@@ -3578,7 +5018,7 @@ class InlayHintRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -3744,7 +5184,9 @@ class DiagnosticRegistrationOptions
 
   factory DiagnosticRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final interFileDependenciesJson = json['interFileDependencies']!;
     final interFileDependencies = (interFileDependenciesJson as bool);
     final workspaceDiagnosticsJson = json['workspaceDiagnostics']!;
@@ -3770,7 +5212,7 @@ class DiagnosticRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// Whether the language has inter file dependencies meaning that editing
   /// code in one file can result in a different diagnostic set in another
@@ -4180,7 +5622,7 @@ class InlineCompletionItem implements ToJson {
 
   factory InlineCompletionItem.fromJson(Map<String, Object?> json) {
     final insertTextJson = json['insertText']!;
-    final insertText = (insertTextJson as InsertTextBase);
+    final insertText = (insertTextJson as InlineCompletionItemInsertTextBase);
     final commandJson = json['command'];
     final command = (commandJson as Command?);
     final rangeJson = json['range'];
@@ -4198,7 +5640,7 @@ class InlineCompletionItem implements ToJson {
 
   /// Represents a union type.
   /// The text to replace the range with. Must be set.
-  final InsertTextBase insertText;
+  final InlineCompletionItemInsertTextBase insertText;
 
   /// An optional {@link Command} that is executed *after* inserting this
   /// completion.
@@ -4242,7 +5684,9 @@ class InlineCompletionRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final idJson = json['id'];
     final id = (idJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -4259,7 +5703,7 @@ class InlineCompletionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -4344,19 +5788,21 @@ class InitializeParams
     final processIdJson = json['processId']!;
     final processId = (processIdJson as ProcessIdOrVersionBase);
     final rootUriJson = json['rootUri']!;
-    final rootUri = (rootUriJson as RootUriBase);
+    final rootUri = (rootUriJson as _InitializeParamsRootUriBase);
     final capabilitiesJson = json['capabilities']!;
     final capabilities = ClientCapabilities.fromJson(
       (capabilitiesJson as Map<String, Object?>),
     );
     final workspaceFoldersJson = json['workspaceFolders'];
-    final workspaceFolders = (workspaceFoldersJson as WorkspaceFoldersBase?);
+    final workspaceFolders =
+        (workspaceFoldersJson
+            as WorkspaceFoldersInitializeParamsWorkspaceFoldersBase?);
     final traceJson = json['trace'];
     final trace = (traceJson as TraceValues?);
     final initializationOptionsJson = json['initializationOptions'];
     final initializationOptions = (initializationOptionsJson as LSPAny?);
     final rootPathJson = json['rootPath'];
-    final rootPath = (rootPathJson as RootPathBase?);
+    final rootPath = (rootPathJson as _InitializeParamsRootPathBase?);
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
@@ -4390,7 +5836,7 @@ class InitializeParams
   /// `rootPath` and `rootUri` are set `rootUri` wins.
   /// @deprecated in favour of workspaceFolders.
   @override
-  final RootUriBase rootUri;
+  final _InitializeParamsRootUriBase rootUri;
 
   /// The capabilities provided by the client (editor or tool)
   @override
@@ -4403,7 +5849,7 @@ class InitializeParams
   /// none are configured.
   /// @since 3.6.0
   @override
-  final WorkspaceFoldersBase? workspaceFolders;
+  final WorkspaceFoldersInitializeParamsWorkspaceFoldersBase? workspaceFolders;
 
   /// The initial trace setting. If omitted trace is disabled ('off').
   @override
@@ -4417,7 +5863,7 @@ class InitializeParams
   /// The rootPath of the workspace. Is null if no folder is open.
   /// @deprecated in favour of rootUri.
   @override
-  final RootPathBase? rootPath;
+  final _InitializeParamsRootPathBase? rootPath;
 
   /// The locale the client is currently showing the user interface in. This
   /// must not necessarily be the locale of the operating system.
@@ -4565,13 +6011,14 @@ class DidChangeConfigurationRegistrationOptions implements ToJson {
     Map<String, Object?> json,
   ) {
     final sectionJson = json['section'];
-    final section = (sectionJson as SectionBase?);
+    final section =
+        (sectionJson as DidChangeConfigurationRegistrationOptionsSectionBase?);
 
     return DidChangeConfigurationRegistrationOptions(section: section);
   }
 
   /// Represents a union type.
-  final SectionBase? section;
+  final DidChangeConfigurationRegistrationOptionsSectionBase? section;
 
   @override
   Map<String, Object?> toJson() {
@@ -4799,7 +6246,9 @@ class TextDocumentChangeRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final syncKindJson = json['syncKind']!;
     // Handle enum type
     final syncKind = _i1.$enumDecode(
@@ -4817,7 +6266,7 @@ class TextDocumentChangeRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// How documents are synced to the server.
   final TextDocumentSyncKind syncKind;
@@ -4904,7 +6353,9 @@ class TextDocumentSaveRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final includeTextJson = json['includeText'];
     final includeText = (includeTextJson as bool?);
 
@@ -4918,7 +6369,7 @@ class TextDocumentSaveRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The client is supposed to include the content on save.
   @override
@@ -5213,7 +6664,7 @@ class CompletionItem implements ToJson {
     final textEditTextJson = json['textEditText'];
     final textEditText = (textEditTextJson as String?);
     final textEditJson = json['textEdit'];
-    final textEdit = (textEditJson as TextEditBase?);
+    final textEdit = (textEditJson as CompletionItemTextEditBase?);
     final insertTextModeJson = json['insertTextMode'];
     final insertTextMode = (insertTextModeJson as InsertTextMode?);
     final insertTextFormatJson = json['insertTextFormat'];
@@ -5322,7 +6773,7 @@ class CompletionItem implements ToJson {
   /// prefix of the edit's replace range, that means it must be contained and
   /// starting at the same position.
   /// @since 3.16.0 additional type `InsertReplaceEdit`
-  final TextEditBase? textEdit;
+  final CompletionItemTextEditBase? textEdit;
 
   /// How whitespace and indentation is handled during completion item
   /// insertion. If not provided the clients default value depends on the
@@ -5432,7 +6883,7 @@ class CompletionList implements ToJson {
         (itemDefaultsJson
             as ({
               List<String>? commitCharacters,
-              EditRangeBase? editRange,
+              CompletionListEditRangeBase? editRange,
               InsertTextFormat? insertTextFormat,
               InsertTextMode? insertTextMode,
               LSPAny? data,
@@ -5465,7 +6916,7 @@ class CompletionList implements ToJson {
   /// @since 3.17.0
   final ({
     List<String>? commitCharacters,
-    EditRangeBase? editRange,
+    CompletionListEditRangeBase? editRange,
     InsertTextFormat? insertTextFormat,
     InsertTextMode? insertTextMode,
     LSPAny? data,
@@ -5498,7 +6949,9 @@ class CompletionRegistrationOptions
 
   factory CompletionRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final completionItemJson = json['completionItem'];
     final completionItem =
         (completionItemJson as ({bool? labelDetailsSupport})?);
@@ -5525,7 +6978,7 @@ class CompletionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The server supports the following `CompletionItem` specific
   /// capabilities.
@@ -5634,7 +7087,7 @@ class Hover implements ToJson {
 
   factory Hover.fromJson(Map<String, Object?> json) {
     final contentsJson = json['contents']!;
-    final contents = (contentsJson as ContentsBase);
+    final contents = (contentsJson as HoverContentsBase);
     final rangeJson = json['range'];
     final range = (rangeJson as Range?);
 
@@ -5643,7 +7096,7 @@ class Hover implements ToJson {
 
   /// Represents a union type.
   /// The hover's content
-  final ContentsBase contents;
+  final HoverContentsBase contents;
 
   /// An optional range inside the text document that is used to visualize
   /// the hover, e.g. by changing the background color.
@@ -5670,7 +7123,9 @@ class HoverRegistrationOptions
 
   factory HoverRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -5684,7 +7139,7 @@ class HoverRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -5829,7 +7284,9 @@ class SignatureHelpRegistrationOptions
 
   factory SignatureHelpRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final retriggerCharactersJson = json['retriggerCharacters'];
     final retriggerCharacters = (retriggerCharactersJson as List<String>?);
     final triggerCharactersJson = json['triggerCharacters'];
@@ -5849,7 +7306,7 @@ class SignatureHelpRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// List of characters that re-trigger signature help.
   /// These trigger characters are only active when signature help is already
@@ -5952,7 +7409,9 @@ class DefinitionRegistrationOptions
 
   factory DefinitionRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -5966,7 +7425,7 @@ class DefinitionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -6064,7 +7523,9 @@ class ReferenceRegistrationOptions
 
   factory ReferenceRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -6078,7 +7539,7 @@ class ReferenceRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -6201,7 +7662,9 @@ class DocumentHighlightRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -6215,7 +7678,7 @@ class DocumentHighlightRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -6479,7 +7942,9 @@ class DocumentSymbolRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final labelJson = json['label'];
     final label = (labelJson as String?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -6496,7 +7961,7 @@ class DocumentSymbolRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// A human-readable string that is shown when multiple outlines trees are
   /// shown for the same document.
@@ -6746,7 +8211,9 @@ class CodeActionRegistrationOptions
 
   factory CodeActionRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final codeActionKindsJson = json['codeActionKinds'];
@@ -6766,7 +8233,7 @@ class CodeActionRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// The server provides support to resolve additional information for a
   /// code action.
@@ -6865,7 +8332,7 @@ class WorkspaceSymbol implements BaseSymbolInformation {
     // Handle enum type
     final kind = _i1.$enumDecode(_$SymbolKindEnumMap, kindJson);
     final locationJson = json['location']!;
-    final location = (locationJson as LocationBase);
+    final location = (locationJson as WorkspaceSymbolLocationBase);
     final dataJson = json['data'];
     final data = (dataJson as LSPAny?);
     final containerNameJson = json['containerName'];
@@ -6896,7 +8363,7 @@ class WorkspaceSymbol implements BaseSymbolInformation {
   /// location without a range depends on the client capability
   /// `workspace.symbol.resolveSupport`.
   /// See SymbolInformation#location for more details.
-  final LocationBase location;
+  final WorkspaceSymbolLocationBase location;
 
   /// A data entry field that is preserved on a workspace symbol between a
   /// workspace symbol request and a workspace symbol resolve request.
@@ -7072,7 +8539,9 @@ class CodeLensRegistrationOptions
 
   factory CodeLensRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -7089,7 +8558,7 @@ class CodeLensRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// Code lens has a resolve provider as well.
   @override
@@ -7225,7 +8694,9 @@ class DocumentLinkRegistrationOptions
 
   factory DocumentLinkRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final resolveProviderJson = json['resolveProvider'];
     final resolveProvider = (resolveProviderJson as bool?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -7242,7 +8713,7 @@ class DocumentLinkRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// Document links have a resolve provider as well.
   @override
@@ -7324,7 +8795,9 @@ class DocumentFormattingRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final workDoneProgressJson = json['workDoneProgress'];
     final workDoneProgress = (workDoneProgressJson as bool?);
 
@@ -7338,7 +8811,7 @@ class DocumentFormattingRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   @override
   final bool? workDoneProgress;
@@ -7424,7 +8897,9 @@ class DocumentRangeFormattingRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final rangesSupportJson = json['rangesSupport'];
     final rangesSupport = (rangesSupportJson as bool?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -7441,7 +8916,7 @@ class DocumentRangeFormattingRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// Whether the server supports formatting multiple ranges at once.
   /// @since 3.18.0 @proposed
@@ -7597,7 +9072,9 @@ class DocumentOnTypeFormattingRegistrationOptions
     Map<String, Object?> json,
   ) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final firstTriggerCharacterJson = json['firstTriggerCharacter']!;
     final firstTriggerCharacter = (firstTriggerCharacterJson as String);
     final moreTriggerCharacterJson = json['moreTriggerCharacter'];
@@ -7614,7 +9091,7 @@ class DocumentOnTypeFormattingRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// A character on which formatting should be triggered, like `{`.
   @override
@@ -7703,7 +9180,9 @@ class RenameRegistrationOptions
 
   factory RenameRegistrationOptions.fromJson(Map<String, Object?> json) {
     final documentSelectorJson = json['documentSelector']!;
-    final documentSelector = (documentSelectorJson as DocumentSelectorBase);
+    final documentSelector =
+        (documentSelectorJson
+            as TextDocumentRegistrationOptionsDocumentSelectorBase);
     final prepareProviderJson = json['prepareProvider'];
     final prepareProvider = (prepareProviderJson as bool?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -7720,7 +9199,7 @@ class RenameRegistrationOptions
   /// A document selector to identify the scope of the registration. If set
   /// to null the document selector provided on the client side will be used.
   @override
-  final DocumentSelectorBase documentSelector;
+  final TextDocumentRegistrationOptionsDocumentSelectorBase documentSelector;
 
   /// Renames should be checked and tested before being executed.
   /// @since version 3.12.0
@@ -8798,7 +10277,7 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
       (legendJson as Map<String, Object?>),
     );
     final fullJson = json['full'];
-    final full = (fullJson as FullBase?);
+    final full = (fullJson as SemanticTokensOptionsFullBase?);
     final rangeJson = json['range'];
     final range = (rangeJson as RangeBase?);
     final workDoneProgressJson = json['workDoneProgress'];
@@ -8817,7 +10296,7 @@ class SemanticTokensOptions implements WorkDoneProgressOptions {
 
   /// Represents a union type.
   /// Server supports providing semantic tokens for a full document.
-  final FullBase? full;
+  final SemanticTokensOptionsFullBase? full;
 
   /// Represents a union type.
   /// Server supports providing semantic tokens for a specific range of a
@@ -8946,7 +10425,7 @@ class TextDocumentEdit implements ToJson {
       (textDocumentJson as Map<String, Object?>),
     );
     final editsJson = json['edits']!;
-    final edits = (editsJson as List<EditsBase>);
+    final edits = (editsJson as List<TextDocumentEditEditsBase>);
 
     return TextDocumentEdit(textDocument: textDocument, edits: edits);
   }
@@ -8957,7 +10436,7 @@ class TextDocumentEdit implements ToJson {
   /// The edits to be applied.
   /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
   /// client capability.
-  final List<EditsBase> edits;
+  final List<TextDocumentEditEditsBase> edits;
 
   @override
   Map<String, Object?> toJson() {
@@ -10387,7 +11866,7 @@ class _InitializeParams implements WorkDoneProgressParams {
     final processIdJson = json['processId']!;
     final processId = (processIdJson as ProcessIdOrVersionBase);
     final rootUriJson = json['rootUri']!;
-    final rootUri = (rootUriJson as RootUriBase);
+    final rootUri = (rootUriJson as _InitializeParamsRootUriBase);
     final capabilitiesJson = json['capabilities']!;
     final capabilities = ClientCapabilities.fromJson(
       (capabilitiesJson as Map<String, Object?>),
@@ -10397,7 +11876,7 @@ class _InitializeParams implements WorkDoneProgressParams {
     final initializationOptionsJson = json['initializationOptions'];
     final initializationOptions = (initializationOptionsJson as LSPAny?);
     final rootPathJson = json['rootPath'];
-    final rootPath = (rootPathJson as RootPathBase?);
+    final rootPath = (rootPathJson as _InitializeParamsRootPathBase?);
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
@@ -10428,7 +11907,7 @@ class _InitializeParams implements WorkDoneProgressParams {
   /// The rootUri of the workspace. Is null if no folder is open. If both
   /// `rootPath` and `rootUri` are set `rootUri` wins.
   /// @deprecated in favour of workspaceFolders.
-  final RootUriBase rootUri;
+  final _InitializeParamsRootUriBase rootUri;
 
   /// The capabilities provided by the client (editor or tool)
   final ClientCapabilities capabilities;
@@ -10442,7 +11921,7 @@ class _InitializeParams implements WorkDoneProgressParams {
   /// Represents a union type.
   /// The rootPath of the workspace. Is null if no folder is open.
   /// @deprecated in favour of rootUri.
-  final RootPathBase? rootPath;
+  final _InitializeParamsRootPathBase? rootPath;
 
   /// The locale the client is currently showing the user interface in. This
   /// must not necessarily be the locale of the operating system.
@@ -10482,7 +11961,9 @@ class WorkspaceFoldersInitializeParams implements ToJson {
 
   factory WorkspaceFoldersInitializeParams.fromJson(Map<String, Object?> json) {
     final workspaceFoldersJson = json['workspaceFolders'];
-    final workspaceFolders = (workspaceFoldersJson as WorkspaceFoldersBase?);
+    final workspaceFolders =
+        (workspaceFoldersJson
+            as WorkspaceFoldersInitializeParamsWorkspaceFoldersBase?);
 
     return WorkspaceFoldersInitializeParams(workspaceFolders: workspaceFolders);
   }
@@ -10493,7 +11974,7 @@ class WorkspaceFoldersInitializeParams implements ToJson {
   /// folders. It can be `null` if the client supports workspace folders but
   /// none are configured.
   /// @since 3.6.0
-  final WorkspaceFoldersBase? workspaceFolders;
+  final WorkspaceFoldersInitializeParamsWorkspaceFoldersBase? workspaceFolders;
 
   @override
   Map<String, Object?> toJson() {
@@ -10549,16 +12030,19 @@ class ServerCapabilities implements ToJson {
   factory ServerCapabilities.fromJson(Map<String, Object?> json) {
     final workspaceSymbolProviderJson = json['workspaceSymbolProvider'];
     final workspaceSymbolProvider =
-        (workspaceSymbolProviderJson as WorkspaceSymbolProviderBase?);
+        (workspaceSymbolProviderJson
+            as ServerCapabilitiesWorkspaceSymbolProviderBase?);
     final documentHighlightProviderJson = json['documentHighlightProvider'];
     final documentHighlightProvider =
-        (documentHighlightProviderJson as DocumentHighlightProviderBase?);
+        (documentHighlightProviderJson
+            as ServerCapabilitiesDocumentHighlightProviderBase?);
     final documentFormattingProviderJson = json['documentFormattingProvider'];
     final documentFormattingProvider =
-        (documentFormattingProviderJson as DocumentFormattingProviderBase?);
+        (documentFormattingProviderJson
+            as ServerCapabilitiesDocumentFormattingProviderBase?);
     final codeActionProviderJson = json['codeActionProvider'];
     final codeActionProvider =
-        (codeActionProviderJson as CodeActionProviderBase?);
+        (codeActionProviderJson as ServerCapabilitiesCodeActionProviderBase?);
     final completionProviderJson = json['completionProvider'];
     final completionProvider = (completionProviderJson as CompletionOptions?);
     final workspaceJson = json['workspace'];
@@ -10570,39 +12054,48 @@ class ServerCapabilities implements ToJson {
             })?);
     final inlineCompletionProviderJson = json['inlineCompletionProvider'];
     final inlineCompletionProvider =
-        (inlineCompletionProviderJson as InlineCompletionProviderBase?);
+        (inlineCompletionProviderJson
+            as ServerCapabilitiesInlineCompletionProviderBase?);
     final diagnosticProviderJson = json['diagnosticProvider'];
     final diagnosticProvider =
-        (diagnosticProviderJson as DiagnosticProviderBase?);
+        (diagnosticProviderJson as ServerCapabilitiesDiagnosticProviderBase?);
     final inlayHintProviderJson = json['inlayHintProvider'];
-    final inlayHintProvider = (inlayHintProviderJson as InlayHintProviderBase?);
+    final inlayHintProvider =
+        (inlayHintProviderJson as ServerCapabilitiesInlayHintProviderBase?);
     final definitionProviderJson = json['definitionProvider'];
     final definitionProvider =
-        (definitionProviderJson as DefinitionProviderBase?);
+        (definitionProviderJson as ServerCapabilitiesDefinitionProviderBase?);
     final declarationProviderJson = json['declarationProvider'];
     final declarationProvider =
-        (declarationProviderJson as DeclarationProviderBase?);
+        (declarationProviderJson as ServerCapabilitiesDeclarationProviderBase?);
     final monikerProviderJson = json['monikerProvider'];
-    final monikerProvider = (monikerProviderJson as MonikerProviderBase?);
+    final monikerProvider =
+        (monikerProviderJson as ServerCapabilitiesMonikerProviderBase?);
     final semanticTokensProviderJson = json['semanticTokensProvider'];
     final semanticTokensProvider =
-        (semanticTokensProviderJson as SemanticTokensProviderBase?);
+        (semanticTokensProviderJson
+            as ServerCapabilitiesSemanticTokensProviderBase?);
     final linkedEditingRangeProviderJson = json['linkedEditingRangeProvider'];
     final linkedEditingRangeProvider =
-        (linkedEditingRangeProviderJson as LinkedEditingRangeProviderBase?);
+        (linkedEditingRangeProviderJson
+            as ServerCapabilitiesLinkedEditingRangeProviderBase?);
     final callHierarchyProviderJson = json['callHierarchyProvider'];
     final callHierarchyProvider =
-        (callHierarchyProviderJson as CallHierarchyProviderBase?);
+        (callHierarchyProviderJson
+            as ServerCapabilitiesCallHierarchyProviderBase?);
     final executeCommandProviderJson = json['executeCommandProvider'];
     final executeCommandProvider =
         (executeCommandProviderJson as ExecuteCommandOptions?);
     final textDocumentSyncJson = json['textDocumentSync'];
-    final textDocumentSync = (textDocumentSyncJson as TextDocumentSyncBase?);
+    final textDocumentSync =
+        (textDocumentSyncJson as ServerCapabilitiesTextDocumentSyncBase?);
     final foldingRangeProviderJson = json['foldingRangeProvider'];
     final foldingRangeProvider =
-        (foldingRangeProviderJson as FoldingRangeProviderBase?);
+        (foldingRangeProviderJson
+            as ServerCapabilitiesFoldingRangeProviderBase?);
     final renameProviderJson = json['renameProvider'];
-    final renameProvider = (renameProviderJson as RenameProviderBase?);
+    final renameProvider =
+        (renameProviderJson as ServerCapabilitiesRenameProviderBase?);
     final documentOnTypeFormattingProviderJson =
         json['documentOnTypeFormattingProvider'];
     final documentOnTypeFormattingProvider =
@@ -10612,14 +12105,16 @@ class ServerCapabilities implements ToJson {
         json['documentRangeFormattingProvider'];
     final documentRangeFormattingProvider =
         (documentRangeFormattingProviderJson
-            as DocumentRangeFormattingProviderBase?);
+            as ServerCapabilitiesDocumentRangeFormattingProviderBase?);
     final experimentalJson = json['experimental'];
     final experimental = (experimentalJson as LSPAny?);
     final selectionRangeProviderJson = json['selectionRangeProvider'];
     final selectionRangeProvider =
-        (selectionRangeProviderJson as SelectionRangeProviderBase?);
+        (selectionRangeProviderJson
+            as ServerCapabilitiesSelectionRangeProviderBase?);
     final colorProviderJson = json['colorProvider'];
-    final colorProvider = (colorProviderJson as ColorProviderBase?);
+    final colorProvider =
+        (colorProviderJson as ServerCapabilitiesColorProviderBase?);
     final documentLinkProviderJson = json['documentLinkProvider'];
     final documentLinkProvider =
         (documentLinkProviderJson as DocumentLinkOptions?);
@@ -10627,32 +12122,38 @@ class ServerCapabilities implements ToJson {
     final codeLensProvider = (codeLensProviderJson as CodeLensOptions?);
     final notebookDocumentSyncJson = json['notebookDocumentSync'];
     final notebookDocumentSync =
-        (notebookDocumentSyncJson as NotebookDocumentSyncBase?);
+        (notebookDocumentSyncJson
+            as ServerCapabilitiesNotebookDocumentSyncBase?);
     final documentSymbolProviderJson = json['documentSymbolProvider'];
     final documentSymbolProvider =
-        (documentSymbolProviderJson as DocumentSymbolProviderBase?);
+        (documentSymbolProviderJson
+            as ServerCapabilitiesDocumentSymbolProviderBase?);
     final positionEncodingJson = json['positionEncoding'];
     final positionEncoding = (positionEncodingJson as PositionEncodingKind?);
     final referencesProviderJson = json['referencesProvider'];
     final referencesProvider =
-        (referencesProviderJson as ReferencesProviderBase?);
+        (referencesProviderJson as ServerCapabilitiesReferencesProviderBase?);
     final implementationProviderJson = json['implementationProvider'];
     final implementationProvider =
-        (implementationProviderJson as ImplementationProviderBase?);
+        (implementationProviderJson
+            as ServerCapabilitiesImplementationProviderBase?);
     final typeDefinitionProviderJson = json['typeDefinitionProvider'];
     final typeDefinitionProvider =
-        (typeDefinitionProviderJson as TypeDefinitionProviderBase?);
+        (typeDefinitionProviderJson
+            as ServerCapabilitiesTypeDefinitionProviderBase?);
     final inlineValueProviderJson = json['inlineValueProvider'];
     final inlineValueProvider =
-        (inlineValueProviderJson as InlineValueProviderBase?);
+        (inlineValueProviderJson as ServerCapabilitiesInlineValueProviderBase?);
     final typeHierarchyProviderJson = json['typeHierarchyProvider'];
     final typeHierarchyProvider =
-        (typeHierarchyProviderJson as TypeHierarchyProviderBase?);
+        (typeHierarchyProviderJson
+            as ServerCapabilitiesTypeHierarchyProviderBase?);
     final signatureHelpProviderJson = json['signatureHelpProvider'];
     final signatureHelpProvider =
         (signatureHelpProviderJson as SignatureHelpOptions?);
     final hoverProviderJson = json['hoverProvider'];
-    final hoverProvider = (hoverProviderJson as HoverProviderBase?);
+    final hoverProvider =
+        (hoverProviderJson as ServerCapabilitiesHoverProviderBase?);
 
     return ServerCapabilities(
       workspaceSymbolProvider: workspaceSymbolProvider,
@@ -10696,21 +12197,23 @@ class ServerCapabilities implements ToJson {
 
   /// Represents a union type.
   /// The server provides workspace symbol support.
-  final WorkspaceSymbolProviderBase? workspaceSymbolProvider;
+  final ServerCapabilitiesWorkspaceSymbolProviderBase? workspaceSymbolProvider;
 
   /// Represents a union type.
   /// The server provides document highlight support.
-  final DocumentHighlightProviderBase? documentHighlightProvider;
+  final ServerCapabilitiesDocumentHighlightProviderBase?
+  documentHighlightProvider;
 
   /// Represents a union type.
   /// The server provides document formatting.
-  final DocumentFormattingProviderBase? documentFormattingProvider;
+  final ServerCapabilitiesDocumentFormattingProviderBase?
+  documentFormattingProvider;
 
   /// Represents a union type.
   /// The server provides code actions. CodeActionOptions may only be
   /// specified if the client states that it supports
   /// `codeActionLiteralSupport` in its initial `initialize` request.
-  final CodeActionProviderBase? codeActionProvider;
+  final ServerCapabilitiesCodeActionProviderBase? codeActionProvider;
 
   /// The server provides completion support.
   final CompletionOptions? completionProvider;
@@ -10725,45 +12228,47 @@ class ServerCapabilities implements ToJson {
   /// Represents a union type.
   /// Inline completion options used during static registration.
   /// @since 3.18.0 @proposed
-  final InlineCompletionProviderBase? inlineCompletionProvider;
+  final ServerCapabilitiesInlineCompletionProviderBase?
+  inlineCompletionProvider;
 
   /// Represents a union type.
   /// The server has support for pull model diagnostics.
   /// @since 3.17.0
-  final DiagnosticProviderBase? diagnosticProvider;
+  final ServerCapabilitiesDiagnosticProviderBase? diagnosticProvider;
 
   /// Represents a union type.
   /// The server provides inlay hints.
   /// @since 3.17.0
-  final InlayHintProviderBase? inlayHintProvider;
+  final ServerCapabilitiesInlayHintProviderBase? inlayHintProvider;
 
   /// Represents a union type.
   /// The server provides goto definition support.
-  final DefinitionProviderBase? definitionProvider;
+  final ServerCapabilitiesDefinitionProviderBase? definitionProvider;
 
   /// Represents a union type.
   /// The server provides Goto Declaration support.
-  final DeclarationProviderBase? declarationProvider;
+  final ServerCapabilitiesDeclarationProviderBase? declarationProvider;
 
   /// Represents a union type.
   /// The server provides moniker support.
   /// @since 3.16.0
-  final MonikerProviderBase? monikerProvider;
+  final ServerCapabilitiesMonikerProviderBase? monikerProvider;
 
   /// Represents a union type.
   /// The server provides semantic tokens support.
   /// @since 3.16.0
-  final SemanticTokensProviderBase? semanticTokensProvider;
+  final ServerCapabilitiesSemanticTokensProviderBase? semanticTokensProvider;
 
   /// Represents a union type.
   /// The server provides linked editing range support.
   /// @since 3.16.0
-  final LinkedEditingRangeProviderBase? linkedEditingRangeProvider;
+  final ServerCapabilitiesLinkedEditingRangeProviderBase?
+  linkedEditingRangeProvider;
 
   /// Represents a union type.
   /// The server provides call hierarchy support.
   /// @since 3.16.0
-  final CallHierarchyProviderBase? callHierarchyProvider;
+  final ServerCapabilitiesCallHierarchyProviderBase? callHierarchyProvider;
 
   /// The server provides execute command support.
   final ExecuteCommandOptions? executeCommandProvider;
@@ -10772,35 +12277,36 @@ class ServerCapabilities implements ToJson {
   /// Defines how text documents are synced. Is either a detailed structure
   /// defining each notification or for backwards compatibility the
   /// TextDocumentSyncKind number.
-  final TextDocumentSyncBase? textDocumentSync;
+  final ServerCapabilitiesTextDocumentSyncBase? textDocumentSync;
 
   /// Represents a union type.
   /// The server provides folding provider support.
-  final FoldingRangeProviderBase? foldingRangeProvider;
+  final ServerCapabilitiesFoldingRangeProviderBase? foldingRangeProvider;
 
   /// Represents a union type.
   /// The server provides rename support. RenameOptions may only be specified
   /// if the client states that it supports `prepareSupport` in its initial
   /// `initialize` request.
-  final RenameProviderBase? renameProvider;
+  final ServerCapabilitiesRenameProviderBase? renameProvider;
 
   /// The server provides document formatting on typing.
   final DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
 
   /// Represents a union type.
   /// The server provides document range formatting.
-  final DocumentRangeFormattingProviderBase? documentRangeFormattingProvider;
+  final ServerCapabilitiesDocumentRangeFormattingProviderBase?
+  documentRangeFormattingProvider;
 
   /// Experimental server capabilities.
   final LSPAny? experimental;
 
   /// Represents a union type.
   /// The server provides selection range support.
-  final SelectionRangeProviderBase? selectionRangeProvider;
+  final ServerCapabilitiesSelectionRangeProviderBase? selectionRangeProvider;
 
   /// Represents a union type.
   /// The server provides color provider support.
-  final ColorProviderBase? colorProvider;
+  final ServerCapabilitiesColorProviderBase? colorProvider;
 
   /// The server provides document link support.
   final DocumentLinkOptions? documentLinkProvider;
@@ -10811,11 +12317,11 @@ class ServerCapabilities implements ToJson {
   /// Represents a union type.
   /// Defines how notebook documents are synced.
   /// @since 3.17.0
-  final NotebookDocumentSyncBase? notebookDocumentSync;
+  final ServerCapabilitiesNotebookDocumentSyncBase? notebookDocumentSync;
 
   /// Represents a union type.
   /// The server provides document symbol support.
-  final DocumentSymbolProviderBase? documentSymbolProvider;
+  final ServerCapabilitiesDocumentSymbolProviderBase? documentSymbolProvider;
 
   /// The position encoding the server picked from the encodings offered by
   /// the client via the client capability `general.positionEncodings`.
@@ -10827,32 +12333,32 @@ class ServerCapabilities implements ToJson {
 
   /// Represents a union type.
   /// The server provides find references support.
-  final ReferencesProviderBase? referencesProvider;
+  final ServerCapabilitiesReferencesProviderBase? referencesProvider;
 
   /// Represents a union type.
   /// The server provides Goto Implementation support.
-  final ImplementationProviderBase? implementationProvider;
+  final ServerCapabilitiesImplementationProviderBase? implementationProvider;
 
   /// Represents a union type.
   /// The server provides Goto Type Definition support.
-  final TypeDefinitionProviderBase? typeDefinitionProvider;
+  final ServerCapabilitiesTypeDefinitionProviderBase? typeDefinitionProvider;
 
   /// Represents a union type.
   /// The server provides inline values.
   /// @since 3.17.0
-  final InlineValueProviderBase? inlineValueProvider;
+  final ServerCapabilitiesInlineValueProviderBase? inlineValueProvider;
 
   /// Represents a union type.
   /// The server provides type hierarchy support.
   /// @since 3.17.0
-  final TypeHierarchyProviderBase? typeHierarchyProvider;
+  final ServerCapabilitiesTypeHierarchyProviderBase? typeHierarchyProvider;
 
   /// The server provides signature help support.
   final SignatureHelpOptions? signatureHelpProvider;
 
   /// Represents a union type.
   /// The server provides hover support.
-  final HoverProviderBase? hoverProvider;
+  final ServerCapabilitiesHoverProviderBase? hoverProvider;
 
   @override
   Map<String, Object?> toJson() {
@@ -12779,7 +14285,7 @@ class TextDocumentSyncOptions implements ToJson {
 
   factory TextDocumentSyncOptions.fromJson(Map<String, Object?> json) {
     final saveJson = json['save'];
-    final save = (saveJson as SaveBase?);
+    final save = (saveJson as TextDocumentSyncOptionsSaveBase?);
     final willSaveWaitUntilJson = json['willSaveWaitUntil'];
     final willSaveWaitUntil = (willSaveWaitUntilJson as bool?);
     final willSaveJson = json['willSave'];
@@ -12801,7 +14307,7 @@ class TextDocumentSyncOptions implements ToJson {
   /// Represents a union type.
   /// If present save notifications are sent to the server. If omitted the
   /// notification should not be sent.
-  final SaveBase? save;
+  final TextDocumentSyncOptionsSaveBase? save;
 
   /// If present will save wait until requests are sent to the server. If
   /// omitted the request should not be sent.
@@ -12848,7 +14354,8 @@ class NotebookDocumentSyncOptions implements ToJson {
   factory NotebookDocumentSyncOptions.fromJson(Map<String, Object?> json) {
     final notebookSelectorJson = json['notebookSelector']!;
     final notebookSelector =
-        (notebookSelectorJson as List<NotebookSelectorBase>);
+        (notebookSelectorJson
+            as List<NotebookDocumentSyncOptionsNotebookSelectorBase>);
     final saveJson = json['save'];
     final save = (saveJson as bool?);
 
@@ -12859,7 +14366,7 @@ class NotebookDocumentSyncOptions implements ToJson {
   }
 
   /// The notebooks to be synced
-  final List<NotebookSelectorBase> notebookSelector;
+  final List<NotebookDocumentSyncOptionsNotebookSelectorBase> notebookSelector;
 
   /// Whether save notification should be forwarded to the server. Will only
   /// be honored if mode === `notebook`.
@@ -12891,7 +14398,8 @@ class NotebookDocumentSyncRegistrationOptions
   ) {
     final notebookSelectorJson = json['notebookSelector']!;
     final notebookSelector =
-        (notebookSelectorJson as List<NotebookSelectorBase>);
+        (notebookSelectorJson
+            as List<NotebookDocumentSyncOptionsNotebookSelectorBase>);
     final idJson = json['id'];
     final id = (idJson as String?);
     final saveJson = json['save'];
@@ -12906,7 +14414,7 @@ class NotebookDocumentSyncRegistrationOptions
 
   /// The notebooks to be synced
   @override
-  final List<NotebookSelectorBase> notebookSelector;
+  final List<NotebookDocumentSyncOptionsNotebookSelectorBase> notebookSelector;
 
   /// The id used to register the request. The id can be used to deregister
   /// the request again. See also Registration#id.
@@ -12941,7 +14449,8 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
   ) {
     final changeNotificationsJson = json['changeNotifications'];
     final changeNotifications =
-        (changeNotificationsJson as ChangeNotificationsBase?);
+        (changeNotificationsJson
+            as WorkspaceFoldersServerCapabilitiesChangeNotificationsBase?);
     final supportedJson = json['supported'];
     final supported = (supportedJson as bool?);
 
@@ -12958,7 +14467,8 @@ class WorkspaceFoldersServerCapabilities implements ToJson {
   /// notification is registered on the client side. The ID can be used to
   /// unregister for these events using the `client/unregisterCapability`
   /// request.
-  final ChangeNotificationsBase? changeNotifications;
+  final WorkspaceFoldersServerCapabilitiesChangeNotificationsBase?
+  changeNotifications;
 
   /// The server has support for workspace folders
   final bool? supported;
@@ -13107,7 +14617,7 @@ class ParameterInformation implements ToJson {
 
   factory ParameterInformation.fromJson(Map<String, Object?> json) {
     final labelJson = json['label']!;
-    final label = (labelJson as LabelBase);
+    final label = (labelJson as ParameterInformationLabelBase);
     final documentationJson = json['documentation'];
     final documentation = (documentationJson as TooltipOrDocumentationBase?);
 
@@ -13123,7 +14633,7 @@ class ParameterInformation implements ToJson {
   /// *Note*: a label of type string should be a substring of its containing
   /// signature label. Its intended use case is to highlight the parameter
   /// label part in the `SignatureInformation.label`.
-  final LabelBase label;
+  final ParameterInformationLabelBase label;
 
   /// Represents a union type.
   /// The human-readable doc-comment of this parameter. Will be shown in the
@@ -13149,7 +14659,8 @@ class NotebookCellTextDocumentFilter implements ToJson {
 
   factory NotebookCellTextDocumentFilter.fromJson(Map<String, Object?> json) {
     final notebookJson = json['notebook']!;
-    final notebook = (notebookJson as NotebookBase);
+    final notebook =
+        (notebookJson as NotebookCellTextDocumentFilterNotebookBase);
     final languageJson = json['language'];
     final language = (languageJson as String?);
 
@@ -13163,7 +14674,7 @@ class NotebookCellTextDocumentFilter implements ToJson {
   /// A filter that matches against the notebook containing the notebook
   /// cell. If a string value is provided it matches against the notebook
   /// type. '*' matches every notebook.
-  final NotebookBase notebook;
+  final NotebookCellTextDocumentFilterNotebookBase notebook;
 
   /// A language id like `python`.
   /// Will be matched against the language id of the notebook cell document.
@@ -13871,7 +15382,7 @@ class RelativePattern implements ToJson {
 
   factory RelativePattern.fromJson(Map<String, Object?> json) {
     final baseUriJson = json['baseUri']!;
-    final baseUri = (baseUriJson as BaseUriBase);
+    final baseUri = (baseUriJson as RelativePatternBaseUriBase);
     final patternJson = json['pattern']!;
     final pattern = (patternJson as Pattern);
 
@@ -13881,7 +15392,7 @@ class RelativePattern implements ToJson {
   /// Represents a union type.
   /// A workspace folder or a base URI to which this pattern will be matched
   /// against relatively.
-  final BaseUriBase baseUri;
+  final RelativePatternBaseUriBase baseUri;
 
   /// The actual glob pattern;
   final Pattern pattern;
@@ -15472,7 +16983,12 @@ class SemanticTokensClientCapabilities implements ToJson {
 
   factory SemanticTokensClientCapabilities.fromJson(Map<String, Object?> json) {
     final requestsJson = json['requests']!;
-    final requests = (requestsJson as ({RangeBase? range, FullBase? full}));
+    final requests =
+        (requestsJson
+            as ({
+              RangeBase? range,
+              SemanticTokensClientCapabilitiesFullBase? full,
+            }));
     final tokenTypesJson = json['tokenTypes']!;
     final tokenTypes = (tokenTypesJson as List<String>);
     final tokenModifiersJson = json['tokenModifiers']!;
@@ -15511,7 +17027,8 @@ class SemanticTokensClientCapabilities implements ToJson {
   /// `request.range` are both set to true but the server only provides a
   /// range provider the client might not render a minimap correctly or might
   /// even decide to not show any semantic tokens at all.
-  final ({RangeBase? range, FullBase? full}) requests;
+  final ({RangeBase? range, SemanticTokensClientCapabilitiesFullBase? full})
+  requests;
 
   /// The token types that the client supports.
   final List<String> tokenTypes;

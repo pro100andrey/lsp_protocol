@@ -41,7 +41,6 @@ final class SealedMap {
     // skip when value owner is Alias
     final filteredOrRefs = _orRefs.keys;
 
-
     final names = filteredOrRefs.map(resolveOrRefName).toList();
 
     return filteredOrRefs;
@@ -51,14 +50,26 @@ final class SealedMap {
     _collectSealedClasses(protocol);
   }
 
-  List<String> ownersForOrRef(OrRef orRef) {
-    final owners = _orRefs[orRef]!;
-
-    return owners.map(_resolveOwnerName).toList();
-  }
-
   List<String> typeNamesForOrRef(OrRef orRef) =>
       orRef.items.map(_resolveReferenceName).toList();
+
+  List<String> orTypesForOrRef(OrRef orRef) =>
+      orRef.items.map(resolveOneSimpleType).toList();
+
+  String resolveOneSimpleType(MetaReference ref) {
+    final name = ref
+        .when(
+          literalRef: (ref) => 'Literal',
+          typeRef: (ref) => ref.name,
+          orRef: resolveOrRefName,
+          arrayRef: (ref) => 'List',
+          baseRef: (ref) => ref.name,
+          tupleRef: (ref) => 'Tuple',
+        )
+        .upperFirstLetter();
+
+    return _renameMap[name] ?? name;
+  }
 
   String typeNameForOrRef(OrRef orRef) {
     final name = _resolveReferenceName(orRef);
@@ -151,6 +162,25 @@ final class SealedMap {
     return _renameMap[name] ?? name;
   }
 
+  String resolveOwnerName(OrOwner owner) => switch (owner) {
+    final StructOwner owner => owner.struct.name,
+    final TypeAliasOwner owner => owner.typeAlias.name,
+  };
+
+  List<OrOwner> ownersForOrRef(OrRef orRef) {
+    final owners = _orRefs[orRef]!;
+
+    return owners;
+  }
+
+  List<String> ownerNamesForOrRef(OrRef orRef) {
+    final owners = _orRefs[orRef]!;
+
+    final names = owners.map(_resolveOwnerName).toSet().toList();
+
+    return names;
+  }
+
   String resolveOrRefName(OrRef orRef) {
     final owners = _orRefs[orRef]!;
 
@@ -162,8 +192,12 @@ final class SealedMap {
       return alias.typeAlias.name;
     }
 
-    if (owners case [StructOwner(:final property)]) {
-      return _addOrPostfix(property.name.upperFirstLetter());
+    if (owners case [final StructOwner owner]) {
+      final ownerName = owner.property.name
+          .removeFirstLetter('_')
+          .upperFirstLetter();
+
+      return _addOrPostfix(owner.struct.name.upperFirstLetter() + ownerName);
     }
 
     final ownerNames = owners
@@ -175,11 +209,6 @@ final class SealedMap {
 
     return result;
   }
-
-  String _resolveOwnerName(OrOwner owner) => switch (owner) {
-    final StructOwner owner => '${owner.struct.name}(${owner.property.name})',
-    final TypeAliasOwner owner => '${owner.typeAlias.name}(Alias)',
-  };
 
   void _guardAgainstNestedOrRefs({
     required OrRef orRef,
@@ -196,6 +225,11 @@ final class SealedMap {
       }
     }
   }
+
+  String _resolveOwnerName(OrOwner owner) => switch (owner) {
+    final StructOwner owner => '${owner.struct.name}(${owner.property.name})',
+    final TypeAliasOwner owner => '${owner.typeAlias.name}(Alias)',
+  };
 }
 
 String _addOrPostfix(String name) => '${name}Base';
