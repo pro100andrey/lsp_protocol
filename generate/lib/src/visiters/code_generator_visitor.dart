@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 
 import '../extensions/string.dart';
 import '../generator_helper.dart';
@@ -97,6 +98,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     '// ignore_for_file: unnecessary_parenthesis',
     '// ignore_for_file: lines_longer_than_80_chars',
     '// ignore_for_file: unused_element',
+    '// ignore_for_file: avoid_positional_boolean_parameters',
   ];
 
   @override
@@ -368,7 +370,7 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         TypeReference((p0) {
           p0
             ..symbol = 'T'
-            ..bound = _toJsonRef
+            // ..bound = _toJsonRef
             ..isNullable = false;
         }),
       )
@@ -404,9 +406,9 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         mb
           ..name = _toJsonMethodRef.symbol
           ..annotations.add(_overrideRef)
-          ..returns = _mapJsonRef
-          ..lambda = true
-          ..body = refer('value').property('toJson').call([]).code;
+          ..returns = _mapJsonRef;
+        // ..lambda = true;
+        // ..body = refer('value').property('toJson').call([]).code;
       }),
     );
   });
@@ -432,44 +434,78 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   });
 
   List<Spec> generateSubclassesForOrClass(OrRef symbol) {
-    final baseClassName = _sealedMap.typeNameForOrRef(symbol);
+    final baseClassName = _sealedMap.typeNameForOrRef(
+      symbol,
+      withPostfix: false,
+    );
+
+    final baseClassWithPostfix = _sealedMap.typeNameForOrRef(
+      symbol,
+    );
+
     final owners = _sealedMap.ownersForOrRef(symbol);
 
     final typeNamesForOrRef = _sealedMap.orTypesForOrRef(symbol);
 
-    final result = symbol.items.map(
-      (owner) {
+    final result = symbol.items.mapIndexed(
+      (index, owner) {
         final ownerType = owner.resolveType(_typeResolverVisitor);
         final simpleType = _sealedMap.resolveOneSimpleType(owner);
 
         print(ownerType);
 
-        return Class((cb) {
+        final field = Field((fb) {
+          fb
+            ..annotations.add(_overrideRef)
+            ..name = 'value'
+            ..modifier = FieldModifier.final$
+            ..type = refer(ownerType);
+        });
+
+        final constructor = Constructor((cb) {
           cb
-            ..name = '$simpleType$baseClassName'
-            ..extend = refer(baseClassName)
-            ..fields.add(
-              Field((fb) {
-                fb
-                  ..annotations.add(_overrideRef)
+            ..constant = true
+            ..requiredParameters.add(
+              Parameter((pb) {
+                pb
                   ..name = 'value'
-                  ..modifier = FieldModifier.final$
-                  ..type = refer(ownerType);
-              }),
-            )
-            ..constructors.add(
-              Constructor((cb) {
-                cb
-                  ..constant = true
-                  ..requiredParameters.add(
-                    Parameter((pb) {
-                      pb
-                        ..name = 'value'
-                        ..toThis = true;
-                    }),
-                  );
+                  ..toThis = true;
               }),
             );
+        });
+
+        final toJsonMethod = Method((mb) {
+          mb
+            ..name = _toJsonMethodRef.symbol
+            ..annotations.add(_overrideRef)
+            ..returns = _mapJsonRef
+            ..body = () {
+              final builder = BlockBuilder()
+                ..addExpression(
+                  declareFinal(
+                    'json',
+                  ).assign(
+                    literalMap({}, _stringRef, refer('Object?')),
+                  ),
+                )
+                ..addExpression(_jsonRef.returned);
+
+              return builder.build();
+            }();
+        });
+
+        return Class((cb) {
+          cb
+            ..docs.addAll([
+              '/// Represents a subclass of $baseClassName.',
+              '/// Type: $simpleType',
+            ])
+            ..name = '${baseClassName}V${index + 1}'
+            ..extend = refer(baseClassWithPostfix)
+            ..implements.add(_toJsonRef)
+            ..fields.add(field)
+            ..constructors.add(constructor)
+            ..methods.add(toJsonMethod);
         });
       },
     );

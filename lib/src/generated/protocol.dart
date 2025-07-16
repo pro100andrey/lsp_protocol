@@ -5,6 +5,7 @@
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: unused_element
+// ignore_for_file: avoid_positional_boolean_parameters
 library; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import '../utils/enum_helpers.dart' as _i1;
@@ -17,10 +18,12 @@ abstract class ToJson {
 }
 
 /// Represents a base class for OrRef types.
-sealed class BaseOr<T> {
+sealed class BaseOr<T> implements ToJson {
   const BaseOr();
 
   T get value;
+  @override
+  Map<String, Object?> toJson();
 }
 
 /// The definition of a symbol represented as one or many {@link Location
@@ -160,18 +163,34 @@ sealed class DefinitionBase extends BaseOr {
   const DefinitionBase();
 }
 
-class LocationDefinitionBase extends DefinitionBase {
-  const LocationDefinitionBase(this.value);
+/// Represents a subclass of Definition.
+/// Type: Location
+class DefinitionV1 extends DefinitionBase implements ToJson {
+  const DefinitionV1(this.value);
 
   @override
   final Location value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class ListDefinitionBase extends DefinitionBase {
-  const ListDefinitionBase(this.value);
+/// Represents a subclass of Definition.
+/// Type: List
+class DefinitionV2 extends DefinitionBase implements ToJson {
+  const DefinitionV2(this.value);
 
   @override
   final List<Location> value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: LSPAny(Alias)
@@ -188,60 +207,124 @@ sealed class LSPAnyBase extends BaseOr {
   const LSPAnyBase();
 }
 
-class LSPObjectLSPAnyBase extends LSPAnyBase {
-  const LSPObjectLSPAnyBase(this.value);
+/// Represents a subclass of LSPAny.
+/// Type: LSPObject
+class LSPAnyV1 extends LSPAnyBase implements ToJson {
+  const LSPAnyV1(this.value);
 
   @override
   final LSPObject value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LSPArrayLSPAnyBase extends LSPAnyBase {
-  const LSPArrayLSPAnyBase(this.value);
+/// Represents a subclass of LSPAny.
+/// Type: LSPArray
+class LSPAnyV2 extends LSPAnyBase implements ToJson {
+  const LSPAnyV2(this.value);
 
   @override
   final LSPArray value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class StringLSPAnyBase extends LSPAnyBase {
-  const StringLSPAnyBase(this.value);
+/// Represents a subclass of LSPAny.
+/// Type: String
+class LSPAnyV3 extends LSPAnyBase implements ToJson {
+  const LSPAnyV3(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class IntegerLSPAnyBase extends LSPAnyBase {
-  const IntegerLSPAnyBase(this.value);
+/// Represents a subclass of LSPAny.
+/// Type: Integer
+class LSPAnyV4 extends LSPAnyBase implements ToJson {
+  const LSPAnyV4(this.value);
 
   @override
   final int value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class UintegerLSPAnyBase extends LSPAnyBase {
-  const UintegerLSPAnyBase(this.value);
+/// Represents a subclass of LSPAny.
+/// Type: Uinteger
+class LSPAnyV5 extends LSPAnyBase implements ToJson {
+  const LSPAnyV5(this.value);
 
   @override
   final int value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DecimalLSPAnyBase extends LSPAnyBase {
-  const DecimalLSPAnyBase(this.value);
+/// Represents a subclass of LSPAny.
+/// Type: Decimal
+class LSPAnyV6 extends LSPAnyBase implements ToJson {
+  const LSPAnyV6(this.value);
 
   @override
   final double value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class BooleanLSPAnyBase extends LSPAnyBase {
-  const BooleanLSPAnyBase(this.value);
+/// Represents a subclass of LSPAny.
+/// Type: Boolean
+class LSPAnyV7 extends LSPAnyBase implements ToJson {
+  const LSPAnyV7(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class NullLSPAnyBase extends LSPAnyBase {
-  const NullLSPAnyBase(this.value);
+/// Represents a subclass of LSPAny.
+/// Type: Null
+class LSPAnyV8 extends LSPAnyBase implements ToJson {
+  const LSPAnyV8(this.value);
 
   @override
   final Null value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: InlineValue(Alias)
@@ -253,25 +336,49 @@ sealed class InlineValueBase extends BaseOr {
   const InlineValueBase();
 }
 
-class InlineValueTextInlineValueBase extends InlineValueBase {
-  const InlineValueTextInlineValueBase(this.value);
+/// Represents a subclass of InlineValue.
+/// Type: InlineValueText
+class InlineValueV1 extends InlineValueBase implements ToJson {
+  const InlineValueV1(this.value);
 
   @override
   final InlineValueText value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class InlineValueVariableLookupInlineValueBase extends InlineValueBase {
-  const InlineValueVariableLookupInlineValueBase(this.value);
+/// Represents a subclass of InlineValue.
+/// Type: InlineValueVariableLookup
+class InlineValueV2 extends InlineValueBase implements ToJson {
+  const InlineValueV2(this.value);
 
   @override
   final InlineValueVariableLookup value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class InlineValueEvaluatableExpressionInlineValueBase extends InlineValueBase {
-  const InlineValueEvaluatableExpressionInlineValueBase(this.value);
+/// Represents a subclass of InlineValue.
+/// Type: InlineValueEvaluatableExpression
+class InlineValueV3 extends InlineValueBase implements ToJson {
+  const InlineValueV3(this.value);
 
   @override
   final InlineValueEvaluatableExpression value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: DocumentDiagnosticReport(Alias)
@@ -282,24 +389,36 @@ sealed class DocumentDiagnosticReportBase extends BaseOr {
   const DocumentDiagnosticReportBase();
 }
 
-class RelatedFullDocumentDiagnosticReportDocumentDiagnosticReportBase
-    extends DocumentDiagnosticReportBase {
-  const RelatedFullDocumentDiagnosticReportDocumentDiagnosticReportBase(
-    this.value,
-  );
+/// Represents a subclass of DocumentDiagnosticReport.
+/// Type: RelatedFullDocumentDiagnosticReport
+class DocumentDiagnosticReportV1 extends DocumentDiagnosticReportBase
+    implements ToJson {
+  const DocumentDiagnosticReportV1(this.value);
 
   @override
   final RelatedFullDocumentDiagnosticReport value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class RelatedUnchangedDocumentDiagnosticReportDocumentDiagnosticReportBase
-    extends DocumentDiagnosticReportBase {
-  const RelatedUnchangedDocumentDiagnosticReportDocumentDiagnosticReportBase(
-    this.value,
-  );
+/// Represents a subclass of DocumentDiagnosticReport.
+/// Type: RelatedUnchangedDocumentDiagnosticReport
+class DocumentDiagnosticReportV2 extends DocumentDiagnosticReportBase
+    implements ToJson {
+  const DocumentDiagnosticReportV2(this.value);
 
   @override
   final RelatedUnchangedDocumentDiagnosticReport value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: PrepareRenameResult(Alias)
@@ -311,25 +430,49 @@ sealed class PrepareRenameResultBase extends BaseOr {
   const PrepareRenameResultBase();
 }
 
-class RangePrepareRenameResultBase extends PrepareRenameResultBase {
-  const RangePrepareRenameResultBase(this.value);
+/// Represents a subclass of PrepareRenameResult.
+/// Type: Range
+class PrepareRenameResultV1 extends PrepareRenameResultBase implements ToJson {
+  const PrepareRenameResultV1(this.value);
 
   @override
   final Range value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralPrepareRenameResultBase extends PrepareRenameResultBase {
-  const LiteralPrepareRenameResultBase(this.value);
+/// Represents a subclass of PrepareRenameResult.
+/// Type: Literal
+class PrepareRenameResultV2 extends PrepareRenameResultBase implements ToJson {
+  const PrepareRenameResultV2(this.value);
 
   @override
   final ({Range range, String placeholder}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralPrepareRenameResultBase extends PrepareRenameResultBase {
-  const LiteralPrepareRenameResultBase(this.value);
+/// Represents a subclass of PrepareRenameResult.
+/// Type: Literal
+class PrepareRenameResultV3 extends PrepareRenameResultBase implements ToJson {
+  const PrepareRenameResultV3(this.value);
 
   @override
   final ({bool defaultBehavior}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ProgressToken(Alias)
@@ -342,18 +485,34 @@ sealed class ProgressTokenBase extends BaseOr {
   const ProgressTokenBase();
 }
 
-class IntegerProgressTokenBase extends ProgressTokenBase {
-  const IntegerProgressTokenBase(this.value);
+/// Represents a subclass of ProgressToken.
+/// Type: Integer
+class ProgressTokenV1 extends ProgressTokenBase implements ToJson {
+  const ProgressTokenV1(this.value);
 
   @override
   final int value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class StringProgressTokenBase extends ProgressTokenBase {
-  const StringProgressTokenBase(this.value);
+/// Represents a subclass of ProgressToken.
+/// Type: String
+class ProgressTokenV2 extends ProgressTokenBase implements ToJson {
+  const ProgressTokenV2(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: WorkspaceDocumentDiagnosticReport(Alias)
@@ -364,24 +523,38 @@ sealed class WorkspaceDocumentDiagnosticReportBase extends BaseOr {
   const WorkspaceDocumentDiagnosticReportBase();
 }
 
-class WorkspaceFullDocumentDiagnosticReportWorkspaceDocumentDiagnosticReportBase
-    extends WorkspaceDocumentDiagnosticReportBase {
-  const WorkspaceFullDocumentDiagnosticReportWorkspaceDocumentDiagnosticReportBase(
-    this.value,
-  );
+/// Represents a subclass of WorkspaceDocumentDiagnosticReport.
+/// Type: WorkspaceFullDocumentDiagnosticReport
+class WorkspaceDocumentDiagnosticReportV1
+    extends WorkspaceDocumentDiagnosticReportBase
+    implements ToJson {
+  const WorkspaceDocumentDiagnosticReportV1(this.value);
 
   @override
   final WorkspaceFullDocumentDiagnosticReport value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class WorkspaceUnchangedDocumentDiagnosticReportWorkspaceDocumentDiagnosticReportBase
-    extends WorkspaceDocumentDiagnosticReportBase {
-  const WorkspaceUnchangedDocumentDiagnosticReportWorkspaceDocumentDiagnosticReportBase(
-    this.value,
-  );
+/// Represents a subclass of WorkspaceDocumentDiagnosticReport.
+/// Type: WorkspaceUnchangedDocumentDiagnosticReport
+class WorkspaceDocumentDiagnosticReportV2
+    extends WorkspaceDocumentDiagnosticReportBase
+    implements ToJson {
+  const WorkspaceDocumentDiagnosticReportV2(this.value);
 
   @override
   final WorkspaceUnchangedDocumentDiagnosticReport value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: TextDocumentContentChangeEvent(Alias)
@@ -392,20 +565,38 @@ sealed class TextDocumentContentChangeEventBase extends BaseOr {
   const TextDocumentContentChangeEventBase();
 }
 
-class LiteralTextDocumentContentChangeEventBase
-    extends TextDocumentContentChangeEventBase {
-  const LiteralTextDocumentContentChangeEventBase(this.value);
+/// Represents a subclass of TextDocumentContentChangeEvent.
+/// Type: Literal
+class TextDocumentContentChangeEventV1
+    extends TextDocumentContentChangeEventBase
+    implements ToJson {
+  const TextDocumentContentChangeEventV1(this.value);
 
   @override
   final ({Range range, int? rangeLength, String text}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralTextDocumentContentChangeEventBase
-    extends TextDocumentContentChangeEventBase {
-  const LiteralTextDocumentContentChangeEventBase(this.value);
+/// Represents a subclass of TextDocumentContentChangeEvent.
+/// Type: Literal
+class TextDocumentContentChangeEventV2
+    extends TextDocumentContentChangeEventBase
+    implements ToJson {
+  const TextDocumentContentChangeEventV2(this.value);
 
   @override
   final ({String text}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: MarkedString(Alias)
@@ -416,41 +607,72 @@ sealed class MarkedStringBase extends BaseOr {
   const MarkedStringBase();
 }
 
-class StringMarkedStringBase extends MarkedStringBase {
-  const StringMarkedStringBase(this.value);
+/// Represents a subclass of MarkedString.
+/// Type: String
+class MarkedStringV1 extends MarkedStringBase implements ToJson {
+  const MarkedStringV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralMarkedStringBase extends MarkedStringBase {
-  const LiteralMarkedStringBase(this.value);
+/// Represents a subclass of MarkedString.
+/// Type: Literal
+class MarkedStringV2 extends MarkedStringBase implements ToJson {
+  const MarkedStringV2(this.value);
 
   @override
   final ({String language, String value}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: DocumentFilter(Alias)
 ///
-/// Type: TextDocumentFilterBase
+/// Type: TextDocumentFilter
 /// Type: NotebookCellTextDocumentFilter
 sealed class DocumentFilterBase extends BaseOr {
   const DocumentFilterBase();
 }
 
-class TextDocumentFilterBaseDocumentFilterBase extends DocumentFilterBase {
-  const TextDocumentFilterBaseDocumentFilterBase(this.value);
+/// Represents a subclass of DocumentFilter.
+/// Type: TextDocumentFilter
+class DocumentFilterV1 extends DocumentFilterBase implements ToJson {
+  const DocumentFilterV1(this.value);
 
   @override
   final TextDocumentFilter value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class NotebookCellTextDocumentFilterDocumentFilterBase
-    extends DocumentFilterBase {
-  const NotebookCellTextDocumentFilterDocumentFilterBase(this.value);
+/// Represents a subclass of DocumentFilter.
+/// Type: NotebookCellTextDocumentFilter
+class DocumentFilterV2 extends DocumentFilterBase implements ToJson {
+  const DocumentFilterV2(this.value);
 
   @override
   final NotebookCellTextDocumentFilter value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: GlobPattern(Alias)
@@ -461,18 +683,34 @@ sealed class GlobPatternBase extends BaseOr {
   const GlobPatternBase();
 }
 
-class PatternGlobPatternBase extends GlobPatternBase {
-  const PatternGlobPatternBase(this.value);
+/// Represents a subclass of GlobPattern.
+/// Type: Pattern
+class GlobPatternV1 extends GlobPatternBase implements ToJson {
+  const GlobPatternV1(this.value);
 
   @override
   final Pattern value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class RelativePatternGlobPatternBase extends GlobPatternBase {
-  const RelativePatternGlobPatternBase(this.value);
+/// Represents a subclass of GlobPattern.
+/// Type: RelativePattern
+class GlobPatternV2 extends GlobPatternBase implements ToJson {
+  const GlobPatternV2(this.value);
 
   @override
   final RelativePattern value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: TextDocumentFilter(Alias)
@@ -484,25 +722,49 @@ sealed class TextDocumentFilterBase extends BaseOr {
   const TextDocumentFilterBase();
 }
 
-class LiteralTextDocumentFilterBase extends TextDocumentFilterBase {
-  const LiteralTextDocumentFilterBase(this.value);
+/// Represents a subclass of TextDocumentFilter.
+/// Type: Literal
+class TextDocumentFilterV1 extends TextDocumentFilterBase implements ToJson {
+  const TextDocumentFilterV1(this.value);
 
   @override
   final ({String language, String? scheme, String? pattern}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralTextDocumentFilterBase extends TextDocumentFilterBase {
-  const LiteralTextDocumentFilterBase(this.value);
+/// Represents a subclass of TextDocumentFilter.
+/// Type: Literal
+class TextDocumentFilterV2 extends TextDocumentFilterBase implements ToJson {
+  const TextDocumentFilterV2(this.value);
 
   @override
   final ({String? language, String scheme, String? pattern}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralTextDocumentFilterBase extends TextDocumentFilterBase {
-  const LiteralTextDocumentFilterBase(this.value);
+/// Represents a subclass of TextDocumentFilter.
+/// Type: Literal
+class TextDocumentFilterV3 extends TextDocumentFilterBase implements ToJson {
+  const TextDocumentFilterV3(this.value);
 
   @override
   final ({String? language, String? scheme, String pattern}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: NotebookDocumentFilter(Alias)
@@ -514,25 +776,52 @@ sealed class NotebookDocumentFilterBase extends BaseOr {
   const NotebookDocumentFilterBase();
 }
 
-class LiteralNotebookDocumentFilterBase extends NotebookDocumentFilterBase {
-  const LiteralNotebookDocumentFilterBase(this.value);
+/// Represents a subclass of NotebookDocumentFilter.
+/// Type: Literal
+class NotebookDocumentFilterV1 extends NotebookDocumentFilterBase
+    implements ToJson {
+  const NotebookDocumentFilterV1(this.value);
 
   @override
   final ({String notebookType, String? scheme, String? pattern}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralNotebookDocumentFilterBase extends NotebookDocumentFilterBase {
-  const LiteralNotebookDocumentFilterBase(this.value);
+/// Represents a subclass of NotebookDocumentFilter.
+/// Type: Literal
+class NotebookDocumentFilterV2 extends NotebookDocumentFilterBase
+    implements ToJson {
+  const NotebookDocumentFilterV2(this.value);
 
   @override
   final ({String? notebookType, String scheme, String? pattern}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralNotebookDocumentFilterBase extends NotebookDocumentFilterBase {
-  const LiteralNotebookDocumentFilterBase(this.value);
+/// Represents a subclass of NotebookDocumentFilter.
+/// Type: Literal
+class NotebookDocumentFilterV3 extends NotebookDocumentFilterBase
+    implements ToJson {
+  const NotebookDocumentFilterV3(this.value);
 
   @override
   final ({String? notebookType, String? scheme, String pattern}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: TextDocumentRegistrationOptions(documentSelector)
@@ -544,22 +833,38 @@ sealed class TextDocumentRegistrationOptionsDocumentSelectorBase
   const TextDocumentRegistrationOptionsDocumentSelectorBase();
 }
 
-class DocumentSelectorTextDocumentRegistrationOptionsDocumentSelectorBase
-    extends TextDocumentRegistrationOptionsDocumentSelectorBase {
-  const DocumentSelectorTextDocumentRegistrationOptionsDocumentSelectorBase(
-    this.value,
-  );
+/// Represents a subclass of TextDocumentRegistrationOptionsDocumentSelector.
+/// Type: DocumentSelector
+class TextDocumentRegistrationOptionsDocumentSelectorV1
+    extends TextDocumentRegistrationOptionsDocumentSelectorBase
+    implements ToJson {
+  const TextDocumentRegistrationOptionsDocumentSelectorV1(this.value);
 
   @override
   final DocumentSelector value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class NullTextDocumentRegistrationOptionsDocumentSelectorBase
-    extends TextDocumentRegistrationOptionsDocumentSelectorBase {
-  const NullTextDocumentRegistrationOptionsDocumentSelectorBase(this.value);
+/// Represents a subclass of TextDocumentRegistrationOptionsDocumentSelector.
+/// Type: Null
+class TextDocumentRegistrationOptionsDocumentSelectorV2
+    extends TextDocumentRegistrationOptionsDocumentSelectorBase
+    implements ToJson {
+  const TextDocumentRegistrationOptionsDocumentSelectorV2(this.value);
 
   @override
   final Null value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: WorkspaceEdit(documentChanges)
@@ -572,36 +877,68 @@ sealed class WorkspaceEditDocumentChangesBase extends BaseOr {
   const WorkspaceEditDocumentChangesBase();
 }
 
-class TextDocumentEditWorkspaceEditDocumentChangesBase
-    extends WorkspaceEditDocumentChangesBase {
-  const TextDocumentEditWorkspaceEditDocumentChangesBase(this.value);
+/// Represents a subclass of WorkspaceEditDocumentChanges.
+/// Type: TextDocumentEdit
+class WorkspaceEditDocumentChangesV1 extends WorkspaceEditDocumentChangesBase
+    implements ToJson {
+  const WorkspaceEditDocumentChangesV1(this.value);
 
   @override
   final TextDocumentEdit value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class CreateFileWorkspaceEditDocumentChangesBase
-    extends WorkspaceEditDocumentChangesBase {
-  const CreateFileWorkspaceEditDocumentChangesBase(this.value);
+/// Represents a subclass of WorkspaceEditDocumentChanges.
+/// Type: CreateFile
+class WorkspaceEditDocumentChangesV2 extends WorkspaceEditDocumentChangesBase
+    implements ToJson {
+  const WorkspaceEditDocumentChangesV2(this.value);
 
   @override
   final CreateFile value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class RenameFileWorkspaceEditDocumentChangesBase
-    extends WorkspaceEditDocumentChangesBase {
-  const RenameFileWorkspaceEditDocumentChangesBase(this.value);
+/// Represents a subclass of WorkspaceEditDocumentChanges.
+/// Type: RenameFile
+class WorkspaceEditDocumentChangesV3 extends WorkspaceEditDocumentChangesBase
+    implements ToJson {
+  const WorkspaceEditDocumentChangesV3(this.value);
 
   @override
   final RenameFile value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DeleteFileWorkspaceEditDocumentChangesBase
-    extends WorkspaceEditDocumentChangesBase {
-  const DeleteFileWorkspaceEditDocumentChangesBase(this.value);
+/// Represents a subclass of WorkspaceEditDocumentChanges.
+/// Type: DeleteFile
+class WorkspaceEditDocumentChangesV4 extends WorkspaceEditDocumentChangesBase
+    implements ToJson {
+  const WorkspaceEditDocumentChangesV4(this.value);
 
   @override
   final DeleteFile value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: InlayHint(label)
@@ -612,18 +949,34 @@ sealed class InlayHintLabelBase extends BaseOr {
   const InlayHintLabelBase();
 }
 
-class StringInlayHintLabelBase extends InlayHintLabelBase {
-  const StringInlayHintLabelBase(this.value);
+/// Represents a subclass of InlayHintLabel.
+/// Type: String
+class InlayHintLabelV1 extends InlayHintLabelBase implements ToJson {
+  const InlayHintLabelV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class ListInlayHintLabelBase extends InlayHintLabelBase {
-  const ListInlayHintLabelBase(this.value);
+/// Represents a subclass of InlayHintLabel.
+/// Type: List
+class InlayHintLabelV2 extends InlayHintLabelBase implements ToJson {
+  const InlayHintLabelV2(this.value);
 
   @override
   final List<InlayHintLabelPart> value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: InlayHint(tooltip)
@@ -638,19 +991,36 @@ sealed class TooltipOrDocumentationBase extends BaseOr {
   const TooltipOrDocumentationBase();
 }
 
-class StringTooltipOrDocumentationBase extends TooltipOrDocumentationBase {
-  const StringTooltipOrDocumentationBase(this.value);
+/// Represents a subclass of TooltipOrDocumentation.
+/// Type: String
+class TooltipOrDocumentationV1 extends TooltipOrDocumentationBase
+    implements ToJson {
+  const TooltipOrDocumentationV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class MarkupContentTooltipOrDocumentationBase
-    extends TooltipOrDocumentationBase {
-  const MarkupContentTooltipOrDocumentationBase(this.value);
+/// Represents a subclass of TooltipOrDocumentation.
+/// Type: MarkupContent
+class TooltipOrDocumentationV2 extends TooltipOrDocumentationBase
+    implements ToJson {
+  const TooltipOrDocumentationV2(this.value);
 
   @override
   final MarkupContent value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: DocumentDiagnosticReportPartialResult(relatedDocuments)
@@ -663,20 +1033,34 @@ sealed class RelatedDocumentsBase extends BaseOr {
   const RelatedDocumentsBase();
 }
 
-class FullDocumentDiagnosticReportRelatedDocumentsBase
-    extends RelatedDocumentsBase {
-  const FullDocumentDiagnosticReportRelatedDocumentsBase(this.value);
+/// Represents a subclass of RelatedDocuments.
+/// Type: FullDocumentDiagnosticReport
+class RelatedDocumentsV1 extends RelatedDocumentsBase implements ToJson {
+  const RelatedDocumentsV1(this.value);
 
   @override
   final FullDocumentDiagnosticReport value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class UnchangedDocumentDiagnosticReportRelatedDocumentsBase
-    extends RelatedDocumentsBase {
-  const UnchangedDocumentDiagnosticReportRelatedDocumentsBase(this.value);
+/// Represents a subclass of RelatedDocuments.
+/// Type: UnchangedDocumentDiagnosticReport
+class RelatedDocumentsV2 extends RelatedDocumentsBase implements ToJson {
+  const RelatedDocumentsV2(this.value);
 
   @override
   final UnchangedDocumentDiagnosticReport value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: InlineCompletionItem(insertText)
@@ -687,20 +1071,38 @@ sealed class InlineCompletionItemInsertTextBase extends BaseOr {
   const InlineCompletionItemInsertTextBase();
 }
 
-class StringInlineCompletionItemInsertTextBase
-    extends InlineCompletionItemInsertTextBase {
-  const StringInlineCompletionItemInsertTextBase(this.value);
+/// Represents a subclass of InlineCompletionItemInsertText.
+/// Type: String
+class InlineCompletionItemInsertTextV1
+    extends InlineCompletionItemInsertTextBase
+    implements ToJson {
+  const InlineCompletionItemInsertTextV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class StringValueInlineCompletionItemInsertTextBase
-    extends InlineCompletionItemInsertTextBase {
-  const StringValueInlineCompletionItemInsertTextBase(this.value);
+/// Represents a subclass of InlineCompletionItemInsertText.
+/// Type: StringValue
+class InlineCompletionItemInsertTextV2
+    extends InlineCompletionItemInsertTextBase
+    implements ToJson {
+  const InlineCompletionItemInsertTextV2(this.value);
 
   @override
   final StringValue value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: DidChangeConfigurationRegistrationOptions(section)
@@ -712,20 +1114,38 @@ sealed class DidChangeConfigurationRegistrationOptionsSectionBase
   const DidChangeConfigurationRegistrationOptionsSectionBase();
 }
 
-class StringDidChangeConfigurationRegistrationOptionsSectionBase
-    extends DidChangeConfigurationRegistrationOptionsSectionBase {
-  const StringDidChangeConfigurationRegistrationOptionsSectionBase(this.value);
+/// Represents a subclass of DidChangeConfigurationRegistrationOptionsSection.
+/// Type: String
+class DidChangeConfigurationRegistrationOptionsSectionV1
+    extends DidChangeConfigurationRegistrationOptionsSectionBase
+    implements ToJson {
+  const DidChangeConfigurationRegistrationOptionsSectionV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class ListDidChangeConfigurationRegistrationOptionsSectionBase
-    extends DidChangeConfigurationRegistrationOptionsSectionBase {
-  const ListDidChangeConfigurationRegistrationOptionsSectionBase(this.value);
+/// Represents a subclass of DidChangeConfigurationRegistrationOptionsSection.
+/// Type: List
+class DidChangeConfigurationRegistrationOptionsSectionV2
+    extends DidChangeConfigurationRegistrationOptionsSectionBase
+    implements ToJson {
+  const DidChangeConfigurationRegistrationOptionsSectionV2(this.value);
 
   @override
   final List<String> value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: CompletionItem(textEdit)
@@ -736,19 +1156,36 @@ sealed class CompletionItemTextEditBase extends BaseOr {
   const CompletionItemTextEditBase();
 }
 
-class TextEditCompletionItemTextEditBase extends CompletionItemTextEditBase {
-  const TextEditCompletionItemTextEditBase(this.value);
+/// Represents a subclass of CompletionItemTextEdit.
+/// Type: TextEdit
+class CompletionItemTextEditV1 extends CompletionItemTextEditBase
+    implements ToJson {
+  const CompletionItemTextEditV1(this.value);
 
   @override
   final TextEdit value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class InsertReplaceEditCompletionItemTextEditBase
-    extends CompletionItemTextEditBase {
-  const InsertReplaceEditCompletionItemTextEditBase(this.value);
+/// Represents a subclass of CompletionItemTextEdit.
+/// Type: InsertReplaceEdit
+class CompletionItemTextEditV2 extends CompletionItemTextEditBase
+    implements ToJson {
+  const CompletionItemTextEditV2(this.value);
 
   @override
   final InsertReplaceEdit value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: CompletionList(editRange)
@@ -759,48 +1196,90 @@ sealed class CompletionListEditRangeBase extends BaseOr {
   const CompletionListEditRangeBase();
 }
 
-class RangeCompletionListEditRangeBase extends CompletionListEditRangeBase {
-  const RangeCompletionListEditRangeBase(this.value);
+/// Represents a subclass of CompletionListEditRange.
+/// Type: Range
+class CompletionListEditRangeV1 extends CompletionListEditRangeBase
+    implements ToJson {
+  const CompletionListEditRangeV1(this.value);
 
   @override
   final Range value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralCompletionListEditRangeBase extends CompletionListEditRangeBase {
-  const LiteralCompletionListEditRangeBase(this.value);
+/// Represents a subclass of CompletionListEditRange.
+/// Type: Literal
+class CompletionListEditRangeV2 extends CompletionListEditRangeBase
+    implements ToJson {
+  const CompletionListEditRangeV2(this.value);
 
   @override
   final ({Range insert, Range replace}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: Hover(contents)
 ///
 /// Type: MarkupContent
-/// Type: MarkedStringBase
-/// Type: Array<MarkedStringBase>
+/// Type: MarkedString
+/// Type: Array<MarkedString>
 sealed class HoverContentsBase extends BaseOr {
   const HoverContentsBase();
 }
 
-class MarkupContentHoverContentsBase extends HoverContentsBase {
-  const MarkupContentHoverContentsBase(this.value);
+/// Represents a subclass of HoverContents.
+/// Type: MarkupContent
+class HoverContentsV1 extends HoverContentsBase implements ToJson {
+  const HoverContentsV1(this.value);
 
   @override
   final MarkupContent value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class MarkedStringBaseHoverContentsBase extends HoverContentsBase {
-  const MarkedStringBaseHoverContentsBase(this.value);
+/// Represents a subclass of HoverContents.
+/// Type: MarkedString
+class HoverContentsV2 extends HoverContentsBase implements ToJson {
+  const HoverContentsV2(this.value);
 
   @override
   final MarkedString value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class ListHoverContentsBase extends HoverContentsBase {
-  const ListHoverContentsBase(this.value);
+/// Represents a subclass of HoverContents.
+/// Type: List
+class HoverContentsV3 extends HoverContentsBase implements ToJson {
+  const HoverContentsV3(this.value);
 
   @override
   final List<MarkedString> value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: WorkspaceSymbol(location)
@@ -811,18 +1290,36 @@ sealed class WorkspaceSymbolLocationBase extends BaseOr {
   const WorkspaceSymbolLocationBase();
 }
 
-class LocationWorkspaceSymbolLocationBase extends WorkspaceSymbolLocationBase {
-  const LocationWorkspaceSymbolLocationBase(this.value);
+/// Represents a subclass of WorkspaceSymbolLocation.
+/// Type: Location
+class WorkspaceSymbolLocationV1 extends WorkspaceSymbolLocationBase
+    implements ToJson {
+  const WorkspaceSymbolLocationV1(this.value);
 
   @override
   final Location value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralWorkspaceSymbolLocationBase extends WorkspaceSymbolLocationBase {
-  const LiteralWorkspaceSymbolLocationBase(this.value);
+/// Represents a subclass of WorkspaceSymbolLocation.
+/// Type: Literal
+class WorkspaceSymbolLocationV2 extends WorkspaceSymbolLocationBase
+    implements ToJson {
+  const WorkspaceSymbolLocationV2(this.value);
 
   @override
   final ({String uri}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: SemanticTokensOptions(range)
@@ -834,18 +1331,34 @@ sealed class RangeBase extends BaseOr {
   const RangeBase();
 }
 
-class BooleanRangeBase extends RangeBase {
-  const BooleanRangeBase(this.value);
+/// Represents a subclass of Range.
+/// Type: Boolean
+class RangeV1 extends RangeBase implements ToJson {
+  const RangeV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralRangeBase extends RangeBase {
-  const LiteralRangeBase(this.value);
+/// Represents a subclass of Range.
+/// Type: Literal
+class RangeV2 extends RangeBase implements ToJson {
+  const RangeV2(this.value);
 
   @override
   final () value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: SemanticTokensOptions(full)
@@ -856,20 +1369,36 @@ sealed class SemanticTokensOptionsFullBase extends BaseOr {
   const SemanticTokensOptionsFullBase();
 }
 
-class BooleanSemanticTokensOptionsFullBase
-    extends SemanticTokensOptionsFullBase {
-  const BooleanSemanticTokensOptionsFullBase(this.value);
+/// Represents a subclass of SemanticTokensOptionsFull.
+/// Type: Boolean
+class SemanticTokensOptionsFullV1 extends SemanticTokensOptionsFullBase
+    implements ToJson {
+  const SemanticTokensOptionsFullV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralSemanticTokensOptionsFullBase
-    extends SemanticTokensOptionsFullBase {
-  const LiteralSemanticTokensOptionsFullBase(this.value);
+/// Represents a subclass of SemanticTokensOptionsFull.
+/// Type: Literal
+class SemanticTokensOptionsFullV2 extends SemanticTokensOptionsFullBase
+    implements ToJson {
+  const SemanticTokensOptionsFullV2(this.value);
 
   @override
   final ({bool? delta}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: TextDocumentEdit(edits)
@@ -880,19 +1409,36 @@ sealed class TextDocumentEditEditsBase extends BaseOr {
   const TextDocumentEditEditsBase();
 }
 
-class TextEditTextDocumentEditEditsBase extends TextDocumentEditEditsBase {
-  const TextEditTextDocumentEditEditsBase(this.value);
+/// Represents a subclass of TextDocumentEditEdits.
+/// Type: TextEdit
+class TextDocumentEditEditsV1 extends TextDocumentEditEditsBase
+    implements ToJson {
+  const TextDocumentEditEditsV1(this.value);
 
   @override
   final TextEdit value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class AnnotatedTextEditTextDocumentEditEditsBase
-    extends TextDocumentEditEditsBase {
-  const AnnotatedTextEditTextDocumentEditEditsBase(this.value);
+/// Represents a subclass of TextDocumentEditEdits.
+/// Type: AnnotatedTextEdit
+class TextDocumentEditEditsV2 extends TextDocumentEditEditsBase
+    implements ToJson {
+  const TextDocumentEditEditsV2(this.value);
 
   @override
   final AnnotatedTextEdit value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: _InitializeParams(processId)
@@ -906,64 +1452,114 @@ sealed class ProcessIdOrVersionBase extends BaseOr {
   const ProcessIdOrVersionBase();
 }
 
-class IntegerProcessIdOrVersionBase extends ProcessIdOrVersionBase {
-  const IntegerProcessIdOrVersionBase(this.value);
+/// Represents a subclass of ProcessIdOrVersion.
+/// Type: Integer
+class ProcessIdOrVersionV1 extends ProcessIdOrVersionBase implements ToJson {
+  const ProcessIdOrVersionV1(this.value);
 
   @override
   final int value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class NullProcessIdOrVersionBase extends ProcessIdOrVersionBase {
-  const NullProcessIdOrVersionBase(this.value);
+/// Represents a subclass of ProcessIdOrVersion.
+/// Type: Null
+class ProcessIdOrVersionV2 extends ProcessIdOrVersionBase implements ToJson {
+  const ProcessIdOrVersionV2(this.value);
 
   @override
   final Null value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: _InitializeParams(rootPath)
 ///
 /// Type: String
 /// Type: Null
-sealed class _InitializeParamsRootPathBase extends BaseOr {
-  const _InitializeParamsRootPathBase();
+sealed class InitializeParamsRootPathBase extends BaseOr {
+  const InitializeParamsRootPathBase();
 }
 
-class String_InitializeParamsRootPathBase
-    extends _InitializeParamsRootPathBase {
-  const String_InitializeParamsRootPathBase(this.value);
+/// Represents a subclass of InitializeParamsRootPath.
+/// Type: String
+class InitializeParamsRootPathV1 extends InitializeParamsRootPathBase
+    implements ToJson {
+  const InitializeParamsRootPathV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class Null_InitializeParamsRootPathBase extends _InitializeParamsRootPathBase {
-  const Null_InitializeParamsRootPathBase(this.value);
+/// Represents a subclass of InitializeParamsRootPath.
+/// Type: Null
+class InitializeParamsRootPathV2 extends InitializeParamsRootPathBase
+    implements ToJson {
+  const InitializeParamsRootPathV2(this.value);
 
   @override
   final Null value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: _InitializeParams(rootUri)
 ///
 /// Type: DocumentUri
 /// Type: Null
-sealed class _InitializeParamsRootUriBase extends BaseOr {
-  const _InitializeParamsRootUriBase();
+sealed class InitializeParamsRootUriBase extends BaseOr {
+  const InitializeParamsRootUriBase();
 }
 
-class DocumentUri_InitializeParamsRootUriBase
-    extends _InitializeParamsRootUriBase {
-  const DocumentUri_InitializeParamsRootUriBase(this.value);
+/// Represents a subclass of InitializeParamsRootUri.
+/// Type: DocumentUri
+class InitializeParamsRootUriV1 extends InitializeParamsRootUriBase
+    implements ToJson {
+  const InitializeParamsRootUriV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class Null_InitializeParamsRootUriBase extends _InitializeParamsRootUriBase {
-  const Null_InitializeParamsRootUriBase(this.value);
+/// Represents a subclass of InitializeParamsRootUri.
+/// Type: Null
+class InitializeParamsRootUriV2 extends InitializeParamsRootUriBase
+    implements ToJson {
+  const InitializeParamsRootUriV2(this.value);
 
   @override
   final Null value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: WorkspaceFoldersInitializeParams(workspaceFolders)
@@ -975,20 +1571,38 @@ sealed class WorkspaceFoldersInitializeParamsWorkspaceFoldersBase
   const WorkspaceFoldersInitializeParamsWorkspaceFoldersBase();
 }
 
-class ListWorkspaceFoldersInitializeParamsWorkspaceFoldersBase
-    extends WorkspaceFoldersInitializeParamsWorkspaceFoldersBase {
-  const ListWorkspaceFoldersInitializeParamsWorkspaceFoldersBase(this.value);
+/// Represents a subclass of WorkspaceFoldersInitializeParamsWorkspaceFolders.
+/// Type: List
+class WorkspaceFoldersInitializeParamsWorkspaceFoldersV1
+    extends WorkspaceFoldersInitializeParamsWorkspaceFoldersBase
+    implements ToJson {
+  const WorkspaceFoldersInitializeParamsWorkspaceFoldersV1(this.value);
 
   @override
   final List<WorkspaceFolder> value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class NullWorkspaceFoldersInitializeParamsWorkspaceFoldersBase
-    extends WorkspaceFoldersInitializeParamsWorkspaceFoldersBase {
-  const NullWorkspaceFoldersInitializeParamsWorkspaceFoldersBase(this.value);
+/// Represents a subclass of WorkspaceFoldersInitializeParamsWorkspaceFolders.
+/// Type: Null
+class WorkspaceFoldersInitializeParamsWorkspaceFoldersV2
+    extends WorkspaceFoldersInitializeParamsWorkspaceFoldersBase
+    implements ToJson {
+  const WorkspaceFoldersInitializeParamsWorkspaceFoldersV2(this.value);
 
   @override
   final Null value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(textDocumentSync)
@@ -999,22 +1613,38 @@ sealed class ServerCapabilitiesTextDocumentSyncBase extends BaseOr {
   const ServerCapabilitiesTextDocumentSyncBase();
 }
 
-class TextDocumentSyncOptionsServerCapabilitiesTextDocumentSyncBase
-    extends ServerCapabilitiesTextDocumentSyncBase {
-  const TextDocumentSyncOptionsServerCapabilitiesTextDocumentSyncBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesTextDocumentSync.
+/// Type: TextDocumentSyncOptions
+class ServerCapabilitiesTextDocumentSyncV1
+    extends ServerCapabilitiesTextDocumentSyncBase
+    implements ToJson {
+  const ServerCapabilitiesTextDocumentSyncV1(this.value);
 
   @override
   final TextDocumentSyncOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class TextDocumentSyncKindServerCapabilitiesTextDocumentSyncBase
-    extends ServerCapabilitiesTextDocumentSyncBase {
-  const TextDocumentSyncKindServerCapabilitiesTextDocumentSyncBase(this.value);
+/// Represents a subclass of ServerCapabilitiesTextDocumentSync.
+/// Type: TextDocumentSyncKind
+class ServerCapabilitiesTextDocumentSyncV2
+    extends ServerCapabilitiesTextDocumentSyncBase
+    implements ToJson {
+  const ServerCapabilitiesTextDocumentSyncV2(this.value);
 
   @override
   final TextDocumentSyncKind value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(notebookDocumentSync)
@@ -1025,24 +1655,38 @@ sealed class ServerCapabilitiesNotebookDocumentSyncBase extends BaseOr {
   const ServerCapabilitiesNotebookDocumentSyncBase();
 }
 
-class NotebookDocumentSyncOptionsServerCapabilitiesNotebookDocumentSyncBase
-    extends ServerCapabilitiesNotebookDocumentSyncBase {
-  const NotebookDocumentSyncOptionsServerCapabilitiesNotebookDocumentSyncBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesNotebookDocumentSync.
+/// Type: NotebookDocumentSyncOptions
+class ServerCapabilitiesNotebookDocumentSyncV1
+    extends ServerCapabilitiesNotebookDocumentSyncBase
+    implements ToJson {
+  const ServerCapabilitiesNotebookDocumentSyncV1(this.value);
 
   @override
   final NotebookDocumentSyncOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class NotebookDocumentSyncRegistrationOptionsServerCapabilitiesNotebookDocumentSyncBase
-    extends ServerCapabilitiesNotebookDocumentSyncBase {
-  const NotebookDocumentSyncRegistrationOptionsServerCapabilitiesNotebookDocumentSyncBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesNotebookDocumentSync.
+/// Type: NotebookDocumentSyncRegistrationOptions
+class ServerCapabilitiesNotebookDocumentSyncV2
+    extends ServerCapabilitiesNotebookDocumentSyncBase
+    implements ToJson {
+  const ServerCapabilitiesNotebookDocumentSyncV2(this.value);
 
   @override
   final NotebookDocumentSyncRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(hoverProvider)
@@ -1053,20 +1697,38 @@ sealed class ServerCapabilitiesHoverProviderBase extends BaseOr {
   const ServerCapabilitiesHoverProviderBase();
 }
 
-class BooleanServerCapabilitiesHoverProviderBase
-    extends ServerCapabilitiesHoverProviderBase {
-  const BooleanServerCapabilitiesHoverProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesHoverProvider.
+/// Type: Boolean
+class ServerCapabilitiesHoverProviderV1
+    extends ServerCapabilitiesHoverProviderBase
+    implements ToJson {
+  const ServerCapabilitiesHoverProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class HoverOptionsServerCapabilitiesHoverProviderBase
-    extends ServerCapabilitiesHoverProviderBase {
-  const HoverOptionsServerCapabilitiesHoverProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesHoverProvider.
+/// Type: HoverOptions
+class ServerCapabilitiesHoverProviderV2
+    extends ServerCapabilitiesHoverProviderBase
+    implements ToJson {
+  const ServerCapabilitiesHoverProviderV2(this.value);
 
   @override
   final HoverOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(declarationProvider)
@@ -1078,30 +1740,55 @@ sealed class ServerCapabilitiesDeclarationProviderBase extends BaseOr {
   const ServerCapabilitiesDeclarationProviderBase();
 }
 
-class BooleanServerCapabilitiesDeclarationProviderBase
-    extends ServerCapabilitiesDeclarationProviderBase {
-  const BooleanServerCapabilitiesDeclarationProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesDeclarationProvider.
+/// Type: Boolean
+class ServerCapabilitiesDeclarationProviderV1
+    extends ServerCapabilitiesDeclarationProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDeclarationProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DeclarationOptionsServerCapabilitiesDeclarationProviderBase
-    extends ServerCapabilitiesDeclarationProviderBase {
-  const DeclarationOptionsServerCapabilitiesDeclarationProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesDeclarationProvider.
+/// Type: DeclarationOptions
+class ServerCapabilitiesDeclarationProviderV2
+    extends ServerCapabilitiesDeclarationProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDeclarationProviderV2(this.value);
 
   @override
   final DeclarationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DeclarationRegistrationOptionsServerCapabilitiesDeclarationProviderBase
-    extends ServerCapabilitiesDeclarationProviderBase {
-  const DeclarationRegistrationOptionsServerCapabilitiesDeclarationProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesDeclarationProvider.
+/// Type: DeclarationRegistrationOptions
+class ServerCapabilitiesDeclarationProviderV3
+    extends ServerCapabilitiesDeclarationProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDeclarationProviderV3(this.value);
 
   @override
   final DeclarationRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(definitionProvider)
@@ -1112,20 +1799,38 @@ sealed class ServerCapabilitiesDefinitionProviderBase extends BaseOr {
   const ServerCapabilitiesDefinitionProviderBase();
 }
 
-class BooleanServerCapabilitiesDefinitionProviderBase
-    extends ServerCapabilitiesDefinitionProviderBase {
-  const BooleanServerCapabilitiesDefinitionProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesDefinitionProvider.
+/// Type: Boolean
+class ServerCapabilitiesDefinitionProviderV1
+    extends ServerCapabilitiesDefinitionProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDefinitionProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DefinitionOptionsServerCapabilitiesDefinitionProviderBase
-    extends ServerCapabilitiesDefinitionProviderBase {
-  const DefinitionOptionsServerCapabilitiesDefinitionProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesDefinitionProvider.
+/// Type: DefinitionOptions
+class ServerCapabilitiesDefinitionProviderV2
+    extends ServerCapabilitiesDefinitionProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDefinitionProviderV2(this.value);
 
   @override
   final DefinitionOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(typeDefinitionProvider)
@@ -1137,32 +1842,55 @@ sealed class ServerCapabilitiesTypeDefinitionProviderBase extends BaseOr {
   const ServerCapabilitiesTypeDefinitionProviderBase();
 }
 
-class BooleanServerCapabilitiesTypeDefinitionProviderBase
-    extends ServerCapabilitiesTypeDefinitionProviderBase {
-  const BooleanServerCapabilitiesTypeDefinitionProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesTypeDefinitionProvider.
+/// Type: Boolean
+class ServerCapabilitiesTypeDefinitionProviderV1
+    extends ServerCapabilitiesTypeDefinitionProviderBase
+    implements ToJson {
+  const ServerCapabilitiesTypeDefinitionProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class TypeDefinitionOptionsServerCapabilitiesTypeDefinitionProviderBase
-    extends ServerCapabilitiesTypeDefinitionProviderBase {
-  const TypeDefinitionOptionsServerCapabilitiesTypeDefinitionProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesTypeDefinitionProvider.
+/// Type: TypeDefinitionOptions
+class ServerCapabilitiesTypeDefinitionProviderV2
+    extends ServerCapabilitiesTypeDefinitionProviderBase
+    implements ToJson {
+  const ServerCapabilitiesTypeDefinitionProviderV2(this.value);
 
   @override
   final TypeDefinitionOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class TypeDefinitionRegistrationOptionsServerCapabilitiesTypeDefinitionProviderBase
-    extends ServerCapabilitiesTypeDefinitionProviderBase {
-  const TypeDefinitionRegistrationOptionsServerCapabilitiesTypeDefinitionProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesTypeDefinitionProvider.
+/// Type: TypeDefinitionRegistrationOptions
+class ServerCapabilitiesTypeDefinitionProviderV3
+    extends ServerCapabilitiesTypeDefinitionProviderBase
+    implements ToJson {
+  const ServerCapabilitiesTypeDefinitionProviderV3(this.value);
 
   @override
   final TypeDefinitionRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(implementationProvider)
@@ -1174,32 +1902,55 @@ sealed class ServerCapabilitiesImplementationProviderBase extends BaseOr {
   const ServerCapabilitiesImplementationProviderBase();
 }
 
-class BooleanServerCapabilitiesImplementationProviderBase
-    extends ServerCapabilitiesImplementationProviderBase {
-  const BooleanServerCapabilitiesImplementationProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesImplementationProvider.
+/// Type: Boolean
+class ServerCapabilitiesImplementationProviderV1
+    extends ServerCapabilitiesImplementationProviderBase
+    implements ToJson {
+  const ServerCapabilitiesImplementationProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class ImplementationOptionsServerCapabilitiesImplementationProviderBase
-    extends ServerCapabilitiesImplementationProviderBase {
-  const ImplementationOptionsServerCapabilitiesImplementationProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesImplementationProvider.
+/// Type: ImplementationOptions
+class ServerCapabilitiesImplementationProviderV2
+    extends ServerCapabilitiesImplementationProviderBase
+    implements ToJson {
+  const ServerCapabilitiesImplementationProviderV2(this.value);
 
   @override
   final ImplementationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class ImplementationRegistrationOptionsServerCapabilitiesImplementationProviderBase
-    extends ServerCapabilitiesImplementationProviderBase {
-  const ImplementationRegistrationOptionsServerCapabilitiesImplementationProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesImplementationProvider.
+/// Type: ImplementationRegistrationOptions
+class ServerCapabilitiesImplementationProviderV3
+    extends ServerCapabilitiesImplementationProviderBase
+    implements ToJson {
+  const ServerCapabilitiesImplementationProviderV3(this.value);
 
   @override
   final ImplementationRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(referencesProvider)
@@ -1210,20 +1961,38 @@ sealed class ServerCapabilitiesReferencesProviderBase extends BaseOr {
   const ServerCapabilitiesReferencesProviderBase();
 }
 
-class BooleanServerCapabilitiesReferencesProviderBase
-    extends ServerCapabilitiesReferencesProviderBase {
-  const BooleanServerCapabilitiesReferencesProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesReferencesProvider.
+/// Type: Boolean
+class ServerCapabilitiesReferencesProviderV1
+    extends ServerCapabilitiesReferencesProviderBase
+    implements ToJson {
+  const ServerCapabilitiesReferencesProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class ReferenceOptionsServerCapabilitiesReferencesProviderBase
-    extends ServerCapabilitiesReferencesProviderBase {
-  const ReferenceOptionsServerCapabilitiesReferencesProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesReferencesProvider.
+/// Type: ReferenceOptions
+class ServerCapabilitiesReferencesProviderV2
+    extends ServerCapabilitiesReferencesProviderBase
+    implements ToJson {
+  const ServerCapabilitiesReferencesProviderV2(this.value);
 
   @override
   final ReferenceOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(documentHighlightProvider)
@@ -1234,22 +2003,38 @@ sealed class ServerCapabilitiesDocumentHighlightProviderBase extends BaseOr {
   const ServerCapabilitiesDocumentHighlightProviderBase();
 }
 
-class BooleanServerCapabilitiesDocumentHighlightProviderBase
-    extends ServerCapabilitiesDocumentHighlightProviderBase {
-  const BooleanServerCapabilitiesDocumentHighlightProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesDocumentHighlightProvider.
+/// Type: Boolean
+class ServerCapabilitiesDocumentHighlightProviderV1
+    extends ServerCapabilitiesDocumentHighlightProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDocumentHighlightProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DocumentHighlightOptionsServerCapabilitiesDocumentHighlightProviderBase
-    extends ServerCapabilitiesDocumentHighlightProviderBase {
-  const DocumentHighlightOptionsServerCapabilitiesDocumentHighlightProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesDocumentHighlightProvider.
+/// Type: DocumentHighlightOptions
+class ServerCapabilitiesDocumentHighlightProviderV2
+    extends ServerCapabilitiesDocumentHighlightProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDocumentHighlightProviderV2(this.value);
 
   @override
   final DocumentHighlightOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(documentSymbolProvider)
@@ -1260,22 +2045,38 @@ sealed class ServerCapabilitiesDocumentSymbolProviderBase extends BaseOr {
   const ServerCapabilitiesDocumentSymbolProviderBase();
 }
 
-class BooleanServerCapabilitiesDocumentSymbolProviderBase
-    extends ServerCapabilitiesDocumentSymbolProviderBase {
-  const BooleanServerCapabilitiesDocumentSymbolProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesDocumentSymbolProvider.
+/// Type: Boolean
+class ServerCapabilitiesDocumentSymbolProviderV1
+    extends ServerCapabilitiesDocumentSymbolProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDocumentSymbolProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DocumentSymbolOptionsServerCapabilitiesDocumentSymbolProviderBase
-    extends ServerCapabilitiesDocumentSymbolProviderBase {
-  const DocumentSymbolOptionsServerCapabilitiesDocumentSymbolProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesDocumentSymbolProvider.
+/// Type: DocumentSymbolOptions
+class ServerCapabilitiesDocumentSymbolProviderV2
+    extends ServerCapabilitiesDocumentSymbolProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDocumentSymbolProviderV2(this.value);
 
   @override
   final DocumentSymbolOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(codeActionProvider)
@@ -1286,20 +2087,38 @@ sealed class ServerCapabilitiesCodeActionProviderBase extends BaseOr {
   const ServerCapabilitiesCodeActionProviderBase();
 }
 
-class BooleanServerCapabilitiesCodeActionProviderBase
-    extends ServerCapabilitiesCodeActionProviderBase {
-  const BooleanServerCapabilitiesCodeActionProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesCodeActionProvider.
+/// Type: Boolean
+class ServerCapabilitiesCodeActionProviderV1
+    extends ServerCapabilitiesCodeActionProviderBase
+    implements ToJson {
+  const ServerCapabilitiesCodeActionProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class CodeActionOptionsServerCapabilitiesCodeActionProviderBase
-    extends ServerCapabilitiesCodeActionProviderBase {
-  const CodeActionOptionsServerCapabilitiesCodeActionProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesCodeActionProvider.
+/// Type: CodeActionOptions
+class ServerCapabilitiesCodeActionProviderV2
+    extends ServerCapabilitiesCodeActionProviderBase
+    implements ToJson {
+  const ServerCapabilitiesCodeActionProviderV2(this.value);
 
   @override
   final CodeActionOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(colorProvider)
@@ -1311,30 +2130,55 @@ sealed class ServerCapabilitiesColorProviderBase extends BaseOr {
   const ServerCapabilitiesColorProviderBase();
 }
 
-class BooleanServerCapabilitiesColorProviderBase
-    extends ServerCapabilitiesColorProviderBase {
-  const BooleanServerCapabilitiesColorProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesColorProvider.
+/// Type: Boolean
+class ServerCapabilitiesColorProviderV1
+    extends ServerCapabilitiesColorProviderBase
+    implements ToJson {
+  const ServerCapabilitiesColorProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DocumentColorOptionsServerCapabilitiesColorProviderBase
-    extends ServerCapabilitiesColorProviderBase {
-  const DocumentColorOptionsServerCapabilitiesColorProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesColorProvider.
+/// Type: DocumentColorOptions
+class ServerCapabilitiesColorProviderV2
+    extends ServerCapabilitiesColorProviderBase
+    implements ToJson {
+  const ServerCapabilitiesColorProviderV2(this.value);
 
   @override
   final DocumentColorOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DocumentColorRegistrationOptionsServerCapabilitiesColorProviderBase
-    extends ServerCapabilitiesColorProviderBase {
-  const DocumentColorRegistrationOptionsServerCapabilitiesColorProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesColorProvider.
+/// Type: DocumentColorRegistrationOptions
+class ServerCapabilitiesColorProviderV3
+    extends ServerCapabilitiesColorProviderBase
+    implements ToJson {
+  const ServerCapabilitiesColorProviderV3(this.value);
 
   @override
   final DocumentColorRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(workspaceSymbolProvider)
@@ -1345,22 +2189,38 @@ sealed class ServerCapabilitiesWorkspaceSymbolProviderBase extends BaseOr {
   const ServerCapabilitiesWorkspaceSymbolProviderBase();
 }
 
-class BooleanServerCapabilitiesWorkspaceSymbolProviderBase
-    extends ServerCapabilitiesWorkspaceSymbolProviderBase {
-  const BooleanServerCapabilitiesWorkspaceSymbolProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesWorkspaceSymbolProvider.
+/// Type: Boolean
+class ServerCapabilitiesWorkspaceSymbolProviderV1
+    extends ServerCapabilitiesWorkspaceSymbolProviderBase
+    implements ToJson {
+  const ServerCapabilitiesWorkspaceSymbolProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class WorkspaceSymbolOptionsServerCapabilitiesWorkspaceSymbolProviderBase
-    extends ServerCapabilitiesWorkspaceSymbolProviderBase {
-  const WorkspaceSymbolOptionsServerCapabilitiesWorkspaceSymbolProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesWorkspaceSymbolProvider.
+/// Type: WorkspaceSymbolOptions
+class ServerCapabilitiesWorkspaceSymbolProviderV2
+    extends ServerCapabilitiesWorkspaceSymbolProviderBase
+    implements ToJson {
+  const ServerCapabilitiesWorkspaceSymbolProviderV2(this.value);
 
   @override
   final WorkspaceSymbolOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(documentFormattingProvider)
@@ -1371,22 +2231,38 @@ sealed class ServerCapabilitiesDocumentFormattingProviderBase extends BaseOr {
   const ServerCapabilitiesDocumentFormattingProviderBase();
 }
 
-class BooleanServerCapabilitiesDocumentFormattingProviderBase
-    extends ServerCapabilitiesDocumentFormattingProviderBase {
-  const BooleanServerCapabilitiesDocumentFormattingProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesDocumentFormattingProvider.
+/// Type: Boolean
+class ServerCapabilitiesDocumentFormattingProviderV1
+    extends ServerCapabilitiesDocumentFormattingProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDocumentFormattingProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DocumentFormattingOptionsServerCapabilitiesDocumentFormattingProviderBase
-    extends ServerCapabilitiesDocumentFormattingProviderBase {
-  const DocumentFormattingOptionsServerCapabilitiesDocumentFormattingProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesDocumentFormattingProvider.
+/// Type: DocumentFormattingOptions
+class ServerCapabilitiesDocumentFormattingProviderV2
+    extends ServerCapabilitiesDocumentFormattingProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDocumentFormattingProviderV2(this.value);
 
   @override
   final DocumentFormattingOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(documentRangeFormattingProvider)
@@ -1398,24 +2274,38 @@ sealed class ServerCapabilitiesDocumentRangeFormattingProviderBase
   const ServerCapabilitiesDocumentRangeFormattingProviderBase();
 }
 
-class BooleanServerCapabilitiesDocumentRangeFormattingProviderBase
-    extends ServerCapabilitiesDocumentRangeFormattingProviderBase {
-  const BooleanServerCapabilitiesDocumentRangeFormattingProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesDocumentRangeFormattingProvider.
+/// Type: Boolean
+class ServerCapabilitiesDocumentRangeFormattingProviderV1
+    extends ServerCapabilitiesDocumentRangeFormattingProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDocumentRangeFormattingProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DocumentRangeFormattingOptionsServerCapabilitiesDocumentRangeFormattingProviderBase
-    extends ServerCapabilitiesDocumentRangeFormattingProviderBase {
-  const DocumentRangeFormattingOptionsServerCapabilitiesDocumentRangeFormattingProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesDocumentRangeFormattingProvider.
+/// Type: DocumentRangeFormattingOptions
+class ServerCapabilitiesDocumentRangeFormattingProviderV2
+    extends ServerCapabilitiesDocumentRangeFormattingProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDocumentRangeFormattingProviderV2(this.value);
 
   @override
   final DocumentRangeFormattingOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(renameProvider)
@@ -1426,20 +2316,38 @@ sealed class ServerCapabilitiesRenameProviderBase extends BaseOr {
   const ServerCapabilitiesRenameProviderBase();
 }
 
-class BooleanServerCapabilitiesRenameProviderBase
-    extends ServerCapabilitiesRenameProviderBase {
-  const BooleanServerCapabilitiesRenameProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesRenameProvider.
+/// Type: Boolean
+class ServerCapabilitiesRenameProviderV1
+    extends ServerCapabilitiesRenameProviderBase
+    implements ToJson {
+  const ServerCapabilitiesRenameProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class RenameOptionsServerCapabilitiesRenameProviderBase
-    extends ServerCapabilitiesRenameProviderBase {
-  const RenameOptionsServerCapabilitiesRenameProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesRenameProvider.
+/// Type: RenameOptions
+class ServerCapabilitiesRenameProviderV2
+    extends ServerCapabilitiesRenameProviderBase
+    implements ToJson {
+  const ServerCapabilitiesRenameProviderV2(this.value);
 
   @override
   final RenameOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(foldingRangeProvider)
@@ -1451,32 +2359,55 @@ sealed class ServerCapabilitiesFoldingRangeProviderBase extends BaseOr {
   const ServerCapabilitiesFoldingRangeProviderBase();
 }
 
-class BooleanServerCapabilitiesFoldingRangeProviderBase
-    extends ServerCapabilitiesFoldingRangeProviderBase {
-  const BooleanServerCapabilitiesFoldingRangeProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesFoldingRangeProvider.
+/// Type: Boolean
+class ServerCapabilitiesFoldingRangeProviderV1
+    extends ServerCapabilitiesFoldingRangeProviderBase
+    implements ToJson {
+  const ServerCapabilitiesFoldingRangeProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class FoldingRangeOptionsServerCapabilitiesFoldingRangeProviderBase
-    extends ServerCapabilitiesFoldingRangeProviderBase {
-  const FoldingRangeOptionsServerCapabilitiesFoldingRangeProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesFoldingRangeProvider.
+/// Type: FoldingRangeOptions
+class ServerCapabilitiesFoldingRangeProviderV2
+    extends ServerCapabilitiesFoldingRangeProviderBase
+    implements ToJson {
+  const ServerCapabilitiesFoldingRangeProviderV2(this.value);
 
   @override
   final FoldingRangeOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class FoldingRangeRegistrationOptionsServerCapabilitiesFoldingRangeProviderBase
-    extends ServerCapabilitiesFoldingRangeProviderBase {
-  const FoldingRangeRegistrationOptionsServerCapabilitiesFoldingRangeProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesFoldingRangeProvider.
+/// Type: FoldingRangeRegistrationOptions
+class ServerCapabilitiesFoldingRangeProviderV3
+    extends ServerCapabilitiesFoldingRangeProviderBase
+    implements ToJson {
+  const ServerCapabilitiesFoldingRangeProviderV3(this.value);
 
   @override
   final FoldingRangeRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(selectionRangeProvider)
@@ -1488,32 +2419,55 @@ sealed class ServerCapabilitiesSelectionRangeProviderBase extends BaseOr {
   const ServerCapabilitiesSelectionRangeProviderBase();
 }
 
-class BooleanServerCapabilitiesSelectionRangeProviderBase
-    extends ServerCapabilitiesSelectionRangeProviderBase {
-  const BooleanServerCapabilitiesSelectionRangeProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesSelectionRangeProvider.
+/// Type: Boolean
+class ServerCapabilitiesSelectionRangeProviderV1
+    extends ServerCapabilitiesSelectionRangeProviderBase
+    implements ToJson {
+  const ServerCapabilitiesSelectionRangeProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class SelectionRangeOptionsServerCapabilitiesSelectionRangeProviderBase
-    extends ServerCapabilitiesSelectionRangeProviderBase {
-  const SelectionRangeOptionsServerCapabilitiesSelectionRangeProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesSelectionRangeProvider.
+/// Type: SelectionRangeOptions
+class ServerCapabilitiesSelectionRangeProviderV2
+    extends ServerCapabilitiesSelectionRangeProviderBase
+    implements ToJson {
+  const ServerCapabilitiesSelectionRangeProviderV2(this.value);
 
   @override
   final SelectionRangeOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class SelectionRangeRegistrationOptionsServerCapabilitiesSelectionRangeProviderBase
-    extends ServerCapabilitiesSelectionRangeProviderBase {
-  const SelectionRangeRegistrationOptionsServerCapabilitiesSelectionRangeProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesSelectionRangeProvider.
+/// Type: SelectionRangeRegistrationOptions
+class ServerCapabilitiesSelectionRangeProviderV3
+    extends ServerCapabilitiesSelectionRangeProviderBase
+    implements ToJson {
+  const ServerCapabilitiesSelectionRangeProviderV3(this.value);
 
   @override
   final SelectionRangeRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(callHierarchyProvider)
@@ -1525,32 +2479,55 @@ sealed class ServerCapabilitiesCallHierarchyProviderBase extends BaseOr {
   const ServerCapabilitiesCallHierarchyProviderBase();
 }
 
-class BooleanServerCapabilitiesCallHierarchyProviderBase
-    extends ServerCapabilitiesCallHierarchyProviderBase {
-  const BooleanServerCapabilitiesCallHierarchyProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesCallHierarchyProvider.
+/// Type: Boolean
+class ServerCapabilitiesCallHierarchyProviderV1
+    extends ServerCapabilitiesCallHierarchyProviderBase
+    implements ToJson {
+  const ServerCapabilitiesCallHierarchyProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class CallHierarchyOptionsServerCapabilitiesCallHierarchyProviderBase
-    extends ServerCapabilitiesCallHierarchyProviderBase {
-  const CallHierarchyOptionsServerCapabilitiesCallHierarchyProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesCallHierarchyProvider.
+/// Type: CallHierarchyOptions
+class ServerCapabilitiesCallHierarchyProviderV2
+    extends ServerCapabilitiesCallHierarchyProviderBase
+    implements ToJson {
+  const ServerCapabilitiesCallHierarchyProviderV2(this.value);
 
   @override
   final CallHierarchyOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class CallHierarchyRegistrationOptionsServerCapabilitiesCallHierarchyProviderBase
-    extends ServerCapabilitiesCallHierarchyProviderBase {
-  const CallHierarchyRegistrationOptionsServerCapabilitiesCallHierarchyProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesCallHierarchyProvider.
+/// Type: CallHierarchyRegistrationOptions
+class ServerCapabilitiesCallHierarchyProviderV3
+    extends ServerCapabilitiesCallHierarchyProviderBase
+    implements ToJson {
+  const ServerCapabilitiesCallHierarchyProviderV3(this.value);
 
   @override
   final CallHierarchyRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(linkedEditingRangeProvider)
@@ -1562,32 +2539,55 @@ sealed class ServerCapabilitiesLinkedEditingRangeProviderBase extends BaseOr {
   const ServerCapabilitiesLinkedEditingRangeProviderBase();
 }
 
-class BooleanServerCapabilitiesLinkedEditingRangeProviderBase
-    extends ServerCapabilitiesLinkedEditingRangeProviderBase {
-  const BooleanServerCapabilitiesLinkedEditingRangeProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesLinkedEditingRangeProvider.
+/// Type: Boolean
+class ServerCapabilitiesLinkedEditingRangeProviderV1
+    extends ServerCapabilitiesLinkedEditingRangeProviderBase
+    implements ToJson {
+  const ServerCapabilitiesLinkedEditingRangeProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LinkedEditingRangeOptionsServerCapabilitiesLinkedEditingRangeProviderBase
-    extends ServerCapabilitiesLinkedEditingRangeProviderBase {
-  const LinkedEditingRangeOptionsServerCapabilitiesLinkedEditingRangeProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesLinkedEditingRangeProvider.
+/// Type: LinkedEditingRangeOptions
+class ServerCapabilitiesLinkedEditingRangeProviderV2
+    extends ServerCapabilitiesLinkedEditingRangeProviderBase
+    implements ToJson {
+  const ServerCapabilitiesLinkedEditingRangeProviderV2(this.value);
 
   @override
   final LinkedEditingRangeOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LinkedEditingRangeRegistrationOptionsServerCapabilitiesLinkedEditingRangeProviderBase
-    extends ServerCapabilitiesLinkedEditingRangeProviderBase {
-  const LinkedEditingRangeRegistrationOptionsServerCapabilitiesLinkedEditingRangeProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesLinkedEditingRangeProvider.
+/// Type: LinkedEditingRangeRegistrationOptions
+class ServerCapabilitiesLinkedEditingRangeProviderV3
+    extends ServerCapabilitiesLinkedEditingRangeProviderBase
+    implements ToJson {
+  const ServerCapabilitiesLinkedEditingRangeProviderV3(this.value);
 
   @override
   final LinkedEditingRangeRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(semanticTokensProvider)
@@ -1598,24 +2598,38 @@ sealed class ServerCapabilitiesSemanticTokensProviderBase extends BaseOr {
   const ServerCapabilitiesSemanticTokensProviderBase();
 }
 
-class SemanticTokensOptionsServerCapabilitiesSemanticTokensProviderBase
-    extends ServerCapabilitiesSemanticTokensProviderBase {
-  const SemanticTokensOptionsServerCapabilitiesSemanticTokensProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesSemanticTokensProvider.
+/// Type: SemanticTokensOptions
+class ServerCapabilitiesSemanticTokensProviderV1
+    extends ServerCapabilitiesSemanticTokensProviderBase
+    implements ToJson {
+  const ServerCapabilitiesSemanticTokensProviderV1(this.value);
 
   @override
   final SemanticTokensOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class SemanticTokensRegistrationOptionsServerCapabilitiesSemanticTokensProviderBase
-    extends ServerCapabilitiesSemanticTokensProviderBase {
-  const SemanticTokensRegistrationOptionsServerCapabilitiesSemanticTokensProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesSemanticTokensProvider.
+/// Type: SemanticTokensRegistrationOptions
+class ServerCapabilitiesSemanticTokensProviderV2
+    extends ServerCapabilitiesSemanticTokensProviderBase
+    implements ToJson {
+  const ServerCapabilitiesSemanticTokensProviderV2(this.value);
 
   @override
   final SemanticTokensRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(monikerProvider)
@@ -1627,30 +2641,55 @@ sealed class ServerCapabilitiesMonikerProviderBase extends BaseOr {
   const ServerCapabilitiesMonikerProviderBase();
 }
 
-class BooleanServerCapabilitiesMonikerProviderBase
-    extends ServerCapabilitiesMonikerProviderBase {
-  const BooleanServerCapabilitiesMonikerProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesMonikerProvider.
+/// Type: Boolean
+class ServerCapabilitiesMonikerProviderV1
+    extends ServerCapabilitiesMonikerProviderBase
+    implements ToJson {
+  const ServerCapabilitiesMonikerProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class MonikerOptionsServerCapabilitiesMonikerProviderBase
-    extends ServerCapabilitiesMonikerProviderBase {
-  const MonikerOptionsServerCapabilitiesMonikerProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesMonikerProvider.
+/// Type: MonikerOptions
+class ServerCapabilitiesMonikerProviderV2
+    extends ServerCapabilitiesMonikerProviderBase
+    implements ToJson {
+  const ServerCapabilitiesMonikerProviderV2(this.value);
 
   @override
   final MonikerOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class MonikerRegistrationOptionsServerCapabilitiesMonikerProviderBase
-    extends ServerCapabilitiesMonikerProviderBase {
-  const MonikerRegistrationOptionsServerCapabilitiesMonikerProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesMonikerProvider.
+/// Type: MonikerRegistrationOptions
+class ServerCapabilitiesMonikerProviderV3
+    extends ServerCapabilitiesMonikerProviderBase
+    implements ToJson {
+  const ServerCapabilitiesMonikerProviderV3(this.value);
 
   @override
   final MonikerRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(typeHierarchyProvider)
@@ -1662,32 +2701,55 @@ sealed class ServerCapabilitiesTypeHierarchyProviderBase extends BaseOr {
   const ServerCapabilitiesTypeHierarchyProviderBase();
 }
 
-class BooleanServerCapabilitiesTypeHierarchyProviderBase
-    extends ServerCapabilitiesTypeHierarchyProviderBase {
-  const BooleanServerCapabilitiesTypeHierarchyProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesTypeHierarchyProvider.
+/// Type: Boolean
+class ServerCapabilitiesTypeHierarchyProviderV1
+    extends ServerCapabilitiesTypeHierarchyProviderBase
+    implements ToJson {
+  const ServerCapabilitiesTypeHierarchyProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class TypeHierarchyOptionsServerCapabilitiesTypeHierarchyProviderBase
-    extends ServerCapabilitiesTypeHierarchyProviderBase {
-  const TypeHierarchyOptionsServerCapabilitiesTypeHierarchyProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesTypeHierarchyProvider.
+/// Type: TypeHierarchyOptions
+class ServerCapabilitiesTypeHierarchyProviderV2
+    extends ServerCapabilitiesTypeHierarchyProviderBase
+    implements ToJson {
+  const ServerCapabilitiesTypeHierarchyProviderV2(this.value);
 
   @override
   final TypeHierarchyOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class TypeHierarchyRegistrationOptionsServerCapabilitiesTypeHierarchyProviderBase
-    extends ServerCapabilitiesTypeHierarchyProviderBase {
-  const TypeHierarchyRegistrationOptionsServerCapabilitiesTypeHierarchyProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesTypeHierarchyProvider.
+/// Type: TypeHierarchyRegistrationOptions
+class ServerCapabilitiesTypeHierarchyProviderV3
+    extends ServerCapabilitiesTypeHierarchyProviderBase
+    implements ToJson {
+  const ServerCapabilitiesTypeHierarchyProviderV3(this.value);
 
   @override
   final TypeHierarchyRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(inlineValueProvider)
@@ -1699,30 +2761,55 @@ sealed class ServerCapabilitiesInlineValueProviderBase extends BaseOr {
   const ServerCapabilitiesInlineValueProviderBase();
 }
 
-class BooleanServerCapabilitiesInlineValueProviderBase
-    extends ServerCapabilitiesInlineValueProviderBase {
-  const BooleanServerCapabilitiesInlineValueProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesInlineValueProvider.
+/// Type: Boolean
+class ServerCapabilitiesInlineValueProviderV1
+    extends ServerCapabilitiesInlineValueProviderBase
+    implements ToJson {
+  const ServerCapabilitiesInlineValueProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class InlineValueOptionsServerCapabilitiesInlineValueProviderBase
-    extends ServerCapabilitiesInlineValueProviderBase {
-  const InlineValueOptionsServerCapabilitiesInlineValueProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesInlineValueProvider.
+/// Type: InlineValueOptions
+class ServerCapabilitiesInlineValueProviderV2
+    extends ServerCapabilitiesInlineValueProviderBase
+    implements ToJson {
+  const ServerCapabilitiesInlineValueProviderV2(this.value);
 
   @override
   final InlineValueOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class InlineValueRegistrationOptionsServerCapabilitiesInlineValueProviderBase
-    extends ServerCapabilitiesInlineValueProviderBase {
-  const InlineValueRegistrationOptionsServerCapabilitiesInlineValueProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesInlineValueProvider.
+/// Type: InlineValueRegistrationOptions
+class ServerCapabilitiesInlineValueProviderV3
+    extends ServerCapabilitiesInlineValueProviderBase
+    implements ToJson {
+  const ServerCapabilitiesInlineValueProviderV3(this.value);
 
   @override
   final InlineValueRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(inlayHintProvider)
@@ -1734,30 +2821,55 @@ sealed class ServerCapabilitiesInlayHintProviderBase extends BaseOr {
   const ServerCapabilitiesInlayHintProviderBase();
 }
 
-class BooleanServerCapabilitiesInlayHintProviderBase
-    extends ServerCapabilitiesInlayHintProviderBase {
-  const BooleanServerCapabilitiesInlayHintProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesInlayHintProvider.
+/// Type: Boolean
+class ServerCapabilitiesInlayHintProviderV1
+    extends ServerCapabilitiesInlayHintProviderBase
+    implements ToJson {
+  const ServerCapabilitiesInlayHintProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class InlayHintOptionsServerCapabilitiesInlayHintProviderBase
-    extends ServerCapabilitiesInlayHintProviderBase {
-  const InlayHintOptionsServerCapabilitiesInlayHintProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesInlayHintProvider.
+/// Type: InlayHintOptions
+class ServerCapabilitiesInlayHintProviderV2
+    extends ServerCapabilitiesInlayHintProviderBase
+    implements ToJson {
+  const ServerCapabilitiesInlayHintProviderV2(this.value);
 
   @override
   final InlayHintOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class InlayHintRegistrationOptionsServerCapabilitiesInlayHintProviderBase
-    extends ServerCapabilitiesInlayHintProviderBase {
-  const InlayHintRegistrationOptionsServerCapabilitiesInlayHintProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesInlayHintProvider.
+/// Type: InlayHintRegistrationOptions
+class ServerCapabilitiesInlayHintProviderV3
+    extends ServerCapabilitiesInlayHintProviderBase
+    implements ToJson {
+  const ServerCapabilitiesInlayHintProviderV3(this.value);
 
   @override
   final InlayHintRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(diagnosticProvider)
@@ -1768,22 +2880,38 @@ sealed class ServerCapabilitiesDiagnosticProviderBase extends BaseOr {
   const ServerCapabilitiesDiagnosticProviderBase();
 }
 
-class DiagnosticOptionsServerCapabilitiesDiagnosticProviderBase
-    extends ServerCapabilitiesDiagnosticProviderBase {
-  const DiagnosticOptionsServerCapabilitiesDiagnosticProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesDiagnosticProvider.
+/// Type: DiagnosticOptions
+class ServerCapabilitiesDiagnosticProviderV1
+    extends ServerCapabilitiesDiagnosticProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDiagnosticProviderV1(this.value);
 
   @override
   final DiagnosticOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class DiagnosticRegistrationOptionsServerCapabilitiesDiagnosticProviderBase
-    extends ServerCapabilitiesDiagnosticProviderBase {
-  const DiagnosticRegistrationOptionsServerCapabilitiesDiagnosticProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesDiagnosticProvider.
+/// Type: DiagnosticRegistrationOptions
+class ServerCapabilitiesDiagnosticProviderV2
+    extends ServerCapabilitiesDiagnosticProviderBase
+    implements ToJson {
+  const ServerCapabilitiesDiagnosticProviderV2(this.value);
 
   @override
   final DiagnosticRegistrationOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ServerCapabilities(inlineCompletionProvider)
@@ -1794,22 +2922,38 @@ sealed class ServerCapabilitiesInlineCompletionProviderBase extends BaseOr {
   const ServerCapabilitiesInlineCompletionProviderBase();
 }
 
-class BooleanServerCapabilitiesInlineCompletionProviderBase
-    extends ServerCapabilitiesInlineCompletionProviderBase {
-  const BooleanServerCapabilitiesInlineCompletionProviderBase(this.value);
+/// Represents a subclass of ServerCapabilitiesInlineCompletionProvider.
+/// Type: Boolean
+class ServerCapabilitiesInlineCompletionProviderV1
+    extends ServerCapabilitiesInlineCompletionProviderBase
+    implements ToJson {
+  const ServerCapabilitiesInlineCompletionProviderV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class InlineCompletionOptionsServerCapabilitiesInlineCompletionProviderBase
-    extends ServerCapabilitiesInlineCompletionProviderBase {
-  const InlineCompletionOptionsServerCapabilitiesInlineCompletionProviderBase(
-    this.value,
-  );
+/// Represents a subclass of ServerCapabilitiesInlineCompletionProvider.
+/// Type: InlineCompletionOptions
+class ServerCapabilitiesInlineCompletionProviderV2
+    extends ServerCapabilitiesInlineCompletionProviderBase
+    implements ToJson {
+  const ServerCapabilitiesInlineCompletionProviderV2(this.value);
 
   @override
   final InlineCompletionOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: TextDocumentSyncOptions(save)
@@ -1820,20 +2964,36 @@ sealed class TextDocumentSyncOptionsSaveBase extends BaseOr {
   const TextDocumentSyncOptionsSaveBase();
 }
 
-class BooleanTextDocumentSyncOptionsSaveBase
-    extends TextDocumentSyncOptionsSaveBase {
-  const BooleanTextDocumentSyncOptionsSaveBase(this.value);
+/// Represents a subclass of TextDocumentSyncOptionsSave.
+/// Type: Boolean
+class TextDocumentSyncOptionsSaveV1 extends TextDocumentSyncOptionsSaveBase
+    implements ToJson {
+  const TextDocumentSyncOptionsSaveV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class SaveOptionsTextDocumentSyncOptionsSaveBase
-    extends TextDocumentSyncOptionsSaveBase {
-  const SaveOptionsTextDocumentSyncOptionsSaveBase(this.value);
+/// Represents a subclass of TextDocumentSyncOptionsSave.
+/// Type: SaveOptions
+class TextDocumentSyncOptionsSaveV2 extends TextDocumentSyncOptionsSaveBase
+    implements ToJson {
+  const TextDocumentSyncOptionsSaveV2(this.value);
 
   @override
   final SaveOptions value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: NotebookDocumentSyncOptions(notebookSelector)
@@ -1844,9 +3004,12 @@ sealed class NotebookDocumentSyncOptionsNotebookSelectorBase extends BaseOr {
   const NotebookDocumentSyncOptionsNotebookSelectorBase();
 }
 
-class LiteralNotebookDocumentSyncOptionsNotebookSelectorBase
-    extends NotebookDocumentSyncOptionsNotebookSelectorBase {
-  const LiteralNotebookDocumentSyncOptionsNotebookSelectorBase(this.value);
+/// Represents a subclass of NotebookDocumentSyncOptionsNotebookSelector.
+/// Type: Literal
+class NotebookDocumentSyncOptionsNotebookSelectorV1
+    extends NotebookDocumentSyncOptionsNotebookSelectorBase
+    implements ToJson {
+  const NotebookDocumentSyncOptionsNotebookSelectorV1(this.value);
 
   @override
   final ({
@@ -1854,11 +3017,20 @@ class LiteralNotebookDocumentSyncOptionsNotebookSelectorBase
     List<({String language})>? cells,
   })
   value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralNotebookDocumentSyncOptionsNotebookSelectorBase
-    extends NotebookDocumentSyncOptionsNotebookSelectorBase {
-  const LiteralNotebookDocumentSyncOptionsNotebookSelectorBase(this.value);
+/// Represents a subclass of NotebookDocumentSyncOptionsNotebookSelector.
+/// Type: Literal
+class NotebookDocumentSyncOptionsNotebookSelectorV2
+    extends NotebookDocumentSyncOptionsNotebookSelectorBase
+    implements ToJson {
+  const NotebookDocumentSyncOptionsNotebookSelectorV2(this.value);
 
   @override
   final ({
@@ -1866,6 +3038,12 @@ class LiteralNotebookDocumentSyncOptionsNotebookSelectorBase
     List<({String language})> cells,
   })
   value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: WorkspaceFoldersServerCapabilities(changeNotifications)
@@ -1877,24 +3055,38 @@ sealed class WorkspaceFoldersServerCapabilitiesChangeNotificationsBase
   const WorkspaceFoldersServerCapabilitiesChangeNotificationsBase();
 }
 
-class StringWorkspaceFoldersServerCapabilitiesChangeNotificationsBase
-    extends WorkspaceFoldersServerCapabilitiesChangeNotificationsBase {
-  const StringWorkspaceFoldersServerCapabilitiesChangeNotificationsBase(
-    this.value,
-  );
+/// Represents a subclass of WorkspaceFoldersServerCapabilitiesChangeNotifications.
+/// Type: String
+class WorkspaceFoldersServerCapabilitiesChangeNotificationsV1
+    extends WorkspaceFoldersServerCapabilitiesChangeNotificationsBase
+    implements ToJson {
+  const WorkspaceFoldersServerCapabilitiesChangeNotificationsV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class BooleanWorkspaceFoldersServerCapabilitiesChangeNotificationsBase
-    extends WorkspaceFoldersServerCapabilitiesChangeNotificationsBase {
-  const BooleanWorkspaceFoldersServerCapabilitiesChangeNotificationsBase(
-    this.value,
-  );
+/// Represents a subclass of WorkspaceFoldersServerCapabilitiesChangeNotifications.
+/// Type: Boolean
+class WorkspaceFoldersServerCapabilitiesChangeNotificationsV2
+    extends WorkspaceFoldersServerCapabilitiesChangeNotificationsBase
+    implements ToJson {
+  const WorkspaceFoldersServerCapabilitiesChangeNotificationsV2(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: ParameterInformation(label)
@@ -1905,45 +3097,78 @@ sealed class ParameterInformationLabelBase extends BaseOr {
   const ParameterInformationLabelBase();
 }
 
-class StringParameterInformationLabelBase
-    extends ParameterInformationLabelBase {
-  const StringParameterInformationLabelBase(this.value);
+/// Represents a subclass of ParameterInformationLabel.
+/// Type: String
+class ParameterInformationLabelV1 extends ParameterInformationLabelBase
+    implements ToJson {
+  const ParameterInformationLabelV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class TupleParameterInformationLabelBase extends ParameterInformationLabelBase {
-  const TupleParameterInformationLabelBase(this.value);
+/// Represents a subclass of ParameterInformationLabel.
+/// Type: Tuple
+class ParameterInformationLabelV2 extends ParameterInformationLabelBase
+    implements ToJson {
+  const ParameterInformationLabelV2(this.value);
 
   @override
   final (int, int) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: NotebookCellTextDocumentFilter(notebook)
 ///
 /// Type: String
-/// Type: NotebookDocumentFilterBase
+/// Type: NotebookDocumentFilter
 sealed class NotebookCellTextDocumentFilterNotebookBase extends BaseOr {
   const NotebookCellTextDocumentFilterNotebookBase();
 }
 
-class StringNotebookCellTextDocumentFilterNotebookBase
-    extends NotebookCellTextDocumentFilterNotebookBase {
-  const StringNotebookCellTextDocumentFilterNotebookBase(this.value);
+/// Represents a subclass of NotebookCellTextDocumentFilterNotebook.
+/// Type: String
+class NotebookCellTextDocumentFilterNotebookV1
+    extends NotebookCellTextDocumentFilterNotebookBase
+    implements ToJson {
+  const NotebookCellTextDocumentFilterNotebookV1(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class NotebookDocumentFilterBaseNotebookCellTextDocumentFilterNotebookBase
-    extends NotebookCellTextDocumentFilterNotebookBase {
-  const NotebookDocumentFilterBaseNotebookCellTextDocumentFilterNotebookBase(
-    this.value,
-  );
+/// Represents a subclass of NotebookCellTextDocumentFilterNotebook.
+/// Type: NotebookDocumentFilter
+class NotebookCellTextDocumentFilterNotebookV2
+    extends NotebookCellTextDocumentFilterNotebookBase
+    implements ToJson {
+  const NotebookCellTextDocumentFilterNotebookV2(this.value);
 
   @override
   final NotebookDocumentFilter value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: RelativePattern(baseUri)
@@ -1954,19 +3179,36 @@ sealed class RelativePatternBaseUriBase extends BaseOr {
   const RelativePatternBaseUriBase();
 }
 
-class WorkspaceFolderRelativePatternBaseUriBase
-    extends RelativePatternBaseUriBase {
-  const WorkspaceFolderRelativePatternBaseUriBase(this.value);
+/// Represents a subclass of RelativePatternBaseUri.
+/// Type: WorkspaceFolder
+class RelativePatternBaseUriV1 extends RelativePatternBaseUriBase
+    implements ToJson {
+  const RelativePatternBaseUriV1(this.value);
 
   @override
   final WorkspaceFolder value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class URIRelativePatternBaseUriBase extends RelativePatternBaseUriBase {
-  const URIRelativePatternBaseUriBase(this.value);
+/// Represents a subclass of RelativePatternBaseUri.
+/// Type: URI
+class RelativePatternBaseUriV2 extends RelativePatternBaseUriBase
+    implements ToJson {
+  const RelativePatternBaseUriV2(this.value);
 
   @override
   final String value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Owned by: SemanticTokensClientCapabilities(full)
@@ -1977,20 +3219,38 @@ sealed class SemanticTokensClientCapabilitiesFullBase extends BaseOr {
   const SemanticTokensClientCapabilitiesFullBase();
 }
 
-class BooleanSemanticTokensClientCapabilitiesFullBase
-    extends SemanticTokensClientCapabilitiesFullBase {
-  const BooleanSemanticTokensClientCapabilitiesFullBase(this.value);
+/// Represents a subclass of SemanticTokensClientCapabilitiesFull.
+/// Type: Boolean
+class SemanticTokensClientCapabilitiesFullV1
+    extends SemanticTokensClientCapabilitiesFullBase
+    implements ToJson {
+  const SemanticTokensClientCapabilitiesFullV1(this.value);
 
   @override
   final bool value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
-class LiteralSemanticTokensClientCapabilitiesFullBase
-    extends SemanticTokensClientCapabilitiesFullBase {
-  const LiteralSemanticTokensClientCapabilitiesFullBase(this.value);
+/// Represents a subclass of SemanticTokensClientCapabilitiesFull.
+/// Type: Literal
+class SemanticTokensClientCapabilitiesFullV2
+    extends SemanticTokensClientCapabilitiesFullBase
+    implements ToJson {
+  const SemanticTokensClientCapabilitiesFullV2(this.value);
 
   @override
   final ({bool? delta}) value;
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    return json;
+  }
 }
 
 /// Struct
@@ -5788,7 +7048,7 @@ class InitializeParams
     final processIdJson = json['processId']!;
     final processId = (processIdJson as ProcessIdOrVersionBase);
     final rootUriJson = json['rootUri']!;
-    final rootUri = (rootUriJson as _InitializeParamsRootUriBase);
+    final rootUri = (rootUriJson as InitializeParamsRootUriBase);
     final capabilitiesJson = json['capabilities']!;
     final capabilities = ClientCapabilities.fromJson(
       (capabilitiesJson as Map<String, Object?>),
@@ -5802,7 +7062,7 @@ class InitializeParams
     final initializationOptionsJson = json['initializationOptions'];
     final initializationOptions = (initializationOptionsJson as LSPAny?);
     final rootPathJson = json['rootPath'];
-    final rootPath = (rootPathJson as _InitializeParamsRootPathBase?);
+    final rootPath = (rootPathJson as InitializeParamsRootPathBase?);
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
@@ -5836,7 +7096,7 @@ class InitializeParams
   /// `rootPath` and `rootUri` are set `rootUri` wins.
   /// @deprecated in favour of workspaceFolders.
   @override
-  final _InitializeParamsRootUriBase rootUri;
+  final InitializeParamsRootUriBase rootUri;
 
   /// The capabilities provided by the client (editor or tool)
   @override
@@ -5863,7 +7123,7 @@ class InitializeParams
   /// The rootPath of the workspace. Is null if no folder is open.
   /// @deprecated in favour of rootUri.
   @override
-  final _InitializeParamsRootPathBase? rootPath;
+  final InitializeParamsRootPathBase? rootPath;
 
   /// The locale the client is currently showing the user interface in. This
   /// must not necessarily be the locale of the operating system.
@@ -11866,7 +13126,7 @@ class _InitializeParams implements WorkDoneProgressParams {
     final processIdJson = json['processId']!;
     final processId = (processIdJson as ProcessIdOrVersionBase);
     final rootUriJson = json['rootUri']!;
-    final rootUri = (rootUriJson as _InitializeParamsRootUriBase);
+    final rootUri = (rootUriJson as InitializeParamsRootUriBase);
     final capabilitiesJson = json['capabilities']!;
     final capabilities = ClientCapabilities.fromJson(
       (capabilitiesJson as Map<String, Object?>),
@@ -11876,7 +13136,7 @@ class _InitializeParams implements WorkDoneProgressParams {
     final initializationOptionsJson = json['initializationOptions'];
     final initializationOptions = (initializationOptionsJson as LSPAny?);
     final rootPathJson = json['rootPath'];
-    final rootPath = (rootPathJson as _InitializeParamsRootPathBase?);
+    final rootPath = (rootPathJson as InitializeParamsRootPathBase?);
     final localeJson = json['locale'];
     final locale = (localeJson as String?);
     final clientInfoJson = json['clientInfo'];
@@ -11907,7 +13167,7 @@ class _InitializeParams implements WorkDoneProgressParams {
   /// The rootUri of the workspace. Is null if no folder is open. If both
   /// `rootPath` and `rootUri` are set `rootUri` wins.
   /// @deprecated in favour of workspaceFolders.
-  final _InitializeParamsRootUriBase rootUri;
+  final InitializeParamsRootUriBase rootUri;
 
   /// The capabilities provided by the client (editor or tool)
   final ClientCapabilities capabilities;
@@ -11921,7 +13181,7 @@ class _InitializeParams implements WorkDoneProgressParams {
   /// Represents a union type.
   /// The rootPath of the workspace. Is null if no folder is open.
   /// @deprecated in favour of rootUri.
-  final _InitializeParamsRootPathBase? rootPath;
+  final InitializeParamsRootPathBase? rootPath;
 
   /// The locale the client is currently showing the user interface in. This
   /// must not necessarily be the locale of the operating system.

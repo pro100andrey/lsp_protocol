@@ -68,11 +68,15 @@ final class SealedMap {
         )
         .upperFirstLetter();
 
-    return _renameMap[name] ?? name;
+    return  name;
   }
 
-  String typeNameForOrRef(OrRef orRef) {
-    final name = _resolveReferenceName(orRef);
+  String typeNameForOrRef(OrRef orRef, {bool withPostfix = true}) {
+    final name = _resolveReferenceName(orRef).removeFirstLetter('_');
+
+    if (withPostfix) {
+      return _addOrPostfix(name);
+    }
 
     return name;
   }
@@ -126,27 +130,6 @@ final class SealedMap {
     _guardAgainstNestedOrRefs(orRef: ref, owner: owner);
   }
 
-  final _renameMap = {
-    'Declaration': _addOrPostfix('Declaration'),
-    'Definition': _addOrPostfix('Definition'),
-    'LSPAny': _addOrPostfix('LSPAny'),
-    'InlineValue': _addOrPostfix('InlineValue'),
-    'DocumentDiagnosticReport': _addOrPostfix('DocumentDiagnosticReport'),
-    'PrepareRenameResult': _addOrPostfix('PrepareRenameResult'),
-    'ProgressToken': _addOrPostfix('ProgressToken'),
-    'WorkspaceDocumentDiagnosticReport': _addOrPostfix(
-      'WorkspaceDocumentDiagnosticReport',
-    ),
-    'TextDocumentContentChangeEvent': _addOrPostfix(
-      'TextDocumentContentChangeEvent',
-    ),
-    'MarkedString': _addOrPostfix('MarkedString'),
-    'DocumentFilter': _addOrPostfix('DocumentFilter'),
-    'GlobPattern': _addOrPostfix('GlobPattern'),
-    'TextDocumentFilter': _addOrPostfix('TextDocumentFilter'),
-    'NotebookDocumentFilter': _addOrPostfix('NotebookDocumentFilter'),
-  };
-
   String _resolveReferenceName(MetaReference ref) {
     final name = ref
         .when(
@@ -159,7 +142,7 @@ final class SealedMap {
         )
         .upperFirstLetter();
 
-    return _renameMap[name] ?? name;
+    return name;
   }
 
   String resolveOwnerName(OrOwner owner) => switch (owner) {
@@ -197,7 +180,7 @@ final class SealedMap {
           .removeFirstLetter('_')
           .upperFirstLetter();
 
-      return _addOrPostfix(owner.struct.name.upperFirstLetter() + ownerName);
+      return owner.struct.name.upperFirstLetter() + ownerName;
     }
 
     final ownerNames = owners
@@ -205,7 +188,7 @@ final class SealedMap {
         .map((e) => e.property.name.upperFirstLetter())
         .toSet();
 
-    final result = _addOrPostfix(ownerNames.join('Or'));
+    final result = ownerNames.join('Or');
 
     return result;
   }
