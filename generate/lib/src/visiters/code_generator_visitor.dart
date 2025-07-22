@@ -42,15 +42,9 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Reference get _stringRef => refer('String');
   Reference get _mapJsonRef => refer('Map<String, Object?>');
 
-  final orMap = <String, List<String>>{};
-
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
-      for (final entry in orMap.entries) {
-        print('${entry.key} -> ${entry.value}');
-      }
-
       // Generate default header comments
       b.docs.addAll(_header());
 
