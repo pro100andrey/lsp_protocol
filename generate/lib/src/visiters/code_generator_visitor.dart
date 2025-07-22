@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:code_builder/code_builder.dart';
-import 'package:collection/collection.dart';
 
 import '../extensions/string.dart';
 import '../generator_helper.dart';
@@ -58,12 +57,14 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
       // Generate the base class for JSON serialization
       b.body.add(_generateToJsonClass());
-      // Generate the OrRef class
-      b.body.add(_generateBaseOrClass());
+
       // Generate type aliases
       for (final typeAlias in protocol.typeAliases) {
         b.body.add(visitTypeAlias(typeAlias));
       }
+
+      // Generate the OrRef class
+      b.body.add(_generateBaseOrClass());
 
       for (final ref in _sealedMap.refs) {
         b.body.add(generateBaseOrClass(ref));
@@ -370,12 +371,10 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         TypeReference((p0) {
           p0
             ..symbol = 'T'
-            // ..bound = _toJsonRef
             ..isNullable = false;
         }),
       )
       ..abstract = true
-      ..implements.add(_toJsonRef)
       ..docs.add(
         '/// Represents a base class for OrRef types.',
       )
@@ -401,16 +400,16 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
     //   refer('value').property(_toJsonMethodRef.symbol!).call([]),
     // );
 
-    cb.methods.add(
-      Method((mb) {
-        mb
-          ..name = _toJsonMethodRef.symbol
-          ..annotations.add(_overrideRef)
-          ..returns = _mapJsonRef;
-        // ..lambda = true;
-        // ..body = refer('value').property('toJson').call([]).code;
-      }),
-    );
+    // cb.methods.add(
+    //   Method((mb) {
+    //     mb
+    //       ..name = _toJsonMethodRef.symbol
+    //       ..annotations.add(_overrideRef)
+    //       ..returns = _mapJsonRef;
+    //     // ..lambda = true;
+    //     // ..body = refer('value').property('toJson').call([]).code;
+    //   }),
+    // );
   });
 
   /// Generates the base ToJson class.
@@ -434,87 +433,80 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   });
 
   List<Spec> generateSubclassesForOrClass(OrRef symbol) {
-    final baseClassName = _sealedMap.typeNameForOrRef(
-      symbol,
-      withPostfix: false,
-    );
+    final baseClassName = _sealedMap.resolveOrRefType(symbol, isBase: false);
+    final baseClassWithPostfix = _sealedMap.resolveOrRefType(symbol);
 
-    final baseClassWithPostfix = _sealedMap.typeNameForOrRef(
-      symbol,
-    );
+    final result = <Spec>[];
+    for (final (i, o) in symbol.items.indexed) {
+      final ownerType = o.resolveType(_typeResolverVisitor);
 
-    final owners = _sealedMap.ownersForOrRef(symbol);
+      if (ownerType == 'Null') {
+        // Skip Null type
+        continue;
+      }
+      final isStruct = _sealedMap.isStructureRef(ownerType);
+      final simpleType = _sealedMap.resolveOneSimpleType(o);
 
-    final typeNamesForOrRef = _sealedMap.orTypesForOrRef(symbol);
+      final field = Field((fb) {
+        fb
+          ..annotations.add(_overrideRef)
+          ..name = 'value'
+          ..modifier = FieldModifier.final$
+          ..type = refer(ownerType);
+      });
 
-    final result = symbol.items.mapIndexed(
-      (index, owner) {
-        final ownerType = owner.resolveType(_typeResolverVisitor);
-        final simpleType = _sealedMap.resolveOneSimpleType(owner);
+      final constructor = Constructor((cb) {
+        cb
+          ..constant = true
+          ..requiredParameters.add(
+            Parameter((pb) {
+              pb
+                ..name = 'value'
+                ..toThis = true;
+            }),
+          );
+      });
 
-        print(ownerType);
+      // final toJsonMethod = Method((mb) {
+      //   mb
+      //     ..name = _toJsonMethodRef.symbol
+      //     ..annotations.add(_overrideRef)
+      //     ..returns = _mapJsonRef
+      //     ..body = () {
+      //       final builder = BlockBuilder()
+      //         ..addExpression(
+      //           declareFinal('json').assign(
+      //             literalMap({}, _stringRef, refer('Object?')),
+      //           ),
+      //         )
+      //         ..addExpression(_jsonRef.returned);
 
-        final field = Field((fb) {
-          fb
-            ..annotations.add(_overrideRef)
-            ..name = 'value'
-            ..modifier = FieldModifier.final$
-            ..type = refer(ownerType);
-        });
+      //       return builder.build();
+      //     }();
+      // });
 
-        final constructor = Constructor((cb) {
-          cb
-            ..constant = true
-            ..requiredParameters.add(
-              Parameter((pb) {
-                pb
-                  ..name = 'value'
-                  ..toThis = true;
-              }),
-            );
-        });
+      final clazz = Class((cb) {
+        cb
+          ..docs.addAll([
+            '/// Represents a subclass of $baseClassName.',
+            '/// Type: $simpleType',
+          ])
+          ..name = '${baseClassName}V${i + 1}'
+          ..extend = refer(baseClassWithPostfix)
+          // ..implements.add(_toJsonRef)
+          ..fields.add(field)
+          ..constructors.add(constructor);
+        // ..methods.add(toJsonMethod);
+      });
 
-        final toJsonMethod = Method((mb) {
-          mb
-            ..name = _toJsonMethodRef.symbol
-            ..annotations.add(_overrideRef)
-            ..returns = _mapJsonRef
-            ..body = () {
-              final builder = BlockBuilder()
-                ..addExpression(
-                  declareFinal(
-                    'json',
-                  ).assign(
-                    literalMap({}, _stringRef, refer('Object?')),
-                  ),
-                )
-                ..addExpression(_jsonRef.returned);
-
-              return builder.build();
-            }();
-        });
-
-        return Class((cb) {
-          cb
-            ..docs.addAll([
-              '/// Represents a subclass of $baseClassName.',
-              '/// Type: $simpleType',
-            ])
-            ..name = '${baseClassName}V${index + 1}'
-            ..extend = refer(baseClassWithPostfix)
-            ..implements.add(_toJsonRef)
-            ..fields.add(field)
-            ..constructors.add(constructor)
-            ..methods.add(toJsonMethod);
-        });
-      },
-    );
+      result.add(clazz);
+    }
 
     return result.toList(growable: false);
   }
 
   Class generateBaseOrClass(OrRef symbol) {
-    final typeName = _sealedMap.typeNameForOrRef(symbol);
+    final typeName = _sealedMap.resolveOrRefType(symbol);
 
     return Class((cb) {
       cb

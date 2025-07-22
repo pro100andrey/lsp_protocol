@@ -32,29 +32,27 @@ final class StructOwner extends OrOwner {
 
 final class SealedMap {
   final _orRefs = <OrRef, List<OrOwner>>{};
+  final _structuresRefs = <String, MetaStructure>{};
 
-  late final _visitor = TypeResolverVisitor(
-    sealedMap: this,
-  );
+  late final _visitor = TypeResolverVisitor(sealedMap: this);
 
-  Iterable<OrRef> get refs {
-    // skip when value owner is Alias
-    final filteredOrRefs = _orRefs.keys;
-
-    final names = filteredOrRefs.map(resolveOrRefName).toList();
-
-    return filteredOrRefs;
-  }
+  Iterable<OrRef> get refs => _orRefs.keys;
 
   void processProtocol(MetaProtocol protocol) {
+    _collectStructures(protocol);
     _collectSealedClasses(protocol);
   }
 
+  void _collectStructures(MetaProtocol protocol) {
+    for (final structure in protocol.structures) {
+      _structuresRefs[structure.name] = structure;
+    }
+  }
+
+  bool isStructureRef(String name) => _structuresRefs.containsKey(name);
+
   List<String> typeNamesForOrRef(OrRef orRef) =>
       orRef.items.map(_resolveReferenceName).toList();
-
-  List<String> orTypesForOrRef(OrRef orRef) =>
-      orRef.items.map(resolveOneSimpleType).toList();
 
   String resolveOneSimpleType(MetaReference ref) {
     final name = ref
@@ -68,13 +66,13 @@ final class SealedMap {
         )
         .upperFirstLetter();
 
-    return  name;
+    return name;
   }
 
-  String typeNameForOrRef(OrRef orRef, {bool withPostfix = true}) {
+  String resolveOrRefType(OrRef orRef, {bool isBase = true}) {
     final name = _resolveReferenceName(orRef).removeFirstLetter('_');
 
-    if (withPostfix) {
+    if (isBase) {
       return _addOrPostfix(name);
     }
 
@@ -149,12 +147,6 @@ final class SealedMap {
     final StructOwner owner => owner.struct.name,
     final TypeAliasOwner owner => owner.typeAlias.name,
   };
-
-  List<OrOwner> ownersForOrRef(OrRef orRef) {
-    final owners = _orRefs[orRef]!;
-
-    return owners;
-  }
 
   List<String> ownerNamesForOrRef(OrRef orRef) {
     final owners = _orRefs[orRef]!;
