@@ -159,10 +159,6 @@ sealed class BaseOr<T> {
 /// Type: Array<Location>
 sealed class DefinitionBase extends BaseOr {
   const DefinitionBase();
-
-  Map<String, Object?> toJson() {
-    return {'value': value};
-  }
 }
 
 /// Represents a subclass of Definition.

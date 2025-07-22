@@ -32,7 +32,6 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
   final Map<String, MetaEnumeration> _enumerations;
 
   late final TypeResolverVisitor _typeResolverVisitor;
-
   late final SealedMap _sealedMap;
 
   Reference get _toJsonRef => refer('ToJson');
@@ -515,15 +514,11 @@ final class DartCodeGeneratorVisitor implements MetaProtocolVisitor<Spec> {
         ..docs.addAll([
           ..._sealedMap
               .ownerNamesForOrRef(symbol)
-              .map(
-                (owner) => '/// Owned by: $owner',
-              ),
+              .map((owner) => '/// Owned by: $owner'),
           '///',
           ..._sealedMap
               .typeNamesForOrRef(symbol)
-              .map(
-                (type) => '/// Type: $type',
-              ),
+              .map((type) => '/// Type: $type'),
         ])
         ..sealed = true
         ..constructors.add(
