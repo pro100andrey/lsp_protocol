@@ -39,6 +39,8 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
+
+      b.docs.addAll(_docs());
       b.body.addAll(_generateFreezedHeader());
 
       // Generate type aliases
@@ -62,6 +64,12 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
       b.body.add(_generateNotificationMethodEnum(protocol.notifications));
     },
   );
+
+    List<String> _docs() => [
+      '/// Do not edit it manually.',
+      '',
+      '// ignore_for_file: doc_directive_unknown',
+    ];
 
   List<Spec> _generateFreezedHeader() => const [
     Code('// Freezed header not implemented for generation\n'),
@@ -419,7 +427,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
       final doc = [
         '/// Method: $methodPath',
         '///',
-        ...?formatDocComment(request.documentation),
+        ...?formatDocComment(request.documentation, maxLineLength: 70),
       ];
 
       eb.values.add(
@@ -487,7 +495,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
           final doc = [
             '/// Method: $methodPath',
             '///',
-            ...?formatDocComment(notification.documentation),
+            ...?formatDocComment(notification.documentation, maxLineLength: 70),
           ];
 
           eb.values.add(
