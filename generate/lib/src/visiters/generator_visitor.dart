@@ -30,6 +30,8 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   late final TypeResolverVisitor _typeResolverVisitor;
   late final SealedMap _sealedMap;
 
+  Reference get _stringRef => refer('String');
+
   final _referencedJsonSerializable = refer(
     'JsonSerializable(disallowUnrecognizedKeys: true)',
   );
@@ -55,6 +57,9 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
       for (final enumeration in protocol.enumerations) {
         b.body.add(visitEnumeration(enumeration));
       }
+
+      b.body.add(_generateRequestMethodEnum(protocol.requests));
+      b.body.add(_generateNotificationMethodEnum(protocol.notifications));
     },
   );
 
@@ -372,6 +377,131 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
     return collectedProperties;
   }
+
+  Spec _generateRequestMethodEnum(List<MetaRequest> requests) => Enum((eb) {
+    eb
+      ..name = 'RequestMethod'
+      ..docs.add('/// This class contains methods for handling requests.')
+      ..constructors.add(
+        Constructor(
+          (ecb) {
+            ecb
+              ..constant = true
+              ..requiredParameters.add(
+                Parameter(
+                  (pb) {
+                    pb
+                      ..name = 'value'
+                      ..named = true
+                      ..toThis = true;
+                  },
+                ),
+              )
+              ..docs.add('// The list of all methods in this enumeration.');
+          },
+        ),
+      )
+      ..fields.add(
+        Field(
+          (fb) {
+            fb
+              ..name = 'value'
+              ..modifier = FieldModifier.final$
+              ..type = _stringRef
+              ..docs.add('// The type of this enumeration.');
+          },
+        ),
+      );
+
+    for (final request in requests) {
+      final method = _getMethodName(request.method);
+      final methodPath = request.method;
+      final doc = [
+        '/// Method: $methodPath',
+        '///',
+        ...?formatDocComment(request.documentation),
+      ];
+
+      eb.values.add(
+        EnumValue((evb) {
+          evb.name = method;
+          evb.arguments.add(literalString(methodPath));
+          evb.docs.addAll(doc);
+        }),
+      );
+    }
+  });
+
+  String _getMethodName(String method) {
+    final parts = method
+        .replaceAll(r'$/', '')
+        .split('/')
+        .map((part) => part.upperFirstLetter())
+        .join();
+
+    return parts.lowerFirstLetter();
+  }
+
+  Spec _generateNotificationMethodEnum(List<MetaNotification> notifications) =>
+      Enum((eb) {
+        eb
+          ..name = 'NotificationMethod'
+          ..docs.add(
+            '/// This class contains methods for handling notifications.',
+          )
+          ..constructors.add(
+            Constructor(
+              (ecb) {
+                ecb
+                  ..constant = true
+                  ..requiredParameters.add(
+                    Parameter(
+                      (pb) {
+                        pb
+                          ..name = 'value'
+                          ..named = true
+                          ..toThis = true;
+                      },
+                    ),
+                  )
+                  ..docs.add('// The list of all methods in this enumeration.');
+              },
+            ),
+          )
+          ..fields.add(
+            Field(
+              (fb) {
+                fb
+                  ..name = 'value'
+                  ..modifier = FieldModifier.final$
+                  ..type = _stringRef
+                  ..docs.add('// The type of this enumeration.');
+              },
+            ),
+          );
+
+        for (final notification in notifications) {
+          final method = _getMethodName(notification.method);
+          final methodPath = notification.method;
+
+          final doc = [
+            '/// Method: $methodPath',
+            '///',
+            ...?formatDocComment(notification.documentation),
+          ];
+
+          eb.values.add(
+            EnumValue((evb) {
+              evb.name = method;
+
+              evb.arguments.add(
+                literalString(methodPath, raw: methodPath.startsWith(r'$/')),
+              );
+              evb.docs.addAll(doc);
+            }),
+          );
+        }
+      });
 }
 
 /// The main entry point for the protocol generation.

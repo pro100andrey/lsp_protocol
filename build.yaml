@@ -1,0 +1,12 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        options:
+          generate_copy_with: true
+          generate_to_json: true
+          generate_from_json: true
+          map: false
+          maybe_map: false
+          when: false
+          maybe_when: false

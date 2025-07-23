@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -88,6 +87,7 @@ $MetaDataCopyWith<$Res> get metaData {
   });
 }
 }
+
 
 
 /// @nodoc
@@ -270,6 +270,7 @@ as String,
 }
 
 }
+
 
 
 /// @nodoc
@@ -473,6 +474,7 @@ $MetaReferenceCopyWith<$Res>? get errorData {
   });
 }
 }
+
 
 
 /// @nodoc
@@ -737,6 +739,7 @@ as TypeKind,
 }
 
 }
+
 
 
 /// @nodoc
@@ -1498,6 +1501,7 @@ as List<MetaProperty>,
 }
 
 
+
 /// @nodoc
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
@@ -1665,6 +1669,7 @@ $MetaReferenceCopyWith<$Res>? get registrationOptions {
   });
 }
 }
+
 
 
 /// @nodoc
@@ -1851,6 +1856,7 @@ $MetaReferenceCopyWith<$Res> get type {
 }
 
 
+
 /// @nodoc
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
@@ -2009,6 +2015,7 @@ as List<MetaReference>,
 }
 
 }
+
 
 
 /// @nodoc
@@ -2186,6 +2193,7 @@ $EnumRawValueCopyWith<$Res> get value {
 }
 
 
+
 /// @nodoc
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
@@ -2355,6 +2363,7 @@ as String,
 }
 
 }
+
 
 
 /// @nodoc
@@ -2582,6 +2591,7 @@ $MetaReferenceCopyWith<$Res> get type {
 }
 
 
+
 /// @nodoc
 
 @JsonSerializable(disallowUnrecognizedKeys: true)
@@ -2755,6 +2765,7 @@ $MetaReferenceCopyWith<$Res> get type {
   });
 }
 }
+
 
 
 /// @nodoc

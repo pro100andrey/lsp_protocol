@@ -35,11 +35,12 @@ Future<void> main(List<String> args) async {
 }
 
 Future<void> runBuildRunner() async {
-  final result = await Process.run(
-    'dart',
-    ['run', 'build_runner', 'build', '--delete-conflicting-outputs'],
-    workingDirectory: '../'
-  );
+  final result = await Process.run('dart', [
+    'run',
+    'build_runner',
+    'build',
+    '--delete-conflicting-outputs',
+  ], workingDirectory: '../');
 
   if (result.exitCode == 0) {
     print(result.stdout);
