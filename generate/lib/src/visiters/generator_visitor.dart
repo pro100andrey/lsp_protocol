@@ -39,7 +39,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
     (b) {
-
       b.docs.addAll(_docs());
       b.body.addAll(_generateFreezedHeader());
 
@@ -65,11 +64,11 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     },
   );
 
-    List<String> _docs() => [
-      '/// Do not edit it manually.',
-      '',
-      '// ignore_for_file: doc_directive_unknown',
-    ];
+  List<String> _docs() => [
+    '/// Do not edit it manually.',
+    '',
+    '// ignore_for_file: doc_directive_unknown',
+  ];
 
   List<Spec> _generateFreezedHeader() => const [
     Code('// Freezed header not implemented for generation\n'),
@@ -97,7 +96,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final allFields = allPropertiesMap.values.toList(growable: false)
       ..sort((a, b) => a.optional ? 1 : 0);
 
-    final inheritedPropertyNames = _collectInheritedProperties(
+    final _ = _collectInheritedProperties(
       structure,
     ).keys.toSet();
 
