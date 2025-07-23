@@ -114,9 +114,11 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
                         );
                         b
                           ..name = field.name
-                          ..type = refer(type)
+                          ..type = refer(
+                            type.optional(optional: field.optional),
+                          )
                           ..named = true
-                          ..required = true;
+                          ..required = !field.optional;
                       },
                     ),
                   ),

@@ -1461,8 +1461,8 @@ abstract class ImplementationParams with _$ImplementationParams {
   const factory ImplementationParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _ImplementationParams;
 
   factory ImplementationParams.fromJson(Map<String, dynamic> json) =>
@@ -1486,8 +1486,8 @@ abstract class ImplementationRegistrationOptions
   const factory ImplementationRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _ImplementationRegistrationOptions;
 
   factory ImplementationRegistrationOptions.fromJson(
@@ -1501,8 +1501,8 @@ abstract class TypeDefinitionParams with _$TypeDefinitionParams {
   const factory TypeDefinitionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _TypeDefinitionParams;
 
   factory TypeDefinitionParams.fromJson(Map<String, dynamic> json) =>
@@ -1516,8 +1516,8 @@ abstract class TypeDefinitionRegistrationOptions
   const factory TypeDefinitionRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _TypeDefinitionRegistrationOptions;
 
   factory TypeDefinitionRegistrationOptions.fromJson(
@@ -1562,8 +1562,8 @@ abstract class DocumentColorParams with _$DocumentColorParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentColorParams({
     required TextDocumentIdentifier textDocument,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentColorParams;
 
   factory DocumentColorParams.fromJson(Map<String, dynamic> json) =>
@@ -1587,8 +1587,8 @@ abstract class DocumentColorRegistrationOptions
   const factory DocumentColorRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _DocumentColorRegistrationOptions;
 
   factory DocumentColorRegistrationOptions.fromJson(
@@ -1603,8 +1603,8 @@ abstract class ColorPresentationParams with _$ColorPresentationParams {
     required TextDocumentIdentifier textDocument,
     required Color color,
     required Range range,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _ColorPresentationParams;
 
   factory ColorPresentationParams.fromJson(Map<String, dynamic> json) =>
@@ -1616,8 +1616,8 @@ abstract class ColorPresentation with _$ColorPresentation {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ColorPresentation({
     required String label,
-    required List<TextEdit> additionalTextEdits,
-    required TextEdit textEdit,
+    List<TextEdit>? additionalTextEdits,
+    TextEdit? textEdit,
   }) = _ColorPresentation;
 
   factory ColorPresentation.fromJson(Map<String, dynamic> json) =>
@@ -1627,7 +1627,7 @@ abstract class ColorPresentation with _$ColorPresentation {
 @freezed
 abstract class WorkDoneProgressOptions with _$WorkDoneProgressOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory WorkDoneProgressOptions({required bool workDoneProgress}) =
+  const factory WorkDoneProgressOptions({bool? workDoneProgress}) =
       _WorkDoneProgressOptions;
 
   factory WorkDoneProgressOptions.fromJson(Map<String, dynamic> json) =>
@@ -1652,8 +1652,8 @@ abstract class FoldingRangeParams with _$FoldingRangeParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory FoldingRangeParams({
     required TextDocumentIdentifier textDocument,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _FoldingRangeParams;
 
   factory FoldingRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -1666,10 +1666,10 @@ abstract class FoldingRange with _$FoldingRange {
   const factory FoldingRange({
     required int startLine,
     required int endLine,
-    required String collapsedText,
-    required FoldingRangeKind kind,
-    required int endCharacter,
-    required int startCharacter,
+    String? collapsedText,
+    FoldingRangeKind? kind,
+    int? endCharacter,
+    int? startCharacter,
   }) = _FoldingRange;
 
   factory FoldingRange.fromJson(Map<String, dynamic> json) =>
@@ -1683,8 +1683,8 @@ abstract class FoldingRangeRegistrationOptions
   const factory FoldingRangeRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _FoldingRangeRegistrationOptions;
 
   factory FoldingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -1697,8 +1697,8 @@ abstract class DeclarationParams with _$DeclarationParams {
   const factory DeclarationParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _DeclarationParams;
 
   factory DeclarationParams.fromJson(Map<String, dynamic> json) =>
@@ -1712,8 +1712,8 @@ abstract class DeclarationRegistrationOptions
   const factory DeclarationRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _DeclarationRegistrationOptions;
 
   factory DeclarationRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -1726,8 +1726,8 @@ abstract class SelectionRangeParams with _$SelectionRangeParams {
   const factory SelectionRangeParams({
     required TextDocumentIdentifier textDocument,
     required List<Position> positions,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _SelectionRangeParams;
 
   factory SelectionRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -1737,10 +1737,8 @@ abstract class SelectionRangeParams with _$SelectionRangeParams {
 @freezed
 abstract class SelectionRange with _$SelectionRange {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory SelectionRange({
-    required Range range,
-    required SelectionRange parent,
-  }) = _SelectionRange;
+  const factory SelectionRange({required Range range, SelectionRange? parent}) =
+      _SelectionRange;
 
   factory SelectionRange.fromJson(Map<String, dynamic> json) =>
       _$SelectionRangeFromJson(json);
@@ -1753,8 +1751,8 @@ abstract class SelectionRangeRegistrationOptions
   const factory SelectionRangeRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _SelectionRangeRegistrationOptions;
 
   factory SelectionRangeRegistrationOptions.fromJson(
@@ -1790,7 +1788,7 @@ abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
   const factory CallHierarchyPrepareParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _CallHierarchyPrepareParams;
 
   factory CallHierarchyPrepareParams.fromJson(Map<String, dynamic> json) =>
@@ -1806,9 +1804,9 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
     required String uri,
     required Range range,
     required Range selectionRange,
-    required LSPAny data,
-    required String detail,
-    required List<SymbolTag> tags,
+    LSPAny? data,
+    String? detail,
+    List<SymbolTag>? tags,
   }) = _CallHierarchyItem;
 
   factory CallHierarchyItem.fromJson(Map<String, dynamic> json) =>
@@ -1822,8 +1820,8 @@ abstract class CallHierarchyRegistrationOptions
   const factory CallHierarchyRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _CallHierarchyRegistrationOptions;
 
   factory CallHierarchyRegistrationOptions.fromJson(
@@ -1837,8 +1835,8 @@ abstract class CallHierarchyIncomingCallsParams
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CallHierarchyIncomingCallsParams({
     required CallHierarchyItem item,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _CallHierarchyIncomingCallsParams;
 
   factory CallHierarchyIncomingCallsParams.fromJson(
@@ -1864,8 +1862,8 @@ abstract class CallHierarchyOutgoingCallsParams
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CallHierarchyOutgoingCallsParams({
     required CallHierarchyItem item,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _CallHierarchyOutgoingCallsParams;
 
   factory CallHierarchyOutgoingCallsParams.fromJson(
@@ -1890,8 +1888,8 @@ abstract class SemanticTokensParams with _$SemanticTokensParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory SemanticTokensParams({
     required TextDocumentIdentifier textDocument,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _SemanticTokensParams;
 
   factory SemanticTokensParams.fromJson(Map<String, dynamic> json) =>
@@ -1901,10 +1899,8 @@ abstract class SemanticTokensParams with _$SemanticTokensParams {
 @freezed
 abstract class SemanticTokens with _$SemanticTokens {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory SemanticTokens({
-    required List<int> data,
-    required String resultId,
-  }) = _SemanticTokens;
+  const factory SemanticTokens({required List<int> data, String? resultId}) =
+      _SemanticTokens;
 
   factory SemanticTokens.fromJson(Map<String, dynamic> json) =>
       _$SemanticTokensFromJson(json);
@@ -1928,10 +1924,10 @@ abstract class SemanticTokensRegistrationOptions
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
     required SemanticTokensLegend legend,
-    required String id,
-    required SemanticTokensOptionsFullBase full,
-    required RangeBase range,
-    required bool workDoneProgress,
+    String? id,
+    SemanticTokensOptionsFullBase? full,
+    RangeBase? range,
+    bool? workDoneProgress,
   }) = _SemanticTokensRegistrationOptions;
 
   factory SemanticTokensRegistrationOptions.fromJson(
@@ -1945,8 +1941,8 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
   const factory SemanticTokensDeltaParams({
     required TextDocumentIdentifier textDocument,
     required String previousResultId,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _SemanticTokensDeltaParams;
 
   factory SemanticTokensDeltaParams.fromJson(Map<String, dynamic> json) =>
@@ -1958,7 +1954,7 @@ abstract class SemanticTokensDelta with _$SemanticTokensDelta {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory SemanticTokensDelta({
     required List<SemanticTokensEdit> edits,
-    required String resultId,
+    String? resultId,
   }) = _SemanticTokensDelta;
 
   factory SemanticTokensDelta.fromJson(Map<String, dynamic> json) =>
@@ -1984,8 +1980,8 @@ abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
   const factory SemanticTokensRangeParams({
     required TextDocumentIdentifier textDocument,
     required Range range,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _SemanticTokensRangeParams;
 
   factory SemanticTokensRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -1997,9 +1993,9 @@ abstract class ShowDocumentParams with _$ShowDocumentParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ShowDocumentParams({
     required String uri,
-    required Range selection,
-    required bool takeFocus,
-    required bool external,
+    Range? selection,
+    bool? takeFocus,
+    bool? external,
   }) = _ShowDocumentParams;
 
   factory ShowDocumentParams.fromJson(Map<String, dynamic> json) =>
@@ -2022,7 +2018,7 @@ abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
   const factory LinkedEditingRangeParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _LinkedEditingRangeParams;
 
   factory LinkedEditingRangeParams.fromJson(Map<String, dynamic> json) =>
@@ -2034,7 +2030,7 @@ abstract class LinkedEditingRanges with _$LinkedEditingRanges {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory LinkedEditingRanges({
     required List<Range> ranges,
-    required String wordPattern,
+    String? wordPattern,
   }) = _LinkedEditingRanges;
 
   factory LinkedEditingRanges.fromJson(Map<String, dynamic> json) =>
@@ -2048,8 +2044,8 @@ abstract class LinkedEditingRangeRegistrationOptions
   const factory LinkedEditingRangeRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _LinkedEditingRangeRegistrationOptions;
 
   factory LinkedEditingRangeRegistrationOptions.fromJson(
@@ -2071,10 +2067,9 @@ abstract class CreateFilesParams with _$CreateFilesParams {
 abstract class WorkspaceEdit with _$WorkspaceEdit {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceEdit({
-    required Map<ChangeAnnotationIdentifier, ChangeAnnotation>
-    changeAnnotations,
-    required List<WorkspaceEditDocumentChangesBase> documentChanges,
-    required Map<String, List<TextEdit>> changes,
+    Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations,
+    List<WorkspaceEditDocumentChangesBase>? documentChanges,
+    Map<String, List<TextEdit>>? changes,
   }) = _WorkspaceEdit;
 
   factory WorkspaceEdit.fromJson(Map<String, dynamic> json) =>
@@ -2120,8 +2115,8 @@ abstract class MonikerParams with _$MonikerParams {
   const factory MonikerParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _MonikerParams;
 
   factory MonikerParams.fromJson(Map<String, dynamic> json) =>
@@ -2135,7 +2130,7 @@ abstract class Moniker with _$Moniker {
     required String scheme,
     required String identifier,
     required UniquenessLevel unique,
-    required MonikerKind kind,
+    MonikerKind? kind,
   }) = _Moniker;
 
   factory Moniker.fromJson(Map<String, dynamic> json) =>
@@ -2148,7 +2143,7 @@ abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
   const factory MonikerRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool workDoneProgress,
+    bool? workDoneProgress,
   }) = _MonikerRegistrationOptions;
 
   factory MonikerRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2161,7 +2156,7 @@ abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
   const factory TypeHierarchyPrepareParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _TypeHierarchyPrepareParams;
 
   factory TypeHierarchyPrepareParams.fromJson(Map<String, dynamic> json) =>
@@ -2177,9 +2172,9 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
     required String uri,
     required Range range,
     required Range selectionRange,
-    required LSPAny data,
-    required String detail,
-    required List<SymbolTag> tags,
+    LSPAny? data,
+    String? detail,
+    List<SymbolTag>? tags,
   }) = _TypeHierarchyItem;
 
   factory TypeHierarchyItem.fromJson(Map<String, dynamic> json) =>
@@ -2193,8 +2188,8 @@ abstract class TypeHierarchyRegistrationOptions
   const factory TypeHierarchyRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _TypeHierarchyRegistrationOptions;
 
   factory TypeHierarchyRegistrationOptions.fromJson(
@@ -2208,8 +2203,8 @@ abstract class TypeHierarchySupertypesParams
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory TypeHierarchySupertypesParams({
     required TypeHierarchyItem item,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _TypeHierarchySupertypesParams;
 
   factory TypeHierarchySupertypesParams.fromJson(Map<String, dynamic> json) =>
@@ -2221,8 +2216,8 @@ abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory TypeHierarchySubtypesParams({
     required TypeHierarchyItem item,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _TypeHierarchySubtypesParams;
 
   factory TypeHierarchySubtypesParams.fromJson(Map<String, dynamic> json) =>
@@ -2236,7 +2231,7 @@ abstract class InlineValueParams with _$InlineValueParams {
     required TextDocumentIdentifier textDocument,
     required Range range,
     required InlineValueContext context,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _InlineValueParams;
 
   factory InlineValueParams.fromJson(Map<String, dynamic> json) =>
@@ -2250,8 +2245,8 @@ abstract class InlineValueRegistrationOptions
   const factory InlineValueRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _InlineValueRegistrationOptions;
 
   factory InlineValueRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2264,7 +2259,7 @@ abstract class InlayHintParams with _$InlayHintParams {
   const factory InlayHintParams({
     required TextDocumentIdentifier textDocument,
     required Range range,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _InlayHintParams;
 
   factory InlayHintParams.fromJson(Map<String, dynamic> json) =>
@@ -2277,12 +2272,12 @@ abstract class InlayHint with _$InlayHint {
   const factory InlayHint({
     required Position position,
     required InlayHintLabelBase label,
-    required LSPAny data,
-    required bool paddingRight,
-    required bool paddingLeft,
-    required TooltipOrDocumentationBase tooltip,
-    required List<TextEdit> textEdits,
-    required InlayHintKind kind,
+    LSPAny? data,
+    bool? paddingRight,
+    bool? paddingLeft,
+    TooltipOrDocumentationBase? tooltip,
+    List<TextEdit>? textEdits,
+    InlayHintKind? kind,
   }) = _InlayHint;
 
   factory InlayHint.fromJson(Map<String, dynamic> json) =>
@@ -2296,9 +2291,9 @@ abstract class InlayHintRegistrationOptions
   const factory InlayHintRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool resolveProvider,
-    required bool workDoneProgress,
+    String? id,
+    bool? resolveProvider,
+    bool? workDoneProgress,
   }) = _InlayHintRegistrationOptions;
 
   factory InlayHintRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2310,10 +2305,10 @@ abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentDiagnosticParams({
     required TextDocumentIdentifier textDocument,
-    required String previousResultId,
-    required String identifier,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    String? previousResultId,
+    String? identifier,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentDiagnosticParams;
 
   factory DocumentDiagnosticParams.fromJson(Map<String, dynamic> json) =>
@@ -2355,9 +2350,9 @@ abstract class DiagnosticRegistrationOptions
     documentSelector,
     required bool interFileDependencies,
     required bool workspaceDiagnostics,
-    required String id,
-    required String identifier,
-    required bool workDoneProgress,
+    String? id,
+    String? identifier,
+    bool? workDoneProgress,
   }) = _DiagnosticRegistrationOptions;
 
   factory DiagnosticRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2369,9 +2364,9 @@ abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceDiagnosticParams({
     required List<PreviousResultId> previousResultIds,
-    required String identifier,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    String? identifier,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _WorkspaceDiagnosticParams;
 
   factory WorkspaceDiagnosticParams.fromJson(Map<String, dynamic> json) =>
@@ -2460,7 +2455,7 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
     required TextDocumentIdentifier textDocument,
     required Position position,
     required InlineCompletionContext context,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _InlineCompletionParams;
 
   factory InlineCompletionParams.fromJson(Map<String, dynamic> json) =>
@@ -2483,9 +2478,9 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory InlineCompletionItem({
     required InlineCompletionItemInsertTextBase insertText,
-    required Command command,
-    required Range range,
-    required String filterText,
+    Command? command,
+    Range? range,
+    String? filterText,
   }) = _InlineCompletionItem;
 
   factory InlineCompletionItem.fromJson(Map<String, dynamic> json) =>
@@ -2499,8 +2494,8 @@ abstract class InlineCompletionRegistrationOptions
   const factory InlineCompletionRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String id,
-    required bool workDoneProgress,
+    String? id,
+    bool? workDoneProgress,
   }) = _InlineCompletionRegistrationOptions;
 
   factory InlineCompletionRegistrationOptions.fromJson(
@@ -2537,14 +2532,13 @@ abstract class InitializeParams with _$InitializeParams {
     required ProcessIdOrVersionBase processId,
     required InitializeParamsRootUriBase rootUri,
     required ClientCapabilities capabilities,
-    required WorkspaceFoldersInitializeParamsWorkspaceFoldersBase
-    workspaceFolders,
-    required TraceValues trace,
-    required LSPAny initializationOptions,
-    required InitializeParamsRootPathBase rootPath,
-    required String locale,
-    required ({String name, String? version}) clientInfo,
-    required ProgressToken workDoneToken,
+    WorkspaceFoldersInitializeParamsWorkspaceFoldersBase? workspaceFolders,
+    TraceValues? trace,
+    LSPAny? initializationOptions,
+    InitializeParamsRootPathBase? rootPath,
+    String? locale,
+    ({String name, String? version})? clientInfo,
+    ProgressToken? workDoneToken,
   }) = _InitializeParams;
 
   factory InitializeParams.fromJson(Map<String, dynamic> json) =>
@@ -2556,7 +2550,7 @@ abstract class InitializeResult with _$InitializeResult {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory InitializeResult({
     required ServerCapabilities capabilities,
-    required ({String name, String? version}) serverInfo,
+    ({String name, String? version})? serverInfo,
   }) = _InitializeResult;
 
   factory InitializeResult.fromJson(Map<String, dynamic> json) =>
@@ -2597,7 +2591,7 @@ abstract class DidChangeConfigurationRegistrationOptions
     with _$DidChangeConfigurationRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DidChangeConfigurationRegistrationOptions({
-    required DidChangeConfigurationRegistrationOptionsSectionBase section,
+    DidChangeConfigurationRegistrationOptionsSectionBase? section,
   }) = _DidChangeConfigurationRegistrationOptions;
 
   factory DidChangeConfigurationRegistrationOptions.fromJson(
@@ -2623,7 +2617,7 @@ abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
   const factory ShowMessageRequestParams({
     required MessageType type,
     required String message,
-    required List<MessageActionItem> actions,
+    List<MessageActionItem>? actions,
   }) = _ShowMessageRequestParams;
 
   factory ShowMessageRequestParams.fromJson(Map<String, dynamic> json) =>
@@ -2705,7 +2699,7 @@ abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DidSaveTextDocumentParams({
     required TextDocumentIdentifier textDocument,
-    required String text,
+    String? text,
   }) = _DidSaveTextDocumentParams;
 
   factory DidSaveTextDocumentParams.fromJson(Map<String, dynamic> json) =>
@@ -2719,7 +2713,7 @@ abstract class TextDocumentSaveRegistrationOptions
   const factory TextDocumentSaveRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool includeText,
+    bool? includeText,
   }) = _TextDocumentSaveRegistrationOptions;
 
   factory TextDocumentSaveRegistrationOptions.fromJson(
@@ -2779,7 +2773,7 @@ abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
   const factory PublishDiagnosticsParams({
     required String uri,
     required List<Diagnostic> diagnostics,
-    required int version,
+    int? version,
   }) = _PublishDiagnosticsParams;
 
   factory PublishDiagnosticsParams.fromJson(Map<String, dynamic> json) =>
@@ -2792,9 +2786,9 @@ abstract class CompletionParams with _$CompletionParams {
   const factory CompletionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required CompletionContext context,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    CompletionContext? context,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _CompletionParams;
 
   factory CompletionParams.fromJson(Map<String, dynamic> json) =>
@@ -2806,24 +2800,24 @@ abstract class CompletionItem with _$CompletionItem {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CompletionItem({
     required String label,
-    required LSPAny data,
-    required Command command,
-    required List<String> commitCharacters,
-    required List<TextEdit> additionalTextEdits,
-    required String textEditText,
-    required CompletionItemTextEditBase textEdit,
-    required InsertTextMode insertTextMode,
-    required InsertTextFormat insertTextFormat,
-    required String insertText,
-    required String filterText,
-    required String sortText,
-    required bool preselect,
-    required bool deprecated,
-    required TooltipOrDocumentationBase documentation,
-    required String detail,
-    required List<CompletionItemTag> tags,
-    required CompletionItemKind kind,
-    required CompletionItemLabelDetails labelDetails,
+    LSPAny? data,
+    Command? command,
+    List<String>? commitCharacters,
+    List<TextEdit>? additionalTextEdits,
+    String? textEditText,
+    CompletionItemTextEditBase? textEdit,
+    InsertTextMode? insertTextMode,
+    InsertTextFormat? insertTextFormat,
+    String? insertText,
+    String? filterText,
+    String? sortText,
+    bool? preselect,
+    bool? deprecated,
+    TooltipOrDocumentationBase? documentation,
+    String? detail,
+    List<CompletionItemTag>? tags,
+    CompletionItemKind? kind,
+    CompletionItemLabelDetails? labelDetails,
   }) = _CompletionItem;
 
   factory CompletionItem.fromJson(Map<String, dynamic> json) =>
@@ -2836,13 +2830,13 @@ abstract class CompletionList with _$CompletionList {
   const factory CompletionList({
     required bool isIncomplete,
     required List<CompletionItem> items,
-    required ({
+    ({
       List<String>? commitCharacters,
       CompletionListEditRangeBase? editRange,
       InsertTextFormat? insertTextFormat,
       InsertTextMode? insertTextMode,
       LSPAny? data,
-    })
+    })?
     itemDefaults,
   }) = _CompletionList;
 
@@ -2857,11 +2851,11 @@ abstract class CompletionRegistrationOptions
   const factory CompletionRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required ({bool? labelDetailsSupport}) completionItem,
-    required bool resolveProvider,
-    required List<String> allCommitCharacters,
-    required List<String> triggerCharacters,
-    required bool workDoneProgress,
+    ({bool? labelDetailsSupport})? completionItem,
+    bool? resolveProvider,
+    List<String>? allCommitCharacters,
+    List<String>? triggerCharacters,
+    bool? workDoneProgress,
   }) = _CompletionRegistrationOptions;
 
   factory CompletionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2874,7 +2868,7 @@ abstract class HoverParams with _$HoverParams {
   const factory HoverParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _HoverParams;
 
   factory HoverParams.fromJson(Map<String, dynamic> json) =>
@@ -2884,10 +2878,8 @@ abstract class HoverParams with _$HoverParams {
 @freezed
 abstract class Hover with _$Hover {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory Hover({
-    required HoverContentsBase contents,
-    required Range range,
-  }) = _Hover;
+  const factory Hover({required HoverContentsBase contents, Range? range}) =
+      _Hover;
 
   factory Hover.fromJson(Map<String, dynamic> json) => _$HoverFromJson(json);
 }
@@ -2898,7 +2890,7 @@ abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
   const factory HoverRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool workDoneProgress,
+    bool? workDoneProgress,
   }) = _HoverRegistrationOptions;
 
   factory HoverRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2911,8 +2903,8 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
   const factory SignatureHelpParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required SignatureHelpContext context,
-    required ProgressToken workDoneToken,
+    SignatureHelpContext? context,
+    ProgressToken? workDoneToken,
   }) = _SignatureHelpParams;
 
   factory SignatureHelpParams.fromJson(Map<String, dynamic> json) =>
@@ -2924,8 +2916,8 @@ abstract class SignatureHelp with _$SignatureHelp {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory SignatureHelp({
     required List<SignatureInformation> signatures,
-    required int activeParameter,
-    required int activeSignature,
+    int? activeParameter,
+    int? activeSignature,
   }) = _SignatureHelp;
 
   factory SignatureHelp.fromJson(Map<String, dynamic> json) =>
@@ -2939,9 +2931,9 @@ abstract class SignatureHelpRegistrationOptions
   const factory SignatureHelpRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required List<String> retriggerCharacters,
-    required List<String> triggerCharacters,
-    required bool workDoneProgress,
+    List<String>? retriggerCharacters,
+    List<String>? triggerCharacters,
+    bool? workDoneProgress,
   }) = _SignatureHelpRegistrationOptions;
 
   factory SignatureHelpRegistrationOptions.fromJson(
@@ -2955,8 +2947,8 @@ abstract class DefinitionParams with _$DefinitionParams {
   const factory DefinitionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _DefinitionParams;
 
   factory DefinitionParams.fromJson(Map<String, dynamic> json) =>
@@ -2970,7 +2962,7 @@ abstract class DefinitionRegistrationOptions
   const factory DefinitionRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool workDoneProgress,
+    bool? workDoneProgress,
   }) = _DefinitionRegistrationOptions;
 
   factory DefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2984,8 +2976,8 @@ abstract class ReferenceParams with _$ReferenceParams {
     required TextDocumentIdentifier textDocument,
     required Position position,
     required ReferenceContext context,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _ReferenceParams;
 
   factory ReferenceParams.fromJson(Map<String, dynamic> json) =>
@@ -2999,7 +2991,7 @@ abstract class ReferenceRegistrationOptions
   const factory ReferenceRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool workDoneProgress,
+    bool? workDoneProgress,
   }) = _ReferenceRegistrationOptions;
 
   factory ReferenceRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -3012,8 +3004,8 @@ abstract class DocumentHighlightParams with _$DocumentHighlightParams {
   const factory DocumentHighlightParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentHighlightParams;
 
   factory DocumentHighlightParams.fromJson(Map<String, dynamic> json) =>
@@ -3025,7 +3017,7 @@ abstract class DocumentHighlight with _$DocumentHighlight {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentHighlight({
     required Range range,
-    required DocumentHighlightKind kind,
+    DocumentHighlightKind? kind,
   }) = _DocumentHighlight;
 
   factory DocumentHighlight.fromJson(Map<String, dynamic> json) =>
@@ -3039,7 +3031,7 @@ abstract class DocumentHighlightRegistrationOptions
   const factory DocumentHighlightRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool workDoneProgress,
+    bool? workDoneProgress,
   }) = _DocumentHighlightRegistrationOptions;
 
   factory DocumentHighlightRegistrationOptions.fromJson(
@@ -3052,8 +3044,8 @@ abstract class DocumentSymbolParams with _$DocumentSymbolParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentSymbolParams({
     required TextDocumentIdentifier textDocument,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentSymbolParams;
 
   factory DocumentSymbolParams.fromJson(Map<String, dynamic> json) =>
@@ -3067,9 +3059,9 @@ abstract class SymbolInformation with _$SymbolInformation {
     required String name,
     required SymbolKind kind,
     required Location location,
-    required bool deprecated,
-    required String containerName,
-    required List<SymbolTag> tags,
+    bool? deprecated,
+    String? containerName,
+    List<SymbolTag>? tags,
   }) = _SymbolInformation;
 
   factory SymbolInformation.fromJson(Map<String, dynamic> json) =>
@@ -3084,10 +3076,10 @@ abstract class DocumentSymbol with _$DocumentSymbol {
     required SymbolKind kind,
     required Range range,
     required Range selectionRange,
-    required List<DocumentSymbol> children,
-    required bool deprecated,
-    required List<SymbolTag> tags,
-    required String detail,
+    List<DocumentSymbol>? children,
+    bool? deprecated,
+    List<SymbolTag>? tags,
+    String? detail,
   }) = _DocumentSymbol;
 
   factory DocumentSymbol.fromJson(Map<String, dynamic> json) =>
@@ -3101,8 +3093,8 @@ abstract class DocumentSymbolRegistrationOptions
   const factory DocumentSymbolRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required String label,
-    required bool workDoneProgress,
+    String? label,
+    bool? workDoneProgress,
   }) = _DocumentSymbolRegistrationOptions;
 
   factory DocumentSymbolRegistrationOptions.fromJson(
@@ -3117,8 +3109,8 @@ abstract class CodeActionParams with _$CodeActionParams {
     required TextDocumentIdentifier textDocument,
     required Range range,
     required CodeActionContext context,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _CodeActionParams;
 
   factory CodeActionParams.fromJson(Map<String, dynamic> json) =>
@@ -3131,7 +3123,7 @@ abstract class Command with _$Command {
   const factory Command({
     required String title,
     required String command,
-    required List<LSPAny> arguments,
+    List<LSPAny>? arguments,
   }) = _Command;
 
   factory Command.fromJson(Map<String, dynamic> json) =>
@@ -3143,13 +3135,13 @@ abstract class CodeAction with _$CodeAction {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CodeAction({
     required String title,
-    required LSPAny data,
-    required Command command,
-    required WorkspaceEdit edit,
-    required ({String reason}) disabled,
-    required bool isPreferred,
-    required List<Diagnostic> diagnostics,
-    required CodeActionKind kind,
+    LSPAny? data,
+    Command? command,
+    WorkspaceEdit? edit,
+    ({String reason})? disabled,
+    bool? isPreferred,
+    List<Diagnostic>? diagnostics,
+    CodeActionKind? kind,
   }) = _CodeAction;
 
   factory CodeAction.fromJson(Map<String, dynamic> json) =>
@@ -3163,9 +3155,9 @@ abstract class CodeActionRegistrationOptions
   const factory CodeActionRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool resolveProvider,
-    required List<CodeActionKind> codeActionKinds,
-    required bool workDoneProgress,
+    bool? resolveProvider,
+    List<CodeActionKind>? codeActionKinds,
+    bool? workDoneProgress,
   }) = _CodeActionRegistrationOptions;
 
   factory CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -3177,8 +3169,8 @@ abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceSymbolParams({
     required String query,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _WorkspaceSymbolParams;
 
   factory WorkspaceSymbolParams.fromJson(Map<String, dynamic> json) =>
@@ -3192,9 +3184,9 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     required String name,
     required SymbolKind kind,
     required WorkspaceSymbolLocationBase location,
-    required LSPAny data,
-    required String containerName,
-    required List<SymbolTag> tags,
+    LSPAny? data,
+    String? containerName,
+    List<SymbolTag>? tags,
   }) = _WorkspaceSymbol;
 
   factory WorkspaceSymbol.fromJson(Map<String, dynamic> json) =>
@@ -3206,8 +3198,8 @@ abstract class WorkspaceSymbolRegistrationOptions
     with _$WorkspaceSymbolRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceSymbolRegistrationOptions({
-    required bool resolveProvider,
-    required bool workDoneProgress,
+    bool? resolveProvider,
+    bool? workDoneProgress,
   }) = _WorkspaceSymbolRegistrationOptions;
 
   factory WorkspaceSymbolRegistrationOptions.fromJson(
@@ -3220,8 +3212,8 @@ abstract class CodeLensParams with _$CodeLensParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CodeLensParams({
     required TextDocumentIdentifier textDocument,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _CodeLensParams;
 
   factory CodeLensParams.fromJson(Map<String, dynamic> json) =>
@@ -3233,8 +3225,8 @@ abstract class CodeLens with _$CodeLens {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CodeLens({
     required Range range,
-    required LSPAny data,
-    required Command command,
+    LSPAny? data,
+    Command? command,
   }) = _CodeLens;
 
   factory CodeLens.fromJson(Map<String, dynamic> json) =>
@@ -3247,8 +3239,8 @@ abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
   const factory CodeLensRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool resolveProvider,
-    required bool workDoneProgress,
+    bool? resolveProvider,
+    bool? workDoneProgress,
   }) = _CodeLensRegistrationOptions;
 
   factory CodeLensRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -3260,8 +3252,8 @@ abstract class DocumentLinkParams with _$DocumentLinkParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentLinkParams({
     required TextDocumentIdentifier textDocument,
-    required ProgressToken partialResultToken,
-    required ProgressToken workDoneToken,
+    ProgressToken? partialResultToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentLinkParams;
 
   factory DocumentLinkParams.fromJson(Map<String, dynamic> json) =>
@@ -3273,9 +3265,9 @@ abstract class DocumentLink with _$DocumentLink {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentLink({
     required Range range,
-    required LSPAny data,
-    required String tooltip,
-    required String target,
+    LSPAny? data,
+    String? tooltip,
+    String? target,
   }) = _DocumentLink;
 
   factory DocumentLink.fromJson(Map<String, dynamic> json) =>
@@ -3289,8 +3281,8 @@ abstract class DocumentLinkRegistrationOptions
   const factory DocumentLinkRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool resolveProvider,
-    required bool workDoneProgress,
+    bool? resolveProvider,
+    bool? workDoneProgress,
   }) = _DocumentLinkRegistrationOptions;
 
   factory DocumentLinkRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -3303,7 +3295,7 @@ abstract class DocumentFormattingParams with _$DocumentFormattingParams {
   const factory DocumentFormattingParams({
     required TextDocumentIdentifier textDocument,
     required FormattingOptions options,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentFormattingParams;
 
   factory DocumentFormattingParams.fromJson(Map<String, dynamic> json) =>
@@ -3317,7 +3309,7 @@ abstract class DocumentFormattingRegistrationOptions
   const factory DocumentFormattingRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool workDoneProgress,
+    bool? workDoneProgress,
   }) = _DocumentFormattingRegistrationOptions;
 
   factory DocumentFormattingRegistrationOptions.fromJson(
@@ -3333,7 +3325,7 @@ abstract class DocumentRangeFormattingParams
     required TextDocumentIdentifier textDocument,
     required Range range,
     required FormattingOptions options,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentRangeFormattingParams;
 
   factory DocumentRangeFormattingParams.fromJson(Map<String, dynamic> json) =>
@@ -3347,8 +3339,8 @@ abstract class DocumentRangeFormattingRegistrationOptions
   const factory DocumentRangeFormattingRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool rangesSupport,
-    required bool workDoneProgress,
+    bool? rangesSupport,
+    bool? workDoneProgress,
   }) = _DocumentRangeFormattingRegistrationOptions;
 
   factory DocumentRangeFormattingRegistrationOptions.fromJson(
@@ -3364,7 +3356,7 @@ abstract class DocumentRangesFormattingParams
     required TextDocumentIdentifier textDocument,
     required List<Range> ranges,
     required FormattingOptions options,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _DocumentRangesFormattingParams;
 
   factory DocumentRangesFormattingParams.fromJson(Map<String, dynamic> json) =>
@@ -3394,7 +3386,7 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
     required String firstTriggerCharacter,
-    required List<String> moreTriggerCharacter,
+    List<String>? moreTriggerCharacter,
   }) = _DocumentOnTypeFormattingRegistrationOptions;
 
   factory DocumentOnTypeFormattingRegistrationOptions.fromJson(
@@ -3409,7 +3401,7 @@ abstract class RenameParams with _$RenameParams {
     required TextDocumentIdentifier textDocument,
     required Position position,
     required String newName,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _RenameParams;
 
   factory RenameParams.fromJson(Map<String, dynamic> json) =>
@@ -3422,8 +3414,8 @@ abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
   const factory RenameRegistrationOptions({
     required TextDocumentRegistrationOptionsDocumentSelectorBase
     documentSelector,
-    required bool prepareProvider,
-    required bool workDoneProgress,
+    bool? prepareProvider,
+    bool? workDoneProgress,
   }) = _RenameRegistrationOptions;
 
   factory RenameRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -3436,7 +3428,7 @@ abstract class PrepareRenameParams with _$PrepareRenameParams {
   const factory PrepareRenameParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    required ProgressToken workDoneToken,
+    ProgressToken? workDoneToken,
   }) = _PrepareRenameParams;
 
   factory PrepareRenameParams.fromJson(Map<String, dynamic> json) =>
@@ -3448,8 +3440,8 @@ abstract class ExecuteCommandParams with _$ExecuteCommandParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ExecuteCommandParams({
     required String command,
-    required List<LSPAny> arguments,
-    required ProgressToken workDoneToken,
+    List<LSPAny>? arguments,
+    ProgressToken? workDoneToken,
   }) = _ExecuteCommandParams;
 
   factory ExecuteCommandParams.fromJson(Map<String, dynamic> json) =>
@@ -3462,7 +3454,7 @@ abstract class ExecuteCommandRegistrationOptions
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ExecuteCommandRegistrationOptions({
     required List<String> commands,
-    required bool workDoneProgress,
+    bool? workDoneProgress,
   }) = _ExecuteCommandRegistrationOptions;
 
   factory ExecuteCommandRegistrationOptions.fromJson(
@@ -3475,7 +3467,7 @@ abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ApplyWorkspaceEditParams({
     required WorkspaceEdit edit,
-    required String label,
+    String? label,
   }) = _ApplyWorkspaceEditParams;
 
   factory ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) =>
@@ -3487,8 +3479,8 @@ abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ApplyWorkspaceEditResult({
     required bool applied,
-    required int failedChange,
-    required String failureReason,
+    int? failedChange,
+    String? failureReason,
   }) = _ApplyWorkspaceEditResult;
 
   factory ApplyWorkspaceEditResult.fromJson(Map<String, dynamic> json) =>
@@ -3501,9 +3493,9 @@ abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
   const factory WorkDoneProgressBegin({
     required String kind,
     required String title,
-    required int percentage,
-    required String message,
-    required bool cancellable,
+    int? percentage,
+    String? message,
+    bool? cancellable,
   }) = _WorkDoneProgressBegin;
 
   factory WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) =>
@@ -3515,9 +3507,9 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkDoneProgressReport({
     required String kind,
-    required int percentage,
-    required String message,
-    required bool cancellable,
+    int? percentage,
+    String? message,
+    bool? cancellable,
   }) = _WorkDoneProgressReport;
 
   factory WorkDoneProgressReport.fromJson(Map<String, dynamic> json) =>
@@ -3527,10 +3519,8 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
 @freezed
 abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory WorkDoneProgressEnd({
-    required String kind,
-    required String message,
-  }) = _WorkDoneProgressEnd;
+  const factory WorkDoneProgressEnd({required String kind, String? message}) =
+      _WorkDoneProgressEnd;
 
   factory WorkDoneProgressEnd.fromJson(Map<String, dynamic> json) =>
       _$WorkDoneProgressEndFromJson(json);
@@ -3548,10 +3538,8 @@ abstract class SetTraceParams with _$SetTraceParams {
 @freezed
 abstract class LogTraceParams with _$LogTraceParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory LogTraceParams({
-    required String message,
-    required String verbose,
-  }) = _LogTraceParams;
+  const factory LogTraceParams({required String message, String? verbose}) =
+      _LogTraceParams;
 
   factory LogTraceParams.fromJson(Map<String, dynamic> json) =>
       _$LogTraceParamsFromJson(json);
@@ -3593,7 +3581,7 @@ abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
 @freezed
 abstract class WorkDoneProgressParams with _$WorkDoneProgressParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory WorkDoneProgressParams({required ProgressToken workDoneToken}) =
+  const factory WorkDoneProgressParams({ProgressToken? workDoneToken}) =
       _WorkDoneProgressParams;
 
   factory WorkDoneProgressParams.fromJson(Map<String, dynamic> json) =>
@@ -3603,9 +3591,8 @@ abstract class WorkDoneProgressParams with _$WorkDoneProgressParams {
 @freezed
 abstract class PartialResultParams with _$PartialResultParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory PartialResultParams({
-    required ProgressToken partialResultToken,
-  }) = _PartialResultParams;
+  const factory PartialResultParams({ProgressToken? partialResultToken}) =
+      _PartialResultParams;
 
   factory PartialResultParams.fromJson(Map<String, dynamic> json) =>
       _$PartialResultParamsFromJson(json);
@@ -3618,7 +3605,7 @@ abstract class LocationLink with _$LocationLink {
     required String targetUri,
     required Range targetRange,
     required Range targetSelectionRange,
-    required Range originSelectionRange,
+    Range? originSelectionRange,
   }) = _LocationLink;
 
   factory LocationLink.fromJson(Map<String, dynamic> json) =>
@@ -3637,7 +3624,7 @@ abstract class Range with _$Range {
 @freezed
 abstract class ImplementationOptions with _$ImplementationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory ImplementationOptions({required bool workDoneProgress}) =
+  const factory ImplementationOptions({bool? workDoneProgress}) =
       _ImplementationOptions;
 
   factory ImplementationOptions.fromJson(Map<String, dynamic> json) =>
@@ -3647,7 +3634,7 @@ abstract class ImplementationOptions with _$ImplementationOptions {
 @freezed
 abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory StaticRegistrationOptions({required String id}) =
+  const factory StaticRegistrationOptions({String? id}) =
       _StaticRegistrationOptions;
 
   factory StaticRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -3657,7 +3644,7 @@ abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
 @freezed
 abstract class TypeDefinitionOptions with _$TypeDefinitionOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory TypeDefinitionOptions({required bool workDoneProgress}) =
+  const factory TypeDefinitionOptions({bool? workDoneProgress}) =
       _TypeDefinitionOptions;
 
   factory TypeDefinitionOptions.fromJson(Map<String, dynamic> json) =>
@@ -3679,10 +3666,8 @@ abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
 @freezed
 abstract class ConfigurationItem with _$ConfigurationItem {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory ConfigurationItem({
-    required String section,
-    required String scopeUri,
-  }) = _ConfigurationItem;
+  const factory ConfigurationItem({String? section, String? scopeUri}) =
+      _ConfigurationItem;
 
   factory ConfigurationItem.fromJson(Map<String, dynamic> json) =>
       _$ConfigurationItemFromJson(json);
@@ -3714,7 +3699,7 @@ abstract class Color with _$Color {
 @freezed
 abstract class DocumentColorOptions with _$DocumentColorOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory DocumentColorOptions({required bool workDoneProgress}) =
+  const factory DocumentColorOptions({bool? workDoneProgress}) =
       _DocumentColorOptions;
 
   factory DocumentColorOptions.fromJson(Map<String, dynamic> json) =>
@@ -3724,7 +3709,7 @@ abstract class DocumentColorOptions with _$DocumentColorOptions {
 @freezed
 abstract class FoldingRangeOptions with _$FoldingRangeOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory FoldingRangeOptions({required bool workDoneProgress}) =
+  const factory FoldingRangeOptions({bool? workDoneProgress}) =
       _FoldingRangeOptions;
 
   factory FoldingRangeOptions.fromJson(Map<String, dynamic> json) =>
@@ -3734,7 +3719,7 @@ abstract class FoldingRangeOptions with _$FoldingRangeOptions {
 @freezed
 abstract class DeclarationOptions with _$DeclarationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory DeclarationOptions({required bool workDoneProgress}) =
+  const factory DeclarationOptions({bool? workDoneProgress}) =
       _DeclarationOptions;
 
   factory DeclarationOptions.fromJson(Map<String, dynamic> json) =>
@@ -3754,7 +3739,7 @@ abstract class Position with _$Position {
 @freezed
 abstract class SelectionRangeOptions with _$SelectionRangeOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory SelectionRangeOptions({required bool workDoneProgress}) =
+  const factory SelectionRangeOptions({bool? workDoneProgress}) =
       _SelectionRangeOptions;
 
   factory SelectionRangeOptions.fromJson(Map<String, dynamic> json) =>
@@ -3764,7 +3749,7 @@ abstract class SelectionRangeOptions with _$SelectionRangeOptions {
 @freezed
 abstract class CallHierarchyOptions with _$CallHierarchyOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory CallHierarchyOptions({required bool workDoneProgress}) =
+  const factory CallHierarchyOptions({bool? workDoneProgress}) =
       _CallHierarchyOptions;
 
   factory CallHierarchyOptions.fromJson(Map<String, dynamic> json) =>
@@ -3776,9 +3761,9 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory SemanticTokensOptions({
     required SemanticTokensLegend legend,
-    required SemanticTokensOptionsFullBase full,
-    required RangeBase range,
-    required bool workDoneProgress,
+    SemanticTokensOptionsFullBase? full,
+    RangeBase? range,
+    bool? workDoneProgress,
   }) = _SemanticTokensOptions;
 
   factory SemanticTokensOptions.fromJson(Map<String, dynamic> json) =>
@@ -3791,7 +3776,7 @@ abstract class SemanticTokensEdit with _$SemanticTokensEdit {
   const factory SemanticTokensEdit({
     required int start,
     required int deleteCount,
-    required List<int> data,
+    List<int>? data,
   }) = _SemanticTokensEdit;
 
   factory SemanticTokensEdit.fromJson(Map<String, dynamic> json) =>
@@ -3801,7 +3786,7 @@ abstract class SemanticTokensEdit with _$SemanticTokensEdit {
 @freezed
 abstract class LinkedEditingRangeOptions with _$LinkedEditingRangeOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory LinkedEditingRangeOptions({required bool workDoneProgress}) =
+  const factory LinkedEditingRangeOptions({bool? workDoneProgress}) =
       _LinkedEditingRangeOptions;
 
   factory LinkedEditingRangeOptions.fromJson(Map<String, dynamic> json) =>
@@ -3835,8 +3820,8 @@ abstract class CreateFile with _$CreateFile {
   const factory CreateFile({
     required String kind,
     required String uri,
-    required CreateFileOptions options,
-    required ChangeAnnotationIdentifier annotationId,
+    CreateFileOptions? options,
+    ChangeAnnotationIdentifier? annotationId,
   }) = _CreateFile;
 
   factory CreateFile.fromJson(Map<String, dynamic> json) =>
@@ -3850,8 +3835,8 @@ abstract class RenameFile with _$RenameFile {
     required String kind,
     required String oldUri,
     required String newUri,
-    required RenameFileOptions options,
-    required ChangeAnnotationIdentifier annotationId,
+    RenameFileOptions? options,
+    ChangeAnnotationIdentifier? annotationId,
   }) = _RenameFile;
 
   factory RenameFile.fromJson(Map<String, dynamic> json) =>
@@ -3864,8 +3849,8 @@ abstract class DeleteFile with _$DeleteFile {
   const factory DeleteFile({
     required String kind,
     required String uri,
-    required DeleteFileOptions options,
-    required ChangeAnnotationIdentifier annotationId,
+    DeleteFileOptions? options,
+    ChangeAnnotationIdentifier? annotationId,
   }) = _DeleteFile;
 
   factory DeleteFile.fromJson(Map<String, dynamic> json) =>
@@ -3877,8 +3862,8 @@ abstract class ChangeAnnotation with _$ChangeAnnotation {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ChangeAnnotation({
     required String label,
-    required String description,
-    required bool needsConfirmation,
+    String? description,
+    bool? needsConfirmation,
   }) = _ChangeAnnotation;
 
   factory ChangeAnnotation.fromJson(Map<String, dynamic> json) =>
@@ -3890,7 +3875,7 @@ abstract class FileOperationFilter with _$FileOperationFilter {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory FileOperationFilter({
     required FileOperationPattern pattern,
-    required String scheme,
+    String? scheme,
   }) = _FileOperationFilter;
 
   factory FileOperationFilter.fromJson(Map<String, dynamic> json) =>
@@ -3919,8 +3904,7 @@ abstract class FileDelete with _$FileDelete {
 @freezed
 abstract class MonikerOptions with _$MonikerOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory MonikerOptions({required bool workDoneProgress}) =
-      _MonikerOptions;
+  const factory MonikerOptions({bool? workDoneProgress}) = _MonikerOptions;
 
   factory MonikerOptions.fromJson(Map<String, dynamic> json) =>
       _$MonikerOptionsFromJson(json);
@@ -3929,7 +3913,7 @@ abstract class MonikerOptions with _$MonikerOptions {
 @freezed
 abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory TypeHierarchyOptions({required bool workDoneProgress}) =
+  const factory TypeHierarchyOptions({bool? workDoneProgress}) =
       _TypeHierarchyOptions;
 
   factory TypeHierarchyOptions.fromJson(Map<String, dynamic> json) =>
@@ -3964,7 +3948,7 @@ abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
   const factory InlineValueVariableLookup({
     required Range range,
     required bool caseSensitiveLookup,
-    required String variableName,
+    String? variableName,
   }) = _InlineValueVariableLookup;
 
   factory InlineValueVariableLookup.fromJson(Map<String, dynamic> json) =>
@@ -3977,7 +3961,7 @@ abstract class InlineValueEvaluatableExpression
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory InlineValueEvaluatableExpression({
     required Range range,
-    required String expression,
+    String? expression,
   }) = _InlineValueEvaluatableExpression;
 
   factory InlineValueEvaluatableExpression.fromJson(
@@ -3988,7 +3972,7 @@ abstract class InlineValueEvaluatableExpression
 @freezed
 abstract class InlineValueOptions with _$InlineValueOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory InlineValueOptions({required bool workDoneProgress}) =
+  const factory InlineValueOptions({bool? workDoneProgress}) =
       _InlineValueOptions;
 
   factory InlineValueOptions.fromJson(Map<String, dynamic> json) =>
@@ -4000,9 +3984,9 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory InlayHintLabelPart({
     required String value,
-    required Command command,
-    required Location location,
-    required TooltipOrDocumentationBase tooltip,
+    Command? command,
+    Location? location,
+    TooltipOrDocumentationBase? tooltip,
   }) = _InlayHintLabelPart;
 
   factory InlayHintLabelPart.fromJson(Map<String, dynamic> json) =>
@@ -4025,8 +4009,8 @@ abstract class MarkupContent with _$MarkupContent {
 abstract class InlayHintOptions with _$InlayHintOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory InlayHintOptions({
-    required bool resolveProvider,
-    required bool workDoneProgress,
+    bool? resolveProvider,
+    bool? workDoneProgress,
   }) = _InlayHintOptions;
 
   factory InlayHintOptions.fromJson(Map<String, dynamic> json) =>
@@ -4040,8 +4024,8 @@ abstract class RelatedFullDocumentDiagnosticReport
   const factory RelatedFullDocumentDiagnosticReport({
     required String kind,
     required List<Diagnostic> items,
-    required Map<String, RelatedDocumentsBase> relatedDocuments,
-    required String resultId,
+    Map<String, RelatedDocumentsBase>? relatedDocuments,
+    String? resultId,
   }) = _RelatedFullDocumentDiagnosticReport;
 
   factory RelatedFullDocumentDiagnosticReport.fromJson(
@@ -4056,7 +4040,7 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
   const factory RelatedUnchangedDocumentDiagnosticReport({
     required String kind,
     required String resultId,
-    required Map<String, RelatedDocumentsBase> relatedDocuments,
+    Map<String, RelatedDocumentsBase>? relatedDocuments,
   }) = _RelatedUnchangedDocumentDiagnosticReport;
 
   factory RelatedUnchangedDocumentDiagnosticReport.fromJson(
@@ -4071,7 +4055,7 @@ abstract class FullDocumentDiagnosticReport
   const factory FullDocumentDiagnosticReport({
     required String kind,
     required List<Diagnostic> items,
-    required String resultId,
+    String? resultId,
   }) = _FullDocumentDiagnosticReport;
 
   factory FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) =>
@@ -4098,8 +4082,8 @@ abstract class DiagnosticOptions with _$DiagnosticOptions {
   const factory DiagnosticOptions({
     required bool interFileDependencies,
     required bool workspaceDiagnostics,
-    required String identifier,
-    required bool workDoneProgress,
+    String? identifier,
+    bool? workDoneProgress,
   }) = _DiagnosticOptions;
 
   factory DiagnosticOptions.fromJson(Map<String, dynamic> json) =>
@@ -4124,7 +4108,7 @@ abstract class NotebookDocument with _$NotebookDocument {
     required String notebookType,
     required int version,
     required List<NotebookCell> cells,
-    required LSPObject metadata,
+    LSPObject? metadata,
   }) = _NotebookDocument;
 
   factory NotebookDocument.fromJson(Map<String, dynamic> json) =>
@@ -4163,7 +4147,7 @@ abstract class VersionedNotebookDocumentIdentifier
 abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory NotebookDocumentChangeEvent({
-    required ({
+    ({
       ({
         NotebookCellArrayChange array,
         List<TextDocumentItem>? didOpen,
@@ -4178,9 +4162,9 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
         })
       >?
       textContent,
-    })
+    })?
     cells,
-    required LSPObject metadata,
+    LSPObject? metadata,
   }) = _NotebookDocumentChangeEvent;
 
   factory NotebookDocumentChangeEvent.fromJson(Map<String, dynamic> json) =>
@@ -4202,7 +4186,7 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory InlineCompletionContext({
     required InlineCompletionTriggerKind triggerKind,
-    required SelectedCompletionInfo selectedCompletionInfo,
+    SelectedCompletionInfo? selectedCompletionInfo,
   }) = _InlineCompletionContext;
 
   factory InlineCompletionContext.fromJson(Map<String, dynamic> json) =>
@@ -4222,7 +4206,7 @@ abstract class StringValue with _$StringValue {
 @freezed
 abstract class InlineCompletionOptions with _$InlineCompletionOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory InlineCompletionOptions({required bool workDoneProgress}) =
+  const factory InlineCompletionOptions({bool? workDoneProgress}) =
       _InlineCompletionOptions;
 
   factory InlineCompletionOptions.fromJson(Map<String, dynamic> json) =>
@@ -4235,7 +4219,7 @@ abstract class Registration with _$Registration {
   const factory Registration({
     required String id,
     required String method,
-    required LSPAny registerOptions,
+    LSPAny? registerOptions,
   }) = _Registration;
 
   factory Registration.fromJson(Map<String, dynamic> json) =>
@@ -4259,12 +4243,12 @@ abstract class TInitializeParams with _$TInitializeParams {
     required ProcessIdOrVersionBase processId,
     required InitializeParamsRootUriBase rootUri,
     required ClientCapabilities capabilities,
-    required TraceValues trace,
-    required LSPAny initializationOptions,
-    required InitializeParamsRootPathBase rootPath,
-    required String locale,
-    required ({String name, String? version}) clientInfo,
-    required ProgressToken workDoneToken,
+    TraceValues? trace,
+    LSPAny? initializationOptions,
+    InitializeParamsRootPathBase? rootPath,
+    String? locale,
+    ({String name, String? version})? clientInfo,
+    ProgressToken? workDoneToken,
   }) = _TInitializeParams;
 
   factory TInitializeParams.fromJson(Map<String, dynamic> json) =>
@@ -4276,8 +4260,7 @@ abstract class WorkspaceFoldersInitializeParams
     with _$WorkspaceFoldersInitializeParams {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceFoldersInitializeParams({
-    required WorkspaceFoldersInitializeParamsWorkspaceFoldersBase
-    workspaceFolders,
+    WorkspaceFoldersInitializeParamsWorkspaceFoldersBase? workspaceFolders,
   }) = _WorkspaceFoldersInitializeParams;
 
   factory WorkspaceFoldersInitializeParams.fromJson(
@@ -4289,57 +4272,49 @@ abstract class WorkspaceFoldersInitializeParams
 abstract class ServerCapabilities with _$ServerCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ServerCapabilities({
-    required ServerCapabilitiesWorkspaceSymbolProviderBase
-    workspaceSymbolProvider,
-    required ServerCapabilitiesDocumentHighlightProviderBase
-    documentHighlightProvider,
-    required ServerCapabilitiesDocumentFormattingProviderBase
+    ServerCapabilitiesWorkspaceSymbolProviderBase? workspaceSymbolProvider,
+    ServerCapabilitiesDocumentHighlightProviderBase? documentHighlightProvider,
+    ServerCapabilitiesDocumentFormattingProviderBase?
     documentFormattingProvider,
-    required ServerCapabilitiesCodeActionProviderBase codeActionProvider,
-    required CompletionOptions completionProvider,
-    required ({
+    ServerCapabilitiesCodeActionProviderBase? codeActionProvider,
+    CompletionOptions? completionProvider,
+    ({
       WorkspaceFoldersServerCapabilities? workspaceFolders,
       FileOperationOptions? fileOperations,
-    })
+    })?
     workspace,
-    required ServerCapabilitiesInlineCompletionProviderBase
-    inlineCompletionProvider,
-    required ServerCapabilitiesDiagnosticProviderBase diagnosticProvider,
-    required ServerCapabilitiesInlayHintProviderBase inlayHintProvider,
-    required ServerCapabilitiesDefinitionProviderBase definitionProvider,
-    required ServerCapabilitiesDeclarationProviderBase declarationProvider,
-    required ServerCapabilitiesMonikerProviderBase monikerProvider,
-    required ServerCapabilitiesSemanticTokensProviderBase
-    semanticTokensProvider,
-    required ServerCapabilitiesLinkedEditingRangeProviderBase
+    ServerCapabilitiesInlineCompletionProviderBase? inlineCompletionProvider,
+    ServerCapabilitiesDiagnosticProviderBase? diagnosticProvider,
+    ServerCapabilitiesInlayHintProviderBase? inlayHintProvider,
+    ServerCapabilitiesDefinitionProviderBase? definitionProvider,
+    ServerCapabilitiesDeclarationProviderBase? declarationProvider,
+    ServerCapabilitiesMonikerProviderBase? monikerProvider,
+    ServerCapabilitiesSemanticTokensProviderBase? semanticTokensProvider,
+    ServerCapabilitiesLinkedEditingRangeProviderBase?
     linkedEditingRangeProvider,
-    required ServerCapabilitiesCallHierarchyProviderBase callHierarchyProvider,
-    required ExecuteCommandOptions executeCommandProvider,
-    required ServerCapabilitiesTextDocumentSyncBase textDocumentSync,
-    required ServerCapabilitiesFoldingRangeProviderBase foldingRangeProvider,
-    required ServerCapabilitiesRenameProviderBase renameProvider,
-    required DocumentOnTypeFormattingOptions documentOnTypeFormattingProvider,
-    required ServerCapabilitiesDocumentRangeFormattingProviderBase
+    ServerCapabilitiesCallHierarchyProviderBase? callHierarchyProvider,
+    ExecuteCommandOptions? executeCommandProvider,
+    ServerCapabilitiesTextDocumentSyncBase? textDocumentSync,
+    ServerCapabilitiesFoldingRangeProviderBase? foldingRangeProvider,
+    ServerCapabilitiesRenameProviderBase? renameProvider,
+    DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,
+    ServerCapabilitiesDocumentRangeFormattingProviderBase?
     documentRangeFormattingProvider,
-    required LSPAny experimental,
-    required ServerCapabilitiesSelectionRangeProviderBase
-    selectionRangeProvider,
-    required ServerCapabilitiesColorProviderBase colorProvider,
-    required DocumentLinkOptions documentLinkProvider,
-    required CodeLensOptions codeLensProvider,
-    required ServerCapabilitiesNotebookDocumentSyncBase notebookDocumentSync,
-    required ServerCapabilitiesDocumentSymbolProviderBase
-    documentSymbolProvider,
-    required PositionEncodingKind positionEncoding,
-    required ServerCapabilitiesReferencesProviderBase referencesProvider,
-    required ServerCapabilitiesImplementationProviderBase
-    implementationProvider,
-    required ServerCapabilitiesTypeDefinitionProviderBase
-    typeDefinitionProvider,
-    required ServerCapabilitiesInlineValueProviderBase inlineValueProvider,
-    required ServerCapabilitiesTypeHierarchyProviderBase typeHierarchyProvider,
-    required SignatureHelpOptions signatureHelpProvider,
-    required ServerCapabilitiesHoverProviderBase hoverProvider,
+    LSPAny? experimental,
+    ServerCapabilitiesSelectionRangeProviderBase? selectionRangeProvider,
+    ServerCapabilitiesColorProviderBase? colorProvider,
+    DocumentLinkOptions? documentLinkProvider,
+    CodeLensOptions? codeLensProvider,
+    ServerCapabilitiesNotebookDocumentSyncBase? notebookDocumentSync,
+    ServerCapabilitiesDocumentSymbolProviderBase? documentSymbolProvider,
+    PositionEncodingKind? positionEncoding,
+    ServerCapabilitiesReferencesProviderBase? referencesProvider,
+    ServerCapabilitiesImplementationProviderBase? implementationProvider,
+    ServerCapabilitiesTypeDefinitionProviderBase? typeDefinitionProvider,
+    ServerCapabilitiesInlineValueProviderBase? inlineValueProvider,
+    ServerCapabilitiesTypeHierarchyProviderBase? typeHierarchyProvider,
+    SignatureHelpOptions? signatureHelpProvider,
+    ServerCapabilitiesHoverProviderBase? hoverProvider,
   }) = _ServerCapabilities;
 
   factory ServerCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -4362,7 +4337,7 @@ abstract class VersionedTextDocumentIdentifier
 @freezed
 abstract class SaveOptions with _$SaveOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory SaveOptions({required bool includeText}) = _SaveOptions;
+  const factory SaveOptions({bool? includeText}) = _SaveOptions;
 
   factory SaveOptions.fromJson(Map<String, dynamic> json) =>
       _$SaveOptionsFromJson(json);
@@ -4383,7 +4358,7 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory FileSystemWatcher({
     required GlobPattern globPattern,
-    required WatchKind kind,
+    WatchKind? kind,
   }) = _FileSystemWatcher;
 
   factory FileSystemWatcher.fromJson(Map<String, dynamic> json) =>
@@ -4396,13 +4371,13 @@ abstract class Diagnostic with _$Diagnostic {
   const factory Diagnostic({
     required Range range,
     required String message,
-    required LSPAny data,
-    required List<DiagnosticRelatedInformation> relatedInformation,
-    required List<DiagnosticTag> tags,
-    required String source,
-    required CodeDescription codeDescription,
-    required ProgressTokenBase code,
-    required DiagnosticSeverity severity,
+    LSPAny? data,
+    List<DiagnosticRelatedInformation>? relatedInformation,
+    List<DiagnosticTag>? tags,
+    String? source,
+    CodeDescription? codeDescription,
+    ProgressTokenBase? code,
+    DiagnosticSeverity? severity,
   }) = _Diagnostic;
 
   factory Diagnostic.fromJson(Map<String, dynamic> json) =>
@@ -4414,7 +4389,7 @@ abstract class CompletionContext with _$CompletionContext {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CompletionContext({
     required CompletionTriggerKind triggerKind,
-    required String triggerCharacter,
+    String? triggerCharacter,
   }) = _CompletionContext;
 
   factory CompletionContext.fromJson(Map<String, dynamic> json) =>
@@ -4425,8 +4400,8 @@ abstract class CompletionContext with _$CompletionContext {
 abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CompletionItemLabelDetails({
-    required String description,
-    required String detail,
+    String? description,
+    String? detail,
   }) = _CompletionItemLabelDetails;
 
   factory CompletionItemLabelDetails.fromJson(Map<String, dynamic> json) =>
@@ -4450,11 +4425,11 @@ abstract class InsertReplaceEdit with _$InsertReplaceEdit {
 abstract class CompletionOptions with _$CompletionOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CompletionOptions({
-    required ({bool? labelDetailsSupport}) completionItem,
-    required bool resolveProvider,
-    required List<String> allCommitCharacters,
-    required List<String> triggerCharacters,
-    required bool workDoneProgress,
+    ({bool? labelDetailsSupport})? completionItem,
+    bool? resolveProvider,
+    List<String>? allCommitCharacters,
+    List<String>? triggerCharacters,
+    bool? workDoneProgress,
   }) = _CompletionOptions;
 
   factory CompletionOptions.fromJson(Map<String, dynamic> json) =>
@@ -4464,7 +4439,7 @@ abstract class CompletionOptions with _$CompletionOptions {
 @freezed
 abstract class HoverOptions with _$HoverOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory HoverOptions({required bool workDoneProgress}) = _HoverOptions;
+  const factory HoverOptions({bool? workDoneProgress}) = _HoverOptions;
 
   factory HoverOptions.fromJson(Map<String, dynamic> json) =>
       _$HoverOptionsFromJson(json);
@@ -4476,8 +4451,8 @@ abstract class SignatureHelpContext with _$SignatureHelpContext {
   const factory SignatureHelpContext({
     required SignatureHelpTriggerKind triggerKind,
     required bool isRetrigger,
-    required SignatureHelp activeSignatureHelp,
-    required String triggerCharacter,
+    SignatureHelp? activeSignatureHelp,
+    String? triggerCharacter,
   }) = _SignatureHelpContext;
 
   factory SignatureHelpContext.fromJson(Map<String, dynamic> json) =>
@@ -4489,9 +4464,9 @@ abstract class SignatureInformation with _$SignatureInformation {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory SignatureInformation({
     required String label,
-    required int activeParameter,
-    required List<ParameterInformation> parameters,
-    required TooltipOrDocumentationBase documentation,
+    int? activeParameter,
+    List<ParameterInformation>? parameters,
+    TooltipOrDocumentationBase? documentation,
   }) = _SignatureInformation;
 
   factory SignatureInformation.fromJson(Map<String, dynamic> json) =>
@@ -4502,9 +4477,9 @@ abstract class SignatureInformation with _$SignatureInformation {
 abstract class SignatureHelpOptions with _$SignatureHelpOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory SignatureHelpOptions({
-    required List<String> retriggerCharacters,
-    required List<String> triggerCharacters,
-    required bool workDoneProgress,
+    List<String>? retriggerCharacters,
+    List<String>? triggerCharacters,
+    bool? workDoneProgress,
   }) = _SignatureHelpOptions;
 
   factory SignatureHelpOptions.fromJson(Map<String, dynamic> json) =>
@@ -4514,7 +4489,7 @@ abstract class SignatureHelpOptions with _$SignatureHelpOptions {
 @freezed
 abstract class DefinitionOptions with _$DefinitionOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory DefinitionOptions({required bool workDoneProgress}) =
+  const factory DefinitionOptions({bool? workDoneProgress}) =
       _DefinitionOptions;
 
   factory DefinitionOptions.fromJson(Map<String, dynamic> json) =>
@@ -4534,8 +4509,7 @@ abstract class ReferenceContext with _$ReferenceContext {
 @freezed
 abstract class ReferenceOptions with _$ReferenceOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory ReferenceOptions({required bool workDoneProgress}) =
-      _ReferenceOptions;
+  const factory ReferenceOptions({bool? workDoneProgress}) = _ReferenceOptions;
 
   factory ReferenceOptions.fromJson(Map<String, dynamic> json) =>
       _$ReferenceOptionsFromJson(json);
@@ -4544,7 +4518,7 @@ abstract class ReferenceOptions with _$ReferenceOptions {
 @freezed
 abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory DocumentHighlightOptions({required bool workDoneProgress}) =
+  const factory DocumentHighlightOptions({bool? workDoneProgress}) =
       _DocumentHighlightOptions;
 
   factory DocumentHighlightOptions.fromJson(Map<String, dynamic> json) =>
@@ -4557,8 +4531,8 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
   const factory BaseSymbolInformation({
     required String name,
     required SymbolKind kind,
-    required String containerName,
-    required List<SymbolTag> tags,
+    String? containerName,
+    List<SymbolTag>? tags,
   }) = _BaseSymbolInformation;
 
   factory BaseSymbolInformation.fromJson(Map<String, dynamic> json) =>
@@ -4568,10 +4542,8 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
 @freezed
 abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory DocumentSymbolOptions({
-    required String label,
-    required bool workDoneProgress,
-  }) = _DocumentSymbolOptions;
+  const factory DocumentSymbolOptions({String? label, bool? workDoneProgress}) =
+      _DocumentSymbolOptions;
 
   factory DocumentSymbolOptions.fromJson(Map<String, dynamic> json) =>
       _$DocumentSymbolOptionsFromJson(json);
@@ -4582,8 +4554,8 @@ abstract class CodeActionContext with _$CodeActionContext {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CodeActionContext({
     required List<Diagnostic> diagnostics,
-    required CodeActionTriggerKind triggerKind,
-    required List<CodeActionKind> only,
+    CodeActionTriggerKind? triggerKind,
+    List<CodeActionKind>? only,
   }) = _CodeActionContext;
 
   factory CodeActionContext.fromJson(Map<String, dynamic> json) =>
@@ -4594,9 +4566,9 @@ abstract class CodeActionContext with _$CodeActionContext {
 abstract class CodeActionOptions with _$CodeActionOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CodeActionOptions({
-    required bool resolveProvider,
-    required List<CodeActionKind> codeActionKinds,
-    required bool workDoneProgress,
+    bool? resolveProvider,
+    List<CodeActionKind>? codeActionKinds,
+    bool? workDoneProgress,
   }) = _CodeActionOptions;
 
   factory CodeActionOptions.fromJson(Map<String, dynamic> json) =>
@@ -4607,8 +4579,8 @@ abstract class CodeActionOptions with _$CodeActionOptions {
 abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceSymbolOptions({
-    required bool resolveProvider,
-    required bool workDoneProgress,
+    bool? resolveProvider,
+    bool? workDoneProgress,
   }) = _WorkspaceSymbolOptions;
 
   factory WorkspaceSymbolOptions.fromJson(Map<String, dynamic> json) =>
@@ -4619,8 +4591,8 @@ abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
 abstract class CodeLensOptions with _$CodeLensOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CodeLensOptions({
-    required bool resolveProvider,
-    required bool workDoneProgress,
+    bool? resolveProvider,
+    bool? workDoneProgress,
   }) = _CodeLensOptions;
 
   factory CodeLensOptions.fromJson(Map<String, dynamic> json) =>
@@ -4631,8 +4603,8 @@ abstract class CodeLensOptions with _$CodeLensOptions {
 abstract class DocumentLinkOptions with _$DocumentLinkOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentLinkOptions({
-    required bool resolveProvider,
-    required bool workDoneProgress,
+    bool? resolveProvider,
+    bool? workDoneProgress,
   }) = _DocumentLinkOptions;
 
   factory DocumentLinkOptions.fromJson(Map<String, dynamic> json) =>
@@ -4645,9 +4617,9 @@ abstract class FormattingOptions with _$FormattingOptions {
   const factory FormattingOptions({
     required int tabSize,
     required bool insertSpaces,
-    required bool trimFinalNewlines,
-    required bool insertFinalNewline,
-    required bool trimTrailingWhitespace,
+    bool? trimFinalNewlines,
+    bool? insertFinalNewline,
+    bool? trimTrailingWhitespace,
   }) = _FormattingOptions;
 
   factory FormattingOptions.fromJson(Map<String, dynamic> json) =>
@@ -4657,7 +4629,7 @@ abstract class FormattingOptions with _$FormattingOptions {
 @freezed
 abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory DocumentFormattingOptions({required bool workDoneProgress}) =
+  const factory DocumentFormattingOptions({bool? workDoneProgress}) =
       _DocumentFormattingOptions;
 
   factory DocumentFormattingOptions.fromJson(Map<String, dynamic> json) =>
@@ -4669,8 +4641,8 @@ abstract class DocumentRangeFormattingOptions
     with _$DocumentRangeFormattingOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentRangeFormattingOptions({
-    required bool rangesSupport,
-    required bool workDoneProgress,
+    bool? rangesSupport,
+    bool? workDoneProgress,
   }) = _DocumentRangeFormattingOptions;
 
   factory DocumentRangeFormattingOptions.fromJson(Map<String, dynamic> json) =>
@@ -4683,7 +4655,7 @@ abstract class DocumentOnTypeFormattingOptions
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentOnTypeFormattingOptions({
     required String firstTriggerCharacter,
-    required List<String> moreTriggerCharacter,
+    List<String>? moreTriggerCharacter,
   }) = _DocumentOnTypeFormattingOptions;
 
   factory DocumentOnTypeFormattingOptions.fromJson(Map<String, dynamic> json) =>
@@ -4693,10 +4665,8 @@ abstract class DocumentOnTypeFormattingOptions
 @freezed
 abstract class RenameOptions with _$RenameOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory RenameOptions({
-    required bool prepareProvider,
-    required bool workDoneProgress,
-  }) = _RenameOptions;
+  const factory RenameOptions({bool? prepareProvider, bool? workDoneProgress}) =
+      _RenameOptions;
 
   factory RenameOptions.fromJson(Map<String, dynamic> json) =>
       _$RenameOptionsFromJson(json);
@@ -4707,7 +4677,7 @@ abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ExecuteCommandOptions({
     required List<String> commands,
-    required bool workDoneProgress,
+    bool? workDoneProgress,
   }) = _ExecuteCommandOptions;
 
   factory ExecuteCommandOptions.fromJson(Map<String, dynamic> json) =>
@@ -4758,7 +4728,7 @@ abstract class ResourceOperation with _$ResourceOperation {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ResourceOperation({
     required String kind,
-    required ChangeAnnotationIdentifier annotationId,
+    ChangeAnnotationIdentifier? annotationId,
   }) = _ResourceOperation;
 
   factory ResourceOperation.fromJson(Map<String, dynamic> json) =>
@@ -4768,10 +4738,8 @@ abstract class ResourceOperation with _$ResourceOperation {
 @freezed
 abstract class CreateFileOptions with _$CreateFileOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory CreateFileOptions({
-    required bool ignoreIfExists,
-    required bool overwrite,
-  }) = _CreateFileOptions;
+  const factory CreateFileOptions({bool? ignoreIfExists, bool? overwrite}) =
+      _CreateFileOptions;
 
   factory CreateFileOptions.fromJson(Map<String, dynamic> json) =>
       _$CreateFileOptionsFromJson(json);
@@ -4780,10 +4748,8 @@ abstract class CreateFileOptions with _$CreateFileOptions {
 @freezed
 abstract class RenameFileOptions with _$RenameFileOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory RenameFileOptions({
-    required bool ignoreIfExists,
-    required bool overwrite,
-  }) = _RenameFileOptions;
+  const factory RenameFileOptions({bool? ignoreIfExists, bool? overwrite}) =
+      _RenameFileOptions;
 
   factory RenameFileOptions.fromJson(Map<String, dynamic> json) =>
       _$RenameFileOptionsFromJson(json);
@@ -4792,10 +4758,8 @@ abstract class RenameFileOptions with _$RenameFileOptions {
 @freezed
 abstract class DeleteFileOptions with _$DeleteFileOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory DeleteFileOptions({
-    required bool ignoreIfNotExists,
-    required bool recursive,
-  }) = _DeleteFileOptions;
+  const factory DeleteFileOptions({bool? ignoreIfNotExists, bool? recursive}) =
+      _DeleteFileOptions;
 
   factory DeleteFileOptions.fromJson(Map<String, dynamic> json) =>
       _$DeleteFileOptionsFromJson(json);
@@ -4806,8 +4770,8 @@ abstract class FileOperationPattern with _$FileOperationPattern {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory FileOperationPattern({
     required String glob,
-    required FileOperationPatternOptions options,
-    required FileOperationPatternKind matches,
+    FileOperationPatternOptions? options,
+    FileOperationPatternKind? matches,
   }) = _FileOperationPattern;
 
   factory FileOperationPattern.fromJson(Map<String, dynamic> json) =>
@@ -4823,7 +4787,7 @@ abstract class WorkspaceFullDocumentDiagnosticReport
     required List<Diagnostic> items,
     required String uri,
     required ProcessIdOrVersionBase version,
-    required String resultId,
+    String? resultId,
   }) = _WorkspaceFullDocumentDiagnosticReport;
 
   factory WorkspaceFullDocumentDiagnosticReport.fromJson(
@@ -4853,8 +4817,8 @@ abstract class NotebookCell with _$NotebookCell {
   const factory NotebookCell({
     required NotebookCellKind kind,
     required String document,
-    required ExecutionSummary executionSummary,
-    required LSPObject metadata,
+    ExecutionSummary? executionSummary,
+    LSPObject? metadata,
   }) = _NotebookCell;
 
   factory NotebookCell.fromJson(Map<String, dynamic> json) =>
@@ -4867,7 +4831,7 @@ abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
   const factory NotebookCellArrayChange({
     required int start,
     required int deleteCount,
-    required List<NotebookCell> cells,
+    List<NotebookCell>? cells,
   }) = _NotebookCellArrayChange;
 
   factory NotebookCellArrayChange.fromJson(Map<String, dynamic> json) =>
@@ -4890,12 +4854,12 @@ abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
 abstract class ClientCapabilities with _$ClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ClientCapabilities({
-    required LSPAny experimental,
-    required GeneralClientCapabilities general,
-    required WindowClientCapabilities window,
-    required NotebookDocumentClientCapabilities notebookDocument,
-    required TextDocumentClientCapabilities textDocument,
-    required WorkspaceClientCapabilities workspace,
+    LSPAny? experimental,
+    GeneralClientCapabilities? general,
+    WindowClientCapabilities? window,
+    NotebookDocumentClientCapabilities? notebookDocument,
+    TextDocumentClientCapabilities? textDocument,
+    WorkspaceClientCapabilities? workspace,
   }) = _ClientCapabilities;
 
   factory ClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -4906,11 +4870,11 @@ abstract class ClientCapabilities with _$ClientCapabilities {
 abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory TextDocumentSyncOptions({
-    required TextDocumentSyncOptionsSaveBase save,
-    required bool willSaveWaitUntil,
-    required bool willSave,
-    required TextDocumentSyncKind change,
-    required bool openClose,
+    TextDocumentSyncOptionsSaveBase? save,
+    bool? willSaveWaitUntil,
+    bool? willSave,
+    TextDocumentSyncKind? change,
+    bool? openClose,
   }) = _TextDocumentSyncOptions;
 
   factory TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) =>
@@ -4923,7 +4887,7 @@ abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
   const factory NotebookDocumentSyncOptions({
     required List<NotebookDocumentSyncOptionsNotebookSelectorBase>
     notebookSelector,
-    required bool save,
+    bool? save,
   }) = _NotebookDocumentSyncOptions;
 
   factory NotebookDocumentSyncOptions.fromJson(Map<String, dynamic> json) =>
@@ -4937,8 +4901,8 @@ abstract class NotebookDocumentSyncRegistrationOptions
   const factory NotebookDocumentSyncRegistrationOptions({
     required List<NotebookDocumentSyncOptionsNotebookSelectorBase>
     notebookSelector,
-    required String id,
-    required bool save,
+    String? id,
+    bool? save,
   }) = _NotebookDocumentSyncRegistrationOptions;
 
   factory NotebookDocumentSyncRegistrationOptions.fromJson(
@@ -4951,9 +4915,9 @@ abstract class WorkspaceFoldersServerCapabilities
     with _$WorkspaceFoldersServerCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceFoldersServerCapabilities({
-    required WorkspaceFoldersServerCapabilitiesChangeNotificationsBase
+    WorkspaceFoldersServerCapabilitiesChangeNotificationsBase?
     changeNotifications,
-    required bool supported,
+    bool? supported,
   }) = _WorkspaceFoldersServerCapabilities;
 
   factory WorkspaceFoldersServerCapabilities.fromJson(
@@ -4965,12 +4929,12 @@ abstract class WorkspaceFoldersServerCapabilities
 abstract class FileOperationOptions with _$FileOperationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory FileOperationOptions({
-    required FileOperationRegistrationOptions willDelete,
-    required FileOperationRegistrationOptions didDelete,
-    required FileOperationRegistrationOptions willRename,
-    required FileOperationRegistrationOptions didRename,
-    required FileOperationRegistrationOptions willCreate,
-    required FileOperationRegistrationOptions didCreate,
+    FileOperationRegistrationOptions? willDelete,
+    FileOperationRegistrationOptions? didDelete,
+    FileOperationRegistrationOptions? willRename,
+    FileOperationRegistrationOptions? didRename,
+    FileOperationRegistrationOptions? willCreate,
+    FileOperationRegistrationOptions? didCreate,
   }) = _FileOperationOptions;
 
   factory FileOperationOptions.fromJson(Map<String, dynamic> json) =>
@@ -5004,7 +4968,7 @@ abstract class ParameterInformation with _$ParameterInformation {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ParameterInformation({
     required ParameterInformationLabelBase label,
-    required TooltipOrDocumentationBase documentation,
+    TooltipOrDocumentationBase? documentation,
   }) = _ParameterInformation;
 
   factory ParameterInformation.fromJson(Map<String, dynamic> json) =>
@@ -5017,7 +4981,7 @@ abstract class NotebookCellTextDocumentFilter
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory NotebookCellTextDocumentFilter({
     required NotebookCellTextDocumentFilterNotebookBase notebook,
-    required String language,
+    String? language,
   }) = _NotebookCellTextDocumentFilter;
 
   factory NotebookCellTextDocumentFilter.fromJson(Map<String, dynamic> json) =>
@@ -5027,7 +4991,7 @@ abstract class NotebookCellTextDocumentFilter
 @freezed
 abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory FileOperationPatternOptions({required bool ignoreCase}) =
+  const factory FileOperationPatternOptions({bool? ignoreCase}) =
       _FileOperationPatternOptions;
 
   factory FileOperationPatternOptions.fromJson(Map<String, dynamic> json) =>
@@ -5037,10 +5001,8 @@ abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
 @freezed
 abstract class ExecutionSummary with _$ExecutionSummary {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory ExecutionSummary({
-    required int executionOrder,
-    required bool success,
-  }) = _ExecutionSummary;
+  const factory ExecutionSummary({required int executionOrder, bool? success}) =
+      _ExecutionSummary;
 
   factory ExecutionSummary.fromJson(Map<String, dynamic> json) =>
       _$ExecutionSummaryFromJson(json);
@@ -5050,21 +5012,21 @@ abstract class ExecutionSummary with _$ExecutionSummary {
 abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceClientCapabilities({
-    required FoldingRangeWorkspaceClientCapabilities foldingRange,
-    required DiagnosticWorkspaceClientCapabilities diagnostics,
-    required InlayHintWorkspaceClientCapabilities inlayHint,
-    required InlineValueWorkspaceClientCapabilities inlineValue,
-    required FileOperationClientCapabilities fileOperations,
-    required CodeLensWorkspaceClientCapabilities codeLens,
-    required SemanticTokensWorkspaceClientCapabilities semanticTokens,
-    required bool configuration,
-    required bool workspaceFolders,
-    required ExecuteCommandClientCapabilities executeCommand,
-    required WorkspaceSymbolClientCapabilities symbol,
-    required DidChangeWatchedFilesClientCapabilities didChangeWatchedFiles,
-    required DidChangeConfigurationClientCapabilities didChangeConfiguration,
-    required WorkspaceEditClientCapabilities workspaceEdit,
-    required bool applyEdit,
+    FoldingRangeWorkspaceClientCapabilities? foldingRange,
+    DiagnosticWorkspaceClientCapabilities? diagnostics,
+    InlayHintWorkspaceClientCapabilities? inlayHint,
+    InlineValueWorkspaceClientCapabilities? inlineValue,
+    FileOperationClientCapabilities? fileOperations,
+    CodeLensWorkspaceClientCapabilities? codeLens,
+    SemanticTokensWorkspaceClientCapabilities? semanticTokens,
+    bool? configuration,
+    bool? workspaceFolders,
+    ExecuteCommandClientCapabilities? executeCommand,
+    WorkspaceSymbolClientCapabilities? symbol,
+    DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles,
+    DidChangeConfigurationClientCapabilities? didChangeConfiguration,
+    WorkspaceEditClientCapabilities? workspaceEdit,
+    bool? applyEdit,
   }) = _WorkspaceClientCapabilities;
 
   factory WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5076,37 +5038,37 @@ abstract class TextDocumentClientCapabilities
     with _$TextDocumentClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory TextDocumentClientCapabilities({
-    required InlineCompletionClientCapabilities inlineCompletion,
-    required DiagnosticClientCapabilities diagnostic,
-    required InlayHintClientCapabilities inlayHint,
-    required InlineValueClientCapabilities inlineValue,
-    required TypeHierarchyClientCapabilities typeHierarchy,
-    required MonikerClientCapabilities moniker,
-    required LinkedEditingRangeClientCapabilities linkedEditingRange,
-    required SemanticTokensClientCapabilities semanticTokens,
-    required CallHierarchyClientCapabilities callHierarchy,
-    required PublishDiagnosticsClientCapabilities publishDiagnostics,
-    required SelectionRangeClientCapabilities selectionRange,
-    required FoldingRangeClientCapabilities foldingRange,
-    required RenameClientCapabilities rename,
-    required DocumentOnTypeFormattingClientCapabilities onTypeFormatting,
-    required DocumentRangeFormattingClientCapabilities rangeFormatting,
-    required DocumentFormattingClientCapabilities formatting,
-    required DocumentColorClientCapabilities colorProvider,
-    required DocumentLinkClientCapabilities documentLink,
-    required CodeLensClientCapabilities codeLens,
-    required CodeActionClientCapabilities codeAction,
-    required DocumentSymbolClientCapabilities documentSymbol,
-    required DocumentHighlightClientCapabilities documentHighlight,
-    required ReferenceClientCapabilities references,
-    required ImplementationClientCapabilities implementation,
-    required TypeDefinitionClientCapabilities typeDefinition,
-    required DefinitionClientCapabilities definition,
-    required DeclarationClientCapabilities declaration,
-    required SignatureHelpClientCapabilities signatureHelp,
-    required HoverClientCapabilities hover,
-    required CompletionClientCapabilities completion,
-    required TextDocumentSyncClientCapabilities synchronization,
+    InlineCompletionClientCapabilities? inlineCompletion,
+    DiagnosticClientCapabilities? diagnostic,
+    InlayHintClientCapabilities? inlayHint,
+    InlineValueClientCapabilities? inlineValue,
+    TypeHierarchyClientCapabilities? typeHierarchy,
+    MonikerClientCapabilities? moniker,
+    LinkedEditingRangeClientCapabilities? linkedEditingRange,
+    SemanticTokensClientCapabilities? semanticTokens,
+    CallHierarchyClientCapabilities? callHierarchy,
+    PublishDiagnosticsClientCapabilities? publishDiagnostics,
+    SelectionRangeClientCapabilities? selectionRange,
+    FoldingRangeClientCapabilities? foldingRange,
+    RenameClientCapabilities? rename,
+    DocumentOnTypeFormattingClientCapabilities? onTypeFormatting,
+    DocumentRangeFormattingClientCapabilities? rangeFormatting,
+    DocumentFormattingClientCapabilities? formatting,
+    DocumentColorClientCapabilities? colorProvider,
+    DocumentLinkClientCapabilities? documentLink,
+    CodeLensClientCapabilities? codeLens,
+    CodeActionClientCapabilities? codeAction,
+    DocumentSymbolClientCapabilities? documentSymbol,
+    DocumentHighlightClientCapabilities? documentHighlight,
+    ReferenceClientCapabilities? references,
+    ImplementationClientCapabilities? implementation,
+    TypeDefinitionClientCapabilities? typeDefinition,
+    DefinitionClientCapabilities? definition,
+    DeclarationClientCapabilities? declaration,
+    SignatureHelpClientCapabilities? signatureHelp,
+    HoverClientCapabilities? hover,
+    CompletionClientCapabilities? completion,
+    TextDocumentSyncClientCapabilities? synchronization,
   }) = _TextDocumentClientCapabilities;
 
   factory TextDocumentClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5130,9 +5092,9 @@ abstract class NotebookDocumentClientCapabilities
 abstract class WindowClientCapabilities with _$WindowClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WindowClientCapabilities({
-    required ShowDocumentClientCapabilities showDocument,
-    required ShowMessageRequestClientCapabilities showMessage,
-    required bool workDoneProgress,
+    ShowDocumentClientCapabilities? showDocument,
+    ShowMessageRequestClientCapabilities? showMessage,
+    bool? workDoneProgress,
   }) = _WindowClientCapabilities;
 
   factory WindowClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5143,11 +5105,10 @@ abstract class WindowClientCapabilities with _$WindowClientCapabilities {
 abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory GeneralClientCapabilities({
-    required List<PositionEncodingKind> positionEncodings,
-    required MarkdownClientCapabilities markdown,
-    required RegularExpressionsClientCapabilities regularExpressions,
-    required ({bool cancel, List<String> retryOnContentModified})
-    staleRequestSupport,
+    List<PositionEncodingKind>? positionEncodings,
+    MarkdownClientCapabilities? markdown,
+    RegularExpressionsClientCapabilities? regularExpressions,
+    ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,
   }) = _GeneralClientCapabilities;
 
   factory GeneralClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5171,11 +5132,11 @@ abstract class WorkspaceEditClientCapabilities
     with _$WorkspaceEditClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceEditClientCapabilities({
-    required ({bool? groupsOnLabel}) changeAnnotationSupport,
-    required bool normalizesLineEndings,
-    required FailureHandlingKind failureHandling,
-    required List<ResourceOperationKind> resourceOperations,
-    required bool documentChanges,
+    ({bool? groupsOnLabel})? changeAnnotationSupport,
+    bool? normalizesLineEndings,
+    FailureHandlingKind? failureHandling,
+    List<ResourceOperationKind>? resourceOperations,
+    bool? documentChanges,
   }) = _WorkspaceEditClientCapabilities;
 
   factory WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5187,7 +5148,7 @@ abstract class DidChangeConfigurationClientCapabilities
     with _$DidChangeConfigurationClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DidChangeConfigurationClientCapabilities({
-    required bool dynamicRegistration,
+    bool? dynamicRegistration,
   }) = _DidChangeConfigurationClientCapabilities;
 
   factory DidChangeConfigurationClientCapabilities.fromJson(
@@ -5200,8 +5161,8 @@ abstract class DidChangeWatchedFilesClientCapabilities
     with _$DidChangeWatchedFilesClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DidChangeWatchedFilesClientCapabilities({
-    required bool relativePatternSupport,
-    required bool dynamicRegistration,
+    bool? relativePatternSupport,
+    bool? dynamicRegistration,
   }) = _DidChangeWatchedFilesClientCapabilities;
 
   factory DidChangeWatchedFilesClientCapabilities.fromJson(
@@ -5214,10 +5175,10 @@ abstract class WorkspaceSymbolClientCapabilities
     with _$WorkspaceSymbolClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory WorkspaceSymbolClientCapabilities({
-    required ({List<String> properties}) resolveSupport,
-    required ({List<SymbolTag> valueSet}) tagSupport,
-    required ({List<SymbolKind>? valueSet}) symbolKind,
-    required bool dynamicRegistration,
+    ({List<String> properties})? resolveSupport,
+    ({List<SymbolTag> valueSet})? tagSupport,
+    ({List<SymbolKind>? valueSet})? symbolKind,
+    bool? dynamicRegistration,
   }) = _WorkspaceSymbolClientCapabilities;
 
   factory WorkspaceSymbolClientCapabilities.fromJson(
@@ -5229,9 +5190,8 @@ abstract class WorkspaceSymbolClientCapabilities
 abstract class ExecuteCommandClientCapabilities
     with _$ExecuteCommandClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory ExecuteCommandClientCapabilities({
-    required bool dynamicRegistration,
-  }) = _ExecuteCommandClientCapabilities;
+  const factory ExecuteCommandClientCapabilities({bool? dynamicRegistration}) =
+      _ExecuteCommandClientCapabilities;
 
   factory ExecuteCommandClientCapabilities.fromJson(
     Map<String, dynamic> json,
@@ -5243,7 +5203,7 @@ abstract class SemanticTokensWorkspaceClientCapabilities
     with _$SemanticTokensWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory SemanticTokensWorkspaceClientCapabilities({
-    required bool refreshSupport,
+    bool? refreshSupport,
   }) = _SemanticTokensWorkspaceClientCapabilities;
 
   factory SemanticTokensWorkspaceClientCapabilities.fromJson(
@@ -5255,9 +5215,8 @@ abstract class SemanticTokensWorkspaceClientCapabilities
 abstract class CodeLensWorkspaceClientCapabilities
     with _$CodeLensWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory CodeLensWorkspaceClientCapabilities({
-    required bool refreshSupport,
-  }) = _CodeLensWorkspaceClientCapabilities;
+  const factory CodeLensWorkspaceClientCapabilities({bool? refreshSupport}) =
+      _CodeLensWorkspaceClientCapabilities;
 
   factory CodeLensWorkspaceClientCapabilities.fromJson(
     Map<String, dynamic> json,
@@ -5269,13 +5228,13 @@ abstract class FileOperationClientCapabilities
     with _$FileOperationClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory FileOperationClientCapabilities({
-    required bool willDelete,
-    required bool didDelete,
-    required bool willRename,
-    required bool didRename,
-    required bool willCreate,
-    required bool didCreate,
-    required bool dynamicRegistration,
+    bool? willDelete,
+    bool? didDelete,
+    bool? willRename,
+    bool? didRename,
+    bool? willCreate,
+    bool? didCreate,
+    bool? dynamicRegistration,
   }) = _FileOperationClientCapabilities;
 
   factory FileOperationClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5286,9 +5245,8 @@ abstract class FileOperationClientCapabilities
 abstract class InlineValueWorkspaceClientCapabilities
     with _$InlineValueWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory InlineValueWorkspaceClientCapabilities({
-    required bool refreshSupport,
-  }) = _InlineValueWorkspaceClientCapabilities;
+  const factory InlineValueWorkspaceClientCapabilities({bool? refreshSupport}) =
+      _InlineValueWorkspaceClientCapabilities;
 
   factory InlineValueWorkspaceClientCapabilities.fromJson(
     Map<String, dynamic> json,
@@ -5299,9 +5257,8 @@ abstract class InlineValueWorkspaceClientCapabilities
 abstract class InlayHintWorkspaceClientCapabilities
     with _$InlayHintWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory InlayHintWorkspaceClientCapabilities({
-    required bool refreshSupport,
-  }) = _InlayHintWorkspaceClientCapabilities;
+  const factory InlayHintWorkspaceClientCapabilities({bool? refreshSupport}) =
+      _InlayHintWorkspaceClientCapabilities;
 
   factory InlayHintWorkspaceClientCapabilities.fromJson(
     Map<String, dynamic> json,
@@ -5312,9 +5269,8 @@ abstract class InlayHintWorkspaceClientCapabilities
 abstract class DiagnosticWorkspaceClientCapabilities
     with _$DiagnosticWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory DiagnosticWorkspaceClientCapabilities({
-    required bool refreshSupport,
-  }) = _DiagnosticWorkspaceClientCapabilities;
+  const factory DiagnosticWorkspaceClientCapabilities({bool? refreshSupport}) =
+      _DiagnosticWorkspaceClientCapabilities;
 
   factory DiagnosticWorkspaceClientCapabilities.fromJson(
     Map<String, dynamic> json,
@@ -5326,7 +5282,7 @@ abstract class FoldingRangeWorkspaceClientCapabilities
     with _$FoldingRangeWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory FoldingRangeWorkspaceClientCapabilities({
-    required bool refreshSupport,
+    bool? refreshSupport,
   }) = _FoldingRangeWorkspaceClientCapabilities;
 
   factory FoldingRangeWorkspaceClientCapabilities.fromJson(
@@ -5339,10 +5295,10 @@ abstract class TextDocumentSyncClientCapabilities
     with _$TextDocumentSyncClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory TextDocumentSyncClientCapabilities({
-    required bool didSave,
-    required bool willSaveWaitUntil,
-    required bool willSave,
-    required bool dynamicRegistration,
+    bool? didSave,
+    bool? willSaveWaitUntil,
+    bool? willSave,
+    bool? dynamicRegistration,
   }) = _TextDocumentSyncClientCapabilities;
 
   factory TextDocumentSyncClientCapabilities.fromJson(
@@ -5355,11 +5311,11 @@ abstract class CompletionClientCapabilities
     with _$CompletionClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CompletionClientCapabilities({
-    required ({List<String>? itemDefaults}) completionList,
-    required bool contextSupport,
-    required InsertTextMode insertTextMode,
-    required ({List<CompletionItemKind>? valueSet}) completionItemKind,
-    required ({
+    ({List<String>? itemDefaults})? completionList,
+    bool? contextSupport,
+    InsertTextMode? insertTextMode,
+    ({List<CompletionItemKind>? valueSet})? completionItemKind,
+    ({
       bool? snippetSupport,
       bool? commitCharactersSupport,
       List<MarkupKind>? documentationFormat,
@@ -5370,9 +5326,9 @@ abstract class CompletionClientCapabilities
       ({List<String> properties})? resolveSupport,
       ({List<InsertTextMode> valueSet})? insertTextModeSupport,
       bool? labelDetailsSupport,
-    })
+    })?
     completionItem,
-    required bool dynamicRegistration,
+    bool? dynamicRegistration,
   }) = _CompletionClientCapabilities;
 
   factory CompletionClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5383,8 +5339,8 @@ abstract class CompletionClientCapabilities
 abstract class HoverClientCapabilities with _$HoverClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory HoverClientCapabilities({
-    required List<MarkupKind> contentFormat,
-    required bool dynamicRegistration,
+    List<MarkupKind>? contentFormat,
+    bool? dynamicRegistration,
   }) = _HoverClientCapabilities;
 
   factory HoverClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5396,14 +5352,14 @@ abstract class SignatureHelpClientCapabilities
     with _$SignatureHelpClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory SignatureHelpClientCapabilities({
-    required bool contextSupport,
-    required ({
+    bool? contextSupport,
+    ({
       List<MarkupKind>? documentationFormat,
       ({bool? labelOffsetSupport})? parameterInformation,
       bool? activeParameterSupport,
-    })
+    })?
     signatureInformation,
-    required bool dynamicRegistration,
+    bool? dynamicRegistration,
   }) = _SignatureHelpClientCapabilities;
 
   factory SignatureHelpClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5415,8 +5371,8 @@ abstract class DeclarationClientCapabilities
     with _$DeclarationClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DeclarationClientCapabilities({
-    required bool linkSupport,
-    required bool dynamicRegistration,
+    bool? linkSupport,
+    bool? dynamicRegistration,
   }) = _DeclarationClientCapabilities;
 
   factory DeclarationClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5428,8 +5384,8 @@ abstract class DefinitionClientCapabilities
     with _$DefinitionClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DefinitionClientCapabilities({
-    required bool linkSupport,
-    required bool dynamicRegistration,
+    bool? linkSupport,
+    bool? dynamicRegistration,
   }) = _DefinitionClientCapabilities;
 
   factory DefinitionClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5441,8 +5397,8 @@ abstract class TypeDefinitionClientCapabilities
     with _$TypeDefinitionClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory TypeDefinitionClientCapabilities({
-    required bool linkSupport,
-    required bool dynamicRegistration,
+    bool? linkSupport,
+    bool? dynamicRegistration,
   }) = _TypeDefinitionClientCapabilities;
 
   factory TypeDefinitionClientCapabilities.fromJson(
@@ -5455,8 +5411,8 @@ abstract class ImplementationClientCapabilities
     with _$ImplementationClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ImplementationClientCapabilities({
-    required bool linkSupport,
-    required bool dynamicRegistration,
+    bool? linkSupport,
+    bool? dynamicRegistration,
   }) = _ImplementationClientCapabilities;
 
   factory ImplementationClientCapabilities.fromJson(
@@ -5467,9 +5423,8 @@ abstract class ImplementationClientCapabilities
 @freezed
 abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory ReferenceClientCapabilities({
-    required bool dynamicRegistration,
-  }) = _ReferenceClientCapabilities;
+  const factory ReferenceClientCapabilities({bool? dynamicRegistration}) =
+      _ReferenceClientCapabilities;
 
   factory ReferenceClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$ReferenceClientCapabilitiesFromJson(json);
@@ -5480,7 +5435,7 @@ abstract class DocumentHighlightClientCapabilities
     with _$DocumentHighlightClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentHighlightClientCapabilities({
-    required bool dynamicRegistration,
+    bool? dynamicRegistration,
   }) = _DocumentHighlightClientCapabilities;
 
   factory DocumentHighlightClientCapabilities.fromJson(
@@ -5493,11 +5448,11 @@ abstract class DocumentSymbolClientCapabilities
     with _$DocumentSymbolClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentSymbolClientCapabilities({
-    required bool labelSupport,
-    required ({List<SymbolTag> valueSet}) tagSupport,
-    required bool hierarchicalDocumentSymbolSupport,
-    required ({List<SymbolKind>? valueSet}) symbolKind,
-    required bool dynamicRegistration,
+    bool? labelSupport,
+    ({List<SymbolTag> valueSet})? tagSupport,
+    bool? hierarchicalDocumentSymbolSupport,
+    ({List<SymbolKind>? valueSet})? symbolKind,
+    bool? dynamicRegistration,
   }) = _DocumentSymbolClientCapabilities;
 
   factory DocumentSymbolClientCapabilities.fromJson(
@@ -5510,14 +5465,14 @@ abstract class CodeActionClientCapabilities
     with _$CodeActionClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory CodeActionClientCapabilities({
-    required bool honorsChangeAnnotations,
-    required ({List<String> properties}) resolveSupport,
-    required bool dataSupport,
-    required bool disabledSupport,
-    required bool isPreferredSupport,
-    required ({({List<CodeActionKind> valueSet}) codeActionKind})
+    bool? honorsChangeAnnotations,
+    ({List<String> properties})? resolveSupport,
+    bool? dataSupport,
+    bool? disabledSupport,
+    bool? isPreferredSupport,
+    ({({List<CodeActionKind> valueSet}) codeActionKind})?
     codeActionLiteralSupport,
-    required bool dynamicRegistration,
+    bool? dynamicRegistration,
   }) = _CodeActionClientCapabilities;
 
   factory CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5527,9 +5482,8 @@ abstract class CodeActionClientCapabilities
 @freezed
 abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory CodeLensClientCapabilities({
-    required bool dynamicRegistration,
-  }) = _CodeLensClientCapabilities;
+  const factory CodeLensClientCapabilities({bool? dynamicRegistration}) =
+      _CodeLensClientCapabilities;
 
   factory CodeLensClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$CodeLensClientCapabilitiesFromJson(json);
@@ -5540,8 +5494,8 @@ abstract class DocumentLinkClientCapabilities
     with _$DocumentLinkClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentLinkClientCapabilities({
-    required bool tooltipSupport,
-    required bool dynamicRegistration,
+    bool? tooltipSupport,
+    bool? dynamicRegistration,
   }) = _DocumentLinkClientCapabilities;
 
   factory DocumentLinkClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5552,9 +5506,8 @@ abstract class DocumentLinkClientCapabilities
 abstract class DocumentColorClientCapabilities
     with _$DocumentColorClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory DocumentColorClientCapabilities({
-    required bool dynamicRegistration,
-  }) = _DocumentColorClientCapabilities;
+  const factory DocumentColorClientCapabilities({bool? dynamicRegistration}) =
+      _DocumentColorClientCapabilities;
 
   factory DocumentColorClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$DocumentColorClientCapabilitiesFromJson(json);
@@ -5565,7 +5518,7 @@ abstract class DocumentFormattingClientCapabilities
     with _$DocumentFormattingClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentFormattingClientCapabilities({
-    required bool dynamicRegistration,
+    bool? dynamicRegistration,
   }) = _DocumentFormattingClientCapabilities;
 
   factory DocumentFormattingClientCapabilities.fromJson(
@@ -5578,8 +5531,8 @@ abstract class DocumentRangeFormattingClientCapabilities
     with _$DocumentRangeFormattingClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentRangeFormattingClientCapabilities({
-    required bool rangesSupport,
-    required bool dynamicRegistration,
+    bool? rangesSupport,
+    bool? dynamicRegistration,
   }) = _DocumentRangeFormattingClientCapabilities;
 
   factory DocumentRangeFormattingClientCapabilities.fromJson(
@@ -5592,7 +5545,7 @@ abstract class DocumentOnTypeFormattingClientCapabilities
     with _$DocumentOnTypeFormattingClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DocumentOnTypeFormattingClientCapabilities({
-    required bool dynamicRegistration,
+    bool? dynamicRegistration,
   }) = _DocumentOnTypeFormattingClientCapabilities;
 
   factory DocumentOnTypeFormattingClientCapabilities.fromJson(
@@ -5604,10 +5557,10 @@ abstract class DocumentOnTypeFormattingClientCapabilities
 abstract class RenameClientCapabilities with _$RenameClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory RenameClientCapabilities({
-    required bool honorsChangeAnnotations,
-    required PrepareSupportDefaultBehavior prepareSupportDefaultBehavior,
-    required bool prepareSupport,
-    required bool dynamicRegistration,
+    bool? honorsChangeAnnotations,
+    PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,
+    bool? prepareSupport,
+    bool? dynamicRegistration,
   }) = _RenameClientCapabilities;
 
   factory RenameClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5619,11 +5572,11 @@ abstract class FoldingRangeClientCapabilities
     with _$FoldingRangeClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory FoldingRangeClientCapabilities({
-    required ({bool? collapsedText}) foldingRange,
-    required ({List<FoldingRangeKind>? valueSet}) foldingRangeKind,
-    required bool lineFoldingOnly,
-    required int rangeLimit,
-    required bool dynamicRegistration,
+    ({bool? collapsedText})? foldingRange,
+    ({List<FoldingRangeKind>? valueSet})? foldingRangeKind,
+    bool? lineFoldingOnly,
+    int? rangeLimit,
+    bool? dynamicRegistration,
   }) = _FoldingRangeClientCapabilities;
 
   factory FoldingRangeClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5634,9 +5587,8 @@ abstract class FoldingRangeClientCapabilities
 abstract class SelectionRangeClientCapabilities
     with _$SelectionRangeClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory SelectionRangeClientCapabilities({
-    required bool dynamicRegistration,
-  }) = _SelectionRangeClientCapabilities;
+  const factory SelectionRangeClientCapabilities({bool? dynamicRegistration}) =
+      _SelectionRangeClientCapabilities;
 
   factory SelectionRangeClientCapabilities.fromJson(
     Map<String, dynamic> json,
@@ -5648,11 +5600,11 @@ abstract class PublishDiagnosticsClientCapabilities
     with _$PublishDiagnosticsClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory PublishDiagnosticsClientCapabilities({
-    required bool dataSupport,
-    required bool codeDescriptionSupport,
-    required bool versionSupport,
-    required ({List<DiagnosticTag> valueSet}) tagSupport,
-    required bool relatedInformation,
+    bool? dataSupport,
+    bool? codeDescriptionSupport,
+    bool? versionSupport,
+    ({List<DiagnosticTag> valueSet})? tagSupport,
+    bool? relatedInformation,
   }) = _PublishDiagnosticsClientCapabilities;
 
   factory PublishDiagnosticsClientCapabilities.fromJson(
@@ -5664,9 +5616,8 @@ abstract class PublishDiagnosticsClientCapabilities
 abstract class CallHierarchyClientCapabilities
     with _$CallHierarchyClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory CallHierarchyClientCapabilities({
-    required bool dynamicRegistration,
-  }) = _CallHierarchyClientCapabilities;
+  const factory CallHierarchyClientCapabilities({bool? dynamicRegistration}) =
+      _CallHierarchyClientCapabilities;
 
   factory CallHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$CallHierarchyClientCapabilitiesFromJson(json);
@@ -5685,11 +5636,11 @@ abstract class SemanticTokensClientCapabilities
     required List<String> tokenTypes,
     required List<String> tokenModifiers,
     required List<TokenFormat> formats,
-    required bool augmentsSyntaxTokens,
-    required bool serverCancelSupport,
-    required bool multilineTokenSupport,
-    required bool overlappingTokenSupport,
-    required bool dynamicRegistration,
+    bool? augmentsSyntaxTokens,
+    bool? serverCancelSupport,
+    bool? multilineTokenSupport,
+    bool? overlappingTokenSupport,
+    bool? dynamicRegistration,
   }) = _SemanticTokensClientCapabilities;
 
   factory SemanticTokensClientCapabilities.fromJson(
@@ -5702,7 +5653,7 @@ abstract class LinkedEditingRangeClientCapabilities
     with _$LinkedEditingRangeClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory LinkedEditingRangeClientCapabilities({
-    required bool dynamicRegistration,
+    bool? dynamicRegistration,
   }) = _LinkedEditingRangeClientCapabilities;
 
   factory LinkedEditingRangeClientCapabilities.fromJson(
@@ -5713,7 +5664,7 @@ abstract class LinkedEditingRangeClientCapabilities
 @freezed
 abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory MonikerClientCapabilities({required bool dynamicRegistration}) =
+  const factory MonikerClientCapabilities({bool? dynamicRegistration}) =
       _MonikerClientCapabilities;
 
   factory MonikerClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5724,9 +5675,8 @@ abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
 abstract class TypeHierarchyClientCapabilities
     with _$TypeHierarchyClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory TypeHierarchyClientCapabilities({
-    required bool dynamicRegistration,
-  }) = _TypeHierarchyClientCapabilities;
+  const factory TypeHierarchyClientCapabilities({bool? dynamicRegistration}) =
+      _TypeHierarchyClientCapabilities;
 
   factory TypeHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$TypeHierarchyClientCapabilitiesFromJson(json);
@@ -5736,9 +5686,8 @@ abstract class TypeHierarchyClientCapabilities
 abstract class InlineValueClientCapabilities
     with _$InlineValueClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
-  const factory InlineValueClientCapabilities({
-    required bool dynamicRegistration,
-  }) = _InlineValueClientCapabilities;
+  const factory InlineValueClientCapabilities({bool? dynamicRegistration}) =
+      _InlineValueClientCapabilities;
 
   factory InlineValueClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$InlineValueClientCapabilitiesFromJson(json);
@@ -5748,8 +5697,8 @@ abstract class InlineValueClientCapabilities
 abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory InlayHintClientCapabilities({
-    required ({List<String> properties}) resolveSupport,
-    required bool dynamicRegistration,
+    ({List<String> properties})? resolveSupport,
+    bool? dynamicRegistration,
   }) = _InlayHintClientCapabilities;
 
   factory InlayHintClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5761,8 +5710,8 @@ abstract class DiagnosticClientCapabilities
     with _$DiagnosticClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory DiagnosticClientCapabilities({
-    required bool relatedDocumentSupport,
-    required bool dynamicRegistration,
+    bool? relatedDocumentSupport,
+    bool? dynamicRegistration,
   }) = _DiagnosticClientCapabilities;
 
   factory DiagnosticClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5774,7 +5723,7 @@ abstract class InlineCompletionClientCapabilities
     with _$InlineCompletionClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory InlineCompletionClientCapabilities({
-    required bool dynamicRegistration,
+    bool? dynamicRegistration,
   }) = _InlineCompletionClientCapabilities;
 
   factory InlineCompletionClientCapabilities.fromJson(
@@ -5787,8 +5736,8 @@ abstract class NotebookDocumentSyncClientCapabilities
     with _$NotebookDocumentSyncClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory NotebookDocumentSyncClientCapabilities({
-    required bool executionSummarySupport,
-    required bool dynamicRegistration,
+    bool? executionSummarySupport,
+    bool? dynamicRegistration,
   }) = _NotebookDocumentSyncClientCapabilities;
 
   factory NotebookDocumentSyncClientCapabilities.fromJson(
@@ -5801,7 +5750,7 @@ abstract class ShowMessageRequestClientCapabilities
     with _$ShowMessageRequestClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory ShowMessageRequestClientCapabilities({
-    required ({bool? additionalPropertiesSupport}) messageActionItem,
+    ({bool? additionalPropertiesSupport})? messageActionItem,
   }) = _ShowMessageRequestClientCapabilities;
 
   factory ShowMessageRequestClientCapabilities.fromJson(
@@ -5826,7 +5775,7 @@ abstract class RegularExpressionsClientCapabilities
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory RegularExpressionsClientCapabilities({
     required String engine,
-    required String version,
+    String? version,
   }) = _RegularExpressionsClientCapabilities;
 
   factory RegularExpressionsClientCapabilities.fromJson(
@@ -5839,8 +5788,8 @@ abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MarkdownClientCapabilities({
     required String parser,
-    required List<String> allowedTags,
-    required String version,
+    List<String>? allowedTags,
+    String? version,
   }) = _MarkdownClientCapabilities;
 
   factory MarkdownClientCapabilities.fromJson(Map<String, dynamic> json) =>

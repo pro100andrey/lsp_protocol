@@ -1945,12 +1945,16 @@ _ImplementationParams _$ImplementationParamsFromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -1988,8 +1992,8 @@ _ImplementationRegistrationOptions _$ImplementationRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -2018,12 +2022,16 @@ _TypeDefinitionParams _$TypeDefinitionParamsFromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2048,8 +2056,8 @@ _TypeDefinitionRegistrationOptions _$TypeDefinitionRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -2109,12 +2117,16 @@ _DocumentColorParams _$DocumentColorParamsFromJson(Map<String, dynamic> json) {
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2149,8 +2161,8 @@ _DocumentColorRegistrationOptions _$DocumentColorRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -2181,12 +2193,16 @@ _ColorPresentationParams _$ColorPresentationParamsFromJson(
     ),
     color: Color.fromJson(json['color'] as Map<String, dynamic>),
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2207,10 +2223,12 @@ _ColorPresentation _$ColorPresentationFromJson(Map<String, dynamic> json) {
   );
   return _ColorPresentation(
     label: json['label'] as String,
-    additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>)
-        .map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
+    additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>?)
+        ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
         .toList(),
-    textEdit: TextEdit.fromJson(json['textEdit'] as Map<String, dynamic>),
+    textEdit: json['textEdit'] == null
+        ? null
+        : TextEdit.fromJson(json['textEdit'] as Map<String, dynamic>),
   );
 }
 
@@ -2226,7 +2244,7 @@ _WorkDoneProgressOptions _$WorkDoneProgressOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _WorkDoneProgressOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -2259,12 +2277,16 @@ _FoldingRangeParams _$FoldingRangeParamsFromJson(Map<String, dynamic> json) {
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2290,10 +2312,10 @@ _FoldingRange _$FoldingRangeFromJson(Map<String, dynamic> json) {
   return _FoldingRange(
     startLine: (json['startLine'] as num).toInt(),
     endLine: (json['endLine'] as num).toInt(),
-    collapsedText: json['collapsedText'] as String,
-    kind: $enumDecode(_$FoldingRangeKindEnumMap, json['kind']),
-    endCharacter: (json['endCharacter'] as num).toInt(),
-    startCharacter: (json['startCharacter'] as num).toInt(),
+    collapsedText: json['collapsedText'] as String?,
+    kind: $enumDecodeNullable(_$FoldingRangeKindEnumMap, json['kind']),
+    endCharacter: (json['endCharacter'] as num?)?.toInt(),
+    startCharacter: (json['startCharacter'] as num?)?.toInt(),
   );
 }
 
@@ -2302,7 +2324,7 @@ Map<String, dynamic> _$FoldingRangeToJson(_FoldingRange instance) =>
       'startLine': instance.startLine,
       'endLine': instance.endLine,
       'collapsedText': instance.collapsedText,
-      'kind': _$FoldingRangeKindEnumMap[instance.kind]!,
+      'kind': _$FoldingRangeKindEnumMap[instance.kind],
       'endCharacter': instance.endCharacter,
       'startCharacter': instance.startCharacter,
     };
@@ -2325,8 +2347,8 @@ _FoldingRangeRegistrationOptions _$FoldingRangeRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -2353,12 +2375,16 @@ _DeclarationParams _$DeclarationParamsFromJson(Map<String, dynamic> json) {
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2382,8 +2408,8 @@ _DeclarationRegistrationOptions _$DeclarationRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -2414,12 +2440,16 @@ _SelectionRangeParams _$SelectionRangeParamsFromJson(
     positions: (json['positions'] as List<dynamic>)
         .map((e) => Position.fromJson(e as Map<String, dynamic>))
         .toList(),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2436,7 +2466,9 @@ _SelectionRange _$SelectionRangeFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['range', 'parent']);
   return _SelectionRange(
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
-    parent: SelectionRange.fromJson(json['parent'] as Map<String, dynamic>),
+    parent: json['parent'] == null
+        ? null
+        : SelectionRange.fromJson(json['parent'] as Map<String, dynamic>),
   );
 }
 
@@ -2455,8 +2487,8 @@ _SelectionRangeRegistrationOptions _$SelectionRangeRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -2506,9 +2538,11 @@ _CallHierarchyPrepareParams _$CallHierarchyPrepareParamsFromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2542,10 +2576,12 @@ _CallHierarchyItem _$CallHierarchyItemFromJson(Map<String, dynamic> json) {
     selectionRange: Range.fromJson(
       json['selectionRange'] as Map<String, dynamic>,
     ),
-    data: LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
-    detail: json['detail'] as String,
-    tags: (json['tags'] as List<dynamic>)
-        .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    detail: json['detail'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
         .toList(),
   );
 }
@@ -2559,7 +2595,7 @@ Map<String, dynamic> _$CallHierarchyItemToJson(_CallHierarchyItem instance) =>
       'selectionRange': instance.selectionRange,
       'data': instance.data,
       'detail': instance.detail,
-      'tags': instance.tags.map((e) => _$SymbolTagEnumMap[e]!).toList(),
+      'tags': instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
     };
 
 const _$SymbolKindEnumMap = {
@@ -2605,8 +2641,8 @@ _CallHierarchyRegistrationOptions _$CallHierarchyRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -2627,12 +2663,16 @@ _CallHierarchyIncomingCallsParams _$CallHierarchyIncomingCallsParamsFromJson(
   );
   return _CallHierarchyIncomingCallsParams(
     item: CallHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2672,12 +2712,16 @@ _CallHierarchyOutgoingCallsParams _$CallHierarchyOutgoingCallsParamsFromJson(
   );
   return _CallHierarchyOutgoingCallsParams(
     item: CallHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2716,12 +2760,16 @@ _SemanticTokensParams _$SemanticTokensParamsFromJson(
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2739,7 +2787,7 @@ _SemanticTokens _$SemanticTokensFromJson(Map<String, dynamic> json) {
     data: (json['data'] as List<dynamic>)
         .map((e) => (e as num).toInt())
         .toList(),
-    resultId: json['resultId'] as String,
+    resultId: json['resultId'] as String?,
   );
 }
 
@@ -2783,12 +2831,16 @@ _SemanticTokensRegistrationOptions _$SemanticTokensRegistrationOptionsFromJson(
     legend: SemanticTokensLegend.fromJson(
       json['legend'] as Map<String, dynamic>,
     ),
-    id: json['id'] as String,
-    full: SemanticTokensOptionsFullBase.fromJson(
-      json['full'] as Map<String, dynamic>,
-    ),
-    range: RangeBase.fromJson(json['range'] as Map<String, dynamic>),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    full: json['full'] == null
+        ? null
+        : SemanticTokensOptionsFullBase.fromJson(
+            json['full'] as Map<String, dynamic>,
+          ),
+    range: json['range'] == null
+        ? null
+        : RangeBase.fromJson(json['range'] as Map<String, dynamic>),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -2820,12 +2872,16 @@ _SemanticTokensDeltaParams _$SemanticTokensDeltaParamsFromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
     previousResultId: json['previousResultId'] as String,
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2844,7 +2900,7 @@ _SemanticTokensDelta _$SemanticTokensDeltaFromJson(Map<String, dynamic> json) {
     edits: (json['edits'] as List<dynamic>)
         .map((e) => SemanticTokensEdit.fromJson(e as Map<String, dynamic>))
         .toList(),
-    resultId: json['resultId'] as String,
+    resultId: json['resultId'] as String?,
   );
 }
 
@@ -2884,12 +2940,16 @@ _SemanticTokensRangeParams _$SemanticTokensRangeParamsFromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2909,9 +2969,11 @@ _ShowDocumentParams _$ShowDocumentParamsFromJson(Map<String, dynamic> json) {
   );
   return _ShowDocumentParams(
     uri: json['uri'] as String,
-    selection: Range.fromJson(json['selection'] as Map<String, dynamic>),
-    takeFocus: json['takeFocus'] as bool,
-    external: json['external'] as bool,
+    selection: json['selection'] == null
+        ? null
+        : Range.fromJson(json['selection'] as Map<String, dynamic>),
+    takeFocus: json['takeFocus'] as bool?,
+    external: json['external'] as bool?,
   );
 }
 
@@ -2943,9 +3005,11 @@ _LinkedEditingRangeParams _$LinkedEditingRangeParamsFromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -2963,7 +3027,7 @@ _LinkedEditingRanges _$LinkedEditingRangesFromJson(Map<String, dynamic> json) {
     ranges: (json['ranges'] as List<dynamic>)
         .map((e) => Range.fromJson(e as Map<String, dynamic>))
         .toList(),
-    wordPattern: json['wordPattern'] as String,
+    wordPattern: json['wordPattern'] as String?,
   );
 }
 
@@ -2985,8 +3049,8 @@ _$LinkedEditingRangeRegistrationOptionsFromJson(Map<String, dynamic> json) {
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -3016,18 +3080,19 @@ _WorkspaceEdit _$WorkspaceEditFromJson(Map<String, dynamic> json) {
     allowedKeys: const ['changeAnnotations', 'documentChanges', 'changes'],
   );
   return _WorkspaceEdit(
-    changeAnnotations: (json['changeAnnotations'] as Map<String, dynamic>).map(
-      (k, e) =>
-          MapEntry(k, ChangeAnnotation.fromJson(e as Map<String, dynamic>)),
-    ),
-    documentChanges: (json['documentChanges'] as List<dynamic>)
-        .map(
+    changeAnnotations: (json['changeAnnotations'] as Map<String, dynamic>?)
+        ?.map(
+          (k, e) =>
+              MapEntry(k, ChangeAnnotation.fromJson(e as Map<String, dynamic>)),
+        ),
+    documentChanges: (json['documentChanges'] as List<dynamic>?)
+        ?.map(
           (e) => WorkspaceEditDocumentChangesBase.fromJson(
             e as Map<String, dynamic>,
           ),
         )
         .toList(),
-    changes: (json['changes'] as Map<String, dynamic>).map(
+    changes: (json['changes'] as Map<String, dynamic>?)?.map(
       (k, e) => MapEntry(
         k,
         (e as List<dynamic>)
@@ -3099,12 +3164,16 @@ _MonikerParams _$MonikerParamsFromJson(Map<String, dynamic> json) {
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3125,7 +3194,7 @@ _Moniker _$MonikerFromJson(Map<String, dynamic> json) {
     scheme: json['scheme'] as String,
     identifier: json['identifier'] as String,
     unique: $enumDecode(_$UniquenessLevelEnumMap, json['unique']),
-    kind: $enumDecode(_$MonikerKindEnumMap, json['kind']),
+    kind: $enumDecodeNullable(_$MonikerKindEnumMap, json['kind']),
   );
 }
 
@@ -3133,7 +3202,7 @@ Map<String, dynamic> _$MonikerToJson(_Moniker instance) => <String, dynamic>{
   'scheme': instance.scheme,
   'identifier': instance.identifier,
   'unique': _$UniquenessLevelEnumMap[instance.unique]!,
-  'kind': _$MonikerKindEnumMap[instance.kind]!,
+  'kind': _$MonikerKindEnumMap[instance.kind],
 };
 
 const _$UniquenessLevelEnumMap = {
@@ -3159,7 +3228,7 @@ _MonikerRegistrationOptions _$MonikerRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -3182,9 +3251,11 @@ _TypeHierarchyPrepareParams _$TypeHierarchyPrepareParamsFromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3218,10 +3289,12 @@ _TypeHierarchyItem _$TypeHierarchyItemFromJson(Map<String, dynamic> json) {
     selectionRange: Range.fromJson(
       json['selectionRange'] as Map<String, dynamic>,
     ),
-    data: LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
-    detail: json['detail'] as String,
-    tags: (json['tags'] as List<dynamic>)
-        .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    detail: json['detail'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
         .toList(),
   );
 }
@@ -3235,7 +3308,7 @@ Map<String, dynamic> _$TypeHierarchyItemToJson(_TypeHierarchyItem instance) =>
       'selectionRange': instance.selectionRange,
       'data': instance.data,
       'detail': instance.detail,
-      'tags': instance.tags.map((e) => _$SymbolTagEnumMap[e]!).toList(),
+      'tags': instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
     };
 
 _TypeHierarchyRegistrationOptions _$TypeHierarchyRegistrationOptionsFromJson(
@@ -3250,8 +3323,8 @@ _TypeHierarchyRegistrationOptions _$TypeHierarchyRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -3272,12 +3345,16 @@ _TypeHierarchySupertypesParams _$TypeHierarchySupertypesParamsFromJson(
   );
   return _TypeHierarchySupertypesParams(
     item: TypeHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3298,12 +3375,16 @@ _TypeHierarchySubtypesParams _$TypeHierarchySubtypesParamsFromJson(
   );
   return _TypeHierarchySubtypesParams(
     item: TypeHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3328,9 +3409,11 @@ _InlineValueParams _$InlineValueParamsFromJson(Map<String, dynamic> json) {
     context: InlineValueContext.fromJson(
       json['context'] as Map<String, dynamic>,
     ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3354,8 +3437,8 @@ _InlineValueRegistrationOptions _$InlineValueRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -3377,9 +3460,11 @@ _InlayHintParams _$InlayHintParamsFromJson(Map<String, dynamic> json) {
       json['textDocument'] as Map<String, dynamic>,
     ),
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3407,16 +3492,20 @@ _InlayHint _$InlayHintFromJson(Map<String, dynamic> json) {
   return _InlayHint(
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
     label: InlayHintLabelBase.fromJson(json['label'] as Map<String, dynamic>),
-    data: LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
-    paddingRight: json['paddingRight'] as bool,
-    paddingLeft: json['paddingLeft'] as bool,
-    tooltip: TooltipOrDocumentationBase.fromJson(
-      json['tooltip'] as Map<String, dynamic>,
-    ),
-    textEdits: (json['textEdits'] as List<dynamic>)
-        .map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    paddingRight: json['paddingRight'] as bool?,
+    paddingLeft: json['paddingLeft'] as bool?,
+    tooltip: json['tooltip'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['tooltip'] as Map<String, dynamic>,
+          ),
+    textEdits: (json['textEdits'] as List<dynamic>?)
+        ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
         .toList(),
-    kind: $enumDecode(_$InlayHintKindEnumMap, json['kind']),
+    kind: $enumDecodeNullable(_$InlayHintKindEnumMap, json['kind']),
   );
 }
 
@@ -3429,7 +3518,7 @@ Map<String, dynamic> _$InlayHintToJson(_InlayHint instance) =>
       'paddingLeft': instance.paddingLeft,
       'tooltip': instance.tooltip,
       'textEdits': instance.textEdits,
-      'kind': _$InlayHintKindEnumMap[instance.kind]!,
+      'kind': _$InlayHintKindEnumMap[instance.kind],
     };
 
 const _$InlayHintKindEnumMap = {
@@ -3454,9 +3543,9 @@ _InlayHintRegistrationOptions _$InlayHintRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    resolveProvider: json['resolveProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -3486,14 +3575,18 @@ _DocumentDiagnosticParams _$DocumentDiagnosticParamsFromJson(
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    previousResultId: json['previousResultId'] as String,
-    identifier: json['identifier'] as String,
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    previousResultId: json['previousResultId'] as String?,
+    identifier: json['identifier'] as String?,
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3556,9 +3649,9 @@ _DiagnosticRegistrationOptions _$DiagnosticRegistrationOptionsFromJson(
         ),
     interFileDependencies: json['interFileDependencies'] as bool,
     workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
-    id: json['id'] as String,
-    identifier: json['identifier'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    identifier: json['identifier'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -3589,13 +3682,17 @@ _WorkspaceDiagnosticParams _$WorkspaceDiagnosticParamsFromJson(
     previousResultIds: (json['previousResultIds'] as List<dynamic>)
         .map((e) => PreviousResultId.fromJson(e as Map<String, dynamic>))
         .toList(),
-    identifier: json['identifier'] as String,
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    identifier: json['identifier'] as String?,
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3744,9 +3841,11 @@ _InlineCompletionParams _$InlineCompletionParamsFromJson(
     context: InlineCompletionContext.fromJson(
       json['context'] as Map<String, dynamic>,
     ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3785,9 +3884,13 @@ _InlineCompletionItem _$InlineCompletionItemFromJson(
     insertText: InlineCompletionItemInsertTextBase.fromJson(
       json['insertText'] as Map<String, dynamic>,
     ),
-    command: Command.fromJson(json['command'] as Map<String, dynamic>),
-    range: Range.fromJson(json['range'] as Map<String, dynamic>),
-    filterText: json['filterText'] as String,
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
+    range: json['range'] == null
+        ? null
+        : Range.fromJson(json['range'] as Map<String, dynamic>),
+    filterText: json['filterText'] as String?,
   );
 }
 
@@ -3811,8 +3914,8 @@ _$InlineCompletionRegistrationOptionsFromJson(Map<String, dynamic> json) {
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    id: json['id'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -3877,28 +3980,35 @@ _InitializeParams _$InitializeParamsFromJson(Map<String, dynamic> json) {
     capabilities: ClientCapabilities.fromJson(
       json['capabilities'] as Map<String, dynamic>,
     ),
-    workspaceFolders:
-        WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.fromJson(
-          json['workspaceFolders'] as Map<String, dynamic>,
-        ),
-    trace: $enumDecode(_$TraceValuesEnumMap, json['trace']),
-    initializationOptions: LSPAnyBase.fromJson(
-      json['initializationOptions'] as Map<String, dynamic>,
-    ),
-    rootPath: InitializeParamsRootPathBase.fromJson(
-      json['rootPath'] as Map<String, dynamic>,
-    ),
-    locale: json['locale'] as String,
-    clientInfo: _$recordConvert(
+    workspaceFolders: json['workspaceFolders'] == null
+        ? null
+        : WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.fromJson(
+            json['workspaceFolders'] as Map<String, dynamic>,
+          ),
+    trace: $enumDecodeNullable(_$TraceValuesEnumMap, json['trace']),
+    initializationOptions: json['initializationOptions'] == null
+        ? null
+        : LSPAnyBase.fromJson(
+            json['initializationOptions'] as Map<String, dynamic>,
+          ),
+    rootPath: json['rootPath'] == null
+        ? null
+        : InitializeParamsRootPathBase.fromJson(
+            json['rootPath'] as Map<String, dynamic>,
+          ),
+    locale: json['locale'] as String?,
+    clientInfo: _$recordConvertNullable(
       json['clientInfo'],
       ($jsonValue) => (
         name: $jsonValue['name'] as String,
         version: $jsonValue['version'] as String?,
       ),
     ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -3908,14 +4018,16 @@ Map<String, dynamic> _$InitializeParamsToJson(_InitializeParams instance) =>
       'rootUri': instance.rootUri,
       'capabilities': instance.capabilities,
       'workspaceFolders': instance.workspaceFolders,
-      'trace': _$TraceValuesEnumMap[instance.trace]!,
+      'trace': _$TraceValuesEnumMap[instance.trace],
       'initializationOptions': instance.initializationOptions,
       'rootPath': instance.rootPath,
       'locale': instance.locale,
-      'clientInfo': <String, dynamic>{
-        'name': instance.clientInfo.name,
-        'version': instance.clientInfo.version,
-      },
+      'clientInfo': instance.clientInfo == null
+          ? null
+          : <String, dynamic>{
+              'name': instance.clientInfo!.name,
+              'version': instance.clientInfo!.version,
+            },
       'workDoneToken': instance.workDoneToken,
     };
 
@@ -3925,13 +4037,18 @@ const _$TraceValuesEnumMap = {
   TraceValues.verboseValue: 'verboseValue',
 };
 
+$Rec? _$recordConvertNullable<$Rec>(
+  Object? value,
+  $Rec Function(Map) convert,
+) => value == null ? null : convert(value as Map<String, dynamic>);
+
 _InitializeResult _$InitializeResultFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['capabilities', 'serverInfo']);
   return _InitializeResult(
     capabilities: ServerCapabilities.fromJson(
       json['capabilities'] as Map<String, dynamic>,
     ),
-    serverInfo: _$recordConvert(
+    serverInfo: _$recordConvertNullable(
       json['serverInfo'],
       ($jsonValue) => (
         name: $jsonValue['name'] as String,
@@ -3944,10 +4061,12 @@ _InitializeResult _$InitializeResultFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$InitializeResultToJson(_InitializeResult instance) =>
     <String, dynamic>{
       'capabilities': instance.capabilities,
-      'serverInfo': <String, dynamic>{
-        'name': instance.serverInfo.name,
-        'version': instance.serverInfo.version,
-      },
+      'serverInfo': instance.serverInfo == null
+          ? null
+          : <String, dynamic>{
+              'name': instance.serverInfo!.name,
+              'version': instance.serverInfo!.version,
+            },
     };
 
 _InitializeError _$InitializeErrorFromJson(Map<String, dynamic> json) {
@@ -3983,9 +4102,11 @@ _DidChangeConfigurationRegistrationOptions
 _$DidChangeConfigurationRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['section']);
   return _DidChangeConfigurationRegistrationOptions(
-    section: DidChangeConfigurationRegistrationOptionsSectionBase.fromJson(
-      json['section'] as Map<String, dynamic>,
-    ),
+    section: json['section'] == null
+        ? null
+        : DidChangeConfigurationRegistrationOptionsSectionBase.fromJson(
+            json['section'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -4022,8 +4143,8 @@ _ShowMessageRequestParams _$ShowMessageRequestParamsFromJson(
   return _ShowMessageRequestParams(
     type: $enumDecode(_$MessageTypeEnumMap, json['type']),
     message: json['message'] as String,
-    actions: (json['actions'] as List<dynamic>)
-        .map((e) => MessageActionItem.fromJson(e as Map<String, dynamic>))
+    actions: (json['actions'] as List<dynamic>?)
+        ?.map((e) => MessageActionItem.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -4140,7 +4261,7 @@ _DidSaveTextDocumentParams _$DidSaveTextDocumentParamsFromJson(
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    text: json['text'] as String,
+    text: json['text'] as String?,
   );
 }
 
@@ -4159,7 +4280,7 @@ _$TextDocumentSaveRegistrationOptionsFromJson(Map<String, dynamic> json) {
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    includeText: json['includeText'] as bool,
+    includeText: json['includeText'] as bool?,
   );
 }
 
@@ -4246,7 +4367,7 @@ _PublishDiagnosticsParams _$PublishDiagnosticsParamsFromJson(
     diagnostics: (json['diagnostics'] as List<dynamic>)
         .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
         .toList(),
-    version: (json['version'] as num).toInt(),
+    version: (json['version'] as num?)?.toInt(),
   );
 }
 
@@ -4274,15 +4395,19 @@ _CompletionParams _$CompletionParamsFromJson(Map<String, dynamic> json) {
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    context: CompletionContext.fromJson(
-      json['context'] as Map<String, dynamic>,
-    ),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    context: json['context'] == null
+        ? null
+        : CompletionContext.fromJson(json['context'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -4322,67 +4447,78 @@ _CompletionItem _$CompletionItemFromJson(Map<String, dynamic> json) {
   );
   return _CompletionItem(
     label: json['label'] as String,
-    data: LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
-    command: Command.fromJson(json['command'] as Map<String, dynamic>),
-    commitCharacters: (json['commitCharacters'] as List<dynamic>)
-        .map((e) => e as String)
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
+    commitCharacters: (json['commitCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>)
-        .map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
+    additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>?)
+        ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
         .toList(),
-    textEditText: json['textEditText'] as String,
-    textEdit: CompletionItemTextEditBase.fromJson(
-      json['textEdit'] as Map<String, dynamic>,
-    ),
-    insertTextMode: $enumDecode(
+    textEditText: json['textEditText'] as String?,
+    textEdit: json['textEdit'] == null
+        ? null
+        : CompletionItemTextEditBase.fromJson(
+            json['textEdit'] as Map<String, dynamic>,
+          ),
+    insertTextMode: $enumDecodeNullable(
       _$InsertTextModeEnumMap,
       json['insertTextMode'],
     ),
-    insertTextFormat: $enumDecode(
+    insertTextFormat: $enumDecodeNullable(
       _$InsertTextFormatEnumMap,
       json['insertTextFormat'],
     ),
-    insertText: json['insertText'] as String,
-    filterText: json['filterText'] as String,
-    sortText: json['sortText'] as String,
-    preselect: json['preselect'] as bool,
-    deprecated: json['deprecated'] as bool,
-    documentation: TooltipOrDocumentationBase.fromJson(
-      json['documentation'] as Map<String, dynamic>,
-    ),
-    detail: json['detail'] as String,
-    tags: (json['tags'] as List<dynamic>)
-        .map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
+    insertText: json['insertText'] as String?,
+    filterText: json['filterText'] as String?,
+    sortText: json['sortText'] as String?,
+    preselect: json['preselect'] as bool?,
+    deprecated: json['deprecated'] as bool?,
+    documentation: json['documentation'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['documentation'] as Map<String, dynamic>,
+          ),
+    detail: json['detail'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
         .toList(),
-    kind: $enumDecode(_$CompletionItemKindEnumMap, json['kind']),
-    labelDetails: CompletionItemLabelDetails.fromJson(
-      json['labelDetails'] as Map<String, dynamic>,
-    ),
+    kind: $enumDecodeNullable(_$CompletionItemKindEnumMap, json['kind']),
+    labelDetails: json['labelDetails'] == null
+        ? null
+        : CompletionItemLabelDetails.fromJson(
+            json['labelDetails'] as Map<String, dynamic>,
+          ),
   );
 }
 
-Map<String, dynamic> _$CompletionItemToJson(_CompletionItem instance) =>
-    <String, dynamic>{
-      'label': instance.label,
-      'data': instance.data,
-      'command': instance.command,
-      'commitCharacters': instance.commitCharacters,
-      'additionalTextEdits': instance.additionalTextEdits,
-      'textEditText': instance.textEditText,
-      'textEdit': instance.textEdit,
-      'insertTextMode': _$InsertTextModeEnumMap[instance.insertTextMode]!,
-      'insertTextFormat': _$InsertTextFormatEnumMap[instance.insertTextFormat]!,
-      'insertText': instance.insertText,
-      'filterText': instance.filterText,
-      'sortText': instance.sortText,
-      'preselect': instance.preselect,
-      'deprecated': instance.deprecated,
-      'documentation': instance.documentation,
-      'detail': instance.detail,
-      'tags': instance.tags.map((e) => _$CompletionItemTagEnumMap[e]!).toList(),
-      'kind': _$CompletionItemKindEnumMap[instance.kind]!,
-      'labelDetails': instance.labelDetails,
-    };
+Map<String, dynamic> _$CompletionItemToJson(
+  _CompletionItem instance,
+) => <String, dynamic>{
+  'label': instance.label,
+  'data': instance.data,
+  'command': instance.command,
+  'commitCharacters': instance.commitCharacters,
+  'additionalTextEdits': instance.additionalTextEdits,
+  'textEditText': instance.textEditText,
+  'textEdit': instance.textEdit,
+  'insertTextMode': _$InsertTextModeEnumMap[instance.insertTextMode],
+  'insertTextFormat': _$InsertTextFormatEnumMap[instance.insertTextFormat],
+  'insertText': instance.insertText,
+  'filterText': instance.filterText,
+  'sortText': instance.sortText,
+  'preselect': instance.preselect,
+  'deprecated': instance.deprecated,
+  'documentation': instance.documentation,
+  'detail': instance.detail,
+  'tags': instance.tags?.map((e) => _$CompletionItemTagEnumMap[e]!).toList(),
+  'kind': _$CompletionItemKindEnumMap[instance.kind],
+  'labelDetails': instance.labelDetails,
+};
 
 const _$InsertTextModeEnumMap = {
   InsertTextMode.asIsValue: 'asIsValue',
@@ -4436,7 +4572,7 @@ _CompletionList _$CompletionListFromJson(Map<String, dynamic> json) {
     items: (json['items'] as List<dynamic>)
         .map((e) => CompletionItem.fromJson(e as Map<String, dynamic>))
         .toList(),
-    itemDefaults: _$recordConvert(
+    itemDefaults: _$recordConvertNullable(
       json['itemDefaults'],
       ($jsonValue) => (
         commitCharacters: ($jsonValue['commitCharacters'] as List<dynamic>?)
@@ -4463,20 +4599,25 @@ _CompletionList _$CompletionListFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$CompletionListToJson(_CompletionList instance) =>
-    <String, dynamic>{
-      'isIncomplete': instance.isIncomplete,
-      'items': instance.items,
-      'itemDefaults': <String, dynamic>{
-        'commitCharacters': instance.itemDefaults.commitCharacters,
-        'data': instance.itemDefaults.data,
-        'editRange': instance.itemDefaults.editRange,
-        'insertTextFormat':
-            _$InsertTextFormatEnumMap[instance.itemDefaults.insertTextFormat],
-        'insertTextMode':
-            _$InsertTextModeEnumMap[instance.itemDefaults.insertTextMode],
-      },
-    };
+Map<String, dynamic> _$CompletionListToJson(
+  _CompletionList instance,
+) => <String, dynamic>{
+  'isIncomplete': instance.isIncomplete,
+  'items': instance.items,
+  'itemDefaults': instance.itemDefaults == null
+      ? null
+      : <String, dynamic>{
+          'commitCharacters': instance.itemDefaults!.commitCharacters,
+          'data': instance.itemDefaults!.data,
+          'editRange': instance.itemDefaults!.editRange,
+          'insertTextFormat':
+              _$InsertTextFormatEnumMap[instance
+                  .itemDefaults!
+                  .insertTextFormat],
+          'insertTextMode':
+              _$InsertTextModeEnumMap[instance.itemDefaults!.insertTextMode],
+        },
+};
 
 _CompletionRegistrationOptions _$CompletionRegistrationOptionsFromJson(
   Map<String, dynamic> json,
@@ -4497,19 +4638,19 @@ _CompletionRegistrationOptions _$CompletionRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    completionItem: _$recordConvert(
+    completionItem: _$recordConvertNullable(
       json['completionItem'],
       ($jsonValue) =>
           (labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?),
     ),
-    resolveProvider: json['resolveProvider'] as bool,
-    allCommitCharacters: (json['allCommitCharacters'] as List<dynamic>)
-        .map((e) => e as String)
+    resolveProvider: json['resolveProvider'] as bool?,
+    allCommitCharacters: (json['allCommitCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    triggerCharacters: (json['triggerCharacters'] as List<dynamic>)
-        .map((e) => e as String)
+    triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -4517,9 +4658,11 @@ Map<String, dynamic> _$CompletionRegistrationOptionsToJson(
   _CompletionRegistrationOptions instance,
 ) => <String, dynamic>{
   'documentSelector': instance.documentSelector,
-  'completionItem': <String, dynamic>{
-    'labelDetailsSupport': instance.completionItem.labelDetailsSupport,
-  },
+  'completionItem': instance.completionItem == null
+      ? null
+      : <String, dynamic>{
+          'labelDetailsSupport': instance.completionItem!.labelDetailsSupport,
+        },
   'resolveProvider': instance.resolveProvider,
   'allCommitCharacters': instance.allCommitCharacters,
   'triggerCharacters': instance.triggerCharacters,
@@ -4536,9 +4679,11 @@ _HoverParams _$HoverParamsFromJson(Map<String, dynamic> json) {
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -4555,7 +4700,9 @@ _Hover _$HoverFromJson(Map<String, dynamic> json) {
     contents: HoverContentsBase.fromJson(
       json['contents'] as Map<String, dynamic>,
     ),
-    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    range: json['range'] == null
+        ? null
+        : Range.fromJson(json['range'] as Map<String, dynamic>),
   );
 }
 
@@ -4573,7 +4720,7 @@ _HoverRegistrationOptions _$HoverRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -4594,12 +4741,16 @@ _SignatureHelpParams _$SignatureHelpParamsFromJson(Map<String, dynamic> json) {
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    context: SignatureHelpContext.fromJson(
-      json['context'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    context: json['context'] == null
+        ? null
+        : SignatureHelpContext.fromJson(
+            json['context'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -4621,8 +4772,8 @@ _SignatureHelp _$SignatureHelpFromJson(Map<String, dynamic> json) {
     signatures: (json['signatures'] as List<dynamic>)
         .map((e) => SignatureInformation.fromJson(e as Map<String, dynamic>))
         .toList(),
-    activeParameter: (json['activeParameter'] as num).toInt(),
-    activeSignature: (json['activeSignature'] as num).toInt(),
+    activeParameter: (json['activeParameter'] as num?)?.toInt(),
+    activeSignature: (json['activeSignature'] as num?)?.toInt(),
   );
 }
 
@@ -4650,13 +4801,13 @@ _SignatureHelpRegistrationOptions _$SignatureHelpRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    retriggerCharacters: (json['retriggerCharacters'] as List<dynamic>)
-        .map((e) => e as String)
+    retriggerCharacters: (json['retriggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    triggerCharacters: (json['triggerCharacters'] as List<dynamic>)
-        .map((e) => e as String)
+    triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -4684,12 +4835,16 @@ _DefinitionParams _$DefinitionParamsFromJson(Map<String, dynamic> json) {
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -4710,7 +4865,7 @@ _DefinitionRegistrationOptions _$DefinitionRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -4738,12 +4893,16 @@ _ReferenceParams _$ReferenceParamsFromJson(Map<String, dynamic> json) {
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
     context: ReferenceContext.fromJson(json['context'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -4765,7 +4924,7 @@ _ReferenceRegistrationOptions _$ReferenceRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -4793,12 +4952,16 @@ _DocumentHighlightParams _$DocumentHighlightParamsFromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -4815,14 +4978,14 @@ _DocumentHighlight _$DocumentHighlightFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['range', 'kind']);
   return _DocumentHighlight(
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
-    kind: $enumDecode(_$DocumentHighlightKindEnumMap, json['kind']),
+    kind: $enumDecodeNullable(_$DocumentHighlightKindEnumMap, json['kind']),
   );
 }
 
 Map<String, dynamic> _$DocumentHighlightToJson(_DocumentHighlight instance) =>
     <String, dynamic>{
       'range': instance.range,
-      'kind': _$DocumentHighlightKindEnumMap[instance.kind]!,
+      'kind': _$DocumentHighlightKindEnumMap[instance.kind],
     };
 
 const _$DocumentHighlightKindEnumMap = {
@@ -4839,7 +5002,7 @@ _$DocumentHighlightRegistrationOptionsFromJson(Map<String, dynamic> json) {
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -4861,12 +5024,16 @@ _DocumentSymbolParams _$DocumentSymbolParamsFromJson(
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -4894,10 +5061,10 @@ _SymbolInformation _$SymbolInformationFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
     location: Location.fromJson(json['location'] as Map<String, dynamic>),
-    deprecated: json['deprecated'] as bool,
-    containerName: json['containerName'] as String,
-    tags: (json['tags'] as List<dynamic>)
-        .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+    deprecated: json['deprecated'] as bool?,
+    containerName: json['containerName'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
         .toList(),
   );
 }
@@ -4909,7 +5076,7 @@ Map<String, dynamic> _$SymbolInformationToJson(_SymbolInformation instance) =>
       'location': instance.location,
       'deprecated': instance.deprecated,
       'containerName': instance.containerName,
-      'tags': instance.tags.map((e) => _$SymbolTagEnumMap[e]!).toList(),
+      'tags': instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
     };
 
 _DocumentSymbol _$DocumentSymbolFromJson(Map<String, dynamic> json) {
@@ -4933,14 +5100,14 @@ _DocumentSymbol _$DocumentSymbolFromJson(Map<String, dynamic> json) {
     selectionRange: Range.fromJson(
       json['selectionRange'] as Map<String, dynamic>,
     ),
-    children: (json['children'] as List<dynamic>)
-        .map((e) => DocumentSymbol.fromJson(e as Map<String, dynamic>))
+    children: (json['children'] as List<dynamic>?)
+        ?.map((e) => DocumentSymbol.fromJson(e as Map<String, dynamic>))
         .toList(),
-    deprecated: json['deprecated'] as bool,
-    tags: (json['tags'] as List<dynamic>)
-        .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+    deprecated: json['deprecated'] as bool?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
         .toList(),
-    detail: json['detail'] as String,
+    detail: json['detail'] as String?,
   );
 }
 
@@ -4952,7 +5119,7 @@ Map<String, dynamic> _$DocumentSymbolToJson(_DocumentSymbol instance) =>
       'selectionRange': instance.selectionRange,
       'children': instance.children,
       'deprecated': instance.deprecated,
-      'tags': instance.tags.map((e) => _$SymbolTagEnumMap[e]!).toList(),
+      'tags': instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
       'detail': instance.detail,
     };
 
@@ -4968,8 +5135,8 @@ _DocumentSymbolRegistrationOptions _$DocumentSymbolRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    label: json['label'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    label: json['label'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5000,12 +5167,16 @@ _CodeActionParams _$CodeActionParamsFromJson(Map<String, dynamic> json) {
     context: CodeActionContext.fromJson(
       json['context'] as Map<String, dynamic>,
     ),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5023,8 +5194,8 @@ _Command _$CommandFromJson(Map<String, dynamic> json) {
   return _Command(
     title: json['title'] as String,
     command: json['command'] as String,
-    arguments: (json['arguments'] as List<dynamic>)
-        .map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
+    arguments: (json['arguments'] as List<dynamic>?)
+        ?.map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -5051,18 +5222,24 @@ _CodeAction _$CodeActionFromJson(Map<String, dynamic> json) {
   );
   return _CodeAction(
     title: json['title'] as String,
-    data: LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
-    command: Command.fromJson(json['command'] as Map<String, dynamic>),
-    edit: WorkspaceEdit.fromJson(json['edit'] as Map<String, dynamic>),
-    disabled: _$recordConvert(
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
+    edit: json['edit'] == null
+        ? null
+        : WorkspaceEdit.fromJson(json['edit'] as Map<String, dynamic>),
+    disabled: _$recordConvertNullable(
       json['disabled'],
       ($jsonValue) => (reason: $jsonValue['reason'] as String),
     ),
-    isPreferred: json['isPreferred'] as bool,
-    diagnostics: (json['diagnostics'] as List<dynamic>)
-        .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
+    isPreferred: json['isPreferred'] as bool?,
+    diagnostics: (json['diagnostics'] as List<dynamic>?)
+        ?.map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
         .toList(),
-    kind: $enumDecode(_$CodeActionKindEnumMap, json['kind']),
+    kind: $enumDecodeNullable(_$CodeActionKindEnumMap, json['kind']),
   );
 }
 
@@ -5072,10 +5249,12 @@ Map<String, dynamic> _$CodeActionToJson(_CodeAction instance) =>
       'data': instance.data,
       'command': instance.command,
       'edit': instance.edit,
-      'disabled': <String, dynamic>{'reason': instance.disabled.reason},
+      'disabled': instance.disabled == null
+          ? null
+          : <String, dynamic>{'reason': instance.disabled!.reason},
       'isPreferred': instance.isPreferred,
       'diagnostics': instance.diagnostics,
-      'kind': _$CodeActionKindEnumMap[instance.kind]!,
+      'kind': _$CodeActionKindEnumMap[instance.kind],
     };
 
 const _$CodeActionKindEnumMap = {
@@ -5107,11 +5286,11 @@ _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    resolveProvider: json['resolveProvider'] as bool,
-    codeActionKinds: (json['codeActionKinds'] as List<dynamic>)
-        .map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+    resolveProvider: json['resolveProvider'] as bool?,
+    codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
         .toList(),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5121,7 +5300,7 @@ Map<String, dynamic> _$CodeActionRegistrationOptionsToJson(
   'documentSelector': instance.documentSelector,
   'resolveProvider': instance.resolveProvider,
   'codeActionKinds': instance.codeActionKinds
-      .map((e) => _$CodeActionKindEnumMap[e]!)
+      ?.map((e) => _$CodeActionKindEnumMap[e]!)
       .toList(),
   'workDoneProgress': instance.workDoneProgress,
 };
@@ -5135,12 +5314,16 @@ _WorkspaceSymbolParams _$WorkspaceSymbolParamsFromJson(
   );
   return _WorkspaceSymbolParams(
     query: json['query'] as String,
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5170,10 +5353,12 @@ _WorkspaceSymbol _$WorkspaceSymbolFromJson(Map<String, dynamic> json) {
     location: WorkspaceSymbolLocationBase.fromJson(
       json['location'] as Map<String, dynamic>,
     ),
-    data: LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
-    containerName: json['containerName'] as String,
-    tags: (json['tags'] as List<dynamic>)
-        .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    containerName: json['containerName'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
         .toList(),
   );
 }
@@ -5185,15 +5370,15 @@ Map<String, dynamic> _$WorkspaceSymbolToJson(_WorkspaceSymbol instance) =>
       'location': instance.location,
       'data': instance.data,
       'containerName': instance.containerName,
-      'tags': instance.tags.map((e) => _$SymbolTagEnumMap[e]!).toList(),
+      'tags': instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
     };
 
 _WorkspaceSymbolRegistrationOptions
 _$WorkspaceSymbolRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
   return _WorkspaceSymbolRegistrationOptions(
-    resolveProvider: json['resolveProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5213,12 +5398,16 @@ _CodeLensParams _$CodeLensParamsFromJson(Map<String, dynamic> json) {
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5233,8 +5422,12 @@ _CodeLens _$CodeLensFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['range', 'data', 'command']);
   return _CodeLens(
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
-    data: LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
-    command: Command.fromJson(json['command'] as Map<String, dynamic>),
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
   );
 }
 
@@ -5260,8 +5453,8 @@ _CodeLensRegistrationOptions _$CodeLensRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    resolveProvider: json['resolveProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5282,12 +5475,16 @@ _DocumentLinkParams _$DocumentLinkParamsFromJson(Map<String, dynamic> json) {
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5302,9 +5499,11 @@ _DocumentLink _$DocumentLinkFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['range', 'data', 'tooltip', 'target']);
   return _DocumentLink(
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
-    data: LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
-    tooltip: json['tooltip'] as String,
-    target: json['target'] as String,
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    tooltip: json['tooltip'] as String?,
+    target: json['target'] as String?,
   );
 }
 
@@ -5332,8 +5531,8 @@ _DocumentLinkRegistrationOptions _$DocumentLinkRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    resolveProvider: json['resolveProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5359,9 +5558,11 @@ _DocumentFormattingParams _$DocumentFormattingParamsFromJson(
     options: FormattingOptions.fromJson(
       json['options'] as Map<String, dynamic>,
     ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5381,7 +5582,7 @@ _$DocumentFormattingRegistrationOptionsFromJson(Map<String, dynamic> json) {
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5407,9 +5608,11 @@ _DocumentRangeFormattingParams _$DocumentRangeFormattingParamsFromJson(
     options: FormattingOptions.fromJson(
       json['options'] as Map<String, dynamic>,
     ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5439,8 +5642,8 @@ _$DocumentRangeFormattingRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    rangesSupport: json['rangesSupport'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    rangesSupport: json['rangesSupport'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5469,9 +5672,11 @@ _DocumentRangesFormattingParams _$DocumentRangesFormattingParamsFromJson(
     options: FormattingOptions.fromJson(
       json['options'] as Map<String, dynamic>,
     ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5530,8 +5735,8 @@ _$DocumentOnTypeFormattingRegistrationOptionsFromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
     firstTriggerCharacter: json['firstTriggerCharacter'] as String,
-    moreTriggerCharacter: (json['moreTriggerCharacter'] as List<dynamic>)
-        .map((e) => e as String)
+    moreTriggerCharacter: (json['moreTriggerCharacter'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
   );
 }
@@ -5555,9 +5760,11 @@ _RenameParams _$RenameParamsFromJson(Map<String, dynamic> json) {
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
     newName: json['newName'] as String,
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5585,8 +5792,8 @@ _RenameRegistrationOptions _$RenameRegistrationOptionsFromJson(
         TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
           json['documentSelector'] as Map<String, dynamic>,
         ),
-    prepareProvider: json['prepareProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    prepareProvider: json['prepareProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5608,9 +5815,11 @@ _PrepareRenameParams _$PrepareRenameParamsFromJson(Map<String, dynamic> json) {
       json['textDocument'] as Map<String, dynamic>,
     ),
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5631,12 +5840,14 @@ _ExecuteCommandParams _$ExecuteCommandParamsFromJson(
   );
   return _ExecuteCommandParams(
     command: json['command'] as String,
-    arguments: (json['arguments'] as List<dynamic>)
-        .map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
+    arguments: (json['arguments'] as List<dynamic>?)
+        ?.map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
         .toList(),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5656,7 +5867,7 @@ _ExecuteCommandRegistrationOptions _$ExecuteCommandRegistrationOptionsFromJson(
     commands: (json['commands'] as List<dynamic>)
         .map((e) => e as String)
         .toList(),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5673,7 +5884,7 @@ _ApplyWorkspaceEditParams _$ApplyWorkspaceEditParamsFromJson(
   $checkKeys(json, allowedKeys: const ['edit', 'label']);
   return _ApplyWorkspaceEditParams(
     edit: WorkspaceEdit.fromJson(json['edit'] as Map<String, dynamic>),
-    label: json['label'] as String,
+    label: json['label'] as String?,
   );
 }
 
@@ -5690,8 +5901,8 @@ _ApplyWorkspaceEditResult _$ApplyWorkspaceEditResultFromJson(
   );
   return _ApplyWorkspaceEditResult(
     applied: json['applied'] as bool,
-    failedChange: (json['failedChange'] as num).toInt(),
-    failureReason: json['failureReason'] as String,
+    failedChange: (json['failedChange'] as num?)?.toInt(),
+    failureReason: json['failureReason'] as String?,
   );
 }
 
@@ -5719,9 +5930,9 @@ _WorkDoneProgressBegin _$WorkDoneProgressBeginFromJson(
   return _WorkDoneProgressBegin(
     kind: json['kind'] as String,
     title: json['title'] as String,
-    percentage: (json['percentage'] as num).toInt(),
-    message: json['message'] as String,
-    cancellable: json['cancellable'] as bool,
+    percentage: (json['percentage'] as num?)?.toInt(),
+    message: json['message'] as String?,
+    cancellable: json['cancellable'] as bool?,
   );
 }
 
@@ -5744,9 +5955,9 @@ _WorkDoneProgressReport _$WorkDoneProgressReportFromJson(
   );
   return _WorkDoneProgressReport(
     kind: json['kind'] as String,
-    percentage: (json['percentage'] as num).toInt(),
-    message: json['message'] as String,
-    cancellable: json['cancellable'] as bool,
+    percentage: (json['percentage'] as num?)?.toInt(),
+    message: json['message'] as String?,
+    cancellable: json['cancellable'] as bool?,
   );
 }
 
@@ -5763,7 +5974,7 @@ _WorkDoneProgressEnd _$WorkDoneProgressEndFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['kind', 'message']);
   return _WorkDoneProgressEnd(
     kind: json['kind'] as String,
-    message: json['message'] as String,
+    message: json['message'] as String?,
   );
 }
 
@@ -5785,7 +5996,7 @@ _LogTraceParams _$LogTraceParamsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['message', 'verbose']);
   return _LogTraceParams(
     message: json['message'] as String,
-    verbose: json['verbose'] as String,
+    verbose: json['verbose'] as String?,
   );
 }
 
@@ -5837,9 +6048,11 @@ _WorkDoneProgressParams _$WorkDoneProgressParamsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneToken']);
   return _WorkDoneProgressParams(
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5850,9 +6063,11 @@ Map<String, dynamic> _$WorkDoneProgressParamsToJson(
 _PartialResultParams _$PartialResultParamsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['partialResultToken']);
   return _PartialResultParams(
-    partialResultToken: ProgressTokenBase.fromJson(
-      json['partialResultToken'] as Map<String, dynamic>,
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -5876,9 +6091,9 @@ _LocationLink _$LocationLinkFromJson(Map<String, dynamic> json) {
     targetSelectionRange: Range.fromJson(
       json['targetSelectionRange'] as Map<String, dynamic>,
     ),
-    originSelectionRange: Range.fromJson(
-      json['originSelectionRange'] as Map<String, dynamic>,
-    ),
+    originSelectionRange: json['originSelectionRange'] == null
+        ? null
+        : Range.fromJson(json['originSelectionRange'] as Map<String, dynamic>),
   );
 }
 
@@ -5908,7 +6123,7 @@ _ImplementationOptions _$ImplementationOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _ImplementationOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5920,7 +6135,7 @@ _StaticRegistrationOptions _$StaticRegistrationOptionsFromJson(
   Map<String, dynamic> json,
 ) {
   $checkKeys(json, allowedKeys: const ['id']);
-  return _StaticRegistrationOptions(id: json['id'] as String);
+  return _StaticRegistrationOptions(id: json['id'] as String?);
 }
 
 Map<String, dynamic> _$StaticRegistrationOptionsToJson(
@@ -5932,7 +6147,7 @@ _TypeDefinitionOptions _$TypeDefinitionOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _TypeDefinitionOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -5961,8 +6176,8 @@ Map<String, dynamic> _$WorkspaceFoldersChangeEventToJson(
 _ConfigurationItem _$ConfigurationItemFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['section', 'scopeUri']);
   return _ConfigurationItem(
-    section: json['section'] as String,
-    scopeUri: json['scopeUri'] as String,
+    section: json['section'] as String?,
+    scopeUri: json['scopeUri'] as String?,
   );
 }
 
@@ -6005,7 +6220,7 @@ _DocumentColorOptions _$DocumentColorOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _DocumentColorOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6016,7 +6231,7 @@ Map<String, dynamic> _$DocumentColorOptionsToJson(
 _FoldingRangeOptions _$FoldingRangeOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _FoldingRangeOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6027,7 +6242,7 @@ Map<String, dynamic> _$FoldingRangeOptionsToJson(
 _DeclarationOptions _$DeclarationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _DeclarationOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6052,7 +6267,7 @@ _SelectionRangeOptions _$SelectionRangeOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _SelectionRangeOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6065,7 +6280,7 @@ _CallHierarchyOptions _$CallHierarchyOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _CallHierarchyOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6084,11 +6299,15 @@ _SemanticTokensOptions _$SemanticTokensOptionsFromJson(
     legend: SemanticTokensLegend.fromJson(
       json['legend'] as Map<String, dynamic>,
     ),
-    full: SemanticTokensOptionsFullBase.fromJson(
-      json['full'] as Map<String, dynamic>,
-    ),
-    range: RangeBase.fromJson(json['range'] as Map<String, dynamic>),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    full: json['full'] == null
+        ? null
+        : SemanticTokensOptionsFullBase.fromJson(
+            json['full'] as Map<String, dynamic>,
+          ),
+    range: json['range'] == null
+        ? null
+        : RangeBase.fromJson(json['range'] as Map<String, dynamic>),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6106,8 +6325,8 @@ _SemanticTokensEdit _$SemanticTokensEditFromJson(Map<String, dynamic> json) {
   return _SemanticTokensEdit(
     start: (json['start'] as num).toInt(),
     deleteCount: (json['deleteCount'] as num).toInt(),
-    data: (json['data'] as List<dynamic>)
-        .map((e) => (e as num).toInt())
+    data: (json['data'] as List<dynamic>?)
+        ?.map((e) => (e as num).toInt())
         .toList(),
   );
 }
@@ -6124,7 +6343,7 @@ _LinkedEditingRangeOptions _$LinkedEditingRangeOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _LinkedEditingRangeOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6168,10 +6387,10 @@ _CreateFile _$CreateFileFromJson(Map<String, dynamic> json) {
   return _CreateFile(
     kind: json['kind'] as String,
     uri: json['uri'] as String,
-    options: CreateFileOptions.fromJson(
-      json['options'] as Map<String, dynamic>,
-    ),
-    annotationId: json['annotationId'] as String,
+    options: json['options'] == null
+        ? null
+        : CreateFileOptions.fromJson(json['options'] as Map<String, dynamic>),
+    annotationId: json['annotationId'] as String?,
   );
 }
 
@@ -6192,10 +6411,10 @@ _RenameFile _$RenameFileFromJson(Map<String, dynamic> json) {
     kind: json['kind'] as String,
     oldUri: json['oldUri'] as String,
     newUri: json['newUri'] as String,
-    options: RenameFileOptions.fromJson(
-      json['options'] as Map<String, dynamic>,
-    ),
-    annotationId: json['annotationId'] as String,
+    options: json['options'] == null
+        ? null
+        : RenameFileOptions.fromJson(json['options'] as Map<String, dynamic>),
+    annotationId: json['annotationId'] as String?,
   );
 }
 
@@ -6216,10 +6435,10 @@ _DeleteFile _$DeleteFileFromJson(Map<String, dynamic> json) {
   return _DeleteFile(
     kind: json['kind'] as String,
     uri: json['uri'] as String,
-    options: DeleteFileOptions.fromJson(
-      json['options'] as Map<String, dynamic>,
-    ),
-    annotationId: json['annotationId'] as String,
+    options: json['options'] == null
+        ? null
+        : DeleteFileOptions.fromJson(json['options'] as Map<String, dynamic>),
+    annotationId: json['annotationId'] as String?,
   );
 }
 
@@ -6238,8 +6457,8 @@ _ChangeAnnotation _$ChangeAnnotationFromJson(Map<String, dynamic> json) {
   );
   return _ChangeAnnotation(
     label: json['label'] as String,
-    description: json['description'] as String,
-    needsConfirmation: json['needsConfirmation'] as bool,
+    description: json['description'] as String?,
+    needsConfirmation: json['needsConfirmation'] as bool?,
   );
 }
 
@@ -6256,7 +6475,7 @@ _FileOperationFilter _$FileOperationFilterFromJson(Map<String, dynamic> json) {
     pattern: FileOperationPattern.fromJson(
       json['pattern'] as Map<String, dynamic>,
     ),
-    scheme: json['scheme'] as String,
+    scheme: json['scheme'] as String?,
   );
 }
 
@@ -6285,7 +6504,7 @@ Map<String, dynamic> _$FileDeleteToJson(_FileDelete instance) =>
 
 _MonikerOptions _$MonikerOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  return _MonikerOptions(workDoneProgress: json['workDoneProgress'] as bool);
+  return _MonikerOptions(workDoneProgress: json['workDoneProgress'] as bool?);
 }
 
 Map<String, dynamic> _$MonikerOptionsToJson(_MonikerOptions instance) =>
@@ -6296,7 +6515,7 @@ _TypeHierarchyOptions _$TypeHierarchyOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _TypeHierarchyOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6341,7 +6560,7 @@ _InlineValueVariableLookup _$InlineValueVariableLookupFromJson(
   return _InlineValueVariableLookup(
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
     caseSensitiveLookup: json['caseSensitiveLookup'] as bool,
-    variableName: json['variableName'] as String,
+    variableName: json['variableName'] as String?,
   );
 }
 
@@ -6359,7 +6578,7 @@ _InlineValueEvaluatableExpression _$InlineValueEvaluatableExpressionFromJson(
   $checkKeys(json, allowedKeys: const ['range', 'expression']);
   return _InlineValueEvaluatableExpression(
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
-    expression: json['expression'] as String,
+    expression: json['expression'] as String?,
   );
 }
 
@@ -6373,7 +6592,7 @@ Map<String, dynamic> _$InlineValueEvaluatableExpressionToJson(
 _InlineValueOptions _$InlineValueOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _InlineValueOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6387,11 +6606,17 @@ _InlayHintLabelPart _$InlayHintLabelPartFromJson(Map<String, dynamic> json) {
   );
   return _InlayHintLabelPart(
     value: json['value'] as String,
-    command: Command.fromJson(json['command'] as Map<String, dynamic>),
-    location: Location.fromJson(json['location'] as Map<String, dynamic>),
-    tooltip: TooltipOrDocumentationBase.fromJson(
-      json['tooltip'] as Map<String, dynamic>,
-    ),
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
+    location: json['location'] == null
+        ? null
+        : Location.fromJson(json['location'] as Map<String, dynamic>),
+    tooltip: json['tooltip'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['tooltip'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -6425,8 +6650,8 @@ const _$MarkupKindEnumMap = {
 _InlayHintOptions _$InlayHintOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
   return _InlayHintOptions(
-    resolveProvider: json['resolveProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6447,11 +6672,11 @@ _$RelatedFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) {
     items: (json['items'] as List<dynamic>)
         .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
         .toList(),
-    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>).map(
+    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>?)?.map(
       (k, e) =>
           MapEntry(k, RelatedDocumentsBase.fromJson(e as Map<String, dynamic>)),
     ),
-    resultId: json['resultId'] as String,
+    resultId: json['resultId'] as String?,
   );
 }
 
@@ -6470,7 +6695,7 @@ _$RelatedUnchangedDocumentDiagnosticReportFromJson(Map<String, dynamic> json) {
   return _RelatedUnchangedDocumentDiagnosticReport(
     kind: json['kind'] as String,
     resultId: json['resultId'] as String,
-    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>).map(
+    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>?)?.map(
       (k, e) =>
           MapEntry(k, RelatedDocumentsBase.fromJson(e as Map<String, dynamic>)),
     ),
@@ -6494,7 +6719,7 @@ _FullDocumentDiagnosticReport _$FullDocumentDiagnosticReportFromJson(
     items: (json['items'] as List<dynamic>)
         .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
         .toList(),
-    resultId: json['resultId'] as String,
+    resultId: json['resultId'] as String?,
   );
 }
 
@@ -6533,8 +6758,8 @@ _DiagnosticOptions _$DiagnosticOptionsFromJson(Map<String, dynamic> json) {
   return _DiagnosticOptions(
     interFileDependencies: json['interFileDependencies'] as bool,
     workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
-    identifier: json['identifier'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    identifier: json['identifier'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6569,7 +6794,7 @@ _NotebookDocument _$NotebookDocumentFromJson(Map<String, dynamic> json) {
     cells: (json['cells'] as List<dynamic>)
         .map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
         .toList(),
-    metadata: (json['metadata'] as Map<String, dynamic>).map(
+    metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
       (k, e) => MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
     ),
   );
@@ -6620,7 +6845,7 @@ _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['cells', 'metadata']);
   return _NotebookDocumentChangeEvent(
-    cells: _$recordConvert(
+    cells: _$recordConvertNullable(
       json['cells'],
       ($jsonValue) => (
         data: ($jsonValue['data'] as List<dynamic>?)
@@ -6667,7 +6892,7 @@ _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
             .toList(),
       ),
     ),
-    metadata: (json['metadata'] as Map<String, dynamic>).map(
+    metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
       (k, e) => MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
     ),
   );
@@ -6676,31 +6901,28 @@ _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
 Map<String, dynamic> _$NotebookDocumentChangeEventToJson(
   _NotebookDocumentChangeEvent instance,
 ) => <String, dynamic>{
-  'cells': <String, dynamic>{
-    'data': instance.cells.data,
-    'structure': instance.cells.structure == null
-        ? null
-        : <String, dynamic>{
-            'array': instance.cells.structure!.array,
-            'didClose': instance.cells.structure!.didClose,
-            'didOpen': instance.cells.structure!.didOpen,
-          },
-    'textContent': instance.cells.textContent
-        ?.map(
-          (e) => <String, dynamic>{
-            'changes': e.changes,
-            'document': e.document,
-          },
-        )
-        .toList(),
-  },
+  'cells': instance.cells == null
+      ? null
+      : <String, dynamic>{
+          'data': instance.cells!.data,
+          'structure': instance.cells!.structure == null
+              ? null
+              : <String, dynamic>{
+                  'array': instance.cells!.structure!.array,
+                  'didClose': instance.cells!.structure!.didClose,
+                  'didOpen': instance.cells!.structure!.didOpen,
+                },
+          'textContent': instance.cells!.textContent
+              ?.map(
+                (e) => <String, dynamic>{
+                  'changes': e.changes,
+                  'document': e.document,
+                },
+              )
+              .toList(),
+        },
   'metadata': instance.metadata,
 };
-
-$Rec? _$recordConvertNullable<$Rec>(
-  Object? value,
-  $Rec Function(Map) convert,
-) => value == null ? null : convert(value as Map<String, dynamic>);
 
 _NotebookDocumentIdentifier _$NotebookDocumentIdentifierFromJson(
   Map<String, dynamic> json,
@@ -6725,9 +6947,11 @@ _InlineCompletionContext _$InlineCompletionContextFromJson(
       _$InlineCompletionTriggerKindEnumMap,
       json['triggerKind'],
     ),
-    selectedCompletionInfo: SelectedCompletionInfo.fromJson(
-      json['selectedCompletionInfo'] as Map<String, dynamic>,
-    ),
+    selectedCompletionInfo: json['selectedCompletionInfo'] == null
+        ? null
+        : SelectedCompletionInfo.fromJson(
+            json['selectedCompletionInfo'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -6759,7 +6983,7 @@ _InlineCompletionOptions _$InlineCompletionOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _InlineCompletionOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -6772,9 +6996,9 @@ _Registration _$RegistrationFromJson(Map<String, dynamic> json) {
   return _Registration(
     id: json['id'] as String,
     method: json['method'] as String,
-    registerOptions: LSPAnyBase.fromJson(
-      json['registerOptions'] as Map<String, dynamic>,
-    ),
+    registerOptions: json['registerOptions'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['registerOptions'] as Map<String, dynamic>),
   );
 }
 
@@ -6821,24 +7045,30 @@ _TInitializeParams _$TInitializeParamsFromJson(Map<String, dynamic> json) {
     capabilities: ClientCapabilities.fromJson(
       json['capabilities'] as Map<String, dynamic>,
     ),
-    trace: $enumDecode(_$TraceValuesEnumMap, json['trace']),
-    initializationOptions: LSPAnyBase.fromJson(
-      json['initializationOptions'] as Map<String, dynamic>,
-    ),
-    rootPath: InitializeParamsRootPathBase.fromJson(
-      json['rootPath'] as Map<String, dynamic>,
-    ),
-    locale: json['locale'] as String,
-    clientInfo: _$recordConvert(
+    trace: $enumDecodeNullable(_$TraceValuesEnumMap, json['trace']),
+    initializationOptions: json['initializationOptions'] == null
+        ? null
+        : LSPAnyBase.fromJson(
+            json['initializationOptions'] as Map<String, dynamic>,
+          ),
+    rootPath: json['rootPath'] == null
+        ? null
+        : InitializeParamsRootPathBase.fromJson(
+            json['rootPath'] as Map<String, dynamic>,
+          ),
+    locale: json['locale'] as String?,
+    clientInfo: _$recordConvertNullable(
       json['clientInfo'],
       ($jsonValue) => (
         name: $jsonValue['name'] as String,
         version: $jsonValue['version'] as String?,
       ),
     ),
-    workDoneToken: ProgressTokenBase.fromJson(
-      json['workDoneToken'] as Map<String, dynamic>,
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -6847,14 +7077,16 @@ Map<String, dynamic> _$TInitializeParamsToJson(_TInitializeParams instance) =>
       'processId': instance.processId,
       'rootUri': instance.rootUri,
       'capabilities': instance.capabilities,
-      'trace': _$TraceValuesEnumMap[instance.trace]!,
+      'trace': _$TraceValuesEnumMap[instance.trace],
       'initializationOptions': instance.initializationOptions,
       'rootPath': instance.rootPath,
       'locale': instance.locale,
-      'clientInfo': <String, dynamic>{
-        'name': instance.clientInfo.name,
-        'version': instance.clientInfo.version,
-      },
+      'clientInfo': instance.clientInfo == null
+          ? null
+          : <String, dynamic>{
+              'name': instance.clientInfo!.name,
+              'version': instance.clientInfo!.version,
+            },
       'workDoneToken': instance.workDoneToken,
     };
 
@@ -6863,10 +7095,11 @@ _WorkspaceFoldersInitializeParams _$WorkspaceFoldersInitializeParamsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workspaceFolders']);
   return _WorkspaceFoldersInitializeParams(
-    workspaceFolders:
-        WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.fromJson(
-          json['workspaceFolders'] as Map<String, dynamic>,
-        ),
+    workspaceFolders: json['workspaceFolders'] == null
+        ? null
+        : WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.fromJson(
+            json['workspaceFolders'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -6917,25 +7150,32 @@ _ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) {
     ],
   );
   return _ServerCapabilities(
-    workspaceSymbolProvider:
-        ServerCapabilitiesWorkspaceSymbolProviderBase.fromJson(
-          json['workspaceSymbolProvider'] as Map<String, dynamic>,
-        ),
-    documentHighlightProvider:
-        ServerCapabilitiesDocumentHighlightProviderBase.fromJson(
-          json['documentHighlightProvider'] as Map<String, dynamic>,
-        ),
-    documentFormattingProvider:
-        ServerCapabilitiesDocumentFormattingProviderBase.fromJson(
-          json['documentFormattingProvider'] as Map<String, dynamic>,
-        ),
-    codeActionProvider: ServerCapabilitiesCodeActionProviderBase.fromJson(
-      json['codeActionProvider'] as Map<String, dynamic>,
-    ),
-    completionProvider: CompletionOptions.fromJson(
-      json['completionProvider'] as Map<String, dynamic>,
-    ),
-    workspace: _$recordConvert(
+    workspaceSymbolProvider: json['workspaceSymbolProvider'] == null
+        ? null
+        : ServerCapabilitiesWorkspaceSymbolProviderBase.fromJson(
+            json['workspaceSymbolProvider'] as Map<String, dynamic>,
+          ),
+    documentHighlightProvider: json['documentHighlightProvider'] == null
+        ? null
+        : ServerCapabilitiesDocumentHighlightProviderBase.fromJson(
+            json['documentHighlightProvider'] as Map<String, dynamic>,
+          ),
+    documentFormattingProvider: json['documentFormattingProvider'] == null
+        ? null
+        : ServerCapabilitiesDocumentFormattingProviderBase.fromJson(
+            json['documentFormattingProvider'] as Map<String, dynamic>,
+          ),
+    codeActionProvider: json['codeActionProvider'] == null
+        ? null
+        : ServerCapabilitiesCodeActionProviderBase.fromJson(
+            json['codeActionProvider'] as Map<String, dynamic>,
+          ),
+    completionProvider: json['completionProvider'] == null
+        ? null
+        : CompletionOptions.fromJson(
+            json['completionProvider'] as Map<String, dynamic>,
+          ),
+    workspace: _$recordConvertNullable(
       json['workspace'],
       ($jsonValue) => (
         fileOperations: $jsonValue['fileOperations'] == null
@@ -6950,105 +7190,155 @@ _ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) {
               ),
       ),
     ),
-    inlineCompletionProvider:
-        ServerCapabilitiesInlineCompletionProviderBase.fromJson(
-          json['inlineCompletionProvider'] as Map<String, dynamic>,
-        ),
-    diagnosticProvider: ServerCapabilitiesDiagnosticProviderBase.fromJson(
-      json['diagnosticProvider'] as Map<String, dynamic>,
-    ),
-    inlayHintProvider: ServerCapabilitiesInlayHintProviderBase.fromJson(
-      json['inlayHintProvider'] as Map<String, dynamic>,
-    ),
-    definitionProvider: ServerCapabilitiesDefinitionProviderBase.fromJson(
-      json['definitionProvider'] as Map<String, dynamic>,
-    ),
-    declarationProvider: ServerCapabilitiesDeclarationProviderBase.fromJson(
-      json['declarationProvider'] as Map<String, dynamic>,
-    ),
-    monikerProvider: ServerCapabilitiesMonikerProviderBase.fromJson(
-      json['monikerProvider'] as Map<String, dynamic>,
-    ),
-    semanticTokensProvider:
-        ServerCapabilitiesSemanticTokensProviderBase.fromJson(
-          json['semanticTokensProvider'] as Map<String, dynamic>,
-        ),
-    linkedEditingRangeProvider:
-        ServerCapabilitiesLinkedEditingRangeProviderBase.fromJson(
-          json['linkedEditingRangeProvider'] as Map<String, dynamic>,
-        ),
-    callHierarchyProvider: ServerCapabilitiesCallHierarchyProviderBase.fromJson(
-      json['callHierarchyProvider'] as Map<String, dynamic>,
-    ),
-    executeCommandProvider: ExecuteCommandOptions.fromJson(
-      json['executeCommandProvider'] as Map<String, dynamic>,
-    ),
-    textDocumentSync: ServerCapabilitiesTextDocumentSyncBase.fromJson(
-      json['textDocumentSync'] as Map<String, dynamic>,
-    ),
-    foldingRangeProvider: ServerCapabilitiesFoldingRangeProviderBase.fromJson(
-      json['foldingRangeProvider'] as Map<String, dynamic>,
-    ),
-    renameProvider: ServerCapabilitiesRenameProviderBase.fromJson(
-      json['renameProvider'] as Map<String, dynamic>,
-    ),
-    documentOnTypeFormattingProvider: DocumentOnTypeFormattingOptions.fromJson(
-      json['documentOnTypeFormattingProvider'] as Map<String, dynamic>,
-    ),
+    inlineCompletionProvider: json['inlineCompletionProvider'] == null
+        ? null
+        : ServerCapabilitiesInlineCompletionProviderBase.fromJson(
+            json['inlineCompletionProvider'] as Map<String, dynamic>,
+          ),
+    diagnosticProvider: json['diagnosticProvider'] == null
+        ? null
+        : ServerCapabilitiesDiagnosticProviderBase.fromJson(
+            json['diagnosticProvider'] as Map<String, dynamic>,
+          ),
+    inlayHintProvider: json['inlayHintProvider'] == null
+        ? null
+        : ServerCapabilitiesInlayHintProviderBase.fromJson(
+            json['inlayHintProvider'] as Map<String, dynamic>,
+          ),
+    definitionProvider: json['definitionProvider'] == null
+        ? null
+        : ServerCapabilitiesDefinitionProviderBase.fromJson(
+            json['definitionProvider'] as Map<String, dynamic>,
+          ),
+    declarationProvider: json['declarationProvider'] == null
+        ? null
+        : ServerCapabilitiesDeclarationProviderBase.fromJson(
+            json['declarationProvider'] as Map<String, dynamic>,
+          ),
+    monikerProvider: json['monikerProvider'] == null
+        ? null
+        : ServerCapabilitiesMonikerProviderBase.fromJson(
+            json['monikerProvider'] as Map<String, dynamic>,
+          ),
+    semanticTokensProvider: json['semanticTokensProvider'] == null
+        ? null
+        : ServerCapabilitiesSemanticTokensProviderBase.fromJson(
+            json['semanticTokensProvider'] as Map<String, dynamic>,
+          ),
+    linkedEditingRangeProvider: json['linkedEditingRangeProvider'] == null
+        ? null
+        : ServerCapabilitiesLinkedEditingRangeProviderBase.fromJson(
+            json['linkedEditingRangeProvider'] as Map<String, dynamic>,
+          ),
+    callHierarchyProvider: json['callHierarchyProvider'] == null
+        ? null
+        : ServerCapabilitiesCallHierarchyProviderBase.fromJson(
+            json['callHierarchyProvider'] as Map<String, dynamic>,
+          ),
+    executeCommandProvider: json['executeCommandProvider'] == null
+        ? null
+        : ExecuteCommandOptions.fromJson(
+            json['executeCommandProvider'] as Map<String, dynamic>,
+          ),
+    textDocumentSync: json['textDocumentSync'] == null
+        ? null
+        : ServerCapabilitiesTextDocumentSyncBase.fromJson(
+            json['textDocumentSync'] as Map<String, dynamic>,
+          ),
+    foldingRangeProvider: json['foldingRangeProvider'] == null
+        ? null
+        : ServerCapabilitiesFoldingRangeProviderBase.fromJson(
+            json['foldingRangeProvider'] as Map<String, dynamic>,
+          ),
+    renameProvider: json['renameProvider'] == null
+        ? null
+        : ServerCapabilitiesRenameProviderBase.fromJson(
+            json['renameProvider'] as Map<String, dynamic>,
+          ),
+    documentOnTypeFormattingProvider:
+        json['documentOnTypeFormattingProvider'] == null
+        ? null
+        : DocumentOnTypeFormattingOptions.fromJson(
+            json['documentOnTypeFormattingProvider'] as Map<String, dynamic>,
+          ),
     documentRangeFormattingProvider:
-        ServerCapabilitiesDocumentRangeFormattingProviderBase.fromJson(
-          json['documentRangeFormattingProvider'] as Map<String, dynamic>,
-        ),
-    experimental: LSPAnyBase.fromJson(
-      json['experimental'] as Map<String, dynamic>,
-    ),
-    selectionRangeProvider:
-        ServerCapabilitiesSelectionRangeProviderBase.fromJson(
-          json['selectionRangeProvider'] as Map<String, dynamic>,
-        ),
-    colorProvider: ServerCapabilitiesColorProviderBase.fromJson(
-      json['colorProvider'] as Map<String, dynamic>,
-    ),
-    documentLinkProvider: DocumentLinkOptions.fromJson(
-      json['documentLinkProvider'] as Map<String, dynamic>,
-    ),
-    codeLensProvider: CodeLensOptions.fromJson(
-      json['codeLensProvider'] as Map<String, dynamic>,
-    ),
-    notebookDocumentSync: ServerCapabilitiesNotebookDocumentSyncBase.fromJson(
-      json['notebookDocumentSync'] as Map<String, dynamic>,
-    ),
-    documentSymbolProvider:
-        ServerCapabilitiesDocumentSymbolProviderBase.fromJson(
-          json['documentSymbolProvider'] as Map<String, dynamic>,
-        ),
-    positionEncoding: $enumDecode(
+        json['documentRangeFormattingProvider'] == null
+        ? null
+        : ServerCapabilitiesDocumentRangeFormattingProviderBase.fromJson(
+            json['documentRangeFormattingProvider'] as Map<String, dynamic>,
+          ),
+    experimental: json['experimental'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['experimental'] as Map<String, dynamic>),
+    selectionRangeProvider: json['selectionRangeProvider'] == null
+        ? null
+        : ServerCapabilitiesSelectionRangeProviderBase.fromJson(
+            json['selectionRangeProvider'] as Map<String, dynamic>,
+          ),
+    colorProvider: json['colorProvider'] == null
+        ? null
+        : ServerCapabilitiesColorProviderBase.fromJson(
+            json['colorProvider'] as Map<String, dynamic>,
+          ),
+    documentLinkProvider: json['documentLinkProvider'] == null
+        ? null
+        : DocumentLinkOptions.fromJson(
+            json['documentLinkProvider'] as Map<String, dynamic>,
+          ),
+    codeLensProvider: json['codeLensProvider'] == null
+        ? null
+        : CodeLensOptions.fromJson(
+            json['codeLensProvider'] as Map<String, dynamic>,
+          ),
+    notebookDocumentSync: json['notebookDocumentSync'] == null
+        ? null
+        : ServerCapabilitiesNotebookDocumentSyncBase.fromJson(
+            json['notebookDocumentSync'] as Map<String, dynamic>,
+          ),
+    documentSymbolProvider: json['documentSymbolProvider'] == null
+        ? null
+        : ServerCapabilitiesDocumentSymbolProviderBase.fromJson(
+            json['documentSymbolProvider'] as Map<String, dynamic>,
+          ),
+    positionEncoding: $enumDecodeNullable(
       _$PositionEncodingKindEnumMap,
       json['positionEncoding'],
     ),
-    referencesProvider: ServerCapabilitiesReferencesProviderBase.fromJson(
-      json['referencesProvider'] as Map<String, dynamic>,
-    ),
-    implementationProvider:
-        ServerCapabilitiesImplementationProviderBase.fromJson(
-          json['implementationProvider'] as Map<String, dynamic>,
-        ),
-    typeDefinitionProvider:
-        ServerCapabilitiesTypeDefinitionProviderBase.fromJson(
-          json['typeDefinitionProvider'] as Map<String, dynamic>,
-        ),
-    inlineValueProvider: ServerCapabilitiesInlineValueProviderBase.fromJson(
-      json['inlineValueProvider'] as Map<String, dynamic>,
-    ),
-    typeHierarchyProvider: ServerCapabilitiesTypeHierarchyProviderBase.fromJson(
-      json['typeHierarchyProvider'] as Map<String, dynamic>,
-    ),
-    signatureHelpProvider: SignatureHelpOptions.fromJson(
-      json['signatureHelpProvider'] as Map<String, dynamic>,
-    ),
-    hoverProvider: ServerCapabilitiesHoverProviderBase.fromJson(
-      json['hoverProvider'] as Map<String, dynamic>,
-    ),
+    referencesProvider: json['referencesProvider'] == null
+        ? null
+        : ServerCapabilitiesReferencesProviderBase.fromJson(
+            json['referencesProvider'] as Map<String, dynamic>,
+          ),
+    implementationProvider: json['implementationProvider'] == null
+        ? null
+        : ServerCapabilitiesImplementationProviderBase.fromJson(
+            json['implementationProvider'] as Map<String, dynamic>,
+          ),
+    typeDefinitionProvider: json['typeDefinitionProvider'] == null
+        ? null
+        : ServerCapabilitiesTypeDefinitionProviderBase.fromJson(
+            json['typeDefinitionProvider'] as Map<String, dynamic>,
+          ),
+    inlineValueProvider: json['inlineValueProvider'] == null
+        ? null
+        : ServerCapabilitiesInlineValueProviderBase.fromJson(
+            json['inlineValueProvider'] as Map<String, dynamic>,
+          ),
+    typeHierarchyProvider: json['typeHierarchyProvider'] == null
+        ? null
+        : ServerCapabilitiesTypeHierarchyProviderBase.fromJson(
+            json['typeHierarchyProvider'] as Map<String, dynamic>,
+          ),
+    signatureHelpProvider: json['signatureHelpProvider'] == null
+        ? null
+        : SignatureHelpOptions.fromJson(
+            json['signatureHelpProvider'] as Map<String, dynamic>,
+          ),
+    hoverProvider: json['hoverProvider'] == null
+        ? null
+        : ServerCapabilitiesHoverProviderBase.fromJson(
+            json['hoverProvider'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -7060,10 +7350,12 @@ Map<String, dynamic> _$ServerCapabilitiesToJson(
   'documentFormattingProvider': instance.documentFormattingProvider,
   'codeActionProvider': instance.codeActionProvider,
   'completionProvider': instance.completionProvider,
-  'workspace': <String, dynamic>{
-    'fileOperations': instance.workspace.fileOperations,
-    'workspaceFolders': instance.workspace.workspaceFolders,
-  },
+  'workspace': instance.workspace == null
+      ? null
+      : <String, dynamic>{
+          'fileOperations': instance.workspace!.fileOperations,
+          'workspaceFolders': instance.workspace!.workspaceFolders,
+        },
   'inlineCompletionProvider': instance.inlineCompletionProvider,
   'diagnosticProvider': instance.diagnosticProvider,
   'inlayHintProvider': instance.inlayHintProvider,
@@ -7086,7 +7378,7 @@ Map<String, dynamic> _$ServerCapabilitiesToJson(
   'codeLensProvider': instance.codeLensProvider,
   'notebookDocumentSync': instance.notebookDocumentSync,
   'documentSymbolProvider': instance.documentSymbolProvider,
-  'positionEncoding': _$PositionEncodingKindEnumMap[instance.positionEncoding]!,
+  'positionEncoding': _$PositionEncodingKindEnumMap[instance.positionEncoding],
   'referencesProvider': instance.referencesProvider,
   'implementationProvider': instance.implementationProvider,
   'typeDefinitionProvider': instance.typeDefinitionProvider,
@@ -7118,7 +7410,7 @@ Map<String, dynamic> _$VersionedTextDocumentIdentifierToJson(
 
 _SaveOptions _$SaveOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['includeText']);
-  return _SaveOptions(includeText: json['includeText'] as bool);
+  return _SaveOptions(includeText: json['includeText'] as bool?);
 }
 
 Map<String, dynamic> _$SaveOptionsToJson(_SaveOptions instance) =>
@@ -7150,14 +7442,14 @@ _FileSystemWatcher _$FileSystemWatcherFromJson(Map<String, dynamic> json) {
     globPattern: GlobPatternBase.fromJson(
       json['globPattern'] as Map<String, dynamic>,
     ),
-    kind: $enumDecode(_$WatchKindEnumMap, json['kind']),
+    kind: $enumDecodeNullable(_$WatchKindEnumMap, json['kind']),
   );
 }
 
 Map<String, dynamic> _$FileSystemWatcherToJson(_FileSystemWatcher instance) =>
     <String, dynamic>{
       'globPattern': instance.globPattern,
-      'kind': _$WatchKindEnumMap[instance.kind]!,
+      'kind': _$WatchKindEnumMap[instance.kind],
     };
 
 const _$WatchKindEnumMap = {
@@ -7184,22 +7476,31 @@ _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) {
   return _Diagnostic(
     range: Range.fromJson(json['range'] as Map<String, dynamic>),
     message: json['message'] as String,
-    data: LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
-    relatedInformation: (json['relatedInformation'] as List<dynamic>)
-        .map(
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    relatedInformation: (json['relatedInformation'] as List<dynamic>?)
+        ?.map(
           (e) =>
               DiagnosticRelatedInformation.fromJson(e as Map<String, dynamic>),
         )
         .toList(),
-    tags: (json['tags'] as List<dynamic>)
-        .map((e) => $enumDecode(_$DiagnosticTagEnumMap, e))
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$DiagnosticTagEnumMap, e))
         .toList(),
-    source: json['source'] as String,
-    codeDescription: CodeDescription.fromJson(
-      json['codeDescription'] as Map<String, dynamic>,
+    source: json['source'] as String?,
+    codeDescription: json['codeDescription'] == null
+        ? null
+        : CodeDescription.fromJson(
+            json['codeDescription'] as Map<String, dynamic>,
+          ),
+    code: json['code'] == null
+        ? null
+        : ProgressTokenBase.fromJson(json['code'] as Map<String, dynamic>),
+    severity: $enumDecodeNullable(
+      _$DiagnosticSeverityEnumMap,
+      json['severity'],
     ),
-    code: ProgressTokenBase.fromJson(json['code'] as Map<String, dynamic>),
-    severity: $enumDecode(_$DiagnosticSeverityEnumMap, json['severity']),
   );
 }
 
@@ -7209,11 +7510,11 @@ Map<String, dynamic> _$DiagnosticToJson(_Diagnostic instance) =>
       'message': instance.message,
       'data': instance.data,
       'relatedInformation': instance.relatedInformation,
-      'tags': instance.tags.map((e) => _$DiagnosticTagEnumMap[e]!).toList(),
+      'tags': instance.tags?.map((e) => _$DiagnosticTagEnumMap[e]!).toList(),
       'source': instance.source,
       'codeDescription': instance.codeDescription,
       'code': instance.code,
-      'severity': _$DiagnosticSeverityEnumMap[instance.severity]!,
+      'severity': _$DiagnosticSeverityEnumMap[instance.severity],
     };
 
 const _$DiagnosticTagEnumMap = {
@@ -7235,7 +7536,7 @@ _CompletionContext _$CompletionContextFromJson(Map<String, dynamic> json) {
       _$CompletionTriggerKindEnumMap,
       json['triggerKind'],
     ),
-    triggerCharacter: json['triggerCharacter'] as String,
+    triggerCharacter: json['triggerCharacter'] as String?,
   );
 }
 
@@ -7257,8 +7558,8 @@ _CompletionItemLabelDetails _$CompletionItemLabelDetailsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['description', 'detail']);
   return _CompletionItemLabelDetails(
-    description: json['description'] as String,
-    detail: json['detail'] as String,
+    description: json['description'] as String?,
+    detail: json['detail'] as String?,
   );
 }
 
@@ -7297,36 +7598,39 @@ _CompletionOptions _$CompletionOptionsFromJson(Map<String, dynamic> json) {
     ],
   );
   return _CompletionOptions(
-    completionItem: _$recordConvert(
+    completionItem: _$recordConvertNullable(
       json['completionItem'],
       ($jsonValue) =>
           (labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?),
     ),
-    resolveProvider: json['resolveProvider'] as bool,
-    allCommitCharacters: (json['allCommitCharacters'] as List<dynamic>)
-        .map((e) => e as String)
+    resolveProvider: json['resolveProvider'] as bool?,
+    allCommitCharacters: (json['allCommitCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    triggerCharacters: (json['triggerCharacters'] as List<dynamic>)
-        .map((e) => e as String)
+    triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
-Map<String, dynamic> _$CompletionOptionsToJson(_CompletionOptions instance) =>
-    <String, dynamic>{
-      'completionItem': <String, dynamic>{
-        'labelDetailsSupport': instance.completionItem.labelDetailsSupport,
-      },
-      'resolveProvider': instance.resolveProvider,
-      'allCommitCharacters': instance.allCommitCharacters,
-      'triggerCharacters': instance.triggerCharacters,
-      'workDoneProgress': instance.workDoneProgress,
-    };
+Map<String, dynamic> _$CompletionOptionsToJson(
+  _CompletionOptions instance,
+) => <String, dynamic>{
+  'completionItem': instance.completionItem == null
+      ? null
+      : <String, dynamic>{
+          'labelDetailsSupport': instance.completionItem!.labelDetailsSupport,
+        },
+  'resolveProvider': instance.resolveProvider,
+  'allCommitCharacters': instance.allCommitCharacters,
+  'triggerCharacters': instance.triggerCharacters,
+  'workDoneProgress': instance.workDoneProgress,
+};
 
 _HoverOptions _$HoverOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  return _HoverOptions(workDoneProgress: json['workDoneProgress'] as bool);
+  return _HoverOptions(workDoneProgress: json['workDoneProgress'] as bool?);
 }
 
 Map<String, dynamic> _$HoverOptionsToJson(_HoverOptions instance) =>
@@ -7350,10 +7654,12 @@ _SignatureHelpContext _$SignatureHelpContextFromJson(
       json['triggerKind'],
     ),
     isRetrigger: json['isRetrigger'] as bool,
-    activeSignatureHelp: SignatureHelp.fromJson(
-      json['activeSignatureHelp'] as Map<String, dynamic>,
-    ),
-    triggerCharacter: json['triggerCharacter'] as String,
+    activeSignatureHelp: json['activeSignatureHelp'] == null
+        ? null
+        : SignatureHelp.fromJson(
+            json['activeSignatureHelp'] as Map<String, dynamic>,
+          ),
+    triggerCharacter: json['triggerCharacter'] as String?,
   );
 }
 
@@ -7386,13 +7692,15 @@ _SignatureInformation _$SignatureInformationFromJson(
   );
   return _SignatureInformation(
     label: json['label'] as String,
-    activeParameter: (json['activeParameter'] as num).toInt(),
-    parameters: (json['parameters'] as List<dynamic>)
-        .map((e) => ParameterInformation.fromJson(e as Map<String, dynamic>))
+    activeParameter: (json['activeParameter'] as num?)?.toInt(),
+    parameters: (json['parameters'] as List<dynamic>?)
+        ?.map((e) => ParameterInformation.fromJson(e as Map<String, dynamic>))
         .toList(),
-    documentation: TooltipOrDocumentationBase.fromJson(
-      json['documentation'] as Map<String, dynamic>,
-    ),
+    documentation: json['documentation'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['documentation'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -7417,13 +7725,13 @@ _SignatureHelpOptions _$SignatureHelpOptionsFromJson(
     ],
   );
   return _SignatureHelpOptions(
-    retriggerCharacters: (json['retriggerCharacters'] as List<dynamic>)
-        .map((e) => e as String)
+    retriggerCharacters: (json['retriggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    triggerCharacters: (json['triggerCharacters'] as List<dynamic>)
-        .map((e) => e as String)
+    triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7437,7 +7745,9 @@ Map<String, dynamic> _$SignatureHelpOptionsToJson(
 
 _DefinitionOptions _$DefinitionOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  return _DefinitionOptions(workDoneProgress: json['workDoneProgress'] as bool);
+  return _DefinitionOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
+  );
 }
 
 Map<String, dynamic> _$DefinitionOptionsToJson(_DefinitionOptions instance) =>
@@ -7455,7 +7765,7 @@ Map<String, dynamic> _$ReferenceContextToJson(_ReferenceContext instance) =>
 
 _ReferenceOptions _$ReferenceOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  return _ReferenceOptions(workDoneProgress: json['workDoneProgress'] as bool);
+  return _ReferenceOptions(workDoneProgress: json['workDoneProgress'] as bool?);
 }
 
 Map<String, dynamic> _$ReferenceOptionsToJson(_ReferenceOptions instance) =>
@@ -7466,7 +7776,7 @@ _DocumentHighlightOptions _$DocumentHighlightOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _DocumentHighlightOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7484,9 +7794,9 @@ _BaseSymbolInformation _$BaseSymbolInformationFromJson(
   return _BaseSymbolInformation(
     name: json['name'] as String,
     kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
-    containerName: json['containerName'] as String,
-    tags: (json['tags'] as List<dynamic>)
-        .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+    containerName: json['containerName'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
         .toList(),
   );
 }
@@ -7497,7 +7807,7 @@ Map<String, dynamic> _$BaseSymbolInformationToJson(
   'name': instance.name,
   'kind': _$SymbolKindEnumMap[instance.kind]!,
   'containerName': instance.containerName,
-  'tags': instance.tags.map((e) => _$SymbolTagEnumMap[e]!).toList(),
+  'tags': instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
 };
 
 _DocumentSymbolOptions _$DocumentSymbolOptionsFromJson(
@@ -7505,8 +7815,8 @@ _DocumentSymbolOptions _$DocumentSymbolOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['label', 'workDoneProgress']);
   return _DocumentSymbolOptions(
-    label: json['label'] as String,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    label: json['label'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7523,12 +7833,12 @@ _CodeActionContext _$CodeActionContextFromJson(Map<String, dynamic> json) {
     diagnostics: (json['diagnostics'] as List<dynamic>)
         .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
         .toList(),
-    triggerKind: $enumDecode(
+    triggerKind: $enumDecodeNullable(
       _$CodeActionTriggerKindEnumMap,
       json['triggerKind'],
     ),
-    only: (json['only'] as List<dynamic>)
-        .map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+    only: (json['only'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
         .toList(),
   );
 }
@@ -7536,8 +7846,8 @@ _CodeActionContext _$CodeActionContextFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$CodeActionContextToJson(_CodeActionContext instance) =>
     <String, dynamic>{
       'diagnostics': instance.diagnostics,
-      'triggerKind': _$CodeActionTriggerKindEnumMap[instance.triggerKind]!,
-      'only': instance.only.map((e) => _$CodeActionKindEnumMap[e]!).toList(),
+      'triggerKind': _$CodeActionTriggerKindEnumMap[instance.triggerKind],
+      'only': instance.only?.map((e) => _$CodeActionKindEnumMap[e]!).toList(),
     };
 
 const _$CodeActionTriggerKindEnumMap = {
@@ -7555,11 +7865,11 @@ _CodeActionOptions _$CodeActionOptionsFromJson(Map<String, dynamic> json) {
     ],
   );
   return _CodeActionOptions(
-    resolveProvider: json['resolveProvider'] as bool,
-    codeActionKinds: (json['codeActionKinds'] as List<dynamic>)
-        .map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+    resolveProvider: json['resolveProvider'] as bool?,
+    codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
         .toList(),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7567,7 +7877,7 @@ Map<String, dynamic> _$CodeActionOptionsToJson(_CodeActionOptions instance) =>
     <String, dynamic>{
       'resolveProvider': instance.resolveProvider,
       'codeActionKinds': instance.codeActionKinds
-          .map((e) => _$CodeActionKindEnumMap[e]!)
+          ?.map((e) => _$CodeActionKindEnumMap[e]!)
           .toList(),
       'workDoneProgress': instance.workDoneProgress,
     };
@@ -7577,8 +7887,8 @@ _WorkspaceSymbolOptions _$WorkspaceSymbolOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
   return _WorkspaceSymbolOptions(
-    resolveProvider: json['resolveProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7592,8 +7902,8 @@ Map<String, dynamic> _$WorkspaceSymbolOptionsToJson(
 _CodeLensOptions _$CodeLensOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
   return _CodeLensOptions(
-    resolveProvider: json['resolveProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7606,8 +7916,8 @@ Map<String, dynamic> _$CodeLensOptionsToJson(_CodeLensOptions instance) =>
 _DocumentLinkOptions _$DocumentLinkOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
   return _DocumentLinkOptions(
-    resolveProvider: json['resolveProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7632,9 +7942,9 @@ _FormattingOptions _$FormattingOptionsFromJson(Map<String, dynamic> json) {
   return _FormattingOptions(
     tabSize: (json['tabSize'] as num).toInt(),
     insertSpaces: json['insertSpaces'] as bool,
-    trimFinalNewlines: json['trimFinalNewlines'] as bool,
-    insertFinalNewline: json['insertFinalNewline'] as bool,
-    trimTrailingWhitespace: json['trimTrailingWhitespace'] as bool,
+    trimFinalNewlines: json['trimFinalNewlines'] as bool?,
+    insertFinalNewline: json['insertFinalNewline'] as bool?,
+    trimTrailingWhitespace: json['trimTrailingWhitespace'] as bool?,
   );
 }
 
@@ -7652,7 +7962,7 @@ _DocumentFormattingOptions _$DocumentFormattingOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
   return _DocumentFormattingOptions(
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7665,8 +7975,8 @@ _DocumentRangeFormattingOptions _$DocumentRangeFormattingOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['rangesSupport', 'workDoneProgress']);
   return _DocumentRangeFormattingOptions(
-    rangesSupport: json['rangesSupport'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    rangesSupport: json['rangesSupport'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7686,8 +7996,8 @@ _DocumentOnTypeFormattingOptions _$DocumentOnTypeFormattingOptionsFromJson(
   );
   return _DocumentOnTypeFormattingOptions(
     firstTriggerCharacter: json['firstTriggerCharacter'] as String,
-    moreTriggerCharacter: (json['moreTriggerCharacter'] as List<dynamic>)
-        .map((e) => e as String)
+    moreTriggerCharacter: (json['moreTriggerCharacter'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
   );
 }
@@ -7702,8 +8012,8 @@ Map<String, dynamic> _$DocumentOnTypeFormattingOptionsToJson(
 _RenameOptions _$RenameOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['prepareProvider', 'workDoneProgress']);
   return _RenameOptions(
-    prepareProvider: json['prepareProvider'] as bool,
-    workDoneProgress: json['workDoneProgress'] as bool,
+    prepareProvider: json['prepareProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7721,7 +8031,7 @@ _ExecuteCommandOptions _$ExecuteCommandOptionsFromJson(
     commands: (json['commands'] as List<dynamic>)
         .map((e) => e as String)
         .toList(),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -7788,7 +8098,7 @@ _ResourceOperation _$ResourceOperationFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['kind', 'annotationId']);
   return _ResourceOperation(
     kind: json['kind'] as String,
-    annotationId: json['annotationId'] as String,
+    annotationId: json['annotationId'] as String?,
   );
 }
 
@@ -7801,8 +8111,8 @@ Map<String, dynamic> _$ResourceOperationToJson(_ResourceOperation instance) =>
 _CreateFileOptions _$CreateFileOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['ignoreIfExists', 'overwrite']);
   return _CreateFileOptions(
-    ignoreIfExists: json['ignoreIfExists'] as bool,
-    overwrite: json['overwrite'] as bool,
+    ignoreIfExists: json['ignoreIfExists'] as bool?,
+    overwrite: json['overwrite'] as bool?,
   );
 }
 
@@ -7815,8 +8125,8 @@ Map<String, dynamic> _$CreateFileOptionsToJson(_CreateFileOptions instance) =>
 _RenameFileOptions _$RenameFileOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['ignoreIfExists', 'overwrite']);
   return _RenameFileOptions(
-    ignoreIfExists: json['ignoreIfExists'] as bool,
-    overwrite: json['overwrite'] as bool,
+    ignoreIfExists: json['ignoreIfExists'] as bool?,
+    overwrite: json['overwrite'] as bool?,
   );
 }
 
@@ -7829,8 +8139,8 @@ Map<String, dynamic> _$RenameFileOptionsToJson(_RenameFileOptions instance) =>
 _DeleteFileOptions _$DeleteFileOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['ignoreIfNotExists', 'recursive']);
   return _DeleteFileOptions(
-    ignoreIfNotExists: json['ignoreIfNotExists'] as bool,
-    recursive: json['recursive'] as bool,
+    ignoreIfNotExists: json['ignoreIfNotExists'] as bool?,
+    recursive: json['recursive'] as bool?,
   );
 }
 
@@ -7846,10 +8156,15 @@ _FileOperationPattern _$FileOperationPatternFromJson(
   $checkKeys(json, allowedKeys: const ['glob', 'options', 'matches']);
   return _FileOperationPattern(
     glob: json['glob'] as String,
-    options: FileOperationPatternOptions.fromJson(
-      json['options'] as Map<String, dynamic>,
+    options: json['options'] == null
+        ? null
+        : FileOperationPatternOptions.fromJson(
+            json['options'] as Map<String, dynamic>,
+          ),
+    matches: $enumDecodeNullable(
+      _$FileOperationPatternKindEnumMap,
+      json['matches'],
     ),
-    matches: $enumDecode(_$FileOperationPatternKindEnumMap, json['matches']),
   );
 }
 
@@ -7858,7 +8173,7 @@ Map<String, dynamic> _$FileOperationPatternToJson(
 ) => <String, dynamic>{
   'glob': instance.glob,
   'options': instance.options,
-  'matches': _$FileOperationPatternKindEnumMap[instance.matches]!,
+  'matches': _$FileOperationPatternKindEnumMap[instance.matches],
 };
 
 const _$FileOperationPatternKindEnumMap = {
@@ -7881,7 +8196,7 @@ _$WorkspaceFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) {
     version: ProcessIdOrVersionBase.fromJson(
       json['version'] as Map<String, dynamic>,
     ),
-    resultId: json['resultId'] as String,
+    resultId: json['resultId'] as String?,
   );
 }
 
@@ -7927,10 +8242,12 @@ _NotebookCell _$NotebookCellFromJson(Map<String, dynamic> json) {
   return _NotebookCell(
     kind: $enumDecode(_$NotebookCellKindEnumMap, json['kind']),
     document: json['document'] as String,
-    executionSummary: ExecutionSummary.fromJson(
-      json['executionSummary'] as Map<String, dynamic>,
-    ),
-    metadata: (json['metadata'] as Map<String, dynamic>).map(
+    executionSummary: json['executionSummary'] == null
+        ? null
+        : ExecutionSummary.fromJson(
+            json['executionSummary'] as Map<String, dynamic>,
+          ),
+    metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
       (k, e) => MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
     ),
   );
@@ -7956,8 +8273,8 @@ _NotebookCellArrayChange _$NotebookCellArrayChangeFromJson(
   return _NotebookCellArrayChange(
     start: (json['start'] as num).toInt(),
     deleteCount: (json['deleteCount'] as num).toInt(),
-    cells: (json['cells'] as List<dynamic>)
-        .map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
+    cells: (json['cells'] as List<dynamic>?)
+        ?.map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -7997,24 +8314,34 @@ _ClientCapabilities _$ClientCapabilitiesFromJson(Map<String, dynamic> json) {
     ],
   );
   return _ClientCapabilities(
-    experimental: LSPAnyBase.fromJson(
-      json['experimental'] as Map<String, dynamic>,
-    ),
-    general: GeneralClientCapabilities.fromJson(
-      json['general'] as Map<String, dynamic>,
-    ),
-    window: WindowClientCapabilities.fromJson(
-      json['window'] as Map<String, dynamic>,
-    ),
-    notebookDocument: NotebookDocumentClientCapabilities.fromJson(
-      json['notebookDocument'] as Map<String, dynamic>,
-    ),
-    textDocument: TextDocumentClientCapabilities.fromJson(
-      json['textDocument'] as Map<String, dynamic>,
-    ),
-    workspace: WorkspaceClientCapabilities.fromJson(
-      json['workspace'] as Map<String, dynamic>,
-    ),
+    experimental: json['experimental'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['experimental'] as Map<String, dynamic>),
+    general: json['general'] == null
+        ? null
+        : GeneralClientCapabilities.fromJson(
+            json['general'] as Map<String, dynamic>,
+          ),
+    window: json['window'] == null
+        ? null
+        : WindowClientCapabilities.fromJson(
+            json['window'] as Map<String, dynamic>,
+          ),
+    notebookDocument: json['notebookDocument'] == null
+        ? null
+        : NotebookDocumentClientCapabilities.fromJson(
+            json['notebookDocument'] as Map<String, dynamic>,
+          ),
+    textDocument: json['textDocument'] == null
+        ? null
+        : TextDocumentClientCapabilities.fromJson(
+            json['textDocument'] as Map<String, dynamic>,
+          ),
+    workspace: json['workspace'] == null
+        ? null
+        : WorkspaceClientCapabilities.fromJson(
+            json['workspace'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -8042,13 +8369,15 @@ _TextDocumentSyncOptions _$TextDocumentSyncOptionsFromJson(
     ],
   );
   return _TextDocumentSyncOptions(
-    save: TextDocumentSyncOptionsSaveBase.fromJson(
-      json['save'] as Map<String, dynamic>,
-    ),
-    willSaveWaitUntil: json['willSaveWaitUntil'] as bool,
-    willSave: json['willSave'] as bool,
-    change: $enumDecode(_$TextDocumentSyncKindEnumMap, json['change']),
-    openClose: json['openClose'] as bool,
+    save: json['save'] == null
+        ? null
+        : TextDocumentSyncOptionsSaveBase.fromJson(
+            json['save'] as Map<String, dynamic>,
+          ),
+    willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
+    willSave: json['willSave'] as bool?,
+    change: $enumDecodeNullable(_$TextDocumentSyncKindEnumMap, json['change']),
+    openClose: json['openClose'] as bool?,
   );
 }
 
@@ -8058,7 +8387,7 @@ Map<String, dynamic> _$TextDocumentSyncOptionsToJson(
   'save': instance.save,
   'willSaveWaitUntil': instance.willSaveWaitUntil,
   'willSave': instance.willSave,
-  'change': _$TextDocumentSyncKindEnumMap[instance.change]!,
+  'change': _$TextDocumentSyncKindEnumMap[instance.change],
   'openClose': instance.openClose,
 };
 
@@ -8074,7 +8403,7 @@ _NotebookDocumentSyncOptions _$NotebookDocumentSyncOptionsFromJson(
           ),
         )
         .toList(),
-    save: json['save'] as bool,
+    save: json['save'] as bool?,
   );
 }
 
@@ -8096,8 +8425,8 @@ _$NotebookDocumentSyncRegistrationOptionsFromJson(Map<String, dynamic> json) {
           ),
         )
         .toList(),
-    id: json['id'] as String,
-    save: json['save'] as bool,
+    id: json['id'] as String?,
+    save: json['save'] as bool?,
   );
 }
 
@@ -8113,11 +8442,12 @@ _WorkspaceFoldersServerCapabilities
 _$WorkspaceFoldersServerCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['changeNotifications', 'supported']);
   return _WorkspaceFoldersServerCapabilities(
-    changeNotifications:
-        WorkspaceFoldersServerCapabilitiesChangeNotificationsBase.fromJson(
-          json['changeNotifications'] as Map<String, dynamic>,
-        ),
-    supported: json['supported'] as bool,
+    changeNotifications: json['changeNotifications'] == null
+        ? null
+        : WorkspaceFoldersServerCapabilitiesChangeNotificationsBase.fromJson(
+            json['changeNotifications'] as Map<String, dynamic>,
+          ),
+    supported: json['supported'] as bool?,
   );
 }
 
@@ -8143,24 +8473,36 @@ _FileOperationOptions _$FileOperationOptionsFromJson(
     ],
   );
   return _FileOperationOptions(
-    willDelete: FileOperationRegistrationOptions.fromJson(
-      json['willDelete'] as Map<String, dynamic>,
-    ),
-    didDelete: FileOperationRegistrationOptions.fromJson(
-      json['didDelete'] as Map<String, dynamic>,
-    ),
-    willRename: FileOperationRegistrationOptions.fromJson(
-      json['willRename'] as Map<String, dynamic>,
-    ),
-    didRename: FileOperationRegistrationOptions.fromJson(
-      json['didRename'] as Map<String, dynamic>,
-    ),
-    willCreate: FileOperationRegistrationOptions.fromJson(
-      json['willCreate'] as Map<String, dynamic>,
-    ),
-    didCreate: FileOperationRegistrationOptions.fromJson(
-      json['didCreate'] as Map<String, dynamic>,
-    ),
+    willDelete: json['willDelete'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['willDelete'] as Map<String, dynamic>,
+          ),
+    didDelete: json['didDelete'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['didDelete'] as Map<String, dynamic>,
+          ),
+    willRename: json['willRename'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['willRename'] as Map<String, dynamic>,
+          ),
+    didRename: json['didRename'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['didRename'] as Map<String, dynamic>,
+          ),
+    willCreate: json['willCreate'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['willCreate'] as Map<String, dynamic>,
+          ),
+    didCreate: json['didCreate'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['didCreate'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -8208,9 +8550,11 @@ _ParameterInformation _$ParameterInformationFromJson(
     label: ParameterInformationLabelBase.fromJson(
       json['label'] as Map<String, dynamic>,
     ),
-    documentation: TooltipOrDocumentationBase.fromJson(
-      json['documentation'] as Map<String, dynamic>,
-    ),
+    documentation: json['documentation'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['documentation'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -8229,7 +8573,7 @@ _NotebookCellTextDocumentFilter _$NotebookCellTextDocumentFilterFromJson(
     notebook: NotebookCellTextDocumentFilterNotebookBase.fromJson(
       json['notebook'] as Map<String, dynamic>,
     ),
-    language: json['language'] as String,
+    language: json['language'] as String?,
   );
 }
 
@@ -8244,7 +8588,7 @@ _FileOperationPatternOptions _$FileOperationPatternOptionsFromJson(
   Map<String, dynamic> json,
 ) {
   $checkKeys(json, allowedKeys: const ['ignoreCase']);
-  return _FileOperationPatternOptions(ignoreCase: json['ignoreCase'] as bool);
+  return _FileOperationPatternOptions(ignoreCase: json['ignoreCase'] as bool?);
 }
 
 Map<String, dynamic> _$FileOperationPatternOptionsToJson(
@@ -8255,7 +8599,7 @@ _ExecutionSummary _$ExecutionSummaryFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['executionOrder', 'success']);
   return _ExecutionSummary(
     executionOrder: (json['executionOrder'] as num).toInt(),
-    success: json['success'] as bool,
+    success: json['success'] as bool?,
   );
 }
 
@@ -8289,45 +8633,69 @@ _WorkspaceClientCapabilities _$WorkspaceClientCapabilitiesFromJson(
     ],
   );
   return _WorkspaceClientCapabilities(
-    foldingRange: FoldingRangeWorkspaceClientCapabilities.fromJson(
-      json['foldingRange'] as Map<String, dynamic>,
-    ),
-    diagnostics: DiagnosticWorkspaceClientCapabilities.fromJson(
-      json['diagnostics'] as Map<String, dynamic>,
-    ),
-    inlayHint: InlayHintWorkspaceClientCapabilities.fromJson(
-      json['inlayHint'] as Map<String, dynamic>,
-    ),
-    inlineValue: InlineValueWorkspaceClientCapabilities.fromJson(
-      json['inlineValue'] as Map<String, dynamic>,
-    ),
-    fileOperations: FileOperationClientCapabilities.fromJson(
-      json['fileOperations'] as Map<String, dynamic>,
-    ),
-    codeLens: CodeLensWorkspaceClientCapabilities.fromJson(
-      json['codeLens'] as Map<String, dynamic>,
-    ),
-    semanticTokens: SemanticTokensWorkspaceClientCapabilities.fromJson(
-      json['semanticTokens'] as Map<String, dynamic>,
-    ),
-    configuration: json['configuration'] as bool,
-    workspaceFolders: json['workspaceFolders'] as bool,
-    executeCommand: ExecuteCommandClientCapabilities.fromJson(
-      json['executeCommand'] as Map<String, dynamic>,
-    ),
-    symbol: WorkspaceSymbolClientCapabilities.fromJson(
-      json['symbol'] as Map<String, dynamic>,
-    ),
-    didChangeWatchedFiles: DidChangeWatchedFilesClientCapabilities.fromJson(
-      json['didChangeWatchedFiles'] as Map<String, dynamic>,
-    ),
-    didChangeConfiguration: DidChangeConfigurationClientCapabilities.fromJson(
-      json['didChangeConfiguration'] as Map<String, dynamic>,
-    ),
-    workspaceEdit: WorkspaceEditClientCapabilities.fromJson(
-      json['workspaceEdit'] as Map<String, dynamic>,
-    ),
-    applyEdit: json['applyEdit'] as bool,
+    foldingRange: json['foldingRange'] == null
+        ? null
+        : FoldingRangeWorkspaceClientCapabilities.fromJson(
+            json['foldingRange'] as Map<String, dynamic>,
+          ),
+    diagnostics: json['diagnostics'] == null
+        ? null
+        : DiagnosticWorkspaceClientCapabilities.fromJson(
+            json['diagnostics'] as Map<String, dynamic>,
+          ),
+    inlayHint: json['inlayHint'] == null
+        ? null
+        : InlayHintWorkspaceClientCapabilities.fromJson(
+            json['inlayHint'] as Map<String, dynamic>,
+          ),
+    inlineValue: json['inlineValue'] == null
+        ? null
+        : InlineValueWorkspaceClientCapabilities.fromJson(
+            json['inlineValue'] as Map<String, dynamic>,
+          ),
+    fileOperations: json['fileOperations'] == null
+        ? null
+        : FileOperationClientCapabilities.fromJson(
+            json['fileOperations'] as Map<String, dynamic>,
+          ),
+    codeLens: json['codeLens'] == null
+        ? null
+        : CodeLensWorkspaceClientCapabilities.fromJson(
+            json['codeLens'] as Map<String, dynamic>,
+          ),
+    semanticTokens: json['semanticTokens'] == null
+        ? null
+        : SemanticTokensWorkspaceClientCapabilities.fromJson(
+            json['semanticTokens'] as Map<String, dynamic>,
+          ),
+    configuration: json['configuration'] as bool?,
+    workspaceFolders: json['workspaceFolders'] as bool?,
+    executeCommand: json['executeCommand'] == null
+        ? null
+        : ExecuteCommandClientCapabilities.fromJson(
+            json['executeCommand'] as Map<String, dynamic>,
+          ),
+    symbol: json['symbol'] == null
+        ? null
+        : WorkspaceSymbolClientCapabilities.fromJson(
+            json['symbol'] as Map<String, dynamic>,
+          ),
+    didChangeWatchedFiles: json['didChangeWatchedFiles'] == null
+        ? null
+        : DidChangeWatchedFilesClientCapabilities.fromJson(
+            json['didChangeWatchedFiles'] as Map<String, dynamic>,
+          ),
+    didChangeConfiguration: json['didChangeConfiguration'] == null
+        ? null
+        : DidChangeConfigurationClientCapabilities.fromJson(
+            json['didChangeConfiguration'] as Map<String, dynamic>,
+          ),
+    workspaceEdit: json['workspaceEdit'] == null
+        ? null
+        : WorkspaceEditClientCapabilities.fromJson(
+            json['workspaceEdit'] as Map<String, dynamic>,
+          ),
+    applyEdit: json['applyEdit'] as bool?,
   );
 }
 
@@ -8391,99 +8759,161 @@ _TextDocumentClientCapabilities _$TextDocumentClientCapabilitiesFromJson(
     ],
   );
   return _TextDocumentClientCapabilities(
-    inlineCompletion: InlineCompletionClientCapabilities.fromJson(
-      json['inlineCompletion'] as Map<String, dynamic>,
-    ),
-    diagnostic: DiagnosticClientCapabilities.fromJson(
-      json['diagnostic'] as Map<String, dynamic>,
-    ),
-    inlayHint: InlayHintClientCapabilities.fromJson(
-      json['inlayHint'] as Map<String, dynamic>,
-    ),
-    inlineValue: InlineValueClientCapabilities.fromJson(
-      json['inlineValue'] as Map<String, dynamic>,
-    ),
-    typeHierarchy: TypeHierarchyClientCapabilities.fromJson(
-      json['typeHierarchy'] as Map<String, dynamic>,
-    ),
-    moniker: MonikerClientCapabilities.fromJson(
-      json['moniker'] as Map<String, dynamic>,
-    ),
-    linkedEditingRange: LinkedEditingRangeClientCapabilities.fromJson(
-      json['linkedEditingRange'] as Map<String, dynamic>,
-    ),
-    semanticTokens: SemanticTokensClientCapabilities.fromJson(
-      json['semanticTokens'] as Map<String, dynamic>,
-    ),
-    callHierarchy: CallHierarchyClientCapabilities.fromJson(
-      json['callHierarchy'] as Map<String, dynamic>,
-    ),
-    publishDiagnostics: PublishDiagnosticsClientCapabilities.fromJson(
-      json['publishDiagnostics'] as Map<String, dynamic>,
-    ),
-    selectionRange: SelectionRangeClientCapabilities.fromJson(
-      json['selectionRange'] as Map<String, dynamic>,
-    ),
-    foldingRange: FoldingRangeClientCapabilities.fromJson(
-      json['foldingRange'] as Map<String, dynamic>,
-    ),
-    rename: RenameClientCapabilities.fromJson(
-      json['rename'] as Map<String, dynamic>,
-    ),
-    onTypeFormatting: DocumentOnTypeFormattingClientCapabilities.fromJson(
-      json['onTypeFormatting'] as Map<String, dynamic>,
-    ),
-    rangeFormatting: DocumentRangeFormattingClientCapabilities.fromJson(
-      json['rangeFormatting'] as Map<String, dynamic>,
-    ),
-    formatting: DocumentFormattingClientCapabilities.fromJson(
-      json['formatting'] as Map<String, dynamic>,
-    ),
-    colorProvider: DocumentColorClientCapabilities.fromJson(
-      json['colorProvider'] as Map<String, dynamic>,
-    ),
-    documentLink: DocumentLinkClientCapabilities.fromJson(
-      json['documentLink'] as Map<String, dynamic>,
-    ),
-    codeLens: CodeLensClientCapabilities.fromJson(
-      json['codeLens'] as Map<String, dynamic>,
-    ),
-    codeAction: CodeActionClientCapabilities.fromJson(
-      json['codeAction'] as Map<String, dynamic>,
-    ),
-    documentSymbol: DocumentSymbolClientCapabilities.fromJson(
-      json['documentSymbol'] as Map<String, dynamic>,
-    ),
-    documentHighlight: DocumentHighlightClientCapabilities.fromJson(
-      json['documentHighlight'] as Map<String, dynamic>,
-    ),
-    references: ReferenceClientCapabilities.fromJson(
-      json['references'] as Map<String, dynamic>,
-    ),
-    implementation: ImplementationClientCapabilities.fromJson(
-      json['implementation'] as Map<String, dynamic>,
-    ),
-    typeDefinition: TypeDefinitionClientCapabilities.fromJson(
-      json['typeDefinition'] as Map<String, dynamic>,
-    ),
-    definition: DefinitionClientCapabilities.fromJson(
-      json['definition'] as Map<String, dynamic>,
-    ),
-    declaration: DeclarationClientCapabilities.fromJson(
-      json['declaration'] as Map<String, dynamic>,
-    ),
-    signatureHelp: SignatureHelpClientCapabilities.fromJson(
-      json['signatureHelp'] as Map<String, dynamic>,
-    ),
-    hover: HoverClientCapabilities.fromJson(
-      json['hover'] as Map<String, dynamic>,
-    ),
-    completion: CompletionClientCapabilities.fromJson(
-      json['completion'] as Map<String, dynamic>,
-    ),
-    synchronization: TextDocumentSyncClientCapabilities.fromJson(
-      json['synchronization'] as Map<String, dynamic>,
-    ),
+    inlineCompletion: json['inlineCompletion'] == null
+        ? null
+        : InlineCompletionClientCapabilities.fromJson(
+            json['inlineCompletion'] as Map<String, dynamic>,
+          ),
+    diagnostic: json['diagnostic'] == null
+        ? null
+        : DiagnosticClientCapabilities.fromJson(
+            json['diagnostic'] as Map<String, dynamic>,
+          ),
+    inlayHint: json['inlayHint'] == null
+        ? null
+        : InlayHintClientCapabilities.fromJson(
+            json['inlayHint'] as Map<String, dynamic>,
+          ),
+    inlineValue: json['inlineValue'] == null
+        ? null
+        : InlineValueClientCapabilities.fromJson(
+            json['inlineValue'] as Map<String, dynamic>,
+          ),
+    typeHierarchy: json['typeHierarchy'] == null
+        ? null
+        : TypeHierarchyClientCapabilities.fromJson(
+            json['typeHierarchy'] as Map<String, dynamic>,
+          ),
+    moniker: json['moniker'] == null
+        ? null
+        : MonikerClientCapabilities.fromJson(
+            json['moniker'] as Map<String, dynamic>,
+          ),
+    linkedEditingRange: json['linkedEditingRange'] == null
+        ? null
+        : LinkedEditingRangeClientCapabilities.fromJson(
+            json['linkedEditingRange'] as Map<String, dynamic>,
+          ),
+    semanticTokens: json['semanticTokens'] == null
+        ? null
+        : SemanticTokensClientCapabilities.fromJson(
+            json['semanticTokens'] as Map<String, dynamic>,
+          ),
+    callHierarchy: json['callHierarchy'] == null
+        ? null
+        : CallHierarchyClientCapabilities.fromJson(
+            json['callHierarchy'] as Map<String, dynamic>,
+          ),
+    publishDiagnostics: json['publishDiagnostics'] == null
+        ? null
+        : PublishDiagnosticsClientCapabilities.fromJson(
+            json['publishDiagnostics'] as Map<String, dynamic>,
+          ),
+    selectionRange: json['selectionRange'] == null
+        ? null
+        : SelectionRangeClientCapabilities.fromJson(
+            json['selectionRange'] as Map<String, dynamic>,
+          ),
+    foldingRange: json['foldingRange'] == null
+        ? null
+        : FoldingRangeClientCapabilities.fromJson(
+            json['foldingRange'] as Map<String, dynamic>,
+          ),
+    rename: json['rename'] == null
+        ? null
+        : RenameClientCapabilities.fromJson(
+            json['rename'] as Map<String, dynamic>,
+          ),
+    onTypeFormatting: json['onTypeFormatting'] == null
+        ? null
+        : DocumentOnTypeFormattingClientCapabilities.fromJson(
+            json['onTypeFormatting'] as Map<String, dynamic>,
+          ),
+    rangeFormatting: json['rangeFormatting'] == null
+        ? null
+        : DocumentRangeFormattingClientCapabilities.fromJson(
+            json['rangeFormatting'] as Map<String, dynamic>,
+          ),
+    formatting: json['formatting'] == null
+        ? null
+        : DocumentFormattingClientCapabilities.fromJson(
+            json['formatting'] as Map<String, dynamic>,
+          ),
+    colorProvider: json['colorProvider'] == null
+        ? null
+        : DocumentColorClientCapabilities.fromJson(
+            json['colorProvider'] as Map<String, dynamic>,
+          ),
+    documentLink: json['documentLink'] == null
+        ? null
+        : DocumentLinkClientCapabilities.fromJson(
+            json['documentLink'] as Map<String, dynamic>,
+          ),
+    codeLens: json['codeLens'] == null
+        ? null
+        : CodeLensClientCapabilities.fromJson(
+            json['codeLens'] as Map<String, dynamic>,
+          ),
+    codeAction: json['codeAction'] == null
+        ? null
+        : CodeActionClientCapabilities.fromJson(
+            json['codeAction'] as Map<String, dynamic>,
+          ),
+    documentSymbol: json['documentSymbol'] == null
+        ? null
+        : DocumentSymbolClientCapabilities.fromJson(
+            json['documentSymbol'] as Map<String, dynamic>,
+          ),
+    documentHighlight: json['documentHighlight'] == null
+        ? null
+        : DocumentHighlightClientCapabilities.fromJson(
+            json['documentHighlight'] as Map<String, dynamic>,
+          ),
+    references: json['references'] == null
+        ? null
+        : ReferenceClientCapabilities.fromJson(
+            json['references'] as Map<String, dynamic>,
+          ),
+    implementation: json['implementation'] == null
+        ? null
+        : ImplementationClientCapabilities.fromJson(
+            json['implementation'] as Map<String, dynamic>,
+          ),
+    typeDefinition: json['typeDefinition'] == null
+        ? null
+        : TypeDefinitionClientCapabilities.fromJson(
+            json['typeDefinition'] as Map<String, dynamic>,
+          ),
+    definition: json['definition'] == null
+        ? null
+        : DefinitionClientCapabilities.fromJson(
+            json['definition'] as Map<String, dynamic>,
+          ),
+    declaration: json['declaration'] == null
+        ? null
+        : DeclarationClientCapabilities.fromJson(
+            json['declaration'] as Map<String, dynamic>,
+          ),
+    signatureHelp: json['signatureHelp'] == null
+        ? null
+        : SignatureHelpClientCapabilities.fromJson(
+            json['signatureHelp'] as Map<String, dynamic>,
+          ),
+    hover: json['hover'] == null
+        ? null
+        : HoverClientCapabilities.fromJson(
+            json['hover'] as Map<String, dynamic>,
+          ),
+    completion: json['completion'] == null
+        ? null
+        : CompletionClientCapabilities.fromJson(
+            json['completion'] as Map<String, dynamic>,
+          ),
+    synchronization: json['synchronization'] == null
+        ? null
+        : TextDocumentSyncClientCapabilities.fromJson(
+            json['synchronization'] as Map<String, dynamic>,
+          ),
   );
 }
 
@@ -8545,13 +8975,17 @@ _WindowClientCapabilities _$WindowClientCapabilitiesFromJson(
     allowedKeys: const ['showDocument', 'showMessage', 'workDoneProgress'],
   );
   return _WindowClientCapabilities(
-    showDocument: ShowDocumentClientCapabilities.fromJson(
-      json['showDocument'] as Map<String, dynamic>,
-    ),
-    showMessage: ShowMessageRequestClientCapabilities.fromJson(
-      json['showMessage'] as Map<String, dynamic>,
-    ),
-    workDoneProgress: json['workDoneProgress'] as bool,
+    showDocument: json['showDocument'] == null
+        ? null
+        : ShowDocumentClientCapabilities.fromJson(
+            json['showDocument'] as Map<String, dynamic>,
+          ),
+    showMessage: json['showMessage'] == null
+        ? null
+        : ShowMessageRequestClientCapabilities.fromJson(
+            json['showMessage'] as Map<String, dynamic>,
+          ),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
 
@@ -8576,16 +9010,20 @@ _GeneralClientCapabilities _$GeneralClientCapabilitiesFromJson(
     ],
   );
   return _GeneralClientCapabilities(
-    positionEncodings: (json['positionEncodings'] as List<dynamic>)
-        .map((e) => $enumDecode(_$PositionEncodingKindEnumMap, e))
+    positionEncodings: (json['positionEncodings'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$PositionEncodingKindEnumMap, e))
         .toList(),
-    markdown: MarkdownClientCapabilities.fromJson(
-      json['markdown'] as Map<String, dynamic>,
-    ),
-    regularExpressions: RegularExpressionsClientCapabilities.fromJson(
-      json['regularExpressions'] as Map<String, dynamic>,
-    ),
-    staleRequestSupport: _$recordConvert(
+    markdown: json['markdown'] == null
+        ? null
+        : MarkdownClientCapabilities.fromJson(
+            json['markdown'] as Map<String, dynamic>,
+          ),
+    regularExpressions: json['regularExpressions'] == null
+        ? null
+        : RegularExpressionsClientCapabilities.fromJson(
+            json['regularExpressions'] as Map<String, dynamic>,
+          ),
+    staleRequestSupport: _$recordConvertNullable(
       json['staleRequestSupport'],
       ($jsonValue) => (
         cancel: $jsonValue['cancel'] as bool,
@@ -8602,15 +9040,17 @@ Map<String, dynamic> _$GeneralClientCapabilitiesToJson(
   _GeneralClientCapabilities instance,
 ) => <String, dynamic>{
   'positionEncodings': instance.positionEncodings
-      .map((e) => _$PositionEncodingKindEnumMap[e]!)
+      ?.map((e) => _$PositionEncodingKindEnumMap[e]!)
       .toList(),
   'markdown': instance.markdown,
   'regularExpressions': instance.regularExpressions,
-  'staleRequestSupport': <String, dynamic>{
-    'cancel': instance.staleRequestSupport.cancel,
-    'retryOnContentModified':
-        instance.staleRequestSupport.retryOnContentModified,
-  },
+  'staleRequestSupport': instance.staleRequestSupport == null
+      ? null
+      : <String, dynamic>{
+          'cancel': instance.staleRequestSupport!.cancel,
+          'retryOnContentModified':
+              instance.staleRequestSupport!.retryOnContentModified,
+        },
 };
 
 _RelativePattern _$RelativePatternFromJson(Map<String, dynamic> json) {
@@ -8640,32 +9080,34 @@ _WorkspaceEditClientCapabilities _$WorkspaceEditClientCapabilitiesFromJson(
     ],
   );
   return _WorkspaceEditClientCapabilities(
-    changeAnnotationSupport: _$recordConvert(
+    changeAnnotationSupport: _$recordConvertNullable(
       json['changeAnnotationSupport'],
       ($jsonValue) => (groupsOnLabel: $jsonValue['groupsOnLabel'] as bool?),
     ),
-    normalizesLineEndings: json['normalizesLineEndings'] as bool,
-    failureHandling: $enumDecode(
+    normalizesLineEndings: json['normalizesLineEndings'] as bool?,
+    failureHandling: $enumDecodeNullable(
       _$FailureHandlingKindEnumMap,
       json['failureHandling'],
     ),
-    resourceOperations: (json['resourceOperations'] as List<dynamic>)
-        .map((e) => $enumDecode(_$ResourceOperationKindEnumMap, e))
+    resourceOperations: (json['resourceOperations'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$ResourceOperationKindEnumMap, e))
         .toList(),
-    documentChanges: json['documentChanges'] as bool,
+    documentChanges: json['documentChanges'] as bool?,
   );
 }
 
 Map<String, dynamic> _$WorkspaceEditClientCapabilitiesToJson(
   _WorkspaceEditClientCapabilities instance,
 ) => <String, dynamic>{
-  'changeAnnotationSupport': <String, dynamic>{
-    'groupsOnLabel': instance.changeAnnotationSupport.groupsOnLabel,
-  },
+  'changeAnnotationSupport': instance.changeAnnotationSupport == null
+      ? null
+      : <String, dynamic>{
+          'groupsOnLabel': instance.changeAnnotationSupport!.groupsOnLabel,
+        },
   'normalizesLineEndings': instance.normalizesLineEndings,
-  'failureHandling': _$FailureHandlingKindEnumMap[instance.failureHandling]!,
+  'failureHandling': _$FailureHandlingKindEnumMap[instance.failureHandling],
   'resourceOperations': instance.resourceOperations
-      .map((e) => _$ResourceOperationKindEnumMap[e]!)
+      ?.map((e) => _$ResourceOperationKindEnumMap[e]!)
       .toList(),
   'documentChanges': instance.documentChanges,
 };
@@ -8687,7 +9129,7 @@ _DidChangeConfigurationClientCapabilities
 _$DidChangeConfigurationClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _DidChangeConfigurationClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -8702,8 +9144,8 @@ _$DidChangeWatchedFilesClientCapabilitiesFromJson(Map<String, dynamic> json) {
     allowedKeys: const ['relativePatternSupport', 'dynamicRegistration'],
   );
   return _DidChangeWatchedFilesClientCapabilities(
-    relativePatternSupport: json['relativePatternSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    relativePatternSupport: json['relativePatternSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -8727,7 +9169,7 @@ _WorkspaceSymbolClientCapabilities _$WorkspaceSymbolClientCapabilitiesFromJson(
     ],
   );
   return _WorkspaceSymbolClientCapabilities(
-    resolveSupport: _$recordConvert(
+    resolveSupport: _$recordConvertNullable(
       json['resolveSupport'],
       ($jsonValue) => (
         properties: ($jsonValue['properties'] as List<dynamic>)
@@ -8735,7 +9177,7 @@ _WorkspaceSymbolClientCapabilities _$WorkspaceSymbolClientCapabilitiesFromJson(
             .toList(),
       ),
     ),
-    tagSupport: _$recordConvert(
+    tagSupport: _$recordConvertNullable(
       json['tagSupport'],
       ($jsonValue) => (
         valueSet: ($jsonValue['valueSet'] as List<dynamic>)
@@ -8743,7 +9185,7 @@ _WorkspaceSymbolClientCapabilities _$WorkspaceSymbolClientCapabilitiesFromJson(
             .toList(),
       ),
     ),
-    symbolKind: _$recordConvert(
+    symbolKind: _$recordConvertNullable(
       json['symbolKind'],
       ($jsonValue) => (
         valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
@@ -8751,26 +9193,30 @@ _WorkspaceSymbolClientCapabilities _$WorkspaceSymbolClientCapabilitiesFromJson(
             .toList(),
       ),
     ),
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
 Map<String, dynamic> _$WorkspaceSymbolClientCapabilitiesToJson(
   _WorkspaceSymbolClientCapabilities instance,
 ) => <String, dynamic>{
-  'resolveSupport': <String, dynamic>{
-    'properties': instance.resolveSupport.properties,
-  },
-  'tagSupport': <String, dynamic>{
-    'valueSet': instance.tagSupport.valueSet
-        .map((e) => _$SymbolTagEnumMap[e]!)
-        .toList(),
-  },
-  'symbolKind': <String, dynamic>{
-    'valueSet': instance.symbolKind.valueSet
-        ?.map((e) => _$SymbolKindEnumMap[e]!)
-        .toList(),
-  },
+  'resolveSupport': instance.resolveSupport == null
+      ? null
+      : <String, dynamic>{'properties': instance.resolveSupport!.properties},
+  'tagSupport': instance.tagSupport == null
+      ? null
+      : <String, dynamic>{
+          'valueSet': instance.tagSupport!.valueSet
+              .map((e) => _$SymbolTagEnumMap[e]!)
+              .toList(),
+        },
+  'symbolKind': instance.symbolKind == null
+      ? null
+      : <String, dynamic>{
+          'valueSet': instance.symbolKind!.valueSet
+              ?.map((e) => _$SymbolKindEnumMap[e]!)
+              .toList(),
+        },
   'dynamicRegistration': instance.dynamicRegistration,
 };
 
@@ -8779,7 +9225,7 @@ _ExecuteCommandClientCapabilities _$ExecuteCommandClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _ExecuteCommandClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -8791,7 +9237,7 @@ _SemanticTokensWorkspaceClientCapabilities
 _$SemanticTokensWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['refreshSupport']);
   return _SemanticTokensWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool,
+    refreshSupport: json['refreshSupport'] as bool?,
   );
 }
 
@@ -8803,7 +9249,7 @@ _CodeLensWorkspaceClientCapabilities
 _$CodeLensWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['refreshSupport']);
   return _CodeLensWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool,
+    refreshSupport: json['refreshSupport'] as bool?,
   );
 }
 
@@ -8827,13 +9273,13 @@ _FileOperationClientCapabilities _$FileOperationClientCapabilitiesFromJson(
     ],
   );
   return _FileOperationClientCapabilities(
-    willDelete: json['willDelete'] as bool,
-    didDelete: json['didDelete'] as bool,
-    willRename: json['willRename'] as bool,
-    didRename: json['didRename'] as bool,
-    willCreate: json['willCreate'] as bool,
-    didCreate: json['didCreate'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    willDelete: json['willDelete'] as bool?,
+    didDelete: json['didDelete'] as bool?,
+    willRename: json['willRename'] as bool?,
+    didRename: json['didRename'] as bool?,
+    willCreate: json['willCreate'] as bool?,
+    didCreate: json['didCreate'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -8853,7 +9299,7 @@ _InlineValueWorkspaceClientCapabilities
 _$InlineValueWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['refreshSupport']);
   return _InlineValueWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool,
+    refreshSupport: json['refreshSupport'] as bool?,
   );
 }
 
@@ -8865,7 +9311,7 @@ _InlayHintWorkspaceClientCapabilities
 _$InlayHintWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['refreshSupport']);
   return _InlayHintWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool,
+    refreshSupport: json['refreshSupport'] as bool?,
   );
 }
 
@@ -8877,7 +9323,7 @@ _DiagnosticWorkspaceClientCapabilities
 _$DiagnosticWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['refreshSupport']);
   return _DiagnosticWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool,
+    refreshSupport: json['refreshSupport'] as bool?,
   );
 }
 
@@ -8889,7 +9335,7 @@ _FoldingRangeWorkspaceClientCapabilities
 _$FoldingRangeWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['refreshSupport']);
   return _FoldingRangeWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool,
+    refreshSupport: json['refreshSupport'] as bool?,
   );
 }
 
@@ -8909,10 +9355,10 @@ _$TextDocumentSyncClientCapabilitiesFromJson(Map<String, dynamic> json) {
     ],
   );
   return _TextDocumentSyncClientCapabilities(
-    didSave: json['didSave'] as bool,
-    willSaveWaitUntil: json['willSaveWaitUntil'] as bool,
-    willSave: json['willSave'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    didSave: json['didSave'] as bool?,
+    willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
+    willSave: json['willSave'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -8940,7 +9386,7 @@ _CompletionClientCapabilities _$CompletionClientCapabilitiesFromJson(
     ],
   );
   return _CompletionClientCapabilities(
-    completionList: _$recordConvert(
+    completionList: _$recordConvertNullable(
       json['completionList'],
       ($jsonValue) => (
         itemDefaults: ($jsonValue['itemDefaults'] as List<dynamic>?)
@@ -8948,12 +9394,12 @@ _CompletionClientCapabilities _$CompletionClientCapabilitiesFromJson(
             .toList(),
       ),
     ),
-    contextSupport: json['contextSupport'] as bool,
-    insertTextMode: $enumDecode(
+    contextSupport: json['contextSupport'] as bool?,
+    insertTextMode: $enumDecodeNullable(
       _$InsertTextModeEnumMap,
       json['insertTextMode'],
     ),
-    completionItemKind: _$recordConvert(
+    completionItemKind: _$recordConvertNullable(
       json['completionItemKind'],
       ($jsonValue) => (
         valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
@@ -8961,7 +9407,7 @@ _CompletionClientCapabilities _$CompletionClientCapabilitiesFromJson(
             .toList(),
       ),
     ),
-    completionItem: _$recordConvert(
+    completionItem: _$recordConvertNullable(
       json['completionItem'],
       ($jsonValue) => (
         commitCharactersSupport: $jsonValue['commitCharactersSupport'] as bool?,
@@ -9000,54 +9446,65 @@ _CompletionClientCapabilities _$CompletionClientCapabilitiesFromJson(
         ),
       ),
     ),
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
 Map<String, dynamic> _$CompletionClientCapabilitiesToJson(
   _CompletionClientCapabilities instance,
 ) => <String, dynamic>{
-  'completionList': <String, dynamic>{
-    'itemDefaults': instance.completionList.itemDefaults,
-  },
+  'completionList': instance.completionList == null
+      ? null
+      : <String, dynamic>{
+          'itemDefaults': instance.completionList!.itemDefaults,
+        },
   'contextSupport': instance.contextSupport,
-  'insertTextMode': _$InsertTextModeEnumMap[instance.insertTextMode]!,
-  'completionItemKind': <String, dynamic>{
-    'valueSet': instance.completionItemKind.valueSet
-        ?.map((e) => _$CompletionItemKindEnumMap[e]!)
-        .toList(),
-  },
-  'completionItem': <String, dynamic>{
-    'commitCharactersSupport': instance.completionItem.commitCharactersSupport,
-    'deprecatedSupport': instance.completionItem.deprecatedSupport,
-    'documentationFormat': instance.completionItem.documentationFormat
-        ?.map((e) => _$MarkupKindEnumMap[e]!)
-        .toList(),
-    'insertReplaceSupport': instance.completionItem.insertReplaceSupport,
-    'insertTextModeSupport':
-        instance.completionItem.insertTextModeSupport == null
-        ? null
-        : <String, dynamic>{
-            'valueSet': instance.completionItem.insertTextModeSupport!.valueSet
-                .map((e) => _$InsertTextModeEnumMap[e]!)
-                .toList(),
-          },
-    'labelDetailsSupport': instance.completionItem.labelDetailsSupport,
-    'preselectSupport': instance.completionItem.preselectSupport,
-    'resolveSupport': instance.completionItem.resolveSupport == null
-        ? null
-        : <String, dynamic>{
-            'properties': instance.completionItem.resolveSupport!.properties,
-          },
-    'snippetSupport': instance.completionItem.snippetSupport,
-    'tagSupport': instance.completionItem.tagSupport == null
-        ? null
-        : <String, dynamic>{
-            'valueSet': instance.completionItem.tagSupport!.valueSet
-                .map((e) => _$CompletionItemTagEnumMap[e]!)
-                .toList(),
-          },
-  },
+  'insertTextMode': _$InsertTextModeEnumMap[instance.insertTextMode],
+  'completionItemKind': instance.completionItemKind == null
+      ? null
+      : <String, dynamic>{
+          'valueSet': instance.completionItemKind!.valueSet
+              ?.map((e) => _$CompletionItemKindEnumMap[e]!)
+              .toList(),
+        },
+  'completionItem': instance.completionItem == null
+      ? null
+      : <String, dynamic>{
+          'commitCharactersSupport':
+              instance.completionItem!.commitCharactersSupport,
+          'deprecatedSupport': instance.completionItem!.deprecatedSupport,
+          'documentationFormat': instance.completionItem!.documentationFormat
+              ?.map((e) => _$MarkupKindEnumMap[e]!)
+              .toList(),
+          'insertReplaceSupport': instance.completionItem!.insertReplaceSupport,
+          'insertTextModeSupport':
+              instance.completionItem!.insertTextModeSupport == null
+              ? null
+              : <String, dynamic>{
+                  'valueSet': instance
+                      .completionItem!
+                      .insertTextModeSupport!
+                      .valueSet
+                      .map((e) => _$InsertTextModeEnumMap[e]!)
+                      .toList(),
+                },
+          'labelDetailsSupport': instance.completionItem!.labelDetailsSupport,
+          'preselectSupport': instance.completionItem!.preselectSupport,
+          'resolveSupport': instance.completionItem!.resolveSupport == null
+              ? null
+              : <String, dynamic>{
+                  'properties':
+                      instance.completionItem!.resolveSupport!.properties,
+                },
+          'snippetSupport': instance.completionItem!.snippetSupport,
+          'tagSupport': instance.completionItem!.tagSupport == null
+              ? null
+              : <String, dynamic>{
+                  'valueSet': instance.completionItem!.tagSupport!.valueSet
+                      .map((e) => _$CompletionItemTagEnumMap[e]!)
+                      .toList(),
+                },
+        },
   'dynamicRegistration': instance.dynamicRegistration,
 };
 
@@ -9056,10 +9513,10 @@ _HoverClientCapabilities _$HoverClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['contentFormat', 'dynamicRegistration']);
   return _HoverClientCapabilities(
-    contentFormat: (json['contentFormat'] as List<dynamic>)
-        .map((e) => $enumDecode(_$MarkupKindEnumMap, e))
+    contentFormat: (json['contentFormat'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
         .toList(),
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9067,7 +9524,7 @@ Map<String, dynamic> _$HoverClientCapabilitiesToJson(
   _HoverClientCapabilities instance,
 ) => <String, dynamic>{
   'contentFormat': instance.contentFormat
-      .map((e) => _$MarkupKindEnumMap[e]!)
+      ?.map((e) => _$MarkupKindEnumMap[e]!)
       .toList(),
   'dynamicRegistration': instance.dynamicRegistration,
 };
@@ -9084,8 +9541,8 @@ _SignatureHelpClientCapabilities _$SignatureHelpClientCapabilitiesFromJson(
     ],
   );
   return _SignatureHelpClientCapabilities(
-    contextSupport: json['contextSupport'] as bool,
-    signatureInformation: _$recordConvert(
+    contextSupport: json['contextSupport'] as bool?,
+    signatureInformation: _$recordConvertNullable(
       json['signatureInformation'],
       ($jsonValue) => (
         activeParameterSupport: $jsonValue['activeParameterSupport'] as bool?,
@@ -9100,7 +9557,7 @@ _SignatureHelpClientCapabilities _$SignatureHelpClientCapabilitiesFromJson(
         ),
       ),
     ),
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9108,22 +9565,26 @@ Map<String, dynamic> _$SignatureHelpClientCapabilitiesToJson(
   _SignatureHelpClientCapabilities instance,
 ) => <String, dynamic>{
   'contextSupport': instance.contextSupport,
-  'signatureInformation': <String, dynamic>{
-    'activeParameterSupport':
-        instance.signatureInformation.activeParameterSupport,
-    'documentationFormat': instance.signatureInformation.documentationFormat
-        ?.map((e) => _$MarkupKindEnumMap[e]!)
-        .toList(),
-    'parameterInformation':
-        instance.signatureInformation.parameterInformation == null
-        ? null
-        : <String, dynamic>{
-            'labelOffsetSupport': instance
-                .signatureInformation
-                .parameterInformation!
-                .labelOffsetSupport,
-          },
-  },
+  'signatureInformation': instance.signatureInformation == null
+      ? null
+      : <String, dynamic>{
+          'activeParameterSupport':
+              instance.signatureInformation!.activeParameterSupport,
+          'documentationFormat': instance
+              .signatureInformation!
+              .documentationFormat
+              ?.map((e) => _$MarkupKindEnumMap[e]!)
+              .toList(),
+          'parameterInformation':
+              instance.signatureInformation!.parameterInformation == null
+              ? null
+              : <String, dynamic>{
+                  'labelOffsetSupport': instance
+                      .signatureInformation!
+                      .parameterInformation!
+                      .labelOffsetSupport,
+                },
+        },
   'dynamicRegistration': instance.dynamicRegistration,
 };
 
@@ -9132,8 +9593,8 @@ _DeclarationClientCapabilities _$DeclarationClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['linkSupport', 'dynamicRegistration']);
   return _DeclarationClientCapabilities(
-    linkSupport: json['linkSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    linkSupport: json['linkSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9149,8 +9610,8 @@ _DefinitionClientCapabilities _$DefinitionClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['linkSupport', 'dynamicRegistration']);
   return _DefinitionClientCapabilities(
-    linkSupport: json['linkSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    linkSupport: json['linkSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9166,8 +9627,8 @@ _TypeDefinitionClientCapabilities _$TypeDefinitionClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['linkSupport', 'dynamicRegistration']);
   return _TypeDefinitionClientCapabilities(
-    linkSupport: json['linkSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    linkSupport: json['linkSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9183,8 +9644,8 @@ _ImplementationClientCapabilities _$ImplementationClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['linkSupport', 'dynamicRegistration']);
   return _ImplementationClientCapabilities(
-    linkSupport: json['linkSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    linkSupport: json['linkSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9200,7 +9661,7 @@ _ReferenceClientCapabilities _$ReferenceClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _ReferenceClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9212,7 +9673,7 @@ _DocumentHighlightClientCapabilities
 _$DocumentHighlightClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _DocumentHighlightClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9234,8 +9695,8 @@ _DocumentSymbolClientCapabilities _$DocumentSymbolClientCapabilitiesFromJson(
     ],
   );
   return _DocumentSymbolClientCapabilities(
-    labelSupport: json['labelSupport'] as bool,
-    tagSupport: _$recordConvert(
+    labelSupport: json['labelSupport'] as bool?,
+    tagSupport: _$recordConvertNullable(
       json['tagSupport'],
       ($jsonValue) => (
         valueSet: ($jsonValue['valueSet'] as List<dynamic>)
@@ -9244,8 +9705,8 @@ _DocumentSymbolClientCapabilities _$DocumentSymbolClientCapabilitiesFromJson(
       ),
     ),
     hierarchicalDocumentSymbolSupport:
-        json['hierarchicalDocumentSymbolSupport'] as bool,
-    symbolKind: _$recordConvert(
+        json['hierarchicalDocumentSymbolSupport'] as bool?,
+    symbolKind: _$recordConvertNullable(
       json['symbolKind'],
       ($jsonValue) => (
         valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
@@ -9253,7 +9714,7 @@ _DocumentSymbolClientCapabilities _$DocumentSymbolClientCapabilitiesFromJson(
             .toList(),
       ),
     ),
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9261,18 +9722,22 @@ Map<String, dynamic> _$DocumentSymbolClientCapabilitiesToJson(
   _DocumentSymbolClientCapabilities instance,
 ) => <String, dynamic>{
   'labelSupport': instance.labelSupport,
-  'tagSupport': <String, dynamic>{
-    'valueSet': instance.tagSupport.valueSet
-        .map((e) => _$SymbolTagEnumMap[e]!)
-        .toList(),
-  },
+  'tagSupport': instance.tagSupport == null
+      ? null
+      : <String, dynamic>{
+          'valueSet': instance.tagSupport!.valueSet
+              .map((e) => _$SymbolTagEnumMap[e]!)
+              .toList(),
+        },
   'hierarchicalDocumentSymbolSupport':
       instance.hierarchicalDocumentSymbolSupport,
-  'symbolKind': <String, dynamic>{
-    'valueSet': instance.symbolKind.valueSet
-        ?.map((e) => _$SymbolKindEnumMap[e]!)
-        .toList(),
-  },
+  'symbolKind': instance.symbolKind == null
+      ? null
+      : <String, dynamic>{
+          'valueSet': instance.symbolKind!.valueSet
+              ?.map((e) => _$SymbolKindEnumMap[e]!)
+              .toList(),
+        },
   'dynamicRegistration': instance.dynamicRegistration,
 };
 
@@ -9292,8 +9757,8 @@ _CodeActionClientCapabilities _$CodeActionClientCapabilitiesFromJson(
     ],
   );
   return _CodeActionClientCapabilities(
-    honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool,
-    resolveSupport: _$recordConvert(
+    honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool?,
+    resolveSupport: _$recordConvertNullable(
       json['resolveSupport'],
       ($jsonValue) => (
         properties: ($jsonValue['properties'] as List<dynamic>)
@@ -9301,10 +9766,10 @@ _CodeActionClientCapabilities _$CodeActionClientCapabilitiesFromJson(
             .toList(),
       ),
     ),
-    dataSupport: json['dataSupport'] as bool,
-    disabledSupport: json['disabledSupport'] as bool,
-    isPreferredSupport: json['isPreferredSupport'] as bool,
-    codeActionLiteralSupport: _$recordConvert(
+    dataSupport: json['dataSupport'] as bool?,
+    disabledSupport: json['disabledSupport'] as bool?,
+    isPreferredSupport: json['isPreferredSupport'] as bool?,
+    codeActionLiteralSupport: _$recordConvertNullable(
       json['codeActionLiteralSupport'],
       ($jsonValue) => (
         codeActionKind: _$recordConvert(
@@ -9317,7 +9782,7 @@ _CodeActionClientCapabilities _$CodeActionClientCapabilitiesFromJson(
         ),
       ),
     ),
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9325,19 +9790,24 @@ Map<String, dynamic> _$CodeActionClientCapabilitiesToJson(
   _CodeActionClientCapabilities instance,
 ) => <String, dynamic>{
   'honorsChangeAnnotations': instance.honorsChangeAnnotations,
-  'resolveSupport': <String, dynamic>{
-    'properties': instance.resolveSupport.properties,
-  },
+  'resolveSupport': instance.resolveSupport == null
+      ? null
+      : <String, dynamic>{'properties': instance.resolveSupport!.properties},
   'dataSupport': instance.dataSupport,
   'disabledSupport': instance.disabledSupport,
   'isPreferredSupport': instance.isPreferredSupport,
-  'codeActionLiteralSupport': <String, dynamic>{
-    'codeActionKind': <String, dynamic>{
-      'valueSet': instance.codeActionLiteralSupport.codeActionKind.valueSet
-          .map((e) => _$CodeActionKindEnumMap[e]!)
-          .toList(),
-    },
-  },
+  'codeActionLiteralSupport': instance.codeActionLiteralSupport == null
+      ? null
+      : <String, dynamic>{
+          'codeActionKind': <String, dynamic>{
+            'valueSet': instance
+                .codeActionLiteralSupport!
+                .codeActionKind
+                .valueSet
+                .map((e) => _$CodeActionKindEnumMap[e]!)
+                .toList(),
+          },
+        },
   'dynamicRegistration': instance.dynamicRegistration,
 };
 
@@ -9346,7 +9816,7 @@ _CodeLensClientCapabilities _$CodeLensClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _CodeLensClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9362,8 +9832,8 @@ _DocumentLinkClientCapabilities _$DocumentLinkClientCapabilitiesFromJson(
     allowedKeys: const ['tooltipSupport', 'dynamicRegistration'],
   );
   return _DocumentLinkClientCapabilities(
-    tooltipSupport: json['tooltipSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    tooltipSupport: json['tooltipSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9379,7 +9849,7 @@ _DocumentColorClientCapabilities _$DocumentColorClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _DocumentColorClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9391,7 +9861,7 @@ _DocumentFormattingClientCapabilities
 _$DocumentFormattingClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _DocumentFormattingClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9403,8 +9873,8 @@ _DocumentRangeFormattingClientCapabilities
 _$DocumentRangeFormattingClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['rangesSupport', 'dynamicRegistration']);
   return _DocumentRangeFormattingClientCapabilities(
-    rangesSupport: json['rangesSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    rangesSupport: json['rangesSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9421,7 +9891,7 @@ _$DocumentOnTypeFormattingClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _DocumentOnTypeFormattingClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9442,13 +9912,13 @@ _RenameClientCapabilities _$RenameClientCapabilitiesFromJson(
     ],
   );
   return _RenameClientCapabilities(
-    honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool,
-    prepareSupportDefaultBehavior: $enumDecode(
+    honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool?,
+    prepareSupportDefaultBehavior: $enumDecodeNullable(
       _$PrepareSupportDefaultBehaviorEnumMap,
       json['prepareSupportDefaultBehavior'],
     ),
-    prepareSupport: json['prepareSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    prepareSupport: json['prepareSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9458,7 +9928,7 @@ Map<String, dynamic> _$RenameClientCapabilitiesToJson(
   'honorsChangeAnnotations': instance.honorsChangeAnnotations,
   'prepareSupportDefaultBehavior':
       _$PrepareSupportDefaultBehaviorEnumMap[instance
-          .prepareSupportDefaultBehavior]!,
+          .prepareSupportDefaultBehavior],
   'prepareSupport': instance.prepareSupport,
   'dynamicRegistration': instance.dynamicRegistration,
 };
@@ -9481,11 +9951,11 @@ _FoldingRangeClientCapabilities _$FoldingRangeClientCapabilitiesFromJson(
     ],
   );
   return _FoldingRangeClientCapabilities(
-    foldingRange: _$recordConvert(
+    foldingRange: _$recordConvertNullable(
       json['foldingRange'],
       ($jsonValue) => (collapsedText: $jsonValue['collapsedText'] as bool?),
     ),
-    foldingRangeKind: _$recordConvert(
+    foldingRangeKind: _$recordConvertNullable(
       json['foldingRangeKind'],
       ($jsonValue) => (
         valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
@@ -9493,23 +9963,27 @@ _FoldingRangeClientCapabilities _$FoldingRangeClientCapabilitiesFromJson(
             .toList(),
       ),
     ),
-    lineFoldingOnly: json['lineFoldingOnly'] as bool,
-    rangeLimit: (json['rangeLimit'] as num).toInt(),
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    lineFoldingOnly: json['lineFoldingOnly'] as bool?,
+    rangeLimit: (json['rangeLimit'] as num?)?.toInt(),
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
 Map<String, dynamic> _$FoldingRangeClientCapabilitiesToJson(
   _FoldingRangeClientCapabilities instance,
 ) => <String, dynamic>{
-  'foldingRange': <String, dynamic>{
-    'collapsedText': instance.foldingRange.collapsedText,
-  },
-  'foldingRangeKind': <String, dynamic>{
-    'valueSet': instance.foldingRangeKind.valueSet
-        ?.map((e) => _$FoldingRangeKindEnumMap[e]!)
-        .toList(),
-  },
+  'foldingRange': instance.foldingRange == null
+      ? null
+      : <String, dynamic>{
+          'collapsedText': instance.foldingRange!.collapsedText,
+        },
+  'foldingRangeKind': instance.foldingRangeKind == null
+      ? null
+      : <String, dynamic>{
+          'valueSet': instance.foldingRangeKind!.valueSet
+              ?.map((e) => _$FoldingRangeKindEnumMap[e]!)
+              .toList(),
+        },
   'lineFoldingOnly': instance.lineFoldingOnly,
   'rangeLimit': instance.rangeLimit,
   'dynamicRegistration': instance.dynamicRegistration,
@@ -9520,7 +9994,7 @@ _SelectionRangeClientCapabilities _$SelectionRangeClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _SelectionRangeClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9541,10 +10015,10 @@ _$PublishDiagnosticsClientCapabilitiesFromJson(Map<String, dynamic> json) {
     ],
   );
   return _PublishDiagnosticsClientCapabilities(
-    dataSupport: json['dataSupport'] as bool,
-    codeDescriptionSupport: json['codeDescriptionSupport'] as bool,
-    versionSupport: json['versionSupport'] as bool,
-    tagSupport: _$recordConvert(
+    dataSupport: json['dataSupport'] as bool?,
+    codeDescriptionSupport: json['codeDescriptionSupport'] as bool?,
+    versionSupport: json['versionSupport'] as bool?,
+    tagSupport: _$recordConvertNullable(
       json['tagSupport'],
       ($jsonValue) => (
         valueSet: ($jsonValue['valueSet'] as List<dynamic>)
@@ -9552,7 +10026,7 @@ _$PublishDiagnosticsClientCapabilitiesFromJson(Map<String, dynamic> json) {
             .toList(),
       ),
     ),
-    relatedInformation: json['relatedInformation'] as bool,
+    relatedInformation: json['relatedInformation'] as bool?,
   );
 }
 
@@ -9562,11 +10036,13 @@ Map<String, dynamic> _$PublishDiagnosticsClientCapabilitiesToJson(
   'dataSupport': instance.dataSupport,
   'codeDescriptionSupport': instance.codeDescriptionSupport,
   'versionSupport': instance.versionSupport,
-  'tagSupport': <String, dynamic>{
-    'valueSet': instance.tagSupport.valueSet
-        .map((e) => _$DiagnosticTagEnumMap[e]!)
-        .toList(),
-  },
+  'tagSupport': instance.tagSupport == null
+      ? null
+      : <String, dynamic>{
+          'valueSet': instance.tagSupport!.valueSet
+              .map((e) => _$DiagnosticTagEnumMap[e]!)
+              .toList(),
+        },
   'relatedInformation': instance.relatedInformation,
 };
 
@@ -9575,7 +10051,7 @@ _CallHierarchyClientCapabilities _$CallHierarchyClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _CallHierarchyClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9623,11 +10099,11 @@ _SemanticTokensClientCapabilities _$SemanticTokensClientCapabilitiesFromJson(
     formats: (json['formats'] as List<dynamic>)
         .map((e) => $enumDecode(_$TokenFormatEnumMap, e))
         .toList(),
-    augmentsSyntaxTokens: json['augmentsSyntaxTokens'] as bool,
-    serverCancelSupport: json['serverCancelSupport'] as bool,
-    multilineTokenSupport: json['multilineTokenSupport'] as bool,
-    overlappingTokenSupport: json['overlappingTokenSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    augmentsSyntaxTokens: json['augmentsSyntaxTokens'] as bool?,
+    serverCancelSupport: json['serverCancelSupport'] as bool?,
+    multilineTokenSupport: json['multilineTokenSupport'] as bool?,
+    overlappingTokenSupport: json['overlappingTokenSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9654,7 +10130,7 @@ _LinkedEditingRangeClientCapabilities
 _$LinkedEditingRangeClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _LinkedEditingRangeClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9667,7 +10143,7 @@ _MonikerClientCapabilities _$MonikerClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _MonikerClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9680,7 +10156,7 @@ _TypeHierarchyClientCapabilities _$TypeHierarchyClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _TypeHierarchyClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9693,7 +10169,7 @@ _InlineValueClientCapabilities _$InlineValueClientCapabilitiesFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _InlineValueClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9709,7 +10185,7 @@ _InlayHintClientCapabilities _$InlayHintClientCapabilitiesFromJson(
     allowedKeys: const ['resolveSupport', 'dynamicRegistration'],
   );
   return _InlayHintClientCapabilities(
-    resolveSupport: _$recordConvert(
+    resolveSupport: _$recordConvertNullable(
       json['resolveSupport'],
       ($jsonValue) => (
         properties: ($jsonValue['properties'] as List<dynamic>)
@@ -9717,16 +10193,16 @@ _InlayHintClientCapabilities _$InlayHintClientCapabilitiesFromJson(
             .toList(),
       ),
     ),
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
 Map<String, dynamic> _$InlayHintClientCapabilitiesToJson(
   _InlayHintClientCapabilities instance,
 ) => <String, dynamic>{
-  'resolveSupport': <String, dynamic>{
-    'properties': instance.resolveSupport.properties,
-  },
+  'resolveSupport': instance.resolveSupport == null
+      ? null
+      : <String, dynamic>{'properties': instance.resolveSupport!.properties},
   'dynamicRegistration': instance.dynamicRegistration,
 };
 
@@ -9738,8 +10214,8 @@ _DiagnosticClientCapabilities _$DiagnosticClientCapabilitiesFromJson(
     allowedKeys: const ['relatedDocumentSupport', 'dynamicRegistration'],
   );
   return _DiagnosticClientCapabilities(
-    relatedDocumentSupport: json['relatedDocumentSupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    relatedDocumentSupport: json['relatedDocumentSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9754,7 +10230,7 @@ _InlineCompletionClientCapabilities
 _$InlineCompletionClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
   return _InlineCompletionClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9769,8 +10245,8 @@ _$NotebookDocumentSyncClientCapabilitiesFromJson(Map<String, dynamic> json) {
     allowedKeys: const ['executionSummarySupport', 'dynamicRegistration'],
   );
   return _NotebookDocumentSyncClientCapabilities(
-    executionSummarySupport: json['executionSummarySupport'] as bool,
-    dynamicRegistration: json['dynamicRegistration'] as bool,
+    executionSummarySupport: json['executionSummarySupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
 }
 
@@ -9785,7 +10261,7 @@ _ShowMessageRequestClientCapabilities
 _$ShowMessageRequestClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['messageActionItem']);
   return _ShowMessageRequestClientCapabilities(
-    messageActionItem: _$recordConvert(
+    messageActionItem: _$recordConvertNullable(
       json['messageActionItem'],
       ($jsonValue) => (
         additionalPropertiesSupport:
@@ -9798,10 +10274,12 @@ _$ShowMessageRequestClientCapabilitiesFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ShowMessageRequestClientCapabilitiesToJson(
   _ShowMessageRequestClientCapabilities instance,
 ) => <String, dynamic>{
-  'messageActionItem': <String, dynamic>{
-    'additionalPropertiesSupport':
-        instance.messageActionItem.additionalPropertiesSupport,
-  },
+  'messageActionItem': instance.messageActionItem == null
+      ? null
+      : <String, dynamic>{
+          'additionalPropertiesSupport':
+              instance.messageActionItem!.additionalPropertiesSupport,
+        },
 };
 
 _ShowDocumentClientCapabilities _$ShowDocumentClientCapabilitiesFromJson(
@@ -9820,7 +10298,7 @@ _$RegularExpressionsClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['engine', 'version']);
   return _RegularExpressionsClientCapabilities(
     engine: json['engine'] as String,
-    version: json['version'] as String,
+    version: json['version'] as String?,
   );
 }
 
@@ -9834,10 +10312,10 @@ _MarkdownClientCapabilities _$MarkdownClientCapabilitiesFromJson(
   $checkKeys(json, allowedKeys: const ['parser', 'allowedTags', 'version']);
   return _MarkdownClientCapabilities(
     parser: json['parser'] as String,
-    allowedTags: (json['allowedTags'] as List<dynamic>)
-        .map((e) => e as String)
+    allowedTags: (json['allowedTags'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    version: json['version'] as String,
+    version: json['version'] as String?,
   );
 }
 

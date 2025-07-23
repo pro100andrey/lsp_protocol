@@ -29,4 +29,12 @@ extension StringExtensions on String {
     final regex = RegExp('[A-Z][a-z]*|[A-Z]+(?![a-z])');
     return regex.allMatches(this).map((m) => m.group(0)!).toList();
   }
+
+  String optional({required bool optional}) {
+    if (isEmpty) {
+      return this;
+    }
+
+    return optional ? '$this?' : this;
+  }
 }

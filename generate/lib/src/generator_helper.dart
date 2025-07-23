@@ -1,6 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
+import 'extensions/string.dart';
 import 'meta/protocol.dart';
 import 'visiters/visitor.dart';
 
@@ -28,16 +29,15 @@ String specToCode(Spec spec, {bool format = true}) {
   return result;
 }
 
-String literalToRecord(LiteralRef ref, MetaReferenceVisitor visitor) {
+String literalToRecord(LiteralRef ref, MetaReferenceVisitor<String> visitor) {
   final record = RecordType(
     (rb) {
       final entries = <MapEntry<String, Reference>>[];
       for (final prop in ref.value.properties) {
         final propType = prop.type.resolveType(visitor);
         final propName = prop.name;
-        final typRefer = refer(
-          applyOptional(propType, isOptional: prop.optional),
-        );
+        final type = propType.optional(optional: prop.optional);
+        final typRefer = refer(type);
 
         entries.add(MapEntry(propName, typRefer));
 
@@ -53,7 +53,7 @@ String literalToRecord(LiteralRef ref, MetaReferenceVisitor visitor) {
 
 String tupleToRecord(
   TupleRef ref,
-  MetaReferenceVisitor visitor,
+  MetaReferenceVisitor<String> visitor,
 ) {
   final record = RecordType(
     (rb) {
@@ -68,7 +68,3 @@ String tupleToRecord(
 
   return result;
 }
-
-/// Appends '?' if the type is optional.
-String applyOptional(String type, {bool isOptional = false}) =>
-    isOptional ? '$type?' : type;
