@@ -54,21 +54,6 @@ final class SealedMap {
   List<String> typeNamesForOrRef(OrRef orRef) =>
       orRef.items.map(_resolveReferenceName).toList();
 
-  String resolveOneSimpleType(MetaReference ref) {
-    final name = ref
-        .when(
-          literalRef: (ref) => 'Literal',
-          typeRef: (ref) => ref.name,
-          orRef: resolveOrRefName,
-          arrayRef: (ref) => 'List',
-          baseRef: (ref) => ref.name,
-          tupleRef: (ref) => 'Tuple',
-        )
-        .upperFirstLetter();
-
-    return name;
-  }
-
   String resolveOrRefType(OrRef orRef, {bool isBase = true}) {
     final name = _resolveReferenceName(orRef).removeFirstLetter('_');
 

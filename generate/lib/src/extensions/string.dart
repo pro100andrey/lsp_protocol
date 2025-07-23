@@ -7,6 +7,14 @@ extension StringExtensions on String {
   String lowerFirstLetter() =>
       isEmpty ? this : this[0].toLowerCase() + substring(1);
 
+  String replaceFirstLetterIfExists(String letter, String replacement) {
+    if (isEmpty || this[0] != letter) {
+      return this;
+    }
+
+    return replacement + substring(1);
+  }
+
   /// Removes the first letter of the string if it exists.
   String removeFirstLetter(String letter) {
     if (isEmpty || this[0] != letter) {

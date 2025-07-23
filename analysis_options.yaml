@@ -1,5 +1,10 @@
 include: package:pro_lints/common.yaml
 
+analyzer:
+  exclude: 
+    - lib/src/generated/**.freezed.dart
+    - lib/src/generated/**.g.dart
+
 formatter: 
   page_width: 80
   trailing_commas: preserve
