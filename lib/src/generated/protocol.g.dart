@@ -6,221 +6,173 @@ part of 'protocol.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Definition0 _$Definition0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('Definition0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = Definition0(
-        value: $checkedConvert(
-          'value',
-          (v) => Location.fromJson(v as Map<String, dynamic>),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+Definition0 _$Definition0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return Definition0(
+    value: Location.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$Definition0ToJson(Definition0 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-Definition1 _$Definition1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('Definition1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = Definition1(
-        value: $checkedConvert(
-          'value',
-          (v) => (v as List<dynamic>)
-              .map((e) => Location.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+Definition1 _$Definition1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return Definition1(
+    value: (json['value'] as List<dynamic>)
+        .map((e) => Location.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$Definition1ToJson(Definition1 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-LSPAny0 _$LSPAny0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('LSPAny0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = LSPAny0(
-        value: $checkedConvert(
-          'value',
-          (v) => (v as Map<String, dynamic>).map(
-            (k, e) =>
-                MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
-          ),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+LSPAny0 _$LSPAny0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny0(
+    value: (json['value'] as Map<String, dynamic>).map(
+      (k, e) => MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$LSPAny0ToJson(LSPAny0 instance) => <String, dynamic>{
   'value': instance.value,
   'runtimeType': instance.$type,
 };
 
-LSPAny1 _$LSPAny1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('LSPAny1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = LSPAny1(
-        value: $checkedConvert(
-          'value',
-          (v) => (v as List<dynamic>)
-              .map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+LSPAny1 _$LSPAny1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny1(
+    value: (json['value'] as List<dynamic>)
+        .map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$LSPAny1ToJson(LSPAny1 instance) => <String, dynamic>{
   'value': instance.value,
   'runtimeType': instance.$type,
 };
 
-LSPAny2 _$LSPAny2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('LSPAny2', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = LSPAny2(
-        value: $checkedConvert('value', (v) => v as String),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+LSPAny2 _$LSPAny2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny2(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$LSPAny2ToJson(LSPAny2 instance) => <String, dynamic>{
   'value': instance.value,
   'runtimeType': instance.$type,
 };
 
-LSPAny3 _$LSPAny3FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('LSPAny3', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = LSPAny3(
-        value: $checkedConvert('value', (v) => (v as num).toInt()),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+LSPAny3 _$LSPAny3FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny3(
+    value: (json['value'] as num).toInt(),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$LSPAny3ToJson(LSPAny3 instance) => <String, dynamic>{
   'value': instance.value,
   'runtimeType': instance.$type,
 };
 
-LSPAny4 _$LSPAny4FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('LSPAny4', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = LSPAny4(
-        value: $checkedConvert('value', (v) => (v as num).toInt()),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+LSPAny4 _$LSPAny4FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny4(
+    value: (json['value'] as num).toInt(),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$LSPAny4ToJson(LSPAny4 instance) => <String, dynamic>{
   'value': instance.value,
   'runtimeType': instance.$type,
 };
 
-LSPAny5 _$LSPAny5FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('LSPAny5', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = LSPAny5(
-        value: $checkedConvert('value', (v) => (v as num).toDouble()),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+LSPAny5 _$LSPAny5FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny5(
+    value: (json['value'] as num).toDouble(),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$LSPAny5ToJson(LSPAny5 instance) => <String, dynamic>{
   'value': instance.value,
   'runtimeType': instance.$type,
 };
 
-LSPAny6 _$LSPAny6FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('LSPAny6', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = LSPAny6(
-        value: $checkedConvert('value', (v) => v as bool),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+LSPAny6 _$LSPAny6FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny6(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$LSPAny6ToJson(LSPAny6 instance) => <String, dynamic>{
   'value': instance.value,
   'runtimeType': instance.$type,
 };
 
-InlineValue0 _$InlineValue0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('InlineValue0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = InlineValue0(
-        value: $checkedConvert(
-          'value',
-          (v) => InlineValueText.fromJson(v as Map<String, dynamic>),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+InlineValue0 _$InlineValue0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineValue0(
+    value: InlineValueText.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$InlineValue0ToJson(InlineValue0 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-InlineValue1 _$InlineValue1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('InlineValue1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = InlineValue1(
-        value: $checkedConvert(
-          'value',
-          (v) => InlineValueVariableLookup.fromJson(v as Map<String, dynamic>),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+InlineValue1 _$InlineValue1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineValue1(
+    value: InlineValueVariableLookup.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$InlineValue1ToJson(InlineValue1 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-InlineValue2 _$InlineValue2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('InlineValue2', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = InlineValue2(
-        value: $checkedConvert(
-          'value',
-          (v) => InlineValueEvaluatableExpression.fromJson(
-            v as Map<String, dynamic>,
-          ),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+InlineValue2 _$InlineValue2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineValue2(
+    value: InlineValueEvaluatableExpression.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$InlineValue2ToJson(InlineValue2 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 DocumentDiagnosticReport0 _$DocumentDiagnosticReport0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('DocumentDiagnosticReport0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = DocumentDiagnosticReport0(
-    value: $checkedConvert(
-      'value',
-      (v) => RelatedFullDocumentDiagnosticReport.fromJson(
-        v as Map<String, dynamic>,
-      ),
+  return DocumentDiagnosticReport0(
+    value: RelatedFullDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$DocumentDiagnosticReport0ToJson(
   DocumentDiagnosticReport0 instance,
@@ -228,61 +180,45 @@ Map<String, dynamic> _$DocumentDiagnosticReport0ToJson(
 
 DocumentDiagnosticReport1 _$DocumentDiagnosticReport1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('DocumentDiagnosticReport1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = DocumentDiagnosticReport1(
-    value: $checkedConvert(
-      'value',
-      (v) => RelatedUnchangedDocumentDiagnosticReport.fromJson(
-        v as Map<String, dynamic>,
-      ),
+  return DocumentDiagnosticReport1(
+    value: RelatedUnchangedDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$DocumentDiagnosticReport1ToJson(
   DocumentDiagnosticReport1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-PrepareRenameResult0 _$PrepareRenameResult0FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('PrepareRenameResult0', json, ($checkedConvert) {
+PrepareRenameResult0 _$PrepareRenameResult0FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = PrepareRenameResult0(
-    value: $checkedConvert(
-      'value',
-      (v) => Range.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return PrepareRenameResult0(
+    value: Range.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$PrepareRenameResult0ToJson(
   PrepareRenameResult0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-PrepareRenameResult1 _$PrepareRenameResult1FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('PrepareRenameResult1', json, ($checkedConvert) {
+PrepareRenameResult1 _$PrepareRenameResult1FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = PrepareRenameResult1(
-    value: $checkedConvert(
-      'value',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) => (
-          placeholder: $jsonValue['placeholder'] as String,
-          range: Range.fromJson($jsonValue['range'] as Map<String, dynamic>),
-        ),
+  return PrepareRenameResult1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        placeholder: $jsonValue['placeholder'] as String,
+        range: Range.fromJson($jsonValue['range'] as Map<String, dynamic>),
       ),
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$PrepareRenameResult1ToJson(
   PrepareRenameResult1 instance,
@@ -297,23 +233,16 @@ Map<String, dynamic> _$PrepareRenameResult1ToJson(
 $Rec _$recordConvert<$Rec>(Object? value, $Rec Function(Map) convert) =>
     convert(value as Map<String, dynamic>);
 
-PrepareRenameResult2 _$PrepareRenameResult2FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('PrepareRenameResult2', json, ($checkedConvert) {
+PrepareRenameResult2 _$PrepareRenameResult2FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = PrepareRenameResult2(
-    value: $checkedConvert(
-      'value',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) =>
-            (defaultBehavior: $jsonValue['defaultBehavior'] as bool),
-      ),
+  return PrepareRenameResult2(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (defaultBehavior: $jsonValue['defaultBehavior'] as bool),
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$PrepareRenameResult2ToJson(
   PrepareRenameResult2 instance,
@@ -322,52 +251,39 @@ Map<String, dynamic> _$PrepareRenameResult2ToJson(
   'runtimeType': instance.$type,
 };
 
-ProgressToken0 _$ProgressToken0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ProgressToken0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = ProgressToken0(
-        value: $checkedConvert('value', (v) => (v as num).toInt()),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+ProgressToken0 _$ProgressToken0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ProgressToken0(
+    value: (json['value'] as num).toInt(),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ProgressToken0ToJson(ProgressToken0 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-ProgressToken1 _$ProgressToken1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ProgressToken1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = ProgressToken1(
-        value: $checkedConvert('value', (v) => v as String),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+ProgressToken1 _$ProgressToken1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ProgressToken1(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ProgressToken1ToJson(ProgressToken1 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 WorkspaceDocumentDiagnosticReport0 _$WorkspaceDocumentDiagnosticReport0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'WorkspaceDocumentDiagnosticReport0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = WorkspaceDocumentDiagnosticReport0(
-      value: $checkedConvert(
-        'value',
-        (v) => WorkspaceFullDocumentDiagnosticReport.fromJson(
-          v as Map<String, dynamic>,
-        ),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceDocumentDiagnosticReport0(
+    value: WorkspaceFullDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$WorkspaceDocumentDiagnosticReport0ToJson(
   WorkspaceDocumentDiagnosticReport0 instance,
@@ -375,24 +291,15 @@ Map<String, dynamic> _$WorkspaceDocumentDiagnosticReport0ToJson(
 
 WorkspaceDocumentDiagnosticReport1 _$WorkspaceDocumentDiagnosticReport1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'WorkspaceDocumentDiagnosticReport1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = WorkspaceDocumentDiagnosticReport1(
-      value: $checkedConvert(
-        'value',
-        (v) => WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
-          v as Map<String, dynamic>,
-        ),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceDocumentDiagnosticReport1(
+    value: WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$WorkspaceDocumentDiagnosticReport1ToJson(
   WorkspaceDocumentDiagnosticReport1 instance,
@@ -400,29 +307,20 @@ Map<String, dynamic> _$WorkspaceDocumentDiagnosticReport1ToJson(
 
 TextDocumentContentChangeEvent0 _$TextDocumentContentChangeEvent0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'TextDocumentContentChangeEvent0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = TextDocumentContentChangeEvent0(
-      value: $checkedConvert(
-        'value',
-        (v) => _$recordConvert(
-          v,
-          ($jsonValue) => (
-            range: Range.fromJson($jsonValue['range'] as Map<String, dynamic>),
-            rangeLength: ($jsonValue['rangeLength'] as num?)?.toInt(),
-            text: $jsonValue['text'] as String,
-          ),
-        ),
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentContentChangeEvent0(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        range: Range.fromJson($jsonValue['range'] as Map<String, dynamic>),
+        rangeLength: ($jsonValue['rangeLength'] as num?)?.toInt(),
+        text: $jsonValue['text'] as String,
       ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$TextDocumentContentChangeEvent0ToJson(
   TextDocumentContentChangeEvent0 instance,
@@ -437,25 +335,16 @@ Map<String, dynamic> _$TextDocumentContentChangeEvent0ToJson(
 
 TextDocumentContentChangeEvent1 _$TextDocumentContentChangeEvent1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'TextDocumentContentChangeEvent1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = TextDocumentContentChangeEvent1(
-      value: $checkedConvert(
-        'value',
-        (v) => _$recordConvert(
-          v,
-          ($jsonValue) => (text: $jsonValue['text'] as String),
-        ),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentContentChangeEvent1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (text: $jsonValue['text'] as String),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$TextDocumentContentChangeEvent1ToJson(
   TextDocumentContentChangeEvent1 instance,
@@ -464,37 +353,30 @@ Map<String, dynamic> _$TextDocumentContentChangeEvent1ToJson(
   'runtimeType': instance.$type,
 };
 
-MarkedString0 _$MarkedString0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('MarkedString0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = MarkedString0(
-        value: $checkedConvert('value', (v) => v as String),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+MarkedString0 _$MarkedString0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return MarkedString0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$MarkedString0ToJson(MarkedString0 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-MarkedString1 _$MarkedString1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('MarkedString1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = MarkedString1(
-        value: $checkedConvert(
-          'value',
-          (v) => _$recordConvert(
-            v,
-            ($jsonValue) => (
-              language: $jsonValue['language'] as String,
-              value: $jsonValue['value'] as String,
-            ),
-          ),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+MarkedString1 _$MarkedString1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return MarkedString1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        language: $jsonValue['language'] as String,
+        value: $jsonValue['value'] as String,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$MarkedString1ToJson(MarkedString1 instance) =>
     <String, dynamic>{
@@ -505,88 +387,68 @@ Map<String, dynamic> _$MarkedString1ToJson(MarkedString1 instance) =>
       'runtimeType': instance.$type,
     };
 
-DocumentFilter0 _$DocumentFilter0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('DocumentFilter0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = DocumentFilter0(
-        value: $checkedConvert(
-          'value',
-          (v) => TextDocumentFilterBase.fromJson(v as Map<String, dynamic>),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+DocumentFilter0 _$DocumentFilter0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DocumentFilter0(
+    value: TextDocumentFilterBase.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$DocumentFilter0ToJson(DocumentFilter0 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-DocumentFilter1 _$DocumentFilter1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('DocumentFilter1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = DocumentFilter1(
-        value: $checkedConvert(
-          'value',
-          (v) => NotebookCellTextDocumentFilter.fromJson(
-            v as Map<String, dynamic>,
-          ),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+DocumentFilter1 _$DocumentFilter1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DocumentFilter1(
+    value: NotebookCellTextDocumentFilter.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$DocumentFilter1ToJson(DocumentFilter1 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-GlobPattern0 _$GlobPattern0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('GlobPattern0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = GlobPattern0(
-        value: $checkedConvert('value', (v) => v as String),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+GlobPattern0 _$GlobPattern0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return GlobPattern0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$GlobPattern0ToJson(GlobPattern0 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-GlobPattern1 _$GlobPattern1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('GlobPattern1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = GlobPattern1(
-        value: $checkedConvert(
-          'value',
-          (v) => RelativePattern.fromJson(v as Map<String, dynamic>),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+GlobPattern1 _$GlobPattern1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return GlobPattern1(
+    value: RelativePattern.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$GlobPattern1ToJson(GlobPattern1 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-TextDocumentFilter0 _$TextDocumentFilter0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('TextDocumentFilter0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = TextDocumentFilter0(
-        value: $checkedConvert(
-          'value',
-          (v) => _$recordConvert(
-            v,
-            ($jsonValue) => (
-              language: $jsonValue['language'] as String,
-              pattern: $jsonValue['pattern'] as String?,
-              scheme: $jsonValue['scheme'] as String?,
-            ),
-          ),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+TextDocumentFilter0 _$TextDocumentFilter0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentFilter0(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        language: $jsonValue['language'] as String,
+        pattern: $jsonValue['pattern'] as String?,
+        scheme: $jsonValue['scheme'] as String?,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$TextDocumentFilter0ToJson(
   TextDocumentFilter0 instance,
@@ -599,25 +461,20 @@ Map<String, dynamic> _$TextDocumentFilter0ToJson(
   'runtimeType': instance.$type,
 };
 
-TextDocumentFilter1 _$TextDocumentFilter1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('TextDocumentFilter1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = TextDocumentFilter1(
-        value: $checkedConvert(
-          'value',
-          (v) => _$recordConvert(
-            v,
-            ($jsonValue) => (
-              language: $jsonValue['language'] as String?,
-              pattern: $jsonValue['pattern'] as String?,
-              scheme: $jsonValue['scheme'] as String,
-            ),
-          ),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+TextDocumentFilter1 _$TextDocumentFilter1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentFilter1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        language: $jsonValue['language'] as String?,
+        pattern: $jsonValue['pattern'] as String?,
+        scheme: $jsonValue['scheme'] as String,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$TextDocumentFilter1ToJson(
   TextDocumentFilter1 instance,
@@ -630,25 +487,20 @@ Map<String, dynamic> _$TextDocumentFilter1ToJson(
   'runtimeType': instance.$type,
 };
 
-TextDocumentFilter2 _$TextDocumentFilter2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('TextDocumentFilter2', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = TextDocumentFilter2(
-        value: $checkedConvert(
-          'value',
-          (v) => _$recordConvert(
-            v,
-            ($jsonValue) => (
-              language: $jsonValue['language'] as String?,
-              pattern: $jsonValue['pattern'] as String,
-              scheme: $jsonValue['scheme'] as String?,
-            ),
-          ),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+TextDocumentFilter2 _$TextDocumentFilter2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentFilter2(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        language: $jsonValue['language'] as String?,
+        pattern: $jsonValue['pattern'] as String,
+        scheme: $jsonValue['scheme'] as String?,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$TextDocumentFilter2ToJson(
   TextDocumentFilter2 instance,
@@ -663,24 +515,20 @@ Map<String, dynamic> _$TextDocumentFilter2ToJson(
 
 NotebookDocumentFilter0 _$NotebookDocumentFilter0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('NotebookDocumentFilter0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = NotebookDocumentFilter0(
-    value: $checkedConvert(
-      'value',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) => (
-          notebookType: $jsonValue['notebookType'] as String,
-          pattern: $jsonValue['pattern'] as String?,
-          scheme: $jsonValue['scheme'] as String?,
-        ),
+  return NotebookDocumentFilter0(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        notebookType: $jsonValue['notebookType'] as String,
+        pattern: $jsonValue['pattern'] as String?,
+        scheme: $jsonValue['scheme'] as String?,
       ),
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$NotebookDocumentFilter0ToJson(
   NotebookDocumentFilter0 instance,
@@ -695,24 +543,20 @@ Map<String, dynamic> _$NotebookDocumentFilter0ToJson(
 
 NotebookDocumentFilter1 _$NotebookDocumentFilter1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('NotebookDocumentFilter1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = NotebookDocumentFilter1(
-    value: $checkedConvert(
-      'value',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) => (
-          notebookType: $jsonValue['notebookType'] as String?,
-          pattern: $jsonValue['pattern'] as String?,
-          scheme: $jsonValue['scheme'] as String,
-        ),
+  return NotebookDocumentFilter1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        notebookType: $jsonValue['notebookType'] as String?,
+        pattern: $jsonValue['pattern'] as String?,
+        scheme: $jsonValue['scheme'] as String,
       ),
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$NotebookDocumentFilter1ToJson(
   NotebookDocumentFilter1 instance,
@@ -727,24 +571,20 @@ Map<String, dynamic> _$NotebookDocumentFilter1ToJson(
 
 NotebookDocumentFilter2 _$NotebookDocumentFilter2FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('NotebookDocumentFilter2', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = NotebookDocumentFilter2(
-    value: $checkedConvert(
-      'value',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) => (
-          notebookType: $jsonValue['notebookType'] as String?,
-          pattern: $jsonValue['pattern'] as String,
-          scheme: $jsonValue['scheme'] as String?,
-        ),
+  return NotebookDocumentFilter2(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        notebookType: $jsonValue['notebookType'] as String?,
+        pattern: $jsonValue['pattern'] as String,
+        scheme: $jsonValue['scheme'] as String?,
       ),
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$NotebookDocumentFilter2ToJson(
   NotebookDocumentFilter2 instance,
@@ -760,20 +600,14 @@ Map<String, dynamic> _$NotebookDocumentFilter2ToJson(
 TextDocumentRegistrationOptionsDocumentSelector0
 _$TextDocumentRegistrationOptionsDocumentSelector0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('TextDocumentRegistrationOptionsDocumentSelector0', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['value']);
-  final val = TextDocumentRegistrationOptionsDocumentSelector0(
-    value: $checkedConvert(
-      'value',
-      (v) => (v as List<dynamic>)
-          .map((e) => DocumentFilterBase.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return TextDocumentRegistrationOptionsDocumentSelector0(
+    value: (json['value'] as List<dynamic>)
+        .map((e) => DocumentFilterBase.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TextDocumentRegistrationOptionsDocumentSelector0ToJson(
   TextDocumentRegistrationOptionsDocumentSelector0 instance,
@@ -781,17 +615,13 @@ Map<String, dynamic> _$TextDocumentRegistrationOptionsDocumentSelector0ToJson(
 
 WorkspaceEditDocumentChanges0 _$WorkspaceEditDocumentChanges0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('WorkspaceEditDocumentChanges0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = WorkspaceEditDocumentChanges0(
-    value: $checkedConvert(
-      'value',
-      (v) => TextDocumentEdit.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return WorkspaceEditDocumentChanges0(
+    value: TextDocumentEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$WorkspaceEditDocumentChanges0ToJson(
   WorkspaceEditDocumentChanges0 instance,
@@ -799,17 +629,13 @@ Map<String, dynamic> _$WorkspaceEditDocumentChanges0ToJson(
 
 WorkspaceEditDocumentChanges1 _$WorkspaceEditDocumentChanges1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('WorkspaceEditDocumentChanges1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = WorkspaceEditDocumentChanges1(
-    value: $checkedConvert(
-      'value',
-      (v) => CreateFile.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return WorkspaceEditDocumentChanges1(
+    value: CreateFile.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$WorkspaceEditDocumentChanges1ToJson(
   WorkspaceEditDocumentChanges1 instance,
@@ -817,17 +643,13 @@ Map<String, dynamic> _$WorkspaceEditDocumentChanges1ToJson(
 
 WorkspaceEditDocumentChanges2 _$WorkspaceEditDocumentChanges2FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('WorkspaceEditDocumentChanges2', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = WorkspaceEditDocumentChanges2(
-    value: $checkedConvert(
-      'value',
-      (v) => RenameFile.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return WorkspaceEditDocumentChanges2(
+    value: RenameFile.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$WorkspaceEditDocumentChanges2ToJson(
   WorkspaceEditDocumentChanges2 instance,
@@ -835,65 +657,51 @@ Map<String, dynamic> _$WorkspaceEditDocumentChanges2ToJson(
 
 WorkspaceEditDocumentChanges3 _$WorkspaceEditDocumentChanges3FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('WorkspaceEditDocumentChanges3', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = WorkspaceEditDocumentChanges3(
-    value: $checkedConvert(
-      'value',
-      (v) => DeleteFile.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return WorkspaceEditDocumentChanges3(
+    value: DeleteFile.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$WorkspaceEditDocumentChanges3ToJson(
   WorkspaceEditDocumentChanges3 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-InlayHintLabel0 _$InlayHintLabel0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('InlayHintLabel0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = InlayHintLabel0(
-        value: $checkedConvert('value', (v) => v as String),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+InlayHintLabel0 _$InlayHintLabel0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlayHintLabel0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$InlayHintLabel0ToJson(InlayHintLabel0 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-InlayHintLabel1 _$InlayHintLabel1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('InlayHintLabel1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = InlayHintLabel1(
-        value: $checkedConvert(
-          'value',
-          (v) => (v as List<dynamic>)
-              .map(
-                (e) => InlayHintLabelPart.fromJson(e as Map<String, dynamic>),
-              )
-              .toList(),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+InlayHintLabel1 _$InlayHintLabel1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlayHintLabel1(
+    value: (json['value'] as List<dynamic>)
+        .map((e) => InlayHintLabelPart.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$InlayHintLabel1ToJson(InlayHintLabel1 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 TooltipOrDocumentation0 _$TooltipOrDocumentation0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('TooltipOrDocumentation0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = TooltipOrDocumentation0(
-    value: $checkedConvert('value', (v) => v as String),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return TooltipOrDocumentation0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$TooltipOrDocumentation0ToJson(
   TooltipOrDocumentation0 instance,
@@ -901,72 +709,53 @@ Map<String, dynamic> _$TooltipOrDocumentation0ToJson(
 
 TooltipOrDocumentation1 _$TooltipOrDocumentation1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('TooltipOrDocumentation1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = TooltipOrDocumentation1(
-    value: $checkedConvert(
-      'value',
-      (v) => MarkupContent.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return TooltipOrDocumentation1(
+    value: MarkupContent.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$TooltipOrDocumentation1ToJson(
   TooltipOrDocumentation1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-RelatedDocuments0 _$RelatedDocuments0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('RelatedDocuments0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = RelatedDocuments0(
-        value: $checkedConvert(
-          'value',
-          (v) =>
-              FullDocumentDiagnosticReport.fromJson(v as Map<String, dynamic>),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+RelatedDocuments0 _$RelatedDocuments0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return RelatedDocuments0(
+    value: FullDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$RelatedDocuments0ToJson(RelatedDocuments0 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-RelatedDocuments1 _$RelatedDocuments1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('RelatedDocuments1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = RelatedDocuments1(
-        value: $checkedConvert(
-          'value',
-          (v) => UnchangedDocumentDiagnosticReport.fromJson(
-            v as Map<String, dynamic>,
-          ),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+RelatedDocuments1 _$RelatedDocuments1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return RelatedDocuments1(
+    value: UnchangedDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$RelatedDocuments1ToJson(RelatedDocuments1 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 InlineCompletionItemInsertText0 _$InlineCompletionItemInsertText0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'InlineCompletionItemInsertText0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = InlineCompletionItemInsertText0(
-      value: $checkedConvert('value', (v) => v as String),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineCompletionItemInsertText0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$InlineCompletionItemInsertText0ToJson(
   InlineCompletionItemInsertText0 instance,
@@ -974,22 +763,13 @@ Map<String, dynamic> _$InlineCompletionItemInsertText0ToJson(
 
 InlineCompletionItemInsertText1 _$InlineCompletionItemInsertText1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'InlineCompletionItemInsertText1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = InlineCompletionItemInsertText1(
-      value: $checkedConvert(
-        'value',
-        (v) => StringValue.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineCompletionItemInsertText1(
+    value: StringValue.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$InlineCompletionItemInsertText1ToJson(
   InlineCompletionItemInsertText1 instance,
@@ -998,19 +778,13 @@ Map<String, dynamic> _$InlineCompletionItemInsertText1ToJson(
 DidChangeConfigurationRegistrationOptionsSection0
 _$DidChangeConfigurationRegistrationOptionsSection0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'DidChangeConfigurationRegistrationOptionsSection0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = DidChangeConfigurationRegistrationOptionsSection0(
-      value: $checkedConvert('value', (v) => v as String),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DidChangeConfigurationRegistrationOptionsSection0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$DidChangeConfigurationRegistrationOptionsSection0ToJson(
   DidChangeConfigurationRegistrationOptionsSection0 instance,
@@ -1019,22 +793,13 @@ Map<String, dynamic> _$DidChangeConfigurationRegistrationOptionsSection0ToJson(
 DidChangeConfigurationRegistrationOptionsSection1
 _$DidChangeConfigurationRegistrationOptionsSection1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'DidChangeConfigurationRegistrationOptionsSection1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = DidChangeConfigurationRegistrationOptionsSection1(
-      value: $checkedConvert(
-        'value',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DidChangeConfigurationRegistrationOptionsSection1(
+    value: (json['value'] as List<dynamic>).map((e) => e as String).toList(),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$DidChangeConfigurationRegistrationOptionsSection1ToJson(
   DidChangeConfigurationRegistrationOptionsSection1 instance,
@@ -1042,17 +807,13 @@ Map<String, dynamic> _$DidChangeConfigurationRegistrationOptionsSection1ToJson(
 
 CompletionItemTextEdit0 _$CompletionItemTextEdit0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('CompletionItemTextEdit0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = CompletionItemTextEdit0(
-    value: $checkedConvert(
-      'value',
-      (v) => TextEdit.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return CompletionItemTextEdit0(
+    value: TextEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$CompletionItemTextEdit0ToJson(
   CompletionItemTextEdit0 instance,
@@ -1060,17 +821,13 @@ Map<String, dynamic> _$CompletionItemTextEdit0ToJson(
 
 CompletionItemTextEdit1 _$CompletionItemTextEdit1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('CompletionItemTextEdit1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = CompletionItemTextEdit1(
-    value: $checkedConvert(
-      'value',
-      (v) => InsertReplaceEdit.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return CompletionItemTextEdit1(
+    value: InsertReplaceEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$CompletionItemTextEdit1ToJson(
   CompletionItemTextEdit1 instance,
@@ -1078,17 +835,13 @@ Map<String, dynamic> _$CompletionItemTextEdit1ToJson(
 
 CompletionListEditRange0 _$CompletionListEditRange0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('CompletionListEditRange0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = CompletionListEditRange0(
-    value: $checkedConvert(
-      'value',
-      (v) => Range.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return CompletionListEditRange0(
+    value: Range.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$CompletionListEditRange0ToJson(
   CompletionListEditRange0 instance,
@@ -1096,25 +849,19 @@ Map<String, dynamic> _$CompletionListEditRange0ToJson(
 
 CompletionListEditRange1 _$CompletionListEditRange1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('CompletionListEditRange1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = CompletionListEditRange1(
-    value: $checkedConvert(
-      'value',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) => (
-          insert: Range.fromJson($jsonValue['insert'] as Map<String, dynamic>),
-          replace: Range.fromJson(
-            $jsonValue['replace'] as Map<String, dynamic>,
-          ),
-        ),
+  return CompletionListEditRange1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        insert: Range.fromJson($jsonValue['insert'] as Map<String, dynamic>),
+        replace: Range.fromJson($jsonValue['replace'] as Map<String, dynamic>),
       ),
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$CompletionListEditRange1ToJson(
   CompletionListEditRange1 instance,
@@ -1126,69 +873,50 @@ Map<String, dynamic> _$CompletionListEditRange1ToJson(
   'runtimeType': instance.$type,
 };
 
-HoverContents0 _$HoverContents0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('HoverContents0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = HoverContents0(
-        value: $checkedConvert(
-          'value',
-          (v) => MarkupContent.fromJson(v as Map<String, dynamic>),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+HoverContents0 _$HoverContents0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return HoverContents0(
+    value: MarkupContent.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$HoverContents0ToJson(HoverContents0 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-HoverContents1 _$HoverContents1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('HoverContents1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = HoverContents1(
-        value: $checkedConvert(
-          'value',
-          (v) => MarkedStringBase.fromJson(v as Map<String, dynamic>),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+HoverContents1 _$HoverContents1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return HoverContents1(
+    value: MarkedStringBase.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$HoverContents1ToJson(HoverContents1 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-HoverContents2 _$HoverContents2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('HoverContents2', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = HoverContents2(
-        value: $checkedConvert(
-          'value',
-          (v) => (v as List<dynamic>)
-              .map((e) => MarkedStringBase.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+HoverContents2 _$HoverContents2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return HoverContents2(
+    value: (json['value'] as List<dynamic>)
+        .map((e) => MarkedStringBase.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$HoverContents2ToJson(HoverContents2 instance) =>
     <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 WorkspaceSymbolLocation0 _$WorkspaceSymbolLocation0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('WorkspaceSymbolLocation0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = WorkspaceSymbolLocation0(
-    value: $checkedConvert(
-      'value',
-      (v) => Location.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return WorkspaceSymbolLocation0(
+    value: Location.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$WorkspaceSymbolLocation0ToJson(
   WorkspaceSymbolLocation0 instance,
@@ -1196,20 +924,16 @@ Map<String, dynamic> _$WorkspaceSymbolLocation0ToJson(
 
 WorkspaceSymbolLocation1 _$WorkspaceSymbolLocation1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('WorkspaceSymbolLocation1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = WorkspaceSymbolLocation1(
-    value: $checkedConvert(
-      'value',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) => (uri: $jsonValue['uri'] as String),
-      ),
+  return WorkspaceSymbolLocation1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (uri: $jsonValue['uri'] as String),
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$WorkspaceSymbolLocation1ToJson(
   WorkspaceSymbolLocation1 instance,
@@ -1218,30 +942,23 @@ Map<String, dynamic> _$WorkspaceSymbolLocation1ToJson(
   'runtimeType': instance.$type,
 };
 
-Range0 _$Range0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('Range0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = Range0(
-        value: $checkedConvert('value', (v) => v as bool),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+Range0 _$Range0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return Range0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$Range0ToJson(Range0 instance) => <String, dynamic>{
   'value': instance.value,
   'runtimeType': instance.$type,
 };
 
-Range1 _$Range1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('Range1', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-      final val = Range1(
-        value: $checkedConvert('value', (v) => ()),
-        $type: $checkedConvert('runtimeType', (v) => v as String?),
-      );
-      return val;
-    }, fieldKeyMap: const {r'$type': 'runtimeType'});
+Range1 _$Range1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return Range1(value: (), $type: json['runtimeType'] as String?);
+}
 
 Map<String, dynamic> _$Range1ToJson(Range1 instance) => <String, dynamic>{
   'value': <String, dynamic>{},
@@ -1250,14 +967,13 @@ Map<String, dynamic> _$Range1ToJson(Range1 instance) => <String, dynamic>{
 
 SemanticTokensOptionsFull0 _$SemanticTokensOptionsFull0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('SemanticTokensOptionsFull0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = SemanticTokensOptionsFull0(
-    value: $checkedConvert('value', (v) => v as bool),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return SemanticTokensOptionsFull0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$SemanticTokensOptionsFull0ToJson(
   SemanticTokensOptionsFull0 instance,
@@ -1265,20 +981,16 @@ Map<String, dynamic> _$SemanticTokensOptionsFull0ToJson(
 
 SemanticTokensOptionsFull1 _$SemanticTokensOptionsFull1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('SemanticTokensOptionsFull1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = SemanticTokensOptionsFull1(
-    value: $checkedConvert(
-      'value',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) => (delta: $jsonValue['delta'] as bool?),
-      ),
+  return SemanticTokensOptionsFull1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (delta: $jsonValue['delta'] as bool?),
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$SemanticTokensOptionsFull1ToJson(
   SemanticTokensOptionsFull1 instance,
@@ -1289,17 +1001,13 @@ Map<String, dynamic> _$SemanticTokensOptionsFull1ToJson(
 
 TextDocumentEditEdits0 _$TextDocumentEditEdits0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('TextDocumentEditEdits0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = TextDocumentEditEdits0(
-    value: $checkedConvert(
-      'value',
-      (v) => TextEdit.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return TextDocumentEditEdits0(
+    value: TextEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$TextDocumentEditEdits0ToJson(
   TextDocumentEditEdits0 instance,
@@ -1307,30 +1015,22 @@ Map<String, dynamic> _$TextDocumentEditEdits0ToJson(
 
 TextDocumentEditEdits1 _$TextDocumentEditEdits1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('TextDocumentEditEdits1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = TextDocumentEditEdits1(
-    value: $checkedConvert(
-      'value',
-      (v) => AnnotatedTextEdit.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return TextDocumentEditEdits1(
+    value: AnnotatedTextEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$TextDocumentEditEdits1ToJson(
   TextDocumentEditEdits1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
-ProcessIdOrVersion0 _$ProcessIdOrVersion0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ProcessIdOrVersion0', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value']);
-      final val = ProcessIdOrVersion0(
-        value: $checkedConvert('value', (v) => (v as num).toInt()),
-      );
-      return val;
-    });
+ProcessIdOrVersion0 _$ProcessIdOrVersion0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value']);
+  return ProcessIdOrVersion0(value: (json['value'] as num).toInt());
+}
 
 Map<String, dynamic> _$ProcessIdOrVersion0ToJson(
   ProcessIdOrVersion0 instance,
@@ -1338,13 +1038,10 @@ Map<String, dynamic> _$ProcessIdOrVersion0ToJson(
 
 InitializeParamsRootPath0 _$InitializeParamsRootPath0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('InitializeParamsRootPath0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value']);
-  final val = InitializeParamsRootPath0(
-    value: $checkedConvert('value', (v) => v as String),
-  );
-  return val;
-});
+  return InitializeParamsRootPath0(value: json['value'] as String);
+}
 
 Map<String, dynamic> _$InitializeParamsRootPath0ToJson(
   InitializeParamsRootPath0 instance,
@@ -1352,13 +1049,10 @@ Map<String, dynamic> _$InitializeParamsRootPath0ToJson(
 
 InitializeParamsRootUri0 _$InitializeParamsRootUri0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('InitializeParamsRootUri0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value']);
-  final val = InitializeParamsRootUri0(
-    value: $checkedConvert('value', (v) => v as String),
-  );
-  return val;
-});
+  return InitializeParamsRootUri0(value: json['value'] as String);
+}
 
 Map<String, dynamic> _$InitializeParamsRootUri0ToJson(
   InitializeParamsRootUri0 instance,
@@ -1367,66 +1061,42 @@ Map<String, dynamic> _$InitializeParamsRootUri0ToJson(
 WorkspaceFoldersInitializeParamsWorkspaceFolders0
 _$WorkspaceFoldersInitializeParamsWorkspaceFolders0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('WorkspaceFoldersInitializeParamsWorkspaceFolders0', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['value']);
-  final val = WorkspaceFoldersInitializeParamsWorkspaceFolders0(
-    value: $checkedConvert(
-      'value',
-      (v) => (v as List<dynamic>)
-          .map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return WorkspaceFoldersInitializeParamsWorkspaceFolders0(
+    value: (json['value'] as List<dynamic>)
+        .map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceFoldersInitializeParamsWorkspaceFolders0ToJson(
   WorkspaceFoldersInitializeParamsWorkspaceFolders0 instance,
 ) => <String, dynamic>{'value': instance.value};
 
 ServerCapabilitiesTextDocumentSync0
-_$ServerCapabilitiesTextDocumentSync0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesTextDocumentSync0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesTextDocumentSync0(
-          value: $checkedConvert(
-            'value',
-            (v) => TextDocumentSyncOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesTextDocumentSync0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTextDocumentSync0(
+    value: TextDocumentSyncOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesTextDocumentSync0ToJson(
   ServerCapabilitiesTextDocumentSync0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesTextDocumentSync1
-_$ServerCapabilitiesTextDocumentSync1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesTextDocumentSync1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesTextDocumentSync1(
-          value: $checkedConvert(
-            'value',
-            (v) => $enumDecode(_$TextDocumentSyncKindEnumMap, v),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesTextDocumentSync1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTextDocumentSync1(
+    value: $enumDecode(_$TextDocumentSyncKindEnumMap, json['value']),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesTextDocumentSync1ToJson(
   ServerCapabilitiesTextDocumentSync1 instance,
@@ -1442,49 +1112,30 @@ const _$TextDocumentSyncKindEnumMap = {
 };
 
 ServerCapabilitiesNotebookDocumentSync0
-_$ServerCapabilitiesNotebookDocumentSync0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesNotebookDocumentSync0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesNotebookDocumentSync0(
-          value: $checkedConvert(
-            'value',
-            (v) =>
-                NotebookDocumentSyncOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesNotebookDocumentSync0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesNotebookDocumentSync0(
+    value: NotebookDocumentSyncOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesNotebookDocumentSync0ToJson(
   ServerCapabilitiesNotebookDocumentSync0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesNotebookDocumentSync1
-_$ServerCapabilitiesNotebookDocumentSync1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesNotebookDocumentSync1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesNotebookDocumentSync1(
-          value: $checkedConvert(
-            'value',
-            (v) => NotebookDocumentSyncRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesNotebookDocumentSync1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesNotebookDocumentSync1(
+    value: NotebookDocumentSyncRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesNotebookDocumentSync1ToJson(
   ServerCapabilitiesNotebookDocumentSync1 instance,
@@ -1492,19 +1143,13 @@ Map<String, dynamic> _$ServerCapabilitiesNotebookDocumentSync1ToJson(
 
 ServerCapabilitiesHoverProvider0 _$ServerCapabilitiesHoverProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesHoverProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesHoverProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesHoverProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesHoverProvider0ToJson(
   ServerCapabilitiesHoverProvider0 instance,
@@ -1512,318 +1157,192 @@ Map<String, dynamic> _$ServerCapabilitiesHoverProvider0ToJson(
 
 ServerCapabilitiesHoverProvider1 _$ServerCapabilitiesHoverProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesHoverProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesHoverProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => HoverOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesHoverProvider1(
+    value: HoverOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesHoverProvider1ToJson(
   ServerCapabilitiesHoverProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesDeclarationProvider0
-_$ServerCapabilitiesDeclarationProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesDeclarationProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesDeclarationProvider0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesDeclarationProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDeclarationProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDeclarationProvider0ToJson(
   ServerCapabilitiesDeclarationProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesDeclarationProvider1
-_$ServerCapabilitiesDeclarationProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesDeclarationProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesDeclarationProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => DeclarationOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesDeclarationProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDeclarationProvider1(
+    value: DeclarationOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDeclarationProvider1ToJson(
   ServerCapabilitiesDeclarationProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesDeclarationProvider2
-_$ServerCapabilitiesDeclarationProvider2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesDeclarationProvider2',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesDeclarationProvider2(
-          value: $checkedConvert(
-            'value',
-            (v) => DeclarationRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesDeclarationProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDeclarationProvider2(
+    value: DeclarationRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDeclarationProvider2ToJson(
   ServerCapabilitiesDeclarationProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesDefinitionProvider0
-_$ServerCapabilitiesDefinitionProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesDefinitionProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesDefinitionProvider0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesDefinitionProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDefinitionProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDefinitionProvider0ToJson(
   ServerCapabilitiesDefinitionProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesDefinitionProvider1
-_$ServerCapabilitiesDefinitionProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesDefinitionProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesDefinitionProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => DefinitionOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesDefinitionProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDefinitionProvider1(
+    value: DefinitionOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDefinitionProvider1ToJson(
   ServerCapabilitiesDefinitionProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesTypeDefinitionProvider0
-_$ServerCapabilitiesTypeDefinitionProvider0FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesTypeDefinitionProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesTypeDefinitionProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesTypeDefinitionProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeDefinitionProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesTypeDefinitionProvider0ToJson(
   ServerCapabilitiesTypeDefinitionProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesTypeDefinitionProvider1
-_$ServerCapabilitiesTypeDefinitionProvider1FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesTypeDefinitionProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesTypeDefinitionProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => TypeDefinitionOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesTypeDefinitionProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeDefinitionProvider1(
+    value: TypeDefinitionOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesTypeDefinitionProvider1ToJson(
   ServerCapabilitiesTypeDefinitionProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesTypeDefinitionProvider2
-_$ServerCapabilitiesTypeDefinitionProvider2FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesTypeDefinitionProvider2',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesTypeDefinitionProvider2(
-      value: $checkedConvert(
-        'value',
-        (v) => TypeDefinitionRegistrationOptions.fromJson(
-          v as Map<String, dynamic>,
-        ),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesTypeDefinitionProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeDefinitionProvider2(
+    value: TypeDefinitionRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesTypeDefinitionProvider2ToJson(
   ServerCapabilitiesTypeDefinitionProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesImplementationProvider0
-_$ServerCapabilitiesImplementationProvider0FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesImplementationProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesImplementationProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesImplementationProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesImplementationProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesImplementationProvider0ToJson(
   ServerCapabilitiesImplementationProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesImplementationProvider1
-_$ServerCapabilitiesImplementationProvider1FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesImplementationProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesImplementationProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => ImplementationOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesImplementationProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesImplementationProvider1(
+    value: ImplementationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesImplementationProvider1ToJson(
   ServerCapabilitiesImplementationProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesImplementationProvider2
-_$ServerCapabilitiesImplementationProvider2FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesImplementationProvider2',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesImplementationProvider2(
-      value: $checkedConvert(
-        'value',
-        (v) => ImplementationRegistrationOptions.fromJson(
-          v as Map<String, dynamic>,
-        ),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesImplementationProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesImplementationProvider2(
+    value: ImplementationRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesImplementationProvider2ToJson(
   ServerCapabilitiesImplementationProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesReferencesProvider0
-_$ServerCapabilitiesReferencesProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesReferencesProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesReferencesProvider0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesReferencesProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesReferencesProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesReferencesProvider0ToJson(
   ServerCapabilitiesReferencesProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesReferencesProvider1
-_$ServerCapabilitiesReferencesProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesReferencesProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesReferencesProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => ReferenceOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesReferencesProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesReferencesProvider1(
+    value: ReferenceOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesReferencesProvider1ToJson(
   ServerCapabilitiesReferencesProvider1 instance,
@@ -1832,19 +1351,13 @@ Map<String, dynamic> _$ServerCapabilitiesReferencesProvider1ToJson(
 ServerCapabilitiesDocumentHighlightProvider0
 _$ServerCapabilitiesDocumentHighlightProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesDocumentHighlightProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesDocumentHighlightProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentHighlightProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDocumentHighlightProvider0ToJson(
   ServerCapabilitiesDocumentHighlightProvider0 instance,
@@ -1853,110 +1366,69 @@ Map<String, dynamic> _$ServerCapabilitiesDocumentHighlightProvider0ToJson(
 ServerCapabilitiesDocumentHighlightProvider1
 _$ServerCapabilitiesDocumentHighlightProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesDocumentHighlightProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesDocumentHighlightProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => DocumentHighlightOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentHighlightProvider1(
+    value: DocumentHighlightOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDocumentHighlightProvider1ToJson(
   ServerCapabilitiesDocumentHighlightProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesDocumentSymbolProvider0
-_$ServerCapabilitiesDocumentSymbolProvider0FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesDocumentSymbolProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesDocumentSymbolProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesDocumentSymbolProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentSymbolProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDocumentSymbolProvider0ToJson(
   ServerCapabilitiesDocumentSymbolProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesDocumentSymbolProvider1
-_$ServerCapabilitiesDocumentSymbolProvider1FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesDocumentSymbolProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesDocumentSymbolProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => DocumentSymbolOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesDocumentSymbolProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentSymbolProvider1(
+    value: DocumentSymbolOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDocumentSymbolProvider1ToJson(
   ServerCapabilitiesDocumentSymbolProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesCodeActionProvider0
-_$ServerCapabilitiesCodeActionProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesCodeActionProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesCodeActionProvider0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesCodeActionProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCodeActionProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesCodeActionProvider0ToJson(
   ServerCapabilitiesCodeActionProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesCodeActionProvider1
-_$ServerCapabilitiesCodeActionProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesCodeActionProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesCodeActionProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => CodeActionOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesCodeActionProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCodeActionProvider1(
+    value: CodeActionOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesCodeActionProvider1ToJson(
   ServerCapabilitiesCodeActionProvider1 instance,
@@ -1964,19 +1436,13 @@ Map<String, dynamic> _$ServerCapabilitiesCodeActionProvider1ToJson(
 
 ServerCapabilitiesColorProvider0 _$ServerCapabilitiesColorProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesColorProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesColorProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesColorProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesColorProvider0ToJson(
   ServerCapabilitiesColorProvider0 instance,
@@ -1984,22 +1450,13 @@ Map<String, dynamic> _$ServerCapabilitiesColorProvider0ToJson(
 
 ServerCapabilitiesColorProvider1 _$ServerCapabilitiesColorProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesColorProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesColorProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => DocumentColorOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesColorProvider1(
+    value: DocumentColorOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesColorProvider1ToJson(
   ServerCapabilitiesColorProvider1 instance,
@@ -2007,24 +1464,15 @@ Map<String, dynamic> _$ServerCapabilitiesColorProvider1ToJson(
 
 ServerCapabilitiesColorProvider2 _$ServerCapabilitiesColorProvider2FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesColorProvider2',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesColorProvider2(
-      value: $checkedConvert(
-        'value',
-        (v) => DocumentColorRegistrationOptions.fromJson(
-          v as Map<String, dynamic>,
-        ),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesColorProvider2(
+    value: DocumentColorRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesColorProvider2ToJson(
   ServerCapabilitiesColorProvider2 instance,
@@ -2033,19 +1481,13 @@ Map<String, dynamic> _$ServerCapabilitiesColorProvider2ToJson(
 ServerCapabilitiesWorkspaceSymbolProvider0
 _$ServerCapabilitiesWorkspaceSymbolProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesWorkspaceSymbolProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesWorkspaceSymbolProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesWorkspaceSymbolProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesWorkspaceSymbolProvider0ToJson(
   ServerCapabilitiesWorkspaceSymbolProvider0 instance,
@@ -2054,22 +1496,15 @@ Map<String, dynamic> _$ServerCapabilitiesWorkspaceSymbolProvider0ToJson(
 ServerCapabilitiesWorkspaceSymbolProvider1
 _$ServerCapabilitiesWorkspaceSymbolProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesWorkspaceSymbolProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesWorkspaceSymbolProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => WorkspaceSymbolOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesWorkspaceSymbolProvider1(
+    value: WorkspaceSymbolOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesWorkspaceSymbolProvider1ToJson(
   ServerCapabilitiesWorkspaceSymbolProvider1 instance,
@@ -2078,19 +1513,13 @@ Map<String, dynamic> _$ServerCapabilitiesWorkspaceSymbolProvider1ToJson(
 ServerCapabilitiesDocumentFormattingProvider0
 _$ServerCapabilitiesDocumentFormattingProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesDocumentFormattingProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesDocumentFormattingProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentFormattingProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDocumentFormattingProvider0ToJson(
   ServerCapabilitiesDocumentFormattingProvider0 instance,
@@ -2099,22 +1528,15 @@ Map<String, dynamic> _$ServerCapabilitiesDocumentFormattingProvider0ToJson(
 ServerCapabilitiesDocumentFormattingProvider1
 _$ServerCapabilitiesDocumentFormattingProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesDocumentFormattingProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesDocumentFormattingProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => DocumentFormattingOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentFormattingProvider1(
+    value: DocumentFormattingOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDocumentFormattingProvider1ToJson(
   ServerCapabilitiesDocumentFormattingProvider1 instance,
@@ -2123,19 +1545,13 @@ Map<String, dynamic> _$ServerCapabilitiesDocumentFormattingProvider1ToJson(
 ServerCapabilitiesDocumentRangeFormattingProvider0
 _$ServerCapabilitiesDocumentRangeFormattingProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesDocumentRangeFormattingProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesDocumentRangeFormattingProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentRangeFormattingProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDocumentRangeFormattingProvider0ToJson(
   ServerCapabilitiesDocumentRangeFormattingProvider0 instance,
@@ -2144,23 +1560,15 @@ Map<String, dynamic> _$ServerCapabilitiesDocumentRangeFormattingProvider0ToJson(
 ServerCapabilitiesDocumentRangeFormattingProvider1
 _$ServerCapabilitiesDocumentRangeFormattingProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesDocumentRangeFormattingProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesDocumentRangeFormattingProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) =>
-            DocumentRangeFormattingOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentRangeFormattingProvider1(
+    value: DocumentRangeFormattingOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDocumentRangeFormattingProvider1ToJson(
   ServerCapabilitiesDocumentRangeFormattingProvider1 instance,
@@ -2168,19 +1576,13 @@ Map<String, dynamic> _$ServerCapabilitiesDocumentRangeFormattingProvider1ToJson(
 
 ServerCapabilitiesRenameProvider0 _$ServerCapabilitiesRenameProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesRenameProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesRenameProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesRenameProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesRenameProvider0ToJson(
   ServerCapabilitiesRenameProvider0 instance,
@@ -2188,229 +1590,138 @@ Map<String, dynamic> _$ServerCapabilitiesRenameProvider0ToJson(
 
 ServerCapabilitiesRenameProvider1 _$ServerCapabilitiesRenameProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesRenameProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesRenameProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => RenameOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesRenameProvider1(
+    value: RenameOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesRenameProvider1ToJson(
   ServerCapabilitiesRenameProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesFoldingRangeProvider0
-_$ServerCapabilitiesFoldingRangeProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesFoldingRangeProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesFoldingRangeProvider0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesFoldingRangeProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesFoldingRangeProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesFoldingRangeProvider0ToJson(
   ServerCapabilitiesFoldingRangeProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesFoldingRangeProvider1
-_$ServerCapabilitiesFoldingRangeProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesFoldingRangeProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesFoldingRangeProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => FoldingRangeOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesFoldingRangeProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesFoldingRangeProvider1(
+    value: FoldingRangeOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesFoldingRangeProvider1ToJson(
   ServerCapabilitiesFoldingRangeProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesFoldingRangeProvider2
-_$ServerCapabilitiesFoldingRangeProvider2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesFoldingRangeProvider2',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesFoldingRangeProvider2(
-          value: $checkedConvert(
-            'value',
-            (v) => FoldingRangeRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesFoldingRangeProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesFoldingRangeProvider2(
+    value: FoldingRangeRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesFoldingRangeProvider2ToJson(
   ServerCapabilitiesFoldingRangeProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesSelectionRangeProvider0
-_$ServerCapabilitiesSelectionRangeProvider0FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesSelectionRangeProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesSelectionRangeProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesSelectionRangeProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSelectionRangeProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesSelectionRangeProvider0ToJson(
   ServerCapabilitiesSelectionRangeProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesSelectionRangeProvider1
-_$ServerCapabilitiesSelectionRangeProvider1FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesSelectionRangeProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesSelectionRangeProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => SelectionRangeOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesSelectionRangeProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSelectionRangeProvider1(
+    value: SelectionRangeOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesSelectionRangeProvider1ToJson(
   ServerCapabilitiesSelectionRangeProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesSelectionRangeProvider2
-_$ServerCapabilitiesSelectionRangeProvider2FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesSelectionRangeProvider2',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesSelectionRangeProvider2(
-      value: $checkedConvert(
-        'value',
-        (v) => SelectionRangeRegistrationOptions.fromJson(
-          v as Map<String, dynamic>,
-        ),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesSelectionRangeProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSelectionRangeProvider2(
+    value: SelectionRangeRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesSelectionRangeProvider2ToJson(
   ServerCapabilitiesSelectionRangeProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesCallHierarchyProvider0
-_$ServerCapabilitiesCallHierarchyProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesCallHierarchyProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesCallHierarchyProvider0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesCallHierarchyProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCallHierarchyProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesCallHierarchyProvider0ToJson(
   ServerCapabilitiesCallHierarchyProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesCallHierarchyProvider1
-_$ServerCapabilitiesCallHierarchyProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesCallHierarchyProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesCallHierarchyProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => CallHierarchyOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesCallHierarchyProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCallHierarchyProvider1(
+    value: CallHierarchyOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesCallHierarchyProvider1ToJson(
   ServerCapabilitiesCallHierarchyProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesCallHierarchyProvider2
-_$ServerCapabilitiesCallHierarchyProvider2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesCallHierarchyProvider2',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesCallHierarchyProvider2(
-          value: $checkedConvert(
-            'value',
-            (v) => CallHierarchyRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesCallHierarchyProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCallHierarchyProvider2(
+    value: CallHierarchyRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesCallHierarchyProvider2ToJson(
   ServerCapabilitiesCallHierarchyProvider2 instance,
@@ -2419,19 +1730,13 @@ Map<String, dynamic> _$ServerCapabilitiesCallHierarchyProvider2ToJson(
 ServerCapabilitiesLinkedEditingRangeProvider0
 _$ServerCapabilitiesLinkedEditingRangeProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesLinkedEditingRangeProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesLinkedEditingRangeProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesLinkedEditingRangeProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesLinkedEditingRangeProvider0ToJson(
   ServerCapabilitiesLinkedEditingRangeProvider0 instance,
@@ -2440,22 +1745,15 @@ Map<String, dynamic> _$ServerCapabilitiesLinkedEditingRangeProvider0ToJson(
 ServerCapabilitiesLinkedEditingRangeProvider1
 _$ServerCapabilitiesLinkedEditingRangeProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesLinkedEditingRangeProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesLinkedEditingRangeProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => LinkedEditingRangeOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesLinkedEditingRangeProvider1(
+    value: LinkedEditingRangeOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesLinkedEditingRangeProvider1ToJson(
   ServerCapabilitiesLinkedEditingRangeProvider1 instance,
@@ -2464,74 +1762,45 @@ Map<String, dynamic> _$ServerCapabilitiesLinkedEditingRangeProvider1ToJson(
 ServerCapabilitiesLinkedEditingRangeProvider2
 _$ServerCapabilitiesLinkedEditingRangeProvider2FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesLinkedEditingRangeProvider2',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesLinkedEditingRangeProvider2(
-      value: $checkedConvert(
-        'value',
-        (v) => LinkedEditingRangeRegistrationOptions.fromJson(
-          v as Map<String, dynamic>,
-        ),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesLinkedEditingRangeProvider2(
+    value: LinkedEditingRangeRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesLinkedEditingRangeProvider2ToJson(
   ServerCapabilitiesLinkedEditingRangeProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesSemanticTokensProvider0
-_$ServerCapabilitiesSemanticTokensProvider0FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesSemanticTokensProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesSemanticTokensProvider0(
-      value: $checkedConvert(
-        'value',
-        (v) => SemanticTokensOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesSemanticTokensProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSemanticTokensProvider0(
+    value: SemanticTokensOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesSemanticTokensProvider0ToJson(
   ServerCapabilitiesSemanticTokensProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesSemanticTokensProvider1
-_$ServerCapabilitiesSemanticTokensProvider1FromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesSemanticTokensProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesSemanticTokensProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => SemanticTokensRegistrationOptions.fromJson(
-          v as Map<String, dynamic>,
-        ),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+_$ServerCapabilitiesSemanticTokensProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSemanticTokensProvider1(
+    value: SemanticTokensRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesSemanticTokensProvider1ToJson(
   ServerCapabilitiesSemanticTokensProvider1 instance,
@@ -2539,19 +1808,13 @@ Map<String, dynamic> _$ServerCapabilitiesSemanticTokensProvider1ToJson(
 
 ServerCapabilitiesMonikerProvider0 _$ServerCapabilitiesMonikerProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesMonikerProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesMonikerProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesMonikerProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesMonikerProvider0ToJson(
   ServerCapabilitiesMonikerProvider0 instance,
@@ -2559,22 +1822,13 @@ Map<String, dynamic> _$ServerCapabilitiesMonikerProvider0ToJson(
 
 ServerCapabilitiesMonikerProvider1 _$ServerCapabilitiesMonikerProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesMonikerProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesMonikerProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => MonikerOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesMonikerProvider1(
+    value: MonikerOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesMonikerProvider1ToJson(
   ServerCapabilitiesMonikerProvider1 instance,
@@ -2582,274 +1836,166 @@ Map<String, dynamic> _$ServerCapabilitiesMonikerProvider1ToJson(
 
 ServerCapabilitiesMonikerProvider2 _$ServerCapabilitiesMonikerProvider2FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesMonikerProvider2',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesMonikerProvider2(
-      value: $checkedConvert(
-        'value',
-        (v) => MonikerRegistrationOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesMonikerProvider2(
+    value: MonikerRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesMonikerProvider2ToJson(
   ServerCapabilitiesMonikerProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesTypeHierarchyProvider0
-_$ServerCapabilitiesTypeHierarchyProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesTypeHierarchyProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesTypeHierarchyProvider0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesTypeHierarchyProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeHierarchyProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesTypeHierarchyProvider0ToJson(
   ServerCapabilitiesTypeHierarchyProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesTypeHierarchyProvider1
-_$ServerCapabilitiesTypeHierarchyProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesTypeHierarchyProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesTypeHierarchyProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => TypeHierarchyOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesTypeHierarchyProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeHierarchyProvider1(
+    value: TypeHierarchyOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesTypeHierarchyProvider1ToJson(
   ServerCapabilitiesTypeHierarchyProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesTypeHierarchyProvider2
-_$ServerCapabilitiesTypeHierarchyProvider2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesTypeHierarchyProvider2',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesTypeHierarchyProvider2(
-          value: $checkedConvert(
-            'value',
-            (v) => TypeHierarchyRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesTypeHierarchyProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeHierarchyProvider2(
+    value: TypeHierarchyRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesTypeHierarchyProvider2ToJson(
   ServerCapabilitiesTypeHierarchyProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesInlineValueProvider0
-_$ServerCapabilitiesInlineValueProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesInlineValueProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesInlineValueProvider0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesInlineValueProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineValueProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesInlineValueProvider0ToJson(
   ServerCapabilitiesInlineValueProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesInlineValueProvider1
-_$ServerCapabilitiesInlineValueProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesInlineValueProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesInlineValueProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => InlineValueOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesInlineValueProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineValueProvider1(
+    value: InlineValueOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesInlineValueProvider1ToJson(
   ServerCapabilitiesInlineValueProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesInlineValueProvider2
-_$ServerCapabilitiesInlineValueProvider2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesInlineValueProvider2',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesInlineValueProvider2(
-          value: $checkedConvert(
-            'value',
-            (v) => InlineValueRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesInlineValueProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineValueProvider2(
+    value: InlineValueRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesInlineValueProvider2ToJson(
   ServerCapabilitiesInlineValueProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesInlayHintProvider0
-_$ServerCapabilitiesInlayHintProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesInlayHintProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesInlayHintProvider0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesInlayHintProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlayHintProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesInlayHintProvider0ToJson(
   ServerCapabilitiesInlayHintProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesInlayHintProvider1
-_$ServerCapabilitiesInlayHintProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesInlayHintProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesInlayHintProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => InlayHintOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesInlayHintProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlayHintProvider1(
+    value: InlayHintOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesInlayHintProvider1ToJson(
   ServerCapabilitiesInlayHintProvider1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesInlayHintProvider2
-_$ServerCapabilitiesInlayHintProvider2FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesInlayHintProvider2',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesInlayHintProvider2(
-          value: $checkedConvert(
-            'value',
-            (v) => InlayHintRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesInlayHintProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlayHintProvider2(
+    value: InlayHintRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesInlayHintProvider2ToJson(
   ServerCapabilitiesInlayHintProvider2 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesDiagnosticProvider0
-_$ServerCapabilitiesDiagnosticProvider0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesDiagnosticProvider0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesDiagnosticProvider0(
-          value: $checkedConvert(
-            'value',
-            (v) => DiagnosticOptions.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesDiagnosticProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDiagnosticProvider0(
+    value: DiagnosticOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDiagnosticProvider0ToJson(
   ServerCapabilitiesDiagnosticProvider0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 ServerCapabilitiesDiagnosticProvider1
-_$ServerCapabilitiesDiagnosticProvider1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ServerCapabilitiesDiagnosticProvider1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = ServerCapabilitiesDiagnosticProvider1(
-          value: $checkedConvert(
-            'value',
-            (v) => DiagnosticRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$ServerCapabilitiesDiagnosticProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDiagnosticProvider1(
+    value: DiagnosticRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesDiagnosticProvider1ToJson(
   ServerCapabilitiesDiagnosticProvider1 instance,
@@ -2858,19 +2004,13 @@ Map<String, dynamic> _$ServerCapabilitiesDiagnosticProvider1ToJson(
 ServerCapabilitiesInlineCompletionProvider0
 _$ServerCapabilitiesInlineCompletionProvider0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesInlineCompletionProvider0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesInlineCompletionProvider0(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineCompletionProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesInlineCompletionProvider0ToJson(
   ServerCapabilitiesInlineCompletionProvider0 instance,
@@ -2879,22 +2019,15 @@ Map<String, dynamic> _$ServerCapabilitiesInlineCompletionProvider0ToJson(
 ServerCapabilitiesInlineCompletionProvider1
 _$ServerCapabilitiesInlineCompletionProvider1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'ServerCapabilitiesInlineCompletionProvider1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = ServerCapabilitiesInlineCompletionProvider1(
-      value: $checkedConvert(
-        'value',
-        (v) => InlineCompletionOptions.fromJson(v as Map<String, dynamic>),
-      ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineCompletionProvider1(
+    value: InlineCompletionOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesInlineCompletionProvider1ToJson(
   ServerCapabilitiesInlineCompletionProvider1 instance,
@@ -2902,14 +2035,13 @@ Map<String, dynamic> _$ServerCapabilitiesInlineCompletionProvider1ToJson(
 
 TextDocumentSyncOptionsSave0 _$TextDocumentSyncOptionsSave0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('TextDocumentSyncOptionsSave0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = TextDocumentSyncOptionsSave0(
-    value: $checkedConvert('value', (v) => v as bool),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return TextDocumentSyncOptionsSave0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$TextDocumentSyncOptionsSave0ToJson(
   TextDocumentSyncOptionsSave0 instance,
@@ -2917,17 +2049,13 @@ Map<String, dynamic> _$TextDocumentSyncOptionsSave0ToJson(
 
 TextDocumentSyncOptionsSave1 _$TextDocumentSyncOptionsSave1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('TextDocumentSyncOptionsSave1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = TextDocumentSyncOptionsSave1(
-    value: $checkedConvert(
-      'value',
-      (v) => SaveOptions.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return TextDocumentSyncOptionsSave1(
+    value: SaveOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$TextDocumentSyncOptionsSave1ToJson(
   TextDocumentSyncOptionsSave1 instance,
@@ -2936,38 +2064,28 @@ Map<String, dynamic> _$TextDocumentSyncOptionsSave1ToJson(
 NotebookDocumentSyncOptionsNotebookSelector0
 _$NotebookDocumentSyncOptionsNotebookSelector0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'NotebookDocumentSyncOptionsNotebookSelector0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = NotebookDocumentSyncOptionsNotebookSelector0(
-      value: $checkedConvert(
-        'value',
-        (v) => _$recordConvert(
-          v,
-          ($jsonValue) => (
-            cells: ($jsonValue['cells'] as List<dynamic>?)
-                ?.map(
-                  (e) => _$recordConvert(
-                    e,
-                    ($jsonValue) =>
-                        (language: $jsonValue['language'] as String),
-                  ),
-                )
-                .toList(),
-            notebook: NotebookCellTextDocumentFilterNotebookBase.fromJson(
-              $jsonValue['notebook'] as Map<String, dynamic>,
-            ),
-          ),
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookDocumentSyncOptionsNotebookSelector0(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        cells: ($jsonValue['cells'] as List<dynamic>?)
+            ?.map(
+              (e) => _$recordConvert(
+                e,
+                ($jsonValue) => (language: $jsonValue['language'] as String),
+              ),
+            )
+            .toList(),
+        notebook: NotebookCellTextDocumentFilterNotebookBase.fromJson(
+          $jsonValue['notebook'] as Map<String, dynamic>,
         ),
       ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$NotebookDocumentSyncOptionsNotebookSelector0ToJson(
   NotebookDocumentSyncOptionsNotebookSelector0 instance,
@@ -2984,40 +2102,30 @@ Map<String, dynamic> _$NotebookDocumentSyncOptionsNotebookSelector0ToJson(
 NotebookDocumentSyncOptionsNotebookSelector1
 _$NotebookDocumentSyncOptionsNotebookSelector1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'NotebookDocumentSyncOptionsNotebookSelector1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = NotebookDocumentSyncOptionsNotebookSelector1(
-      value: $checkedConvert(
-        'value',
-        (v) => _$recordConvert(
-          v,
-          ($jsonValue) => (
-            cells: ($jsonValue['cells'] as List<dynamic>)
-                .map(
-                  (e) => _$recordConvert(
-                    e,
-                    ($jsonValue) =>
-                        (language: $jsonValue['language'] as String),
-                  ),
-                )
-                .toList(),
-            notebook: $jsonValue['notebook'] == null
-                ? null
-                : NotebookCellTextDocumentFilterNotebookBase.fromJson(
-                    $jsonValue['notebook'] as Map<String, dynamic>,
-                  ),
-          ),
-        ),
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookDocumentSyncOptionsNotebookSelector1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        cells: ($jsonValue['cells'] as List<dynamic>)
+            .map(
+              (e) => _$recordConvert(
+                e,
+                ($jsonValue) => (language: $jsonValue['language'] as String),
+              ),
+            )
+            .toList(),
+        notebook: $jsonValue['notebook'] == null
+            ? null
+            : NotebookCellTextDocumentFilterNotebookBase.fromJson(
+                $jsonValue['notebook'] as Map<String, dynamic>,
+              ),
       ),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$NotebookDocumentSyncOptionsNotebookSelector1ToJson(
   NotebookDocumentSyncOptionsNotebookSelector1 instance,
@@ -3034,19 +2142,13 @@ Map<String, dynamic> _$NotebookDocumentSyncOptionsNotebookSelector1ToJson(
 WorkspaceFoldersServerCapabilitiesChangeNotifications0
 _$WorkspaceFoldersServerCapabilitiesChangeNotifications0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'WorkspaceFoldersServerCapabilitiesChangeNotifications0',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = WorkspaceFoldersServerCapabilitiesChangeNotifications0(
-      value: $checkedConvert('value', (v) => v as String),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceFoldersServerCapabilitiesChangeNotifications0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic>
 _$WorkspaceFoldersServerCapabilitiesChangeNotifications0ToJson(
@@ -3056,19 +2158,13 @@ _$WorkspaceFoldersServerCapabilitiesChangeNotifications0ToJson(
 WorkspaceFoldersServerCapabilitiesChangeNotifications1
 _$WorkspaceFoldersServerCapabilitiesChangeNotifications1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate(
-  'WorkspaceFoldersServerCapabilitiesChangeNotifications1',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-    final val = WorkspaceFoldersServerCapabilitiesChangeNotifications1(
-      value: $checkedConvert('value', (v) => v as bool),
-      $type: $checkedConvert('runtimeType', (v) => v as String?),
-    );
-    return val;
-  },
-  fieldKeyMap: const {r'$type': 'runtimeType'},
-);
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceFoldersServerCapabilitiesChangeNotifications1(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic>
 _$WorkspaceFoldersServerCapabilitiesChangeNotifications1ToJson(
@@ -3077,14 +2173,13 @@ _$WorkspaceFoldersServerCapabilitiesChangeNotifications1ToJson(
 
 ParameterInformationLabel0 _$ParameterInformationLabel0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('ParameterInformationLabel0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = ParameterInformationLabel0(
-    value: $checkedConvert('value', (v) => v as String),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return ParameterInformationLabel0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$ParameterInformationLabel0ToJson(
   ParameterInformationLabel0 instance,
@@ -3092,23 +2187,19 @@ Map<String, dynamic> _$ParameterInformationLabel0ToJson(
 
 ParameterInformationLabel1 _$ParameterInformationLabel1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('ParameterInformationLabel1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = ParameterInformationLabel1(
-    value: $checkedConvert(
-      'value',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) => (
-          ($jsonValue[r'$1'] as num).toInt(),
-          ($jsonValue[r'$2'] as num).toInt(),
-        ),
+  return ParameterInformationLabel1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        ($jsonValue[r'$1'] as num).toInt(),
+        ($jsonValue[r'$2'] as num).toInt(),
       ),
     ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$ParameterInformationLabel1ToJson(
   ParameterInformationLabel1 instance,
@@ -3121,44 +2212,28 @@ Map<String, dynamic> _$ParameterInformationLabel1ToJson(
 };
 
 NotebookCellTextDocumentFilterNotebook0
-_$NotebookCellTextDocumentFilterNotebook0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'NotebookCellTextDocumentFilterNotebook0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = NotebookCellTextDocumentFilterNotebook0(
-          value: $checkedConvert('value', (v) => v as String),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$NotebookCellTextDocumentFilterNotebook0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookCellTextDocumentFilterNotebook0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$NotebookCellTextDocumentFilterNotebook0ToJson(
   NotebookCellTextDocumentFilterNotebook0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 NotebookCellTextDocumentFilterNotebook1
-_$NotebookCellTextDocumentFilterNotebook1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'NotebookCellTextDocumentFilterNotebook1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = NotebookCellTextDocumentFilterNotebook1(
-          value: $checkedConvert(
-            'value',
-            (v) =>
-                NotebookDocumentFilterBase.fromJson(v as Map<String, dynamic>),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$NotebookCellTextDocumentFilterNotebook1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookCellTextDocumentFilterNotebook1(
+    value: NotebookDocumentFilterBase.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$NotebookCellTextDocumentFilterNotebook1ToJson(
   NotebookCellTextDocumentFilterNotebook1 instance,
@@ -3166,17 +2241,13 @@ Map<String, dynamic> _$NotebookCellTextDocumentFilterNotebook1ToJson(
 
 RelativePatternBaseUri0 _$RelativePatternBaseUri0FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('RelativePatternBaseUri0', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = RelativePatternBaseUri0(
-    value: $checkedConvert(
-      'value',
-      (v) => WorkspaceFolder.fromJson(v as Map<String, dynamic>),
-    ),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return RelativePatternBaseUri0(
+    value: WorkspaceFolder.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$RelativePatternBaseUri0ToJson(
   RelativePatternBaseUri0 instance,
@@ -3184,60 +2255,42 @@ Map<String, dynamic> _$RelativePatternBaseUri0ToJson(
 
 RelativePatternBaseUri1 _$RelativePatternBaseUri1FromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('RelativePatternBaseUri1', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-  final val = RelativePatternBaseUri1(
-    value: $checkedConvert('value', (v) => v as String),
-    $type: $checkedConvert('runtimeType', (v) => v as String?),
+  return RelativePatternBaseUri1(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
   );
-  return val;
-}, fieldKeyMap: const {r'$type': 'runtimeType'});
+}
 
 Map<String, dynamic> _$RelativePatternBaseUri1ToJson(
   RelativePatternBaseUri1 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 SemanticTokensClientCapabilitiesFull0
-_$SemanticTokensClientCapabilitiesFull0FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'SemanticTokensClientCapabilitiesFull0',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = SemanticTokensClientCapabilitiesFull0(
-          value: $checkedConvert('value', (v) => v as bool),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$SemanticTokensClientCapabilitiesFull0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return SemanticTokensClientCapabilitiesFull0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$SemanticTokensClientCapabilitiesFull0ToJson(
   SemanticTokensClientCapabilitiesFull0 instance,
 ) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 SemanticTokensClientCapabilitiesFull1
-_$SemanticTokensClientCapabilitiesFull1FromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'SemanticTokensClientCapabilitiesFull1',
-      json,
-      ($checkedConvert) {
-        $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
-        final val = SemanticTokensClientCapabilitiesFull1(
-          value: $checkedConvert(
-            'value',
-            (v) => _$recordConvert(
-              v,
-              ($jsonValue) => (delta: $jsonValue['delta'] as bool?),
-            ),
-          ),
-          $type: $checkedConvert('runtimeType', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {r'$type': 'runtimeType'},
-    );
+_$SemanticTokensClientCapabilitiesFull1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return SemanticTokensClientCapabilitiesFull1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (delta: $jsonValue['delta'] as bool?),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$SemanticTokensClientCapabilitiesFull1ToJson(
   SemanticTokensClientCapabilitiesFull1 instance,
@@ -3248,7 +2301,7 @@ Map<String, dynamic> _$SemanticTokensClientCapabilitiesFull1ToJson(
 
 _ImplementationParams _$ImplementationParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ImplementationParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -3258,30 +2311,23 @@ _ImplementationParams _$ImplementationParamsFromJson(
       'workDoneToken',
     ],
   );
-  final val = _ImplementationParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _ImplementationParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    position: $checkedConvert(
-      'position',
-      (v) => Position.fromJson(v as Map<String, dynamic>),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ImplementationParamsToJson(
   _ImplementationParams instance,
@@ -3292,18 +2338,13 @@ Map<String, dynamic> _$ImplementationParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_Location _$LocationFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Location', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['uri', 'range']);
-      final val = _Location(
-        uri: $checkedConvert('uri', (v) => v as String),
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_Location _$LocationFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['uri', 'range']);
+  return _Location(
+    uri: json['uri'] as String,
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$LocationToJson(_Location instance) => <String, dynamic>{
   'uri': instance.uri,
@@ -3312,25 +2353,20 @@ Map<String, dynamic> _$LocationToJson(_Location instance) => <String, dynamic>{
 
 _ImplementationRegistrationOptions _$ImplementationRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ImplementationRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
-  final val = _ImplementationRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _ImplementationRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ImplementationRegistrationOptionsToJson(
   _ImplementationRegistrationOptions instance,
@@ -3342,7 +2378,7 @@ Map<String, dynamic> _$ImplementationRegistrationOptionsToJson(
 
 _TypeDefinitionParams _$TypeDefinitionParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TypeDefinitionParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -3352,30 +2388,23 @@ _TypeDefinitionParams _$TypeDefinitionParamsFromJson(
       'workDoneToken',
     ],
   );
-  final val = _TypeDefinitionParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _TypeDefinitionParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    position: $checkedConvert(
-      'position',
-      (v) => Position.fromJson(v as Map<String, dynamic>),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TypeDefinitionParamsToJson(
   _TypeDefinitionParams instance,
@@ -3388,25 +2417,20 @@ Map<String, dynamic> _$TypeDefinitionParamsToJson(
 
 _TypeDefinitionRegistrationOptions _$TypeDefinitionRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TypeDefinitionRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
-  final val = _TypeDefinitionRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _TypeDefinitionRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TypeDefinitionRegistrationOptionsToJson(
   _TypeDefinitionRegistrationOptions instance,
@@ -3416,86 +2440,66 @@ Map<String, dynamic> _$TypeDefinitionRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_WorkspaceFolder _$WorkspaceFolderFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_WorkspaceFolder', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['uri', 'name']);
-      final val = _WorkspaceFolder(
-        uri: $checkedConvert('uri', (v) => v as String),
-        name: $checkedConvert('name', (v) => v as String),
-      );
-      return val;
-    });
+_WorkspaceFolder _$WorkspaceFolderFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['uri', 'name']);
+  return _WorkspaceFolder(
+    uri: json['uri'] as String,
+    name: json['name'] as String,
+  );
+}
 
 Map<String, dynamic> _$WorkspaceFolderToJson(_WorkspaceFolder instance) =>
     <String, dynamic>{'uri': instance.uri, 'name': instance.name};
 
 _DidChangeWorkspaceFoldersParams _$DidChangeWorkspaceFoldersParamsFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_DidChangeWorkspaceFoldersParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['event']);
-      final val = _DidChangeWorkspaceFoldersParams(
-        event: $checkedConvert(
-          'event',
-          (v) =>
-              WorkspaceFoldersChangeEvent.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+) {
+  $checkKeys(json, allowedKeys: const ['event']);
+  return _DidChangeWorkspaceFoldersParams(
+    event: WorkspaceFoldersChangeEvent.fromJson(
+      json['event'] as Map<String, dynamic>,
+    ),
+  );
+}
 
 Map<String, dynamic> _$DidChangeWorkspaceFoldersParamsToJson(
   _DidChangeWorkspaceFoldersParams instance,
 ) => <String, dynamic>{'event': instance.event};
 
-_ConfigurationParams _$ConfigurationParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ConfigurationParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['items']);
-      final val = _ConfigurationParams(
-        items: $checkedConvert(
-          'items',
-          (v) => (v as List<dynamic>)
-              .map((e) => ConfigurationItem.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_ConfigurationParams _$ConfigurationParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['items']);
+  return _ConfigurationParams(
+    items: (json['items'] as List<dynamic>)
+        .map((e) => ConfigurationItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$ConfigurationParamsToJson(
   _ConfigurationParams instance,
 ) => <String, dynamic>{'items': instance.items};
 
-_DocumentColorParams _$DocumentColorParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DocumentColorParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _DocumentColorParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_DocumentColorParams _$DocumentColorParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'partialResultToken', 'workDoneToken'],
+  );
+  return _DocumentColorParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$DocumentColorParamsToJson(
   _DocumentColorParams instance,
@@ -3505,46 +2509,33 @@ Map<String, dynamic> _$DocumentColorParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_ColorInformation _$ColorInformationFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ColorInformation', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['range', 'color']);
-      final val = _ColorInformation(
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        color: $checkedConvert(
-          'color',
-          (v) => Color.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_ColorInformation _$ColorInformationFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['range', 'color']);
+  return _ColorInformation(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    color: Color.fromJson(json['color'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$ColorInformationToJson(_ColorInformation instance) =>
     <String, dynamic>{'range': instance.range, 'color': instance.color};
 
 _DocumentColorRegistrationOptions _$DocumentColorRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentColorRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
-  final val = _DocumentColorRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentColorRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentColorRegistrationOptionsToJson(
   _DocumentColorRegistrationOptions instance,
@@ -3556,7 +2547,7 @@ Map<String, dynamic> _$DocumentColorRegistrationOptionsToJson(
 
 _ColorPresentationParams _$ColorPresentationParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ColorPresentationParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -3567,34 +2558,24 @@ _ColorPresentationParams _$ColorPresentationParamsFromJson(
       'workDoneToken',
     ],
   );
-  final val = _ColorPresentationParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _ColorPresentationParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    color: $checkedConvert(
-      'color',
-      (v) => Color.fromJson(v as Map<String, dynamic>),
-    ),
-    range: $checkedConvert(
-      'range',
-      (v) => Range.fromJson(v as Map<String, dynamic>),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    color: Color.fromJson(json['color'] as Map<String, dynamic>),
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ColorPresentationParamsToJson(
   _ColorPresentationParams instance,
@@ -3606,28 +2587,21 @@ Map<String, dynamic> _$ColorPresentationParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_ColorPresentation _$ColorPresentationFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ColorPresentation', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['label', 'additionalTextEdits', 'textEdit'],
-      );
-      final val = _ColorPresentation(
-        label: $checkedConvert('label', (v) => v as String),
-        additionalTextEdits: $checkedConvert(
-          'additionalTextEdits',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        textEdit: $checkedConvert(
-          'textEdit',
-          (v) =>
-              v == null ? null : TextEdit.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_ColorPresentation _$ColorPresentationFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['label', 'additionalTextEdits', 'textEdit'],
+  );
+  return _ColorPresentation(
+    label: json['label'] as String,
+    additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>?)
+        ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    textEdit: json['textEdit'] == null
+        ? null
+        : TextEdit.fromJson(json['textEdit'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$ColorPresentationToJson(_ColorPresentation instance) =>
     <String, dynamic>{
@@ -3638,13 +2612,12 @@ Map<String, dynamic> _$ColorPresentationToJson(_ColorPresentation instance) =>
 
 _WorkDoneProgressOptions _$WorkDoneProgressOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkDoneProgressOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _WorkDoneProgressOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _WorkDoneProgressOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkDoneProgressOptionsToJson(
   _WorkDoneProgressOptions instance,
@@ -3652,54 +2625,41 @@ Map<String, dynamic> _$WorkDoneProgressOptionsToJson(
 
 _TextDocumentRegistrationOptions _$TextDocumentRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_TextDocumentRegistrationOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['documentSelector']);
-      final val = _TextDocumentRegistrationOptions(
-        documentSelector: $checkedConvert(
-          'documentSelector',
-          (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-            v as Map<String, dynamic>,
-          ),
+) {
+  $checkKeys(json, allowedKeys: const ['documentSelector']);
+  return _TextDocumentRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
         ),
-      );
-      return val;
-    });
+  );
+}
 
 Map<String, dynamic> _$TextDocumentRegistrationOptionsToJson(
   _TextDocumentRegistrationOptions instance,
 ) => <String, dynamic>{'documentSelector': instance.documentSelector};
 
-_FoldingRangeParams _$FoldingRangeParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FoldingRangeParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _FoldingRangeParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_FoldingRangeParams _$FoldingRangeParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'partialResultToken', 'workDoneToken'],
+  );
+  return _FoldingRangeParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$FoldingRangeParamsToJson(_FoldingRangeParams instance) =>
     <String, dynamic>{
@@ -3708,38 +2668,27 @@ Map<String, dynamic> _$FoldingRangeParamsToJson(_FoldingRangeParams instance) =>
       'workDoneToken': instance.workDoneToken,
     };
 
-_FoldingRange _$FoldingRangeFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FoldingRange', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'startLine',
-          'endLine',
-          'collapsedText',
-          'kind',
-          'endCharacter',
-          'startCharacter',
-        ],
-      );
-      final val = _FoldingRange(
-        startLine: $checkedConvert('startLine', (v) => (v as num).toInt()),
-        endLine: $checkedConvert('endLine', (v) => (v as num).toInt()),
-        collapsedText: $checkedConvert('collapsedText', (v) => v as String?),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecodeNullable(_$FoldingRangeKindEnumMap, v),
-        ),
-        endCharacter: $checkedConvert(
-          'endCharacter',
-          (v) => (v as num?)?.toInt(),
-        ),
-        startCharacter: $checkedConvert(
-          'startCharacter',
-          (v) => (v as num?)?.toInt(),
-        ),
-      );
-      return val;
-    });
+_FoldingRange _$FoldingRangeFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'startLine',
+      'endLine',
+      'collapsedText',
+      'kind',
+      'endCharacter',
+      'startCharacter',
+    ],
+  );
+  return _FoldingRange(
+    startLine: (json['startLine'] as num).toInt(),
+    endLine: (json['endLine'] as num).toInt(),
+    collapsedText: json['collapsedText'] as String?,
+    kind: $enumDecodeNullable(_$FoldingRangeKindEnumMap, json['kind']),
+    endCharacter: (json['endCharacter'] as num?)?.toInt(),
+    startCharacter: (json['startCharacter'] as num?)?.toInt(),
+  );
+}
 
 Map<String, dynamic> _$FoldingRangeToJson(_FoldingRange instance) =>
     <String, dynamic>{
@@ -3759,25 +2708,20 @@ const _$FoldingRangeKindEnumMap = {
 
 _FoldingRangeRegistrationOptions _$FoldingRangeRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_FoldingRangeRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
-  final val = _FoldingRangeRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _FoldingRangeRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$FoldingRangeRegistrationOptionsToJson(
   _FoldingRangeRegistrationOptions instance,
@@ -3787,41 +2731,33 @@ Map<String, dynamic> _$FoldingRangeRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_DeclarationParams _$DeclarationParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DeclarationParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'position',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _DeclarationParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_DeclarationParams _$DeclarationParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'textDocument',
+      'position',
+      'partialResultToken',
+      'workDoneToken',
+    ],
+  );
+  return _DeclarationParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$DeclarationParamsToJson(_DeclarationParams instance) =>
     <String, dynamic>{
@@ -3833,23 +2769,20 @@ Map<String, dynamic> _$DeclarationParamsToJson(_DeclarationParams instance) =>
 
 _DeclarationRegistrationOptions _$DeclarationRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DeclarationRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
-  final val = _DeclarationRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DeclarationRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DeclarationRegistrationOptionsToJson(
   _DeclarationRegistrationOptions instance,
@@ -3861,7 +2794,7 @@ Map<String, dynamic> _$DeclarationRegistrationOptionsToJson(
 
 _SelectionRangeParams _$SelectionRangeParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SelectionRangeParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -3871,32 +2804,25 @@ _SelectionRangeParams _$SelectionRangeParamsFromJson(
       'workDoneToken',
     ],
   );
-  final val = _SelectionRangeParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _SelectionRangeParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    positions: $checkedConvert(
-      'positions',
-      (v) => (v as List<dynamic>)
-          .map((e) => Position.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    positions: (json['positions'] as List<dynamic>)
+        .map((e) => Position.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SelectionRangeParamsToJson(
   _SelectionRangeParams instance,
@@ -3907,48 +2833,35 @@ Map<String, dynamic> _$SelectionRangeParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_SelectionRange _$SelectionRangeFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_SelectionRange', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['range', 'parent']);
-      final val = _SelectionRange(
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        parent: $checkedConvert(
-          'parent',
-          (v) => v == null
-              ? null
-              : SelectionRange.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_SelectionRange _$SelectionRangeFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['range', 'parent']);
+  return _SelectionRange(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    parent: json['parent'] == null
+        ? null
+        : SelectionRange.fromJson(json['parent'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$SelectionRangeToJson(_SelectionRange instance) =>
     <String, dynamic>{'range': instance.range, 'parent': instance.parent};
 
 _SelectionRangeRegistrationOptions _$SelectionRangeRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SelectionRangeRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
-  final val = _SelectionRangeRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _SelectionRangeRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SelectionRangeRegistrationOptionsToJson(
   _SelectionRangeRegistrationOptions instance,
@@ -3960,16 +2873,12 @@ Map<String, dynamic> _$SelectionRangeRegistrationOptionsToJson(
 
 _WorkDoneProgressCreateParams _$WorkDoneProgressCreateParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkDoneProgressCreateParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['token']);
-  final val = _WorkDoneProgressCreateParams(
-    token: $checkedConvert(
-      'token',
-      (v) => ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _WorkDoneProgressCreateParams(
+    token: ProgressTokenBase.fromJson(json['token'] as Map<String, dynamic>),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkDoneProgressCreateParamsToJson(
   _WorkDoneProgressCreateParams instance,
@@ -3977,16 +2886,12 @@ Map<String, dynamic> _$WorkDoneProgressCreateParamsToJson(
 
 _WorkDoneProgressCancelParams _$WorkDoneProgressCancelParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkDoneProgressCancelParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['token']);
-  final val = _WorkDoneProgressCancelParams(
-    token: $checkedConvert(
-      'token',
-      (v) => ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _WorkDoneProgressCancelParams(
+    token: ProgressTokenBase.fromJson(json['token'] as Map<String, dynamic>),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkDoneProgressCancelParamsToJson(
   _WorkDoneProgressCancelParams instance,
@@ -3994,29 +2899,23 @@ Map<String, dynamic> _$WorkDoneProgressCancelParamsToJson(
 
 _CallHierarchyPrepareParams _$CallHierarchyPrepareParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CallHierarchyPrepareParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'position', 'workDoneToken'],
   );
-  final val = _CallHierarchyPrepareParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _CallHierarchyPrepareParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    position: $checkedConvert(
-      'position',
-      (v) => Position.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CallHierarchyPrepareParamsToJson(
   _CallHierarchyPrepareParams instance,
@@ -4026,51 +2925,37 @@ Map<String, dynamic> _$CallHierarchyPrepareParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_CallHierarchyItem _$CallHierarchyItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CallHierarchyItem', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'name',
-          'kind',
-          'uri',
-          'range',
-          'selectionRange',
-          'data',
-          'detail',
-          'tags',
-        ],
-      );
-      final val = _CallHierarchyItem(
-        name: $checkedConvert('name', (v) => v as String),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecode(_$SymbolKindEnumMap, v),
-        ),
-        uri: $checkedConvert('uri', (v) => v as String),
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        selectionRange: $checkedConvert(
-          'selectionRange',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        data: $checkedConvert(
-          'data',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        detail: $checkedConvert('detail', (v) => v as String?),
-        tags: $checkedConvert(
-          'tags',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_CallHierarchyItem _$CallHierarchyItemFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'name',
+      'kind',
+      'uri',
+      'range',
+      'selectionRange',
+      'data',
+      'detail',
+      'tags',
+    ],
+  );
+  return _CallHierarchyItem(
+    name: json['name'] as String,
+    kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
+    uri: json['uri'] as String,
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    selectionRange: Range.fromJson(
+      json['selectionRange'] as Map<String, dynamic>,
+    ),
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    detail: json['detail'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$CallHierarchyItemToJson(_CallHierarchyItem instance) =>
     <String, dynamic>{
@@ -4117,25 +3002,20 @@ const _$SymbolTagEnumMap = {SymbolTag.deprecatedValue: 'deprecatedValue'};
 
 _CallHierarchyRegistrationOptions _$CallHierarchyRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CallHierarchyRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
-  final val = _CallHierarchyRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _CallHierarchyRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CallHierarchyRegistrationOptionsToJson(
   _CallHierarchyRegistrationOptions instance,
@@ -4147,33 +3027,25 @@ Map<String, dynamic> _$CallHierarchyRegistrationOptionsToJson(
 
 _CallHierarchyIncomingCallsParams _$CallHierarchyIncomingCallsParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CallHierarchyIncomingCallsParams', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['item', 'partialResultToken', 'workDoneToken'],
   );
-  final val = _CallHierarchyIncomingCallsParams(
-    item: $checkedConvert(
-      'item',
-      (v) => CallHierarchyItem.fromJson(v as Map<String, dynamic>),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _CallHierarchyIncomingCallsParams(
+    item: CallHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CallHierarchyIncomingCallsParamsToJson(
   _CallHierarchyIncomingCallsParams instance,
@@ -4185,22 +3057,15 @@ Map<String, dynamic> _$CallHierarchyIncomingCallsParamsToJson(
 
 _CallHierarchyIncomingCall _$CallHierarchyIncomingCallFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CallHierarchyIncomingCall', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['from', 'fromRanges']);
-  final val = _CallHierarchyIncomingCall(
-    from: $checkedConvert(
-      'from',
-      (v) => CallHierarchyItem.fromJson(v as Map<String, dynamic>),
-    ),
-    fromRanges: $checkedConvert(
-      'fromRanges',
-      (v) => (v as List<dynamic>)
-          .map((e) => Range.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _CallHierarchyIncomingCall(
+    from: CallHierarchyItem.fromJson(json['from'] as Map<String, dynamic>),
+    fromRanges: (json['fromRanges'] as List<dynamic>)
+        .map((e) => Range.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CallHierarchyIncomingCallToJson(
   _CallHierarchyIncomingCall instance,
@@ -4211,33 +3076,25 @@ Map<String, dynamic> _$CallHierarchyIncomingCallToJson(
 
 _CallHierarchyOutgoingCallsParams _$CallHierarchyOutgoingCallsParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CallHierarchyOutgoingCallsParams', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['item', 'partialResultToken', 'workDoneToken'],
   );
-  final val = _CallHierarchyOutgoingCallsParams(
-    item: $checkedConvert(
-      'item',
-      (v) => CallHierarchyItem.fromJson(v as Map<String, dynamic>),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _CallHierarchyOutgoingCallsParams(
+    item: CallHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CallHierarchyOutgoingCallsParamsToJson(
   _CallHierarchyOutgoingCallsParams instance,
@@ -4249,22 +3106,15 @@ Map<String, dynamic> _$CallHierarchyOutgoingCallsParamsToJson(
 
 _CallHierarchyOutgoingCall _$CallHierarchyOutgoingCallFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CallHierarchyOutgoingCall', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['to', 'fromRanges']);
-  final val = _CallHierarchyOutgoingCall(
-    to: $checkedConvert(
-      'to',
-      (v) => CallHierarchyItem.fromJson(v as Map<String, dynamic>),
-    ),
-    fromRanges: $checkedConvert(
-      'fromRanges',
-      (v) => (v as List<dynamic>)
-          .map((e) => Range.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _CallHierarchyOutgoingCall(
+    to: CallHierarchyItem.fromJson(json['to'] as Map<String, dynamic>),
+    fromRanges: (json['fromRanges'] as List<dynamic>)
+        .map((e) => Range.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CallHierarchyOutgoingCallToJson(
   _CallHierarchyOutgoingCall instance,
@@ -4272,31 +3122,27 @@ Map<String, dynamic> _$CallHierarchyOutgoingCallToJson(
 
 _SemanticTokensParams _$SemanticTokensParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'partialResultToken', 'workDoneToken'],
   );
-  final val = _SemanticTokensParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _SemanticTokensParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensParamsToJson(
   _SemanticTokensParams instance,
@@ -4306,34 +3152,29 @@ Map<String, dynamic> _$SemanticTokensParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_SemanticTokens _$SemanticTokensFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_SemanticTokens', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['data', 'resultId']);
-      final val = _SemanticTokens(
-        data: $checkedConvert(
-          'data',
-          (v) => (v as List<dynamic>).map((e) => (e as num).toInt()).toList(),
-        ),
-        resultId: $checkedConvert('resultId', (v) => v as String?),
-      );
-      return val;
-    });
+_SemanticTokens _$SemanticTokensFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['data', 'resultId']);
+  return _SemanticTokens(
+    data: (json['data'] as List<dynamic>)
+        .map((e) => (e as num).toInt())
+        .toList(),
+    resultId: json['resultId'] as String?,
+  );
+}
 
 Map<String, dynamic> _$SemanticTokensToJson(_SemanticTokens instance) =>
     <String, dynamic>{'data': instance.data, 'resultId': instance.resultId};
 
 _SemanticTokensPartialResult _$SemanticTokensPartialResultFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensPartialResult', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['data']);
-  final val = _SemanticTokensPartialResult(
-    data: $checkedConvert(
-      'data',
-      (v) => (v as List<dynamic>).map((e) => (e as num).toInt()).toList(),
-    ),
+  return _SemanticTokensPartialResult(
+    data: (json['data'] as List<dynamic>)
+        .map((e) => (e as num).toInt())
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensPartialResultToJson(
   _SemanticTokensPartialResult instance,
@@ -4341,8 +3182,6 @@ Map<String, dynamic> _$SemanticTokensPartialResultToJson(
 
 _SemanticTokensRegistrationOptions _$SemanticTokensRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
@@ -4355,32 +3194,26 @@ _SemanticTokensRegistrationOptions _$SemanticTokensRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _SemanticTokensRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
+  return _SemanticTokensRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    legend: SemanticTokensLegend.fromJson(
+      json['legend'] as Map<String, dynamic>,
     ),
-    legend: $checkedConvert(
-      'legend',
-      (v) => SemanticTokensLegend.fromJson(v as Map<String, dynamic>),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    full: $checkedConvert(
-      'full',
-      (v) => v == null
-          ? null
-          : SemanticTokensOptionsFullBase.fromJson(v as Map<String, dynamic>),
-    ),
-    range: $checkedConvert(
-      'range',
-      (v) => v == null ? null : RangeBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+    id: json['id'] as String?,
+    full: json['full'] == null
+        ? null
+        : SemanticTokensOptionsFullBase.fromJson(
+            json['full'] as Map<String, dynamic>,
+          ),
+    range: json['range'] == null
+        ? null
+        : RangeBase.fromJson(json['range'] as Map<String, dynamic>),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensRegistrationOptionsToJson(
   _SemanticTokensRegistrationOptions instance,
@@ -4395,7 +3228,7 @@ Map<String, dynamic> _$SemanticTokensRegistrationOptionsToJson(
 
 _SemanticTokensDeltaParams _$SemanticTokensDeltaParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensDeltaParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -4405,27 +3238,23 @@ _SemanticTokensDeltaParams _$SemanticTokensDeltaParamsFromJson(
       'workDoneToken',
     ],
   );
-  final val = _SemanticTokensDeltaParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _SemanticTokensDeltaParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    previousResultId: $checkedConvert('previousResultId', (v) => v as String),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    previousResultId: json['previousResultId'] as String,
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensDeltaParamsToJson(
   _SemanticTokensDeltaParams instance,
@@ -4436,22 +3265,15 @@ Map<String, dynamic> _$SemanticTokensDeltaParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_SemanticTokensDelta _$SemanticTokensDeltaFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_SemanticTokensDelta', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['edits', 'resultId']);
-      final val = _SemanticTokensDelta(
-        edits: $checkedConvert(
-          'edits',
-          (v) => (v as List<dynamic>)
-              .map(
-                (e) => SemanticTokensEdit.fromJson(e as Map<String, dynamic>),
-              )
-              .toList(),
-        ),
-        resultId: $checkedConvert('resultId', (v) => v as String?),
-      );
-      return val;
-    });
+_SemanticTokensDelta _$SemanticTokensDeltaFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['edits', 'resultId']);
+  return _SemanticTokensDelta(
+    edits: (json['edits'] as List<dynamic>)
+        .map((e) => SemanticTokensEdit.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    resultId: json['resultId'] as String?,
+  );
+}
 
 Map<String, dynamic> _$SemanticTokensDeltaToJson(
   _SemanticTokensDelta instance,
@@ -4459,20 +3281,14 @@ Map<String, dynamic> _$SemanticTokensDeltaToJson(
 
 _SemanticTokensDeltaPartialResult _$SemanticTokensDeltaPartialResultFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensDeltaPartialResult', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['edits']);
-  final val = _SemanticTokensDeltaPartialResult(
-    edits: $checkedConvert(
-      'edits',
-      (v) => (v as List<dynamic>)
-          .map((e) => SemanticTokensEdit.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _SemanticTokensDeltaPartialResult(
+    edits: (json['edits'] as List<dynamic>)
+        .map((e) => SemanticTokensEdit.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensDeltaPartialResultToJson(
   _SemanticTokensDeltaPartialResult instance,
@@ -4480,7 +3296,7 @@ Map<String, dynamic> _$SemanticTokensDeltaPartialResultToJson(
 
 _SemanticTokensRangeParams _$SemanticTokensRangeParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensRangeParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -4490,30 +3306,23 @@ _SemanticTokensRangeParams _$SemanticTokensRangeParamsFromJson(
       'workDoneToken',
     ],
   );
-  final val = _SemanticTokensRangeParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _SemanticTokensRangeParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    range: $checkedConvert(
-      'range',
-      (v) => Range.fromJson(v as Map<String, dynamic>),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensRangeParamsToJson(
   _SemanticTokensRangeParams instance,
@@ -4524,23 +3333,20 @@ Map<String, dynamic> _$SemanticTokensRangeParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_ShowDocumentParams _$ShowDocumentParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ShowDocumentParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['uri', 'selection', 'takeFocus', 'external'],
-      );
-      final val = _ShowDocumentParams(
-        uri: $checkedConvert('uri', (v) => v as String),
-        selection: $checkedConvert(
-          'selection',
-          (v) => v == null ? null : Range.fromJson(v as Map<String, dynamic>),
-        ),
-        takeFocus: $checkedConvert('takeFocus', (v) => v as bool?),
-        external: $checkedConvert('external', (v) => v as bool?),
-      );
-      return val;
-    });
+_ShowDocumentParams _$ShowDocumentParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['uri', 'selection', 'takeFocus', 'external'],
+  );
+  return _ShowDocumentParams(
+    uri: json['uri'] as String,
+    selection: json['selection'] == null
+        ? null
+        : Range.fromJson(json['selection'] as Map<String, dynamic>),
+    takeFocus: json['takeFocus'] as bool?,
+    external: json['external'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$ShowDocumentParamsToJson(_ShowDocumentParams instance) =>
     <String, dynamic>{
@@ -4550,43 +3356,33 @@ Map<String, dynamic> _$ShowDocumentParamsToJson(_ShowDocumentParams instance) =>
       'external': instance.external,
     };
 
-_ShowDocumentResult _$ShowDocumentResultFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ShowDocumentResult', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['success']);
-      final val = _ShowDocumentResult(
-        success: $checkedConvert('success', (v) => v as bool),
-      );
-      return val;
-    });
+_ShowDocumentResult _$ShowDocumentResultFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['success']);
+  return _ShowDocumentResult(success: json['success'] as bool);
+}
 
 Map<String, dynamic> _$ShowDocumentResultToJson(_ShowDocumentResult instance) =>
     <String, dynamic>{'success': instance.success};
 
 _LinkedEditingRangeParams _$LinkedEditingRangeParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_LinkedEditingRangeParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'position', 'workDoneToken'],
   );
-  final val = _LinkedEditingRangeParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _LinkedEditingRangeParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    position: $checkedConvert(
-      'position',
-      (v) => Position.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$LinkedEditingRangeParamsToJson(
   _LinkedEditingRangeParams instance,
@@ -4596,20 +3392,15 @@ Map<String, dynamic> _$LinkedEditingRangeParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_LinkedEditingRanges _$LinkedEditingRangesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_LinkedEditingRanges', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['ranges', 'wordPattern']);
-      final val = _LinkedEditingRanges(
-        ranges: $checkedConvert(
-          'ranges',
-          (v) => (v as List<dynamic>)
-              .map((e) => Range.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        wordPattern: $checkedConvert('wordPattern', (v) => v as String?),
-      );
-      return val;
-    });
+_LinkedEditingRanges _$LinkedEditingRangesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['ranges', 'wordPattern']);
+  return _LinkedEditingRanges(
+    ranges: (json['ranges'] as List<dynamic>)
+        .map((e) => Range.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    wordPattern: json['wordPattern'] as String?,
+  );
+}
 
 Map<String, dynamic> _$LinkedEditingRangesToJson(
   _LinkedEditingRanges instance,
@@ -4619,29 +3410,20 @@ Map<String, dynamic> _$LinkedEditingRangesToJson(
 };
 
 _LinkedEditingRangeRegistrationOptions
-_$LinkedEditingRangeRegistrationOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_LinkedEditingRangeRegistrationOptions', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
-      );
-      final val = _LinkedEditingRangeRegistrationOptions(
-        documentSelector: $checkedConvert(
-          'documentSelector',
-          (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-            v as Map<String, dynamic>,
-          ),
+_$LinkedEditingRangeRegistrationOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
+  );
+  return _LinkedEditingRangeRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
         ),
-        id: $checkedConvert('id', (v) => v as String?),
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$LinkedEditingRangeRegistrationOptionsToJson(
   _LinkedEditingRangeRegistrationOptions instance,
@@ -4651,62 +3433,46 @@ Map<String, dynamic> _$LinkedEditingRangeRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_CreateFilesParams _$CreateFilesParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CreateFilesParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['files']);
-      final val = _CreateFilesParams(
-        files: $checkedConvert(
-          'files',
-          (v) => (v as List<dynamic>)
-              .map((e) => FileCreate.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_CreateFilesParams _$CreateFilesParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['files']);
+  return _CreateFilesParams(
+    files: (json['files'] as List<dynamic>)
+        .map((e) => FileCreate.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$CreateFilesParamsToJson(_CreateFilesParams instance) =>
     <String, dynamic>{'files': instance.files};
 
-_WorkspaceEdit _$WorkspaceEditFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceEdit', json, ($checkedConvert) {
+_WorkspaceEdit _$WorkspaceEditFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     allowedKeys: const ['changeAnnotations', 'documentChanges', 'changes'],
   );
-  final val = _WorkspaceEdit(
-    changeAnnotations: $checkedConvert(
-      'changeAnnotations',
-      (v) => (v as Map<String, dynamic>?)?.map(
-        (k, e) =>
-            MapEntry(k, ChangeAnnotation.fromJson(e as Map<String, dynamic>)),
-      ),
-    ),
-    documentChanges: $checkedConvert(
-      'documentChanges',
-      (v) => (v as List<dynamic>?)
-          ?.map(
-            (e) => WorkspaceEditDocumentChangesBase.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
-    changes: $checkedConvert(
-      'changes',
-      (v) => (v as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(
-          k,
-          (e as List<dynamic>)
-              .map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
-              .toList(),
+  return _WorkspaceEdit(
+    changeAnnotations: (json['changeAnnotations'] as Map<String, dynamic>?)
+        ?.map(
+          (k, e) =>
+              MapEntry(k, ChangeAnnotation.fromJson(e as Map<String, dynamic>)),
         ),
+    documentChanges: (json['documentChanges'] as List<dynamic>?)
+        ?.map(
+          (e) => WorkspaceEditDocumentChangesBase.fromJson(
+            e as Map<String, dynamic>,
+          ),
+        )
+        .toList(),
+    changes: (json['changes'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(
+        k,
+        (e as List<dynamic>)
+            .map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceEditToJson(_WorkspaceEdit instance) =>
     <String, dynamic>{
@@ -4717,94 +3483,70 @@ Map<String, dynamic> _$WorkspaceEditToJson(_WorkspaceEdit instance) =>
 
 _FileOperationRegistrationOptions _$FileOperationRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_FileOperationRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['filters']);
-  final val = _FileOperationRegistrationOptions(
-    filters: $checkedConvert(
-      'filters',
-      (v) => (v as List<dynamic>)
-          .map((e) => FileOperationFilter.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _FileOperationRegistrationOptions(
+    filters: (json['filters'] as List<dynamic>)
+        .map((e) => FileOperationFilter.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$FileOperationRegistrationOptionsToJson(
   _FileOperationRegistrationOptions instance,
 ) => <String, dynamic>{'filters': instance.filters};
 
-_RenameFilesParams _$RenameFilesParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_RenameFilesParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['files']);
-      final val = _RenameFilesParams(
-        files: $checkedConvert(
-          'files',
-          (v) => (v as List<dynamic>)
-              .map((e) => FileRename.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_RenameFilesParams _$RenameFilesParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['files']);
+  return _RenameFilesParams(
+    files: (json['files'] as List<dynamic>)
+        .map((e) => FileRename.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$RenameFilesParamsToJson(_RenameFilesParams instance) =>
     <String, dynamic>{'files': instance.files};
 
-_DeleteFilesParams _$DeleteFilesParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DeleteFilesParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['files']);
-      final val = _DeleteFilesParams(
-        files: $checkedConvert(
-          'files',
-          (v) => (v as List<dynamic>)
-              .map((e) => FileDelete.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_DeleteFilesParams _$DeleteFilesParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['files']);
+  return _DeleteFilesParams(
+    files: (json['files'] as List<dynamic>)
+        .map((e) => FileDelete.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$DeleteFilesParamsToJson(_DeleteFilesParams instance) =>
     <String, dynamic>{'files': instance.files};
 
-_MonikerParams _$MonikerParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_MonikerParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'position',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _MonikerParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_MonikerParams _$MonikerParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'textDocument',
+      'position',
+      'partialResultToken',
+      'workDoneToken',
+    ],
+  );
+  return _MonikerParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$MonikerParamsToJson(_MonikerParams instance) =>
     <String, dynamic>{
@@ -4814,26 +3556,18 @@ Map<String, dynamic> _$MonikerParamsToJson(_MonikerParams instance) =>
       'workDoneToken': instance.workDoneToken,
     };
 
-_Moniker _$MonikerFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Moniker', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['scheme', 'identifier', 'unique', 'kind'],
-      );
-      final val = _Moniker(
-        scheme: $checkedConvert('scheme', (v) => v as String),
-        identifier: $checkedConvert('identifier', (v) => v as String),
-        unique: $checkedConvert(
-          'unique',
-          (v) => $enumDecode(_$UniquenessLevelEnumMap, v),
-        ),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecodeNullable(_$MonikerKindEnumMap, v),
-        ),
-      );
-      return val;
-    });
+_Moniker _$MonikerFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['scheme', 'identifier', 'unique', 'kind'],
+  );
+  return _Moniker(
+    scheme: json['scheme'] as String,
+    identifier: json['identifier'] as String,
+    unique: $enumDecode(_$UniquenessLevelEnumMap, json['unique']),
+    kind: $enumDecodeNullable(_$MonikerKindEnumMap, json['kind']),
+  );
+}
 
 Map<String, dynamic> _$MonikerToJson(_Moniker instance) => <String, dynamic>{
   'scheme': instance.scheme,
@@ -4858,19 +3592,16 @@ const _$MonikerKindEnumMap = {
 
 _MonikerRegistrationOptions _$MonikerRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_MonikerRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
-  final val = _MonikerRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _MonikerRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$MonikerRegistrationOptionsToJson(
   _MonikerRegistrationOptions instance,
@@ -4881,29 +3612,23 @@ Map<String, dynamic> _$MonikerRegistrationOptionsToJson(
 
 _TypeHierarchyPrepareParams _$TypeHierarchyPrepareParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TypeHierarchyPrepareParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'position', 'workDoneToken'],
   );
-  final val = _TypeHierarchyPrepareParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _TypeHierarchyPrepareParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    position: $checkedConvert(
-      'position',
-      (v) => Position.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TypeHierarchyPrepareParamsToJson(
   _TypeHierarchyPrepareParams instance,
@@ -4913,51 +3638,37 @@ Map<String, dynamic> _$TypeHierarchyPrepareParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_TypeHierarchyItem _$TypeHierarchyItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_TypeHierarchyItem', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'name',
-          'kind',
-          'uri',
-          'range',
-          'selectionRange',
-          'data',
-          'detail',
-          'tags',
-        ],
-      );
-      final val = _TypeHierarchyItem(
-        name: $checkedConvert('name', (v) => v as String),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecode(_$SymbolKindEnumMap, v),
-        ),
-        uri: $checkedConvert('uri', (v) => v as String),
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        selectionRange: $checkedConvert(
-          'selectionRange',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        data: $checkedConvert(
-          'data',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        detail: $checkedConvert('detail', (v) => v as String?),
-        tags: $checkedConvert(
-          'tags',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_TypeHierarchyItem _$TypeHierarchyItemFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'name',
+      'kind',
+      'uri',
+      'range',
+      'selectionRange',
+      'data',
+      'detail',
+      'tags',
+    ],
+  );
+  return _TypeHierarchyItem(
+    name: json['name'] as String,
+    kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
+    uri: json['uri'] as String,
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    selectionRange: Range.fromJson(
+      json['selectionRange'] as Map<String, dynamic>,
+    ),
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    detail: json['detail'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$TypeHierarchyItemToJson(_TypeHierarchyItem instance) =>
     <String, dynamic>{
@@ -4973,25 +3684,20 @@ Map<String, dynamic> _$TypeHierarchyItemToJson(_TypeHierarchyItem instance) =>
 
 _TypeHierarchyRegistrationOptions _$TypeHierarchyRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TypeHierarchyRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
-  final val = _TypeHierarchyRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _TypeHierarchyRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TypeHierarchyRegistrationOptionsToJson(
   _TypeHierarchyRegistrationOptions instance,
@@ -5003,31 +3709,25 @@ Map<String, dynamic> _$TypeHierarchyRegistrationOptionsToJson(
 
 _TypeHierarchySupertypesParams _$TypeHierarchySupertypesParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TypeHierarchySupertypesParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['item', 'partialResultToken', 'workDoneToken'],
   );
-  final val = _TypeHierarchySupertypesParams(
-    item: $checkedConvert(
-      'item',
-      (v) => TypeHierarchyItem.fromJson(v as Map<String, dynamic>),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _TypeHierarchySupertypesParams(
+    item: TypeHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TypeHierarchySupertypesParamsToJson(
   _TypeHierarchySupertypesParams instance,
@@ -5039,31 +3739,25 @@ Map<String, dynamic> _$TypeHierarchySupertypesParamsToJson(
 
 _TypeHierarchySubtypesParams _$TypeHierarchySubtypesParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TypeHierarchySubtypesParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['item', 'partialResultToken', 'workDoneToken'],
   );
-  final val = _TypeHierarchySubtypesParams(
-    item: $checkedConvert(
-      'item',
-      (v) => TypeHierarchyItem.fromJson(v as Map<String, dynamic>),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _TypeHierarchySubtypesParams(
+    item: TypeHierarchyItem.fromJson(json['item'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TypeHierarchySubtypesParamsToJson(
   _TypeHierarchySubtypesParams instance,
@@ -5073,39 +3767,26 @@ Map<String, dynamic> _$TypeHierarchySubtypesParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_InlineValueParams _$InlineValueParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlineValueParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'range',
-          'context',
-          'workDoneToken',
-        ],
-      );
-      final val = _InlineValueParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        context: $checkedConvert(
-          'context',
-          (v) => InlineValueContext.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_InlineValueParams _$InlineValueParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'range', 'context', 'workDoneToken'],
+  );
+  return _InlineValueParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    context: InlineValueContext.fromJson(
+      json['context'] as Map<String, dynamic>,
+    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$InlineValueParamsToJson(_InlineValueParams instance) =>
     <String, dynamic>{
@@ -5117,23 +3798,20 @@ Map<String, dynamic> _$InlineValueParamsToJson(_InlineValueParams instance) =>
 
 _InlineValueRegistrationOptions _$InlineValueRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlineValueRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
-  final val = _InlineValueRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _InlineValueRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlineValueRegistrationOptionsToJson(
   _InlineValueRegistrationOptions instance,
@@ -5143,30 +3821,23 @@ Map<String, dynamic> _$InlineValueRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_InlayHintParams _$InlayHintParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlayHintParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['textDocument', 'range', 'workDoneToken'],
-      );
-      final val = _InlayHintParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_InlayHintParams _$InlayHintParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'range', 'workDoneToken'],
+  );
+  return _InlayHintParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$InlayHintParamsToJson(_InlayHintParams instance) =>
     <String, dynamic>{
@@ -5175,56 +3846,39 @@ Map<String, dynamic> _$InlayHintParamsToJson(_InlayHintParams instance) =>
       'workDoneToken': instance.workDoneToken,
     };
 
-_InlayHint _$InlayHintFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlayHint', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'position',
-          'label',
-          'data',
-          'paddingRight',
-          'paddingLeft',
-          'tooltip',
-          'textEdits',
-          'kind',
-        ],
-      );
-      final val = _InlayHint(
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        label: $checkedConvert(
-          'label',
-          (v) => InlayHintLabelBase.fromJson(v as Map<String, dynamic>),
-        ),
-        data: $checkedConvert(
-          'data',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        paddingRight: $checkedConvert('paddingRight', (v) => v as bool?),
-        paddingLeft: $checkedConvert('paddingLeft', (v) => v as bool?),
-        tooltip: $checkedConvert(
-          'tooltip',
-          (v) => v == null
-              ? null
-              : TooltipOrDocumentationBase.fromJson(v as Map<String, dynamic>),
-        ),
-        textEdits: $checkedConvert(
-          'textEdits',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecodeNullable(_$InlayHintKindEnumMap, v),
-        ),
-      );
-      return val;
-    });
+_InlayHint _$InlayHintFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'position',
+      'label',
+      'data',
+      'paddingRight',
+      'paddingLeft',
+      'tooltip',
+      'textEdits',
+      'kind',
+    ],
+  );
+  return _InlayHint(
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    label: InlayHintLabelBase.fromJson(json['label'] as Map<String, dynamic>),
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    paddingRight: json['paddingRight'] as bool?,
+    paddingLeft: json['paddingLeft'] as bool?,
+    tooltip: json['tooltip'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['tooltip'] as Map<String, dynamic>,
+          ),
+    textEdits: (json['textEdits'] as List<dynamic>?)
+        ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    kind: $enumDecodeNullable(_$InlayHintKindEnumMap, json['kind']),
+  );
+}
 
 Map<String, dynamic> _$InlayHintToJson(_InlayHint instance) =>
     <String, dynamic>{
@@ -5245,7 +3899,7 @@ const _$InlayHintKindEnumMap = {
 
 _InlayHintRegistrationOptions _$InlayHintRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlayHintRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -5255,19 +3909,16 @@ _InlayHintRegistrationOptions _$InlayHintRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _InlayHintRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _InlayHintRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    id: json['id'] as String?,
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlayHintRegistrationOptionsToJson(
   _InlayHintRegistrationOptions instance,
@@ -5280,7 +3931,7 @@ Map<String, dynamic> _$InlayHintRegistrationOptionsToJson(
 
 _DocumentDiagnosticParams _$DocumentDiagnosticParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentDiagnosticParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -5291,28 +3942,24 @@ _DocumentDiagnosticParams _$DocumentDiagnosticParamsFromJson(
       'workDoneToken',
     ],
   );
-  final val = _DocumentDiagnosticParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DocumentDiagnosticParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    previousResultId: $checkedConvert('previousResultId', (v) => v as String?),
-    identifier: $checkedConvert('identifier', (v) => v as String?),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    previousResultId: json['previousResultId'] as String?,
+    identifier: json['identifier'] as String?,
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentDiagnosticParamsToJson(
   _DocumentDiagnosticParams instance,
@@ -5325,24 +3972,15 @@ Map<String, dynamic> _$DocumentDiagnosticParamsToJson(
 };
 
 _DocumentDiagnosticReportPartialResult
-_$DocumentDiagnosticReportPartialResultFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DocumentDiagnosticReportPartialResult', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['relatedDocuments']);
-      final val = _DocumentDiagnosticReportPartialResult(
-        relatedDocuments: $checkedConvert(
-          'relatedDocuments',
-          (v) => (v as Map<String, dynamic>).map(
-            (k, e) => MapEntry(
-              k,
-              RelatedDocumentsBase.fromJson(e as Map<String, dynamic>),
-            ),
-          ),
-        ),
-      );
-      return val;
-    });
+_$DocumentDiagnosticReportPartialResultFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['relatedDocuments']);
+  return _DocumentDiagnosticReportPartialResult(
+    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>).map(
+      (k, e) =>
+          MapEntry(k, RelatedDocumentsBase.fromJson(e as Map<String, dynamic>)),
+    ),
+  );
+}
 
 Map<String, dynamic> _$DocumentDiagnosticReportPartialResultToJson(
   _DocumentDiagnosticReportPartialResult instance,
@@ -5350,15 +3988,12 @@ Map<String, dynamic> _$DocumentDiagnosticReportPartialResultToJson(
 
 _DiagnosticServerCancellationData _$DiagnosticServerCancellationDataFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DiagnosticServerCancellationData', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['retriggerRequest']);
-  final val = _DiagnosticServerCancellationData(
-    retriggerRequest: $checkedConvert('retriggerRequest', (v) => v as bool),
+  return _DiagnosticServerCancellationData(
+    retriggerRequest: json['retriggerRequest'] as bool,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DiagnosticServerCancellationDataToJson(
   _DiagnosticServerCancellationData instance,
@@ -5366,7 +4001,7 @@ Map<String, dynamic> _$DiagnosticServerCancellationDataToJson(
 
 _DiagnosticRegistrationOptions _$DiagnosticRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DiagnosticRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -5378,27 +4013,18 @@ _DiagnosticRegistrationOptions _$DiagnosticRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _DiagnosticRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    interFileDependencies: $checkedConvert(
-      'interFileDependencies',
-      (v) => v as bool,
-    ),
-    workspaceDiagnostics: $checkedConvert(
-      'workspaceDiagnostics',
-      (v) => v as bool,
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    identifier: $checkedConvert('identifier', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DiagnosticRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    interFileDependencies: json['interFileDependencies'] as bool,
+    workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
+    id: json['id'] as String?,
+    identifier: json['identifier'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DiagnosticRegistrationOptionsToJson(
   _DiagnosticRegistrationOptions instance,
@@ -5413,7 +4039,7 @@ Map<String, dynamic> _$DiagnosticRegistrationOptionsToJson(
 
 _WorkspaceDiagnosticParams _$WorkspaceDiagnosticParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceDiagnosticParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -5423,29 +4049,23 @@ _WorkspaceDiagnosticParams _$WorkspaceDiagnosticParamsFromJson(
       'workDoneToken',
     ],
   );
-  final val = _WorkspaceDiagnosticParams(
-    previousResultIds: $checkedConvert(
-      'previousResultIds',
-      (v) => (v as List<dynamic>)
-          .map((e) => PreviousResultId.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    identifier: $checkedConvert('identifier', (v) => v as String?),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _WorkspaceDiagnosticParams(
+    previousResultIds: (json['previousResultIds'] as List<dynamic>)
+        .map((e) => PreviousResultId.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    identifier: json['identifier'] as String?,
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceDiagnosticParamsToJson(
   _WorkspaceDiagnosticParams instance,
@@ -5458,47 +4078,36 @@ Map<String, dynamic> _$WorkspaceDiagnosticParamsToJson(
 
 _WorkspaceDiagnosticReport _$WorkspaceDiagnosticReportFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceDiagnosticReport', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['items']);
-  final val = _WorkspaceDiagnosticReport(
-    items: $checkedConvert(
-      'items',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => WorkspaceDocumentDiagnosticReportBase.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
+  return _WorkspaceDiagnosticReport(
+    items: (json['items'] as List<dynamic>)
+        .map(
+          (e) => WorkspaceDocumentDiagnosticReportBase.fromJson(
+            e as Map<String, dynamic>,
+          ),
+        )
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceDiagnosticReportToJson(
   _WorkspaceDiagnosticReport instance,
 ) => <String, dynamic>{'items': instance.items};
 
 _WorkspaceDiagnosticReportPartialResult
-_$WorkspaceDiagnosticReportPartialResultFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_WorkspaceDiagnosticReportPartialResult', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['items']);
-      final val = _WorkspaceDiagnosticReportPartialResult(
-        items: $checkedConvert(
-          'items',
-          (v) => (v as List<dynamic>)
-              .map(
-                (e) => WorkspaceDocumentDiagnosticReportBase.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_$WorkspaceDiagnosticReportPartialResultFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['items']);
+  return _WorkspaceDiagnosticReportPartialResult(
+    items: (json['items'] as List<dynamic>)
+        .map(
+          (e) => WorkspaceDocumentDiagnosticReportBase.fromJson(
+            e as Map<String, dynamic>,
+          ),
+        )
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$WorkspaceDiagnosticReportPartialResultToJson(
   _WorkspaceDiagnosticReportPartialResult instance,
@@ -5506,25 +4115,20 @@ Map<String, dynamic> _$WorkspaceDiagnosticReportPartialResultToJson(
 
 _DidOpenNotebookDocumentParams _$DidOpenNotebookDocumentParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DidOpenNotebookDocumentParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['notebookDocument', 'cellTextDocuments'],
   );
-  final val = _DidOpenNotebookDocumentParams(
-    notebookDocument: $checkedConvert(
-      'notebookDocument',
-      (v) => NotebookDocument.fromJson(v as Map<String, dynamic>),
+  return _DidOpenNotebookDocumentParams(
+    notebookDocument: NotebookDocument.fromJson(
+      json['notebookDocument'] as Map<String, dynamic>,
     ),
-    cellTextDocuments: $checkedConvert(
-      'cellTextDocuments',
-      (v) => (v as List<dynamic>)
-          .map((e) => TextDocumentItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+    cellTextDocuments: (json['cellTextDocuments'] as List<dynamic>)
+        .map((e) => TextDocumentItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidOpenNotebookDocumentParamsToJson(
   _DidOpenNotebookDocumentParams instance,
@@ -5535,24 +4139,17 @@ Map<String, dynamic> _$DidOpenNotebookDocumentParamsToJson(
 
 _DidChangeNotebookDocumentParams _$DidChangeNotebookDocumentParamsFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_DidChangeNotebookDocumentParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['notebookDocument', 'change']);
-      final val = _DidChangeNotebookDocumentParams(
-        notebookDocument: $checkedConvert(
-          'notebookDocument',
-          (v) => VersionedNotebookDocumentIdentifier.fromJson(
-            v as Map<String, dynamic>,
-          ),
-        ),
-        change: $checkedConvert(
-          'change',
-          (v) =>
-              NotebookDocumentChangeEvent.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+) {
+  $checkKeys(json, allowedKeys: const ['notebookDocument', 'change']);
+  return _DidChangeNotebookDocumentParams(
+    notebookDocument: VersionedNotebookDocumentIdentifier.fromJson(
+      json['notebookDocument'] as Map<String, dynamic>,
+    ),
+    change: NotebookDocumentChangeEvent.fromJson(
+      json['change'] as Map<String, dynamic>,
+    ),
+  );
+}
 
 Map<String, dynamic> _$DidChangeNotebookDocumentParamsToJson(
   _DidChangeNotebookDocumentParams instance,
@@ -5563,16 +4160,14 @@ Map<String, dynamic> _$DidChangeNotebookDocumentParamsToJson(
 
 _DidSaveNotebookDocumentParams _$DidSaveNotebookDocumentParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DidSaveNotebookDocumentParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['notebookDocument']);
-  final val = _DidSaveNotebookDocumentParams(
-    notebookDocument: $checkedConvert(
-      'notebookDocument',
-      (v) => NotebookDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DidSaveNotebookDocumentParams(
+    notebookDocument: NotebookDocumentIdentifier.fromJson(
+      json['notebookDocument'] as Map<String, dynamic>,
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidSaveNotebookDocumentParamsToJson(
   _DidSaveNotebookDocumentParams instance,
@@ -5580,27 +4175,20 @@ Map<String, dynamic> _$DidSaveNotebookDocumentParamsToJson(
 
 _DidCloseNotebookDocumentParams _$DidCloseNotebookDocumentParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DidCloseNotebookDocumentParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['notebookDocument', 'cellTextDocuments'],
   );
-  final val = _DidCloseNotebookDocumentParams(
-    notebookDocument: $checkedConvert(
-      'notebookDocument',
-      (v) => NotebookDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DidCloseNotebookDocumentParams(
+    notebookDocument: NotebookDocumentIdentifier.fromJson(
+      json['notebookDocument'] as Map<String, dynamic>,
     ),
-    cellTextDocuments: $checkedConvert(
-      'cellTextDocuments',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => TextDocumentIdentifier.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
-    ),
+    cellTextDocuments: (json['cellTextDocuments'] as List<dynamic>)
+        .map((e) => TextDocumentIdentifier.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidCloseNotebookDocumentParamsToJson(
   _DidCloseNotebookDocumentParams instance,
@@ -5611,33 +4199,26 @@ Map<String, dynamic> _$DidCloseNotebookDocumentParamsToJson(
 
 _InlineCompletionParams _$InlineCompletionParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlineCompletionParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'position', 'context', 'workDoneToken'],
   );
-  final val = _InlineCompletionParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _InlineCompletionParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    position: $checkedConvert(
-      'position',
-      (v) => Position.fromJson(v as Map<String, dynamic>),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    context: InlineCompletionContext.fromJson(
+      json['context'] as Map<String, dynamic>,
     ),
-    context: $checkedConvert(
-      'context',
-      (v) => InlineCompletionContext.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlineCompletionParamsToJson(
   _InlineCompletionParams instance,
@@ -5650,18 +4231,14 @@ Map<String, dynamic> _$InlineCompletionParamsToJson(
 
 _InlineCompletionList _$InlineCompletionListFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlineCompletionList', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['items']);
-  final val = _InlineCompletionList(
-    items: $checkedConvert(
-      'items',
-      (v) => (v as List<dynamic>)
-          .map((e) => InlineCompletionItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _InlineCompletionList(
+    items: (json['items'] as List<dynamic>)
+        .map((e) => InlineCompletionItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlineCompletionListToJson(
   _InlineCompletionList instance,
@@ -5669,30 +4246,24 @@ Map<String, dynamic> _$InlineCompletionListToJson(
 
 _InlineCompletionItem _$InlineCompletionItemFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlineCompletionItem', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['insertText', 'command', 'range', 'filterText'],
   );
-  final val = _InlineCompletionItem(
-    insertText: $checkedConvert(
-      'insertText',
-      (v) => InlineCompletionItemInsertTextBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
+  return _InlineCompletionItem(
+    insertText: InlineCompletionItemInsertTextBase.fromJson(
+      json['insertText'] as Map<String, dynamic>,
     ),
-    command: $checkedConvert(
-      'command',
-      (v) => v == null ? null : Command.fromJson(v as Map<String, dynamic>),
-    ),
-    range: $checkedConvert(
-      'range',
-      (v) => v == null ? null : Range.fromJson(v as Map<String, dynamic>),
-    ),
-    filterText: $checkedConvert('filterText', (v) => v as String?),
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
+    range: json['range'] == null
+        ? null
+        : Range.fromJson(json['range'] as Map<String, dynamic>),
+    filterText: json['filterText'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlineCompletionItemToJson(
   _InlineCompletionItem instance,
@@ -5704,29 +4275,20 @@ Map<String, dynamic> _$InlineCompletionItemToJson(
 };
 
 _InlineCompletionRegistrationOptions
-_$InlineCompletionRegistrationOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlineCompletionRegistrationOptions', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
-      );
-      final val = _InlineCompletionRegistrationOptions(
-        documentSelector: $checkedConvert(
-          'documentSelector',
-          (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-            v as Map<String, dynamic>,
-          ),
+_$InlineCompletionRegistrationOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
+  );
+  return _InlineCompletionRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
         ),
-        id: $checkedConvert('id', (v) => v as String?),
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+    id: json['id'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$InlineCompletionRegistrationOptionsToJson(
   _InlineCompletionRegistrationOptions instance,
@@ -5736,118 +4298,90 @@ Map<String, dynamic> _$InlineCompletionRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_RegistrationParams _$RegistrationParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_RegistrationParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['registrations']);
-      final val = _RegistrationParams(
-        registrations: $checkedConvert(
-          'registrations',
-          (v) => (v as List<dynamic>)
-              .map((e) => Registration.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_RegistrationParams _$RegistrationParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['registrations']);
+  return _RegistrationParams(
+    registrations: (json['registrations'] as List<dynamic>)
+        .map((e) => Registration.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$RegistrationParamsToJson(_RegistrationParams instance) =>
     <String, dynamic>{'registrations': instance.registrations};
 
 _UnregistrationParams _$UnregistrationParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_UnregistrationParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['unregisterations']);
-  final val = _UnregistrationParams(
-    unregisterations: $checkedConvert(
-      'unregisterations',
-      (v) => (v as List<dynamic>)
-          .map((e) => Unregistration.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _UnregistrationParams(
+    unregisterations: (json['unregisterations'] as List<dynamic>)
+        .map((e) => Unregistration.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$UnregistrationParamsToJson(
   _UnregistrationParams instance,
 ) => <String, dynamic>{'unregisterations': instance.unregisterations};
 
-_InitializeParams _$InitializeParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InitializeParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'processId',
-          'rootUri',
-          'capabilities',
-          'workspaceFolders',
-          'trace',
-          'initializationOptions',
-          'rootPath',
-          'locale',
-          'clientInfo',
-          'workDoneToken',
-        ],
-      );
-      final val = _InitializeParams(
-        processId: $checkedConvert(
-          'processId',
-          (v) => ProcessIdOrVersionBase.fromJson(v as Map<String, dynamic>),
-        ),
-        rootUri: $checkedConvert(
-          'rootUri',
-          (v) =>
-              InitializeParamsRootUriBase.fromJson(v as Map<String, dynamic>),
-        ),
-        capabilities: $checkedConvert(
-          'capabilities',
-          (v) => ClientCapabilities.fromJson(v as Map<String, dynamic>),
-        ),
-        workspaceFolders: $checkedConvert(
-          'workspaceFolders',
-          (v) => v == null
-              ? null
-              : WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        trace: $checkedConvert(
-          'trace',
-          (v) => $enumDecodeNullable(_$TraceValuesEnumMap, v),
-        ),
-        initializationOptions: $checkedConvert(
-          'initializationOptions',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        rootPath: $checkedConvert(
-          'rootPath',
-          (v) => v == null
-              ? null
-              : InitializeParamsRootPathBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        locale: $checkedConvert('locale', (v) => v as String?),
-        clientInfo: $checkedConvert(
-          'clientInfo',
-          (v) => _$recordConvertNullable(
-            v,
-            ($jsonValue) => (
-              name: $jsonValue['name'] as String,
-              version: $jsonValue['version'] as String?,
-            ),
+_InitializeParams _$InitializeParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'processId',
+      'rootUri',
+      'capabilities',
+      'workspaceFolders',
+      'trace',
+      'initializationOptions',
+      'rootPath',
+      'locale',
+      'clientInfo',
+      'workDoneToken',
+    ],
+  );
+  return _InitializeParams(
+    processId: ProcessIdOrVersionBase.fromJson(
+      json['processId'] as Map<String, dynamic>,
+    ),
+    rootUri: InitializeParamsRootUriBase.fromJson(
+      json['rootUri'] as Map<String, dynamic>,
+    ),
+    capabilities: ClientCapabilities.fromJson(
+      json['capabilities'] as Map<String, dynamic>,
+    ),
+    workspaceFolders: json['workspaceFolders'] == null
+        ? null
+        : WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.fromJson(
+            json['workspaceFolders'] as Map<String, dynamic>,
           ),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+    trace: $enumDecodeNullable(_$TraceValuesEnumMap, json['trace']),
+    initializationOptions: json['initializationOptions'] == null
+        ? null
+        : LSPAnyBase.fromJson(
+            json['initializationOptions'] as Map<String, dynamic>,
+          ),
+    rootPath: json['rootPath'] == null
+        ? null
+        : InitializeParamsRootPathBase.fromJson(
+            json['rootPath'] as Map<String, dynamic>,
+          ),
+    locale: json['locale'] as String?,
+    clientInfo: _$recordConvertNullable(
+      json['clientInfo'],
+      ($jsonValue) => (
+        name: $jsonValue['name'] as String,
+        version: $jsonValue['version'] as String?,
+      ),
+    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$InitializeParamsToJson(_InitializeParams instance) =>
     <String, dynamic>{
@@ -5879,27 +4413,21 @@ $Rec? _$recordConvertNullable<$Rec>(
   $Rec Function(Map) convert,
 ) => value == null ? null : convert(value as Map<String, dynamic>);
 
-_InitializeResult _$InitializeResultFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InitializeResult', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['capabilities', 'serverInfo']);
-      final val = _InitializeResult(
-        capabilities: $checkedConvert(
-          'capabilities',
-          (v) => ServerCapabilities.fromJson(v as Map<String, dynamic>),
-        ),
-        serverInfo: $checkedConvert(
-          'serverInfo',
-          (v) => _$recordConvertNullable(
-            v,
-            ($jsonValue) => (
-              name: $jsonValue['name'] as String,
-              version: $jsonValue['version'] as String?,
-            ),
-          ),
-        ),
-      );
-      return val;
-    });
+_InitializeResult _$InitializeResultFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['capabilities', 'serverInfo']);
+  return _InitializeResult(
+    capabilities: ServerCapabilities.fromJson(
+      json['capabilities'] as Map<String, dynamic>,
+    ),
+    serverInfo: _$recordConvertNullable(
+      json['serverInfo'],
+      ($jsonValue) => (
+        name: $jsonValue['name'] as String,
+        version: $jsonValue['version'] as String?,
+      ),
+    ),
+  );
+}
 
 Map<String, dynamic> _$InitializeResultToJson(_InitializeResult instance) =>
     <String, dynamic>{
@@ -5912,81 +4440,58 @@ Map<String, dynamic> _$InitializeResultToJson(_InitializeResult instance) =>
             },
     };
 
-_InitializeError _$InitializeErrorFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InitializeError', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['retry']);
-      final val = _InitializeError(
-        retry: $checkedConvert('retry', (v) => v as bool),
-      );
-      return val;
-    });
+_InitializeError _$InitializeErrorFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['retry']);
+  return _InitializeError(retry: json['retry'] as bool);
+}
 
 Map<String, dynamic> _$InitializeErrorToJson(_InitializeError instance) =>
     <String, dynamic>{'retry': instance.retry};
 
-_InitializedParams _$InitializedParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InitializedParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const []);
-      final val = _InitializedParams();
-      return val;
-    });
+_InitializedParams _$InitializedParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const []);
+  return _InitializedParams();
+}
 
 Map<String, dynamic> _$InitializedParamsToJson(_InitializedParams instance) =>
     <String, dynamic>{};
 
 _DidChangeConfigurationParams _$DidChangeConfigurationParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DidChangeConfigurationParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['settings']);
-  final val = _DidChangeConfigurationParams(
-    settings: $checkedConvert(
-      'settings',
-      (v) => LSPAnyBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _DidChangeConfigurationParams(
+    settings: LSPAnyBase.fromJson(json['settings'] as Map<String, dynamic>),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidChangeConfigurationParamsToJson(
   _DidChangeConfigurationParams instance,
 ) => <String, dynamic>{'settings': instance.settings};
 
 _DidChangeConfigurationRegistrationOptions
-_$DidChangeConfigurationRegistrationOptionsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_DidChangeConfigurationRegistrationOptions', json, (
-  $checkedConvert,
-) {
+_$DidChangeConfigurationRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['section']);
-  final val = _DidChangeConfigurationRegistrationOptions(
-    section: $checkedConvert(
-      'section',
-      (v) => v == null
-          ? null
-          : DidChangeConfigurationRegistrationOptionsSectionBase.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
+  return _DidChangeConfigurationRegistrationOptions(
+    section: json['section'] == null
+        ? null
+        : DidChangeConfigurationRegistrationOptionsSectionBase.fromJson(
+            json['section'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidChangeConfigurationRegistrationOptionsToJson(
   _DidChangeConfigurationRegistrationOptions instance,
 ) => <String, dynamic>{'section': instance.section};
 
-_ShowMessageParams _$ShowMessageParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ShowMessageParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['type', 'message']);
-      final val = _ShowMessageParams(
-        type: $checkedConvert(
-          'type',
-          (v) => $enumDecode(_$MessageTypeEnumMap, v),
-        ),
-        message: $checkedConvert('message', (v) => v as String),
-      );
-      return val;
-    });
+_ShowMessageParams _$ShowMessageParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['type', 'message']);
+  return _ShowMessageParams(
+    type: $enumDecode(_$MessageTypeEnumMap, json['type']),
+    message: json['message'] as String,
+  );
+}
 
 Map<String, dynamic> _$ShowMessageParamsToJson(_ShowMessageParams instance) =>
     <String, dynamic>{
@@ -6004,20 +4509,16 @@ const _$MessageTypeEnumMap = {
 
 _ShowMessageRequestParams _$ShowMessageRequestParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ShowMessageRequestParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['type', 'message', 'actions']);
-  final val = _ShowMessageRequestParams(
-    type: $checkedConvert('type', (v) => $enumDecode(_$MessageTypeEnumMap, v)),
-    message: $checkedConvert('message', (v) => v as String),
-    actions: $checkedConvert(
-      'actions',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => MessageActionItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _ShowMessageRequestParams(
+    type: $enumDecode(_$MessageTypeEnumMap, json['type']),
+    message: json['message'] as String,
+    actions: (json['actions'] as List<dynamic>?)
+        ?.map((e) => MessageActionItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ShowMessageRequestParamsToJson(
   _ShowMessageRequestParams instance,
@@ -6027,30 +4528,21 @@ Map<String, dynamic> _$ShowMessageRequestParamsToJson(
   'actions': instance.actions,
 };
 
-_MessageActionItem _$MessageActionItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_MessageActionItem', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['title']);
-      final val = _MessageActionItem(
-        title: $checkedConvert('title', (v) => v as String),
-      );
-      return val;
-    });
+_MessageActionItem _$MessageActionItemFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['title']);
+  return _MessageActionItem(title: json['title'] as String);
+}
 
 Map<String, dynamic> _$MessageActionItemToJson(_MessageActionItem instance) =>
     <String, dynamic>{'title': instance.title};
 
-_LogMessageParams _$LogMessageParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_LogMessageParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['type', 'message']);
-      final val = _LogMessageParams(
-        type: $checkedConvert(
-          'type',
-          (v) => $enumDecode(_$MessageTypeEnumMap, v),
-        ),
-        message: $checkedConvert('message', (v) => v as String),
-      );
-      return val;
-    });
+_LogMessageParams _$LogMessageParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['type', 'message']);
+  return _LogMessageParams(
+    type: $enumDecode(_$MessageTypeEnumMap, json['type']),
+    message: json['message'] as String,
+  );
+}
 
 Map<String, dynamic> _$LogMessageParamsToJson(_LogMessageParams instance) =>
     <String, dynamic>{
@@ -6060,16 +4552,14 @@ Map<String, dynamic> _$LogMessageParamsToJson(_LogMessageParams instance) =>
 
 _DidOpenTextDocumentParams _$DidOpenTextDocumentParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DidOpenTextDocumentParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['textDocument']);
-  final val = _DidOpenTextDocumentParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentItem.fromJson(v as Map<String, dynamic>),
+  return _DidOpenTextDocumentParams(
+    textDocument: TextDocumentItem.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidOpenTextDocumentParamsToJson(
   _DidOpenTextDocumentParams instance,
@@ -6077,27 +4567,21 @@ Map<String, dynamic> _$DidOpenTextDocumentParamsToJson(
 
 _DidChangeTextDocumentParams _$DidChangeTextDocumentParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DidChangeTextDocumentParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['textDocument', 'contentChanges']);
-  final val = _DidChangeTextDocumentParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) =>
-          VersionedTextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DidChangeTextDocumentParams(
+    textDocument: VersionedTextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    contentChanges: $checkedConvert(
-      'contentChanges',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => TextDocumentContentChangeEventBase.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
+    contentChanges: (json['contentChanges'] as List<dynamic>)
+        .map(
+          (e) => TextDocumentContentChangeEventBase.fromJson(
+            e as Map<String, dynamic>,
+          ),
+        )
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidChangeTextDocumentParamsToJson(
   _DidChangeTextDocumentParams instance,
@@ -6107,25 +4591,16 @@ Map<String, dynamic> _$DidChangeTextDocumentParamsToJson(
 };
 
 _TextDocumentChangeRegistrationOptions
-_$TextDocumentChangeRegistrationOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_TextDocumentChangeRegistrationOptions', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['documentSelector', 'syncKind']);
-      final val = _TextDocumentChangeRegistrationOptions(
-        documentSelector: $checkedConvert(
-          'documentSelector',
-          (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-            v as Map<String, dynamic>,
-          ),
+_$TextDocumentChangeRegistrationOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['documentSelector', 'syncKind']);
+  return _TextDocumentChangeRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
         ),
-        syncKind: $checkedConvert(
-          'syncKind',
-          (v) => $enumDecode(_$TextDocumentSyncKindEnumMap, v),
-        ),
-      );
-      return val;
-    });
+    syncKind: $enumDecode(_$TextDocumentSyncKindEnumMap, json['syncKind']),
+  );
+}
 
 Map<String, dynamic> _$TextDocumentChangeRegistrationOptionsToJson(
   _TextDocumentChangeRegistrationOptions instance,
@@ -6136,16 +4611,14 @@ Map<String, dynamic> _$TextDocumentChangeRegistrationOptionsToJson(
 
 _DidCloseTextDocumentParams _$DidCloseTextDocumentParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DidCloseTextDocumentParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['textDocument']);
-  final val = _DidCloseTextDocumentParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DidCloseTextDocumentParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidCloseTextDocumentParamsToJson(
   _DidCloseTextDocumentParams instance,
@@ -6153,17 +4626,15 @@ Map<String, dynamic> _$DidCloseTextDocumentParamsToJson(
 
 _DidSaveTextDocumentParams _$DidSaveTextDocumentParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DidSaveTextDocumentParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['textDocument', 'text']);
-  final val = _DidSaveTextDocumentParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DidSaveTextDocumentParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    text: $checkedConvert('text', (v) => v as String?),
+    text: json['text'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidSaveTextDocumentParamsToJson(
   _DidSaveTextDocumentParams instance,
@@ -6173,22 +4644,16 @@ Map<String, dynamic> _$DidSaveTextDocumentParamsToJson(
 };
 
 _TextDocumentSaveRegistrationOptions
-_$TextDocumentSaveRegistrationOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_TextDocumentSaveRegistrationOptions', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['documentSelector', 'includeText']);
-      final val = _TextDocumentSaveRegistrationOptions(
-        documentSelector: $checkedConvert(
-          'documentSelector',
-          (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-            v as Map<String, dynamic>,
-          ),
+_$TextDocumentSaveRegistrationOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['documentSelector', 'includeText']);
+  return _TextDocumentSaveRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
         ),
-        includeText: $checkedConvert('includeText', (v) => v as bool?),
-      );
-      return val;
-    });
+    includeText: json['includeText'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$TextDocumentSaveRegistrationOptionsToJson(
   _TextDocumentSaveRegistrationOptions instance,
@@ -6199,20 +4664,15 @@ Map<String, dynamic> _$TextDocumentSaveRegistrationOptionsToJson(
 
 _WillSaveTextDocumentParams _$WillSaveTextDocumentParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WillSaveTextDocumentParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['textDocument', 'reason']);
-  final val = _WillSaveTextDocumentParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _WillSaveTextDocumentParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    reason: $checkedConvert(
-      'reason',
-      (v) => $enumDecode(_$TextDocumentSaveReasonEnumMap, v),
-    ),
+    reason: $enumDecode(_$TextDocumentSaveReasonEnumMap, json['reason']),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WillSaveTextDocumentParamsToJson(
   _WillSaveTextDocumentParams instance,
@@ -6227,18 +4687,13 @@ const _$TextDocumentSaveReasonEnumMap = {
   TextDocumentSaveReason.focusOutValue: 'focusOutValue',
 };
 
-_TextEdit _$TextEditFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_TextEdit', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['range', 'newText']);
-      final val = _TextEdit(
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        newText: $checkedConvert('newText', (v) => v as String),
-      );
-      return val;
-    });
+_TextEdit _$TextEditFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['range', 'newText']);
+  return _TextEdit(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    newText: json['newText'] as String,
+  );
+}
 
 Map<String, dynamic> _$TextEditToJson(_TextEdit instance) => <String, dynamic>{
   'range': instance.range,
@@ -6247,39 +4702,28 @@ Map<String, dynamic> _$TextEditToJson(_TextEdit instance) => <String, dynamic>{
 
 _DidChangeWatchedFilesParams _$DidChangeWatchedFilesParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DidChangeWatchedFilesParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['changes']);
-  final val = _DidChangeWatchedFilesParams(
-    changes: $checkedConvert(
-      'changes',
-      (v) => (v as List<dynamic>)
-          .map((e) => FileEvent.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _DidChangeWatchedFilesParams(
+    changes: (json['changes'] as List<dynamic>)
+        .map((e) => FileEvent.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DidChangeWatchedFilesParamsToJson(
   _DidChangeWatchedFilesParams instance,
 ) => <String, dynamic>{'changes': instance.changes};
 
 _DidChangeWatchedFilesRegistrationOptions
-_$DidChangeWatchedFilesRegistrationOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DidChangeWatchedFilesRegistrationOptions', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['watchers']);
-      final val = _DidChangeWatchedFilesRegistrationOptions(
-        watchers: $checkedConvert(
-          'watchers',
-          (v) => (v as List<dynamic>)
-              .map((e) => FileSystemWatcher.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_$DidChangeWatchedFilesRegistrationOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['watchers']);
+  return _DidChangeWatchedFilesRegistrationOptions(
+    watchers: (json['watchers'] as List<dynamic>)
+        .map((e) => FileSystemWatcher.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$DidChangeWatchedFilesRegistrationOptionsToJson(
   _DidChangeWatchedFilesRegistrationOptions instance,
@@ -6287,20 +4731,16 @@ Map<String, dynamic> _$DidChangeWatchedFilesRegistrationOptionsToJson(
 
 _PublishDiagnosticsParams _$PublishDiagnosticsParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_PublishDiagnosticsParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['uri', 'diagnostics', 'version']);
-  final val = _PublishDiagnosticsParams(
-    uri: $checkedConvert('uri', (v) => v as String),
-    diagnostics: $checkedConvert(
-      'diagnostics',
-      (v) => (v as List<dynamic>)
-          .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    version: $checkedConvert('version', (v) => (v as num?)?.toInt()),
+  return _PublishDiagnosticsParams(
+    uri: json['uri'] as String,
+    diagnostics: (json['diagnostics'] as List<dynamic>)
+        .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    version: (json['version'] as num?)?.toInt(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$PublishDiagnosticsParamsToJson(
   _PublishDiagnosticsParams instance,
@@ -6310,48 +4750,37 @@ Map<String, dynamic> _$PublishDiagnosticsParamsToJson(
   'version': instance.version,
 };
 
-_CompletionParams _$CompletionParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CompletionParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'position',
-          'context',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _CompletionParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        context: $checkedConvert(
-          'context',
-          (v) => v == null
-              ? null
-              : CompletionContext.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_CompletionParams _$CompletionParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'textDocument',
+      'position',
+      'context',
+      'partialResultToken',
+      'workDoneToken',
+    ],
+  );
+  return _CompletionParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    context: json['context'] == null
+        ? null
+        : CompletionContext.fromJson(json['context'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$CompletionParamsToJson(_CompletionParams instance) =>
     <String, dynamic>{
@@ -6362,99 +4791,81 @@ Map<String, dynamic> _$CompletionParamsToJson(_CompletionParams instance) =>
       'workDoneToken': instance.workDoneToken,
     };
 
-_CompletionItem _$CompletionItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CompletionItem', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'label',
-          'data',
-          'command',
-          'commitCharacters',
-          'additionalTextEdits',
-          'textEditText',
-          'textEdit',
-          'insertTextMode',
-          'insertTextFormat',
-          'insertText',
-          'filterText',
-          'sortText',
-          'preselect',
-          'deprecated',
-          'documentation',
-          'detail',
-          'tags',
-          'kind',
-          'labelDetails',
-        ],
-      );
-      final val = _CompletionItem(
-        label: $checkedConvert('label', (v) => v as String),
-        data: $checkedConvert(
-          'data',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        command: $checkedConvert(
-          'command',
-          (v) => v == null ? null : Command.fromJson(v as Map<String, dynamic>),
-        ),
-        commitCharacters: $checkedConvert(
-          'commitCharacters',
-          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-        ),
-        additionalTextEdits: $checkedConvert(
-          'additionalTextEdits',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        textEditText: $checkedConvert('textEditText', (v) => v as String?),
-        textEdit: $checkedConvert(
-          'textEdit',
-          (v) => v == null
-              ? null
-              : CompletionItemTextEditBase.fromJson(v as Map<String, dynamic>),
-        ),
-        insertTextMode: $checkedConvert(
-          'insertTextMode',
-          (v) => $enumDecodeNullable(_$InsertTextModeEnumMap, v),
-        ),
-        insertTextFormat: $checkedConvert(
-          'insertTextFormat',
-          (v) => $enumDecodeNullable(_$InsertTextFormatEnumMap, v),
-        ),
-        insertText: $checkedConvert('insertText', (v) => v as String?),
-        filterText: $checkedConvert('filterText', (v) => v as String?),
-        sortText: $checkedConvert('sortText', (v) => v as String?),
-        preselect: $checkedConvert('preselect', (v) => v as bool?),
-        deprecated: $checkedConvert('deprecated', (v) => v as bool?),
-        documentation: $checkedConvert(
-          'documentation',
-          (v) => v == null
-              ? null
-              : TooltipOrDocumentationBase.fromJson(v as Map<String, dynamic>),
-        ),
-        detail: $checkedConvert('detail', (v) => v as String?),
-        tags: $checkedConvert(
-          'tags',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
-              .toList(),
-        ),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecodeNullable(_$CompletionItemKindEnumMap, v),
-        ),
-        labelDetails: $checkedConvert(
-          'labelDetails',
-          (v) => v == null
-              ? null
-              : CompletionItemLabelDetails.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_CompletionItem _$CompletionItemFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'label',
+      'data',
+      'command',
+      'commitCharacters',
+      'additionalTextEdits',
+      'textEditText',
+      'textEdit',
+      'insertTextMode',
+      'insertTextFormat',
+      'insertText',
+      'filterText',
+      'sortText',
+      'preselect',
+      'deprecated',
+      'documentation',
+      'detail',
+      'tags',
+      'kind',
+      'labelDetails',
+    ],
+  );
+  return _CompletionItem(
+    label: json['label'] as String,
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
+    commitCharacters: (json['commitCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    additionalTextEdits: (json['additionalTextEdits'] as List<dynamic>?)
+        ?.map((e) => TextEdit.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    textEditText: json['textEditText'] as String?,
+    textEdit: json['textEdit'] == null
+        ? null
+        : CompletionItemTextEditBase.fromJson(
+            json['textEdit'] as Map<String, dynamic>,
+          ),
+    insertTextMode: $enumDecodeNullable(
+      _$InsertTextModeEnumMap,
+      json['insertTextMode'],
+    ),
+    insertTextFormat: $enumDecodeNullable(
+      _$InsertTextFormatEnumMap,
+      json['insertTextFormat'],
+    ),
+    insertText: json['insertText'] as String?,
+    filterText: json['filterText'] as String?,
+    sortText: json['sortText'] as String?,
+    preselect: json['preselect'] as bool?,
+    deprecated: json['deprecated'] as bool?,
+    documentation: json['documentation'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['documentation'] as Map<String, dynamic>,
+          ),
+    detail: json['detail'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
+        .toList(),
+    kind: $enumDecodeNullable(_$CompletionItemKindEnumMap, json['kind']),
+    labelDetails: json['labelDetails'] == null
+        ? null
+        : CompletionItemLabelDetails.fromJson(
+            json['labelDetails'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$CompletionItemToJson(
   _CompletionItem instance,
@@ -6522,51 +4933,42 @@ const _$CompletionItemKindEnumMap = {
   CompletionItemKind.typeParameterValue: 'typeParameterValue',
 };
 
-_CompletionList _$CompletionListFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_CompletionList', json, ($checkedConvert) {
+_CompletionList _$CompletionListFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     allowedKeys: const ['isIncomplete', 'items', 'itemDefaults'],
   );
-  final val = _CompletionList(
-    isIncomplete: $checkedConvert('isIncomplete', (v) => v as bool),
-    items: $checkedConvert(
-      'items',
-      (v) => (v as List<dynamic>)
-          .map((e) => CompletionItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    itemDefaults: $checkedConvert(
-      'itemDefaults',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          commitCharacters: ($jsonValue['commitCharacters'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-          data: $jsonValue['data'] == null
-              ? null
-              : LSPAnyBase.fromJson($jsonValue['data'] as Map<String, dynamic>),
-          editRange: $jsonValue['editRange'] == null
-              ? null
-              : CompletionListEditRangeBase.fromJson(
-                  $jsonValue['editRange'] as Map<String, dynamic>,
-                ),
-          insertTextFormat: $enumDecodeNullable(
-            _$InsertTextFormatEnumMap,
-            $jsonValue['insertTextFormat'],
-          ),
-          insertTextMode: $enumDecodeNullable(
-            _$InsertTextModeEnumMap,
-            $jsonValue['insertTextMode'],
-          ),
+  return _CompletionList(
+    isIncomplete: json['isIncomplete'] as bool,
+    items: (json['items'] as List<dynamic>)
+        .map((e) => CompletionItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    itemDefaults: _$recordConvertNullable(
+      json['itemDefaults'],
+      ($jsonValue) => (
+        commitCharacters: ($jsonValue['commitCharacters'] as List<dynamic>?)
+            ?.map((e) => e as String)
+            .toList(),
+        data: $jsonValue['data'] == null
+            ? null
+            : LSPAnyBase.fromJson($jsonValue['data'] as Map<String, dynamic>),
+        editRange: $jsonValue['editRange'] == null
+            ? null
+            : CompletionListEditRangeBase.fromJson(
+                $jsonValue['editRange'] as Map<String, dynamic>,
+              ),
+        insertTextFormat: $enumDecodeNullable(
+          _$InsertTextFormatEnumMap,
+          $jsonValue['insertTextFormat'],
+        ),
+        insertTextMode: $enumDecodeNullable(
+          _$InsertTextModeEnumMap,
+          $jsonValue['insertTextMode'],
         ),
       ),
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CompletionListToJson(
   _CompletionList instance,
@@ -6590,7 +4992,7 @@ Map<String, dynamic> _$CompletionListToJson(
 
 _CompletionRegistrationOptions _$CompletionRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CompletionRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -6602,34 +5004,26 @@ _CompletionRegistrationOptions _$CompletionRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _CompletionRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
+  return _CompletionRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    completionItem: _$recordConvertNullable(
+      json['completionItem'],
+      ($jsonValue) =>
+          (labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?),
     ),
-    completionItem: $checkedConvert(
-      'completionItem',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) =>
-            (labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?),
-      ),
-    ),
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    allCommitCharacters: $checkedConvert(
-      'allCommitCharacters',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    triggerCharacters: $checkedConvert(
-      'triggerCharacters',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+    resolveProvider: json['resolveProvider'] as bool?,
+    allCommitCharacters: (json['allCommitCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CompletionRegistrationOptionsToJson(
   _CompletionRegistrationOptions instance,
@@ -6646,30 +5040,23 @@ Map<String, dynamic> _$CompletionRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_HoverParams _$HoverParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_HoverParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['textDocument', 'position', 'workDoneToken'],
-      );
-      final val = _HoverParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_HoverParams _$HoverParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'position', 'workDoneToken'],
+  );
+  return _HoverParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$HoverParamsToJson(_HoverParams instance) =>
     <String, dynamic>{
@@ -6678,21 +5065,17 @@ Map<String, dynamic> _$HoverParamsToJson(_HoverParams instance) =>
       'workDoneToken': instance.workDoneToken,
     };
 
-_Hover _$HoverFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Hover', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['contents', 'range']);
-      final val = _Hover(
-        contents: $checkedConvert(
-          'contents',
-          (v) => HoverContentsBase.fromJson(v as Map<String, dynamic>),
-        ),
-        range: $checkedConvert(
-          'range',
-          (v) => v == null ? null : Range.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_Hover _$HoverFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['contents', 'range']);
+  return _Hover(
+    contents: HoverContentsBase.fromJson(
+      json['contents'] as Map<String, dynamic>,
+    ),
+    range: json['range'] == null
+        ? null
+        : Range.fromJson(json['range'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$HoverToJson(_Hover instance) => <String, dynamic>{
   'contents': instance.contents,
@@ -6701,19 +5084,16 @@ Map<String, dynamic> _$HoverToJson(_Hover instance) => <String, dynamic>{
 
 _HoverRegistrationOptions _$HoverRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_HoverRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
-  final val = _HoverRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _HoverRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$HoverRegistrationOptionsToJson(
   _HoverRegistrationOptions instance,
@@ -6722,41 +5102,28 @@ Map<String, dynamic> _$HoverRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_SignatureHelpParams _$SignatureHelpParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_SignatureHelpParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'position',
-          'context',
-          'workDoneToken',
-        ],
-      );
-      final val = _SignatureHelpParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        context: $checkedConvert(
-          'context',
-          (v) => v == null
-              ? null
-              : SignatureHelpContext.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_SignatureHelpParams _$SignatureHelpParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'position', 'context', 'workDoneToken'],
+  );
+  return _SignatureHelpParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    context: json['context'] == null
+        ? null
+        : SignatureHelpContext.fromJson(
+            json['context'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$SignatureHelpParamsToJson(
   _SignatureHelpParams instance,
@@ -6767,32 +5134,19 @@ Map<String, dynamic> _$SignatureHelpParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_SignatureHelp _$SignatureHelpFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_SignatureHelp', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['signatures', 'activeParameter', 'activeSignature'],
-      );
-      final val = _SignatureHelp(
-        signatures: $checkedConvert(
-          'signatures',
-          (v) => (v as List<dynamic>)
-              .map(
-                (e) => SignatureInformation.fromJson(e as Map<String, dynamic>),
-              )
-              .toList(),
-        ),
-        activeParameter: $checkedConvert(
-          'activeParameter',
-          (v) => (v as num?)?.toInt(),
-        ),
-        activeSignature: $checkedConvert(
-          'activeSignature',
-          (v) => (v as num?)?.toInt(),
-        ),
-      );
-      return val;
-    });
+_SignatureHelp _$SignatureHelpFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['signatures', 'activeParameter', 'activeSignature'],
+  );
+  return _SignatureHelp(
+    signatures: (json['signatures'] as List<dynamic>)
+        .map((e) => SignatureInformation.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    activeParameter: (json['activeParameter'] as num?)?.toInt(),
+    activeSignature: (json['activeSignature'] as num?)?.toInt(),
+  );
+}
 
 Map<String, dynamic> _$SignatureHelpToJson(_SignatureHelp instance) =>
     <String, dynamic>{
@@ -6803,8 +5157,6 @@ Map<String, dynamic> _$SignatureHelpToJson(_SignatureHelp instance) =>
 
 _SignatureHelpRegistrationOptions _$SignatureHelpRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SignatureHelpRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
@@ -6815,25 +5167,20 @@ _SignatureHelpRegistrationOptions _$SignatureHelpRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _SignatureHelpRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    retriggerCharacters: $checkedConvert(
-      'retriggerCharacters',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    triggerCharacters: $checkedConvert(
-      'triggerCharacters',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _SignatureHelpRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    retriggerCharacters: (json['retriggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SignatureHelpRegistrationOptionsToJson(
   _SignatureHelpRegistrationOptions instance,
@@ -6844,41 +5191,33 @@ Map<String, dynamic> _$SignatureHelpRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_DefinitionParams _$DefinitionParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DefinitionParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'position',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _DefinitionParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_DefinitionParams _$DefinitionParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'textDocument',
+      'position',
+      'partialResultToken',
+      'workDoneToken',
+    ],
+  );
+  return _DefinitionParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$DefinitionParamsToJson(_DefinitionParams instance) =>
     <String, dynamic>{
@@ -6890,19 +5229,16 @@ Map<String, dynamic> _$DefinitionParamsToJson(_DefinitionParams instance) =>
 
 _DefinitionRegistrationOptions _$DefinitionRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DefinitionRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
-  final val = _DefinitionRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DefinitionRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DefinitionRegistrationOptionsToJson(
   _DefinitionRegistrationOptions instance,
@@ -6911,46 +5247,35 @@ Map<String, dynamic> _$DefinitionRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_ReferenceParams _$ReferenceParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ReferenceParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'position',
-          'context',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _ReferenceParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        context: $checkedConvert(
-          'context',
-          (v) => ReferenceContext.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_ReferenceParams _$ReferenceParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'textDocument',
+      'position',
+      'context',
+      'partialResultToken',
+      'workDoneToken',
+    ],
+  );
+  return _ReferenceParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    context: ReferenceContext.fromJson(json['context'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$ReferenceParamsToJson(_ReferenceParams instance) =>
     <String, dynamic>{
@@ -6963,19 +5288,16 @@ Map<String, dynamic> _$ReferenceParamsToJson(_ReferenceParams instance) =>
 
 _ReferenceRegistrationOptions _$ReferenceRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ReferenceRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
-  final val = _ReferenceRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _ReferenceRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ReferenceRegistrationOptionsToJson(
   _ReferenceRegistrationOptions instance,
@@ -6986,7 +5308,7 @@ Map<String, dynamic> _$ReferenceRegistrationOptionsToJson(
 
 _DocumentHighlightParams _$DocumentHighlightParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentHighlightParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -6996,30 +5318,23 @@ _DocumentHighlightParams _$DocumentHighlightParamsFromJson(
       'workDoneToken',
     ],
   );
-  final val = _DocumentHighlightParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DocumentHighlightParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    position: $checkedConvert(
-      'position',
-      (v) => Position.fromJson(v as Map<String, dynamic>),
-    ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentHighlightParamsToJson(
   _DocumentHighlightParams instance,
@@ -7030,21 +5345,13 @@ Map<String, dynamic> _$DocumentHighlightParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_DocumentHighlight _$DocumentHighlightFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DocumentHighlight', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['range', 'kind']);
-      final val = _DocumentHighlight(
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecodeNullable(_$DocumentHighlightKindEnumMap, v),
-        ),
-      );
-      return val;
-    });
+_DocumentHighlight _$DocumentHighlightFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['range', 'kind']);
+  return _DocumentHighlight(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    kind: $enumDecodeNullable(_$DocumentHighlightKindEnumMap, json['kind']),
+  );
+}
 
 Map<String, dynamic> _$DocumentHighlightToJson(_DocumentHighlight instance) =>
     <String, dynamic>{
@@ -7059,23 +5366,16 @@ const _$DocumentHighlightKindEnumMap = {
 };
 
 _DocumentHighlightRegistrationOptions
-_$DocumentHighlightRegistrationOptionsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_DocumentHighlightRegistrationOptions', json, (
-  $checkedConvert,
-) {
+_$DocumentHighlightRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
-  final val = _DocumentHighlightRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentHighlightRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentHighlightRegistrationOptionsToJson(
   _DocumentHighlightRegistrationOptions instance,
@@ -7086,31 +5386,27 @@ Map<String, dynamic> _$DocumentHighlightRegistrationOptionsToJson(
 
 _DocumentSymbolParams _$DocumentSymbolParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentSymbolParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'partialResultToken', 'workDoneToken'],
   );
-  final val = _DocumentSymbolParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DocumentSymbolParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentSymbolParamsToJson(
   _DocumentSymbolParams instance,
@@ -7120,40 +5416,29 @@ Map<String, dynamic> _$DocumentSymbolParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_SymbolInformation _$SymbolInformationFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_SymbolInformation', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'name',
-          'kind',
-          'location',
-          'deprecated',
-          'containerName',
-          'tags',
-        ],
-      );
-      final val = _SymbolInformation(
-        name: $checkedConvert('name', (v) => v as String),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecode(_$SymbolKindEnumMap, v),
-        ),
-        location: $checkedConvert(
-          'location',
-          (v) => Location.fromJson(v as Map<String, dynamic>),
-        ),
-        deprecated: $checkedConvert('deprecated', (v) => v as bool?),
-        containerName: $checkedConvert('containerName', (v) => v as String?),
-        tags: $checkedConvert(
-          'tags',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_SymbolInformation _$SymbolInformationFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'name',
+      'kind',
+      'location',
+      'deprecated',
+      'containerName',
+      'tags',
+    ],
+  );
+  return _SymbolInformation(
+    name: json['name'] as String,
+    kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
+    location: Location.fromJson(json['location'] as Map<String, dynamic>),
+    deprecated: json['deprecated'] as bool?,
+    containerName: json['containerName'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$SymbolInformationToJson(_SymbolInformation instance) =>
     <String, dynamic>{
@@ -7165,52 +5450,37 @@ Map<String, dynamic> _$SymbolInformationToJson(_SymbolInformation instance) =>
       'tags': instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
     };
 
-_DocumentSymbol _$DocumentSymbolFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DocumentSymbol', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'name',
-          'kind',
-          'range',
-          'selectionRange',
-          'children',
-          'deprecated',
-          'tags',
-          'detail',
-        ],
-      );
-      final val = _DocumentSymbol(
-        name: $checkedConvert('name', (v) => v as String),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecode(_$SymbolKindEnumMap, v),
-        ),
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        selectionRange: $checkedConvert(
-          'selectionRange',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        children: $checkedConvert(
-          'children',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => DocumentSymbol.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        deprecated: $checkedConvert('deprecated', (v) => v as bool?),
-        tags: $checkedConvert(
-          'tags',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-              .toList(),
-        ),
-        detail: $checkedConvert('detail', (v) => v as String?),
-      );
-      return val;
-    });
+_DocumentSymbol _$DocumentSymbolFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'name',
+      'kind',
+      'range',
+      'selectionRange',
+      'children',
+      'deprecated',
+      'tags',
+      'detail',
+    ],
+  );
+  return _DocumentSymbol(
+    name: json['name'] as String,
+    kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    selectionRange: Range.fromJson(
+      json['selectionRange'] as Map<String, dynamic>,
+    ),
+    children: (json['children'] as List<dynamic>?)
+        ?.map((e) => DocumentSymbol.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    deprecated: json['deprecated'] as bool?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+        .toList(),
+    detail: json['detail'] as String?,
+  );
+}
 
 Map<String, dynamic> _$DocumentSymbolToJson(_DocumentSymbol instance) =>
     <String, dynamic>{
@@ -7226,25 +5496,20 @@ Map<String, dynamic> _$DocumentSymbolToJson(_DocumentSymbol instance) =>
 
 _DocumentSymbolRegistrationOptions _$DocumentSymbolRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentSymbolRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
     allowedKeys: const ['documentSelector', 'label', 'workDoneProgress'],
   );
-  final val = _DocumentSymbolRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    label: $checkedConvert('label', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentSymbolRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    label: json['label'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentSymbolRegistrationOptionsToJson(
   _DocumentSymbolRegistrationOptions instance,
@@ -7254,46 +5519,37 @@ Map<String, dynamic> _$DocumentSymbolRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_CodeActionParams _$CodeActionParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CodeActionParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'range',
-          'context',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _CodeActionParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        context: $checkedConvert(
-          'context',
-          (v) => CodeActionContext.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_CodeActionParams _$CodeActionParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'textDocument',
+      'range',
+      'context',
+      'partialResultToken',
+      'workDoneToken',
+    ],
+  );
+  return _CodeActionParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    context: CodeActionContext.fromJson(
+      json['context'] as Map<String, dynamic>,
+    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$CodeActionParamsToJson(_CodeActionParams instance) =>
     <String, dynamic>{
@@ -7304,21 +5560,16 @@ Map<String, dynamic> _$CodeActionParamsToJson(_CodeActionParams instance) =>
       'workDoneToken': instance.workDoneToken,
     };
 
-_Command _$CommandFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Command', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['title', 'command', 'arguments']);
-      final val = _Command(
-        title: $checkedConvert('title', (v) => v as String),
-        command: $checkedConvert('command', (v) => v as String),
-        arguments: $checkedConvert(
-          'arguments',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_Command _$CommandFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['title', 'command', 'arguments']);
+  return _Command(
+    title: json['title'] as String,
+    command: json['command'] as String,
+    arguments: (json['arguments'] as List<dynamic>?)
+        ?.map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$CommandToJson(_Command instance) => <String, dynamic>{
   'title': instance.title,
@@ -7326,59 +5577,42 @@ Map<String, dynamic> _$CommandToJson(_Command instance) => <String, dynamic>{
   'arguments': instance.arguments,
 };
 
-_CodeAction _$CodeActionFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CodeAction', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'title',
-          'data',
-          'command',
-          'edit',
-          'disabled',
-          'isPreferred',
-          'diagnostics',
-          'kind',
-        ],
-      );
-      final val = _CodeAction(
-        title: $checkedConvert('title', (v) => v as String),
-        data: $checkedConvert(
-          'data',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        command: $checkedConvert(
-          'command',
-          (v) => v == null ? null : Command.fromJson(v as Map<String, dynamic>),
-        ),
-        edit: $checkedConvert(
-          'edit',
-          (v) => v == null
-              ? null
-              : WorkspaceEdit.fromJson(v as Map<String, dynamic>),
-        ),
-        disabled: $checkedConvert(
-          'disabled',
-          (v) => _$recordConvertNullable(
-            v,
-            ($jsonValue) => (reason: $jsonValue['reason'] as String),
-          ),
-        ),
-        isPreferred: $checkedConvert('isPreferred', (v) => v as bool?),
-        diagnostics: $checkedConvert(
-          'diagnostics',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecodeNullable(_$CodeActionKindEnumMap, v),
-        ),
-      );
-      return val;
-    });
+_CodeAction _$CodeActionFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'title',
+      'data',
+      'command',
+      'edit',
+      'disabled',
+      'isPreferred',
+      'diagnostics',
+      'kind',
+    ],
+  );
+  return _CodeAction(
+    title: json['title'] as String,
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
+    edit: json['edit'] == null
+        ? null
+        : WorkspaceEdit.fromJson(json['edit'] as Map<String, dynamic>),
+    disabled: _$recordConvertNullable(
+      json['disabled'],
+      ($jsonValue) => (reason: $jsonValue['reason'] as String),
+    ),
+    isPreferred: json['isPreferred'] as bool?,
+    diagnostics: (json['diagnostics'] as List<dynamic>?)
+        ?.map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    kind: $enumDecodeNullable(_$CodeActionKindEnumMap, json['kind']),
+  );
+}
 
 Map<String, dynamic> _$CodeActionToJson(_CodeAction instance) =>
     <String, dynamic>{
@@ -7408,7 +5642,7 @@ const _$CodeActionKindEnumMap = {
 
 _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CodeActionRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -7418,24 +5652,18 @@ _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _CodeActionRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    codeActionKinds: $checkedConvert(
-      'codeActionKinds',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
-          .toList(),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _CodeActionRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    resolveProvider: json['resolveProvider'] as bool?,
+    codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+        .toList(),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CodeActionRegistrationOptionsToJson(
   _CodeActionRegistrationOptions instance,
@@ -7450,28 +5678,25 @@ Map<String, dynamic> _$CodeActionRegistrationOptionsToJson(
 
 _WorkspaceSymbolParams _$WorkspaceSymbolParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceSymbolParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['query', 'partialResultToken', 'workDoneToken'],
   );
-  final val = _WorkspaceSymbolParams(
-    query: $checkedConvert('query', (v) => v as String),
-    partialResultToken: $checkedConvert(
-      'partialResultToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _WorkspaceSymbolParams(
+    query: json['query'] as String,
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceSymbolParamsToJson(
   _WorkspaceSymbolParams instance,
@@ -7481,45 +5706,33 @@ Map<String, dynamic> _$WorkspaceSymbolParamsToJson(
   'workDoneToken': instance.workDoneToken,
 };
 
-_WorkspaceSymbol _$WorkspaceSymbolFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_WorkspaceSymbol', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'name',
-          'kind',
-          'location',
-          'data',
-          'containerName',
-          'tags',
-        ],
-      );
-      final val = _WorkspaceSymbol(
-        name: $checkedConvert('name', (v) => v as String),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecode(_$SymbolKindEnumMap, v),
-        ),
-        location: $checkedConvert(
-          'location',
-          (v) =>
-              WorkspaceSymbolLocationBase.fromJson(v as Map<String, dynamic>),
-        ),
-        data: $checkedConvert(
-          'data',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        containerName: $checkedConvert('containerName', (v) => v as String?),
-        tags: $checkedConvert(
-          'tags',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_WorkspaceSymbol _$WorkspaceSymbolFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'name',
+      'kind',
+      'location',
+      'data',
+      'containerName',
+      'tags',
+    ],
+  );
+  return _WorkspaceSymbol(
+    name: json['name'] as String,
+    kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
+    location: WorkspaceSymbolLocationBase.fromJson(
+      json['location'] as Map<String, dynamic>,
+    ),
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    containerName: json['containerName'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$WorkspaceSymbolToJson(_WorkspaceSymbol instance) =>
     <String, dynamic>{
@@ -7532,18 +5745,13 @@ Map<String, dynamic> _$WorkspaceSymbolToJson(_WorkspaceSymbol instance) =>
     };
 
 _WorkspaceSymbolRegistrationOptions
-_$WorkspaceSymbolRegistrationOptionsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceSymbolRegistrationOptions', json, (
-  $checkedConvert,
-) {
+_$WorkspaceSymbolRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
-  final val = _WorkspaceSymbolRegistrationOptions(
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _WorkspaceSymbolRegistrationOptions(
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceSymbolRegistrationOptionsToJson(
   _WorkspaceSymbolRegistrationOptions instance,
@@ -7552,36 +5760,27 @@ Map<String, dynamic> _$WorkspaceSymbolRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_CodeLensParams _$CodeLensParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CodeLensParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _CodeLensParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_CodeLensParams _$CodeLensParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'partialResultToken', 'workDoneToken'],
+  );
+  return _CodeLensParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$CodeLensParamsToJson(_CodeLensParams instance) =>
     <String, dynamic>{
@@ -7590,26 +5789,18 @@ Map<String, dynamic> _$CodeLensParamsToJson(_CodeLensParams instance) =>
       'workDoneToken': instance.workDoneToken,
     };
 
-_CodeLens _$CodeLensFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CodeLens', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['range', 'data', 'command']);
-      final val = _CodeLens(
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        data: $checkedConvert(
-          'data',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        command: $checkedConvert(
-          'command',
-          (v) => v == null ? null : Command.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_CodeLens _$CodeLensFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['range', 'data', 'command']);
+  return _CodeLens(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$CodeLensToJson(_CodeLens instance) => <String, dynamic>{
   'range': instance.range,
@@ -7619,7 +5810,7 @@ Map<String, dynamic> _$CodeLensToJson(_CodeLens instance) => <String, dynamic>{
 
 _CodeLensRegistrationOptions _$CodeLensRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CodeLensRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -7628,18 +5819,15 @@ _CodeLensRegistrationOptions _$CodeLensRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _CodeLensRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _CodeLensRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CodeLensRegistrationOptionsToJson(
   _CodeLensRegistrationOptions instance,
@@ -7649,36 +5837,27 @@ Map<String, dynamic> _$CodeLensRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_DocumentLinkParams _$DocumentLinkParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DocumentLinkParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'partialResultToken',
-          'workDoneToken',
-        ],
-      );
-      final val = _DocumentLinkParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_DocumentLinkParams _$DocumentLinkParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'partialResultToken', 'workDoneToken'],
+  );
+  return _DocumentLinkParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$DocumentLinkParamsToJson(_DocumentLinkParams instance) =>
     <String, dynamic>{
@@ -7687,27 +5866,17 @@ Map<String, dynamic> _$DocumentLinkParamsToJson(_DocumentLinkParams instance) =>
       'workDoneToken': instance.workDoneToken,
     };
 
-_DocumentLink _$DocumentLinkFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DocumentLink', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['range', 'data', 'tooltip', 'target'],
-      );
-      final val = _DocumentLink(
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        data: $checkedConvert(
-          'data',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        tooltip: $checkedConvert('tooltip', (v) => v as String?),
-        target: $checkedConvert('target', (v) => v as String?),
-      );
-      return val;
-    });
+_DocumentLink _$DocumentLinkFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['range', 'data', 'tooltip', 'target']);
+  return _DocumentLink(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    tooltip: json['tooltip'] as String?,
+    target: json['target'] as String?,
+  );
+}
 
 Map<String, dynamic> _$DocumentLinkToJson(_DocumentLink instance) =>
     <String, dynamic>{
@@ -7719,8 +5888,6 @@ Map<String, dynamic> _$DocumentLinkToJson(_DocumentLink instance) =>
 
 _DocumentLinkRegistrationOptions _$DocumentLinkRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentLinkRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
@@ -7730,18 +5897,15 @@ _DocumentLinkRegistrationOptions _$DocumentLinkRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _DocumentLinkRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentLinkRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentLinkRegistrationOptionsToJson(
   _DocumentLinkRegistrationOptions instance,
@@ -7753,29 +5917,25 @@ Map<String, dynamic> _$DocumentLinkRegistrationOptionsToJson(
 
 _DocumentFormattingParams _$DocumentFormattingParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentFormattingParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'options', 'workDoneToken'],
   );
-  final val = _DocumentFormattingParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DocumentFormattingParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    options: $checkedConvert(
-      'options',
-      (v) => FormattingOptions.fromJson(v as Map<String, dynamic>),
+    options: FormattingOptions.fromJson(
+      json['options'] as Map<String, dynamic>,
     ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentFormattingParamsToJson(
   _DocumentFormattingParams instance,
@@ -7786,23 +5946,16 @@ Map<String, dynamic> _$DocumentFormattingParamsToJson(
 };
 
 _DocumentFormattingRegistrationOptions
-_$DocumentFormattingRegistrationOptionsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_DocumentFormattingRegistrationOptions', json, (
-  $checkedConvert,
-) {
+_$DocumentFormattingRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
-  final val = _DocumentFormattingRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentFormattingRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentFormattingRegistrationOptionsToJson(
   _DocumentFormattingRegistrationOptions instance,
@@ -7813,33 +5966,26 @@ Map<String, dynamic> _$DocumentFormattingRegistrationOptionsToJson(
 
 _DocumentRangeFormattingParams _$DocumentRangeFormattingParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentRangeFormattingParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'range', 'options', 'workDoneToken'],
   );
-  final val = _DocumentRangeFormattingParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DocumentRangeFormattingParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    range: $checkedConvert(
-      'range',
-      (v) => Range.fromJson(v as Map<String, dynamic>),
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    options: FormattingOptions.fromJson(
+      json['options'] as Map<String, dynamic>,
     ),
-    options: $checkedConvert(
-      'options',
-      (v) => FormattingOptions.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentRangeFormattingParamsToJson(
   _DocumentRangeFormattingParams instance,
@@ -7853,8 +5999,6 @@ Map<String, dynamic> _$DocumentRangeFormattingParamsToJson(
 _DocumentRangeFormattingRegistrationOptions
 _$DocumentRangeFormattingRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentRangeFormattingRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
@@ -7864,18 +6008,15 @@ _$DocumentRangeFormattingRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _DocumentRangeFormattingRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    rangesSupport: $checkedConvert('rangesSupport', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentRangeFormattingRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    rangesSupport: json['rangesSupport'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentRangeFormattingRegistrationOptionsToJson(
   _DocumentRangeFormattingRegistrationOptions instance,
@@ -7887,35 +6028,28 @@ Map<String, dynamic> _$DocumentRangeFormattingRegistrationOptionsToJson(
 
 _DocumentRangesFormattingParams _$DocumentRangesFormattingParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentRangesFormattingParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'ranges', 'options', 'workDoneToken'],
   );
-  final val = _DocumentRangesFormattingParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DocumentRangesFormattingParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    ranges: $checkedConvert(
-      'ranges',
-      (v) => (v as List<dynamic>)
-          .map((e) => Range.fromJson(e as Map<String, dynamic>))
-          .toList(),
+    ranges: (json['ranges'] as List<dynamic>)
+        .map((e) => Range.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    options: FormattingOptions.fromJson(
+      json['options'] as Map<String, dynamic>,
     ),
-    options: $checkedConvert(
-      'options',
-      (v) => FormattingOptions.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentRangesFormattingParamsToJson(
   _DocumentRangesFormattingParams instance,
@@ -7928,28 +6062,22 @@ Map<String, dynamic> _$DocumentRangesFormattingParamsToJson(
 
 _DocumentOnTypeFormattingParams _$DocumentOnTypeFormattingParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentOnTypeFormattingParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['textDocument', 'position', 'ch', 'options'],
   );
-  final val = _DocumentOnTypeFormattingParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _DocumentOnTypeFormattingParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    position: $checkedConvert(
-      'position',
-      (v) => Position.fromJson(v as Map<String, dynamic>),
-    ),
-    ch: $checkedConvert('ch', (v) => v as String),
-    options: $checkedConvert(
-      'options',
-      (v) => FormattingOptions.fromJson(v as Map<String, dynamic>),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    ch: json['ch'] as String,
+    options: FormattingOptions.fromJson(
+      json['options'] as Map<String, dynamic>,
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentOnTypeFormattingParamsToJson(
   _DocumentOnTypeFormattingParams instance,
@@ -7963,8 +6091,6 @@ Map<String, dynamic> _$DocumentOnTypeFormattingParamsToJson(
 _DocumentOnTypeFormattingRegistrationOptions
 _$DocumentOnTypeFormattingRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentOnTypeFormattingRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
@@ -7974,24 +6100,17 @@ _$DocumentOnTypeFormattingRegistrationOptionsFromJson(
       'moreTriggerCharacter',
     ],
   );
-  final val = _DocumentOnTypeFormattingRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    firstTriggerCharacter: $checkedConvert(
-      'firstTriggerCharacter',
-      (v) => v as String,
-    ),
-    moreTriggerCharacter: $checkedConvert(
-      'moreTriggerCharacter',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
+  return _DocumentOnTypeFormattingRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    firstTriggerCharacter: json['firstTriggerCharacter'] as String,
+    moreTriggerCharacter: (json['moreTriggerCharacter'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentOnTypeFormattingRegistrationOptionsToJson(
   _DocumentOnTypeFormattingRegistrationOptions instance,
@@ -8001,36 +6120,24 @@ Map<String, dynamic> _$DocumentOnTypeFormattingRegistrationOptionsToJson(
   'moreTriggerCharacter': instance.moreTriggerCharacter,
 };
 
-_RenameParams _$RenameParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_RenameParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'textDocument',
-          'position',
-          'newName',
-          'workDoneToken',
-        ],
-      );
-      final val = _RenameParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        newName: $checkedConvert('newName', (v) => v as String),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_RenameParams _$RenameParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'position', 'newName', 'workDoneToken'],
+  );
+  return _RenameParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    newName: json['newName'] as String,
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$RenameParamsToJson(_RenameParams instance) =>
     <String, dynamic>{
@@ -8042,7 +6149,7 @@ Map<String, dynamic> _$RenameParamsToJson(_RenameParams instance) =>
 
 _RenameRegistrationOptions _$RenameRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_RenameRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -8051,18 +6158,15 @@ _RenameRegistrationOptions _$RenameRegistrationOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _RenameRegistrationOptions(
-    documentSelector: $checkedConvert(
-      'documentSelector',
-      (v) => TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
-    ),
-    prepareProvider: $checkedConvert('prepareProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _RenameRegistrationOptions(
+    documentSelector:
+        TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
+          json['documentSelector'] as Map<String, dynamic>,
+        ),
+    prepareProvider: json['prepareProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$RenameRegistrationOptionsToJson(
   _RenameRegistrationOptions instance,
@@ -8072,30 +6176,23 @@ Map<String, dynamic> _$RenameRegistrationOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_PrepareRenameParams _$PrepareRenameParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_PrepareRenameParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['textDocument', 'position', 'workDoneToken'],
-      );
-      final val = _PrepareRenameParams(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
-        ),
-        position: $checkedConvert(
-          'position',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_PrepareRenameParams _$PrepareRenameParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['textDocument', 'position', 'workDoneToken'],
+  );
+  return _PrepareRenameParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$PrepareRenameParamsToJson(
   _PrepareRenameParams instance,
@@ -8107,28 +6204,23 @@ Map<String, dynamic> _$PrepareRenameParamsToJson(
 
 _ExecuteCommandParams _$ExecuteCommandParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ExecuteCommandParams', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['command', 'arguments', 'workDoneToken'],
   );
-  final val = _ExecuteCommandParams(
-    command: $checkedConvert('command', (v) => v as String),
-    arguments: $checkedConvert(
-      'arguments',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _ExecuteCommandParams(
+    command: json['command'] as String,
+    arguments: (json['arguments'] as List<dynamic>?)
+        ?.map((e) => LSPAnyBase.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ExecuteCommandParamsToJson(
   _ExecuteCommandParams instance,
@@ -8140,19 +6232,15 @@ Map<String, dynamic> _$ExecuteCommandParamsToJson(
 
 _ExecuteCommandRegistrationOptions _$ExecuteCommandRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ExecuteCommandRegistrationOptions', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['commands', 'workDoneProgress']);
-  final val = _ExecuteCommandRegistrationOptions(
-    commands: $checkedConvert(
-      'commands',
-      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _ExecuteCommandRegistrationOptions(
+    commands: (json['commands'] as List<dynamic>)
+        .map((e) => e as String)
+        .toList(),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ExecuteCommandRegistrationOptionsToJson(
   _ExecuteCommandRegistrationOptions instance,
@@ -8163,17 +6251,13 @@ Map<String, dynamic> _$ExecuteCommandRegistrationOptionsToJson(
 
 _ApplyWorkspaceEditParams _$ApplyWorkspaceEditParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ApplyWorkspaceEditParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['edit', 'label']);
-  final val = _ApplyWorkspaceEditParams(
-    edit: $checkedConvert(
-      'edit',
-      (v) => WorkspaceEdit.fromJson(v as Map<String, dynamic>),
-    ),
-    label: $checkedConvert('label', (v) => v as String?),
+  return _ApplyWorkspaceEditParams(
+    edit: WorkspaceEdit.fromJson(json['edit'] as Map<String, dynamic>),
+    label: json['label'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ApplyWorkspaceEditParamsToJson(
   _ApplyWorkspaceEditParams instance,
@@ -8181,18 +6265,17 @@ Map<String, dynamic> _$ApplyWorkspaceEditParamsToJson(
 
 _ApplyWorkspaceEditResult _$ApplyWorkspaceEditResultFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ApplyWorkspaceEditResult', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['applied', 'failedChange', 'failureReason'],
   );
-  final val = _ApplyWorkspaceEditResult(
-    applied: $checkedConvert('applied', (v) => v as bool),
-    failedChange: $checkedConvert('failedChange', (v) => (v as num?)?.toInt()),
-    failureReason: $checkedConvert('failureReason', (v) => v as String?),
+  return _ApplyWorkspaceEditResult(
+    applied: json['applied'] as bool,
+    failedChange: (json['failedChange'] as num?)?.toInt(),
+    failureReason: json['failureReason'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ApplyWorkspaceEditResultToJson(
   _ApplyWorkspaceEditResult instance,
@@ -8204,7 +6287,7 @@ Map<String, dynamic> _$ApplyWorkspaceEditResultToJson(
 
 _WorkDoneProgressBegin _$WorkDoneProgressBeginFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkDoneProgressBegin', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -8215,15 +6298,14 @@ _WorkDoneProgressBegin _$WorkDoneProgressBeginFromJson(
       'cancellable',
     ],
   );
-  final val = _WorkDoneProgressBegin(
-    kind: $checkedConvert('kind', (v) => v as String),
-    title: $checkedConvert('title', (v) => v as String),
-    percentage: $checkedConvert('percentage', (v) => (v as num?)?.toInt()),
-    message: $checkedConvert('message', (v) => v as String?),
-    cancellable: $checkedConvert('cancellable', (v) => v as bool?),
+  return _WorkDoneProgressBegin(
+    kind: json['kind'] as String,
+    title: json['title'] as String,
+    percentage: (json['percentage'] as num?)?.toInt(),
+    message: json['message'] as String?,
+    cancellable: json['cancellable'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkDoneProgressBeginToJson(
   _WorkDoneProgressBegin instance,
@@ -8237,19 +6319,18 @@ Map<String, dynamic> _$WorkDoneProgressBeginToJson(
 
 _WorkDoneProgressReport _$WorkDoneProgressReportFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkDoneProgressReport', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['kind', 'percentage', 'message', 'cancellable'],
   );
-  final val = _WorkDoneProgressReport(
-    kind: $checkedConvert('kind', (v) => v as String),
-    percentage: $checkedConvert('percentage', (v) => (v as num?)?.toInt()),
-    message: $checkedConvert('message', (v) => v as String?),
-    cancellable: $checkedConvert('cancellable', (v) => v as bool?),
+  return _WorkDoneProgressReport(
+    kind: json['kind'] as String,
+    percentage: (json['percentage'] as num?)?.toInt(),
+    message: json['message'] as String?,
+    cancellable: json['cancellable'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkDoneProgressReportToJson(
   _WorkDoneProgressReport instance,
@@ -8260,98 +6341,71 @@ Map<String, dynamic> _$WorkDoneProgressReportToJson(
   'cancellable': instance.cancellable,
 };
 
-_WorkDoneProgressEnd _$WorkDoneProgressEndFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_WorkDoneProgressEnd', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['kind', 'message']);
-      final val = _WorkDoneProgressEnd(
-        kind: $checkedConvert('kind', (v) => v as String),
-        message: $checkedConvert('message', (v) => v as String?),
-      );
-      return val;
-    });
+_WorkDoneProgressEnd _$WorkDoneProgressEndFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['kind', 'message']);
+  return _WorkDoneProgressEnd(
+    kind: json['kind'] as String,
+    message: json['message'] as String?,
+  );
+}
 
 Map<String, dynamic> _$WorkDoneProgressEndToJson(
   _WorkDoneProgressEnd instance,
 ) => <String, dynamic>{'kind': instance.kind, 'message': instance.message};
 
-_SetTraceParams _$SetTraceParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_SetTraceParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['value']);
-      final val = _SetTraceParams(
-        value: $checkedConvert(
-          'value',
-          (v) => $enumDecode(_$TraceValuesEnumMap, v),
-        ),
-      );
-      return val;
-    });
+_SetTraceParams _$SetTraceParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value']);
+  return _SetTraceParams(
+    value: $enumDecode(_$TraceValuesEnumMap, json['value']),
+  );
+}
 
 Map<String, dynamic> _$SetTraceParamsToJson(_SetTraceParams instance) =>
     <String, dynamic>{'value': _$TraceValuesEnumMap[instance.value]!};
 
-_LogTraceParams _$LogTraceParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_LogTraceParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['message', 'verbose']);
-      final val = _LogTraceParams(
-        message: $checkedConvert('message', (v) => v as String),
-        verbose: $checkedConvert('verbose', (v) => v as String?),
-      );
-      return val;
-    });
+_LogTraceParams _$LogTraceParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['message', 'verbose']);
+  return _LogTraceParams(
+    message: json['message'] as String,
+    verbose: json['verbose'] as String?,
+  );
+}
 
 Map<String, dynamic> _$LogTraceParamsToJson(_LogTraceParams instance) =>
     <String, dynamic>{'message': instance.message, 'verbose': instance.verbose};
 
-_CancelParams _$CancelParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CancelParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['id']);
-      final val = _CancelParams(
-        id: $checkedConvert(
-          'id',
-          (v) => ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_CancelParams _$CancelParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['id']);
+  return _CancelParams(
+    id: ProgressTokenBase.fromJson(json['id'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$CancelParamsToJson(_CancelParams instance) =>
     <String, dynamic>{'id': instance.id};
 
-_ProgressParams _$ProgressParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ProgressParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['token', 'value']);
-      final val = _ProgressParams(
-        token: $checkedConvert(
-          'token',
-          (v) => ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        value: $checkedConvert(
-          'value',
-          (v) => LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_ProgressParams _$ProgressParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['token', 'value']);
+  return _ProgressParams(
+    token: ProgressTokenBase.fromJson(json['token'] as Map<String, dynamic>),
+    value: LSPAnyBase.fromJson(json['value'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$ProgressParamsToJson(_ProgressParams instance) =>
     <String, dynamic>{'token': instance.token, 'value': instance.value};
 
 _TextDocumentPositionParams _$TextDocumentPositionParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TextDocumentPositionParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['textDocument', 'position']);
-  final val = _TextDocumentPositionParams(
-    textDocument: $checkedConvert(
-      'textDocument',
-      (v) => TextDocumentIdentifier.fromJson(v as Map<String, dynamic>),
+  return _TextDocumentPositionParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
     ),
-    position: $checkedConvert(
-      'position',
-      (v) => Position.fromJson(v as Map<String, dynamic>),
-    ),
+    position: Position.fromJson(json['position'] as Map<String, dynamic>),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TextDocumentPositionParamsToJson(
   _TextDocumentPositionParams instance,
@@ -8362,69 +6416,57 @@ Map<String, dynamic> _$TextDocumentPositionParamsToJson(
 
 _WorkDoneProgressParams _$WorkDoneProgressParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkDoneProgressParams', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneToken']);
-  final val = _WorkDoneProgressParams(
-    workDoneToken: $checkedConvert(
-      'workDoneToken',
-      (v) => v == null
-          ? null
-          : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _WorkDoneProgressParams(
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkDoneProgressParamsToJson(
   _WorkDoneProgressParams instance,
 ) => <String, dynamic>{'workDoneToken': instance.workDoneToken};
 
-_PartialResultParams _$PartialResultParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_PartialResultParams', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['partialResultToken']);
-      final val = _PartialResultParams(
-        partialResultToken: $checkedConvert(
-          'partialResultToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_PartialResultParams _$PartialResultParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['partialResultToken']);
+  return _PartialResultParams(
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['partialResultToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$PartialResultParamsToJson(
   _PartialResultParams instance,
 ) => <String, dynamic>{'partialResultToken': instance.partialResultToken};
 
-_LocationLink _$LocationLinkFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_LocationLink', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'targetUri',
-          'targetRange',
-          'targetSelectionRange',
-          'originSelectionRange',
-        ],
-      );
-      final val = _LocationLink(
-        targetUri: $checkedConvert('targetUri', (v) => v as String),
-        targetRange: $checkedConvert(
-          'targetRange',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        targetSelectionRange: $checkedConvert(
-          'targetSelectionRange',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        originSelectionRange: $checkedConvert(
-          'originSelectionRange',
-          (v) => v == null ? null : Range.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_LocationLink _$LocationLinkFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'targetUri',
+      'targetRange',
+      'targetSelectionRange',
+      'originSelectionRange',
+    ],
+  );
+  return _LocationLink(
+    targetUri: json['targetUri'] as String,
+    targetRange: Range.fromJson(json['targetRange'] as Map<String, dynamic>),
+    targetSelectionRange: Range.fromJson(
+      json['targetSelectionRange'] as Map<String, dynamic>,
+    ),
+    originSelectionRange: json['originSelectionRange'] == null
+        ? null
+        : Range.fromJson(json['originSelectionRange'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$LocationLinkToJson(_LocationLink instance) =>
     <String, dynamic>{
@@ -8434,21 +6476,13 @@ Map<String, dynamic> _$LocationLinkToJson(_LocationLink instance) =>
       'originSelectionRange': instance.originSelectionRange,
     };
 
-_Range _$RangeFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Range', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['start', 'end']);
-      final val = _Range(
-        start: $checkedConvert(
-          'start',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-        end: $checkedConvert(
-          'end',
-          (v) => Position.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_Range _$RangeFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['start', 'end']);
+  return _Range(
+    start: Position.fromJson(json['start'] as Map<String, dynamic>),
+    end: Position.fromJson(json['end'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$RangeToJson(_Range instance) => <String, dynamic>{
   'start': instance.start,
@@ -8457,13 +6491,12 @@ Map<String, dynamic> _$RangeToJson(_Range instance) => <String, dynamic>{
 
 _ImplementationOptions _$ImplementationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ImplementationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _ImplementationOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _ImplementationOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ImplementationOptionsToJson(
   _ImplementationOptions instance,
@@ -8471,13 +6504,10 @@ Map<String, dynamic> _$ImplementationOptionsToJson(
 
 _StaticRegistrationOptions _$StaticRegistrationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_StaticRegistrationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['id']);
-  final val = _StaticRegistrationOptions(
-    id: $checkedConvert('id', (v) => v as String?),
-  );
-  return val;
-});
+  return _StaticRegistrationOptions(id: json['id'] as String?);
+}
 
 Map<String, dynamic> _$StaticRegistrationOptionsToJson(
   _StaticRegistrationOptions instance,
@@ -8485,13 +6515,12 @@ Map<String, dynamic> _$StaticRegistrationOptionsToJson(
 
 _TypeDefinitionOptions _$TypeDefinitionOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TypeDefinitionOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _TypeDefinitionOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _TypeDefinitionOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TypeDefinitionOptionsToJson(
   _TypeDefinitionOptions instance,
@@ -8499,38 +6528,29 @@ Map<String, dynamic> _$TypeDefinitionOptionsToJson(
 
 _WorkspaceFoldersChangeEvent _$WorkspaceFoldersChangeEventFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceFoldersChangeEvent', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['added', 'removed']);
-  final val = _WorkspaceFoldersChangeEvent(
-    added: $checkedConvert(
-      'added',
-      (v) => (v as List<dynamic>)
-          .map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    removed: $checkedConvert(
-      'removed',
-      (v) => (v as List<dynamic>)
-          .map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _WorkspaceFoldersChangeEvent(
+    added: (json['added'] as List<dynamic>)
+        .map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    removed: (json['removed'] as List<dynamic>)
+        .map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceFoldersChangeEventToJson(
   _WorkspaceFoldersChangeEvent instance,
 ) => <String, dynamic>{'added': instance.added, 'removed': instance.removed};
 
-_ConfigurationItem _$ConfigurationItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ConfigurationItem', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['section', 'scopeUri']);
-      final val = _ConfigurationItem(
-        section: $checkedConvert('section', (v) => v as String?),
-        scopeUri: $checkedConvert('scopeUri', (v) => v as String?),
-      );
-      return val;
-    });
+_ConfigurationItem _$ConfigurationItemFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['section', 'scopeUri']);
+  return _ConfigurationItem(
+    section: json['section'] as String?,
+    scopeUri: json['scopeUri'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ConfigurationItemToJson(_ConfigurationItem instance) =>
     <String, dynamic>{
@@ -8540,29 +6560,24 @@ Map<String, dynamic> _$ConfigurationItemToJson(_ConfigurationItem instance) =>
 
 _TextDocumentIdentifier _$TextDocumentIdentifierFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TextDocumentIdentifier', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['uri']);
-  final val = _TextDocumentIdentifier(
-    uri: $checkedConvert('uri', (v) => v as String),
-  );
-  return val;
-});
+  return _TextDocumentIdentifier(uri: json['uri'] as String);
+}
 
 Map<String, dynamic> _$TextDocumentIdentifierToJson(
   _TextDocumentIdentifier instance,
 ) => <String, dynamic>{'uri': instance.uri};
 
-_Color _$ColorFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Color', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['red', 'green', 'blue', 'alpha']);
-      final val = _Color(
-        red: $checkedConvert('red', (v) => (v as num).toDouble()),
-        green: $checkedConvert('green', (v) => (v as num).toDouble()),
-        blue: $checkedConvert('blue', (v) => (v as num).toDouble()),
-        alpha: $checkedConvert('alpha', (v) => (v as num).toDouble()),
-      );
-      return val;
-    });
+_Color _$ColorFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['red', 'green', 'blue', 'alpha']);
+  return _Color(
+    red: (json['red'] as num).toDouble(),
+    green: (json['green'] as num).toDouble(),
+    blue: (json['blue'] as num).toDouble(),
+    alpha: (json['alpha'] as num).toDouble(),
+  );
+}
 
 Map<String, dynamic> _$ColorToJson(_Color instance) => <String, dynamic>{
   'red': instance.red,
@@ -8573,58 +6588,45 @@ Map<String, dynamic> _$ColorToJson(_Color instance) => <String, dynamic>{
 
 _DocumentColorOptions _$DocumentColorOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentColorOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _DocumentColorOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentColorOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentColorOptionsToJson(
   _DocumentColorOptions instance,
 ) => <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
-_FoldingRangeOptions _$FoldingRangeOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FoldingRangeOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-      final val = _FoldingRangeOptions(
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_FoldingRangeOptions _$FoldingRangeOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['workDoneProgress']);
+  return _FoldingRangeOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$FoldingRangeOptionsToJson(
   _FoldingRangeOptions instance,
 ) => <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
-_DeclarationOptions _$DeclarationOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DeclarationOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-      final val = _DeclarationOptions(
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_DeclarationOptions _$DeclarationOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['workDoneProgress']);
+  return _DeclarationOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DeclarationOptionsToJson(_DeclarationOptions instance) =>
     <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
-_Position _$PositionFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Position', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['line', 'character']);
-      final val = _Position(
-        line: $checkedConvert('line', (v) => (v as num).toInt()),
-        character: $checkedConvert('character', (v) => (v as num).toInt()),
-      );
-      return val;
-    });
+_Position _$PositionFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['line', 'character']);
+  return _Position(
+    line: (json['line'] as num).toInt(),
+    character: (json['character'] as num).toInt(),
+  );
+}
 
 Map<String, dynamic> _$PositionToJson(_Position instance) => <String, dynamic>{
   'line': instance.line,
@@ -8633,13 +6635,12 @@ Map<String, dynamic> _$PositionToJson(_Position instance) => <String, dynamic>{
 
 _SelectionRangeOptions _$SelectionRangeOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SelectionRangeOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _SelectionRangeOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _SelectionRangeOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SelectionRangeOptionsToJson(
   _SelectionRangeOptions instance,
@@ -8647,13 +6648,12 @@ Map<String, dynamic> _$SelectionRangeOptionsToJson(
 
 _CallHierarchyOptions _$CallHierarchyOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CallHierarchyOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _CallHierarchyOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _CallHierarchyOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CallHierarchyOptionsToJson(
   _CallHierarchyOptions instance,
@@ -8661,30 +6661,26 @@ Map<String, dynamic> _$CallHierarchyOptionsToJson(
 
 _SemanticTokensOptions _$SemanticTokensOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['legend', 'full', 'range', 'workDoneProgress'],
   );
-  final val = _SemanticTokensOptions(
-    legend: $checkedConvert(
-      'legend',
-      (v) => SemanticTokensLegend.fromJson(v as Map<String, dynamic>),
+  return _SemanticTokensOptions(
+    legend: SemanticTokensLegend.fromJson(
+      json['legend'] as Map<String, dynamic>,
     ),
-    full: $checkedConvert(
-      'full',
-      (v) => v == null
-          ? null
-          : SemanticTokensOptionsFullBase.fromJson(v as Map<String, dynamic>),
-    ),
-    range: $checkedConvert(
-      'range',
-      (v) => v == null ? null : RangeBase.fromJson(v as Map<String, dynamic>),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+    full: json['full'] == null
+        ? null
+        : SemanticTokensOptionsFullBase.fromJson(
+            json['full'] as Map<String, dynamic>,
+          ),
+    range: json['range'] == null
+        ? null
+        : RangeBase.fromJson(json['range'] as Map<String, dynamic>),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensOptionsToJson(
   _SemanticTokensOptions instance,
@@ -8695,19 +6691,16 @@ Map<String, dynamic> _$SemanticTokensOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_SemanticTokensEdit _$SemanticTokensEditFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_SemanticTokensEdit', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['start', 'deleteCount', 'data']);
-      final val = _SemanticTokensEdit(
-        start: $checkedConvert('start', (v) => (v as num).toInt()),
-        deleteCount: $checkedConvert('deleteCount', (v) => (v as num).toInt()),
-        data: $checkedConvert(
-          'data',
-          (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
-        ),
-      );
-      return val;
-    });
+_SemanticTokensEdit _$SemanticTokensEditFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['start', 'deleteCount', 'data']);
+  return _SemanticTokensEdit(
+    start: (json['start'] as num).toInt(),
+    deleteCount: (json['deleteCount'] as num).toInt(),
+    data: (json['data'] as List<dynamic>?)
+        ?.map((e) => (e as num).toInt())
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$SemanticTokensEditToJson(_SemanticTokensEdit instance) =>
     <String, dynamic>{
@@ -8718,51 +6711,38 @@ Map<String, dynamic> _$SemanticTokensEditToJson(_SemanticTokensEdit instance) =>
 
 _LinkedEditingRangeOptions _$LinkedEditingRangeOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_LinkedEditingRangeOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _LinkedEditingRangeOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _LinkedEditingRangeOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$LinkedEditingRangeOptionsToJson(
   _LinkedEditingRangeOptions instance,
 ) => <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
-_FileCreate _$FileCreateFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FileCreate', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['uri']);
-      final val = _FileCreate(uri: $checkedConvert('uri', (v) => v as String));
-      return val;
-    });
+_FileCreate _$FileCreateFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['uri']);
+  return _FileCreate(uri: json['uri'] as String);
+}
 
 Map<String, dynamic> _$FileCreateToJson(_FileCreate instance) =>
     <String, dynamic>{'uri': instance.uri};
 
-_TextDocumentEdit _$TextDocumentEditFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_TextDocumentEdit', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['textDocument', 'edits']);
-      final val = _TextDocumentEdit(
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => OptionalVersionedTextDocumentIdentifier.fromJson(
-            v as Map<String, dynamic>,
-          ),
-        ),
-        edits: $checkedConvert(
-          'edits',
-          (v) => (v as List<dynamic>)
-              .map(
-                (e) => TextDocumentEditEditsBase.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_TextDocumentEdit _$TextDocumentEditFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['textDocument', 'edits']);
+  return _TextDocumentEdit(
+    textDocument: OptionalVersionedTextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, dynamic>,
+    ),
+    edits: (json['edits'] as List<dynamic>)
+        .map(
+          (e) => TextDocumentEditEditsBase.fromJson(e as Map<String, dynamic>),
+        )
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$TextDocumentEditToJson(_TextDocumentEdit instance) =>
     <String, dynamic>{
@@ -8770,25 +6750,20 @@ Map<String, dynamic> _$TextDocumentEditToJson(_TextDocumentEdit instance) =>
       'edits': instance.edits,
     };
 
-_CreateFile _$CreateFileFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CreateFile', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['kind', 'uri', 'options', 'annotationId'],
-      );
-      final val = _CreateFile(
-        kind: $checkedConvert('kind', (v) => v as String),
-        uri: $checkedConvert('uri', (v) => v as String),
-        options: $checkedConvert(
-          'options',
-          (v) => v == null
-              ? null
-              : CreateFileOptions.fromJson(v as Map<String, dynamic>),
-        ),
-        annotationId: $checkedConvert('annotationId', (v) => v as String?),
-      );
-      return val;
-    });
+_CreateFile _$CreateFileFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['kind', 'uri', 'options', 'annotationId'],
+  );
+  return _CreateFile(
+    kind: json['kind'] as String,
+    uri: json['uri'] as String,
+    options: json['options'] == null
+        ? null
+        : CreateFileOptions.fromJson(json['options'] as Map<String, dynamic>),
+    annotationId: json['annotationId'] as String?,
+  );
+}
 
 Map<String, dynamic> _$CreateFileToJson(_CreateFile instance) =>
     <String, dynamic>{
@@ -8798,32 +6773,21 @@ Map<String, dynamic> _$CreateFileToJson(_CreateFile instance) =>
       'annotationId': instance.annotationId,
     };
 
-_RenameFile _$RenameFileFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_RenameFile', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'kind',
-          'oldUri',
-          'newUri',
-          'options',
-          'annotationId',
-        ],
-      );
-      final val = _RenameFile(
-        kind: $checkedConvert('kind', (v) => v as String),
-        oldUri: $checkedConvert('oldUri', (v) => v as String),
-        newUri: $checkedConvert('newUri', (v) => v as String),
-        options: $checkedConvert(
-          'options',
-          (v) => v == null
-              ? null
-              : RenameFileOptions.fromJson(v as Map<String, dynamic>),
-        ),
-        annotationId: $checkedConvert('annotationId', (v) => v as String?),
-      );
-      return val;
-    });
+_RenameFile _$RenameFileFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['kind', 'oldUri', 'newUri', 'options', 'annotationId'],
+  );
+  return _RenameFile(
+    kind: json['kind'] as String,
+    oldUri: json['oldUri'] as String,
+    newUri: json['newUri'] as String,
+    options: json['options'] == null
+        ? null
+        : RenameFileOptions.fromJson(json['options'] as Map<String, dynamic>),
+    annotationId: json['annotationId'] as String?,
+  );
+}
 
 Map<String, dynamic> _$RenameFileToJson(_RenameFile instance) =>
     <String, dynamic>{
@@ -8834,25 +6798,20 @@ Map<String, dynamic> _$RenameFileToJson(_RenameFile instance) =>
       'annotationId': instance.annotationId,
     };
 
-_DeleteFile _$DeleteFileFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DeleteFile', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['kind', 'uri', 'options', 'annotationId'],
-      );
-      final val = _DeleteFile(
-        kind: $checkedConvert('kind', (v) => v as String),
-        uri: $checkedConvert('uri', (v) => v as String),
-        options: $checkedConvert(
-          'options',
-          (v) => v == null
-              ? null
-              : DeleteFileOptions.fromJson(v as Map<String, dynamic>),
-        ),
-        annotationId: $checkedConvert('annotationId', (v) => v as String?),
-      );
-      return val;
-    });
+_DeleteFile _$DeleteFileFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['kind', 'uri', 'options', 'annotationId'],
+  );
+  return _DeleteFile(
+    kind: json['kind'] as String,
+    uri: json['uri'] as String,
+    options: json['options'] == null
+        ? null
+        : DeleteFileOptions.fromJson(json['options'] as Map<String, dynamic>),
+    annotationId: json['annotationId'] as String?,
+  );
+}
 
 Map<String, dynamic> _$DeleteFileToJson(_DeleteFile instance) =>
     <String, dynamic>{
@@ -8862,22 +6821,17 @@ Map<String, dynamic> _$DeleteFileToJson(_DeleteFile instance) =>
       'annotationId': instance.annotationId,
     };
 
-_ChangeAnnotation _$ChangeAnnotationFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ChangeAnnotation', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['label', 'description', 'needsConfirmation'],
-      );
-      final val = _ChangeAnnotation(
-        label: $checkedConvert('label', (v) => v as String),
-        description: $checkedConvert('description', (v) => v as String?),
-        needsConfirmation: $checkedConvert(
-          'needsConfirmation',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_ChangeAnnotation _$ChangeAnnotationFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['label', 'description', 'needsConfirmation'],
+  );
+  return _ChangeAnnotation(
+    label: json['label'] as String,
+    description: json['description'] as String?,
+    needsConfirmation: json['needsConfirmation'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$ChangeAnnotationToJson(_ChangeAnnotation instance) =>
     <String, dynamic>{
@@ -8886,87 +6840,69 @@ Map<String, dynamic> _$ChangeAnnotationToJson(_ChangeAnnotation instance) =>
       'needsConfirmation': instance.needsConfirmation,
     };
 
-_FileOperationFilter _$FileOperationFilterFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FileOperationFilter', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['pattern', 'scheme']);
-      final val = _FileOperationFilter(
-        pattern: $checkedConvert(
-          'pattern',
-          (v) => FileOperationPattern.fromJson(v as Map<String, dynamic>),
-        ),
-        scheme: $checkedConvert('scheme', (v) => v as String?),
-      );
-      return val;
-    });
+_FileOperationFilter _$FileOperationFilterFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['pattern', 'scheme']);
+  return _FileOperationFilter(
+    pattern: FileOperationPattern.fromJson(
+      json['pattern'] as Map<String, dynamic>,
+    ),
+    scheme: json['scheme'] as String?,
+  );
+}
 
 Map<String, dynamic> _$FileOperationFilterToJson(
   _FileOperationFilter instance,
 ) => <String, dynamic>{'pattern': instance.pattern, 'scheme': instance.scheme};
 
-_FileRename _$FileRenameFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FileRename', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['oldUri', 'newUri']);
-      final val = _FileRename(
-        oldUri: $checkedConvert('oldUri', (v) => v as String),
-        newUri: $checkedConvert('newUri', (v) => v as String),
-      );
-      return val;
-    });
+_FileRename _$FileRenameFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['oldUri', 'newUri']);
+  return _FileRename(
+    oldUri: json['oldUri'] as String,
+    newUri: json['newUri'] as String,
+  );
+}
 
 Map<String, dynamic> _$FileRenameToJson(_FileRename instance) =>
     <String, dynamic>{'oldUri': instance.oldUri, 'newUri': instance.newUri};
 
-_FileDelete _$FileDeleteFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FileDelete', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['uri']);
-      final val = _FileDelete(uri: $checkedConvert('uri', (v) => v as String));
-      return val;
-    });
+_FileDelete _$FileDeleteFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['uri']);
+  return _FileDelete(uri: json['uri'] as String);
+}
 
 Map<String, dynamic> _$FileDeleteToJson(_FileDelete instance) =>
     <String, dynamic>{'uri': instance.uri};
 
-_MonikerOptions _$MonikerOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_MonikerOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-      final val = _MonikerOptions(
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_MonikerOptions _$MonikerOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['workDoneProgress']);
+  return _MonikerOptions(workDoneProgress: json['workDoneProgress'] as bool?);
+}
 
 Map<String, dynamic> _$MonikerOptionsToJson(_MonikerOptions instance) =>
     <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
 _TypeHierarchyOptions _$TypeHierarchyOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TypeHierarchyOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _TypeHierarchyOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _TypeHierarchyOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TypeHierarchyOptionsToJson(
   _TypeHierarchyOptions instance,
 ) => <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
-_InlineValueContext _$InlineValueContextFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlineValueContext', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['frameId', 'stoppedLocation']);
-      final val = _InlineValueContext(
-        frameId: $checkedConvert('frameId', (v) => (v as num).toInt()),
-        stoppedLocation: $checkedConvert(
-          'stoppedLocation',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_InlineValueContext _$InlineValueContextFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['frameId', 'stoppedLocation']);
+  return _InlineValueContext(
+    frameId: (json['frameId'] as num).toInt(),
+    stoppedLocation: Range.fromJson(
+      json['stoppedLocation'] as Map<String, dynamic>,
+    ),
+  );
+}
 
 Map<String, dynamic> _$InlineValueContextToJson(_InlineValueContext instance) =>
     <String, dynamic>{
@@ -8974,42 +6910,30 @@ Map<String, dynamic> _$InlineValueContextToJson(_InlineValueContext instance) =>
       'stoppedLocation': instance.stoppedLocation,
     };
 
-_InlineValueText _$InlineValueTextFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlineValueText', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['range', 'text']);
-      final val = _InlineValueText(
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        text: $checkedConvert('text', (v) => v as String),
-      );
-      return val;
-    });
+_InlineValueText _$InlineValueTextFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['range', 'text']);
+  return _InlineValueText(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    text: json['text'] as String,
+  );
+}
 
 Map<String, dynamic> _$InlineValueTextToJson(_InlineValueText instance) =>
     <String, dynamic>{'range': instance.range, 'text': instance.text};
 
 _InlineValueVariableLookup _$InlineValueVariableLookupFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlineValueVariableLookup', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['range', 'caseSensitiveLookup', 'variableName'],
   );
-  final val = _InlineValueVariableLookup(
-    range: $checkedConvert(
-      'range',
-      (v) => Range.fromJson(v as Map<String, dynamic>),
-    ),
-    caseSensitiveLookup: $checkedConvert(
-      'caseSensitiveLookup',
-      (v) => v as bool,
-    ),
-    variableName: $checkedConvert('variableName', (v) => v as String?),
+  return _InlineValueVariableLookup(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    caseSensitiveLookup: json['caseSensitiveLookup'] as bool,
+    variableName: json['variableName'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlineValueVariableLookupToJson(
   _InlineValueVariableLookup instance,
@@ -9021,19 +6945,13 @@ Map<String, dynamic> _$InlineValueVariableLookupToJson(
 
 _InlineValueEvaluatableExpression _$InlineValueEvaluatableExpressionFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlineValueEvaluatableExpression', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['range', 'expression']);
-  final val = _InlineValueEvaluatableExpression(
-    range: $checkedConvert(
-      'range',
-      (v) => Range.fromJson(v as Map<String, dynamic>),
-    ),
-    expression: $checkedConvert('expression', (v) => v as String?),
+  return _InlineValueEvaluatableExpression(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    expression: json['expression'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlineValueEvaluatableExpressionToJson(
   _InlineValueEvaluatableExpression instance,
@@ -9042,47 +6960,36 @@ Map<String, dynamic> _$InlineValueEvaluatableExpressionToJson(
   'expression': instance.expression,
 };
 
-_InlineValueOptions _$InlineValueOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlineValueOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-      final val = _InlineValueOptions(
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_InlineValueOptions _$InlineValueOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['workDoneProgress']);
+  return _InlineValueOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$InlineValueOptionsToJson(_InlineValueOptions instance) =>
     <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
-_InlayHintLabelPart _$InlayHintLabelPartFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlayHintLabelPart', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['value', 'command', 'location', 'tooltip'],
-      );
-      final val = _InlayHintLabelPart(
-        value: $checkedConvert('value', (v) => v as String),
-        command: $checkedConvert(
-          'command',
-          (v) => v == null ? null : Command.fromJson(v as Map<String, dynamic>),
-        ),
-        location: $checkedConvert(
-          'location',
-          (v) =>
-              v == null ? null : Location.fromJson(v as Map<String, dynamic>),
-        ),
-        tooltip: $checkedConvert(
-          'tooltip',
-          (v) => v == null
-              ? null
-              : TooltipOrDocumentationBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_InlayHintLabelPart _$InlayHintLabelPartFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['value', 'command', 'location', 'tooltip'],
+  );
+  return _InlayHintLabelPart(
+    value: json['value'] as String,
+    command: json['command'] == null
+        ? null
+        : Command.fromJson(json['command'] as Map<String, dynamic>),
+    location: json['location'] == null
+        ? null
+        : Location.fromJson(json['location'] as Map<String, dynamic>),
+    tooltip: json['tooltip'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['tooltip'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$InlayHintLabelPartToJson(_InlayHintLabelPart instance) =>
     <String, dynamic>{
@@ -9092,18 +6999,13 @@ Map<String, dynamic> _$InlayHintLabelPartToJson(_InlayHintLabelPart instance) =>
       'tooltip': instance.tooltip,
     };
 
-_MarkupContent _$MarkupContentFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_MarkupContent', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['kind', 'value']);
-      final val = _MarkupContent(
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecode(_$MarkupKindEnumMap, v),
-        ),
-        value: $checkedConvert('value', (v) => v as String),
-      );
-      return val;
-    });
+_MarkupContent _$MarkupContentFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['kind', 'value']);
+  return _MarkupContent(
+    kind: $enumDecode(_$MarkupKindEnumMap, json['kind']),
+    value: json['value'] as String,
+  );
+}
 
 Map<String, dynamic> _$MarkupContentToJson(_MarkupContent instance) =>
     <String, dynamic>{
@@ -9116,16 +7018,13 @@ const _$MarkupKindEnumMap = {
   MarkupKind.markdownValue: 'markdownValue',
 };
 
-_InlayHintOptions _$InlayHintOptionsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_InlayHintOptions', json, ($checkedConvert) {
+_InlayHintOptions _$InlayHintOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
-  final val = _InlayHintOptions(
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _InlayHintOptions(
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlayHintOptionsToJson(_InlayHintOptions instance) =>
     <String, dynamic>{
@@ -9134,35 +7033,23 @@ Map<String, dynamic> _$InlayHintOptionsToJson(_InlayHintOptions instance) =>
     };
 
 _RelatedFullDocumentDiagnosticReport
-_$RelatedFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_RelatedFullDocumentDiagnosticReport', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['kind', 'items', 'relatedDocuments', 'resultId'],
-      );
-      final val = _RelatedFullDocumentDiagnosticReport(
-        kind: $checkedConvert('kind', (v) => v as String),
-        items: $checkedConvert(
-          'items',
-          (v) => (v as List<dynamic>)
-              .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        relatedDocuments: $checkedConvert(
-          'relatedDocuments',
-          (v) => (v as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(
-              k,
-              RelatedDocumentsBase.fromJson(e as Map<String, dynamic>),
-            ),
-          ),
-        ),
-        resultId: $checkedConvert('resultId', (v) => v as String?),
-      );
-      return val;
-    });
+_$RelatedFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['kind', 'items', 'relatedDocuments', 'resultId'],
+  );
+  return _RelatedFullDocumentDiagnosticReport(
+    kind: json['kind'] as String,
+    items: (json['items'] as List<dynamic>)
+        .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>?)?.map(
+      (k, e) =>
+          MapEntry(k, RelatedDocumentsBase.fromJson(e as Map<String, dynamic>)),
+    ),
+    resultId: json['resultId'] as String?,
+  );
+}
 
 Map<String, dynamic> _$RelatedFullDocumentDiagnosticReportToJson(
   _RelatedFullDocumentDiagnosticReport instance,
@@ -9174,29 +7061,17 @@ Map<String, dynamic> _$RelatedFullDocumentDiagnosticReportToJson(
 };
 
 _RelatedUnchangedDocumentDiagnosticReport
-_$RelatedUnchangedDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_RelatedUnchangedDocumentDiagnosticReport', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['kind', 'resultId', 'relatedDocuments'],
-      );
-      final val = _RelatedUnchangedDocumentDiagnosticReport(
-        kind: $checkedConvert('kind', (v) => v as String),
-        resultId: $checkedConvert('resultId', (v) => v as String),
-        relatedDocuments: $checkedConvert(
-          'relatedDocuments',
-          (v) => (v as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(
-              k,
-              RelatedDocumentsBase.fromJson(e as Map<String, dynamic>),
-            ),
-          ),
-        ),
-      );
-      return val;
-    });
+_$RelatedUnchangedDocumentDiagnosticReportFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['kind', 'resultId', 'relatedDocuments']);
+  return _RelatedUnchangedDocumentDiagnosticReport(
+    kind: json['kind'] as String,
+    resultId: json['resultId'] as String,
+    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>?)?.map(
+      (k, e) =>
+          MapEntry(k, RelatedDocumentsBase.fromJson(e as Map<String, dynamic>)),
+    ),
+  );
+}
 
 Map<String, dynamic> _$RelatedUnchangedDocumentDiagnosticReportToJson(
   _RelatedUnchangedDocumentDiagnosticReport instance,
@@ -9208,20 +7083,16 @@ Map<String, dynamic> _$RelatedUnchangedDocumentDiagnosticReportToJson(
 
 _FullDocumentDiagnosticReport _$FullDocumentDiagnosticReportFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_FullDocumentDiagnosticReport', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['kind', 'items', 'resultId']);
-  final val = _FullDocumentDiagnosticReport(
-    kind: $checkedConvert('kind', (v) => v as String),
-    items: $checkedConvert(
-      'items',
-      (v) => (v as List<dynamic>)
-          .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    resultId: $checkedConvert('resultId', (v) => v as String?),
+  return _FullDocumentDiagnosticReport(
+    kind: json['kind'] as String,
+    items: (json['items'] as List<dynamic>)
+        .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    resultId: json['resultId'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$FullDocumentDiagnosticReportToJson(
   _FullDocumentDiagnosticReport instance,
@@ -9233,49 +7104,35 @@ Map<String, dynamic> _$FullDocumentDiagnosticReportToJson(
 
 _UnchangedDocumentDiagnosticReport _$UnchangedDocumentDiagnosticReportFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_UnchangedDocumentDiagnosticReport', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['kind', 'resultId']);
-  final val = _UnchangedDocumentDiagnosticReport(
-    kind: $checkedConvert('kind', (v) => v as String),
-    resultId: $checkedConvert('resultId', (v) => v as String),
+  return _UnchangedDocumentDiagnosticReport(
+    kind: json['kind'] as String,
+    resultId: json['resultId'] as String,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$UnchangedDocumentDiagnosticReportToJson(
   _UnchangedDocumentDiagnosticReport instance,
 ) => <String, dynamic>{'kind': instance.kind, 'resultId': instance.resultId};
 
-_DiagnosticOptions _$DiagnosticOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DiagnosticOptions', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'interFileDependencies',
-          'workspaceDiagnostics',
-          'identifier',
-          'workDoneProgress',
-        ],
-      );
-      final val = _DiagnosticOptions(
-        interFileDependencies: $checkedConvert(
-          'interFileDependencies',
-          (v) => v as bool,
-        ),
-        workspaceDiagnostics: $checkedConvert(
-          'workspaceDiagnostics',
-          (v) => v as bool,
-        ),
-        identifier: $checkedConvert('identifier', (v) => v as String?),
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_DiagnosticOptions _$DiagnosticOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'interFileDependencies',
+      'workspaceDiagnostics',
+      'identifier',
+      'workDoneProgress',
+    ],
+  );
+  return _DiagnosticOptions(
+    interFileDependencies: json['interFileDependencies'] as bool,
+    workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
+    identifier: json['identifier'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DiagnosticOptionsToJson(_DiagnosticOptions instance) =>
     <String, dynamic>{
@@ -9285,51 +7142,34 @@ Map<String, dynamic> _$DiagnosticOptionsToJson(_DiagnosticOptions instance) =>
       'workDoneProgress': instance.workDoneProgress,
     };
 
-_PreviousResultId _$PreviousResultIdFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_PreviousResultId', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['uri', 'value']);
-      final val = _PreviousResultId(
-        uri: $checkedConvert('uri', (v) => v as String),
-        value: $checkedConvert('value', (v) => v as String),
-      );
-      return val;
-    });
+_PreviousResultId _$PreviousResultIdFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['uri', 'value']);
+  return _PreviousResultId(
+    uri: json['uri'] as String,
+    value: json['value'] as String,
+  );
+}
 
 Map<String, dynamic> _$PreviousResultIdToJson(_PreviousResultId instance) =>
     <String, dynamic>{'uri': instance.uri, 'value': instance.value};
 
-_NotebookDocument _$NotebookDocumentFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_NotebookDocument', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'uri',
-          'notebookType',
-          'version',
-          'cells',
-          'metadata',
-        ],
-      );
-      final val = _NotebookDocument(
-        uri: $checkedConvert('uri', (v) => v as String),
-        notebookType: $checkedConvert('notebookType', (v) => v as String),
-        version: $checkedConvert('version', (v) => (v as num).toInt()),
-        cells: $checkedConvert(
-          'cells',
-          (v) => (v as List<dynamic>)
-              .map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        metadata: $checkedConvert(
-          'metadata',
-          (v) => (v as Map<String, dynamic>?)?.map(
-            (k, e) =>
-                MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
-          ),
-        ),
-      );
-      return val;
-    });
+_NotebookDocument _$NotebookDocumentFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['uri', 'notebookType', 'version', 'cells', 'metadata'],
+  );
+  return _NotebookDocument(
+    uri: json['uri'] as String,
+    notebookType: json['notebookType'] as String,
+    version: (json['version'] as num).toInt(),
+    cells: (json['cells'] as List<dynamic>)
+        .map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
+    ),
+  );
+}
 
 Map<String, dynamic> _$NotebookDocumentToJson(_NotebookDocument instance) =>
     <String, dynamic>{
@@ -9340,20 +7180,15 @@ Map<String, dynamic> _$NotebookDocumentToJson(_NotebookDocument instance) =>
       'metadata': instance.metadata,
     };
 
-_TextDocumentItem _$TextDocumentItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_TextDocumentItem', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['uri', 'languageId', 'version', 'text'],
-      );
-      final val = _TextDocumentItem(
-        uri: $checkedConvert('uri', (v) => v as String),
-        languageId: $checkedConvert('languageId', (v) => v as String),
-        version: $checkedConvert('version', (v) => (v as num).toInt()),
-        text: $checkedConvert('text', (v) => v as String),
-      );
-      return val;
-    });
+_TextDocumentItem _$TextDocumentItemFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['uri', 'languageId', 'version', 'text']);
+  return _TextDocumentItem(
+    uri: json['uri'] as String,
+    languageId: json['languageId'] as String,
+    version: (json['version'] as num).toInt(),
+    text: json['text'] as String,
+  );
+}
 
 Map<String, dynamic> _$TextDocumentItemToJson(_TextDocumentItem instance) =>
     <String, dynamic>{
@@ -9364,17 +7199,13 @@ Map<String, dynamic> _$TextDocumentItemToJson(_TextDocumentItem instance) =>
     };
 
 _VersionedNotebookDocumentIdentifier
-_$VersionedNotebookDocumentIdentifierFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_VersionedNotebookDocumentIdentifier', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['version', 'uri']);
-      final val = _VersionedNotebookDocumentIdentifier(
-        version: $checkedConvert('version', (v) => (v as num).toInt()),
-        uri: $checkedConvert('uri', (v) => v as String),
-      );
-      return val;
-    });
+_$VersionedNotebookDocumentIdentifierFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['version', 'uri']);
+  return _VersionedNotebookDocumentIdentifier(
+    version: (json['version'] as num).toInt(),
+    uri: json['uri'] as String,
+  );
+}
 
 Map<String, dynamic> _$VersionedNotebookDocumentIdentifierToJson(
   _VersionedNotebookDocumentIdentifier instance,
@@ -9382,68 +7213,61 @@ Map<String, dynamic> _$VersionedNotebookDocumentIdentifierToJson(
 
 _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_NotebookDocumentChangeEvent', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['cells', 'metadata']);
-  final val = _NotebookDocumentChangeEvent(
-    cells: $checkedConvert(
-      'cells',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          data: ($jsonValue['data'] as List<dynamic>?)
-              ?.map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
-              .toList(),
-          structure: _$recordConvertNullable(
-            $jsonValue['structure'],
-            ($jsonValue) => (
-              array: NotebookCellArrayChange.fromJson(
-                $jsonValue['array'] as Map<String, dynamic>,
-              ),
-              didClose: ($jsonValue['didClose'] as List<dynamic>?)
-                  ?.map(
-                    (e) => TextDocumentIdentifier.fromJson(
-                      e as Map<String, dynamic>,
-                    ),
-                  )
-                  .toList(),
-              didOpen: ($jsonValue['didOpen'] as List<dynamic>?)
-                  ?.map(
-                    (e) => TextDocumentItem.fromJson(e as Map<String, dynamic>),
-                  )
-                  .toList(),
+  return _NotebookDocumentChangeEvent(
+    cells: _$recordConvertNullable(
+      json['cells'],
+      ($jsonValue) => (
+        data: ($jsonValue['data'] as List<dynamic>?)
+            ?.map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        structure: _$recordConvertNullable(
+          $jsonValue['structure'],
+          ($jsonValue) => (
+            array: NotebookCellArrayChange.fromJson(
+              $jsonValue['array'] as Map<String, dynamic>,
             ),
+            didClose: ($jsonValue['didClose'] as List<dynamic>?)
+                ?.map(
+                  (e) => TextDocumentIdentifier.fromJson(
+                    e as Map<String, dynamic>,
+                  ),
+                )
+                .toList(),
+            didOpen: ($jsonValue['didOpen'] as List<dynamic>?)
+                ?.map(
+                  (e) => TextDocumentItem.fromJson(e as Map<String, dynamic>),
+                )
+                .toList(),
           ),
-          textContent: ($jsonValue['textContent'] as List<dynamic>?)
-              ?.map(
-                (e) => _$recordConvert(
-                  e,
-                  ($jsonValue) => (
-                    changes: ($jsonValue['changes'] as List<dynamic>)
-                        .map(
-                          (e) => TextDocumentContentChangeEventBase.fromJson(
-                            e as Map<String, dynamic>,
-                          ),
-                        )
-                        .toList(),
-                    document: VersionedTextDocumentIdentifier.fromJson(
-                      $jsonValue['document'] as Map<String, dynamic>,
-                    ),
+        ),
+        textContent: ($jsonValue['textContent'] as List<dynamic>?)
+            ?.map(
+              (e) => _$recordConvert(
+                e,
+                ($jsonValue) => (
+                  changes: ($jsonValue['changes'] as List<dynamic>)
+                      .map(
+                        (e) => TextDocumentContentChangeEventBase.fromJson(
+                          e as Map<String, dynamic>,
+                        ),
+                      )
+                      .toList(),
+                  document: VersionedTextDocumentIdentifier.fromJson(
+                    $jsonValue['document'] as Map<String, dynamic>,
                   ),
                 ),
-              )
-              .toList(),
-        ),
+              ),
+            )
+            .toList(),
       ),
     ),
-    metadata: $checkedConvert(
-      'metadata',
-      (v) => (v as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
-      ),
+    metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$NotebookDocumentChangeEventToJson(
   _NotebookDocumentChangeEvent instance,
@@ -9473,13 +7297,10 @@ Map<String, dynamic> _$NotebookDocumentChangeEventToJson(
 
 _NotebookDocumentIdentifier _$NotebookDocumentIdentifierFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_NotebookDocumentIdentifier', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['uri']);
-  final val = _NotebookDocumentIdentifier(
-    uri: $checkedConvert('uri', (v) => v as String),
-  );
-  return val;
-});
+  return _NotebookDocumentIdentifier(uri: json['uri'] as String);
+}
 
 Map<String, dynamic> _$NotebookDocumentIdentifierToJson(
   _NotebookDocumentIdentifier instance,
@@ -9487,25 +7308,23 @@ Map<String, dynamic> _$NotebookDocumentIdentifierToJson(
 
 _InlineCompletionContext _$InlineCompletionContextFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlineCompletionContext', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['triggerKind', 'selectedCompletionInfo'],
   );
-  final val = _InlineCompletionContext(
-    triggerKind: $checkedConvert(
-      'triggerKind',
-      (v) => $enumDecode(_$InlineCompletionTriggerKindEnumMap, v),
+  return _InlineCompletionContext(
+    triggerKind: $enumDecode(
+      _$InlineCompletionTriggerKindEnumMap,
+      json['triggerKind'],
     ),
-    selectedCompletionInfo: $checkedConvert(
-      'selectedCompletionInfo',
-      (v) => v == null
-          ? null
-          : SelectedCompletionInfo.fromJson(v as Map<String, dynamic>),
-    ),
+    selectedCompletionInfo: json['selectedCompletionInfo'] == null
+        ? null
+        : SelectedCompletionInfo.fromJson(
+            json['selectedCompletionInfo'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlineCompletionContextToJson(
   _InlineCompletionContext instance,
@@ -9519,47 +7338,40 @@ const _$InlineCompletionTriggerKindEnumMap = {
   InlineCompletionTriggerKind.automaticValue: 'automaticValue',
 };
 
-_StringValue _$StringValueFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_StringValue', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['kind', 'value']);
-      final val = _StringValue(
-        kind: $checkedConvert('kind', (v) => v as String),
-        value: $checkedConvert('value', (v) => v as String),
-      );
-      return val;
-    });
+_StringValue _$StringValueFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['kind', 'value']);
+  return _StringValue(
+    kind: json['kind'] as String,
+    value: json['value'] as String,
+  );
+}
 
 Map<String, dynamic> _$StringValueToJson(_StringValue instance) =>
     <String, dynamic>{'kind': instance.kind, 'value': instance.value};
 
 _InlineCompletionOptions _$InlineCompletionOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlineCompletionOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _InlineCompletionOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _InlineCompletionOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlineCompletionOptionsToJson(
   _InlineCompletionOptions instance,
 ) => <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
-_Registration _$RegistrationFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Registration', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['id', 'method', 'registerOptions']);
-      final val = _Registration(
-        id: $checkedConvert('id', (v) => v as String),
-        method: $checkedConvert('method', (v) => v as String),
-        registerOptions: $checkedConvert(
-          'registerOptions',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_Registration _$RegistrationFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['id', 'method', 'registerOptions']);
+  return _Registration(
+    id: json['id'] as String,
+    method: json['method'] as String,
+    registerOptions: json['registerOptions'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['registerOptions'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$RegistrationToJson(_Registration instance) =>
     <String, dynamic>{
@@ -9568,86 +7380,68 @@ Map<String, dynamic> _$RegistrationToJson(_Registration instance) =>
       'registerOptions': instance.registerOptions,
     };
 
-_Unregistration _$UnregistrationFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Unregistration', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['id', 'method']);
-      final val = _Unregistration(
-        id: $checkedConvert('id', (v) => v as String),
-        method: $checkedConvert('method', (v) => v as String),
-      );
-      return val;
-    });
+_Unregistration _$UnregistrationFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['id', 'method']);
+  return _Unregistration(
+    id: json['id'] as String,
+    method: json['method'] as String,
+  );
+}
 
 Map<String, dynamic> _$UnregistrationToJson(_Unregistration instance) =>
     <String, dynamic>{'id': instance.id, 'method': instance.method};
 
-_TInitializeParams _$TInitializeParamsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_TInitializeParams', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'processId',
-          'rootUri',
-          'capabilities',
-          'trace',
-          'initializationOptions',
-          'rootPath',
-          'locale',
-          'clientInfo',
-          'workDoneToken',
-        ],
-      );
-      final val = _TInitializeParams(
-        processId: $checkedConvert(
-          'processId',
-          (v) => ProcessIdOrVersionBase.fromJson(v as Map<String, dynamic>),
-        ),
-        rootUri: $checkedConvert(
-          'rootUri',
-          (v) =>
-              InitializeParamsRootUriBase.fromJson(v as Map<String, dynamic>),
-        ),
-        capabilities: $checkedConvert(
-          'capabilities',
-          (v) => ClientCapabilities.fromJson(v as Map<String, dynamic>),
-        ),
-        trace: $checkedConvert(
-          'trace',
-          (v) => $enumDecodeNullable(_$TraceValuesEnumMap, v),
-        ),
-        initializationOptions: $checkedConvert(
-          'initializationOptions',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        rootPath: $checkedConvert(
-          'rootPath',
-          (v) => v == null
-              ? null
-              : InitializeParamsRootPathBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        locale: $checkedConvert('locale', (v) => v as String?),
-        clientInfo: $checkedConvert(
-          'clientInfo',
-          (v) => _$recordConvertNullable(
-            v,
-            ($jsonValue) => (
-              name: $jsonValue['name'] as String,
-              version: $jsonValue['version'] as String?,
-            ),
+_TInitializeParams _$TInitializeParamsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'processId',
+      'rootUri',
+      'capabilities',
+      'trace',
+      'initializationOptions',
+      'rootPath',
+      'locale',
+      'clientInfo',
+      'workDoneToken',
+    ],
+  );
+  return _TInitializeParams(
+    processId: ProcessIdOrVersionBase.fromJson(
+      json['processId'] as Map<String, dynamic>,
+    ),
+    rootUri: InitializeParamsRootUriBase.fromJson(
+      json['rootUri'] as Map<String, dynamic>,
+    ),
+    capabilities: ClientCapabilities.fromJson(
+      json['capabilities'] as Map<String, dynamic>,
+    ),
+    trace: $enumDecodeNullable(_$TraceValuesEnumMap, json['trace']),
+    initializationOptions: json['initializationOptions'] == null
+        ? null
+        : LSPAnyBase.fromJson(
+            json['initializationOptions'] as Map<String, dynamic>,
           ),
-        ),
-        workDoneToken: $checkedConvert(
-          'workDoneToken',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+    rootPath: json['rootPath'] == null
+        ? null
+        : InitializeParamsRootPathBase.fromJson(
+            json['rootPath'] as Map<String, dynamic>,
+          ),
+    locale: json['locale'] as String?,
+    clientInfo: _$recordConvertNullable(
+      json['clientInfo'],
+      ($jsonValue) => (
+        name: $jsonValue['name'] as String,
+        version: $jsonValue['version'] as String?,
+      ),
+    ),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressTokenBase.fromJson(
+            json['workDoneToken'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$TInitializeParamsToJson(_TInitializeParams instance) =>
     <String, dynamic>{
@@ -9669,355 +7463,255 @@ Map<String, dynamic> _$TInitializeParamsToJson(_TInitializeParams instance) =>
 
 _WorkspaceFoldersInitializeParams _$WorkspaceFoldersInitializeParamsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceFoldersInitializeParams', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['workspaceFolders']);
-  final val = _WorkspaceFoldersInitializeParams(
-    workspaceFolders: $checkedConvert(
-      'workspaceFolders',
-      (v) => v == null
-          ? null
-          : WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
+  return _WorkspaceFoldersInitializeParams(
+    workspaceFolders: json['workspaceFolders'] == null
+        ? null
+        : WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.fromJson(
+            json['workspaceFolders'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceFoldersInitializeParamsToJson(
   _WorkspaceFoldersInitializeParams instance,
 ) => <String, dynamic>{'workspaceFolders': instance.workspaceFolders};
 
-_ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ServerCapabilities', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'workspaceSymbolProvider',
-          'documentHighlightProvider',
-          'documentFormattingProvider',
-          'codeActionProvider',
-          'completionProvider',
-          'workspace',
-          'inlineCompletionProvider',
-          'diagnosticProvider',
-          'inlayHintProvider',
-          'definitionProvider',
-          'declarationProvider',
-          'monikerProvider',
-          'semanticTokensProvider',
-          'linkedEditingRangeProvider',
-          'callHierarchyProvider',
-          'executeCommandProvider',
-          'textDocumentSync',
-          'foldingRangeProvider',
-          'renameProvider',
-          'documentOnTypeFormattingProvider',
-          'documentRangeFormattingProvider',
-          'experimental',
-          'selectionRangeProvider',
-          'colorProvider',
-          'documentLinkProvider',
-          'codeLensProvider',
-          'notebookDocumentSync',
-          'documentSymbolProvider',
-          'positionEncoding',
-          'referencesProvider',
-          'implementationProvider',
-          'typeDefinitionProvider',
-          'inlineValueProvider',
-          'typeHierarchyProvider',
-          'signatureHelpProvider',
-          'hoverProvider',
-        ],
-      );
-      final val = _ServerCapabilities(
-        workspaceSymbolProvider: $checkedConvert(
-          'workspaceSymbolProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesWorkspaceSymbolProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        documentHighlightProvider: $checkedConvert(
-          'documentHighlightProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesDocumentHighlightProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        documentFormattingProvider: $checkedConvert(
-          'documentFormattingProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesDocumentFormattingProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        codeActionProvider: $checkedConvert(
-          'codeActionProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesCodeActionProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        completionProvider: $checkedConvert(
-          'completionProvider',
-          (v) => v == null
-              ? null
-              : CompletionOptions.fromJson(v as Map<String, dynamic>),
-        ),
-        workspace: $checkedConvert(
-          'workspace',
-          (v) => _$recordConvertNullable(
-            v,
-            ($jsonValue) => (
-              fileOperations: $jsonValue['fileOperations'] == null
-                  ? null
-                  : FileOperationOptions.fromJson(
-                      $jsonValue['fileOperations'] as Map<String, dynamic>,
-                    ),
-              workspaceFolders: $jsonValue['workspaceFolders'] == null
-                  ? null
-                  : WorkspaceFoldersServerCapabilities.fromJson(
-                      $jsonValue['workspaceFolders'] as Map<String, dynamic>,
-                    ),
-            ),
+_ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'workspaceSymbolProvider',
+      'documentHighlightProvider',
+      'documentFormattingProvider',
+      'codeActionProvider',
+      'completionProvider',
+      'workspace',
+      'inlineCompletionProvider',
+      'diagnosticProvider',
+      'inlayHintProvider',
+      'definitionProvider',
+      'declarationProvider',
+      'monikerProvider',
+      'semanticTokensProvider',
+      'linkedEditingRangeProvider',
+      'callHierarchyProvider',
+      'executeCommandProvider',
+      'textDocumentSync',
+      'foldingRangeProvider',
+      'renameProvider',
+      'documentOnTypeFormattingProvider',
+      'documentRangeFormattingProvider',
+      'experimental',
+      'selectionRangeProvider',
+      'colorProvider',
+      'documentLinkProvider',
+      'codeLensProvider',
+      'notebookDocumentSync',
+      'documentSymbolProvider',
+      'positionEncoding',
+      'referencesProvider',
+      'implementationProvider',
+      'typeDefinitionProvider',
+      'inlineValueProvider',
+      'typeHierarchyProvider',
+      'signatureHelpProvider',
+      'hoverProvider',
+    ],
+  );
+  return _ServerCapabilities(
+    workspaceSymbolProvider: json['workspaceSymbolProvider'] == null
+        ? null
+        : ServerCapabilitiesWorkspaceSymbolProviderBase.fromJson(
+            json['workspaceSymbolProvider'] as Map<String, dynamic>,
           ),
-        ),
-        inlineCompletionProvider: $checkedConvert(
-          'inlineCompletionProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesInlineCompletionProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        diagnosticProvider: $checkedConvert(
-          'diagnosticProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesDiagnosticProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        inlayHintProvider: $checkedConvert(
-          'inlayHintProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesInlayHintProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        definitionProvider: $checkedConvert(
-          'definitionProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesDefinitionProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        declarationProvider: $checkedConvert(
-          'declarationProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesDeclarationProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        monikerProvider: $checkedConvert(
-          'monikerProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesMonikerProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        semanticTokensProvider: $checkedConvert(
-          'semanticTokensProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesSemanticTokensProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        linkedEditingRangeProvider: $checkedConvert(
-          'linkedEditingRangeProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesLinkedEditingRangeProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        callHierarchyProvider: $checkedConvert(
-          'callHierarchyProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesCallHierarchyProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        executeCommandProvider: $checkedConvert(
-          'executeCommandProvider',
-          (v) => v == null
-              ? null
-              : ExecuteCommandOptions.fromJson(v as Map<String, dynamic>),
-        ),
-        textDocumentSync: $checkedConvert(
-          'textDocumentSync',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesTextDocumentSyncBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        foldingRangeProvider: $checkedConvert(
-          'foldingRangeProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesFoldingRangeProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        renameProvider: $checkedConvert(
-          'renameProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesRenameProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        documentOnTypeFormattingProvider: $checkedConvert(
-          'documentOnTypeFormattingProvider',
-          (v) => v == null
-              ? null
-              : DocumentOnTypeFormattingOptions.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        documentRangeFormattingProvider: $checkedConvert(
-          'documentRangeFormattingProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesDocumentRangeFormattingProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        experimental: $checkedConvert(
-          'experimental',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        selectionRangeProvider: $checkedConvert(
-          'selectionRangeProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesSelectionRangeProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        colorProvider: $checkedConvert(
-          'colorProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesColorProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        documentLinkProvider: $checkedConvert(
-          'documentLinkProvider',
-          (v) => v == null
-              ? null
-              : DocumentLinkOptions.fromJson(v as Map<String, dynamic>),
-        ),
-        codeLensProvider: $checkedConvert(
-          'codeLensProvider',
-          (v) => v == null
-              ? null
-              : CodeLensOptions.fromJson(v as Map<String, dynamic>),
-        ),
-        notebookDocumentSync: $checkedConvert(
-          'notebookDocumentSync',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesNotebookDocumentSyncBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        documentSymbolProvider: $checkedConvert(
-          'documentSymbolProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesDocumentSymbolProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        positionEncoding: $checkedConvert(
-          'positionEncoding',
-          (v) => $enumDecodeNullable(_$PositionEncodingKindEnumMap, v),
-        ),
-        referencesProvider: $checkedConvert(
-          'referencesProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesReferencesProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        implementationProvider: $checkedConvert(
-          'implementationProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesImplementationProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        typeDefinitionProvider: $checkedConvert(
-          'typeDefinitionProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesTypeDefinitionProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        inlineValueProvider: $checkedConvert(
-          'inlineValueProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesInlineValueProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        typeHierarchyProvider: $checkedConvert(
-          'typeHierarchyProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesTypeHierarchyProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        signatureHelpProvider: $checkedConvert(
-          'signatureHelpProvider',
-          (v) => v == null
-              ? null
-              : SignatureHelpOptions.fromJson(v as Map<String, dynamic>),
-        ),
-        hoverProvider: $checkedConvert(
-          'hoverProvider',
-          (v) => v == null
-              ? null
-              : ServerCapabilitiesHoverProviderBase.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-      );
-      return val;
-    });
+    documentHighlightProvider: json['documentHighlightProvider'] == null
+        ? null
+        : ServerCapabilitiesDocumentHighlightProviderBase.fromJson(
+            json['documentHighlightProvider'] as Map<String, dynamic>,
+          ),
+    documentFormattingProvider: json['documentFormattingProvider'] == null
+        ? null
+        : ServerCapabilitiesDocumentFormattingProviderBase.fromJson(
+            json['documentFormattingProvider'] as Map<String, dynamic>,
+          ),
+    codeActionProvider: json['codeActionProvider'] == null
+        ? null
+        : ServerCapabilitiesCodeActionProviderBase.fromJson(
+            json['codeActionProvider'] as Map<String, dynamic>,
+          ),
+    completionProvider: json['completionProvider'] == null
+        ? null
+        : CompletionOptions.fromJson(
+            json['completionProvider'] as Map<String, dynamic>,
+          ),
+    workspace: _$recordConvertNullable(
+      json['workspace'],
+      ($jsonValue) => (
+        fileOperations: $jsonValue['fileOperations'] == null
+            ? null
+            : FileOperationOptions.fromJson(
+                $jsonValue['fileOperations'] as Map<String, dynamic>,
+              ),
+        workspaceFolders: $jsonValue['workspaceFolders'] == null
+            ? null
+            : WorkspaceFoldersServerCapabilities.fromJson(
+                $jsonValue['workspaceFolders'] as Map<String, dynamic>,
+              ),
+      ),
+    ),
+    inlineCompletionProvider: json['inlineCompletionProvider'] == null
+        ? null
+        : ServerCapabilitiesInlineCompletionProviderBase.fromJson(
+            json['inlineCompletionProvider'] as Map<String, dynamic>,
+          ),
+    diagnosticProvider: json['diagnosticProvider'] == null
+        ? null
+        : ServerCapabilitiesDiagnosticProviderBase.fromJson(
+            json['diagnosticProvider'] as Map<String, dynamic>,
+          ),
+    inlayHintProvider: json['inlayHintProvider'] == null
+        ? null
+        : ServerCapabilitiesInlayHintProviderBase.fromJson(
+            json['inlayHintProvider'] as Map<String, dynamic>,
+          ),
+    definitionProvider: json['definitionProvider'] == null
+        ? null
+        : ServerCapabilitiesDefinitionProviderBase.fromJson(
+            json['definitionProvider'] as Map<String, dynamic>,
+          ),
+    declarationProvider: json['declarationProvider'] == null
+        ? null
+        : ServerCapabilitiesDeclarationProviderBase.fromJson(
+            json['declarationProvider'] as Map<String, dynamic>,
+          ),
+    monikerProvider: json['monikerProvider'] == null
+        ? null
+        : ServerCapabilitiesMonikerProviderBase.fromJson(
+            json['monikerProvider'] as Map<String, dynamic>,
+          ),
+    semanticTokensProvider: json['semanticTokensProvider'] == null
+        ? null
+        : ServerCapabilitiesSemanticTokensProviderBase.fromJson(
+            json['semanticTokensProvider'] as Map<String, dynamic>,
+          ),
+    linkedEditingRangeProvider: json['linkedEditingRangeProvider'] == null
+        ? null
+        : ServerCapabilitiesLinkedEditingRangeProviderBase.fromJson(
+            json['linkedEditingRangeProvider'] as Map<String, dynamic>,
+          ),
+    callHierarchyProvider: json['callHierarchyProvider'] == null
+        ? null
+        : ServerCapabilitiesCallHierarchyProviderBase.fromJson(
+            json['callHierarchyProvider'] as Map<String, dynamic>,
+          ),
+    executeCommandProvider: json['executeCommandProvider'] == null
+        ? null
+        : ExecuteCommandOptions.fromJson(
+            json['executeCommandProvider'] as Map<String, dynamic>,
+          ),
+    textDocumentSync: json['textDocumentSync'] == null
+        ? null
+        : ServerCapabilitiesTextDocumentSyncBase.fromJson(
+            json['textDocumentSync'] as Map<String, dynamic>,
+          ),
+    foldingRangeProvider: json['foldingRangeProvider'] == null
+        ? null
+        : ServerCapabilitiesFoldingRangeProviderBase.fromJson(
+            json['foldingRangeProvider'] as Map<String, dynamic>,
+          ),
+    renameProvider: json['renameProvider'] == null
+        ? null
+        : ServerCapabilitiesRenameProviderBase.fromJson(
+            json['renameProvider'] as Map<String, dynamic>,
+          ),
+    documentOnTypeFormattingProvider:
+        json['documentOnTypeFormattingProvider'] == null
+        ? null
+        : DocumentOnTypeFormattingOptions.fromJson(
+            json['documentOnTypeFormattingProvider'] as Map<String, dynamic>,
+          ),
+    documentRangeFormattingProvider:
+        json['documentRangeFormattingProvider'] == null
+        ? null
+        : ServerCapabilitiesDocumentRangeFormattingProviderBase.fromJson(
+            json['documentRangeFormattingProvider'] as Map<String, dynamic>,
+          ),
+    experimental: json['experimental'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['experimental'] as Map<String, dynamic>),
+    selectionRangeProvider: json['selectionRangeProvider'] == null
+        ? null
+        : ServerCapabilitiesSelectionRangeProviderBase.fromJson(
+            json['selectionRangeProvider'] as Map<String, dynamic>,
+          ),
+    colorProvider: json['colorProvider'] == null
+        ? null
+        : ServerCapabilitiesColorProviderBase.fromJson(
+            json['colorProvider'] as Map<String, dynamic>,
+          ),
+    documentLinkProvider: json['documentLinkProvider'] == null
+        ? null
+        : DocumentLinkOptions.fromJson(
+            json['documentLinkProvider'] as Map<String, dynamic>,
+          ),
+    codeLensProvider: json['codeLensProvider'] == null
+        ? null
+        : CodeLensOptions.fromJson(
+            json['codeLensProvider'] as Map<String, dynamic>,
+          ),
+    notebookDocumentSync: json['notebookDocumentSync'] == null
+        ? null
+        : ServerCapabilitiesNotebookDocumentSyncBase.fromJson(
+            json['notebookDocumentSync'] as Map<String, dynamic>,
+          ),
+    documentSymbolProvider: json['documentSymbolProvider'] == null
+        ? null
+        : ServerCapabilitiesDocumentSymbolProviderBase.fromJson(
+            json['documentSymbolProvider'] as Map<String, dynamic>,
+          ),
+    positionEncoding: $enumDecodeNullable(
+      _$PositionEncodingKindEnumMap,
+      json['positionEncoding'],
+    ),
+    referencesProvider: json['referencesProvider'] == null
+        ? null
+        : ServerCapabilitiesReferencesProviderBase.fromJson(
+            json['referencesProvider'] as Map<String, dynamic>,
+          ),
+    implementationProvider: json['implementationProvider'] == null
+        ? null
+        : ServerCapabilitiesImplementationProviderBase.fromJson(
+            json['implementationProvider'] as Map<String, dynamic>,
+          ),
+    typeDefinitionProvider: json['typeDefinitionProvider'] == null
+        ? null
+        : ServerCapabilitiesTypeDefinitionProviderBase.fromJson(
+            json['typeDefinitionProvider'] as Map<String, dynamic>,
+          ),
+    inlineValueProvider: json['inlineValueProvider'] == null
+        ? null
+        : ServerCapabilitiesInlineValueProviderBase.fromJson(
+            json['inlineValueProvider'] as Map<String, dynamic>,
+          ),
+    typeHierarchyProvider: json['typeHierarchyProvider'] == null
+        ? null
+        : ServerCapabilitiesTypeHierarchyProviderBase.fromJson(
+            json['typeHierarchyProvider'] as Map<String, dynamic>,
+          ),
+    signatureHelpProvider: json['signatureHelpProvider'] == null
+        ? null
+        : SignatureHelpOptions.fromJson(
+            json['signatureHelpProvider'] as Map<String, dynamic>,
+          ),
+    hoverProvider: json['hoverProvider'] == null
+        ? null
+        : ServerCapabilitiesHoverProviderBase.fromJson(
+            json['hoverProvider'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$ServerCapabilitiesToJson(
   _ServerCapabilities instance,
@@ -10073,44 +7767,33 @@ const _$PositionEncodingKindEnumMap = {
 
 _VersionedTextDocumentIdentifier _$VersionedTextDocumentIdentifierFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_VersionedTextDocumentIdentifier', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['uri', 'version']);
-      final val = _VersionedTextDocumentIdentifier(
-        uri: $checkedConvert('uri', (v) => v as String),
-        version: $checkedConvert('version', (v) => (v as num).toInt()),
-      );
-      return val;
-    });
+) {
+  $checkKeys(json, allowedKeys: const ['uri', 'version']);
+  return _VersionedTextDocumentIdentifier(
+    uri: json['uri'] as String,
+    version: (json['version'] as num).toInt(),
+  );
+}
 
 Map<String, dynamic> _$VersionedTextDocumentIdentifierToJson(
   _VersionedTextDocumentIdentifier instance,
 ) => <String, dynamic>{'uri': instance.uri, 'version': instance.version};
 
-_SaveOptions _$SaveOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_SaveOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['includeText']);
-      final val = _SaveOptions(
-        includeText: $checkedConvert('includeText', (v) => v as bool?),
-      );
-      return val;
-    });
+_SaveOptions _$SaveOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['includeText']);
+  return _SaveOptions(includeText: json['includeText'] as bool?);
+}
 
 Map<String, dynamic> _$SaveOptionsToJson(_SaveOptions instance) =>
     <String, dynamic>{'includeText': instance.includeText};
 
-_FileEvent _$FileEventFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FileEvent', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['uri', 'type']);
-      final val = _FileEvent(
-        uri: $checkedConvert('uri', (v) => v as String),
-        type: $checkedConvert(
-          'type',
-          (v) => $enumDecode(_$FileChangeTypeEnumMap, v),
-        ),
-      );
-      return val;
-    });
+_FileEvent _$FileEventFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['uri', 'type']);
+  return _FileEvent(
+    uri: json['uri'] as String,
+    type: $enumDecode(_$FileChangeTypeEnumMap, json['type']),
+  );
+}
 
 Map<String, dynamic> _$FileEventToJson(_FileEvent instance) =>
     <String, dynamic>{
@@ -10124,21 +7807,15 @@ const _$FileChangeTypeEnumMap = {
   FileChangeType.deletedValue: 'deletedValue',
 };
 
-_FileSystemWatcher _$FileSystemWatcherFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FileSystemWatcher', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['globPattern', 'kind']);
-      final val = _FileSystemWatcher(
-        globPattern: $checkedConvert(
-          'globPattern',
-          (v) => GlobPatternBase.fromJson(v as Map<String, dynamic>),
-        ),
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecodeNullable(_$WatchKindEnumMap, v),
-        ),
-      );
-      return val;
-    });
+_FileSystemWatcher _$FileSystemWatcherFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['globPattern', 'kind']);
+  return _FileSystemWatcher(
+    globPattern: GlobPatternBase.fromJson(
+      json['globPattern'] as Map<String, dynamic>,
+    ),
+    kind: $enumDecodeNullable(_$WatchKindEnumMap, json['kind']),
+  );
+}
 
 Map<String, dynamic> _$FileSystemWatcherToJson(_FileSystemWatcher instance) =>
     <String, dynamic>{
@@ -10152,69 +7829,51 @@ const _$WatchKindEnumMap = {
   WatchKind.deleteValue: 'deleteValue',
 };
 
-_Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_Diagnostic', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'range',
-          'message',
-          'data',
-          'relatedInformation',
-          'tags',
-          'source',
-          'codeDescription',
-          'code',
-          'severity',
-        ],
-      );
-      final val = _Diagnostic(
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        message: $checkedConvert('message', (v) => v as String),
-        data: $checkedConvert(
-          'data',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        relatedInformation: $checkedConvert(
-          'relatedInformation',
-          (v) => (v as List<dynamic>?)
-              ?.map(
-                (e) => DiagnosticRelatedInformation.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
-        ),
-        tags: $checkedConvert(
-          'tags',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$DiagnosticTagEnumMap, e))
-              .toList(),
-        ),
-        source: $checkedConvert('source', (v) => v as String?),
-        codeDescription: $checkedConvert(
-          'codeDescription',
-          (v) => v == null
-              ? null
-              : CodeDescription.fromJson(v as Map<String, dynamic>),
-        ),
-        code: $checkedConvert(
-          'code',
-          (v) => v == null
-              ? null
-              : ProgressTokenBase.fromJson(v as Map<String, dynamic>),
-        ),
-        severity: $checkedConvert(
-          'severity',
-          (v) => $enumDecodeNullable(_$DiagnosticSeverityEnumMap, v),
-        ),
-      );
-      return val;
-    });
+_Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'range',
+      'message',
+      'data',
+      'relatedInformation',
+      'tags',
+      'source',
+      'codeDescription',
+      'code',
+      'severity',
+    ],
+  );
+  return _Diagnostic(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    message: json['message'] as String,
+    data: json['data'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['data'] as Map<String, dynamic>),
+    relatedInformation: (json['relatedInformation'] as List<dynamic>?)
+        ?.map(
+          (e) =>
+              DiagnosticRelatedInformation.fromJson(e as Map<String, dynamic>),
+        )
+        .toList(),
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$DiagnosticTagEnumMap, e))
+        .toList(),
+    source: json['source'] as String?,
+    codeDescription: json['codeDescription'] == null
+        ? null
+        : CodeDescription.fromJson(
+            json['codeDescription'] as Map<String, dynamic>,
+          ),
+    code: json['code'] == null
+        ? null
+        : ProgressTokenBase.fromJson(json['code'] as Map<String, dynamic>),
+    severity: $enumDecodeNullable(
+      _$DiagnosticSeverityEnumMap,
+      json['severity'],
+    ),
+  );
+}
 
 Map<String, dynamic> _$DiagnosticToJson(_Diagnostic instance) =>
     <String, dynamic>{
@@ -10241,21 +7900,16 @@ const _$DiagnosticSeverityEnumMap = {
   DiagnosticSeverity.hintValue: 'hintValue',
 };
 
-_CompletionContext _$CompletionContextFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CompletionContext', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['triggerKind', 'triggerCharacter']);
-      final val = _CompletionContext(
-        triggerKind: $checkedConvert(
-          'triggerKind',
-          (v) => $enumDecode(_$CompletionTriggerKindEnumMap, v),
-        ),
-        triggerCharacter: $checkedConvert(
-          'triggerCharacter',
-          (v) => v as String?,
-        ),
-      );
-      return val;
-    });
+_CompletionContext _$CompletionContextFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['triggerKind', 'triggerCharacter']);
+  return _CompletionContext(
+    triggerKind: $enumDecode(
+      _$CompletionTriggerKindEnumMap,
+      json['triggerKind'],
+    ),
+    triggerCharacter: json['triggerCharacter'] as String?,
+  );
+}
 
 Map<String, dynamic> _$CompletionContextToJson(_CompletionContext instance) =>
     <String, dynamic>{
@@ -10272,14 +7926,13 @@ const _$CompletionTriggerKindEnumMap = {
 
 _CompletionItemLabelDetails _$CompletionItemLabelDetailsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CompletionItemLabelDetails', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['description', 'detail']);
-  final val = _CompletionItemLabelDetails(
-    description: $checkedConvert('description', (v) => v as String?),
-    detail: $checkedConvert('detail', (v) => v as String?),
+  return _CompletionItemLabelDetails(
+    description: json['description'] as String?,
+    detail: json['detail'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CompletionItemLabelDetailsToJson(
   _CompletionItemLabelDetails instance,
@@ -10288,22 +7941,14 @@ Map<String, dynamic> _$CompletionItemLabelDetailsToJson(
   'detail': instance.detail,
 };
 
-_InsertReplaceEdit _$InsertReplaceEditFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InsertReplaceEdit', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['newText', 'insert', 'replace']);
-      final val = _InsertReplaceEdit(
-        newText: $checkedConvert('newText', (v) => v as String),
-        insert: $checkedConvert(
-          'insert',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        replace: $checkedConvert(
-          'replace',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_InsertReplaceEdit _$InsertReplaceEditFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['newText', 'insert', 'replace']);
+  return _InsertReplaceEdit(
+    newText: json['newText'] as String,
+    insert: Range.fromJson(json['insert'] as Map<String, dynamic>),
+    replace: Range.fromJson(json['replace'] as Map<String, dynamic>),
+  );
+}
 
 Map<String, dynamic> _$InsertReplaceEditToJson(_InsertReplaceEdit instance) =>
     <String, dynamic>{
@@ -10312,9 +7957,7 @@ Map<String, dynamic> _$InsertReplaceEditToJson(_InsertReplaceEdit instance) =>
       'replace': instance.replace,
     };
 
-_CompletionOptions _$CompletionOptionsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_CompletionOptions', json, ($checkedConvert) {
+_CompletionOptions _$CompletionOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -10325,28 +7968,22 @@ _CompletionOptions _$CompletionOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _CompletionOptions(
-    completionItem: $checkedConvert(
-      'completionItem',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) =>
-            (labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?),
-      ),
+  return _CompletionOptions(
+    completionItem: _$recordConvertNullable(
+      json['completionItem'],
+      ($jsonValue) =>
+          (labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?),
     ),
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    allCommitCharacters: $checkedConvert(
-      'allCommitCharacters',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    triggerCharacters: $checkedConvert(
-      'triggerCharacters',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+    resolveProvider: json['resolveProvider'] as bool?,
+    allCommitCharacters: (json['allCommitCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CompletionOptionsToJson(
   _CompletionOptions instance,
@@ -10362,24 +7999,17 @@ Map<String, dynamic> _$CompletionOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_HoverOptions _$HoverOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_HoverOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-      final val = _HoverOptions(
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_HoverOptions _$HoverOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['workDoneProgress']);
+  return _HoverOptions(workDoneProgress: json['workDoneProgress'] as bool?);
+}
 
 Map<String, dynamic> _$HoverOptionsToJson(_HoverOptions instance) =>
     <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
 _SignatureHelpContext _$SignatureHelpContextFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SignatureHelpContext', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -10389,21 +8019,20 @@ _SignatureHelpContext _$SignatureHelpContextFromJson(
       'triggerCharacter',
     ],
   );
-  final val = _SignatureHelpContext(
-    triggerKind: $checkedConvert(
-      'triggerKind',
-      (v) => $enumDecode(_$SignatureHelpTriggerKindEnumMap, v),
+  return _SignatureHelpContext(
+    triggerKind: $enumDecode(
+      _$SignatureHelpTriggerKindEnumMap,
+      json['triggerKind'],
     ),
-    isRetrigger: $checkedConvert('isRetrigger', (v) => v as bool),
-    activeSignatureHelp: $checkedConvert(
-      'activeSignatureHelp',
-      (v) =>
-          v == null ? null : SignatureHelp.fromJson(v as Map<String, dynamic>),
-    ),
-    triggerCharacter: $checkedConvert('triggerCharacter', (v) => v as String?),
+    isRetrigger: json['isRetrigger'] as bool,
+    activeSignatureHelp: json['activeSignatureHelp'] == null
+        ? null
+        : SignatureHelp.fromJson(
+            json['activeSignatureHelp'] as Map<String, dynamic>,
+          ),
+    triggerCharacter: json['triggerCharacter'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SignatureHelpContextToJson(
   _SignatureHelpContext instance,
@@ -10422,7 +8051,7 @@ const _$SignatureHelpTriggerKindEnumMap = {
 
 _SignatureInformation _$SignatureInformationFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SignatureInformation', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -10432,27 +8061,19 @@ _SignatureInformation _$SignatureInformationFromJson(
       'documentation',
     ],
   );
-  final val = _SignatureInformation(
-    label: $checkedConvert('label', (v) => v as String),
-    activeParameter: $checkedConvert(
-      'activeParameter',
-      (v) => (v as num?)?.toInt(),
-    ),
-    parameters: $checkedConvert(
-      'parameters',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => ParameterInformation.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    documentation: $checkedConvert(
-      'documentation',
-      (v) => v == null
-          ? null
-          : TooltipOrDocumentationBase.fromJson(v as Map<String, dynamic>),
-    ),
+  return _SignatureInformation(
+    label: json['label'] as String,
+    activeParameter: (json['activeParameter'] as num?)?.toInt(),
+    parameters: (json['parameters'] as List<dynamic>?)
+        ?.map((e) => ParameterInformation.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    documentation: json['documentation'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['documentation'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SignatureInformationToJson(
   _SignatureInformation instance,
@@ -10465,7 +8086,7 @@ Map<String, dynamic> _$SignatureInformationToJson(
 
 _SignatureHelpOptions _$SignatureHelpOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SignatureHelpOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -10474,19 +8095,16 @@ _SignatureHelpOptions _$SignatureHelpOptionsFromJson(
       'workDoneProgress',
     ],
   );
-  final val = _SignatureHelpOptions(
-    retriggerCharacters: $checkedConvert(
-      'retriggerCharacters',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    triggerCharacters: $checkedConvert(
-      'triggerCharacters',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _SignatureHelpOptions(
+    retriggerCharacters: (json['retriggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    triggerCharacters: (json['triggerCharacters'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SignatureHelpOptionsToJson(
   _SignatureHelpOptions instance,
@@ -10496,60 +8114,42 @@ Map<String, dynamic> _$SignatureHelpOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_DefinitionOptions _$DefinitionOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DefinitionOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-      final val = _DefinitionOptions(
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_DefinitionOptions _$DefinitionOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['workDoneProgress']);
+  return _DefinitionOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DefinitionOptionsToJson(_DefinitionOptions instance) =>
     <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
-_ReferenceContext _$ReferenceContextFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ReferenceContext', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['includeDeclaration']);
-      final val = _ReferenceContext(
-        includeDeclaration: $checkedConvert(
-          'includeDeclaration',
-          (v) => v as bool,
-        ),
-      );
-      return val;
-    });
+_ReferenceContext _$ReferenceContextFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['includeDeclaration']);
+  return _ReferenceContext(
+    includeDeclaration: json['includeDeclaration'] as bool,
+  );
+}
 
 Map<String, dynamic> _$ReferenceContextToJson(_ReferenceContext instance) =>
     <String, dynamic>{'includeDeclaration': instance.includeDeclaration};
 
-_ReferenceOptions _$ReferenceOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ReferenceOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-      final val = _ReferenceOptions(
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_ReferenceOptions _$ReferenceOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['workDoneProgress']);
+  return _ReferenceOptions(workDoneProgress: json['workDoneProgress'] as bool?);
+}
 
 Map<String, dynamic> _$ReferenceOptionsToJson(_ReferenceOptions instance) =>
     <String, dynamic>{'workDoneProgress': instance.workDoneProgress};
 
 _DocumentHighlightOptions _$DocumentHighlightOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentHighlightOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _DocumentHighlightOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentHighlightOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentHighlightOptionsToJson(
   _DocumentHighlightOptions instance,
@@ -10557,24 +8157,20 @@ Map<String, dynamic> _$DocumentHighlightOptionsToJson(
 
 _BaseSymbolInformation _$BaseSymbolInformationFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_BaseSymbolInformation', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['name', 'kind', 'containerName', 'tags'],
   );
-  final val = _BaseSymbolInformation(
-    name: $checkedConvert('name', (v) => v as String),
-    kind: $checkedConvert('kind', (v) => $enumDecode(_$SymbolKindEnumMap, v)),
-    containerName: $checkedConvert('containerName', (v) => v as String?),
-    tags: $checkedConvert(
-      'tags',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-          .toList(),
-    ),
+  return _BaseSymbolInformation(
+    name: json['name'] as String,
+    kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
+    containerName: json['containerName'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$BaseSymbolInformationToJson(
   _BaseSymbolInformation instance,
@@ -10587,14 +8183,13 @@ Map<String, dynamic> _$BaseSymbolInformationToJson(
 
 _DocumentSymbolOptions _$DocumentSymbolOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentSymbolOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['label', 'workDoneProgress']);
-  final val = _DocumentSymbolOptions(
-    label: $checkedConvert('label', (v) => v as String?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentSymbolOptions(
+    label: json['label'] as String?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentSymbolOptionsToJson(
   _DocumentSymbolOptions instance,
@@ -10603,32 +8198,21 @@ Map<String, dynamic> _$DocumentSymbolOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_CodeActionContext _$CodeActionContextFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CodeActionContext', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['diagnostics', 'triggerKind', 'only'],
-      );
-      final val = _CodeActionContext(
-        diagnostics: $checkedConvert(
-          'diagnostics',
-          (v) => (v as List<dynamic>)
-              .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        triggerKind: $checkedConvert(
-          'triggerKind',
-          (v) => $enumDecodeNullable(_$CodeActionTriggerKindEnumMap, v),
-        ),
-        only: $checkedConvert(
-          'only',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
-              .toList(),
-        ),
-      );
-      return val;
-    });
+_CodeActionContext _$CodeActionContextFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['diagnostics', 'triggerKind', 'only']);
+  return _CodeActionContext(
+    diagnostics: (json['diagnostics'] as List<dynamic>)
+        .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    triggerKind: $enumDecodeNullable(
+      _$CodeActionTriggerKindEnumMap,
+      json['triggerKind'],
+    ),
+    only: (json['only'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$CodeActionContextToJson(_CodeActionContext instance) =>
     <String, dynamic>{
@@ -10642,31 +8226,23 @@ const _$CodeActionTriggerKindEnumMap = {
   CodeActionTriggerKind.automaticValue: 'automaticValue',
 };
 
-_CodeActionOptions _$CodeActionOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CodeActionOptions', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'resolveProvider',
-          'codeActionKinds',
-          'workDoneProgress',
-        ],
-      );
-      final val = _CodeActionOptions(
-        resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-        codeActionKinds: $checkedConvert(
-          'codeActionKinds',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
-              .toList(),
-        ),
-        workDoneProgress: $checkedConvert(
-          'workDoneProgress',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_CodeActionOptions _$CodeActionOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'resolveProvider',
+      'codeActionKinds',
+      'workDoneProgress',
+    ],
+  );
+  return _CodeActionOptions(
+    resolveProvider: json['resolveProvider'] as bool?,
+    codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+        .toList(),
+    workDoneProgress: json['workDoneProgress'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$CodeActionOptionsToJson(_CodeActionOptions instance) =>
     <String, dynamic>{
@@ -10679,14 +8255,13 @@ Map<String, dynamic> _$CodeActionOptionsToJson(_CodeActionOptions instance) =>
 
 _WorkspaceSymbolOptions _$WorkspaceSymbolOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceSymbolOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
-  final val = _WorkspaceSymbolOptions(
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _WorkspaceSymbolOptions(
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceSymbolOptionsToJson(
   _WorkspaceSymbolOptions instance,
@@ -10695,16 +8270,13 @@ Map<String, dynamic> _$WorkspaceSymbolOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_CodeLensOptions _$CodeLensOptionsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_CodeLensOptions', json, ($checkedConvert) {
+_CodeLensOptions _$CodeLensOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
-  final val = _CodeLensOptions(
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _CodeLensOptions(
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CodeLensOptionsToJson(_CodeLensOptions instance) =>
     <String, dynamic>{
@@ -10712,16 +8284,13 @@ Map<String, dynamic> _$CodeLensOptionsToJson(_CodeLensOptions instance) =>
       'workDoneProgress': instance.workDoneProgress,
     };
 
-_DocumentLinkOptions _$DocumentLinkOptionsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_DocumentLinkOptions', json, ($checkedConvert) {
+_DocumentLinkOptions _$DocumentLinkOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['resolveProvider', 'workDoneProgress']);
-  final val = _DocumentLinkOptions(
-    resolveProvider: $checkedConvert('resolveProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentLinkOptions(
+    resolveProvider: json['resolveProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentLinkOptionsToJson(
   _DocumentLinkOptions instance,
@@ -10730,36 +8299,25 @@ Map<String, dynamic> _$DocumentLinkOptionsToJson(
   'workDoneProgress': instance.workDoneProgress,
 };
 
-_FormattingOptions _$FormattingOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FormattingOptions', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'tabSize',
-          'insertSpaces',
-          'trimFinalNewlines',
-          'insertFinalNewline',
-          'trimTrailingWhitespace',
-        ],
-      );
-      final val = _FormattingOptions(
-        tabSize: $checkedConvert('tabSize', (v) => (v as num).toInt()),
-        insertSpaces: $checkedConvert('insertSpaces', (v) => v as bool),
-        trimFinalNewlines: $checkedConvert(
-          'trimFinalNewlines',
-          (v) => v as bool?,
-        ),
-        insertFinalNewline: $checkedConvert(
-          'insertFinalNewline',
-          (v) => v as bool?,
-        ),
-        trimTrailingWhitespace: $checkedConvert(
-          'trimTrailingWhitespace',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_FormattingOptions _$FormattingOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'tabSize',
+      'insertSpaces',
+      'trimFinalNewlines',
+      'insertFinalNewline',
+      'trimTrailingWhitespace',
+    ],
+  );
+  return _FormattingOptions(
+    tabSize: (json['tabSize'] as num).toInt(),
+    insertSpaces: json['insertSpaces'] as bool,
+    trimFinalNewlines: json['trimFinalNewlines'] as bool?,
+    insertFinalNewline: json['insertFinalNewline'] as bool?,
+    trimTrailingWhitespace: json['trimTrailingWhitespace'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$FormattingOptionsToJson(_FormattingOptions instance) =>
     <String, dynamic>{
@@ -10772,13 +8330,12 @@ Map<String, dynamic> _$FormattingOptionsToJson(_FormattingOptions instance) =>
 
 _DocumentFormattingOptions _$DocumentFormattingOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentFormattingOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['workDoneProgress']);
-  final val = _DocumentFormattingOptions(
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentFormattingOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentFormattingOptionsToJson(
   _DocumentFormattingOptions instance,
@@ -10786,14 +8343,13 @@ Map<String, dynamic> _$DocumentFormattingOptionsToJson(
 
 _DocumentRangeFormattingOptions _$DocumentRangeFormattingOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentRangeFormattingOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['rangesSupport', 'workDoneProgress']);
-  final val = _DocumentRangeFormattingOptions(
-    rangesSupport: $checkedConvert('rangesSupport', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _DocumentRangeFormattingOptions(
+    rangesSupport: json['rangesSupport'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentRangeFormattingOptionsToJson(
   _DocumentRangeFormattingOptions instance,
@@ -10804,24 +8360,18 @@ Map<String, dynamic> _$DocumentRangeFormattingOptionsToJson(
 
 _DocumentOnTypeFormattingOptions _$DocumentOnTypeFormattingOptionsFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_DocumentOnTypeFormattingOptions', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['firstTriggerCharacter', 'moreTriggerCharacter'],
-      );
-      final val = _DocumentOnTypeFormattingOptions(
-        firstTriggerCharacter: $checkedConvert(
-          'firstTriggerCharacter',
-          (v) => v as String,
-        ),
-        moreTriggerCharacter: $checkedConvert(
-          'moreTriggerCharacter',
-          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-        ),
-      );
-      return val;
-    });
+) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['firstTriggerCharacter', 'moreTriggerCharacter'],
+  );
+  return _DocumentOnTypeFormattingOptions(
+    firstTriggerCharacter: json['firstTriggerCharacter'] as String,
+    moreTriggerCharacter: (json['moreTriggerCharacter'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$DocumentOnTypeFormattingOptionsToJson(
   _DocumentOnTypeFormattingOptions instance,
@@ -10830,16 +8380,13 @@ Map<String, dynamic> _$DocumentOnTypeFormattingOptionsToJson(
   'moreTriggerCharacter': instance.moreTriggerCharacter,
 };
 
-_RenameOptions _$RenameOptionsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_RenameOptions', json, ($checkedConvert) {
+_RenameOptions _$RenameOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['prepareProvider', 'workDoneProgress']);
-  final val = _RenameOptions(
-    prepareProvider: $checkedConvert('prepareProvider', (v) => v as bool?),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _RenameOptions(
+    prepareProvider: json['prepareProvider'] as bool?,
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$RenameOptionsToJson(_RenameOptions instance) =>
     <String, dynamic>{
@@ -10849,17 +8396,15 @@ Map<String, dynamic> _$RenameOptionsToJson(_RenameOptions instance) =>
 
 _ExecuteCommandOptions _$ExecuteCommandOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ExecuteCommandOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['commands', 'workDoneProgress']);
-  final val = _ExecuteCommandOptions(
-    commands: $checkedConvert(
-      'commands',
-      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _ExecuteCommandOptions(
+    commands: (json['commands'] as List<dynamic>)
+        .map((e) => e as String)
+        .toList(),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ExecuteCommandOptionsToJson(
   _ExecuteCommandOptions instance,
@@ -10870,20 +8415,17 @@ Map<String, dynamic> _$ExecuteCommandOptionsToJson(
 
 _SemanticTokensLegend _$SemanticTokensLegendFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensLegend', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['tokenTypes', 'tokenModifiers']);
-  final val = _SemanticTokensLegend(
-    tokenTypes: $checkedConvert(
-      'tokenTypes',
-      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-    ),
-    tokenModifiers: $checkedConvert(
-      'tokenModifiers',
-      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-    ),
+  return _SemanticTokensLegend(
+    tokenTypes: (json['tokenTypes'] as List<dynamic>)
+        .map((e) => e as String)
+        .toList(),
+    tokenModifiers: (json['tokenModifiers'] as List<dynamic>)
+        .map((e) => e as String)
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensLegendToJson(
   _SemanticTokensLegend instance,
@@ -10893,38 +8435,28 @@ Map<String, dynamic> _$SemanticTokensLegendToJson(
 };
 
 _OptionalVersionedTextDocumentIdentifier
-_$OptionalVersionedTextDocumentIdentifierFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_OptionalVersionedTextDocumentIdentifier', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['uri', 'version']);
-      final val = _OptionalVersionedTextDocumentIdentifier(
-        uri: $checkedConvert('uri', (v) => v as String),
-        version: $checkedConvert(
-          'version',
-          (v) => ProcessIdOrVersionBase.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_$OptionalVersionedTextDocumentIdentifierFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['uri', 'version']);
+  return _OptionalVersionedTextDocumentIdentifier(
+    uri: json['uri'] as String,
+    version: ProcessIdOrVersionBase.fromJson(
+      json['version'] as Map<String, dynamic>,
+    ),
+  );
+}
 
 Map<String, dynamic> _$OptionalVersionedTextDocumentIdentifierToJson(
   _OptionalVersionedTextDocumentIdentifier instance,
 ) => <String, dynamic>{'uri': instance.uri, 'version': instance.version};
 
-_AnnotatedTextEdit _$AnnotatedTextEditFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_AnnotatedTextEdit', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['range', 'newText', 'annotationId']);
-      final val = _AnnotatedTextEdit(
-        range: $checkedConvert(
-          'range',
-          (v) => Range.fromJson(v as Map<String, dynamic>),
-        ),
-        newText: $checkedConvert('newText', (v) => v as String),
-        annotationId: $checkedConvert('annotationId', (v) => v as String),
-      );
-      return val;
-    });
+_AnnotatedTextEdit _$AnnotatedTextEditFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['range', 'newText', 'annotationId']);
+  return _AnnotatedTextEdit(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    newText: json['newText'] as String,
+    annotationId: json['annotationId'] as String,
+  );
+}
 
 Map<String, dynamic> _$AnnotatedTextEditToJson(_AnnotatedTextEdit instance) =>
     <String, dynamic>{
@@ -10933,15 +8465,13 @@ Map<String, dynamic> _$AnnotatedTextEditToJson(_AnnotatedTextEdit instance) =>
       'annotationId': instance.annotationId,
     };
 
-_ResourceOperation _$ResourceOperationFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ResourceOperation', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['kind', 'annotationId']);
-      final val = _ResourceOperation(
-        kind: $checkedConvert('kind', (v) => v as String),
-        annotationId: $checkedConvert('annotationId', (v) => v as String?),
-      );
-      return val;
-    });
+_ResourceOperation _$ResourceOperationFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['kind', 'annotationId']);
+  return _ResourceOperation(
+    kind: json['kind'] as String,
+    annotationId: json['annotationId'] as String?,
+  );
+}
 
 Map<String, dynamic> _$ResourceOperationToJson(_ResourceOperation instance) =>
     <String, dynamic>{
@@ -10949,15 +8479,13 @@ Map<String, dynamic> _$ResourceOperationToJson(_ResourceOperation instance) =>
       'annotationId': instance.annotationId,
     };
 
-_CreateFileOptions _$CreateFileOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CreateFileOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['ignoreIfExists', 'overwrite']);
-      final val = _CreateFileOptions(
-        ignoreIfExists: $checkedConvert('ignoreIfExists', (v) => v as bool?),
-        overwrite: $checkedConvert('overwrite', (v) => v as bool?),
-      );
-      return val;
-    });
+_CreateFileOptions _$CreateFileOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['ignoreIfExists', 'overwrite']);
+  return _CreateFileOptions(
+    ignoreIfExists: json['ignoreIfExists'] as bool?,
+    overwrite: json['overwrite'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$CreateFileOptionsToJson(_CreateFileOptions instance) =>
     <String, dynamic>{
@@ -10965,15 +8493,13 @@ Map<String, dynamic> _$CreateFileOptionsToJson(_CreateFileOptions instance) =>
       'overwrite': instance.overwrite,
     };
 
-_RenameFileOptions _$RenameFileOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_RenameFileOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['ignoreIfExists', 'overwrite']);
-      final val = _RenameFileOptions(
-        ignoreIfExists: $checkedConvert('ignoreIfExists', (v) => v as bool?),
-        overwrite: $checkedConvert('overwrite', (v) => v as bool?),
-      );
-      return val;
-    });
+_RenameFileOptions _$RenameFileOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['ignoreIfExists', 'overwrite']);
+  return _RenameFileOptions(
+    ignoreIfExists: json['ignoreIfExists'] as bool?,
+    overwrite: json['overwrite'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$RenameFileOptionsToJson(_RenameFileOptions instance) =>
     <String, dynamic>{
@@ -10981,18 +8507,13 @@ Map<String, dynamic> _$RenameFileOptionsToJson(_RenameFileOptions instance) =>
       'overwrite': instance.overwrite,
     };
 
-_DeleteFileOptions _$DeleteFileOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DeleteFileOptions', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['ignoreIfNotExists', 'recursive']);
-      final val = _DeleteFileOptions(
-        ignoreIfNotExists: $checkedConvert(
-          'ignoreIfNotExists',
-          (v) => v as bool?,
-        ),
-        recursive: $checkedConvert('recursive', (v) => v as bool?),
-      );
-      return val;
-    });
+_DeleteFileOptions _$DeleteFileOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['ignoreIfNotExists', 'recursive']);
+  return _DeleteFileOptions(
+    ignoreIfNotExists: json['ignoreIfNotExists'] as bool?,
+    recursive: json['recursive'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DeleteFileOptionsToJson(_DeleteFileOptions instance) =>
     <String, dynamic>{
@@ -11002,23 +8523,21 @@ Map<String, dynamic> _$DeleteFileOptionsToJson(_DeleteFileOptions instance) =>
 
 _FileOperationPattern _$FileOperationPatternFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_FileOperationPattern', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['glob', 'options', 'matches']);
-  final val = _FileOperationPattern(
-    glob: $checkedConvert('glob', (v) => v as String),
-    options: $checkedConvert(
-      'options',
-      (v) => v == null
-          ? null
-          : FileOperationPatternOptions.fromJson(v as Map<String, dynamic>),
-    ),
-    matches: $checkedConvert(
-      'matches',
-      (v) => $enumDecodeNullable(_$FileOperationPatternKindEnumMap, v),
+  return _FileOperationPattern(
+    glob: json['glob'] as String,
+    options: json['options'] == null
+        ? null
+        : FileOperationPatternOptions.fromJson(
+            json['options'] as Map<String, dynamic>,
+          ),
+    matches: $enumDecodeNullable(
+      _$FileOperationPatternKindEnumMap,
+      json['matches'],
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$FileOperationPatternToJson(
   _FileOperationPattern instance,
@@ -11034,31 +8553,23 @@ const _$FileOperationPatternKindEnumMap = {
 };
 
 _WorkspaceFullDocumentDiagnosticReport
-_$WorkspaceFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_WorkspaceFullDocumentDiagnosticReport', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['kind', 'items', 'uri', 'version', 'resultId'],
-      );
-      final val = _WorkspaceFullDocumentDiagnosticReport(
-        kind: $checkedConvert('kind', (v) => v as String),
-        items: $checkedConvert(
-          'items',
-          (v) => (v as List<dynamic>)
-              .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        uri: $checkedConvert('uri', (v) => v as String),
-        version: $checkedConvert(
-          'version',
-          (v) => ProcessIdOrVersionBase.fromJson(v as Map<String, dynamic>),
-        ),
-        resultId: $checkedConvert('resultId', (v) => v as String?),
-      );
-      return val;
-    });
+_$WorkspaceFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['kind', 'items', 'uri', 'version', 'resultId'],
+  );
+  return _WorkspaceFullDocumentDiagnosticReport(
+    kind: json['kind'] as String,
+    items: (json['items'] as List<dynamic>)
+        .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    uri: json['uri'] as String,
+    version: ProcessIdOrVersionBase.fromJson(
+      json['version'] as Map<String, dynamic>,
+    ),
+    resultId: json['resultId'] as String?,
+  );
+}
 
 Map<String, dynamic> _$WorkspaceFullDocumentDiagnosticReportToJson(
   _WorkspaceFullDocumentDiagnosticReport instance,
@@ -11073,21 +8584,17 @@ Map<String, dynamic> _$WorkspaceFullDocumentDiagnosticReportToJson(
 _WorkspaceUnchangedDocumentDiagnosticReport
 _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceUnchangedDocumentDiagnosticReport', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['kind', 'resultId', 'uri', 'version']);
-  final val = _WorkspaceUnchangedDocumentDiagnosticReport(
-    kind: $checkedConvert('kind', (v) => v as String),
-    resultId: $checkedConvert('resultId', (v) => v as String),
-    uri: $checkedConvert('uri', (v) => v as String),
-    version: $checkedConvert(
-      'version',
-      (v) => ProcessIdOrVersionBase.fromJson(v as Map<String, dynamic>),
+  return _WorkspaceUnchangedDocumentDiagnosticReport(
+    kind: json['kind'] as String,
+    resultId: json['resultId'] as String,
+    uri: json['uri'] as String,
+    version: ProcessIdOrVersionBase.fromJson(
+      json['version'] as Map<String, dynamic>,
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceUnchangedDocumentDiagnosticReportToJson(
   _WorkspaceUnchangedDocumentDiagnosticReport instance,
@@ -11098,34 +8605,24 @@ Map<String, dynamic> _$WorkspaceUnchangedDocumentDiagnosticReportToJson(
   'version': instance.version,
 };
 
-_NotebookCell _$NotebookCellFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_NotebookCell', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['kind', 'document', 'executionSummary', 'metadata'],
-      );
-      final val = _NotebookCell(
-        kind: $checkedConvert(
-          'kind',
-          (v) => $enumDecode(_$NotebookCellKindEnumMap, v),
-        ),
-        document: $checkedConvert('document', (v) => v as String),
-        executionSummary: $checkedConvert(
-          'executionSummary',
-          (v) => v == null
-              ? null
-              : ExecutionSummary.fromJson(v as Map<String, dynamic>),
-        ),
-        metadata: $checkedConvert(
-          'metadata',
-          (v) => (v as Map<String, dynamic>?)?.map(
-            (k, e) =>
-                MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
+_NotebookCell _$NotebookCellFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['kind', 'document', 'executionSummary', 'metadata'],
+  );
+  return _NotebookCell(
+    kind: $enumDecode(_$NotebookCellKindEnumMap, json['kind']),
+    document: json['document'] as String,
+    executionSummary: json['executionSummary'] == null
+        ? null
+        : ExecutionSummary.fromJson(
+            json['executionSummary'] as Map<String, dynamic>,
           ),
-        ),
-      );
-      return val;
-    });
+    metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(k, LSPAnyBase.fromJson(e as Map<String, dynamic>)),
+    ),
+  );
+}
 
 Map<String, dynamic> _$NotebookCellToJson(_NotebookCell instance) =>
     <String, dynamic>{
@@ -11142,20 +8639,16 @@ const _$NotebookCellKindEnumMap = {
 
 _NotebookCellArrayChange _$NotebookCellArrayChangeFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_NotebookCellArrayChange', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['start', 'deleteCount', 'cells']);
-  final val = _NotebookCellArrayChange(
-    start: $checkedConvert('start', (v) => (v as num).toInt()),
-    deleteCount: $checkedConvert('deleteCount', (v) => (v as num).toInt()),
-    cells: $checkedConvert(
-      'cells',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
+  return _NotebookCellArrayChange(
+    start: (json['start'] as num).toInt(),
+    deleteCount: (json['deleteCount'] as num).toInt(),
+    cells: (json['cells'] as List<dynamic>?)
+        ?.map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$NotebookCellArrayChangeToJson(
   _NotebookCellArrayChange instance,
@@ -11167,78 +8660,61 @@ Map<String, dynamic> _$NotebookCellArrayChangeToJson(
 
 _SelectedCompletionInfo _$SelectedCompletionInfoFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SelectedCompletionInfo', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['range', 'text']);
-  final val = _SelectedCompletionInfo(
-    range: $checkedConvert(
-      'range',
-      (v) => Range.fromJson(v as Map<String, dynamic>),
-    ),
-    text: $checkedConvert('text', (v) => v as String),
+  return _SelectedCompletionInfo(
+    range: Range.fromJson(json['range'] as Map<String, dynamic>),
+    text: json['text'] as String,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SelectedCompletionInfoToJson(
   _SelectedCompletionInfo instance,
 ) => <String, dynamic>{'range': instance.range, 'text': instance.text};
 
-_ClientCapabilities _$ClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ClientCapabilities', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'experimental',
-          'general',
-          'window',
-          'notebookDocument',
-          'textDocument',
-          'workspace',
-        ],
-      );
-      final val = _ClientCapabilities(
-        experimental: $checkedConvert(
-          'experimental',
-          (v) =>
-              v == null ? null : LSPAnyBase.fromJson(v as Map<String, dynamic>),
-        ),
-        general: $checkedConvert(
-          'general',
-          (v) => v == null
-              ? null
-              : GeneralClientCapabilities.fromJson(v as Map<String, dynamic>),
-        ),
-        window: $checkedConvert(
-          'window',
-          (v) => v == null
-              ? null
-              : WindowClientCapabilities.fromJson(v as Map<String, dynamic>),
-        ),
-        notebookDocument: $checkedConvert(
-          'notebookDocument',
-          (v) => v == null
-              ? null
-              : NotebookDocumentClientCapabilities.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        textDocument: $checkedConvert(
-          'textDocument',
-          (v) => v == null
-              ? null
-              : TextDocumentClientCapabilities.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-        ),
-        workspace: $checkedConvert(
-          'workspace',
-          (v) => v == null
-              ? null
-              : WorkspaceClientCapabilities.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+_ClientCapabilities _$ClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'experimental',
+      'general',
+      'window',
+      'notebookDocument',
+      'textDocument',
+      'workspace',
+    ],
+  );
+  return _ClientCapabilities(
+    experimental: json['experimental'] == null
+        ? null
+        : LSPAnyBase.fromJson(json['experimental'] as Map<String, dynamic>),
+    general: json['general'] == null
+        ? null
+        : GeneralClientCapabilities.fromJson(
+            json['general'] as Map<String, dynamic>,
+          ),
+    window: json['window'] == null
+        ? null
+        : WindowClientCapabilities.fromJson(
+            json['window'] as Map<String, dynamic>,
+          ),
+    notebookDocument: json['notebookDocument'] == null
+        ? null
+        : NotebookDocumentClientCapabilities.fromJson(
+            json['notebookDocument'] as Map<String, dynamic>,
+          ),
+    textDocument: json['textDocument'] == null
+        ? null
+        : TextDocumentClientCapabilities.fromJson(
+            json['textDocument'] as Map<String, dynamic>,
+          ),
+    workspace: json['workspace'] == null
+        ? null
+        : WorkspaceClientCapabilities.fromJson(
+            json['workspace'] as Map<String, dynamic>,
+          ),
+  );
+}
 
 Map<String, dynamic> _$ClientCapabilitiesToJson(_ClientCapabilities instance) =>
     <String, dynamic>{
@@ -11252,7 +8728,7 @@ Map<String, dynamic> _$ClientCapabilitiesToJson(_ClientCapabilities instance) =>
 
 _TextDocumentSyncOptions _$TextDocumentSyncOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TextDocumentSyncOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -11263,23 +8739,18 @@ _TextDocumentSyncOptions _$TextDocumentSyncOptionsFromJson(
       'openClose',
     ],
   );
-  final val = _TextDocumentSyncOptions(
-    save: $checkedConvert(
-      'save',
-      (v) => v == null
-          ? null
-          : TextDocumentSyncOptionsSaveBase.fromJson(v as Map<String, dynamic>),
-    ),
-    willSaveWaitUntil: $checkedConvert('willSaveWaitUntil', (v) => v as bool?),
-    willSave: $checkedConvert('willSave', (v) => v as bool?),
-    change: $checkedConvert(
-      'change',
-      (v) => $enumDecodeNullable(_$TextDocumentSyncKindEnumMap, v),
-    ),
-    openClose: $checkedConvert('openClose', (v) => v as bool?),
+  return _TextDocumentSyncOptions(
+    save: json['save'] == null
+        ? null
+        : TextDocumentSyncOptionsSaveBase.fromJson(
+            json['save'] as Map<String, dynamic>,
+          ),
+    willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
+    willSave: json['willSave'] as bool?,
+    change: $enumDecodeNullable(_$TextDocumentSyncKindEnumMap, json['change']),
+    openClose: json['openClose'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TextDocumentSyncOptionsToJson(
   _TextDocumentSyncOptions instance,
@@ -11293,23 +8764,19 @@ Map<String, dynamic> _$TextDocumentSyncOptionsToJson(
 
 _NotebookDocumentSyncOptions _$NotebookDocumentSyncOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_NotebookDocumentSyncOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['notebookSelector', 'save']);
-  final val = _NotebookDocumentSyncOptions(
-    notebookSelector: $checkedConvert(
-      'notebookSelector',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => NotebookDocumentSyncOptionsNotebookSelectorBase.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
-    save: $checkedConvert('save', (v) => v as bool?),
+  return _NotebookDocumentSyncOptions(
+    notebookSelector: (json['notebookSelector'] as List<dynamic>)
+        .map(
+          (e) => NotebookDocumentSyncOptionsNotebookSelectorBase.fromJson(
+            e as Map<String, dynamic>,
+          ),
+        )
+        .toList(),
+    save: json['save'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$NotebookDocumentSyncOptionsToJson(
   _NotebookDocumentSyncOptions instance,
@@ -11319,27 +8786,20 @@ Map<String, dynamic> _$NotebookDocumentSyncOptionsToJson(
 };
 
 _NotebookDocumentSyncRegistrationOptions
-_$NotebookDocumentSyncRegistrationOptionsFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_NotebookDocumentSyncRegistrationOptions', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['notebookSelector', 'id', 'save']);
-      final val = _NotebookDocumentSyncRegistrationOptions(
-        notebookSelector: $checkedConvert(
-          'notebookSelector',
-          (v) => (v as List<dynamic>)
-              .map(
-                (e) => NotebookDocumentSyncOptionsNotebookSelectorBase.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
-        ),
-        id: $checkedConvert('id', (v) => v as String?),
-        save: $checkedConvert('save', (v) => v as bool?),
-      );
-      return val;
-    });
+_$NotebookDocumentSyncRegistrationOptionsFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['notebookSelector', 'id', 'save']);
+  return _NotebookDocumentSyncRegistrationOptions(
+    notebookSelector: (json['notebookSelector'] as List<dynamic>)
+        .map(
+          (e) => NotebookDocumentSyncOptionsNotebookSelectorBase.fromJson(
+            e as Map<String, dynamic>,
+          ),
+        )
+        .toList(),
+    id: json['id'] as String?,
+    save: json['save'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$NotebookDocumentSyncRegistrationOptionsToJson(
   _NotebookDocumentSyncRegistrationOptions instance,
@@ -11350,25 +8810,17 @@ Map<String, dynamic> _$NotebookDocumentSyncRegistrationOptionsToJson(
 };
 
 _WorkspaceFoldersServerCapabilities
-_$WorkspaceFoldersServerCapabilitiesFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceFoldersServerCapabilities', json, (
-  $checkedConvert,
-) {
+_$WorkspaceFoldersServerCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['changeNotifications', 'supported']);
-  final val = _WorkspaceFoldersServerCapabilities(
-    changeNotifications: $checkedConvert(
-      'changeNotifications',
-      (v) => v == null
-          ? null
-          : WorkspaceFoldersServerCapabilitiesChangeNotificationsBase.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    supported: $checkedConvert('supported', (v) => v as bool?),
+  return _WorkspaceFoldersServerCapabilities(
+    changeNotifications: json['changeNotifications'] == null
+        ? null
+        : WorkspaceFoldersServerCapabilitiesChangeNotificationsBase.fromJson(
+            json['changeNotifications'] as Map<String, dynamic>,
+          ),
+    supported: json['supported'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceFoldersServerCapabilitiesToJson(
   _WorkspaceFoldersServerCapabilities instance,
@@ -11379,7 +8831,7 @@ Map<String, dynamic> _$WorkspaceFoldersServerCapabilitiesToJson(
 
 _FileOperationOptions _$FileOperationOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_FileOperationOptions', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -11391,58 +8843,39 @@ _FileOperationOptions _$FileOperationOptionsFromJson(
       'didCreate',
     ],
   );
-  final val = _FileOperationOptions(
-    willDelete: $checkedConvert(
-      'willDelete',
-      (v) => v == null
-          ? null
-          : FileOperationRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    didDelete: $checkedConvert(
-      'didDelete',
-      (v) => v == null
-          ? null
-          : FileOperationRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    willRename: $checkedConvert(
-      'willRename',
-      (v) => v == null
-          ? null
-          : FileOperationRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    didRename: $checkedConvert(
-      'didRename',
-      (v) => v == null
-          ? null
-          : FileOperationRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    willCreate: $checkedConvert(
-      'willCreate',
-      (v) => v == null
-          ? null
-          : FileOperationRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    didCreate: $checkedConvert(
-      'didCreate',
-      (v) => v == null
-          ? null
-          : FileOperationRegistrationOptions.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
+  return _FileOperationOptions(
+    willDelete: json['willDelete'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['willDelete'] as Map<String, dynamic>,
+          ),
+    didDelete: json['didDelete'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['didDelete'] as Map<String, dynamic>,
+          ),
+    willRename: json['willRename'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['willRename'] as Map<String, dynamic>,
+          ),
+    didRename: json['didRename'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['didRename'] as Map<String, dynamic>,
+          ),
+    willCreate: json['willCreate'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['willCreate'] as Map<String, dynamic>,
+          ),
+    didCreate: json['didCreate'] == null
+        ? null
+        : FileOperationRegistrationOptions.fromJson(
+            json['didCreate'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$FileOperationOptionsToJson(
   _FileOperationOptions instance,
@@ -11455,31 +8888,23 @@ Map<String, dynamic> _$FileOperationOptionsToJson(
   'didCreate': instance.didCreate,
 };
 
-_CodeDescription _$CodeDescriptionFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CodeDescription', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['href']);
-      final val = _CodeDescription(
-        href: $checkedConvert('href', (v) => v as String),
-      );
-      return val;
-    });
+_CodeDescription _$CodeDescriptionFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['href']);
+  return _CodeDescription(href: json['href'] as String);
+}
 
 Map<String, dynamic> _$CodeDescriptionToJson(_CodeDescription instance) =>
     <String, dynamic>{'href': instance.href};
 
 _DiagnosticRelatedInformation _$DiagnosticRelatedInformationFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DiagnosticRelatedInformation', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['location', 'message']);
-  final val = _DiagnosticRelatedInformation(
-    location: $checkedConvert(
-      'location',
-      (v) => Location.fromJson(v as Map<String, dynamic>),
-    ),
-    message: $checkedConvert('message', (v) => v as String),
+  return _DiagnosticRelatedInformation(
+    location: Location.fromJson(json['location'] as Map<String, dynamic>),
+    message: json['message'] as String,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DiagnosticRelatedInformationToJson(
   _DiagnosticRelatedInformation instance,
@@ -11490,22 +8915,19 @@ Map<String, dynamic> _$DiagnosticRelatedInformationToJson(
 
 _ParameterInformation _$ParameterInformationFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ParameterInformation', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['label', 'documentation']);
-  final val = _ParameterInformation(
-    label: $checkedConvert(
-      'label',
-      (v) => ParameterInformationLabelBase.fromJson(v as Map<String, dynamic>),
+  return _ParameterInformation(
+    label: ParameterInformationLabelBase.fromJson(
+      json['label'] as Map<String, dynamic>,
     ),
-    documentation: $checkedConvert(
-      'documentation',
-      (v) => v == null
-          ? null
-          : TooltipOrDocumentationBase.fromJson(v as Map<String, dynamic>),
-    ),
+    documentation: json['documentation'] == null
+        ? null
+        : TooltipOrDocumentationBase.fromJson(
+            json['documentation'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ParameterInformationToJson(
   _ParameterInformation instance,
@@ -11516,19 +8938,15 @@ Map<String, dynamic> _$ParameterInformationToJson(
 
 _NotebookCellTextDocumentFilter _$NotebookCellTextDocumentFilterFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_NotebookCellTextDocumentFilter', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['notebook', 'language']);
-  final val = _NotebookCellTextDocumentFilter(
-    notebook: $checkedConvert(
-      'notebook',
-      (v) => NotebookCellTextDocumentFilterNotebookBase.fromJson(
-        v as Map<String, dynamic>,
-      ),
+  return _NotebookCellTextDocumentFilter(
+    notebook: NotebookCellTextDocumentFilterNotebookBase.fromJson(
+      json['notebook'] as Map<String, dynamic>,
     ),
-    language: $checkedConvert('language', (v) => v as String?),
+    language: json['language'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$NotebookCellTextDocumentFilterToJson(
   _NotebookCellTextDocumentFilter instance,
@@ -11539,30 +8957,22 @@ Map<String, dynamic> _$NotebookCellTextDocumentFilterToJson(
 
 _FileOperationPatternOptions _$FileOperationPatternOptionsFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_FileOperationPatternOptions', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['ignoreCase']);
-  final val = _FileOperationPatternOptions(
-    ignoreCase: $checkedConvert('ignoreCase', (v) => v as bool?),
-  );
-  return val;
-});
+  return _FileOperationPatternOptions(ignoreCase: json['ignoreCase'] as bool?);
+}
 
 Map<String, dynamic> _$FileOperationPatternOptionsToJson(
   _FileOperationPatternOptions instance,
 ) => <String, dynamic>{'ignoreCase': instance.ignoreCase};
 
-_ExecutionSummary _$ExecutionSummaryFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ExecutionSummary', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['executionOrder', 'success']);
-      final val = _ExecutionSummary(
-        executionOrder: $checkedConvert(
-          'executionOrder',
-          (v) => (v as num).toInt(),
-        ),
-        success: $checkedConvert('success', (v) => v as bool?),
-      );
-      return val;
-    });
+_ExecutionSummary _$ExecutionSummaryFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['executionOrder', 'success']);
+  return _ExecutionSummary(
+    executionOrder: (json['executionOrder'] as num).toInt(),
+    success: json['success'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$ExecutionSummaryToJson(_ExecutionSummary instance) =>
     <String, dynamic>{
@@ -11572,7 +8982,7 @@ Map<String, dynamic> _$ExecutionSummaryToJson(_ExecutionSummary instance) =>
 
 _WorkspaceClientCapabilities _$WorkspaceClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -11593,105 +9003,72 @@ _WorkspaceClientCapabilities _$WorkspaceClientCapabilitiesFromJson(
       'applyEdit',
     ],
   );
-  final val = _WorkspaceClientCapabilities(
-    foldingRange: $checkedConvert(
-      'foldingRange',
-      (v) => v == null
-          ? null
-          : FoldingRangeWorkspaceClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    diagnostics: $checkedConvert(
-      'diagnostics',
-      (v) => v == null
-          ? null
-          : DiagnosticWorkspaceClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    inlayHint: $checkedConvert(
-      'inlayHint',
-      (v) => v == null
-          ? null
-          : InlayHintWorkspaceClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    inlineValue: $checkedConvert(
-      'inlineValue',
-      (v) => v == null
-          ? null
-          : InlineValueWorkspaceClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    fileOperations: $checkedConvert(
-      'fileOperations',
-      (v) => v == null
-          ? null
-          : FileOperationClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    codeLens: $checkedConvert(
-      'codeLens',
-      (v) => v == null
-          ? null
-          : CodeLensWorkspaceClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    semanticTokens: $checkedConvert(
-      'semanticTokens',
-      (v) => v == null
-          ? null
-          : SemanticTokensWorkspaceClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    configuration: $checkedConvert('configuration', (v) => v as bool?),
-    workspaceFolders: $checkedConvert('workspaceFolders', (v) => v as bool?),
-    executeCommand: $checkedConvert(
-      'executeCommand',
-      (v) => v == null
-          ? null
-          : ExecuteCommandClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    symbol: $checkedConvert(
-      'symbol',
-      (v) => v == null
-          ? null
-          : WorkspaceSymbolClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    didChangeWatchedFiles: $checkedConvert(
-      'didChangeWatchedFiles',
-      (v) => v == null
-          ? null
-          : DidChangeWatchedFilesClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    didChangeConfiguration: $checkedConvert(
-      'didChangeConfiguration',
-      (v) => v == null
-          ? null
-          : DidChangeConfigurationClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    workspaceEdit: $checkedConvert(
-      'workspaceEdit',
-      (v) => v == null
-          ? null
-          : WorkspaceEditClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    applyEdit: $checkedConvert('applyEdit', (v) => v as bool?),
+  return _WorkspaceClientCapabilities(
+    foldingRange: json['foldingRange'] == null
+        ? null
+        : FoldingRangeWorkspaceClientCapabilities.fromJson(
+            json['foldingRange'] as Map<String, dynamic>,
+          ),
+    diagnostics: json['diagnostics'] == null
+        ? null
+        : DiagnosticWorkspaceClientCapabilities.fromJson(
+            json['diagnostics'] as Map<String, dynamic>,
+          ),
+    inlayHint: json['inlayHint'] == null
+        ? null
+        : InlayHintWorkspaceClientCapabilities.fromJson(
+            json['inlayHint'] as Map<String, dynamic>,
+          ),
+    inlineValue: json['inlineValue'] == null
+        ? null
+        : InlineValueWorkspaceClientCapabilities.fromJson(
+            json['inlineValue'] as Map<String, dynamic>,
+          ),
+    fileOperations: json['fileOperations'] == null
+        ? null
+        : FileOperationClientCapabilities.fromJson(
+            json['fileOperations'] as Map<String, dynamic>,
+          ),
+    codeLens: json['codeLens'] == null
+        ? null
+        : CodeLensWorkspaceClientCapabilities.fromJson(
+            json['codeLens'] as Map<String, dynamic>,
+          ),
+    semanticTokens: json['semanticTokens'] == null
+        ? null
+        : SemanticTokensWorkspaceClientCapabilities.fromJson(
+            json['semanticTokens'] as Map<String, dynamic>,
+          ),
+    configuration: json['configuration'] as bool?,
+    workspaceFolders: json['workspaceFolders'] as bool?,
+    executeCommand: json['executeCommand'] == null
+        ? null
+        : ExecuteCommandClientCapabilities.fromJson(
+            json['executeCommand'] as Map<String, dynamic>,
+          ),
+    symbol: json['symbol'] == null
+        ? null
+        : WorkspaceSymbolClientCapabilities.fromJson(
+            json['symbol'] as Map<String, dynamic>,
+          ),
+    didChangeWatchedFiles: json['didChangeWatchedFiles'] == null
+        ? null
+        : DidChangeWatchedFilesClientCapabilities.fromJson(
+            json['didChangeWatchedFiles'] as Map<String, dynamic>,
+          ),
+    didChangeConfiguration: json['didChangeConfiguration'] == null
+        ? null
+        : DidChangeConfigurationClientCapabilities.fromJson(
+            json['didChangeConfiguration'] as Map<String, dynamic>,
+          ),
+    workspaceEdit: json['workspaceEdit'] == null
+        ? null
+        : WorkspaceEditClientCapabilities.fromJson(
+            json['workspaceEdit'] as Map<String, dynamic>,
+          ),
+    applyEdit: json['applyEdit'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceClientCapabilitiesToJson(
   _WorkspaceClientCapabilities instance,
@@ -11715,7 +9092,7 @@ Map<String, dynamic> _$WorkspaceClientCapabilitiesToJson(
 
 _TextDocumentClientCapabilities _$TextDocumentClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TextDocumentClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -11752,222 +9129,164 @@ _TextDocumentClientCapabilities _$TextDocumentClientCapabilitiesFromJson(
       'synchronization',
     ],
   );
-  final val = _TextDocumentClientCapabilities(
-    inlineCompletion: $checkedConvert(
-      'inlineCompletion',
-      (v) => v == null
-          ? null
-          : InlineCompletionClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    diagnostic: $checkedConvert(
-      'diagnostic',
-      (v) => v == null
-          ? null
-          : DiagnosticClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    inlayHint: $checkedConvert(
-      'inlayHint',
-      (v) => v == null
-          ? null
-          : InlayHintClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    inlineValue: $checkedConvert(
-      'inlineValue',
-      (v) => v == null
-          ? null
-          : InlineValueClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    typeHierarchy: $checkedConvert(
-      'typeHierarchy',
-      (v) => v == null
-          ? null
-          : TypeHierarchyClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    moniker: $checkedConvert(
-      'moniker',
-      (v) => v == null
-          ? null
-          : MonikerClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    linkedEditingRange: $checkedConvert(
-      'linkedEditingRange',
-      (v) => v == null
-          ? null
-          : LinkedEditingRangeClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    semanticTokens: $checkedConvert(
-      'semanticTokens',
-      (v) => v == null
-          ? null
-          : SemanticTokensClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    callHierarchy: $checkedConvert(
-      'callHierarchy',
-      (v) => v == null
-          ? null
-          : CallHierarchyClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    publishDiagnostics: $checkedConvert(
-      'publishDiagnostics',
-      (v) => v == null
-          ? null
-          : PublishDiagnosticsClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    selectionRange: $checkedConvert(
-      'selectionRange',
-      (v) => v == null
-          ? null
-          : SelectionRangeClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    foldingRange: $checkedConvert(
-      'foldingRange',
-      (v) => v == null
-          ? null
-          : FoldingRangeClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    rename: $checkedConvert(
-      'rename',
-      (v) => v == null
-          ? null
-          : RenameClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    onTypeFormatting: $checkedConvert(
-      'onTypeFormatting',
-      (v) => v == null
-          ? null
-          : DocumentOnTypeFormattingClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    rangeFormatting: $checkedConvert(
-      'rangeFormatting',
-      (v) => v == null
-          ? null
-          : DocumentRangeFormattingClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    formatting: $checkedConvert(
-      'formatting',
-      (v) => v == null
-          ? null
-          : DocumentFormattingClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    colorProvider: $checkedConvert(
-      'colorProvider',
-      (v) => v == null
-          ? null
-          : DocumentColorClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    documentLink: $checkedConvert(
-      'documentLink',
-      (v) => v == null
-          ? null
-          : DocumentLinkClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    codeLens: $checkedConvert(
-      'codeLens',
-      (v) => v == null
-          ? null
-          : CodeLensClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    codeAction: $checkedConvert(
-      'codeAction',
-      (v) => v == null
-          ? null
-          : CodeActionClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    documentSymbol: $checkedConvert(
-      'documentSymbol',
-      (v) => v == null
-          ? null
-          : DocumentSymbolClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    documentHighlight: $checkedConvert(
-      'documentHighlight',
-      (v) => v == null
-          ? null
-          : DocumentHighlightClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    references: $checkedConvert(
-      'references',
-      (v) => v == null
-          ? null
-          : ReferenceClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    implementation: $checkedConvert(
-      'implementation',
-      (v) => v == null
-          ? null
-          : ImplementationClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    typeDefinition: $checkedConvert(
-      'typeDefinition',
-      (v) => v == null
-          ? null
-          : TypeDefinitionClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    definition: $checkedConvert(
-      'definition',
-      (v) => v == null
-          ? null
-          : DefinitionClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    declaration: $checkedConvert(
-      'declaration',
-      (v) => v == null
-          ? null
-          : DeclarationClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    signatureHelp: $checkedConvert(
-      'signatureHelp',
-      (v) => v == null
-          ? null
-          : SignatureHelpClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    hover: $checkedConvert(
-      'hover',
-      (v) => v == null
-          ? null
-          : HoverClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    completion: $checkedConvert(
-      'completion',
-      (v) => v == null
-          ? null
-          : CompletionClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    synchronization: $checkedConvert(
-      'synchronization',
-      (v) => v == null
-          ? null
-          : TextDocumentSyncClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
+  return _TextDocumentClientCapabilities(
+    inlineCompletion: json['inlineCompletion'] == null
+        ? null
+        : InlineCompletionClientCapabilities.fromJson(
+            json['inlineCompletion'] as Map<String, dynamic>,
+          ),
+    diagnostic: json['diagnostic'] == null
+        ? null
+        : DiagnosticClientCapabilities.fromJson(
+            json['diagnostic'] as Map<String, dynamic>,
+          ),
+    inlayHint: json['inlayHint'] == null
+        ? null
+        : InlayHintClientCapabilities.fromJson(
+            json['inlayHint'] as Map<String, dynamic>,
+          ),
+    inlineValue: json['inlineValue'] == null
+        ? null
+        : InlineValueClientCapabilities.fromJson(
+            json['inlineValue'] as Map<String, dynamic>,
+          ),
+    typeHierarchy: json['typeHierarchy'] == null
+        ? null
+        : TypeHierarchyClientCapabilities.fromJson(
+            json['typeHierarchy'] as Map<String, dynamic>,
+          ),
+    moniker: json['moniker'] == null
+        ? null
+        : MonikerClientCapabilities.fromJson(
+            json['moniker'] as Map<String, dynamic>,
+          ),
+    linkedEditingRange: json['linkedEditingRange'] == null
+        ? null
+        : LinkedEditingRangeClientCapabilities.fromJson(
+            json['linkedEditingRange'] as Map<String, dynamic>,
+          ),
+    semanticTokens: json['semanticTokens'] == null
+        ? null
+        : SemanticTokensClientCapabilities.fromJson(
+            json['semanticTokens'] as Map<String, dynamic>,
+          ),
+    callHierarchy: json['callHierarchy'] == null
+        ? null
+        : CallHierarchyClientCapabilities.fromJson(
+            json['callHierarchy'] as Map<String, dynamic>,
+          ),
+    publishDiagnostics: json['publishDiagnostics'] == null
+        ? null
+        : PublishDiagnosticsClientCapabilities.fromJson(
+            json['publishDiagnostics'] as Map<String, dynamic>,
+          ),
+    selectionRange: json['selectionRange'] == null
+        ? null
+        : SelectionRangeClientCapabilities.fromJson(
+            json['selectionRange'] as Map<String, dynamic>,
+          ),
+    foldingRange: json['foldingRange'] == null
+        ? null
+        : FoldingRangeClientCapabilities.fromJson(
+            json['foldingRange'] as Map<String, dynamic>,
+          ),
+    rename: json['rename'] == null
+        ? null
+        : RenameClientCapabilities.fromJson(
+            json['rename'] as Map<String, dynamic>,
+          ),
+    onTypeFormatting: json['onTypeFormatting'] == null
+        ? null
+        : DocumentOnTypeFormattingClientCapabilities.fromJson(
+            json['onTypeFormatting'] as Map<String, dynamic>,
+          ),
+    rangeFormatting: json['rangeFormatting'] == null
+        ? null
+        : DocumentRangeFormattingClientCapabilities.fromJson(
+            json['rangeFormatting'] as Map<String, dynamic>,
+          ),
+    formatting: json['formatting'] == null
+        ? null
+        : DocumentFormattingClientCapabilities.fromJson(
+            json['formatting'] as Map<String, dynamic>,
+          ),
+    colorProvider: json['colorProvider'] == null
+        ? null
+        : DocumentColorClientCapabilities.fromJson(
+            json['colorProvider'] as Map<String, dynamic>,
+          ),
+    documentLink: json['documentLink'] == null
+        ? null
+        : DocumentLinkClientCapabilities.fromJson(
+            json['documentLink'] as Map<String, dynamic>,
+          ),
+    codeLens: json['codeLens'] == null
+        ? null
+        : CodeLensClientCapabilities.fromJson(
+            json['codeLens'] as Map<String, dynamic>,
+          ),
+    codeAction: json['codeAction'] == null
+        ? null
+        : CodeActionClientCapabilities.fromJson(
+            json['codeAction'] as Map<String, dynamic>,
+          ),
+    documentSymbol: json['documentSymbol'] == null
+        ? null
+        : DocumentSymbolClientCapabilities.fromJson(
+            json['documentSymbol'] as Map<String, dynamic>,
+          ),
+    documentHighlight: json['documentHighlight'] == null
+        ? null
+        : DocumentHighlightClientCapabilities.fromJson(
+            json['documentHighlight'] as Map<String, dynamic>,
+          ),
+    references: json['references'] == null
+        ? null
+        : ReferenceClientCapabilities.fromJson(
+            json['references'] as Map<String, dynamic>,
+          ),
+    implementation: json['implementation'] == null
+        ? null
+        : ImplementationClientCapabilities.fromJson(
+            json['implementation'] as Map<String, dynamic>,
+          ),
+    typeDefinition: json['typeDefinition'] == null
+        ? null
+        : TypeDefinitionClientCapabilities.fromJson(
+            json['typeDefinition'] as Map<String, dynamic>,
+          ),
+    definition: json['definition'] == null
+        ? null
+        : DefinitionClientCapabilities.fromJson(
+            json['definition'] as Map<String, dynamic>,
+          ),
+    declaration: json['declaration'] == null
+        ? null
+        : DeclarationClientCapabilities.fromJson(
+            json['declaration'] as Map<String, dynamic>,
+          ),
+    signatureHelp: json['signatureHelp'] == null
+        ? null
+        : SignatureHelpClientCapabilities.fromJson(
+            json['signatureHelp'] as Map<String, dynamic>,
+          ),
+    hover: json['hover'] == null
+        ? null
+        : HoverClientCapabilities.fromJson(
+            json['hover'] as Map<String, dynamic>,
+          ),
+    completion: json['completion'] == null
+        ? null
+        : CompletionClientCapabilities.fromJson(
+            json['completion'] as Map<String, dynamic>,
+          ),
+    synchronization: json['synchronization'] == null
+        ? null
+        : TextDocumentSyncClientCapabilities.fromJson(
+            json['synchronization'] as Map<String, dynamic>,
+          ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TextDocumentClientCapabilitiesToJson(
   _TextDocumentClientCapabilities instance,
@@ -12006,21 +9325,14 @@ Map<String, dynamic> _$TextDocumentClientCapabilitiesToJson(
 };
 
 _NotebookDocumentClientCapabilities
-_$NotebookDocumentClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_NotebookDocumentClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['synchronization']);
-      final val = _NotebookDocumentClientCapabilities(
-        synchronization: $checkedConvert(
-          'synchronization',
-          (v) => NotebookDocumentSyncClientCapabilities.fromJson(
-            v as Map<String, dynamic>,
-          ),
-        ),
-      );
-      return val;
-    });
+_$NotebookDocumentClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['synchronization']);
+  return _NotebookDocumentClientCapabilities(
+    synchronization: NotebookDocumentSyncClientCapabilities.fromJson(
+      json['synchronization'] as Map<String, dynamic>,
+    ),
+  );
+}
 
 Map<String, dynamic> _$NotebookDocumentClientCapabilitiesToJson(
   _NotebookDocumentClientCapabilities instance,
@@ -12028,30 +9340,25 @@ Map<String, dynamic> _$NotebookDocumentClientCapabilitiesToJson(
 
 _WindowClientCapabilities _$WindowClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WindowClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['showDocument', 'showMessage', 'workDoneProgress'],
   );
-  final val = _WindowClientCapabilities(
-    showDocument: $checkedConvert(
-      'showDocument',
-      (v) => v == null
-          ? null
-          : ShowDocumentClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    showMessage: $checkedConvert(
-      'showMessage',
-      (v) => v == null
-          ? null
-          : ShowMessageRequestClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    workDoneProgress: $checkedConvert('workDoneProgress', (v) => v as bool?),
+  return _WindowClientCapabilities(
+    showDocument: json['showDocument'] == null
+        ? null
+        : ShowDocumentClientCapabilities.fromJson(
+            json['showDocument'] as Map<String, dynamic>,
+          ),
+    showMessage: json['showMessage'] == null
+        ? null
+        : ShowMessageRequestClientCapabilities.fromJson(
+            json['showMessage'] as Map<String, dynamic>,
+          ),
+    workDoneProgress: json['workDoneProgress'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WindowClientCapabilitiesToJson(
   _WindowClientCapabilities instance,
@@ -12063,7 +9370,7 @@ Map<String, dynamic> _$WindowClientCapabilitiesToJson(
 
 _GeneralClientCapabilities _$GeneralClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_GeneralClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -12073,43 +9380,32 @@ _GeneralClientCapabilities _$GeneralClientCapabilitiesFromJson(
       'staleRequestSupport',
     ],
   );
-  final val = _GeneralClientCapabilities(
-    positionEncodings: $checkedConvert(
-      'positionEncodings',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$PositionEncodingKindEnumMap, e))
-          .toList(),
-    ),
-    markdown: $checkedConvert(
-      'markdown',
-      (v) => v == null
-          ? null
-          : MarkdownClientCapabilities.fromJson(v as Map<String, dynamic>),
-    ),
-    regularExpressions: $checkedConvert(
-      'regularExpressions',
-      (v) => v == null
-          ? null
-          : RegularExpressionsClientCapabilities.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    staleRequestSupport: $checkedConvert(
-      'staleRequestSupport',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          cancel: $jsonValue['cancel'] as bool,
-          retryOnContentModified:
-              ($jsonValue['retryOnContentModified'] as List<dynamic>)
-                  .map((e) => e as String)
-                  .toList(),
-        ),
+  return _GeneralClientCapabilities(
+    positionEncodings: (json['positionEncodings'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$PositionEncodingKindEnumMap, e))
+        .toList(),
+    markdown: json['markdown'] == null
+        ? null
+        : MarkdownClientCapabilities.fromJson(
+            json['markdown'] as Map<String, dynamic>,
+          ),
+    regularExpressions: json['regularExpressions'] == null
+        ? null
+        : RegularExpressionsClientCapabilities.fromJson(
+            json['regularExpressions'] as Map<String, dynamic>,
+          ),
+    staleRequestSupport: _$recordConvertNullable(
+      json['staleRequestSupport'],
+      ($jsonValue) => (
+        cancel: $jsonValue['cancel'] as bool,
+        retryOnContentModified:
+            ($jsonValue['retryOnContentModified'] as List<dynamic>)
+                .map((e) => e as String)
+                .toList(),
       ),
     ),
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$GeneralClientCapabilitiesToJson(
   _GeneralClientCapabilities instance,
@@ -12128,63 +9424,48 @@ Map<String, dynamic> _$GeneralClientCapabilitiesToJson(
         },
 };
 
-_RelativePattern _$RelativePatternFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_RelativePattern', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['baseUri', 'pattern']);
-      final val = _RelativePattern(
-        baseUri: $checkedConvert(
-          'baseUri',
-          (v) => RelativePatternBaseUriBase.fromJson(v as Map<String, dynamic>),
-        ),
-        pattern: $checkedConvert('pattern', (v) => v as String),
-      );
-      return val;
-    });
+_RelativePattern _$RelativePatternFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['baseUri', 'pattern']);
+  return _RelativePattern(
+    baseUri: RelativePatternBaseUriBase.fromJson(
+      json['baseUri'] as Map<String, dynamic>,
+    ),
+    pattern: json['pattern'] as String,
+  );
+}
 
 Map<String, dynamic> _$RelativePatternToJson(_RelativePattern instance) =>
     <String, dynamic>{'baseUri': instance.baseUri, 'pattern': instance.pattern};
 
 _WorkspaceEditClientCapabilities _$WorkspaceEditClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_WorkspaceEditClientCapabilities', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'changeAnnotationSupport',
-          'normalizesLineEndings',
-          'failureHandling',
-          'resourceOperations',
-          'documentChanges',
-        ],
-      );
-      final val = _WorkspaceEditClientCapabilities(
-        changeAnnotationSupport: $checkedConvert(
-          'changeAnnotationSupport',
-          (v) => _$recordConvertNullable(
-            v,
-            ($jsonValue) =>
-                (groupsOnLabel: $jsonValue['groupsOnLabel'] as bool?),
-          ),
-        ),
-        normalizesLineEndings: $checkedConvert(
-          'normalizesLineEndings',
-          (v) => v as bool?,
-        ),
-        failureHandling: $checkedConvert(
-          'failureHandling',
-          (v) => $enumDecodeNullable(_$FailureHandlingKindEnumMap, v),
-        ),
-        resourceOperations: $checkedConvert(
-          'resourceOperations',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$ResourceOperationKindEnumMap, e))
-              .toList(),
-        ),
-        documentChanges: $checkedConvert('documentChanges', (v) => v as bool?),
-      );
-      return val;
-    });
+) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'changeAnnotationSupport',
+      'normalizesLineEndings',
+      'failureHandling',
+      'resourceOperations',
+      'documentChanges',
+    ],
+  );
+  return _WorkspaceEditClientCapabilities(
+    changeAnnotationSupport: _$recordConvertNullable(
+      json['changeAnnotationSupport'],
+      ($jsonValue) => (groupsOnLabel: $jsonValue['groupsOnLabel'] as bool?),
+    ),
+    normalizesLineEndings: json['normalizesLineEndings'] as bool?,
+    failureHandling: $enumDecodeNullable(
+      _$FailureHandlingKindEnumMap,
+      json['failureHandling'],
+    ),
+    resourceOperations: (json['resourceOperations'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$ResourceOperationKindEnumMap, e))
+        .toList(),
+    documentChanges: json['documentChanges'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$WorkspaceEditClientCapabilitiesToJson(
   _WorkspaceEditClientCapabilities instance,
@@ -12216,45 +9497,28 @@ const _$ResourceOperationKindEnumMap = {
 };
 
 _DidChangeConfigurationClientCapabilities
-_$DidChangeConfigurationClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DidChangeConfigurationClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-      final val = _DidChangeConfigurationClientCapabilities(
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_$DidChangeConfigurationClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
+  return _DidChangeConfigurationClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DidChangeConfigurationClientCapabilitiesToJson(
   _DidChangeConfigurationClientCapabilities instance,
 ) => <String, dynamic>{'dynamicRegistration': instance.dynamicRegistration};
 
 _DidChangeWatchedFilesClientCapabilities
-_$DidChangeWatchedFilesClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DidChangeWatchedFilesClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['relativePatternSupport', 'dynamicRegistration'],
-      );
-      final val = _DidChangeWatchedFilesClientCapabilities(
-        relativePatternSupport: $checkedConvert(
-          'relativePatternSupport',
-          (v) => v as bool?,
-        ),
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_$DidChangeWatchedFilesClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['relativePatternSupport', 'dynamicRegistration'],
+  );
+  return _DidChangeWatchedFilesClientCapabilities(
+    relativePatternSupport: json['relativePatternSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DidChangeWatchedFilesClientCapabilitiesToJson(
   _DidChangeWatchedFilesClientCapabilities instance,
@@ -12265,8 +9529,6 @@ Map<String, dynamic> _$DidChangeWatchedFilesClientCapabilitiesToJson(
 
 _WorkspaceSymbolClientCapabilities _$WorkspaceSymbolClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_WorkspaceSymbolClientCapabilities', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
@@ -12277,47 +9539,34 @@ _WorkspaceSymbolClientCapabilities _$WorkspaceSymbolClientCapabilitiesFromJson(
       'dynamicRegistration',
     ],
   );
-  final val = _WorkspaceSymbolClientCapabilities(
-    resolveSupport: $checkedConvert(
-      'resolveSupport',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          properties: ($jsonValue['properties'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
-        ),
+  return _WorkspaceSymbolClientCapabilities(
+    resolveSupport: _$recordConvertNullable(
+      json['resolveSupport'],
+      ($jsonValue) => (
+        properties: ($jsonValue['properties'] as List<dynamic>)
+            .map((e) => e as String)
+            .toList(),
       ),
     ),
-    tagSupport: $checkedConvert(
-      'tagSupport',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-              .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-              .toList(),
-        ),
+    tagSupport: _$recordConvertNullable(
+      json['tagSupport'],
+      ($jsonValue) => (
+        valueSet: ($jsonValue['valueSet'] as List<dynamic>)
+            .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+            .toList(),
       ),
     ),
-    symbolKind: $checkedConvert(
-      'symbolKind',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$SymbolKindEnumMap, e))
-              .toList(),
-        ),
+    symbolKind: _$recordConvertNullable(
+      json['symbolKind'],
+      ($jsonValue) => (
+        valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
+            ?.map((e) => $enumDecode(_$SymbolKindEnumMap, e))
+            .toList(),
       ),
     ),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$WorkspaceSymbolClientCapabilitiesToJson(
   _WorkspaceSymbolClientCapabilities instance,
@@ -12344,51 +9593,36 @@ Map<String, dynamic> _$WorkspaceSymbolClientCapabilitiesToJson(
 
 _ExecuteCommandClientCapabilities _$ExecuteCommandClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ExecuteCommandClientCapabilities', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-  final val = _ExecuteCommandClientCapabilities(
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _ExecuteCommandClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ExecuteCommandClientCapabilitiesToJson(
   _ExecuteCommandClientCapabilities instance,
 ) => <String, dynamic>{'dynamicRegistration': instance.dynamicRegistration};
 
 _SemanticTokensWorkspaceClientCapabilities
-_$SemanticTokensWorkspaceClientCapabilitiesFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensWorkspaceClientCapabilities', json, (
-  $checkedConvert,
-) {
+_$SemanticTokensWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['refreshSupport']);
-  final val = _SemanticTokensWorkspaceClientCapabilities(
-    refreshSupport: $checkedConvert('refreshSupport', (v) => v as bool?),
+  return _SemanticTokensWorkspaceClientCapabilities(
+    refreshSupport: json['refreshSupport'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensWorkspaceClientCapabilitiesToJson(
   _SemanticTokensWorkspaceClientCapabilities instance,
 ) => <String, dynamic>{'refreshSupport': instance.refreshSupport};
 
 _CodeLensWorkspaceClientCapabilities
-_$CodeLensWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_CodeLensWorkspaceClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['refreshSupport']);
-      final val = _CodeLensWorkspaceClientCapabilities(
-        refreshSupport: $checkedConvert('refreshSupport', (v) => v as bool?),
-      );
-      return val;
-    });
+_$CodeLensWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['refreshSupport']);
+  return _CodeLensWorkspaceClientCapabilities(
+    refreshSupport: json['refreshSupport'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$CodeLensWorkspaceClientCapabilitiesToJson(
   _CodeLensWorkspaceClientCapabilities instance,
@@ -12396,34 +9630,29 @@ Map<String, dynamic> _$CodeLensWorkspaceClientCapabilitiesToJson(
 
 _FileOperationClientCapabilities _$FileOperationClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_FileOperationClientCapabilities', json, ($checkedConvert) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'willDelete',
-          'didDelete',
-          'willRename',
-          'didRename',
-          'willCreate',
-          'didCreate',
-          'dynamicRegistration',
-        ],
-      );
-      final val = _FileOperationClientCapabilities(
-        willDelete: $checkedConvert('willDelete', (v) => v as bool?),
-        didDelete: $checkedConvert('didDelete', (v) => v as bool?),
-        willRename: $checkedConvert('willRename', (v) => v as bool?),
-        didRename: $checkedConvert('didRename', (v) => v as bool?),
-        willCreate: $checkedConvert('willCreate', (v) => v as bool?),
-        didCreate: $checkedConvert('didCreate', (v) => v as bool?),
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'willDelete',
+      'didDelete',
+      'willRename',
+      'didRename',
+      'willCreate',
+      'didCreate',
+      'dynamicRegistration',
+    ],
+  );
+  return _FileOperationClientCapabilities(
+    willDelete: json['willDelete'] as bool?,
+    didDelete: json['didDelete'] as bool?,
+    willRename: json['willRename'] as bool?,
+    didRename: json['didRename'] as bool?,
+    willCreate: json['willCreate'] as bool?,
+    didCreate: json['didCreate'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$FileOperationClientCapabilitiesToJson(
   _FileOperationClientCapabilities instance,
@@ -12438,97 +9667,71 @@ Map<String, dynamic> _$FileOperationClientCapabilitiesToJson(
 };
 
 _InlineValueWorkspaceClientCapabilities
-_$InlineValueWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlineValueWorkspaceClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['refreshSupport']);
-      final val = _InlineValueWorkspaceClientCapabilities(
-        refreshSupport: $checkedConvert('refreshSupport', (v) => v as bool?),
-      );
-      return val;
-    });
+_$InlineValueWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['refreshSupport']);
+  return _InlineValueWorkspaceClientCapabilities(
+    refreshSupport: json['refreshSupport'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$InlineValueWorkspaceClientCapabilitiesToJson(
   _InlineValueWorkspaceClientCapabilities instance,
 ) => <String, dynamic>{'refreshSupport': instance.refreshSupport};
 
 _InlayHintWorkspaceClientCapabilities
-_$InlayHintWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlayHintWorkspaceClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['refreshSupport']);
-      final val = _InlayHintWorkspaceClientCapabilities(
-        refreshSupport: $checkedConvert('refreshSupport', (v) => v as bool?),
-      );
-      return val;
-    });
+_$InlayHintWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['refreshSupport']);
+  return _InlayHintWorkspaceClientCapabilities(
+    refreshSupport: json['refreshSupport'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$InlayHintWorkspaceClientCapabilitiesToJson(
   _InlayHintWorkspaceClientCapabilities instance,
 ) => <String, dynamic>{'refreshSupport': instance.refreshSupport};
 
 _DiagnosticWorkspaceClientCapabilities
-_$DiagnosticWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DiagnosticWorkspaceClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['refreshSupport']);
-      final val = _DiagnosticWorkspaceClientCapabilities(
-        refreshSupport: $checkedConvert('refreshSupport', (v) => v as bool?),
-      );
-      return val;
-    });
+_$DiagnosticWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['refreshSupport']);
+  return _DiagnosticWorkspaceClientCapabilities(
+    refreshSupport: json['refreshSupport'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DiagnosticWorkspaceClientCapabilitiesToJson(
   _DiagnosticWorkspaceClientCapabilities instance,
 ) => <String, dynamic>{'refreshSupport': instance.refreshSupport};
 
 _FoldingRangeWorkspaceClientCapabilities
-_$FoldingRangeWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_FoldingRangeWorkspaceClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['refreshSupport']);
-      final val = _FoldingRangeWorkspaceClientCapabilities(
-        refreshSupport: $checkedConvert('refreshSupport', (v) => v as bool?),
-      );
-      return val;
-    });
+_$FoldingRangeWorkspaceClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['refreshSupport']);
+  return _FoldingRangeWorkspaceClientCapabilities(
+    refreshSupport: json['refreshSupport'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$FoldingRangeWorkspaceClientCapabilitiesToJson(
   _FoldingRangeWorkspaceClientCapabilities instance,
 ) => <String, dynamic>{'refreshSupport': instance.refreshSupport};
 
 _TextDocumentSyncClientCapabilities
-_$TextDocumentSyncClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_TextDocumentSyncClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'didSave',
-          'willSaveWaitUntil',
-          'willSave',
-          'dynamicRegistration',
-        ],
-      );
-      final val = _TextDocumentSyncClientCapabilities(
-        didSave: $checkedConvert('didSave', (v) => v as bool?),
-        willSaveWaitUntil: $checkedConvert(
-          'willSaveWaitUntil',
-          (v) => v as bool?,
-        ),
-        willSave: $checkedConvert('willSave', (v) => v as bool?),
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_$TextDocumentSyncClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'didSave',
+      'willSaveWaitUntil',
+      'willSave',
+      'dynamicRegistration',
+    ],
+  );
+  return _TextDocumentSyncClientCapabilities(
+    didSave: json['didSave'] as bool?,
+    willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
+    willSave: json['willSave'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$TextDocumentSyncClientCapabilitiesToJson(
   _TextDocumentSyncClientCapabilities instance,
@@ -12541,7 +9744,7 @@ Map<String, dynamic> _$TextDocumentSyncClientCapabilitiesToJson(
 
 _CompletionClientCapabilities _$CompletionClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CompletionClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -12553,84 +9756,70 @@ _CompletionClientCapabilities _$CompletionClientCapabilitiesFromJson(
       'dynamicRegistration',
     ],
   );
-  final val = _CompletionClientCapabilities(
-    completionList: $checkedConvert(
-      'completionList',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          itemDefaults: ($jsonValue['itemDefaults'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-        ),
+  return _CompletionClientCapabilities(
+    completionList: _$recordConvertNullable(
+      json['completionList'],
+      ($jsonValue) => (
+        itemDefaults: ($jsonValue['itemDefaults'] as List<dynamic>?)
+            ?.map((e) => e as String)
+            .toList(),
       ),
     ),
-    contextSupport: $checkedConvert('contextSupport', (v) => v as bool?),
-    insertTextMode: $checkedConvert(
-      'insertTextMode',
-      (v) => $enumDecodeNullable(_$InsertTextModeEnumMap, v),
+    contextSupport: json['contextSupport'] as bool?,
+    insertTextMode: $enumDecodeNullable(
+      _$InsertTextModeEnumMap,
+      json['insertTextMode'],
     ),
-    completionItemKind: $checkedConvert(
-      'completionItemKind',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$CompletionItemKindEnumMap, e))
-              .toList(),
-        ),
+    completionItemKind: _$recordConvertNullable(
+      json['completionItemKind'],
+      ($jsonValue) => (
+        valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
+            ?.map((e) => $enumDecode(_$CompletionItemKindEnumMap, e))
+            .toList(),
       ),
     ),
-    completionItem: $checkedConvert(
-      'completionItem',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          commitCharactersSupport:
-              $jsonValue['commitCharactersSupport'] as bool?,
-          deprecatedSupport: $jsonValue['deprecatedSupport'] as bool?,
-          documentationFormat:
-              ($jsonValue['documentationFormat'] as List<dynamic>?)
-                  ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
-                  .toList(),
-          insertReplaceSupport: $jsonValue['insertReplaceSupport'] as bool?,
-          insertTextModeSupport: _$recordConvertNullable(
-            $jsonValue['insertTextModeSupport'],
-            ($jsonValue) => (
-              valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-                  .map((e) => $enumDecode(_$InsertTextModeEnumMap, e))
-                  .toList(),
-            ),
+    completionItem: _$recordConvertNullable(
+      json['completionItem'],
+      ($jsonValue) => (
+        commitCharactersSupport: $jsonValue['commitCharactersSupport'] as bool?,
+        deprecatedSupport: $jsonValue['deprecatedSupport'] as bool?,
+        documentationFormat:
+            ($jsonValue['documentationFormat'] as List<dynamic>?)
+                ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
+                .toList(),
+        insertReplaceSupport: $jsonValue['insertReplaceSupport'] as bool?,
+        insertTextModeSupport: _$recordConvertNullable(
+          $jsonValue['insertTextModeSupport'],
+          ($jsonValue) => (
+            valueSet: ($jsonValue['valueSet'] as List<dynamic>)
+                .map((e) => $enumDecode(_$InsertTextModeEnumMap, e))
+                .toList(),
           ),
-          labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?,
-          preselectSupport: $jsonValue['preselectSupport'] as bool?,
-          resolveSupport: _$recordConvertNullable(
-            $jsonValue['resolveSupport'],
-            ($jsonValue) => (
-              properties: ($jsonValue['properties'] as List<dynamic>)
-                  .map((e) => e as String)
-                  .toList(),
-            ),
+        ),
+        labelDetailsSupport: $jsonValue['labelDetailsSupport'] as bool?,
+        preselectSupport: $jsonValue['preselectSupport'] as bool?,
+        resolveSupport: _$recordConvertNullable(
+          $jsonValue['resolveSupport'],
+          ($jsonValue) => (
+            properties: ($jsonValue['properties'] as List<dynamic>)
+                .map((e) => e as String)
+                .toList(),
           ),
-          snippetSupport: $jsonValue['snippetSupport'] as bool?,
-          tagSupport: _$recordConvertNullable(
-            $jsonValue['tagSupport'],
-            ($jsonValue) => (
-              valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-                  .map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
-                  .toList(),
-            ),
+        ),
+        snippetSupport: $jsonValue['snippetSupport'] as bool?,
+        tagSupport: _$recordConvertNullable(
+          $jsonValue['tagSupport'],
+          ($jsonValue) => (
+            valueSet: ($jsonValue['valueSet'] as List<dynamic>)
+                .map((e) => $enumDecode(_$CompletionItemTagEnumMap, e))
+                .toList(),
           ),
         ),
       ),
     ),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CompletionClientCapabilitiesToJson(
   _CompletionClientCapabilities instance,
@@ -12692,22 +9881,15 @@ Map<String, dynamic> _$CompletionClientCapabilitiesToJson(
 
 _HoverClientCapabilities _$HoverClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_HoverClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['contentFormat', 'dynamicRegistration']);
-  final val = _HoverClientCapabilities(
-    contentFormat: $checkedConvert(
-      'contentFormat',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
-          .toList(),
-    ),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _HoverClientCapabilities(
+    contentFormat: (json['contentFormat'] as List<dynamic>?)
+        ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
+        .toList(),
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$HoverClientCapabilitiesToJson(
   _HoverClientCapabilities instance,
@@ -12720,8 +9902,6 @@ Map<String, dynamic> _$HoverClientCapabilitiesToJson(
 
 _SignatureHelpClientCapabilities _$SignatureHelpClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SignatureHelpClientCapabilities', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
@@ -12731,33 +9911,26 @@ _SignatureHelpClientCapabilities _$SignatureHelpClientCapabilitiesFromJson(
       'dynamicRegistration',
     ],
   );
-  final val = _SignatureHelpClientCapabilities(
-    contextSupport: $checkedConvert('contextSupport', (v) => v as bool?),
-    signatureInformation: $checkedConvert(
-      'signatureInformation',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          activeParameterSupport: $jsonValue['activeParameterSupport'] as bool?,
-          documentationFormat:
-              ($jsonValue['documentationFormat'] as List<dynamic>?)
-                  ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
-                  .toList(),
-          parameterInformation: _$recordConvertNullable(
-            $jsonValue['parameterInformation'],
-            ($jsonValue) =>
-                (labelOffsetSupport: $jsonValue['labelOffsetSupport'] as bool?),
-          ),
+  return _SignatureHelpClientCapabilities(
+    contextSupport: json['contextSupport'] as bool?,
+    signatureInformation: _$recordConvertNullable(
+      json['signatureInformation'],
+      ($jsonValue) => (
+        activeParameterSupport: $jsonValue['activeParameterSupport'] as bool?,
+        documentationFormat:
+            ($jsonValue['documentationFormat'] as List<dynamic>?)
+                ?.map((e) => $enumDecode(_$MarkupKindEnumMap, e))
+                .toList(),
+        parameterInformation: _$recordConvertNullable(
+          $jsonValue['parameterInformation'],
+          ($jsonValue) =>
+              (labelOffsetSupport: $jsonValue['labelOffsetSupport'] as bool?),
         ),
       ),
     ),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SignatureHelpClientCapabilitiesToJson(
   _SignatureHelpClientCapabilities instance,
@@ -12788,17 +9961,13 @@ Map<String, dynamic> _$SignatureHelpClientCapabilitiesToJson(
 
 _DeclarationClientCapabilities _$DeclarationClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DeclarationClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['linkSupport', 'dynamicRegistration']);
-  final val = _DeclarationClientCapabilities(
-    linkSupport: $checkedConvert('linkSupport', (v) => v as bool?),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _DeclarationClientCapabilities(
+    linkSupport: json['linkSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DeclarationClientCapabilitiesToJson(
   _DeclarationClientCapabilities instance,
@@ -12809,17 +9978,13 @@ Map<String, dynamic> _$DeclarationClientCapabilitiesToJson(
 
 _DefinitionClientCapabilities _$DefinitionClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DefinitionClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['linkSupport', 'dynamicRegistration']);
-  final val = _DefinitionClientCapabilities(
-    linkSupport: $checkedConvert('linkSupport', (v) => v as bool?),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _DefinitionClientCapabilities(
+    linkSupport: json['linkSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DefinitionClientCapabilitiesToJson(
   _DefinitionClientCapabilities instance,
@@ -12830,19 +9995,13 @@ Map<String, dynamic> _$DefinitionClientCapabilitiesToJson(
 
 _TypeDefinitionClientCapabilities _$TypeDefinitionClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_TypeDefinitionClientCapabilities', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['linkSupport', 'dynamicRegistration']);
-  final val = _TypeDefinitionClientCapabilities(
-    linkSupport: $checkedConvert('linkSupport', (v) => v as bool?),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _TypeDefinitionClientCapabilities(
+    linkSupport: json['linkSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$TypeDefinitionClientCapabilitiesToJson(
   _TypeDefinitionClientCapabilities instance,
@@ -12853,19 +10012,13 @@ Map<String, dynamic> _$TypeDefinitionClientCapabilitiesToJson(
 
 _ImplementationClientCapabilities _$ImplementationClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ImplementationClientCapabilities', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['linkSupport', 'dynamicRegistration']);
-  final val = _ImplementationClientCapabilities(
-    linkSupport: $checkedConvert('linkSupport', (v) => v as bool?),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _ImplementationClientCapabilities(
+    linkSupport: json['linkSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ImplementationClientCapabilitiesToJson(
   _ImplementationClientCapabilities instance,
@@ -12876,35 +10029,24 @@ Map<String, dynamic> _$ImplementationClientCapabilitiesToJson(
 
 _ReferenceClientCapabilities _$ReferenceClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ReferenceClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-  final val = _ReferenceClientCapabilities(
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _ReferenceClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$ReferenceClientCapabilitiesToJson(
   _ReferenceClientCapabilities instance,
 ) => <String, dynamic>{'dynamicRegistration': instance.dynamicRegistration};
 
 _DocumentHighlightClientCapabilities
-_$DocumentHighlightClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DocumentHighlightClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-      final val = _DocumentHighlightClientCapabilities(
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_$DocumentHighlightClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
+  return _DocumentHighlightClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DocumentHighlightClientCapabilitiesToJson(
   _DocumentHighlightClientCapabilities instance,
@@ -12912,8 +10054,6 @@ Map<String, dynamic> _$DocumentHighlightClientCapabilitiesToJson(
 
 _DocumentSymbolClientCapabilities _$DocumentSymbolClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentSymbolClientCapabilities', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
@@ -12925,41 +10065,29 @@ _DocumentSymbolClientCapabilities _$DocumentSymbolClientCapabilitiesFromJson(
       'dynamicRegistration',
     ],
   );
-  final val = _DocumentSymbolClientCapabilities(
-    labelSupport: $checkedConvert('labelSupport', (v) => v as bool?),
-    tagSupport: $checkedConvert(
-      'tagSupport',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-              .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
-              .toList(),
-        ),
+  return _DocumentSymbolClientCapabilities(
+    labelSupport: json['labelSupport'] as bool?,
+    tagSupport: _$recordConvertNullable(
+      json['tagSupport'],
+      ($jsonValue) => (
+        valueSet: ($jsonValue['valueSet'] as List<dynamic>)
+            .map((e) => $enumDecode(_$SymbolTagEnumMap, e))
+            .toList(),
       ),
     ),
-    hierarchicalDocumentSymbolSupport: $checkedConvert(
-      'hierarchicalDocumentSymbolSupport',
-      (v) => v as bool?,
-    ),
-    symbolKind: $checkedConvert(
-      'symbolKind',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$SymbolKindEnumMap, e))
-              .toList(),
-        ),
+    hierarchicalDocumentSymbolSupport:
+        json['hierarchicalDocumentSymbolSupport'] as bool?,
+    symbolKind: _$recordConvertNullable(
+      json['symbolKind'],
+      ($jsonValue) => (
+        valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
+            ?.map((e) => $enumDecode(_$SymbolKindEnumMap, e))
+            .toList(),
       ),
     ),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentSymbolClientCapabilitiesToJson(
   _DocumentSymbolClientCapabilities instance,
@@ -12986,7 +10114,7 @@ Map<String, dynamic> _$DocumentSymbolClientCapabilitiesToJson(
 
 _CodeActionClientCapabilities _$CodeActionClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CodeActionClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -12999,51 +10127,35 @@ _CodeActionClientCapabilities _$CodeActionClientCapabilitiesFromJson(
       'dynamicRegistration',
     ],
   );
-  final val = _CodeActionClientCapabilities(
-    honorsChangeAnnotations: $checkedConvert(
-      'honorsChangeAnnotations',
-      (v) => v as bool?,
-    ),
-    resolveSupport: $checkedConvert(
-      'resolveSupport',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          properties: ($jsonValue['properties'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
-        ),
+  return _CodeActionClientCapabilities(
+    honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool?,
+    resolveSupport: _$recordConvertNullable(
+      json['resolveSupport'],
+      ($jsonValue) => (
+        properties: ($jsonValue['properties'] as List<dynamic>)
+            .map((e) => e as String)
+            .toList(),
       ),
     ),
-    dataSupport: $checkedConvert('dataSupport', (v) => v as bool?),
-    disabledSupport: $checkedConvert('disabledSupport', (v) => v as bool?),
-    isPreferredSupport: $checkedConvert(
-      'isPreferredSupport',
-      (v) => v as bool?,
-    ),
-    codeActionLiteralSupport: $checkedConvert(
-      'codeActionLiteralSupport',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          codeActionKind: _$recordConvert(
-            $jsonValue['codeActionKind'],
-            ($jsonValue) => (
-              valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-                  .map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
-                  .toList(),
-            ),
+    dataSupport: json['dataSupport'] as bool?,
+    disabledSupport: json['disabledSupport'] as bool?,
+    isPreferredSupport: json['isPreferredSupport'] as bool?,
+    codeActionLiteralSupport: _$recordConvertNullable(
+      json['codeActionLiteralSupport'],
+      ($jsonValue) => (
+        codeActionKind: _$recordConvert(
+          $jsonValue['codeActionKind'],
+          ($jsonValue) => (
+            valueSet: ($jsonValue['valueSet'] as List<dynamic>)
+                .map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+                .toList(),
           ),
         ),
       ),
     ),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CodeActionClientCapabilitiesToJson(
   _CodeActionClientCapabilities instance,
@@ -13072,16 +10184,12 @@ Map<String, dynamic> _$CodeActionClientCapabilitiesToJson(
 
 _CodeLensClientCapabilities _$CodeLensClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_CodeLensClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-  final val = _CodeLensClientCapabilities(
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _CodeLensClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$CodeLensClientCapabilitiesToJson(
   _CodeLensClientCapabilities instance,
@@ -13089,20 +10197,16 @@ Map<String, dynamic> _$CodeLensClientCapabilitiesToJson(
 
 _DocumentLinkClientCapabilities _$DocumentLinkClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentLinkClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['tooltipSupport', 'dynamicRegistration'],
   );
-  final val = _DocumentLinkClientCapabilities(
-    tooltipSupport: $checkedConvert('tooltipSupport', (v) => v as bool?),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _DocumentLinkClientCapabilities(
+    tooltipSupport: json['tooltipSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentLinkClientCapabilitiesToJson(
   _DocumentLinkClientCapabilities instance,
@@ -13113,57 +10217,37 @@ Map<String, dynamic> _$DocumentLinkClientCapabilitiesToJson(
 
 _DocumentColorClientCapabilities _$DocumentColorClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_DocumentColorClientCapabilities', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-      final val = _DocumentColorClientCapabilities(
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+) {
+  $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
+  return _DocumentColorClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DocumentColorClientCapabilitiesToJson(
   _DocumentColorClientCapabilities instance,
 ) => <String, dynamic>{'dynamicRegistration': instance.dynamicRegistration};
 
 _DocumentFormattingClientCapabilities
-_$DocumentFormattingClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_DocumentFormattingClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-      final val = _DocumentFormattingClientCapabilities(
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_$DocumentFormattingClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
+  return _DocumentFormattingClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$DocumentFormattingClientCapabilitiesToJson(
   _DocumentFormattingClientCapabilities instance,
 ) => <String, dynamic>{'dynamicRegistration': instance.dynamicRegistration};
 
 _DocumentRangeFormattingClientCapabilities
-_$DocumentRangeFormattingClientCapabilitiesFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('_DocumentRangeFormattingClientCapabilities', json, (
-  $checkedConvert,
-) {
+_$DocumentRangeFormattingClientCapabilitiesFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['rangesSupport', 'dynamicRegistration']);
-  final val = _DocumentRangeFormattingClientCapabilities(
-    rangesSupport: $checkedConvert('rangesSupport', (v) => v as bool?),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _DocumentRangeFormattingClientCapabilities(
+    rangesSupport: json['rangesSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentRangeFormattingClientCapabilitiesToJson(
   _DocumentRangeFormattingClientCapabilities instance,
@@ -13175,18 +10259,12 @@ Map<String, dynamic> _$DocumentRangeFormattingClientCapabilitiesToJson(
 _DocumentOnTypeFormattingClientCapabilities
 _$DocumentOnTypeFormattingClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DocumentOnTypeFormattingClientCapabilities', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-  final val = _DocumentOnTypeFormattingClientCapabilities(
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _DocumentOnTypeFormattingClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DocumentOnTypeFormattingClientCapabilitiesToJson(
   _DocumentOnTypeFormattingClientCapabilities instance,
@@ -13194,7 +10272,7 @@ Map<String, dynamic> _$DocumentOnTypeFormattingClientCapabilitiesToJson(
 
 _RenameClientCapabilities _$RenameClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_RenameClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -13204,23 +10282,16 @@ _RenameClientCapabilities _$RenameClientCapabilitiesFromJson(
       'dynamicRegistration',
     ],
   );
-  final val = _RenameClientCapabilities(
-    honorsChangeAnnotations: $checkedConvert(
-      'honorsChangeAnnotations',
-      (v) => v as bool?,
+  return _RenameClientCapabilities(
+    honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool?,
+    prepareSupportDefaultBehavior: $enumDecodeNullable(
+      _$PrepareSupportDefaultBehaviorEnumMap,
+      json['prepareSupportDefaultBehavior'],
     ),
-    prepareSupportDefaultBehavior: $checkedConvert(
-      'prepareSupportDefaultBehavior',
-      (v) => $enumDecodeNullable(_$PrepareSupportDefaultBehaviorEnumMap, v),
-    ),
-    prepareSupport: $checkedConvert('prepareSupport', (v) => v as bool?),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+    prepareSupport: json['prepareSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$RenameClientCapabilitiesToJson(
   _RenameClientCapabilities instance,
@@ -13239,7 +10310,7 @@ const _$PrepareSupportDefaultBehaviorEnumMap = {
 
 _FoldingRangeClientCapabilities _$FoldingRangeClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_FoldingRangeClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const [
@@ -13250,34 +10321,24 @@ _FoldingRangeClientCapabilities _$FoldingRangeClientCapabilitiesFromJson(
       'dynamicRegistration',
     ],
   );
-  final val = _FoldingRangeClientCapabilities(
-    foldingRange: $checkedConvert(
-      'foldingRange',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (collapsedText: $jsonValue['collapsedText'] as bool?),
+  return _FoldingRangeClientCapabilities(
+    foldingRange: _$recordConvertNullable(
+      json['foldingRange'],
+      ($jsonValue) => (collapsedText: $jsonValue['collapsedText'] as bool?),
+    ),
+    foldingRangeKind: _$recordConvertNullable(
+      json['foldingRangeKind'],
+      ($jsonValue) => (
+        valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
+            ?.map((e) => $enumDecode(_$FoldingRangeKindEnumMap, e))
+            .toList(),
       ),
     ),
-    foldingRangeKind: $checkedConvert(
-      'foldingRangeKind',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          valueSet: ($jsonValue['valueSet'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$FoldingRangeKindEnumMap, e))
-              .toList(),
-        ),
-      ),
-    ),
-    lineFoldingOnly: $checkedConvert('lineFoldingOnly', (v) => v as bool?),
-    rangeLimit: $checkedConvert('rangeLimit', (v) => (v as num?)?.toInt()),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+    lineFoldingOnly: json['lineFoldingOnly'] as bool?,
+    rangeLimit: (json['rangeLimit'] as num?)?.toInt(),
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$FoldingRangeClientCapabilitiesToJson(
   _FoldingRangeClientCapabilities instance,
@@ -13301,63 +10362,44 @@ Map<String, dynamic> _$FoldingRangeClientCapabilitiesToJson(
 
 _SelectionRangeClientCapabilities _$SelectionRangeClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SelectionRangeClientCapabilities', json, (
-  $checkedConvert,
 ) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-  final val = _SelectionRangeClientCapabilities(
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _SelectionRangeClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SelectionRangeClientCapabilitiesToJson(
   _SelectionRangeClientCapabilities instance,
 ) => <String, dynamic>{'dynamicRegistration': instance.dynamicRegistration};
 
 _PublishDiagnosticsClientCapabilities
-_$PublishDiagnosticsClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_PublishDiagnosticsClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(
-        json,
-        allowedKeys: const [
-          'dataSupport',
-          'codeDescriptionSupport',
-          'versionSupport',
-          'tagSupport',
-          'relatedInformation',
-        ],
-      );
-      final val = _PublishDiagnosticsClientCapabilities(
-        dataSupport: $checkedConvert('dataSupport', (v) => v as bool?),
-        codeDescriptionSupport: $checkedConvert(
-          'codeDescriptionSupport',
-          (v) => v as bool?,
-        ),
-        versionSupport: $checkedConvert('versionSupport', (v) => v as bool?),
-        tagSupport: $checkedConvert(
-          'tagSupport',
-          (v) => _$recordConvertNullable(
-            v,
-            ($jsonValue) => (
-              valueSet: ($jsonValue['valueSet'] as List<dynamic>)
-                  .map((e) => $enumDecode(_$DiagnosticTagEnumMap, e))
-                  .toList(),
-            ),
-          ),
-        ),
-        relatedInformation: $checkedConvert(
-          'relatedInformation',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_$PublishDiagnosticsClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'dataSupport',
+      'codeDescriptionSupport',
+      'versionSupport',
+      'tagSupport',
+      'relatedInformation',
+    ],
+  );
+  return _PublishDiagnosticsClientCapabilities(
+    dataSupport: json['dataSupport'] as bool?,
+    codeDescriptionSupport: json['codeDescriptionSupport'] as bool?,
+    versionSupport: json['versionSupport'] as bool?,
+    tagSupport: _$recordConvertNullable(
+      json['tagSupport'],
+      ($jsonValue) => (
+        valueSet: ($jsonValue['valueSet'] as List<dynamic>)
+            .map((e) => $enumDecode(_$DiagnosticTagEnumMap, e))
+            .toList(),
+      ),
+    ),
+    relatedInformation: json['relatedInformation'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$PublishDiagnosticsClientCapabilitiesToJson(
   _PublishDiagnosticsClientCapabilities instance,
@@ -13377,17 +10419,12 @@ Map<String, dynamic> _$PublishDiagnosticsClientCapabilitiesToJson(
 
 _CallHierarchyClientCapabilities _$CallHierarchyClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_CallHierarchyClientCapabilities', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-      final val = _CallHierarchyClientCapabilities(
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+) {
+  $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
+  return _CallHierarchyClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$CallHierarchyClientCapabilitiesToJson(
   _CallHierarchyClientCapabilities instance,
@@ -13395,8 +10432,6 @@ Map<String, dynamic> _$CallHierarchyClientCapabilitiesToJson(
 
 _SemanticTokensClientCapabilities _$SemanticTokensClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_SemanticTokensClientCapabilities', json, (
-  $checkedConvert,
 ) {
   $checkKeys(
     json,
@@ -13412,60 +10447,36 @@ _SemanticTokensClientCapabilities _$SemanticTokensClientCapabilitiesFromJson(
       'dynamicRegistration',
     ],
   );
-  final val = _SemanticTokensClientCapabilities(
-    requests: $checkedConvert(
-      'requests',
-      (v) => _$recordConvert(
-        v,
-        ($jsonValue) => (
-          full: $jsonValue['full'] == null
-              ? null
-              : SemanticTokensClientCapabilitiesFullBase.fromJson(
-                  $jsonValue['full'] as Map<String, dynamic>,
-                ),
-          range: $jsonValue['range'] == null
-              ? null
-              : RangeBase.fromJson($jsonValue['range'] as Map<String, dynamic>),
-        ),
+  return _SemanticTokensClientCapabilities(
+    requests: _$recordConvert(
+      json['requests'],
+      ($jsonValue) => (
+        full: $jsonValue['full'] == null
+            ? null
+            : SemanticTokensClientCapabilitiesFullBase.fromJson(
+                $jsonValue['full'] as Map<String, dynamic>,
+              ),
+        range: $jsonValue['range'] == null
+            ? null
+            : RangeBase.fromJson($jsonValue['range'] as Map<String, dynamic>),
       ),
     ),
-    tokenTypes: $checkedConvert(
-      'tokenTypes',
-      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-    ),
-    tokenModifiers: $checkedConvert(
-      'tokenModifiers',
-      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-    ),
-    formats: $checkedConvert(
-      'formats',
-      (v) => (v as List<dynamic>)
-          .map((e) => $enumDecode(_$TokenFormatEnumMap, e))
-          .toList(),
-    ),
-    augmentsSyntaxTokens: $checkedConvert(
-      'augmentsSyntaxTokens',
-      (v) => v as bool?,
-    ),
-    serverCancelSupport: $checkedConvert(
-      'serverCancelSupport',
-      (v) => v as bool?,
-    ),
-    multilineTokenSupport: $checkedConvert(
-      'multilineTokenSupport',
-      (v) => v as bool?,
-    ),
-    overlappingTokenSupport: $checkedConvert(
-      'overlappingTokenSupport',
-      (v) => v as bool?,
-    ),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+    tokenTypes: (json['tokenTypes'] as List<dynamic>)
+        .map((e) => e as String)
+        .toList(),
+    tokenModifiers: (json['tokenModifiers'] as List<dynamic>)
+        .map((e) => e as String)
+        .toList(),
+    formats: (json['formats'] as List<dynamic>)
+        .map((e) => $enumDecode(_$TokenFormatEnumMap, e))
+        .toList(),
+    augmentsSyntaxTokens: json['augmentsSyntaxTokens'] as bool?,
+    serverCancelSupport: json['serverCancelSupport'] as bool?,
+    multilineTokenSupport: json['multilineTokenSupport'] as bool?,
+    overlappingTokenSupport: json['overlappingTokenSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$SemanticTokensClientCapabilitiesToJson(
   _SemanticTokensClientCapabilities instance,
@@ -13487,19 +10498,12 @@ Map<String, dynamic> _$SemanticTokensClientCapabilitiesToJson(
 const _$TokenFormatEnumMap = {TokenFormat.relativeValue: 'relativeValue'};
 
 _LinkedEditingRangeClientCapabilities
-_$LinkedEditingRangeClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_LinkedEditingRangeClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-      final val = _LinkedEditingRangeClientCapabilities(
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_$LinkedEditingRangeClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
+  return _LinkedEditingRangeClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$LinkedEditingRangeClientCapabilitiesToJson(
   _LinkedEditingRangeClientCapabilities instance,
@@ -13507,16 +10511,12 @@ Map<String, dynamic> _$LinkedEditingRangeClientCapabilitiesToJson(
 
 _MonikerClientCapabilities _$MonikerClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_MonikerClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-  final val = _MonikerClientCapabilities(
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _MonikerClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$MonikerClientCapabilitiesToJson(
   _MonikerClientCapabilities instance,
@@ -13524,17 +10524,12 @@ Map<String, dynamic> _$MonikerClientCapabilitiesToJson(
 
 _TypeHierarchyClientCapabilities _$TypeHierarchyClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) =>
-    $checkedCreate('_TypeHierarchyClientCapabilities', json, ($checkedConvert) {
-      $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-      final val = _TypeHierarchyClientCapabilities(
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+) {
+  $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
+  return _TypeHierarchyClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$TypeHierarchyClientCapabilitiesToJson(
   _TypeHierarchyClientCapabilities instance,
@@ -13542,16 +10537,12 @@ Map<String, dynamic> _$TypeHierarchyClientCapabilitiesToJson(
 
 _InlineValueClientCapabilities _$InlineValueClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlineValueClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-  final val = _InlineValueClientCapabilities(
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _InlineValueClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlineValueClientCapabilitiesToJson(
   _InlineValueClientCapabilities instance,
@@ -13559,30 +10550,23 @@ Map<String, dynamic> _$InlineValueClientCapabilitiesToJson(
 
 _InlayHintClientCapabilities _$InlayHintClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_InlayHintClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['resolveSupport', 'dynamicRegistration'],
   );
-  final val = _InlayHintClientCapabilities(
-    resolveSupport: $checkedConvert(
-      'resolveSupport',
-      (v) => _$recordConvertNullable(
-        v,
-        ($jsonValue) => (
-          properties: ($jsonValue['properties'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
-        ),
+  return _InlayHintClientCapabilities(
+    resolveSupport: _$recordConvertNullable(
+      json['resolveSupport'],
+      ($jsonValue) => (
+        properties: ($jsonValue['properties'] as List<dynamic>)
+            .map((e) => e as String)
+            .toList(),
       ),
     ),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$InlayHintClientCapabilitiesToJson(
   _InlayHintClientCapabilities instance,
@@ -13595,23 +10579,16 @@ Map<String, dynamic> _$InlayHintClientCapabilitiesToJson(
 
 _DiagnosticClientCapabilities _$DiagnosticClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_DiagnosticClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(
     json,
     allowedKeys: const ['relatedDocumentSupport', 'dynamicRegistration'],
   );
-  final val = _DiagnosticClientCapabilities(
-    relatedDocumentSupport: $checkedConvert(
-      'relatedDocumentSupport',
-      (v) => v as bool?,
-    ),
-    dynamicRegistration: $checkedConvert(
-      'dynamicRegistration',
-      (v) => v as bool?,
-    ),
+  return _DiagnosticClientCapabilities(
+    relatedDocumentSupport: json['relatedDocumentSupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$DiagnosticClientCapabilitiesToJson(
   _DiagnosticClientCapabilities instance,
@@ -13621,45 +10598,28 @@ Map<String, dynamic> _$DiagnosticClientCapabilitiesToJson(
 };
 
 _InlineCompletionClientCapabilities
-_$InlineCompletionClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_InlineCompletionClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
-      final val = _InlineCompletionClientCapabilities(
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_$InlineCompletionClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['dynamicRegistration']);
+  return _InlineCompletionClientCapabilities(
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$InlineCompletionClientCapabilitiesToJson(
   _InlineCompletionClientCapabilities instance,
 ) => <String, dynamic>{'dynamicRegistration': instance.dynamicRegistration};
 
 _NotebookDocumentSyncClientCapabilities
-_$NotebookDocumentSyncClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_NotebookDocumentSyncClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(
-        json,
-        allowedKeys: const ['executionSummarySupport', 'dynamicRegistration'],
-      );
-      final val = _NotebookDocumentSyncClientCapabilities(
-        executionSummarySupport: $checkedConvert(
-          'executionSummarySupport',
-          (v) => v as bool?,
-        ),
-        dynamicRegistration: $checkedConvert(
-          'dynamicRegistration',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
+_$NotebookDocumentSyncClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['executionSummarySupport', 'dynamicRegistration'],
+  );
+  return _NotebookDocumentSyncClientCapabilities(
+    executionSummarySupport: json['executionSummarySupport'] as bool?,
+    dynamicRegistration: json['dynamicRegistration'] as bool?,
+  );
+}
 
 Map<String, dynamic> _$NotebookDocumentSyncClientCapabilitiesToJson(
   _NotebookDocumentSyncClientCapabilities instance,
@@ -13669,25 +10629,18 @@ Map<String, dynamic> _$NotebookDocumentSyncClientCapabilitiesToJson(
 };
 
 _ShowMessageRequestClientCapabilities
-_$ShowMessageRequestClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_ShowMessageRequestClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['messageActionItem']);
-      final val = _ShowMessageRequestClientCapabilities(
-        messageActionItem: $checkedConvert(
-          'messageActionItem',
-          (v) => _$recordConvertNullable(
-            v,
-            ($jsonValue) => (
-              additionalPropertiesSupport:
-                  $jsonValue['additionalPropertiesSupport'] as bool?,
-            ),
-          ),
-        ),
-      );
-      return val;
-    });
+_$ShowMessageRequestClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['messageActionItem']);
+  return _ShowMessageRequestClientCapabilities(
+    messageActionItem: _$recordConvertNullable(
+      json['messageActionItem'],
+      ($jsonValue) => (
+        additionalPropertiesSupport:
+            $jsonValue['additionalPropertiesSupport'] as bool?,
+      ),
+    ),
+  );
+}
 
 Map<String, dynamic> _$ShowMessageRequestClientCapabilitiesToJson(
   _ShowMessageRequestClientCapabilities instance,
@@ -13702,30 +10655,23 @@ Map<String, dynamic> _$ShowMessageRequestClientCapabilitiesToJson(
 
 _ShowDocumentClientCapabilities _$ShowDocumentClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_ShowDocumentClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['support']);
-  final val = _ShowDocumentClientCapabilities(
-    support: $checkedConvert('support', (v) => v as bool),
-  );
-  return val;
-});
+  return _ShowDocumentClientCapabilities(support: json['support'] as bool);
+}
 
 Map<String, dynamic> _$ShowDocumentClientCapabilitiesToJson(
   _ShowDocumentClientCapabilities instance,
 ) => <String, dynamic>{'support': instance.support};
 
 _RegularExpressionsClientCapabilities
-_$RegularExpressionsClientCapabilitiesFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_RegularExpressionsClientCapabilities', json, (
-      $checkedConvert,
-    ) {
-      $checkKeys(json, allowedKeys: const ['engine', 'version']);
-      final val = _RegularExpressionsClientCapabilities(
-        engine: $checkedConvert('engine', (v) => v as String),
-        version: $checkedConvert('version', (v) => v as String?),
-      );
-      return val;
-    });
+_$RegularExpressionsClientCapabilitiesFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['engine', 'version']);
+  return _RegularExpressionsClientCapabilities(
+    engine: json['engine'] as String,
+    version: json['version'] as String?,
+  );
+}
 
 Map<String, dynamic> _$RegularExpressionsClientCapabilitiesToJson(
   _RegularExpressionsClientCapabilities instance,
@@ -13733,18 +10679,16 @@ Map<String, dynamic> _$RegularExpressionsClientCapabilitiesToJson(
 
 _MarkdownClientCapabilities _$MarkdownClientCapabilitiesFromJson(
   Map<String, dynamic> json,
-) => $checkedCreate('_MarkdownClientCapabilities', json, ($checkedConvert) {
+) {
   $checkKeys(json, allowedKeys: const ['parser', 'allowedTags', 'version']);
-  final val = _MarkdownClientCapabilities(
-    parser: $checkedConvert('parser', (v) => v as String),
-    allowedTags: $checkedConvert(
-      'allowedTags',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    version: $checkedConvert('version', (v) => v as String?),
+  return _MarkdownClientCapabilities(
+    parser: json['parser'] as String,
+    allowedTags: (json['allowedTags'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    version: json['version'] as String?,
   );
-  return val;
-});
+}
 
 Map<String, dynamic> _$MarkdownClientCapabilitiesToJson(
   _MarkdownClientCapabilities instance,

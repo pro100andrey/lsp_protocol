@@ -10,9 +10,15 @@
             "request": "launch",
             "program": "bin/generate.dart",
             "cwd": "${workspaceFolder}/generate/",
-            "args": [
-            
-            ]
-        }
+            "args": []
+        },
+        {
+            "name": "Debug Dart LSP Server",
+            "type": "dart",
+            "request": "launch",
+            "program": "example/server.dart",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
     ]
 }

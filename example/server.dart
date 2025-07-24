@@ -1,3 +1,6 @@
+// ignore_for_file: cascade_invocations, prefer_expression_function_bodies
+
+import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
@@ -5,58 +8,58 @@ import 'package:lsp_protocol/src/generated/protocol.dart';
 import 'package:lsp_protocol/src/server/connection.dart';
 
 Future<void> main() async {
-  final inputStream = stdin;
-  final outputSink = stdout;
-  final connection = Connection(inputStream, outputSink);
+  final server = await ServerSocket.bind(InternetAddress.loopbackIPv4, 9999);
+  print('Listening on ${server.address.address}:${server.port}');
 
-  connection.console.log('Starting LSP server...');
+  await for (final socket in server) {
+    final connection = Connection(socket, socket);
 
-  connection
-    ..onInitialize((params) async {
-      const _ = TextDocumentSyncOptions(
-        openClose: true,
-      );
-      // Handle initialization
+    connection.console.log('Starting LSP server...');
+
+    connection.onInitialize((params) async {
       return const InitializeResult(
-        capabilities: ServerCapabilities(),
+        capabilities: ServerCapabilities(
+          textDocumentSync: ServerCapabilitiesTextDocumentSync1(
+            value: TextDocumentSyncKind.fullValue,
+          ),
+        ),
       );
-    })
-    ..onDidOpenTextDocument((params) async {
+    });
+
+    connection.onDidOpenTextDocument((params) async {
       final diagnostics = _validateTextDocument(
         params.textDocument.text,
         params.textDocument.uri,
       );
 
-      // Send back an event notifying the client of issues we want them to
-      // render. To clear issues the server is responsible for sending an
-      // empty list.
       connection.sendDiagnostics(
         PublishDiagnosticsParams(
           diagnostics: diagnostics,
           uri: params.textDocument.uri,
         ),
       );
-    })
-    ..onDidChangeTextDocument(
-      (params) async {
-        final _ = params.contentChanges;
+    });
 
-        // Our custom validation logic
-        final diagnostics = _validateTextDocument(
-          'not supported',
-          params.textDocument.uri,
-        );
+    connection.onDidChangeTextDocument((params) async {
+      final contentChanges = params.contentChanges
+          .map((e) => TextDocumentContentChangeEvent1.fromJson(e.toJson()))
+          .toList();
 
-        connection.sendDiagnostics(
-          PublishDiagnosticsParams(
-            diagnostics: diagnostics,
-            uri: params.textDocument.uri,
-          ),
-        );
-      },
-    );
+      final diagnostics = _validateTextDocument(
+        contentChanges.last.value.text,
+        params.textDocument.uri,
+      );
 
-  await connection.listen();
+      connection.sendDiagnostics(
+        PublishDiagnosticsParams(
+          diagnostics: diagnostics,
+          uri: params.textDocument.uri,
+        ),
+      );
+    });
+
+    unawaited(connection.listen());
+  }
 }
 
 List<Diagnostic> _validateTextDocument(String text, String sourcePath) {

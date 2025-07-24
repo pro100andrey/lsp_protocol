@@ -33,7 +33,8 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Reference get _stringRef => refer('String');
 
   final _disallowUnrecognizedKeysRef = refer(
-    'JsonSerializable(disallowUnrecognizedKeys: true, checked: true)',
+    'JsonSerializable(disallowUnrecognizedKeys: true)',
+    // 'JsonSerializable(disallowUnrecognizedKeys: true, checked: true)',
   );
 
   @override
