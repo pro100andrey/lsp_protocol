@@ -69,8 +69,8 @@ $DefinitionBaseCopyWith(DefinitionBase _, $Res Function(DefinitionBase) __);
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class Definition0 implements DefinitionBase {
   const Definition0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory Definition0.fromJson(Map<String, dynamic> json) => _$Definition0FromJson(json);
@@ -151,8 +151,8 @@ $LocationCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class Definition1 implements DefinitionBase {
   const Definition1({required final  List<Location> value, final  String? $type}): _value = value,$type = $type ?? 'from2';
   factory Definition1.fromJson(Map<String, dynamic> json) => _$Definition1FromJson(json);
@@ -307,8 +307,8 @@ $LSPAnyBaseCopyWith(LSPAnyBase _, $Res Function(LSPAnyBase) __);
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class LSPAny0 implements LSPAnyBase {
   const LSPAny0({required final  LSPObject value, final  String? $type}): _value = value,$type = $type ?? 'from1';
   factory LSPAny0.fromJson(Map<String, dynamic> json) => _$LSPAny0FromJson(json);
@@ -386,8 +386,8 @@ as LSPObject,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class LSPAny1 implements LSPAnyBase {
   const LSPAny1({required final  LSPArray value, final  String? $type}): _value = value,$type = $type ?? 'from2';
   factory LSPAny1.fromJson(Map<String, dynamic> json) => _$LSPAny1FromJson(json);
@@ -465,8 +465,8 @@ as LSPArray,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class LSPAny2 implements LSPAnyBase {
   const LSPAny2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory LSPAny2.fromJson(Map<String, dynamic> json) => _$LSPAny2FromJson(json);
@@ -538,8 +538,8 @@ as String,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class LSPAny3 implements LSPAnyBase {
   const LSPAny3({required this.value, final  String? $type}): $type = $type ?? 'from4';
   factory LSPAny3.fromJson(Map<String, dynamic> json) => _$LSPAny3FromJson(json);
@@ -611,8 +611,8 @@ as int,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class LSPAny4 implements LSPAnyBase {
   const LSPAny4({required this.value, final  String? $type}): $type = $type ?? 'from5';
   factory LSPAny4.fromJson(Map<String, dynamic> json) => _$LSPAny4FromJson(json);
@@ -684,8 +684,8 @@ as int,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class LSPAny5 implements LSPAnyBase {
   const LSPAny5({required this.value, final  String? $type}): $type = $type ?? 'from6';
   factory LSPAny5.fromJson(Map<String, dynamic> json) => _$LSPAny5FromJson(json);
@@ -757,8 +757,8 @@ as double,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class LSPAny6 implements LSPAnyBase {
   const LSPAny6({required this.value, final  String? $type}): $type = $type ?? 'from7';
   factory LSPAny6.fromJson(Map<String, dynamic> json) => _$LSPAny6FromJson(json);
@@ -891,8 +891,8 @@ $InlineValueBaseCopyWith(InlineValueBase _, $Res Function(InlineValueBase) __);
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class InlineValue0 implements InlineValueBase {
   const InlineValue0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory InlineValue0.fromJson(Map<String, dynamic> json) => _$InlineValue0FromJson(json);
@@ -973,8 +973,8 @@ $InlineValueTextCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class InlineValue1 implements InlineValueBase {
   const InlineValue1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory InlineValue1.fromJson(Map<String, dynamic> json) => _$InlineValue1FromJson(json);
@@ -1055,8 +1055,8 @@ $InlineValueVariableLookupCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class InlineValue2 implements InlineValueBase {
   const InlineValue2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory InlineValue2.fromJson(Map<String, dynamic> json) => _$InlineValue2FromJson(json);
@@ -1194,8 +1194,8 @@ $DocumentDiagnosticReportBaseCopyWith(DocumentDiagnosticReportBase _, $Res Funct
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class DocumentDiagnosticReport0 implements DocumentDiagnosticReportBase {
   const DocumentDiagnosticReport0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory DocumentDiagnosticReport0.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticReport0FromJson(json);
@@ -1276,8 +1276,8 @@ $RelatedFullDocumentDiagnosticReportCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class DocumentDiagnosticReport1 implements DocumentDiagnosticReportBase {
   const DocumentDiagnosticReport1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory DocumentDiagnosticReport1.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticReport1FromJson(json);
@@ -1419,8 +1419,8 @@ $PrepareRenameResultBaseCopyWith(PrepareRenameResultBase _, $Res Function(Prepar
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class PrepareRenameResult0 implements PrepareRenameResultBase {
   const PrepareRenameResult0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory PrepareRenameResult0.fromJson(Map<String, dynamic> json) => _$PrepareRenameResult0FromJson(json);
@@ -1501,8 +1501,8 @@ $RangeCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class PrepareRenameResult1 implements PrepareRenameResultBase {
   const PrepareRenameResult1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory PrepareRenameResult1.fromJson(Map<String, dynamic> json) => _$PrepareRenameResult1FromJson(json);
@@ -1574,8 +1574,8 @@ as ({Range range, String placeholder}),
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class PrepareRenameResult2 implements PrepareRenameResultBase {
   const PrepareRenameResult2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory PrepareRenameResult2.fromJson(Map<String, dynamic> json) => _$PrepareRenameResult2FromJson(json);
@@ -1704,8 +1704,8 @@ $ProgressTokenBaseCopyWith(ProgressTokenBase _, $Res Function(ProgressTokenBase)
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ProgressToken0 implements ProgressTokenBase {
   const ProgressToken0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ProgressToken0.fromJson(Map<String, dynamic> json) => _$ProgressToken0FromJson(json);
@@ -1777,8 +1777,8 @@ as int,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ProgressToken1 implements ProgressTokenBase {
   const ProgressToken1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ProgressToken1.fromJson(Map<String, dynamic> json) => _$ProgressToken1FromJson(json);
@@ -1907,8 +1907,8 @@ $WorkspaceDocumentDiagnosticReportBaseCopyWith(WorkspaceDocumentDiagnosticReport
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceDocumentDiagnosticReport0 implements WorkspaceDocumentDiagnosticReportBase {
   const WorkspaceDocumentDiagnosticReport0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory WorkspaceDocumentDiagnosticReport0.fromJson(Map<String, dynamic> json) => _$WorkspaceDocumentDiagnosticReport0FromJson(json);
@@ -1989,8 +1989,8 @@ $WorkspaceFullDocumentDiagnosticReportCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceDocumentDiagnosticReport1 implements WorkspaceDocumentDiagnosticReportBase {
   const WorkspaceDocumentDiagnosticReport1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory WorkspaceDocumentDiagnosticReport1.fromJson(Map<String, dynamic> json) => _$WorkspaceDocumentDiagnosticReport1FromJson(json);
@@ -2128,8 +2128,8 @@ $TextDocumentContentChangeEventBaseCopyWith(TextDocumentContentChangeEventBase _
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentContentChangeEvent0 implements TextDocumentContentChangeEventBase {
   const TextDocumentContentChangeEvent0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory TextDocumentContentChangeEvent0.fromJson(Map<String, dynamic> json) => _$TextDocumentContentChangeEvent0FromJson(json);
@@ -2201,8 +2201,8 @@ as ({Range range, int? rangeLength, String text}),
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentContentChangeEvent1 implements TextDocumentContentChangeEventBase {
   const TextDocumentContentChangeEvent1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory TextDocumentContentChangeEvent1.fromJson(Map<String, dynamic> json) => _$TextDocumentContentChangeEvent1FromJson(json);
@@ -2331,8 +2331,8 @@ $MarkedStringBaseCopyWith(MarkedStringBase _, $Res Function(MarkedStringBase) __
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class MarkedString0 implements MarkedStringBase {
   const MarkedString0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory MarkedString0.fromJson(Map<String, dynamic> json) => _$MarkedString0FromJson(json);
@@ -2404,8 +2404,8 @@ as String,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class MarkedString1 implements MarkedStringBase {
   const MarkedString1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory MarkedString1.fromJson(Map<String, dynamic> json) => _$MarkedString1FromJson(json);
@@ -2534,8 +2534,8 @@ $DocumentFilterBaseCopyWith(DocumentFilterBase _, $Res Function(DocumentFilterBa
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class DocumentFilter0 implements DocumentFilterBase {
   const DocumentFilter0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory DocumentFilter0.fromJson(Map<String, dynamic> json) => _$DocumentFilter0FromJson(json);
@@ -2616,8 +2616,8 @@ $TextDocumentFilterBaseCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class DocumentFilter1 implements DocumentFilterBase {
   const DocumentFilter1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory DocumentFilter1.fromJson(Map<String, dynamic> json) => _$DocumentFilter1FromJson(json);
@@ -2755,8 +2755,8 @@ $GlobPatternBaseCopyWith(GlobPatternBase _, $Res Function(GlobPatternBase) __);
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class GlobPattern0 implements GlobPatternBase {
   const GlobPattern0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory GlobPattern0.fromJson(Map<String, dynamic> json) => _$GlobPattern0FromJson(json);
@@ -2828,8 +2828,8 @@ as Pattern,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class GlobPattern1 implements GlobPatternBase {
   const GlobPattern1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory GlobPattern1.fromJson(Map<String, dynamic> json) => _$GlobPattern1FromJson(json);
@@ -2971,8 +2971,8 @@ $TextDocumentFilterBaseCopyWith(TextDocumentFilterBase _, $Res Function(TextDocu
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentFilter0 implements TextDocumentFilterBase {
   const TextDocumentFilter0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory TextDocumentFilter0.fromJson(Map<String, dynamic> json) => _$TextDocumentFilter0FromJson(json);
@@ -3044,8 +3044,8 @@ as ({String language, String? scheme, String? pattern}),
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentFilter1 implements TextDocumentFilterBase {
   const TextDocumentFilter1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory TextDocumentFilter1.fromJson(Map<String, dynamic> json) => _$TextDocumentFilter1FromJson(json);
@@ -3117,8 +3117,8 @@ as ({String? language, String scheme, String? pattern}),
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentFilter2 implements TextDocumentFilterBase {
   const TextDocumentFilter2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory TextDocumentFilter2.fromJson(Map<String, dynamic> json) => _$TextDocumentFilter2FromJson(json);
@@ -3251,8 +3251,8 @@ $NotebookDocumentFilterBaseCopyWith(NotebookDocumentFilterBase _, $Res Function(
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class NotebookDocumentFilter0 implements NotebookDocumentFilterBase {
   const NotebookDocumentFilter0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory NotebookDocumentFilter0.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFilter0FromJson(json);
@@ -3324,8 +3324,8 @@ as ({String notebookType, String? scheme, String? pattern}),
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class NotebookDocumentFilter1 implements NotebookDocumentFilterBase {
   const NotebookDocumentFilter1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory NotebookDocumentFilter1.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFilter1FromJson(json);
@@ -3397,8 +3397,8 @@ as ({String? notebookType, String scheme, String? pattern}),
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class NotebookDocumentFilter2 implements NotebookDocumentFilterBase {
   const NotebookDocumentFilter2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory NotebookDocumentFilter2.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFilter2FromJson(json);
@@ -3542,8 +3542,8 @@ as DocumentSelector,
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentRegistrationOptionsDocumentSelector0 implements TextDocumentRegistrationOptionsDocumentSelectorBase {
   const TextDocumentRegistrationOptionsDocumentSelector0({required final  DocumentSelector value}): _value = value;
   factory TextDocumentRegistrationOptionsDocumentSelector0.fromJson(Map<String, dynamic> json) => _$TextDocumentRegistrationOptionsDocumentSelector0FromJson(json);
@@ -3682,8 +3682,8 @@ $WorkspaceEditDocumentChangesBaseCopyWith(WorkspaceEditDocumentChangesBase _, $R
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceEditDocumentChanges0 implements WorkspaceEditDocumentChangesBase {
   const WorkspaceEditDocumentChanges0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory WorkspaceEditDocumentChanges0.fromJson(Map<String, dynamic> json) => _$WorkspaceEditDocumentChanges0FromJson(json);
@@ -3764,8 +3764,8 @@ $TextDocumentEditCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceEditDocumentChanges1 implements WorkspaceEditDocumentChangesBase {
   const WorkspaceEditDocumentChanges1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory WorkspaceEditDocumentChanges1.fromJson(Map<String, dynamic> json) => _$WorkspaceEditDocumentChanges1FromJson(json);
@@ -3846,8 +3846,8 @@ $CreateFileCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceEditDocumentChanges2 implements WorkspaceEditDocumentChangesBase {
   const WorkspaceEditDocumentChanges2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory WorkspaceEditDocumentChanges2.fromJson(Map<String, dynamic> json) => _$WorkspaceEditDocumentChanges2FromJson(json);
@@ -3928,8 +3928,8 @@ $RenameFileCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceEditDocumentChanges3 implements WorkspaceEditDocumentChangesBase {
   const WorkspaceEditDocumentChanges3({required this.value, final  String? $type}): $type = $type ?? 'from4';
   factory WorkspaceEditDocumentChanges3.fromJson(Map<String, dynamic> json) => _$WorkspaceEditDocumentChanges3FromJson(json);
@@ -4067,8 +4067,8 @@ $InlayHintLabelBaseCopyWith(InlayHintLabelBase _, $Res Function(InlayHintLabelBa
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class InlayHintLabel0 implements InlayHintLabelBase {
   const InlayHintLabel0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory InlayHintLabel0.fromJson(Map<String, dynamic> json) => _$InlayHintLabel0FromJson(json);
@@ -4140,8 +4140,8 @@ as String,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class InlayHintLabel1 implements InlayHintLabelBase {
   const InlayHintLabel1({required final  List<InlayHintLabelPart> value, final  String? $type}): _value = value,$type = $type ?? 'from2';
   factory InlayHintLabel1.fromJson(Map<String, dynamic> json) => _$InlayHintLabel1FromJson(json);
@@ -4276,8 +4276,8 @@ $TooltipOrDocumentationBaseCopyWith(TooltipOrDocumentationBase _, $Res Function(
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TooltipOrDocumentation0 implements TooltipOrDocumentationBase {
   const TooltipOrDocumentation0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory TooltipOrDocumentation0.fromJson(Map<String, dynamic> json) => _$TooltipOrDocumentation0FromJson(json);
@@ -4349,8 +4349,8 @@ as String,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TooltipOrDocumentation1 implements TooltipOrDocumentationBase {
   const TooltipOrDocumentation1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory TooltipOrDocumentation1.fromJson(Map<String, dynamic> json) => _$TooltipOrDocumentation1FromJson(json);
@@ -4488,8 +4488,8 @@ $RelatedDocumentsBaseCopyWith(RelatedDocumentsBase _, $Res Function(RelatedDocum
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class RelatedDocuments0 implements RelatedDocumentsBase {
   const RelatedDocuments0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory RelatedDocuments0.fromJson(Map<String, dynamic> json) => _$RelatedDocuments0FromJson(json);
@@ -4570,8 +4570,8 @@ $FullDocumentDiagnosticReportCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class RelatedDocuments1 implements RelatedDocumentsBase {
   const RelatedDocuments1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory RelatedDocuments1.fromJson(Map<String, dynamic> json) => _$RelatedDocuments1FromJson(json);
@@ -4709,8 +4709,8 @@ $InlineCompletionItemInsertTextBaseCopyWith(InlineCompletionItemInsertTextBase _
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class InlineCompletionItemInsertText0 implements InlineCompletionItemInsertTextBase {
   const InlineCompletionItemInsertText0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory InlineCompletionItemInsertText0.fromJson(Map<String, dynamic> json) => _$InlineCompletionItemInsertText0FromJson(json);
@@ -4782,8 +4782,8 @@ as String,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class InlineCompletionItemInsertText1 implements InlineCompletionItemInsertTextBase {
   const InlineCompletionItemInsertText1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory InlineCompletionItemInsertText1.fromJson(Map<String, dynamic> json) => _$InlineCompletionItemInsertText1FromJson(json);
@@ -4921,8 +4921,8 @@ $DidChangeConfigurationRegistrationOptionsSectionBaseCopyWith(DidChangeConfigura
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class DidChangeConfigurationRegistrationOptionsSection0 implements DidChangeConfigurationRegistrationOptionsSectionBase {
   const DidChangeConfigurationRegistrationOptionsSection0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory DidChangeConfigurationRegistrationOptionsSection0.fromJson(Map<String, dynamic> json) => _$DidChangeConfigurationRegistrationOptionsSection0FromJson(json);
@@ -4994,8 +4994,8 @@ as String,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class DidChangeConfigurationRegistrationOptionsSection1 implements DidChangeConfigurationRegistrationOptionsSectionBase {
   const DidChangeConfigurationRegistrationOptionsSection1({required final  List<String> value, final  String? $type}): _value = value,$type = $type ?? 'from2';
   factory DidChangeConfigurationRegistrationOptionsSection1.fromJson(Map<String, dynamic> json) => _$DidChangeConfigurationRegistrationOptionsSection1FromJson(json);
@@ -5130,8 +5130,8 @@ $CompletionItemTextEditBaseCopyWith(CompletionItemTextEditBase _, $Res Function(
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class CompletionItemTextEdit0 implements CompletionItemTextEditBase {
   const CompletionItemTextEdit0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory CompletionItemTextEdit0.fromJson(Map<String, dynamic> json) => _$CompletionItemTextEdit0FromJson(json);
@@ -5212,8 +5212,8 @@ $TextEditCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class CompletionItemTextEdit1 implements CompletionItemTextEditBase {
   const CompletionItemTextEdit1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory CompletionItemTextEdit1.fromJson(Map<String, dynamic> json) => _$CompletionItemTextEdit1FromJson(json);
@@ -5351,8 +5351,8 @@ $CompletionListEditRangeBaseCopyWith(CompletionListEditRangeBase _, $Res Functio
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class CompletionListEditRange0 implements CompletionListEditRangeBase {
   const CompletionListEditRange0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory CompletionListEditRange0.fromJson(Map<String, dynamic> json) => _$CompletionListEditRange0FromJson(json);
@@ -5433,8 +5433,8 @@ $RangeCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class CompletionListEditRange1 implements CompletionListEditRangeBase {
   const CompletionListEditRange1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory CompletionListEditRange1.fromJson(Map<String, dynamic> json) => _$CompletionListEditRange1FromJson(json);
@@ -5567,8 +5567,8 @@ $HoverContentsBaseCopyWith(HoverContentsBase _, $Res Function(HoverContentsBase)
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class HoverContents0 implements HoverContentsBase {
   const HoverContents0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory HoverContents0.fromJson(Map<String, dynamic> json) => _$HoverContents0FromJson(json);
@@ -5649,8 +5649,8 @@ $MarkupContentCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class HoverContents1 implements HoverContentsBase {
   const HoverContents1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory HoverContents1.fromJson(Map<String, dynamic> json) => _$HoverContents1FromJson(json);
@@ -5731,8 +5731,8 @@ $MarkedStringBaseCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class HoverContents2 implements HoverContentsBase {
   const HoverContents2({required final  List<MarkedString> value, final  String? $type}): _value = value,$type = $type ?? 'from3';
   factory HoverContents2.fromJson(Map<String, dynamic> json) => _$HoverContents2FromJson(json);
@@ -5867,8 +5867,8 @@ $WorkspaceSymbolLocationBaseCopyWith(WorkspaceSymbolLocationBase _, $Res Functio
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceSymbolLocation0 implements WorkspaceSymbolLocationBase {
   const WorkspaceSymbolLocation0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory WorkspaceSymbolLocation0.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolLocation0FromJson(json);
@@ -5949,8 +5949,8 @@ $LocationCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceSymbolLocation1 implements WorkspaceSymbolLocationBase {
   const WorkspaceSymbolLocation1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory WorkspaceSymbolLocation1.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolLocation1FromJson(json);
@@ -6079,8 +6079,8 @@ $RangeBaseCopyWith(RangeBase _, $Res Function(RangeBase) __);
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class Range0 implements RangeBase {
   const Range0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory Range0.fromJson(Map<String, dynamic> json) => _$Range0FromJson(json);
@@ -6152,8 +6152,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class Range1 implements RangeBase {
   const Range1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory Range1.fromJson(Map<String, dynamic> json) => _$Range1FromJson(json);
@@ -6282,8 +6282,8 @@ $SemanticTokensOptionsFullBaseCopyWith(SemanticTokensOptionsFullBase _, $Res Fun
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class SemanticTokensOptionsFull0 implements SemanticTokensOptionsFullBase {
   const SemanticTokensOptionsFull0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory SemanticTokensOptionsFull0.fromJson(Map<String, dynamic> json) => _$SemanticTokensOptionsFull0FromJson(json);
@@ -6355,8 +6355,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class SemanticTokensOptionsFull1 implements SemanticTokensOptionsFullBase {
   const SemanticTokensOptionsFull1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory SemanticTokensOptionsFull1.fromJson(Map<String, dynamic> json) => _$SemanticTokensOptionsFull1FromJson(json);
@@ -6485,8 +6485,8 @@ $TextDocumentEditEditsBaseCopyWith(TextDocumentEditEditsBase _, $Res Function(Te
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentEditEdits0 implements TextDocumentEditEditsBase {
   const TextDocumentEditEdits0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory TextDocumentEditEdits0.fromJson(Map<String, dynamic> json) => _$TextDocumentEditEdits0FromJson(json);
@@ -6567,8 +6567,8 @@ $TextEditCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentEditEdits1 implements TextDocumentEditEditsBase {
   const TextDocumentEditEdits1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory TextDocumentEditEdits1.fromJson(Map<String, dynamic> json) => _$TextDocumentEditEdits1FromJson(json);
@@ -6721,8 +6721,8 @@ as int,
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ProcessIdOrVersion0 implements ProcessIdOrVersionBase {
   const ProcessIdOrVersion0({required this.value});
   factory ProcessIdOrVersion0.fromJson(Map<String, dynamic> json) => _$ProcessIdOrVersion0FromJson(json);
@@ -6862,8 +6862,8 @@ as String,
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class InitializeParamsRootPath0 implements InitializeParamsRootPathBase {
   const InitializeParamsRootPath0({required this.value});
   factory InitializeParamsRootPath0.fromJson(Map<String, dynamic> json) => _$InitializeParamsRootPath0FromJson(json);
@@ -7003,8 +7003,8 @@ as String,
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class InitializeParamsRootUri0 implements InitializeParamsRootUriBase {
   const InitializeParamsRootUri0({required this.value});
   factory InitializeParamsRootUri0.fromJson(Map<String, dynamic> json) => _$InitializeParamsRootUri0FromJson(json);
@@ -7144,8 +7144,8 @@ as List<WorkspaceFolder>,
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceFoldersInitializeParamsWorkspaceFolders0 implements WorkspaceFoldersInitializeParamsWorkspaceFoldersBase {
   const WorkspaceFoldersInitializeParamsWorkspaceFolders0({required final  List<WorkspaceFolder> value}): _value = value;
   factory WorkspaceFoldersInitializeParamsWorkspaceFolders0.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersInitializeParamsWorkspaceFolders0FromJson(json);
@@ -7276,8 +7276,8 @@ $ServerCapabilitiesTextDocumentSyncBaseCopyWith(ServerCapabilitiesTextDocumentSy
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesTextDocumentSync0 implements ServerCapabilitiesTextDocumentSyncBase {
   const ServerCapabilitiesTextDocumentSync0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesTextDocumentSync0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesTextDocumentSync0FromJson(json);
@@ -7358,8 +7358,8 @@ $TextDocumentSyncOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesTextDocumentSync1 implements ServerCapabilitiesTextDocumentSyncBase {
   const ServerCapabilitiesTextDocumentSync1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesTextDocumentSync1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesTextDocumentSync1FromJson(json);
@@ -7488,8 +7488,8 @@ $ServerCapabilitiesNotebookDocumentSyncBaseCopyWith(ServerCapabilitiesNotebookDo
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesNotebookDocumentSync0 implements ServerCapabilitiesNotebookDocumentSyncBase {
   const ServerCapabilitiesNotebookDocumentSync0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesNotebookDocumentSync0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesNotebookDocumentSync0FromJson(json);
@@ -7570,8 +7570,8 @@ $NotebookDocumentSyncOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesNotebookDocumentSync1 implements ServerCapabilitiesNotebookDocumentSyncBase {
   const ServerCapabilitiesNotebookDocumentSync1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesNotebookDocumentSync1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesNotebookDocumentSync1FromJson(json);
@@ -7709,8 +7709,8 @@ $ServerCapabilitiesHoverProviderBaseCopyWith(ServerCapabilitiesHoverProviderBase
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesHoverProvider0 implements ServerCapabilitiesHoverProviderBase {
   const ServerCapabilitiesHoverProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesHoverProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesHoverProvider0FromJson(json);
@@ -7782,8 +7782,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesHoverProvider1 implements ServerCapabilitiesHoverProviderBase {
   const ServerCapabilitiesHoverProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesHoverProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesHoverProvider1FromJson(json);
@@ -7925,8 +7925,8 @@ $ServerCapabilitiesDeclarationProviderBaseCopyWith(ServerCapabilitiesDeclaration
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDeclarationProvider0 implements ServerCapabilitiesDeclarationProviderBase {
   const ServerCapabilitiesDeclarationProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesDeclarationProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDeclarationProvider0FromJson(json);
@@ -7998,8 +7998,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDeclarationProvider1 implements ServerCapabilitiesDeclarationProviderBase {
   const ServerCapabilitiesDeclarationProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesDeclarationProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDeclarationProvider1FromJson(json);
@@ -8080,8 +8080,8 @@ $DeclarationOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDeclarationProvider2 implements ServerCapabilitiesDeclarationProviderBase {
   const ServerCapabilitiesDeclarationProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesDeclarationProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDeclarationProvider2FromJson(json);
@@ -8219,8 +8219,8 @@ $ServerCapabilitiesDefinitionProviderBaseCopyWith(ServerCapabilitiesDefinitionPr
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDefinitionProvider0 implements ServerCapabilitiesDefinitionProviderBase {
   const ServerCapabilitiesDefinitionProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesDefinitionProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDefinitionProvider0FromJson(json);
@@ -8292,8 +8292,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDefinitionProvider1 implements ServerCapabilitiesDefinitionProviderBase {
   const ServerCapabilitiesDefinitionProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesDefinitionProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDefinitionProvider1FromJson(json);
@@ -8435,8 +8435,8 @@ $ServerCapabilitiesTypeDefinitionProviderBaseCopyWith(ServerCapabilitiesTypeDefi
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesTypeDefinitionProvider0 implements ServerCapabilitiesTypeDefinitionProviderBase {
   const ServerCapabilitiesTypeDefinitionProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesTypeDefinitionProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesTypeDefinitionProvider0FromJson(json);
@@ -8508,8 +8508,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesTypeDefinitionProvider1 implements ServerCapabilitiesTypeDefinitionProviderBase {
   const ServerCapabilitiesTypeDefinitionProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesTypeDefinitionProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesTypeDefinitionProvider1FromJson(json);
@@ -8590,8 +8590,8 @@ $TypeDefinitionOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesTypeDefinitionProvider2 implements ServerCapabilitiesTypeDefinitionProviderBase {
   const ServerCapabilitiesTypeDefinitionProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesTypeDefinitionProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesTypeDefinitionProvider2FromJson(json);
@@ -8733,8 +8733,8 @@ $ServerCapabilitiesImplementationProviderBaseCopyWith(ServerCapabilitiesImplemen
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesImplementationProvider0 implements ServerCapabilitiesImplementationProviderBase {
   const ServerCapabilitiesImplementationProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesImplementationProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesImplementationProvider0FromJson(json);
@@ -8806,8 +8806,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesImplementationProvider1 implements ServerCapabilitiesImplementationProviderBase {
   const ServerCapabilitiesImplementationProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesImplementationProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesImplementationProvider1FromJson(json);
@@ -8888,8 +8888,8 @@ $ImplementationOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesImplementationProvider2 implements ServerCapabilitiesImplementationProviderBase {
   const ServerCapabilitiesImplementationProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesImplementationProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesImplementationProvider2FromJson(json);
@@ -9027,8 +9027,8 @@ $ServerCapabilitiesReferencesProviderBaseCopyWith(ServerCapabilitiesReferencesPr
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesReferencesProvider0 implements ServerCapabilitiesReferencesProviderBase {
   const ServerCapabilitiesReferencesProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesReferencesProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesReferencesProvider0FromJson(json);
@@ -9100,8 +9100,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesReferencesProvider1 implements ServerCapabilitiesReferencesProviderBase {
   const ServerCapabilitiesReferencesProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesReferencesProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesReferencesProvider1FromJson(json);
@@ -9239,8 +9239,8 @@ $ServerCapabilitiesDocumentHighlightProviderBaseCopyWith(ServerCapabilitiesDocum
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDocumentHighlightProvider0 implements ServerCapabilitiesDocumentHighlightProviderBase {
   const ServerCapabilitiesDocumentHighlightProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesDocumentHighlightProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDocumentHighlightProvider0FromJson(json);
@@ -9312,8 +9312,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDocumentHighlightProvider1 implements ServerCapabilitiesDocumentHighlightProviderBase {
   const ServerCapabilitiesDocumentHighlightProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesDocumentHighlightProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDocumentHighlightProvider1FromJson(json);
@@ -9451,8 +9451,8 @@ $ServerCapabilitiesDocumentSymbolProviderBaseCopyWith(ServerCapabilitiesDocument
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDocumentSymbolProvider0 implements ServerCapabilitiesDocumentSymbolProviderBase {
   const ServerCapabilitiesDocumentSymbolProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesDocumentSymbolProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDocumentSymbolProvider0FromJson(json);
@@ -9524,8 +9524,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDocumentSymbolProvider1 implements ServerCapabilitiesDocumentSymbolProviderBase {
   const ServerCapabilitiesDocumentSymbolProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesDocumentSymbolProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDocumentSymbolProvider1FromJson(json);
@@ -9663,8 +9663,8 @@ $ServerCapabilitiesCodeActionProviderBaseCopyWith(ServerCapabilitiesCodeActionPr
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesCodeActionProvider0 implements ServerCapabilitiesCodeActionProviderBase {
   const ServerCapabilitiesCodeActionProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesCodeActionProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesCodeActionProvider0FromJson(json);
@@ -9736,8 +9736,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesCodeActionProvider1 implements ServerCapabilitiesCodeActionProviderBase {
   const ServerCapabilitiesCodeActionProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesCodeActionProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesCodeActionProvider1FromJson(json);
@@ -9879,8 +9879,8 @@ $ServerCapabilitiesColorProviderBaseCopyWith(ServerCapabilitiesColorProviderBase
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesColorProvider0 implements ServerCapabilitiesColorProviderBase {
   const ServerCapabilitiesColorProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesColorProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesColorProvider0FromJson(json);
@@ -9952,8 +9952,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesColorProvider1 implements ServerCapabilitiesColorProviderBase {
   const ServerCapabilitiesColorProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesColorProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesColorProvider1FromJson(json);
@@ -10034,8 +10034,8 @@ $DocumentColorOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesColorProvider2 implements ServerCapabilitiesColorProviderBase {
   const ServerCapabilitiesColorProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesColorProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesColorProvider2FromJson(json);
@@ -10173,8 +10173,8 @@ $ServerCapabilitiesWorkspaceSymbolProviderBaseCopyWith(ServerCapabilitiesWorkspa
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesWorkspaceSymbolProvider0 implements ServerCapabilitiesWorkspaceSymbolProviderBase {
   const ServerCapabilitiesWorkspaceSymbolProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesWorkspaceSymbolProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesWorkspaceSymbolProvider0FromJson(json);
@@ -10246,8 +10246,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesWorkspaceSymbolProvider1 implements ServerCapabilitiesWorkspaceSymbolProviderBase {
   const ServerCapabilitiesWorkspaceSymbolProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesWorkspaceSymbolProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesWorkspaceSymbolProvider1FromJson(json);
@@ -10385,8 +10385,8 @@ $ServerCapabilitiesDocumentFormattingProviderBaseCopyWith(ServerCapabilitiesDocu
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDocumentFormattingProvider0 implements ServerCapabilitiesDocumentFormattingProviderBase {
   const ServerCapabilitiesDocumentFormattingProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesDocumentFormattingProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDocumentFormattingProvider0FromJson(json);
@@ -10458,8 +10458,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDocumentFormattingProvider1 implements ServerCapabilitiesDocumentFormattingProviderBase {
   const ServerCapabilitiesDocumentFormattingProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesDocumentFormattingProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDocumentFormattingProvider1FromJson(json);
@@ -10597,8 +10597,8 @@ $ServerCapabilitiesDocumentRangeFormattingProviderBaseCopyWith(ServerCapabilitie
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDocumentRangeFormattingProvider0 implements ServerCapabilitiesDocumentRangeFormattingProviderBase {
   const ServerCapabilitiesDocumentRangeFormattingProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesDocumentRangeFormattingProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDocumentRangeFormattingProvider0FromJson(json);
@@ -10670,8 +10670,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDocumentRangeFormattingProvider1 implements ServerCapabilitiesDocumentRangeFormattingProviderBase {
   const ServerCapabilitiesDocumentRangeFormattingProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesDocumentRangeFormattingProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDocumentRangeFormattingProvider1FromJson(json);
@@ -10809,8 +10809,8 @@ $ServerCapabilitiesRenameProviderBaseCopyWith(ServerCapabilitiesRenameProviderBa
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesRenameProvider0 implements ServerCapabilitiesRenameProviderBase {
   const ServerCapabilitiesRenameProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesRenameProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesRenameProvider0FromJson(json);
@@ -10882,8 +10882,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesRenameProvider1 implements ServerCapabilitiesRenameProviderBase {
   const ServerCapabilitiesRenameProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesRenameProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesRenameProvider1FromJson(json);
@@ -11025,8 +11025,8 @@ $ServerCapabilitiesFoldingRangeProviderBaseCopyWith(ServerCapabilitiesFoldingRan
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesFoldingRangeProvider0 implements ServerCapabilitiesFoldingRangeProviderBase {
   const ServerCapabilitiesFoldingRangeProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesFoldingRangeProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFoldingRangeProvider0FromJson(json);
@@ -11098,8 +11098,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesFoldingRangeProvider1 implements ServerCapabilitiesFoldingRangeProviderBase {
   const ServerCapabilitiesFoldingRangeProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesFoldingRangeProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFoldingRangeProvider1FromJson(json);
@@ -11180,8 +11180,8 @@ $FoldingRangeOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesFoldingRangeProvider2 implements ServerCapabilitiesFoldingRangeProviderBase {
   const ServerCapabilitiesFoldingRangeProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesFoldingRangeProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFoldingRangeProvider2FromJson(json);
@@ -11323,8 +11323,8 @@ $ServerCapabilitiesSelectionRangeProviderBaseCopyWith(ServerCapabilitiesSelectio
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesSelectionRangeProvider0 implements ServerCapabilitiesSelectionRangeProviderBase {
   const ServerCapabilitiesSelectionRangeProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesSelectionRangeProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesSelectionRangeProvider0FromJson(json);
@@ -11396,8 +11396,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesSelectionRangeProvider1 implements ServerCapabilitiesSelectionRangeProviderBase {
   const ServerCapabilitiesSelectionRangeProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesSelectionRangeProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesSelectionRangeProvider1FromJson(json);
@@ -11478,8 +11478,8 @@ $SelectionRangeOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesSelectionRangeProvider2 implements ServerCapabilitiesSelectionRangeProviderBase {
   const ServerCapabilitiesSelectionRangeProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesSelectionRangeProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesSelectionRangeProvider2FromJson(json);
@@ -11621,8 +11621,8 @@ $ServerCapabilitiesCallHierarchyProviderBaseCopyWith(ServerCapabilitiesCallHiera
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesCallHierarchyProvider0 implements ServerCapabilitiesCallHierarchyProviderBase {
   const ServerCapabilitiesCallHierarchyProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesCallHierarchyProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesCallHierarchyProvider0FromJson(json);
@@ -11694,8 +11694,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesCallHierarchyProvider1 implements ServerCapabilitiesCallHierarchyProviderBase {
   const ServerCapabilitiesCallHierarchyProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesCallHierarchyProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesCallHierarchyProvider1FromJson(json);
@@ -11776,8 +11776,8 @@ $CallHierarchyOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesCallHierarchyProvider2 implements ServerCapabilitiesCallHierarchyProviderBase {
   const ServerCapabilitiesCallHierarchyProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesCallHierarchyProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesCallHierarchyProvider2FromJson(json);
@@ -11919,8 +11919,8 @@ $ServerCapabilitiesLinkedEditingRangeProviderBaseCopyWith(ServerCapabilitiesLink
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesLinkedEditingRangeProvider0 implements ServerCapabilitiesLinkedEditingRangeProviderBase {
   const ServerCapabilitiesLinkedEditingRangeProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesLinkedEditingRangeProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesLinkedEditingRangeProvider0FromJson(json);
@@ -11992,8 +11992,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesLinkedEditingRangeProvider1 implements ServerCapabilitiesLinkedEditingRangeProviderBase {
   const ServerCapabilitiesLinkedEditingRangeProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesLinkedEditingRangeProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesLinkedEditingRangeProvider1FromJson(json);
@@ -12074,8 +12074,8 @@ $LinkedEditingRangeOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesLinkedEditingRangeProvider2 implements ServerCapabilitiesLinkedEditingRangeProviderBase {
   const ServerCapabilitiesLinkedEditingRangeProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesLinkedEditingRangeProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesLinkedEditingRangeProvider2FromJson(json);
@@ -12213,8 +12213,8 @@ $ServerCapabilitiesSemanticTokensProviderBaseCopyWith(ServerCapabilitiesSemantic
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesSemanticTokensProvider0 implements ServerCapabilitiesSemanticTokensProviderBase {
   const ServerCapabilitiesSemanticTokensProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesSemanticTokensProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesSemanticTokensProvider0FromJson(json);
@@ -12295,8 +12295,8 @@ $SemanticTokensOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesSemanticTokensProvider1 implements ServerCapabilitiesSemanticTokensProviderBase {
   const ServerCapabilitiesSemanticTokensProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesSemanticTokensProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesSemanticTokensProvider1FromJson(json);
@@ -12438,8 +12438,8 @@ $ServerCapabilitiesMonikerProviderBaseCopyWith(ServerCapabilitiesMonikerProvider
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesMonikerProvider0 implements ServerCapabilitiesMonikerProviderBase {
   const ServerCapabilitiesMonikerProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesMonikerProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesMonikerProvider0FromJson(json);
@@ -12511,8 +12511,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesMonikerProvider1 implements ServerCapabilitiesMonikerProviderBase {
   const ServerCapabilitiesMonikerProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesMonikerProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesMonikerProvider1FromJson(json);
@@ -12593,8 +12593,8 @@ $MonikerOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesMonikerProvider2 implements ServerCapabilitiesMonikerProviderBase {
   const ServerCapabilitiesMonikerProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesMonikerProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesMonikerProvider2FromJson(json);
@@ -12736,8 +12736,8 @@ $ServerCapabilitiesTypeHierarchyProviderBaseCopyWith(ServerCapabilitiesTypeHiera
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesTypeHierarchyProvider0 implements ServerCapabilitiesTypeHierarchyProviderBase {
   const ServerCapabilitiesTypeHierarchyProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesTypeHierarchyProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesTypeHierarchyProvider0FromJson(json);
@@ -12809,8 +12809,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesTypeHierarchyProvider1 implements ServerCapabilitiesTypeHierarchyProviderBase {
   const ServerCapabilitiesTypeHierarchyProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesTypeHierarchyProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesTypeHierarchyProvider1FromJson(json);
@@ -12891,8 +12891,8 @@ $TypeHierarchyOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesTypeHierarchyProvider2 implements ServerCapabilitiesTypeHierarchyProviderBase {
   const ServerCapabilitiesTypeHierarchyProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesTypeHierarchyProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesTypeHierarchyProvider2FromJson(json);
@@ -13034,8 +13034,8 @@ $ServerCapabilitiesInlineValueProviderBaseCopyWith(ServerCapabilitiesInlineValue
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesInlineValueProvider0 implements ServerCapabilitiesInlineValueProviderBase {
   const ServerCapabilitiesInlineValueProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesInlineValueProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesInlineValueProvider0FromJson(json);
@@ -13107,8 +13107,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesInlineValueProvider1 implements ServerCapabilitiesInlineValueProviderBase {
   const ServerCapabilitiesInlineValueProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesInlineValueProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesInlineValueProvider1FromJson(json);
@@ -13189,8 +13189,8 @@ $InlineValueOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesInlineValueProvider2 implements ServerCapabilitiesInlineValueProviderBase {
   const ServerCapabilitiesInlineValueProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesInlineValueProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesInlineValueProvider2FromJson(json);
@@ -13332,8 +13332,8 @@ $ServerCapabilitiesInlayHintProviderBaseCopyWith(ServerCapabilitiesInlayHintProv
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesInlayHintProvider0 implements ServerCapabilitiesInlayHintProviderBase {
   const ServerCapabilitiesInlayHintProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesInlayHintProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesInlayHintProvider0FromJson(json);
@@ -13405,8 +13405,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesInlayHintProvider1 implements ServerCapabilitiesInlayHintProviderBase {
   const ServerCapabilitiesInlayHintProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesInlayHintProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesInlayHintProvider1FromJson(json);
@@ -13487,8 +13487,8 @@ $InlayHintOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesInlayHintProvider2 implements ServerCapabilitiesInlayHintProviderBase {
   const ServerCapabilitiesInlayHintProvider2({required this.value, final  String? $type}): $type = $type ?? 'from3';
   factory ServerCapabilitiesInlayHintProvider2.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesInlayHintProvider2FromJson(json);
@@ -13626,8 +13626,8 @@ $ServerCapabilitiesDiagnosticProviderBaseCopyWith(ServerCapabilitiesDiagnosticPr
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDiagnosticProvider0 implements ServerCapabilitiesDiagnosticProviderBase {
   const ServerCapabilitiesDiagnosticProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesDiagnosticProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDiagnosticProvider0FromJson(json);
@@ -13708,8 +13708,8 @@ $DiagnosticOptionsCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesDiagnosticProvider1 implements ServerCapabilitiesDiagnosticProviderBase {
   const ServerCapabilitiesDiagnosticProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesDiagnosticProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesDiagnosticProvider1FromJson(json);
@@ -13847,8 +13847,8 @@ $ServerCapabilitiesInlineCompletionProviderBaseCopyWith(ServerCapabilitiesInline
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesInlineCompletionProvider0 implements ServerCapabilitiesInlineCompletionProviderBase {
   const ServerCapabilitiesInlineCompletionProvider0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ServerCapabilitiesInlineCompletionProvider0.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesInlineCompletionProvider0FromJson(json);
@@ -13920,8 +13920,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ServerCapabilitiesInlineCompletionProvider1 implements ServerCapabilitiesInlineCompletionProviderBase {
   const ServerCapabilitiesInlineCompletionProvider1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ServerCapabilitiesInlineCompletionProvider1.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesInlineCompletionProvider1FromJson(json);
@@ -14059,8 +14059,8 @@ $TextDocumentSyncOptionsSaveBaseCopyWith(TextDocumentSyncOptionsSaveBase _, $Res
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentSyncOptionsSave0 implements TextDocumentSyncOptionsSaveBase {
   const TextDocumentSyncOptionsSave0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory TextDocumentSyncOptionsSave0.fromJson(Map<String, dynamic> json) => _$TextDocumentSyncOptionsSave0FromJson(json);
@@ -14132,8 +14132,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class TextDocumentSyncOptionsSave1 implements TextDocumentSyncOptionsSaveBase {
   const TextDocumentSyncOptionsSave1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory TextDocumentSyncOptionsSave1.fromJson(Map<String, dynamic> json) => _$TextDocumentSyncOptionsSave1FromJson(json);
@@ -14271,8 +14271,8 @@ $NotebookDocumentSyncOptionsNotebookSelectorBaseCopyWith(NotebookDocumentSyncOpt
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class NotebookDocumentSyncOptionsNotebookSelector0 implements NotebookDocumentSyncOptionsNotebookSelectorBase {
   const NotebookDocumentSyncOptionsNotebookSelector0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory NotebookDocumentSyncOptionsNotebookSelector0.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsNotebookSelector0FromJson(json);
@@ -14344,8 +14344,8 @@ as ({NotebookCellTextDocumentFilterNotebookBase notebook, List<({String language
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class NotebookDocumentSyncOptionsNotebookSelector1 implements NotebookDocumentSyncOptionsNotebookSelectorBase {
   const NotebookDocumentSyncOptionsNotebookSelector1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory NotebookDocumentSyncOptionsNotebookSelector1.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsNotebookSelector1FromJson(json);
@@ -14474,8 +14474,8 @@ $WorkspaceFoldersServerCapabilitiesChangeNotificationsBaseCopyWith(WorkspaceFold
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceFoldersServerCapabilitiesChangeNotifications0 implements WorkspaceFoldersServerCapabilitiesChangeNotificationsBase {
   const WorkspaceFoldersServerCapabilitiesChangeNotifications0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory WorkspaceFoldersServerCapabilitiesChangeNotifications0.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersServerCapabilitiesChangeNotifications0FromJson(json);
@@ -14547,8 +14547,8 @@ as String,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class WorkspaceFoldersServerCapabilitiesChangeNotifications1 implements WorkspaceFoldersServerCapabilitiesChangeNotificationsBase {
   const WorkspaceFoldersServerCapabilitiesChangeNotifications1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory WorkspaceFoldersServerCapabilitiesChangeNotifications1.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersServerCapabilitiesChangeNotifications1FromJson(json);
@@ -14677,8 +14677,8 @@ $ParameterInformationLabelBaseCopyWith(ParameterInformationLabelBase _, $Res Fun
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ParameterInformationLabel0 implements ParameterInformationLabelBase {
   const ParameterInformationLabel0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory ParameterInformationLabel0.fromJson(Map<String, dynamic> json) => _$ParameterInformationLabel0FromJson(json);
@@ -14750,8 +14750,8 @@ as String,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class ParameterInformationLabel1 implements ParameterInformationLabelBase {
   const ParameterInformationLabel1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory ParameterInformationLabel1.fromJson(Map<String, dynamic> json) => _$ParameterInformationLabel1FromJson(json);
@@ -14880,8 +14880,8 @@ $NotebookCellTextDocumentFilterNotebookBaseCopyWith(NotebookCellTextDocumentFilt
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class NotebookCellTextDocumentFilterNotebook0 implements NotebookCellTextDocumentFilterNotebookBase {
   const NotebookCellTextDocumentFilterNotebook0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory NotebookCellTextDocumentFilterNotebook0.fromJson(Map<String, dynamic> json) => _$NotebookCellTextDocumentFilterNotebook0FromJson(json);
@@ -14953,8 +14953,8 @@ as String,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class NotebookCellTextDocumentFilterNotebook1 implements NotebookCellTextDocumentFilterNotebookBase {
   const NotebookCellTextDocumentFilterNotebook1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory NotebookCellTextDocumentFilterNotebook1.fromJson(Map<String, dynamic> json) => _$NotebookCellTextDocumentFilterNotebook1FromJson(json);
@@ -15092,8 +15092,8 @@ $RelativePatternBaseUriBaseCopyWith(RelativePatternBaseUriBase _, $Res Function(
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class RelativePatternBaseUri0 implements RelativePatternBaseUriBase {
   const RelativePatternBaseUri0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory RelativePatternBaseUri0.fromJson(Map<String, dynamic> json) => _$RelativePatternBaseUri0FromJson(json);
@@ -15174,8 +15174,8 @@ $WorkspaceFolderCopyWith<$Res> get value {
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class RelativePatternBaseUri1 implements RelativePatternBaseUriBase {
   const RelativePatternBaseUri1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory RelativePatternBaseUri1.fromJson(Map<String, dynamic> json) => _$RelativePatternBaseUri1FromJson(json);
@@ -15304,8 +15304,8 @@ $SemanticTokensClientCapabilitiesFullBaseCopyWith(SemanticTokensClientCapabiliti
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class SemanticTokensClientCapabilitiesFull0 implements SemanticTokensClientCapabilitiesFullBase {
   const SemanticTokensClientCapabilitiesFull0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory SemanticTokensClientCapabilitiesFull0.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesFull0FromJson(json);
@@ -15377,8 +15377,8 @@ as bool,
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class SemanticTokensClientCapabilitiesFull1 implements SemanticTokensClientCapabilitiesFullBase {
   const SemanticTokensClientCapabilitiesFull1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory SemanticTokensClientCapabilitiesFull1.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesFull1FromJson(json);
@@ -15561,7 +15561,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ImplementationParams implements ImplementationParams {
   const _ImplementationParams({required this.textDocument, required this.position, this.partialResultToken, this.workDoneToken});
   factory _ImplementationParams.fromJson(Map<String, dynamic> json) => _$ImplementationParamsFromJson(json);
@@ -15753,7 +15753,7 @@ $RangeCopyWith<$Res> get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Location implements Location {
   const _Location({required this.uri, required this.range});
   factory _Location.fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);
@@ -15909,7 +15909,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ImplementationRegistrationOptions implements ImplementationRegistrationOptions {
   const _ImplementationRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _ImplementationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ImplementationRegistrationOptionsFromJson(json);
@@ -16101,7 +16101,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeDefinitionParams implements TypeDefinitionParams {
   const _TypeDefinitionParams({required this.textDocument, required this.position, this.partialResultToken, this.workDoneToken});
   factory _TypeDefinitionParams.fromJson(Map<String, dynamic> json) => _$TypeDefinitionParamsFromJson(json);
@@ -16294,7 +16294,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeDefinitionRegistrationOptions implements TypeDefinitionRegistrationOptions {
   const _TypeDefinitionRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _TypeDefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TypeDefinitionRegistrationOptionsFromJson(json);
@@ -16442,7 +16442,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceFolder implements WorkspaceFolder {
   const _WorkspaceFolder({required this.uri, required this.name});
   factory _WorkspaceFolder.fromJson(Map<String, dynamic> json) => _$WorkspaceFolderFromJson(json);
@@ -16587,7 +16587,7 @@ $WorkspaceFoldersChangeEventCopyWith<$Res> get event {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidChangeWorkspaceFoldersParams implements DidChangeWorkspaceFoldersParams {
   const _DidChangeWorkspaceFoldersParams({required this.event});
   factory _DidChangeWorkspaceFoldersParams.fromJson(Map<String, dynamic> json) => _$DidChangeWorkspaceFoldersParamsFromJson(json);
@@ -16730,7 +16730,7 @@ as List<ConfigurationItem>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ConfigurationParams implements ConfigurationParams {
   const _ConfigurationParams({required final  List<ConfigurationItem> items}): _items = items;
   factory _ConfigurationParams.fromJson(Map<String, dynamic> json) => _$ConfigurationParamsFromJson(json);
@@ -16905,7 +16905,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentColorParams implements DocumentColorParams {
   const _DocumentColorParams({required this.textDocument, this.partialResultToken, this.workDoneToken});
   factory _DocumentColorParams.fromJson(Map<String, dynamic> json) => _$DocumentColorParamsFromJson(json);
@@ -17095,7 +17095,7 @@ $ColorCopyWith<$Res> get color {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ColorInformation implements ColorInformation {
   const _ColorInformation({required this.range, required this.color});
   factory _ColorInformation.fromJson(Map<String, dynamic> json) => _$ColorInformationFromJson(json);
@@ -17260,7 +17260,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentColorRegistrationOptions implements DocumentColorRegistrationOptions {
   const _DocumentColorRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _DocumentColorRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentColorRegistrationOptionsFromJson(json);
@@ -17462,7 +17462,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ColorPresentationParams implements ColorPresentationParams {
   const _ColorPresentationParams({required this.textDocument, required this.color, required this.range, this.partialResultToken, this.workDoneToken});
   factory _ColorPresentationParams.fromJson(Map<String, dynamic> json) => _$ColorPresentationParamsFromJson(json);
@@ -17669,7 +17669,7 @@ $TextEditCopyWith<$Res>? get textEdit {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ColorPresentation implements ColorPresentation {
   const _ColorPresentation({required this.label, final  List<TextEdit>? additionalTextEdits, this.textEdit}): _additionalTextEdits = additionalTextEdits;
   factory _ColorPresentation.fromJson(Map<String, dynamic> json) => _$ColorPresentationFromJson(json);
@@ -17827,7 +17827,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkDoneProgressOptions implements WorkDoneProgressOptions {
   const _WorkDoneProgressOptions({this.workDoneProgress});
   factory _WorkDoneProgressOptions.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressOptionsFromJson(json);
@@ -17970,7 +17970,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentRegistrationOptions implements TextDocumentRegistrationOptions {
   const _TextDocumentRegistrationOptions({required this.documentSelector});
   factory _TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentRegistrationOptionsFromJson(json);
@@ -18148,7 +18148,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FoldingRangeParams implements FoldingRangeParams {
   const _FoldingRangeParams({required this.textDocument, this.partialResultToken, this.workDoneToken});
   factory _FoldingRangeParams.fromJson(Map<String, dynamic> json) => _$FoldingRangeParamsFromJson(json);
@@ -18324,7 +18324,7 @@ as int?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FoldingRange implements FoldingRange {
   const _FoldingRange({required this.startLine, required this.endLine, this.collapsedText, this.kind, this.endCharacter, this.startCharacter});
   factory _FoldingRange.fromJson(Map<String, dynamic> json) => _$FoldingRangeFromJson(json);
@@ -18479,7 +18479,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FoldingRangeRegistrationOptions implements FoldingRangeRegistrationOptions {
   const _FoldingRangeRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _FoldingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$FoldingRangeRegistrationOptionsFromJson(json);
@@ -18671,7 +18671,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DeclarationParams implements DeclarationParams {
   const _DeclarationParams({required this.textDocument, required this.position, this.partialResultToken, this.workDoneToken});
   factory _DeclarationParams.fromJson(Map<String, dynamic> json) => _$DeclarationParamsFromJson(json);
@@ -18864,7 +18864,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DeclarationRegistrationOptions implements DeclarationRegistrationOptions {
   const _DeclarationRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _DeclarationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DeclarationRegistrationOptionsFromJson(json);
@@ -19047,7 +19047,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SelectionRangeParams implements SelectionRangeParams {
   const _SelectionRangeParams({required this.textDocument, required final  List<Position> positions, this.partialResultToken, this.workDoneToken}): _positions = positions;
   factory _SelectionRangeParams.fromJson(Map<String, dynamic> json) => _$SelectionRangeParamsFromJson(json);
@@ -19248,7 +19248,7 @@ $SelectionRangeCopyWith<$Res>? get parent {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SelectionRange implements SelectionRange {
   const _SelectionRange({required this.range, this.parent});
   factory _SelectionRange.fromJson(Map<String, dynamic> json) => _$SelectionRangeFromJson(json);
@@ -19416,7 +19416,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SelectionRangeRegistrationOptions implements SelectionRangeRegistrationOptions {
   const _SelectionRangeRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _SelectionRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SelectionRangeRegistrationOptionsFromJson(json);
@@ -19572,7 +19572,7 @@ $ProgressTokenBaseCopyWith<$Res> get token {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkDoneProgressCreateParams implements WorkDoneProgressCreateParams {
   const _WorkDoneProgressCreateParams({required this.token});
   factory _WorkDoneProgressCreateParams.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressCreateParamsFromJson(json);
@@ -19724,7 +19724,7 @@ $ProgressTokenBaseCopyWith<$Res> get token {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkDoneProgressCancelParams implements WorkDoneProgressCancelParams {
   const _WorkDoneProgressCancelParams({required this.token});
   factory _WorkDoneProgressCancelParams.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressCancelParamsFromJson(json);
@@ -19899,7 +19899,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CallHierarchyPrepareParams implements CallHierarchyPrepareParams {
   const _CallHierarchyPrepareParams({required this.textDocument, required this.position, this.workDoneToken});
   factory _CallHierarchyPrepareParams.fromJson(Map<String, dynamic> json) => _$CallHierarchyPrepareParamsFromJson(json);
@@ -20104,7 +20104,7 @@ $LSPAnyBaseCopyWith<$Res>? get data {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CallHierarchyItem implements CallHierarchyItem {
   const _CallHierarchyItem({required this.name, required this.kind, required this.uri, required this.range, required this.selectionRange, this.data, this.detail, final  List<SymbolTag>? tags}): _tags = tags;
   factory _CallHierarchyItem.fromJson(Map<String, dynamic> json) => _$CallHierarchyItemFromJson(json);
@@ -20301,7 +20301,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CallHierarchyRegistrationOptions implements CallHierarchyRegistrationOptions {
   const _CallHierarchyRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _CallHierarchyRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CallHierarchyRegistrationOptionsFromJson(json);
@@ -20483,7 +20483,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CallHierarchyIncomingCallsParams implements CallHierarchyIncomingCallsParams {
   const _CallHierarchyIncomingCallsParams({required this.item, this.partialResultToken, this.workDoneToken});
   factory _CallHierarchyIncomingCallsParams.fromJson(Map<String, dynamic> json) => _$CallHierarchyIncomingCallsParamsFromJson(json);
@@ -20664,7 +20664,7 @@ $CallHierarchyItemCopyWith<$Res> get from {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CallHierarchyIncomingCall implements CallHierarchyIncomingCall {
   const _CallHierarchyIncomingCall({required this.from, required final  List<Range> fromRanges}): _fromRanges = fromRanges;
   factory _CallHierarchyIncomingCall.fromJson(Map<String, dynamic> json) => _$CallHierarchyIncomingCallFromJson(json);
@@ -20850,7 +20850,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CallHierarchyOutgoingCallsParams implements CallHierarchyOutgoingCallsParams {
   const _CallHierarchyOutgoingCallsParams({required this.item, this.partialResultToken, this.workDoneToken});
   factory _CallHierarchyOutgoingCallsParams.fromJson(Map<String, dynamic> json) => _$CallHierarchyOutgoingCallsParamsFromJson(json);
@@ -21031,7 +21031,7 @@ $CallHierarchyItemCopyWith<$Res> get to {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CallHierarchyOutgoingCall implements CallHierarchyOutgoingCall {
   const _CallHierarchyOutgoingCall({required this.to, required final  List<Range> fromRanges}): _fromRanges = fromRanges;
   factory _CallHierarchyOutgoingCall.fromJson(Map<String, dynamic> json) => _$CallHierarchyOutgoingCallFromJson(json);
@@ -21217,7 +21217,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensParams implements SemanticTokensParams {
   const _SemanticTokensParams({required this.textDocument, this.partialResultToken, this.workDoneToken});
   factory _SemanticTokensParams.fromJson(Map<String, dynamic> json) => _$SemanticTokensParamsFromJson(json);
@@ -21389,7 +21389,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokens implements SemanticTokens {
   const _SemanticTokens({required final  List<int> data, this.resultId}): _data = data;
   factory _SemanticTokens.fromJson(Map<String, dynamic> json) => _$SemanticTokensFromJson(json);
@@ -21531,7 +21531,7 @@ as List<int>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensPartialResult implements SemanticTokensPartialResult {
   const _SemanticTokensPartialResult({required final  List<int> data}): _data = data;
   factory _SemanticTokensPartialResult.fromJson(Map<String, dynamic> json) => _$SemanticTokensPartialResultFromJson(json);
@@ -21718,7 +21718,7 @@ $RangeBaseCopyWith<$Res>? get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOptions {
   const _SemanticTokensRegistrationOptions({required this.documentSelector, required this.legend, this.id, this.full, this.range, this.workDoneProgress});
   factory _SemanticTokensRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SemanticTokensRegistrationOptionsFromJson(json);
@@ -21940,7 +21940,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensDeltaParams implements SemanticTokensDeltaParams {
   const _SemanticTokensDeltaParams({required this.textDocument, required this.previousResultId, this.partialResultToken, this.workDoneToken});
   factory _SemanticTokensDeltaParams.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaParamsFromJson(json);
@@ -22114,7 +22114,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensDelta implements SemanticTokensDelta {
   const _SemanticTokensDelta({required final  List<SemanticTokensEdit> edits, this.resultId}): _edits = edits;
   factory _SemanticTokensDelta.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaFromJson(json);
@@ -22256,7 +22256,7 @@ as List<SemanticTokensEdit>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensDeltaPartialResult implements SemanticTokensDeltaPartialResult {
   const _SemanticTokensDeltaPartialResult({required final  List<SemanticTokensEdit> edits}): _edits = edits;
   factory _SemanticTokensDeltaPartialResult.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaPartialResultFromJson(json);
@@ -22441,7 +22441,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensRangeParams implements SemanticTokensRangeParams {
   const _SemanticTokensRangeParams({required this.textDocument, required this.range, this.partialResultToken, this.workDoneToken});
   factory _SemanticTokensRangeParams.fromJson(Map<String, dynamic> json) => _$SemanticTokensRangeParamsFromJson(json);
@@ -22638,7 +22638,7 @@ $RangeCopyWith<$Res>? get selection {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ShowDocumentParams implements ShowDocumentParams {
   const _ShowDocumentParams({required this.uri, this.selection, this.takeFocus, this.external});
   factory _ShowDocumentParams.fromJson(Map<String, dynamic> json) => _$ShowDocumentParamsFromJson(json);
@@ -22790,7 +22790,7 @@ as bool,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ShowDocumentResult implements ShowDocumentResult {
   const _ShowDocumentResult({required this.success});
   factory _ShowDocumentResult.fromJson(Map<String, dynamic> json) => _$ShowDocumentResultFromJson(json);
@@ -22956,7 +22956,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _LinkedEditingRangeParams implements LinkedEditingRangeParams {
   const _LinkedEditingRangeParams({required this.textDocument, required this.position, this.workDoneToken});
   factory _LinkedEditingRangeParams.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeParamsFromJson(json);
@@ -23125,7 +23125,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _LinkedEditingRanges implements LinkedEditingRanges {
   const _LinkedEditingRanges({required final  List<Range> ranges, this.wordPattern}): _ranges = ranges;
   factory _LinkedEditingRanges.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangesFromJson(json);
@@ -23278,7 +23278,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _LinkedEditingRangeRegistrationOptions implements LinkedEditingRangeRegistrationOptions {
   const _LinkedEditingRangeRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _LinkedEditingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeRegistrationOptionsFromJson(json);
@@ -23425,7 +23425,7 @@ as List<FileCreate>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CreateFilesParams implements CreateFilesParams {
   const _CreateFilesParams({required final  List<FileCreate> files}): _files = files;
   factory _CreateFilesParams.fromJson(Map<String, dynamic> json) => _$CreateFilesParamsFromJson(json);
@@ -23567,7 +23567,7 @@ as Map<String, List<TextEdit>>?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceEdit implements WorkspaceEdit {
   const _WorkspaceEdit({final  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations, final  List<WorkspaceEditDocumentChangesBase>? documentChanges, final  Map<String, List<TextEdit>>? changes}): _changeAnnotations = changeAnnotations,_documentChanges = documentChanges,_changes = changes;
   factory _WorkspaceEdit.fromJson(Map<String, dynamic> json) => _$WorkspaceEditFromJson(json);
@@ -23729,7 +23729,7 @@ as List<FileOperationFilter>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileOperationRegistrationOptions implements FileOperationRegistrationOptions {
   const _FileOperationRegistrationOptions({required final  List<FileOperationFilter> filters}): _filters = filters;
   factory _FileOperationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$FileOperationRegistrationOptionsFromJson(json);
@@ -23869,7 +23869,7 @@ as List<FileRename>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RenameFilesParams implements RenameFilesParams {
   const _RenameFilesParams({required final  List<FileRename> files}): _files = files;
   factory _RenameFilesParams.fromJson(Map<String, dynamic> json) => _$RenameFilesParamsFromJson(json);
@@ -24009,7 +24009,7 @@ as List<FileDelete>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DeleteFilesParams implements DeleteFilesParams {
   const _DeleteFilesParams({required final  List<FileDelete> files}): _files = files;
   factory _DeleteFilesParams.fromJson(Map<String, dynamic> json) => _$DeleteFilesParamsFromJson(json);
@@ -24194,7 +24194,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _MonikerParams implements MonikerParams {
   const _MonikerParams({required this.textDocument, required this.position, this.partialResultToken, this.workDoneToken});
   factory _MonikerParams.fromJson(Map<String, dynamic> json) => _$MonikerParamsFromJson(json);
@@ -24379,7 +24379,7 @@ as MonikerKind?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Moniker implements Moniker {
   const _Moniker({required this.scheme, required this.identifier, required this.unique, this.kind});
   factory _Moniker.fromJson(Map<String, dynamic> json) => _$MonikerFromJson(json);
@@ -24529,7 +24529,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _MonikerRegistrationOptions implements MonikerRegistrationOptions {
   const _MonikerRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _MonikerRegistrationOptions.fromJson(Map<String, dynamic> json) => _$MonikerRegistrationOptionsFromJson(json);
@@ -24706,7 +24706,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeHierarchyPrepareParams implements TypeHierarchyPrepareParams {
   const _TypeHierarchyPrepareParams({required this.textDocument, required this.position, this.workDoneToken});
   factory _TypeHierarchyPrepareParams.fromJson(Map<String, dynamic> json) => _$TypeHierarchyPrepareParamsFromJson(json);
@@ -24911,7 +24911,7 @@ $LSPAnyBaseCopyWith<$Res>? get data {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeHierarchyItem implements TypeHierarchyItem {
   const _TypeHierarchyItem({required this.name, required this.kind, required this.uri, required this.range, required this.selectionRange, this.data, this.detail, final  List<SymbolTag>? tags}): _tags = tags;
   factory _TypeHierarchyItem.fromJson(Map<String, dynamic> json) => _$TypeHierarchyItemFromJson(json);
@@ -25108,7 +25108,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeHierarchyRegistrationOptions implements TypeHierarchyRegistrationOptions {
   const _TypeHierarchyRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _TypeHierarchyRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TypeHierarchyRegistrationOptionsFromJson(json);
@@ -25290,7 +25290,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeHierarchySupertypesParams implements TypeHierarchySupertypesParams {
   const _TypeHierarchySupertypesParams({required this.item, this.partialResultToken, this.workDoneToken});
   factory _TypeHierarchySupertypesParams.fromJson(Map<String, dynamic> json) => _$TypeHierarchySupertypesParamsFromJson(json);
@@ -25496,7 +25496,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeHierarchySubtypesParams implements TypeHierarchySubtypesParams {
   const _TypeHierarchySubtypesParams({required this.item, this.partialResultToken, this.workDoneToken});
   factory _TypeHierarchySubtypesParams.fromJson(Map<String, dynamic> json) => _$TypeHierarchySubtypesParamsFromJson(json);
@@ -25709,7 +25709,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineValueParams implements InlineValueParams {
   const _InlineValueParams({required this.textDocument, required this.range, required this.context, this.workDoneToken});
   factory _InlineValueParams.fromJson(Map<String, dynamic> json) => _$InlineValueParamsFromJson(json);
@@ -25899,7 +25899,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineValueRegistrationOptions implements InlineValueRegistrationOptions {
   const _InlineValueRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _InlineValueRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineValueRegistrationOptionsFromJson(json);
@@ -26078,7 +26078,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlayHintParams implements InlayHintParams {
   const _InlayHintParams({required this.textDocument, required this.range, this.workDoneToken});
   factory _InlayHintParams.fromJson(Map<String, dynamic> json) => _$InlayHintParamsFromJson(json);
@@ -26295,7 +26295,7 @@ $TooltipOrDocumentationBaseCopyWith<$Res>? get tooltip {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlayHint implements InlayHint {
   const _InlayHint({required this.position, required this.label, this.data, this.paddingRight, this.paddingLeft, this.tooltip, final  List<TextEdit>? textEdits, this.kind}): _textEdits = textEdits;
   factory _InlayHint.fromJson(Map<String, dynamic> json) => _$InlayHintFromJson(json);
@@ -26505,7 +26505,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlayHintRegistrationOptions implements InlayHintRegistrationOptions {
   const _InlayHintRegistrationOptions({required this.documentSelector, this.id, this.resolveProvider, this.workDoneProgress});
   factory _InlayHintRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlayHintRegistrationOptionsFromJson(json);
@@ -26691,7 +26691,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentDiagnosticParams implements DocumentDiagnosticParams {
   const _DocumentDiagnosticParams({required this.textDocument, this.previousResultId, this.identifier, this.partialResultToken, this.workDoneToken});
   factory _DocumentDiagnosticParams.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticParamsFromJson(json);
@@ -26866,7 +26866,7 @@ as Map<String, RelatedDocumentsBase>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentDiagnosticReportPartialResult implements DocumentDiagnosticReportPartialResult {
   const _DocumentDiagnosticReportPartialResult({required final  Map<String, RelatedDocumentsBase> relatedDocuments}): _relatedDocuments = relatedDocuments;
   factory _DocumentDiagnosticReportPartialResult.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticReportPartialResultFromJson(json);
@@ -27006,7 +27006,7 @@ as bool,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DiagnosticServerCancellationData implements DiagnosticServerCancellationData {
   const _DiagnosticServerCancellationData({required this.retriggerRequest});
   factory _DiagnosticServerCancellationData.fromJson(Map<String, dynamic> json) => _$DiagnosticServerCancellationDataFromJson(json);
@@ -27154,7 +27154,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DiagnosticRegistrationOptions implements DiagnosticRegistrationOptions {
   const _DiagnosticRegistrationOptions({required this.documentSelector, required this.interFileDependencies, required this.workspaceDiagnostics, this.id, this.identifier, this.workDoneProgress});
   factory _DiagnosticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticRegistrationOptionsFromJson(json);
@@ -27334,7 +27334,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceDiagnosticParams implements WorkspaceDiagnosticParams {
   const _WorkspaceDiagnosticParams({required final  List<PreviousResultId> previousResultIds, this.identifier, this.partialResultToken, this.workDoneToken}): _previousResultIds = previousResultIds;
   factory _WorkspaceDiagnosticParams.fromJson(Map<String, dynamic> json) => _$WorkspaceDiagnosticParamsFromJson(json);
@@ -27504,7 +27504,7 @@ as List<WorkspaceDocumentDiagnosticReport>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceDiagnosticReport implements WorkspaceDiagnosticReport {
   const _WorkspaceDiagnosticReport({required final  List<WorkspaceDocumentDiagnosticReport> items}): _items = items;
   factory _WorkspaceDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceDiagnosticReportFromJson(json);
@@ -27644,7 +27644,7 @@ as List<WorkspaceDocumentDiagnosticReport>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceDiagnosticReportPartialResult implements WorkspaceDiagnosticReportPartialResult {
   const _WorkspaceDiagnosticReportPartialResult({required final  List<WorkspaceDocumentDiagnosticReport> items}): _items = items;
   factory _WorkspaceDiagnosticReportPartialResult.fromJson(Map<String, dynamic> json) => _$WorkspaceDiagnosticReportPartialResultFromJson(json);
@@ -27794,7 +27794,7 @@ $NotebookDocumentCopyWith<$Res> get notebookDocument {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidOpenNotebookDocumentParams implements DidOpenNotebookDocumentParams {
   const _DidOpenNotebookDocumentParams({required this.notebookDocument, required final  List<TextDocumentItem> cellTextDocuments}): _cellTextDocuments = cellTextDocuments;
   factory _DidOpenNotebookDocumentParams.fromJson(Map<String, dynamic> json) => _$DidOpenNotebookDocumentParamsFromJson(json);
@@ -27964,7 +27964,7 @@ $NotebookDocumentChangeEventCopyWith<$Res> get change {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidChangeNotebookDocumentParams implements DidChangeNotebookDocumentParams {
   const _DidChangeNotebookDocumentParams({required this.notebookDocument, required this.change});
   factory _DidChangeNotebookDocumentParams.fromJson(Map<String, dynamic> json) => _$DidChangeNotebookDocumentParamsFromJson(json);
@@ -28127,7 +28127,7 @@ $NotebookDocumentIdentifierCopyWith<$Res> get notebookDocument {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidSaveNotebookDocumentParams implements DidSaveNotebookDocumentParams {
   const _DidSaveNotebookDocumentParams({required this.notebookDocument});
   factory _DidSaveNotebookDocumentParams.fromJson(Map<String, dynamic> json) => _$DidSaveNotebookDocumentParamsFromJson(json);
@@ -28280,7 +28280,7 @@ $NotebookDocumentIdentifierCopyWith<$Res> get notebookDocument {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidCloseNotebookDocumentParams implements DidCloseNotebookDocumentParams {
   const _DidCloseNotebookDocumentParams({required this.notebookDocument, required final  List<TextDocumentIdentifier> cellTextDocuments}): _cellTextDocuments = cellTextDocuments;
   factory _DidCloseNotebookDocumentParams.fromJson(Map<String, dynamic> json) => _$DidCloseNotebookDocumentParamsFromJson(json);
@@ -28473,7 +28473,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineCompletionParams implements InlineCompletionParams {
   const _InlineCompletionParams({required this.textDocument, required this.position, required this.context, this.workDoneToken});
   factory _InlineCompletionParams.fromJson(Map<String, dynamic> json) => _$InlineCompletionParamsFromJson(json);
@@ -28652,7 +28652,7 @@ as List<InlineCompletionItem>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineCompletionList implements InlineCompletionList {
   const _InlineCompletionList({required final  List<InlineCompletionItem> items}): _items = items;
   factory _InlineCompletionList.fromJson(Map<String, dynamic> json) => _$InlineCompletionListFromJson(json);
@@ -28828,7 +28828,7 @@ $RangeCopyWith<$Res>? get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineCompletionItem implements InlineCompletionItem {
   const _InlineCompletionItem({required this.insertText, this.command, this.range, this.filterText});
   factory _InlineCompletionItem.fromJson(Map<String, dynamic> json) => _$InlineCompletionItemFromJson(json);
@@ -29012,7 +29012,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineCompletionRegistrationOptions implements InlineCompletionRegistrationOptions {
   const _InlineCompletionRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _InlineCompletionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineCompletionRegistrationOptionsFromJson(json);
@@ -29159,7 +29159,7 @@ as List<Registration>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RegistrationParams implements RegistrationParams {
   const _RegistrationParams({required final  List<Registration> registrations}): _registrations = registrations;
   factory _RegistrationParams.fromJson(Map<String, dynamic> json) => _$RegistrationParamsFromJson(json);
@@ -29299,7 +29299,7 @@ as List<Unregistration>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _UnregistrationParams implements UnregistrationParams {
   const _UnregistrationParams({required final  List<Unregistration> unregisterations}): _unregisterations = unregisterations;
   factory _UnregistrationParams.fromJson(Map<String, dynamic> json) => _$UnregistrationParamsFromJson(json);
@@ -29523,7 +29523,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InitializeParams implements InitializeParams {
   const _InitializeParams({required this.processId, required this.rootUri, required this.capabilities, this.workspaceFolders, this.trace, this.initializationOptions, this.rootPath, this.locale, this.clientInfo, this.workDoneToken});
   factory _InitializeParams.fromJson(Map<String, dynamic> json) => _$InitializeParamsFromJson(json);
@@ -29760,7 +29760,7 @@ $ServerCapabilitiesCopyWith<$Res> get capabilities {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InitializeResult implements InitializeResult {
   const _InitializeResult({required this.capabilities, this.serverInfo});
   factory _InitializeResult.fromJson(Map<String, dynamic> json) => _$InitializeResultFromJson(json);
@@ -29905,7 +29905,7 @@ as bool,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InitializeError implements InitializeError {
   const _InitializeError({required this.retry});
   factory _InitializeError.fromJson(Map<String, dynamic> json) => _$InitializeErrorFromJson(json);
@@ -30008,7 +30008,7 @@ $InitializedParamsCopyWith(InitializedParams _, $Res Function(InitializedParams)
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InitializedParams implements InitializedParams {
   const _InitializedParams();
   factory _InitializedParams.fromJson(Map<String, dynamic> json) => _$InitializedParamsFromJson(json);
@@ -30117,7 +30117,7 @@ $LSPAnyBaseCopyWith<$Res> get settings {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidChangeConfigurationParams implements DidChangeConfigurationParams {
   const _DidChangeConfigurationParams({required this.settings});
   factory _DidChangeConfigurationParams.fromJson(Map<String, dynamic> json) => _$DidChangeConfigurationParamsFromJson(json);
@@ -30272,7 +30272,7 @@ $DidChangeConfigurationRegistrationOptionsSectionBaseCopyWith<$Res>? get section
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidChangeConfigurationRegistrationOptions implements DidChangeConfigurationRegistrationOptions {
   const _DidChangeConfigurationRegistrationOptions({this.section});
   factory _DidChangeConfigurationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DidChangeConfigurationRegistrationOptionsFromJson(json);
@@ -30419,7 +30419,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ShowMessageParams implements ShowMessageParams {
   const _ShowMessageParams({required this.type, required this.message});
   factory _ShowMessageParams.fromJson(Map<String, dynamic> json) => _$ShowMessageParamsFromJson(json);
@@ -30557,7 +30557,7 @@ as List<MessageActionItem>?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ShowMessageRequestParams implements ShowMessageRequestParams {
   const _ShowMessageRequestParams({required this.type, required this.message, final  List<MessageActionItem>? actions}): _actions = actions;
   factory _ShowMessageRequestParams.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestParamsFromJson(json);
@@ -30703,7 +30703,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _MessageActionItem implements MessageActionItem {
   const _MessageActionItem({required this.title});
   factory _MessageActionItem.fromJson(Map<String, dynamic> json) => _$MessageActionItemFromJson(json);
@@ -30838,7 +30838,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _LogMessageParams implements LogMessageParams {
   const _LogMessageParams({required this.type, required this.message});
   factory _LogMessageParams.fromJson(Map<String, dynamic> json) => _$LogMessageParamsFromJson(json);
@@ -30983,7 +30983,7 @@ $TextDocumentItemCopyWith<$Res> get textDocument {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidOpenTextDocumentParams implements DidOpenTextDocumentParams {
   const _DidOpenTextDocumentParams({required this.textDocument});
   factory _DidOpenTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidOpenTextDocumentParamsFromJson(json);
@@ -31136,7 +31136,7 @@ $VersionedTextDocumentIdentifierCopyWith<$Res> get textDocument {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidChangeTextDocumentParams implements DidChangeTextDocumentParams {
   const _DidChangeTextDocumentParams({required this.textDocument, required final  List<TextDocumentContentChangeEvent> contentChanges}): _contentChanges = contentChanges;
   factory _DidChangeTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidChangeTextDocumentParamsFromJson(json);
@@ -31297,7 +31297,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentChangeRegistrationOptions implements TextDocumentChangeRegistrationOptions {
   const _TextDocumentChangeRegistrationOptions({required this.documentSelector, required this.syncKind});
   factory _TextDocumentChangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentChangeRegistrationOptionsFromJson(json);
@@ -31451,7 +31451,7 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidCloseTextDocumentParams implements DidCloseTextDocumentParams {
   const _DidCloseTextDocumentParams({required this.textDocument});
   factory _DidCloseTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidCloseTextDocumentParamsFromJson(json);
@@ -31604,7 +31604,7 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidSaveTextDocumentParams implements DidSaveTextDocumentParams {
   const _DidSaveTextDocumentParams({required this.textDocument, this.text});
   factory _DidSaveTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidSaveTextDocumentParamsFromJson(json);
@@ -31759,7 +31759,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentSaveRegistrationOptions implements TextDocumentSaveRegistrationOptions {
   const _TextDocumentSaveRegistrationOptions({required this.documentSelector, this.includeText});
   factory _TextDocumentSaveRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentSaveRegistrationOptionsFromJson(json);
@@ -31914,7 +31914,7 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WillSaveTextDocumentParams implements WillSaveTextDocumentParams {
   const _WillSaveTextDocumentParams({required this.textDocument, required this.reason});
   factory _WillSaveTextDocumentParams.fromJson(Map<String, dynamic> json) => _$WillSaveTextDocumentParamsFromJson(json);
@@ -32069,7 +32069,7 @@ $RangeCopyWith<$Res> get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextEdit implements TextEdit {
   const _TextEdit({required this.range, required this.newText});
   factory _TextEdit.fromJson(Map<String, dynamic> json) => _$TextEditFromJson(json);
@@ -32214,7 +32214,7 @@ as List<FileEvent>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidChangeWatchedFilesParams implements DidChangeWatchedFilesParams {
   const _DidChangeWatchedFilesParams({required final  List<FileEvent> changes}): _changes = changes;
   factory _DidChangeWatchedFilesParams.fromJson(Map<String, dynamic> json) => _$DidChangeWatchedFilesParamsFromJson(json);
@@ -32354,7 +32354,7 @@ as List<FileSystemWatcher>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidChangeWatchedFilesRegistrationOptions implements DidChangeWatchedFilesRegistrationOptions {
   const _DidChangeWatchedFilesRegistrationOptions({required final  List<FileSystemWatcher> watchers}): _watchers = watchers;
   factory _DidChangeWatchedFilesRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DidChangeWatchedFilesRegistrationOptionsFromJson(json);
@@ -32496,7 +32496,7 @@ as int?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _PublishDiagnosticsParams implements PublishDiagnosticsParams {
   const _PublishDiagnosticsParams({required this.uri, required final  List<Diagnostic> diagnostics, this.version}): _diagnostics = diagnostics;
   factory _PublishDiagnosticsParams.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsParamsFromJson(json);
@@ -32698,7 +32698,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CompletionParams implements CompletionParams {
   const _CompletionParams({required this.textDocument, required this.position, this.context, this.partialResultToken, this.workDoneToken});
   factory _CompletionParams.fromJson(Map<String, dynamic> json) => _$CompletionParamsFromJson(json);
@@ -32972,7 +32972,7 @@ $CompletionItemLabelDetailsCopyWith<$Res>? get labelDetails {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CompletionItem implements CompletionItem {
   const _CompletionItem({required this.label, this.data, this.command, final  List<String>? commitCharacters, final  List<TextEdit>? additionalTextEdits, this.textEditText, this.textEdit, this.insertTextMode, this.insertTextFormat, this.insertText, this.filterText, this.sortText, this.preselect, this.deprecated, this.documentation, this.detail, final  List<CompletionItemTag>? tags, this.kind, this.labelDetails}): _commitCharacters = commitCharacters,_additionalTextEdits = additionalTextEdits,_tags = tags;
   factory _CompletionItem.fromJson(Map<String, dynamic> json) => _$CompletionItemFromJson(json);
@@ -33228,7 +33228,7 @@ as ({List<String>? commitCharacters, CompletionListEditRangeBase? editRange, Ins
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CompletionList implements CompletionList {
   const _CompletionList({required this.isIncomplete, required final  List<CompletionItem> items, this.itemDefaults}): _items = items;
   factory _CompletionList.fromJson(Map<String, dynamic> json) => _$CompletionListFromJson(json);
@@ -33386,7 +33386,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
   const _CompletionRegistrationOptions({required this.documentSelector, this.completionItem, this.resolveProvider, final  List<String>? allCommitCharacters, final  List<String>? triggerCharacters, this.workDoneProgress}): _allCommitCharacters = allCommitCharacters,_triggerCharacters = triggerCharacters;
   factory _CompletionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CompletionRegistrationOptionsFromJson(json);
@@ -33587,7 +33587,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _HoverParams implements HoverParams {
   const _HoverParams({required this.textDocument, required this.position, this.workDoneToken});
   factory _HoverParams.fromJson(Map<String, dynamic> json) => _$HoverParamsFromJson(json);
@@ -33777,7 +33777,7 @@ $RangeCopyWith<$Res>? get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Hover implements Hover {
   const _Hover({required this.contents, this.range});
   factory _Hover.fromJson(Map<String, dynamic> json) => _$HoverFromJson(json);
@@ -33944,7 +33944,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _HoverRegistrationOptions implements HoverRegistrationOptions {
   const _HoverRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _HoverRegistrationOptions.fromJson(Map<String, dynamic> json) => _$HoverRegistrationOptionsFromJson(json);
@@ -34134,7 +34134,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SignatureHelpParams implements SignatureHelpParams {
   const _SignatureHelpParams({required this.textDocument, required this.position, this.context, this.workDoneToken});
   factory _SignatureHelpParams.fromJson(Map<String, dynamic> json) => _$SignatureHelpParamsFromJson(json);
@@ -34318,7 +34318,7 @@ as int?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SignatureHelp implements SignatureHelp {
   const _SignatureHelp({required final  List<SignatureInformation> signatures, this.activeParameter, this.activeSignature}): _signatures = signatures;
   factory _SignatureHelp.fromJson(Map<String, dynamic> json) => _$SignatureHelpFromJson(json);
@@ -34474,7 +34474,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SignatureHelpRegistrationOptions implements SignatureHelpRegistrationOptions {
   const _SignatureHelpRegistrationOptions({required this.documentSelector, final  List<String>? retriggerCharacters, final  List<String>? triggerCharacters, this.workDoneProgress}): _retriggerCharacters = retriggerCharacters,_triggerCharacters = triggerCharacters;
   factory _SignatureHelpRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SignatureHelpRegistrationOptionsFromJson(json);
@@ -34684,7 +34684,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DefinitionParams implements DefinitionParams {
   const _DefinitionParams({required this.textDocument, required this.position, this.partialResultToken, this.workDoneToken});
   factory _DefinitionParams.fromJson(Map<String, dynamic> json) => _$DefinitionParamsFromJson(json);
@@ -34876,7 +34876,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DefinitionRegistrationOptions implements DefinitionRegistrationOptions {
   const _DefinitionRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _DefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DefinitionRegistrationOptionsFromJson(json);
@@ -35076,7 +35076,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ReferenceParams implements ReferenceParams {
   const _ReferenceParams({required this.textDocument, required this.position, required this.context, this.partialResultToken, this.workDoneToken});
   factory _ReferenceParams.fromJson(Map<String, dynamic> json) => _$ReferenceParamsFromJson(json);
@@ -35279,7 +35279,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ReferenceRegistrationOptions implements ReferenceRegistrationOptions {
   const _ReferenceRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _ReferenceRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ReferenceRegistrationOptionsFromJson(json);
@@ -35469,7 +35469,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentHighlightParams implements DocumentHighlightParams {
   const _DocumentHighlightParams({required this.textDocument, required this.position, this.partialResultToken, this.workDoneToken});
   factory _DocumentHighlightParams.fromJson(Map<String, dynamic> json) => _$DocumentHighlightParamsFromJson(json);
@@ -35661,7 +35661,7 @@ $RangeCopyWith<$Res> get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentHighlight implements DocumentHighlight {
   const _DocumentHighlight({required this.range, this.kind});
   factory _DocumentHighlight.fromJson(Map<String, dynamic> json) => _$DocumentHighlightFromJson(json);
@@ -35816,7 +35816,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentHighlightRegistrationOptions implements DocumentHighlightRegistrationOptions {
   const _DocumentHighlightRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _DocumentHighlightRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentHighlightRegistrationOptionsFromJson(json);
@@ -35996,7 +35996,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentSymbolParams implements DocumentSymbolParams {
   const _DocumentSymbolParams({required this.textDocument, this.partialResultToken, this.workDoneToken});
   factory _DocumentSymbolParams.fromJson(Map<String, dynamic> json) => _$DocumentSymbolParamsFromJson(json);
@@ -36181,7 +36181,7 @@ $LocationCopyWith<$Res> get location {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SymbolInformation implements SymbolInformation {
   const _SymbolInformation({required this.name, required this.kind, required this.location, this.deprecated, this.containerName, final  List<SymbolTag>? tags}): _tags = tags;
   factory _SymbolInformation.fromJson(Map<String, dynamic> json) => _$SymbolInformationFromJson(json);
@@ -36367,7 +36367,7 @@ $RangeCopyWith<$Res> get selectionRange {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentSymbol implements DocumentSymbol {
   const _DocumentSymbol({required this.name, required this.kind, required this.range, required this.selectionRange, final  List<DocumentSymbol>? children, this.deprecated, final  List<SymbolTag>? tags, this.detail}): _children = children,_tags = tags;
   factory _DocumentSymbol.fromJson(Map<String, dynamic> json) => _$DocumentSymbolFromJson(json);
@@ -36560,7 +36560,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentSymbolRegistrationOptions implements DocumentSymbolRegistrationOptions {
   const _DocumentSymbolRegistrationOptions({required this.documentSelector, this.label, this.workDoneProgress});
   factory _DocumentSymbolRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentSymbolRegistrationOptionsFromJson(json);
@@ -36762,7 +36762,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeActionParams implements CodeActionParams {
   const _CodeActionParams({required this.textDocument, required this.range, required this.context, this.partialResultToken, this.workDoneToken});
   factory _CodeActionParams.fromJson(Map<String, dynamic> json) => _$CodeActionParamsFromJson(json);
@@ -36957,7 +36957,7 @@ as List<LSPAny>?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Command implements Command {
   const _Command({required this.title, required this.command, final  List<LSPAny>? arguments}): _arguments = arguments;
   factory _Command.fromJson(Map<String, dynamic> json) => _$CommandFromJson(json);
@@ -37146,7 +37146,7 @@ $WorkspaceEditCopyWith<$Res>? get edit {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeAction implements CodeAction {
   const _CodeAction({required this.title, this.data, this.command, this.edit, this.disabled, this.isPreferred, final  List<Diagnostic>? diagnostics, this.kind}): _diagnostics = diagnostics;
   factory _CodeAction.fromJson(Map<String, dynamic> json) => _$CodeActionFromJson(json);
@@ -37350,7 +37350,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
   const _CodeActionRegistrationOptions({required this.documentSelector, this.resolveProvider, final  List<CodeActionKind>? codeActionKinds, this.workDoneProgress}): _codeActionKinds = codeActionKinds;
   factory _CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeActionRegistrationOptionsFromJson(json);
@@ -37533,7 +37533,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceSymbolParams implements WorkspaceSymbolParams {
   const _WorkspaceSymbolParams({required this.query, this.partialResultToken, this.workDoneToken});
   factory _WorkspaceSymbolParams.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolParamsFromJson(json);
@@ -37721,7 +37721,7 @@ $LSPAnyBaseCopyWith<$Res>? get data {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceSymbol implements WorkspaceSymbol {
   const _WorkspaceSymbol({required this.name, required this.kind, required this.location, this.data, this.containerName, final  List<SymbolTag>? tags}): _tags = tags;
   factory _WorkspaceSymbol.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolFromJson(json);
@@ -37895,7 +37895,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolRegistrationOptions {
   const _WorkspaceSymbolRegistrationOptions({this.resolveProvider, this.workDoneProgress});
   factory _WorkspaceSymbolRegistrationOptions.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolRegistrationOptionsFromJson(json);
@@ -38066,7 +38066,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeLensParams implements CodeLensParams {
   const _CodeLensParams({required this.textDocument, this.partialResultToken, this.workDoneToken});
   factory _CodeLensParams.fromJson(Map<String, dynamic> json) => _$CodeLensParamsFromJson(json);
@@ -38272,7 +38272,7 @@ $CommandCopyWith<$Res>? get command {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeLens implements CodeLens {
   const _CodeLens({required this.range, this.data, this.command});
   factory _CodeLens.fromJson(Map<String, dynamic> json) => _$CodeLensFromJson(json);
@@ -38454,7 +38454,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeLensRegistrationOptions implements CodeLensRegistrationOptions {
   const _CodeLensRegistrationOptions({required this.documentSelector, this.resolveProvider, this.workDoneProgress});
   factory _CodeLensRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeLensRegistrationOptionsFromJson(json);
@@ -38636,7 +38636,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentLinkParams implements DocumentLinkParams {
   const _DocumentLinkParams({required this.textDocument, this.partialResultToken, this.workDoneToken});
   factory _DocumentLinkParams.fromJson(Map<String, dynamic> json) => _$DocumentLinkParamsFromJson(json);
@@ -38831,7 +38831,7 @@ $LSPAnyBaseCopyWith<$Res>? get data {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentLink implements DocumentLink {
   const _DocumentLink({required this.range, this.data, this.tooltip, this.target});
   factory _DocumentLink.fromJson(Map<String, dynamic> json) => _$DocumentLinkFromJson(json);
@@ -39003,7 +39003,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentLinkRegistrationOptions implements DocumentLinkRegistrationOptions {
   const _DocumentLinkRegistrationOptions({required this.documentSelector, this.resolveProvider, this.workDoneProgress});
   factory _DocumentLinkRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentLinkRegistrationOptionsFromJson(json);
@@ -39182,7 +39182,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentFormattingParams implements DocumentFormattingParams {
   const _DocumentFormattingParams({required this.textDocument, required this.options, this.workDoneToken});
   factory _DocumentFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentFormattingParamsFromJson(json);
@@ -39360,7 +39360,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentFormattingRegistrationOptions implements DocumentFormattingRegistrationOptions {
   const _DocumentFormattingRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _DocumentFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentFormattingRegistrationOptionsFromJson(json);
@@ -39547,7 +39547,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentRangeFormattingParams implements DocumentRangeFormattingParams {
   const _DocumentRangeFormattingParams({required this.textDocument, required this.range, required this.options, this.workDoneToken});
   factory _DocumentRangeFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingParamsFromJson(json);
@@ -39737,7 +39737,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentRangeFormattingRegistrationOptions implements DocumentRangeFormattingRegistrationOptions {
   const _DocumentRangeFormattingRegistrationOptions({required this.documentSelector, this.rangesSupport, this.workDoneProgress});
   factory _DocumentRangeFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingRegistrationOptionsFromJson(json);
@@ -39917,7 +39917,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentRangesFormattingParams implements DocumentRangesFormattingParams {
   const _DocumentRangesFormattingParams({required this.textDocument, required final  List<Range> ranges, required this.options, this.workDoneToken}): _ranges = ranges;
   factory _DocumentRangesFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentRangesFormattingParamsFromJson(json);
@@ -40123,7 +40123,7 @@ $FormattingOptionsCopyWith<$Res> get options {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentOnTypeFormattingParams implements DocumentOnTypeFormattingParams {
   const _DocumentOnTypeFormattingParams({required this.textDocument, required this.position, required this.ch, required this.options});
   factory _DocumentOnTypeFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingParamsFromJson(json);
@@ -40301,7 +40301,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentOnTypeFormattingRegistrationOptions implements DocumentOnTypeFormattingRegistrationOptions {
   const _DocumentOnTypeFormattingRegistrationOptions({required this.documentSelector, required this.firstTriggerCharacter, final  List<String>? moreTriggerCharacter}): _moreTriggerCharacter = moreTriggerCharacter;
   factory _DocumentOnTypeFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingRegistrationOptionsFromJson(json);
@@ -40489,7 +40489,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RenameParams implements RenameParams {
   const _RenameParams({required this.textDocument, required this.position, required this.newName, this.workDoneToken});
   factory _RenameParams.fromJson(Map<String, dynamic> json) => _$RenameParamsFromJson(json);
@@ -40670,7 +40670,7 @@ $TextDocumentRegistrationOptionsDocumentSelectorBaseCopyWith<$Res> get documentS
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RenameRegistrationOptions implements RenameRegistrationOptions {
   const _RenameRegistrationOptions({required this.documentSelector, this.prepareProvider, this.workDoneProgress});
   factory _RenameRegistrationOptions.fromJson(Map<String, dynamic> json) => _$RenameRegistrationOptionsFromJson(json);
@@ -40849,7 +40849,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _PrepareRenameParams implements PrepareRenameParams {
   const _PrepareRenameParams({required this.textDocument, required this.position, this.workDoneToken});
   factory _PrepareRenameParams.fromJson(Map<String, dynamic> json) => _$PrepareRenameParamsFromJson(json);
@@ -41031,7 +41031,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ExecuteCommandParams implements ExecuteCommandParams {
   const _ExecuteCommandParams({required this.command, final  List<LSPAny>? arguments, this.workDoneToken}): _arguments = arguments;
   factory _ExecuteCommandParams.fromJson(Map<String, dynamic> json) => _$ExecuteCommandParamsFromJson(json);
@@ -41190,7 +41190,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ExecuteCommandRegistrationOptions implements ExecuteCommandRegistrationOptions {
   const _ExecuteCommandRegistrationOptions({required final  List<String> commands, this.workDoneProgress}): _commands = commands;
   factory _ExecuteCommandRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ExecuteCommandRegistrationOptionsFromJson(json);
@@ -41342,7 +41342,7 @@ $WorkspaceEditCopyWith<$Res> get edit {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ApplyWorkspaceEditParams implements ApplyWorkspaceEditParams {
   const _ApplyWorkspaceEditParams({required this.edit, this.label});
   factory _ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) => _$ApplyWorkspaceEditParamsFromJson(json);
@@ -41489,7 +41489,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ApplyWorkspaceEditResult implements ApplyWorkspaceEditResult {
   const _ApplyWorkspaceEditResult({required this.applied, this.failedChange, this.failureReason});
   factory _ApplyWorkspaceEditResult.fromJson(Map<String, dynamic> json) => _$ApplyWorkspaceEditResultFromJson(json);
@@ -41631,7 +41631,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkDoneProgressBegin implements WorkDoneProgressBegin {
   const _WorkDoneProgressBegin({required this.kind, required this.title, this.percentage, this.message, this.cancellable});
   factory _WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressBeginFromJson(json);
@@ -41776,7 +41776,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkDoneProgressReport implements WorkDoneProgressReport {
   const _WorkDoneProgressReport({required this.kind, this.percentage, this.message, this.cancellable});
   factory _WorkDoneProgressReport.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressReportFromJson(json);
@@ -41917,7 +41917,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkDoneProgressEnd implements WorkDoneProgressEnd {
   const _WorkDoneProgressEnd({required this.kind, this.message});
   factory _WorkDoneProgressEnd.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressEndFromJson(json);
@@ -42053,7 +42053,7 @@ as TraceValues,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SetTraceParams implements SetTraceParams {
   const _SetTraceParams({required this.value});
   factory _SetTraceParams.fromJson(Map<String, dynamic> json) => _$SetTraceParamsFromJson(json);
@@ -42188,7 +42188,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _LogTraceParams implements LogTraceParams {
   const _LogTraceParams({required this.message, this.verbose});
   factory _LogTraceParams.fromJson(Map<String, dynamic> json) => _$LogTraceParamsFromJson(json);
@@ -42333,7 +42333,7 @@ $ProgressTokenBaseCopyWith<$Res> get id {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CancelParams implements CancelParams {
   const _CancelParams({required this.id});
   factory _CancelParams.fromJson(Map<String, dynamic> json) => _$CancelParamsFromJson(json);
@@ -42495,7 +42495,7 @@ $LSPAnyBaseCopyWith<$Res> get value {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ProgressParams implements ProgressParams {
   const _ProgressParams({required this.token, required this.value});
   factory _ProgressParams.fromJson(Map<String, dynamic> json) => _$ProgressParamsFromJson(json);
@@ -42668,7 +42668,7 @@ $PositionCopyWith<$Res> get position {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentPositionParams implements TextDocumentPositionParams {
   const _TextDocumentPositionParams({required this.textDocument, required this.position});
   factory _TextDocumentPositionParams.fromJson(Map<String, dynamic> json) => _$TextDocumentPositionParamsFromJson(json);
@@ -42834,7 +42834,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkDoneProgressParams implements WorkDoneProgressParams {
   const _WorkDoneProgressParams({this.workDoneToken});
   factory _WorkDoneProgressParams.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressParamsFromJson(json);
@@ -42992,7 +42992,7 @@ $ProgressTokenBaseCopyWith<$Res>? get partialResultToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _PartialResultParams implements PartialResultParams {
   const _PartialResultParams({this.partialResultToken});
   factory _PartialResultParams.fromJson(Map<String, dynamic> json) => _$PartialResultParamsFromJson(json);
@@ -43171,7 +43171,7 @@ $RangeCopyWith<$Res>? get originSelectionRange {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _LocationLink implements LocationLink {
   const _LocationLink({required this.targetUri, required this.targetRange, required this.targetSelectionRange, this.originSelectionRange});
   factory _LocationLink.fromJson(Map<String, dynamic> json) => _$LocationLinkFromJson(json);
@@ -43360,7 +43360,7 @@ $PositionCopyWith<$Res> get end {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Range implements Range {
   const _Range({required this.start, required this.end});
   factory _Range.fromJson(Map<String, dynamic> json) => _$RangeFromJson(json);
@@ -43514,7 +43514,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ImplementationOptions implements ImplementationOptions {
   const _ImplementationOptions({this.workDoneProgress});
   factory _ImplementationOptions.fromJson(Map<String, dynamic> json) => _$ImplementationOptionsFromJson(json);
@@ -43648,7 +43648,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _StaticRegistrationOptions implements StaticRegistrationOptions {
   const _StaticRegistrationOptions({this.id});
   factory _StaticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$StaticRegistrationOptionsFromJson(json);
@@ -43782,7 +43782,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeDefinitionOptions implements TypeDefinitionOptions {
   const _TypeDefinitionOptions({this.workDoneProgress});
   factory _TypeDefinitionOptions.fromJson(Map<String, dynamic> json) => _$TypeDefinitionOptionsFromJson(json);
@@ -43917,7 +43917,7 @@ as List<WorkspaceFolder>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceFoldersChangeEvent implements WorkspaceFoldersChangeEvent {
   const _WorkspaceFoldersChangeEvent({required final  List<WorkspaceFolder> added, required final  List<WorkspaceFolder> removed}): _added = added,_removed = removed;
   factory _WorkspaceFoldersChangeEvent.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersChangeEventFromJson(json);
@@ -44066,7 +44066,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ConfigurationItem implements ConfigurationItem {
   const _ConfigurationItem({this.section, this.scopeUri});
   factory _ConfigurationItem.fromJson(Map<String, dynamic> json) => _$ConfigurationItemFromJson(json);
@@ -44202,7 +44202,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentIdentifier implements TextDocumentIdentifier {
   const _TextDocumentIdentifier({required this.uri});
   factory _TextDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$TextDocumentIdentifierFromJson(json);
@@ -44339,7 +44339,7 @@ as double,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Color implements Color {
   const _Color({required this.red, required this.green, required this.blue, required this.alpha});
   factory _Color.fromJson(Map<String, dynamic> json) => _$ColorFromJson(json);
@@ -44479,7 +44479,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentColorOptions implements DocumentColorOptions {
   const _DocumentColorOptions({this.workDoneProgress});
   factory _DocumentColorOptions.fromJson(Map<String, dynamic> json) => _$DocumentColorOptionsFromJson(json);
@@ -44613,7 +44613,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FoldingRangeOptions implements FoldingRangeOptions {
   const _FoldingRangeOptions({this.workDoneProgress});
   factory _FoldingRangeOptions.fromJson(Map<String, dynamic> json) => _$FoldingRangeOptionsFromJson(json);
@@ -44747,7 +44747,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DeclarationOptions implements DeclarationOptions {
   const _DeclarationOptions({this.workDoneProgress});
   factory _DeclarationOptions.fromJson(Map<String, dynamic> json) => _$DeclarationOptionsFromJson(json);
@@ -44882,7 +44882,7 @@ as int,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Position implements Position {
   const _Position({required this.line, required this.character});
   factory _Position.fromJson(Map<String, dynamic> json) => _$PositionFromJson(json);
@@ -45018,7 +45018,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SelectionRangeOptions implements SelectionRangeOptions {
   const _SelectionRangeOptions({this.workDoneProgress});
   factory _SelectionRangeOptions.fromJson(Map<String, dynamic> json) => _$SelectionRangeOptionsFromJson(json);
@@ -45152,7 +45152,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CallHierarchyOptions implements CallHierarchyOptions {
   const _CallHierarchyOptions({this.workDoneProgress});
   factory _CallHierarchyOptions.fromJson(Map<String, dynamic> json) => _$CallHierarchyOptionsFromJson(json);
@@ -45322,7 +45322,7 @@ $RangeBaseCopyWith<$Res>? get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensOptions implements SemanticTokensOptions {
   const _SemanticTokensOptions({required this.legend, this.full, this.range, this.workDoneProgress});
   factory _SemanticTokensOptions.fromJson(Map<String, dynamic> json) => _$SemanticTokensOptionsFromJson(json);
@@ -45497,7 +45497,7 @@ as List<int>?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensEdit implements SemanticTokensEdit {
   const _SemanticTokensEdit({required this.start, required this.deleteCount, final  List<int>? data}): _data = data;
   factory _SemanticTokensEdit.fromJson(Map<String, dynamic> json) => _$SemanticTokensEditFromJson(json);
@@ -45643,7 +45643,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _LinkedEditingRangeOptions implements LinkedEditingRangeOptions {
   const _LinkedEditingRangeOptions({this.workDoneProgress});
   factory _LinkedEditingRangeOptions.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeOptionsFromJson(json);
@@ -45777,7 +45777,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileCreate implements FileCreate {
   const _FileCreate({required this.uri});
   factory _FileCreate.fromJson(Map<String, dynamic> json) => _$FileCreateFromJson(json);
@@ -45921,7 +45921,7 @@ $OptionalVersionedTextDocumentIdentifierCopyWith<$Res> get textDocument {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentEdit implements TextDocumentEdit {
   const _TextDocumentEdit({required this.textDocument, required final  List<TextDocumentEditEditsBase> edits}): _edits = edits;
   factory _TextDocumentEdit.fromJson(Map<String, dynamic> json) => _$TextDocumentEditFromJson(json);
@@ -46087,7 +46087,7 @@ $CreateFileOptionsCopyWith<$Res>? get options {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CreateFile implements CreateFile {
   const _CreateFile({required this.kind, required this.uri, this.options, this.annotationId});
   factory _CreateFile.fromJson(Map<String, dynamic> json) => _$CreateFileFromJson(json);
@@ -46255,7 +46255,7 @@ $RenameFileOptionsCopyWith<$Res>? get options {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RenameFile implements RenameFile {
   const _RenameFile({required this.kind, required this.oldUri, required this.newUri, this.options, this.annotationId});
   factory _RenameFile.fromJson(Map<String, dynamic> json) => _$RenameFileFromJson(json);
@@ -46424,7 +46424,7 @@ $DeleteFileOptionsCopyWith<$Res>? get options {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DeleteFile implements DeleteFile {
   const _DeleteFile({required this.kind, required this.uri, this.options, this.annotationId});
   factory _DeleteFile.fromJson(Map<String, dynamic> json) => _$DeleteFileFromJson(json);
@@ -46578,7 +46578,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ChangeAnnotation implements ChangeAnnotation {
   const _ChangeAnnotation({required this.label, this.description, this.needsConfirmation});
   factory _ChangeAnnotation.fromJson(Map<String, dynamic> json) => _$ChangeAnnotationFromJson(json);
@@ -46726,7 +46726,7 @@ $FileOperationPatternCopyWith<$Res> get pattern {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileOperationFilter implements FileOperationFilter {
   const _FileOperationFilter({required this.pattern, this.scheme});
   factory _FileOperationFilter.fromJson(Map<String, dynamic> json) => _$FileOperationFilterFromJson(json);
@@ -46872,7 +46872,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileRename implements FileRename {
   const _FileRename({required this.oldUri, required this.newUri});
   factory _FileRename.fromJson(Map<String, dynamic> json) => _$FileRenameFromJson(json);
@@ -47008,7 +47008,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileDelete implements FileDelete {
   const _FileDelete({required this.uri});
   factory _FileDelete.fromJson(Map<String, dynamic> json) => _$FileDeleteFromJson(json);
@@ -47142,7 +47142,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _MonikerOptions implements MonikerOptions {
   const _MonikerOptions({this.workDoneProgress});
   factory _MonikerOptions.fromJson(Map<String, dynamic> json) => _$MonikerOptionsFromJson(json);
@@ -47276,7 +47276,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeHierarchyOptions implements TypeHierarchyOptions {
   const _TypeHierarchyOptions({this.workDoneProgress});
   factory _TypeHierarchyOptions.fromJson(Map<String, dynamic> json) => _$TypeHierarchyOptionsFromJson(json);
@@ -47420,7 +47420,7 @@ $RangeCopyWith<$Res> get stoppedLocation {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineValueContext implements InlineValueContext {
   const _InlineValueContext({required this.frameId, required this.stoppedLocation});
   factory _InlineValueContext.fromJson(Map<String, dynamic> json) => _$InlineValueContextFromJson(json);
@@ -47575,7 +47575,7 @@ $RangeCopyWith<$Res> get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineValueText implements InlineValueText {
   const _InlineValueText({required this.range, required this.text});
   factory _InlineValueText.fromJson(Map<String, dynamic> json) => _$InlineValueTextFromJson(json);
@@ -47731,7 +47731,7 @@ $RangeCopyWith<$Res> get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineValueVariableLookup implements InlineValueVariableLookup {
   const _InlineValueVariableLookup({required this.range, required this.caseSensitiveLookup, this.variableName});
   factory _InlineValueVariableLookup.fromJson(Map<String, dynamic> json) => _$InlineValueVariableLookupFromJson(json);
@@ -47888,7 +47888,7 @@ $RangeCopyWith<$Res> get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineValueEvaluatableExpression implements InlineValueEvaluatableExpression {
   const _InlineValueEvaluatableExpression({required this.range, this.expression});
   factory _InlineValueEvaluatableExpression.fromJson(Map<String, dynamic> json) => _$InlineValueEvaluatableExpressionFromJson(json);
@@ -48033,7 +48033,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineValueOptions implements InlineValueOptions {
   const _InlineValueOptions({this.workDoneProgress});
   factory _InlineValueOptions.fromJson(Map<String, dynamic> json) => _$InlineValueOptionsFromJson(json);
@@ -48206,7 +48206,7 @@ $TooltipOrDocumentationBaseCopyWith<$Res>? get tooltip {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlayHintLabelPart implements InlayHintLabelPart {
   const _InlayHintLabelPart({required this.value, this.command, this.location, this.tooltip});
   factory _InlayHintLabelPart.fromJson(Map<String, dynamic> json) => _$InlayHintLabelPartFromJson(json);
@@ -48383,7 +48383,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _MarkupContent implements MarkupContent {
   const _MarkupContent({required this.kind, required this.value});
   factory _MarkupContent.fromJson(Map<String, dynamic> json) => _$MarkupContentFromJson(json);
@@ -48520,7 +48520,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlayHintOptions implements InlayHintOptions {
   const _InlayHintOptions({this.resolveProvider, this.workDoneProgress});
   factory _InlayHintOptions.fromJson(Map<String, dynamic> json) => _$InlayHintOptionsFromJson(json);
@@ -48659,7 +48659,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnosticReport {
   const _RelatedFullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, final  Map<String, RelatedDocumentsBase>? relatedDocuments, this.resultId}): _items = items,_relatedDocuments = relatedDocuments;
   factory _RelatedFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedFullDocumentDiagnosticReportFromJson(json);
@@ -48815,7 +48815,7 @@ as Map<String, RelatedDocumentsBase>?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RelatedUnchangedDocumentDiagnosticReport implements RelatedUnchangedDocumentDiagnosticReport {
   const _RelatedUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, final  Map<String, RelatedDocumentsBase>? relatedDocuments}): _relatedDocuments = relatedDocuments;
   factory _RelatedUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
@@ -48963,7 +48963,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
   const _FullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, this.resultId}): _items = items;
   factory _FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$FullDocumentDiagnosticReportFromJson(json);
@@ -49108,7 +49108,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _UnchangedDocumentDiagnosticReport implements UnchangedDocumentDiagnosticReport {
   const _UnchangedDocumentDiagnosticReport({required this.kind, required this.resultId});
   factory _UnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$UnchangedDocumentDiagnosticReportFromJson(json);
@@ -49247,7 +49247,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DiagnosticOptions implements DiagnosticOptions {
   const _DiagnosticOptions({required this.interFileDependencies, required this.workspaceDiagnostics, this.identifier, this.workDoneProgress});
   factory _DiagnosticOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticOptionsFromJson(json);
@@ -49388,7 +49388,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _PreviousResultId implements PreviousResultId {
   const _PreviousResultId({required this.uri, required this.value});
   factory _PreviousResultId.fromJson(Map<String, dynamic> json) => _$PreviousResultIdFromJson(json);
@@ -49528,7 +49528,7 @@ as LSPObject?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookDocument implements NotebookDocument {
   const _NotebookDocument({required this.uri, required this.notebookType, required this.version, required final  List<NotebookCell> cells, final  LSPObject? metadata}): _cells = cells,_metadata = metadata;
   factory _NotebookDocument.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFromJson(json);
@@ -49687,7 +49687,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentItem implements TextDocumentItem {
   const _TextDocumentItem({required this.uri, required this.languageId, required this.version, required this.text});
   factory _TextDocumentItem.fromJson(Map<String, dynamic> json) => _$TextDocumentItemFromJson(json);
@@ -49828,7 +49828,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _VersionedNotebookDocumentIdentifier implements VersionedNotebookDocumentIdentifier {
   const _VersionedNotebookDocumentIdentifier({required this.version, required this.uri});
   factory _VersionedNotebookDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$VersionedNotebookDocumentIdentifierFromJson(json);
@@ -49965,7 +49965,7 @@ as LSPObject?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookDocumentChangeEvent implements NotebookDocumentChangeEvent {
   const _NotebookDocumentChangeEvent({this.cells, final  LSPObject? metadata}): _metadata = metadata;
   factory _NotebookDocumentChangeEvent.fromJson(Map<String, dynamic> json) => _$NotebookDocumentChangeEventFromJson(json);
@@ -50109,7 +50109,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookDocumentIdentifier implements NotebookDocumentIdentifier {
   const _NotebookDocumentIdentifier({required this.uri});
   factory _NotebookDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$NotebookDocumentIdentifierFromJson(json);
@@ -50256,7 +50256,7 @@ $SelectedCompletionInfoCopyWith<$Res>? get selectedCompletionInfo {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineCompletionContext implements InlineCompletionContext {
   const _InlineCompletionContext({required this.triggerKind, this.selectedCompletionInfo});
   factory _InlineCompletionContext.fromJson(Map<String, dynamic> json) => _$InlineCompletionContextFromJson(json);
@@ -50405,7 +50405,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _StringValue implements StringValue {
   const _StringValue({required this.kind, required this.value});
   factory _StringValue.fromJson(Map<String, dynamic> json) => _$StringValueFromJson(json);
@@ -50541,7 +50541,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineCompletionOptions implements InlineCompletionOptions {
   const _InlineCompletionOptions({this.workDoneProgress});
   factory _InlineCompletionOptions.fromJson(Map<String, dynamic> json) => _$InlineCompletionOptionsFromJson(json);
@@ -50689,7 +50689,7 @@ $LSPAnyBaseCopyWith<$Res>? get registerOptions {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Registration implements Registration {
   const _Registration({required this.id, required this.method, this.registerOptions});
   factory _Registration.fromJson(Map<String, dynamic> json) => _$RegistrationFromJson(json);
@@ -50840,7 +50840,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Unregistration implements Unregistration {
   const _Unregistration({required this.id, required this.method});
   factory _Unregistration.fromJson(Map<String, dynamic> json) => _$UnregistrationFromJson(json);
@@ -51047,7 +51047,7 @@ $ProgressTokenBaseCopyWith<$Res>? get workDoneToken {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TInitializeParams implements TInitializeParams {
   const _TInitializeParams({required this.processId, required this.rootUri, required this.capabilities, this.trace, this.initializationOptions, this.rootPath, this.locale, this.clientInfo, this.workDoneToken});
   factory _TInitializeParams.fromJson(Map<String, dynamic> json) => _$TInitializeParamsFromJson(json);
@@ -51272,7 +51272,7 @@ $WorkspaceFoldersInitializeParamsWorkspaceFoldersBaseCopyWith<$Res>? get workspa
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceFoldersInitializeParams implements WorkspaceFoldersInitializeParams {
   const _WorkspaceFoldersInitializeParams({this.workspaceFolders});
   factory _WorkspaceFoldersInitializeParams.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersInitializeParamsFromJson(json);
@@ -51861,7 +51861,7 @@ $ServerCapabilitiesHoverProviderBaseCopyWith<$Res>? get hoverProvider {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ServerCapabilities implements ServerCapabilities {
   const _ServerCapabilities({this.workspaceSymbolProvider, this.documentHighlightProvider, this.documentFormattingProvider, this.codeActionProvider, this.completionProvider, this.workspace, this.inlineCompletionProvider, this.diagnosticProvider, this.inlayHintProvider, this.definitionProvider, this.declarationProvider, this.monikerProvider, this.semanticTokensProvider, this.linkedEditingRangeProvider, this.callHierarchyProvider, this.executeCommandProvider, this.textDocumentSync, this.foldingRangeProvider, this.renameProvider, this.documentOnTypeFormattingProvider, this.documentRangeFormattingProvider, this.experimental, this.selectionRangeProvider, this.colorProvider, this.documentLinkProvider, this.codeLensProvider, this.notebookDocumentSync, this.documentSymbolProvider, this.positionEncoding, this.referencesProvider, this.implementationProvider, this.typeDefinitionProvider, this.inlineValueProvider, this.typeHierarchyProvider, this.signatureHelpProvider, this.hoverProvider});
   factory _ServerCapabilities.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFromJson(json);
@@ -52474,7 +52474,7 @@ as int,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _VersionedTextDocumentIdentifier implements VersionedTextDocumentIdentifier {
   const _VersionedTextDocumentIdentifier({required this.uri, required this.version});
   factory _VersionedTextDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$VersionedTextDocumentIdentifierFromJson(json);
@@ -52610,7 +52610,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SaveOptions implements SaveOptions {
   const _SaveOptions({this.includeText});
   factory _SaveOptions.fromJson(Map<String, dynamic> json) => _$SaveOptionsFromJson(json);
@@ -52745,7 +52745,7 @@ as FileChangeType,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileEvent implements FileEvent {
   const _FileEvent({required this.uri, required this.type});
   factory _FileEvent.fromJson(Map<String, dynamic> json) => _$FileEventFromJson(json);
@@ -52891,7 +52891,7 @@ $GlobPatternBaseCopyWith<$Res> get globPattern {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileSystemWatcher implements FileSystemWatcher {
   const _FileSystemWatcher({required this.globPattern, this.kind});
   factory _FileSystemWatcher.fromJson(Map<String, dynamic> json) => _$FileSystemWatcherFromJson(json);
@@ -53089,7 +53089,7 @@ $ProgressTokenBaseCopyWith<$Res>? get code {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _Diagnostic implements Diagnostic {
   const _Diagnostic({required this.range, required this.message, this.data, final  List<DiagnosticRelatedInformation>? relatedInformation, final  List<DiagnosticTag>? tags, this.source, this.codeDescription, this.code, this.severity}): _relatedInformation = relatedInformation,_tags = tags;
   factory _Diagnostic.fromJson(Map<String, dynamic> json) => _$DiagnosticFromJson(json);
@@ -53301,7 +53301,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CompletionContext implements CompletionContext {
   const _CompletionContext({required this.triggerKind, this.triggerCharacter});
   factory _CompletionContext.fromJson(Map<String, dynamic> json) => _$CompletionContextFromJson(json);
@@ -53438,7 +53438,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CompletionItemLabelDetails implements CompletionItemLabelDetails {
   const _CompletionItemLabelDetails({this.description, this.detail});
   factory _CompletionItemLabelDetails.fromJson(Map<String, dynamic> json) => _$CompletionItemLabelDetailsFromJson(json);
@@ -53594,7 +53594,7 @@ $RangeCopyWith<$Res> get replace {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InsertReplaceEdit implements InsertReplaceEdit {
   const _InsertReplaceEdit({required this.newText, required this.insert, required this.replace});
   factory _InsertReplaceEdit.fromJson(Map<String, dynamic> json) => _$InsertReplaceEditFromJson(json);
@@ -53754,7 +53754,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CompletionOptions implements CompletionOptions {
   const _CompletionOptions({this.completionItem, this.resolveProvider, final  List<String>? allCommitCharacters, final  List<String>? triggerCharacters, this.workDoneProgress}): _allCommitCharacters = allCommitCharacters,_triggerCharacters = triggerCharacters;
   factory _CompletionOptions.fromJson(Map<String, dynamic> json) => _$CompletionOptionsFromJson(json);
@@ -53912,7 +53912,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _HoverOptions implements HoverOptions {
   const _HoverOptions({this.workDoneProgress});
   factory _HoverOptions.fromJson(Map<String, dynamic> json) => _$HoverOptionsFromJson(json);
@@ -54061,7 +54061,7 @@ $SignatureHelpCopyWith<$Res>? get activeSignatureHelp {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SignatureHelpContext implements SignatureHelpContext {
   const _SignatureHelpContext({required this.triggerKind, required this.isRetrigger, this.activeSignatureHelp, this.triggerCharacter});
   factory _SignatureHelpContext.fromJson(Map<String, dynamic> json) => _$SignatureHelpContextFromJson(json);
@@ -54228,7 +54228,7 @@ $TooltipOrDocumentationBaseCopyWith<$Res>? get documentation {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SignatureInformation implements SignatureInformation {
   const _SignatureInformation({required this.label, this.activeParameter, final  List<ParameterInformation>? parameters, this.documentation}): _parameters = parameters;
   factory _SignatureInformation.fromJson(Map<String, dynamic> json) => _$SignatureInformationFromJson(json);
@@ -54390,7 +54390,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SignatureHelpOptions implements SignatureHelpOptions {
   const _SignatureHelpOptions({final  List<String>? retriggerCharacters, final  List<String>? triggerCharacters, this.workDoneProgress}): _retriggerCharacters = retriggerCharacters,_triggerCharacters = triggerCharacters;
   factory _SignatureHelpOptions.fromJson(Map<String, dynamic> json) => _$SignatureHelpOptionsFromJson(json);
@@ -54544,7 +54544,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DefinitionOptions implements DefinitionOptions {
   const _DefinitionOptions({this.workDoneProgress});
   factory _DefinitionOptions.fromJson(Map<String, dynamic> json) => _$DefinitionOptionsFromJson(json);
@@ -54678,7 +54678,7 @@ as bool,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ReferenceContext implements ReferenceContext {
   const _ReferenceContext({required this.includeDeclaration});
   factory _ReferenceContext.fromJson(Map<String, dynamic> json) => _$ReferenceContextFromJson(json);
@@ -54812,7 +54812,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ReferenceOptions implements ReferenceOptions {
   const _ReferenceOptions({this.workDoneProgress});
   factory _ReferenceOptions.fromJson(Map<String, dynamic> json) => _$ReferenceOptionsFromJson(json);
@@ -54946,7 +54946,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentHighlightOptions implements DocumentHighlightOptions {
   const _DocumentHighlightOptions({this.workDoneProgress});
   factory _DocumentHighlightOptions.fromJson(Map<String, dynamic> json) => _$DocumentHighlightOptionsFromJson(json);
@@ -55083,7 +55083,7 @@ as List<SymbolTag>?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _BaseSymbolInformation implements BaseSymbolInformation {
   const _BaseSymbolInformation({required this.name, required this.kind, this.containerName, final  List<SymbolTag>? tags}): _tags = tags;
   factory _BaseSymbolInformation.fromJson(Map<String, dynamic> json) => _$BaseSymbolInformationFromJson(json);
@@ -55232,7 +55232,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentSymbolOptions implements DocumentSymbolOptions {
   const _DocumentSymbolOptions({this.label, this.workDoneProgress});
   factory _DocumentSymbolOptions.fromJson(Map<String, dynamic> json) => _$DocumentSymbolOptionsFromJson(json);
@@ -55370,7 +55370,7 @@ as List<CodeActionKind>?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeActionContext implements CodeActionContext {
   const _CodeActionContext({required final  List<Diagnostic> diagnostics, this.triggerKind, final  List<CodeActionKind>? only}): _diagnostics = diagnostics,_only = only;
   factory _CodeActionContext.fromJson(Map<String, dynamic> json) => _$CodeActionContextFromJson(json);
@@ -55524,7 +55524,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeActionOptions implements CodeActionOptions {
   const _CodeActionOptions({this.resolveProvider, final  List<CodeActionKind>? codeActionKinds, this.workDoneProgress}): _codeActionKinds = codeActionKinds;
   factory _CodeActionOptions.fromJson(Map<String, dynamic> json) => _$CodeActionOptionsFromJson(json);
@@ -55671,7 +55671,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceSymbolOptions implements WorkspaceSymbolOptions {
   const _WorkspaceSymbolOptions({this.resolveProvider, this.workDoneProgress});
   factory _WorkspaceSymbolOptions.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolOptionsFromJson(json);
@@ -55808,7 +55808,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeLensOptions implements CodeLensOptions {
   const _CodeLensOptions({this.resolveProvider, this.workDoneProgress});
   factory _CodeLensOptions.fromJson(Map<String, dynamic> json) => _$CodeLensOptionsFromJson(json);
@@ -55945,7 +55945,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentLinkOptions implements DocumentLinkOptions {
   const _DocumentLinkOptions({this.resolveProvider, this.workDoneProgress});
   factory _DocumentLinkOptions.fromJson(Map<String, dynamic> json) => _$DocumentLinkOptionsFromJson(json);
@@ -56085,7 +56085,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FormattingOptions implements FormattingOptions {
   const _FormattingOptions({required this.tabSize, required this.insertSpaces, this.trimFinalNewlines, this.insertFinalNewline, this.trimTrailingWhitespace});
   factory _FormattingOptions.fromJson(Map<String, dynamic> json) => _$FormattingOptionsFromJson(json);
@@ -56227,7 +56227,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentFormattingOptions implements DocumentFormattingOptions {
   const _DocumentFormattingOptions({this.workDoneProgress});
   factory _DocumentFormattingOptions.fromJson(Map<String, dynamic> json) => _$DocumentFormattingOptionsFromJson(json);
@@ -56362,7 +56362,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentRangeFormattingOptions implements DocumentRangeFormattingOptions {
   const _DocumentRangeFormattingOptions({this.rangesSupport, this.workDoneProgress});
   factory _DocumentRangeFormattingOptions.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingOptionsFromJson(json);
@@ -56499,7 +56499,7 @@ as List<String>?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentOnTypeFormattingOptions implements DocumentOnTypeFormattingOptions {
   const _DocumentOnTypeFormattingOptions({required this.firstTriggerCharacter, final  List<String>? moreTriggerCharacter}): _moreTriggerCharacter = moreTriggerCharacter;
   factory _DocumentOnTypeFormattingOptions.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingOptionsFromJson(json);
@@ -56644,7 +56644,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RenameOptions implements RenameOptions {
   const _RenameOptions({this.prepareProvider, this.workDoneProgress});
   factory _RenameOptions.fromJson(Map<String, dynamic> json) => _$RenameOptionsFromJson(json);
@@ -56781,7 +56781,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ExecuteCommandOptions implements ExecuteCommandOptions {
   const _ExecuteCommandOptions({required final  List<String> commands, this.workDoneProgress}): _commands = commands;
   factory _ExecuteCommandOptions.fromJson(Map<String, dynamic> json) => _$ExecuteCommandOptionsFromJson(json);
@@ -56924,7 +56924,7 @@ as List<String>,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensLegend implements SemanticTokensLegend {
   const _SemanticTokensLegend({required final  List<String> tokenTypes, required final  List<String> tokenModifiers}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers;
   factory _SemanticTokensLegend.fromJson(Map<String, dynamic> json) => _$SemanticTokensLegendFromJson(json);
@@ -57082,7 +57082,7 @@ $ProcessIdOrVersionBaseCopyWith<$Res> get version {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _OptionalVersionedTextDocumentIdentifier implements OptionalVersionedTextDocumentIdentifier {
   const _OptionalVersionedTextDocumentIdentifier({required this.uri, required this.version});
   factory _OptionalVersionedTextDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$OptionalVersionedTextDocumentIdentifierFromJson(json);
@@ -57238,7 +57238,7 @@ $RangeCopyWith<$Res> get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _AnnotatedTextEdit implements AnnotatedTextEdit {
   const _AnnotatedTextEdit({required this.range, required this.newText, required this.annotationId});
   factory _AnnotatedTextEdit.fromJson(Map<String, dynamic> json) => _$AnnotatedTextEditFromJson(json);
@@ -57386,7 +57386,7 @@ as ChangeAnnotationIdentifier?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ResourceOperation implements ResourceOperation {
   const _ResourceOperation({required this.kind, this.annotationId});
   factory _ResourceOperation.fromJson(Map<String, dynamic> json) => _$ResourceOperationFromJson(json);
@@ -57523,7 +57523,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CreateFileOptions implements CreateFileOptions {
   const _CreateFileOptions({this.ignoreIfExists, this.overwrite});
   factory _CreateFileOptions.fromJson(Map<String, dynamic> json) => _$CreateFileOptionsFromJson(json);
@@ -57660,7 +57660,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RenameFileOptions implements RenameFileOptions {
   const _RenameFileOptions({this.ignoreIfExists, this.overwrite});
   factory _RenameFileOptions.fromJson(Map<String, dynamic> json) => _$RenameFileOptionsFromJson(json);
@@ -57797,7 +57797,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DeleteFileOptions implements DeleteFileOptions {
   const _DeleteFileOptions({this.ignoreIfNotExists, this.recursive});
   factory _DeleteFileOptions.fromJson(Map<String, dynamic> json) => _$DeleteFileOptionsFromJson(json);
@@ -57947,7 +57947,7 @@ $FileOperationPatternOptionsCopyWith<$Res>? get options {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileOperationPattern implements FileOperationPattern {
   const _FileOperationPattern({required this.glob, this.options, this.matches});
   factory _FileOperationPattern.fromJson(Map<String, dynamic> json) => _$FileOperationPatternFromJson(json);
@@ -58110,7 +58110,7 @@ $ProcessIdOrVersionBaseCopyWith<$Res> get version {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDiagnosticReport {
   const _WorkspaceFullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, required this.uri, required this.version, this.resultId}): _items = items;
   factory _WorkspaceFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceFullDocumentDiagnosticReportFromJson(json);
@@ -58279,7 +58279,7 @@ $ProcessIdOrVersionBaseCopyWith<$Res> get version {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceUnchangedDocumentDiagnosticReport implements WorkspaceUnchangedDocumentDiagnosticReport {
   const _WorkspaceUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, required this.uri, required this.version});
   factory _WorkspaceUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(json);
@@ -58443,7 +58443,7 @@ $ExecutionSummaryCopyWith<$Res>? get executionSummary {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookCell implements NotebookCell {
   const _NotebookCell({required this.kind, required this.document, this.executionSummary, final  LSPObject? metadata}): _metadata = metadata;
   factory _NotebookCell.fromJson(Map<String, dynamic> json) => _$NotebookCellFromJson(json);
@@ -58605,7 +58605,7 @@ as List<NotebookCell>?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookCellArrayChange implements NotebookCellArrayChange {
   const _NotebookCellArrayChange({required this.start, required this.deleteCount, final  List<NotebookCell>? cells}): _cells = cells;
   factory _NotebookCellArrayChange.fromJson(Map<String, dynamic> json) => _$NotebookCellArrayChangeFromJson(json);
@@ -58761,7 +58761,7 @@ $RangeCopyWith<$Res> get range {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SelectedCompletionInfo implements SelectedCompletionInfo {
   const _SelectedCompletionInfo({required this.range, required this.text});
   factory _SelectedCompletionInfo.fromJson(Map<String, dynamic> json) => _$SelectedCompletionInfoFromJson(json);
@@ -58983,7 +58983,7 @@ $WorkspaceClientCapabilitiesCopyWith<$Res>? get workspace {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ClientCapabilities implements ClientCapabilities {
   const _ClientCapabilities({this.experimental, this.general, this.window, this.notebookDocument, this.textDocument, this.workspace});
   factory _ClientCapabilities.fromJson(Map<String, dynamic> json) => _$ClientCapabilitiesFromJson(json);
@@ -59215,7 +59215,7 @@ $TextDocumentSyncOptionsSaveBaseCopyWith<$Res>? get save {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentSyncOptions implements TextDocumentSyncOptions {
   const _TextDocumentSyncOptions({this.save, this.willSaveWaitUntil, this.willSave, this.change, this.openClose});
   factory _TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentSyncOptionsFromJson(json);
@@ -59370,7 +59370,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookDocumentSyncOptions implements NotebookDocumentSyncOptions {
   const _NotebookDocumentSyncOptions({required final  List<NotebookDocumentSyncOptionsNotebookSelectorBase> notebookSelector, this.save}): _notebookSelector = notebookSelector;
   factory _NotebookDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsFromJson(json);
@@ -59514,7 +59514,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookDocumentSyncRegistrationOptions implements NotebookDocumentSyncRegistrationOptions {
   const _NotebookDocumentSyncRegistrationOptions({required final  List<NotebookDocumentSyncOptionsNotebookSelectorBase> notebookSelector, this.id, this.save}): _notebookSelector = notebookSelector;
   factory _NotebookDocumentSyncRegistrationOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncRegistrationOptionsFromJson(json);
@@ -59671,7 +59671,7 @@ $WorkspaceFoldersServerCapabilitiesChangeNotificationsBaseCopyWith<$Res>? get ch
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceFoldersServerCapabilities implements WorkspaceFoldersServerCapabilities {
   const _WorkspaceFoldersServerCapabilities({this.changeNotifications, this.supported});
   factory _WorkspaceFoldersServerCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
@@ -59896,7 +59896,7 @@ $FileOperationRegistrationOptionsCopyWith<$Res>? get didCreate {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileOperationOptions implements FileOperationOptions {
   const _FileOperationOptions({this.willDelete, this.didDelete, this.willRename, this.didRename, this.willCreate, this.didCreate});
   factory _FileOperationOptions.fromJson(Map<String, dynamic> json) => _$FileOperationOptionsFromJson(json);
@@ -60112,7 +60112,7 @@ as String,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeDescription implements CodeDescription {
   const _CodeDescription({required this.href});
   factory _CodeDescription.fromJson(Map<String, dynamic> json) => _$CodeDescriptionFromJson(json);
@@ -60256,7 +60256,7 @@ $LocationCopyWith<$Res> get location {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DiagnosticRelatedInformation implements DiagnosticRelatedInformation {
   const _DiagnosticRelatedInformation({required this.location, required this.message});
   factory _DiagnosticRelatedInformation.fromJson(Map<String, dynamic> json) => _$DiagnosticRelatedInformationFromJson(json);
@@ -60423,7 +60423,7 @@ $TooltipOrDocumentationBaseCopyWith<$Res>? get documentation {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ParameterInformation implements ParameterInformation {
   const _ParameterInformation({required this.label, this.documentation});
   factory _ParameterInformation.fromJson(Map<String, dynamic> json) => _$ParameterInformationFromJson(json);
@@ -60590,7 +60590,7 @@ $NotebookCellTextDocumentFilterNotebookBaseCopyWith<$Res> get notebook {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookCellTextDocumentFilter implements NotebookCellTextDocumentFilter {
   const _NotebookCellTextDocumentFilter({required this.notebook, this.language});
   factory _NotebookCellTextDocumentFilter.fromJson(Map<String, dynamic> json) => _$NotebookCellTextDocumentFilterFromJson(json);
@@ -60735,7 +60735,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileOperationPatternOptions implements FileOperationPatternOptions {
   const _FileOperationPatternOptions({this.ignoreCase});
   factory _FileOperationPatternOptions.fromJson(Map<String, dynamic> json) => _$FileOperationPatternOptionsFromJson(json);
@@ -60870,7 +60870,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ExecutionSummary implements ExecutionSummary {
   const _ExecutionSummary({required this.executionOrder, this.success});
   factory _ExecutionSummary.fromJson(Map<String, dynamic> json) => _$ExecutionSummaryFromJson(json);
@@ -61164,7 +61164,7 @@ $WorkspaceEditClientCapabilitiesCopyWith<$Res>? get workspaceEdit {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
   const _WorkspaceClientCapabilities({this.foldingRange, this.diagnostics, this.inlayHint, this.inlineValue, this.fileOperations, this.codeLens, this.semanticTokens, this.configuration, this.workspaceFolders, this.executeCommand, this.symbol, this.didChangeWatchedFiles, this.didChangeConfiguration, this.workspaceEdit, this.applyEdit});
   factory _WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceClientCapabilitiesFromJson(json);
@@ -61872,7 +61872,7 @@ $TextDocumentSyncClientCapabilitiesCopyWith<$Res>? get synchronization {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentClientCapabilities implements TextDocumentClientCapabilities {
   const _TextDocumentClientCapabilities({this.inlineCompletion, this.diagnostic, this.inlayHint, this.inlineValue, this.typeHierarchy, this.moniker, this.linkedEditingRange, this.semanticTokens, this.callHierarchy, this.publishDiagnostics, this.selectionRange, this.foldingRange, this.rename, this.onTypeFormatting, this.rangeFormatting, this.formatting, this.colorProvider, this.documentLink, this.codeLens, this.codeAction, this.documentSymbol, this.documentHighlight, this.references, this.implementation, this.typeDefinition, this.definition, this.declaration, this.signatureHelp, this.hover, this.completion, this.synchronization});
   factory _TextDocumentClientCapabilities.fromJson(Map<String, dynamic> json) => _$TextDocumentClientCapabilitiesFromJson(json);
@@ -62447,7 +62447,7 @@ $NotebookDocumentSyncClientCapabilitiesCopyWith<$Res> get synchronization {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookDocumentClientCapabilities implements NotebookDocumentClientCapabilities {
   const _NotebookDocumentClientCapabilities({required this.synchronization});
   factory _NotebookDocumentClientCapabilities.fromJson(Map<String, dynamic> json) => _$NotebookDocumentClientCapabilitiesFromJson(json);
@@ -62616,7 +62616,7 @@ $ShowMessageRequestClientCapabilitiesCopyWith<$Res>? get showMessage {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WindowClientCapabilities implements WindowClientCapabilities {
   const _WindowClientCapabilities({this.showDocument, this.showMessage, this.workDoneProgress});
   factory _WindowClientCapabilities.fromJson(Map<String, dynamic> json) => _$WindowClientCapabilitiesFromJson(json);
@@ -62805,7 +62805,7 @@ $RegularExpressionsClientCapabilitiesCopyWith<$Res>? get regularExpressions {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _GeneralClientCapabilities implements GeneralClientCapabilities {
   const _GeneralClientCapabilities({final  List<PositionEncodingKind>? positionEncodings, this.markdown, this.regularExpressions, this.staleRequestSupport}): _positionEncodings = positionEncodings;
   factory _GeneralClientCapabilities.fromJson(Map<String, dynamic> json) => _$GeneralClientCapabilitiesFromJson(json);
@@ -62987,7 +62987,7 @@ $RelativePatternBaseUriBaseCopyWith<$Res> get baseUri {
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RelativePattern implements RelativePattern {
   const _RelativePattern({required this.baseUri, required this.pattern});
   factory _RelativePattern.fromJson(Map<String, dynamic> json) => _$RelativePatternFromJson(json);
@@ -63136,7 +63136,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilities {
   const _WorkspaceEditClientCapabilities({this.changeAnnotationSupport, this.normalizesLineEndings, this.failureHandling, final  List<ResourceOperationKind>? resourceOperations, this.documentChanges}): _resourceOperations = resourceOperations;
   factory _WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceEditClientCapabilitiesFromJson(json);
@@ -63286,7 +63286,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidChangeConfigurationClientCapabilities implements DidChangeConfigurationClientCapabilities {
   const _DidChangeConfigurationClientCapabilities({this.dynamicRegistration});
   factory _DidChangeConfigurationClientCapabilities.fromJson(Map<String, dynamic> json) => _$DidChangeConfigurationClientCapabilitiesFromJson(json);
@@ -63421,7 +63421,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DidChangeWatchedFilesClientCapabilities implements DidChangeWatchedFilesClientCapabilities {
   const _DidChangeWatchedFilesClientCapabilities({this.relativePatternSupport, this.dynamicRegistration});
   factory _DidChangeWatchedFilesClientCapabilities.fromJson(Map<String, dynamic> json) => _$DidChangeWatchedFilesClientCapabilitiesFromJson(json);
@@ -63560,7 +63560,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _WorkspaceSymbolClientCapabilities implements WorkspaceSymbolClientCapabilities {
   const _WorkspaceSymbolClientCapabilities({this.resolveSupport, this.tagSupport, this.symbolKind, this.dynamicRegistration});
   factory _WorkspaceSymbolClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolClientCapabilitiesFromJson(json);
@@ -63700,7 +63700,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ExecuteCommandClientCapabilities implements ExecuteCommandClientCapabilities {
   const _ExecuteCommandClientCapabilities({this.dynamicRegistration});
   factory _ExecuteCommandClientCapabilities.fromJson(Map<String, dynamic> json) => _$ExecuteCommandClientCapabilitiesFromJson(json);
@@ -63834,7 +63834,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensWorkspaceClientCapabilities implements SemanticTokensWorkspaceClientCapabilities {
   const _SemanticTokensWorkspaceClientCapabilities({this.refreshSupport});
   factory _SemanticTokensWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensWorkspaceClientCapabilitiesFromJson(json);
@@ -63968,7 +63968,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeLensWorkspaceClientCapabilities implements CodeLensWorkspaceClientCapabilities {
   const _CodeLensWorkspaceClientCapabilities({this.refreshSupport});
   factory _CodeLensWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeLensWorkspaceClientCapabilitiesFromJson(json);
@@ -64108,7 +64108,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FileOperationClientCapabilities implements FileOperationClientCapabilities {
   const _FileOperationClientCapabilities({this.willDelete, this.didDelete, this.willRename, this.didRename, this.willCreate, this.didCreate, this.dynamicRegistration});
   factory _FileOperationClientCapabilities.fromJson(Map<String, dynamic> json) => _$FileOperationClientCapabilitiesFromJson(json);
@@ -64254,7 +64254,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineValueWorkspaceClientCapabilities implements InlineValueWorkspaceClientCapabilities {
   const _InlineValueWorkspaceClientCapabilities({this.refreshSupport});
   factory _InlineValueWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineValueWorkspaceClientCapabilitiesFromJson(json);
@@ -64388,7 +64388,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlayHintWorkspaceClientCapabilities implements InlayHintWorkspaceClientCapabilities {
   const _InlayHintWorkspaceClientCapabilities({this.refreshSupport});
   factory _InlayHintWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlayHintWorkspaceClientCapabilitiesFromJson(json);
@@ -64522,7 +64522,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DiagnosticWorkspaceClientCapabilities implements DiagnosticWorkspaceClientCapabilities {
   const _DiagnosticWorkspaceClientCapabilities({this.refreshSupport});
   factory _DiagnosticWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticWorkspaceClientCapabilitiesFromJson(json);
@@ -64656,7 +64656,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FoldingRangeWorkspaceClientCapabilities implements FoldingRangeWorkspaceClientCapabilities {
   const _FoldingRangeWorkspaceClientCapabilities({this.refreshSupport});
   factory _FoldingRangeWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$FoldingRangeWorkspaceClientCapabilitiesFromJson(json);
@@ -64793,7 +64793,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TextDocumentSyncClientCapabilities implements TextDocumentSyncClientCapabilities {
   const _TextDocumentSyncClientCapabilities({this.didSave, this.willSaveWaitUntil, this.willSave, this.dynamicRegistration});
   factory _TextDocumentSyncClientCapabilities.fromJson(Map<String, dynamic> json) => _$TextDocumentSyncClientCapabilitiesFromJson(json);
@@ -64938,7 +64938,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CompletionClientCapabilities implements CompletionClientCapabilities {
   const _CompletionClientCapabilities({this.completionList, this.contextSupport, this.insertTextMode, this.completionItemKind, this.completionItem, this.dynamicRegistration});
   factory _CompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesFromJson(json);
@@ -65083,7 +65083,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _HoverClientCapabilities implements HoverClientCapabilities {
   const _HoverClientCapabilities({final  List<MarkupKind>? contentFormat, this.dynamicRegistration}): _contentFormat = contentFormat;
   factory _HoverClientCapabilities.fromJson(Map<String, dynamic> json) => _$HoverClientCapabilitiesFromJson(json);
@@ -65229,7 +65229,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SignatureHelpClientCapabilities implements SignatureHelpClientCapabilities {
   const _SignatureHelpClientCapabilities({this.contextSupport, this.signatureInformation, this.dynamicRegistration});
   factory _SignatureHelpClientCapabilities.fromJson(Map<String, dynamic> json) => _$SignatureHelpClientCapabilitiesFromJson(json);
@@ -65368,7 +65368,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DeclarationClientCapabilities implements DeclarationClientCapabilities {
   const _DeclarationClientCapabilities({this.linkSupport, this.dynamicRegistration});
   factory _DeclarationClientCapabilities.fromJson(Map<String, dynamic> json) => _$DeclarationClientCapabilitiesFromJson(json);
@@ -65505,7 +65505,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DefinitionClientCapabilities implements DefinitionClientCapabilities {
   const _DefinitionClientCapabilities({this.linkSupport, this.dynamicRegistration});
   factory _DefinitionClientCapabilities.fromJson(Map<String, dynamic> json) => _$DefinitionClientCapabilitiesFromJson(json);
@@ -65642,7 +65642,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeDefinitionClientCapabilities implements TypeDefinitionClientCapabilities {
   const _TypeDefinitionClientCapabilities({this.linkSupport, this.dynamicRegistration});
   factory _TypeDefinitionClientCapabilities.fromJson(Map<String, dynamic> json) => _$TypeDefinitionClientCapabilitiesFromJson(json);
@@ -65779,7 +65779,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ImplementationClientCapabilities implements ImplementationClientCapabilities {
   const _ImplementationClientCapabilities({this.linkSupport, this.dynamicRegistration});
   factory _ImplementationClientCapabilities.fromJson(Map<String, dynamic> json) => _$ImplementationClientCapabilitiesFromJson(json);
@@ -65915,7 +65915,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ReferenceClientCapabilities implements ReferenceClientCapabilities {
   const _ReferenceClientCapabilities({this.dynamicRegistration});
   factory _ReferenceClientCapabilities.fromJson(Map<String, dynamic> json) => _$ReferenceClientCapabilitiesFromJson(json);
@@ -66049,7 +66049,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentHighlightClientCapabilities implements DocumentHighlightClientCapabilities {
   const _DocumentHighlightClientCapabilities({this.dynamicRegistration});
   factory _DocumentHighlightClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentHighlightClientCapabilitiesFromJson(json);
@@ -66187,7 +66187,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentSymbolClientCapabilities implements DocumentSymbolClientCapabilities {
   const _DocumentSymbolClientCapabilities({this.labelSupport, this.tagSupport, this.hierarchicalDocumentSymbolSupport, this.symbolKind, this.dynamicRegistration});
   factory _DocumentSymbolClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentSymbolClientCapabilitiesFromJson(json);
@@ -66335,7 +66335,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
   const _CodeActionClientCapabilities({this.honorsChangeAnnotations, this.resolveSupport, this.dataSupport, this.disabledSupport, this.isPreferredSupport, this.codeActionLiteralSupport, this.dynamicRegistration});
   factory _CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeActionClientCapabilitiesFromJson(json);
@@ -66481,7 +66481,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CodeLensClientCapabilities implements CodeLensClientCapabilities {
   const _CodeLensClientCapabilities({this.dynamicRegistration});
   factory _CodeLensClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeLensClientCapabilitiesFromJson(json);
@@ -66616,7 +66616,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentLinkClientCapabilities implements DocumentLinkClientCapabilities {
   const _DocumentLinkClientCapabilities({this.tooltipSupport, this.dynamicRegistration});
   factory _DocumentLinkClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentLinkClientCapabilitiesFromJson(json);
@@ -66752,7 +66752,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentColorClientCapabilities implements DocumentColorClientCapabilities {
   const _DocumentColorClientCapabilities({this.dynamicRegistration});
   factory _DocumentColorClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentColorClientCapabilitiesFromJson(json);
@@ -66886,7 +66886,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentFormattingClientCapabilities implements DocumentFormattingClientCapabilities {
   const _DocumentFormattingClientCapabilities({this.dynamicRegistration});
   factory _DocumentFormattingClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentFormattingClientCapabilitiesFromJson(json);
@@ -67021,7 +67021,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentRangeFormattingClientCapabilities implements DocumentRangeFormattingClientCapabilities {
   const _DocumentRangeFormattingClientCapabilities({this.rangesSupport, this.dynamicRegistration});
   factory _DocumentRangeFormattingClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingClientCapabilitiesFromJson(json);
@@ -67157,7 +67157,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DocumentOnTypeFormattingClientCapabilities implements DocumentOnTypeFormattingClientCapabilities {
   const _DocumentOnTypeFormattingClientCapabilities({this.dynamicRegistration});
   factory _DocumentOnTypeFormattingClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingClientCapabilitiesFromJson(json);
@@ -67294,7 +67294,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RenameClientCapabilities implements RenameClientCapabilities {
   const _RenameClientCapabilities({this.honorsChangeAnnotations, this.prepareSupportDefaultBehavior, this.prepareSupport, this.dynamicRegistration});
   factory _RenameClientCapabilities.fromJson(Map<String, dynamic> json) => _$RenameClientCapabilitiesFromJson(json);
@@ -67438,7 +67438,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _FoldingRangeClientCapabilities implements FoldingRangeClientCapabilities {
   const _FoldingRangeClientCapabilities({this.foldingRange, this.foldingRangeKind, this.lineFoldingOnly, this.rangeLimit, this.dynamicRegistration});
   factory _FoldingRangeClientCapabilities.fromJson(Map<String, dynamic> json) => _$FoldingRangeClientCapabilitiesFromJson(json);
@@ -67580,7 +67580,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SelectionRangeClientCapabilities implements SelectionRangeClientCapabilities {
   const _SelectionRangeClientCapabilities({this.dynamicRegistration});
   factory _SelectionRangeClientCapabilities.fromJson(Map<String, dynamic> json) => _$SelectionRangeClientCapabilitiesFromJson(json);
@@ -67718,7 +67718,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _PublishDiagnosticsClientCapabilities implements PublishDiagnosticsClientCapabilities {
   const _PublishDiagnosticsClientCapabilities({this.dataSupport, this.codeDescriptionSupport, this.versionSupport, this.tagSupport, this.relatedInformation});
   factory _PublishDiagnosticsClientCapabilities.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsClientCapabilitiesFromJson(json);
@@ -67860,7 +67860,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _CallHierarchyClientCapabilities implements CallHierarchyClientCapabilities {
   const _CallHierarchyClientCapabilities({this.dynamicRegistration});
   factory _CallHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) => _$CallHierarchyClientCapabilitiesFromJson(json);
@@ -68002,7 +68002,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilities {
   const _SemanticTokensClientCapabilities({required this.requests, required final  List<String> tokenTypes, required final  List<String> tokenModifiers, required final  List<TokenFormat> formats, this.augmentsSyntaxTokens, this.serverCancelSupport, this.multilineTokenSupport, this.overlappingTokenSupport, this.dynamicRegistration}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,_formats = formats;
   factory _SemanticTokensClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesFromJson(json);
@@ -68170,7 +68170,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _LinkedEditingRangeClientCapabilities implements LinkedEditingRangeClientCapabilities {
   const _LinkedEditingRangeClientCapabilities({this.dynamicRegistration});
   factory _LinkedEditingRangeClientCapabilities.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeClientCapabilitiesFromJson(json);
@@ -68304,7 +68304,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _MonikerClientCapabilities implements MonikerClientCapabilities {
   const _MonikerClientCapabilities({this.dynamicRegistration});
   factory _MonikerClientCapabilities.fromJson(Map<String, dynamic> json) => _$MonikerClientCapabilitiesFromJson(json);
@@ -68438,7 +68438,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _TypeHierarchyClientCapabilities implements TypeHierarchyClientCapabilities {
   const _TypeHierarchyClientCapabilities({this.dynamicRegistration});
   factory _TypeHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) => _$TypeHierarchyClientCapabilitiesFromJson(json);
@@ -68572,7 +68572,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineValueClientCapabilities implements InlineValueClientCapabilities {
   const _InlineValueClientCapabilities({this.dynamicRegistration});
   factory _InlineValueClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineValueClientCapabilitiesFromJson(json);
@@ -68707,7 +68707,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlayHintClientCapabilities implements InlayHintClientCapabilities {
   const _InlayHintClientCapabilities({this.resolveSupport, this.dynamicRegistration});
   factory _InlayHintClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlayHintClientCapabilitiesFromJson(json);
@@ -68844,7 +68844,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _DiagnosticClientCapabilities implements DiagnosticClientCapabilities {
   const _DiagnosticClientCapabilities({this.relatedDocumentSupport, this.dynamicRegistration});
   factory _DiagnosticClientCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticClientCapabilitiesFromJson(json);
@@ -68980,7 +68980,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _InlineCompletionClientCapabilities implements InlineCompletionClientCapabilities {
   const _InlineCompletionClientCapabilities({this.dynamicRegistration});
   factory _InlineCompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineCompletionClientCapabilitiesFromJson(json);
@@ -69115,7 +69115,7 @@ as bool?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _NotebookDocumentSyncClientCapabilities implements NotebookDocumentSyncClientCapabilities {
   const _NotebookDocumentSyncClientCapabilities({this.executionSummarySupport, this.dynamicRegistration});
   factory _NotebookDocumentSyncClientCapabilities.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncClientCapabilitiesFromJson(json);
@@ -69251,7 +69251,7 @@ as ({bool? additionalPropertiesSupport})?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ShowMessageRequestClientCapabilities implements ShowMessageRequestClientCapabilities {
   const _ShowMessageRequestClientCapabilities({this.messageActionItem});
   factory _ShowMessageRequestClientCapabilities.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestClientCapabilitiesFromJson(json);
@@ -69385,7 +69385,7 @@ as bool,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _ShowDocumentClientCapabilities implements ShowDocumentClientCapabilities {
   const _ShowDocumentClientCapabilities({required this.support});
   factory _ShowDocumentClientCapabilities.fromJson(Map<String, dynamic> json) => _$ShowDocumentClientCapabilitiesFromJson(json);
@@ -69520,7 +69520,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _RegularExpressionsClientCapabilities implements RegularExpressionsClientCapabilities {
   const _RegularExpressionsClientCapabilities({required this.engine, this.version});
   factory _RegularExpressionsClientCapabilities.fromJson(Map<String, dynamic> json) => _$RegularExpressionsClientCapabilitiesFromJson(json);
@@ -69658,7 +69658,7 @@ as String?,
 
 /// @nodoc
 
-@JsonSerializable(disallowUnrecognizedKeys: true)
+@JsonSerializable(disallowUnrecognizedKeys: true, checked: true)
 class _MarkdownClientCapabilities implements MarkdownClientCapabilities {
   const _MarkdownClientCapabilities({required this.parser, final  List<String>? allowedTags, this.version}): _allowedTags = allowedTags;
   factory _MarkdownClientCapabilities.fromJson(Map<String, dynamic> json) => _$MarkdownClientCapabilitiesFromJson(json);

@@ -32,8 +32,8 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   Reference get _stringRef => refer('String');
 
-  final _referencedJsonSerializable = refer(
-    'JsonSerializable(disallowUnrecognizedKeys: true)',
+  final _disallowUnrecognizedKeysRef = refer(
+    'JsonSerializable(disallowUnrecognizedKeys: true, checked: true)',
   );
 
   @override
@@ -113,7 +113,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
           [
             Constructor(
               (b) => b
-                ..annotations.add(_referencedJsonSerializable)
+                ..annotations.add(_disallowUnrecognizedKeysRef)
                 ..factory = true
                 ..constant = true
                 ..redirect = refer('_$name')
@@ -249,17 +249,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Class visitLiteral(MetaLiteral literal) => throw UnimplementedError();
 
   Class _generateBaseOrClass(OrRef symbol) {
-    //     @Freezed(unionKey: 'kind')
-    // sealed class MetaReference extends BaseMeta with _$MetaReference {
-    //   const MetaReference._();
-
-    //   @JsonSerializable(disallowUnrecognizedKeys: true)
-    //   @FreezedUnionValue('reference')
-    //   const factory MetaReference.type({
-    //     required TypeKind kind,
-    //     required String name,
-    //   }) = TypeRef;
-
     final baseName = _sealedMap.resolveOrRefType(symbol);
     final className = _sealedMap.resolveOrRefType(symbol, isBase: false);
 
@@ -275,6 +264,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
       final constructor = Constructor((cb) {
         cb
+          ..annotations.add(_disallowUnrecognizedKeysRef)
           ..constant = true
           ..factory = true
           ..name = 'from${i + 1}'
