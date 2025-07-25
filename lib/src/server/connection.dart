@@ -38,6 +38,10 @@ class Connection {
   ) {
     _peer.registerMethod(RequestMethod.initialize.value, (params) async {
       final parameters = params as Parameters;
+
+      final jsonString = jsonEncode(parameters.value);
+
+
       final initParams = InitializeParams.fromJson(parameters.value);
 
       return handler(initParams);
