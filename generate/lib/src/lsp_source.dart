@@ -20,6 +20,8 @@ Uri _lspSpecUri() {
       'language-server-protocol/specifications/'
       'lsp/$_version/metaModel/metaModel.json';
 
+  print(url);
+
   return Uri.parse(url);
 }
 

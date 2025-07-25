@@ -20,7 +20,7 @@ Future<void> main() async {
       return const InitializeResult(
         capabilities: ServerCapabilities(
           textDocumentSync: ServerCapabilitiesTextDocumentSync1(
-            value: TextDocumentSyncKind.fullValue,
+            value: TextDocumentSyncKind.full,
           ),
         ),
       );

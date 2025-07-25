@@ -168,6 +168,7 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
   bool get isBase => this is BaseRef;
   bool get isOr => this is OrRef;
   bool get isAnd => this is AndRef;
+  bool get isArray => this is ArrayRef;
   bool get isMap => this is MapRef;
   bool get isLiteral => this is LiteralRef;
   bool get isStringLiteral => this is StringLiteralRef;

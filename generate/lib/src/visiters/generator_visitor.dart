@@ -209,7 +209,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
           EnumValue(
             (evb) {
               evb.arguments.add(refer(m.value.literal));
-              evb.name = '${m.name.lowerFirstLetter()}Value';
+              evb.name = _addPostfixIfKeyword(m.name.lowerFirstLetter());
             },
           ),
         );
@@ -218,6 +218,27 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
     return result;
   }
+
+  String _addPostfixIfKeyword(String name) {
+    if (_isKeyworkd(name)) {
+      return '$name\$';
+    }
+    return name;
+  }
+
+  bool _isKeyworkd(String name) => {
+    'null',
+    'class',
+    'enum',
+    'value',
+    'interface',
+    'operator',
+    'static',
+    'deprecated',
+    'abstract',
+    'async',
+    'macro',
+  }.contains(name);
 
   @override
   Spec visitNotification(MetaNotification notification) => const CodeExpression(

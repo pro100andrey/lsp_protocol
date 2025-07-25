@@ -103,10 +103,7 @@ final class SealedMap {
     });
   }
 
-  void _addSymbol({
-    required OrOwner owner,
-    required OrRef ref,
-  }) {
+  void _addSymbol({required OrOwner owner, required OrRef ref}) {
     _orRefs.putIfAbsent(ref, () => []).add(owner);
 
     // Guard against nested OrRefs

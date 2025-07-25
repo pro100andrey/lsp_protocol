@@ -5953,29 +5953,29 @@ abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
 /// specify additional token types via the corresponding client capabilities.
 /// @since 3.16.0
 enum SemanticTokenTypes {
-  namespaceValue('namespace'),
-  typeValue('type'),
-  classValue('class'),
-  enumValue('enum'),
-  interfaceValue('interface'),
-  structValue('struct'),
-  typeParameterValue('typeParameter'),
-  parameterValue('parameter'),
-  variableValue('variable'),
-  propertyValue('property'),
-  enumMemberValue('enumMember'),
-  eventValue('event'),
-  functionValue('function'),
-  methodValue('method'),
-  macroValue('macro'),
-  keywordValue('keyword'),
-  modifierValue('modifier'),
-  commentValue('comment'),
-  stringValue('string'),
-  numberValue('number'),
-  regexpValue('regexp'),
-  operatorValue('operator'),
-  decoratorValue('decorator');
+  namespace('namespace'),
+  type('type'),
+  class$('class'),
+  enum$('enum'),
+  interface$('interface'),
+  struct('struct'),
+  typeParameter('typeParameter'),
+  parameter('parameter'),
+  variable('variable'),
+  property('property'),
+  enumMember('enumMember'),
+  event('event'),
+  function('function'),
+  method('method'),
+  macro$('macro'),
+  keyword('keyword'),
+  modifier('modifier'),
+  comment('comment'),
+  string('string'),
+  number('number'),
+  regexp('regexp'),
+  operator$('operator'),
+  decorator('decorator');
 
   // The list of all values in this enumeration.
   const SemanticTokenTypes(this.value);
@@ -5988,16 +5988,16 @@ enum SemanticTokenTypes {
 /// specify additional token types via the corresponding client capabilities.
 /// @since 3.16.0
 enum SemanticTokenModifiers {
-  declarationValue('declaration'),
-  definitionValue('definition'),
-  readonlyValue('readonly'),
-  staticValue('static'),
-  deprecatedValue('deprecated'),
-  abstractValue('abstract'),
-  asyncValue('async'),
-  modificationValue('modification'),
-  documentationValue('documentation'),
-  defaultLibraryValue('defaultLibrary');
+  declaration('declaration'),
+  definition('definition'),
+  readonly('readonly'),
+  static$('static'),
+  deprecated$('deprecated'),
+  abstract$('abstract'),
+  async$('async'),
+  modification('modification'),
+  documentation('documentation'),
+  defaultLibrary('defaultLibrary');
 
   // The list of all values in this enumeration.
   const SemanticTokenModifiers(this.value);
@@ -6009,8 +6009,8 @@ enum SemanticTokenModifiers {
 /// The document diagnostic report kinds.
 /// @since 3.17.0
 enum DocumentDiagnosticReportKind {
-  fullValue('full'),
-  unchangedValue('unchanged');
+  full('full'),
+  unchanged('unchanged');
 
   // The list of all values in this enumeration.
   const DocumentDiagnosticReportKind(this.value);
@@ -6021,13 +6021,13 @@ enum DocumentDiagnosticReportKind {
 
 /// Predefined error codes.
 enum ErrorCodes {
-  parseErrorValue(-32700),
-  invalidRequestValue(-32600),
-  methodNotFoundValue(-32601),
-  invalidParamsValue(-32602),
-  internalErrorValue(-32603),
-  serverNotInitializedValue(-32002),
-  unknownErrorCodeValue(-32001);
+  parseError(-32700),
+  invalidRequest(-32600),
+  methodNotFound(-32601),
+  invalidParams(-32602),
+  internalError(-32603),
+  serverNotInitialized(-32002),
+  unknownErrorCode(-32001);
 
   // The list of all values in this enumeration.
   const ErrorCodes(this.value);
@@ -6037,10 +6037,10 @@ enum ErrorCodes {
 }
 
 enum LSPErrorCodes {
-  requestFailedValue(-32803),
-  serverCancelledValue(-32802),
-  contentModifiedValue(-32801),
-  requestCancelledValue(-32800);
+  requestFailed(-32803),
+  serverCancelled(-32802),
+  contentModified(-32801),
+  requestCancelled(-32800);
 
   // The list of all values in this enumeration.
   const LSPErrorCodes(this.value);
@@ -6051,9 +6051,9 @@ enum LSPErrorCodes {
 
 /// A set of predefined range kinds.
 enum FoldingRangeKind {
-  commentValue('comment'),
-  importsValue('imports'),
-  regionValue('region');
+  comment('comment'),
+  imports('imports'),
+  region('region');
 
   // The list of all values in this enumeration.
   const FoldingRangeKind(this.value);
@@ -6064,32 +6064,32 @@ enum FoldingRangeKind {
 
 /// A symbol kind.
 enum SymbolKind {
-  fileValue(1),
-  moduleValue(2),
-  namespaceValue(3),
-  packageValue(4),
-  classValue(5),
-  methodValue(6),
-  propertyValue(7),
-  fieldValue(8),
-  constructorValue(9),
-  enumValue(10),
-  interfaceValue(11),
-  functionValue(12),
-  variableValue(13),
-  constantValue(14),
-  stringValue(15),
-  numberValue(16),
-  booleanValue(17),
-  arrayValue(18),
-  objectValue(19),
-  keyValue(20),
-  nullValue(21),
-  enumMemberValue(22),
-  structValue(23),
-  eventValue(24),
-  operatorValue(25),
-  typeParameterValue(26);
+  file(1),
+  module(2),
+  namespace(3),
+  package(4),
+  class$(5),
+  method(6),
+  property(7),
+  field(8),
+  constructor(9),
+  enum$(10),
+  interface$(11),
+  function(12),
+  variable(13),
+  constant(14),
+  string(15),
+  number(16),
+  boolean(17),
+  array(18),
+  object(19),
+  key(20),
+  null$(21),
+  enumMember(22),
+  struct(23),
+  event(24),
+  operator$(25),
+  typeParameter(26);
 
   // The list of all values in this enumeration.
   const SymbolKind(this.value);
@@ -6101,7 +6101,7 @@ enum SymbolKind {
 /// Symbol tags are extra annotations that tweak the rendering of a symbol.
 /// @since 3.16
 enum SymbolTag {
-  deprecatedValue(1);
+  deprecated$(1);
 
   // The list of all values in this enumeration.
   const SymbolTag(this.value);
@@ -6113,11 +6113,11 @@ enum SymbolTag {
 /// Moniker uniqueness level to define scope of the moniker.
 /// @since 3.16.0
 enum UniquenessLevel {
-  documentValue('document'),
-  projectValue('project'),
-  groupValue('group'),
-  schemeValue('scheme'),
-  globalValue('global');
+  document('document'),
+  project('project'),
+  group('group'),
+  scheme('scheme'),
+  global('global');
 
   // The list of all values in this enumeration.
   const UniquenessLevel(this.value);
@@ -6129,9 +6129,9 @@ enum UniquenessLevel {
 /// The moniker kind.
 /// @since 3.16.0
 enum MonikerKind {
-  importValue('import'),
-  exportValue('export'),
-  localValue('local');
+  import('import'),
+  export('export'),
+  local('local');
 
   // The list of all values in this enumeration.
   const MonikerKind(this.value);
@@ -6143,8 +6143,8 @@ enum MonikerKind {
 /// Inlay hint kinds.
 /// @since 3.17.0
 enum InlayHintKind {
-  typeValue(1),
-  parameterValue(2);
+  type(1),
+  parameter(2);
 
   // The list of all values in this enumeration.
   const InlayHintKind(this.value);
@@ -6155,11 +6155,11 @@ enum InlayHintKind {
 
 /// The message type
 enum MessageType {
-  errorValue(1),
-  warningValue(2),
-  infoValue(3),
-  logValue(4),
-  debugValue(5);
+  error(1),
+  warning(2),
+  info(3),
+  log(4),
+  debug(5);
 
   // The list of all values in this enumeration.
   const MessageType(this.value);
@@ -6171,9 +6171,9 @@ enum MessageType {
 /// Defines how the host (editor) should sync document changes to the language
 /// server.
 enum TextDocumentSyncKind {
-  noneValue(0),
-  fullValue(1),
-  incrementalValue(2);
+  none(0),
+  full(1),
+  incremental(2);
 
   // The list of all values in this enumeration.
   const TextDocumentSyncKind(this.value);
@@ -6184,9 +6184,9 @@ enum TextDocumentSyncKind {
 
 /// Represents reasons why a text document is saved.
 enum TextDocumentSaveReason {
-  manualValue(1),
-  afterDelayValue(2),
-  focusOutValue(3);
+  manual(1),
+  afterDelay(2),
+  focusOut(3);
 
   // The list of all values in this enumeration.
   const TextDocumentSaveReason(this.value);
@@ -6197,31 +6197,31 @@ enum TextDocumentSaveReason {
 
 /// The kind of a completion entry.
 enum CompletionItemKind {
-  textValue(1),
-  methodValue(2),
-  functionValue(3),
-  constructorValue(4),
-  fieldValue(5),
-  variableValue(6),
-  classValue(7),
-  interfaceValue(8),
-  moduleValue(9),
-  propertyValue(10),
-  unitValue(11),
-  valueValue(12),
-  enumValue(13),
-  keywordValue(14),
-  snippetValue(15),
-  colorValue(16),
-  fileValue(17),
-  referenceValue(18),
-  folderValue(19),
-  enumMemberValue(20),
-  constantValue(21),
-  structValue(22),
-  eventValue(23),
-  operatorValue(24),
-  typeParameterValue(25);
+  text(1),
+  method(2),
+  function(3),
+  constructor(4),
+  field(5),
+  variable(6),
+  class$(7),
+  interface$(8),
+  module(9),
+  property(10),
+  unit(11),
+  value$(12),
+  enum$(13),
+  keyword(14),
+  snippet(15),
+  color(16),
+  file(17),
+  reference(18),
+  folder(19),
+  enumMember(20),
+  constant(21),
+  struct(22),
+  event(23),
+  operator$(24),
+  typeParameter(25);
 
   // The list of all values in this enumeration.
   const CompletionItemKind(this.value);
@@ -6234,7 +6234,7 @@ enum CompletionItemKind {
 /// completion item.
 /// @since 3.15.0
 enum CompletionItemTag {
-  deprecatedValue(1);
+  deprecated$(1);
 
   // The list of all values in this enumeration.
   const CompletionItemTag(this.value);
@@ -6246,8 +6246,8 @@ enum CompletionItemTag {
 /// Defines whether the insert text in a completion item should be interpreted
 /// as plain text or a snippet.
 enum InsertTextFormat {
-  plainTextValue(1),
-  snippetValue(2);
+  plainText(1),
+  snippet(2);
 
   // The list of all values in this enumeration.
   const InsertTextFormat(this.value);
@@ -6259,8 +6259,8 @@ enum InsertTextFormat {
 /// How whitespace and indentation is handled during completion item insertion.
 /// @since 3.16.0
 enum InsertTextMode {
-  asIsValue(1),
-  adjustIndentationValue(2);
+  asIs(1),
+  adjustIndentation(2);
 
   // The list of all values in this enumeration.
   const InsertTextMode(this.value);
@@ -6271,9 +6271,9 @@ enum InsertTextMode {
 
 /// A document highlight kind.
 enum DocumentHighlightKind {
-  textValue(1),
-  readValue(2),
-  writeValue(3);
+  text(1),
+  read(2),
+  write(3);
 
   // The list of all values in this enumeration.
   const DocumentHighlightKind(this.value);
@@ -6284,15 +6284,15 @@ enum DocumentHighlightKind {
 
 /// A set of predefined code action kinds
 enum CodeActionKind {
-  emptyValue(''),
-  quickFixValue('quickfix'),
-  refactorValue('refactor'),
-  refactorExtractValue('refactor.extract'),
-  refactorInlineValue('refactor.inline'),
-  refactorRewriteValue('refactor.rewrite'),
-  sourceValue('source'),
-  sourceOrganizeImportsValue('source.organizeImports'),
-  sourceFixAllValue('source.fixAll');
+  empty(''),
+  quickFix('quickfix'),
+  refactor('refactor'),
+  refactorExtract('refactor.extract'),
+  refactorInline('refactor.inline'),
+  refactorRewrite('refactor.rewrite'),
+  source('source'),
+  sourceOrganizeImports('source.organizeImports'),
+  sourceFixAll('source.fixAll');
 
   // The list of all values in this enumeration.
   const CodeActionKind(this.value);
@@ -6302,9 +6302,9 @@ enum CodeActionKind {
 }
 
 enum TraceValues {
-  offValue('off'),
-  messagesValue('messages'),
-  verboseValue('verbose');
+  off('off'),
+  messages('messages'),
+  verbose('verbose');
 
   // The list of all values in this enumeration.
   const TraceValues(this.value);
@@ -6318,8 +6318,8 @@ enum TraceValues {
 /// Please note that `MarkupKinds` must not start with a `$`. This kinds are
 /// reserved for internal usage.
 enum MarkupKind {
-  plainTextValue('plaintext'),
-  markdownValue('markdown');
+  plainText('plaintext'),
+  markdown('markdown');
 
   // The list of all values in this enumeration.
   const MarkupKind(this.value);
@@ -6332,8 +6332,8 @@ enum MarkupKind {
 /// provider} was triggered.
 /// @since 3.18.0 @proposed
 enum InlineCompletionTriggerKind {
-  invokedValue(0),
-  automaticValue(1);
+  invoked(0),
+  automatic(1);
 
   // The list of all values in this enumeration.
   const InlineCompletionTriggerKind(this.value);
@@ -6345,9 +6345,9 @@ enum InlineCompletionTriggerKind {
 /// A set of predefined position encoding kinds.
 /// @since 3.17.0
 enum PositionEncodingKind {
-  uTF8Value('utf-8'),
-  uTF16Value('utf-16'),
-  uTF32Value('utf-32');
+  uTF8('utf-8'),
+  uTF16('utf-16'),
+  uTF32('utf-32');
 
   // The list of all values in this enumeration.
   const PositionEncodingKind(this.value);
@@ -6358,9 +6358,9 @@ enum PositionEncodingKind {
 
 /// The file event type
 enum FileChangeType {
-  createdValue(1),
-  changedValue(2),
-  deletedValue(3);
+  created(1),
+  changed(2),
+  deleted(3);
 
   // The list of all values in this enumeration.
   const FileChangeType(this.value);
@@ -6370,9 +6370,9 @@ enum FileChangeType {
 }
 
 enum WatchKind {
-  createValue(1),
-  changeValue(2),
-  deleteValue(4);
+  create(1),
+  change(2),
+  delete(4);
 
   // The list of all values in this enumeration.
   const WatchKind(this.value);
@@ -6383,10 +6383,10 @@ enum WatchKind {
 
 /// The diagnostic's severity.
 enum DiagnosticSeverity {
-  errorValue(1),
-  warningValue(2),
-  informationValue(3),
-  hintValue(4);
+  error(1),
+  warning(2),
+  information(3),
+  hint(4);
 
   // The list of all values in this enumeration.
   const DiagnosticSeverity(this.value);
@@ -6398,8 +6398,8 @@ enum DiagnosticSeverity {
 /// The diagnostic tags.
 /// @since 3.15.0
 enum DiagnosticTag {
-  unnecessaryValue(1),
-  deprecatedValue(2);
+  unnecessary(1),
+  deprecated$(2);
 
   // The list of all values in this enumeration.
   const DiagnosticTag(this.value);
@@ -6410,9 +6410,9 @@ enum DiagnosticTag {
 
 /// How a completion was triggered
 enum CompletionTriggerKind {
-  invokedValue(1),
-  triggerCharacterValue(2),
-  triggerForIncompleteCompletionsValue(3);
+  invoked(1),
+  triggerCharacter(2),
+  triggerForIncompleteCompletions(3);
 
   // The list of all values in this enumeration.
   const CompletionTriggerKind(this.value);
@@ -6424,9 +6424,9 @@ enum CompletionTriggerKind {
 /// How a signature help was triggered.
 /// @since 3.15.0
 enum SignatureHelpTriggerKind {
-  invokedValue(1),
-  triggerCharacterValue(2),
-  contentChangeValue(3);
+  invoked(1),
+  triggerCharacter(2),
+  contentChange(3);
 
   // The list of all values in this enumeration.
   const SignatureHelpTriggerKind(this.value);
@@ -6438,8 +6438,8 @@ enum SignatureHelpTriggerKind {
 /// The reason why code actions were requested.
 /// @since 3.17.0
 enum CodeActionTriggerKind {
-  invokedValue(1),
-  automaticValue(2);
+  invoked(1),
+  automatic(2);
 
   // The list of all values in this enumeration.
   const CodeActionTriggerKind(this.value);
@@ -6451,8 +6451,8 @@ enum CodeActionTriggerKind {
 /// A pattern kind describing if a glob pattern matches a file a folder or both.
 /// @since 3.16.0
 enum FileOperationPatternKind {
-  fileValue('file'),
-  folderValue('folder');
+  file('file'),
+  folder('folder');
 
   // The list of all values in this enumeration.
   const FileOperationPatternKind(this.value);
@@ -6464,8 +6464,8 @@ enum FileOperationPatternKind {
 /// A notebook cell kind.
 /// @since 3.17.0
 enum NotebookCellKind {
-  markupValue(1),
-  codeValue(2);
+  markup(1),
+  code(2);
 
   // The list of all values in this enumeration.
   const NotebookCellKind(this.value);
@@ -6475,9 +6475,9 @@ enum NotebookCellKind {
 }
 
 enum ResourceOperationKind {
-  createValue('create'),
-  renameValue('rename'),
-  deleteValue('delete');
+  create('create'),
+  rename('rename'),
+  delete('delete');
 
   // The list of all values in this enumeration.
   const ResourceOperationKind(this.value);
@@ -6487,10 +6487,10 @@ enum ResourceOperationKind {
 }
 
 enum FailureHandlingKind {
-  abortValue('abort'),
-  transactionalValue('transactional'),
-  textOnlyTransactionalValue('textOnlyTransactional'),
-  undoValue('undo');
+  abort('abort'),
+  transactional('transactional'),
+  textOnlyTransactional('textOnlyTransactional'),
+  undo('undo');
 
   // The list of all values in this enumeration.
   const FailureHandlingKind(this.value);
@@ -6500,7 +6500,7 @@ enum FailureHandlingKind {
 }
 
 enum PrepareSupportDefaultBehavior {
-  identifierValue(1);
+  identifier(1);
 
   // The list of all values in this enumeration.
   const PrepareSupportDefaultBehavior(this.value);
@@ -6510,7 +6510,7 @@ enum PrepareSupportDefaultBehavior {
 }
 
 enum TokenFormat {
-  relativeValue('relative');
+  relative('relative');
 
   // The list of all values in this enumeration.
   const TokenFormat(this.value);

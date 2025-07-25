@@ -1106,9 +1106,9 @@ Map<String, dynamic> _$ServerCapabilitiesTextDocumentSync1ToJson(
 };
 
 const _$TextDocumentSyncKindEnumMap = {
-  TextDocumentSyncKind.noneValue: 'noneValue',
-  TextDocumentSyncKind.fullValue: 'fullValue',
-  TextDocumentSyncKind.incrementalValue: 'incrementalValue',
+  TextDocumentSyncKind.none: 'none',
+  TextDocumentSyncKind.full: 'full',
+  TextDocumentSyncKind.incremental: 'incremental',
 };
 
 ServerCapabilitiesNotebookDocumentSync0
@@ -2701,9 +2701,9 @@ Map<String, dynamic> _$FoldingRangeToJson(_FoldingRange instance) =>
     };
 
 const _$FoldingRangeKindEnumMap = {
-  FoldingRangeKind.commentValue: 'commentValue',
-  FoldingRangeKind.importsValue: 'importsValue',
-  FoldingRangeKind.regionValue: 'regionValue',
+  FoldingRangeKind.comment: 'comment',
+  FoldingRangeKind.imports: 'imports',
+  FoldingRangeKind.region: 'region',
 };
 
 _FoldingRangeRegistrationOptions _$FoldingRangeRegistrationOptionsFromJson(
@@ -2970,35 +2970,35 @@ Map<String, dynamic> _$CallHierarchyItemToJson(_CallHierarchyItem instance) =>
     };
 
 const _$SymbolKindEnumMap = {
-  SymbolKind.fileValue: 'fileValue',
-  SymbolKind.moduleValue: 'moduleValue',
-  SymbolKind.namespaceValue: 'namespaceValue',
-  SymbolKind.packageValue: 'packageValue',
-  SymbolKind.classValue: 'classValue',
-  SymbolKind.methodValue: 'methodValue',
-  SymbolKind.propertyValue: 'propertyValue',
-  SymbolKind.fieldValue: 'fieldValue',
-  SymbolKind.constructorValue: 'constructorValue',
-  SymbolKind.enumValue: 'enumValue',
-  SymbolKind.interfaceValue: 'interfaceValue',
-  SymbolKind.functionValue: 'functionValue',
-  SymbolKind.variableValue: 'variableValue',
-  SymbolKind.constantValue: 'constantValue',
-  SymbolKind.stringValue: 'stringValue',
-  SymbolKind.numberValue: 'numberValue',
-  SymbolKind.booleanValue: 'booleanValue',
-  SymbolKind.arrayValue: 'arrayValue',
-  SymbolKind.objectValue: 'objectValue',
-  SymbolKind.keyValue: 'keyValue',
-  SymbolKind.nullValue: 'nullValue',
-  SymbolKind.enumMemberValue: 'enumMemberValue',
-  SymbolKind.structValue: 'structValue',
-  SymbolKind.eventValue: 'eventValue',
-  SymbolKind.operatorValue: 'operatorValue',
-  SymbolKind.typeParameterValue: 'typeParameterValue',
+  SymbolKind.file: 'file',
+  SymbolKind.module: 'module',
+  SymbolKind.namespace: 'namespace',
+  SymbolKind.package: 'package',
+  SymbolKind.class$: r'class$',
+  SymbolKind.method: 'method',
+  SymbolKind.property: 'property',
+  SymbolKind.field: 'field',
+  SymbolKind.constructor: 'constructor',
+  SymbolKind.enum$: r'enum$',
+  SymbolKind.interface$: r'interface$',
+  SymbolKind.function: 'function',
+  SymbolKind.variable: 'variable',
+  SymbolKind.constant: 'constant',
+  SymbolKind.string: 'string',
+  SymbolKind.number: 'number',
+  SymbolKind.boolean: 'boolean',
+  SymbolKind.array: 'array',
+  SymbolKind.object: 'object',
+  SymbolKind.key: 'key',
+  SymbolKind.null$: r'null$',
+  SymbolKind.enumMember: 'enumMember',
+  SymbolKind.struct: 'struct',
+  SymbolKind.event: 'event',
+  SymbolKind.operator$: r'operator$',
+  SymbolKind.typeParameter: 'typeParameter',
 };
 
-const _$SymbolTagEnumMap = {SymbolTag.deprecatedValue: 'deprecatedValue'};
+const _$SymbolTagEnumMap = {SymbolTag.deprecated$: r'deprecated$'};
 
 _CallHierarchyRegistrationOptions _$CallHierarchyRegistrationOptionsFromJson(
   Map<String, dynamic> json,
@@ -3577,17 +3577,17 @@ Map<String, dynamic> _$MonikerToJson(_Moniker instance) => <String, dynamic>{
 };
 
 const _$UniquenessLevelEnumMap = {
-  UniquenessLevel.documentValue: 'documentValue',
-  UniquenessLevel.projectValue: 'projectValue',
-  UniquenessLevel.groupValue: 'groupValue',
-  UniquenessLevel.schemeValue: 'schemeValue',
-  UniquenessLevel.globalValue: 'globalValue',
+  UniquenessLevel.document: 'document',
+  UniquenessLevel.project: 'project',
+  UniquenessLevel.group: 'group',
+  UniquenessLevel.scheme: 'scheme',
+  UniquenessLevel.global: 'global',
 };
 
 const _$MonikerKindEnumMap = {
-  MonikerKind.importValue: 'importValue',
-  MonikerKind.exportValue: 'exportValue',
-  MonikerKind.localValue: 'localValue',
+  MonikerKind.import: 'import',
+  MonikerKind.export: 'export',
+  MonikerKind.local: 'local',
 };
 
 _MonikerRegistrationOptions _$MonikerRegistrationOptionsFromJson(
@@ -3893,8 +3893,8 @@ Map<String, dynamic> _$InlayHintToJson(_InlayHint instance) =>
     };
 
 const _$InlayHintKindEnumMap = {
-  InlayHintKind.typeValue: 'typeValue',
-  InlayHintKind.parameterValue: 'parameterValue',
+  InlayHintKind.type: 'type',
+  InlayHintKind.parameter: 'parameter',
 };
 
 _InlayHintRegistrationOptions _$InlayHintRegistrationOptionsFromJson(
@@ -4403,9 +4403,9 @@ Map<String, dynamic> _$InitializeParamsToJson(_InitializeParams instance) =>
     };
 
 const _$TraceValuesEnumMap = {
-  TraceValues.offValue: 'offValue',
-  TraceValues.messagesValue: 'messagesValue',
-  TraceValues.verboseValue: 'verboseValue',
+  TraceValues.off: 'off',
+  TraceValues.messages: 'messages',
+  TraceValues.verbose: 'verbose',
 };
 
 $Rec? _$recordConvertNullable<$Rec>(
@@ -4500,11 +4500,11 @@ Map<String, dynamic> _$ShowMessageParamsToJson(_ShowMessageParams instance) =>
     };
 
 const _$MessageTypeEnumMap = {
-  MessageType.errorValue: 'errorValue',
-  MessageType.warningValue: 'warningValue',
-  MessageType.infoValue: 'infoValue',
-  MessageType.logValue: 'logValue',
-  MessageType.debugValue: 'debugValue',
+  MessageType.error: 'error',
+  MessageType.warning: 'warning',
+  MessageType.info: 'info',
+  MessageType.log: 'log',
+  MessageType.debug: 'debug',
 };
 
 _ShowMessageRequestParams _$ShowMessageRequestParamsFromJson(
@@ -4682,9 +4682,9 @@ Map<String, dynamic> _$WillSaveTextDocumentParamsToJson(
 };
 
 const _$TextDocumentSaveReasonEnumMap = {
-  TextDocumentSaveReason.manualValue: 'manualValue',
-  TextDocumentSaveReason.afterDelayValue: 'afterDelayValue',
-  TextDocumentSaveReason.focusOutValue: 'focusOutValue',
+  TextDocumentSaveReason.manual: 'manual',
+  TextDocumentSaveReason.afterDelay: 'afterDelay',
+  TextDocumentSaveReason.focusOut: 'focusOut',
 };
 
 _TextEdit _$TextEditFromJson(Map<String, dynamic> json) {
@@ -4892,45 +4892,45 @@ Map<String, dynamic> _$CompletionItemToJson(
 };
 
 const _$InsertTextModeEnumMap = {
-  InsertTextMode.asIsValue: 'asIsValue',
-  InsertTextMode.adjustIndentationValue: 'adjustIndentationValue',
+  InsertTextMode.asIs: 'asIs',
+  InsertTextMode.adjustIndentation: 'adjustIndentation',
 };
 
 const _$InsertTextFormatEnumMap = {
-  InsertTextFormat.plainTextValue: 'plainTextValue',
-  InsertTextFormat.snippetValue: 'snippetValue',
+  InsertTextFormat.plainText: 'plainText',
+  InsertTextFormat.snippet: 'snippet',
 };
 
 const _$CompletionItemTagEnumMap = {
-  CompletionItemTag.deprecatedValue: 'deprecatedValue',
+  CompletionItemTag.deprecated$: r'deprecated$',
 };
 
 const _$CompletionItemKindEnumMap = {
-  CompletionItemKind.textValue: 'textValue',
-  CompletionItemKind.methodValue: 'methodValue',
-  CompletionItemKind.functionValue: 'functionValue',
-  CompletionItemKind.constructorValue: 'constructorValue',
-  CompletionItemKind.fieldValue: 'fieldValue',
-  CompletionItemKind.variableValue: 'variableValue',
-  CompletionItemKind.classValue: 'classValue',
-  CompletionItemKind.interfaceValue: 'interfaceValue',
-  CompletionItemKind.moduleValue: 'moduleValue',
-  CompletionItemKind.propertyValue: 'propertyValue',
-  CompletionItemKind.unitValue: 'unitValue',
-  CompletionItemKind.valueValue: 'valueValue',
-  CompletionItemKind.enumValue: 'enumValue',
-  CompletionItemKind.keywordValue: 'keywordValue',
-  CompletionItemKind.snippetValue: 'snippetValue',
-  CompletionItemKind.colorValue: 'colorValue',
-  CompletionItemKind.fileValue: 'fileValue',
-  CompletionItemKind.referenceValue: 'referenceValue',
-  CompletionItemKind.folderValue: 'folderValue',
-  CompletionItemKind.enumMemberValue: 'enumMemberValue',
-  CompletionItemKind.constantValue: 'constantValue',
-  CompletionItemKind.structValue: 'structValue',
-  CompletionItemKind.eventValue: 'eventValue',
-  CompletionItemKind.operatorValue: 'operatorValue',
-  CompletionItemKind.typeParameterValue: 'typeParameterValue',
+  CompletionItemKind.text: 'text',
+  CompletionItemKind.method: 'method',
+  CompletionItemKind.function: 'function',
+  CompletionItemKind.constructor: 'constructor',
+  CompletionItemKind.field: 'field',
+  CompletionItemKind.variable: 'variable',
+  CompletionItemKind.class$: r'class$',
+  CompletionItemKind.interface$: r'interface$',
+  CompletionItemKind.module: 'module',
+  CompletionItemKind.property: 'property',
+  CompletionItemKind.unit: 'unit',
+  CompletionItemKind.value$: r'value$',
+  CompletionItemKind.enum$: r'enum$',
+  CompletionItemKind.keyword: 'keyword',
+  CompletionItemKind.snippet: 'snippet',
+  CompletionItemKind.color: 'color',
+  CompletionItemKind.file: 'file',
+  CompletionItemKind.reference: 'reference',
+  CompletionItemKind.folder: 'folder',
+  CompletionItemKind.enumMember: 'enumMember',
+  CompletionItemKind.constant: 'constant',
+  CompletionItemKind.struct: 'struct',
+  CompletionItemKind.event: 'event',
+  CompletionItemKind.operator$: r'operator$',
+  CompletionItemKind.typeParameter: 'typeParameter',
 };
 
 _CompletionList _$CompletionListFromJson(Map<String, dynamic> json) {
@@ -5360,9 +5360,9 @@ Map<String, dynamic> _$DocumentHighlightToJson(_DocumentHighlight instance) =>
     };
 
 const _$DocumentHighlightKindEnumMap = {
-  DocumentHighlightKind.textValue: 'textValue',
-  DocumentHighlightKind.readValue: 'readValue',
-  DocumentHighlightKind.writeValue: 'writeValue',
+  DocumentHighlightKind.text: 'text',
+  DocumentHighlightKind.read: 'read',
+  DocumentHighlightKind.write: 'write',
 };
 
 _DocumentHighlightRegistrationOptions
@@ -5629,15 +5629,15 @@ Map<String, dynamic> _$CodeActionToJson(_CodeAction instance) =>
     };
 
 const _$CodeActionKindEnumMap = {
-  CodeActionKind.emptyValue: 'emptyValue',
-  CodeActionKind.quickFixValue: 'quickFixValue',
-  CodeActionKind.refactorValue: 'refactorValue',
-  CodeActionKind.refactorExtractValue: 'refactorExtractValue',
-  CodeActionKind.refactorInlineValue: 'refactorInlineValue',
-  CodeActionKind.refactorRewriteValue: 'refactorRewriteValue',
-  CodeActionKind.sourceValue: 'sourceValue',
-  CodeActionKind.sourceOrganizeImportsValue: 'sourceOrganizeImportsValue',
-  CodeActionKind.sourceFixAllValue: 'sourceFixAllValue',
+  CodeActionKind.empty: 'empty',
+  CodeActionKind.quickFix: 'quickFix',
+  CodeActionKind.refactor: 'refactor',
+  CodeActionKind.refactorExtract: 'refactorExtract',
+  CodeActionKind.refactorInline: 'refactorInline',
+  CodeActionKind.refactorRewrite: 'refactorRewrite',
+  CodeActionKind.source: 'source',
+  CodeActionKind.sourceOrganizeImports: 'sourceOrganizeImports',
+  CodeActionKind.sourceFixAll: 'sourceFixAll',
 };
 
 _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
@@ -7014,8 +7014,8 @@ Map<String, dynamic> _$MarkupContentToJson(_MarkupContent instance) =>
     };
 
 const _$MarkupKindEnumMap = {
-  MarkupKind.plainTextValue: 'plainTextValue',
-  MarkupKind.markdownValue: 'markdownValue',
+  MarkupKind.plainText: 'plainText',
+  MarkupKind.markdown: 'markdown',
 };
 
 _InlayHintOptions _$InlayHintOptionsFromJson(Map<String, dynamic> json) {
@@ -7334,8 +7334,8 @@ Map<String, dynamic> _$InlineCompletionContextToJson(
 };
 
 const _$InlineCompletionTriggerKindEnumMap = {
-  InlineCompletionTriggerKind.invokedValue: 'invokedValue',
-  InlineCompletionTriggerKind.automaticValue: 'automaticValue',
+  InlineCompletionTriggerKind.invoked: 'invoked',
+  InlineCompletionTriggerKind.automatic: 'automatic',
 };
 
 _StringValue _$StringValueFromJson(Map<String, dynamic> json) {
@@ -7760,9 +7760,9 @@ Map<String, dynamic> _$ServerCapabilitiesToJson(
 };
 
 const _$PositionEncodingKindEnumMap = {
-  PositionEncodingKind.uTF8Value: 'uTF8Value',
-  PositionEncodingKind.uTF16Value: 'uTF16Value',
-  PositionEncodingKind.uTF32Value: 'uTF32Value',
+  PositionEncodingKind.uTF8: 'uTF8',
+  PositionEncodingKind.uTF16: 'uTF16',
+  PositionEncodingKind.uTF32: 'uTF32',
 };
 
 _VersionedTextDocumentIdentifier _$VersionedTextDocumentIdentifierFromJson(
@@ -7802,9 +7802,9 @@ Map<String, dynamic> _$FileEventToJson(_FileEvent instance) =>
     };
 
 const _$FileChangeTypeEnumMap = {
-  FileChangeType.createdValue: 'createdValue',
-  FileChangeType.changedValue: 'changedValue',
-  FileChangeType.deletedValue: 'deletedValue',
+  FileChangeType.created: 'created',
+  FileChangeType.changed: 'changed',
+  FileChangeType.deleted: 'deleted',
 };
 
 _FileSystemWatcher _$FileSystemWatcherFromJson(Map<String, dynamic> json) {
@@ -7824,9 +7824,9 @@ Map<String, dynamic> _$FileSystemWatcherToJson(_FileSystemWatcher instance) =>
     };
 
 const _$WatchKindEnumMap = {
-  WatchKind.createValue: 'createValue',
-  WatchKind.changeValue: 'changeValue',
-  WatchKind.deleteValue: 'deleteValue',
+  WatchKind.create: 'create',
+  WatchKind.change: 'change',
+  WatchKind.delete: 'delete',
 };
 
 _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) {
@@ -7889,15 +7889,15 @@ Map<String, dynamic> _$DiagnosticToJson(_Diagnostic instance) =>
     };
 
 const _$DiagnosticTagEnumMap = {
-  DiagnosticTag.unnecessaryValue: 'unnecessaryValue',
-  DiagnosticTag.deprecatedValue: 'deprecatedValue',
+  DiagnosticTag.unnecessary: 'unnecessary',
+  DiagnosticTag.deprecated$: r'deprecated$',
 };
 
 const _$DiagnosticSeverityEnumMap = {
-  DiagnosticSeverity.errorValue: 'errorValue',
-  DiagnosticSeverity.warningValue: 'warningValue',
-  DiagnosticSeverity.informationValue: 'informationValue',
-  DiagnosticSeverity.hintValue: 'hintValue',
+  DiagnosticSeverity.error: 'error',
+  DiagnosticSeverity.warning: 'warning',
+  DiagnosticSeverity.information: 'information',
+  DiagnosticSeverity.hint: 'hint',
 };
 
 _CompletionContext _$CompletionContextFromJson(Map<String, dynamic> json) {
@@ -7918,10 +7918,10 @@ Map<String, dynamic> _$CompletionContextToJson(_CompletionContext instance) =>
     };
 
 const _$CompletionTriggerKindEnumMap = {
-  CompletionTriggerKind.invokedValue: 'invokedValue',
-  CompletionTriggerKind.triggerCharacterValue: 'triggerCharacterValue',
-  CompletionTriggerKind.triggerForIncompleteCompletionsValue:
-      'triggerForIncompleteCompletionsValue',
+  CompletionTriggerKind.invoked: 'invoked',
+  CompletionTriggerKind.triggerCharacter: 'triggerCharacter',
+  CompletionTriggerKind.triggerForIncompleteCompletions:
+      'triggerForIncompleteCompletions',
 };
 
 _CompletionItemLabelDetails _$CompletionItemLabelDetailsFromJson(
@@ -8044,9 +8044,9 @@ Map<String, dynamic> _$SignatureHelpContextToJson(
 };
 
 const _$SignatureHelpTriggerKindEnumMap = {
-  SignatureHelpTriggerKind.invokedValue: 'invokedValue',
-  SignatureHelpTriggerKind.triggerCharacterValue: 'triggerCharacterValue',
-  SignatureHelpTriggerKind.contentChangeValue: 'contentChangeValue',
+  SignatureHelpTriggerKind.invoked: 'invoked',
+  SignatureHelpTriggerKind.triggerCharacter: 'triggerCharacter',
+  SignatureHelpTriggerKind.contentChange: 'contentChange',
 };
 
 _SignatureInformation _$SignatureInformationFromJson(
@@ -8222,8 +8222,8 @@ Map<String, dynamic> _$CodeActionContextToJson(_CodeActionContext instance) =>
     };
 
 const _$CodeActionTriggerKindEnumMap = {
-  CodeActionTriggerKind.invokedValue: 'invokedValue',
-  CodeActionTriggerKind.automaticValue: 'automaticValue',
+  CodeActionTriggerKind.invoked: 'invoked',
+  CodeActionTriggerKind.automatic: 'automatic',
 };
 
 _CodeActionOptions _$CodeActionOptionsFromJson(Map<String, dynamic> json) {
@@ -8548,8 +8548,8 @@ Map<String, dynamic> _$FileOperationPatternToJson(
 };
 
 const _$FileOperationPatternKindEnumMap = {
-  FileOperationPatternKind.fileValue: 'fileValue',
-  FileOperationPatternKind.folderValue: 'folderValue',
+  FileOperationPatternKind.file: 'file',
+  FileOperationPatternKind.folder: 'folder',
 };
 
 _WorkspaceFullDocumentDiagnosticReport
@@ -8633,8 +8633,8 @@ Map<String, dynamic> _$NotebookCellToJson(_NotebookCell instance) =>
     };
 
 const _$NotebookCellKindEnumMap = {
-  NotebookCellKind.markupValue: 'markupValue',
-  NotebookCellKind.codeValue: 'codeValue',
+  NotebookCellKind.markup: 'markup',
+  NotebookCellKind.code: 'code',
 };
 
 _NotebookCellArrayChange _$NotebookCellArrayChangeFromJson(
@@ -9484,16 +9484,16 @@ Map<String, dynamic> _$WorkspaceEditClientCapabilitiesToJson(
 };
 
 const _$FailureHandlingKindEnumMap = {
-  FailureHandlingKind.abortValue: 'abortValue',
-  FailureHandlingKind.transactionalValue: 'transactionalValue',
-  FailureHandlingKind.textOnlyTransactionalValue: 'textOnlyTransactionalValue',
-  FailureHandlingKind.undoValue: 'undoValue',
+  FailureHandlingKind.abort: 'abort',
+  FailureHandlingKind.transactional: 'transactional',
+  FailureHandlingKind.textOnlyTransactional: 'textOnlyTransactional',
+  FailureHandlingKind.undo: 'undo',
 };
 
 const _$ResourceOperationKindEnumMap = {
-  ResourceOperationKind.createValue: 'createValue',
-  ResourceOperationKind.renameValue: 'renameValue',
-  ResourceOperationKind.deleteValue: 'deleteValue',
+  ResourceOperationKind.create: 'create',
+  ResourceOperationKind.rename: 'rename',
+  ResourceOperationKind.delete: 'delete',
 };
 
 _DidChangeConfigurationClientCapabilities
@@ -10305,7 +10305,7 @@ Map<String, dynamic> _$RenameClientCapabilitiesToJson(
 };
 
 const _$PrepareSupportDefaultBehaviorEnumMap = {
-  PrepareSupportDefaultBehavior.identifierValue: 'identifierValue',
+  PrepareSupportDefaultBehavior.identifier: 'identifier',
 };
 
 _FoldingRangeClientCapabilities _$FoldingRangeClientCapabilitiesFromJson(
@@ -10495,7 +10495,7 @@ Map<String, dynamic> _$SemanticTokensClientCapabilitiesToJson(
   'dynamicRegistration': instance.dynamicRegistration,
 };
 
-const _$TokenFormatEnumMap = {TokenFormat.relativeValue: 'relativeValue'};
+const _$TokenFormatEnumMap = {TokenFormat.relative: 'relative'};
 
 _LinkedEditingRangeClientCapabilities
 _$LinkedEditingRangeClientCapabilitiesFromJson(Map<String, dynamic> json) {
