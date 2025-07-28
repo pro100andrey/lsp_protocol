@@ -48,7 +48,7 @@ function activate(context) {
     const clientOptions = {
         documentSelector: [{ scheme: "file", language: "your-lang-id" }],
     };
-    const client = new node_1.LanguageClient("yourServer", "Your Server", serverOptions, clientOptions);
+    const client = new node_1.LanguageClient("lakeLanguageServer", "Lake Language Server", serverOptions, clientOptions);
     client.start();
     context.subscriptions.push(client);
 }

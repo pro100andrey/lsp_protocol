@@ -33,7 +33,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Reference get _stringRef => refer('String');
 
   final _disallowUnrecognizedKeysRef = refer(
-    'JsonSerializable(disallowUnrecognizedKeys: true)',
+    'JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)',
     // 'JsonSerializable(disallowUnrecognizedKeys: true, checked: true)',
   );
 
@@ -48,9 +48,9 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.add(visitTypeAlias(typeAlias));
       }
 
-      for (final ref in _sealedMap.refs) {
-        b.body.add(_generateBaseOrClass(ref));
-      }
+      // for (final ref in _sealedMap.refs) {
+      //   b.body.add(_generateBaseOrClass(ref));
+      // }
 
       for (final structure in protocol.structures) {
         b.body.add(visitStructure(structure));
@@ -170,6 +170,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
     final result = Enum((eb) {
       eb
+        ..annotations.add(refer("JsonEnum(valueField: 'value')"))
         ..docs.addAll(formattedDescription)
         ..name = enumeration.name
         ..constructors.add(

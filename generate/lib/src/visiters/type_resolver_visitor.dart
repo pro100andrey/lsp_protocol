@@ -41,6 +41,8 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
 
   @override
   String visitOrRef(OrRef ref) {
+    return 'dynamic'; 
+
     final orName = _sealedMap.resolveOrRefType(ref);
 
     // final orMapReference = _orMapReferences.values.firstWhereOrNull(

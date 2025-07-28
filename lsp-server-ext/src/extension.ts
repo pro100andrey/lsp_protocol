@@ -18,12 +18,11 @@ export function activate(context: vscode.ExtensionContext) {
   };
 
   const client = new LanguageClient(
-    "yourServer",
-    "Your Server",
+    "lakeLanguageServer",
+    "Lake Language Server",
     serverOptions,
     clientOptions
   );
-
 
   client.start();
 

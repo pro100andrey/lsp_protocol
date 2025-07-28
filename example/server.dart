@@ -1,4 +1,4 @@
-// ignore_for_file: cascade_invocations, prefer_expression_function_bodies
+// ignore_for_file: avoid_print
 
 import 'dart:async';
 import 'dart:io';
@@ -16,47 +16,63 @@ Future<void> main() async {
 
     connection.console.log('Starting LSP server...');
 
-    connection.onInitialize((params) async {
-      return const InitializeResult(
-        capabilities: ServerCapabilities(
-          textDocumentSync: ServerCapabilitiesTextDocumentSync1(
-            value: TextDocumentSyncKind.full,
+    connection
+      ..onInitializeRequest((params) async {
+        connection.console.log('Received initialize request.');
+  
+        return const InitializeResult(
+          capabilities: ServerCapabilities(
+            textDocumentSync: TextDocumentSyncOptions(
+              change: TextDocumentSyncKind.full,
+            ),
+            positionEncoding: PositionEncodingKind.uTF16,
+            notebookDocumentSync: NotebookDocumentSyncOptions(
+              notebookSelector: [],
+              save: false,
+            ),
           ),
-        ),
-      );
-    });
+        );
+      })
+      ..onInitializedNotification((params) async {
+        connection.console.log('LSP server initialized.');
+      })
+      ..onShutdownRequest(() async {
+        connection.console.log('Shutting down LSP server...');
+      })
+      ..onExitNotification(() async {
+        connection.console.log('Exiting LSP server...');
+      })
+      ..onDidOpenTextDocumentNotification((params) async {
+        final diagnostics = _validateTextDocument(
+          params.textDocument.text,
+          params.textDocument.uri,
+        );
 
-    connection.onDidOpenTextDocument((params) async {
-      final diagnostics = _validateTextDocument(
-        params.textDocument.text,
-        params.textDocument.uri,
-      );
+        connection.sendDiagnostics(
+          PublishDiagnosticsParams(
+            diagnostics: diagnostics,
+            uri: params.textDocument.uri,
+          ),
+        );
+      })
+      ..onDidChangeTextDocumentNotification((params) async {
+        // final contentChanges = params.contentChanges
+        //     .map((e) => TextDocumentContentChangeEvent.fromJson(e.toJson()))
+        //     .toList();
 
-      connection.sendDiagnostics(
-        PublishDiagnosticsParams(
-          diagnostics: diagnostics,
-          uri: params.textDocument.uri,
-        ),
-      );
-    });
+        final diagnostics = _validateTextDocument(
+          (params.contentChanges.first as Map<String, dynamic>)['text']
+              as String,
+          params.textDocument.uri,
+        );
 
-    connection.onDidChangeTextDocument((params) async {
-      final contentChanges = params.contentChanges
-          .map((e) => TextDocumentContentChangeEvent1.fromJson(e.toJson()))
-          .toList();
-
-      final diagnostics = _validateTextDocument(
-        contentChanges.last.value.text,
-        params.textDocument.uri,
-      );
-
-      connection.sendDiagnostics(
-        PublishDiagnosticsParams(
-          diagnostics: diagnostics,
-          uri: params.textDocument.uri,
-        ),
-      );
-    });
+        connection.sendDiagnostics(
+          PublishDiagnosticsParams(
+            diagnostics: diagnostics,
+            uri: params.textDocument.uri,
+          ),
+        );
+      });
 
     unawaited(connection.listen());
   }
