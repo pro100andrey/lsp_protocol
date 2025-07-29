@@ -33,7 +33,9 @@ Map<String, dynamic> _$Definition1ToJson(Definition1 instance) =>
 LSPAny0 _$LSPAny0FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
   return LSPAny0(
-    value: json['value'] as Map<String, dynamic>,
+    value: (json['value'] as Map<String, dynamic>).map(
+      (k, e) => MapEntry(k, e as Object),
+    ),
     $type: json['runtimeType'] as String?,
   );
 }
@@ -46,7 +48,7 @@ Map<String, dynamic> _$LSPAny0ToJson(LSPAny0 instance) => <String, dynamic>{
 LSPAny1 _$LSPAny1FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
   return LSPAny1(
-    value: json['value'] as List<dynamic>,
+    value: (json['value'] as List<dynamic>).map((e) => e as Object).toList(),
     $type: json['runtimeType'] as String?,
   );
 }
@@ -386,13 +388,13 @@ Map<String, dynamic> _$MarkedString1ToJson(MarkedString1 instance) =>
 DocumentFilter0 _$DocumentFilter0FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
   return DocumentFilter0(
-    value: json['value'],
+    value: json['value'] as Object,
     $type: json['runtimeType'] as String?,
   );
 }
 
 Map<String, dynamic> _$DocumentFilter0ToJson(DocumentFilter0 instance) =>
-    <String, dynamic>{'value': ?instance.value, 'runtimeType': instance.$type};
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 DocumentFilter1 _$DocumentFilter1FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
@@ -597,7 +599,7 @@ _$TextDocumentRegistrationOptionsDocumentSelector0FromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['value']);
   return TextDocumentRegistrationOptionsDocumentSelector0(
-    value: json['value'] as List<dynamic>,
+    value: (json['value'] as List<dynamic>).map((e) => e as Object).toList(),
   );
 }
 
@@ -879,18 +881,18 @@ Map<String, dynamic> _$HoverContents0ToJson(HoverContents0 instance) =>
 HoverContents1 _$HoverContents1FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
   return HoverContents1(
-    value: json['value'],
+    value: json['value'] as Object,
     $type: json['runtimeType'] as String?,
   );
 }
 
 Map<String, dynamic> _$HoverContents1ToJson(HoverContents1 instance) =>
-    <String, dynamic>{'value': ?instance.value, 'runtimeType': instance.$type};
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 HoverContents2 _$HoverContents2FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
   return HoverContents2(
-    value: json['value'] as List<dynamic>,
+    value: (json['value'] as List<dynamic>).map((e) => e as Object).toList(),
     $type: json['runtimeType'] as String?,
   );
 }
@@ -2068,7 +2070,7 @@ _$NotebookDocumentSyncOptionsNotebookSelector0FromJson(
               ),
             )
             .toList(),
-        notebook: $jsonValue['notebook'],
+        notebook: $jsonValue['notebook'] as Object,
       ),
     ),
     $type: json['runtimeType'] as String?,
@@ -2212,14 +2214,14 @@ NotebookCellTextDocumentFilterNotebook1
 _$NotebookCellTextDocumentFilterNotebook1FromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
   return NotebookCellTextDocumentFilterNotebook1(
-    value: json['value'],
+    value: json['value'] as Object,
     $type: json['runtimeType'] as String?,
   );
 }
 
 Map<String, dynamic> _$NotebookCellTextDocumentFilterNotebook1ToJson(
   NotebookCellTextDocumentFilterNotebook1 instance,
-) => <String, dynamic>{'value': ?instance.value, 'runtimeType': instance.$type};
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
 
 RelativePatternBaseUri0 _$RelativePatternBaseUri0FromJson(
   Map<String, dynamic> json,
@@ -2333,7 +2335,7 @@ _ImplementationRegistrationOptions _$ImplementationRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _ImplementationRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -2342,7 +2344,7 @@ _ImplementationRegistrationOptions _$ImplementationRegistrationOptionsFromJson(
 Map<String, dynamic> _$ImplementationRegistrationOptionsToJson(
   _ImplementationRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -2386,7 +2388,7 @@ _TypeDefinitionRegistrationOptions _$TypeDefinitionRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _TypeDefinitionRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -2395,7 +2397,7 @@ _TypeDefinitionRegistrationOptions _$TypeDefinitionRegistrationOptionsFromJson(
 Map<String, dynamic> _$TypeDefinitionRegistrationOptionsToJson(
   _TypeDefinitionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -2480,7 +2482,7 @@ _DocumentColorRegistrationOptions _$DocumentColorRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _DocumentColorRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -2489,7 +2491,7 @@ _DocumentColorRegistrationOptions _$DocumentColorRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentColorRegistrationOptionsToJson(
   _DocumentColorRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -2569,13 +2571,13 @@ _TextDocumentRegistrationOptions _$TextDocumentRegistrationOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['documentSelector']);
   return _TextDocumentRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
   );
 }
 
 Map<String, dynamic> _$TextDocumentRegistrationOptionsToJson(
   _TextDocumentRegistrationOptions instance,
-) => <String, dynamic>{'documentSelector': ?instance.documentSelector};
+) => <String, dynamic>{'documentSelector': instance.documentSelector};
 
 _FoldingRangeParams _$FoldingRangeParamsFromJson(Map<String, dynamic> json) {
   $checkKeys(
@@ -2644,7 +2646,7 @@ _FoldingRangeRegistrationOptions _$FoldingRangeRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _FoldingRangeRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -2653,7 +2655,7 @@ _FoldingRangeRegistrationOptions _$FoldingRangeRegistrationOptionsFromJson(
 Map<String, dynamic> _$FoldingRangeRegistrationOptionsToJson(
   _FoldingRangeRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -2694,7 +2696,7 @@ _DeclarationRegistrationOptions _$DeclarationRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _DeclarationRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -2703,7 +2705,7 @@ _DeclarationRegistrationOptions _$DeclarationRegistrationOptionsFromJson(
 Map<String, dynamic> _$DeclarationRegistrationOptionsToJson(
   _DeclarationRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -2762,7 +2764,7 @@ _SelectionRangeRegistrationOptions _$SelectionRangeRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _SelectionRangeRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -2771,7 +2773,7 @@ _SelectionRangeRegistrationOptions _$SelectionRangeRegistrationOptionsFromJson(
 Map<String, dynamic> _$SelectionRangeRegistrationOptionsToJson(
   _SelectionRangeRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -2780,23 +2782,23 @@ _WorkDoneProgressCreateParams _$WorkDoneProgressCreateParamsFromJson(
   Map<String, dynamic> json,
 ) {
   $checkKeys(json, allowedKeys: const ['token']);
-  return _WorkDoneProgressCreateParams(token: json['token']);
+  return _WorkDoneProgressCreateParams(token: json['token'] as Object);
 }
 
 Map<String, dynamic> _$WorkDoneProgressCreateParamsToJson(
   _WorkDoneProgressCreateParams instance,
-) => <String, dynamic>{'token': ?instance.token};
+) => <String, dynamic>{'token': instance.token};
 
 _WorkDoneProgressCancelParams _$WorkDoneProgressCancelParamsFromJson(
   Map<String, dynamic> json,
 ) {
   $checkKeys(json, allowedKeys: const ['token']);
-  return _WorkDoneProgressCancelParams(token: json['token']);
+  return _WorkDoneProgressCancelParams(token: json['token'] as Object);
 }
 
 Map<String, dynamic> _$WorkDoneProgressCancelParamsToJson(
   _WorkDoneProgressCancelParams instance,
-) => <String, dynamic>{'token': ?instance.token};
+) => <String, dynamic>{'token': instance.token};
 
 _CallHierarchyPrepareParams _$CallHierarchyPrepareParamsFromJson(
   Map<String, dynamic> json,
@@ -2903,7 +2905,7 @@ _CallHierarchyRegistrationOptions _$CallHierarchyRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _CallHierarchyRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -2912,7 +2914,7 @@ _CallHierarchyRegistrationOptions _$CallHierarchyRegistrationOptionsFromJson(
 Map<String, dynamic> _$CallHierarchyRegistrationOptionsToJson(
   _CallHierarchyRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -3063,7 +3065,7 @@ _SemanticTokensRegistrationOptions _$SemanticTokensRegistrationOptionsFromJson(
     ],
   );
   return _SemanticTokensRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     legend: SemanticTokensLegend.fromJson(
       json['legend'] as Map<String, dynamic>,
     ),
@@ -3077,7 +3079,7 @@ _SemanticTokensRegistrationOptions _$SemanticTokensRegistrationOptionsFromJson(
 Map<String, dynamic> _$SemanticTokensRegistrationOptionsToJson(
   _SemanticTokensRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'legend': instance.legend,
   'id': ?instance.id,
   'full': ?instance.full,
@@ -3255,7 +3257,7 @@ _$LinkedEditingRangeRegistrationOptionsFromJson(Map<String, dynamic> json) {
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _LinkedEditingRangeRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -3264,7 +3266,7 @@ _$LinkedEditingRangeRegistrationOptionsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$LinkedEditingRangeRegistrationOptionsToJson(
   _LinkedEditingRangeRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -3292,7 +3294,9 @@ _WorkspaceEdit _$WorkspaceEditFromJson(Map<String, dynamic> json) {
           (k, e) =>
               MapEntry(k, ChangeAnnotation.fromJson(e as Map<String, dynamic>)),
         ),
-    documentChanges: json['documentChanges'] as List<dynamic>?,
+    documentChanges: (json['documentChanges'] as List<dynamic>?)
+        ?.map((e) => e as Object)
+        .toList(),
     changes: (json['changes'] as Map<String, dynamic>?)?.map(
       (k, e) => MapEntry(
         k,
@@ -3417,7 +3421,7 @@ _MonikerRegistrationOptions _$MonikerRegistrationOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
   return _MonikerRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
@@ -3425,7 +3429,7 @@ _MonikerRegistrationOptions _$MonikerRegistrationOptionsFromJson(
 Map<String, dynamic> _$MonikerRegistrationOptionsToJson(
   _MonikerRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -3503,7 +3507,7 @@ _TypeHierarchyRegistrationOptions _$TypeHierarchyRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _TypeHierarchyRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -3512,7 +3516,7 @@ _TypeHierarchyRegistrationOptions _$TypeHierarchyRegistrationOptionsFromJson(
 Map<String, dynamic> _$TypeHierarchyRegistrationOptionsToJson(
   _TypeHierarchyRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -3594,7 +3598,7 @@ _InlineValueRegistrationOptions _$InlineValueRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _InlineValueRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -3603,7 +3607,7 @@ _InlineValueRegistrationOptions _$InlineValueRegistrationOptionsFromJson(
 Map<String, dynamic> _$InlineValueRegistrationOptionsToJson(
   _InlineValueRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -3645,7 +3649,7 @@ _InlayHint _$InlayHintFromJson(Map<String, dynamic> json) {
   );
   return _InlayHint(
     position: Position.fromJson(json['position'] as Map<String, dynamic>),
-    label: json['label'],
+    label: json['label'] as Object,
     data: json['data'],
     paddingRight: json['paddingRight'] as bool?,
     paddingLeft: json['paddingLeft'] as bool?,
@@ -3660,7 +3664,7 @@ _InlayHint _$InlayHintFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$InlayHintToJson(_InlayHint instance) =>
     <String, dynamic>{
       'position': instance.position,
-      'label': ?instance.label,
+      'label': instance.label,
       'data': ?instance.data,
       'paddingRight': ?instance.paddingRight,
       'paddingLeft': ?instance.paddingLeft,
@@ -3687,7 +3691,7 @@ _InlayHintRegistrationOptions _$InlayHintRegistrationOptionsFromJson(
     ],
   );
   return _InlayHintRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     resolveProvider: json['resolveProvider'] as bool?,
     workDoneProgress: json['workDoneProgress'] as bool?,
@@ -3697,7 +3701,7 @@ _InlayHintRegistrationOptions _$InlayHintRegistrationOptionsFromJson(
 Map<String, dynamic> _$InlayHintRegistrationOptionsToJson(
   _InlayHintRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'resolveProvider': ?instance.resolveProvider,
   'workDoneProgress': ?instance.workDoneProgress,
@@ -3741,7 +3745,9 @@ _DocumentDiagnosticReportPartialResult
 _$DocumentDiagnosticReportPartialResultFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['relatedDocuments']);
   return _DocumentDiagnosticReportPartialResult(
-    relatedDocuments: json['relatedDocuments'] as Map<String, dynamic>,
+    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>).map(
+      (k, e) => MapEntry(k, e as Object),
+    ),
   );
 }
 
@@ -3777,7 +3783,7 @@ _DiagnosticRegistrationOptions _$DiagnosticRegistrationOptionsFromJson(
     ],
   );
   return _DiagnosticRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     interFileDependencies: json['interFileDependencies'] as bool,
     workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
     id: json['id'] as String?,
@@ -3789,7 +3795,7 @@ _DiagnosticRegistrationOptions _$DiagnosticRegistrationOptionsFromJson(
 Map<String, dynamic> _$DiagnosticRegistrationOptionsToJson(
   _DiagnosticRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'interFileDependencies': instance.interFileDependencies,
   'workspaceDiagnostics': instance.workspaceDiagnostics,
   'id': ?instance.id,
@@ -3832,7 +3838,9 @@ _WorkspaceDiagnosticReport _$WorkspaceDiagnosticReportFromJson(
   Map<String, dynamic> json,
 ) {
   $checkKeys(json, allowedKeys: const ['items']);
-  return _WorkspaceDiagnosticReport(items: json['items'] as List<dynamic>);
+  return _WorkspaceDiagnosticReport(
+    items: (json['items'] as List<dynamic>).map((e) => e as Object).toList(),
+  );
 }
 
 Map<String, dynamic> _$WorkspaceDiagnosticReportToJson(
@@ -3843,7 +3851,7 @@ _WorkspaceDiagnosticReportPartialResult
 _$WorkspaceDiagnosticReportPartialResultFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['items']);
   return _WorkspaceDiagnosticReportPartialResult(
-    items: json['items'] as List<dynamic>,
+    items: (json['items'] as List<dynamic>).map((e) => e as Object).toList(),
   );
 }
 
@@ -3986,7 +3994,7 @@ _InlineCompletionItem _$InlineCompletionItemFromJson(
     allowedKeys: const ['insertText', 'command', 'range', 'filterText'],
   );
   return _InlineCompletionItem(
-    insertText: json['insertText'],
+    insertText: json['insertText'] as Object,
     command: json['command'] == null
         ? null
         : Command.fromJson(json['command'] as Map<String, dynamic>),
@@ -4000,7 +4008,7 @@ _InlineCompletionItem _$InlineCompletionItemFromJson(
 Map<String, dynamic> _$InlineCompletionItemToJson(
   _InlineCompletionItem instance,
 ) => <String, dynamic>{
-  'insertText': ?instance.insertText,
+  'insertText': instance.insertText,
   'command': ?instance.command,
   'range': ?instance.range,
   'filterText': ?instance.filterText,
@@ -4013,7 +4021,7 @@ _$InlineCompletionRegistrationOptionsFromJson(Map<String, dynamic> json) {
     allowedKeys: const ['documentSelector', 'id', 'workDoneProgress'],
   );
   return _InlineCompletionRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     id: json['id'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -4022,7 +4030,7 @@ _$InlineCompletionRegistrationOptionsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$InlineCompletionRegistrationOptionsToJson(
   _InlineCompletionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'id': ?instance.id,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -4071,8 +4079,8 @@ _InitializeParams _$InitializeParamsFromJson(Map<String, dynamic> json) {
     ],
   );
   return _InitializeParams(
-    processId: json['processId'],
-    rootUri: json['rootUri'],
+    processId: json['processId'] as Object,
+    rootUri: json['rootUri'] as Object,
     capabilities: ClientCapabilities.fromJson(
       json['capabilities'] as Map<String, dynamic>,
     ),
@@ -4094,8 +4102,8 @@ _InitializeParams _$InitializeParamsFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$InitializeParamsToJson(_InitializeParams instance) =>
     <String, dynamic>{
-      'processId': ?instance.processId,
-      'rootUri': ?instance.rootUri,
+      'processId': instance.processId,
+      'rootUri': instance.rootUri,
       'capabilities': instance.capabilities,
       'workspaceFolders': ?instance.workspaceFolders,
       'trace': ?_$TraceValuesEnumMap[instance.trace],
@@ -4169,12 +4177,12 @@ _DidChangeConfigurationParams _$DidChangeConfigurationParamsFromJson(
   Map<String, dynamic> json,
 ) {
   $checkKeys(json, allowedKeys: const ['settings']);
-  return _DidChangeConfigurationParams(settings: json['settings']);
+  return _DidChangeConfigurationParams(settings: json['settings'] as Object);
 }
 
 Map<String, dynamic> _$DidChangeConfigurationParamsToJson(
   _DidChangeConfigurationParams instance,
-) => <String, dynamic>{'settings': ?instance.settings};
+) => <String, dynamic>{'settings': instance.settings};
 
 _DidChangeConfigurationRegistrationOptions
 _$DidChangeConfigurationRegistrationOptionsFromJson(Map<String, dynamic> json) {
@@ -4274,7 +4282,9 @@ _DidChangeTextDocumentParams _$DidChangeTextDocumentParamsFromJson(
     textDocument: VersionedTextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    contentChanges: json['contentChanges'] as List<dynamic>,
+    contentChanges: (json['contentChanges'] as List<dynamic>)
+        .map((e) => e as Object)
+        .toList(),
   );
 }
 
@@ -4289,7 +4299,7 @@ _TextDocumentChangeRegistrationOptions
 _$TextDocumentChangeRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'syncKind']);
   return _TextDocumentChangeRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     syncKind: $enumDecode(_$TextDocumentSyncKindEnumMap, json['syncKind']),
   );
 }
@@ -4297,7 +4307,7 @@ _$TextDocumentChangeRegistrationOptionsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$TextDocumentChangeRegistrationOptionsToJson(
   _TextDocumentChangeRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'syncKind': _$TextDocumentSyncKindEnumMap[instance.syncKind]!,
 };
 
@@ -4339,7 +4349,7 @@ _TextDocumentSaveRegistrationOptions
 _$TextDocumentSaveRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'includeText']);
   return _TextDocumentSaveRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     includeText: json['includeText'] as bool?,
   );
 }
@@ -4347,7 +4357,7 @@ _$TextDocumentSaveRegistrationOptionsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$TextDocumentSaveRegistrationOptionsToJson(
   _TextDocumentSaveRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'includeText': ?instance.includeText,
 };
 
@@ -4668,7 +4678,7 @@ _CompletionRegistrationOptions _$CompletionRegistrationOptionsFromJson(
     ],
   );
   return _CompletionRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     completionItem: _$recordConvertNullable(
       json['completionItem'],
       ($jsonValue) =>
@@ -4688,7 +4698,7 @@ _CompletionRegistrationOptions _$CompletionRegistrationOptionsFromJson(
 Map<String, dynamic> _$CompletionRegistrationOptionsToJson(
   _CompletionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'completionItem': ?instance.completionItem == null
       ? null
       : <String, dynamic>{
@@ -4724,7 +4734,7 @@ Map<String, dynamic> _$HoverParamsToJson(_HoverParams instance) =>
 _Hover _$HoverFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['contents', 'range']);
   return _Hover(
-    contents: json['contents'],
+    contents: json['contents'] as Object,
     range: json['range'] == null
         ? null
         : Range.fromJson(json['range'] as Map<String, dynamic>),
@@ -4732,7 +4742,7 @@ _Hover _$HoverFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$HoverToJson(_Hover instance) => <String, dynamic>{
-  'contents': ?instance.contents,
+  'contents': instance.contents,
   'range': ?instance.range,
 };
 
@@ -4741,7 +4751,7 @@ _HoverRegistrationOptions _$HoverRegistrationOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
   return _HoverRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
@@ -4749,7 +4759,7 @@ _HoverRegistrationOptions _$HoverRegistrationOptionsFromJson(
 Map<String, dynamic> _$HoverRegistrationOptionsToJson(
   _HoverRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -4815,7 +4825,7 @@ _SignatureHelpRegistrationOptions _$SignatureHelpRegistrationOptionsFromJson(
     ],
   );
   return _SignatureHelpRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     retriggerCharacters: (json['retriggerCharacters'] as List<dynamic>?)
         ?.map((e) => e as String)
         .toList(),
@@ -4829,7 +4839,7 @@ _SignatureHelpRegistrationOptions _$SignatureHelpRegistrationOptionsFromJson(
 Map<String, dynamic> _$SignatureHelpRegistrationOptionsToJson(
   _SignatureHelpRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'retriggerCharacters': ?instance.retriggerCharacters,
   'triggerCharacters': ?instance.triggerCharacters,
   'workDoneProgress': ?instance.workDoneProgress,
@@ -4868,7 +4878,7 @@ _DefinitionRegistrationOptions _$DefinitionRegistrationOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
   return _DefinitionRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
@@ -4876,7 +4886,7 @@ _DefinitionRegistrationOptions _$DefinitionRegistrationOptionsFromJson(
 Map<String, dynamic> _$DefinitionRegistrationOptionsToJson(
   _DefinitionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -4916,7 +4926,7 @@ _ReferenceRegistrationOptions _$ReferenceRegistrationOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
   return _ReferenceRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
@@ -4924,7 +4934,7 @@ _ReferenceRegistrationOptions _$ReferenceRegistrationOptionsFromJson(
 Map<String, dynamic> _$ReferenceRegistrationOptionsToJson(
   _ReferenceRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -4983,7 +4993,7 @@ _DocumentHighlightRegistrationOptions
 _$DocumentHighlightRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
   return _DocumentHighlightRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
@@ -4991,7 +5001,7 @@ _$DocumentHighlightRegistrationOptionsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$DocumentHighlightRegistrationOptionsToJson(
   _DocumentHighlightRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -5105,7 +5115,7 @@ _DocumentSymbolRegistrationOptions _$DocumentSymbolRegistrationOptionsFromJson(
     allowedKeys: const ['documentSelector', 'label', 'workDoneProgress'],
   );
   return _DocumentSymbolRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     label: json['label'] as String?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -5114,7 +5124,7 @@ _DocumentSymbolRegistrationOptions _$DocumentSymbolRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentSymbolRegistrationOptionsToJson(
   _DocumentSymbolRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'label': ?instance.label,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -5157,7 +5167,9 @@ _Command _$CommandFromJson(Map<String, dynamic> json) {
   return _Command(
     title: json['title'] as String,
     command: json['command'] as String,
-    arguments: json['arguments'] as List<dynamic>?,
+    arguments: (json['arguments'] as List<dynamic>?)
+        ?.map((e) => e as Object)
+        .toList(),
   );
 }
 
@@ -5241,7 +5253,7 @@ _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
     ],
   );
   return _CodeActionRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     resolveProvider: json['resolveProvider'] as bool?,
     codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
         ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
@@ -5253,7 +5265,7 @@ _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
 Map<String, dynamic> _$CodeActionRegistrationOptionsToJson(
   _CodeActionRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'resolveProvider': ?instance.resolveProvider,
   'codeActionKinds': ?instance.codeActionKinds
       ?.map((e) => _$CodeActionKindEnumMap[e]!)
@@ -5298,7 +5310,7 @@ _WorkspaceSymbol _$WorkspaceSymbolFromJson(Map<String, dynamic> json) {
   return _WorkspaceSymbol(
     name: json['name'] as String,
     kind: $enumDecode(_$SymbolKindEnumMap, json['kind']),
-    location: json['location'],
+    location: json['location'] as Object,
     data: json['data'],
     containerName: json['containerName'] as String?,
     tags: (json['tags'] as List<dynamic>?)
@@ -5311,7 +5323,7 @@ Map<String, dynamic> _$WorkspaceSymbolToJson(_WorkspaceSymbol instance) =>
     <String, dynamic>{
       'name': instance.name,
       'kind': _$SymbolKindEnumMap[instance.kind]!,
-      'location': ?instance.location,
+      'location': instance.location,
       'data': ?instance.data,
       'containerName': ?instance.containerName,
       'tags': ?instance.tags?.map((e) => _$SymbolTagEnumMap[e]!).toList(),
@@ -5383,7 +5395,7 @@ _CodeLensRegistrationOptions _$CodeLensRegistrationOptionsFromJson(
     ],
   );
   return _CodeLensRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     resolveProvider: json['resolveProvider'] as bool?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -5392,7 +5404,7 @@ _CodeLensRegistrationOptions _$CodeLensRegistrationOptionsFromJson(
 Map<String, dynamic> _$CodeLensRegistrationOptionsToJson(
   _CodeLensRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'resolveProvider': ?instance.resolveProvider,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -5448,7 +5460,7 @@ _DocumentLinkRegistrationOptions _$DocumentLinkRegistrationOptionsFromJson(
     ],
   );
   return _DocumentLinkRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     resolveProvider: json['resolveProvider'] as bool?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -5457,7 +5469,7 @@ _DocumentLinkRegistrationOptions _$DocumentLinkRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentLinkRegistrationOptionsToJson(
   _DocumentLinkRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'resolveProvider': ?instance.resolveProvider,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -5492,7 +5504,7 @@ _DocumentFormattingRegistrationOptions
 _$DocumentFormattingRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['documentSelector', 'workDoneProgress']);
   return _DocumentFormattingRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
 }
@@ -5500,7 +5512,7 @@ _$DocumentFormattingRegistrationOptionsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$DocumentFormattingRegistrationOptionsToJson(
   _DocumentFormattingRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'workDoneProgress': ?instance.workDoneProgress,
 };
 
@@ -5545,7 +5557,7 @@ _$DocumentRangeFormattingRegistrationOptionsFromJson(
     ],
   );
   return _DocumentRangeFormattingRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     rangesSupport: json['rangesSupport'] as bool?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -5554,7 +5566,7 @@ _$DocumentRangeFormattingRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentRangeFormattingRegistrationOptionsToJson(
   _DocumentRangeFormattingRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'rangesSupport': ?instance.rangesSupport,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -5630,7 +5642,7 @@ _$DocumentOnTypeFormattingRegistrationOptionsFromJson(
     ],
   );
   return _DocumentOnTypeFormattingRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     firstTriggerCharacter: json['firstTriggerCharacter'] as String,
     moreTriggerCharacter: (json['moreTriggerCharacter'] as List<dynamic>?)
         ?.map((e) => e as String)
@@ -5641,7 +5653,7 @@ _$DocumentOnTypeFormattingRegistrationOptionsFromJson(
 Map<String, dynamic> _$DocumentOnTypeFormattingRegistrationOptionsToJson(
   _DocumentOnTypeFormattingRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'firstTriggerCharacter': instance.firstTriggerCharacter,
   'moreTriggerCharacter': ?instance.moreTriggerCharacter,
 };
@@ -5681,7 +5693,7 @@ _RenameRegistrationOptions _$RenameRegistrationOptionsFromJson(
     ],
   );
   return _RenameRegistrationOptions(
-    documentSelector: json['documentSelector'],
+    documentSelector: json['documentSelector'] as Object,
     prepareProvider: json['prepareProvider'] as bool?,
     workDoneProgress: json['workDoneProgress'] as bool?,
   );
@@ -5690,7 +5702,7 @@ _RenameRegistrationOptions _$RenameRegistrationOptionsFromJson(
 Map<String, dynamic> _$RenameRegistrationOptionsToJson(
   _RenameRegistrationOptions instance,
 ) => <String, dynamic>{
-  'documentSelector': ?instance.documentSelector,
+  'documentSelector': instance.documentSelector,
   'prepareProvider': ?instance.prepareProvider,
   'workDoneProgress': ?instance.workDoneProgress,
 };
@@ -5726,7 +5738,9 @@ _ExecuteCommandParams _$ExecuteCommandParamsFromJson(
   );
   return _ExecuteCommandParams(
     command: json['command'] as String,
-    arguments: json['arguments'] as List<dynamic>?,
+    arguments: (json['arguments'] as List<dynamic>?)
+        ?.map((e) => e as Object)
+        .toList(),
     workDoneToken: json['workDoneToken'],
   );
 }
@@ -5888,19 +5902,22 @@ Map<String, dynamic> _$LogTraceParamsToJson(_LogTraceParams instance) =>
 
 _CancelParams _$CancelParamsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['id']);
-  return _CancelParams(id: json['id']);
+  return _CancelParams(id: json['id'] as Object);
 }
 
 Map<String, dynamic> _$CancelParamsToJson(_CancelParams instance) =>
-    <String, dynamic>{'id': ?instance.id};
+    <String, dynamic>{'id': instance.id};
 
 _ProgressParams _$ProgressParamsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['token', 'value']);
-  return _ProgressParams(token: json['token'], value: json['value']);
+  return _ProgressParams(
+    token: json['token'] as Object,
+    value: json['value'] as Object,
+  );
 }
 
 Map<String, dynamic> _$ProgressParamsToJson(_ProgressParams instance) =>
-    <String, dynamic>{'token': ?instance.token, 'value': ?instance.value};
+    <String, dynamic>{'token': instance.token, 'value': instance.value};
 
 _TextDocumentPositionParams _$TextDocumentPositionParamsFromJson(
   Map<String, dynamic> json,
@@ -6225,7 +6242,7 @@ _TextDocumentEdit _$TextDocumentEditFromJson(Map<String, dynamic> json) {
     textDocument: OptionalVersionedTextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, dynamic>,
     ),
-    edits: json['edits'] as List<dynamic>,
+    edits: (json['edits'] as List<dynamic>).map((e) => e as Object).toList(),
   );
 }
 
@@ -6524,7 +6541,9 @@ _$RelatedFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) {
     items: (json['items'] as List<dynamic>)
         .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
         .toList(),
-    relatedDocuments: json['relatedDocuments'] as Map<String, dynamic>?,
+    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(k, e as Object),
+    ),
     resultId: json['resultId'] as String?,
   );
 }
@@ -6544,7 +6563,9 @@ _$RelatedUnchangedDocumentDiagnosticReportFromJson(Map<String, dynamic> json) {
   return _RelatedUnchangedDocumentDiagnosticReport(
     kind: json['kind'] as String,
     resultId: json['resultId'] as String,
-    relatedDocuments: json['relatedDocuments'] as Map<String, dynamic>?,
+    relatedDocuments: (json['relatedDocuments'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(k, e as Object),
+    ),
   );
 }
 
@@ -6640,7 +6661,9 @@ _NotebookDocument _$NotebookDocumentFromJson(Map<String, dynamic> json) {
     cells: (json['cells'] as List<dynamic>)
         .map((e) => NotebookCell.fromJson(e as Map<String, dynamic>))
         .toList(),
-    metadata: json['metadata'] as Map<String, dynamic>?,
+    metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(k, e as Object),
+    ),
   );
 }
 
@@ -6720,7 +6743,9 @@ _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
               (e) => _$recordConvert(
                 e,
                 ($jsonValue) => (
-                  changes: $jsonValue['changes'] as List<dynamic>,
+                  changes: ($jsonValue['changes'] as List<dynamic>)
+                      .map((e) => e as Object)
+                      .toList(),
                   document: VersionedTextDocumentIdentifier.fromJson(
                     $jsonValue['document'] as Map<String, dynamic>,
                   ),
@@ -6730,7 +6755,9 @@ _NotebookDocumentChangeEvent _$NotebookDocumentChangeEventFromJson(
             .toList(),
       ),
     ),
-    metadata: json['metadata'] as Map<String, dynamic>?,
+    metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(k, e as Object),
+    ),
   );
 }
 
@@ -6870,8 +6897,8 @@ _TInitializeParams _$TInitializeParamsFromJson(Map<String, dynamic> json) {
     ],
   );
   return _TInitializeParams(
-    processId: json['processId'],
-    rootUri: json['rootUri'],
+    processId: json['processId'] as Object,
+    rootUri: json['rootUri'] as Object,
     capabilities: ClientCapabilities.fromJson(
       json['capabilities'] as Map<String, dynamic>,
     ),
@@ -6892,8 +6919,8 @@ _TInitializeParams _$TInitializeParamsFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$TInitializeParamsToJson(_TInitializeParams instance) =>
     <String, dynamic>{
-      'processId': ?instance.processId,
-      'rootUri': ?instance.rootUri,
+      'processId': instance.processId,
+      'rootUri': instance.rootUri,
       'capabilities': instance.capabilities,
       'trace': ?_$TraceValuesEnumMap[instance.trace],
       'initializationOptions': ?instance.initializationOptions,
@@ -7143,14 +7170,14 @@ const _$FileChangeTypeEnumMap = {
 _FileSystemWatcher _$FileSystemWatcherFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['globPattern', 'kind']);
   return _FileSystemWatcher(
-    globPattern: json['globPattern'],
+    globPattern: json['globPattern'] as Object,
     kind: $enumDecodeNullable(_$WatchKindEnumMap, json['kind']),
   );
 }
 
 Map<String, dynamic> _$FileSystemWatcherToJson(_FileSystemWatcher instance) =>
     <String, dynamic>{
-      'globPattern': ?instance.globPattern,
+      'globPattern': instance.globPattern,
       'kind': ?_$WatchKindEnumMap[instance.kind],
     };
 
@@ -7761,13 +7788,13 @@ _$OptionalVersionedTextDocumentIdentifierFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['uri', 'version']);
   return _OptionalVersionedTextDocumentIdentifier(
     uri: json['uri'] as String,
-    version: json['version'],
+    version: json['version'] as Object,
   );
 }
 
 Map<String, dynamic> _$OptionalVersionedTextDocumentIdentifierToJson(
   _OptionalVersionedTextDocumentIdentifier instance,
-) => <String, dynamic>{'uri': instance.uri, 'version': ?instance.version};
+) => <String, dynamic>{'uri': instance.uri, 'version': instance.version};
 
 _AnnotatedTextEdit _$AnnotatedTextEditFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['range', 'newText', 'annotationId']);
@@ -7884,7 +7911,7 @@ _$WorkspaceFullDocumentDiagnosticReportFromJson(Map<String, dynamic> json) {
         .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
         .toList(),
     uri: json['uri'] as String,
-    version: json['version'],
+    version: json['version'] as Object,
     resultId: json['resultId'] as String?,
   );
 }
@@ -7895,7 +7922,7 @@ Map<String, dynamic> _$WorkspaceFullDocumentDiagnosticReportToJson(
   'kind': instance.kind,
   'items': instance.items,
   'uri': instance.uri,
-  'version': ?instance.version,
+  'version': instance.version,
   'resultId': ?instance.resultId,
 };
 
@@ -7908,7 +7935,7 @@ _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(
     kind: json['kind'] as String,
     resultId: json['resultId'] as String,
     uri: json['uri'] as String,
-    version: json['version'],
+    version: json['version'] as Object,
   );
 }
 
@@ -7918,7 +7945,7 @@ Map<String, dynamic> _$WorkspaceUnchangedDocumentDiagnosticReportToJson(
   'kind': instance.kind,
   'resultId': instance.resultId,
   'uri': instance.uri,
-  'version': ?instance.version,
+  'version': instance.version,
 };
 
 _NotebookCell _$NotebookCellFromJson(Map<String, dynamic> json) {
@@ -7934,7 +7961,9 @@ _NotebookCell _$NotebookCellFromJson(Map<String, dynamic> json) {
         : ExecutionSummary.fromJson(
             json['executionSummary'] as Map<String, dynamic>,
           ),
-    metadata: json['metadata'] as Map<String, dynamic>?,
+    metadata: (json['metadata'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(k, e as Object),
+    ),
   );
 }
 
@@ -8075,7 +8104,9 @@ _NotebookDocumentSyncOptions _$NotebookDocumentSyncOptionsFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['notebookSelector', 'save']);
   return _NotebookDocumentSyncOptions(
-    notebookSelector: json['notebookSelector'] as List<dynamic>,
+    notebookSelector: (json['notebookSelector'] as List<dynamic>)
+        .map((e) => e as Object)
+        .toList(),
     save: json['save'] as bool?,
   );
 }
@@ -8091,7 +8122,9 @@ _NotebookDocumentSyncRegistrationOptions
 _$NotebookDocumentSyncRegistrationOptionsFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['notebookSelector', 'id', 'save']);
   return _NotebookDocumentSyncRegistrationOptions(
-    notebookSelector: json['notebookSelector'] as List<dynamic>,
+    notebookSelector: (json['notebookSelector'] as List<dynamic>)
+        .map((e) => e as Object)
+        .toList(),
     id: json['id'] as String?,
     save: json['save'] as bool?,
   );
@@ -8210,7 +8243,7 @@ _ParameterInformation _$ParameterInformationFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['label', 'documentation']);
   return _ParameterInformation(
-    label: json['label'],
+    label: json['label'] as Object,
     documentation: json['documentation'],
   );
 }
@@ -8218,7 +8251,7 @@ _ParameterInformation _$ParameterInformationFromJson(
 Map<String, dynamic> _$ParameterInformationToJson(
   _ParameterInformation instance,
 ) => <String, dynamic>{
-  'label': ?instance.label,
+  'label': instance.label,
   'documentation': ?instance.documentation,
 };
 
@@ -8227,7 +8260,7 @@ _NotebookCellTextDocumentFilter _$NotebookCellTextDocumentFilterFromJson(
 ) {
   $checkKeys(json, allowedKeys: const ['notebook', 'language']);
   return _NotebookCellTextDocumentFilter(
-    notebook: json['notebook'],
+    notebook: json['notebook'] as Object,
     language: json['language'] as String?,
   );
 }
@@ -8235,7 +8268,7 @@ _NotebookCellTextDocumentFilter _$NotebookCellTextDocumentFilterFromJson(
 Map<String, dynamic> _$NotebookCellTextDocumentFilterToJson(
   _NotebookCellTextDocumentFilter instance,
 ) => <String, dynamic>{
-  'notebook': ?instance.notebook,
+  'notebook': instance.notebook,
   'language': ?instance.language,
 };
 
@@ -8711,16 +8744,13 @@ Map<String, dynamic> _$GeneralClientCapabilitiesToJson(
 _RelativePattern _$RelativePatternFromJson(Map<String, dynamic> json) {
   $checkKeys(json, allowedKeys: const ['baseUri', 'pattern']);
   return _RelativePattern(
-    baseUri: json['baseUri'],
+    baseUri: json['baseUri'] as Object,
     pattern: json['pattern'] as String,
   );
 }
 
 Map<String, dynamic> _$RelativePatternToJson(_RelativePattern instance) =>
-    <String, dynamic>{
-      'baseUri': ?instance.baseUri,
-      'pattern': instance.pattern,
-    };
+    <String, dynamic>{'baseUri': instance.baseUri, 'pattern': instance.pattern};
 
 _WorkspaceEditClientCapabilities _$WorkspaceEditClientCapabilitiesFromJson(
   Map<String, dynamic> json,

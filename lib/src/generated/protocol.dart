@@ -14,7 +14,7 @@ const String kLSPVersion = '3.17.0';
 /// which a symbol is defined.
 /// Servers should prefer returning `DefinitionLink` over `Definition` if
 /// supported by the client.
-typedef Definition = dynamic;
+typedef Definition = Object;
 
 /// Information about where a symbol is defined.
 /// Provides additional metadata over normal {@link Location location}
@@ -28,11 +28,11 @@ typedef LSPArray = List<LSPAny>;
 /// value `undefined` can't be converted into JSON preserving the property
 /// name. However for convenience it is allowed and assumed that all these
 /// properties are optional as well. @since 3.17.0
-typedef LSPAny = dynamic;
+typedef LSPAny = Object;
 
 /// The declaration of a symbol representation as one or many {@link Location
 /// locations}.
-typedef Declaration = dynamic;
+typedef Declaration = Object;
 
 /// Information about where a symbol is declared.
 /// Provides additional metadata over normal {@link Location location}
@@ -47,33 +47,33 @@ typedef DeclarationLink = LocationLink;
 /// (class InlineValueEvaluatableExpression) The InlineValue types combines all
 /// inline value types into one type.
 /// @since 3.17.0
-typedef InlineValue = dynamic;
+typedef InlineValue = Object;
 
 /// The result of a document diagnostic pull request. A report can either be a
 /// full report containing all diagnostics for the requested document or an
 /// unchanged report indicating that nothing has changed in terms of
 /// diagnostics in comparison to the last pull request.
 /// @since 3.17.0
-typedef DocumentDiagnosticReport = dynamic;
-typedef PrepareRenameResult = dynamic;
+typedef DocumentDiagnosticReport = Object;
+typedef PrepareRenameResult = Object;
 
 /// A document selector is the combination of one or many document filters.
 /// @sample `let sel:DocumentSelector = [{ language: 'typescript' }, {
 /// language: 'json', pattern: '**∕tsconfig.json' }]`;
 /// The use of a string as a document filter is deprecated @since 3.16.0.
 typedef DocumentSelector = List<DocumentFilter>;
-typedef ProgressToken = dynamic;
+typedef ProgressToken = Object;
 
 /// An identifier to refer to a change annotation stored with a workspace edit.
 typedef ChangeAnnotationIdentifier = String;
 
 /// A workspace diagnostic document report.
 /// @since 3.17.0
-typedef WorkspaceDocumentDiagnosticReport = dynamic;
+typedef WorkspaceDocumentDiagnosticReport = Object;
 
 /// An event describing a change to a text document. If only a text is provided
 /// it is considered to be the full content of the document.
-typedef TextDocumentContentChangeEvent = dynamic;
+typedef TextDocumentContentChangeEvent = Object;
 
 /// MarkedString can be used to render human readable text. It is either a
 /// markdown string or a code-block that provides a language and a code
@@ -84,19 +84,19 @@ typedef TextDocumentContentChangeEvent = dynamic;
 /// ```${language} ${value} ```
 /// Note that markdown strings will be sanitized - that means html will be
 /// escaped. @deprecated use MarkupContent instead.
-typedef MarkedString = dynamic;
+typedef MarkedString = Object;
 
 /// A document filter describes a top level text document or a notebook cell
 /// document.
 /// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
-typedef DocumentFilter = dynamic;
+typedef DocumentFilter = Object;
 
 /// LSP object definition. @since 3.17.0
 typedef LSPObject = Map<String, LSPAny>;
 
 /// The glob pattern. Either a string pattern or a relative pattern.
 /// @since 3.17.0
-typedef GlobPattern = dynamic;
+typedef GlobPattern = Object;
 
 /// A document filter denotes a document by different properties like the
 /// {@link TextDocument.languageId language}, the {@link Uri.scheme scheme} of
@@ -116,13 +116,13 @@ typedef GlobPattern = dynamic;
 /// applies to all package.json paths: `{ language: 'json', pattern:
 /// '**package.json' }`
 /// @since 3.17.0
-typedef TextDocumentFilter = dynamic;
+typedef TextDocumentFilter = Object;
 
 /// A notebook document filter denotes a notebook document by different
 /// properties. The properties will be match against the notebook's URI (same
 /// as with documents)
 /// @since 3.17.0
-typedef NotebookDocumentFilter = dynamic;
+typedef NotebookDocumentFilter = Object;
 
 /// The glob pattern to watch relative to the base path. Glob patterns can have
 /// the following syntax: - `*` to match zero or more characters in a path
@@ -1475,19 +1475,19 @@ sealed class TextDocumentSyncOptionsSaveBase
 
 /// Owned by: NotebookDocumentSyncOptions(notebookSelector)
 ///
-/// Type: ({dynamic notebook, List<({String language})>? cells})
-/// Type: ({dynamic? notebook, List<({String language})> cells})
+/// Type: ({Object notebook, List<({String language})>? cells})
+/// Type: ({Object? notebook, List<({String language})> cells})
 @freezed
 sealed class NotebookDocumentSyncOptionsNotebookSelectorBase
     with _$NotebookDocumentSyncOptionsNotebookSelectorBase {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentSyncOptionsNotebookSelectorBase.from1({
-    required ({dynamic notebook, List<({String language})>? cells}) value,
+    required ({Object notebook, List<({String language})>? cells}) value,
   }) = NotebookDocumentSyncOptionsNotebookSelector0;
 
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentSyncOptionsNotebookSelectorBase.from2({
-    required ({dynamic? notebook, List<({String language})> cells}) value,
+    required ({Object? notebook, List<({String language})> cells}) value,
   }) = NotebookDocumentSyncOptionsNotebookSelector1;
 
   factory NotebookDocumentSyncOptionsNotebookSelectorBase.fromJson(
@@ -1640,12 +1640,12 @@ abstract class ImplementationRegistrationOptions
     with _$ImplementationRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ImplementationRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _ImplementationRegistrationOptions;
@@ -1682,12 +1682,12 @@ abstract class TypeDefinitionRegistrationOptions
     with _$TypeDefinitionRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeDefinitionRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _TypeDefinitionRegistrationOptions;
@@ -1705,8 +1705,8 @@ abstract class WorkspaceFolder with _$WorkspaceFolder {
     /// The associated URI for this workspace folder.
     required String uri,
 
-    /// The name of the workspace folder. Used to refer to this workspace folder in
-    /// the user interface.
+    /// The name of the workspace folder. Used to refer to this workspace
+    /// folder in the user interface.
     required String name,
   }) = _WorkspaceFolder;
 
@@ -1781,12 +1781,12 @@ abstract class DocumentColorRegistrationOptions
     with _$DocumentColorRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentColorRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _DocumentColorRegistrationOptions;
@@ -1826,19 +1826,20 @@ abstract class ColorPresentationParams with _$ColorPresentationParams {
 abstract class ColorPresentation with _$ColorPresentation {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ColorPresentation({
-    /// The label of this color presentation. It will be shown on the color picker
-    /// header. By default this is also the text that is inserted when selecting
-    /// this color presentation.
+    /// The label of this color presentation. It will be shown on the color
+    /// picker header. By default this is also the text that is inserted when
+    /// selecting this color presentation.
     required String label,
 
     /// An optional array of additional {@link TextEdit text edits} that are
-    /// applied when selecting this color presentation. Edits must not overlap with
-    /// the main {@link ColorPresentation.textEdit edit} nor with themselves.
+    /// applied when selecting this color presentation. Edits must not overlap
+    /// with the main {@link ColorPresentation.textEdit edit} nor with
+    /// themselves.
     List<TextEdit>? additionalTextEdits,
 
-    /// An {@link TextEdit edit} which is applied to a document when selecting this
-    /// presentation for the color. When `falsy` the {@link ColorPresentation.label
-    /// label} is used.
+    /// An {@link TextEdit edit} which is applied to a document when selecting
+    /// this presentation for the color. When `falsy` the {@link
+    /// ColorPresentation.label label} is used.
     TextEdit? textEdit,
   }) = _ColorPresentation;
 
@@ -1862,9 +1863,9 @@ abstract class TextDocumentRegistrationOptions
     with _$TextDocumentRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
   }) = _TextDocumentRegistrationOptions;
 
   factory TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -1903,20 +1904,20 @@ abstract class FoldingRange with _$FoldingRange {
     /// larger and smaller than the number of lines in the document.
     required int startLine,
 
-    /// The zero-based end line of the range to fold. The folded area ends with the
-    /// line's last character. To be valid, the end must be zero or larger and
-    /// smaller than the number of lines in the document.
+    /// The zero-based end line of the range to fold. The folded area ends with
+    /// the line's last character. To be valid, the end must be zero or larger
+    /// and smaller than the number of lines in the document.
     required int endLine,
 
-    /// The text that the client should show when the specified range is collapsed.
-    /// If not defined or not supported by the client, a default will be chosen by
-    /// the client.
+    /// The text that the client should show when the specified range is
+    /// collapsed. If not defined or not supported by the client, a default
+    /// will be chosen by the client.
     /// @since 3.17.0
     String? collapsedText,
 
-    /// Describes the kind of the folding range such as `comment' or 'region'. The
-    /// kind is used to categorize folding ranges and used by commands like 'Fold
-    /// all comments'. See {@link FoldingRangeKind} for an enumeration of
+    /// Describes the kind of the folding range such as `comment' or 'region'.
+    /// The kind is used to categorize folding ranges and used by commands like
+    /// 'Fold all comments'. See {@link FoldingRangeKind} for an enumeration of
     /// standardized kinds.
     FoldingRangeKind? kind,
 
@@ -1924,8 +1925,8 @@ abstract class FoldingRange with _$FoldingRange {
     /// defined, defaults to the length of the end line.
     int? endCharacter,
 
-    /// The zero-based character offset from where the folded range starts. If not
-    /// defined, defaults to the length of the start line.
+    /// The zero-based character offset from where the folded range starts. If
+    /// not defined, defaults to the length of the start line.
     int? startCharacter,
   }) = _FoldingRange;
 
@@ -1938,12 +1939,12 @@ abstract class FoldingRangeRegistrationOptions
     with _$FoldingRangeRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FoldingRangeRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _FoldingRangeRegistrationOptions;
@@ -1979,12 +1980,12 @@ abstract class DeclarationRegistrationOptions
     with _$DeclarationRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DeclarationRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _DeclarationRegistrationOptions;
@@ -2026,8 +2027,8 @@ abstract class SelectionRange with _$SelectionRange {
     /// The {@link Range range} of this selection range.
     required Range range,
 
-    /// The parent selection range containing this range. Therefore `parent.range`
-    /// must contain `this.range`.
+    /// The parent selection range containing this range. Therefore
+    /// `parent.range` must contain `this.range`.
     SelectionRange? parent,
   }) = _SelectionRange;
 
@@ -2040,12 +2041,12 @@ abstract class SelectionRangeRegistrationOptions
     with _$SelectionRangeRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SelectionRangeRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _SelectionRangeRegistrationOptions;
@@ -2117,17 +2118,17 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
     /// The resource identifier of this item.
     required String uri,
 
-    /// The range enclosing this symbol not including leading/trailing whitespace
-    /// but everything else, e.g. comments and code.
+    /// The range enclosing this symbol not including leading/trailing
+    /// whitespace but everything else, e.g. comments and code.
     required Range range,
 
-    /// The range that should be selected and revealed when this symbol is being
-    /// picked, e.g. the name of a function. Must be contained by the {@link
-    /// CallHierarchyItem.range `range`}.
+    /// The range that should be selected and revealed when this symbol is
+    /// being picked, e.g. the name of a function. Must be contained by the
+    /// {@link CallHierarchyItem.range `range`}.
     required Range selectionRange,
 
-    /// A data entry field that is preserved between a call hierarchy prepare and
-    /// incoming calls or outgoing calls requests.
+    /// A data entry field that is preserved between a call hierarchy prepare
+    /// and incoming calls or outgoing calls requests.
     LSPAny? data,
 
     /// More detail for this item, e.g. the signature of a function.
@@ -2148,12 +2149,12 @@ abstract class CallHierarchyRegistrationOptions
     with _$CallHierarchyRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _CallHierarchyRegistrationOptions;
@@ -2236,8 +2237,8 @@ abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
     /// The item that is called.
     required CallHierarchyItem to,
 
-    /// The range at which this item is called. This is the range relative to the
-    /// caller, e.g the item passed to {@link
+    /// The range at which this item is called. This is the range relative to
+    /// the caller, e.g the item passed to {@link
     /// CallHierarchyItemProvider.provideCallHierarchyOutgoingCalls
     /// `provideCallHierarchyOutgoingCalls`} and not {@link
     /// CallHierarchyOutgoingCall.to `this.to`}.
@@ -2276,10 +2277,10 @@ abstract class SemanticTokens with _$SemanticTokens {
     /// The actual tokens.
     required List<int> data,
 
-    /// An optional result id. If provided and clients support delta updating the
-    /// client will include the result id in the next semantic token request. A
-    /// server can then instead of computing all semantic tokens again simply send
-    /// a delta.
+    /// An optional result id. If provided and clients support delta updating
+    /// the client will include the result id in the next semantic token
+    /// request. A server can then instead of computing all semantic tokens
+    /// again simply send a delta.
     String? resultId,
   }) = _SemanticTokens;
 
@@ -2304,23 +2305,23 @@ abstract class SemanticTokensRegistrationOptions
     with _$SemanticTokensRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// The legend used by the server
     required SemanticTokensLegend legend,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
 
     /// Server supports providing semantic tokens for a full document.
-    dynamic? full,
+    Object? full,
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
-    dynamic? range,
+    Object? range,
     bool? workDoneProgress,
   }) = _SemanticTokensRegistrationOptions;
 
@@ -2337,8 +2338,9 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
     /// The text document.
     required TextDocumentIdentifier textDocument,
 
-    /// The result id of a previous response. The result Id can either point to a
-    /// full response or a delta response depending on what was received last.
+    /// The result id of a previous response. The result Id can either point to
+    /// a full response or a delta response depending on what was received
+    /// last.
     required String previousResultId,
 
     /// An optional token that a server can use to report partial results (e.g.
@@ -2358,7 +2360,8 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
 abstract class SemanticTokensDelta with _$SemanticTokensDelta {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensDelta({
-    /// The semantic token edits to transform a previous result into a new result.
+    /// The semantic token edits to transform a previous result into a new
+    /// result.
     required List<SemanticTokensEdit> edits,
     String? resultId,
   }) = _SemanticTokensDelta;
@@ -2414,18 +2417,18 @@ abstract class ShowDocumentParams with _$ShowDocumentParams {
     required String uri,
 
     /// An optional selection range if the document is a text document. Clients
-    /// might ignore the property if an external program is started or the file is
-    /// not a text file.
+    /// might ignore the property if an external program is started or the file
+    /// is not a text file.
     Range? selection,
 
-    /// An optional property to indicate whether the editor showing the document
-    /// should take focus or not. Clients might ignore this property if an external
-    /// program is started.
+    /// An optional property to indicate whether the editor showing the
+    /// document should take focus or not. Clients might ignore this property
+    /// if an external program is started.
     bool? takeFocus,
 
     /// Indicates to show the resource in an external program. To show, for
-    /// example, `https://code.visualstudio.com/` in the default WEB browser set
-    /// `external` to `true`.
+    /// example, `https://code.visualstudio.com/` in the default WEB browser
+    /// set `external` to `true`.
     bool? external,
   }) = _ShowDocumentParams;
 
@@ -2476,9 +2479,9 @@ abstract class LinkedEditingRanges with _$LinkedEditingRanges {
     /// overlap.
     required List<Range> ranges,
 
-    /// An optional word pattern (regular expression) that describes valid contents
-    /// for the given ranges. If no pattern is provided, the client configuration's
-    /// word pattern will be used.
+    /// An optional word pattern (regular expression) that describes valid
+    /// contents for the given ranges. If no pattern is provided, the client
+    /// configuration's word pattern will be used.
     String? wordPattern,
   }) = _LinkedEditingRanges;
 
@@ -2491,12 +2494,12 @@ abstract class LinkedEditingRangeRegistrationOptions
     with _$LinkedEditingRangeRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LinkedEditingRangeRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _LinkedEditingRangeRegistrationOptions;
@@ -2540,25 +2543,27 @@ abstract class CreateFilesParams with _$CreateFilesParams {
 abstract class WorkspaceEdit with _$WorkspaceEdit {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceEdit({
-    /// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
-    /// or create, rename and delete file / folder operations.
+    /// A map of change annotations that can be referenced in
+    /// `AnnotatedTextEdit`s or create, rename and delete file / folder
+    /// operations.
     /// Whether clients honor this property depends on the client capability
     /// `workspace.changeAnnotationSupport`.
     /// @since 3.16.0
     Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations,
 
     /// Depending on the client capability
-    /// `workspace.workspaceEdit.resourceOperations` document changes are either an
-    /// array of `TextDocumentEdit`s to express changes to n different text
-    /// documents where each text document edit addresses a specific version of a
-    /// text document. Or it can contain above `TextDocumentEdit`s mixed with
-    /// create, rename and delete file / folder operations.
+    /// `workspace.workspaceEdit.resourceOperations` document changes are
+    /// either an array of `TextDocumentEdit`s to express changes to n
+    /// different text documents where each text document edit addresses a
+    /// specific version of a text document. Or it can contain above
+    /// `TextDocumentEdit`s mixed with create, rename and delete file / folder
+    /// operations.
     /// Whether a client supports versioned document edits is expressed via
     /// `workspace.workspaceEdit.documentChanges` client capability.
     /// If a client neither supports `documentChanges` nor
-    /// `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s
-    /// using the `changes` property are supported.
-    List<dynamic>? documentChanges,
+    /// `workspace.workspaceEdit.resourceOperations` then only plain
+    /// `TextEdit`s using the `changes` property are supported.
+    List<Object>? documentChanges,
 
     /// Holds changes to existing resources.
     Map<String, List<TextEdit>>? changes,
@@ -2591,8 +2596,8 @@ abstract class FileOperationRegistrationOptions
 abstract class RenameFilesParams with _$RenameFilesParams {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameFilesParams({
-    /// An array of all files/folders renamed in this operation. When a folder is
-    /// renamed, only the folder will be included, and not its children.
+    /// An array of all files/folders renamed in this operation. When a folder
+    /// is renamed, only the folder will be included, and not its children.
     required List<FileRename> files,
   }) = _RenameFilesParams;
 
@@ -2646,8 +2651,8 @@ abstract class Moniker with _$Moniker {
     /// The scheme of the moniker. For example tsc or .Net
     required String scheme,
 
-    /// The identifier of the moniker. The value is opaque in LSIF however schema
-    /// owners are allowed to define the structure if they want.
+    /// The identifier of the moniker. The value is opaque in LSIF however
+    /// schema owners are allowed to define the structure if they want.
     required String identifier,
 
     /// The scope in which the moniker is unique
@@ -2665,9 +2670,9 @@ abstract class Moniker with _$Moniker {
 abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MonikerRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
     bool? workDoneProgress,
   }) = _MonikerRegistrationOptions;
 
@@ -2709,19 +2714,19 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
     /// The resource identifier of this item.
     required String uri,
 
-    /// The range enclosing this symbol not including leading/trailing whitespace
-    /// but everything else, e.g. comments and code.
+    /// The range enclosing this symbol not including leading/trailing
+    /// whitespace but everything else, e.g. comments and code.
     required Range range,
 
-    /// The range that should be selected and revealed when this symbol is being
-    /// picked, e.g. the name of a function. Must be contained by the {@link
-    /// TypeHierarchyItem.range `range`}.
+    /// The range that should be selected and revealed when this symbol is
+    /// being picked, e.g. the name of a function. Must be contained by the
+    /// {@link TypeHierarchyItem.range `range`}.
     required Range selectionRange,
 
-    /// A data entry field that is preserved between a type hierarchy prepare and
-    /// supertypes or subtypes requests. It could also be used to identify the type
-    /// hierarchy in the server, helping improve the performance on resolving
-    /// supertypes and subtypes.
+    /// A data entry field that is preserved between a type hierarchy prepare
+    /// and supertypes or subtypes requests. It could also be used to identify
+    /// the type hierarchy in the server, helping improve the performance on
+    /// resolving supertypes and subtypes.
     LSPAny? data,
 
     /// More detail for this item, e.g. the signature of a function.
@@ -2742,12 +2747,12 @@ abstract class TypeHierarchyRegistrationOptions
     with _$TypeHierarchyRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeHierarchyRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _TypeHierarchyRegistrationOptions;
@@ -2829,12 +2834,12 @@ abstract class InlineValueRegistrationOptions
     with _$InlineValueRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _InlineValueRegistrationOptions;
@@ -2870,33 +2875,33 @@ abstract class InlayHint with _$InlayHint {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHint({
     /// The position of this hint.
-    /// If multiple hints have the same position, they will be shown in the order
-    /// they appear in the response.
+    /// If multiple hints have the same position, they will be shown in the
+    /// order they appear in the response.
     required Position position,
 
     /// The label of this hint. A human readable string or an array of
     /// InlayHintLabelPart label parts.
     /// *Note* that neither the string nor the label part can be empty.
-    required dynamic label,
+    required Object label,
 
     /// A data entry field that is preserved on an inlay hint between a
     /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
     LSPAny? data,
 
     /// Render padding after the hint.
-    /// Note: Padding should use the editor's background color, not the background
-    /// color of the hint itself. That means padding can be used to visually
-    /// align/separate an inlay hint.
+    /// Note: Padding should use the editor's background color, not the
+    /// background color of the hint itself. That means padding can be used to
+    /// visually align/separate an inlay hint.
     bool? paddingRight,
 
     /// Render padding before the hint.
-    /// Note: Padding should use the editor's background color, not the background
-    /// color of the hint itself. That means padding can be used to visually
-    /// align/separate an inlay hint.
+    /// Note: Padding should use the editor's background color, not the
+    /// background color of the hint itself. That means padding can be used to
+    /// visually align/separate an inlay hint.
     bool? paddingLeft,
 
     /// The tooltip text when you hover over this item.
-    dynamic? tooltip,
+    Object? tooltip,
 
     /// Optional text edits that are performed when accepting this inlay hint.
     /// *Note* that edits are expected to change the document so that the inlay
@@ -2904,8 +2909,8 @@ abstract class InlayHint with _$InlayHint {
     /// hint itself is now obsolete.
     List<TextEdit>? textEdits,
 
-    /// The kind of this hint. Can be omitted in which case the client should fall
-    /// back to a reasonable default.
+    /// The kind of this hint. Can be omitted in which case the client should
+    /// fall back to a reasonable default.
     InlayHintKind? kind,
   }) = _InlayHint;
 
@@ -2920,16 +2925,16 @@ abstract class InlayHintRegistrationOptions
     with _$InlayHintRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
 
-    /// The server provides support to resolve additional information for an inlay
-    /// hint item.
+    /// The server provides support to resolve additional information for an
+    /// inlay hint item.
     bool? resolveProvider,
     bool? workDoneProgress,
   }) = _InlayHintRegistrationOptions;
@@ -2972,7 +2977,7 @@ abstract class DocumentDiagnosticReportPartialResult
     with _$DocumentDiagnosticReportPartialResult {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentDiagnosticReportPartialResult({
-    required Map<String, dynamic> relatedDocuments,
+    required Map<String, Object> relatedDocuments,
   }) = _DocumentDiagnosticReportPartialResult;
 
   factory DocumentDiagnosticReportPartialResult.fromJson(
@@ -3002,21 +3007,21 @@ abstract class DiagnosticRegistrationOptions
     with _$DiagnosticRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DiagnosticRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// Whether the language has inter file dependencies meaning that editing code
-    /// in one file can result in a different diagnostic set in another file. Inter
-    /// file dependencies are common for most programming languages and typically
-    /// uncommon for linters.
+    /// Whether the language has inter file dependencies meaning that editing
+    /// code in one file can result in a different diagnostic set in another
+    /// file. Inter file dependencies are common for most programming languages
+    /// and typically uncommon for linters.
     required bool interFileDependencies,
 
     /// The server provides support for workspace diagnostics as well.
     required bool workspaceDiagnostics,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
 
     /// An optional identifier under which the diagnostics are managed by the
@@ -3108,21 +3113,21 @@ abstract class DidChangeNotebookDocumentParams
   const factory DidChangeNotebookDocumentParams({
     /// The notebook document that did change. The version number points to the
     /// version after all provided changes have been applied. If only the text
-    /// document content of a cell changes the notebook version doesn't necessarily
-    /// have to change.
+    /// document content of a cell changes the notebook version doesn't
+    /// necessarily have to change.
     required VersionedNotebookDocumentIdentifier notebookDocument,
 
     /// The actual changes to the notebook document.
-    /// The changes describe single state changes to the notebook document. So if
-    /// there are two changes c1 (at array index 0) and c2 (at array index 1) for a
-    /// notebook in state S then c1 moves the notebook from S to S' and c2 from S'
-    /// to S''. So c1 is computed on the state S and c2 is computed on the state
-    /// S'.
-    /// To mirror the content of a notebook using change events use the following
-    /// approach: - start with the same initial content - apply the
-    /// 'notebookDocument/didChange' notifications in the order you receive them. -
-    /// apply the `NotebookChangeEvent`s in a single notification in the order you
-    /// receive them.
+    /// The changes describe single state changes to the notebook document. So
+    /// if there are two changes c1 (at array index 0) and c2 (at array index
+    /// 1) for a notebook in state S then c1 moves the notebook from S to S'
+    /// and c2 from S' to S''. So c1 is computed on the state S and c2 is
+    /// computed on the state S'.
+    /// To mirror the content of a notebook using change events use the
+    /// following approach: - start with the same initial content - apply the
+    /// 'notebookDocument/didChange' notifications in the order you receive
+    /// them. - apply the `NotebookChangeEvent`s in a single notification in
+    /// the order you receive them.
     required NotebookDocumentChangeEvent change,
   }) = _DidChangeNotebookDocumentParams;
 
@@ -3155,8 +3160,8 @@ abstract class DidCloseNotebookDocumentParams
     /// The notebook document that got closed.
     required NotebookDocumentIdentifier notebookDocument,
 
-    /// The text documents that represent the content of a notebook cell that got
-    /// closed.
+    /// The text documents that represent the content of a notebook cell that
+    /// got closed.
     required List<TextDocumentIdentifier> cellTextDocuments,
   }) = _DidCloseNotebookDocumentParams;
 
@@ -3176,8 +3181,8 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
     /// The position inside the text document.
     required Position position,
 
-    /// Additional information about the context in which inline completions were
-    /// requested.
+    /// Additional information about the context in which inline completions
+    /// were requested.
     required InlineCompletionContext context,
 
     /// An optional token that a server can use to report work done progress.
@@ -3211,7 +3216,7 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionItem({
     /// The text to replace the range with. Must be set.
-    required dynamic insertText,
+    required Object insertText,
 
     /// An optional {@link Command} that is executed *after* inserting this
     /// completion.
@@ -3220,8 +3225,9 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
     /// The range to replace. Must begin and end on the same line.
     Range? range,
 
-    /// A text that is used to decide if this inline completion should be shown.
-    /// When `falsy` the {@link InlineCompletionItem.insertText} is used.
+    /// A text that is used to decide if this inline completion should be
+    /// shown. When `falsy` the {@link InlineCompletionItem.insertText} is
+    /// used.
     String? filterText,
   }) = _InlineCompletionItem;
 
@@ -3237,12 +3243,12 @@ abstract class InlineCompletionRegistrationOptions
     with _$InlineCompletionRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
     bool? workDoneProgress,
   }) = _InlineCompletionRegistrationOptions;
@@ -3279,24 +3285,24 @@ abstract class InitializeParams with _$InitializeParams {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InitializeParams({
     /// The process Id of the parent process that started the server.
-    /// Is `null` if the process has not been started by another process. If the
-    /// parent process is not alive then the server should exit.
-    required dynamic processId,
+    /// Is `null` if the process has not been started by another process. If
+    /// the parent process is not alive then the server should exit.
+    required Object processId,
 
     /// The rootUri of the workspace. Is null if no folder is open. If both
     /// `rootPath` and `rootUri` are set `rootUri` wins.
     /// @deprecated in favour of workspaceFolders.
-    required dynamic rootUri,
+    required Object rootUri,
 
     /// The capabilities provided by the client (editor or tool)
     required ClientCapabilities capabilities,
 
     /// The workspace folders configured in the client when the server starts.
-    /// This property is only available if the client supports workspace folders.
-    /// It can be `null` if the client supports workspace folders but none are
-    /// configured.
+    /// This property is only available if the client supports workspace
+    /// folders. It can be `null` if the client supports workspace folders but
+    /// none are configured.
     /// @since 3.6.0
-    dynamic? workspaceFolders,
+    Object? workspaceFolders,
 
     /// The initial trace setting. If omitted trace is disabled ('off').
     TraceValues? trace,
@@ -3306,10 +3312,10 @@ abstract class InitializeParams with _$InitializeParams {
 
     /// The rootPath of the workspace. Is null if no folder is open.
     /// @deprecated in favour of rootUri.
-    dynamic? rootPath,
+    Object? rootPath,
 
-    /// The locale the client is currently showing the user interface in. This must
-    /// not necessarily be the locale of the operating system.
+    /// The locale the client is currently showing the user interface in. This
+    /// must not necessarily be the locale of the operating system.
     /// Uses IETF language tags as the value's syntax (See
     /// https://en.wikipedia.org/wiki/IETF_language_tag)
     /// @since 3.16.0
@@ -3350,10 +3356,10 @@ abstract class InitializeResult with _$InitializeResult {
 abstract class InitializeError with _$InitializeError {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InitializeError({
-    /// Indicates whether the client execute the following retry logic: (1) show
-    /// the message provided by the ResponseError to the user (2) user selects
-    /// retry or cancel (3) if user selected retry the initialize method is sent
-    /// again.
+    /// Indicates whether the client execute the following retry logic: (1)
+    /// show the message provided by the ResponseError to the user (2) user
+    /// selects retry or cancel (3) if user selected retry the initialize
+    /// method is sent again.
     required bool retry,
   }) = _InitializeError;
 
@@ -3388,7 +3394,7 @@ abstract class DidChangeConfigurationParams
 abstract class DidChangeConfigurationRegistrationOptions
     with _$DidChangeConfigurationRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
-  const factory DidChangeConfigurationRegistrationOptions({dynamic? section}) =
+  const factory DidChangeConfigurationRegistrationOptions({Object? section}) =
       _DidChangeConfigurationRegistrationOptions;
 
   factory DidChangeConfigurationRegistrationOptions.fromJson(
@@ -3481,15 +3487,15 @@ abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
     required VersionedTextDocumentIdentifier textDocument,
 
     /// The actual content changes. The content changes describe single state
-    /// changes to the document. So if there are two content changes c1 (at array
-    /// index 0) and c2 (at array index 1) for a document in state S then c1 moves
-    /// the document from S to S' and c2 from S' to S''. So c1 is computed on the
-    /// state S and c2 is computed on the state S'.
-    /// To mirror the content of a document using change events use the following
-    /// approach: - start with the same initial content - apply the
+    /// changes to the document. So if there are two content changes c1 (at
+    /// array index 0) and c2 (at array index 1) for a document in state S then
+    /// c1 moves the document from S to S' and c2 from S' to S''. So c1 is
+    /// computed on the state S and c2 is computed on the state S'.
+    /// To mirror the content of a document using change events use the
+    /// following approach: - start with the same initial content - apply the
     /// 'textDocument/didChange' notifications in the order you receive them. -
-    /// apply the `TextDocumentContentChangeEvent`s in a single notification in the
-    /// order you receive them.
+    /// apply the `TextDocumentContentChangeEvent`s in a single notification in
+    /// the order you receive them.
     required List<TextDocumentContentChangeEvent> contentChanges,
   }) = _DidChangeTextDocumentParams;
 
@@ -3504,9 +3510,9 @@ abstract class TextDocumentChangeRegistrationOptions
     with _$TextDocumentChangeRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentChangeRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// How documents are synced to the server.
     required TextDocumentSyncKind syncKind,
@@ -3538,8 +3544,8 @@ abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
     /// The document that was saved.
     required TextDocumentIdentifier textDocument,
 
-    /// Optional the content when saved. Depends on the includeText value when the
-    /// save notification was requested.
+    /// Optional the content when saved. Depends on the includeText value when
+    /// the save notification was requested.
     String? text,
   }) = _DidSaveTextDocumentParams;
 
@@ -3553,9 +3559,9 @@ abstract class TextDocumentSaveRegistrationOptions
     with _$TextDocumentSaveRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentSaveRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// The client is supposed to include the content on save.
     bool? includeText,
@@ -3639,8 +3645,8 @@ abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
     /// An array of diagnostic information items.
     required List<Diagnostic> diagnostics,
 
-    /// Optional the version number of the document the diagnostics are published
-    /// for.
+    /// Optional the version number of the document the diagnostics are
+    /// published for.
     /// @since 3.15.0
     int? version,
   }) = _PublishDiagnosticsParams;
@@ -3660,8 +3666,8 @@ abstract class CompletionParams with _$CompletionParams {
     /// The position inside the text document.
     required Position position,
 
-    /// The completion context. This is only available if the client specifies to
-    /// send this using the client capability
+    /// The completion context. This is only available if the client specifies
+    /// to send this using the client capability
     /// `textDocument.completion.contextSupport === true`
     CompletionContext? context,
 
@@ -3690,82 +3696,86 @@ abstract class CompletionItem with _$CompletionItem {
     /// name of the completion item.
     required String label,
 
-    /// A data entry field that is preserved on a completion item between a {@link
-    /// CompletionRequest} and a {@link CompletionResolveRequest}.
+    /// A data entry field that is preserved on a completion item between a
+    /// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
     LSPAny? data,
 
-    /// An optional {@link Command command} that is executed *after* inserting this
-    /// completion. *Note* that additional modifications to the current document
-    /// should be described with the {@link CompletionItem.additionalTextEdits
-    /// additionalTextEdits}-property.
+    /// An optional {@link Command command} that is executed *after* inserting
+    /// this completion. *Note* that additional modifications to the current
+    /// document should be described with the {@link
+    /// CompletionItem.additionalTextEdits additionalTextEdits}-property.
     Command? command,
 
-    /// An optional set of characters that when pressed while this completion is
-    /// active will accept it first and then type that character. *Note* that all
-    /// commit characters should have `length=1` and that superfluous characters
-    /// will be ignored.
+    /// An optional set of characters that when pressed while this completion
+    /// is active will accept it first and then type that character. *Note*
+    /// that all commit characters should have `length=1` and that superfluous
+    /// characters will be ignored.
     List<String>? commitCharacters,
 
     /// An optional array of additional {@link TextEdit text edits} that are
-    /// applied when selecting this completion. Edits must not overlap (including
-    /// the same insert position) with the main {@link CompletionItem.textEdit
-    /// edit} nor with themselves.
+    /// applied when selecting this completion. Edits must not overlap
+    /// (including the same insert position) with the main {@link
+    /// CompletionItem.textEdit edit} nor with themselves.
     /// Additional text edits should be used to change text unrelated to the
-    /// current cursor position (for example adding an import statement at the top
-    /// of the file if the completion item will insert an unqualified type).
+    /// current cursor position (for example adding an import statement at the
+    /// top of the file if the completion item will insert an unqualified
+    /// type).
     List<TextEdit>? additionalTextEdits,
 
-    /// The edit text used if the completion item is part of a CompletionList and
-    /// CompletionList defines an item default for the text edit range.
-    /// Clients will only honor this property if they opt into completion list item
-    /// defaults using the capability `completionList.itemDefaults`.
-    /// If not provided and a list's default range is provided the label property
-    /// is used as a text.
+    /// The edit text used if the completion item is part of a CompletionList
+    /// and CompletionList defines an item default for the text edit range.
+    /// Clients will only honor this property if they opt into completion list
+    /// item defaults using the capability `completionList.itemDefaults`.
+    /// If not provided and a list's default range is provided the label
+    /// property is used as a text.
     /// @since 3.17.0
     String? textEditText,
 
-    /// An {@link TextEdit edit} which is applied to a document when selecting this
-    /// completion. When an edit is provided the value of {@link
+    /// An {@link TextEdit edit} which is applied to a document when selecting
+    /// this completion. When an edit is provided the value of {@link
     /// CompletionItem.insertText insertText} is ignored.
-    /// Most editors support two different operations when accepting a completion
-    /// item. One is to insert a completion text and the other is to replace an
-    /// existing text with a completion text. Since this can usually not be
-    /// predetermined by a server it can report both ranges. Clients need to signal
-    /// support for `InsertReplaceEdits` via the
-    /// `textDocument.completion.insertReplaceSupport` client capability property.
+    /// Most editors support two different operations when accepting a
+    /// completion item. One is to insert a completion text and the other is to
+    /// replace an existing text with a completion text. Since this can usually
+    /// not be predetermined by a server it can report both ranges. Clients
+    /// need to signal support for `InsertReplaceEdits` via the
+    /// `textDocument.completion.insertReplaceSupport` client capability
+    /// property.
     /// *Note 1:* The text edit's range as well as both ranges from an insert
-    /// replace edit must be a [single line] and they must contain the position at
-    /// which completion has been requested. *Note 2:* If an `InsertReplaceEdit` is
-    /// returned the edit's insert range must be a prefix of the edit's replace
-    /// range, that means it must be contained and starting at the same position.
+    /// replace edit must be a [single line] and they must contain the position
+    /// at which completion has been requested. *Note 2:* If an
+    /// `InsertReplaceEdit` is returned the edit's insert range must be a
+    /// prefix of the edit's replace range, that means it must be contained and
+    /// starting at the same position.
     /// @since 3.16.0 additional type `InsertReplaceEdit`
-    dynamic? textEdit,
+    Object? textEdit,
 
-    /// How whitespace and indentation is handled during completion item insertion.
-    /// If not provided the clients default value depends on the
+    /// How whitespace and indentation is handled during completion item
+    /// insertion. If not provided the clients default value depends on the
     /// `textDocument.completion.insertTextMode` client capability.
     /// @since 3.16.0
     InsertTextMode? insertTextMode,
 
-    /// The format of the insert text. The format applies to both the `insertText`
-    /// property and the `newText` property of a provided `textEdit`. If omitted
-    /// defaults to `InsertTextFormat.PlainText`.
+    /// The format of the insert text. The format applies to both the
+    /// `insertText` property and the `newText` property of a provided
+    /// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
     /// Please note that the insertTextFormat doesn't apply to
     /// `additionalTextEdits`.
     InsertTextFormat? insertTextFormat,
 
     /// A string that should be inserted into a document when selecting this
-    /// completion. When `falsy` the {@link CompletionItem.label label} is used.
+    /// completion. When `falsy` the {@link CompletionItem.label label} is
+    /// used.
     /// The `insertText` is subject to interpretation by the client side. Some
-    /// tools might not take the string literally. For example VS Code when code
-    /// complete is requested in this example `con<cursor position>` and a
-    /// completion item with an `insertText` of `console` is provided it will only
-    /// insert `sole`. Therefore it is recommended to use `textEdit` instead since
-    /// it avoids additional client side interpretation.
+    /// tools might not take the string literally. For example VS Code when
+    /// code complete is requested in this example `con<cursor position>` and a
+    /// completion item with an `insertText` of `console` is provided it will
+    /// only insert `sole`. Therefore it is recommended to use `textEdit`
+    /// instead since it avoids additional client side interpretation.
     String? insertText,
 
-    /// A string that should be used when filtering a set of completion items. When
-    /// `falsy` the {@link CompletionItem.label label} is used.
+    /// A string that should be used when filtering a set of completion items.
+    /// When `falsy` the {@link CompletionItem.label label} is used.
     String? filterText,
 
     /// A string that should be used when comparing this item with other items.
@@ -3773,27 +3783,27 @@ abstract class CompletionItem with _$CompletionItem {
     String? sortText,
 
     /// Select this item when showing.
-    /// *Note* that only one completion item can be selected and that the tool /
-    /// client decides which item that is. The rule is that the *first* item of
-    /// those that match best is selected.
+    /// *Note* that only one completion item can be selected and that the tool
+    /// / client decides which item that is. The rule is that the *first* item
+    /// of those that match best is selected.
     bool? preselect,
 
     /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
     bool? deprecated,
 
     /// A human-readable string that represents a doc-comment.
-    dynamic? documentation,
+    Object? documentation,
 
-    /// A human-readable string with additional information about this item, like
-    /// type or symbol information.
+    /// A human-readable string with additional information about this item,
+    /// like type or symbol information.
     String? detail,
 
     /// Tags for this completion item.
     /// @since 3.15.0
     List<CompletionItemTag>? tags,
 
-    /// The kind of this completion item. Based of the kind an icon is chosen by
-    /// the editor.
+    /// The kind of this completion item. Based of the kind an icon is chosen
+    /// by the editor.
     CompletionItemKind? kind,
 
     /// Additional details for the label
@@ -3811,7 +3821,8 @@ abstract class CompletionItem with _$CompletionItem {
 abstract class CompletionList with _$CompletionList {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionList({
-    /// This list it not complete. Further typing results in recomputing this list.
+    /// This list it not complete. Further typing results in recomputing this
+    /// list.
     /// Recomputed lists have all their items replaced (not appended) in the
     /// incomplete completion sessions.
     required bool isIncomplete,
@@ -3819,18 +3830,18 @@ abstract class CompletionList with _$CompletionList {
     /// The completion items.
     required List<CompletionItem> items,
 
-    /// In many cases the items of an actual completion result share the same value
-    /// for properties like `commitCharacters` or the range of a text edit. A
-    /// completion list can therefore define item defaults which will be used if a
-    /// completion item itself doesn't specify the value.
-    /// If a completion list specifies a default value and a completion item also
-    /// specifies a corresponding value the one from the item is used.
+    /// In many cases the items of an actual completion result share the same
+    /// value for properties like `commitCharacters` or the range of a text
+    /// edit. A completion list can therefore define item defaults which will
+    /// be used if a completion item itself doesn't specify the value.
+    /// If a completion list specifies a default value and a completion item
+    /// also specifies a corresponding value the one from the item is used.
     /// Servers are only allowed to return default values if the client signals
     /// support for this via the `completionList.itemDefaults` capability.
     /// @since 3.17.0
     ({
       List<String>? commitCharacters,
-      dynamic? editRange,
+      Object? editRange,
       InsertTextFormat? insertTextFormat,
       InsertTextMode? insertTextMode,
       LSPAny? data,
@@ -3848,11 +3859,12 @@ abstract class CompletionRegistrationOptions
     with _$CompletionRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The server supports the following `CompletionItem` specific capabilities.
+    /// The server supports the following `CompletionItem` specific
+    /// capabilities.
     /// @since 3.17.0
     ({bool? labelDetailsSupport})? completionItem,
 
@@ -3860,24 +3872,24 @@ abstract class CompletionRegistrationOptions
     /// completion item.
     bool? resolveProvider,
 
-    /// The list of all possible characters that commit a completion. This field
-    /// can be used if clients don't support individual commit characters per
-    /// completion item. See
+    /// The list of all possible characters that commit a completion. This
+    /// field can be used if clients don't support individual commit characters
+    /// per completion item. See
     /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
-    /// If a server provides both `allCommitCharacters` and commit characters on an
-    /// individual completion item the ones on the completion item win.
+    /// If a server provides both `allCommitCharacters` and commit characters
+    /// on an individual completion item the ones on the completion item win.
     /// @since 3.2.0
     List<String>? allCommitCharacters,
 
     /// Most tools trigger completion request automatically without explicitly
-    /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they
-    /// do so when the user starts to type an identifier. For example if the user
-    /// types `c` in a JavaScript file code complete will automatically pop up
-    /// present `console` besides others as a completion item. Characters that make
-    /// up identifiers don't need to be listed here.
-    /// If code complete should automatically be trigger on characters not being
-    /// valid inside an identifier (for example `.` in JavaScript) list them in
-    /// `triggerCharacters`.
+    /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+    /// they do so when the user starts to type an identifier. For example if
+    /// the user types `c` in a JavaScript file code complete will
+    /// automatically pop up present `console` besides others as a completion
+    /// item. Characters that make up identifiers don't need to be listed here.
+    /// If code complete should automatically be trigger on characters not
+    /// being valid inside an identifier (for example `.` in JavaScript) list
+    /// them in `triggerCharacters`.
     List<String>? triggerCharacters,
     bool? workDoneProgress,
   }) = _CompletionRegistrationOptions;
@@ -3911,10 +3923,10 @@ abstract class Hover with _$Hover {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Hover({
     /// The hover's content
-    required dynamic contents,
+    required Object contents,
 
-    /// An optional range inside the text document that is used to visualize the
-    /// hover, e.g. by changing the background color.
+    /// An optional range inside the text document that is used to visualize
+    /// the hover, e.g. by changing the background color.
     Range? range,
   }) = _Hover;
 
@@ -3926,9 +3938,9 @@ abstract class Hover with _$Hover {
 abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory HoverRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
     bool? workDoneProgress,
   }) = _HoverRegistrationOptions;
 
@@ -3947,8 +3959,8 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
     /// The position inside the text document.
     required Position position,
 
-    /// The signature help context. This is only available if the client specifies
-    /// to send this using the client capability
+    /// The signature help context. This is only available if the client
+    /// specifies to send this using the client capability
     /// `textDocument.signatureHelp.contextSupport === true`
     /// @since 3.15.0
     SignatureHelpContext? context,
@@ -3971,12 +3983,12 @@ abstract class SignatureHelp with _$SignatureHelp {
     /// One or more signatures.
     required List<SignatureInformation> signatures,
 
-    /// The active parameter of the active signature. If omitted or the value lies
-    /// outside the range of `signatures[activeSignature].parameters` defaults to 0
-    /// if the active signature has parameters. If the active signature has no
-    /// parameters it is ignored. In future version of the protocol this property
-    /// might become mandatory to better express the active parameter if the active
-    /// signature does have any.
+    /// The active parameter of the active signature. If omitted or the value
+    /// lies outside the range of `signatures[activeSignature].parameters`
+    /// defaults to 0 if the active signature has parameters. If the active
+    /// signature has no parameters it is ignored. In future version of the
+    /// protocol this property might become mandatory to better express the
+    /// active parameter if the active signature does have any.
     int? activeParameter,
 
     /// The active signature. If omitted or the value lies outside the range of
@@ -3984,8 +3996,8 @@ abstract class SignatureHelp with _$SignatureHelp {
     /// `SignatureHelp` has no signatures.
     /// Whenever possible implementors should make an active decision about the
     /// active signature and shouldn't rely on a default value.
-    /// In future version of the protocol this property might become mandatory to
-    /// better express this.
+    /// In future version of the protocol this property might become mandatory
+    /// to better express this.
     int? activeSignature,
   }) = _SignatureHelp;
 
@@ -3999,13 +4011,14 @@ abstract class SignatureHelpRegistrationOptions
     with _$SignatureHelpRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SignatureHelpRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// List of characters that re-trigger signature help.
     /// These trigger characters are only active when signature help is already
-    /// showing. All trigger characters are also counted as re-trigger characters.
+    /// showing. All trigger characters are also counted as re-trigger
+    /// characters.
     /// @since 3.15.0
     List<String>? retriggerCharacters,
 
@@ -4048,9 +4061,9 @@ abstract class DefinitionRegistrationOptions
     with _$DefinitionRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DefinitionRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
     bool? workDoneProgress,
   }) = _DefinitionRegistrationOptions;
 
@@ -4088,9 +4101,9 @@ abstract class ReferenceRegistrationOptions
     with _$ReferenceRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ReferenceRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
     bool? workDoneProgress,
   }) = _ReferenceRegistrationOptions;
 
@@ -4145,9 +4158,9 @@ abstract class DocumentHighlightRegistrationOptions
     with _$DocumentHighlightRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentHighlightRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
     bool? workDoneProgress,
   }) = _DocumentHighlightRegistrationOptions;
 
@@ -4189,23 +4202,23 @@ abstract class SymbolInformation with _$SymbolInformation {
     required SymbolKind kind,
 
     /// The location of this symbol. The location's range is used by a tool to
-    /// reveal the location in the editor. If the symbol is selected in the tool
-    /// the range's start information is used to position the cursor. So the range
-    /// usually spans more than the actual symbol's name and does normally include
-    /// things like visibility modifiers.
-    /// The range doesn't have to denote a node range in the sense of an abstract
-    /// syntax tree. It can therefore not be used to re-construct a hierarchy of
-    /// the symbols.
+    /// reveal the location in the editor. If the symbol is selected in the
+    /// tool the range's start information is used to position the cursor. So
+    /// the range usually spans more than the actual symbol's name and does
+    /// normally include things like visibility modifiers.
+    /// The range doesn't have to denote a node range in the sense of an
+    /// abstract syntax tree. It can therefore not be used to re-construct a
+    /// hierarchy of the symbols.
     required Location location,
 
     /// Indicates if this symbol is deprecated.
     /// @deprecated Use tags instead
     bool? deprecated,
 
-    /// The name of the symbol containing this symbol. This information is for user
-    /// interface purposes (e.g. to render a qualifier in the user interface if
-    /// necessary). It can't be used to re-infer a hierarchy for the document
-    /// symbols.
+    /// The name of the symbol containing this symbol. This information is for
+    /// user interface purposes (e.g. to render a qualifier in the user
+    /// interface if necessary). It can't be used to re-infer a hierarchy for
+    /// the document symbols.
     String? containerName,
 
     /// Tags for this symbol.
@@ -4227,21 +4240,22 @@ abstract class DocumentSymbol with _$DocumentSymbol {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentSymbol({
     /// The name of this symbol. Will be displayed in the user interface and
-    /// therefore must not be an empty string or a string only consisting of white
-    /// spaces.
+    /// therefore must not be an empty string or a string only consisting of
+    /// white spaces.
     required String name,
 
     /// The kind of this symbol.
     required SymbolKind kind,
 
-    /// The range enclosing this symbol not including leading/trailing whitespace
-    /// but everything else like comments. This information is typically used to
-    /// determine if the clients cursor is inside the symbol to reveal in the
-    /// symbol in the UI.
+    /// The range enclosing this symbol not including leading/trailing
+    /// whitespace but everything else like comments. This information is
+    /// typically used to determine if the clients cursor is inside the symbol
+    /// to reveal in the symbol in the UI.
     required Range range,
 
-    /// The range that should be selected and revealed when this symbol is being
-    /// picked, e.g the name of a function. Must be contained by the `range`.
+    /// The range that should be selected and revealed when this symbol is
+    /// being picked, e.g the name of a function. Must be contained by the
+    /// `range`.
     required Range selectionRange,
 
     /// Children of this symbol, e.g. properties of a class.
@@ -4269,9 +4283,9 @@ abstract class DocumentSymbolRegistrationOptions
     with _$DocumentSymbolRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentSymbolRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// A human-readable string that is shown when multiple outlines trees are
     /// shown for the same document.
@@ -4350,8 +4364,8 @@ abstract class CodeAction with _$CodeAction {
     /// @since 3.16.0
     LSPAny? data,
 
-    /// A command this code action executes. If a code action provides an edit and
-    /// a command, first the edit is executed and then the command.
+    /// A command this code action executes. If a code action provides an edit
+    /// and a command, first the edit is executed and then the command.
     Command? command,
 
     /// The workspace edit this code action performs.
@@ -4363,18 +4377,19 @@ abstract class CodeAction with _$CodeAction {
     /// - Disabled code actions are not shown in automatic
     /// [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
     /// code action menus.
-    /// - Disabled actions are shown as faded out in the code action menu when the
-    /// user requests a more specific type of code action, such as refactorings.
+    /// - Disabled actions are shown as faded out in the code action menu when
+    /// the user requests a more specific type of code action, such as
+    /// refactorings.
     /// - If the user has a
     /// [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
     /// that auto applies a code action and only disabled code actions are
-    /// returned, the client should show the user an error message with `reason` in
-    /// the editor.
+    /// returned, the client should show the user an error message with
+    /// `reason` in the editor.
     /// @since 3.16.0
     ({String reason})? disabled,
 
-    /// Marks this as a preferred action. Preferred actions are used by the `auto
-    /// fix` command and can be targeted by keybindings.
+    /// Marks this as a preferred action. Preferred actions are used by the
+    /// `auto fix` command and can be targeted by keybindings.
     /// A quick fix should be marked preferred if it properly addresses the
     /// underlying error. A refactoring should be marked preferred if it is the
     /// most reasonable choice of actions to take.
@@ -4399,18 +4414,18 @@ abstract class CodeActionRegistrationOptions
     with _$CodeActionRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeActionRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
-    /// The server provides support to resolve additional information for a code
-    /// action.
+    /// The server provides support to resolve additional information for a
+    /// code action.
     /// @since 3.16.0
     bool? resolveProvider,
 
     /// CodeActionKinds that this server may return.
-    /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-    /// server may list out every specific kind they provide.
+    /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+    /// the server may list out every specific kind they provide.
     List<CodeActionKind>? codeActionKinds,
     bool? workDoneProgress,
   }) = _CodeActionRegistrationOptions;
@@ -4424,8 +4439,8 @@ abstract class CodeActionRegistrationOptions
 abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceSymbolParams({
-    /// A query string to filter symbols by. Clients may send an empty string here
-    /// to request all symbols.
+    /// A query string to filter symbols by. Clients may send an empty string
+    /// here to request all symbols.
     required String query,
 
     /// An optional token that a server can use to report partial results (e.g.
@@ -4458,16 +4473,16 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     /// location without a range depends on the client capability
     /// `workspace.symbol.resolveSupport`.
     /// See SymbolInformation#location for more details.
-    required dynamic location,
+    required Object location,
 
     /// A data entry field that is preserved on a workspace symbol between a
     /// workspace symbol request and a workspace symbol resolve request.
     LSPAny? data,
 
-    /// The name of the symbol containing this symbol. This information is for user
-    /// interface purposes (e.g. to render a qualifier in the user interface if
-    /// necessary). It can't be used to re-infer a hierarchy for the document
-    /// symbols.
+    /// The name of the symbol containing this symbol. This information is for
+    /// user interface purposes (e.g. to render a qualifier in the user
+    /// interface if necessary). It can't be used to re-infer a hierarchy for
+    /// the document symbols.
     String? containerName,
 
     /// Tags for this symbol.
@@ -4527,11 +4542,12 @@ abstract class CodeLensParams with _$CodeLensParams {
 abstract class CodeLens with _$CodeLens {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeLens({
-    /// The range in which this code lens is valid. Should only span a single line.
+    /// The range in which this code lens is valid. Should only span a single
+    /// line.
     required Range range,
 
-    /// A data entry field that is preserved on a code lens item between a {@link
-    /// CodeLensRequest} and a {@link CodeLensResolveRequest}
+    /// A data entry field that is preserved on a code lens item between a
+    /// {@link CodeLensRequest} and a {@link CodeLensResolveRequest}
     LSPAny? data,
 
     /// The command this code lens represents.
@@ -4547,9 +4563,9 @@ abstract class CodeLens with _$CodeLens {
 abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeLensRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// Code lens has a resolve provider as well.
     bool? resolveProvider,
@@ -4595,10 +4611,10 @@ abstract class DocumentLink with _$DocumentLink {
     LSPAny? data,
 
     /// The tooltip text when you hover over this link.
-    /// If a tooltip is provided, is will be displayed in a string that includes
-    /// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
-    /// specific instructions vary depending on OS, user settings, and
-    /// localization.
+    /// If a tooltip is provided, is will be displayed in a string that
+    /// includes instructions on how to trigger the link, such as `{0} (ctrl +
+    /// click)`. The specific instructions vary depending on OS, user settings,
+    /// and localization.
     /// @since 3.15.0
     String? tooltip,
 
@@ -4616,9 +4632,9 @@ abstract class DocumentLinkRegistrationOptions
     with _$DocumentLinkRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentLinkRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// Document links have a resolve provider as well.
     bool? resolveProvider,
@@ -4654,9 +4670,9 @@ abstract class DocumentFormattingRegistrationOptions
     with _$DocumentFormattingRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentFormattingRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
     bool? workDoneProgress,
   }) = _DocumentFormattingRegistrationOptions;
 
@@ -4694,9 +4710,9 @@ abstract class DocumentRangeFormattingRegistrationOptions
     with _$DocumentRangeFormattingRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentRangeFormattingRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// Whether the server supports formatting multiple ranges at once.
     /// @since 3.18.0 @proposed
@@ -4742,15 +4758,15 @@ abstract class DocumentOnTypeFormattingParams
     /// The document to format.
     required TextDocumentIdentifier textDocument,
 
-    /// The position around which the on type formatting should happen. This is not
-    /// necessarily the exact position where the character denoted by the property
-    /// `ch` got typed.
+    /// The position around which the on type formatting should happen. This is
+    /// not necessarily the exact position where the character denoted by the
+    /// property `ch` got typed.
     required Position position,
 
     /// The character that has been typed that triggered the formatting on type
-    /// request. That is not necessarily the last character that got inserted into
-    /// the document since the client could auto insert characters as well (e.g.
-    /// like automatic brace completion).
+    /// request. That is not necessarily the last character that got inserted
+    /// into the document since the client could auto insert characters as well
+    /// (e.g. like automatic brace completion).
     required String ch,
 
     /// The formatting options.
@@ -4768,9 +4784,9 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
     with _$DocumentOnTypeFormattingRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentOnTypeFormattingRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// A character on which formatting should be triggered, like `{`.
     required String firstTriggerCharacter,
@@ -4795,8 +4811,8 @@ abstract class RenameParams with _$RenameParams {
     /// The position at which this request was sent.
     required Position position,
 
-    /// The new name of the symbol. If the given name is not valid the request must
-    /// return a {@link ResponseError} with an appropriate message set.
+    /// The new name of the symbol. If the given name is not valid the request
+    /// must return a {@link ResponseError} with an appropriate message set.
     required String newName,
 
     /// An optional token that a server can use to report work done progress.
@@ -4812,9 +4828,9 @@ abstract class RenameParams with _$RenameParams {
 abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set to
-    /// null the document selector provided on the client side will be used.
-    required dynamic documentSelector,
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Object documentSelector,
 
     /// Renames should be checked and tested before being executed.
     /// @since version 3.12.0
@@ -4905,15 +4921,15 @@ abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
     /// Indicates whether the edit was applied or not.
     required bool applied,
 
-    /// Depending on the client's failure handling strategy `failedChange` might
-    /// contain the index of the change that failed. This property is only
-    /// available if the client signals a `failureHandlingStrategy` in its client
-    /// capabilities.
+    /// Depending on the client's failure handling strategy `failedChange`
+    /// might contain the index of the change that failed. This property is
+    /// only available if the client signals a `failureHandlingStrategy` in its
+    /// client capabilities.
     int? failedChange,
 
-    /// An optional textual description for why the edit was not applied. This may
-    /// be used by the server for diagnostic logging or to provide a suitable error
-    /// for a request that triggered the edit.
+    /// An optional textual description for why the edit was not applied. This
+    /// may be used by the server for diagnostic logging or to provide a
+    /// suitable error for a request that triggered the edit.
     String? failureReason,
   }) = _ApplyWorkspaceEditResult;
 
@@ -4927,27 +4943,27 @@ abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
   const factory WorkDoneProgressBegin({
     required String kind,
 
-    /// Mandatory title of the progress operation. Used to briefly inform about the
-    /// kind of operation being performed.
+    /// Mandatory title of the progress operation. Used to briefly inform about
+    /// the kind of operation being performed.
     /// Examples: "Indexing" or "Linking dependencies".
     required String title,
 
-    /// Optional progress percentage to display (value 100 is considered 100%). If
-    /// not provided infinite progress is assumed and clients are allowed to ignore
-    /// the `percentage` value in subsequent report notifications.
-    /// The value should be steadily rising. Clients are free to ignore values that
-    /// are not following this rule. The value range is [0, 100].
+    /// Optional progress percentage to display (value 100 is considered 100%).
+    /// If not provided infinite progress is assumed and clients are allowed to
+    /// ignore the `percentage` value in subsequent report notifications.
+    /// The value should be steadily rising. Clients are free to ignore values
+    /// that are not following this rule. The value range is [0, 100].
     int? percentage,
 
-    /// Optional, more detailed associated progress message. Contains complementary
-    /// information to the `title`.
-    /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-    /// unset, the previous progress message (if any) is still valid.
+    /// Optional, more detailed associated progress message. Contains
+    /// complementary information to the `title`.
+    /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+    /// If unset, the previous progress message (if any) is still valid.
     String? message,
 
     /// Controls if a cancel button should show to allow the user to cancel the
-    /// long running operation. Clients that don't support cancellation are allowed
-    /// to ignore the setting.
+    /// long running operation. Clients that don't support cancellation are
+    /// allowed to ignore the setting.
     bool? cancellable,
   }) = _WorkDoneProgressBegin;
 
@@ -4961,22 +4977,22 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
   const factory WorkDoneProgressReport({
     required String kind,
 
-    /// Optional progress percentage to display (value 100 is considered 100%). If
-    /// not provided infinite progress is assumed and clients are allowed to ignore
-    /// the `percentage` value in subsequent report notifications.
-    /// The value should be steadily rising. Clients are free to ignore values that
-    /// are not following this rule. The value range is [0, 100].
+    /// Optional progress percentage to display (value 100 is considered 100%).
+    /// If not provided infinite progress is assumed and clients are allowed to
+    /// ignore the `percentage` value in subsequent report notifications.
+    /// The value should be steadily rising. Clients are free to ignore values
+    /// that are not following this rule. The value range is [0, 100].
     int? percentage,
 
-    /// Optional, more detailed associated progress message. Contains complementary
-    /// information to the `title`.
-    /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-    /// unset, the previous progress message (if any) is still valid.
+    /// Optional, more detailed associated progress message. Contains
+    /// complementary information to the `title`.
+    /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+    /// If unset, the previous progress message (if any) is still valid.
     String? message,
 
     /// Controls enablement state of a cancel button.
-    /// Clients that don't support cancellation or don't support controlling the
-    /// button's enablement state are allowed to ignore the property.
+    /// Clients that don't support cancellation or don't support controlling
+    /// the button's enablement state are allowed to ignore the property.
     bool? cancellable,
   }) = _WorkDoneProgressReport;
 
@@ -4990,8 +5006,8 @@ abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
   const factory WorkDoneProgressEnd({
     required String kind,
 
-    /// Optional, a final message indicating to for example indicate the outcome of
-    /// the operation.
+    /// Optional, a final message indicating to for example indicate the
+    /// outcome of the operation.
     String? message,
   }) = _WorkDoneProgressEnd;
 
@@ -5023,7 +5039,7 @@ abstract class CancelParams with _$CancelParams {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CancelParams({
     /// The request id to cancel.
-    required dynamic id,
+    required Object id,
   }) = _CancelParams;
 
   factory CancelParams.fromJson(Map<String, dynamic> json) =>
@@ -5097,10 +5113,11 @@ abstract class LocationLink with _$LocationLink {
     /// The target resource identifier of this link.
     required String targetUri,
 
-    /// The full target range of this link. If the target for example is a symbol
-    /// then target range is the range enclosing this symbol not including
-    /// leading/trailing whitespace but everything else like comments. This
-    /// information is typically used to highlight the range in the editor.
+    /// The full target range of this link. If the target for example is a
+    /// symbol then target range is the range enclosing this symbol not
+    /// including leading/trailing whitespace but everything else like
+    /// comments. This information is typically used to highlight the range in
+    /// the editor.
     required Range targetRange,
 
     /// The range that should be selected and revealed when this link is being
@@ -5154,8 +5171,8 @@ abstract class ImplementationOptions with _$ImplementationOptions {
 abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory StaticRegistrationOptions({
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
   }) = _StaticRegistrationOptions;
 
@@ -5304,15 +5321,15 @@ abstract class Position with _$Position {
   const factory Position({
     /// Line position in a document (zero-based).
     /// If a line number is greater than the number of lines in a document, it
-    /// defaults back to the number of lines in the document. If a line number is
-    /// negative, it defaults to 0.
+    /// defaults back to the number of lines in the document. If a line number
+    /// is negative, it defaults to 0.
     required int line,
 
     /// Character offset on a line in a document (zero-based).
     /// The meaning of this offset is determined by the negotiated
     /// `PositionEncodingKind`.
-    /// If the character value is greater than the line length it defaults back to
-    /// the line length.
+    /// If the character value is greater than the line length it defaults back
+    /// to the line length.
     required int character,
   }) = _Position;
 
@@ -5351,11 +5368,11 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
     required SemanticTokensLegend legend,
 
     /// Server supports providing semantic tokens for a full document.
-    dynamic? full,
+    Object? full,
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
-    dynamic? range,
+    Object? range,
     bool? workDoneProgress,
   }) = _SemanticTokensOptions;
 
@@ -5421,7 +5438,7 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
     /// The edits to be applied.
     /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
     /// client capability.
-    required List<dynamic> edits,
+    required List<Object> edits,
   }) = _TextDocumentEdit;
 
   factory TextDocumentEdit.fromJson(Map<String, dynamic> json) =>
@@ -5514,8 +5531,8 @@ abstract class ChangeAnnotation with _$ChangeAnnotation {
     /// interface.
     String? description,
 
-    /// A flag which indicates that user confirmation is needed before applying the
-    /// change.
+    /// A flag which indicates that user confirmation is needed before applying
+    /// the change.
     bool? needsConfirmation,
   }) = _ChangeAnnotation;
 
@@ -5547,7 +5564,8 @@ abstract class FileOperationFilter with _$FileOperationFilter {
 abstract class FileRename with _$FileRename {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileRename({
-    /// A file:// URI for the original location of the file/folder being renamed.
+    /// A file:// URI for the original location of the file/folder being
+    /// renamed.
     required String oldUri,
 
     /// A file:// URI for the new location of the file/folder being renamed.
@@ -5601,8 +5619,9 @@ abstract class InlineValueContext with _$InlineValueContext {
     /// The stack frame (as a DAP Id) where the execution has stopped.
     required int frameId,
 
-    /// The document range where execution has stopped. Typically the end position
-    /// of the range denotes the line where the inline values are shown.
+    /// The document range where execution has stopped. Typically the end
+    /// position of the range denotes the line where the inline values are
+    /// shown.
     required Range stoppedLocation,
   }) = _InlineValueContext;
 
@@ -5636,8 +5655,8 @@ abstract class InlineValueText with _$InlineValueText {
 abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueVariableLookup({
-    /// The document range for which the inline value applies. The range is used to
-    /// extract the variable name from the underlying document.
+    /// The document range for which the inline value applies. The range is
+    /// used to extract the variable name from the underlying document.
     required Range range,
 
     /// How to perform the lookup.
@@ -5661,8 +5680,9 @@ abstract class InlineValueEvaluatableExpression
     with _$InlineValueEvaluatableExpression {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueEvaluatableExpression({
-    /// The document range for which the inline value applies. The range is used to
-    /// extract the evaluatable expression from the underlying document.
+    /// The document range for which the inline value applies. The range is
+    /// used to extract the evaluatable expression from the underlying
+    /// document.
     required Range range,
 
     /// If specified the expression overrides the extracted expression.
@@ -5697,24 +5717,24 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
     required String value,
 
     /// An optional command for this label part.
-    /// Depending on the client capability `inlayHint.resolveSupport` clients might
-    /// resolve this property late using the resolve request.
+    /// Depending on the client capability `inlayHint.resolveSupport` clients
+    /// might resolve this property late using the resolve request.
     Command? command,
 
     /// An optional source code location that represents this label part.
     /// The editor will use this location for the hover and for code navigation
     /// features: This part will become a clickable link that resolves to the
     /// definition of the symbol at the given location (not necessarily the
-    /// location itself), it shows the hover that shows at the given location, and
-    /// it shows a context menu with further code navigation commands.
-    /// Depending on the client capability `inlayHint.resolveSupport` clients might
-    /// resolve this property late using the resolve request.
+    /// location itself), it shows the hover that shows at the given location,
+    /// and it shows a context menu with further code navigation commands.
+    /// Depending on the client capability `inlayHint.resolveSupport` clients
+    /// might resolve this property late using the resolve request.
     Location? location,
 
     /// The tooltip text when you hover over this label part. Depending on the
     /// client capability `inlayHint.resolveSupport` clients might resolve this
     /// property late using the resolve request.
-    dynamic? tooltip,
+    Object? tooltip,
   }) = _InlayHintLabelPart;
 
   factory InlayHintLabelPart.fromJson(Map<String, dynamic> json) =>
@@ -5755,8 +5775,8 @@ abstract class MarkupContent with _$MarkupContent {
 abstract class InlayHintOptions with _$InlayHintOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintOptions({
-    /// The server provides support to resolve additional information for an inlay
-    /// hint item.
+    /// The server provides support to resolve additional information for an
+    /// inlay hint item.
     bool? resolveProvider,
     bool? workDoneProgress,
   }) = _InlayHintOptions;
@@ -5778,15 +5798,16 @@ abstract class RelatedFullDocumentDiagnosticReport
     /// The actual items.
     required List<Diagnostic> items,
 
-    /// Diagnostics of related documents. This information is useful in programming
-    /// languages where code in a file A can generate diagnostics in a file B which
-    /// A depends on. An example of such a language is C/C++ where marco
-    /// definitions in a file a.cpp and result in errors in a header file b.hpp.
+    /// Diagnostics of related documents. This information is useful in
+    /// programming languages where code in a file A can generate diagnostics
+    /// in a file B which A depends on. An example of such a language is C/C++
+    /// where marco definitions in a file a.cpp and result in errors in a
+    /// header file b.hpp.
     /// @since 3.17.0
-    Map<String, dynamic>? relatedDocuments,
+    Map<String, Object>? relatedDocuments,
 
-    /// An optional result id. If provided it will be sent on the next diagnostic
-    /// request for the same document.
+    /// An optional result id. If provided it will be sent on the next
+    /// diagnostic request for the same document.
     String? resultId,
   }) = _RelatedFullDocumentDiagnosticReport;
 
@@ -5802,20 +5823,21 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
     with _$RelatedUnchangedDocumentDiagnosticReport {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RelatedUnchangedDocumentDiagnosticReport({
-    /// A document diagnostic report indicating no changes to the last result. A
-    /// server can only return `unchanged` if result ids are provided.
+    /// A document diagnostic report indicating no changes to the last result.
+    /// A server can only return `unchanged` if result ids are provided.
     required String kind,
 
-    /// A result id which will be sent on the next diagnostic request for the same
-    /// document.
+    /// A result id which will be sent on the next diagnostic request for the
+    /// same document.
     required String resultId,
 
-    /// Diagnostics of related documents. This information is useful in programming
-    /// languages where code in a file A can generate diagnostics in a file B which
-    /// A depends on. An example of such a language is C/C++ where marco
-    /// definitions in a file a.cpp and result in errors in a header file b.hpp.
+    /// Diagnostics of related documents. This information is useful in
+    /// programming languages where code in a file A can generate diagnostics
+    /// in a file B which A depends on. An example of such a language is C/C++
+    /// where marco definitions in a file a.cpp and result in errors in a
+    /// header file b.hpp.
     /// @since 3.17.0
-    Map<String, dynamic>? relatedDocuments,
+    Map<String, Object>? relatedDocuments,
   }) = _RelatedUnchangedDocumentDiagnosticReport;
 
   factory RelatedUnchangedDocumentDiagnosticReport.fromJson(
@@ -5836,8 +5858,8 @@ abstract class FullDocumentDiagnosticReport
     /// The actual items.
     required List<Diagnostic> items,
 
-    /// An optional result id. If provided it will be sent on the next diagnostic
-    /// request for the same document.
+    /// An optional result id. If provided it will be sent on the next
+    /// diagnostic request for the same document.
     String? resultId,
   }) = _FullDocumentDiagnosticReport;
 
@@ -5853,12 +5875,12 @@ abstract class UnchangedDocumentDiagnosticReport
     with _$UnchangedDocumentDiagnosticReport {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory UnchangedDocumentDiagnosticReport({
-    /// A document diagnostic report indicating no changes to the last result. A
-    /// server can only return `unchanged` if result ids are provided.
+    /// A document diagnostic report indicating no changes to the last result.
+    /// A server can only return `unchanged` if result ids are provided.
     required String kind,
 
-    /// A result id which will be sent on the next diagnostic request for the same
-    /// document.
+    /// A result id which will be sent on the next diagnostic request for the
+    /// same document.
     required String resultId,
   }) = _UnchangedDocumentDiagnosticReport;
 
@@ -5873,10 +5895,10 @@ abstract class UnchangedDocumentDiagnosticReport
 abstract class DiagnosticOptions with _$DiagnosticOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DiagnosticOptions({
-    /// Whether the language has inter file dependencies meaning that editing code
-    /// in one file can result in a different diagnostic set in another file. Inter
-    /// file dependencies are common for most programming languages and typically
-    /// uncommon for linters.
+    /// Whether the language has inter file dependencies meaning that editing
+    /// code in one file can result in a different diagnostic set in another
+    /// file. Inter file dependencies are common for most programming languages
+    /// and typically uncommon for linters.
     required bool interFileDependencies,
 
     /// The server provides support for workspace diagnostics as well.
@@ -5921,8 +5943,8 @@ abstract class NotebookDocument with _$NotebookDocument {
     /// The type of the notebook.
     required String notebookType,
 
-    /// The version number of this document (it will increase after each change,
-    /// including undo/redo).
+    /// The version number of this document (it will increase after each
+    /// change, including undo/redo).
     required int version,
 
     /// The cells of a notebook.
@@ -5948,8 +5970,8 @@ abstract class TextDocumentItem with _$TextDocumentItem {
     /// The text document's language identifier.
     required String languageId,
 
-    /// The version number of this document (it will increase after each change,
-    /// including undo/redo).
+    /// The version number of this document (it will increase after each
+    /// change, including undo/redo).
     required int version,
 
     /// The content of the opened text document.
@@ -6037,8 +6059,8 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
     /// Describes how the inline completion was triggered.
     required InlineCompletionTriggerKind triggerKind,
 
-    /// Provides information about the currently selected item in the autocomplete
-    /// widget if it is visible.
+    /// Provides information about the currently selected item in the
+    /// autocomplete widget if it is visible.
     SelectedCompletionInfo? selectedCompletionInfo,
   }) = _InlineCompletionContext;
 
@@ -6087,8 +6109,8 @@ abstract class InlineCompletionOptions with _$InlineCompletionOptions {
 abstract class Registration with _$Registration {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Registration({
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again.
     required String id,
 
     /// The method / capability to register for.
@@ -6125,14 +6147,14 @@ abstract class TInitializeParams with _$TInitializeParams {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TInitializeParams({
     /// The process Id of the parent process that started the server.
-    /// Is `null` if the process has not been started by another process. If the
-    /// parent process is not alive then the server should exit.
-    required dynamic processId,
+    /// Is `null` if the process has not been started by another process. If
+    /// the parent process is not alive then the server should exit.
+    required Object processId,
 
     /// The rootUri of the workspace. Is null if no folder is open. If both
     /// `rootPath` and `rootUri` are set `rootUri` wins.
     /// @deprecated in favour of workspaceFolders.
-    required dynamic rootUri,
+    required Object rootUri,
 
     /// The capabilities provided by the client (editor or tool)
     required ClientCapabilities capabilities,
@@ -6145,10 +6167,10 @@ abstract class TInitializeParams with _$TInitializeParams {
 
     /// The rootPath of the workspace. Is null if no folder is open.
     /// @deprecated in favour of rootUri.
-    dynamic? rootPath,
+    Object? rootPath,
 
-    /// The locale the client is currently showing the user interface in. This must
-    /// not necessarily be the locale of the operating system.
+    /// The locale the client is currently showing the user interface in. This
+    /// must not necessarily be the locale of the operating system.
     /// Uses IETF language tags as the value's syntax (See
     /// https://en.wikipedia.org/wiki/IETF_language_tag)
     /// @since 3.16.0
@@ -6172,11 +6194,11 @@ abstract class WorkspaceFoldersInitializeParams
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFoldersInitializeParams({
     /// The workspace folders configured in the client when the server starts.
-    /// This property is only available if the client supports workspace folders.
-    /// It can be `null` if the client supports workspace folders but none are
-    /// configured.
+    /// This property is only available if the client supports workspace
+    /// folders. It can be `null` if the client supports workspace folders but
+    /// none are configured.
     /// @since 3.6.0
-    dynamic? workspaceFolders,
+    Object? workspaceFolders,
   }) = _WorkspaceFoldersInitializeParams;
 
   factory WorkspaceFoldersInitializeParams.fromJson(
@@ -6190,18 +6212,18 @@ abstract class ServerCapabilities with _$ServerCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilities({
     /// The server provides workspace symbol support.
-    dynamic? workspaceSymbolProvider,
+    Object? workspaceSymbolProvider,
 
     /// The server provides document highlight support.
-    dynamic? documentHighlightProvider,
+    Object? documentHighlightProvider,
 
     /// The server provides document formatting.
-    dynamic? documentFormattingProvider,
+    Object? documentFormattingProvider,
 
-    /// The server provides code actions. CodeActionOptions may only be specified
-    /// if the client states that it supports `codeActionLiteralSupport` in its
-    /// initial `initialize` request.
-    dynamic? codeActionProvider,
+    /// The server provides code actions. CodeActionOptions may only be
+    /// specified if the client states that it supports
+    /// `codeActionLiteralSupport` in its initial `initialize` request.
+    Object? codeActionProvider,
 
     /// The server provides completion support.
     CompletionOptions? completionProvider,
@@ -6215,37 +6237,37 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
     /// Inline completion options used during static registration.
     /// @since 3.18.0 @proposed
-    dynamic? inlineCompletionProvider,
+    Object? inlineCompletionProvider,
 
     /// The server has support for pull model diagnostics.
     /// @since 3.17.0
-    dynamic? diagnosticProvider,
+    Object? diagnosticProvider,
 
     /// The server provides inlay hints.
     /// @since 3.17.0
-    dynamic? inlayHintProvider,
+    Object? inlayHintProvider,
 
     /// The server provides goto definition support.
-    dynamic? definitionProvider,
+    Object? definitionProvider,
 
     /// The server provides Goto Declaration support.
-    dynamic? declarationProvider,
+    Object? declarationProvider,
 
     /// The server provides moniker support.
     /// @since 3.16.0
-    dynamic? monikerProvider,
+    Object? monikerProvider,
 
     /// The server provides semantic tokens support.
     /// @since 3.16.0
-    dynamic? semanticTokensProvider,
+    Object? semanticTokensProvider,
 
     /// The server provides linked editing range support.
     /// @since 3.16.0
-    dynamic? linkedEditingRangeProvider,
+    Object? linkedEditingRangeProvider,
 
     /// The server provides call hierarchy support.
     /// @since 3.16.0
-    dynamic? callHierarchyProvider,
+    Object? callHierarchyProvider,
 
     /// The server provides execute command support.
     ExecuteCommandOptions? executeCommandProvider,
@@ -6253,30 +6275,30 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// Defines how text documents are synced. Is either a detailed structure
     /// defining each notification or for backwards compatibility the
     /// TextDocumentSyncKind number.
-    dynamic? textDocumentSync,
+    Object? textDocumentSync,
 
     /// The server provides folding provider support.
-    dynamic? foldingRangeProvider,
+    Object? foldingRangeProvider,
 
-    /// The server provides rename support. RenameOptions may only be specified if
-    /// the client states that it supports `prepareSupport` in its initial
+    /// The server provides rename support. RenameOptions may only be specified
+    /// if the client states that it supports `prepareSupport` in its initial
     /// `initialize` request.
-    dynamic? renameProvider,
+    Object? renameProvider,
 
     /// The server provides document formatting on typing.
     DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,
 
     /// The server provides document range formatting.
-    dynamic? documentRangeFormattingProvider,
+    Object? documentRangeFormattingProvider,
 
     /// Experimental server capabilities.
     LSPAny? experimental,
 
     /// The server provides selection range support.
-    dynamic? selectionRangeProvider,
+    Object? selectionRangeProvider,
 
     /// The server provides color provider support.
-    dynamic? colorProvider,
+    Object? colorProvider,
 
     /// The server provides document link support.
     DocumentLinkOptions? documentLinkProvider,
@@ -6286,41 +6308,41 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
     /// Defines how notebook documents are synced.
     /// @since 3.17.0
-    dynamic? notebookDocumentSync,
+    Object? notebookDocumentSync,
 
     /// The server provides document symbol support.
-    dynamic? documentSymbolProvider,
+    Object? documentSymbolProvider,
 
-    /// The position encoding the server picked from the encodings offered by the
-    /// client via the client capability `general.positionEncodings`.
-    /// If the client didn't provide any position encodings the only valid value
-    /// that a server can return is 'utf-16'.
+    /// The position encoding the server picked from the encodings offered by
+    /// the client via the client capability `general.positionEncodings`.
+    /// If the client didn't provide any position encodings the only valid
+    /// value that a server can return is 'utf-16'.
     /// If omitted it defaults to 'utf-16'.
     /// @since 3.17.0
     PositionEncodingKind? positionEncoding,
 
     /// The server provides find references support.
-    dynamic? referencesProvider,
+    Object? referencesProvider,
 
     /// The server provides Goto Implementation support.
-    dynamic? implementationProvider,
+    Object? implementationProvider,
 
     /// The server provides Goto Type Definition support.
-    dynamic? typeDefinitionProvider,
+    Object? typeDefinitionProvider,
 
     /// The server provides inline values.
     /// @since 3.17.0
-    dynamic? inlineValueProvider,
+    Object? inlineValueProvider,
 
     /// The server provides type hierarchy support.
     /// @since 3.17.0
-    dynamic? typeHierarchyProvider,
+    Object? typeHierarchyProvider,
 
     /// The server provides signature help support.
     SignatureHelpOptions? signatureHelpProvider,
 
     /// The server provides hover support.
-    dynamic? hoverProvider,
+    Object? hoverProvider,
   }) = _ServerCapabilities;
 
   factory ServerCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -6378,13 +6400,13 @@ abstract class FileEvent with _$FileEvent {
 abstract class FileSystemWatcher with _$FileSystemWatcher {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileSystemWatcher({
-    /// The glob pattern to watch. See {@link GlobPattern glob pattern} for more
-    /// detail.
+    /// The glob pattern to watch. See {@link GlobPattern glob pattern} for
+    /// more detail.
     /// @since 3.17.0 support for relative patterns.
     required GlobPattern globPattern,
 
-    /// The kind of events of interest. If omitted it defaults to WatchKind.Create
-    /// | WatchKind.Change | WatchKind.Delete which is 7.
+    /// The kind of events of interest. If omitted it defaults to
+    /// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
     WatchKind? kind,
   }) = _FileSystemWatcher;
 
@@ -6410,8 +6432,8 @@ abstract class Diagnostic with _$Diagnostic {
     /// @since 3.16.0
     LSPAny? data,
 
-    /// An array of related diagnostic information, e.g. when symbol-names within a
-    /// scope collide all definitions can be marked via this property.
+    /// An array of related diagnostic information, e.g. when symbol-names
+    /// within a scope collide all definitions can be marked via this property.
     List<DiagnosticRelatedInformation>? relatedInformation,
 
     /// Additional metadata about the diagnostic.
@@ -6422,13 +6444,13 @@ abstract class Diagnostic with _$Diagnostic {
     /// 'typescript' or 'super lint'. It usually appears in the user interface.
     String? source,
 
-    /// An optional property to describe the error code. Requires the code field
-    /// (above) to be present/not null.
+    /// An optional property to describe the error code. Requires the code
+    /// field (above) to be present/not null.
     /// @since 3.16.0
     CodeDescription? codeDescription,
 
     /// The diagnostic's code, which usually appear in the user interface.
-    dynamic? code,
+    Object? code,
 
     /// The diagnostic's severity. Can be omitted. If omitted it is up to the
     /// client to interpret diagnostics as error, warning, info or hint.
@@ -6448,8 +6470,9 @@ abstract class CompletionContext with _$CompletionContext {
     /// How the completion was triggered.
     required CompletionTriggerKind triggerKind,
 
-    /// The trigger character (a single character) that has trigger code complete.
-    /// Is undefined if `triggerKind !== CompletionTriggerKind.TriggerCharacter`
+    /// The trigger character (a single character) that has trigger code
+    /// complete. Is undefined if `triggerKind !==
+    /// CompletionTriggerKind.TriggerCharacter`
     String? triggerCharacter,
   }) = _CompletionContext;
 
@@ -6464,13 +6487,13 @@ abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionItemLabelDetails({
     /// An optional string which is rendered less prominently after {@link
-    /// CompletionItem.detail}. Should be used for fully qualified names and file
-    /// paths.
+    /// CompletionItem.detail}. Should be used for fully qualified names and
+    /// file paths.
     String? description,
 
-    /// An optional string which is rendered less prominently directly after {@link
-    /// CompletionItem.label label}, without any spacing. Should be used for
-    /// function signatures and type annotations.
+    /// An optional string which is rendered less prominently directly after
+    /// {@link CompletionItem.label label}, without any spacing. Should be used
+    /// for function signatures and type annotations.
     String? detail,
   }) = _CompletionItemLabelDetails;
 
@@ -6503,7 +6526,8 @@ abstract class InsertReplaceEdit with _$InsertReplaceEdit {
 abstract class CompletionOptions with _$CompletionOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionOptions({
-    /// The server supports the following `CompletionItem` specific capabilities.
+    /// The server supports the following `CompletionItem` specific
+    /// capabilities.
     /// @since 3.17.0
     ({bool? labelDetailsSupport})? completionItem,
 
@@ -6511,24 +6535,24 @@ abstract class CompletionOptions with _$CompletionOptions {
     /// completion item.
     bool? resolveProvider,
 
-    /// The list of all possible characters that commit a completion. This field
-    /// can be used if clients don't support individual commit characters per
-    /// completion item. See
+    /// The list of all possible characters that commit a completion. This
+    /// field can be used if clients don't support individual commit characters
+    /// per completion item. See
     /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
-    /// If a server provides both `allCommitCharacters` and commit characters on an
-    /// individual completion item the ones on the completion item win.
+    /// If a server provides both `allCommitCharacters` and commit characters
+    /// on an individual completion item the ones on the completion item win.
     /// @since 3.2.0
     List<String>? allCommitCharacters,
 
     /// Most tools trigger completion request automatically without explicitly
-    /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they
-    /// do so when the user starts to type an identifier. For example if the user
-    /// types `c` in a JavaScript file code complete will automatically pop up
-    /// present `console` besides others as a completion item. Characters that make
-    /// up identifiers don't need to be listed here.
-    /// If code complete should automatically be trigger on characters not being
-    /// valid inside an identifier (for example `.` in JavaScript) list them in
-    /// `triggerCharacters`.
+    /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+    /// they do so when the user starts to type an identifier. For example if
+    /// the user types `c` in a JavaScript file code complete will
+    /// automatically pop up present `console` besides others as a completion
+    /// item. Characters that make up identifiers don't need to be listed here.
+    /// If code complete should automatically be trigger on characters not
+    /// being valid inside an identifier (for example `.` in JavaScript) list
+    /// them in `triggerCharacters`.
     List<String>? triggerCharacters,
     bool? workDoneProgress,
   }) = _CompletionOptions;
@@ -6596,9 +6620,9 @@ abstract class SignatureInformation with _$SignatureInformation {
     /// The parameters of this signature.
     List<ParameterInformation>? parameters,
 
-    /// The human-readable doc-comment of this signature. Will be shown in the UI
-    /// but can be omitted.
-    dynamic? documentation,
+    /// The human-readable doc-comment of this signature. Will be shown in the
+    /// UI but can be omitted.
+    Object? documentation,
   }) = _SignatureInformation;
 
   factory SignatureInformation.fromJson(Map<String, dynamic> json) =>
@@ -6612,7 +6636,8 @@ abstract class SignatureHelpOptions with _$SignatureHelpOptions {
   const factory SignatureHelpOptions({
     /// List of characters that re-trigger signature help.
     /// These trigger characters are only active when signature help is already
-    /// showing. All trigger characters are also counted as re-trigger characters.
+    /// showing. All trigger characters are also counted as re-trigger
+    /// characters.
     /// @since 3.15.0
     List<String>? retriggerCharacters,
 
@@ -6682,10 +6707,10 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
     /// The kind of this symbol.
     required SymbolKind kind,
 
-    /// The name of the symbol containing this symbol. This information is for user
-    /// interface purposes (e.g. to render a qualifier in the user interface if
-    /// necessary). It can't be used to re-infer a hierarchy for the document
-    /// symbols.
+    /// The name of the symbol containing this symbol. This information is for
+    /// user interface purposes (e.g. to render a qualifier in the user
+    /// interface if necessary). It can't be used to re-infer a hierarchy for
+    /// the document symbols.
     String? containerName,
 
     /// Tags for this symbol.
@@ -6722,10 +6747,10 @@ abstract class CodeActionContext with _$CodeActionContext {
   const factory CodeActionContext({
     /// An array of diagnostics known on the client side overlapping the range
     /// provided to the `textDocument/codeAction` request. They are provided so
-    /// that the server knows which errors are currently presented to the user for
-    /// the given range. There is no guarantee that these accurately reflect the
-    /// error state of the resource. The primary parameter to compute code actions
-    /// is the provided range.
+    /// that the server knows which errors are currently presented to the user
+    /// for the given range. There is no guarantee that these accurately
+    /// reflect the error state of the resource. The primary parameter to
+    /// compute code actions is the provided range.
     required List<Diagnostic> diagnostics,
 
     /// The reason why code actions were requested.
@@ -6733,8 +6758,8 @@ abstract class CodeActionContext with _$CodeActionContext {
     CodeActionTriggerKind? triggerKind,
 
     /// Requested kind of actions to return.
-    /// Actions not of this kind are filtered out by the client before being shown.
-    /// So servers can omit computing them.
+    /// Actions not of this kind are filtered out by the client before being
+    /// shown. So servers can omit computing them.
     List<CodeActionKind>? only,
   }) = _CodeActionContext;
 
@@ -6747,14 +6772,14 @@ abstract class CodeActionContext with _$CodeActionContext {
 abstract class CodeActionOptions with _$CodeActionOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeActionOptions({
-    /// The server provides support to resolve additional information for a code
-    /// action.
+    /// The server provides support to resolve additional information for a
+    /// code action.
     /// @since 3.16.0
     bool? resolveProvider,
 
     /// CodeActionKinds that this server may return.
-    /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-    /// server may list out every specific kind they provide.
+    /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+    /// the server may list out every specific kind they provide.
     List<CodeActionKind>? codeActionKinds,
     bool? workDoneProgress,
   }) = _CodeActionOptions;
@@ -6935,12 +6960,12 @@ abstract class OptionalVersionedTextDocumentIdentifier
     required String uri,
 
     /// The version number of this document. If a versioned text document
-    /// identifier is sent from the server to the client and the file is not open
-    /// in the editor (the server has not received an open notification before) the
-    /// server can send `null` to indicate that the version is unknown and the
-    /// content on disk is the truth (as specified with document content
-    /// ownership).
-    required dynamic version,
+    /// identifier is sent from the server to the client and the file is not
+    /// open in the editor (the server has not received an open notification
+    /// before) the server can send `null` to indicate that the version is
+    /// unknown and the content on disk is the truth (as specified with
+    /// document content ownership).
+    required Object version,
   }) = _OptionalVersionedTextDocumentIdentifier;
 
   factory OptionalVersionedTextDocumentIdentifier.fromJson(
@@ -7041,15 +7066,16 @@ abstract class DeleteFileOptions with _$DeleteFileOptions {
 abstract class FileOperationPattern with _$FileOperationPattern {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileOperationPattern({
-    /// The glob pattern to match. Glob patterns can have the following syntax: -
-    /// `*` to match zero or more characters in a path segment - `?` to match on
-    /// one character in a path segment - `**` to match any number of path
+    /// The glob pattern to match. Glob patterns can have the following syntax:
+    /// - `*` to match zero or more characters in a path segment - `?` to match
+    /// on one character in a path segment - `**` to match any number of path
     /// segments, including none - `{}` to group sub patterns into an OR
     /// expression. (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript
-    /// files) - `[]` to declare a range of characters to match in a path segment
-    /// (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …) - `[!...]`
-    /// to negate a range of characters to match in a path segment (e.g.,
-    /// `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
+    /// files) - `[]` to declare a range of characters to match in a path
+    /// segment (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)
+    /// - `[!...]` to negate a range of characters to match in a path segment
+    /// (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not
+    /// `example.0`)
     required String glob,
 
     /// Additional options used during matching.
@@ -7081,12 +7107,12 @@ abstract class WorkspaceFullDocumentDiagnosticReport
     /// The URI for which diagnostic information is reported.
     required String uri,
 
-    /// The version number for which the diagnostics are reported. If the document
-    /// is not marked as open `null` can be provided.
-    required dynamic version,
+    /// The version number for which the diagnostics are reported. If the
+    /// document is not marked as open `null` can be provided.
+    required Object version,
 
-    /// An optional result id. If provided it will be sent on the next diagnostic
-    /// request for the same document.
+    /// An optional result id. If provided it will be sent on the next
+    /// diagnostic request for the same document.
     String? resultId,
   }) = _WorkspaceFullDocumentDiagnosticReport;
 
@@ -7103,20 +7129,20 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
     with _$WorkspaceUnchangedDocumentDiagnosticReport {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceUnchangedDocumentDiagnosticReport({
-    /// A document diagnostic report indicating no changes to the last result. A
-    /// server can only return `unchanged` if result ids are provided.
+    /// A document diagnostic report indicating no changes to the last result.
+    /// A server can only return `unchanged` if result ids are provided.
     required String kind,
 
-    /// A result id which will be sent on the next diagnostic request for the same
-    /// document.
+    /// A result id which will be sent on the next diagnostic request for the
+    /// same document.
     required String resultId,
 
     /// The URI for which diagnostic information is reported.
     required String uri,
 
-    /// The version number for which the diagnostics are reported. If the document
-    /// is not marked as open `null` can be provided.
-    required dynamic version,
+    /// The version number for which the diagnostics are reported. If the
+    /// document is not marked as open `null` can be provided.
+    required Object version,
   }) = _WorkspaceUnchangedDocumentDiagnosticReport;
 
   factory WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
@@ -7225,23 +7251,24 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
   const factory TextDocumentSyncOptions({
     /// If present save notifications are sent to the server. If omitted the
     /// notification should not be sent.
-    dynamic? save,
+    Object? save,
 
-    /// If present will save wait until requests are sent to the server. If omitted
-    /// the request should not be sent.
+    /// If present will save wait until requests are sent to the server. If
+    /// omitted the request should not be sent.
     bool? willSaveWaitUntil,
 
-    /// If present will save notifications are sent to the server. If omitted the
-    /// notification should not be sent.
+    /// If present will save notifications are sent to the server. If omitted
+    /// the notification should not be sent.
     bool? willSave,
 
-    /// Change notifications are sent to the server. See TextDocumentSyncKind.None,
-    /// TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted
-    /// it defaults to TextDocumentSyncKind.None.
+    /// Change notifications are sent to the server. See
+    /// TextDocumentSyncKind.None, TextDocumentSyncKind.Full and
+    /// TextDocumentSyncKind.Incremental. If omitted it defaults to
+    /// TextDocumentSyncKind.None.
     TextDocumentSyncKind? change,
 
-    /// Open and close notifications are sent to the server. If omitted open close
-    /// notification should not be sent.
+    /// Open and close notifications are sent to the server. If omitted open
+    /// close notification should not be sent.
     bool? openClose,
   }) = _TextDocumentSyncOptions;
 
@@ -7263,10 +7290,10 @@ abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentSyncOptions({
     /// The notebooks to be synced
-    required List<dynamic> notebookSelector,
+    required List<Object> notebookSelector,
 
-    /// Whether save notification should be forwarded to the server. Will only be
-    /// honored if mode === `notebook`.
+    /// Whether save notification should be forwarded to the server. Will only
+    /// be honored if mode === `notebook`.
     bool? save,
   }) = _NotebookDocumentSyncOptions;
 
@@ -7282,14 +7309,14 @@ abstract class NotebookDocumentSyncRegistrationOptions
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentSyncRegistrationOptions({
     /// The notebooks to be synced
-    required List<dynamic> notebookSelector,
+    required List<Object> notebookSelector,
 
-    /// The id used to register the request. The id can be used to deregister the
-    /// request again. See also Registration#id.
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
     String? id,
 
-    /// Whether save notification should be forwarded to the server. Will only be
-    /// honored if mode === `notebook`.
+    /// Whether save notification should be forwarded to the server. Will only
+    /// be honored if mode === `notebook`.
     bool? save,
   }) = _NotebookDocumentSyncRegistrationOptions;
 
@@ -7303,12 +7330,13 @@ abstract class WorkspaceFoldersServerCapabilities
     with _$WorkspaceFoldersServerCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFoldersServerCapabilities({
-    /// Whether the server wants to receive workspace folder change notifications.
+    /// Whether the server wants to receive workspace folder change
+    /// notifications.
     /// If a string is provided the string is treated as an ID under which the
     /// notification is registered on the client side. The ID can be used to
     /// unregister for these events using the `client/unregisterCapability`
     /// request.
-    dynamic? changeNotifications,
+    Object? changeNotifications,
 
     /// The server has support for workspace folders
     bool? supported,
@@ -7389,17 +7417,18 @@ abstract class ParameterInformation with _$ParameterInformation {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ParameterInformation({
     /// The label of this parameter information.
-    /// Either a string or an inclusive start and exclusive end offsets within its
-    /// containing signature label. (see SignatureInformation.label). The offsets
-    /// are based on a UTF-16 string representation as `Position` and `Range` does.
+    /// Either a string or an inclusive start and exclusive end offsets within
+    /// its containing signature label. (see SignatureInformation.label). The
+    /// offsets are based on a UTF-16 string representation as `Position` and
+    /// `Range` does.
     /// *Note*: a label of type string should be a substring of its containing
-    /// signature label. Its intended use case is to highlight the parameter label
-    /// part in the `SignatureInformation.label`.
-    required dynamic label,
+    /// signature label. Its intended use case is to highlight the parameter
+    /// label part in the `SignatureInformation.label`.
+    required Object label,
 
-    /// The human-readable doc-comment of this parameter. Will be shown in the UI
-    /// but can be omitted.
-    dynamic? documentation,
+    /// The human-readable doc-comment of this parameter. Will be shown in the
+    /// UI but can be omitted.
+    Object? documentation,
   }) = _ParameterInformation;
 
   factory ParameterInformation.fromJson(Map<String, dynamic> json) =>
@@ -7414,14 +7443,14 @@ abstract class NotebookCellTextDocumentFilter
     with _$NotebookCellTextDocumentFilter {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookCellTextDocumentFilter({
-    /// A filter that matches against the notebook containing the notebook cell. If
-    /// a string value is provided it matches against the notebook type. '*'
-    /// matches every notebook.
-    required dynamic notebook,
+    /// A filter that matches against the notebook containing the notebook
+    /// cell. If a string value is provided it matches against the notebook
+    /// type. '*' matches every notebook.
+    required Object notebook,
 
     /// A language id like `python`.
-    /// Will be matched against the language id of the notebook cell document. '*'
-    /// matches every language.
+    /// Will be matched against the language id of the notebook cell document.
+    /// '*' matches every language.
     String? language,
   }) = _NotebookCellTextDocumentFilter;
 
@@ -7447,8 +7476,8 @@ abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
 abstract class ExecutionSummary with _$ExecutionSummary {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ExecutionSummary({
-    /// A strict monotonically increasing value indicating the execution order of a
-    /// cell inside a notebook.
+    /// A strict monotonically increasing value indicating the execution order
+    /// of a cell inside a notebook.
     required int executionOrder,
 
     /// Whether the execution was successful or not if known by the client.
@@ -7464,24 +7493,28 @@ abstract class ExecutionSummary with _$ExecutionSummary {
 abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceClientCapabilities({
-    /// Capabilities specific to the folding range requests scoped to the workspace.
+    /// Capabilities specific to the folding range requests scoped to the
+    /// workspace.
     /// @since 3.18.0 @proposed
     FoldingRangeWorkspaceClientCapabilities? foldingRange,
 
-    /// Capabilities specific to the diagnostic requests scoped to the workspace.
+    /// Capabilities specific to the diagnostic requests scoped to the
+    /// workspace.
     /// @since 3.17.0.
     DiagnosticWorkspaceClientCapabilities? diagnostics,
 
-    /// Capabilities specific to the inlay hint requests scoped to the workspace.
+    /// Capabilities specific to the inlay hint requests scoped to the
+    /// workspace.
     /// @since 3.17.0.
     InlayHintWorkspaceClientCapabilities? inlayHint,
 
-    /// Capabilities specific to the inline values requests scoped to the workspace.
+    /// Capabilities specific to the inline values requests scoped to the
+    /// workspace.
     /// @since 3.17.0.
     InlineValueWorkspaceClientCapabilities? inlineValue,
 
-    /// The client has support for file notifications/requests for user operations
-    /// on files.
+    /// The client has support for file notifications/requests for user
+    /// operations on files.
     /// Since 3.16.0
     FileOperationClientCapabilities? fileOperations,
 
@@ -7508,7 +7541,8 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
     /// Capabilities specific to the `workspace/symbol` request.
     WorkspaceSymbolClientCapabilities? symbol,
 
-    /// Capabilities specific to the `workspace/didChangeWatchedFiles` notification.
+    /// Capabilities specific to the `workspace/didChangeWatchedFiles`
+    /// notification.
     DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles,
 
     /// Capabilities specific to the `workspace/didChangeConfiguration`
@@ -7518,8 +7552,8 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
     /// Capabilities specific to `WorkspaceEdit`s.
     WorkspaceEditClientCapabilities? workspaceEdit,
 
-    /// The client supports applying batch edits to the workspace by supporting the
-    /// request 'workspace/applyEdit'
+    /// The client supports applying batch edits to the workspace by supporting
+    /// the request 'workspace/applyEdit'
     bool? applyEdit,
   }) = _WorkspaceClientCapabilities;
 
@@ -7569,7 +7603,8 @@ abstract class TextDocumentClientCapabilities
     /// @since 3.16.0
     CallHierarchyClientCapabilities? callHierarchy,
 
-    /// Capabilities specific to the `textDocument/publishDiagnostics` notification.
+    /// Capabilities specific to the `textDocument/publishDiagnostics`
+    /// notification.
     PublishDiagnosticsClientCapabilities? publishDiagnostics,
 
     /// Capabilities specific to the `textDocument/selectionRange` request.
@@ -7676,11 +7711,12 @@ abstract class WindowClientCapabilities with _$WindowClientCapabilities {
     /// @since 3.16.0
     ShowMessageRequestClientCapabilities? showMessage,
 
-    /// It indicates whether the client supports server initiated progress using
-    /// the `window/workDoneProgress/create` request.
-    /// The capability also controls Whether client supports handling of progress
-    /// notifications. If set servers are allowed to report a `workDoneProgress`
-    /// property in the request specific server capabilities.
+    /// It indicates whether the client supports server initiated progress
+    /// using the `window/workDoneProgress/create` request.
+    /// The capability also controls Whether client supports handling of
+    /// progress notifications. If set servers are allowed to report a
+    /// `workDoneProgress` property in the request specific server
+    /// capabilities.
     /// @since 3.15.0
     bool? workDoneProgress,
   }) = _WindowClientCapabilities;
@@ -7695,17 +7731,17 @@ abstract class WindowClientCapabilities with _$WindowClientCapabilities {
 abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory GeneralClientCapabilities({
-    /// The position encodings supported by the client. Client and server have to
-    /// agree on the same position encoding to ensure that offsets (e.g. character
-    /// position in a line) are interpreted the same on both sides.
+    /// The position encodings supported by the client. Client and server have
+    /// to agree on the same position encoding to ensure that offsets (e.g.
+    /// character position in a line) are interpreted the same on both sides.
     /// To keep the protocol backwards compatible the following applies: if the
-    /// value 'utf-16' is missing from the array of position encodings servers can
-    /// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
-    /// encoding.
+    /// value 'utf-16' is missing from the array of position encodings servers
+    /// can assume that the client supports UTF-16. UTF-16 is therefore a
+    /// mandatory encoding.
     /// If omitted it defaults to ['utf-16'].
-    /// Implementation considerations: since the conversion from one encoding into
-    /// another requires the content of the file / line the conversion is best done
-    /// where the file is read which is usually on the server side.
+    /// Implementation considerations: since the conversion from one encoding
+    /// into another requires the content of the file / line the conversion is
+    /// best done where the file is read which is usually on the server side.
     /// @since 3.17.0
     List<PositionEncodingKind>? positionEncodings,
 
@@ -7717,9 +7753,9 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
     /// @since 3.16.0
     RegularExpressionsClientCapabilities? regularExpressions,
 
-    /// Client capability that signals how the client handles stale requests (e.g.
-    /// a request for which the client will not process the response anymore since
-    /// the information is outdated).
+    /// Client capability that signals how the client handles stale requests
+    /// (e.g. a request for which the client will not process the response
+    /// anymore since the information is outdated).
     /// @since 3.17.0
     ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,
   }) = _GeneralClientCapabilities;
@@ -7739,7 +7775,7 @@ abstract class RelativePattern with _$RelativePattern {
   const factory RelativePattern({
     /// A workspace folder or a base URI to which this pattern will be matched
     /// against relatively.
-    required dynamic baseUri,
+    required Object baseUri,
 
     /// The actual glob pattern;
     required Pattern pattern,
@@ -7754,19 +7790,20 @@ abstract class WorkspaceEditClientCapabilities
     with _$WorkspaceEditClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceEditClientCapabilities({
-    /// Whether the client in general supports change annotations on text edits,
-    /// create file, rename file and delete file changes.
+    /// Whether the client in general supports change annotations on text
+    /// edits, create file, rename file and delete file changes.
     /// @since 3.16.0
     ({bool? groupsOnLabel})? changeAnnotationSupport,
 
-    /// Whether the client normalizes line endings to the client specific setting.
-    /// If set to `true` the client will normalize line ending characters in a
-    /// workspace edit to the client-specified new line character.
+    /// Whether the client normalizes line endings to the client specific
+    /// setting. If set to `true` the client will normalize line ending
+    /// characters in a workspace edit to the client-specified new line
+    /// character.
     /// @since 3.16.0
     bool? normalizesLineEndings,
 
-    /// The failure handling strategy of a client if applying the workspace edit
-    /// fails.
+    /// The failure handling strategy of a client if applying the workspace
+    /// edit fails.
     /// @since 3.13.0
     FailureHandlingKind? failureHandling,
 
@@ -7802,14 +7839,14 @@ abstract class DidChangeWatchedFilesClientCapabilities
     with _$DidChangeWatchedFilesClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeWatchedFilesClientCapabilities({
-    /// Whether the client has support for {@link RelativePattern relative pattern}
-    /// or not.
+    /// Whether the client has support for {@link RelativePattern relative
+    /// pattern} or not.
     /// @since 3.17.0
     bool? relativePatternSupport,
 
-    /// Did change watched files notification supports dynamic registration. Please
-    /// note that the current protocol doesn't support static configuration for
-    /// file changes from the server side.
+    /// Did change watched files notification supports dynamic registration.
+    /// Please note that the current protocol doesn't support static
+    /// configuration for file changes from the server side.
     bool? dynamicRegistration,
   }) = _DidChangeWatchedFilesClientCapabilities;
 
@@ -7830,8 +7867,8 @@ abstract class WorkspaceSymbolClientCapabilities
     /// @since 3.17.0
     ({List<String> properties})? resolveSupport,
 
-    /// The client supports tags on `SymbolInformation`. Clients supporting tags
-    /// have to handle unknown tags gracefully.
+    /// The client supports tags on `SymbolInformation`. Clients supporting
+    /// tags have to handle unknown tags gracefully.
     /// @since 3.16.0
     ({List<SymbolTag> valueSet})? tagSupport,
 
@@ -7869,12 +7906,12 @@ abstract class SemanticTokensWorkspaceClientCapabilities
     with _$SemanticTokensWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensWorkspaceClientCapabilities({
-    /// Whether the client implementation supports a refresh request sent from the
-    /// server to the client.
+    /// Whether the client implementation supports a refresh request sent from
+    /// the server to the client.
     /// Note that this event is global and will force the client to refresh all
-    /// semantic tokens currently shown. It should be used with absolute care and
-    /// is useful for situation where a server for example detects a project wide
-    /// change that requires such a calculation.
+    /// semantic tokens currently shown. It should be used with absolute care
+    /// and is useful for situation where a server for example detects a
+    /// project wide change that requires such a calculation.
     bool? refreshSupport,
   }) = _SemanticTokensWorkspaceClientCapabilities;
 
@@ -7889,12 +7926,12 @@ abstract class CodeLensWorkspaceClientCapabilities
     with _$CodeLensWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeLensWorkspaceClientCapabilities({
-    /// Whether the client implementation supports a refresh request sent from the
-    /// server to the client.
+    /// Whether the client implementation supports a refresh request sent from
+    /// the server to the client.
     /// Note that this event is global and will force the client to refresh all
-    /// code lenses currently shown. It should be used with absolute care and is
-    /// useful for situation where a server for example detect a project wide
-    /// change that requires such a calculation.
+    /// code lenses currently shown. It should be used with absolute care and
+    /// is useful for situation where a server for example detect a project
+    /// wide change that requires such a calculation.
     bool? refreshSupport,
   }) = _CodeLensWorkspaceClientCapabilities;
 
@@ -7947,12 +7984,12 @@ abstract class InlineValueWorkspaceClientCapabilities
     with _$InlineValueWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueWorkspaceClientCapabilities({
-    /// Whether the client implementation supports a refresh request sent from the
-    /// server to the client.
+    /// Whether the client implementation supports a refresh request sent from
+    /// the server to the client.
     /// Note that this event is global and will force the client to refresh all
-    /// inline values currently shown. It should be used with absolute care and is
-    /// useful for situation where a server for example detects a project wide
-    /// change that requires such a calculation.
+    /// inline values currently shown. It should be used with absolute care and
+    /// is useful for situation where a server for example detects a project
+    /// wide change that requires such a calculation.
     bool? refreshSupport,
   }) = _InlineValueWorkspaceClientCapabilities;
 
@@ -7968,12 +8005,12 @@ abstract class InlayHintWorkspaceClientCapabilities
     with _$InlayHintWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintWorkspaceClientCapabilities({
-    /// Whether the client implementation supports a refresh request sent from the
-    /// server to the client.
+    /// Whether the client implementation supports a refresh request sent from
+    /// the server to the client.
     /// Note that this event is global and will force the client to refresh all
-    /// inlay hints currently shown. It should be used with absolute care and is
-    /// useful for situation where a server for example detects a project wide
-    /// change that requires such a calculation.
+    /// inlay hints currently shown. It should be used with absolute care and
+    /// is useful for situation where a server for example detects a project
+    /// wide change that requires such a calculation.
     bool? refreshSupport,
   }) = _InlayHintWorkspaceClientCapabilities;
 
@@ -7990,12 +8027,12 @@ abstract class DiagnosticWorkspaceClientCapabilities
     with _$DiagnosticWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DiagnosticWorkspaceClientCapabilities({
-    /// Whether the client implementation supports a refresh request sent from the
-    /// server to the client.
+    /// Whether the client implementation supports a refresh request sent from
+    /// the server to the client.
     /// Note that this event is global and will force the client to refresh all
-    /// pulled diagnostics currently shown. It should be used with absolute care
-    /// and is useful for situation where a server for example detects a project
-    /// wide change that requires such a calculation.
+    /// pulled diagnostics currently shown. It should be used with absolute
+    /// care and is useful for situation where a server for example detects a
+    /// project wide change that requires such a calculation.
     bool? refreshSupport,
   }) = _DiagnosticWorkspaceClientCapabilities;
 
@@ -8011,12 +8048,12 @@ abstract class FoldingRangeWorkspaceClientCapabilities
     with _$FoldingRangeWorkspaceClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FoldingRangeWorkspaceClientCapabilities({
-    /// Whether the client implementation supports a refresh request sent from the
-    /// server to the client.
+    /// Whether the client implementation supports a refresh request sent from
+    /// the server to the client.
     /// Note that this event is global and will force the client to refresh all
-    /// folding ranges currently shown. It should be used with absolute care and is
-    /// useful for situation where a server for example detects a project wide
-    /// change that requires such a calculation.
+    /// folding ranges currently shown. It should be used with absolute care
+    /// and is useful for situation where a server for example detects a
+    /// project wide change that requires such a calculation.
     /// @since 3.18.0 @proposed
     bool? refreshSupport,
   }) = _FoldingRangeWorkspaceClientCapabilities;
@@ -8034,9 +8071,9 @@ abstract class TextDocumentSyncClientCapabilities
     /// The client supports did save notifications.
     bool? didSave,
 
-    /// The client supports sending a will save request and waits for a response
-    /// providing text edits which will be applied to the document before it is
-    /// saved.
+    /// The client supports sending a will save request and waits for a
+    /// response providing text edits which will be applied to the document
+    /// before it is saved.
     bool? willSaveWaitUntil,
 
     /// The client supports sending will save notifications.
@@ -8057,7 +8094,8 @@ abstract class CompletionClientCapabilities
     with _$CompletionClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionClientCapabilities({
-    /// The client supports the following `CompletionList` specific capabilities.
+    /// The client supports the following `CompletionList` specific
+    /// capabilities.
     /// @since 3.17.0
     ({List<String>? itemDefaults})? completionList,
 
@@ -8065,14 +8103,15 @@ abstract class CompletionClientCapabilities
     /// `textDocument/completion` request.
     bool? contextSupport,
 
-    /// Defines how the client handles whitespace and indentation when accepting a
-    /// completion item that uses multi line text in either `insertText` or
-    /// `textEdit`.
+    /// Defines how the client handles whitespace and indentation when
+    /// accepting a completion item that uses multi line text in either
+    /// `insertText` or `textEdit`.
     /// @since 3.17.0
     InsertTextMode? insertTextMode,
     ({List<CompletionItemKind>? valueSet})? completionItemKind,
 
-    /// The client supports the following `CompletionItem` specific capabilities.
+    /// The client supports the following `CompletionItem` specific
+    /// capabilities.
     ({
       bool? snippetSupport,
       bool? commitCharactersSupport,
@@ -8099,8 +8138,8 @@ abstract class CompletionClientCapabilities
 abstract class HoverClientCapabilities with _$HoverClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory HoverClientCapabilities({
-    /// Client supports the following content formats for the content property. The
-    /// order describes the preferred format of the client.
+    /// Client supports the following content formats for the content property.
+    /// The order describes the preferred format of the client.
     List<MarkupKind>? contentFormat,
 
     /// Whether hover supports dynamic registration.
@@ -8147,12 +8186,13 @@ abstract class DeclarationClientCapabilities
     with _$DeclarationClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DeclarationClientCapabilities({
-    /// The client supports additional metadata in the form of declaration links.
+    /// The client supports additional metadata in the form of declaration
+    /// links.
     bool? linkSupport,
 
-    /// Whether declaration supports dynamic registration. If this is set to `true`
-    /// the client supports the new `DeclarationRegistrationOptions` return value
-    /// for the corresponding server capability as well.
+    /// Whether declaration supports dynamic registration. If this is set to
+    /// `true` the client supports the new `DeclarationRegistrationOptions`
+    /// return value for the corresponding server capability as well.
     bool? dynamicRegistration,
   }) = _DeclarationClientCapabilities;
 
@@ -8287,20 +8327,20 @@ abstract class CodeActionClientCapabilities
     with _$CodeActionClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeActionClientCapabilities({
-    /// Whether the client honors the change annotations in text edits and resource
-    /// operations returned via the `CodeAction#edit` property by for example
-    /// presenting the workspace edit in the user interface and asking for
-    /// confirmation.
+    /// Whether the client honors the change annotations in text edits and
+    /// resource operations returned via the `CodeAction#edit` property by for
+    /// example presenting the workspace edit in the user interface and asking
+    /// for confirmation.
     /// @since 3.16.0
     bool? honorsChangeAnnotations,
 
-    /// Whether the client supports resolving additional code action properties via
-    /// a separate `codeAction/resolve` request.
+    /// Whether the client supports resolving additional code action properties
+    /// via a separate `codeAction/resolve` request.
     /// @since 3.16.0
     ({List<String> properties})? resolveSupport,
 
-    /// Whether code action supports the `data` property which is preserved between
-    /// a `textDocument/codeAction` and a `codeAction/resolve` request.
+    /// Whether code action supports the `data` property which is preserved
+    /// between a `textDocument/codeAction` and a `codeAction/resolve` request.
     /// @since 3.16.0
     bool? dataSupport,
 
@@ -8313,8 +8353,8 @@ abstract class CodeActionClientCapabilities
     bool? isPreferredSupport,
 
     /// The client support code action literals of type `CodeAction` as a valid
-    /// response of the `textDocument/codeAction` request. If the property is not
-    /// set the request can only return `Command` literals.
+    /// response of the `textDocument/codeAction` request. If the property is
+    /// not set the request can only return `Command` literals.
     /// @since 3.8.0
     ({({List<CodeActionKind> valueSet}) codeActionKind})?
     codeActionLiteralSupport,
@@ -8426,10 +8466,10 @@ abstract class DocumentOnTypeFormattingClientCapabilities
 abstract class RenameClientCapabilities with _$RenameClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameClientCapabilities({
-    /// Whether the client honors the change annotations in text edits and resource
-    /// operations returned via the rename request's workspace edit by for example
-    /// presenting the workspace edit in the user interface and asking for
-    /// confirmation.
+    /// Whether the client honors the change annotations in text edits and
+    /// resource operations returned via the rename request's workspace edit by
+    /// for example presenting the workspace edit in the user interface and
+    /// asking for confirmation.
     /// @since 3.16.0
     bool? honorsChangeAnnotations,
 
@@ -8438,7 +8478,8 @@ abstract class RenameClientCapabilities with _$RenameClientCapabilities {
     /// @since 3.16.0
     PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,
 
-    /// Client supports testing for validity of rename operations before execution.
+    /// Client supports testing for validity of rename operations before
+    /// execution.
     /// @since 3.12.0
     bool? prepareSupport,
 
@@ -8463,19 +8504,20 @@ abstract class FoldingRangeClientCapabilities
     /// @since 3.17.0
     ({List<FoldingRangeKind>? valueSet})? foldingRangeKind,
 
-    /// If set, the client signals that it only supports folding complete lines. If
-    /// set, client will ignore specified `startCharacter` and `endCharacter`
-    /// properties in a FoldingRange.
+    /// If set, the client signals that it only supports folding complete
+    /// lines. If set, client will ignore specified `startCharacter` and
+    /// `endCharacter` properties in a FoldingRange.
     bool? lineFoldingOnly,
 
-    /// The maximum number of folding ranges that the client prefers to receive per
-    /// document. The value serves as a hint, servers are free to follow the limit.
+    /// The maximum number of folding ranges that the client prefers to receive
+    /// per document. The value serves as a hint, servers are free to follow
+    /// the limit.
     int? rangeLimit,
 
     /// Whether implementation supports dynamic registration for folding range
     /// providers. If this is set to `true` the client supports the new
-    /// `FoldingRangeRegistrationOptions` return value for the corresponding server
-    /// capability as well.
+    /// `FoldingRangeRegistrationOptions` return value for the corresponding
+    /// server capability as well.
     bool? dynamicRegistration,
   }) = _FoldingRangeClientCapabilities;
 
@@ -8488,8 +8530,8 @@ abstract class SelectionRangeClientCapabilities
     with _$SelectionRangeClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SelectionRangeClientCapabilities({
-    /// Whether implementation supports dynamic registration for selection range
-    /// providers. If this is set to `true` the client supports the new
+    /// Whether implementation supports dynamic registration for selection
+    /// range providers. If this is set to `true` the client supports the new
     /// `SelectionRangeRegistrationOptions` return value for the corresponding
     /// server capability as well.
     bool? dynamicRegistration,
@@ -8506,8 +8548,9 @@ abstract class PublishDiagnosticsClientCapabilities
     with _$PublishDiagnosticsClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory PublishDiagnosticsClientCapabilities({
-    /// Whether code action supports the `data` property which is preserved between
-    /// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
+    /// Whether code action supports the `data` property which is preserved
+    /// between a `textDocument/publishDiagnostics` and
+    /// `textDocument/codeAction` request.
     /// @since 3.16.0
     bool? dataSupport,
 
@@ -8520,8 +8563,9 @@ abstract class PublishDiagnosticsClientCapabilities
     /// @since 3.15.0
     bool? versionSupport,
 
-    /// Client supports the tag property to provide meta data about a diagnostic.
-    /// Clients supporting tags have to handle unknown tags gracefully.
+    /// Client supports the tag property to provide meta data about a
+    /// diagnostic. Clients supporting tags have to handle unknown tags
+    /// gracefully.
     /// @since 3.15.0
     ({List<DiagnosticTag> valueSet})? tagSupport,
 
@@ -8557,15 +8601,15 @@ abstract class SemanticTokensClientCapabilities
     with _$SemanticTokensClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensClientCapabilities({
-    /// Which requests the client supports and might send to the server depending
-    /// on the server's capability. Please note that clients might not show
-    /// semantic tokens or degrade some of the user experience if a range or full
-    /// request is advertised by the client but not provided by the server. If for
-    /// example the client capability `requests.full` and `request.range` are both
-    /// set to true but the server only provides a range provider the client might
-    /// not render a minimap correctly or might even decide to not show any
-    /// semantic tokens at all.
-    required ({dynamic? range, dynamic? full}) requests,
+    /// Which requests the client supports and might send to the server
+    /// depending on the server's capability. Please note that clients might
+    /// not show semantic tokens or degrade some of the user experience if a
+    /// range or full request is advertised by the client but not provided by
+    /// the server. If for example the client capability `requests.full` and
+    /// `request.range` are both set to true but the server only provides a
+    /// range provider the client might not render a minimap correctly or might
+    /// even decide to not show any semantic tokens at all.
+    required ({Object? range, Object? full}) requests,
 
     /// The token types that the client supports.
     required List<String> tokenTypes,
@@ -8576,17 +8620,17 @@ abstract class SemanticTokensClientCapabilities
     /// The token formats the clients supports.
     required List<TokenFormat> formats,
 
-    /// Whether the client uses semantic tokens to augment existing syntax tokens.
-    /// If set to `true` client side created syntax tokens and semantic tokens are
-    /// both used for colorization. If set to `false` the client only uses the
-    /// returned semantic tokens for colorization.
+    /// Whether the client uses semantic tokens to augment existing syntax
+    /// tokens. If set to `true` client side created syntax tokens and semantic
+    /// tokens are both used for colorization. If set to `false` the client
+    /// only uses the returned semantic tokens for colorization.
     /// If the value is `undefined` then the client behavior is not specified.
     /// @since 3.17.0
     bool? augmentsSyntaxTokens,
 
-    /// Whether the client allows the server to actively cancel a semantic token
-    /// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
-    /// does the client needs to retrigger the request.
+    /// Whether the client allows the server to actively cancel a semantic
+    /// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
+    /// If a server does the client needs to retrigger the request.
     /// @since 3.17.0
     bool? serverCancelSupport,
 
@@ -8633,9 +8677,9 @@ abstract class LinkedEditingRangeClientCapabilities
 abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MonikerClientCapabilities({
-    /// Whether moniker supports dynamic registration. If this is set to `true` the
-    /// client supports the new `MonikerRegistrationOptions` return value for the
-    /// corresponding server capability as well.
+    /// Whether moniker supports dynamic registration. If this is set to `true`
+    /// the client supports the new `MonikerRegistrationOptions` return value
+    /// for the corresponding server capability as well.
     bool? dynamicRegistration,
   }) = _MonikerClientCapabilities;
 
@@ -8722,8 +8766,8 @@ abstract class InlineCompletionClientCapabilities
     with _$InlineCompletionClientCapabilities {
   @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionClientCapabilities({
-    /// Whether implementation supports dynamic registration for inline completion
-    /// providers.
+    /// Whether implementation supports dynamic registration for inline
+    /// completion providers.
     bool? dynamicRegistration,
   }) = _InlineCompletionClientCapabilities;
 

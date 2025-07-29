@@ -2503,7 +2503,7 @@ DocumentFilterBase _$DocumentFilterBaseFromJson(
 /// @nodoc
 mixin _$DocumentFilterBase {
 
- dynamic get value;
+ Object get value;
 
   /// Serializes this DocumentFilterBase to a JSON map.
   Map<String, dynamic> toJson();
@@ -2596,10 +2596,9 @@ class _$DocumentFilter0CopyWithImpl<$Res>
 
 /// Create a copy of DocumentFilterBase
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? value = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
   return _then(DocumentFilter0(
-value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as TextDocumentFilter,
+value: null == value ? _self.value : value ,
   ));
 }
 
@@ -5527,7 +5526,7 @@ HoverContentsBase _$HoverContentsBaseFromJson(
 /// @nodoc
 mixin _$HoverContentsBase {
 
- dynamic get value;
+ Object get value;
 
   /// Serializes this HoverContentsBase to a JSON map.
   Map<String, dynamic> toJson();
@@ -5702,10 +5701,9 @@ class _$HoverContents1CopyWithImpl<$Res>
 
 /// Create a copy of HoverContentsBase
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? value = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
   return _then(HoverContents1(
-value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as MarkedString,
+value: null == value ? _self.value : value ,
   ));
 }
 
@@ -14222,7 +14220,7 @@ NotebookDocumentSyncOptionsNotebookSelectorBase _$NotebookDocumentSyncOptionsNot
 /// @nodoc
 mixin _$NotebookDocumentSyncOptionsNotebookSelectorBase {
 
- ({List<({String language})>? cells, dynamic notebook}) get value;
+ ({List<({String language})>? cells, Object? notebook}) get value;
 
   /// Serializes this NotebookDocumentSyncOptionsNotebookSelectorBase to a JSON map.
   Map<String, dynamic> toJson();
@@ -14259,7 +14257,7 @@ class NotebookDocumentSyncOptionsNotebookSelector0 implements NotebookDocumentSy
   const NotebookDocumentSyncOptionsNotebookSelector0({required this.value, final  String? $type}): $type = $type ?? 'from1';
   factory NotebookDocumentSyncOptionsNotebookSelector0.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsNotebookSelector0FromJson(json);
 
-@override final  ({dynamic notebook, List<({String language})>? cells}) value;
+@override final  ({Object notebook, List<({String language})>? cells}) value;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -14298,7 +14296,7 @@ abstract mixin class $NotebookDocumentSyncOptionsNotebookSelector0CopyWith<$Res>
   factory $NotebookDocumentSyncOptionsNotebookSelector0CopyWith(NotebookDocumentSyncOptionsNotebookSelector0 value, $Res Function(NotebookDocumentSyncOptionsNotebookSelector0) _then) = _$NotebookDocumentSyncOptionsNotebookSelector0CopyWithImpl;
 @useResult
 $Res call({
- ({dynamic notebook, List<({String language})>? cells}) value
+ ({Object notebook, List<({String language})>? cells}) value
 });
 
 
@@ -14318,7 +14316,7 @@ class _$NotebookDocumentSyncOptionsNotebookSelector0CopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
   return _then(NotebookDocumentSyncOptionsNotebookSelector0(
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as ({dynamic notebook, List<({String language})>? cells}),
+as ({Object notebook, List<({String language})>? cells}),
   ));
 }
 
@@ -14332,7 +14330,7 @@ class NotebookDocumentSyncOptionsNotebookSelector1 implements NotebookDocumentSy
   const NotebookDocumentSyncOptionsNotebookSelector1({required this.value, final  String? $type}): $type = $type ?? 'from2';
   factory NotebookDocumentSyncOptionsNotebookSelector1.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsNotebookSelector1FromJson(json);
 
-@override final  ({dynamic? notebook, List<({String language})> cells}) value;
+@override final  ({Object? notebook, List<({String language})> cells}) value;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -14371,7 +14369,7 @@ abstract mixin class $NotebookDocumentSyncOptionsNotebookSelector1CopyWith<$Res>
   factory $NotebookDocumentSyncOptionsNotebookSelector1CopyWith(NotebookDocumentSyncOptionsNotebookSelector1 value, $Res Function(NotebookDocumentSyncOptionsNotebookSelector1) _then) = _$NotebookDocumentSyncOptionsNotebookSelector1CopyWithImpl;
 @useResult
 $Res call({
- ({dynamic? notebook, List<({String language})> cells}) value
+ ({Object? notebook, List<({String language})> cells}) value
 });
 
 
@@ -14391,7 +14389,7 @@ class _$NotebookDocumentSyncOptionsNotebookSelector1CopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
   return _then(NotebookDocumentSyncOptionsNotebookSelector1(
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as ({dynamic? notebook, List<({String language})> cells}),
+as ({Object? notebook, List<({String language})> cells}),
   ));
 }
 
@@ -14831,7 +14829,7 @@ NotebookCellTextDocumentFilterNotebookBase _$NotebookCellTextDocumentFilterNoteb
 /// @nodoc
 mixin _$NotebookCellTextDocumentFilterNotebookBase {
 
- dynamic get value;
+ Object get value;
 
   /// Serializes this NotebookCellTextDocumentFilterNotebookBase to a JSON map.
   Map<String, dynamic> toJson();
@@ -14997,10 +14995,9 @@ class _$NotebookCellTextDocumentFilterNotebook1CopyWithImpl<$Res>
 
 /// Create a copy of NotebookCellTextDocumentFilterNotebookBase
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? value = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
   return _then(NotebookCellTextDocumentFilterNotebook1(
-value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as NotebookDocumentFilter,
+value: null == value ? _self.value : value ,
   ));
 }
 
@@ -15485,9 +15482,7 @@ class _$ImplementationParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of ImplementationParams
@@ -15584,9 +15579,7 @@ class __$ImplementationParamsCopyWithImpl<$Res>
   return _then(_ImplementationParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -15770,10 +15763,10 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$ImplementationRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of ImplementationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -15807,7 +15800,7 @@ abstract mixin class $ImplementationRegistrationOptionsCopyWith<$Res>  {
   factory $ImplementationRegistrationOptionsCopyWith(ImplementationRegistrationOptions value, $Res Function(ImplementationRegistrationOptions) _then) = _$ImplementationRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -15824,10 +15817,9 @@ class _$ImplementationRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ImplementationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -15844,11 +15836,11 @@ class _ImplementationRegistrationOptions implements ImplementationRegistrationOp
   const _ImplementationRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _ImplementationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ImplementationRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -15885,7 +15877,7 @@ abstract mixin class _$ImplementationRegistrationOptionsCopyWith<$Res> implement
   factory _$ImplementationRegistrationOptionsCopyWith(_ImplementationRegistrationOptions value, $Res Function(_ImplementationRegistrationOptions) _then) = __$ImplementationRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -15902,10 +15894,9 @@ class __$ImplementationRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ImplementationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_ImplementationRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -15977,9 +15968,7 @@ class _$TypeDefinitionParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of TypeDefinitionParams
@@ -16076,9 +16065,7 @@ class __$TypeDefinitionParamsCopyWithImpl<$Res>
   return _then(_TypeDefinitionParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -16107,10 +16094,10 @@ $PositionCopyWith<$Res> get position {
 /// @nodoc
 mixin _$TypeDefinitionRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of TypeDefinitionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -16144,7 +16131,7 @@ abstract mixin class $TypeDefinitionRegistrationOptionsCopyWith<$Res>  {
   factory $TypeDefinitionRegistrationOptionsCopyWith(TypeDefinitionRegistrationOptions value, $Res Function(TypeDefinitionRegistrationOptions) _then) = _$TypeDefinitionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -16161,10 +16148,9 @@ class _$TypeDefinitionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TypeDefinitionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -16181,11 +16167,11 @@ class _TypeDefinitionRegistrationOptions implements TypeDefinitionRegistrationOp
   const _TypeDefinitionRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _TypeDefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TypeDefinitionRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -16222,7 +16208,7 @@ abstract mixin class _$TypeDefinitionRegistrationOptionsCopyWith<$Res> implement
   factory _$TypeDefinitionRegistrationOptionsCopyWith(_TypeDefinitionRegistrationOptions value, $Res Function(_TypeDefinitionRegistrationOptions) _then) = __$TypeDefinitionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -16239,10 +16225,9 @@ class __$TypeDefinitionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TypeDefinitionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_TypeDefinitionRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -16256,8 +16241,8 @@ as bool?,
 mixin _$WorkspaceFolder {
 
 /// The associated URI for this workspace folder.
- String get uri;/// The name of the workspace folder. Used to refer to this workspace folder in
-/// the user interface.
+ String get uri;/// The name of the workspace folder. Used to refer to this workspace
+/// folder in the user interface.
  String get name;
 /// Create a copy of WorkspaceFolder
 /// with the given fields replaced by the non-null parameter values.
@@ -16329,8 +16314,8 @@ class _WorkspaceFolder implements WorkspaceFolder {
 
 /// The associated URI for this workspace folder.
 @override final  String uri;
-/// The name of the workspace folder. Used to refer to this workspace folder in
-/// the user interface.
+/// The name of the workspace folder. Used to refer to this workspace
+/// folder in the user interface.
 @override final  String name;
 
 /// Create a copy of WorkspaceFolder
@@ -16749,9 +16734,7 @@ class _$DocumentColorParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DocumentColorParams
@@ -16836,9 +16819,7 @@ class __$DocumentColorParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_DocumentColorParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -17035,10 +17016,10 @@ $ColorCopyWith<$Res> get color {
 /// @nodoc
 mixin _$DocumentColorRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of DocumentColorRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -17072,7 +17053,7 @@ abstract mixin class $DocumentColorRegistrationOptionsCopyWith<$Res>  {
   factory $DocumentColorRegistrationOptionsCopyWith(DocumentColorRegistrationOptions value, $Res Function(DocumentColorRegistrationOptions) _then) = _$DocumentColorRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -17089,10 +17070,9 @@ class _$DocumentColorRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentColorRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -17109,11 +17089,11 @@ class _DocumentColorRegistrationOptions implements DocumentColorRegistrationOpti
   const _DocumentColorRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _DocumentColorRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentColorRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -17150,7 +17130,7 @@ abstract mixin class _$DocumentColorRegistrationOptionsCopyWith<$Res> implements
   factory _$DocumentColorRegistrationOptionsCopyWith(_DocumentColorRegistrationOptions value, $Res Function(_DocumentColorRegistrationOptions) _then) = __$DocumentColorRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -17167,10 +17147,9 @@ class __$DocumentColorRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentColorRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_DocumentColorRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -17244,9 +17223,7 @@ class _$ColorPresentationParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as Color,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Range,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of ColorPresentationParams
@@ -17355,9 +17332,7 @@ class __$ColorPresentationParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as Color,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Range,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -17395,15 +17370,16 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$ColorPresentation {
 
-/// The label of this color presentation. It will be shown on the color picker
-/// header. By default this is also the text that is inserted when selecting
-/// this color presentation.
+/// The label of this color presentation. It will be shown on the color
+/// picker header. By default this is also the text that is inserted when
+/// selecting this color presentation.
  String get label;/// An optional array of additional {@link TextEdit text edits} that are
-/// applied when selecting this color presentation. Edits must not overlap with
-/// the main {@link ColorPresentation.textEdit edit} nor with themselves.
- List<TextEdit>? get additionalTextEdits;/// An {@link TextEdit edit} which is applied to a document when selecting this
-/// presentation for the color. When `falsy` the {@link ColorPresentation.label
-/// label} is used.
+/// applied when selecting this color presentation. Edits must not overlap
+/// with the main {@link ColorPresentation.textEdit edit} nor with
+/// themselves.
+ List<TextEdit>? get additionalTextEdits;/// An {@link TextEdit edit} which is applied to a document when selecting
+/// this presentation for the color. When `falsy` the {@link
+/// ColorPresentation.label label} is used.
  TextEdit? get textEdit;
 /// Create a copy of ColorPresentation
 /// with the given fields replaced by the non-null parameter values.
@@ -17486,17 +17462,19 @@ class _ColorPresentation implements ColorPresentation {
   const _ColorPresentation({required this.label, final  List<TextEdit>? additionalTextEdits, this.textEdit}): _additionalTextEdits = additionalTextEdits;
   factory _ColorPresentation.fromJson(Map<String, dynamic> json) => _$ColorPresentationFromJson(json);
 
-/// The label of this color presentation. It will be shown on the color picker
-/// header. By default this is also the text that is inserted when selecting
-/// this color presentation.
+/// The label of this color presentation. It will be shown on the color
+/// picker header. By default this is also the text that is inserted when
+/// selecting this color presentation.
 @override final  String label;
 /// An optional array of additional {@link TextEdit text edits} that are
-/// applied when selecting this color presentation. Edits must not overlap with
-/// the main {@link ColorPresentation.textEdit edit} nor with themselves.
+/// applied when selecting this color presentation. Edits must not overlap
+/// with the main {@link ColorPresentation.textEdit edit} nor with
+/// themselves.
  final  List<TextEdit>? _additionalTextEdits;
 /// An optional array of additional {@link TextEdit text edits} that are
-/// applied when selecting this color presentation. Edits must not overlap with
-/// the main {@link ColorPresentation.textEdit edit} nor with themselves.
+/// applied when selecting this color presentation. Edits must not overlap
+/// with the main {@link ColorPresentation.textEdit edit} nor with
+/// themselves.
 @override List<TextEdit>? get additionalTextEdits {
   final value = _additionalTextEdits;
   if (value == null) return null;
@@ -17505,9 +17483,9 @@ class _ColorPresentation implements ColorPresentation {
   return EqualUnmodifiableListView(value);
 }
 
-/// An {@link TextEdit edit} which is applied to a document when selecting this
-/// presentation for the color. When `falsy` the {@link ColorPresentation.label
-/// label} is used.
+/// An {@link TextEdit edit} which is applied to a document when selecting
+/// this presentation for the color. When `falsy` the {@link
+/// ColorPresentation.label label} is used.
 @override final  TextEdit? textEdit;
 
 /// Create a copy of ColorPresentation
@@ -17722,9 +17700,9 @@ as bool?,
 /// @nodoc
 mixin _$TextDocumentRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;
 /// Create a copy of TextDocumentRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -17757,7 +17735,7 @@ abstract mixin class $TextDocumentRegistrationOptionsCopyWith<$Res>  {
   factory $TextDocumentRegistrationOptionsCopyWith(TextDocumentRegistrationOptions value, $Res Function(TextDocumentRegistrationOptions) _then) = _$TextDocumentRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector
+ Object documentSelector
 });
 
 
@@ -17774,10 +17752,9 @@ class _$TextDocumentRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TextDocumentRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,
   ));
 }
 
@@ -17792,9 +17769,9 @@ class _TextDocumentRegistrationOptions implements TextDocumentRegistrationOption
   const _TextDocumentRegistrationOptions({required this.documentSelector});
   factory _TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 
 /// Create a copy of TextDocumentRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -17829,7 +17806,7 @@ abstract mixin class _$TextDocumentRegistrationOptionsCopyWith<$Res> implements 
   factory _$TextDocumentRegistrationOptionsCopyWith(_TextDocumentRegistrationOptions value, $Res Function(_TextDocumentRegistrationOptions) _then) = __$TextDocumentRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector
+ Object documentSelector
 });
 
 
@@ -17846,10 +17823,9 @@ class __$TextDocumentRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TextDocumentRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,}) {
   return _then(_TextDocumentRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,
   ));
 }
 
@@ -17917,9 +17893,7 @@ class _$FoldingRangeParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of FoldingRangeParams
@@ -18004,9 +17978,7 @@ class __$FoldingRangeParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_FoldingRangeParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -18029,21 +18001,21 @@ mixin _$FoldingRange {
 /// The zero-based start line of the range to fold. The folded area starts
 /// after the line's last character. To be valid, the end must be zero or
 /// larger and smaller than the number of lines in the document.
- int get startLine;/// The zero-based end line of the range to fold. The folded area ends with the
-/// line's last character. To be valid, the end must be zero or larger and
-/// smaller than the number of lines in the document.
- int get endLine;/// The text that the client should show when the specified range is collapsed.
-/// If not defined or not supported by the client, a default will be chosen by
-/// the client.
+ int get startLine;/// The zero-based end line of the range to fold. The folded area ends with
+/// the line's last character. To be valid, the end must be zero or larger
+/// and smaller than the number of lines in the document.
+ int get endLine;/// The text that the client should show when the specified range is
+/// collapsed. If not defined or not supported by the client, a default
+/// will be chosen by the client.
 /// @since 3.17.0
- String? get collapsedText;/// Describes the kind of the folding range such as `comment' or 'region'. The
-/// kind is used to categorize folding ranges and used by commands like 'Fold
-/// all comments'. See {@link FoldingRangeKind} for an enumeration of
+ String? get collapsedText;/// Describes the kind of the folding range such as `comment' or 'region'.
+/// The kind is used to categorize folding ranges and used by commands like
+/// 'Fold all comments'. See {@link FoldingRangeKind} for an enumeration of
 /// standardized kinds.
  FoldingRangeKind? get kind;/// The zero-based character offset before the folded range ends. If not
 /// defined, defaults to the length of the end line.
- int? get endCharacter;/// The zero-based character offset from where the folded range starts. If not
-/// defined, defaults to the length of the start line.
+ int? get endCharacter;/// The zero-based character offset from where the folded range starts. If
+/// not defined, defaults to the length of the start line.
  int? get startCharacter;
 /// Create a copy of FoldingRange
 /// with the given fields replaced by the non-null parameter values.
@@ -18121,25 +18093,25 @@ class _FoldingRange implements FoldingRange {
 /// after the line's last character. To be valid, the end must be zero or
 /// larger and smaller than the number of lines in the document.
 @override final  int startLine;
-/// The zero-based end line of the range to fold. The folded area ends with the
-/// line's last character. To be valid, the end must be zero or larger and
-/// smaller than the number of lines in the document.
+/// The zero-based end line of the range to fold. The folded area ends with
+/// the line's last character. To be valid, the end must be zero or larger
+/// and smaller than the number of lines in the document.
 @override final  int endLine;
-/// The text that the client should show when the specified range is collapsed.
-/// If not defined or not supported by the client, a default will be chosen by
-/// the client.
+/// The text that the client should show when the specified range is
+/// collapsed. If not defined or not supported by the client, a default
+/// will be chosen by the client.
 /// @since 3.17.0
 @override final  String? collapsedText;
-/// Describes the kind of the folding range such as `comment' or 'region'. The
-/// kind is used to categorize folding ranges and used by commands like 'Fold
-/// all comments'. See {@link FoldingRangeKind} for an enumeration of
+/// Describes the kind of the folding range such as `comment' or 'region'.
+/// The kind is used to categorize folding ranges and used by commands like
+/// 'Fold all comments'. See {@link FoldingRangeKind} for an enumeration of
 /// standardized kinds.
 @override final  FoldingRangeKind? kind;
 /// The zero-based character offset before the folded range ends. If not
 /// defined, defaults to the length of the end line.
 @override final  int? endCharacter;
-/// The zero-based character offset from where the folded range starts. If not
-/// defined, defaults to the length of the start line.
+/// The zero-based character offset from where the folded range starts. If
+/// not defined, defaults to the length of the start line.
 @override final  int? startCharacter;
 
 /// Create a copy of FoldingRange
@@ -18211,10 +18183,10 @@ as int?,
 /// @nodoc
 mixin _$FoldingRangeRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of FoldingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -18248,7 +18220,7 @@ abstract mixin class $FoldingRangeRegistrationOptionsCopyWith<$Res>  {
   factory $FoldingRangeRegistrationOptionsCopyWith(FoldingRangeRegistrationOptions value, $Res Function(FoldingRangeRegistrationOptions) _then) = _$FoldingRangeRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -18265,10 +18237,9 @@ class _$FoldingRangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of FoldingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -18285,11 +18256,11 @@ class _FoldingRangeRegistrationOptions implements FoldingRangeRegistrationOption
   const _FoldingRangeRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _FoldingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$FoldingRangeRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -18326,7 +18297,7 @@ abstract mixin class _$FoldingRangeRegistrationOptionsCopyWith<$Res> implements 
   factory _$FoldingRangeRegistrationOptionsCopyWith(_FoldingRangeRegistrationOptions value, $Res Function(_FoldingRangeRegistrationOptions) _then) = __$FoldingRangeRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -18343,10 +18314,9 @@ class __$FoldingRangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of FoldingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_FoldingRangeRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -18418,9 +18388,7 @@ class _$DeclarationParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DeclarationParams
@@ -18517,9 +18485,7 @@ class __$DeclarationParamsCopyWithImpl<$Res>
   return _then(_DeclarationParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -18548,10 +18514,10 @@ $PositionCopyWith<$Res> get position {
 /// @nodoc
 mixin _$DeclarationRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of DeclarationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -18585,7 +18551,7 @@ abstract mixin class $DeclarationRegistrationOptionsCopyWith<$Res>  {
   factory $DeclarationRegistrationOptionsCopyWith(DeclarationRegistrationOptions value, $Res Function(DeclarationRegistrationOptions) _then) = _$DeclarationRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -18602,10 +18568,9 @@ class _$DeclarationRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DeclarationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -18622,11 +18587,11 @@ class _DeclarationRegistrationOptions implements DeclarationRegistrationOptions 
   const _DeclarationRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _DeclarationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DeclarationRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -18663,7 +18628,7 @@ abstract mixin class _$DeclarationRegistrationOptionsCopyWith<$Res> implements $
   factory _$DeclarationRegistrationOptionsCopyWith(_DeclarationRegistrationOptions value, $Res Function(_DeclarationRegistrationOptions) _then) = __$DeclarationRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -18680,10 +18645,9 @@ class __$DeclarationRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DeclarationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_DeclarationRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -18755,9 +18719,7 @@ class _$SelectionRangeParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,positions: null == positions ? _self.positions : positions // ignore: cast_nullable_to_non_nullable
-as List<Position>,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as List<Position>,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of SelectionRangeParams
@@ -18852,9 +18814,7 @@ class __$SelectionRangeParamsCopyWithImpl<$Res>
   return _then(_SelectionRangeParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,positions: null == positions ? _self._positions : positions // ignore: cast_nullable_to_non_nullable
-as List<Position>,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as List<Position>,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -18875,8 +18835,8 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 mixin _$SelectionRange {
 
 /// The {@link Range range} of this selection range.
- Range get range;/// The parent selection range containing this range. Therefore `parent.range`
-/// must contain `this.range`.
+ Range get range;/// The parent selection range containing this range. Therefore
+/// `parent.range` must contain `this.range`.
  SelectionRange? get parent;
 /// Create a copy of SelectionRange
 /// with the given fields replaced by the non-null parameter values.
@@ -18969,8 +18929,8 @@ class _SelectionRange implements SelectionRange {
 
 /// The {@link Range range} of this selection range.
 @override final  Range range;
-/// The parent selection range containing this range. Therefore `parent.range`
-/// must contain `this.range`.
+/// The parent selection range containing this range. Therefore
+/// `parent.range` must contain `this.range`.
 @override final  SelectionRange? parent;
 
 /// Create a copy of SelectionRange
@@ -19059,10 +19019,10 @@ $SelectionRangeCopyWith<$Res>? get parent {
 /// @nodoc
 mixin _$SelectionRangeRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of SelectionRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -19096,7 +19056,7 @@ abstract mixin class $SelectionRangeRegistrationOptionsCopyWith<$Res>  {
   factory $SelectionRangeRegistrationOptionsCopyWith(SelectionRangeRegistrationOptions value, $Res Function(SelectionRangeRegistrationOptions) _then) = _$SelectionRangeRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -19113,10 +19073,9 @@ class _$SelectionRangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SelectionRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -19133,11 +19092,11 @@ class _SelectionRangeRegistrationOptions implements SelectionRangeRegistrationOp
   const _SelectionRangeRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _SelectionRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SelectionRangeRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -19174,7 +19133,7 @@ abstract mixin class _$SelectionRangeRegistrationOptionsCopyWith<$Res> implement
   factory _$SelectionRangeRegistrationOptionsCopyWith(_SelectionRangeRegistrationOptions value, $Res Function(_SelectionRangeRegistrationOptions) _then) = __$SelectionRangeRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -19191,10 +19150,9 @@ class __$SelectionRangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SelectionRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_SelectionRangeRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -19258,10 +19216,9 @@ class _$WorkDoneProgressCreateParamsCopyWithImpl<$Res>
 
 /// Create a copy of WorkDoneProgressCreateParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? token = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? token = null,}) {
   return _then(_self.copyWith(
-token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as ProgressToken,
+token: null == token ? _self.token : token ,
   ));
 }
 
@@ -19329,10 +19286,9 @@ class __$WorkDoneProgressCreateParamsCopyWithImpl<$Res>
 
 /// Create a copy of WorkDoneProgressCreateParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? token = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,}) {
   return _then(_WorkDoneProgressCreateParams(
-token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as ProgressToken,
+token: null == token ? _self.token : token ,
   ));
 }
 
@@ -19394,10 +19350,9 @@ class _$WorkDoneProgressCancelParamsCopyWithImpl<$Res>
 
 /// Create a copy of WorkDoneProgressCancelParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? token = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? token = null,}) {
   return _then(_self.copyWith(
-token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as ProgressToken,
+token: null == token ? _self.token : token ,
   ));
 }
 
@@ -19465,10 +19420,9 @@ class __$WorkDoneProgressCancelParamsCopyWithImpl<$Res>
 
 /// Create a copy of WorkDoneProgressCancelParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? token = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,}) {
   return _then(_WorkDoneProgressCancelParams(
-token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as ProgressToken,
+token: null == token ? _self.token : token ,
   ));
 }
 
@@ -19536,8 +19490,7 @@ class _$CallHierarchyPrepareParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of CallHierarchyPrepareParams
@@ -19631,8 +19584,7 @@ class __$CallHierarchyPrepareParamsCopyWithImpl<$Res>
   return _then(_CallHierarchyPrepareParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -19664,13 +19616,13 @@ mixin _$CallHierarchyItem {
 /// The name of this item.
  String get name;/// The kind of this item.
  SymbolKind get kind;/// The resource identifier of this item.
- String get uri;/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else, e.g. comments and code.
- Range get range;/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the {@link
-/// CallHierarchyItem.range `range`}.
- Range get selectionRange;/// A data entry field that is preserved between a call hierarchy prepare and
-/// incoming calls or outgoing calls requests.
+ String get uri;/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
+ Range get range;/// The range that should be selected and revealed when this symbol is
+/// being picked, e.g. the name of a function. Must be contained by the
+/// {@link CallHierarchyItem.range `range`}.
+ Range get selectionRange;/// A data entry field that is preserved between a call hierarchy prepare
+/// and incoming calls or outgoing calls requests.
  LSPAny? get data;/// More detail for this item, e.g. the signature of a function.
  String? get detail;/// Tags for this item.
  List<SymbolTag>? get tags;
@@ -19730,8 +19682,7 @@ as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non
 as SymbolKind,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as Range,data: freezed == data ? _self.data : data ,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
 as String?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,
   ));
@@ -19772,15 +19723,15 @@ class _CallHierarchyItem implements CallHierarchyItem {
 @override final  SymbolKind kind;
 /// The resource identifier of this item.
 @override final  String uri;
-/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else, e.g. comments and code.
+/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
 @override final  Range range;
-/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the {@link
-/// CallHierarchyItem.range `range`}.
+/// The range that should be selected and revealed when this symbol is
+/// being picked, e.g. the name of a function. Must be contained by the
+/// {@link CallHierarchyItem.range `range`}.
 @override final  Range selectionRange;
-/// A data entry field that is preserved between a call hierarchy prepare and
-/// incoming calls or outgoing calls requests.
+/// A data entry field that is preserved between a call hierarchy prepare
+/// and incoming calls or outgoing calls requests.
 @override final  LSPAny? data;
 /// More detail for this item, e.g. the signature of a function.
 @override final  String? detail;
@@ -19853,8 +19804,7 @@ as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non
 as SymbolKind,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as Range,data: freezed == data ? _self.data : data ,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
 as String?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,
   ));
@@ -19885,10 +19835,10 @@ $RangeCopyWith<$Res> get selectionRange {
 /// @nodoc
 mixin _$CallHierarchyRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of CallHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -19922,7 +19872,7 @@ abstract mixin class $CallHierarchyRegistrationOptionsCopyWith<$Res>  {
   factory $CallHierarchyRegistrationOptionsCopyWith(CallHierarchyRegistrationOptions value, $Res Function(CallHierarchyRegistrationOptions) _then) = _$CallHierarchyRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -19939,10 +19889,9 @@ class _$CallHierarchyRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CallHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -19959,11 +19908,11 @@ class _CallHierarchyRegistrationOptions implements CallHierarchyRegistrationOpti
   const _CallHierarchyRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _CallHierarchyRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CallHierarchyRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -20000,7 +19949,7 @@ abstract mixin class _$CallHierarchyRegistrationOptionsCopyWith<$Res> implements
   factory _$CallHierarchyRegistrationOptionsCopyWith(_CallHierarchyRegistrationOptions value, $Res Function(_CallHierarchyRegistrationOptions) _then) = __$CallHierarchyRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -20017,10 +19966,9 @@ class __$CallHierarchyRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CallHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_CallHierarchyRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -20089,9 +20037,7 @@ class _$CallHierarchyIncomingCallsParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? item = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as CallHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as CallHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of CallHierarchyIncomingCallsParams
@@ -20175,9 +20121,7 @@ class __$CallHierarchyIncomingCallsParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_CallHierarchyIncomingCallsParams(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as CallHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as CallHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -20422,9 +20366,7 @@ class _$CallHierarchyOutgoingCallsParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? item = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as CallHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as CallHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of CallHierarchyOutgoingCallsParams
@@ -20508,9 +20450,7 @@ class __$CallHierarchyOutgoingCallsParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_CallHierarchyOutgoingCallsParams(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as CallHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as CallHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -20531,8 +20471,8 @@ $CallHierarchyItemCopyWith<$Res> get item {
 mixin _$CallHierarchyOutgoingCall {
 
 /// The item that is called.
- CallHierarchyItem get to;/// The range at which this item is called. This is the range relative to the
-/// caller, e.g the item passed to {@link
+ CallHierarchyItem get to;/// The range at which this item is called. This is the range relative to
+/// the caller, e.g the item passed to {@link
 /// CallHierarchyItemProvider.provideCallHierarchyOutgoingCalls
 /// `provideCallHierarchyOutgoingCalls`} and not {@link
 /// CallHierarchyOutgoingCall.to `this.to`}.
@@ -20616,14 +20556,14 @@ class _CallHierarchyOutgoingCall implements CallHierarchyOutgoingCall {
 
 /// The item that is called.
 @override final  CallHierarchyItem to;
-/// The range at which this item is called. This is the range relative to the
-/// caller, e.g the item passed to {@link
+/// The range at which this item is called. This is the range relative to
+/// the caller, e.g the item passed to {@link
 /// CallHierarchyItemProvider.provideCallHierarchyOutgoingCalls
 /// `provideCallHierarchyOutgoingCalls`} and not {@link
 /// CallHierarchyOutgoingCall.to `this.to`}.
  final  List<Range> _fromRanges;
-/// The range at which this item is called. This is the range relative to the
-/// caller, e.g the item passed to {@link
+/// The range at which this item is called. This is the range relative to
+/// the caller, e.g the item passed to {@link
 /// CallHierarchyItemProvider.provideCallHierarchyOutgoingCalls
 /// `provideCallHierarchyOutgoingCalls`} and not {@link
 /// CallHierarchyOutgoingCall.to `this.to`}.
@@ -20765,9 +20705,7 @@ class _$SemanticTokensParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of SemanticTokensParams
@@ -20852,9 +20790,7 @@ class __$SemanticTokensParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_SemanticTokensParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -20875,10 +20811,10 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 mixin _$SemanticTokens {
 
 /// The actual tokens.
- List<int> get data;/// An optional result id. If provided and clients support delta updating the
-/// client will include the result id in the next semantic token request. A
-/// server can then instead of computing all semantic tokens again simply send
-/// a delta.
+ List<int> get data;/// An optional result id. If provided and clients support delta updating
+/// the client will include the result id in the next semantic token
+/// request. A server can then instead of computing all semantic tokens
+/// again simply send a delta.
  String? get resultId;
 /// Create a copy of SemanticTokens
 /// with the given fields replaced by the non-null parameter values.
@@ -20957,10 +20893,10 @@ class _SemanticTokens implements SemanticTokens {
   return EqualUnmodifiableListView(_data);
 }
 
-/// An optional result id. If provided and clients support delta updating the
-/// client will include the result id in the next semantic token request. A
-/// server can then instead of computing all semantic tokens again simply send
-/// a delta.
+/// An optional result id. If provided and clients support delta updating
+/// the client will include the result id in the next semantic token
+/// request. A server can then instead of computing all semantic tokens
+/// again simply send a delta.
 @override final  String? resultId;
 
 /// Create a copy of SemanticTokens
@@ -21168,15 +21104,15 @@ as List<int>,
 /// @nodoc
 mixin _$SemanticTokensRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The legend used by the server
- SemanticTokensLegend get legend;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The legend used by the server
+ SemanticTokensLegend get legend;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;/// Server supports providing semantic tokens for a full document.
- dynamic? get full;/// Server supports providing semantic tokens for a specific range of a
+ Object? get full;/// Server supports providing semantic tokens for a specific range of a
 /// document.
- dynamic? get range; bool? get workDoneProgress;
+ Object? get range; bool? get workDoneProgress;
 /// Create a copy of SemanticTokensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -21209,7 +21145,7 @@ abstract mixin class $SemanticTokensRegistrationOptionsCopyWith<$Res>  {
   factory $SemanticTokensRegistrationOptionsCopyWith(SemanticTokensRegistrationOptions value, $Res Function(SemanticTokensRegistrationOptions) _then) = _$SemanticTokensRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, SemanticTokensLegend legend, String? id, dynamic? full, dynamic? range, bool? workDoneProgress
+ Object documentSelector, SemanticTokensLegend legend, String? id, Object? full, Object? range, bool? workDoneProgress
 });
 
 
@@ -21226,14 +21162,11 @@ class _$SemanticTokensRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? legend = null,Object? id = freezed,Object? full = freezed,Object? range = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? legend = null,Object? id = freezed,Object? full = freezed,Object? range = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
 as SemanticTokensLegend,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
-as dynamic?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as dynamic?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as String?,full: freezed == full ? _self.full : full ,range: freezed == range ? _self.range : range ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -21258,19 +21191,19 @@ class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOp
   const _SemanticTokensRegistrationOptions({required this.documentSelector, required this.legend, this.id, this.full, this.range, this.workDoneProgress});
   factory _SemanticTokensRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SemanticTokensRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// The legend used by the server
 @override final  SemanticTokensLegend legend;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 /// Server supports providing semantic tokens for a full document.
-@override final  dynamic? full;
+@override final  Object? full;
 /// Server supports providing semantic tokens for a specific range of a
 /// document.
-@override final  dynamic? range;
+@override final  Object? range;
 @override final  bool? workDoneProgress;
 
 /// Create a copy of SemanticTokensRegistrationOptions
@@ -21306,7 +21239,7 @@ abstract mixin class _$SemanticTokensRegistrationOptionsCopyWith<$Res> implement
   factory _$SemanticTokensRegistrationOptionsCopyWith(_SemanticTokensRegistrationOptions value, $Res Function(_SemanticTokensRegistrationOptions) _then) = __$SemanticTokensRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, SemanticTokensLegend legend, String? id, dynamic? full, dynamic? range, bool? workDoneProgress
+ Object documentSelector, SemanticTokensLegend legend, String? id, Object? full, Object? range, bool? workDoneProgress
 });
 
 
@@ -21323,14 +21256,11 @@ class __$SemanticTokensRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SemanticTokensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? legend = null,Object? id = freezed,Object? full = freezed,Object? range = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? legend = null,Object? id = freezed,Object? full = freezed,Object? range = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_SemanticTokensRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
 as SemanticTokensLegend,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
-as dynamic?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as dynamic?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as String?,full: freezed == full ? _self.full : full ,range: freezed == range ? _self.range : range ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -21352,8 +21282,9 @@ $SemanticTokensLegendCopyWith<$Res> get legend {
 mixin _$SemanticTokensDeltaParams {
 
 /// The text document.
- TextDocumentIdentifier get textDocument;/// The result id of a previous response. The result Id can either point to a
-/// full response or a delta response depending on what was received last.
+ TextDocumentIdentifier get textDocument;/// The result id of a previous response. The result Id can either point to
+/// a full response or a delta response depending on what was received
+/// last.
  String get previousResultId;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
  ProgressToken? get partialResultToken;/// An optional token that a server can use to report work done progress.
@@ -21411,9 +21342,7 @@ class _$SemanticTokensDeltaParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,previousResultId: null == previousResultId ? _self.previousResultId : previousResultId // ignore: cast_nullable_to_non_nullable
-as String,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of SemanticTokensDeltaParams
@@ -21439,8 +21368,9 @@ class _SemanticTokensDeltaParams implements SemanticTokensDeltaParams {
 
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
-/// The result id of a previous response. The result Id can either point to a
-/// full response or a delta response depending on what was received last.
+/// The result id of a previous response. The result Id can either point to
+/// a full response or a delta response depending on what was received
+/// last.
 @override final  String previousResultId;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
@@ -21502,9 +21432,7 @@ class __$SemanticTokensDeltaParamsCopyWithImpl<$Res>
   return _then(_SemanticTokensDeltaParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,previousResultId: null == previousResultId ? _self.previousResultId : previousResultId // ignore: cast_nullable_to_non_nullable
-as String,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -21524,7 +21452,8 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$SemanticTokensDelta {
 
-/// The semantic token edits to transform a previous result into a new result.
+/// The semantic token edits to transform a previous result into a new
+/// result.
  List<SemanticTokensEdit> get edits; String? get resultId;
 /// Create a copy of SemanticTokensDelta
 /// with the given fields replaced by the non-null parameter values.
@@ -21594,9 +21523,11 @@ class _SemanticTokensDelta implements SemanticTokensDelta {
   const _SemanticTokensDelta({required final  List<SemanticTokensEdit> edits, this.resultId}): _edits = edits;
   factory _SemanticTokensDelta.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaFromJson(json);
 
-/// The semantic token edits to transform a previous result into a new result.
+/// The semantic token edits to transform a previous result into a new
+/// result.
  final  List<SemanticTokensEdit> _edits;
-/// The semantic token edits to transform a previous result into a new result.
+/// The semantic token edits to transform a previous result into a new
+/// result.
 @override List<SemanticTokensEdit> get edits {
   if (_edits is EqualUnmodifiableListView) return _edits;
   // ignore: implicit_dynamic_type
@@ -21869,9 +21800,7 @@ class _$SemanticTokensRangeParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Range,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of SemanticTokensRangeParams
@@ -21968,9 +21897,7 @@ class __$SemanticTokensRangeParamsCopyWithImpl<$Res>
   return _then(_SemanticTokensRangeParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Range,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -22001,14 +21928,14 @@ mixin _$ShowDocumentParams {
 
 /// The uri to show.
  String get uri;/// An optional selection range if the document is a text document. Clients
-/// might ignore the property if an external program is started or the file is
-/// not a text file.
- Range? get selection;/// An optional property to indicate whether the editor showing the document
-/// should take focus or not. Clients might ignore this property if an external
-/// program is started.
+/// might ignore the property if an external program is started or the file
+/// is not a text file.
+ Range? get selection;/// An optional property to indicate whether the editor showing the
+/// document should take focus or not. Clients might ignore this property
+/// if an external program is started.
  bool? get takeFocus;/// Indicates to show the resource in an external program. To show, for
-/// example, `https://code.visualstudio.com/` in the default WEB browser set
-/// `external` to `true`.
+/// example, `https://code.visualstudio.com/` in the default WEB browser
+/// set `external` to `true`.
  bool? get external;
 /// Create a copy of ShowDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -22095,16 +22022,16 @@ class _ShowDocumentParams implements ShowDocumentParams {
 /// The uri to show.
 @override final  String uri;
 /// An optional selection range if the document is a text document. Clients
-/// might ignore the property if an external program is started or the file is
-/// not a text file.
+/// might ignore the property if an external program is started or the file
+/// is not a text file.
 @override final  Range? selection;
-/// An optional property to indicate whether the editor showing the document
-/// should take focus or not. Clients might ignore this property if an external
-/// program is started.
+/// An optional property to indicate whether the editor showing the
+/// document should take focus or not. Clients might ignore this property
+/// if an external program is started.
 @override final  bool? takeFocus;
 /// Indicates to show the resource in an external program. To show, for
-/// example, `https://code.visualstudio.com/` in the default WEB browser set
-/// `external` to `true`.
+/// example, `https://code.visualstudio.com/` in the default WEB browser
+/// set `external` to `true`.
 @override final  bool? external;
 
 /// Create a copy of ShowDocumentParams
@@ -22379,8 +22306,7 @@ class _$LinkedEditingRangeParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of LinkedEditingRangeParams
@@ -22474,8 +22400,7 @@ class __$LinkedEditingRangeParamsCopyWithImpl<$Res>
   return _then(_LinkedEditingRangeParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -22507,9 +22432,9 @@ mixin _$LinkedEditingRanges {
 /// A list of ranges that can be edited together. The ranges must have
 /// identical length and contain identical text content. The ranges cannot
 /// overlap.
- List<Range> get ranges;/// An optional word pattern (regular expression) that describes valid contents
-/// for the given ranges. If no pattern is provided, the client configuration's
-/// word pattern will be used.
+ List<Range> get ranges;/// An optional word pattern (regular expression) that describes valid
+/// contents for the given ranges. If no pattern is provided, the client
+/// configuration's word pattern will be used.
  String? get wordPattern;
 /// Create a copy of LinkedEditingRanges
 /// with the given fields replaced by the non-null parameter values.
@@ -22592,9 +22517,9 @@ class _LinkedEditingRanges implements LinkedEditingRanges {
   return EqualUnmodifiableListView(_ranges);
 }
 
-/// An optional word pattern (regular expression) that describes valid contents
-/// for the given ranges. If no pattern is provided, the client configuration's
-/// word pattern will be used.
+/// An optional word pattern (regular expression) that describes valid
+/// contents for the given ranges. If no pattern is provided, the client
+/// configuration's word pattern will be used.
 @override final  String? wordPattern;
 
 /// Create a copy of LinkedEditingRanges
@@ -22662,10 +22587,10 @@ as String?,
 /// @nodoc
 mixin _$LinkedEditingRangeRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of LinkedEditingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -22699,7 +22624,7 @@ abstract mixin class $LinkedEditingRangeRegistrationOptionsCopyWith<$Res>  {
   factory $LinkedEditingRangeRegistrationOptionsCopyWith(LinkedEditingRangeRegistrationOptions value, $Res Function(LinkedEditingRangeRegistrationOptions) _then) = _$LinkedEditingRangeRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -22716,10 +22641,9 @@ class _$LinkedEditingRangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of LinkedEditingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -22736,11 +22660,11 @@ class _LinkedEditingRangeRegistrationOptions implements LinkedEditingRangeRegist
   const _LinkedEditingRangeRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _LinkedEditingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -22777,7 +22701,7 @@ abstract mixin class _$LinkedEditingRangeRegistrationOptionsCopyWith<$Res> imple
   factory _$LinkedEditingRangeRegistrationOptionsCopyWith(_LinkedEditingRangeRegistrationOptions value, $Res Function(_LinkedEditingRangeRegistrationOptions) _then) = __$LinkedEditingRangeRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -22794,10 +22718,9 @@ class __$LinkedEditingRangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of LinkedEditingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_LinkedEditingRangeRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -22953,23 +22876,25 @@ as List<FileCreate>,
 /// @nodoc
 mixin _$WorkspaceEdit {
 
-/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
-/// or create, rename and delete file / folder operations.
+/// A map of change annotations that can be referenced in
+/// `AnnotatedTextEdit`s or create, rename and delete file / folder
+/// operations.
 /// Whether clients honor this property depends on the client capability
 /// `workspace.changeAnnotationSupport`.
 /// @since 3.16.0
  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? get changeAnnotations;/// Depending on the client capability
-/// `workspace.workspaceEdit.resourceOperations` document changes are either an
-/// array of `TextDocumentEdit`s to express changes to n different text
-/// documents where each text document edit addresses a specific version of a
-/// text document. Or it can contain above `TextDocumentEdit`s mixed with
-/// create, rename and delete file / folder operations.
+/// `workspace.workspaceEdit.resourceOperations` document changes are
+/// either an array of `TextDocumentEdit`s to express changes to n
+/// different text documents where each text document edit addresses a
+/// specific version of a text document. Or it can contain above
+/// `TextDocumentEdit`s mixed with create, rename and delete file / folder
+/// operations.
 /// Whether a client supports versioned document edits is expressed via
 /// `workspace.workspaceEdit.documentChanges` client capability.
 /// If a client neither supports `documentChanges` nor
-/// `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s
-/// using the `changes` property are supported.
- List<dynamic>? get documentChanges;/// Holds changes to existing resources.
+/// `workspace.workspaceEdit.resourceOperations` then only plain
+/// `TextEdit`s using the `changes` property are supported.
+ List<Object>? get documentChanges;/// Holds changes to existing resources.
  Map<String, List<TextEdit>>? get changes;
 /// Create a copy of WorkspaceEdit
 /// with the given fields replaced by the non-null parameter values.
@@ -23003,7 +22928,7 @@ abstract mixin class $WorkspaceEditCopyWith<$Res>  {
   factory $WorkspaceEditCopyWith(WorkspaceEdit value, $Res Function(WorkspaceEdit) _then) = _$WorkspaceEditCopyWithImpl;
 @useResult
 $Res call({
- Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations, List<dynamic>? documentChanges, Map<String, List<TextEdit>>? changes
+ Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations, List<Object>? documentChanges, Map<String, List<TextEdit>>? changes
 });
 
 
@@ -23024,7 +22949,7 @@ class _$WorkspaceEditCopyWithImpl<$Res>
   return _then(_self.copyWith(
 changeAnnotations: freezed == changeAnnotations ? _self.changeAnnotations : changeAnnotations // ignore: cast_nullable_to_non_nullable
 as Map<ChangeAnnotationIdentifier, ChangeAnnotation>?,documentChanges: freezed == documentChanges ? _self.documentChanges : documentChanges // ignore: cast_nullable_to_non_nullable
-as List<dynamic>?,changes: freezed == changes ? _self.changes : changes // ignore: cast_nullable_to_non_nullable
+as List<Object>?,changes: freezed == changes ? _self.changes : changes // ignore: cast_nullable_to_non_nullable
 as Map<String, List<TextEdit>>?,
   ));
 }
@@ -23037,17 +22962,19 @@ as Map<String, List<TextEdit>>?,
 
 @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
 class _WorkspaceEdit implements WorkspaceEdit {
-  const _WorkspaceEdit({final  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations, final  List<dynamic>? documentChanges, final  Map<String, List<TextEdit>>? changes}): _changeAnnotations = changeAnnotations,_documentChanges = documentChanges,_changes = changes;
+  const _WorkspaceEdit({final  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations, final  List<Object>? documentChanges, final  Map<String, List<TextEdit>>? changes}): _changeAnnotations = changeAnnotations,_documentChanges = documentChanges,_changes = changes;
   factory _WorkspaceEdit.fromJson(Map<String, dynamic> json) => _$WorkspaceEditFromJson(json);
 
-/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
-/// or create, rename and delete file / folder operations.
+/// A map of change annotations that can be referenced in
+/// `AnnotatedTextEdit`s or create, rename and delete file / folder
+/// operations.
 /// Whether clients honor this property depends on the client capability
 /// `workspace.changeAnnotationSupport`.
 /// @since 3.16.0
  final  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? _changeAnnotations;
-/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
-/// or create, rename and delete file / folder operations.
+/// A map of change annotations that can be referenced in
+/// `AnnotatedTextEdit`s or create, rename and delete file / folder
+/// operations.
 /// Whether clients honor this property depends on the client capability
 /// `workspace.changeAnnotationSupport`.
 /// @since 3.16.0
@@ -23060,29 +22987,31 @@ class _WorkspaceEdit implements WorkspaceEdit {
 }
 
 /// Depending on the client capability
-/// `workspace.workspaceEdit.resourceOperations` document changes are either an
-/// array of `TextDocumentEdit`s to express changes to n different text
-/// documents where each text document edit addresses a specific version of a
-/// text document. Or it can contain above `TextDocumentEdit`s mixed with
-/// create, rename and delete file / folder operations.
+/// `workspace.workspaceEdit.resourceOperations` document changes are
+/// either an array of `TextDocumentEdit`s to express changes to n
+/// different text documents where each text document edit addresses a
+/// specific version of a text document. Or it can contain above
+/// `TextDocumentEdit`s mixed with create, rename and delete file / folder
+/// operations.
 /// Whether a client supports versioned document edits is expressed via
 /// `workspace.workspaceEdit.documentChanges` client capability.
 /// If a client neither supports `documentChanges` nor
-/// `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s
-/// using the `changes` property are supported.
- final  List<dynamic>? _documentChanges;
+/// `workspace.workspaceEdit.resourceOperations` then only plain
+/// `TextEdit`s using the `changes` property are supported.
+ final  List<Object>? _documentChanges;
 /// Depending on the client capability
-/// `workspace.workspaceEdit.resourceOperations` document changes are either an
-/// array of `TextDocumentEdit`s to express changes to n different text
-/// documents where each text document edit addresses a specific version of a
-/// text document. Or it can contain above `TextDocumentEdit`s mixed with
-/// create, rename and delete file / folder operations.
+/// `workspace.workspaceEdit.resourceOperations` document changes are
+/// either an array of `TextDocumentEdit`s to express changes to n
+/// different text documents where each text document edit addresses a
+/// specific version of a text document. Or it can contain above
+/// `TextDocumentEdit`s mixed with create, rename and delete file / folder
+/// operations.
 /// Whether a client supports versioned document edits is expressed via
 /// `workspace.workspaceEdit.documentChanges` client capability.
 /// If a client neither supports `documentChanges` nor
-/// `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s
-/// using the `changes` property are supported.
-@override List<dynamic>? get documentChanges {
+/// `workspace.workspaceEdit.resourceOperations` then only plain
+/// `TextEdit`s using the `changes` property are supported.
+@override List<Object>? get documentChanges {
   final value = _documentChanges;
   if (value == null) return null;
   if (_documentChanges is EqualUnmodifiableListView) return _documentChanges;
@@ -23135,7 +23064,7 @@ abstract mixin class _$WorkspaceEditCopyWith<$Res> implements $WorkspaceEditCopy
   factory _$WorkspaceEditCopyWith(_WorkspaceEdit value, $Res Function(_WorkspaceEdit) _then) = __$WorkspaceEditCopyWithImpl;
 @override @useResult
 $Res call({
- Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations, List<dynamic>? documentChanges, Map<String, List<TextEdit>>? changes
+ Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations, List<Object>? documentChanges, Map<String, List<TextEdit>>? changes
 });
 
 
@@ -23156,7 +23085,7 @@ class __$WorkspaceEditCopyWithImpl<$Res>
   return _then(_WorkspaceEdit(
 changeAnnotations: freezed == changeAnnotations ? _self._changeAnnotations : changeAnnotations // ignore: cast_nullable_to_non_nullable
 as Map<ChangeAnnotationIdentifier, ChangeAnnotation>?,documentChanges: freezed == documentChanges ? _self._documentChanges : documentChanges // ignore: cast_nullable_to_non_nullable
-as List<dynamic>?,changes: freezed == changes ? _self._changes : changes // ignore: cast_nullable_to_non_nullable
+as List<Object>?,changes: freezed == changes ? _self._changes : changes // ignore: cast_nullable_to_non_nullable
 as Map<String, List<TextEdit>>?,
   ));
 }
@@ -23311,8 +23240,8 @@ as List<FileOperationFilter>,
 /// @nodoc
 mixin _$RenameFilesParams {
 
-/// An array of all files/folders renamed in this operation. When a folder is
-/// renamed, only the folder will be included, and not its children.
+/// An array of all files/folders renamed in this operation. When a folder
+/// is renamed, only the folder will be included, and not its children.
  List<FileRename> get files;
 /// Create a copy of RenameFilesParams
 /// with the given fields replaced by the non-null parameter values.
@@ -23381,11 +23310,11 @@ class _RenameFilesParams implements RenameFilesParams {
   const _RenameFilesParams({required final  List<FileRename> files}): _files = files;
   factory _RenameFilesParams.fromJson(Map<String, dynamic> json) => _$RenameFilesParamsFromJson(json);
 
-/// An array of all files/folders renamed in this operation. When a folder is
-/// renamed, only the folder will be included, and not its children.
+/// An array of all files/folders renamed in this operation. When a folder
+/// is renamed, only the folder will be included, and not its children.
  final  List<FileRename> _files;
-/// An array of all files/folders renamed in this operation. When a folder is
-/// renamed, only the folder will be included, and not its children.
+/// An array of all files/folders renamed in this operation. When a folder
+/// is renamed, only the folder will be included, and not its children.
 @override List<FileRename> get files {
   if (_files is EqualUnmodifiableListView) return _files;
   // ignore: implicit_dynamic_type
@@ -23659,9 +23588,7 @@ class _$MonikerParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of MonikerParams
@@ -23758,9 +23685,7 @@ class __$MonikerParamsCopyWithImpl<$Res>
   return _then(_MonikerParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -23790,8 +23715,8 @@ $PositionCopyWith<$Res> get position {
 mixin _$Moniker {
 
 /// The scheme of the moniker. For example tsc or .Net
- String get scheme;/// The identifier of the moniker. The value is opaque in LSIF however schema
-/// owners are allowed to define the structure if they want.
+ String get scheme;/// The identifier of the moniker. The value is opaque in LSIF however
+/// schema owners are allowed to define the structure if they want.
  String get identifier;/// The scope in which the moniker is unique
  UniquenessLevel get unique;/// The moniker kind if known.
  MonikerKind? get kind;
@@ -23867,8 +23792,8 @@ class _Moniker implements Moniker {
 
 /// The scheme of the moniker. For example tsc or .Net
 @override final  String scheme;
-/// The identifier of the moniker. The value is opaque in LSIF however schema
-/// owners are allowed to define the structure if they want.
+/// The identifier of the moniker. The value is opaque in LSIF however
+/// schema owners are allowed to define the structure if they want.
 @override final  String identifier;
 /// The scope in which the moniker is unique
 @override final  UniquenessLevel unique;
@@ -23942,9 +23867,9 @@ as MonikerKind?,
 /// @nodoc
 mixin _$MonikerRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector; bool? get workDoneProgress;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector; bool? get workDoneProgress;
 /// Create a copy of MonikerRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -23977,7 +23902,7 @@ abstract mixin class $MonikerRegistrationOptionsCopyWith<$Res>  {
   factory $MonikerRegistrationOptionsCopyWith(MonikerRegistrationOptions value, $Res Function(MonikerRegistrationOptions) _then) = _$MonikerRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -23994,10 +23919,9 @@ class _$MonikerRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of MonikerRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -24013,9 +23937,9 @@ class _MonikerRegistrationOptions implements MonikerRegistrationOptions {
   const _MonikerRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _MonikerRegistrationOptions.fromJson(Map<String, dynamic> json) => _$MonikerRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 @override final  bool? workDoneProgress;
 
 /// Create a copy of MonikerRegistrationOptions
@@ -24051,7 +23975,7 @@ abstract mixin class _$MonikerRegistrationOptionsCopyWith<$Res> implements $Moni
   factory _$MonikerRegistrationOptionsCopyWith(_MonikerRegistrationOptions value, $Res Function(_MonikerRegistrationOptions) _then) = __$MonikerRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -24068,10 +23992,9 @@ class __$MonikerRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of MonikerRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_MonikerRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -24140,8 +24063,7 @@ class _$TypeHierarchyPrepareParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of TypeHierarchyPrepareParams
@@ -24235,8 +24157,7 @@ class __$TypeHierarchyPrepareParamsCopyWithImpl<$Res>
   return _then(_TypeHierarchyPrepareParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -24268,15 +24189,15 @@ mixin _$TypeHierarchyItem {
 /// The name of this item.
  String get name;/// The kind of this item.
  SymbolKind get kind;/// The resource identifier of this item.
- String get uri;/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else, e.g. comments and code.
- Range get range;/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the {@link
-/// TypeHierarchyItem.range `range`}.
- Range get selectionRange;/// A data entry field that is preserved between a type hierarchy prepare and
-/// supertypes or subtypes requests. It could also be used to identify the type
-/// hierarchy in the server, helping improve the performance on resolving
-/// supertypes and subtypes.
+ String get uri;/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
+ Range get range;/// The range that should be selected and revealed when this symbol is
+/// being picked, e.g. the name of a function. Must be contained by the
+/// {@link TypeHierarchyItem.range `range`}.
+ Range get selectionRange;/// A data entry field that is preserved between a type hierarchy prepare
+/// and supertypes or subtypes requests. It could also be used to identify
+/// the type hierarchy in the server, helping improve the performance on
+/// resolving supertypes and subtypes.
  LSPAny? get data;/// More detail for this item, e.g. the signature of a function.
  String? get detail;/// Tags for this item.
  List<SymbolTag>? get tags;
@@ -24336,8 +24257,7 @@ as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non
 as SymbolKind,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as Range,data: freezed == data ? _self.data : data ,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
 as String?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,
   ));
@@ -24378,17 +24298,17 @@ class _TypeHierarchyItem implements TypeHierarchyItem {
 @override final  SymbolKind kind;
 /// The resource identifier of this item.
 @override final  String uri;
-/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else, e.g. comments and code.
+/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
 @override final  Range range;
-/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the {@link
-/// TypeHierarchyItem.range `range`}.
+/// The range that should be selected and revealed when this symbol is
+/// being picked, e.g. the name of a function. Must be contained by the
+/// {@link TypeHierarchyItem.range `range`}.
 @override final  Range selectionRange;
-/// A data entry field that is preserved between a type hierarchy prepare and
-/// supertypes or subtypes requests. It could also be used to identify the type
-/// hierarchy in the server, helping improve the performance on resolving
-/// supertypes and subtypes.
+/// A data entry field that is preserved between a type hierarchy prepare
+/// and supertypes or subtypes requests. It could also be used to identify
+/// the type hierarchy in the server, helping improve the performance on
+/// resolving supertypes and subtypes.
 @override final  LSPAny? data;
 /// More detail for this item, e.g. the signature of a function.
 @override final  String? detail;
@@ -24461,8 +24381,7 @@ as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non
 as SymbolKind,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
 as String,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,selectionRange: null == selectionRange ? _self.selectionRange : selectionRange // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as Range,data: freezed == data ? _self.data : data ,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
 as String?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,
   ));
@@ -24493,10 +24412,10 @@ $RangeCopyWith<$Res> get selectionRange {
 /// @nodoc
 mixin _$TypeHierarchyRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of TypeHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -24530,7 +24449,7 @@ abstract mixin class $TypeHierarchyRegistrationOptionsCopyWith<$Res>  {
   factory $TypeHierarchyRegistrationOptionsCopyWith(TypeHierarchyRegistrationOptions value, $Res Function(TypeHierarchyRegistrationOptions) _then) = _$TypeHierarchyRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -24547,10 +24466,9 @@ class _$TypeHierarchyRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TypeHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -24567,11 +24485,11 @@ class _TypeHierarchyRegistrationOptions implements TypeHierarchyRegistrationOpti
   const _TypeHierarchyRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _TypeHierarchyRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TypeHierarchyRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -24608,7 +24526,7 @@ abstract mixin class _$TypeHierarchyRegistrationOptionsCopyWith<$Res> implements
   factory _$TypeHierarchyRegistrationOptionsCopyWith(_TypeHierarchyRegistrationOptions value, $Res Function(_TypeHierarchyRegistrationOptions) _then) = __$TypeHierarchyRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -24625,10 +24543,9 @@ class __$TypeHierarchyRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TypeHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_TypeHierarchyRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -24697,9 +24614,7 @@ class _$TypeHierarchySupertypesParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? item = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as TypeHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TypeHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of TypeHierarchySupertypesParams
@@ -24783,9 +24698,7 @@ class __$TypeHierarchySupertypesParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_TypeHierarchySupertypesParams(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as TypeHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TypeHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -24861,9 +24774,7 @@ class _$TypeHierarchySubtypesParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? item = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as TypeHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TypeHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of TypeHierarchySubtypesParams
@@ -24947,9 +24858,7 @@ class __$TypeHierarchySubtypesParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? item = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_TypeHierarchySubtypesParams(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as TypeHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TypeHierarchyItem,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -25029,8 +24938,7 @@ class _$InlineValueParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as InlineValueContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as InlineValueContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of InlineValueParams
@@ -25137,8 +25045,7 @@ class __$InlineValueParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as InlineValueContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as InlineValueContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -25176,10 +25083,10 @@ $InlineValueContextCopyWith<$Res> get context {
 /// @nodoc
 mixin _$InlineValueRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of InlineValueRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -25213,7 +25120,7 @@ abstract mixin class $InlineValueRegistrationOptionsCopyWith<$Res>  {
   factory $InlineValueRegistrationOptionsCopyWith(InlineValueRegistrationOptions value, $Res Function(InlineValueRegistrationOptions) _then) = _$InlineValueRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -25230,10 +25137,9 @@ class _$InlineValueRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlineValueRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -25250,11 +25156,11 @@ class _InlineValueRegistrationOptions implements InlineValueRegistrationOptions 
   const _InlineValueRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _InlineValueRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineValueRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -25291,7 +25197,7 @@ abstract mixin class _$InlineValueRegistrationOptionsCopyWith<$Res> implements $
   factory _$InlineValueRegistrationOptionsCopyWith(_InlineValueRegistrationOptions value, $Res Function(_InlineValueRegistrationOptions) _then) = __$InlineValueRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -25308,10 +25214,9 @@ class __$InlineValueRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlineValueRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_InlineValueRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -25381,8 +25286,7 @@ class _$InlayHintParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of InlayHintParams
@@ -25476,8 +25380,7 @@ class __$InlayHintParamsCopyWithImpl<$Res>
   return _then(_InlayHintParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Range,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -25507,28 +25410,28 @@ $RangeCopyWith<$Res> get range {
 mixin _$InlayHint {
 
 /// The position of this hint.
-/// If multiple hints have the same position, they will be shown in the order
-/// they appear in the response.
+/// If multiple hints have the same position, they will be shown in the
+/// order they appear in the response.
  Position get position;/// The label of this hint. A human readable string or an array of
 /// InlayHintLabelPart label parts.
 /// *Note* that neither the string nor the label part can be empty.
- dynamic get label;/// A data entry field that is preserved on an inlay hint between a
+ Object get label;/// A data entry field that is preserved on an inlay hint between a
 /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
  LSPAny? get data;/// Render padding after the hint.
-/// Note: Padding should use the editor's background color, not the background
-/// color of the hint itself. That means padding can be used to visually
-/// align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the
+/// background color of the hint itself. That means padding can be used to
+/// visually align/separate an inlay hint.
  bool? get paddingRight;/// Render padding before the hint.
-/// Note: Padding should use the editor's background color, not the background
-/// color of the hint itself. That means padding can be used to visually
-/// align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the
+/// background color of the hint itself. That means padding can be used to
+/// visually align/separate an inlay hint.
  bool? get paddingLeft;/// The tooltip text when you hover over this item.
- dynamic? get tooltip;/// Optional text edits that are performed when accepting this inlay hint.
+ Object? get tooltip;/// Optional text edits that are performed when accepting this inlay hint.
 /// *Note* that edits are expected to change the document so that the inlay
 /// hint (or its nearest variant) is now part of the document and the inlay
 /// hint itself is now obsolete.
- List<TextEdit>? get textEdits;/// The kind of this hint. Can be omitted in which case the client should fall
-/// back to a reasonable default.
+ List<TextEdit>? get textEdits;/// The kind of this hint. Can be omitted in which case the client should
+/// fall back to a reasonable default.
  InlayHintKind? get kind;
 /// Create a copy of InlayHint
 /// with the given fields replaced by the non-null parameter values.
@@ -25562,7 +25465,7 @@ abstract mixin class $InlayHintCopyWith<$Res>  {
   factory $InlayHintCopyWith(InlayHint value, $Res Function(InlayHint) _then) = _$InlayHintCopyWithImpl;
 @useResult
 $Res call({
- Position position, dynamic label, LSPAny? data, bool? paddingRight, bool? paddingLeft, dynamic? tooltip, List<TextEdit>? textEdits, InlayHintKind? kind
+ Position position, Object label, LSPAny? data, bool? paddingRight, bool? paddingLeft, Object? tooltip, List<TextEdit>? textEdits, InlayHintKind? kind
 });
 
 
@@ -25579,15 +25482,12 @@ class _$InlayHintCopyWithImpl<$Res>
 
 /// Create a copy of InlayHint
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? position = null,Object? label = freezed,Object? data = freezed,Object? paddingRight = freezed,Object? paddingLeft = freezed,Object? tooltip = freezed,Object? textEdits = freezed,Object? kind = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? position = null,Object? label = null,Object? data = freezed,Object? paddingRight = freezed,Object? paddingLeft = freezed,Object? tooltip = freezed,Object? textEdits = freezed,Object? kind = freezed,}) {
   return _then(_self.copyWith(
 position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as dynamic,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,paddingRight: freezed == paddingRight ? _self.paddingRight : paddingRight // ignore: cast_nullable_to_non_nullable
+as Position,label: null == label ? _self.label : label ,data: freezed == data ? _self.data : data ,paddingRight: freezed == paddingRight ? _self.paddingRight : paddingRight // ignore: cast_nullable_to_non_nullable
 as bool?,paddingLeft: freezed == paddingLeft ? _self.paddingLeft : paddingLeft // ignore: cast_nullable_to_non_nullable
-as bool?,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
-as dynamic?,textEdits: freezed == textEdits ? _self.textEdits : textEdits // ignore: cast_nullable_to_non_nullable
+as bool?,tooltip: freezed == tooltip ? _self.tooltip : tooltip ,textEdits: freezed == textEdits ? _self.textEdits : textEdits // ignore: cast_nullable_to_non_nullable
 as List<TextEdit>?,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as InlayHintKind?,
   ));
@@ -25614,28 +25514,28 @@ class _InlayHint implements InlayHint {
   factory _InlayHint.fromJson(Map<String, dynamic> json) => _$InlayHintFromJson(json);
 
 /// The position of this hint.
-/// If multiple hints have the same position, they will be shown in the order
-/// they appear in the response.
+/// If multiple hints have the same position, they will be shown in the
+/// order they appear in the response.
 @override final  Position position;
 /// The label of this hint. A human readable string or an array of
 /// InlayHintLabelPart label parts.
 /// *Note* that neither the string nor the label part can be empty.
-@override final  dynamic label;
+@override final  Object label;
 /// A data entry field that is preserved on an inlay hint between a
 /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
 @override final  LSPAny? data;
 /// Render padding after the hint.
-/// Note: Padding should use the editor's background color, not the background
-/// color of the hint itself. That means padding can be used to visually
-/// align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the
+/// background color of the hint itself. That means padding can be used to
+/// visually align/separate an inlay hint.
 @override final  bool? paddingRight;
 /// Render padding before the hint.
-/// Note: Padding should use the editor's background color, not the background
-/// color of the hint itself. That means padding can be used to visually
-/// align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the
+/// background color of the hint itself. That means padding can be used to
+/// visually align/separate an inlay hint.
 @override final  bool? paddingLeft;
 /// The tooltip text when you hover over this item.
-@override final  dynamic? tooltip;
+@override final  Object? tooltip;
 /// Optional text edits that are performed when accepting this inlay hint.
 /// *Note* that edits are expected to change the document so that the inlay
 /// hint (or its nearest variant) is now part of the document and the inlay
@@ -25653,8 +25553,8 @@ class _InlayHint implements InlayHint {
   return EqualUnmodifiableListView(value);
 }
 
-/// The kind of this hint. Can be omitted in which case the client should fall
-/// back to a reasonable default.
+/// The kind of this hint. Can be omitted in which case the client should
+/// fall back to a reasonable default.
 @override final  InlayHintKind? kind;
 
 /// Create a copy of InlayHint
@@ -25690,7 +25590,7 @@ abstract mixin class _$InlayHintCopyWith<$Res> implements $InlayHintCopyWith<$Re
   factory _$InlayHintCopyWith(_InlayHint value, $Res Function(_InlayHint) _then) = __$InlayHintCopyWithImpl;
 @override @useResult
 $Res call({
- Position position, dynamic label, LSPAny? data, bool? paddingRight, bool? paddingLeft, dynamic? tooltip, List<TextEdit>? textEdits, InlayHintKind? kind
+ Position position, Object label, LSPAny? data, bool? paddingRight, bool? paddingLeft, Object? tooltip, List<TextEdit>? textEdits, InlayHintKind? kind
 });
 
 
@@ -25707,15 +25607,12 @@ class __$InlayHintCopyWithImpl<$Res>
 
 /// Create a copy of InlayHint
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? position = null,Object? label = freezed,Object? data = freezed,Object? paddingRight = freezed,Object? paddingLeft = freezed,Object? tooltip = freezed,Object? textEdits = freezed,Object? kind = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? position = null,Object? label = null,Object? data = freezed,Object? paddingRight = freezed,Object? paddingLeft = freezed,Object? tooltip = freezed,Object? textEdits = freezed,Object? kind = freezed,}) {
   return _then(_InlayHint(
 position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as dynamic,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,paddingRight: freezed == paddingRight ? _self.paddingRight : paddingRight // ignore: cast_nullable_to_non_nullable
+as Position,label: null == label ? _self.label : label ,data: freezed == data ? _self.data : data ,paddingRight: freezed == paddingRight ? _self.paddingRight : paddingRight // ignore: cast_nullable_to_non_nullable
 as bool?,paddingLeft: freezed == paddingLeft ? _self.paddingLeft : paddingLeft // ignore: cast_nullable_to_non_nullable
-as bool?,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
-as dynamic?,textEdits: freezed == textEdits ? _self._textEdits : textEdits // ignore: cast_nullable_to_non_nullable
+as bool?,tooltip: freezed == tooltip ? _self.tooltip : tooltip ,textEdits: freezed == textEdits ? _self._textEdits : textEdits // ignore: cast_nullable_to_non_nullable
 as List<TextEdit>?,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as InlayHintKind?,
   ));
@@ -25737,12 +25634,12 @@ $PositionCopyWith<$Res> get position {
 /// @nodoc
 mixin _$InlayHintRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
- String? get id;/// The server provides support to resolve additional information for an inlay
-/// hint item.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
+ String? get id;/// The server provides support to resolve additional information for an
+/// inlay hint item.
  bool? get resolveProvider; bool? get workDoneProgress;
 /// Create a copy of InlayHintRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -25776,7 +25673,7 @@ abstract mixin class $InlayHintRegistrationOptionsCopyWith<$Res>  {
   factory $InlayHintRegistrationOptionsCopyWith(InlayHintRegistrationOptions value, $Res Function(InlayHintRegistrationOptions) _then) = _$InlayHintRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? resolveProvider, bool? workDoneProgress
+ Object documentSelector, String? id, bool? resolveProvider, bool? workDoneProgress
 });
 
 
@@ -25793,10 +25690,9 @@ class _$InlayHintRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlayHintRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
@@ -25814,14 +25710,14 @@ class _InlayHintRegistrationOptions implements InlayHintRegistrationOptions {
   const _InlayHintRegistrationOptions({required this.documentSelector, this.id, this.resolveProvider, this.workDoneProgress});
   factory _InlayHintRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlayHintRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
-/// The server provides support to resolve additional information for an inlay
-/// hint item.
+/// The server provides support to resolve additional information for an
+/// inlay hint item.
 @override final  bool? resolveProvider;
 @override final  bool? workDoneProgress;
 
@@ -25858,7 +25754,7 @@ abstract mixin class _$InlayHintRegistrationOptionsCopyWith<$Res> implements $In
   factory _$InlayHintRegistrationOptionsCopyWith(_InlayHintRegistrationOptions value, $Res Function(_InlayHintRegistrationOptions) _then) = __$InlayHintRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? resolveProvider, bool? workDoneProgress
+ Object documentSelector, String? id, bool? resolveProvider, bool? workDoneProgress
 });
 
 
@@ -25875,10 +25771,9 @@ class __$InlayHintRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlayHintRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_InlayHintRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
@@ -25953,9 +25848,7 @@ class _$DocumentDiagnosticParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,previousResultId: freezed == previousResultId ? _self.previousResultId : previousResultId // ignore: cast_nullable_to_non_nullable
 as String?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DocumentDiagnosticParams
@@ -26046,9 +25939,7 @@ class __$DocumentDiagnosticParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,previousResultId: freezed == previousResultId ? _self.previousResultId : previousResultId // ignore: cast_nullable_to_non_nullable
 as String?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -26068,7 +25959,7 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$DocumentDiagnosticReportPartialResult {
 
- Map<String, dynamic> get relatedDocuments;
+ Map<String, Object> get relatedDocuments;
 /// Create a copy of DocumentDiagnosticReportPartialResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26101,7 +25992,7 @@ abstract mixin class $DocumentDiagnosticReportPartialResultCopyWith<$Res>  {
   factory $DocumentDiagnosticReportPartialResultCopyWith(DocumentDiagnosticReportPartialResult value, $Res Function(DocumentDiagnosticReportPartialResult) _then) = _$DocumentDiagnosticReportPartialResultCopyWithImpl;
 @useResult
 $Res call({
- Map<String, dynamic> relatedDocuments
+ Map<String, Object> relatedDocuments
 });
 
 
@@ -26121,7 +26012,7 @@ class _$DocumentDiagnosticReportPartialResultCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? relatedDocuments = null,}) {
   return _then(_self.copyWith(
 relatedDocuments: null == relatedDocuments ? _self.relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,
+as Map<String, Object>,
   ));
 }
 
@@ -26133,11 +26024,11 @@ as Map<String, dynamic>,
 
 @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
 class _DocumentDiagnosticReportPartialResult implements DocumentDiagnosticReportPartialResult {
-  const _DocumentDiagnosticReportPartialResult({required final  Map<String, dynamic> relatedDocuments}): _relatedDocuments = relatedDocuments;
+  const _DocumentDiagnosticReportPartialResult({required final  Map<String, Object> relatedDocuments}): _relatedDocuments = relatedDocuments;
   factory _DocumentDiagnosticReportPartialResult.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticReportPartialResultFromJson(json);
 
- final  Map<String, dynamic> _relatedDocuments;
-@override Map<String, dynamic> get relatedDocuments {
+ final  Map<String, Object> _relatedDocuments;
+@override Map<String, Object> get relatedDocuments {
   if (_relatedDocuments is EqualUnmodifiableMapView) return _relatedDocuments;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableMapView(_relatedDocuments);
@@ -26177,7 +26068,7 @@ abstract mixin class _$DocumentDiagnosticReportPartialResultCopyWith<$Res> imple
   factory _$DocumentDiagnosticReportPartialResultCopyWith(_DocumentDiagnosticReportPartialResult value, $Res Function(_DocumentDiagnosticReportPartialResult) _then) = __$DocumentDiagnosticReportPartialResultCopyWithImpl;
 @override @useResult
 $Res call({
- Map<String, dynamic> relatedDocuments
+ Map<String, Object> relatedDocuments
 });
 
 
@@ -26197,7 +26088,7 @@ class __$DocumentDiagnosticReportPartialResultCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? relatedDocuments = null,}) {
   return _then(_DocumentDiagnosticReportPartialResult(
 relatedDocuments: null == relatedDocuments ? _self._relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,
+as Map<String, Object>,
   ));
 }
 
@@ -26342,15 +26233,15 @@ as bool,
 /// @nodoc
 mixin _$DiagnosticRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// Whether the language has inter file dependencies meaning that editing code
-/// in one file can result in a different diagnostic set in another file. Inter
-/// file dependencies are common for most programming languages and typically
-/// uncommon for linters.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// Whether the language has inter file dependencies meaning that editing
+/// code in one file can result in a different diagnostic set in another
+/// file. Inter file dependencies are common for most programming languages
+/// and typically uncommon for linters.
  bool get interFileDependencies;/// The server provides support for workspace diagnostics as well.
- bool get workspaceDiagnostics;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ bool get workspaceDiagnostics;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;/// An optional identifier under which the diagnostics are managed by the
 /// client.
  String? get identifier; bool? get workDoneProgress;
@@ -26386,7 +26277,7 @@ abstract mixin class $DiagnosticRegistrationOptionsCopyWith<$Res>  {
   factory $DiagnosticRegistrationOptionsCopyWith(DiagnosticRegistrationOptions value, $Res Function(DiagnosticRegistrationOptions) _then) = _$DiagnosticRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool interFileDependencies, bool workspaceDiagnostics, String? id, String? identifier, bool? workDoneProgress
+ Object documentSelector, bool interFileDependencies, bool workspaceDiagnostics, String? id, String? identifier, bool? workDoneProgress
 });
 
 
@@ -26403,10 +26294,9 @@ class _$DiagnosticRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DiagnosticRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? id = freezed,Object? identifier = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? id = freezed,Object? identifier = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
 as bool,workspaceDiagnostics: null == workspaceDiagnostics ? _self.workspaceDiagnostics : workspaceDiagnostics // ignore: cast_nullable_to_non_nullable
 as bool,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
@@ -26426,18 +26316,18 @@ class _DiagnosticRegistrationOptions implements DiagnosticRegistrationOptions {
   const _DiagnosticRegistrationOptions({required this.documentSelector, required this.interFileDependencies, required this.workspaceDiagnostics, this.id, this.identifier, this.workDoneProgress});
   factory _DiagnosticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// Whether the language has inter file dependencies meaning that editing code
-/// in one file can result in a different diagnostic set in another file. Inter
-/// file dependencies are common for most programming languages and typically
-/// uncommon for linters.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// Whether the language has inter file dependencies meaning that editing
+/// code in one file can result in a different diagnostic set in another
+/// file. Inter file dependencies are common for most programming languages
+/// and typically uncommon for linters.
 @override final  bool interFileDependencies;
 /// The server provides support for workspace diagnostics as well.
 @override final  bool workspaceDiagnostics;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 /// An optional identifier under which the diagnostics are managed by the
 /// client.
@@ -26477,7 +26367,7 @@ abstract mixin class _$DiagnosticRegistrationOptionsCopyWith<$Res> implements $D
   factory _$DiagnosticRegistrationOptionsCopyWith(_DiagnosticRegistrationOptions value, $Res Function(_DiagnosticRegistrationOptions) _then) = __$DiagnosticRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool interFileDependencies, bool workspaceDiagnostics, String? id, String? identifier, bool? workDoneProgress
+ Object documentSelector, bool interFileDependencies, bool workspaceDiagnostics, String? id, String? identifier, bool? workDoneProgress
 });
 
 
@@ -26494,10 +26384,9 @@ class __$DiagnosticRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DiagnosticRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? id = freezed,Object? identifier = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? interFileDependencies = null,Object? workspaceDiagnostics = null,Object? id = freezed,Object? identifier = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_DiagnosticRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,interFileDependencies: null == interFileDependencies ? _self.interFileDependencies : interFileDependencies // ignore: cast_nullable_to_non_nullable
 as bool,workspaceDiagnostics: null == workspaceDiagnostics ? _self.workspaceDiagnostics : workspaceDiagnostics // ignore: cast_nullable_to_non_nullable
 as bool,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
@@ -26572,9 +26461,7 @@ class _$WorkspaceDiagnosticParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 previousResultIds: null == previousResultIds ? _self.previousResultIds : previousResultIds // ignore: cast_nullable_to_non_nullable
 as List<PreviousResultId>,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -26660,9 +26547,7 @@ class __$WorkspaceDiagnosticParamsCopyWithImpl<$Res>
   return _then(_WorkspaceDiagnosticParams(
 previousResultIds: null == previousResultIds ? _self._previousResultIds : previousResultIds // ignore: cast_nullable_to_non_nullable
 as List<PreviousResultId>,identifier: freezed == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
-as String?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -27121,19 +27006,19 @@ mixin _$DidChangeNotebookDocumentParams {
 
 /// The notebook document that did change. The version number points to the
 /// version after all provided changes have been applied. If only the text
-/// document content of a cell changes the notebook version doesn't necessarily
-/// have to change.
+/// document content of a cell changes the notebook version doesn't
+/// necessarily have to change.
  VersionedNotebookDocumentIdentifier get notebookDocument;/// The actual changes to the notebook document.
-/// The changes describe single state changes to the notebook document. So if
-/// there are two changes c1 (at array index 0) and c2 (at array index 1) for a
-/// notebook in state S then c1 moves the notebook from S to S' and c2 from S'
-/// to S''. So c1 is computed on the state S and c2 is computed on the state
-/// S'.
-/// To mirror the content of a notebook using change events use the following
-/// approach: - start with the same initial content - apply the
-/// 'notebookDocument/didChange' notifications in the order you receive them. -
-/// apply the `NotebookChangeEvent`s in a single notification in the order you
-/// receive them.
+/// The changes describe single state changes to the notebook document. So
+/// if there are two changes c1 (at array index 0) and c2 (at array index
+/// 1) for a notebook in state S then c1 moves the notebook from S to S'
+/// and c2 from S' to S''. So c1 is computed on the state S and c2 is
+/// computed on the state S'.
+/// To mirror the content of a notebook using change events use the
+/// following approach: - start with the same initial content - apply the
+/// 'notebookDocument/didChange' notifications in the order you receive
+/// them. - apply the `NotebookChangeEvent`s in a single notification in
+/// the order you receive them.
  NotebookDocumentChangeEvent get change;
 /// Create a copy of DidChangeNotebookDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -27223,20 +27108,20 @@ class _DidChangeNotebookDocumentParams implements DidChangeNotebookDocumentParam
 
 /// The notebook document that did change. The version number points to the
 /// version after all provided changes have been applied. If only the text
-/// document content of a cell changes the notebook version doesn't necessarily
-/// have to change.
+/// document content of a cell changes the notebook version doesn't
+/// necessarily have to change.
 @override final  VersionedNotebookDocumentIdentifier notebookDocument;
 /// The actual changes to the notebook document.
-/// The changes describe single state changes to the notebook document. So if
-/// there are two changes c1 (at array index 0) and c2 (at array index 1) for a
-/// notebook in state S then c1 moves the notebook from S to S' and c2 from S'
-/// to S''. So c1 is computed on the state S and c2 is computed on the state
-/// S'.
-/// To mirror the content of a notebook using change events use the following
-/// approach: - start with the same initial content - apply the
-/// 'notebookDocument/didChange' notifications in the order you receive them. -
-/// apply the `NotebookChangeEvent`s in a single notification in the order you
-/// receive them.
+/// The changes describe single state changes to the notebook document. So
+/// if there are two changes c1 (at array index 0) and c2 (at array index
+/// 1) for a notebook in state S then c1 moves the notebook from S to S'
+/// and c2 from S' to S''. So c1 is computed on the state S and c2 is
+/// computed on the state S'.
+/// To mirror the content of a notebook using change events use the
+/// following approach: - start with the same initial content - apply the
+/// 'notebookDocument/didChange' notifications in the order you receive
+/// them. - apply the `NotebookChangeEvent`s in a single notification in
+/// the order you receive them.
 @override final  NotebookDocumentChangeEvent change;
 
 /// Create a copy of DidChangeNotebookDocumentParams
@@ -27477,8 +27362,8 @@ $NotebookDocumentIdentifierCopyWith<$Res> get notebookDocument {
 mixin _$DidCloseNotebookDocumentParams {
 
 /// The notebook document that got closed.
- NotebookDocumentIdentifier get notebookDocument;/// The text documents that represent the content of a notebook cell that got
-/// closed.
+ NotebookDocumentIdentifier get notebookDocument;/// The text documents that represent the content of a notebook cell that
+/// got closed.
  List<TextDocumentIdentifier> get cellTextDocuments;
 /// Create a copy of DidCloseNotebookDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -27559,11 +27444,11 @@ class _DidCloseNotebookDocumentParams implements DidCloseNotebookDocumentParams 
 
 /// The notebook document that got closed.
 @override final  NotebookDocumentIdentifier notebookDocument;
-/// The text documents that represent the content of a notebook cell that got
-/// closed.
+/// The text documents that represent the content of a notebook cell that
+/// got closed.
  final  List<TextDocumentIdentifier> _cellTextDocuments;
-/// The text documents that represent the content of a notebook cell that got
-/// closed.
+/// The text documents that represent the content of a notebook cell that
+/// got closed.
 @override List<TextDocumentIdentifier> get cellTextDocuments {
   if (_cellTextDocuments is EqualUnmodifiableListView) return _cellTextDocuments;
   // ignore: implicit_dynamic_type
@@ -27647,8 +27532,8 @@ mixin _$InlineCompletionParams {
 
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
- Position get position;/// Additional information about the context in which inline completions were
-/// requested.
+ Position get position;/// Additional information about the context in which inline completions
+/// were requested.
  InlineCompletionContext get context;/// An optional token that a server can use to report work done progress.
  ProgressToken? get workDoneToken;
 /// Create a copy of InlineCompletionParams
@@ -27705,8 +27590,7 @@ class _$InlineCompletionParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as InlineCompletionContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as InlineCompletionContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of InlineCompletionParams
@@ -27752,8 +27636,8 @@ class _InlineCompletionParams implements InlineCompletionParams {
 @override final  TextDocumentIdentifier textDocument;
 /// The position inside the text document.
 @override final  Position position;
-/// Additional information about the context in which inline completions were
-/// requested.
+/// Additional information about the context in which inline completions
+/// were requested.
 @override final  InlineCompletionContext context;
 /// An optional token that a server can use to report work done progress.
 @override final  ProgressToken? workDoneToken;
@@ -27813,8 +27697,7 @@ class __$InlineCompletionParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as InlineCompletionContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as InlineCompletionContext,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -27996,11 +27879,12 @@ as List<InlineCompletionItem>,
 mixin _$InlineCompletionItem {
 
 /// The text to replace the range with. Must be set.
- dynamic get insertText;/// An optional {@link Command} that is executed *after* inserting this
+ Object get insertText;/// An optional {@link Command} that is executed *after* inserting this
 /// completion.
  Command? get command;/// The range to replace. Must begin and end on the same line.
- Range? get range;/// A text that is used to decide if this inline completion should be shown.
-/// When `falsy` the {@link InlineCompletionItem.insertText} is used.
+ Range? get range;/// A text that is used to decide if this inline completion should be
+/// shown. When `falsy` the {@link InlineCompletionItem.insertText} is
+/// used.
  String? get filterText;
 /// Create a copy of InlineCompletionItem
 /// with the given fields replaced by the non-null parameter values.
@@ -28034,7 +27918,7 @@ abstract mixin class $InlineCompletionItemCopyWith<$Res>  {
   factory $InlineCompletionItemCopyWith(InlineCompletionItem value, $Res Function(InlineCompletionItem) _then) = _$InlineCompletionItemCopyWithImpl;
 @useResult
 $Res call({
- dynamic insertText, Command? command, Range? range, String? filterText
+ Object insertText, Command? command, Range? range, String? filterText
 });
 
 
@@ -28051,10 +27935,9 @@ class _$InlineCompletionItemCopyWithImpl<$Res>
 
 /// Create a copy of InlineCompletionItem
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? insertText = freezed,Object? command = freezed,Object? range = freezed,Object? filterText = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? insertText = null,Object? command = freezed,Object? range = freezed,Object? filterText = freezed,}) {
   return _then(_self.copyWith(
-insertText: freezed == insertText ? _self.insertText : insertText // ignore: cast_nullable_to_non_nullable
-as dynamic,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+insertText: null == insertText ? _self.insertText : insertText ,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range?,filterText: freezed == filterText ? _self.filterText : filterText // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -28097,14 +27980,15 @@ class _InlineCompletionItem implements InlineCompletionItem {
   factory _InlineCompletionItem.fromJson(Map<String, dynamic> json) => _$InlineCompletionItemFromJson(json);
 
 /// The text to replace the range with. Must be set.
-@override final  dynamic insertText;
+@override final  Object insertText;
 /// An optional {@link Command} that is executed *after* inserting this
 /// completion.
 @override final  Command? command;
 /// The range to replace. Must begin and end on the same line.
 @override final  Range? range;
-/// A text that is used to decide if this inline completion should be shown.
-/// When `falsy` the {@link InlineCompletionItem.insertText} is used.
+/// A text that is used to decide if this inline completion should be
+/// shown. When `falsy` the {@link InlineCompletionItem.insertText} is
+/// used.
 @override final  String? filterText;
 
 /// Create a copy of InlineCompletionItem
@@ -28140,7 +28024,7 @@ abstract mixin class _$InlineCompletionItemCopyWith<$Res> implements $InlineComp
   factory _$InlineCompletionItemCopyWith(_InlineCompletionItem value, $Res Function(_InlineCompletionItem) _then) = __$InlineCompletionItemCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic insertText, Command? command, Range? range, String? filterText
+ Object insertText, Command? command, Range? range, String? filterText
 });
 
 
@@ -28157,10 +28041,9 @@ class __$InlineCompletionItemCopyWithImpl<$Res>
 
 /// Create a copy of InlineCompletionItem
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? insertText = freezed,Object? command = freezed,Object? range = freezed,Object? filterText = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? insertText = null,Object? command = freezed,Object? range = freezed,Object? filterText = freezed,}) {
   return _then(_InlineCompletionItem(
-insertText: freezed == insertText ? _self.insertText : insertText // ignore: cast_nullable_to_non_nullable
-as dynamic,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+insertText: null == insertText ? _self.insertText : insertText ,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range?,filterText: freezed == filterText ? _self.filterText : filterText // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -28198,10 +28081,10 @@ $RangeCopyWith<$Res>? get range {
 /// @nodoc
 mixin _$InlineCompletionRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id; bool? get workDoneProgress;
 /// Create a copy of InlineCompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -28235,7 +28118,7 @@ abstract mixin class $InlineCompletionRegistrationOptionsCopyWith<$Res>  {
   factory $InlineCompletionRegistrationOptionsCopyWith(InlineCompletionRegistrationOptions value, $Res Function(InlineCompletionRegistrationOptions) _then) = _$InlineCompletionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -28252,10 +28135,9 @@ class _$InlineCompletionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlineCompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -28272,11 +28154,11 @@ class _InlineCompletionRegistrationOptions implements InlineCompletionRegistrati
   const _InlineCompletionRegistrationOptions({required this.documentSelector, this.id, this.workDoneProgress});
   factory _InlineCompletionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineCompletionRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 @override final  bool? workDoneProgress;
 
@@ -28313,7 +28195,7 @@ abstract mixin class _$InlineCompletionRegistrationOptionsCopyWith<$Res> impleme
   factory _$InlineCompletionRegistrationOptionsCopyWith(_InlineCompletionRegistrationOptions value, $Res Function(_InlineCompletionRegistrationOptions) _then) = __$InlineCompletionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? id, bool? workDoneProgress
+ Object documentSelector, String? id, bool? workDoneProgress
 });
 
 
@@ -28330,10 +28212,9 @@ class __$InlineCompletionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of InlineCompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? id = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? id = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_InlineCompletionRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -28627,23 +28508,23 @@ as List<Unregistration>,
 mixin _$InitializeParams {
 
 /// The process Id of the parent process that started the server.
-/// Is `null` if the process has not been started by another process. If the
-/// parent process is not alive then the server should exit.
- dynamic get processId;/// The rootUri of the workspace. Is null if no folder is open. If both
+/// Is `null` if the process has not been started by another process. If
+/// the parent process is not alive then the server should exit.
+ Object get processId;/// The rootUri of the workspace. Is null if no folder is open. If both
 /// `rootPath` and `rootUri` are set `rootUri` wins.
 /// @deprecated in favour of workspaceFolders.
- dynamic get rootUri;/// The capabilities provided by the client (editor or tool)
+ Object get rootUri;/// The capabilities provided by the client (editor or tool)
  ClientCapabilities get capabilities;/// The workspace folders configured in the client when the server starts.
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
 /// @since 3.6.0
- dynamic? get workspaceFolders;/// The initial trace setting. If omitted trace is disabled ('off').
+ Object? get workspaceFolders;/// The initial trace setting. If omitted trace is disabled ('off').
  TraceValues? get trace;/// User provided initialization options.
  LSPAny? get initializationOptions;/// The rootPath of the workspace. Is null if no folder is open.
 /// @deprecated in favour of rootUri.
- dynamic? get rootPath;/// The locale the client is currently showing the user interface in. This must
-/// not necessarily be the locale of the operating system.
+ Object? get rootPath;/// The locale the client is currently showing the user interface in. This
+/// must not necessarily be the locale of the operating system.
 /// Uses IETF language tags as the value's syntax (See
 /// https://en.wikipedia.org/wiki/IETF_language_tag)
 /// @since 3.16.0
@@ -28683,7 +28564,7 @@ abstract mixin class $InitializeParamsCopyWith<$Res>  {
   factory $InitializeParamsCopyWith(InitializeParams value, $Res Function(InitializeParams) _then) = _$InitializeParamsCopyWithImpl;
 @useResult
 $Res call({
- dynamic processId, dynamic rootUri, ClientCapabilities capabilities, dynamic? workspaceFolders, TraceValues? trace, LSPAny? initializationOptions, dynamic? rootPath, String? locale, ({String name, String? version})? clientInfo, ProgressToken? workDoneToken
+ Object processId, Object rootUri, ClientCapabilities capabilities, Object? workspaceFolders, TraceValues? trace, LSPAny? initializationOptions, Object? rootPath, String? locale, ({String name, String? version})? clientInfo, ProgressToken? workDoneToken
 });
 
 
@@ -28700,19 +28581,13 @@ class _$InitializeParamsCopyWithImpl<$Res>
 
 /// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? processId = freezed,Object? rootUri = freezed,Object? capabilities = null,Object? workspaceFolders = freezed,Object? trace = freezed,Object? initializationOptions = freezed,Object? rootPath = freezed,Object? locale = freezed,Object? clientInfo = freezed,Object? workDoneToken = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? processId = null,Object? rootUri = null,Object? capabilities = null,Object? workspaceFolders = freezed,Object? trace = freezed,Object? initializationOptions = freezed,Object? rootPath = freezed,Object? locale = freezed,Object? clientInfo = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
-processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
-as dynamic,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
-as dynamic,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
-as ClientCapabilities,workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
-as dynamic?,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
-as TraceValues?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions // ignore: cast_nullable_to_non_nullable
-as LSPAny?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
-as dynamic?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+processId: null == processId ? _self.processId : processId ,rootUri: null == rootUri ? _self.rootUri : rootUri ,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
+as ClientCapabilities,workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders ,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
+as TraceValues?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions ,rootPath: freezed == rootPath ? _self.rootPath : rootPath ,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
-as ({String name, String? version})?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as ({String name, String? version})?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of InitializeParams
@@ -28737,30 +28612,30 @@ class _InitializeParams implements InitializeParams {
   factory _InitializeParams.fromJson(Map<String, dynamic> json) => _$InitializeParamsFromJson(json);
 
 /// The process Id of the parent process that started the server.
-/// Is `null` if the process has not been started by another process. If the
-/// parent process is not alive then the server should exit.
-@override final  dynamic processId;
+/// Is `null` if the process has not been started by another process. If
+/// the parent process is not alive then the server should exit.
+@override final  Object processId;
 /// The rootUri of the workspace. Is null if no folder is open. If both
 /// `rootPath` and `rootUri` are set `rootUri` wins.
 /// @deprecated in favour of workspaceFolders.
-@override final  dynamic rootUri;
+@override final  Object rootUri;
 /// The capabilities provided by the client (editor or tool)
 @override final  ClientCapabilities capabilities;
 /// The workspace folders configured in the client when the server starts.
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
 /// @since 3.6.0
-@override final  dynamic? workspaceFolders;
+@override final  Object? workspaceFolders;
 /// The initial trace setting. If omitted trace is disabled ('off').
 @override final  TraceValues? trace;
 /// User provided initialization options.
 @override final  LSPAny? initializationOptions;
 /// The rootPath of the workspace. Is null if no folder is open.
 /// @deprecated in favour of rootUri.
-@override final  dynamic? rootPath;
-/// The locale the client is currently showing the user interface in. This must
-/// not necessarily be the locale of the operating system.
+@override final  Object? rootPath;
+/// The locale the client is currently showing the user interface in. This
+/// must not necessarily be the locale of the operating system.
 /// Uses IETF language tags as the value's syntax (See
 /// https://en.wikipedia.org/wiki/IETF_language_tag)
 /// @since 3.16.0
@@ -28804,7 +28679,7 @@ abstract mixin class _$InitializeParamsCopyWith<$Res> implements $InitializePara
   factory _$InitializeParamsCopyWith(_InitializeParams value, $Res Function(_InitializeParams) _then) = __$InitializeParamsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic processId, dynamic rootUri, ClientCapabilities capabilities, dynamic? workspaceFolders, TraceValues? trace, LSPAny? initializationOptions, dynamic? rootPath, String? locale, ({String name, String? version})? clientInfo, ProgressToken? workDoneToken
+ Object processId, Object rootUri, ClientCapabilities capabilities, Object? workspaceFolders, TraceValues? trace, LSPAny? initializationOptions, Object? rootPath, String? locale, ({String name, String? version})? clientInfo, ProgressToken? workDoneToken
 });
 
 
@@ -28821,19 +28696,13 @@ class __$InitializeParamsCopyWithImpl<$Res>
 
 /// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? processId = freezed,Object? rootUri = freezed,Object? capabilities = null,Object? workspaceFolders = freezed,Object? trace = freezed,Object? initializationOptions = freezed,Object? rootPath = freezed,Object? locale = freezed,Object? clientInfo = freezed,Object? workDoneToken = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? processId = null,Object? rootUri = null,Object? capabilities = null,Object? workspaceFolders = freezed,Object? trace = freezed,Object? initializationOptions = freezed,Object? rootPath = freezed,Object? locale = freezed,Object? clientInfo = freezed,Object? workDoneToken = freezed,}) {
   return _then(_InitializeParams(
-processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
-as dynamic,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
-as dynamic,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
-as ClientCapabilities,workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
-as dynamic?,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
-as TraceValues?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions // ignore: cast_nullable_to_non_nullable
-as LSPAny?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
-as dynamic?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+processId: null == processId ? _self.processId : processId ,rootUri: null == rootUri ? _self.rootUri : rootUri ,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
+as ClientCapabilities,workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders ,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
+as TraceValues?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions ,rootPath: freezed == rootPath ? _self.rootPath : rootPath ,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
-as ({String name, String? version})?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as ({String name, String? version})?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -29014,10 +28883,10 @@ $ServerCapabilitiesCopyWith<$Res> get capabilities {
 /// @nodoc
 mixin _$InitializeError {
 
-/// Indicates whether the client execute the following retry logic: (1) show
-/// the message provided by the ResponseError to the user (2) user selects
-/// retry or cancel (3) if user selected retry the initialize method is sent
-/// again.
+/// Indicates whether the client execute the following retry logic: (1)
+/// show the message provided by the ResponseError to the user (2) user
+/// selects retry or cancel (3) if user selected retry the initialize
+/// method is sent again.
  bool get retry;
 /// Create a copy of InitializeError
 /// with the given fields replaced by the non-null parameter values.
@@ -29086,10 +28955,10 @@ class _InitializeError implements InitializeError {
   const _InitializeError({required this.retry});
   factory _InitializeError.fromJson(Map<String, dynamic> json) => _$InitializeErrorFromJson(json);
 
-/// Indicates whether the client execute the following retry logic: (1) show
-/// the message provided by the ResponseError to the user (2) user selects
-/// retry or cancel (3) if user selected retry the initialize method is sent
-/// again.
+/// Indicates whether the client execute the following retry logic: (1)
+/// show the message provided by the ResponseError to the user (2) user
+/// selects retry or cancel (3) if user selected retry the initialize
+/// method is sent again.
 @override final  bool retry;
 
 /// Create a copy of InitializeError
@@ -29276,10 +29145,9 @@ class _$DidChangeConfigurationParamsCopyWithImpl<$Res>
 
 /// Create a copy of DidChangeConfigurationParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? settings = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? settings = null,}) {
   return _then(_self.copyWith(
-settings: freezed == settings ? _self.settings : settings // ignore: cast_nullable_to_non_nullable
-as LSPAny,
+settings: null == settings ? _self.settings : settings ,
   ));
 }
 
@@ -29347,10 +29215,9 @@ class __$DidChangeConfigurationParamsCopyWithImpl<$Res>
 
 /// Create a copy of DidChangeConfigurationParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? settings = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? settings = null,}) {
   return _then(_DidChangeConfigurationParams(
-settings: freezed == settings ? _self.settings : settings // ignore: cast_nullable_to_non_nullable
-as LSPAny,
+settings: null == settings ? _self.settings : settings ,
   ));
 }
 
@@ -29361,7 +29228,7 @@ as LSPAny,
 /// @nodoc
 mixin _$DidChangeConfigurationRegistrationOptions {
 
- dynamic? get section;
+ Object? get section;
 /// Create a copy of DidChangeConfigurationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29394,7 +29261,7 @@ abstract mixin class $DidChangeConfigurationRegistrationOptionsCopyWith<$Res>  {
   factory $DidChangeConfigurationRegistrationOptionsCopyWith(DidChangeConfigurationRegistrationOptions value, $Res Function(DidChangeConfigurationRegistrationOptions) _then) = _$DidChangeConfigurationRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic? section
+ Object? section
 });
 
 
@@ -29413,8 +29280,7 @@ class _$DidChangeConfigurationRegistrationOptionsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? section = freezed,}) {
   return _then(_self.copyWith(
-section: freezed == section ? _self.section : section // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+section: freezed == section ? _self.section : section ,
   ));
 }
 
@@ -29429,7 +29295,7 @@ class _DidChangeConfigurationRegistrationOptions implements DidChangeConfigurati
   const _DidChangeConfigurationRegistrationOptions({this.section});
   factory _DidChangeConfigurationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DidChangeConfigurationRegistrationOptionsFromJson(json);
 
-@override final  dynamic? section;
+@override final  Object? section;
 
 /// Create a copy of DidChangeConfigurationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -29464,7 +29330,7 @@ abstract mixin class _$DidChangeConfigurationRegistrationOptionsCopyWith<$Res> i
   factory _$DidChangeConfigurationRegistrationOptionsCopyWith(_DidChangeConfigurationRegistrationOptions value, $Res Function(_DidChangeConfigurationRegistrationOptions) _then) = __$DidChangeConfigurationRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic? section
+ Object? section
 });
 
 
@@ -29483,8 +29349,7 @@ class __$DidChangeConfigurationRegistrationOptionsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? section = freezed,}) {
   return _then(_DidChangeConfigurationRegistrationOptions(
-section: freezed == section ? _self.section : section // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+section: freezed == section ? _self.section : section ,
   ));
 }
 
@@ -30225,15 +30090,15 @@ mixin _$DidChangeTextDocumentParams {
 /// The document that did change. The version number points to the version
 /// after all provided content changes have been applied.
  VersionedTextDocumentIdentifier get textDocument;/// The actual content changes. The content changes describe single state
-/// changes to the document. So if there are two content changes c1 (at array
-/// index 0) and c2 (at array index 1) for a document in state S then c1 moves
-/// the document from S to S' and c2 from S' to S''. So c1 is computed on the
-/// state S and c2 is computed on the state S'.
-/// To mirror the content of a document using change events use the following
-/// approach: - start with the same initial content - apply the
+/// changes to the document. So if there are two content changes c1 (at
+/// array index 0) and c2 (at array index 1) for a document in state S then
+/// c1 moves the document from S to S' and c2 from S' to S''. So c1 is
+/// computed on the state S and c2 is computed on the state S'.
+/// To mirror the content of a document using change events use the
+/// following approach: - start with the same initial content - apply the
 /// 'textDocument/didChange' notifications in the order you receive them. -
-/// apply the `TextDocumentContentChangeEvent`s in a single notification in the
-/// order you receive them.
+/// apply the `TextDocumentContentChangeEvent`s in a single notification in
+/// the order you receive them.
  List<TextDocumentContentChangeEvent> get contentChanges;
 /// Create a copy of DidChangeTextDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -30316,26 +30181,26 @@ class _DidChangeTextDocumentParams implements DidChangeTextDocumentParams {
 /// after all provided content changes have been applied.
 @override final  VersionedTextDocumentIdentifier textDocument;
 /// The actual content changes. The content changes describe single state
-/// changes to the document. So if there are two content changes c1 (at array
-/// index 0) and c2 (at array index 1) for a document in state S then c1 moves
-/// the document from S to S' and c2 from S' to S''. So c1 is computed on the
-/// state S and c2 is computed on the state S'.
-/// To mirror the content of a document using change events use the following
-/// approach: - start with the same initial content - apply the
+/// changes to the document. So if there are two content changes c1 (at
+/// array index 0) and c2 (at array index 1) for a document in state S then
+/// c1 moves the document from S to S' and c2 from S' to S''. So c1 is
+/// computed on the state S and c2 is computed on the state S'.
+/// To mirror the content of a document using change events use the
+/// following approach: - start with the same initial content - apply the
 /// 'textDocument/didChange' notifications in the order you receive them. -
-/// apply the `TextDocumentContentChangeEvent`s in a single notification in the
-/// order you receive them.
+/// apply the `TextDocumentContentChangeEvent`s in a single notification in
+/// the order you receive them.
  final  List<TextDocumentContentChangeEvent> _contentChanges;
 /// The actual content changes. The content changes describe single state
-/// changes to the document. So if there are two content changes c1 (at array
-/// index 0) and c2 (at array index 1) for a document in state S then c1 moves
-/// the document from S to S' and c2 from S' to S''. So c1 is computed on the
-/// state S and c2 is computed on the state S'.
-/// To mirror the content of a document using change events use the following
-/// approach: - start with the same initial content - apply the
+/// changes to the document. So if there are two content changes c1 (at
+/// array index 0) and c2 (at array index 1) for a document in state S then
+/// c1 moves the document from S to S' and c2 from S' to S''. So c1 is
+/// computed on the state S and c2 is computed on the state S'.
+/// To mirror the content of a document using change events use the
+/// following approach: - start with the same initial content - apply the
 /// 'textDocument/didChange' notifications in the order you receive them. -
-/// apply the `TextDocumentContentChangeEvent`s in a single notification in the
-/// order you receive them.
+/// apply the `TextDocumentContentChangeEvent`s in a single notification in
+/// the order you receive them.
 @override List<TextDocumentContentChangeEvent> get contentChanges {
   if (_contentChanges is EqualUnmodifiableListView) return _contentChanges;
   // ignore: implicit_dynamic_type
@@ -30417,9 +30282,9 @@ $VersionedTextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$TextDocumentChangeRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// How documents are synced to the server.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// How documents are synced to the server.
  TextDocumentSyncKind get syncKind;
 /// Create a copy of TextDocumentChangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -30453,7 +30318,7 @@ abstract mixin class $TextDocumentChangeRegistrationOptionsCopyWith<$Res>  {
   factory $TextDocumentChangeRegistrationOptionsCopyWith(TextDocumentChangeRegistrationOptions value, $Res Function(TextDocumentChangeRegistrationOptions) _then) = _$TextDocumentChangeRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, TextDocumentSyncKind syncKind
+ Object documentSelector, TextDocumentSyncKind syncKind
 });
 
 
@@ -30470,10 +30335,9 @@ class _$TextDocumentChangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TextDocumentChangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? syncKind = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? syncKind = null,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,syncKind: null == syncKind ? _self.syncKind : syncKind // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,syncKind: null == syncKind ? _self.syncKind : syncKind // ignore: cast_nullable_to_non_nullable
 as TextDocumentSyncKind,
   ));
 }
@@ -30489,9 +30353,9 @@ class _TextDocumentChangeRegistrationOptions implements TextDocumentChangeRegist
   const _TextDocumentChangeRegistrationOptions({required this.documentSelector, required this.syncKind});
   factory _TextDocumentChangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentChangeRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// How documents are synced to the server.
 @override final  TextDocumentSyncKind syncKind;
 
@@ -30528,7 +30392,7 @@ abstract mixin class _$TextDocumentChangeRegistrationOptionsCopyWith<$Res> imple
   factory _$TextDocumentChangeRegistrationOptionsCopyWith(_TextDocumentChangeRegistrationOptions value, $Res Function(_TextDocumentChangeRegistrationOptions) _then) = __$TextDocumentChangeRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, TextDocumentSyncKind syncKind
+ Object documentSelector, TextDocumentSyncKind syncKind
 });
 
 
@@ -30545,10 +30409,9 @@ class __$TextDocumentChangeRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TextDocumentChangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? syncKind = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? syncKind = null,}) {
   return _then(_TextDocumentChangeRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,syncKind: null == syncKind ? _self.syncKind : syncKind // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,syncKind: null == syncKind ? _self.syncKind : syncKind // ignore: cast_nullable_to_non_nullable
 as TextDocumentSyncKind,
   ));
 }
@@ -30715,8 +30578,8 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 mixin _$DidSaveTextDocumentParams {
 
 /// The document that was saved.
- TextDocumentIdentifier get textDocument;/// Optional the content when saved. Depends on the includeText value when the
-/// save notification was requested.
+ TextDocumentIdentifier get textDocument;/// Optional the content when saved. Depends on the includeText value when
+/// the save notification was requested.
  String? get text;
 /// Create a copy of DidSaveTextDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -30797,8 +30660,8 @@ class _DidSaveTextDocumentParams implements DidSaveTextDocumentParams {
 
 /// The document that was saved.
 @override final  TextDocumentIdentifier textDocument;
-/// Optional the content when saved. Depends on the includeText value when the
-/// save notification was requested.
+/// Optional the content when saved. Depends on the includeText value when
+/// the save notification was requested.
 @override final  String? text;
 
 /// Create a copy of DidSaveTextDocumentParams
@@ -30875,9 +30738,9 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$TextDocumentSaveRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The client is supposed to include the content on save.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The client is supposed to include the content on save.
  bool? get includeText;
 /// Create a copy of TextDocumentSaveRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -30911,7 +30774,7 @@ abstract mixin class $TextDocumentSaveRegistrationOptionsCopyWith<$Res>  {
   factory $TextDocumentSaveRegistrationOptionsCopyWith(TextDocumentSaveRegistrationOptions value, $Res Function(TextDocumentSaveRegistrationOptions) _then) = _$TextDocumentSaveRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? includeText
+ Object documentSelector, bool? includeText
 });
 
 
@@ -30928,10 +30791,9 @@ class _$TextDocumentSaveRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TextDocumentSaveRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? includeText = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? includeText = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,includeText: freezed == includeText ? _self.includeText : includeText // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,includeText: freezed == includeText ? _self.includeText : includeText // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -30947,9 +30809,9 @@ class _TextDocumentSaveRegistrationOptions implements TextDocumentSaveRegistrati
   const _TextDocumentSaveRegistrationOptions({required this.documentSelector, this.includeText});
   factory _TextDocumentSaveRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentSaveRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// The client is supposed to include the content on save.
 @override final  bool? includeText;
 
@@ -30986,7 +30848,7 @@ abstract mixin class _$TextDocumentSaveRegistrationOptionsCopyWith<$Res> impleme
   factory _$TextDocumentSaveRegistrationOptionsCopyWith(_TextDocumentSaveRegistrationOptions value, $Res Function(_TextDocumentSaveRegistrationOptions) _then) = __$TextDocumentSaveRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? includeText
+ Object documentSelector, bool? includeText
 });
 
 
@@ -31003,10 +30865,9 @@ class __$TextDocumentSaveRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of TextDocumentSaveRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? includeText = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? includeText = freezed,}) {
   return _then(_TextDocumentSaveRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,includeText: freezed == includeText ? _self.includeText : includeText // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,includeText: freezed == includeText ? _self.includeText : includeText // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -31626,8 +31487,8 @@ mixin _$PublishDiagnosticsParams {
 
 /// The URI for which diagnostic information is reported.
  String get uri;/// An array of diagnostic information items.
- List<Diagnostic> get diagnostics;/// Optional the version number of the document the diagnostics are published
-/// for.
+ List<Diagnostic> get diagnostics;/// Optional the version number of the document the diagnostics are
+/// published for.
 /// @since 3.15.0
  int? get version;
 /// Create a copy of PublishDiagnosticsParams
@@ -31710,8 +31571,8 @@ class _PublishDiagnosticsParams implements PublishDiagnosticsParams {
   return EqualUnmodifiableListView(_diagnostics);
 }
 
-/// Optional the version number of the document the diagnostics are published
-/// for.
+/// Optional the version number of the document the diagnostics are
+/// published for.
 /// @since 3.15.0
 @override final  int? version;
 
@@ -31783,8 +31644,8 @@ mixin _$CompletionParams {
 
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
- Position get position;/// The completion context. This is only available if the client specifies to
-/// send this using the client capability
+ Position get position;/// The completion context. This is only available if the client specifies
+/// to send this using the client capability
 /// `textDocument.completion.contextSupport === true`
  CompletionContext? get context;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
@@ -31844,9 +31705,7 @@ class _$CompletionParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,context: freezed == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as CompletionContext?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as CompletionContext?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of CompletionParams
@@ -31895,8 +31754,8 @@ class _CompletionParams implements CompletionParams {
 @override final  TextDocumentIdentifier textDocument;
 /// The position inside the text document.
 @override final  Position position;
-/// The completion context. This is only available if the client specifies to
-/// send this using the client capability
+/// The completion context. This is only available if the client specifies
+/// to send this using the client capability
 /// `textDocument.completion.contextSupport === true`
 @override final  CompletionContext? context;
 /// An optional token that a server can use to report partial results (e.g.
@@ -31960,9 +31819,7 @@ class __$CompletionParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,context: freezed == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as CompletionContext?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as CompletionContext?,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -32008,78 +31865,82 @@ mixin _$CompletionItem {
 /// selecting this completion.
 /// If label details are provided the label itself should be an unqualified
 /// name of the completion item.
- String get label;/// A data entry field that is preserved on a completion item between a {@link
-/// CompletionRequest} and a {@link CompletionResolveRequest}.
- LSPAny? get data;/// An optional {@link Command command} that is executed *after* inserting this
-/// completion. *Note* that additional modifications to the current document
-/// should be described with the {@link CompletionItem.additionalTextEdits
-/// additionalTextEdits}-property.
- Command? get command;/// An optional set of characters that when pressed while this completion is
-/// active will accept it first and then type that character. *Note* that all
-/// commit characters should have `length=1` and that superfluous characters
-/// will be ignored.
+ String get label;/// A data entry field that is preserved on a completion item between a
+/// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
+ LSPAny? get data;/// An optional {@link Command command} that is executed *after* inserting
+/// this completion. *Note* that additional modifications to the current
+/// document should be described with the {@link
+/// CompletionItem.additionalTextEdits additionalTextEdits}-property.
+ Command? get command;/// An optional set of characters that when pressed while this completion
+/// is active will accept it first and then type that character. *Note*
+/// that all commit characters should have `length=1` and that superfluous
+/// characters will be ignored.
  List<String>? get commitCharacters;/// An optional array of additional {@link TextEdit text edits} that are
-/// applied when selecting this completion. Edits must not overlap (including
-/// the same insert position) with the main {@link CompletionItem.textEdit
-/// edit} nor with themselves.
+/// applied when selecting this completion. Edits must not overlap
+/// (including the same insert position) with the main {@link
+/// CompletionItem.textEdit edit} nor with themselves.
 /// Additional text edits should be used to change text unrelated to the
-/// current cursor position (for example adding an import statement at the top
-/// of the file if the completion item will insert an unqualified type).
- List<TextEdit>? get additionalTextEdits;/// The edit text used if the completion item is part of a CompletionList and
-/// CompletionList defines an item default for the text edit range.
-/// Clients will only honor this property if they opt into completion list item
-/// defaults using the capability `completionList.itemDefaults`.
-/// If not provided and a list's default range is provided the label property
-/// is used as a text.
+/// current cursor position (for example adding an import statement at the
+/// top of the file if the completion item will insert an unqualified
+/// type).
+ List<TextEdit>? get additionalTextEdits;/// The edit text used if the completion item is part of a CompletionList
+/// and CompletionList defines an item default for the text edit range.
+/// Clients will only honor this property if they opt into completion list
+/// item defaults using the capability `completionList.itemDefaults`.
+/// If not provided and a list's default range is provided the label
+/// property is used as a text.
 /// @since 3.17.0
- String? get textEditText;/// An {@link TextEdit edit} which is applied to a document when selecting this
-/// completion. When an edit is provided the value of {@link
+ String? get textEditText;/// An {@link TextEdit edit} which is applied to a document when selecting
+/// this completion. When an edit is provided the value of {@link
 /// CompletionItem.insertText insertText} is ignored.
-/// Most editors support two different operations when accepting a completion
-/// item. One is to insert a completion text and the other is to replace an
-/// existing text with a completion text. Since this can usually not be
-/// predetermined by a server it can report both ranges. Clients need to signal
-/// support for `InsertReplaceEdits` via the
-/// `textDocument.completion.insertReplaceSupport` client capability property.
+/// Most editors support two different operations when accepting a
+/// completion item. One is to insert a completion text and the other is to
+/// replace an existing text with a completion text. Since this can usually
+/// not be predetermined by a server it can report both ranges. Clients
+/// need to signal support for `InsertReplaceEdits` via the
+/// `textDocument.completion.insertReplaceSupport` client capability
+/// property.
 /// *Note 1:* The text edit's range as well as both ranges from an insert
-/// replace edit must be a [single line] and they must contain the position at
-/// which completion has been requested. *Note 2:* If an `InsertReplaceEdit` is
-/// returned the edit's insert range must be a prefix of the edit's replace
-/// range, that means it must be contained and starting at the same position.
+/// replace edit must be a [single line] and they must contain the position
+/// at which completion has been requested. *Note 2:* If an
+/// `InsertReplaceEdit` is returned the edit's insert range must be a
+/// prefix of the edit's replace range, that means it must be contained and
+/// starting at the same position.
 /// @since 3.16.0 additional type `InsertReplaceEdit`
- dynamic? get textEdit;/// How whitespace and indentation is handled during completion item insertion.
-/// If not provided the clients default value depends on the
+ Object? get textEdit;/// How whitespace and indentation is handled during completion item
+/// insertion. If not provided the clients default value depends on the
 /// `textDocument.completion.insertTextMode` client capability.
 /// @since 3.16.0
- InsertTextMode? get insertTextMode;/// The format of the insert text. The format applies to both the `insertText`
-/// property and the `newText` property of a provided `textEdit`. If omitted
-/// defaults to `InsertTextFormat.PlainText`.
+ InsertTextMode? get insertTextMode;/// The format of the insert text. The format applies to both the
+/// `insertText` property and the `newText` property of a provided
+/// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
 /// Please note that the insertTextFormat doesn't apply to
 /// `additionalTextEdits`.
  InsertTextFormat? get insertTextFormat;/// A string that should be inserted into a document when selecting this
-/// completion. When `falsy` the {@link CompletionItem.label label} is used.
+/// completion. When `falsy` the {@link CompletionItem.label label} is
+/// used.
 /// The `insertText` is subject to interpretation by the client side. Some
-/// tools might not take the string literally. For example VS Code when code
-/// complete is requested in this example `con<cursor position>` and a
-/// completion item with an `insertText` of `console` is provided it will only
-/// insert `sole`. Therefore it is recommended to use `textEdit` instead since
-/// it avoids additional client side interpretation.
- String? get insertText;/// A string that should be used when filtering a set of completion items. When
-/// `falsy` the {@link CompletionItem.label label} is used.
+/// tools might not take the string literally. For example VS Code when
+/// code complete is requested in this example `con<cursor position>` and a
+/// completion item with an `insertText` of `console` is provided it will
+/// only insert `sole`. Therefore it is recommended to use `textEdit`
+/// instead since it avoids additional client side interpretation.
+ String? get insertText;/// A string that should be used when filtering a set of completion items.
+/// When `falsy` the {@link CompletionItem.label label} is used.
  String? get filterText;/// A string that should be used when comparing this item with other items.
 /// When `falsy` the {@link CompletionItem.label label} is used.
  String? get sortText;/// Select this item when showing.
-/// *Note* that only one completion item can be selected and that the tool /
-/// client decides which item that is. The rule is that the *first* item of
-/// those that match best is selected.
+/// *Note* that only one completion item can be selected and that the tool
+/// / client decides which item that is. The rule is that the *first* item
+/// of those that match best is selected.
  bool? get preselect;/// Indicates if this item is deprecated. @deprecated Use `tags` instead.
  bool? get deprecated;/// A human-readable string that represents a doc-comment.
- dynamic? get documentation;/// A human-readable string with additional information about this item, like
-/// type or symbol information.
+ Object? get documentation;/// A human-readable string with additional information about this item,
+/// like type or symbol information.
  String? get detail;/// Tags for this completion item.
 /// @since 3.15.0
- List<CompletionItemTag>? get tags;/// The kind of this completion item. Based of the kind an icon is chosen by
-/// the editor.
+ List<CompletionItemTag>? get tags;/// The kind of this completion item. Based of the kind an icon is chosen
+/// by the editor.
  CompletionItemKind? get kind;/// Additional details for the label
 /// @since 3.17.0
  CompletionItemLabelDetails? get labelDetails;
@@ -32115,7 +31976,7 @@ abstract mixin class $CompletionItemCopyWith<$Res>  {
   factory $CompletionItemCopyWith(CompletionItem value, $Res Function(CompletionItem) _then) = _$CompletionItemCopyWithImpl;
 @useResult
 $Res call({
- String label, LSPAny? data, Command? command, List<String>? commitCharacters, List<TextEdit>? additionalTextEdits, String? textEditText, dynamic? textEdit, InsertTextMode? insertTextMode, InsertTextFormat? insertTextFormat, String? insertText, String? filterText, String? sortText, bool? preselect, bool? deprecated, dynamic? documentation, String? detail, List<CompletionItemTag>? tags, CompletionItemKind? kind, CompletionItemLabelDetails? labelDetails
+ String label, LSPAny? data, Command? command, List<String>? commitCharacters, List<TextEdit>? additionalTextEdits, String? textEditText, Object? textEdit, InsertTextMode? insertTextMode, InsertTextFormat? insertTextFormat, String? insertText, String? filterText, String? sortText, bool? preselect, bool? deprecated, Object? documentation, String? detail, List<CompletionItemTag>? tags, CompletionItemKind? kind, CompletionItemLabelDetails? labelDetails
 });
 
 
@@ -32135,21 +31996,18 @@ class _$CompletionItemCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? label = null,Object? data = freezed,Object? command = freezed,Object? commitCharacters = freezed,Object? additionalTextEdits = freezed,Object? textEditText = freezed,Object? textEdit = freezed,Object? insertTextMode = freezed,Object? insertTextFormat = freezed,Object? insertText = freezed,Object? filterText = freezed,Object? sortText = freezed,Object? preselect = freezed,Object? deprecated = freezed,Object? documentation = freezed,Object? detail = freezed,Object? tags = freezed,Object? kind = freezed,Object? labelDetails = freezed,}) {
   return _then(_self.copyWith(
 label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as String,data: freezed == data ? _self.data : data ,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,commitCharacters: freezed == commitCharacters ? _self.commitCharacters : commitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,additionalTextEdits: freezed == additionalTextEdits ? _self.additionalTextEdits : additionalTextEdits // ignore: cast_nullable_to_non_nullable
 as List<TextEdit>?,textEditText: freezed == textEditText ? _self.textEditText : textEditText // ignore: cast_nullable_to_non_nullable
-as String?,textEdit: freezed == textEdit ? _self.textEdit : textEdit // ignore: cast_nullable_to_non_nullable
-as dynamic?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
+as String?,textEdit: freezed == textEdit ? _self.textEdit : textEdit ,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
 as InsertTextMode?,insertTextFormat: freezed == insertTextFormat ? _self.insertTextFormat : insertTextFormat // ignore: cast_nullable_to_non_nullable
 as InsertTextFormat?,insertText: freezed == insertText ? _self.insertText : insertText // ignore: cast_nullable_to_non_nullable
 as String?,filterText: freezed == filterText ? _self.filterText : filterText // ignore: cast_nullable_to_non_nullable
 as String?,sortText: freezed == sortText ? _self.sortText : sortText // ignore: cast_nullable_to_non_nullable
 as String?,preselect: freezed == preselect ? _self.preselect : preselect // ignore: cast_nullable_to_non_nullable
 as bool?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
-as bool?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
-as dynamic?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as bool?,documentation: freezed == documentation ? _self.documentation : documentation ,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
 as String?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<CompletionItemTag>?,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as CompletionItemKind?,labelDetails: freezed == labelDetails ? _self.labelDetails : labelDetails // ignore: cast_nullable_to_non_nullable
@@ -32198,23 +32056,23 @@ class _CompletionItem implements CompletionItem {
 /// If label details are provided the label itself should be an unqualified
 /// name of the completion item.
 @override final  String label;
-/// A data entry field that is preserved on a completion item between a {@link
-/// CompletionRequest} and a {@link CompletionResolveRequest}.
+/// A data entry field that is preserved on a completion item between a
+/// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
 @override final  LSPAny? data;
-/// An optional {@link Command command} that is executed *after* inserting this
-/// completion. *Note* that additional modifications to the current document
-/// should be described with the {@link CompletionItem.additionalTextEdits
-/// additionalTextEdits}-property.
+/// An optional {@link Command command} that is executed *after* inserting
+/// this completion. *Note* that additional modifications to the current
+/// document should be described with the {@link
+/// CompletionItem.additionalTextEdits additionalTextEdits}-property.
 @override final  Command? command;
-/// An optional set of characters that when pressed while this completion is
-/// active will accept it first and then type that character. *Note* that all
-/// commit characters should have `length=1` and that superfluous characters
-/// will be ignored.
+/// An optional set of characters that when pressed while this completion
+/// is active will accept it first and then type that character. *Note*
+/// that all commit characters should have `length=1` and that superfluous
+/// characters will be ignored.
  final  List<String>? _commitCharacters;
-/// An optional set of characters that when pressed while this completion is
-/// active will accept it first and then type that character. *Note* that all
-/// commit characters should have `length=1` and that superfluous characters
-/// will be ignored.
+/// An optional set of characters that when pressed while this completion
+/// is active will accept it first and then type that character. *Note*
+/// that all commit characters should have `length=1` and that superfluous
+/// characters will be ignored.
 @override List<String>? get commitCharacters {
   final value = _commitCharacters;
   if (value == null) return null;
@@ -32224,20 +32082,22 @@ class _CompletionItem implements CompletionItem {
 }
 
 /// An optional array of additional {@link TextEdit text edits} that are
-/// applied when selecting this completion. Edits must not overlap (including
-/// the same insert position) with the main {@link CompletionItem.textEdit
-/// edit} nor with themselves.
+/// applied when selecting this completion. Edits must not overlap
+/// (including the same insert position) with the main {@link
+/// CompletionItem.textEdit edit} nor with themselves.
 /// Additional text edits should be used to change text unrelated to the
-/// current cursor position (for example adding an import statement at the top
-/// of the file if the completion item will insert an unqualified type).
+/// current cursor position (for example adding an import statement at the
+/// top of the file if the completion item will insert an unqualified
+/// type).
  final  List<TextEdit>? _additionalTextEdits;
 /// An optional array of additional {@link TextEdit text edits} that are
-/// applied when selecting this completion. Edits must not overlap (including
-/// the same insert position) with the main {@link CompletionItem.textEdit
-/// edit} nor with themselves.
+/// applied when selecting this completion. Edits must not overlap
+/// (including the same insert position) with the main {@link
+/// CompletionItem.textEdit edit} nor with themselves.
 /// Additional text edits should be used to change text unrelated to the
-/// current cursor position (for example adding an import statement at the top
-/// of the file if the completion item will insert an unqualified type).
+/// current cursor position (for example adding an import statement at the
+/// top of the file if the completion item will insert an unqualified
+/// type).
 @override List<TextEdit>? get additionalTextEdits {
   final value = _additionalTextEdits;
   if (value == null) return null;
@@ -32246,67 +32106,70 @@ class _CompletionItem implements CompletionItem {
   return EqualUnmodifiableListView(value);
 }
 
-/// The edit text used if the completion item is part of a CompletionList and
-/// CompletionList defines an item default for the text edit range.
-/// Clients will only honor this property if they opt into completion list item
-/// defaults using the capability `completionList.itemDefaults`.
-/// If not provided and a list's default range is provided the label property
-/// is used as a text.
+/// The edit text used if the completion item is part of a CompletionList
+/// and CompletionList defines an item default for the text edit range.
+/// Clients will only honor this property if they opt into completion list
+/// item defaults using the capability `completionList.itemDefaults`.
+/// If not provided and a list's default range is provided the label
+/// property is used as a text.
 /// @since 3.17.0
 @override final  String? textEditText;
-/// An {@link TextEdit edit} which is applied to a document when selecting this
-/// completion. When an edit is provided the value of {@link
+/// An {@link TextEdit edit} which is applied to a document when selecting
+/// this completion. When an edit is provided the value of {@link
 /// CompletionItem.insertText insertText} is ignored.
-/// Most editors support two different operations when accepting a completion
-/// item. One is to insert a completion text and the other is to replace an
-/// existing text with a completion text. Since this can usually not be
-/// predetermined by a server it can report both ranges. Clients need to signal
-/// support for `InsertReplaceEdits` via the
-/// `textDocument.completion.insertReplaceSupport` client capability property.
+/// Most editors support two different operations when accepting a
+/// completion item. One is to insert a completion text and the other is to
+/// replace an existing text with a completion text. Since this can usually
+/// not be predetermined by a server it can report both ranges. Clients
+/// need to signal support for `InsertReplaceEdits` via the
+/// `textDocument.completion.insertReplaceSupport` client capability
+/// property.
 /// *Note 1:* The text edit's range as well as both ranges from an insert
-/// replace edit must be a [single line] and they must contain the position at
-/// which completion has been requested. *Note 2:* If an `InsertReplaceEdit` is
-/// returned the edit's insert range must be a prefix of the edit's replace
-/// range, that means it must be contained and starting at the same position.
+/// replace edit must be a [single line] and they must contain the position
+/// at which completion has been requested. *Note 2:* If an
+/// `InsertReplaceEdit` is returned the edit's insert range must be a
+/// prefix of the edit's replace range, that means it must be contained and
+/// starting at the same position.
 /// @since 3.16.0 additional type `InsertReplaceEdit`
-@override final  dynamic? textEdit;
-/// How whitespace and indentation is handled during completion item insertion.
-/// If not provided the clients default value depends on the
+@override final  Object? textEdit;
+/// How whitespace and indentation is handled during completion item
+/// insertion. If not provided the clients default value depends on the
 /// `textDocument.completion.insertTextMode` client capability.
 /// @since 3.16.0
 @override final  InsertTextMode? insertTextMode;
-/// The format of the insert text. The format applies to both the `insertText`
-/// property and the `newText` property of a provided `textEdit`. If omitted
-/// defaults to `InsertTextFormat.PlainText`.
+/// The format of the insert text. The format applies to both the
+/// `insertText` property and the `newText` property of a provided
+/// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
 /// Please note that the insertTextFormat doesn't apply to
 /// `additionalTextEdits`.
 @override final  InsertTextFormat? insertTextFormat;
 /// A string that should be inserted into a document when selecting this
-/// completion. When `falsy` the {@link CompletionItem.label label} is used.
+/// completion. When `falsy` the {@link CompletionItem.label label} is
+/// used.
 /// The `insertText` is subject to interpretation by the client side. Some
-/// tools might not take the string literally. For example VS Code when code
-/// complete is requested in this example `con<cursor position>` and a
-/// completion item with an `insertText` of `console` is provided it will only
-/// insert `sole`. Therefore it is recommended to use `textEdit` instead since
-/// it avoids additional client side interpretation.
+/// tools might not take the string literally. For example VS Code when
+/// code complete is requested in this example `con<cursor position>` and a
+/// completion item with an `insertText` of `console` is provided it will
+/// only insert `sole`. Therefore it is recommended to use `textEdit`
+/// instead since it avoids additional client side interpretation.
 @override final  String? insertText;
-/// A string that should be used when filtering a set of completion items. When
-/// `falsy` the {@link CompletionItem.label label} is used.
+/// A string that should be used when filtering a set of completion items.
+/// When `falsy` the {@link CompletionItem.label label} is used.
 @override final  String? filterText;
 /// A string that should be used when comparing this item with other items.
 /// When `falsy` the {@link CompletionItem.label label} is used.
 @override final  String? sortText;
 /// Select this item when showing.
-/// *Note* that only one completion item can be selected and that the tool /
-/// client decides which item that is. The rule is that the *first* item of
-/// those that match best is selected.
+/// *Note* that only one completion item can be selected and that the tool
+/// / client decides which item that is. The rule is that the *first* item
+/// of those that match best is selected.
 @override final  bool? preselect;
 /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
 @override final  bool? deprecated;
 /// A human-readable string that represents a doc-comment.
-@override final  dynamic? documentation;
-/// A human-readable string with additional information about this item, like
-/// type or symbol information.
+@override final  Object? documentation;
+/// A human-readable string with additional information about this item,
+/// like type or symbol information.
 @override final  String? detail;
 /// Tags for this completion item.
 /// @since 3.15.0
@@ -32321,8 +32184,8 @@ class _CompletionItem implements CompletionItem {
   return EqualUnmodifiableListView(value);
 }
 
-/// The kind of this completion item. Based of the kind an icon is chosen by
-/// the editor.
+/// The kind of this completion item. Based of the kind an icon is chosen
+/// by the editor.
 @override final  CompletionItemKind? kind;
 /// Additional details for the label
 /// @since 3.17.0
@@ -32361,7 +32224,7 @@ abstract mixin class _$CompletionItemCopyWith<$Res> implements $CompletionItemCo
   factory _$CompletionItemCopyWith(_CompletionItem value, $Res Function(_CompletionItem) _then) = __$CompletionItemCopyWithImpl;
 @override @useResult
 $Res call({
- String label, LSPAny? data, Command? command, List<String>? commitCharacters, List<TextEdit>? additionalTextEdits, String? textEditText, dynamic? textEdit, InsertTextMode? insertTextMode, InsertTextFormat? insertTextFormat, String? insertText, String? filterText, String? sortText, bool? preselect, bool? deprecated, dynamic? documentation, String? detail, List<CompletionItemTag>? tags, CompletionItemKind? kind, CompletionItemLabelDetails? labelDetails
+ String label, LSPAny? data, Command? command, List<String>? commitCharacters, List<TextEdit>? additionalTextEdits, String? textEditText, Object? textEdit, InsertTextMode? insertTextMode, InsertTextFormat? insertTextFormat, String? insertText, String? filterText, String? sortText, bool? preselect, bool? deprecated, Object? documentation, String? detail, List<CompletionItemTag>? tags, CompletionItemKind? kind, CompletionItemLabelDetails? labelDetails
 });
 
 
@@ -32381,21 +32244,18 @@ class __$CompletionItemCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? label = null,Object? data = freezed,Object? command = freezed,Object? commitCharacters = freezed,Object? additionalTextEdits = freezed,Object? textEditText = freezed,Object? textEdit = freezed,Object? insertTextMode = freezed,Object? insertTextFormat = freezed,Object? insertText = freezed,Object? filterText = freezed,Object? sortText = freezed,Object? preselect = freezed,Object? deprecated = freezed,Object? documentation = freezed,Object? detail = freezed,Object? tags = freezed,Object? kind = freezed,Object? labelDetails = freezed,}) {
   return _then(_CompletionItem(
 label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as String,data: freezed == data ? _self.data : data ,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,commitCharacters: freezed == commitCharacters ? _self._commitCharacters : commitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,additionalTextEdits: freezed == additionalTextEdits ? _self._additionalTextEdits : additionalTextEdits // ignore: cast_nullable_to_non_nullable
 as List<TextEdit>?,textEditText: freezed == textEditText ? _self.textEditText : textEditText // ignore: cast_nullable_to_non_nullable
-as String?,textEdit: freezed == textEdit ? _self.textEdit : textEdit // ignore: cast_nullable_to_non_nullable
-as dynamic?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
+as String?,textEdit: freezed == textEdit ? _self.textEdit : textEdit ,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
 as InsertTextMode?,insertTextFormat: freezed == insertTextFormat ? _self.insertTextFormat : insertTextFormat // ignore: cast_nullable_to_non_nullable
 as InsertTextFormat?,insertText: freezed == insertText ? _self.insertText : insertText // ignore: cast_nullable_to_non_nullable
 as String?,filterText: freezed == filterText ? _self.filterText : filterText // ignore: cast_nullable_to_non_nullable
 as String?,sortText: freezed == sortText ? _self.sortText : sortText // ignore: cast_nullable_to_non_nullable
 as String?,preselect: freezed == preselect ? _self.preselect : preselect // ignore: cast_nullable_to_non_nullable
 as bool?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
-as bool?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
-as dynamic?,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
+as bool?,documentation: freezed == documentation ? _self.documentation : documentation ,detail: freezed == detail ? _self.detail : detail // ignore: cast_nullable_to_non_nullable
 as String?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<CompletionItemTag>?,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as CompletionItemKind?,labelDetails: freezed == labelDetails ? _self.labelDetails : labelDetails // ignore: cast_nullable_to_non_nullable
@@ -32434,20 +32294,21 @@ $CompletionItemLabelDetailsCopyWith<$Res>? get labelDetails {
 /// @nodoc
 mixin _$CompletionList {
 
-/// This list it not complete. Further typing results in recomputing this list.
+/// This list it not complete. Further typing results in recomputing this
+/// list.
 /// Recomputed lists have all their items replaced (not appended) in the
 /// incomplete completion sessions.
  bool get isIncomplete;/// The completion items.
- List<CompletionItem> get items;/// In many cases the items of an actual completion result share the same value
-/// for properties like `commitCharacters` or the range of a text edit. A
-/// completion list can therefore define item defaults which will be used if a
-/// completion item itself doesn't specify the value.
-/// If a completion list specifies a default value and a completion item also
-/// specifies a corresponding value the one from the item is used.
+ List<CompletionItem> get items;/// In many cases the items of an actual completion result share the same
+/// value for properties like `commitCharacters` or the range of a text
+/// edit. A completion list can therefore define item defaults which will
+/// be used if a completion item itself doesn't specify the value.
+/// If a completion list specifies a default value and a completion item
+/// also specifies a corresponding value the one from the item is used.
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
 /// @since 3.17.0
- ({List<String>? commitCharacters, dynamic? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? get itemDefaults;
+ ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? get itemDefaults;
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -32480,7 +32341,7 @@ abstract mixin class $CompletionListCopyWith<$Res>  {
   factory $CompletionListCopyWith(CompletionList value, $Res Function(CompletionList) _then) = _$CompletionListCopyWithImpl;
 @useResult
 $Res call({
- bool isIncomplete, List<CompletionItem> items, ({List<String>? commitCharacters, dynamic? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults
+ bool isIncomplete, List<CompletionItem> items, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults
 });
 
 
@@ -32502,7 +32363,7 @@ class _$CompletionListCopyWithImpl<$Res>
 isIncomplete: null == isIncomplete ? _self.isIncomplete : isIncomplete // ignore: cast_nullable_to_non_nullable
 as bool,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<CompletionItem>,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as ({List<String>? commitCharacters, dynamic? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,
+as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,
   ));
 }
 
@@ -32517,7 +32378,8 @@ class _CompletionList implements CompletionList {
   const _CompletionList({required this.isIncomplete, required final  List<CompletionItem> items, this.itemDefaults}): _items = items;
   factory _CompletionList.fromJson(Map<String, dynamic> json) => _$CompletionListFromJson(json);
 
-/// This list it not complete. Further typing results in recomputing this list.
+/// This list it not complete. Further typing results in recomputing this
+/// list.
 /// Recomputed lists have all their items replaced (not appended) in the
 /// incomplete completion sessions.
 @override final  bool isIncomplete;
@@ -32530,16 +32392,16 @@ class _CompletionList implements CompletionList {
   return EqualUnmodifiableListView(_items);
 }
 
-/// In many cases the items of an actual completion result share the same value
-/// for properties like `commitCharacters` or the range of a text edit. A
-/// completion list can therefore define item defaults which will be used if a
-/// completion item itself doesn't specify the value.
-/// If a completion list specifies a default value and a completion item also
-/// specifies a corresponding value the one from the item is used.
+/// In many cases the items of an actual completion result share the same
+/// value for properties like `commitCharacters` or the range of a text
+/// edit. A completion list can therefore define item defaults which will
+/// be used if a completion item itself doesn't specify the value.
+/// If a completion list specifies a default value and a completion item
+/// also specifies a corresponding value the one from the item is used.
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
 /// @since 3.17.0
-@override final  ({List<String>? commitCharacters, dynamic? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults;
+@override final  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults;
 
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
@@ -32574,7 +32436,7 @@ abstract mixin class _$CompletionListCopyWith<$Res> implements $CompletionListCo
   factory _$CompletionListCopyWith(_CompletionList value, $Res Function(_CompletionList) _then) = __$CompletionListCopyWithImpl;
 @override @useResult
 $Res call({
- bool isIncomplete, List<CompletionItem> items, ({List<String>? commitCharacters, dynamic? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults
+ bool isIncomplete, List<CompletionItem> items, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults
 });
 
 
@@ -32596,7 +32458,7 @@ class __$CompletionListCopyWithImpl<$Res>
 isIncomplete: null == isIncomplete ? _self.isIncomplete : isIncomplete // ignore: cast_nullable_to_non_nullable
 as bool,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<CompletionItem>,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as ({List<String>? commitCharacters, dynamic? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,
+as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,
   ));
 }
 
@@ -32607,28 +32469,29 @@ as ({List<String>? commitCharacters, dynamic? editRange, InsertTextFormat? inser
 /// @nodoc
 mixin _$CompletionRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The server supports the following `CompletionItem` specific capabilities.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The server supports the following `CompletionItem` specific
+/// capabilities.
 /// @since 3.17.0
  ({bool? labelDetailsSupport})? get completionItem;/// The server provides support to resolve additional information for a
 /// completion item.
- bool? get resolveProvider;/// The list of all possible characters that commit a completion. This field
-/// can be used if clients don't support individual commit characters per
-/// completion item. See
+ bool? get resolveProvider;/// The list of all possible characters that commit a completion. This
+/// field can be used if clients don't support individual commit characters
+/// per completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters
+/// on an individual completion item the ones on the completion item win.
 /// @since 3.2.0
  List<String>? get allCommitCharacters;/// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they
-/// do so when the user starts to type an identifier. For example if the user
-/// types `c` in a JavaScript file code complete will automatically pop up
-/// present `console` besides others as a completion item. Characters that make
-/// up identifiers don't need to be listed here.
-/// If code complete should automatically be trigger on characters not being
-/// valid inside an identifier (for example `.` in JavaScript) list them in
-/// `triggerCharacters`.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will
+/// automatically pop up present `console` besides others as a completion
+/// item. Characters that make up identifiers don't need to be listed here.
+/// If code complete should automatically be trigger on characters not
+/// being valid inside an identifier (for example `.` in JavaScript) list
+/// them in `triggerCharacters`.
  List<String>? get triggerCharacters; bool? get workDoneProgress;
 /// Create a copy of CompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -32662,7 +32525,7 @@ abstract mixin class $CompletionRegistrationOptionsCopyWith<$Res>  {
   factory $CompletionRegistrationOptionsCopyWith(CompletionRegistrationOptions value, $Res Function(CompletionRegistrationOptions) _then) = _$CompletionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, ({bool? labelDetailsSupport})? completionItem, bool? resolveProvider, List<String>? allCommitCharacters, List<String>? triggerCharacters, bool? workDoneProgress
+ Object documentSelector, ({bool? labelDetailsSupport})? completionItem, bool? resolveProvider, List<String>? allCommitCharacters, List<String>? triggerCharacters, bool? workDoneProgress
 });
 
 
@@ -32679,10 +32542,9 @@ class _$CompletionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? completionItem = freezed,Object? resolveProvider = freezed,Object? allCommitCharacters = freezed,Object? triggerCharacters = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? completionItem = freezed,Object? resolveProvider = freezed,Object? allCommitCharacters = freezed,Object? triggerCharacters = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
 as ({bool? labelDetailsSupport})?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,allCommitCharacters: freezed == allCommitCharacters ? _self.allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,triggerCharacters: freezed == triggerCharacters ? _self.triggerCharacters : triggerCharacters // ignore: cast_nullable_to_non_nullable
@@ -32702,29 +32564,30 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
   const _CompletionRegistrationOptions({required this.documentSelector, this.completionItem, this.resolveProvider, final  List<String>? allCommitCharacters, final  List<String>? triggerCharacters, this.workDoneProgress}): _allCommitCharacters = allCommitCharacters,_triggerCharacters = triggerCharacters;
   factory _CompletionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CompletionRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The server supports the following `CompletionItem` specific capabilities.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The server supports the following `CompletionItem` specific
+/// capabilities.
 /// @since 3.17.0
 @override final  ({bool? labelDetailsSupport})? completionItem;
 /// The server provides support to resolve additional information for a
 /// completion item.
 @override final  bool? resolveProvider;
-/// The list of all possible characters that commit a completion. This field
-/// can be used if clients don't support individual commit characters per
-/// completion item. See
+/// The list of all possible characters that commit a completion. This
+/// field can be used if clients don't support individual commit characters
+/// per completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters
+/// on an individual completion item the ones on the completion item win.
 /// @since 3.2.0
  final  List<String>? _allCommitCharacters;
-/// The list of all possible characters that commit a completion. This field
-/// can be used if clients don't support individual commit characters per
-/// completion item. See
+/// The list of all possible characters that commit a completion. This
+/// field can be used if clients don't support individual commit characters
+/// per completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters
+/// on an individual completion item the ones on the completion item win.
 /// @since 3.2.0
 @override List<String>? get allCommitCharacters {
   final value = _allCommitCharacters;
@@ -32735,24 +32598,24 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
 }
 
 /// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they
-/// do so when the user starts to type an identifier. For example if the user
-/// types `c` in a JavaScript file code complete will automatically pop up
-/// present `console` besides others as a completion item. Characters that make
-/// up identifiers don't need to be listed here.
-/// If code complete should automatically be trigger on characters not being
-/// valid inside an identifier (for example `.` in JavaScript) list them in
-/// `triggerCharacters`.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will
+/// automatically pop up present `console` besides others as a completion
+/// item. Characters that make up identifiers don't need to be listed here.
+/// If code complete should automatically be trigger on characters not
+/// being valid inside an identifier (for example `.` in JavaScript) list
+/// them in `triggerCharacters`.
  final  List<String>? _triggerCharacters;
 /// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they
-/// do so when the user starts to type an identifier. For example if the user
-/// types `c` in a JavaScript file code complete will automatically pop up
-/// present `console` besides others as a completion item. Characters that make
-/// up identifiers don't need to be listed here.
-/// If code complete should automatically be trigger on characters not being
-/// valid inside an identifier (for example `.` in JavaScript) list them in
-/// `triggerCharacters`.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will
+/// automatically pop up present `console` besides others as a completion
+/// item. Characters that make up identifiers don't need to be listed here.
+/// If code complete should automatically be trigger on characters not
+/// being valid inside an identifier (for example `.` in JavaScript) list
+/// them in `triggerCharacters`.
 @override List<String>? get triggerCharacters {
   final value = _triggerCharacters;
   if (value == null) return null;
@@ -32796,7 +32659,7 @@ abstract mixin class _$CompletionRegistrationOptionsCopyWith<$Res> implements $C
   factory _$CompletionRegistrationOptionsCopyWith(_CompletionRegistrationOptions value, $Res Function(_CompletionRegistrationOptions) _then) = __$CompletionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, ({bool? labelDetailsSupport})? completionItem, bool? resolveProvider, List<String>? allCommitCharacters, List<String>? triggerCharacters, bool? workDoneProgress
+ Object documentSelector, ({bool? labelDetailsSupport})? completionItem, bool? resolveProvider, List<String>? allCommitCharacters, List<String>? triggerCharacters, bool? workDoneProgress
 });
 
 
@@ -32813,10 +32676,9 @@ class __$CompletionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? completionItem = freezed,Object? resolveProvider = freezed,Object? allCommitCharacters = freezed,Object? triggerCharacters = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? completionItem = freezed,Object? resolveProvider = freezed,Object? allCommitCharacters = freezed,Object? triggerCharacters = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_CompletionRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
 as ({bool? labelDetailsSupport})?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,allCommitCharacters: freezed == allCommitCharacters ? _self._allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,triggerCharacters: freezed == triggerCharacters ? _self._triggerCharacters : triggerCharacters // ignore: cast_nullable_to_non_nullable
@@ -32889,8 +32751,7 @@ class _$HoverParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of HoverParams
@@ -32984,8 +32845,7 @@ class __$HoverParamsCopyWithImpl<$Res>
   return _then(_HoverParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -33015,8 +32875,8 @@ $PositionCopyWith<$Res> get position {
 mixin _$Hover {
 
 /// The hover's content
- dynamic get contents;/// An optional range inside the text document that is used to visualize the
-/// hover, e.g. by changing the background color.
+ Object get contents;/// An optional range inside the text document that is used to visualize
+/// the hover, e.g. by changing the background color.
  Range? get range;
 /// Create a copy of Hover
 /// with the given fields replaced by the non-null parameter values.
@@ -33050,7 +32910,7 @@ abstract mixin class $HoverCopyWith<$Res>  {
   factory $HoverCopyWith(Hover value, $Res Function(Hover) _then) = _$HoverCopyWithImpl;
 @useResult
 $Res call({
- dynamic contents, Range? range
+ Object contents, Range? range
 });
 
 
@@ -33067,10 +32927,9 @@ class _$HoverCopyWithImpl<$Res>
 
 /// Create a copy of Hover
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? contents = freezed,Object? range = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? contents = null,Object? range = freezed,}) {
   return _then(_self.copyWith(
-contents: freezed == contents ? _self.contents : contents // ignore: cast_nullable_to_non_nullable
-as dynamic,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+contents: null == contents ? _self.contents : contents ,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range?,
   ));
 }
@@ -33099,9 +32958,9 @@ class _Hover implements Hover {
   factory _Hover.fromJson(Map<String, dynamic> json) => _$HoverFromJson(json);
 
 /// The hover's content
-@override final  dynamic contents;
-/// An optional range inside the text document that is used to visualize the
-/// hover, e.g. by changing the background color.
+@override final  Object contents;
+/// An optional range inside the text document that is used to visualize
+/// the hover, e.g. by changing the background color.
 @override final  Range? range;
 
 /// Create a copy of Hover
@@ -33137,7 +32996,7 @@ abstract mixin class _$HoverCopyWith<$Res> implements $HoverCopyWith<$Res> {
   factory _$HoverCopyWith(_Hover value, $Res Function(_Hover) _then) = __$HoverCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic contents, Range? range
+ Object contents, Range? range
 });
 
 
@@ -33154,10 +33013,9 @@ class __$HoverCopyWithImpl<$Res>
 
 /// Create a copy of Hover
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? contents = freezed,Object? range = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? contents = null,Object? range = freezed,}) {
   return _then(_Hover(
-contents: freezed == contents ? _self.contents : contents // ignore: cast_nullable_to_non_nullable
-as dynamic,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+contents: null == contents ? _self.contents : contents ,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range?,
   ));
 }
@@ -33181,9 +33039,9 @@ $RangeCopyWith<$Res>? get range {
 /// @nodoc
 mixin _$HoverRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector; bool? get workDoneProgress;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector; bool? get workDoneProgress;
 /// Create a copy of HoverRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -33216,7 +33074,7 @@ abstract mixin class $HoverRegistrationOptionsCopyWith<$Res>  {
   factory $HoverRegistrationOptionsCopyWith(HoverRegistrationOptions value, $Res Function(HoverRegistrationOptions) _then) = _$HoverRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -33233,10 +33091,9 @@ class _$HoverRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of HoverRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -33252,9 +33109,9 @@ class _HoverRegistrationOptions implements HoverRegistrationOptions {
   const _HoverRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _HoverRegistrationOptions.fromJson(Map<String, dynamic> json) => _$HoverRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 @override final  bool? workDoneProgress;
 
 /// Create a copy of HoverRegistrationOptions
@@ -33290,7 +33147,7 @@ abstract mixin class _$HoverRegistrationOptionsCopyWith<$Res> implements $HoverR
   factory _$HoverRegistrationOptionsCopyWith(_HoverRegistrationOptions value, $Res Function(_HoverRegistrationOptions) _then) = __$HoverRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -33307,10 +33164,9 @@ class __$HoverRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of HoverRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_HoverRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -33324,8 +33180,8 @@ mixin _$SignatureHelpParams {
 
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
- Position get position;/// The signature help context. This is only available if the client specifies
-/// to send this using the client capability
+ Position get position;/// The signature help context. This is only available if the client
+/// specifies to send this using the client capability
 /// `textDocument.signatureHelp.contextSupport === true`
 /// @since 3.15.0
  SignatureHelpContext? get context;/// An optional token that a server can use to report work done progress.
@@ -33384,8 +33240,7 @@ class _$SignatureHelpParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,context: freezed == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as SignatureHelpContext?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as SignatureHelpContext?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of SignatureHelpParams
@@ -33434,8 +33289,8 @@ class _SignatureHelpParams implements SignatureHelpParams {
 @override final  TextDocumentIdentifier textDocument;
 /// The position inside the text document.
 @override final  Position position;
-/// The signature help context. This is only available if the client specifies
-/// to send this using the client capability
+/// The signature help context. This is only available if the client
+/// specifies to send this using the client capability
 /// `textDocument.signatureHelp.contextSupport === true`
 /// @since 3.15.0
 @override final  SignatureHelpContext? context;
@@ -33497,8 +33352,7 @@ class __$SignatureHelpParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,context: freezed == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as SignatureHelpContext?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as SignatureHelpContext?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -33540,19 +33394,19 @@ $SignatureHelpContextCopyWith<$Res>? get context {
 mixin _$SignatureHelp {
 
 /// One or more signatures.
- List<SignatureInformation> get signatures;/// The active parameter of the active signature. If omitted or the value lies
-/// outside the range of `signatures[activeSignature].parameters` defaults to 0
-/// if the active signature has parameters. If the active signature has no
-/// parameters it is ignored. In future version of the protocol this property
-/// might become mandatory to better express the active parameter if the active
-/// signature does have any.
+ List<SignatureInformation> get signatures;/// The active parameter of the active signature. If omitted or the value
+/// lies outside the range of `signatures[activeSignature].parameters`
+/// defaults to 0 if the active signature has parameters. If the active
+/// signature has no parameters it is ignored. In future version of the
+/// protocol this property might become mandatory to better express the
+/// active parameter if the active signature does have any.
  int? get activeParameter;/// The active signature. If omitted or the value lies outside the range of
 /// `signatures` the value defaults to zero or is ignored if the
 /// `SignatureHelp` has no signatures.
 /// Whenever possible implementors should make an active decision about the
 /// active signature and shouldn't rely on a default value.
-/// In future version of the protocol this property might become mandatory to
-/// better express this.
+/// In future version of the protocol this property might become mandatory
+/// to better express this.
  int? get activeSignature;
 /// Create a copy of SignatureHelp
 /// with the given fields replaced by the non-null parameter values.
@@ -33632,20 +33486,20 @@ class _SignatureHelp implements SignatureHelp {
   return EqualUnmodifiableListView(_signatures);
 }
 
-/// The active parameter of the active signature. If omitted or the value lies
-/// outside the range of `signatures[activeSignature].parameters` defaults to 0
-/// if the active signature has parameters. If the active signature has no
-/// parameters it is ignored. In future version of the protocol this property
-/// might become mandatory to better express the active parameter if the active
-/// signature does have any.
+/// The active parameter of the active signature. If omitted or the value
+/// lies outside the range of `signatures[activeSignature].parameters`
+/// defaults to 0 if the active signature has parameters. If the active
+/// signature has no parameters it is ignored. In future version of the
+/// protocol this property might become mandatory to better express the
+/// active parameter if the active signature does have any.
 @override final  int? activeParameter;
 /// The active signature. If omitted or the value lies outside the range of
 /// `signatures` the value defaults to zero or is ignored if the
 /// `SignatureHelp` has no signatures.
 /// Whenever possible implementors should make an active decision about the
 /// active signature and shouldn't rely on a default value.
-/// In future version of the protocol this property might become mandatory to
-/// better express this.
+/// In future version of the protocol this property might become mandatory
+/// to better express this.
 @override final  int? activeSignature;
 
 /// Create a copy of SignatureHelp
@@ -33714,11 +33568,12 @@ as int?,
 /// @nodoc
 mixin _$SignatureHelpRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// List of characters that re-trigger signature help.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// List of characters that re-trigger signature help.
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
 /// @since 3.15.0
  List<String>? get retriggerCharacters;/// List of characters that trigger signature help automatically.
  List<String>? get triggerCharacters; bool? get workDoneProgress;
@@ -33754,7 +33609,7 @@ abstract mixin class $SignatureHelpRegistrationOptionsCopyWith<$Res>  {
   factory $SignatureHelpRegistrationOptionsCopyWith(SignatureHelpRegistrationOptions value, $Res Function(SignatureHelpRegistrationOptions) _then) = _$SignatureHelpRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, List<String>? retriggerCharacters, List<String>? triggerCharacters, bool? workDoneProgress
+ Object documentSelector, List<String>? retriggerCharacters, List<String>? triggerCharacters, bool? workDoneProgress
 });
 
 
@@ -33771,10 +33626,9 @@ class _$SignatureHelpRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SignatureHelpRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? retriggerCharacters = freezed,Object? triggerCharacters = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? retriggerCharacters = freezed,Object? triggerCharacters = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,retriggerCharacters: freezed == retriggerCharacters ? _self.retriggerCharacters : retriggerCharacters // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,retriggerCharacters: freezed == retriggerCharacters ? _self.retriggerCharacters : retriggerCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,triggerCharacters: freezed == triggerCharacters ? _self.triggerCharacters : triggerCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
@@ -33792,17 +33646,19 @@ class _SignatureHelpRegistrationOptions implements SignatureHelpRegistrationOpti
   const _SignatureHelpRegistrationOptions({required this.documentSelector, final  List<String>? retriggerCharacters, final  List<String>? triggerCharacters, this.workDoneProgress}): _retriggerCharacters = retriggerCharacters,_triggerCharacters = triggerCharacters;
   factory _SignatureHelpRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SignatureHelpRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// List of characters that re-trigger signature help.
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
 /// @since 3.15.0
  final  List<String>? _retriggerCharacters;
 /// List of characters that re-trigger signature help.
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
 /// @since 3.15.0
 @override List<String>? get retriggerCharacters {
   final value = _retriggerCharacters;
@@ -33858,7 +33714,7 @@ abstract mixin class _$SignatureHelpRegistrationOptionsCopyWith<$Res> implements
   factory _$SignatureHelpRegistrationOptionsCopyWith(_SignatureHelpRegistrationOptions value, $Res Function(_SignatureHelpRegistrationOptions) _then) = __$SignatureHelpRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, List<String>? retriggerCharacters, List<String>? triggerCharacters, bool? workDoneProgress
+ Object documentSelector, List<String>? retriggerCharacters, List<String>? triggerCharacters, bool? workDoneProgress
 });
 
 
@@ -33875,10 +33731,9 @@ class __$SignatureHelpRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of SignatureHelpRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? retriggerCharacters = freezed,Object? triggerCharacters = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? retriggerCharacters = freezed,Object? triggerCharacters = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_SignatureHelpRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,retriggerCharacters: freezed == retriggerCharacters ? _self._retriggerCharacters : retriggerCharacters // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,retriggerCharacters: freezed == retriggerCharacters ? _self._retriggerCharacters : retriggerCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,triggerCharacters: freezed == triggerCharacters ? _self._triggerCharacters : triggerCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
@@ -33951,9 +33806,7 @@ class _$DefinitionParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DefinitionParams
@@ -34050,9 +33903,7 @@ class __$DefinitionParamsCopyWithImpl<$Res>
   return _then(_DefinitionParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -34081,9 +33932,9 @@ $PositionCopyWith<$Res> get position {
 /// @nodoc
 mixin _$DefinitionRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector; bool? get workDoneProgress;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector; bool? get workDoneProgress;
 /// Create a copy of DefinitionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -34116,7 +33967,7 @@ abstract mixin class $DefinitionRegistrationOptionsCopyWith<$Res>  {
   factory $DefinitionRegistrationOptionsCopyWith(DefinitionRegistrationOptions value, $Res Function(DefinitionRegistrationOptions) _then) = _$DefinitionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -34133,10 +33984,9 @@ class _$DefinitionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DefinitionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -34152,9 +34002,9 @@ class _DefinitionRegistrationOptions implements DefinitionRegistrationOptions {
   const _DefinitionRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _DefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DefinitionRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 @override final  bool? workDoneProgress;
 
 /// Create a copy of DefinitionRegistrationOptions
@@ -34190,7 +34040,7 @@ abstract mixin class _$DefinitionRegistrationOptionsCopyWith<$Res> implements $D
   factory _$DefinitionRegistrationOptionsCopyWith(_DefinitionRegistrationOptions value, $Res Function(_DefinitionRegistrationOptions) _then) = __$DefinitionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -34207,10 +34057,9 @@ class __$DefinitionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DefinitionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_DefinitionRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -34282,9 +34131,7 @@ class _$ReferenceParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as ReferenceContext,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as ReferenceContext,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of ReferenceParams
@@ -34392,9 +34239,7 @@ class __$ReferenceParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as ReferenceContext,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as ReferenceContext,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -34432,9 +34277,9 @@ $ReferenceContextCopyWith<$Res> get context {
 /// @nodoc
 mixin _$ReferenceRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector; bool? get workDoneProgress;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector; bool? get workDoneProgress;
 /// Create a copy of ReferenceRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -34467,7 +34312,7 @@ abstract mixin class $ReferenceRegistrationOptionsCopyWith<$Res>  {
   factory $ReferenceRegistrationOptionsCopyWith(ReferenceRegistrationOptions value, $Res Function(ReferenceRegistrationOptions) _then) = _$ReferenceRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -34484,10 +34329,9 @@ class _$ReferenceRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ReferenceRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -34503,9 +34347,9 @@ class _ReferenceRegistrationOptions implements ReferenceRegistrationOptions {
   const _ReferenceRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _ReferenceRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ReferenceRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 @override final  bool? workDoneProgress;
 
 /// Create a copy of ReferenceRegistrationOptions
@@ -34541,7 +34385,7 @@ abstract mixin class _$ReferenceRegistrationOptionsCopyWith<$Res> implements $Re
   factory _$ReferenceRegistrationOptionsCopyWith(_ReferenceRegistrationOptions value, $Res Function(_ReferenceRegistrationOptions) _then) = __$ReferenceRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -34558,10 +34402,9 @@ class __$ReferenceRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of ReferenceRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_ReferenceRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -34632,9 +34475,7 @@ class _$DocumentHighlightParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DocumentHighlightParams
@@ -34731,9 +34572,7 @@ class __$DocumentHighlightParamsCopyWithImpl<$Res>
   return _then(_DocumentHighlightParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -34921,9 +34760,9 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$DocumentHighlightRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector; bool? get workDoneProgress;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector; bool? get workDoneProgress;
 /// Create a copy of DocumentHighlightRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -34956,7 +34795,7 @@ abstract mixin class $DocumentHighlightRegistrationOptionsCopyWith<$Res>  {
   factory $DocumentHighlightRegistrationOptionsCopyWith(DocumentHighlightRegistrationOptions value, $Res Function(DocumentHighlightRegistrationOptions) _then) = _$DocumentHighlightRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -34973,10 +34812,9 @@ class _$DocumentHighlightRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentHighlightRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -34992,9 +34830,9 @@ class _DocumentHighlightRegistrationOptions implements DocumentHighlightRegistra
   const _DocumentHighlightRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _DocumentHighlightRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentHighlightRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 @override final  bool? workDoneProgress;
 
 /// Create a copy of DocumentHighlightRegistrationOptions
@@ -35030,7 +34868,7 @@ abstract mixin class _$DocumentHighlightRegistrationOptionsCopyWith<$Res> implem
   factory _$DocumentHighlightRegistrationOptionsCopyWith(_DocumentHighlightRegistrationOptions value, $Res Function(_DocumentHighlightRegistrationOptions) _then) = __$DocumentHighlightRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -35047,10 +34885,9 @@ class __$DocumentHighlightRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentHighlightRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_DocumentHighlightRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -35119,9 +34956,7 @@ class _$DocumentSymbolParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DocumentSymbolParams
@@ -35206,9 +35041,7 @@ class __$DocumentSymbolParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_DocumentSymbolParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -35231,19 +35064,19 @@ mixin _$SymbolInformation {
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
  SymbolKind get kind;/// The location of this symbol. The location's range is used by a tool to
-/// reveal the location in the editor. If the symbol is selected in the tool
-/// the range's start information is used to position the cursor. So the range
-/// usually spans more than the actual symbol's name and does normally include
-/// things like visibility modifiers.
-/// The range doesn't have to denote a node range in the sense of an abstract
-/// syntax tree. It can therefore not be used to re-construct a hierarchy of
-/// the symbols.
+/// reveal the location in the editor. If the symbol is selected in the
+/// tool the range's start information is used to position the cursor. So
+/// the range usually spans more than the actual symbol's name and does
+/// normally include things like visibility modifiers.
+/// The range doesn't have to denote a node range in the sense of an
+/// abstract syntax tree. It can therefore not be used to re-construct a
+/// hierarchy of the symbols.
  Location get location;/// Indicates if this symbol is deprecated.
 /// @deprecated Use tags instead
- bool? get deprecated;/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+ bool? get deprecated;/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
  String? get containerName;/// Tags for this symbol.
 /// @since 3.16.0
  List<SymbolTag>? get tags;
@@ -35333,21 +35166,21 @@ class _SymbolInformation implements SymbolInformation {
 /// The kind of this symbol.
 @override final  SymbolKind kind;
 /// The location of this symbol. The location's range is used by a tool to
-/// reveal the location in the editor. If the symbol is selected in the tool
-/// the range's start information is used to position the cursor. So the range
-/// usually spans more than the actual symbol's name and does normally include
-/// things like visibility modifiers.
-/// The range doesn't have to denote a node range in the sense of an abstract
-/// syntax tree. It can therefore not be used to re-construct a hierarchy of
-/// the symbols.
+/// reveal the location in the editor. If the symbol is selected in the
+/// tool the range's start information is used to position the cursor. So
+/// the range usually spans more than the actual symbol's name and does
+/// normally include things like visibility modifiers.
+/// The range doesn't have to denote a node range in the sense of an
+/// abstract syntax tree. It can therefore not be used to re-construct a
+/// hierarchy of the symbols.
 @override final  Location location;
 /// Indicates if this symbol is deprecated.
 /// @deprecated Use tags instead
 @override final  bool? deprecated;
-/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
 @override final  String? containerName;
 /// Tags for this symbol.
 /// @since 3.16.0
@@ -35442,15 +35275,16 @@ $LocationCopyWith<$Res> get location {
 mixin _$DocumentSymbol {
 
 /// The name of this symbol. Will be displayed in the user interface and
-/// therefore must not be an empty string or a string only consisting of white
-/// spaces.
+/// therefore must not be an empty string or a string only consisting of
+/// white spaces.
  String get name;/// The kind of this symbol.
- SymbolKind get kind;/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else like comments. This information is typically used to
-/// determine if the clients cursor is inside the symbol to reveal in the
-/// symbol in the UI.
- Range get range;/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g the name of a function. Must be contained by the `range`.
+ SymbolKind get kind;/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else like comments. This information is
+/// typically used to determine if the clients cursor is inside the symbol
+/// to reveal in the symbol in the UI.
+ Range get range;/// The range that should be selected and revealed when this symbol is
+/// being picked, e.g the name of a function. Must be contained by the
+/// `range`.
  Range get selectionRange;/// Children of this symbol, e.g. properties of a class.
  List<DocumentSymbol>? get children;/// Indicates if this symbol is deprecated.
 /// @deprecated Use tags instead
@@ -35551,18 +35385,19 @@ class _DocumentSymbol implements DocumentSymbol {
   factory _DocumentSymbol.fromJson(Map<String, dynamic> json) => _$DocumentSymbolFromJson(json);
 
 /// The name of this symbol. Will be displayed in the user interface and
-/// therefore must not be an empty string or a string only consisting of white
-/// spaces.
+/// therefore must not be an empty string or a string only consisting of
+/// white spaces.
 @override final  String name;
 /// The kind of this symbol.
 @override final  SymbolKind kind;
-/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else like comments. This information is typically used to
-/// determine if the clients cursor is inside the symbol to reveal in the
-/// symbol in the UI.
+/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else like comments. This information is
+/// typically used to determine if the clients cursor is inside the symbol
+/// to reveal in the symbol in the UI.
 @override final  Range range;
-/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g the name of a function. Must be contained by the `range`.
+/// The range that should be selected and revealed when this symbol is
+/// being picked, e.g the name of a function. Must be contained by the
+/// `range`.
 @override final  Range selectionRange;
 /// Children of this symbol, e.g. properties of a class.
  final  List<DocumentSymbol>? _children;
@@ -35683,9 +35518,9 @@ $RangeCopyWith<$Res> get selectionRange {
 /// @nodoc
 mixin _$DocumentSymbolRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// A human-readable string that is shown when multiple outlines trees are
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// A human-readable string that is shown when multiple outlines trees are
 /// shown for the same document.
 /// @since 3.16.0
  String? get label; bool? get workDoneProgress;
@@ -35721,7 +35556,7 @@ abstract mixin class $DocumentSymbolRegistrationOptionsCopyWith<$Res>  {
   factory $DocumentSymbolRegistrationOptionsCopyWith(DocumentSymbolRegistrationOptions value, $Res Function(DocumentSymbolRegistrationOptions) _then) = _$DocumentSymbolRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String? label, bool? workDoneProgress
+ Object documentSelector, String? label, bool? workDoneProgress
 });
 
 
@@ -35738,10 +35573,9 @@ class _$DocumentSymbolRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentSymbolRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? label = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? label = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -35758,9 +35592,9 @@ class _DocumentSymbolRegistrationOptions implements DocumentSymbolRegistrationOp
   const _DocumentSymbolRegistrationOptions({required this.documentSelector, this.label, this.workDoneProgress});
   factory _DocumentSymbolRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentSymbolRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// A human-readable string that is shown when multiple outlines trees are
 /// shown for the same document.
 /// @since 3.16.0
@@ -35800,7 +35634,7 @@ abstract mixin class _$DocumentSymbolRegistrationOptionsCopyWith<$Res> implement
   factory _$DocumentSymbolRegistrationOptionsCopyWith(_DocumentSymbolRegistrationOptions value, $Res Function(_DocumentSymbolRegistrationOptions) _then) = __$DocumentSymbolRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String? label, bool? workDoneProgress
+ Object documentSelector, String? label, bool? workDoneProgress
 });
 
 
@@ -35817,10 +35651,9 @@ class __$DocumentSymbolRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentSymbolRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? label = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? label = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_DocumentSymbolRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
 as String?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -35894,9 +35727,7 @@ class _$CodeActionParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as CodeActionContext,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as CodeActionContext,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of CodeActionParams
@@ -36005,9 +35836,7 @@ class __$CodeActionParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
-as CodeActionContext,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as CodeActionContext,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -36204,8 +36033,8 @@ mixin _$CodeAction {
  String get title;/// A data entry field that is preserved on a code action between a
 /// `textDocument/codeAction` and a `codeAction/resolve` request.
 /// @since 3.16.0
- LSPAny? get data;/// A command this code action executes. If a code action provides an edit and
-/// a command, first the edit is executed and then the command.
+ LSPAny? get data;/// A command this code action executes. If a code action provides an edit
+/// and a command, first the edit is executed and then the command.
  Command? get command;/// The workspace edit this code action performs.
  WorkspaceEdit? get edit;/// Marks that the code action cannot currently be applied.
 /// Clients should follow the following guidelines regarding disabled code
@@ -36213,16 +36042,17 @@ mixin _$CodeAction {
 /// - Disabled code actions are not shown in automatic
 /// [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
 /// code action menus.
-/// - Disabled actions are shown as faded out in the code action menu when the
-/// user requests a more specific type of code action, such as refactorings.
+/// - Disabled actions are shown as faded out in the code action menu when
+/// the user requests a more specific type of code action, such as
+/// refactorings.
 /// - If the user has a
 /// [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
 /// that auto applies a code action and only disabled code actions are
-/// returned, the client should show the user an error message with `reason` in
-/// the editor.
+/// returned, the client should show the user an error message with
+/// `reason` in the editor.
 /// @since 3.16.0
- ({String reason})? get disabled;/// Marks this as a preferred action. Preferred actions are used by the `auto
-/// fix` command and can be targeted by keybindings.
+ ({String reason})? get disabled;/// Marks this as a preferred action. Preferred actions are used by the
+/// `auto fix` command and can be targeted by keybindings.
 /// A quick fix should be marked preferred if it properly addresses the
 /// underlying error. A refactoring should be marked preferred if it is the
 /// most reasonable choice of actions to take.
@@ -36283,8 +36113,7 @@ class _$CodeActionCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? data = freezed,Object? command = freezed,Object? edit = freezed,Object? disabled = freezed,Object? isPreferred = freezed,Object? diagnostics = freezed,Object? kind = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as String,data: freezed == data ? _self.data : data ,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
 as WorkspaceEdit?,disabled: freezed == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
 as ({String reason})?,isPreferred: freezed == isPreferred ? _self.isPreferred : isPreferred // ignore: cast_nullable_to_non_nullable
@@ -36335,8 +36164,8 @@ class _CodeAction implements CodeAction {
 /// `textDocument/codeAction` and a `codeAction/resolve` request.
 /// @since 3.16.0
 @override final  LSPAny? data;
-/// A command this code action executes. If a code action provides an edit and
-/// a command, first the edit is executed and then the command.
+/// A command this code action executes. If a code action provides an edit
+/// and a command, first the edit is executed and then the command.
 @override final  Command? command;
 /// The workspace edit this code action performs.
 @override final  WorkspaceEdit? edit;
@@ -36346,17 +36175,18 @@ class _CodeAction implements CodeAction {
 /// - Disabled code actions are not shown in automatic
 /// [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
 /// code action menus.
-/// - Disabled actions are shown as faded out in the code action menu when the
-/// user requests a more specific type of code action, such as refactorings.
+/// - Disabled actions are shown as faded out in the code action menu when
+/// the user requests a more specific type of code action, such as
+/// refactorings.
 /// - If the user has a
 /// [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
 /// that auto applies a code action and only disabled code actions are
-/// returned, the client should show the user an error message with `reason` in
-/// the editor.
+/// returned, the client should show the user an error message with
+/// `reason` in the editor.
 /// @since 3.16.0
 @override final  ({String reason})? disabled;
-/// Marks this as a preferred action. Preferred actions are used by the `auto
-/// fix` command and can be targeted by keybindings.
+/// Marks this as a preferred action. Preferred actions are used by the
+/// `auto fix` command and can be targeted by keybindings.
 /// A quick fix should be marked preferred if it properly addresses the
 /// underlying error. A refactoring should be marked preferred if it is the
 /// most reasonable choice of actions to take.
@@ -36430,8 +36260,7 @@ class __$CodeActionCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? data = freezed,Object? command = freezed,Object? edit = freezed,Object? disabled = freezed,Object? isPreferred = freezed,Object? diagnostics = freezed,Object? kind = freezed,}) {
   return _then(_CodeAction(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as String,data: freezed == data ? _self.data : data ,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
 as WorkspaceEdit?,disabled: freezed == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
 as ({String reason})?,isPreferred: freezed == isPreferred ? _self.isPreferred : isPreferred // ignore: cast_nullable_to_non_nullable
@@ -36472,14 +36301,14 @@ $WorkspaceEditCopyWith<$Res>? get edit {
 /// @nodoc
 mixin _$CodeActionRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// The server provides support to resolve additional information for a code
-/// action.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// The server provides support to resolve additional information for a
+/// code action.
 /// @since 3.16.0
  bool? get resolveProvider;/// CodeActionKinds that this server may return.
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
  List<CodeActionKind>? get codeActionKinds; bool? get workDoneProgress;
 /// Create a copy of CodeActionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -36513,7 +36342,7 @@ abstract mixin class $CodeActionRegistrationOptionsCopyWith<$Res>  {
   factory $CodeActionRegistrationOptionsCopyWith(CodeActionRegistrationOptions value, $Res Function(CodeActionRegistrationOptions) _then) = _$CodeActionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? resolveProvider, List<CodeActionKind>? codeActionKinds, bool? workDoneProgress
+ Object documentSelector, bool? resolveProvider, List<CodeActionKind>? codeActionKinds, bool? workDoneProgress
 });
 
 
@@ -36530,10 +36359,9 @@ class _$CodeActionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? resolveProvider = freezed,Object? codeActionKinds = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? resolveProvider = freezed,Object? codeActionKinds = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionKinds: freezed == codeActionKinds ? _self.codeActionKinds : codeActionKinds // ignore: cast_nullable_to_non_nullable
 as List<CodeActionKind>?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
@@ -36551,20 +36379,20 @@ class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
   const _CodeActionRegistrationOptions({required this.documentSelector, this.resolveProvider, final  List<CodeActionKind>? codeActionKinds, this.workDoneProgress}): _codeActionKinds = codeActionKinds;
   factory _CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeActionRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
-/// The server provides support to resolve additional information for a code
-/// action.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
+/// The server provides support to resolve additional information for a
+/// code action.
 /// @since 3.16.0
 @override final  bool? resolveProvider;
 /// CodeActionKinds that this server may return.
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
  final  List<CodeActionKind>? _codeActionKinds;
 /// CodeActionKinds that this server may return.
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
 @override List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
@@ -36608,7 +36436,7 @@ abstract mixin class _$CodeActionRegistrationOptionsCopyWith<$Res> implements $C
   factory _$CodeActionRegistrationOptionsCopyWith(_CodeActionRegistrationOptions value, $Res Function(_CodeActionRegistrationOptions) _then) = __$CodeActionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? resolveProvider, List<CodeActionKind>? codeActionKinds, bool? workDoneProgress
+ Object documentSelector, bool? resolveProvider, List<CodeActionKind>? codeActionKinds, bool? workDoneProgress
 });
 
 
@@ -36625,10 +36453,9 @@ class __$CodeActionRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CodeActionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? resolveProvider = freezed,Object? codeActionKinds = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? resolveProvider = freezed,Object? codeActionKinds = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_CodeActionRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionKinds: freezed == codeActionKinds ? _self._codeActionKinds : codeActionKinds // ignore: cast_nullable_to_non_nullable
 as List<CodeActionKind>?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
@@ -36642,8 +36469,8 @@ as bool?,
 /// @nodoc
 mixin _$WorkspaceSymbolParams {
 
-/// A query string to filter symbols by. Clients may send an empty string here
-/// to request all symbols.
+/// A query string to filter symbols by. Clients may send an empty string
+/// here to request all symbols.
  String get query;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
  ProgressToken? get partialResultToken;/// An optional token that a server can use to report work done progress.
@@ -36700,9 +36527,7 @@ class _$WorkspaceSymbolParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -36717,8 +36542,8 @@ class _WorkspaceSymbolParams implements WorkspaceSymbolParams {
   const _WorkspaceSymbolParams({required this.query, this.partialResultToken, this.workDoneToken});
   factory _WorkspaceSymbolParams.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolParamsFromJson(json);
 
-/// A query string to filter symbols by. Clients may send an empty string here
-/// to request all symbols.
+/// A query string to filter symbols by. Clients may send an empty string
+/// here to request all symbols.
 @override final  String query;
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
@@ -36779,9 +36604,7 @@ class __$WorkspaceSymbolParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_WorkspaceSymbolParams(
 query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -36798,12 +36621,12 @@ mixin _$WorkspaceSymbol {
 /// location without a range depends on the client capability
 /// `workspace.symbol.resolveSupport`.
 /// See SymbolInformation#location for more details.
- dynamic get location;/// A data entry field that is preserved on a workspace symbol between a
+ Object get location;/// A data entry field that is preserved on a workspace symbol between a
 /// workspace symbol request and a workspace symbol resolve request.
- LSPAny? get data;/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+ LSPAny? get data;/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
  String? get containerName;/// Tags for this symbol.
 /// @since 3.16.0
  List<SymbolTag>? get tags;
@@ -36839,7 +36662,7 @@ abstract mixin class $WorkspaceSymbolCopyWith<$Res>  {
   factory $WorkspaceSymbolCopyWith(WorkspaceSymbol value, $Res Function(WorkspaceSymbol) _then) = _$WorkspaceSymbolCopyWithImpl;
 @useResult
 $Res call({
- String name, SymbolKind kind, dynamic location, LSPAny? data, String? containerName, List<SymbolTag>? tags
+ String name, SymbolKind kind, Object location, LSPAny? data, String? containerName, List<SymbolTag>? tags
 });
 
 
@@ -36856,13 +36679,11 @@ class _$WorkspaceSymbolCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceSymbol
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? location = freezed,Object? data = freezed,Object? containerName = freezed,Object? tags = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? kind = null,Object? location = null,Object? data = freezed,Object? containerName = freezed,Object? tags = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as dynamic,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,containerName: freezed == containerName ? _self.containerName : containerName // ignore: cast_nullable_to_non_nullable
+as SymbolKind,location: null == location ? _self.location : location ,data: freezed == data ? _self.data : data ,containerName: freezed == containerName ? _self.containerName : containerName // ignore: cast_nullable_to_non_nullable
 as String?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,
   ));
@@ -36887,14 +36708,14 @@ class _WorkspaceSymbol implements WorkspaceSymbol {
 /// location without a range depends on the client capability
 /// `workspace.symbol.resolveSupport`.
 /// See SymbolInformation#location for more details.
-@override final  dynamic location;
+@override final  Object location;
 /// A data entry field that is preserved on a workspace symbol between a
 /// workspace symbol request and a workspace symbol resolve request.
 @override final  LSPAny? data;
-/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
 @override final  String? containerName;
 /// Tags for this symbol.
 /// @since 3.16.0
@@ -36943,7 +36764,7 @@ abstract mixin class _$WorkspaceSymbolCopyWith<$Res> implements $WorkspaceSymbol
   factory _$WorkspaceSymbolCopyWith(_WorkspaceSymbol value, $Res Function(_WorkspaceSymbol) _then) = __$WorkspaceSymbolCopyWithImpl;
 @override @useResult
 $Res call({
- String name, SymbolKind kind, dynamic location, LSPAny? data, String? containerName, List<SymbolTag>? tags
+ String name, SymbolKind kind, Object location, LSPAny? data, String? containerName, List<SymbolTag>? tags
 });
 
 
@@ -36960,13 +36781,11 @@ class __$WorkspaceSymbolCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceSymbol
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? location = freezed,Object? data = freezed,Object? containerName = freezed,Object? tags = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? kind = null,Object? location = null,Object? data = freezed,Object? containerName = freezed,Object? tags = freezed,}) {
   return _then(_WorkspaceSymbol(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
-as SymbolKind,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as dynamic,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,containerName: freezed == containerName ? _self.containerName : containerName // ignore: cast_nullable_to_non_nullable
+as SymbolKind,location: null == location ? _self.location : location ,data: freezed == data ? _self.data : data ,containerName: freezed == containerName ? _self.containerName : containerName // ignore: cast_nullable_to_non_nullable
 as String?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<SymbolTag>?,
   ));
@@ -37179,9 +36998,7 @@ class _$CodeLensParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of CodeLensParams
@@ -37266,9 +37083,7 @@ class __$CodeLensParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_CodeLensParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -37288,9 +37103,10 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$CodeLens {
 
-/// The range in which this code lens is valid. Should only span a single line.
- Range get range;/// A data entry field that is preserved on a code lens item between a {@link
-/// CodeLensRequest} and a {@link CodeLensResolveRequest}
+/// The range in which this code lens is valid. Should only span a single
+/// line.
+ Range get range;/// A data entry field that is preserved on a code lens item between a
+/// {@link CodeLensRequest} and a {@link CodeLensResolveRequest}
  LSPAny? get data;/// The command this code lens represents.
  Command? get command;
 /// Create a copy of CodeLens
@@ -37345,8 +37161,7 @@ class _$CodeLensCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? data = freezed,Object? command = freezed,}) {
   return _then(_self.copyWith(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as Range,data: freezed == data ? _self.data : data ,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,
   ));
 }
@@ -37383,10 +37198,11 @@ class _CodeLens implements CodeLens {
   const _CodeLens({required this.range, this.data, this.command});
   factory _CodeLens.fromJson(Map<String, dynamic> json) => _$CodeLensFromJson(json);
 
-/// The range in which this code lens is valid. Should only span a single line.
+/// The range in which this code lens is valid. Should only span a single
+/// line.
 @override final  Range range;
-/// A data entry field that is preserved on a code lens item between a {@link
-/// CodeLensRequest} and a {@link CodeLensResolveRequest}
+/// A data entry field that is preserved on a code lens item between a
+/// {@link CodeLensRequest} and a {@link CodeLensResolveRequest}
 @override final  LSPAny? data;
 /// The command this code lens represents.
 @override final  Command? command;
@@ -37444,8 +37260,7 @@ class __$CodeLensCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? data = freezed,Object? command = freezed,}) {
   return _then(_CodeLens(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
+as Range,data: freezed == data ? _self.data : data ,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,
   ));
 }
@@ -37478,9 +37293,9 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 mixin _$CodeLensRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// Code lens has a resolve provider as well.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// Code lens has a resolve provider as well.
  bool? get resolveProvider; bool? get workDoneProgress;
 /// Create a copy of CodeLensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -37514,7 +37329,7 @@ abstract mixin class $CodeLensRegistrationOptionsCopyWith<$Res>  {
   factory $CodeLensRegistrationOptionsCopyWith(CodeLensRegistrationOptions value, $Res Function(CodeLensRegistrationOptions) _then) = _$CodeLensRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? resolveProvider, bool? workDoneProgress
+ Object documentSelector, bool? resolveProvider, bool? workDoneProgress
 });
 
 
@@ -37531,10 +37346,9 @@ class _$CodeLensRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CodeLensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -37551,9 +37365,9 @@ class _CodeLensRegistrationOptions implements CodeLensRegistrationOptions {
   const _CodeLensRegistrationOptions({required this.documentSelector, this.resolveProvider, this.workDoneProgress});
   factory _CodeLensRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeLensRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// Code lens has a resolve provider as well.
 @override final  bool? resolveProvider;
 @override final  bool? workDoneProgress;
@@ -37591,7 +37405,7 @@ abstract mixin class _$CodeLensRegistrationOptionsCopyWith<$Res> implements $Cod
   factory _$CodeLensRegistrationOptionsCopyWith(_CodeLensRegistrationOptions value, $Res Function(_CodeLensRegistrationOptions) _then) = __$CodeLensRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? resolveProvider, bool? workDoneProgress
+ Object documentSelector, bool? resolveProvider, bool? workDoneProgress
 });
 
 
@@ -37608,10 +37422,9 @@ class __$CodeLensRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of CodeLensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_CodeLensRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -37681,9 +37494,7 @@ class _$DocumentLinkParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DocumentLinkParams
@@ -37768,9 +37579,7 @@ class __$DocumentLinkParamsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? textDocument = null,Object? partialResultToken = freezed,Object? workDoneToken = freezed,}) {
   return _then(_DocumentLinkParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
-as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as TextDocumentIdentifier,partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -37794,10 +37603,10 @@ mixin _$DocumentLink {
  Range get range;/// A data entry field that is preserved on a document link between a
 /// DocumentLinkRequest and a DocumentLinkResolveRequest.
  LSPAny? get data;/// The tooltip text when you hover over this link.
-/// If a tooltip is provided, is will be displayed in a string that includes
-/// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
-/// specific instructions vary depending on OS, user settings, and
-/// localization.
+/// If a tooltip is provided, is will be displayed in a string that
+/// includes instructions on how to trigger the link, such as `{0} (ctrl +
+/// click)`. The specific instructions vary depending on OS, user settings,
+/// and localization.
 /// @since 3.15.0
  String? get tooltip;/// The uri this link points to. If missing a resolve request is sent later.
  String? get target;
@@ -37853,8 +37662,7 @@ class _$DocumentLinkCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? data = freezed,Object? tooltip = freezed,Object? target = freezed,}) {
   return _then(_self.copyWith(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
+as Range,data: freezed == data ? _self.data : data ,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
 as String?,target: freezed == target ? _self.target : target // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -37886,10 +37694,10 @@ class _DocumentLink implements DocumentLink {
 /// DocumentLinkRequest and a DocumentLinkResolveRequest.
 @override final  LSPAny? data;
 /// The tooltip text when you hover over this link.
-/// If a tooltip is provided, is will be displayed in a string that includes
-/// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
-/// specific instructions vary depending on OS, user settings, and
-/// localization.
+/// If a tooltip is provided, is will be displayed in a string that
+/// includes instructions on how to trigger the link, such as `{0} (ctrl +
+/// click)`. The specific instructions vary depending on OS, user settings,
+/// and localization.
 /// @since 3.15.0
 @override final  String? tooltip;
 /// The uri this link points to. If missing a resolve request is sent later.
@@ -37948,8 +37756,7 @@ class __$DocumentLinkCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? data = freezed,Object? tooltip = freezed,Object? target = freezed,}) {
   return _then(_DocumentLink(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
+as Range,data: freezed == data ? _self.data : data ,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
 as String?,target: freezed == target ? _self.target : target // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -37971,9 +37778,9 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$DocumentLinkRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// Document links have a resolve provider as well.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// Document links have a resolve provider as well.
  bool? get resolveProvider; bool? get workDoneProgress;
 /// Create a copy of DocumentLinkRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -38007,7 +37814,7 @@ abstract mixin class $DocumentLinkRegistrationOptionsCopyWith<$Res>  {
   factory $DocumentLinkRegistrationOptionsCopyWith(DocumentLinkRegistrationOptions value, $Res Function(DocumentLinkRegistrationOptions) _then) = _$DocumentLinkRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? resolveProvider, bool? workDoneProgress
+ Object documentSelector, bool? resolveProvider, bool? workDoneProgress
 });
 
 
@@ -38024,10 +37831,9 @@ class _$DocumentLinkRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentLinkRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -38044,9 +37850,9 @@ class _DocumentLinkRegistrationOptions implements DocumentLinkRegistrationOption
   const _DocumentLinkRegistrationOptions({required this.documentSelector, this.resolveProvider, this.workDoneProgress});
   factory _DocumentLinkRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentLinkRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// Document links have a resolve provider as well.
 @override final  bool? resolveProvider;
 @override final  bool? workDoneProgress;
@@ -38084,7 +37890,7 @@ abstract mixin class _$DocumentLinkRegistrationOptionsCopyWith<$Res> implements 
   factory _$DocumentLinkRegistrationOptionsCopyWith(_DocumentLinkRegistrationOptions value, $Res Function(_DocumentLinkRegistrationOptions) _then) = __$DocumentLinkRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? resolveProvider, bool? workDoneProgress
+ Object documentSelector, bool? resolveProvider, bool? workDoneProgress
 });
 
 
@@ -38101,10 +37907,9 @@ class __$DocumentLinkRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentLinkRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? resolveProvider = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_DocumentLinkRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -38174,8 +37979,7 @@ class _$DocumentFormattingParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DocumentFormattingParams
@@ -38269,8 +38073,7 @@ class __$DocumentFormattingParamsCopyWithImpl<$Res>
   return _then(_DocumentFormattingParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -38299,9 +38102,9 @@ $FormattingOptionsCopyWith<$Res> get options {
 /// @nodoc
 mixin _$DocumentFormattingRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector; bool? get workDoneProgress;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector; bool? get workDoneProgress;
 /// Create a copy of DocumentFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38334,7 +38137,7 @@ abstract mixin class $DocumentFormattingRegistrationOptionsCopyWith<$Res>  {
   factory $DocumentFormattingRegistrationOptionsCopyWith(DocumentFormattingRegistrationOptions value, $Res Function(DocumentFormattingRegistrationOptions) _then) = _$DocumentFormattingRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -38351,10 +38154,9 @@ class _$DocumentFormattingRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -38370,9 +38172,9 @@ class _DocumentFormattingRegistrationOptions implements DocumentFormattingRegist
   const _DocumentFormattingRegistrationOptions({required this.documentSelector, this.workDoneProgress});
   factory _DocumentFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentFormattingRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 @override final  bool? workDoneProgress;
 
 /// Create a copy of DocumentFormattingRegistrationOptions
@@ -38408,7 +38210,7 @@ abstract mixin class _$DocumentFormattingRegistrationOptionsCopyWith<$Res> imple
   factory _$DocumentFormattingRegistrationOptionsCopyWith(_DocumentFormattingRegistrationOptions value, $Res Function(_DocumentFormattingRegistrationOptions) _then) = __$DocumentFormattingRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? workDoneProgress
+ Object documentSelector, bool? workDoneProgress
 });
 
 
@@ -38425,10 +38227,9 @@ class __$DocumentFormattingRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? workDoneProgress = freezed,}) {
   return _then(_DocumentFormattingRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -38499,8 +38300,7 @@ class _$DocumentRangeFormattingParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DocumentRangeFormattingParams
@@ -38606,8 +38406,7 @@ class __$DocumentRangeFormattingParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -38645,9 +38444,9 @@ $FormattingOptionsCopyWith<$Res> get options {
 /// @nodoc
 mixin _$DocumentRangeFormattingRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// Whether the server supports formatting multiple ranges at once.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// Whether the server supports formatting multiple ranges at once.
 /// @since 3.18.0 @proposed
  bool? get rangesSupport; bool? get workDoneProgress;
 /// Create a copy of DocumentRangeFormattingRegistrationOptions
@@ -38682,7 +38481,7 @@ abstract mixin class $DocumentRangeFormattingRegistrationOptionsCopyWith<$Res>  
   factory $DocumentRangeFormattingRegistrationOptionsCopyWith(DocumentRangeFormattingRegistrationOptions value, $Res Function(DocumentRangeFormattingRegistrationOptions) _then) = _$DocumentRangeFormattingRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? rangesSupport, bool? workDoneProgress
+ Object documentSelector, bool? rangesSupport, bool? workDoneProgress
 });
 
 
@@ -38699,10 +38498,9 @@ class _$DocumentRangeFormattingRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentRangeFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? rangesSupport = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? rangesSupport = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,rangesSupport: freezed == rangesSupport ? _self.rangesSupport : rangesSupport // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,rangesSupport: freezed == rangesSupport ? _self.rangesSupport : rangesSupport // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -38719,9 +38517,9 @@ class _DocumentRangeFormattingRegistrationOptions implements DocumentRangeFormat
   const _DocumentRangeFormattingRegistrationOptions({required this.documentSelector, this.rangesSupport, this.workDoneProgress});
   factory _DocumentRangeFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// Whether the server supports formatting multiple ranges at once.
 /// @since 3.18.0 @proposed
 @override final  bool? rangesSupport;
@@ -38760,7 +38558,7 @@ abstract mixin class _$DocumentRangeFormattingRegistrationOptionsCopyWith<$Res> 
   factory _$DocumentRangeFormattingRegistrationOptionsCopyWith(_DocumentRangeFormattingRegistrationOptions value, $Res Function(_DocumentRangeFormattingRegistrationOptions) _then) = __$DocumentRangeFormattingRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? rangesSupport, bool? workDoneProgress
+ Object documentSelector, bool? rangesSupport, bool? workDoneProgress
 });
 
 
@@ -38777,10 +38575,9 @@ class __$DocumentRangeFormattingRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentRangeFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? rangesSupport = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? rangesSupport = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_DocumentRangeFormattingRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,rangesSupport: freezed == rangesSupport ? _self.rangesSupport : rangesSupport // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,rangesSupport: freezed == rangesSupport ? _self.rangesSupport : rangesSupport // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -38852,8 +38649,7 @@ class _$DocumentRangesFormattingParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,ranges: null == ranges ? _self.ranges : ranges // ignore: cast_nullable_to_non_nullable
 as List<Range>,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of DocumentRangesFormattingParams
@@ -38957,8 +38753,7 @@ class __$DocumentRangesFormattingParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,ranges: null == ranges ? _self._ranges : ranges // ignore: cast_nullable_to_non_nullable
 as List<Range>,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as FormattingOptions,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -38988,13 +38783,13 @@ $FormattingOptionsCopyWith<$Res> get options {
 mixin _$DocumentOnTypeFormattingParams {
 
 /// The document to format.
- TextDocumentIdentifier get textDocument;/// The position around which the on type formatting should happen. This is not
-/// necessarily the exact position where the character denoted by the property
-/// `ch` got typed.
+ TextDocumentIdentifier get textDocument;/// The position around which the on type formatting should happen. This is
+/// not necessarily the exact position where the character denoted by the
+/// property `ch` got typed.
  Position get position;/// The character that has been typed that triggered the formatting on type
-/// request. That is not necessarily the last character that got inserted into
-/// the document since the client could auto insert characters as well (e.g.
-/// like automatic brace completion).
+/// request. That is not necessarily the last character that got inserted
+/// into the document since the client could auto insert characters as well
+/// (e.g. like automatic brace completion).
  String get ch;/// The formatting options.
  FormattingOptions get options;
 /// Create a copy of DocumentOnTypeFormattingParams
@@ -39096,14 +38891,14 @@ class _DocumentOnTypeFormattingParams implements DocumentOnTypeFormattingParams 
 
 /// The document to format.
 @override final  TextDocumentIdentifier textDocument;
-/// The position around which the on type formatting should happen. This is not
-/// necessarily the exact position where the character denoted by the property
-/// `ch` got typed.
+/// The position around which the on type formatting should happen. This is
+/// not necessarily the exact position where the character denoted by the
+/// property `ch` got typed.
 @override final  Position position;
 /// The character that has been typed that triggered the formatting on type
-/// request. That is not necessarily the last character that got inserted into
-/// the document since the client could auto insert characters as well (e.g.
-/// like automatic brace completion).
+/// request. That is not necessarily the last character that got inserted
+/// into the document since the client could auto insert characters as well
+/// (e.g. like automatic brace completion).
 @override final  String ch;
 /// The formatting options.
 @override final  FormattingOptions options;
@@ -39202,9 +38997,9 @@ $FormattingOptionsCopyWith<$Res> get options {
 /// @nodoc
 mixin _$DocumentOnTypeFormattingRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// A character on which formatting should be triggered, like `{`.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// A character on which formatting should be triggered, like `{`.
  String get firstTriggerCharacter;/// More trigger characters.
  List<String>? get moreTriggerCharacter;
 /// Create a copy of DocumentOnTypeFormattingRegistrationOptions
@@ -39239,7 +39034,7 @@ abstract mixin class $DocumentOnTypeFormattingRegistrationOptionsCopyWith<$Res> 
   factory $DocumentOnTypeFormattingRegistrationOptionsCopyWith(DocumentOnTypeFormattingRegistrationOptions value, $Res Function(DocumentOnTypeFormattingRegistrationOptions) _then) = _$DocumentOnTypeFormattingRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, String firstTriggerCharacter, List<String>? moreTriggerCharacter
+ Object documentSelector, String firstTriggerCharacter, List<String>? moreTriggerCharacter
 });
 
 
@@ -39256,10 +39051,9 @@ class _$DocumentOnTypeFormattingRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentOnTypeFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? firstTriggerCharacter = null,Object? moreTriggerCharacter = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? firstTriggerCharacter = null,Object? moreTriggerCharacter = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,firstTriggerCharacter: null == firstTriggerCharacter ? _self.firstTriggerCharacter : firstTriggerCharacter // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,firstTriggerCharacter: null == firstTriggerCharacter ? _self.firstTriggerCharacter : firstTriggerCharacter // ignore: cast_nullable_to_non_nullable
 as String,moreTriggerCharacter: freezed == moreTriggerCharacter ? _self.moreTriggerCharacter : moreTriggerCharacter // ignore: cast_nullable_to_non_nullable
 as List<String>?,
   ));
@@ -39276,9 +39070,9 @@ class _DocumentOnTypeFormattingRegistrationOptions implements DocumentOnTypeForm
   const _DocumentOnTypeFormattingRegistrationOptions({required this.documentSelector, required this.firstTriggerCharacter, final  List<String>? moreTriggerCharacter}): _moreTriggerCharacter = moreTriggerCharacter;
   factory _DocumentOnTypeFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// A character on which formatting should be triggered, like `{`.
 @override final  String firstTriggerCharacter;
 /// More trigger characters.
@@ -39326,7 +39120,7 @@ abstract mixin class _$DocumentOnTypeFormattingRegistrationOptionsCopyWith<$Res>
   factory _$DocumentOnTypeFormattingRegistrationOptionsCopyWith(_DocumentOnTypeFormattingRegistrationOptions value, $Res Function(_DocumentOnTypeFormattingRegistrationOptions) _then) = __$DocumentOnTypeFormattingRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, String firstTriggerCharacter, List<String>? moreTriggerCharacter
+ Object documentSelector, String firstTriggerCharacter, List<String>? moreTriggerCharacter
 });
 
 
@@ -39343,10 +39137,9 @@ class __$DocumentOnTypeFormattingRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of DocumentOnTypeFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? firstTriggerCharacter = null,Object? moreTriggerCharacter = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? firstTriggerCharacter = null,Object? moreTriggerCharacter = freezed,}) {
   return _then(_DocumentOnTypeFormattingRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,firstTriggerCharacter: null == firstTriggerCharacter ? _self.firstTriggerCharacter : firstTriggerCharacter // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,firstTriggerCharacter: null == firstTriggerCharacter ? _self.firstTriggerCharacter : firstTriggerCharacter // ignore: cast_nullable_to_non_nullable
 as String,moreTriggerCharacter: freezed == moreTriggerCharacter ? _self._moreTriggerCharacter : moreTriggerCharacter // ignore: cast_nullable_to_non_nullable
 as List<String>?,
   ));
@@ -39361,8 +39154,8 @@ mixin _$RenameParams {
 
 /// The document to rename.
  TextDocumentIdentifier get textDocument;/// The position at which this request was sent.
- Position get position;/// The new name of the symbol. If the given name is not valid the request must
-/// return a {@link ResponseError} with an appropriate message set.
+ Position get position;/// The new name of the symbol. If the given name is not valid the request
+/// must return a {@link ResponseError} with an appropriate message set.
  String get newName;/// An optional token that a server can use to report work done progress.
  ProgressToken? get workDoneToken;
 /// Create a copy of RenameParams
@@ -39419,8 +39212,7 @@ class _$RenameParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,newName: null == newName ? _self.newName : newName // ignore: cast_nullable_to_non_nullable
-as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of RenameParams
@@ -39457,8 +39249,8 @@ class _RenameParams implements RenameParams {
 @override final  TextDocumentIdentifier textDocument;
 /// The position at which this request was sent.
 @override final  Position position;
-/// The new name of the symbol. If the given name is not valid the request must
-/// return a {@link ResponseError} with an appropriate message set.
+/// The new name of the symbol. If the given name is not valid the request
+/// must return a {@link ResponseError} with an appropriate message set.
 @override final  String newName;
 /// An optional token that a server can use to report work done progress.
 @override final  ProgressToken? workDoneToken;
@@ -39518,8 +39310,7 @@ class __$RenameParamsCopyWithImpl<$Res>
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as Position,newName: null == newName ? _self.newName : newName // ignore: cast_nullable_to_non_nullable
-as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as String,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -39548,9 +39339,9 @@ $PositionCopyWith<$Res> get position {
 /// @nodoc
 mixin _$RenameRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
- dynamic get documentSelector;/// Renames should be checked and tested before being executed.
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+ Object get documentSelector;/// Renames should be checked and tested before being executed.
 /// @since version 3.12.0
  bool? get prepareProvider; bool? get workDoneProgress;
 /// Create a copy of RenameRegistrationOptions
@@ -39585,7 +39376,7 @@ abstract mixin class $RenameRegistrationOptionsCopyWith<$Res>  {
   factory $RenameRegistrationOptionsCopyWith(RenameRegistrationOptions value, $Res Function(RenameRegistrationOptions) _then) = _$RenameRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic documentSelector, bool? prepareProvider, bool? workDoneProgress
+ Object documentSelector, bool? prepareProvider, bool? workDoneProgress
 });
 
 
@@ -39602,10 +39393,9 @@ class _$RenameRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of RenameRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = freezed,Object? prepareProvider = freezed,Object? workDoneProgress = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documentSelector = null,Object? prepareProvider = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,prepareProvider: freezed == prepareProvider ? _self.prepareProvider : prepareProvider // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,prepareProvider: freezed == prepareProvider ? _self.prepareProvider : prepareProvider // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -39622,9 +39412,9 @@ class _RenameRegistrationOptions implements RenameRegistrationOptions {
   const _RenameRegistrationOptions({required this.documentSelector, this.prepareProvider, this.workDoneProgress});
   factory _RenameRegistrationOptions.fromJson(Map<String, dynamic> json) => _$RenameRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to
-/// null the document selector provided on the client side will be used.
-@override final  dynamic documentSelector;
+/// A document selector to identify the scope of the registration. If set
+/// to null the document selector provided on the client side will be used.
+@override final  Object documentSelector;
 /// Renames should be checked and tested before being executed.
 /// @since version 3.12.0
 @override final  bool? prepareProvider;
@@ -39663,7 +39453,7 @@ abstract mixin class _$RenameRegistrationOptionsCopyWith<$Res> implements $Renam
   factory _$RenameRegistrationOptionsCopyWith(_RenameRegistrationOptions value, $Res Function(_RenameRegistrationOptions) _then) = __$RenameRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic documentSelector, bool? prepareProvider, bool? workDoneProgress
+ Object documentSelector, bool? prepareProvider, bool? workDoneProgress
 });
 
 
@@ -39680,10 +39470,9 @@ class __$RenameRegistrationOptionsCopyWithImpl<$Res>
 
 /// Create a copy of RenameRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = freezed,Object? prepareProvider = freezed,Object? workDoneProgress = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documentSelector = null,Object? prepareProvider = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_RenameRegistrationOptions(
-documentSelector: freezed == documentSelector ? _self.documentSelector : documentSelector // ignore: cast_nullable_to_non_nullable
-as dynamic,prepareProvider: freezed == prepareProvider ? _self.prepareProvider : prepareProvider // ignore: cast_nullable_to_non_nullable
+documentSelector: null == documentSelector ? _self.documentSelector : documentSelector ,prepareProvider: freezed == prepareProvider ? _self.prepareProvider : prepareProvider // ignore: cast_nullable_to_non_nullable
 as bool?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -39753,8 +39542,7 @@ class _$PrepareRenameParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of PrepareRenameParams
@@ -39848,8 +39636,7 @@ class __$PrepareRenameParamsCopyWithImpl<$Res>
   return _then(_PrepareRenameParams(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as TextDocumentIdentifier,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as Position,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -39935,8 +39722,7 @@ class _$ExecuteCommandParamsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as String,arguments: freezed == arguments ? _self.arguments : arguments // ignore: cast_nullable_to_non_nullable
-as List<LSPAny>?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as List<LSPAny>?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -40021,8 +39807,7 @@ class __$ExecuteCommandParamsCopyWithImpl<$Res>
   return _then(_ExecuteCommandParams(
 command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as String,arguments: freezed == arguments ? _self._arguments : arguments // ignore: cast_nullable_to_non_nullable
-as List<LSPAny>?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as List<LSPAny>?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -40341,13 +40126,13 @@ $WorkspaceEditCopyWith<$Res> get edit {
 mixin _$ApplyWorkspaceEditResult {
 
 /// Indicates whether the edit was applied or not.
- bool get applied;/// Depending on the client's failure handling strategy `failedChange` might
-/// contain the index of the change that failed. This property is only
-/// available if the client signals a `failureHandlingStrategy` in its client
-/// capabilities.
- int? get failedChange;/// An optional textual description for why the edit was not applied. This may
-/// be used by the server for diagnostic logging or to provide a suitable error
-/// for a request that triggered the edit.
+ bool get applied;/// Depending on the client's failure handling strategy `failedChange`
+/// might contain the index of the change that failed. This property is
+/// only available if the client signals a `failureHandlingStrategy` in its
+/// client capabilities.
+ int? get failedChange;/// An optional textual description for why the edit was not applied. This
+/// may be used by the server for diagnostic logging or to provide a
+/// suitable error for a request that triggered the edit.
  String? get failureReason;
 /// Create a copy of ApplyWorkspaceEditResult
 /// with the given fields replaced by the non-null parameter values.
@@ -40420,14 +40205,14 @@ class _ApplyWorkspaceEditResult implements ApplyWorkspaceEditResult {
 
 /// Indicates whether the edit was applied or not.
 @override final  bool applied;
-/// Depending on the client's failure handling strategy `failedChange` might
-/// contain the index of the change that failed. This property is only
-/// available if the client signals a `failureHandlingStrategy` in its client
-/// capabilities.
+/// Depending on the client's failure handling strategy `failedChange`
+/// might contain the index of the change that failed. This property is
+/// only available if the client signals a `failureHandlingStrategy` in its
+/// client capabilities.
 @override final  int? failedChange;
-/// An optional textual description for why the edit was not applied. This may
-/// be used by the server for diagnostic logging or to provide a suitable error
-/// for a request that triggered the edit.
+/// An optional textual description for why the edit was not applied. This
+/// may be used by the server for diagnostic logging or to provide a
+/// suitable error for a request that triggered the edit.
 @override final  String? failureReason;
 
 /// Create a copy of ApplyWorkspaceEditResult
@@ -40496,21 +40281,21 @@ as String?,
 /// @nodoc
 mixin _$WorkDoneProgressBegin {
 
- String get kind;/// Mandatory title of the progress operation. Used to briefly inform about the
-/// kind of operation being performed.
+ String get kind;/// Mandatory title of the progress operation. Used to briefly inform about
+/// the kind of operation being performed.
 /// Examples: "Indexing" or "Linking dependencies".
- String get title;/// Optional progress percentage to display (value 100 is considered 100%). If
-/// not provided infinite progress is assumed and clients are allowed to ignore
-/// the `percentage` value in subsequent report notifications.
-/// The value should be steadily rising. Clients are free to ignore values that
-/// are not following this rule. The value range is [0, 100].
- int? get percentage;/// Optional, more detailed associated progress message. Contains complementary
-/// information to the `title`.
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-/// unset, the previous progress message (if any) is still valid.
+ String get title;/// Optional progress percentage to display (value 100 is considered 100%).
+/// If not provided infinite progress is assumed and clients are allowed to
+/// ignore the `percentage` value in subsequent report notifications.
+/// The value should be steadily rising. Clients are free to ignore values
+/// that are not following this rule. The value range is [0, 100].
+ int? get percentage;/// Optional, more detailed associated progress message. Contains
+/// complementary information to the `title`.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+/// If unset, the previous progress message (if any) is still valid.
  String? get message;/// Controls if a cancel button should show to allow the user to cancel the
-/// long running operation. Clients that don't support cancellation are allowed
-/// to ignore the setting.
+/// long running operation. Clients that don't support cancellation are
+/// allowed to ignore the setting.
  bool? get cancellable;
 /// Create a copy of WorkDoneProgressBegin
 /// with the given fields replaced by the non-null parameter values.
@@ -40584,24 +40369,24 @@ class _WorkDoneProgressBegin implements WorkDoneProgressBegin {
   factory _WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressBeginFromJson(json);
 
 @override final  String kind;
-/// Mandatory title of the progress operation. Used to briefly inform about the
-/// kind of operation being performed.
+/// Mandatory title of the progress operation. Used to briefly inform about
+/// the kind of operation being performed.
 /// Examples: "Indexing" or "Linking dependencies".
 @override final  String title;
-/// Optional progress percentage to display (value 100 is considered 100%). If
-/// not provided infinite progress is assumed and clients are allowed to ignore
-/// the `percentage` value in subsequent report notifications.
-/// The value should be steadily rising. Clients are free to ignore values that
-/// are not following this rule. The value range is [0, 100].
+/// Optional progress percentage to display (value 100 is considered 100%).
+/// If not provided infinite progress is assumed and clients are allowed to
+/// ignore the `percentage` value in subsequent report notifications.
+/// The value should be steadily rising. Clients are free to ignore values
+/// that are not following this rule. The value range is [0, 100].
 @override final  int? percentage;
-/// Optional, more detailed associated progress message. Contains complementary
-/// information to the `title`.
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-/// unset, the previous progress message (if any) is still valid.
+/// Optional, more detailed associated progress message. Contains
+/// complementary information to the `title`.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+/// If unset, the previous progress message (if any) is still valid.
 @override final  String? message;
 /// Controls if a cancel button should show to allow the user to cancel the
-/// long running operation. Clients that don't support cancellation are allowed
-/// to ignore the setting.
+/// long running operation. Clients that don't support cancellation are
+/// allowed to ignore the setting.
 @override final  bool? cancellable;
 
 /// Create a copy of WorkDoneProgressBegin
@@ -40672,18 +40457,18 @@ as bool?,
 /// @nodoc
 mixin _$WorkDoneProgressReport {
 
- String get kind;/// Optional progress percentage to display (value 100 is considered 100%). If
-/// not provided infinite progress is assumed and clients are allowed to ignore
-/// the `percentage` value in subsequent report notifications.
-/// The value should be steadily rising. Clients are free to ignore values that
-/// are not following this rule. The value range is [0, 100].
- int? get percentage;/// Optional, more detailed associated progress message. Contains complementary
-/// information to the `title`.
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-/// unset, the previous progress message (if any) is still valid.
+ String get kind;/// Optional progress percentage to display (value 100 is considered 100%).
+/// If not provided infinite progress is assumed and clients are allowed to
+/// ignore the `percentage` value in subsequent report notifications.
+/// The value should be steadily rising. Clients are free to ignore values
+/// that are not following this rule. The value range is [0, 100].
+ int? get percentage;/// Optional, more detailed associated progress message. Contains
+/// complementary information to the `title`.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+/// If unset, the previous progress message (if any) is still valid.
  String? get message;/// Controls enablement state of a cancel button.
-/// Clients that don't support cancellation or don't support controlling the
-/// button's enablement state are allowed to ignore the property.
+/// Clients that don't support cancellation or don't support controlling
+/// the button's enablement state are allowed to ignore the property.
  bool? get cancellable;
 /// Create a copy of WorkDoneProgressReport
 /// with the given fields replaced by the non-null parameter values.
@@ -40756,20 +40541,20 @@ class _WorkDoneProgressReport implements WorkDoneProgressReport {
   factory _WorkDoneProgressReport.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressReportFromJson(json);
 
 @override final  String kind;
-/// Optional progress percentage to display (value 100 is considered 100%). If
-/// not provided infinite progress is assumed and clients are allowed to ignore
-/// the `percentage` value in subsequent report notifications.
-/// The value should be steadily rising. Clients are free to ignore values that
-/// are not following this rule. The value range is [0, 100].
+/// Optional progress percentage to display (value 100 is considered 100%).
+/// If not provided infinite progress is assumed and clients are allowed to
+/// ignore the `percentage` value in subsequent report notifications.
+/// The value should be steadily rising. Clients are free to ignore values
+/// that are not following this rule. The value range is [0, 100].
 @override final  int? percentage;
-/// Optional, more detailed associated progress message. Contains complementary
-/// information to the `title`.
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-/// unset, the previous progress message (if any) is still valid.
+/// Optional, more detailed associated progress message. Contains
+/// complementary information to the `title`.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+/// If unset, the previous progress message (if any) is still valid.
 @override final  String? message;
 /// Controls enablement state of a cancel button.
-/// Clients that don't support cancellation or don't support controlling the
-/// button's enablement state are allowed to ignore the property.
+/// Clients that don't support cancellation or don't support controlling
+/// the button's enablement state are allowed to ignore the property.
 @override final  bool? cancellable;
 
 /// Create a copy of WorkDoneProgressReport
@@ -40839,8 +40624,8 @@ as bool?,
 /// @nodoc
 mixin _$WorkDoneProgressEnd {
 
- String get kind;/// Optional, a final message indicating to for example indicate the outcome of
-/// the operation.
+ String get kind;/// Optional, a final message indicating to for example indicate the
+/// outcome of the operation.
  String? get message;
 /// Create a copy of WorkDoneProgressEnd
 /// with the given fields replaced by the non-null parameter values.
@@ -40911,8 +40696,8 @@ class _WorkDoneProgressEnd implements WorkDoneProgressEnd {
   factory _WorkDoneProgressEnd.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressEndFromJson(json);
 
 @override final  String kind;
-/// Optional, a final message indicating to for example indicate the outcome of
-/// the operation.
+/// Optional, a final message indicating to for example indicate the
+/// outcome of the operation.
 @override final  String? message;
 
 /// Create a copy of WorkDoneProgressEnd
@@ -41252,7 +41037,7 @@ as String?,
 mixin _$CancelParams {
 
 /// The request id to cancel.
- dynamic get id;
+ Object get id;
 /// Create a copy of CancelParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -41285,7 +41070,7 @@ abstract mixin class $CancelParamsCopyWith<$Res>  {
   factory $CancelParamsCopyWith(CancelParams value, $Res Function(CancelParams) _then) = _$CancelParamsCopyWithImpl;
 @useResult
 $Res call({
- dynamic id
+ Object id
 });
 
 
@@ -41302,10 +41087,9 @@ class _$CancelParamsCopyWithImpl<$Res>
 
 /// Create a copy of CancelParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as dynamic,
+id: null == id ? _self.id : id ,
   ));
 }
 
@@ -41321,7 +41105,7 @@ class _CancelParams implements CancelParams {
   factory _CancelParams.fromJson(Map<String, dynamic> json) => _$CancelParamsFromJson(json);
 
 /// The request id to cancel.
-@override final  dynamic id;
+@override final  Object id;
 
 /// Create a copy of CancelParams
 /// with the given fields replaced by the non-null parameter values.
@@ -41356,7 +41140,7 @@ abstract mixin class _$CancelParamsCopyWith<$Res> implements $CancelParamsCopyWi
   factory _$CancelParamsCopyWith(_CancelParams value, $Res Function(_CancelParams) _then) = __$CancelParamsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic id
+ Object id
 });
 
 
@@ -41373,10 +41157,9 @@ class __$CancelParamsCopyWithImpl<$Res>
 
 /// Create a copy of CancelParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,}) {
   return _then(_CancelParams(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as dynamic,
+id: null == id ? _self.id : id ,
   ));
 }
 
@@ -41439,11 +41222,9 @@ class _$ProgressParamsCopyWithImpl<$Res>
 
 /// Create a copy of ProgressParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? token = freezed,Object? value = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? token = null,Object? value = null,}) {
   return _then(_self.copyWith(
-token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as ProgressToken,value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as LSPAny,
+token: null == token ? _self.token : token ,value: null == value ? _self.value : value ,
   ));
 }
 
@@ -41513,11 +41294,9 @@ class __$ProgressParamsCopyWithImpl<$Res>
 
 /// Create a copy of ProgressParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? token = freezed,Object? value = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,Object? value = null,}) {
   return _then(_ProgressParams(
-token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as ProgressToken,value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as LSPAny,
+token: null == token ? _self.token : token ,value: null == value ? _self.value : value ,
   ));
 }
 
@@ -41758,8 +41537,7 @@ class _$WorkDoneProgressParamsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -41829,8 +41607,7 @@ class __$WorkDoneProgressParamsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? workDoneToken = freezed,}) {
   return _then(_WorkDoneProgressParams(
-workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -41895,8 +41672,7 @@ class _$PartialResultParamsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? partialResultToken = freezed,}) {
   return _then(_self.copyWith(
-partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,
   ));
 }
 
@@ -41967,8 +41743,7 @@ class __$PartialResultParamsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? partialResultToken = freezed,}) {
   return _then(_PartialResultParams(
-partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+partialResultToken: freezed == partialResultToken ? _self.partialResultToken : partialResultToken ,
   ));
 }
 
@@ -41980,10 +41755,11 @@ as ProgressToken?,
 mixin _$LocationLink {
 
 /// The target resource identifier of this link.
- String get targetUri;/// The full target range of this link. If the target for example is a symbol
-/// then target range is the range enclosing this symbol not including
-/// leading/trailing whitespace but everything else like comments. This
-/// information is typically used to highlight the range in the editor.
+ String get targetUri;/// The full target range of this link. If the target for example is a
+/// symbol then target range is the range enclosing this symbol not
+/// including leading/trailing whitespace but everything else like
+/// comments. This information is typically used to highlight the range in
+/// the editor.
  Range get targetRange;/// The range that should be selected and revealed when this link is being
 /// followed, e.g the name of a function. Must be contained by the
 /// `targetRange`. See also `DocumentSymbol#range`
@@ -42093,10 +41869,11 @@ class _LocationLink implements LocationLink {
 
 /// The target resource identifier of this link.
 @override final  String targetUri;
-/// The full target range of this link. If the target for example is a symbol
-/// then target range is the range enclosing this symbol not including
-/// leading/trailing whitespace but everything else like comments. This
-/// information is typically used to highlight the range in the editor.
+/// The full target range of this link. If the target for example is a
+/// symbol then target range is the range enclosing this symbol not
+/// including leading/trailing whitespace but everything else like
+/// comments. This information is typically used to highlight the range in
+/// the editor.
 @override final  Range targetRange;
 /// The range that should be selected and revealed when this link is being
 /// followed, e.g the name of a function. Must be contained by the
@@ -42515,8 +42292,8 @@ as bool?,
 /// @nodoc
 mixin _$StaticRegistrationOptions {
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of StaticRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -42585,8 +42362,8 @@ class _StaticRegistrationOptions implements StaticRegistrationOptions {
   const _StaticRegistrationOptions({this.id});
   factory _StaticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$StaticRegistrationOptionsFromJson(json);
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of StaticRegistrationOptions
@@ -43774,13 +43551,13 @@ mixin _$Position {
 
 /// Line position in a document (zero-based).
 /// If a line number is greater than the number of lines in a document, it
-/// defaults back to the number of lines in the document. If a line number is
-/// negative, it defaults to 0.
+/// defaults back to the number of lines in the document. If a line number
+/// is negative, it defaults to 0.
  int get line;/// Character offset on a line in a document (zero-based).
 /// The meaning of this offset is determined by the negotiated
 /// `PositionEncodingKind`.
-/// If the character value is greater than the line length it defaults back to
-/// the line length.
+/// If the character value is greater than the line length it defaults back
+/// to the line length.
  int get character;
 /// Create a copy of Position
 /// with the given fields replaced by the non-null parameter values.
@@ -43852,14 +43629,14 @@ class _Position implements Position {
 
 /// Line position in a document (zero-based).
 /// If a line number is greater than the number of lines in a document, it
-/// defaults back to the number of lines in the document. If a line number is
-/// negative, it defaults to 0.
+/// defaults back to the number of lines in the document. If a line number
+/// is negative, it defaults to 0.
 @override final  int line;
 /// Character offset on a line in a document (zero-based).
 /// The meaning of this offset is determined by the negotiated
 /// `PositionEncodingKind`.
-/// If the character value is greater than the line length it defaults back to
-/// the line length.
+/// If the character value is greater than the line length it defaults back
+/// to the line length.
 @override final  int character;
 
 /// Create a copy of Position
@@ -44197,9 +43974,9 @@ mixin _$SemanticTokensOptions {
 
 /// The legend used by the server
  SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a full document.
- dynamic? get full;/// Server supports providing semantic tokens for a specific range of a
+ Object? get full;/// Server supports providing semantic tokens for a specific range of a
 /// document.
- dynamic? get range; bool? get workDoneProgress;
+ Object? get range; bool? get workDoneProgress;
 /// Create a copy of SemanticTokensOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -44232,7 +44009,7 @@ abstract mixin class $SemanticTokensOptionsCopyWith<$Res>  {
   factory $SemanticTokensOptionsCopyWith(SemanticTokensOptions value, $Res Function(SemanticTokensOptions) _then) = _$SemanticTokensOptionsCopyWithImpl;
 @useResult
 $Res call({
- SemanticTokensLegend legend, dynamic? full, dynamic? range, bool? workDoneProgress
+ SemanticTokensLegend legend, Object? full, Object? range, bool? workDoneProgress
 });
 
 
@@ -44252,9 +44029,7 @@ class _$SemanticTokensOptionsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? legend = null,Object? full = freezed,Object? range = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_self.copyWith(
 legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
-as SemanticTokensLegend,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
-as dynamic?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as dynamic?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as SemanticTokensLegend,full: freezed == full ? _self.full : full ,range: freezed == range ? _self.range : range ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -44282,10 +44057,10 @@ class _SemanticTokensOptions implements SemanticTokensOptions {
 /// The legend used by the server
 @override final  SemanticTokensLegend legend;
 /// Server supports providing semantic tokens for a full document.
-@override final  dynamic? full;
+@override final  Object? full;
 /// Server supports providing semantic tokens for a specific range of a
 /// document.
-@override final  dynamic? range;
+@override final  Object? range;
 @override final  bool? workDoneProgress;
 
 /// Create a copy of SemanticTokensOptions
@@ -44321,7 +44096,7 @@ abstract mixin class _$SemanticTokensOptionsCopyWith<$Res> implements $SemanticT
   factory _$SemanticTokensOptionsCopyWith(_SemanticTokensOptions value, $Res Function(_SemanticTokensOptions) _then) = __$SemanticTokensOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- SemanticTokensLegend legend, dynamic? full, dynamic? range, bool? workDoneProgress
+ SemanticTokensLegend legend, Object? full, Object? range, bool? workDoneProgress
 });
 
 
@@ -44341,9 +44116,7 @@ class __$SemanticTokensOptionsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? legend = null,Object? full = freezed,Object? range = freezed,Object? workDoneProgress = freezed,}) {
   return _then(_SemanticTokensOptions(
 legend: null == legend ? _self.legend : legend // ignore: cast_nullable_to_non_nullable
-as SemanticTokensLegend,full: freezed == full ? _self.full : full // ignore: cast_nullable_to_non_nullable
-as dynamic?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as dynamic?,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
+as SemanticTokensLegend,full: freezed == full ? _self.full : full ,range: freezed == range ? _self.range : range ,workDoneProgress: freezed == workDoneProgress ? _self.workDoneProgress : workDoneProgress // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -44793,7 +44566,7 @@ mixin _$TextDocumentEdit {
  OptionalVersionedTextDocumentIdentifier get textDocument;/// The edits to be applied.
 /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
 /// client capability.
- List<dynamic> get edits;
+ List<Object> get edits;
 /// Create a copy of TextDocumentEdit
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -44826,7 +44599,7 @@ abstract mixin class $TextDocumentEditCopyWith<$Res>  {
   factory $TextDocumentEditCopyWith(TextDocumentEdit value, $Res Function(TextDocumentEdit) _then) = _$TextDocumentEditCopyWithImpl;
 @useResult
 $Res call({
- OptionalVersionedTextDocumentIdentifier textDocument, List<dynamic> edits
+ OptionalVersionedTextDocumentIdentifier textDocument, List<Object> edits
 });
 
 
@@ -44847,7 +44620,7 @@ class _$TextDocumentEditCopyWithImpl<$Res>
   return _then(_self.copyWith(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as OptionalVersionedTextDocumentIdentifier,edits: null == edits ? _self.edits : edits // ignore: cast_nullable_to_non_nullable
-as List<dynamic>,
+as List<Object>,
   ));
 }
 /// Create a copy of TextDocumentEdit
@@ -44868,7 +44641,7 @@ $OptionalVersionedTextDocumentIdentifierCopyWith<$Res> get textDocument {
 
 @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
 class _TextDocumentEdit implements TextDocumentEdit {
-  const _TextDocumentEdit({required this.textDocument, required final  List<dynamic> edits}): _edits = edits;
+  const _TextDocumentEdit({required this.textDocument, required final  List<Object> edits}): _edits = edits;
   factory _TextDocumentEdit.fromJson(Map<String, dynamic> json) => _$TextDocumentEditFromJson(json);
 
 /// The text document to change.
@@ -44876,11 +44649,11 @@ class _TextDocumentEdit implements TextDocumentEdit {
 /// The edits to be applied.
 /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
 /// client capability.
- final  List<dynamic> _edits;
+ final  List<Object> _edits;
 /// The edits to be applied.
 /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
 /// client capability.
-@override List<dynamic> get edits {
+@override List<Object> get edits {
   if (_edits is EqualUnmodifiableListView) return _edits;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_edits);
@@ -44920,7 +44693,7 @@ abstract mixin class _$TextDocumentEditCopyWith<$Res> implements $TextDocumentEd
   factory _$TextDocumentEditCopyWith(_TextDocumentEdit value, $Res Function(_TextDocumentEdit) _then) = __$TextDocumentEditCopyWithImpl;
 @override @useResult
 $Res call({
- OptionalVersionedTextDocumentIdentifier textDocument, List<dynamic> edits
+ OptionalVersionedTextDocumentIdentifier textDocument, List<Object> edits
 });
 
 
@@ -44941,7 +44714,7 @@ class __$TextDocumentEditCopyWithImpl<$Res>
   return _then(_TextDocumentEdit(
 textDocument: null == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
 as OptionalVersionedTextDocumentIdentifier,edits: null == edits ? _self._edits : edits // ignore: cast_nullable_to_non_nullable
-as List<dynamic>,
+as List<Object>,
   ));
 }
 
@@ -45501,8 +45274,8 @@ mixin _$ChangeAnnotation {
 /// rendered prominent in the user interface.
  String get label;/// A human-readable string which is rendered less prominent in the user
 /// interface.
- String? get description;/// A flag which indicates that user confirmation is needed before applying the
-/// change.
+ String? get description;/// A flag which indicates that user confirmation is needed before applying
+/// the change.
  bool? get needsConfirmation;
 /// Create a copy of ChangeAnnotation
 /// with the given fields replaced by the non-null parameter values.
@@ -45579,8 +45352,8 @@ class _ChangeAnnotation implements ChangeAnnotation {
 /// A human-readable string which is rendered less prominent in the user
 /// interface.
 @override final  String? description;
-/// A flag which indicates that user confirmation is needed before applying the
-/// change.
+/// A flag which indicates that user confirmation is needed before applying
+/// the change.
 @override final  bool? needsConfirmation;
 
 /// Create a copy of ChangeAnnotation
@@ -45808,7 +45581,8 @@ $FileOperationPatternCopyWith<$Res> get pattern {
 /// @nodoc
 mixin _$FileRename {
 
-/// A file:// URI for the original location of the file/folder being renamed.
+/// A file:// URI for the original location of the file/folder being
+/// renamed.
  String get oldUri;/// A file:// URI for the new location of the file/folder being renamed.
  String get newUri;
 /// Create a copy of FileRename
@@ -45879,7 +45653,8 @@ class _FileRename implements FileRename {
   const _FileRename({required this.oldUri, required this.newUri});
   factory _FileRename.fromJson(Map<String, dynamic> json) => _$FileRenameFromJson(json);
 
-/// A file:// URI for the original location of the file/folder being renamed.
+/// A file:// URI for the original location of the file/folder being
+/// renamed.
 @override final  String oldUri;
 /// A file:// URI for the new location of the file/folder being renamed.
 @override final  String newUri;
@@ -46354,8 +46129,9 @@ as bool?,
 mixin _$InlineValueContext {
 
 /// The stack frame (as a DAP Id) where the execution has stopped.
- int get frameId;/// The document range where execution has stopped. Typically the end position
-/// of the range denotes the line where the inline values are shown.
+ int get frameId;/// The document range where execution has stopped. Typically the end
+/// position of the range denotes the line where the inline values are
+/// shown.
  Range get stoppedLocation;
 /// Create a copy of InlineValueContext
 /// with the given fields replaced by the non-null parameter values.
@@ -46436,8 +46212,9 @@ class _InlineValueContext implements InlineValueContext {
 
 /// The stack frame (as a DAP Id) where the execution has stopped.
 @override final  int frameId;
-/// The document range where execution has stopped. Typically the end position
-/// of the range denotes the line where the inline values are shown.
+/// The document range where execution has stopped. Typically the end
+/// position of the range denotes the line where the inline values are
+/// shown.
 @override final  Range stoppedLocation;
 
 /// Create a copy of InlineValueContext
@@ -46673,8 +46450,8 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlineValueVariableLookup {
 
-/// The document range for which the inline value applies. The range is used to
-/// extract the variable name from the underlying document.
+/// The document range for which the inline value applies. The range is
+/// used to extract the variable name from the underlying document.
  Range get range;/// How to perform the lookup.
  bool get caseSensitiveLookup;/// If specified the name of the variable to look up.
  String? get variableName;
@@ -46756,8 +46533,8 @@ class _InlineValueVariableLookup implements InlineValueVariableLookup {
   const _InlineValueVariableLookup({required this.range, required this.caseSensitiveLookup, this.variableName});
   factory _InlineValueVariableLookup.fromJson(Map<String, dynamic> json) => _$InlineValueVariableLookupFromJson(json);
 
-/// The document range for which the inline value applies. The range is used to
-/// extract the variable name from the underlying document.
+/// The document range for which the inline value applies. The range is
+/// used to extract the variable name from the underlying document.
 @override final  Range range;
 /// How to perform the lookup.
 @override final  bool caseSensitiveLookup;
@@ -46839,8 +46616,9 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlineValueEvaluatableExpression {
 
-/// The document range for which the inline value applies. The range is used to
-/// extract the evaluatable expression from the underlying document.
+/// The document range for which the inline value applies. The range is
+/// used to extract the evaluatable expression from the underlying
+/// document.
  Range get range;/// If specified the expression overrides the extracted expression.
  String? get expression;
 /// Create a copy of InlineValueEvaluatableExpression
@@ -46920,8 +46698,9 @@ class _InlineValueEvaluatableExpression implements InlineValueEvaluatableExpress
   const _InlineValueEvaluatableExpression({required this.range, this.expression});
   factory _InlineValueEvaluatableExpression.fromJson(Map<String, dynamic> json) => _$InlineValueEvaluatableExpressionFromJson(json);
 
-/// The document range for which the inline value applies. The range is used to
-/// extract the evaluatable expression from the underlying document.
+/// The document range for which the inline value applies. The range is
+/// used to extract the evaluatable expression from the underlying
+/// document.
 @override final  Range range;
 /// If specified the expression overrides the extracted expression.
 @override final  String? expression;
@@ -47136,20 +46915,20 @@ mixin _$InlayHintLabelPart {
 
 /// The value of this label part.
  String get value;/// An optional command for this label part.
-/// Depending on the client capability `inlayHint.resolveSupport` clients might
-/// resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients
+/// might resolve this property late using the resolve request.
  Command? get command;/// An optional source code location that represents this label part.
 /// The editor will use this location for the hover and for code navigation
 /// features: This part will become a clickable link that resolves to the
 /// definition of the symbol at the given location (not necessarily the
-/// location itself), it shows the hover that shows at the given location, and
-/// it shows a context menu with further code navigation commands.
-/// Depending on the client capability `inlayHint.resolveSupport` clients might
-/// resolve this property late using the resolve request.
+/// location itself), it shows the hover that shows at the given location,
+/// and it shows a context menu with further code navigation commands.
+/// Depending on the client capability `inlayHint.resolveSupport` clients
+/// might resolve this property late using the resolve request.
  Location? get location;/// The tooltip text when you hover over this label part. Depending on the
 /// client capability `inlayHint.resolveSupport` clients might resolve this
 /// property late using the resolve request.
- dynamic? get tooltip;
+ Object? get tooltip;
 /// Create a copy of InlayHintLabelPart
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -47182,7 +46961,7 @@ abstract mixin class $InlayHintLabelPartCopyWith<$Res>  {
   factory $InlayHintLabelPartCopyWith(InlayHintLabelPart value, $Res Function(InlayHintLabelPart) _then) = _$InlayHintLabelPartCopyWithImpl;
 @useResult
 $Res call({
- String value, Command? command, Location? location, dynamic? tooltip
+ String value, Command? command, Location? location, Object? tooltip
 });
 
 
@@ -47204,8 +46983,7 @@ class _$InlayHintLabelPartCopyWithImpl<$Res>
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as Location?,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+as Location?,tooltip: freezed == tooltip ? _self.tooltip : tooltip ,
   ));
 }
 /// Create a copy of InlayHintLabelPart
@@ -47247,22 +47025,22 @@ class _InlayHintLabelPart implements InlayHintLabelPart {
 /// The value of this label part.
 @override final  String value;
 /// An optional command for this label part.
-/// Depending on the client capability `inlayHint.resolveSupport` clients might
-/// resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients
+/// might resolve this property late using the resolve request.
 @override final  Command? command;
 /// An optional source code location that represents this label part.
 /// The editor will use this location for the hover and for code navigation
 /// features: This part will become a clickable link that resolves to the
 /// definition of the symbol at the given location (not necessarily the
-/// location itself), it shows the hover that shows at the given location, and
-/// it shows a context menu with further code navigation commands.
-/// Depending on the client capability `inlayHint.resolveSupport` clients might
-/// resolve this property late using the resolve request.
+/// location itself), it shows the hover that shows at the given location,
+/// and it shows a context menu with further code navigation commands.
+/// Depending on the client capability `inlayHint.resolveSupport` clients
+/// might resolve this property late using the resolve request.
 @override final  Location? location;
 /// The tooltip text when you hover over this label part. Depending on the
 /// client capability `inlayHint.resolveSupport` clients might resolve this
 /// property late using the resolve request.
-@override final  dynamic? tooltip;
+@override final  Object? tooltip;
 
 /// Create a copy of InlayHintLabelPart
 /// with the given fields replaced by the non-null parameter values.
@@ -47297,7 +47075,7 @@ abstract mixin class _$InlayHintLabelPartCopyWith<$Res> implements $InlayHintLab
   factory _$InlayHintLabelPartCopyWith(_InlayHintLabelPart value, $Res Function(_InlayHintLabelPart) _then) = __$InlayHintLabelPartCopyWithImpl;
 @override @useResult
 $Res call({
- String value, Command? command, Location? location, dynamic? tooltip
+ String value, Command? command, Location? location, Object? tooltip
 });
 
 
@@ -47319,8 +47097,7 @@ class __$InlayHintLabelPartCopyWithImpl<$Res>
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as Location?,tooltip: freezed == tooltip ? _self.tooltip : tooltip // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+as Location?,tooltip: freezed == tooltip ? _self.tooltip : tooltip ,
   ));
 }
 
@@ -47496,8 +47273,8 @@ as String,
 /// @nodoc
 mixin _$InlayHintOptions {
 
-/// The server provides support to resolve additional information for an inlay
-/// hint item.
+/// The server provides support to resolve additional information for an
+/// inlay hint item.
  bool? get resolveProvider; bool? get workDoneProgress;
 /// Create a copy of InlayHintOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -47567,8 +47344,8 @@ class _InlayHintOptions implements InlayHintOptions {
   const _InlayHintOptions({this.resolveProvider, this.workDoneProgress});
   factory _InlayHintOptions.fromJson(Map<String, dynamic> json) => _$InlayHintOptionsFromJson(json);
 
-/// The server provides support to resolve additional information for an inlay
-/// hint item.
+/// The server provides support to resolve additional information for an
+/// inlay hint item.
 @override final  bool? resolveProvider;
 @override final  bool? workDoneProgress;
 
@@ -47639,13 +47416,14 @@ mixin _$RelatedFullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
  String get kind;/// The actual items.
- List<Diagnostic> get items;/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco
-/// definitions in a file a.cpp and result in errors in a header file b.hpp.
+ List<Diagnostic> get items;/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics
+/// in a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a
+/// header file b.hpp.
 /// @since 3.17.0
- Map<String, dynamic>? get relatedDocuments;/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+ Map<String, Object>? get relatedDocuments;/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
  String? get resultId;
 /// Create a copy of RelatedFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -47679,7 +47457,7 @@ abstract mixin class $RelatedFullDocumentDiagnosticReportCopyWith<$Res>  {
   factory $RelatedFullDocumentDiagnosticReportCopyWith(RelatedFullDocumentDiagnosticReport value, $Res Function(RelatedFullDocumentDiagnosticReport) _then) = _$RelatedFullDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, List<Diagnostic> items, Map<String, dynamic>? relatedDocuments, String? resultId
+ String kind, List<Diagnostic> items, Map<String, Object>? relatedDocuments, String? resultId
 });
 
 
@@ -47701,7 +47479,7 @@ class _$RelatedFullDocumentDiagnosticReportCopyWithImpl<$Res>
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>,relatedDocuments: freezed == relatedDocuments ? _self.relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as Map<String, Object>?,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -47714,7 +47492,7 @@ as String?,
 
 @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
 class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnosticReport {
-  const _RelatedFullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, final  Map<String, dynamic>? relatedDocuments, this.resultId}): _items = items,_relatedDocuments = relatedDocuments;
+  const _RelatedFullDocumentDiagnosticReport({required this.kind, required final  List<Diagnostic> items, final  Map<String, Object>? relatedDocuments, this.resultId}): _items = items,_relatedDocuments = relatedDocuments;
   factory _RelatedFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedFullDocumentDiagnosticReportFromJson(json);
 
 /// A full document diagnostic report.
@@ -47728,18 +47506,20 @@ class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnos
   return EqualUnmodifiableListView(_items);
 }
 
-/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco
-/// definitions in a file a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics
+/// in a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a
+/// header file b.hpp.
 /// @since 3.17.0
- final  Map<String, dynamic>? _relatedDocuments;
-/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco
-/// definitions in a file a.cpp and result in errors in a header file b.hpp.
+ final  Map<String, Object>? _relatedDocuments;
+/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics
+/// in a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a
+/// header file b.hpp.
 /// @since 3.17.0
-@override Map<String, dynamic>? get relatedDocuments {
+@override Map<String, Object>? get relatedDocuments {
   final value = _relatedDocuments;
   if (value == null) return null;
   if (_relatedDocuments is EqualUnmodifiableMapView) return _relatedDocuments;
@@ -47747,8 +47527,8 @@ class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnos
   return EqualUnmodifiableMapView(value);
 }
 
-/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
 @override final  String? resultId;
 
 /// Create a copy of RelatedFullDocumentDiagnosticReport
@@ -47784,7 +47564,7 @@ abstract mixin class _$RelatedFullDocumentDiagnosticReportCopyWith<$Res> impleme
   factory _$RelatedFullDocumentDiagnosticReportCopyWith(_RelatedFullDocumentDiagnosticReport value, $Res Function(_RelatedFullDocumentDiagnosticReport) _then) = __$RelatedFullDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, List<Diagnostic> items, Map<String, dynamic>? relatedDocuments, String? resultId
+ String kind, List<Diagnostic> items, Map<String, Object>? relatedDocuments, String? resultId
 });
 
 
@@ -47806,7 +47586,7 @@ class __$RelatedFullDocumentDiagnosticReportCopyWithImpl<$Res>
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>,relatedDocuments: freezed == relatedDocuments ? _self._relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as Map<String, Object>?,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -47818,16 +47598,17 @@ as String?,
 /// @nodoc
 mixin _$RelatedUnchangedDocumentDiagnosticReport {
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
- String get kind;/// A result id which will be sent on the next diagnostic request for the same
-/// document.
- String get resultId;/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco
-/// definitions in a file a.cpp and result in errors in a header file b.hpp.
+/// A document diagnostic report indicating no changes to the last result.
+/// A server can only return `unchanged` if result ids are provided.
+ String get kind;/// A result id which will be sent on the next diagnostic request for the
+/// same document.
+ String get resultId;/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics
+/// in a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a
+/// header file b.hpp.
 /// @since 3.17.0
- Map<String, dynamic>? get relatedDocuments;
+ Map<String, Object>? get relatedDocuments;
 /// Create a copy of RelatedUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -47860,7 +47641,7 @@ abstract mixin class $RelatedUnchangedDocumentDiagnosticReportCopyWith<$Res>  {
   factory $RelatedUnchangedDocumentDiagnosticReportCopyWith(RelatedUnchangedDocumentDiagnosticReport value, $Res Function(RelatedUnchangedDocumentDiagnosticReport) _then) = _$RelatedUnchangedDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, String resultId, Map<String, dynamic>? relatedDocuments
+ String kind, String resultId, Map<String, Object>? relatedDocuments
 });
 
 
@@ -47882,7 +47663,7 @@ class _$RelatedUnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String,relatedDocuments: freezed == relatedDocuments ? _self.relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+as Map<String, Object>?,
   ));
 }
 
@@ -47894,27 +47675,29 @@ as Map<String, dynamic>?,
 
 @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
 class _RelatedUnchangedDocumentDiagnosticReport implements RelatedUnchangedDocumentDiagnosticReport {
-  const _RelatedUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, final  Map<String, dynamic>? relatedDocuments}): _relatedDocuments = relatedDocuments;
+  const _RelatedUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, final  Map<String, Object>? relatedDocuments}): _relatedDocuments = relatedDocuments;
   factory _RelatedUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
+/// A document diagnostic report indicating no changes to the last result.
+/// A server can only return `unchanged` if result ids are provided.
 @override final  String kind;
-/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+/// A result id which will be sent on the next diagnostic request for the
+/// same document.
 @override final  String resultId;
-/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco
-/// definitions in a file a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics
+/// in a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a
+/// header file b.hpp.
 /// @since 3.17.0
- final  Map<String, dynamic>? _relatedDocuments;
-/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco
-/// definitions in a file a.cpp and result in errors in a header file b.hpp.
+ final  Map<String, Object>? _relatedDocuments;
+/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics
+/// in a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a
+/// header file b.hpp.
 /// @since 3.17.0
-@override Map<String, dynamic>? get relatedDocuments {
+@override Map<String, Object>? get relatedDocuments {
   final value = _relatedDocuments;
   if (value == null) return null;
   if (_relatedDocuments is EqualUnmodifiableMapView) return _relatedDocuments;
@@ -47956,7 +47739,7 @@ abstract mixin class _$RelatedUnchangedDocumentDiagnosticReportCopyWith<$Res> im
   factory _$RelatedUnchangedDocumentDiagnosticReportCopyWith(_RelatedUnchangedDocumentDiagnosticReport value, $Res Function(_RelatedUnchangedDocumentDiagnosticReport) _then) = __$RelatedUnchangedDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String resultId, Map<String, dynamic>? relatedDocuments
+ String kind, String resultId, Map<String, Object>? relatedDocuments
 });
 
 
@@ -47978,7 +47761,7 @@ class __$RelatedUnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String,relatedDocuments: freezed == relatedDocuments ? _self._relatedDocuments : relatedDocuments // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+as Map<String, Object>?,
   ));
 }
 
@@ -47991,8 +47774,8 @@ mixin _$FullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
  String get kind;/// The actual items.
- List<Diagnostic> get items;/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+ List<Diagnostic> get items;/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
  String? get resultId;
 /// Create a copy of FullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -48074,8 +47857,8 @@ class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
   return EqualUnmodifiableListView(_items);
 }
 
-/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
 @override final  String? resultId;
 
 /// Create a copy of FullDocumentDiagnosticReport
@@ -48144,10 +47927,10 @@ as String?,
 /// @nodoc
 mixin _$UnchangedDocumentDiagnosticReport {
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
- String get kind;/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+/// A document diagnostic report indicating no changes to the last result.
+/// A server can only return `unchanged` if result ids are provided.
+ String get kind;/// A result id which will be sent on the next diagnostic request for the
+/// same document.
  String get resultId;
 /// Create a copy of UnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -48217,11 +48000,11 @@ class _UnchangedDocumentDiagnosticReport implements UnchangedDocumentDiagnosticR
   const _UnchangedDocumentDiagnosticReport({required this.kind, required this.resultId});
   factory _UnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$UnchangedDocumentDiagnosticReportFromJson(json);
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
+/// A document diagnostic report indicating no changes to the last result.
+/// A server can only return `unchanged` if result ids are provided.
 @override final  String kind;
-/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+/// A result id which will be sent on the next diagnostic request for the
+/// same document.
 @override final  String resultId;
 
 /// Create a copy of UnchangedDocumentDiagnosticReport
@@ -48289,10 +48072,10 @@ as String,
 /// @nodoc
 mixin _$DiagnosticOptions {
 
-/// Whether the language has inter file dependencies meaning that editing code
-/// in one file can result in a different diagnostic set in another file. Inter
-/// file dependencies are common for most programming languages and typically
-/// uncommon for linters.
+/// Whether the language has inter file dependencies meaning that editing
+/// code in one file can result in a different diagnostic set in another
+/// file. Inter file dependencies are common for most programming languages
+/// and typically uncommon for linters.
  bool get interFileDependencies;/// The server provides support for workspace diagnostics as well.
  bool get workspaceDiagnostics;/// An optional identifier under which the diagnostics are managed by the
 /// client.
@@ -48367,10 +48150,10 @@ class _DiagnosticOptions implements DiagnosticOptions {
   const _DiagnosticOptions({required this.interFileDependencies, required this.workspaceDiagnostics, this.identifier, this.workDoneProgress});
   factory _DiagnosticOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticOptionsFromJson(json);
 
-/// Whether the language has inter file dependencies meaning that editing code
-/// in one file can result in a different diagnostic set in another file. Inter
-/// file dependencies are common for most programming languages and typically
-/// uncommon for linters.
+/// Whether the language has inter file dependencies meaning that editing
+/// code in one file can result in a different diagnostic set in another
+/// file. Inter file dependencies are common for most programming languages
+/// and typically uncommon for linters.
 @override final  bool interFileDependencies;
 /// The server provides support for workspace diagnostics as well.
 @override final  bool workspaceDiagnostics;
@@ -48589,8 +48372,8 @@ mixin _$NotebookDocument {
 
 /// The notebook document's uri.
  String get uri;/// The type of the notebook.
- String get notebookType;/// The version number of this document (it will increase after each change,
-/// including undo/redo).
+ String get notebookType;/// The version number of this document (it will increase after each
+/// change, including undo/redo).
  int get version;/// The cells of a notebook.
  List<NotebookCell> get cells;/// Additional metadata stored with the notebook document.
 /// Note: should always be an object literal (e.g. LSPObject)
@@ -48670,8 +48453,8 @@ class _NotebookDocument implements NotebookDocument {
 @override final  String uri;
 /// The type of the notebook.
 @override final  String notebookType;
-/// The version number of this document (it will increase after each change,
-/// including undo/redo).
+/// The version number of this document (it will increase after each
+/// change, including undo/redo).
 @override final  int version;
 /// The cells of a notebook.
  final  List<NotebookCell> _cells;
@@ -48766,8 +48549,8 @@ mixin _$TextDocumentItem {
 
 /// The text document's uri.
  String get uri;/// The text document's language identifier.
- String get languageId;/// The version number of this document (it will increase after each change,
-/// including undo/redo).
+ String get languageId;/// The version number of this document (it will increase after each
+/// change, including undo/redo).
  int get version;/// The content of the opened text document.
  String get text;
 /// Create a copy of TextDocumentItem
@@ -48844,8 +48627,8 @@ class _TextDocumentItem implements TextDocumentItem {
 @override final  String uri;
 /// The text document's language identifier.
 @override final  String languageId;
-/// The version number of this document (it will increase after each change,
-/// including undo/redo).
+/// The version number of this document (it will increase after each
+/// change, including undo/redo).
 @override final  int version;
 /// The content of the opened text document.
 @override final  String text;
@@ -49348,8 +49131,8 @@ as String,
 mixin _$InlineCompletionContext {
 
 /// Describes how the inline completion was triggered.
- InlineCompletionTriggerKind get triggerKind;/// Provides information about the currently selected item in the autocomplete
-/// widget if it is visible.
+ InlineCompletionTriggerKind get triggerKind;/// Provides information about the currently selected item in the
+/// autocomplete widget if it is visible.
  SelectedCompletionInfo? get selectedCompletionInfo;
 /// Create a copy of InlineCompletionContext
 /// with the given fields replaced by the non-null parameter values.
@@ -49433,8 +49216,8 @@ class _InlineCompletionContext implements InlineCompletionContext {
 
 /// Describes how the inline completion was triggered.
 @override final  InlineCompletionTriggerKind triggerKind;
-/// Provides information about the currently selected item in the autocomplete
-/// widget if it is visible.
+/// Provides information about the currently selected item in the
+/// autocomplete widget if it is visible.
 @override final  SelectedCompletionInfo? selectedCompletionInfo;
 
 /// Create a copy of InlineCompletionContext
@@ -49789,8 +49572,8 @@ as bool?,
 /// @nodoc
 mixin _$Registration {
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again.
+/// The id used to register the request. The id can be used to deregister
+/// the request again.
  String get id;/// The method / capability to register for.
  String get method;/// Options necessary for the registration.
  LSPAny? get registerOptions;
@@ -49847,8 +49630,7 @@ class _$RegistrationCopyWithImpl<$Res>
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
-as String,registerOptions: freezed == registerOptions ? _self.registerOptions : registerOptions // ignore: cast_nullable_to_non_nullable
-as LSPAny?,
+as String,registerOptions: freezed == registerOptions ? _self.registerOptions : registerOptions ,
   ));
 }
 
@@ -49863,8 +49645,8 @@ class _Registration implements Registration {
   const _Registration({required this.id, required this.method, this.registerOptions});
   factory _Registration.fromJson(Map<String, dynamic> json) => _$RegistrationFromJson(json);
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again.
+/// The id used to register the request. The id can be used to deregister
+/// the request again.
 @override final  String id;
 /// The method / capability to register for.
 @override final  String method;
@@ -49925,8 +49707,7 @@ class __$RegistrationCopyWithImpl<$Res>
   return _then(_Registration(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
-as String,registerOptions: freezed == registerOptions ? _self.registerOptions : registerOptions // ignore: cast_nullable_to_non_nullable
-as LSPAny?,
+as String,registerOptions: freezed == registerOptions ? _self.registerOptions : registerOptions ,
   ));
 }
 
@@ -50081,18 +49862,18 @@ as String,
 mixin _$TInitializeParams {
 
 /// The process Id of the parent process that started the server.
-/// Is `null` if the process has not been started by another process. If the
-/// parent process is not alive then the server should exit.
- dynamic get processId;/// The rootUri of the workspace. Is null if no folder is open. If both
+/// Is `null` if the process has not been started by another process. If
+/// the parent process is not alive then the server should exit.
+ Object get processId;/// The rootUri of the workspace. Is null if no folder is open. If both
 /// `rootPath` and `rootUri` are set `rootUri` wins.
 /// @deprecated in favour of workspaceFolders.
- dynamic get rootUri;/// The capabilities provided by the client (editor or tool)
+ Object get rootUri;/// The capabilities provided by the client (editor or tool)
  ClientCapabilities get capabilities;/// The initial trace setting. If omitted trace is disabled ('off').
  TraceValues? get trace;/// User provided initialization options.
  LSPAny? get initializationOptions;/// The rootPath of the workspace. Is null if no folder is open.
 /// @deprecated in favour of rootUri.
- dynamic? get rootPath;/// The locale the client is currently showing the user interface in. This must
-/// not necessarily be the locale of the operating system.
+ Object? get rootPath;/// The locale the client is currently showing the user interface in. This
+/// must not necessarily be the locale of the operating system.
 /// Uses IETF language tags as the value's syntax (See
 /// https://en.wikipedia.org/wiki/IETF_language_tag)
 /// @since 3.16.0
@@ -50132,7 +49913,7 @@ abstract mixin class $TInitializeParamsCopyWith<$Res>  {
   factory $TInitializeParamsCopyWith(TInitializeParams value, $Res Function(TInitializeParams) _then) = _$TInitializeParamsCopyWithImpl;
 @useResult
 $Res call({
- dynamic processId, dynamic rootUri, ClientCapabilities capabilities, TraceValues? trace, LSPAny? initializationOptions, dynamic? rootPath, String? locale, ({String name, String? version})? clientInfo, ProgressToken? workDoneToken
+ Object processId, Object rootUri, ClientCapabilities capabilities, TraceValues? trace, LSPAny? initializationOptions, Object? rootPath, String? locale, ({String name, String? version})? clientInfo, ProgressToken? workDoneToken
 });
 
 
@@ -50149,18 +49930,13 @@ class _$TInitializeParamsCopyWithImpl<$Res>
 
 /// Create a copy of TInitializeParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? processId = freezed,Object? rootUri = freezed,Object? capabilities = null,Object? trace = freezed,Object? initializationOptions = freezed,Object? rootPath = freezed,Object? locale = freezed,Object? clientInfo = freezed,Object? workDoneToken = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? processId = null,Object? rootUri = null,Object? capabilities = null,Object? trace = freezed,Object? initializationOptions = freezed,Object? rootPath = freezed,Object? locale = freezed,Object? clientInfo = freezed,Object? workDoneToken = freezed,}) {
   return _then(_self.copyWith(
-processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
-as dynamic,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
-as dynamic,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
+processId: null == processId ? _self.processId : processId ,rootUri: null == rootUri ? _self.rootUri : rootUri ,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
 as ClientCapabilities,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
-as TraceValues?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions // ignore: cast_nullable_to_non_nullable
-as LSPAny?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
-as dynamic?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as TraceValues?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions ,rootPath: freezed == rootPath ? _self.rootPath : rootPath ,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
-as ({String name, String? version})?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as ({String name, String? version})?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 /// Create a copy of TInitializeParams
@@ -50185,13 +49961,13 @@ class _TInitializeParams implements TInitializeParams {
   factory _TInitializeParams.fromJson(Map<String, dynamic> json) => _$TInitializeParamsFromJson(json);
 
 /// The process Id of the parent process that started the server.
-/// Is `null` if the process has not been started by another process. If the
-/// parent process is not alive then the server should exit.
-@override final  dynamic processId;
+/// Is `null` if the process has not been started by another process. If
+/// the parent process is not alive then the server should exit.
+@override final  Object processId;
 /// The rootUri of the workspace. Is null if no folder is open. If both
 /// `rootPath` and `rootUri` are set `rootUri` wins.
 /// @deprecated in favour of workspaceFolders.
-@override final  dynamic rootUri;
+@override final  Object rootUri;
 /// The capabilities provided by the client (editor or tool)
 @override final  ClientCapabilities capabilities;
 /// The initial trace setting. If omitted trace is disabled ('off').
@@ -50200,9 +49976,9 @@ class _TInitializeParams implements TInitializeParams {
 @override final  LSPAny? initializationOptions;
 /// The rootPath of the workspace. Is null if no folder is open.
 /// @deprecated in favour of rootUri.
-@override final  dynamic? rootPath;
-/// The locale the client is currently showing the user interface in. This must
-/// not necessarily be the locale of the operating system.
+@override final  Object? rootPath;
+/// The locale the client is currently showing the user interface in. This
+/// must not necessarily be the locale of the operating system.
 /// Uses IETF language tags as the value's syntax (See
 /// https://en.wikipedia.org/wiki/IETF_language_tag)
 /// @since 3.16.0
@@ -50246,7 +50022,7 @@ abstract mixin class _$TInitializeParamsCopyWith<$Res> implements $TInitializePa
   factory _$TInitializeParamsCopyWith(_TInitializeParams value, $Res Function(_TInitializeParams) _then) = __$TInitializeParamsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic processId, dynamic rootUri, ClientCapabilities capabilities, TraceValues? trace, LSPAny? initializationOptions, dynamic? rootPath, String? locale, ({String name, String? version})? clientInfo, ProgressToken? workDoneToken
+ Object processId, Object rootUri, ClientCapabilities capabilities, TraceValues? trace, LSPAny? initializationOptions, Object? rootPath, String? locale, ({String name, String? version})? clientInfo, ProgressToken? workDoneToken
 });
 
 
@@ -50263,18 +50039,13 @@ class __$TInitializeParamsCopyWithImpl<$Res>
 
 /// Create a copy of TInitializeParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? processId = freezed,Object? rootUri = freezed,Object? capabilities = null,Object? trace = freezed,Object? initializationOptions = freezed,Object? rootPath = freezed,Object? locale = freezed,Object? clientInfo = freezed,Object? workDoneToken = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? processId = null,Object? rootUri = null,Object? capabilities = null,Object? trace = freezed,Object? initializationOptions = freezed,Object? rootPath = freezed,Object? locale = freezed,Object? clientInfo = freezed,Object? workDoneToken = freezed,}) {
   return _then(_TInitializeParams(
-processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
-as dynamic,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
-as dynamic,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
+processId: null == processId ? _self.processId : processId ,rootUri: null == rootUri ? _self.rootUri : rootUri ,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
 as ClientCapabilities,trace: freezed == trace ? _self.trace : trace // ignore: cast_nullable_to_non_nullable
-as TraceValues?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions // ignore: cast_nullable_to_non_nullable
-as LSPAny?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
-as dynamic?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as TraceValues?,initializationOptions: freezed == initializationOptions ? _self.initializationOptions : initializationOptions ,rootPath: freezed == rootPath ? _self.rootPath : rootPath ,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
-as ({String name, String? version})?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
-as ProgressToken?,
+as ({String name, String? version})?,workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken ,
   ));
 }
 
@@ -50295,11 +50066,11 @@ $ClientCapabilitiesCopyWith<$Res> get capabilities {
 mixin _$WorkspaceFoldersInitializeParams {
 
 /// The workspace folders configured in the client when the server starts.
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
 /// @since 3.6.0
- dynamic? get workspaceFolders;
+ Object? get workspaceFolders;
 /// Create a copy of WorkspaceFoldersInitializeParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -50332,7 +50103,7 @@ abstract mixin class $WorkspaceFoldersInitializeParamsCopyWith<$Res>  {
   factory $WorkspaceFoldersInitializeParamsCopyWith(WorkspaceFoldersInitializeParams value, $Res Function(WorkspaceFoldersInitializeParams) _then) = _$WorkspaceFoldersInitializeParamsCopyWithImpl;
 @useResult
 $Res call({
- dynamic? workspaceFolders
+ Object? workspaceFolders
 });
 
 
@@ -50351,8 +50122,7 @@ class _$WorkspaceFoldersInitializeParamsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? workspaceFolders = freezed,}) {
   return _then(_self.copyWith(
-workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders ,
   ));
 }
 
@@ -50368,11 +50138,11 @@ class _WorkspaceFoldersInitializeParams implements WorkspaceFoldersInitializePar
   factory _WorkspaceFoldersInitializeParams.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersInitializeParamsFromJson(json);
 
 /// The workspace folders configured in the client when the server starts.
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
 /// @since 3.6.0
-@override final  dynamic? workspaceFolders;
+@override final  Object? workspaceFolders;
 
 /// Create a copy of WorkspaceFoldersInitializeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -50407,7 +50177,7 @@ abstract mixin class _$WorkspaceFoldersInitializeParamsCopyWith<$Res> implements
   factory _$WorkspaceFoldersInitializeParamsCopyWith(_WorkspaceFoldersInitializeParams value, $Res Function(_WorkspaceFoldersInitializeParams) _then) = __$WorkspaceFoldersInitializeParamsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic? workspaceFolders
+ Object? workspaceFolders
 });
 
 
@@ -50426,8 +50196,7 @@ class __$WorkspaceFoldersInitializeParamsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? workspaceFolders = freezed,}) {
   return _then(_WorkspaceFoldersInitializeParams(
-workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders ,
   ));
 }
 
@@ -50439,63 +50208,63 @@ as dynamic?,
 mixin _$ServerCapabilities {
 
 /// The server provides workspace symbol support.
- dynamic? get workspaceSymbolProvider;/// The server provides document highlight support.
- dynamic? get documentHighlightProvider;/// The server provides document formatting.
- dynamic? get documentFormattingProvider;/// The server provides code actions. CodeActionOptions may only be specified
-/// if the client states that it supports `codeActionLiteralSupport` in its
-/// initial `initialize` request.
- dynamic? get codeActionProvider;/// The server provides completion support.
+ Object? get workspaceSymbolProvider;/// The server provides document highlight support.
+ Object? get documentHighlightProvider;/// The server provides document formatting.
+ Object? get documentFormattingProvider;/// The server provides code actions. CodeActionOptions may only be
+/// specified if the client states that it supports
+/// `codeActionLiteralSupport` in its initial `initialize` request.
+ Object? get codeActionProvider;/// The server provides completion support.
  CompletionOptions? get completionProvider;/// Workspace specific server capabilities.
  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? get workspace;/// Inline completion options used during static registration.
 /// @since 3.18.0 @proposed
- dynamic? get inlineCompletionProvider;/// The server has support for pull model diagnostics.
+ Object? get inlineCompletionProvider;/// The server has support for pull model diagnostics.
 /// @since 3.17.0
- dynamic? get diagnosticProvider;/// The server provides inlay hints.
+ Object? get diagnosticProvider;/// The server provides inlay hints.
 /// @since 3.17.0
- dynamic? get inlayHintProvider;/// The server provides goto definition support.
- dynamic? get definitionProvider;/// The server provides Goto Declaration support.
- dynamic? get declarationProvider;/// The server provides moniker support.
+ Object? get inlayHintProvider;/// The server provides goto definition support.
+ Object? get definitionProvider;/// The server provides Goto Declaration support.
+ Object? get declarationProvider;/// The server provides moniker support.
 /// @since 3.16.0
- dynamic? get monikerProvider;/// The server provides semantic tokens support.
+ Object? get monikerProvider;/// The server provides semantic tokens support.
 /// @since 3.16.0
- dynamic? get semanticTokensProvider;/// The server provides linked editing range support.
+ Object? get semanticTokensProvider;/// The server provides linked editing range support.
 /// @since 3.16.0
- dynamic? get linkedEditingRangeProvider;/// The server provides call hierarchy support.
+ Object? get linkedEditingRangeProvider;/// The server provides call hierarchy support.
 /// @since 3.16.0
- dynamic? get callHierarchyProvider;/// The server provides execute command support.
+ Object? get callHierarchyProvider;/// The server provides execute command support.
  ExecuteCommandOptions? get executeCommandProvider;/// Defines how text documents are synced. Is either a detailed structure
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
- dynamic? get textDocumentSync;/// The server provides folding provider support.
- dynamic? get foldingRangeProvider;/// The server provides rename support. RenameOptions may only be specified if
-/// the client states that it supports `prepareSupport` in its initial
+ Object? get textDocumentSync;/// The server provides folding provider support.
+ Object? get foldingRangeProvider;/// The server provides rename support. RenameOptions may only be specified
+/// if the client states that it supports `prepareSupport` in its initial
 /// `initialize` request.
- dynamic? get renameProvider;/// The server provides document formatting on typing.
+ Object? get renameProvider;/// The server provides document formatting on typing.
  DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider;/// The server provides document range formatting.
- dynamic? get documentRangeFormattingProvider;/// Experimental server capabilities.
+ Object? get documentRangeFormattingProvider;/// Experimental server capabilities.
  LSPAny? get experimental;/// The server provides selection range support.
- dynamic? get selectionRangeProvider;/// The server provides color provider support.
- dynamic? get colorProvider;/// The server provides document link support.
+ Object? get selectionRangeProvider;/// The server provides color provider support.
+ Object? get colorProvider;/// The server provides document link support.
  DocumentLinkOptions? get documentLinkProvider;/// The server provides code lens.
  CodeLensOptions? get codeLensProvider;/// Defines how notebook documents are synced.
 /// @since 3.17.0
- dynamic? get notebookDocumentSync;/// The server provides document symbol support.
- dynamic? get documentSymbolProvider;/// The position encoding the server picked from the encodings offered by the
-/// client via the client capability `general.positionEncodings`.
-/// If the client didn't provide any position encodings the only valid value
-/// that a server can return is 'utf-16'.
+ Object? get notebookDocumentSync;/// The server provides document symbol support.
+ Object? get documentSymbolProvider;/// The position encoding the server picked from the encodings offered by
+/// the client via the client capability `general.positionEncodings`.
+/// If the client didn't provide any position encodings the only valid
+/// value that a server can return is 'utf-16'.
 /// If omitted it defaults to 'utf-16'.
 /// @since 3.17.0
  PositionEncodingKind? get positionEncoding;/// The server provides find references support.
- dynamic? get referencesProvider;/// The server provides Goto Implementation support.
- dynamic? get implementationProvider;/// The server provides Goto Type Definition support.
- dynamic? get typeDefinitionProvider;/// The server provides inline values.
+ Object? get referencesProvider;/// The server provides Goto Implementation support.
+ Object? get implementationProvider;/// The server provides Goto Type Definition support.
+ Object? get typeDefinitionProvider;/// The server provides inline values.
 /// @since 3.17.0
- dynamic? get inlineValueProvider;/// The server provides type hierarchy support.
+ Object? get inlineValueProvider;/// The server provides type hierarchy support.
 /// @since 3.17.0
- dynamic? get typeHierarchyProvider;/// The server provides signature help support.
+ Object? get typeHierarchyProvider;/// The server provides signature help support.
  SignatureHelpOptions? get signatureHelpProvider;/// The server provides hover support.
- dynamic? get hoverProvider;
+ Object? get hoverProvider;
 /// Create a copy of ServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -50528,7 +50297,7 @@ abstract mixin class $ServerCapabilitiesCopyWith<$Res>  {
   factory $ServerCapabilitiesCopyWith(ServerCapabilities value, $Res Function(ServerCapabilities) _then) = _$ServerCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- dynamic? workspaceSymbolProvider, dynamic? documentHighlightProvider, dynamic? documentFormattingProvider, dynamic? codeActionProvider, CompletionOptions? completionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, dynamic? inlineCompletionProvider, dynamic? diagnosticProvider, dynamic? inlayHintProvider, dynamic? definitionProvider, dynamic? declarationProvider, dynamic? monikerProvider, dynamic? semanticTokensProvider, dynamic? linkedEditingRangeProvider, dynamic? callHierarchyProvider, ExecuteCommandOptions? executeCommandProvider, dynamic? textDocumentSync, dynamic? foldingRangeProvider, dynamic? renameProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, dynamic? documentRangeFormattingProvider, LSPAny? experimental, dynamic? selectionRangeProvider, dynamic? colorProvider, DocumentLinkOptions? documentLinkProvider, CodeLensOptions? codeLensProvider, dynamic? notebookDocumentSync, dynamic? documentSymbolProvider, PositionEncodingKind? positionEncoding, dynamic? referencesProvider, dynamic? implementationProvider, dynamic? typeDefinitionProvider, dynamic? inlineValueProvider, dynamic? typeHierarchyProvider, SignatureHelpOptions? signatureHelpProvider, dynamic? hoverProvider
+ Object? workspaceSymbolProvider, Object? documentHighlightProvider, Object? documentFormattingProvider, Object? codeActionProvider, CompletionOptions? completionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, Object? inlineCompletionProvider, Object? diagnosticProvider, Object? inlayHintProvider, Object? definitionProvider, Object? declarationProvider, Object? monikerProvider, Object? semanticTokensProvider, Object? linkedEditingRangeProvider, Object? callHierarchyProvider, ExecuteCommandOptions? executeCommandProvider, Object? textDocumentSync, Object? foldingRangeProvider, Object? renameProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? documentRangeFormattingProvider, LSPAny? experimental, Object? selectionRangeProvider, Object? colorProvider, DocumentLinkOptions? documentLinkProvider, CodeLensOptions? codeLensProvider, Object? notebookDocumentSync, Object? documentSymbolProvider, PositionEncodingKind? positionEncoding, Object? referencesProvider, Object? implementationProvider, Object? typeDefinitionProvider, Object? inlineValueProvider, Object? typeHierarchyProvider, SignatureHelpOptions? signatureHelpProvider, Object? hoverProvider
 });
 
 
@@ -50547,43 +50316,15 @@ class _$ServerCapabilitiesCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? workspaceSymbolProvider = freezed,Object? documentHighlightProvider = freezed,Object? documentFormattingProvider = freezed,Object? codeActionProvider = freezed,Object? completionProvider = freezed,Object? workspace = freezed,Object? inlineCompletionProvider = freezed,Object? diagnosticProvider = freezed,Object? inlayHintProvider = freezed,Object? definitionProvider = freezed,Object? declarationProvider = freezed,Object? monikerProvider = freezed,Object? semanticTokensProvider = freezed,Object? linkedEditingRangeProvider = freezed,Object? callHierarchyProvider = freezed,Object? executeCommandProvider = freezed,Object? textDocumentSync = freezed,Object? foldingRangeProvider = freezed,Object? renameProvider = freezed,Object? documentOnTypeFormattingProvider = freezed,Object? documentRangeFormattingProvider = freezed,Object? experimental = freezed,Object? selectionRangeProvider = freezed,Object? colorProvider = freezed,Object? documentLinkProvider = freezed,Object? codeLensProvider = freezed,Object? notebookDocumentSync = freezed,Object? documentSymbolProvider = freezed,Object? positionEncoding = freezed,Object? referencesProvider = freezed,Object? implementationProvider = freezed,Object? typeDefinitionProvider = freezed,Object? inlineValueProvider = freezed,Object? typeHierarchyProvider = freezed,Object? signatureHelpProvider = freezed,Object? hoverProvider = freezed,}) {
   return _then(_self.copyWith(
-workspaceSymbolProvider: freezed == workspaceSymbolProvider ? _self.workspaceSymbolProvider : workspaceSymbolProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentHighlightProvider: freezed == documentHighlightProvider ? _self.documentHighlightProvider : documentHighlightProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentFormattingProvider: freezed == documentFormattingProvider ? _self.documentFormattingProvider : documentFormattingProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,codeActionProvider: freezed == codeActionProvider ? _self.codeActionProvider : codeActionProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,completionProvider: freezed == completionProvider ? _self.completionProvider : completionProvider // ignore: cast_nullable_to_non_nullable
+workspaceSymbolProvider: freezed == workspaceSymbolProvider ? _self.workspaceSymbolProvider : workspaceSymbolProvider ,documentHighlightProvider: freezed == documentHighlightProvider ? _self.documentHighlightProvider : documentHighlightProvider ,documentFormattingProvider: freezed == documentFormattingProvider ? _self.documentFormattingProvider : documentFormattingProvider ,codeActionProvider: freezed == codeActionProvider ? _self.codeActionProvider : codeActionProvider ,completionProvider: freezed == completionProvider ? _self.completionProvider : completionProvider // ignore: cast_nullable_to_non_nullable
 as CompletionOptions?,workspace: freezed == workspace ? _self.workspace : workspace // ignore: cast_nullable_to_non_nullable
-as ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})?,inlineCompletionProvider: freezed == inlineCompletionProvider ? _self.inlineCompletionProvider : inlineCompletionProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,diagnosticProvider: freezed == diagnosticProvider ? _self.diagnosticProvider : diagnosticProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,inlayHintProvider: freezed == inlayHintProvider ? _self.inlayHintProvider : inlayHintProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,definitionProvider: freezed == definitionProvider ? _self.definitionProvider : definitionProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,declarationProvider: freezed == declarationProvider ? _self.declarationProvider : declarationProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,monikerProvider: freezed == monikerProvider ? _self.monikerProvider : monikerProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,semanticTokensProvider: freezed == semanticTokensProvider ? _self.semanticTokensProvider : semanticTokensProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,linkedEditingRangeProvider: freezed == linkedEditingRangeProvider ? _self.linkedEditingRangeProvider : linkedEditingRangeProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,callHierarchyProvider: freezed == callHierarchyProvider ? _self.callHierarchyProvider : callHierarchyProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,executeCommandProvider: freezed == executeCommandProvider ? _self.executeCommandProvider : executeCommandProvider // ignore: cast_nullable_to_non_nullable
-as ExecuteCommandOptions?,textDocumentSync: freezed == textDocumentSync ? _self.textDocumentSync : textDocumentSync // ignore: cast_nullable_to_non_nullable
-as dynamic?,foldingRangeProvider: freezed == foldingRangeProvider ? _self.foldingRangeProvider : foldingRangeProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,renameProvider: freezed == renameProvider ? _self.renameProvider : renameProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentOnTypeFormattingProvider: freezed == documentOnTypeFormattingProvider ? _self.documentOnTypeFormattingProvider : documentOnTypeFormattingProvider // ignore: cast_nullable_to_non_nullable
-as DocumentOnTypeFormattingOptions?,documentRangeFormattingProvider: freezed == documentRangeFormattingProvider ? _self.documentRangeFormattingProvider : documentRangeFormattingProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,experimental: freezed == experimental ? _self.experimental : experimental // ignore: cast_nullable_to_non_nullable
-as LSPAny?,selectionRangeProvider: freezed == selectionRangeProvider ? _self.selectionRangeProvider : selectionRangeProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,colorProvider: freezed == colorProvider ? _self.colorProvider : colorProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentLinkProvider: freezed == documentLinkProvider ? _self.documentLinkProvider : documentLinkProvider // ignore: cast_nullable_to_non_nullable
+as ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})?,inlineCompletionProvider: freezed == inlineCompletionProvider ? _self.inlineCompletionProvider : inlineCompletionProvider ,diagnosticProvider: freezed == diagnosticProvider ? _self.diagnosticProvider : diagnosticProvider ,inlayHintProvider: freezed == inlayHintProvider ? _self.inlayHintProvider : inlayHintProvider ,definitionProvider: freezed == definitionProvider ? _self.definitionProvider : definitionProvider ,declarationProvider: freezed == declarationProvider ? _self.declarationProvider : declarationProvider ,monikerProvider: freezed == monikerProvider ? _self.monikerProvider : monikerProvider ,semanticTokensProvider: freezed == semanticTokensProvider ? _self.semanticTokensProvider : semanticTokensProvider ,linkedEditingRangeProvider: freezed == linkedEditingRangeProvider ? _self.linkedEditingRangeProvider : linkedEditingRangeProvider ,callHierarchyProvider: freezed == callHierarchyProvider ? _self.callHierarchyProvider : callHierarchyProvider ,executeCommandProvider: freezed == executeCommandProvider ? _self.executeCommandProvider : executeCommandProvider // ignore: cast_nullable_to_non_nullable
+as ExecuteCommandOptions?,textDocumentSync: freezed == textDocumentSync ? _self.textDocumentSync : textDocumentSync ,foldingRangeProvider: freezed == foldingRangeProvider ? _self.foldingRangeProvider : foldingRangeProvider ,renameProvider: freezed == renameProvider ? _self.renameProvider : renameProvider ,documentOnTypeFormattingProvider: freezed == documentOnTypeFormattingProvider ? _self.documentOnTypeFormattingProvider : documentOnTypeFormattingProvider // ignore: cast_nullable_to_non_nullable
+as DocumentOnTypeFormattingOptions?,documentRangeFormattingProvider: freezed == documentRangeFormattingProvider ? _self.documentRangeFormattingProvider : documentRangeFormattingProvider ,experimental: freezed == experimental ? _self.experimental : experimental ,selectionRangeProvider: freezed == selectionRangeProvider ? _self.selectionRangeProvider : selectionRangeProvider ,colorProvider: freezed == colorProvider ? _self.colorProvider : colorProvider ,documentLinkProvider: freezed == documentLinkProvider ? _self.documentLinkProvider : documentLinkProvider // ignore: cast_nullable_to_non_nullable
 as DocumentLinkOptions?,codeLensProvider: freezed == codeLensProvider ? _self.codeLensProvider : codeLensProvider // ignore: cast_nullable_to_non_nullable
-as CodeLensOptions?,notebookDocumentSync: freezed == notebookDocumentSync ? _self.notebookDocumentSync : notebookDocumentSync // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentSymbolProvider: freezed == documentSymbolProvider ? _self.documentSymbolProvider : documentSymbolProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,positionEncoding: freezed == positionEncoding ? _self.positionEncoding : positionEncoding // ignore: cast_nullable_to_non_nullable
-as PositionEncodingKind?,referencesProvider: freezed == referencesProvider ? _self.referencesProvider : referencesProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,implementationProvider: freezed == implementationProvider ? _self.implementationProvider : implementationProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,typeDefinitionProvider: freezed == typeDefinitionProvider ? _self.typeDefinitionProvider : typeDefinitionProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,inlineValueProvider: freezed == inlineValueProvider ? _self.inlineValueProvider : inlineValueProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,typeHierarchyProvider: freezed == typeHierarchyProvider ? _self.typeHierarchyProvider : typeHierarchyProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,signatureHelpProvider: freezed == signatureHelpProvider ? _self.signatureHelpProvider : signatureHelpProvider // ignore: cast_nullable_to_non_nullable
-as SignatureHelpOptions?,hoverProvider: freezed == hoverProvider ? _self.hoverProvider : hoverProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+as CodeLensOptions?,notebookDocumentSync: freezed == notebookDocumentSync ? _self.notebookDocumentSync : notebookDocumentSync ,documentSymbolProvider: freezed == documentSymbolProvider ? _self.documentSymbolProvider : documentSymbolProvider ,positionEncoding: freezed == positionEncoding ? _self.positionEncoding : positionEncoding // ignore: cast_nullable_to_non_nullable
+as PositionEncodingKind?,referencesProvider: freezed == referencesProvider ? _self.referencesProvider : referencesProvider ,implementationProvider: freezed == implementationProvider ? _self.implementationProvider : implementationProvider ,typeDefinitionProvider: freezed == typeDefinitionProvider ? _self.typeDefinitionProvider : typeDefinitionProvider ,inlineValueProvider: freezed == inlineValueProvider ? _self.inlineValueProvider : inlineValueProvider ,typeHierarchyProvider: freezed == typeHierarchyProvider ? _self.typeHierarchyProvider : typeHierarchyProvider ,signatureHelpProvider: freezed == signatureHelpProvider ? _self.signatureHelpProvider : signatureHelpProvider // ignore: cast_nullable_to_non_nullable
+as SignatureHelpOptions?,hoverProvider: freezed == hoverProvider ? _self.hoverProvider : hoverProvider ,
   ));
 }
 /// Create a copy of ServerCapabilities
@@ -50671,98 +50412,98 @@ class _ServerCapabilities implements ServerCapabilities {
   factory _ServerCapabilities.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFromJson(json);
 
 /// The server provides workspace symbol support.
-@override final  dynamic? workspaceSymbolProvider;
+@override final  Object? workspaceSymbolProvider;
 /// The server provides document highlight support.
-@override final  dynamic? documentHighlightProvider;
+@override final  Object? documentHighlightProvider;
 /// The server provides document formatting.
-@override final  dynamic? documentFormattingProvider;
-/// The server provides code actions. CodeActionOptions may only be specified
-/// if the client states that it supports `codeActionLiteralSupport` in its
-/// initial `initialize` request.
-@override final  dynamic? codeActionProvider;
+@override final  Object? documentFormattingProvider;
+/// The server provides code actions. CodeActionOptions may only be
+/// specified if the client states that it supports
+/// `codeActionLiteralSupport` in its initial `initialize` request.
+@override final  Object? codeActionProvider;
 /// The server provides completion support.
 @override final  CompletionOptions? completionProvider;
 /// Workspace specific server capabilities.
 @override final  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace;
 /// Inline completion options used during static registration.
 /// @since 3.18.0 @proposed
-@override final  dynamic? inlineCompletionProvider;
+@override final  Object? inlineCompletionProvider;
 /// The server has support for pull model diagnostics.
 /// @since 3.17.0
-@override final  dynamic? diagnosticProvider;
+@override final  Object? diagnosticProvider;
 /// The server provides inlay hints.
 /// @since 3.17.0
-@override final  dynamic? inlayHintProvider;
+@override final  Object? inlayHintProvider;
 /// The server provides goto definition support.
-@override final  dynamic? definitionProvider;
+@override final  Object? definitionProvider;
 /// The server provides Goto Declaration support.
-@override final  dynamic? declarationProvider;
+@override final  Object? declarationProvider;
 /// The server provides moniker support.
 /// @since 3.16.0
-@override final  dynamic? monikerProvider;
+@override final  Object? monikerProvider;
 /// The server provides semantic tokens support.
 /// @since 3.16.0
-@override final  dynamic? semanticTokensProvider;
+@override final  Object? semanticTokensProvider;
 /// The server provides linked editing range support.
 /// @since 3.16.0
-@override final  dynamic? linkedEditingRangeProvider;
+@override final  Object? linkedEditingRangeProvider;
 /// The server provides call hierarchy support.
 /// @since 3.16.0
-@override final  dynamic? callHierarchyProvider;
+@override final  Object? callHierarchyProvider;
 /// The server provides execute command support.
 @override final  ExecuteCommandOptions? executeCommandProvider;
 /// Defines how text documents are synced. Is either a detailed structure
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
-@override final  dynamic? textDocumentSync;
+@override final  Object? textDocumentSync;
 /// The server provides folding provider support.
-@override final  dynamic? foldingRangeProvider;
-/// The server provides rename support. RenameOptions may only be specified if
-/// the client states that it supports `prepareSupport` in its initial
+@override final  Object? foldingRangeProvider;
+/// The server provides rename support. RenameOptions may only be specified
+/// if the client states that it supports `prepareSupport` in its initial
 /// `initialize` request.
-@override final  dynamic? renameProvider;
+@override final  Object? renameProvider;
 /// The server provides document formatting on typing.
 @override final  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
 /// The server provides document range formatting.
-@override final  dynamic? documentRangeFormattingProvider;
+@override final  Object? documentRangeFormattingProvider;
 /// Experimental server capabilities.
 @override final  LSPAny? experimental;
 /// The server provides selection range support.
-@override final  dynamic? selectionRangeProvider;
+@override final  Object? selectionRangeProvider;
 /// The server provides color provider support.
-@override final  dynamic? colorProvider;
+@override final  Object? colorProvider;
 /// The server provides document link support.
 @override final  DocumentLinkOptions? documentLinkProvider;
 /// The server provides code lens.
 @override final  CodeLensOptions? codeLensProvider;
 /// Defines how notebook documents are synced.
 /// @since 3.17.0
-@override final  dynamic? notebookDocumentSync;
+@override final  Object? notebookDocumentSync;
 /// The server provides document symbol support.
-@override final  dynamic? documentSymbolProvider;
-/// The position encoding the server picked from the encodings offered by the
-/// client via the client capability `general.positionEncodings`.
-/// If the client didn't provide any position encodings the only valid value
-/// that a server can return is 'utf-16'.
+@override final  Object? documentSymbolProvider;
+/// The position encoding the server picked from the encodings offered by
+/// the client via the client capability `general.positionEncodings`.
+/// If the client didn't provide any position encodings the only valid
+/// value that a server can return is 'utf-16'.
 /// If omitted it defaults to 'utf-16'.
 /// @since 3.17.0
 @override final  PositionEncodingKind? positionEncoding;
 /// The server provides find references support.
-@override final  dynamic? referencesProvider;
+@override final  Object? referencesProvider;
 /// The server provides Goto Implementation support.
-@override final  dynamic? implementationProvider;
+@override final  Object? implementationProvider;
 /// The server provides Goto Type Definition support.
-@override final  dynamic? typeDefinitionProvider;
+@override final  Object? typeDefinitionProvider;
 /// The server provides inline values.
 /// @since 3.17.0
-@override final  dynamic? inlineValueProvider;
+@override final  Object? inlineValueProvider;
 /// The server provides type hierarchy support.
 /// @since 3.17.0
-@override final  dynamic? typeHierarchyProvider;
+@override final  Object? typeHierarchyProvider;
 /// The server provides signature help support.
 @override final  SignatureHelpOptions? signatureHelpProvider;
 /// The server provides hover support.
-@override final  dynamic? hoverProvider;
+@override final  Object? hoverProvider;
 
 /// Create a copy of ServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -50797,7 +50538,7 @@ abstract mixin class _$ServerCapabilitiesCopyWith<$Res> implements $ServerCapabi
   factory _$ServerCapabilitiesCopyWith(_ServerCapabilities value, $Res Function(_ServerCapabilities) _then) = __$ServerCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic? workspaceSymbolProvider, dynamic? documentHighlightProvider, dynamic? documentFormattingProvider, dynamic? codeActionProvider, CompletionOptions? completionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, dynamic? inlineCompletionProvider, dynamic? diagnosticProvider, dynamic? inlayHintProvider, dynamic? definitionProvider, dynamic? declarationProvider, dynamic? monikerProvider, dynamic? semanticTokensProvider, dynamic? linkedEditingRangeProvider, dynamic? callHierarchyProvider, ExecuteCommandOptions? executeCommandProvider, dynamic? textDocumentSync, dynamic? foldingRangeProvider, dynamic? renameProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, dynamic? documentRangeFormattingProvider, LSPAny? experimental, dynamic? selectionRangeProvider, dynamic? colorProvider, DocumentLinkOptions? documentLinkProvider, CodeLensOptions? codeLensProvider, dynamic? notebookDocumentSync, dynamic? documentSymbolProvider, PositionEncodingKind? positionEncoding, dynamic? referencesProvider, dynamic? implementationProvider, dynamic? typeDefinitionProvider, dynamic? inlineValueProvider, dynamic? typeHierarchyProvider, SignatureHelpOptions? signatureHelpProvider, dynamic? hoverProvider
+ Object? workspaceSymbolProvider, Object? documentHighlightProvider, Object? documentFormattingProvider, Object? codeActionProvider, CompletionOptions? completionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, Object? inlineCompletionProvider, Object? diagnosticProvider, Object? inlayHintProvider, Object? definitionProvider, Object? declarationProvider, Object? monikerProvider, Object? semanticTokensProvider, Object? linkedEditingRangeProvider, Object? callHierarchyProvider, ExecuteCommandOptions? executeCommandProvider, Object? textDocumentSync, Object? foldingRangeProvider, Object? renameProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? documentRangeFormattingProvider, LSPAny? experimental, Object? selectionRangeProvider, Object? colorProvider, DocumentLinkOptions? documentLinkProvider, CodeLensOptions? codeLensProvider, Object? notebookDocumentSync, Object? documentSymbolProvider, PositionEncodingKind? positionEncoding, Object? referencesProvider, Object? implementationProvider, Object? typeDefinitionProvider, Object? inlineValueProvider, Object? typeHierarchyProvider, SignatureHelpOptions? signatureHelpProvider, Object? hoverProvider
 });
 
 
@@ -50816,43 +50557,15 @@ class __$ServerCapabilitiesCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? workspaceSymbolProvider = freezed,Object? documentHighlightProvider = freezed,Object? documentFormattingProvider = freezed,Object? codeActionProvider = freezed,Object? completionProvider = freezed,Object? workspace = freezed,Object? inlineCompletionProvider = freezed,Object? diagnosticProvider = freezed,Object? inlayHintProvider = freezed,Object? definitionProvider = freezed,Object? declarationProvider = freezed,Object? monikerProvider = freezed,Object? semanticTokensProvider = freezed,Object? linkedEditingRangeProvider = freezed,Object? callHierarchyProvider = freezed,Object? executeCommandProvider = freezed,Object? textDocumentSync = freezed,Object? foldingRangeProvider = freezed,Object? renameProvider = freezed,Object? documentOnTypeFormattingProvider = freezed,Object? documentRangeFormattingProvider = freezed,Object? experimental = freezed,Object? selectionRangeProvider = freezed,Object? colorProvider = freezed,Object? documentLinkProvider = freezed,Object? codeLensProvider = freezed,Object? notebookDocumentSync = freezed,Object? documentSymbolProvider = freezed,Object? positionEncoding = freezed,Object? referencesProvider = freezed,Object? implementationProvider = freezed,Object? typeDefinitionProvider = freezed,Object? inlineValueProvider = freezed,Object? typeHierarchyProvider = freezed,Object? signatureHelpProvider = freezed,Object? hoverProvider = freezed,}) {
   return _then(_ServerCapabilities(
-workspaceSymbolProvider: freezed == workspaceSymbolProvider ? _self.workspaceSymbolProvider : workspaceSymbolProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentHighlightProvider: freezed == documentHighlightProvider ? _self.documentHighlightProvider : documentHighlightProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentFormattingProvider: freezed == documentFormattingProvider ? _self.documentFormattingProvider : documentFormattingProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,codeActionProvider: freezed == codeActionProvider ? _self.codeActionProvider : codeActionProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,completionProvider: freezed == completionProvider ? _self.completionProvider : completionProvider // ignore: cast_nullable_to_non_nullable
+workspaceSymbolProvider: freezed == workspaceSymbolProvider ? _self.workspaceSymbolProvider : workspaceSymbolProvider ,documentHighlightProvider: freezed == documentHighlightProvider ? _self.documentHighlightProvider : documentHighlightProvider ,documentFormattingProvider: freezed == documentFormattingProvider ? _self.documentFormattingProvider : documentFormattingProvider ,codeActionProvider: freezed == codeActionProvider ? _self.codeActionProvider : codeActionProvider ,completionProvider: freezed == completionProvider ? _self.completionProvider : completionProvider // ignore: cast_nullable_to_non_nullable
 as CompletionOptions?,workspace: freezed == workspace ? _self.workspace : workspace // ignore: cast_nullable_to_non_nullable
-as ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})?,inlineCompletionProvider: freezed == inlineCompletionProvider ? _self.inlineCompletionProvider : inlineCompletionProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,diagnosticProvider: freezed == diagnosticProvider ? _self.diagnosticProvider : diagnosticProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,inlayHintProvider: freezed == inlayHintProvider ? _self.inlayHintProvider : inlayHintProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,definitionProvider: freezed == definitionProvider ? _self.definitionProvider : definitionProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,declarationProvider: freezed == declarationProvider ? _self.declarationProvider : declarationProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,monikerProvider: freezed == monikerProvider ? _self.monikerProvider : monikerProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,semanticTokensProvider: freezed == semanticTokensProvider ? _self.semanticTokensProvider : semanticTokensProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,linkedEditingRangeProvider: freezed == linkedEditingRangeProvider ? _self.linkedEditingRangeProvider : linkedEditingRangeProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,callHierarchyProvider: freezed == callHierarchyProvider ? _self.callHierarchyProvider : callHierarchyProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,executeCommandProvider: freezed == executeCommandProvider ? _self.executeCommandProvider : executeCommandProvider // ignore: cast_nullable_to_non_nullable
-as ExecuteCommandOptions?,textDocumentSync: freezed == textDocumentSync ? _self.textDocumentSync : textDocumentSync // ignore: cast_nullable_to_non_nullable
-as dynamic?,foldingRangeProvider: freezed == foldingRangeProvider ? _self.foldingRangeProvider : foldingRangeProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,renameProvider: freezed == renameProvider ? _self.renameProvider : renameProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentOnTypeFormattingProvider: freezed == documentOnTypeFormattingProvider ? _self.documentOnTypeFormattingProvider : documentOnTypeFormattingProvider // ignore: cast_nullable_to_non_nullable
-as DocumentOnTypeFormattingOptions?,documentRangeFormattingProvider: freezed == documentRangeFormattingProvider ? _self.documentRangeFormattingProvider : documentRangeFormattingProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,experimental: freezed == experimental ? _self.experimental : experimental // ignore: cast_nullable_to_non_nullable
-as LSPAny?,selectionRangeProvider: freezed == selectionRangeProvider ? _self.selectionRangeProvider : selectionRangeProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,colorProvider: freezed == colorProvider ? _self.colorProvider : colorProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentLinkProvider: freezed == documentLinkProvider ? _self.documentLinkProvider : documentLinkProvider // ignore: cast_nullable_to_non_nullable
+as ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})?,inlineCompletionProvider: freezed == inlineCompletionProvider ? _self.inlineCompletionProvider : inlineCompletionProvider ,diagnosticProvider: freezed == diagnosticProvider ? _self.diagnosticProvider : diagnosticProvider ,inlayHintProvider: freezed == inlayHintProvider ? _self.inlayHintProvider : inlayHintProvider ,definitionProvider: freezed == definitionProvider ? _self.definitionProvider : definitionProvider ,declarationProvider: freezed == declarationProvider ? _self.declarationProvider : declarationProvider ,monikerProvider: freezed == monikerProvider ? _self.monikerProvider : monikerProvider ,semanticTokensProvider: freezed == semanticTokensProvider ? _self.semanticTokensProvider : semanticTokensProvider ,linkedEditingRangeProvider: freezed == linkedEditingRangeProvider ? _self.linkedEditingRangeProvider : linkedEditingRangeProvider ,callHierarchyProvider: freezed == callHierarchyProvider ? _self.callHierarchyProvider : callHierarchyProvider ,executeCommandProvider: freezed == executeCommandProvider ? _self.executeCommandProvider : executeCommandProvider // ignore: cast_nullable_to_non_nullable
+as ExecuteCommandOptions?,textDocumentSync: freezed == textDocumentSync ? _self.textDocumentSync : textDocumentSync ,foldingRangeProvider: freezed == foldingRangeProvider ? _self.foldingRangeProvider : foldingRangeProvider ,renameProvider: freezed == renameProvider ? _self.renameProvider : renameProvider ,documentOnTypeFormattingProvider: freezed == documentOnTypeFormattingProvider ? _self.documentOnTypeFormattingProvider : documentOnTypeFormattingProvider // ignore: cast_nullable_to_non_nullable
+as DocumentOnTypeFormattingOptions?,documentRangeFormattingProvider: freezed == documentRangeFormattingProvider ? _self.documentRangeFormattingProvider : documentRangeFormattingProvider ,experimental: freezed == experimental ? _self.experimental : experimental ,selectionRangeProvider: freezed == selectionRangeProvider ? _self.selectionRangeProvider : selectionRangeProvider ,colorProvider: freezed == colorProvider ? _self.colorProvider : colorProvider ,documentLinkProvider: freezed == documentLinkProvider ? _self.documentLinkProvider : documentLinkProvider // ignore: cast_nullable_to_non_nullable
 as DocumentLinkOptions?,codeLensProvider: freezed == codeLensProvider ? _self.codeLensProvider : codeLensProvider // ignore: cast_nullable_to_non_nullable
-as CodeLensOptions?,notebookDocumentSync: freezed == notebookDocumentSync ? _self.notebookDocumentSync : notebookDocumentSync // ignore: cast_nullable_to_non_nullable
-as dynamic?,documentSymbolProvider: freezed == documentSymbolProvider ? _self.documentSymbolProvider : documentSymbolProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,positionEncoding: freezed == positionEncoding ? _self.positionEncoding : positionEncoding // ignore: cast_nullable_to_non_nullable
-as PositionEncodingKind?,referencesProvider: freezed == referencesProvider ? _self.referencesProvider : referencesProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,implementationProvider: freezed == implementationProvider ? _self.implementationProvider : implementationProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,typeDefinitionProvider: freezed == typeDefinitionProvider ? _self.typeDefinitionProvider : typeDefinitionProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,inlineValueProvider: freezed == inlineValueProvider ? _self.inlineValueProvider : inlineValueProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,typeHierarchyProvider: freezed == typeHierarchyProvider ? _self.typeHierarchyProvider : typeHierarchyProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,signatureHelpProvider: freezed == signatureHelpProvider ? _self.signatureHelpProvider : signatureHelpProvider // ignore: cast_nullable_to_non_nullable
-as SignatureHelpOptions?,hoverProvider: freezed == hoverProvider ? _self.hoverProvider : hoverProvider // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+as CodeLensOptions?,notebookDocumentSync: freezed == notebookDocumentSync ? _self.notebookDocumentSync : notebookDocumentSync ,documentSymbolProvider: freezed == documentSymbolProvider ? _self.documentSymbolProvider : documentSymbolProvider ,positionEncoding: freezed == positionEncoding ? _self.positionEncoding : positionEncoding // ignore: cast_nullable_to_non_nullable
+as PositionEncodingKind?,referencesProvider: freezed == referencesProvider ? _self.referencesProvider : referencesProvider ,implementationProvider: freezed == implementationProvider ? _self.implementationProvider : implementationProvider ,typeDefinitionProvider: freezed == typeDefinitionProvider ? _self.typeDefinitionProvider : typeDefinitionProvider ,inlineValueProvider: freezed == inlineValueProvider ? _self.inlineValueProvider : inlineValueProvider ,typeHierarchyProvider: freezed == typeHierarchyProvider ? _self.typeHierarchyProvider : typeHierarchyProvider ,signatureHelpProvider: freezed == signatureHelpProvider ? _self.signatureHelpProvider : signatureHelpProvider // ignore: cast_nullable_to_non_nullable
+as SignatureHelpOptions?,hoverProvider: freezed == hoverProvider ? _self.hoverProvider : hoverProvider ,
   ));
 }
 
@@ -51353,11 +51066,11 @@ as FileChangeType,
 /// @nodoc
 mixin _$FileSystemWatcher {
 
-/// The glob pattern to watch. See {@link GlobPattern glob pattern} for more
-/// detail.
+/// The glob pattern to watch. See {@link GlobPattern glob pattern} for
+/// more detail.
 /// @since 3.17.0 support for relative patterns.
- GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults to WatchKind.Create
-/// | WatchKind.Change | WatchKind.Delete which is 7.
+ GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults to
+/// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
  WatchKind? get kind;
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
@@ -51408,10 +51121,9 @@ class _$FileSystemWatcherCopyWithImpl<$Res>
 
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? globPattern = freezed,Object? kind = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? globPattern = null,Object? kind = freezed,}) {
   return _then(_self.copyWith(
-globPattern: freezed == globPattern ? _self.globPattern : globPattern // ignore: cast_nullable_to_non_nullable
-as GlobPattern,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+globPattern: null == globPattern ? _self.globPattern : globPattern ,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as WatchKind?,
   ));
 }
@@ -51427,12 +51139,12 @@ class _FileSystemWatcher implements FileSystemWatcher {
   const _FileSystemWatcher({required this.globPattern, this.kind});
   factory _FileSystemWatcher.fromJson(Map<String, dynamic> json) => _$FileSystemWatcherFromJson(json);
 
-/// The glob pattern to watch. See {@link GlobPattern glob pattern} for more
-/// detail.
+/// The glob pattern to watch. See {@link GlobPattern glob pattern} for
+/// more detail.
 /// @since 3.17.0 support for relative patterns.
 @override final  GlobPattern globPattern;
-/// The kind of events of interest. If omitted it defaults to WatchKind.Create
-/// | WatchKind.Change | WatchKind.Delete which is 7.
+/// The kind of events of interest. If omitted it defaults to
+/// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
 @override final  WatchKind? kind;
 
 /// Create a copy of FileSystemWatcher
@@ -51485,10 +51197,9 @@ class __$FileSystemWatcherCopyWithImpl<$Res>
 
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? globPattern = freezed,Object? kind = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? globPattern = null,Object? kind = freezed,}) {
   return _then(_FileSystemWatcher(
-globPattern: freezed == globPattern ? _self.globPattern : globPattern // ignore: cast_nullable_to_non_nullable
-as GlobPattern,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+globPattern: null == globPattern ? _self.globPattern : globPattern ,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as WatchKind?,
   ));
 }
@@ -51506,17 +51217,17 @@ mixin _$Diagnostic {
 /// `textDocument/publishDiagnostics` notification and
 /// `textDocument/codeAction` request.
 /// @since 3.16.0
- LSPAny? get data;/// An array of related diagnostic information, e.g. when symbol-names within a
-/// scope collide all definitions can be marked via this property.
+ LSPAny? get data;/// An array of related diagnostic information, e.g. when symbol-names
+/// within a scope collide all definitions can be marked via this property.
  List<DiagnosticRelatedInformation>? get relatedInformation;/// Additional metadata about the diagnostic.
 /// @since 3.15.0
  List<DiagnosticTag>? get tags;/// A human-readable string describing the source of this diagnostic, e.g.
 /// 'typescript' or 'super lint'. It usually appears in the user interface.
- String? get source;/// An optional property to describe the error code. Requires the code field
-/// (above) to be present/not null.
+ String? get source;/// An optional property to describe the error code. Requires the code
+/// field (above) to be present/not null.
 /// @since 3.16.0
  CodeDescription? get codeDescription;/// The diagnostic's code, which usually appear in the user interface.
- dynamic? get code;/// The diagnostic's severity. Can be omitted. If omitted it is up to the
+ Object? get code;/// The diagnostic's severity. Can be omitted. If omitted it is up to the
 /// client to interpret diagnostics as error, warning, info or hint.
  DiagnosticSeverity? get severity;
 /// Create a copy of Diagnostic
@@ -51551,7 +51262,7 @@ abstract mixin class $DiagnosticCopyWith<$Res>  {
   factory $DiagnosticCopyWith(Diagnostic value, $Res Function(Diagnostic) _then) = _$DiagnosticCopyWithImpl;
 @useResult
 $Res call({
- Range range, String message, LSPAny? data, List<DiagnosticRelatedInformation>? relatedInformation, List<DiagnosticTag>? tags, String? source, CodeDescription? codeDescription, dynamic? code, DiagnosticSeverity? severity
+ Range range, String message, LSPAny? data, List<DiagnosticRelatedInformation>? relatedInformation, List<DiagnosticTag>? tags, String? source, CodeDescription? codeDescription, Object? code, DiagnosticSeverity? severity
 });
 
 
@@ -51572,13 +51283,11 @@ class _$DiagnosticCopyWithImpl<$Res>
   return _then(_self.copyWith(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
+as String,data: freezed == data ? _self.data : data ,relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
 as List<DiagnosticRelatedInformation>?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<DiagnosticTag>?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as String?,codeDescription: freezed == codeDescription ? _self.codeDescription : codeDescription // ignore: cast_nullable_to_non_nullable
-as CodeDescription?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
-as dynamic?,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
+as CodeDescription?,code: freezed == code ? _self.code : code ,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
 as DiagnosticSeverity?,
   ));
 }
@@ -51624,11 +51333,11 @@ class _Diagnostic implements Diagnostic {
 /// `textDocument/codeAction` request.
 /// @since 3.16.0
 @override final  LSPAny? data;
-/// An array of related diagnostic information, e.g. when symbol-names within a
-/// scope collide all definitions can be marked via this property.
+/// An array of related diagnostic information, e.g. when symbol-names
+/// within a scope collide all definitions can be marked via this property.
  final  List<DiagnosticRelatedInformation>? _relatedInformation;
-/// An array of related diagnostic information, e.g. when symbol-names within a
-/// scope collide all definitions can be marked via this property.
+/// An array of related diagnostic information, e.g. when symbol-names
+/// within a scope collide all definitions can be marked via this property.
 @override List<DiagnosticRelatedInformation>? get relatedInformation {
   final value = _relatedInformation;
   if (value == null) return null;
@@ -51653,12 +51362,12 @@ class _Diagnostic implements Diagnostic {
 /// A human-readable string describing the source of this diagnostic, e.g.
 /// 'typescript' or 'super lint'. It usually appears in the user interface.
 @override final  String? source;
-/// An optional property to describe the error code. Requires the code field
-/// (above) to be present/not null.
+/// An optional property to describe the error code. Requires the code
+/// field (above) to be present/not null.
 /// @since 3.16.0
 @override final  CodeDescription? codeDescription;
 /// The diagnostic's code, which usually appear in the user interface.
-@override final  dynamic? code;
+@override final  Object? code;
 /// The diagnostic's severity. Can be omitted. If omitted it is up to the
 /// client to interpret diagnostics as error, warning, info or hint.
 @override final  DiagnosticSeverity? severity;
@@ -51696,7 +51405,7 @@ abstract mixin class _$DiagnosticCopyWith<$Res> implements $DiagnosticCopyWith<$
   factory _$DiagnosticCopyWith(_Diagnostic value, $Res Function(_Diagnostic) _then) = __$DiagnosticCopyWithImpl;
 @override @useResult
 $Res call({
- Range range, String message, LSPAny? data, List<DiagnosticRelatedInformation>? relatedInformation, List<DiagnosticTag>? tags, String? source, CodeDescription? codeDescription, dynamic? code, DiagnosticSeverity? severity
+ Range range, String message, LSPAny? data, List<DiagnosticRelatedInformation>? relatedInformation, List<DiagnosticTag>? tags, String? source, CodeDescription? codeDescription, Object? code, DiagnosticSeverity? severity
 });
 
 
@@ -51717,13 +51426,11 @@ class __$DiagnosticCopyWithImpl<$Res>
   return _then(_Diagnostic(
 range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
 as Range,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as LSPAny?,relatedInformation: freezed == relatedInformation ? _self._relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
+as String,data: freezed == data ? _self.data : data ,relatedInformation: freezed == relatedInformation ? _self._relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
 as List<DiagnosticRelatedInformation>?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<DiagnosticTag>?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as String?,codeDescription: freezed == codeDescription ? _self.codeDescription : codeDescription // ignore: cast_nullable_to_non_nullable
-as CodeDescription?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
-as dynamic?,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
+as CodeDescription?,code: freezed == code ? _self.code : code ,severity: freezed == severity ? _self.severity : severity // ignore: cast_nullable_to_non_nullable
 as DiagnosticSeverity?,
   ));
 }
@@ -51757,8 +51464,9 @@ $CodeDescriptionCopyWith<$Res>? get codeDescription {
 mixin _$CompletionContext {
 
 /// How the completion was triggered.
- CompletionTriggerKind get triggerKind;/// The trigger character (a single character) that has trigger code complete.
-/// Is undefined if `triggerKind !== CompletionTriggerKind.TriggerCharacter`
+ CompletionTriggerKind get triggerKind;/// The trigger character (a single character) that has trigger code
+/// complete. Is undefined if `triggerKind !==
+/// CompletionTriggerKind.TriggerCharacter`
  String? get triggerCharacter;
 /// Create a copy of CompletionContext
 /// with the given fields replaced by the non-null parameter values.
@@ -51830,8 +51538,9 @@ class _CompletionContext implements CompletionContext {
 
 /// How the completion was triggered.
 @override final  CompletionTriggerKind triggerKind;
-/// The trigger character (a single character) that has trigger code complete.
-/// Is undefined if `triggerKind !== CompletionTriggerKind.TriggerCharacter`
+/// The trigger character (a single character) that has trigger code
+/// complete. Is undefined if `triggerKind !==
+/// CompletionTriggerKind.TriggerCharacter`
 @override final  String? triggerCharacter;
 
 /// Create a copy of CompletionContext
@@ -51900,11 +51609,11 @@ as String?,
 mixin _$CompletionItemLabelDetails {
 
 /// An optional string which is rendered less prominently after {@link
-/// CompletionItem.detail}. Should be used for fully qualified names and file
-/// paths.
- String? get description;/// An optional string which is rendered less prominently directly after {@link
-/// CompletionItem.label label}, without any spacing. Should be used for
-/// function signatures and type annotations.
+/// CompletionItem.detail}. Should be used for fully qualified names and
+/// file paths.
+ String? get description;/// An optional string which is rendered less prominently directly after
+/// {@link CompletionItem.label label}, without any spacing. Should be used
+/// for function signatures and type annotations.
  String? get detail;
 /// Create a copy of CompletionItemLabelDetails
 /// with the given fields replaced by the non-null parameter values.
@@ -51975,12 +51684,12 @@ class _CompletionItemLabelDetails implements CompletionItemLabelDetails {
   factory _CompletionItemLabelDetails.fromJson(Map<String, dynamic> json) => _$CompletionItemLabelDetailsFromJson(json);
 
 /// An optional string which is rendered less prominently after {@link
-/// CompletionItem.detail}. Should be used for fully qualified names and file
-/// paths.
+/// CompletionItem.detail}. Should be used for fully qualified names and
+/// file paths.
 @override final  String? description;
-/// An optional string which is rendered less prominently directly after {@link
-/// CompletionItem.label label}, without any spacing. Should be used for
-/// function signatures and type annotations.
+/// An optional string which is rendered less prominently directly after
+/// {@link CompletionItem.label label}, without any spacing. Should be used
+/// for function signatures and type annotations.
 @override final  String? detail;
 
 /// Create a copy of CompletionItemLabelDetails
@@ -52230,26 +51939,27 @@ $RangeCopyWith<$Res> get replace {
 /// @nodoc
 mixin _$CompletionOptions {
 
-/// The server supports the following `CompletionItem` specific capabilities.
+/// The server supports the following `CompletionItem` specific
+/// capabilities.
 /// @since 3.17.0
  ({bool? labelDetailsSupport})? get completionItem;/// The server provides support to resolve additional information for a
 /// completion item.
- bool? get resolveProvider;/// The list of all possible characters that commit a completion. This field
-/// can be used if clients don't support individual commit characters per
-/// completion item. See
+ bool? get resolveProvider;/// The list of all possible characters that commit a completion. This
+/// field can be used if clients don't support individual commit characters
+/// per completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters
+/// on an individual completion item the ones on the completion item win.
 /// @since 3.2.0
  List<String>? get allCommitCharacters;/// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they
-/// do so when the user starts to type an identifier. For example if the user
-/// types `c` in a JavaScript file code complete will automatically pop up
-/// present `console` besides others as a completion item. Characters that make
-/// up identifiers don't need to be listed here.
-/// If code complete should automatically be trigger on characters not being
-/// valid inside an identifier (for example `.` in JavaScript) list them in
-/// `triggerCharacters`.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will
+/// automatically pop up present `console` besides others as a completion
+/// item. Characters that make up identifiers don't need to be listed here.
+/// If code complete should automatically be trigger on characters not
+/// being valid inside an identifier (for example `.` in JavaScript) list
+/// them in `triggerCharacters`.
  List<String>? get triggerCharacters; bool? get workDoneProgress;
 /// Create a copy of CompletionOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -52322,26 +52032,27 @@ class _CompletionOptions implements CompletionOptions {
   const _CompletionOptions({this.completionItem, this.resolveProvider, final  List<String>? allCommitCharacters, final  List<String>? triggerCharacters, this.workDoneProgress}): _allCommitCharacters = allCommitCharacters,_triggerCharacters = triggerCharacters;
   factory _CompletionOptions.fromJson(Map<String, dynamic> json) => _$CompletionOptionsFromJson(json);
 
-/// The server supports the following `CompletionItem` specific capabilities.
+/// The server supports the following `CompletionItem` specific
+/// capabilities.
 /// @since 3.17.0
 @override final  ({bool? labelDetailsSupport})? completionItem;
 /// The server provides support to resolve additional information for a
 /// completion item.
 @override final  bool? resolveProvider;
-/// The list of all possible characters that commit a completion. This field
-/// can be used if clients don't support individual commit characters per
-/// completion item. See
+/// The list of all possible characters that commit a completion. This
+/// field can be used if clients don't support individual commit characters
+/// per completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters
+/// on an individual completion item the ones on the completion item win.
 /// @since 3.2.0
  final  List<String>? _allCommitCharacters;
-/// The list of all possible characters that commit a completion. This field
-/// can be used if clients don't support individual commit characters per
-/// completion item. See
+/// The list of all possible characters that commit a completion. This
+/// field can be used if clients don't support individual commit characters
+/// per completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters
+/// on an individual completion item the ones on the completion item win.
 /// @since 3.2.0
 @override List<String>? get allCommitCharacters {
   final value = _allCommitCharacters;
@@ -52352,24 +52063,24 @@ class _CompletionOptions implements CompletionOptions {
 }
 
 /// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they
-/// do so when the user starts to type an identifier. For example if the user
-/// types `c` in a JavaScript file code complete will automatically pop up
-/// present `console` besides others as a completion item. Characters that make
-/// up identifiers don't need to be listed here.
-/// If code complete should automatically be trigger on characters not being
-/// valid inside an identifier (for example `.` in JavaScript) list them in
-/// `triggerCharacters`.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will
+/// automatically pop up present `console` besides others as a completion
+/// item. Characters that make up identifiers don't need to be listed here.
+/// If code complete should automatically be trigger on characters not
+/// being valid inside an identifier (for example `.` in JavaScript) list
+/// them in `triggerCharacters`.
  final  List<String>? _triggerCharacters;
 /// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they
-/// do so when the user starts to type an identifier. For example if the user
-/// types `c` in a JavaScript file code complete will automatically pop up
-/// present `console` besides others as a completion item. Characters that make
-/// up identifiers don't need to be listed here.
-/// If code complete should automatically be trigger on characters not being
-/// valid inside an identifier (for example `.` in JavaScript) list them in
-/// `triggerCharacters`.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will
+/// automatically pop up present `console` besides others as a completion
+/// item. Characters that make up identifiers don't need to be listed here.
+/// If code complete should automatically be trigger on characters not
+/// being valid inside an identifier (for example `.` in JavaScript) list
+/// them in `triggerCharacters`.
 @override List<String>? get triggerCharacters {
   final value = _triggerCharacters;
   if (value == null) return null;
@@ -52776,9 +52487,9 @@ mixin _$SignatureInformation {
 /// If provided, this is used in place of `SignatureHelp.activeParameter`.
 /// @since 3.16.0
  int? get activeParameter;/// The parameters of this signature.
- List<ParameterInformation>? get parameters;/// The human-readable doc-comment of this signature. Will be shown in the UI
-/// but can be omitted.
- dynamic? get documentation;
+ List<ParameterInformation>? get parameters;/// The human-readable doc-comment of this signature. Will be shown in the
+/// UI but can be omitted.
+ Object? get documentation;
 /// Create a copy of SignatureInformation
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -52811,7 +52522,7 @@ abstract mixin class $SignatureInformationCopyWith<$Res>  {
   factory $SignatureInformationCopyWith(SignatureInformation value, $Res Function(SignatureInformation) _then) = _$SignatureInformationCopyWithImpl;
 @useResult
 $Res call({
- String label, int? activeParameter, List<ParameterInformation>? parameters, dynamic? documentation
+ String label, int? activeParameter, List<ParameterInformation>? parameters, Object? documentation
 });
 
 
@@ -52833,8 +52544,7 @@ class _$SignatureInformationCopyWithImpl<$Res>
 label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
 as String,activeParameter: freezed == activeParameter ? _self.activeParameter : activeParameter // ignore: cast_nullable_to_non_nullable
 as int?,parameters: freezed == parameters ? _self.parameters : parameters // ignore: cast_nullable_to_non_nullable
-as List<ParameterInformation>?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+as List<ParameterInformation>?,documentation: freezed == documentation ? _self.documentation : documentation ,
   ));
 }
 
@@ -52866,9 +52576,9 @@ class _SignatureInformation implements SignatureInformation {
   return EqualUnmodifiableListView(value);
 }
 
-/// The human-readable doc-comment of this signature. Will be shown in the UI
-/// but can be omitted.
-@override final  dynamic? documentation;
+/// The human-readable doc-comment of this signature. Will be shown in the
+/// UI but can be omitted.
+@override final  Object? documentation;
 
 /// Create a copy of SignatureInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -52903,7 +52613,7 @@ abstract mixin class _$SignatureInformationCopyWith<$Res> implements $SignatureI
   factory _$SignatureInformationCopyWith(_SignatureInformation value, $Res Function(_SignatureInformation) _then) = __$SignatureInformationCopyWithImpl;
 @override @useResult
 $Res call({
- String label, int? activeParameter, List<ParameterInformation>? parameters, dynamic? documentation
+ String label, int? activeParameter, List<ParameterInformation>? parameters, Object? documentation
 });
 
 
@@ -52925,8 +52635,7 @@ class __$SignatureInformationCopyWithImpl<$Res>
 label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
 as String,activeParameter: freezed == activeParameter ? _self.activeParameter : activeParameter // ignore: cast_nullable_to_non_nullable
 as int?,parameters: freezed == parameters ? _self._parameters : parameters // ignore: cast_nullable_to_non_nullable
-as List<ParameterInformation>?,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+as List<ParameterInformation>?,documentation: freezed == documentation ? _self.documentation : documentation ,
   ));
 }
 
@@ -52939,7 +52648,8 @@ mixin _$SignatureHelpOptions {
 
 /// List of characters that re-trigger signature help.
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
 /// @since 3.15.0
  List<String>? get retriggerCharacters;/// List of characters that trigger signature help automatically.
  List<String>? get triggerCharacters; bool? get workDoneProgress;
@@ -53014,12 +52724,14 @@ class _SignatureHelpOptions implements SignatureHelpOptions {
 
 /// List of characters that re-trigger signature help.
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
 /// @since 3.15.0
  final  List<String>? _retriggerCharacters;
 /// List of characters that re-trigger signature help.
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
 /// @since 3.15.0
 @override List<String>? get retriggerCharacters {
   final value = _retriggerCharacters;
@@ -53648,10 +53360,10 @@ mixin _$BaseSymbolInformation {
 
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
- SymbolKind get kind;/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+ SymbolKind get kind;/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
  String? get containerName;/// Tags for this symbol.
 /// @since 3.16.0
  List<SymbolTag>? get tags;
@@ -53729,10 +53441,10 @@ class _BaseSymbolInformation implements BaseSymbolInformation {
 @override final  String name;
 /// The kind of this symbol.
 @override final  SymbolKind kind;
-/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
 @override final  String? containerName;
 /// Tags for this symbol.
 /// @since 3.16.0
@@ -53960,15 +53672,15 @@ mixin _$CodeActionContext {
 
 /// An array of diagnostics known on the client side overlapping the range
 /// provided to the `textDocument/codeAction` request. They are provided so
-/// that the server knows which errors are currently presented to the user for
-/// the given range. There is no guarantee that these accurately reflect the
-/// error state of the resource. The primary parameter to compute code actions
-/// is the provided range.
+/// that the server knows which errors are currently presented to the user
+/// for the given range. There is no guarantee that these accurately
+/// reflect the error state of the resource. The primary parameter to
+/// compute code actions is the provided range.
  List<Diagnostic> get diagnostics;/// The reason why code actions were requested.
 /// @since 3.17.0
  CodeActionTriggerKind? get triggerKind;/// Requested kind of actions to return.
-/// Actions not of this kind are filtered out by the client before being shown.
-/// So servers can omit computing them.
+/// Actions not of this kind are filtered out by the client before being
+/// shown. So servers can omit computing them.
  List<CodeActionKind>? get only;
 /// Create a copy of CodeActionContext
 /// with the given fields replaced by the non-null parameter values.
@@ -54041,17 +53753,17 @@ class _CodeActionContext implements CodeActionContext {
 
 /// An array of diagnostics known on the client side overlapping the range
 /// provided to the `textDocument/codeAction` request. They are provided so
-/// that the server knows which errors are currently presented to the user for
-/// the given range. There is no guarantee that these accurately reflect the
-/// error state of the resource. The primary parameter to compute code actions
-/// is the provided range.
+/// that the server knows which errors are currently presented to the user
+/// for the given range. There is no guarantee that these accurately
+/// reflect the error state of the resource. The primary parameter to
+/// compute code actions is the provided range.
  final  List<Diagnostic> _diagnostics;
 /// An array of diagnostics known on the client side overlapping the range
 /// provided to the `textDocument/codeAction` request. They are provided so
-/// that the server knows which errors are currently presented to the user for
-/// the given range. There is no guarantee that these accurately reflect the
-/// error state of the resource. The primary parameter to compute code actions
-/// is the provided range.
+/// that the server knows which errors are currently presented to the user
+/// for the given range. There is no guarantee that these accurately
+/// reflect the error state of the resource. The primary parameter to
+/// compute code actions is the provided range.
 @override List<Diagnostic> get diagnostics {
   if (_diagnostics is EqualUnmodifiableListView) return _diagnostics;
   // ignore: implicit_dynamic_type
@@ -54062,12 +53774,12 @@ class _CodeActionContext implements CodeActionContext {
 /// @since 3.17.0
 @override final  CodeActionTriggerKind? triggerKind;
 /// Requested kind of actions to return.
-/// Actions not of this kind are filtered out by the client before being shown.
-/// So servers can omit computing them.
+/// Actions not of this kind are filtered out by the client before being
+/// shown. So servers can omit computing them.
  final  List<CodeActionKind>? _only;
 /// Requested kind of actions to return.
-/// Actions not of this kind are filtered out by the client before being shown.
-/// So servers can omit computing them.
+/// Actions not of this kind are filtered out by the client before being
+/// shown. So servers can omit computing them.
 @override List<CodeActionKind>? get only {
   final value = _only;
   if (value == null) return null;
@@ -54143,12 +53855,12 @@ as List<CodeActionKind>?,
 /// @nodoc
 mixin _$CodeActionOptions {
 
-/// The server provides support to resolve additional information for a code
-/// action.
+/// The server provides support to resolve additional information for a
+/// code action.
 /// @since 3.16.0
  bool? get resolveProvider;/// CodeActionKinds that this server may return.
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
  List<CodeActionKind>? get codeActionKinds; bool? get workDoneProgress;
 /// Create a copy of CodeActionOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -54219,17 +53931,17 @@ class _CodeActionOptions implements CodeActionOptions {
   const _CodeActionOptions({this.resolveProvider, final  List<CodeActionKind>? codeActionKinds, this.workDoneProgress}): _codeActionKinds = codeActionKinds;
   factory _CodeActionOptions.fromJson(Map<String, dynamic> json) => _$CodeActionOptionsFromJson(json);
 
-/// The server provides support to resolve additional information for a code
-/// action.
+/// The server provides support to resolve additional information for a
+/// code action.
 /// @since 3.16.0
 @override final  bool? resolveProvider;
 /// CodeActionKinds that this server may return.
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
  final  List<CodeActionKind>? _codeActionKinds;
 /// CodeActionKinds that this server may return.
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
 @override List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
@@ -55758,12 +55470,12 @@ mixin _$OptionalVersionedTextDocumentIdentifier {
 
 /// The text document's uri.
  String get uri;/// The version number of this document. If a versioned text document
-/// identifier is sent from the server to the client and the file is not open
-/// in the editor (the server has not received an open notification before) the
-/// server can send `null` to indicate that the version is unknown and the
-/// content on disk is the truth (as specified with document content
-/// ownership).
- dynamic get version;
+/// identifier is sent from the server to the client and the file is not
+/// open in the editor (the server has not received an open notification
+/// before) the server can send `null` to indicate that the version is
+/// unknown and the content on disk is the truth (as specified with
+/// document content ownership).
+ Object get version;
 /// Create a copy of OptionalVersionedTextDocumentIdentifier
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -55796,7 +55508,7 @@ abstract mixin class $OptionalVersionedTextDocumentIdentifierCopyWith<$Res>  {
   factory $OptionalVersionedTextDocumentIdentifierCopyWith(OptionalVersionedTextDocumentIdentifier value, $Res Function(OptionalVersionedTextDocumentIdentifier) _then) = _$OptionalVersionedTextDocumentIdentifierCopyWithImpl;
 @useResult
 $Res call({
- String uri, dynamic version
+ String uri, Object version
 });
 
 
@@ -55813,11 +55525,10 @@ class _$OptionalVersionedTextDocumentIdentifierCopyWithImpl<$Res>
 
 /// Create a copy of OptionalVersionedTextDocumentIdentifier
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,Object? version = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,Object? version = null,}) {
   return _then(_self.copyWith(
 uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as dynamic,
+as String,version: null == version ? _self.version : version ,
   ));
 }
 
@@ -55835,12 +55546,12 @@ class _OptionalVersionedTextDocumentIdentifier implements OptionalVersionedTextD
 /// The text document's uri.
 @override final  String uri;
 /// The version number of this document. If a versioned text document
-/// identifier is sent from the server to the client and the file is not open
-/// in the editor (the server has not received an open notification before) the
-/// server can send `null` to indicate that the version is unknown and the
-/// content on disk is the truth (as specified with document content
-/// ownership).
-@override final  dynamic version;
+/// identifier is sent from the server to the client and the file is not
+/// open in the editor (the server has not received an open notification
+/// before) the server can send `null` to indicate that the version is
+/// unknown and the content on disk is the truth (as specified with
+/// document content ownership).
+@override final  Object version;
 
 /// Create a copy of OptionalVersionedTextDocumentIdentifier
 /// with the given fields replaced by the non-null parameter values.
@@ -55875,7 +55586,7 @@ abstract mixin class _$OptionalVersionedTextDocumentIdentifierCopyWith<$Res> imp
   factory _$OptionalVersionedTextDocumentIdentifierCopyWith(_OptionalVersionedTextDocumentIdentifier value, $Res Function(_OptionalVersionedTextDocumentIdentifier) _then) = __$OptionalVersionedTextDocumentIdentifierCopyWithImpl;
 @override @useResult
 $Res call({
- String uri, dynamic version
+ String uri, Object version
 });
 
 
@@ -55892,11 +55603,10 @@ class __$OptionalVersionedTextDocumentIdentifierCopyWithImpl<$Res>
 
 /// Create a copy of OptionalVersionedTextDocumentIdentifier
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,Object? version = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,Object? version = null,}) {
   return _then(_OptionalVersionedTextDocumentIdentifier(
 uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as dynamic,
+as String,version: null == version ? _self.version : version ,
   ));
 }
 
@@ -56639,15 +56349,16 @@ as bool?,
 /// @nodoc
 mixin _$FileOperationPattern {
 
-/// The glob pattern to match. Glob patterns can have the following syntax: -
-/// `*` to match zero or more characters in a path segment - `?` to match on
-/// one character in a path segment - `**` to match any number of path
+/// The glob pattern to match. Glob patterns can have the following syntax:
+/// - `*` to match zero or more characters in a path segment - `?` to match
+/// on one character in a path segment - `**` to match any number of path
 /// segments, including none - `{}` to group sub patterns into an OR
 /// expression. (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript
-/// files) - `[]` to declare a range of characters to match in a path segment
-/// (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …) - `[!...]`
-/// to negate a range of characters to match in a path segment (e.g.,
-/// `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
+/// files) - `[]` to declare a range of characters to match in a path
+/// segment (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)
+/// - `[!...]` to negate a range of characters to match in a path segment
+/// (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not
+/// `example.0`)
  String get glob;/// Additional options used during matching.
  FileOperationPatternOptions? get options;/// Whether to match files or folders with this pattern.
 /// Matches both if undefined.
@@ -56733,15 +56444,16 @@ class _FileOperationPattern implements FileOperationPattern {
   const _FileOperationPattern({required this.glob, this.options, this.matches});
   factory _FileOperationPattern.fromJson(Map<String, dynamic> json) => _$FileOperationPatternFromJson(json);
 
-/// The glob pattern to match. Glob patterns can have the following syntax: -
-/// `*` to match zero or more characters in a path segment - `?` to match on
-/// one character in a path segment - `**` to match any number of path
+/// The glob pattern to match. Glob patterns can have the following syntax:
+/// - `*` to match zero or more characters in a path segment - `?` to match
+/// on one character in a path segment - `**` to match any number of path
 /// segments, including none - `{}` to group sub patterns into an OR
 /// expression. (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript
-/// files) - `[]` to declare a range of characters to match in a path segment
-/// (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …) - `[!...]`
-/// to negate a range of characters to match in a path segment (e.g.,
-/// `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
+/// files) - `[]` to declare a range of characters to match in a path
+/// segment (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)
+/// - `[!...]` to negate a range of characters to match in a path segment
+/// (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not
+/// `example.0`)
 @override final  String glob;
 /// Additional options used during matching.
 @override final  FileOperationPatternOptions? options;
@@ -56830,10 +56542,10 @@ mixin _$WorkspaceFullDocumentDiagnosticReport {
 /// A full document diagnostic report.
  String get kind;/// The actual items.
  List<Diagnostic> get items;/// The URI for which diagnostic information is reported.
- String get uri;/// The version number for which the diagnostics are reported. If the document
-/// is not marked as open `null` can be provided.
- dynamic get version;/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+ String get uri;/// The version number for which the diagnostics are reported. If the
+/// document is not marked as open `null` can be provided.
+ Object get version;/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
  String? get resultId;
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -56867,7 +56579,7 @@ abstract mixin class $WorkspaceFullDocumentDiagnosticReportCopyWith<$Res>  {
   factory $WorkspaceFullDocumentDiagnosticReportCopyWith(WorkspaceFullDocumentDiagnosticReport value, $Res Function(WorkspaceFullDocumentDiagnosticReport) _then) = _$WorkspaceFullDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, List<Diagnostic> items, String uri, dynamic version, String? resultId
+ String kind, List<Diagnostic> items, String uri, Object version, String? resultId
 });
 
 
@@ -56884,13 +56596,12 @@ class _$WorkspaceFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? items = null,Object? uri = null,Object? version = freezed,Object? resultId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? items = null,Object? uri = null,Object? version = null,Object? resultId = freezed,}) {
   return _then(_self.copyWith(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as dynamic,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String,version: null == version ? _self.version : version ,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -56919,11 +56630,11 @@ class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDia
 
 /// The URI for which diagnostic information is reported.
 @override final  String uri;
-/// The version number for which the diagnostics are reported. If the document
-/// is not marked as open `null` can be provided.
-@override final  dynamic version;
-/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+/// The version number for which the diagnostics are reported. If the
+/// document is not marked as open `null` can be provided.
+@override final  Object version;
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
 @override final  String? resultId;
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
@@ -56959,7 +56670,7 @@ abstract mixin class _$WorkspaceFullDocumentDiagnosticReportCopyWith<$Res> imple
   factory _$WorkspaceFullDocumentDiagnosticReportCopyWith(_WorkspaceFullDocumentDiagnosticReport value, $Res Function(_WorkspaceFullDocumentDiagnosticReport) _then) = __$WorkspaceFullDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, List<Diagnostic> items, String uri, dynamic version, String? resultId
+ String kind, List<Diagnostic> items, String uri, Object version, String? resultId
 });
 
 
@@ -56976,13 +56687,12 @@ class __$WorkspaceFullDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,Object? uri = null,Object? version = freezed,Object? resultId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? items = null,Object? uri = null,Object? version = null,Object? resultId = freezed,}) {
   return _then(_WorkspaceFullDocumentDiagnosticReport(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as dynamic,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
+as String,version: null == version ? _self.version : version ,resultId: freezed == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -56994,14 +56704,14 @@ as String?,
 /// @nodoc
 mixin _$WorkspaceUnchangedDocumentDiagnosticReport {
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
- String get kind;/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+/// A document diagnostic report indicating no changes to the last result.
+/// A server can only return `unchanged` if result ids are provided.
+ String get kind;/// A result id which will be sent on the next diagnostic request for the
+/// same document.
  String get resultId;/// The URI for which diagnostic information is reported.
- String get uri;/// The version number for which the diagnostics are reported. If the document
-/// is not marked as open `null` can be provided.
- dynamic get version;
+ String get uri;/// The version number for which the diagnostics are reported. If the
+/// document is not marked as open `null` can be provided.
+ Object get version;
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -57034,7 +56744,7 @@ abstract mixin class $WorkspaceUnchangedDocumentDiagnosticReportCopyWith<$Res>  
   factory $WorkspaceUnchangedDocumentDiagnosticReportCopyWith(WorkspaceUnchangedDocumentDiagnosticReport value, $Res Function(WorkspaceUnchangedDocumentDiagnosticReport) _then) = _$WorkspaceUnchangedDocumentDiagnosticReportCopyWithImpl;
 @useResult
 $Res call({
- String kind, String resultId, String uri, dynamic version
+ String kind, String resultId, String uri, Object version
 });
 
 
@@ -57051,13 +56761,12 @@ class _$WorkspaceUnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? resultId = null,Object? uri = null,Object? version = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? resultId = null,Object? uri = null,Object? version = null,}) {
   return _then(_self.copyWith(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as dynamic,
+as String,version: null == version ? _self.version : version ,
   ));
 }
 
@@ -57072,17 +56781,17 @@ class _WorkspaceUnchangedDocumentDiagnosticReport implements WorkspaceUnchangedD
   const _WorkspaceUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, required this.uri, required this.version});
   factory _WorkspaceUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(json);
 
-/// A document diagnostic report indicating no changes to the last result. A
-/// server can only return `unchanged` if result ids are provided.
+/// A document diagnostic report indicating no changes to the last result.
+/// A server can only return `unchanged` if result ids are provided.
 @override final  String kind;
-/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+/// A result id which will be sent on the next diagnostic request for the
+/// same document.
 @override final  String resultId;
 /// The URI for which diagnostic information is reported.
 @override final  String uri;
-/// The version number for which the diagnostics are reported. If the document
-/// is not marked as open `null` can be provided.
-@override final  dynamic version;
+/// The version number for which the diagnostics are reported. If the
+/// document is not marked as open `null` can be provided.
+@override final  Object version;
 
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -57117,7 +56826,7 @@ abstract mixin class _$WorkspaceUnchangedDocumentDiagnosticReportCopyWith<$Res> 
   factory _$WorkspaceUnchangedDocumentDiagnosticReportCopyWith(_WorkspaceUnchangedDocumentDiagnosticReport value, $Res Function(_WorkspaceUnchangedDocumentDiagnosticReport) _then) = __$WorkspaceUnchangedDocumentDiagnosticReportCopyWithImpl;
 @override @useResult
 $Res call({
- String kind, String resultId, String uri, dynamic version
+ String kind, String resultId, String uri, Object version
 });
 
 
@@ -57134,13 +56843,12 @@ class __$WorkspaceUnchangedDocumentDiagnosticReportCopyWithImpl<$Res>
 
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? resultId = null,Object? uri = null,Object? version = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? resultId = null,Object? uri = null,Object? version = null,}) {
   return _then(_WorkspaceUnchangedDocumentDiagnosticReport(
 kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as String,resultId: null == resultId ? _self.resultId : resultId // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as dynamic,
+as String,version: null == version ? _self.version : version ,
   ));
 }
 
@@ -57712,8 +57420,7 @@ class _$ClientCapabilitiesCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? experimental = freezed,Object? general = freezed,Object? window = freezed,Object? notebookDocument = freezed,Object? textDocument = freezed,Object? workspace = freezed,}) {
   return _then(_self.copyWith(
-experimental: freezed == experimental ? _self.experimental : experimental // ignore: cast_nullable_to_non_nullable
-as LSPAny?,general: freezed == general ? _self.general : general // ignore: cast_nullable_to_non_nullable
+experimental: freezed == experimental ? _self.experimental : experimental ,general: freezed == general ? _self.general : general // ignore: cast_nullable_to_non_nullable
 as GeneralClientCapabilities?,window: freezed == window ? _self.window : window // ignore: cast_nullable_to_non_nullable
 as WindowClientCapabilities?,notebookDocument: freezed == notebookDocument ? _self.notebookDocument : notebookDocument // ignore: cast_nullable_to_non_nullable
 as NotebookDocumentClientCapabilities?,textDocument: freezed == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
@@ -57860,8 +57567,7 @@ class __$ClientCapabilitiesCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? experimental = freezed,Object? general = freezed,Object? window = freezed,Object? notebookDocument = freezed,Object? textDocument = freezed,Object? workspace = freezed,}) {
   return _then(_ClientCapabilities(
-experimental: freezed == experimental ? _self.experimental : experimental // ignore: cast_nullable_to_non_nullable
-as LSPAny?,general: freezed == general ? _self.general : general // ignore: cast_nullable_to_non_nullable
+experimental: freezed == experimental ? _self.experimental : experimental ,general: freezed == general ? _self.general : general // ignore: cast_nullable_to_non_nullable
 as GeneralClientCapabilities?,window: freezed == window ? _self.window : window // ignore: cast_nullable_to_non_nullable
 as WindowClientCapabilities?,notebookDocument: freezed == notebookDocument ? _self.notebookDocument : notebookDocument // ignore: cast_nullable_to_non_nullable
 as NotebookDocumentClientCapabilities?,textDocument: freezed == textDocument ? _self.textDocument : textDocument // ignore: cast_nullable_to_non_nullable
@@ -57939,15 +57645,16 @@ mixin _$TextDocumentSyncOptions {
 
 /// If present save notifications are sent to the server. If omitted the
 /// notification should not be sent.
- dynamic? get save;/// If present will save wait until requests are sent to the server. If omitted
-/// the request should not be sent.
- bool? get willSaveWaitUntil;/// If present will save notifications are sent to the server. If omitted the
-/// notification should not be sent.
- bool? get willSave;/// Change notifications are sent to the server. See TextDocumentSyncKind.None,
-/// TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted
-/// it defaults to TextDocumentSyncKind.None.
- TextDocumentSyncKind? get change;/// Open and close notifications are sent to the server. If omitted open close
-/// notification should not be sent.
+ Object? get save;/// If present will save wait until requests are sent to the server. If
+/// omitted the request should not be sent.
+ bool? get willSaveWaitUntil;/// If present will save notifications are sent to the server. If omitted
+/// the notification should not be sent.
+ bool? get willSave;/// Change notifications are sent to the server. See
+/// TextDocumentSyncKind.None, TextDocumentSyncKind.Full and
+/// TextDocumentSyncKind.Incremental. If omitted it defaults to
+/// TextDocumentSyncKind.None.
+ TextDocumentSyncKind? get change;/// Open and close notifications are sent to the server. If omitted open
+/// close notification should not be sent.
  bool? get openClose;
 /// Create a copy of TextDocumentSyncOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -57981,7 +57688,7 @@ abstract mixin class $TextDocumentSyncOptionsCopyWith<$Res>  {
   factory $TextDocumentSyncOptionsCopyWith(TextDocumentSyncOptions value, $Res Function(TextDocumentSyncOptions) _then) = _$TextDocumentSyncOptionsCopyWithImpl;
 @useResult
 $Res call({
- dynamic? save, bool? willSaveWaitUntil, bool? willSave, TextDocumentSyncKind? change, bool? openClose
+ Object? save, bool? willSaveWaitUntil, bool? willSave, TextDocumentSyncKind? change, bool? openClose
 });
 
 
@@ -58000,8 +57707,7 @@ class _$TextDocumentSyncOptionsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? save = freezed,Object? willSaveWaitUntil = freezed,Object? willSave = freezed,Object? change = freezed,Object? openClose = freezed,}) {
   return _then(_self.copyWith(
-save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
-as dynamic?,willSaveWaitUntil: freezed == willSaveWaitUntil ? _self.willSaveWaitUntil : willSaveWaitUntil // ignore: cast_nullable_to_non_nullable
+save: freezed == save ? _self.save : save ,willSaveWaitUntil: freezed == willSaveWaitUntil ? _self.willSaveWaitUntil : willSaveWaitUntil // ignore: cast_nullable_to_non_nullable
 as bool?,willSave: freezed == willSave ? _self.willSave : willSave // ignore: cast_nullable_to_non_nullable
 as bool?,change: freezed == change ? _self.change : change // ignore: cast_nullable_to_non_nullable
 as TextDocumentSyncKind?,openClose: freezed == openClose ? _self.openClose : openClose // ignore: cast_nullable_to_non_nullable
@@ -58022,19 +57728,20 @@ class _TextDocumentSyncOptions implements TextDocumentSyncOptions {
 
 /// If present save notifications are sent to the server. If omitted the
 /// notification should not be sent.
-@override final  dynamic? save;
-/// If present will save wait until requests are sent to the server. If omitted
-/// the request should not be sent.
+@override final  Object? save;
+/// If present will save wait until requests are sent to the server. If
+/// omitted the request should not be sent.
 @override final  bool? willSaveWaitUntil;
-/// If present will save notifications are sent to the server. If omitted the
-/// notification should not be sent.
+/// If present will save notifications are sent to the server. If omitted
+/// the notification should not be sent.
 @override final  bool? willSave;
-/// Change notifications are sent to the server. See TextDocumentSyncKind.None,
-/// TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted
-/// it defaults to TextDocumentSyncKind.None.
+/// Change notifications are sent to the server. See
+/// TextDocumentSyncKind.None, TextDocumentSyncKind.Full and
+/// TextDocumentSyncKind.Incremental. If omitted it defaults to
+/// TextDocumentSyncKind.None.
 @override final  TextDocumentSyncKind? change;
-/// Open and close notifications are sent to the server. If omitted open close
-/// notification should not be sent.
+/// Open and close notifications are sent to the server. If omitted open
+/// close notification should not be sent.
 @override final  bool? openClose;
 
 /// Create a copy of TextDocumentSyncOptions
@@ -58070,7 +57777,7 @@ abstract mixin class _$TextDocumentSyncOptionsCopyWith<$Res> implements $TextDoc
   factory _$TextDocumentSyncOptionsCopyWith(_TextDocumentSyncOptions value, $Res Function(_TextDocumentSyncOptions) _then) = __$TextDocumentSyncOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic? save, bool? willSaveWaitUntil, bool? willSave, TextDocumentSyncKind? change, bool? openClose
+ Object? save, bool? willSaveWaitUntil, bool? willSave, TextDocumentSyncKind? change, bool? openClose
 });
 
 
@@ -58089,8 +57796,7 @@ class __$TextDocumentSyncOptionsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? save = freezed,Object? willSaveWaitUntil = freezed,Object? willSave = freezed,Object? change = freezed,Object? openClose = freezed,}) {
   return _then(_TextDocumentSyncOptions(
-save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
-as dynamic?,willSaveWaitUntil: freezed == willSaveWaitUntil ? _self.willSaveWaitUntil : willSaveWaitUntil // ignore: cast_nullable_to_non_nullable
+save: freezed == save ? _self.save : save ,willSaveWaitUntil: freezed == willSaveWaitUntil ? _self.willSaveWaitUntil : willSaveWaitUntil // ignore: cast_nullable_to_non_nullable
 as bool?,willSave: freezed == willSave ? _self.willSave : willSave // ignore: cast_nullable_to_non_nullable
 as bool?,change: freezed == change ? _self.change : change // ignore: cast_nullable_to_non_nullable
 as TextDocumentSyncKind?,openClose: freezed == openClose ? _self.openClose : openClose // ignore: cast_nullable_to_non_nullable
@@ -58106,8 +57812,8 @@ as bool?,
 mixin _$NotebookDocumentSyncOptions {
 
 /// The notebooks to be synced
- List<dynamic> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only be
-/// honored if mode === `notebook`.
+ List<Object> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
  bool? get save;
 /// Create a copy of NotebookDocumentSyncOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -58141,7 +57847,7 @@ abstract mixin class $NotebookDocumentSyncOptionsCopyWith<$Res>  {
   factory $NotebookDocumentSyncOptionsCopyWith(NotebookDocumentSyncOptions value, $Res Function(NotebookDocumentSyncOptions) _then) = _$NotebookDocumentSyncOptionsCopyWithImpl;
 @useResult
 $Res call({
- List<dynamic> notebookSelector, bool? save
+ List<Object> notebookSelector, bool? save
 });
 
 
@@ -58161,7 +57867,7 @@ class _$NotebookDocumentSyncOptionsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? notebookSelector = null,Object? save = freezed,}) {
   return _then(_self.copyWith(
 notebookSelector: null == notebookSelector ? _self.notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
-as List<dynamic>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+as List<Object>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -58174,20 +57880,20 @@ as bool?,
 
 @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
 class _NotebookDocumentSyncOptions implements NotebookDocumentSyncOptions {
-  const _NotebookDocumentSyncOptions({required final  List<dynamic> notebookSelector, this.save}): _notebookSelector = notebookSelector;
+  const _NotebookDocumentSyncOptions({required final  List<Object> notebookSelector, this.save}): _notebookSelector = notebookSelector;
   factory _NotebookDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsFromJson(json);
 
 /// The notebooks to be synced
- final  List<dynamic> _notebookSelector;
+ final  List<Object> _notebookSelector;
 /// The notebooks to be synced
-@override List<dynamic> get notebookSelector {
+@override List<Object> get notebookSelector {
   if (_notebookSelector is EqualUnmodifiableListView) return _notebookSelector;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_notebookSelector);
 }
 
-/// Whether save notification should be forwarded to the server. Will only be
-/// honored if mode === `notebook`.
+/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
 @override final  bool? save;
 
 /// Create a copy of NotebookDocumentSyncOptions
@@ -58223,7 +57929,7 @@ abstract mixin class _$NotebookDocumentSyncOptionsCopyWith<$Res> implements $Not
   factory _$NotebookDocumentSyncOptionsCopyWith(_NotebookDocumentSyncOptions value, $Res Function(_NotebookDocumentSyncOptions) _then) = __$NotebookDocumentSyncOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- List<dynamic> notebookSelector, bool? save
+ List<Object> notebookSelector, bool? save
 });
 
 
@@ -58243,7 +57949,7 @@ class __$NotebookDocumentSyncOptionsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? notebookSelector = null,Object? save = freezed,}) {
   return _then(_NotebookDocumentSyncOptions(
 notebookSelector: null == notebookSelector ? _self._notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
-as List<dynamic>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+as List<Object>,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -58256,10 +57962,10 @@ as bool?,
 mixin _$NotebookDocumentSyncRegistrationOptions {
 
 /// The notebooks to be synced
- List<dynamic> get notebookSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
- String? get id;/// Whether save notification should be forwarded to the server. Will only be
-/// honored if mode === `notebook`.
+ List<Object> get notebookSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
+ String? get id;/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
  bool? get save;
 /// Create a copy of NotebookDocumentSyncRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -58293,7 +57999,7 @@ abstract mixin class $NotebookDocumentSyncRegistrationOptionsCopyWith<$Res>  {
   factory $NotebookDocumentSyncRegistrationOptionsCopyWith(NotebookDocumentSyncRegistrationOptions value, $Res Function(NotebookDocumentSyncRegistrationOptions) _then) = _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- List<dynamic> notebookSelector, String? id, bool? save
+ List<Object> notebookSelector, String? id, bool? save
 });
 
 
@@ -58313,7 +58019,7 @@ class _$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? notebookSelector = null,Object? id = freezed,Object? save = freezed,}) {
   return _then(_self.copyWith(
 notebookSelector: null == notebookSelector ? _self.notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
-as List<dynamic>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as List<Object>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -58327,23 +58033,23 @@ as bool?,
 
 @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
 class _NotebookDocumentSyncRegistrationOptions implements NotebookDocumentSyncRegistrationOptions {
-  const _NotebookDocumentSyncRegistrationOptions({required final  List<dynamic> notebookSelector, this.id, this.save}): _notebookSelector = notebookSelector;
+  const _NotebookDocumentSyncRegistrationOptions({required final  List<Object> notebookSelector, this.id, this.save}): _notebookSelector = notebookSelector;
   factory _NotebookDocumentSyncRegistrationOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncRegistrationOptionsFromJson(json);
 
 /// The notebooks to be synced
- final  List<dynamic> _notebookSelector;
+ final  List<Object> _notebookSelector;
 /// The notebooks to be synced
-@override List<dynamic> get notebookSelector {
+@override List<Object> get notebookSelector {
   if (_notebookSelector is EqualUnmodifiableListView) return _notebookSelector;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_notebookSelector);
 }
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
-/// Whether save notification should be forwarded to the server. Will only be
-/// honored if mode === `notebook`.
+/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
 @override final  bool? save;
 
 /// Create a copy of NotebookDocumentSyncRegistrationOptions
@@ -58379,7 +58085,7 @@ abstract mixin class _$NotebookDocumentSyncRegistrationOptionsCopyWith<$Res> imp
   factory _$NotebookDocumentSyncRegistrationOptionsCopyWith(_NotebookDocumentSyncRegistrationOptions value, $Res Function(_NotebookDocumentSyncRegistrationOptions) _then) = __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- List<dynamic> notebookSelector, String? id, bool? save
+ List<Object> notebookSelector, String? id, bool? save
 });
 
 
@@ -58399,7 +58105,7 @@ class __$NotebookDocumentSyncRegistrationOptionsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? notebookSelector = null,Object? id = freezed,Object? save = freezed,}) {
   return _then(_NotebookDocumentSyncRegistrationOptions(
 notebookSelector: null == notebookSelector ? _self._notebookSelector : notebookSelector // ignore: cast_nullable_to_non_nullable
-as List<dynamic>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as List<Object>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
@@ -58412,12 +58118,13 @@ as bool?,
 /// @nodoc
 mixin _$WorkspaceFoldersServerCapabilities {
 
-/// Whether the server wants to receive workspace folder change notifications.
+/// Whether the server wants to receive workspace folder change
+/// notifications.
 /// If a string is provided the string is treated as an ID under which the
 /// notification is registered on the client side. The ID can be used to
 /// unregister for these events using the `client/unregisterCapability`
 /// request.
- dynamic? get changeNotifications;/// The server has support for workspace folders
+ Object? get changeNotifications;/// The server has support for workspace folders
  bool? get supported;
 /// Create a copy of WorkspaceFoldersServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -58451,7 +58158,7 @@ abstract mixin class $WorkspaceFoldersServerCapabilitiesCopyWith<$Res>  {
   factory $WorkspaceFoldersServerCapabilitiesCopyWith(WorkspaceFoldersServerCapabilities value, $Res Function(WorkspaceFoldersServerCapabilities) _then) = _$WorkspaceFoldersServerCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- dynamic? changeNotifications, bool? supported
+ Object? changeNotifications, bool? supported
 });
 
 
@@ -58470,8 +58177,7 @@ class _$WorkspaceFoldersServerCapabilitiesCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? changeNotifications = freezed,Object? supported = freezed,}) {
   return _then(_self.copyWith(
-changeNotifications: freezed == changeNotifications ? _self.changeNotifications : changeNotifications // ignore: cast_nullable_to_non_nullable
-as dynamic?,supported: freezed == supported ? _self.supported : supported // ignore: cast_nullable_to_non_nullable
+changeNotifications: freezed == changeNotifications ? _self.changeNotifications : changeNotifications ,supported: freezed == supported ? _self.supported : supported // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -58487,12 +58193,13 @@ class _WorkspaceFoldersServerCapabilities implements WorkspaceFoldersServerCapab
   const _WorkspaceFoldersServerCapabilities({this.changeNotifications, this.supported});
   factory _WorkspaceFoldersServerCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
 
-/// Whether the server wants to receive workspace folder change notifications.
+/// Whether the server wants to receive workspace folder change
+/// notifications.
 /// If a string is provided the string is treated as an ID under which the
 /// notification is registered on the client side. The ID can be used to
 /// unregister for these events using the `client/unregisterCapability`
 /// request.
-@override final  dynamic? changeNotifications;
+@override final  Object? changeNotifications;
 /// The server has support for workspace folders
 @override final  bool? supported;
 
@@ -58529,7 +58236,7 @@ abstract mixin class _$WorkspaceFoldersServerCapabilitiesCopyWith<$Res> implemen
   factory _$WorkspaceFoldersServerCapabilitiesCopyWith(_WorkspaceFoldersServerCapabilities value, $Res Function(_WorkspaceFoldersServerCapabilities) _then) = __$WorkspaceFoldersServerCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic? changeNotifications, bool? supported
+ Object? changeNotifications, bool? supported
 });
 
 
@@ -58548,8 +58255,7 @@ class __$WorkspaceFoldersServerCapabilitiesCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? changeNotifications = freezed,Object? supported = freezed,}) {
   return _then(_WorkspaceFoldersServerCapabilities(
-changeNotifications: freezed == changeNotifications ? _self.changeNotifications : changeNotifications // ignore: cast_nullable_to_non_nullable
-as dynamic?,supported: freezed == supported ? _self.supported : supported // ignore: cast_nullable_to_non_nullable
+changeNotifications: freezed == changeNotifications ? _self.changeNotifications : changeNotifications ,supported: freezed == supported ? _self.supported : supported // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
@@ -59162,15 +58868,16 @@ $LocationCopyWith<$Res> get location {
 mixin _$ParameterInformation {
 
 /// The label of this parameter information.
-/// Either a string or an inclusive start and exclusive end offsets within its
-/// containing signature label. (see SignatureInformation.label). The offsets
-/// are based on a UTF-16 string representation as `Position` and `Range` does.
+/// Either a string or an inclusive start and exclusive end offsets within
+/// its containing signature label. (see SignatureInformation.label). The
+/// offsets are based on a UTF-16 string representation as `Position` and
+/// `Range` does.
 /// *Note*: a label of type string should be a substring of its containing
-/// signature label. Its intended use case is to highlight the parameter label
-/// part in the `SignatureInformation.label`.
- dynamic get label;/// The human-readable doc-comment of this parameter. Will be shown in the UI
-/// but can be omitted.
- dynamic? get documentation;
+/// signature label. Its intended use case is to highlight the parameter
+/// label part in the `SignatureInformation.label`.
+ Object get label;/// The human-readable doc-comment of this parameter. Will be shown in the
+/// UI but can be omitted.
+ Object? get documentation;
 /// Create a copy of ParameterInformation
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -59203,7 +58910,7 @@ abstract mixin class $ParameterInformationCopyWith<$Res>  {
   factory $ParameterInformationCopyWith(ParameterInformation value, $Res Function(ParameterInformation) _then) = _$ParameterInformationCopyWithImpl;
 @useResult
 $Res call({
- dynamic label, dynamic? documentation
+ Object label, Object? documentation
 });
 
 
@@ -59220,11 +58927,9 @@ class _$ParameterInformationCopyWithImpl<$Res>
 
 /// Create a copy of ParameterInformation
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? label = freezed,Object? documentation = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? label = null,Object? documentation = freezed,}) {
   return _then(_self.copyWith(
-label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as dynamic,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+label: null == label ? _self.label : label ,documentation: freezed == documentation ? _self.documentation : documentation ,
   ));
 }
 
@@ -59240,16 +58945,17 @@ class _ParameterInformation implements ParameterInformation {
   factory _ParameterInformation.fromJson(Map<String, dynamic> json) => _$ParameterInformationFromJson(json);
 
 /// The label of this parameter information.
-/// Either a string or an inclusive start and exclusive end offsets within its
-/// containing signature label. (see SignatureInformation.label). The offsets
-/// are based on a UTF-16 string representation as `Position` and `Range` does.
+/// Either a string or an inclusive start and exclusive end offsets within
+/// its containing signature label. (see SignatureInformation.label). The
+/// offsets are based on a UTF-16 string representation as `Position` and
+/// `Range` does.
 /// *Note*: a label of type string should be a substring of its containing
-/// signature label. Its intended use case is to highlight the parameter label
-/// part in the `SignatureInformation.label`.
-@override final  dynamic label;
-/// The human-readable doc-comment of this parameter. Will be shown in the UI
-/// but can be omitted.
-@override final  dynamic? documentation;
+/// signature label. Its intended use case is to highlight the parameter
+/// label part in the `SignatureInformation.label`.
+@override final  Object label;
+/// The human-readable doc-comment of this parameter. Will be shown in the
+/// UI but can be omitted.
+@override final  Object? documentation;
 
 /// Create a copy of ParameterInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -59284,7 +58990,7 @@ abstract mixin class _$ParameterInformationCopyWith<$Res> implements $ParameterI
   factory _$ParameterInformationCopyWith(_ParameterInformation value, $Res Function(_ParameterInformation) _then) = __$ParameterInformationCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic label, dynamic? documentation
+ Object label, Object? documentation
 });
 
 
@@ -59301,11 +59007,9 @@ class __$ParameterInformationCopyWithImpl<$Res>
 
 /// Create a copy of ParameterInformation
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? label = freezed,Object? documentation = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? label = null,Object? documentation = freezed,}) {
   return _then(_ParameterInformation(
-label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as dynamic,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
-as dynamic?,
+label: null == label ? _self.label : label ,documentation: freezed == documentation ? _self.documentation : documentation ,
   ));
 }
 
@@ -59316,12 +59020,12 @@ as dynamic?,
 /// @nodoc
 mixin _$NotebookCellTextDocumentFilter {
 
-/// A filter that matches against the notebook containing the notebook cell. If
-/// a string value is provided it matches against the notebook type. '*'
-/// matches every notebook.
- dynamic get notebook;/// A language id like `python`.
-/// Will be matched against the language id of the notebook cell document. '*'
-/// matches every language.
+/// A filter that matches against the notebook containing the notebook
+/// cell. If a string value is provided it matches against the notebook
+/// type. '*' matches every notebook.
+ Object get notebook;/// A language id like `python`.
+/// Will be matched against the language id of the notebook cell document.
+/// '*' matches every language.
  String? get language;
 /// Create a copy of NotebookCellTextDocumentFilter
 /// with the given fields replaced by the non-null parameter values.
@@ -59355,7 +59059,7 @@ abstract mixin class $NotebookCellTextDocumentFilterCopyWith<$Res>  {
   factory $NotebookCellTextDocumentFilterCopyWith(NotebookCellTextDocumentFilter value, $Res Function(NotebookCellTextDocumentFilter) _then) = _$NotebookCellTextDocumentFilterCopyWithImpl;
 @useResult
 $Res call({
- dynamic notebook, String? language
+ Object notebook, String? language
 });
 
 
@@ -59372,10 +59076,9 @@ class _$NotebookCellTextDocumentFilterCopyWithImpl<$Res>
 
 /// Create a copy of NotebookCellTextDocumentFilter
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? notebook = freezed,Object? language = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? notebook = null,Object? language = freezed,}) {
   return _then(_self.copyWith(
-notebook: freezed == notebook ? _self.notebook : notebook // ignore: cast_nullable_to_non_nullable
-as dynamic,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+notebook: null == notebook ? _self.notebook : notebook ,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -59391,13 +59094,13 @@ class _NotebookCellTextDocumentFilter implements NotebookCellTextDocumentFilter 
   const _NotebookCellTextDocumentFilter({required this.notebook, this.language});
   factory _NotebookCellTextDocumentFilter.fromJson(Map<String, dynamic> json) => _$NotebookCellTextDocumentFilterFromJson(json);
 
-/// A filter that matches against the notebook containing the notebook cell. If
-/// a string value is provided it matches against the notebook type. '*'
-/// matches every notebook.
-@override final  dynamic notebook;
+/// A filter that matches against the notebook containing the notebook
+/// cell. If a string value is provided it matches against the notebook
+/// type. '*' matches every notebook.
+@override final  Object notebook;
 /// A language id like `python`.
-/// Will be matched against the language id of the notebook cell document. '*'
-/// matches every language.
+/// Will be matched against the language id of the notebook cell document.
+/// '*' matches every language.
 @override final  String? language;
 
 /// Create a copy of NotebookCellTextDocumentFilter
@@ -59433,7 +59136,7 @@ abstract mixin class _$NotebookCellTextDocumentFilterCopyWith<$Res> implements $
   factory _$NotebookCellTextDocumentFilterCopyWith(_NotebookCellTextDocumentFilter value, $Res Function(_NotebookCellTextDocumentFilter) _then) = __$NotebookCellTextDocumentFilterCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic notebook, String? language
+ Object notebook, String? language
 });
 
 
@@ -59450,10 +59153,9 @@ class __$NotebookCellTextDocumentFilterCopyWithImpl<$Res>
 
 /// Create a copy of NotebookCellTextDocumentFilter
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? notebook = freezed,Object? language = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? notebook = null,Object? language = freezed,}) {
   return _then(_NotebookCellTextDocumentFilter(
-notebook: freezed == notebook ? _self.notebook : notebook // ignore: cast_nullable_to_non_nullable
-as dynamic,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+notebook: null == notebook ? _self.notebook : notebook ,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -59601,8 +59303,8 @@ as bool?,
 /// @nodoc
 mixin _$ExecutionSummary {
 
-/// A strict monotonically increasing value indicating the execution order of a
-/// cell inside a notebook.
+/// A strict monotonically increasing value indicating the execution order
+/// of a cell inside a notebook.
  int get executionOrder;/// Whether the execution was successful or not if known by the client.
  bool? get success;
 /// Create a copy of ExecutionSummary
@@ -59673,8 +59375,8 @@ class _ExecutionSummary implements ExecutionSummary {
   const _ExecutionSummary({required this.executionOrder, this.success});
   factory _ExecutionSummary.fromJson(Map<String, dynamic> json) => _$ExecutionSummaryFromJson(json);
 
-/// A strict monotonically increasing value indicating the execution order of a
-/// cell inside a notebook.
+/// A strict monotonically increasing value indicating the execution order
+/// of a cell inside a notebook.
 @override final  int executionOrder;
 /// Whether the execution was successful or not if known by the client.
 @override final  bool? success;
@@ -59744,16 +59446,20 @@ as bool?,
 /// @nodoc
 mixin _$WorkspaceClientCapabilities {
 
-/// Capabilities specific to the folding range requests scoped to the workspace.
+/// Capabilities specific to the folding range requests scoped to the
+/// workspace.
 /// @since 3.18.0 @proposed
- FoldingRangeWorkspaceClientCapabilities? get foldingRange;/// Capabilities specific to the diagnostic requests scoped to the workspace.
+ FoldingRangeWorkspaceClientCapabilities? get foldingRange;/// Capabilities specific to the diagnostic requests scoped to the
+/// workspace.
 /// @since 3.17.0.
- DiagnosticWorkspaceClientCapabilities? get diagnostics;/// Capabilities specific to the inlay hint requests scoped to the workspace.
+ DiagnosticWorkspaceClientCapabilities? get diagnostics;/// Capabilities specific to the inlay hint requests scoped to the
+/// workspace.
 /// @since 3.17.0.
- InlayHintWorkspaceClientCapabilities? get inlayHint;/// Capabilities specific to the inline values requests scoped to the workspace.
+ InlayHintWorkspaceClientCapabilities? get inlayHint;/// Capabilities specific to the inline values requests scoped to the
+/// workspace.
 /// @since 3.17.0.
- InlineValueWorkspaceClientCapabilities? get inlineValue;/// The client has support for file notifications/requests for user operations
-/// on files.
+ InlineValueWorkspaceClientCapabilities? get inlineValue;/// The client has support for file notifications/requests for user
+/// operations on files.
 /// Since 3.16.0
  FileOperationClientCapabilities? get fileOperations;/// Capabilities specific to the code lens requests scoped to the workspace.
 /// @since 3.16.0.
@@ -59766,12 +59472,13 @@ mixin _$WorkspaceClientCapabilities {
 /// @since 3.6.0
  bool? get workspaceFolders;/// Capabilities specific to the `workspace/executeCommand` request.
  ExecuteCommandClientCapabilities? get executeCommand;/// Capabilities specific to the `workspace/symbol` request.
- WorkspaceSymbolClientCapabilities? get symbol;/// Capabilities specific to the `workspace/didChangeWatchedFiles` notification.
+ WorkspaceSymbolClientCapabilities? get symbol;/// Capabilities specific to the `workspace/didChangeWatchedFiles`
+/// notification.
  DidChangeWatchedFilesClientCapabilities? get didChangeWatchedFiles;/// Capabilities specific to the `workspace/didChangeConfiguration`
 /// notification.
  DidChangeConfigurationClientCapabilities? get didChangeConfiguration;/// Capabilities specific to `WorkspaceEdit`s.
- WorkspaceEditClientCapabilities? get workspaceEdit;/// The client supports applying batch edits to the workspace by supporting the
-/// request 'workspace/applyEdit'
+ WorkspaceEditClientCapabilities? get workspaceEdit;/// The client supports applying batch edits to the workspace by supporting
+/// the request 'workspace/applyEdit'
  bool? get applyEdit;
 /// Create a copy of WorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -59998,20 +59705,24 @@ class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
   const _WorkspaceClientCapabilities({this.foldingRange, this.diagnostics, this.inlayHint, this.inlineValue, this.fileOperations, this.codeLens, this.semanticTokens, this.configuration, this.workspaceFolders, this.executeCommand, this.symbol, this.didChangeWatchedFiles, this.didChangeConfiguration, this.workspaceEdit, this.applyEdit});
   factory _WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceClientCapabilitiesFromJson(json);
 
-/// Capabilities specific to the folding range requests scoped to the workspace.
+/// Capabilities specific to the folding range requests scoped to the
+/// workspace.
 /// @since 3.18.0 @proposed
 @override final  FoldingRangeWorkspaceClientCapabilities? foldingRange;
-/// Capabilities specific to the diagnostic requests scoped to the workspace.
+/// Capabilities specific to the diagnostic requests scoped to the
+/// workspace.
 /// @since 3.17.0.
 @override final  DiagnosticWorkspaceClientCapabilities? diagnostics;
-/// Capabilities specific to the inlay hint requests scoped to the workspace.
+/// Capabilities specific to the inlay hint requests scoped to the
+/// workspace.
 /// @since 3.17.0.
 @override final  InlayHintWorkspaceClientCapabilities? inlayHint;
-/// Capabilities specific to the inline values requests scoped to the workspace.
+/// Capabilities specific to the inline values requests scoped to the
+/// workspace.
 /// @since 3.17.0.
 @override final  InlineValueWorkspaceClientCapabilities? inlineValue;
-/// The client has support for file notifications/requests for user operations
-/// on files.
+/// The client has support for file notifications/requests for user
+/// operations on files.
 /// Since 3.16.0
 @override final  FileOperationClientCapabilities? fileOperations;
 /// Capabilities specific to the code lens requests scoped to the workspace.
@@ -60031,15 +59742,16 @@ class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
 @override final  ExecuteCommandClientCapabilities? executeCommand;
 /// Capabilities specific to the `workspace/symbol` request.
 @override final  WorkspaceSymbolClientCapabilities? symbol;
-/// Capabilities specific to the `workspace/didChangeWatchedFiles` notification.
+/// Capabilities specific to the `workspace/didChangeWatchedFiles`
+/// notification.
 @override final  DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles;
 /// Capabilities specific to the `workspace/didChangeConfiguration`
 /// notification.
 @override final  DidChangeConfigurationClientCapabilities? didChangeConfiguration;
 /// Capabilities specific to `WorkspaceEdit`s.
 @override final  WorkspaceEditClientCapabilities? workspaceEdit;
-/// The client supports applying batch edits to the workspace by supporting the
-/// request 'workspace/applyEdit'
+/// The client supports applying batch edits to the workspace by supporting
+/// the request 'workspace/applyEdit'
 @override final  bool? applyEdit;
 
 /// Create a copy of WorkspaceClientCapabilities
@@ -60282,7 +59994,8 @@ mixin _$TextDocumentClientCapabilities {
 /// @since 3.16.0
  SemanticTokensClientCapabilities? get semanticTokens;/// Capabilities specific to the various call hierarchy requests.
 /// @since 3.16.0
- CallHierarchyClientCapabilities? get callHierarchy;/// Capabilities specific to the `textDocument/publishDiagnostics` notification.
+ CallHierarchyClientCapabilities? get callHierarchy;/// Capabilities specific to the `textDocument/publishDiagnostics`
+/// notification.
  PublishDiagnosticsClientCapabilities? get publishDiagnostics;/// Capabilities specific to the `textDocument/selectionRange` request.
 /// @since 3.15.0
  SelectionRangeClientCapabilities? get selectionRange;/// Capabilities specific to the `textDocument/foldingRange` request.
@@ -60808,7 +60521,8 @@ class _TextDocumentClientCapabilities implements TextDocumentClientCapabilities 
 /// Capabilities specific to the various call hierarchy requests.
 /// @since 3.16.0
 @override final  CallHierarchyClientCapabilities? callHierarchy;
-/// Capabilities specific to the `textDocument/publishDiagnostics` notification.
+/// Capabilities specific to the `textDocument/publishDiagnostics`
+/// notification.
 @override final  PublishDiagnosticsClientCapabilities? publishDiagnostics;
 /// Capabilities specific to the `textDocument/selectionRange` request.
 /// @since 3.15.0
@@ -61486,11 +61200,12 @@ mixin _$WindowClientCapabilities {
 /// @since 3.16.0
  ShowDocumentClientCapabilities? get showDocument;/// Capabilities specific to the showMessage request.
 /// @since 3.16.0
- ShowMessageRequestClientCapabilities? get showMessage;/// It indicates whether the client supports server initiated progress using
-/// the `window/workDoneProgress/create` request.
-/// The capability also controls Whether client supports handling of progress
-/// notifications. If set servers are allowed to report a `workDoneProgress`
-/// property in the request specific server capabilities.
+ ShowMessageRequestClientCapabilities? get showMessage;/// It indicates whether the client supports server initiated progress
+/// using the `window/workDoneProgress/create` request.
+/// The capability also controls Whether client supports handling of
+/// progress notifications. If set servers are allowed to report a
+/// `workDoneProgress` property in the request specific server
+/// capabilities.
 /// @since 3.15.0
  bool? get workDoneProgress;
 /// Create a copy of WindowClientCapabilities
@@ -61592,11 +61307,12 @@ class _WindowClientCapabilities implements WindowClientCapabilities {
 /// Capabilities specific to the showMessage request.
 /// @since 3.16.0
 @override final  ShowMessageRequestClientCapabilities? showMessage;
-/// It indicates whether the client supports server initiated progress using
-/// the `window/workDoneProgress/create` request.
-/// The capability also controls Whether client supports handling of progress
-/// notifications. If set servers are allowed to report a `workDoneProgress`
-/// property in the request specific server capabilities.
+/// It indicates whether the client supports server initiated progress
+/// using the `window/workDoneProgress/create` request.
+/// The capability also controls Whether client supports handling of
+/// progress notifications. If set servers are allowed to report a
+/// `workDoneProgress` property in the request specific server
+/// capabilities.
 /// @since 3.15.0
 @override final  bool? workDoneProgress;
 
@@ -61690,25 +61406,25 @@ $ShowMessageRequestClientCapabilitiesCopyWith<$Res>? get showMessage {
 /// @nodoc
 mixin _$GeneralClientCapabilities {
 
-/// The position encodings supported by the client. Client and server have to
-/// agree on the same position encoding to ensure that offsets (e.g. character
-/// position in a line) are interpreted the same on both sides.
+/// The position encodings supported by the client. Client and server have
+/// to agree on the same position encoding to ensure that offsets (e.g.
+/// character position in a line) are interpreted the same on both sides.
 /// To keep the protocol backwards compatible the following applies: if the
-/// value 'utf-16' is missing from the array of position encodings servers can
-/// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
-/// encoding.
+/// value 'utf-16' is missing from the array of position encodings servers
+/// can assume that the client supports UTF-16. UTF-16 is therefore a
+/// mandatory encoding.
 /// If omitted it defaults to ['utf-16'].
-/// Implementation considerations: since the conversion from one encoding into
-/// another requires the content of the file / line the conversion is best done
-/// where the file is read which is usually on the server side.
+/// Implementation considerations: since the conversion from one encoding
+/// into another requires the content of the file / line the conversion is
+/// best done where the file is read which is usually on the server side.
 /// @since 3.17.0
  List<PositionEncodingKind>? get positionEncodings;/// Client capabilities specific to the client's markdown parser.
 /// @since 3.16.0
  MarkdownClientCapabilities? get markdown;/// Client capabilities specific to regular expressions.
 /// @since 3.16.0
- RegularExpressionsClientCapabilities? get regularExpressions;/// Client capability that signals how the client handles stale requests (e.g.
-/// a request for which the client will not process the response anymore since
-/// the information is outdated).
+ RegularExpressionsClientCapabilities? get regularExpressions;/// Client capability that signals how the client handles stale requests
+/// (e.g. a request for which the client will not process the response
+/// anymore since the information is outdated).
 /// @since 3.17.0
  ({bool cancel, List<String> retryOnContentModified})? get staleRequestSupport;
 /// Create a copy of GeneralClientCapabilities
@@ -61805,30 +61521,30 @@ class _GeneralClientCapabilities implements GeneralClientCapabilities {
   const _GeneralClientCapabilities({final  List<PositionEncodingKind>? positionEncodings, this.markdown, this.regularExpressions, this.staleRequestSupport}): _positionEncodings = positionEncodings;
   factory _GeneralClientCapabilities.fromJson(Map<String, dynamic> json) => _$GeneralClientCapabilitiesFromJson(json);
 
-/// The position encodings supported by the client. Client and server have to
-/// agree on the same position encoding to ensure that offsets (e.g. character
-/// position in a line) are interpreted the same on both sides.
+/// The position encodings supported by the client. Client and server have
+/// to agree on the same position encoding to ensure that offsets (e.g.
+/// character position in a line) are interpreted the same on both sides.
 /// To keep the protocol backwards compatible the following applies: if the
-/// value 'utf-16' is missing from the array of position encodings servers can
-/// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
-/// encoding.
+/// value 'utf-16' is missing from the array of position encodings servers
+/// can assume that the client supports UTF-16. UTF-16 is therefore a
+/// mandatory encoding.
 /// If omitted it defaults to ['utf-16'].
-/// Implementation considerations: since the conversion from one encoding into
-/// another requires the content of the file / line the conversion is best done
-/// where the file is read which is usually on the server side.
+/// Implementation considerations: since the conversion from one encoding
+/// into another requires the content of the file / line the conversion is
+/// best done where the file is read which is usually on the server side.
 /// @since 3.17.0
  final  List<PositionEncodingKind>? _positionEncodings;
-/// The position encodings supported by the client. Client and server have to
-/// agree on the same position encoding to ensure that offsets (e.g. character
-/// position in a line) are interpreted the same on both sides.
+/// The position encodings supported by the client. Client and server have
+/// to agree on the same position encoding to ensure that offsets (e.g.
+/// character position in a line) are interpreted the same on both sides.
 /// To keep the protocol backwards compatible the following applies: if the
-/// value 'utf-16' is missing from the array of position encodings servers can
-/// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
-/// encoding.
+/// value 'utf-16' is missing from the array of position encodings servers
+/// can assume that the client supports UTF-16. UTF-16 is therefore a
+/// mandatory encoding.
 /// If omitted it defaults to ['utf-16'].
-/// Implementation considerations: since the conversion from one encoding into
-/// another requires the content of the file / line the conversion is best done
-/// where the file is read which is usually on the server side.
+/// Implementation considerations: since the conversion from one encoding
+/// into another requires the content of the file / line the conversion is
+/// best done where the file is read which is usually on the server side.
 /// @since 3.17.0
 @override List<PositionEncodingKind>? get positionEncodings {
   final value = _positionEncodings;
@@ -61844,9 +61560,9 @@ class _GeneralClientCapabilities implements GeneralClientCapabilities {
 /// Client capabilities specific to regular expressions.
 /// @since 3.16.0
 @override final  RegularExpressionsClientCapabilities? regularExpressions;
-/// Client capability that signals how the client handles stale requests (e.g.
-/// a request for which the client will not process the response anymore since
-/// the information is outdated).
+/// Client capability that signals how the client handles stale requests
+/// (e.g. a request for which the client will not process the response
+/// anymore since the information is outdated).
 /// @since 3.17.0
 @override final  ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport;
 
@@ -61943,7 +61659,7 @@ mixin _$RelativePattern {
 
 /// A workspace folder or a base URI to which this pattern will be matched
 /// against relatively.
- dynamic get baseUri;/// The actual glob pattern;
+ Object get baseUri;/// The actual glob pattern;
  Pattern get pattern;
 /// Create a copy of RelativePattern
 /// with the given fields replaced by the non-null parameter values.
@@ -61977,7 +61693,7 @@ abstract mixin class $RelativePatternCopyWith<$Res>  {
   factory $RelativePatternCopyWith(RelativePattern value, $Res Function(RelativePattern) _then) = _$RelativePatternCopyWithImpl;
 @useResult
 $Res call({
- dynamic baseUri, Pattern pattern
+ Object baseUri, Pattern pattern
 });
 
 
@@ -61994,10 +61710,9 @@ class _$RelativePatternCopyWithImpl<$Res>
 
 /// Create a copy of RelativePattern
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? baseUri = freezed,Object? pattern = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? baseUri = null,Object? pattern = null,}) {
   return _then(_self.copyWith(
-baseUri: freezed == baseUri ? _self.baseUri : baseUri // ignore: cast_nullable_to_non_nullable
-as dynamic,pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+baseUri: null == baseUri ? _self.baseUri : baseUri ,pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
 as Pattern,
   ));
 }
@@ -62015,7 +61730,7 @@ class _RelativePattern implements RelativePattern {
 
 /// A workspace folder or a base URI to which this pattern will be matched
 /// against relatively.
-@override final  dynamic baseUri;
+@override final  Object baseUri;
 /// The actual glob pattern;
 @override final  Pattern pattern;
 
@@ -62052,7 +61767,7 @@ abstract mixin class _$RelativePatternCopyWith<$Res> implements $RelativePattern
   factory _$RelativePatternCopyWith(_RelativePattern value, $Res Function(_RelativePattern) _then) = __$RelativePatternCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic baseUri, Pattern pattern
+ Object baseUri, Pattern pattern
 });
 
 
@@ -62069,10 +61784,9 @@ class __$RelativePatternCopyWithImpl<$Res>
 
 /// Create a copy of RelativePattern
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? baseUri = freezed,Object? pattern = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? baseUri = null,Object? pattern = null,}) {
   return _then(_RelativePattern(
-baseUri: freezed == baseUri ? _self.baseUri : baseUri // ignore: cast_nullable_to_non_nullable
-as dynamic,pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+baseUri: null == baseUri ? _self.baseUri : baseUri ,pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
 as Pattern,
   ));
 }
@@ -62084,15 +61798,16 @@ as Pattern,
 /// @nodoc
 mixin _$WorkspaceEditClientCapabilities {
 
-/// Whether the client in general supports change annotations on text edits,
-/// create file, rename file and delete file changes.
+/// Whether the client in general supports change annotations on text
+/// edits, create file, rename file and delete file changes.
 /// @since 3.16.0
- ({bool? groupsOnLabel})? get changeAnnotationSupport;/// Whether the client normalizes line endings to the client specific setting.
-/// If set to `true` the client will normalize line ending characters in a
-/// workspace edit to the client-specified new line character.
+ ({bool? groupsOnLabel})? get changeAnnotationSupport;/// Whether the client normalizes line endings to the client specific
+/// setting. If set to `true` the client will normalize line ending
+/// characters in a workspace edit to the client-specified new line
+/// character.
 /// @since 3.16.0
- bool? get normalizesLineEndings;/// The failure handling strategy of a client if applying the workspace edit
-/// fails.
+ bool? get normalizesLineEndings;/// The failure handling strategy of a client if applying the workspace
+/// edit fails.
 /// @since 3.13.0
  FailureHandlingKind? get failureHandling;/// The resource operations the client supports. Clients should at least
 /// support 'create', 'rename' and 'delete' files and folders.
@@ -62170,17 +61885,18 @@ class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilitie
   const _WorkspaceEditClientCapabilities({this.changeAnnotationSupport, this.normalizesLineEndings, this.failureHandling, final  List<ResourceOperationKind>? resourceOperations, this.documentChanges}): _resourceOperations = resourceOperations;
   factory _WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceEditClientCapabilitiesFromJson(json);
 
-/// Whether the client in general supports change annotations on text edits,
-/// create file, rename file and delete file changes.
+/// Whether the client in general supports change annotations on text
+/// edits, create file, rename file and delete file changes.
 /// @since 3.16.0
 @override final  ({bool? groupsOnLabel})? changeAnnotationSupport;
-/// Whether the client normalizes line endings to the client specific setting.
-/// If set to `true` the client will normalize line ending characters in a
-/// workspace edit to the client-specified new line character.
+/// Whether the client normalizes line endings to the client specific
+/// setting. If set to `true` the client will normalize line ending
+/// characters in a workspace edit to the client-specified new line
+/// character.
 /// @since 3.16.0
 @override final  bool? normalizesLineEndings;
-/// The failure handling strategy of a client if applying the workspace edit
-/// fails.
+/// The failure handling strategy of a client if applying the workspace
+/// edit fails.
 /// @since 3.13.0
 @override final  FailureHandlingKind? failureHandling;
 /// The resource operations the client supports. Clients should at least
@@ -62405,12 +62121,12 @@ as bool?,
 /// @nodoc
 mixin _$DidChangeWatchedFilesClientCapabilities {
 
-/// Whether the client has support for {@link RelativePattern relative pattern}
-/// or not.
+/// Whether the client has support for {@link RelativePattern relative
+/// pattern} or not.
 /// @since 3.17.0
- bool? get relativePatternSupport;/// Did change watched files notification supports dynamic registration. Please
-/// note that the current protocol doesn't support static configuration for
-/// file changes from the server side.
+ bool? get relativePatternSupport;/// Did change watched files notification supports dynamic registration.
+/// Please note that the current protocol doesn't support static
+/// configuration for file changes from the server side.
  bool? get dynamicRegistration;
 /// Create a copy of DidChangeWatchedFilesClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -62480,13 +62196,13 @@ class _DidChangeWatchedFilesClientCapabilities implements DidChangeWatchedFilesC
   const _DidChangeWatchedFilesClientCapabilities({this.relativePatternSupport, this.dynamicRegistration});
   factory _DidChangeWatchedFilesClientCapabilities.fromJson(Map<String, dynamic> json) => _$DidChangeWatchedFilesClientCapabilitiesFromJson(json);
 
-/// Whether the client has support for {@link RelativePattern relative pattern}
-/// or not.
+/// Whether the client has support for {@link RelativePattern relative
+/// pattern} or not.
 /// @since 3.17.0
 @override final  bool? relativePatternSupport;
-/// Did change watched files notification supports dynamic registration. Please
-/// note that the current protocol doesn't support static configuration for
-/// file changes from the server side.
+/// Did change watched files notification supports dynamic registration.
+/// Please note that the current protocol doesn't support static
+/// configuration for file changes from the server side.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of DidChangeWatchedFilesClientCapabilities
@@ -62558,8 +62274,8 @@ mixin _$WorkspaceSymbolClientCapabilities {
 /// request `workspaceSymbol/resolve` to the server to resolve additional
 /// properties.
 /// @since 3.17.0
- ({List<String> properties})? get resolveSupport;/// The client supports tags on `SymbolInformation`. Clients supporting tags
-/// have to handle unknown tags gracefully.
+ ({List<String> properties})? get resolveSupport;/// The client supports tags on `SymbolInformation`. Clients supporting
+/// tags have to handle unknown tags gracefully.
 /// @since 3.16.0
  ({List<SymbolTag> valueSet})? get tagSupport;/// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
 /// request.
@@ -62640,8 +62356,8 @@ class _WorkspaceSymbolClientCapabilities implements WorkspaceSymbolClientCapabil
 /// properties.
 /// @since 3.17.0
 @override final  ({List<String> properties})? resolveSupport;
-/// The client supports tags on `SymbolInformation`. Clients supporting tags
-/// have to handle unknown tags gracefully.
+/// The client supports tags on `SymbolInformation`. Clients supporting
+/// tags have to handle unknown tags gracefully.
 /// @since 3.16.0
 @override final  ({List<SymbolTag> valueSet})? tagSupport;
 /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
@@ -62853,12 +62569,12 @@ as bool?,
 /// @nodoc
 mixin _$SemanticTokensWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// semantic tokens currently shown. It should be used with absolute care and
-/// is useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// semantic tokens currently shown. It should be used with absolute care
+/// and is useful for situation where a server for example detects a
+/// project wide change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of SemanticTokensWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -62927,12 +62643,12 @@ class _SemanticTokensWorkspaceClientCapabilities implements SemanticTokensWorksp
   const _SemanticTokensWorkspaceClientCapabilities({this.refreshSupport});
   factory _SemanticTokensWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// semantic tokens currently shown. It should be used with absolute care and
-/// is useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// semantic tokens currently shown. It should be used with absolute care
+/// and is useful for situation where a server for example detects a
+/// project wide change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of SemanticTokensWorkspaceClientCapabilities
@@ -62999,12 +62715,12 @@ as bool?,
 /// @nodoc
 mixin _$CodeLensWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// code lenses currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detect a project wide
-/// change that requires such a calculation.
+/// code lenses currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detect a project
+/// wide change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of CodeLensWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -63073,12 +62789,12 @@ class _CodeLensWorkspaceClientCapabilities implements CodeLensWorkspaceClientCap
   const _CodeLensWorkspaceClientCapabilities({this.refreshSupport});
   factory _CodeLensWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeLensWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// code lenses currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detect a project wide
-/// change that requires such a calculation.
+/// code lenses currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detect a project
+/// wide change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of CodeLensWorkspaceClientCapabilities
@@ -63313,12 +63029,12 @@ as bool?,
 /// @nodoc
 mixin _$InlineValueWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// inline values currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// inline values currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of InlineValueWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -63387,12 +63103,12 @@ class _InlineValueWorkspaceClientCapabilities implements InlineValueWorkspaceCli
   const _InlineValueWorkspaceClientCapabilities({this.refreshSupport});
   factory _InlineValueWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineValueWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// inline values currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// inline values currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of InlineValueWorkspaceClientCapabilities
@@ -63459,12 +63175,12 @@ as bool?,
 /// @nodoc
 mixin _$InlayHintWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// inlay hints currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// inlay hints currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of InlayHintWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -63533,12 +63249,12 @@ class _InlayHintWorkspaceClientCapabilities implements InlayHintWorkspaceClientC
   const _InlayHintWorkspaceClientCapabilities({this.refreshSupport});
   factory _InlayHintWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlayHintWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// inlay hints currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// inlay hints currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of InlayHintWorkspaceClientCapabilities
@@ -63605,12 +63321,12 @@ as bool?,
 /// @nodoc
 mixin _$DiagnosticWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// pulled diagnostics currently shown. It should be used with absolute care
-/// and is useful for situation where a server for example detects a project
-/// wide change that requires such a calculation.
+/// pulled diagnostics currently shown. It should be used with absolute
+/// care and is useful for situation where a server for example detects a
+/// project wide change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of DiagnosticWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -63679,12 +63395,12 @@ class _DiagnosticWorkspaceClientCapabilities implements DiagnosticWorkspaceClien
   const _DiagnosticWorkspaceClientCapabilities({this.refreshSupport});
   factory _DiagnosticWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// pulled diagnostics currently shown. It should be used with absolute care
-/// and is useful for situation where a server for example detects a project
-/// wide change that requires such a calculation.
+/// pulled diagnostics currently shown. It should be used with absolute
+/// care and is useful for situation where a server for example detects a
+/// project wide change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of DiagnosticWorkspaceClientCapabilities
@@ -63751,12 +63467,12 @@ as bool?,
 /// @nodoc
 mixin _$FoldingRangeWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// folding ranges currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// folding ranges currently shown. It should be used with absolute care
+/// and is useful for situation where a server for example detects a
+/// project wide change that requires such a calculation.
 /// @since 3.18.0 @proposed
  bool? get refreshSupport;
 /// Create a copy of FoldingRangeWorkspaceClientCapabilities
@@ -63826,12 +63542,12 @@ class _FoldingRangeWorkspaceClientCapabilities implements FoldingRangeWorkspaceC
   const _FoldingRangeWorkspaceClientCapabilities({this.refreshSupport});
   factory _FoldingRangeWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$FoldingRangeWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 /// Note that this event is global and will force the client to refresh all
-/// folding ranges currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// folding ranges currently shown. It should be used with absolute care
+/// and is useful for situation where a server for example detects a
+/// project wide change that requires such a calculation.
 /// @since 3.18.0 @proposed
 @override final  bool? refreshSupport;
 
@@ -63900,9 +63616,9 @@ as bool?,
 mixin _$TextDocumentSyncClientCapabilities {
 
 /// The client supports did save notifications.
- bool? get didSave;/// The client supports sending a will save request and waits for a response
-/// providing text edits which will be applied to the document before it is
-/// saved.
+ bool? get didSave;/// The client supports sending a will save request and waits for a
+/// response providing text edits which will be applied to the document
+/// before it is saved.
  bool? get willSaveWaitUntil;/// The client supports sending will save notifications.
  bool? get willSave;/// Whether text document synchronization supports dynamic registration.
  bool? get dynamicRegistration;
@@ -63978,9 +63694,9 @@ class _TextDocumentSyncClientCapabilities implements TextDocumentSyncClientCapab
 
 /// The client supports did save notifications.
 @override final  bool? didSave;
-/// The client supports sending a will save request and waits for a response
-/// providing text edits which will be applied to the document before it is
-/// saved.
+/// The client supports sending a will save request and waits for a
+/// response providing text edits which will be applied to the document
+/// before it is saved.
 @override final  bool? willSaveWaitUntil;
 /// The client supports sending will save notifications.
 @override final  bool? willSave;
@@ -64054,15 +63770,17 @@ as bool?,
 /// @nodoc
 mixin _$CompletionClientCapabilities {
 
-/// The client supports the following `CompletionList` specific capabilities.
+/// The client supports the following `CompletionList` specific
+/// capabilities.
 /// @since 3.17.0
  ({List<String>? itemDefaults})? get completionList;/// The client supports to send additional context information for a
 /// `textDocument/completion` request.
- bool? get contextSupport;/// Defines how the client handles whitespace and indentation when accepting a
-/// completion item that uses multi line text in either `insertText` or
-/// `textEdit`.
+ bool? get contextSupport;/// Defines how the client handles whitespace and indentation when
+/// accepting a completion item that uses multi line text in either
+/// `insertText` or `textEdit`.
 /// @since 3.17.0
- InsertTextMode? get insertTextMode; ({List<CompletionItemKind>? valueSet})? get completionItemKind;/// The client supports the following `CompletionItem` specific capabilities.
+ InsertTextMode? get insertTextMode; ({List<CompletionItemKind>? valueSet})? get completionItemKind;/// The client supports the following `CompletionItem` specific
+/// capabilities.
  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? get completionItem;/// Whether completion supports dynamic registration.
  bool? get dynamicRegistration;
 /// Create a copy of CompletionClientCapabilities
@@ -64137,19 +63855,21 @@ class _CompletionClientCapabilities implements CompletionClientCapabilities {
   const _CompletionClientCapabilities({this.completionList, this.contextSupport, this.insertTextMode, this.completionItemKind, this.completionItem, this.dynamicRegistration});
   factory _CompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesFromJson(json);
 
-/// The client supports the following `CompletionList` specific capabilities.
+/// The client supports the following `CompletionList` specific
+/// capabilities.
 /// @since 3.17.0
 @override final  ({List<String>? itemDefaults})? completionList;
 /// The client supports to send additional context information for a
 /// `textDocument/completion` request.
 @override final  bool? contextSupport;
-/// Defines how the client handles whitespace and indentation when accepting a
-/// completion item that uses multi line text in either `insertText` or
-/// `textEdit`.
+/// Defines how the client handles whitespace and indentation when
+/// accepting a completion item that uses multi line text in either
+/// `insertText` or `textEdit`.
 /// @since 3.17.0
 @override final  InsertTextMode? insertTextMode;
 @override final  ({List<CompletionItemKind>? valueSet})? completionItemKind;
-/// The client supports the following `CompletionItem` specific capabilities.
+/// The client supports the following `CompletionItem` specific
+/// capabilities.
 @override final  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem;
 /// Whether completion supports dynamic registration.
 @override final  bool? dynamicRegistration;
@@ -64223,8 +63943,8 @@ as bool?,
 /// @nodoc
 mixin _$HoverClientCapabilities {
 
-/// Client supports the following content formats for the content property. The
-/// order describes the preferred format of the client.
+/// Client supports the following content formats for the content property.
+/// The order describes the preferred format of the client.
  List<MarkupKind>? get contentFormat;/// Whether hover supports dynamic registration.
  bool? get dynamicRegistration;
 /// Create a copy of HoverClientCapabilities
@@ -64295,11 +64015,11 @@ class _HoverClientCapabilities implements HoverClientCapabilities {
   const _HoverClientCapabilities({final  List<MarkupKind>? contentFormat, this.dynamicRegistration}): _contentFormat = contentFormat;
   factory _HoverClientCapabilities.fromJson(Map<String, dynamic> json) => _$HoverClientCapabilitiesFromJson(json);
 
-/// Client supports the following content formats for the content property. The
-/// order describes the preferred format of the client.
+/// Client supports the following content formats for the content property.
+/// The order describes the preferred format of the client.
  final  List<MarkupKind>? _contentFormat;
-/// Client supports the following content formats for the content property. The
-/// order describes the preferred format of the client.
+/// Client supports the following content formats for the content property.
+/// The order describes the preferred format of the client.
 @override List<MarkupKind>? get contentFormat {
   final value = _contentFormat;
   if (value == null) return null;
@@ -64532,10 +64252,11 @@ as bool?,
 /// @nodoc
 mixin _$DeclarationClientCapabilities {
 
-/// The client supports additional metadata in the form of declaration links.
- bool? get linkSupport;/// Whether declaration supports dynamic registration. If this is set to `true`
-/// the client supports the new `DeclarationRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// The client supports additional metadata in the form of declaration
+/// links.
+ bool? get linkSupport;/// Whether declaration supports dynamic registration. If this is set to
+/// `true` the client supports the new `DeclarationRegistrationOptions`
+/// return value for the corresponding server capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of DeclarationClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -64605,11 +64326,12 @@ class _DeclarationClientCapabilities implements DeclarationClientCapabilities {
   const _DeclarationClientCapabilities({this.linkSupport, this.dynamicRegistration});
   factory _DeclarationClientCapabilities.fromJson(Map<String, dynamic> json) => _$DeclarationClientCapabilitiesFromJson(json);
 
-/// The client supports additional metadata in the form of declaration links.
+/// The client supports additional metadata in the form of declaration
+/// links.
 @override final  bool? linkSupport;
-/// Whether declaration supports dynamic registration. If this is set to `true`
-/// the client supports the new `DeclarationRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether declaration supports dynamic registration. If this is set to
+/// `true` the client supports the new `DeclarationRegistrationOptions`
+/// return value for the corresponding server capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of DeclarationClientCapabilities
@@ -65554,24 +65276,24 @@ as bool?,
 /// @nodoc
 mixin _$CodeActionClientCapabilities {
 
-/// Whether the client honors the change annotations in text edits and resource
-/// operations returned via the `CodeAction#edit` property by for example
-/// presenting the workspace edit in the user interface and asking for
-/// confirmation.
+/// Whether the client honors the change annotations in text edits and
+/// resource operations returned via the `CodeAction#edit` property by for
+/// example presenting the workspace edit in the user interface and asking
+/// for confirmation.
 /// @since 3.16.0
- bool? get honorsChangeAnnotations;/// Whether the client supports resolving additional code action properties via
-/// a separate `codeAction/resolve` request.
+ bool? get honorsChangeAnnotations;/// Whether the client supports resolving additional code action properties
+/// via a separate `codeAction/resolve` request.
 /// @since 3.16.0
- ({List<String> properties})? get resolveSupport;/// Whether code action supports the `data` property which is preserved between
-/// a `textDocument/codeAction` and a `codeAction/resolve` request.
+ ({List<String> properties})? get resolveSupport;/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/codeAction` and a `codeAction/resolve` request.
 /// @since 3.16.0
  bool? get dataSupport;/// Whether code action supports the `disabled` property.
 /// @since 3.16.0
  bool? get disabledSupport;/// Whether code action supports the `isPreferred` property.
 /// @since 3.15.0
  bool? get isPreferredSupport;/// The client support code action literals of type `CodeAction` as a valid
-/// response of the `textDocument/codeAction` request. If the property is not
-/// set the request can only return `Command` literals.
+/// response of the `textDocument/codeAction` request. If the property is
+/// not set the request can only return `Command` literals.
 /// @since 3.8.0
  ({({List<CodeActionKind> valueSet}) codeActionKind})? get codeActionLiteralSupport;/// Whether code action supports dynamic registration.
  bool? get dynamicRegistration;
@@ -65648,18 +65370,18 @@ class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
   const _CodeActionClientCapabilities({this.honorsChangeAnnotations, this.resolveSupport, this.dataSupport, this.disabledSupport, this.isPreferredSupport, this.codeActionLiteralSupport, this.dynamicRegistration});
   factory _CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeActionClientCapabilitiesFromJson(json);
 
-/// Whether the client honors the change annotations in text edits and resource
-/// operations returned via the `CodeAction#edit` property by for example
-/// presenting the workspace edit in the user interface and asking for
-/// confirmation.
+/// Whether the client honors the change annotations in text edits and
+/// resource operations returned via the `CodeAction#edit` property by for
+/// example presenting the workspace edit in the user interface and asking
+/// for confirmation.
 /// @since 3.16.0
 @override final  bool? honorsChangeAnnotations;
-/// Whether the client supports resolving additional code action properties via
-/// a separate `codeAction/resolve` request.
+/// Whether the client supports resolving additional code action properties
+/// via a separate `codeAction/resolve` request.
 /// @since 3.16.0
 @override final  ({List<String> properties})? resolveSupport;
-/// Whether code action supports the `data` property which is preserved between
-/// a `textDocument/codeAction` and a `codeAction/resolve` request.
+/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/codeAction` and a `codeAction/resolve` request.
 /// @since 3.16.0
 @override final  bool? dataSupport;
 /// Whether code action supports the `disabled` property.
@@ -65669,8 +65391,8 @@ class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
 /// @since 3.15.0
 @override final  bool? isPreferredSupport;
 /// The client support code action literals of type `CodeAction` as a valid
-/// response of the `textDocument/codeAction` request. If the property is not
-/// set the request can only return `Command` literals.
+/// response of the `textDocument/codeAction` request. If the property is
+/// not set the request can only return `Command` literals.
 /// @since 3.8.0
 @override final  ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport;
 /// Whether code action supports dynamic registration.
@@ -66580,15 +66302,16 @@ as bool?,
 /// @nodoc
 mixin _$RenameClientCapabilities {
 
-/// Whether the client honors the change annotations in text edits and resource
-/// operations returned via the rename request's workspace edit by for example
-/// presenting the workspace edit in the user interface and asking for
-/// confirmation.
+/// Whether the client honors the change annotations in text edits and
+/// resource operations returned via the rename request's workspace edit by
+/// for example presenting the workspace edit in the user interface and
+/// asking for confirmation.
 /// @since 3.16.0
  bool? get honorsChangeAnnotations;/// Client supports the default behavior result.
 /// The value indicates the default behavior used by the client.
 /// @since 3.16.0
- PrepareSupportDefaultBehavior? get prepareSupportDefaultBehavior;/// Client supports testing for validity of rename operations before execution.
+ PrepareSupportDefaultBehavior? get prepareSupportDefaultBehavior;/// Client supports testing for validity of rename operations before
+/// execution.
 /// @since 3.12.0
  bool? get prepareSupport;/// Whether rename supports dynamic registration.
  bool? get dynamicRegistration;
@@ -66662,17 +66385,18 @@ class _RenameClientCapabilities implements RenameClientCapabilities {
   const _RenameClientCapabilities({this.honorsChangeAnnotations, this.prepareSupportDefaultBehavior, this.prepareSupport, this.dynamicRegistration});
   factory _RenameClientCapabilities.fromJson(Map<String, dynamic> json) => _$RenameClientCapabilitiesFromJson(json);
 
-/// Whether the client honors the change annotations in text edits and resource
-/// operations returned via the rename request's workspace edit by for example
-/// presenting the workspace edit in the user interface and asking for
-/// confirmation.
+/// Whether the client honors the change annotations in text edits and
+/// resource operations returned via the rename request's workspace edit by
+/// for example presenting the workspace edit in the user interface and
+/// asking for confirmation.
 /// @since 3.16.0
 @override final  bool? honorsChangeAnnotations;
 /// Client supports the default behavior result.
 /// The value indicates the default behavior used by the client.
 /// @since 3.16.0
 @override final  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior;
-/// Client supports testing for validity of rename operations before execution.
+/// Client supports testing for validity of rename operations before
+/// execution.
 /// @since 3.12.0
 @override final  bool? prepareSupport;
 /// Whether rename supports dynamic registration.
@@ -66749,15 +66473,16 @@ mixin _$FoldingRangeClientCapabilities {
 /// @since 3.17.0
  ({bool? collapsedText})? get foldingRange;/// Specific options for the folding range kind.
 /// @since 3.17.0
- ({List<FoldingRangeKind>? valueSet})? get foldingRangeKind;/// If set, the client signals that it only supports folding complete lines. If
-/// set, client will ignore specified `startCharacter` and `endCharacter`
-/// properties in a FoldingRange.
- bool? get lineFoldingOnly;/// The maximum number of folding ranges that the client prefers to receive per
-/// document. The value serves as a hint, servers are free to follow the limit.
+ ({List<FoldingRangeKind>? valueSet})? get foldingRangeKind;/// If set, the client signals that it only supports folding complete
+/// lines. If set, client will ignore specified `startCharacter` and
+/// `endCharacter` properties in a FoldingRange.
+ bool? get lineFoldingOnly;/// The maximum number of folding ranges that the client prefers to receive
+/// per document. The value serves as a hint, servers are free to follow
+/// the limit.
  int? get rangeLimit;/// Whether implementation supports dynamic registration for folding range
 /// providers. If this is set to `true` the client supports the new
-/// `FoldingRangeRegistrationOptions` return value for the corresponding server
-/// capability as well.
+/// `FoldingRangeRegistrationOptions` return value for the corresponding
+/// server capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of FoldingRangeClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -66836,17 +66561,18 @@ class _FoldingRangeClientCapabilities implements FoldingRangeClientCapabilities 
 /// Specific options for the folding range kind.
 /// @since 3.17.0
 @override final  ({List<FoldingRangeKind>? valueSet})? foldingRangeKind;
-/// If set, the client signals that it only supports folding complete lines. If
-/// set, client will ignore specified `startCharacter` and `endCharacter`
-/// properties in a FoldingRange.
+/// If set, the client signals that it only supports folding complete
+/// lines. If set, client will ignore specified `startCharacter` and
+/// `endCharacter` properties in a FoldingRange.
 @override final  bool? lineFoldingOnly;
-/// The maximum number of folding ranges that the client prefers to receive per
-/// document. The value serves as a hint, servers are free to follow the limit.
+/// The maximum number of folding ranges that the client prefers to receive
+/// per document. The value serves as a hint, servers are free to follow
+/// the limit.
 @override final  int? rangeLimit;
 /// Whether implementation supports dynamic registration for folding range
 /// providers. If this is set to `true` the client supports the new
-/// `FoldingRangeRegistrationOptions` return value for the corresponding server
-/// capability as well.
+/// `FoldingRangeRegistrationOptions` return value for the corresponding
+/// server capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of FoldingRangeClientCapabilities
@@ -66917,8 +66643,8 @@ as bool?,
 /// @nodoc
 mixin _$SelectionRangeClientCapabilities {
 
-/// Whether implementation supports dynamic registration for selection range
-/// providers. If this is set to `true` the client supports the new
+/// Whether implementation supports dynamic registration for selection
+/// range providers. If this is set to `true` the client supports the new
 /// `SelectionRangeRegistrationOptions` return value for the corresponding
 /// server capability as well.
  bool? get dynamicRegistration;
@@ -66989,8 +66715,8 @@ class _SelectionRangeClientCapabilities implements SelectionRangeClientCapabilit
   const _SelectionRangeClientCapabilities({this.dynamicRegistration});
   factory _SelectionRangeClientCapabilities.fromJson(Map<String, dynamic> json) => _$SelectionRangeClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration for selection range
-/// providers. If this is set to `true` the client supports the new
+/// Whether implementation supports dynamic registration for selection
+/// range providers. If this is set to `true` the client supports the new
 /// `SelectionRangeRegistrationOptions` return value for the corresponding
 /// server capability as well.
 @override final  bool? dynamicRegistration;
@@ -67059,16 +66785,18 @@ as bool?,
 /// @nodoc
 mixin _$PublishDiagnosticsClientCapabilities {
 
-/// Whether code action supports the `data` property which is preserved between
-/// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
+/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/publishDiagnostics` and
+/// `textDocument/codeAction` request.
 /// @since 3.16.0
  bool? get dataSupport;/// Client supports a codeDescription property
 /// @since 3.16.0
  bool? get codeDescriptionSupport;/// Whether the client interprets the version property of the
 /// `textDocument/publishDiagnostics` notification's parameter.
 /// @since 3.15.0
- bool? get versionSupport;/// Client supports the tag property to provide meta data about a diagnostic.
-/// Clients supporting tags have to handle unknown tags gracefully.
+ bool? get versionSupport;/// Client supports the tag property to provide meta data about a
+/// diagnostic. Clients supporting tags have to handle unknown tags
+/// gracefully.
 /// @since 3.15.0
  ({List<DiagnosticTag> valueSet})? get tagSupport;/// Whether the clients accepts diagnostics with related information.
  bool? get relatedInformation;
@@ -67143,8 +66871,9 @@ class _PublishDiagnosticsClientCapabilities implements PublishDiagnosticsClientC
   const _PublishDiagnosticsClientCapabilities({this.dataSupport, this.codeDescriptionSupport, this.versionSupport, this.tagSupport, this.relatedInformation});
   factory _PublishDiagnosticsClientCapabilities.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsClientCapabilitiesFromJson(json);
 
-/// Whether code action supports the `data` property which is preserved between
-/// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
+/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/publishDiagnostics` and
+/// `textDocument/codeAction` request.
 /// @since 3.16.0
 @override final  bool? dataSupport;
 /// Client supports a codeDescription property
@@ -67154,8 +66883,9 @@ class _PublishDiagnosticsClientCapabilities implements PublishDiagnosticsClientC
 /// `textDocument/publishDiagnostics` notification's parameter.
 /// @since 3.15.0
 @override final  bool? versionSupport;
-/// Client supports the tag property to provide meta data about a diagnostic.
-/// Clients supporting tags have to handle unknown tags gracefully.
+/// Client supports the tag property to provide meta data about a
+/// diagnostic. Clients supporting tags have to handle unknown tags
+/// gracefully.
 /// @since 3.15.0
 @override final  ({List<DiagnosticTag> valueSet})? tagSupport;
 /// Whether the clients accepts diagnostics with related information.
@@ -67371,26 +67101,26 @@ as bool?,
 /// @nodoc
 mixin _$SemanticTokensClientCapabilities {
 
-/// Which requests the client supports and might send to the server depending
-/// on the server's capability. Please note that clients might not show
-/// semantic tokens or degrade some of the user experience if a range or full
-/// request is advertised by the client but not provided by the server. If for
-/// example the client capability `requests.full` and `request.range` are both
-/// set to true but the server only provides a range provider the client might
-/// not render a minimap correctly or might even decide to not show any
-/// semantic tokens at all.
- ({dynamic? range, dynamic? full}) get requests;/// The token types that the client supports.
+/// Which requests the client supports and might send to the server
+/// depending on the server's capability. Please note that clients might
+/// not show semantic tokens or degrade some of the user experience if a
+/// range or full request is advertised by the client but not provided by
+/// the server. If for example the client capability `requests.full` and
+/// `request.range` are both set to true but the server only provides a
+/// range provider the client might not render a minimap correctly or might
+/// even decide to not show any semantic tokens at all.
+ ({Object? range, Object? full}) get requests;/// The token types that the client supports.
  List<String> get tokenTypes;/// The token modifiers that the client supports.
  List<String> get tokenModifiers;/// The token formats the clients supports.
- List<TokenFormat> get formats;/// Whether the client uses semantic tokens to augment existing syntax tokens.
-/// If set to `true` client side created syntax tokens and semantic tokens are
-/// both used for colorization. If set to `false` the client only uses the
-/// returned semantic tokens for colorization.
+ List<TokenFormat> get formats;/// Whether the client uses semantic tokens to augment existing syntax
+/// tokens. If set to `true` client side created syntax tokens and semantic
+/// tokens are both used for colorization. If set to `false` the client
+/// only uses the returned semantic tokens for colorization.
 /// If the value is `undefined` then the client behavior is not specified.
 /// @since 3.17.0
- bool? get augmentsSyntaxTokens;/// Whether the client allows the server to actively cancel a semantic token
-/// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
-/// does the client needs to retrigger the request.
+ bool? get augmentsSyntaxTokens;/// Whether the client allows the server to actively cancel a semantic
+/// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
+/// If a server does the client needs to retrigger the request.
 /// @since 3.17.0
  bool? get serverCancelSupport;/// Whether the client supports tokens that can span multiple lines.
  bool? get multilineTokenSupport;/// Whether the client supports tokens that can overlap each other.
@@ -67431,7 +67161,7 @@ abstract mixin class $SemanticTokensClientCapabilitiesCopyWith<$Res>  {
   factory $SemanticTokensClientCapabilitiesCopyWith(SemanticTokensClientCapabilities value, $Res Function(SemanticTokensClientCapabilities) _then) = _$SemanticTokensClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- ({dynamic? range, dynamic? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? augmentsSyntaxTokens, bool? serverCancelSupport, bool? multilineTokenSupport, bool? overlappingTokenSupport, bool? dynamicRegistration
+ ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? augmentsSyntaxTokens, bool? serverCancelSupport, bool? multilineTokenSupport, bool? overlappingTokenSupport, bool? dynamicRegistration
 });
 
 
@@ -67451,7 +67181,7 @@ class _$SemanticTokensClientCapabilitiesCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? requests = null,Object? tokenTypes = null,Object? tokenModifiers = null,Object? formats = null,Object? augmentsSyntaxTokens = freezed,Object? serverCancelSupport = freezed,Object? multilineTokenSupport = freezed,Object? overlappingTokenSupport = freezed,Object? dynamicRegistration = freezed,}) {
   return _then(_self.copyWith(
 requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
-as ({dynamic? range, dynamic? full}),tokenTypes: null == tokenTypes ? _self.tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
+as ({Object? range, Object? full}),tokenTypes: null == tokenTypes ? _self.tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
 as List<String>,tokenModifiers: null == tokenModifiers ? _self.tokenModifiers : tokenModifiers // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self.formats : formats // ignore: cast_nullable_to_non_nullable
 as List<TokenFormat>,augmentsSyntaxTokens: freezed == augmentsSyntaxTokens ? _self.augmentsSyntaxTokens : augmentsSyntaxTokens // ignore: cast_nullable_to_non_nullable
@@ -67474,15 +67204,15 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
   const _SemanticTokensClientCapabilities({required this.requests, required final  List<String> tokenTypes, required final  List<String> tokenModifiers, required final  List<TokenFormat> formats, this.augmentsSyntaxTokens, this.serverCancelSupport, this.multilineTokenSupport, this.overlappingTokenSupport, this.dynamicRegistration}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,_formats = formats;
   factory _SemanticTokensClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesFromJson(json);
 
-/// Which requests the client supports and might send to the server depending
-/// on the server's capability. Please note that clients might not show
-/// semantic tokens or degrade some of the user experience if a range or full
-/// request is advertised by the client but not provided by the server. If for
-/// example the client capability `requests.full` and `request.range` are both
-/// set to true but the server only provides a range provider the client might
-/// not render a minimap correctly or might even decide to not show any
-/// semantic tokens at all.
-@override final  ({dynamic? range, dynamic? full}) requests;
+/// Which requests the client supports and might send to the server
+/// depending on the server's capability. Please note that clients might
+/// not show semantic tokens or degrade some of the user experience if a
+/// range or full request is advertised by the client but not provided by
+/// the server. If for example the client capability `requests.full` and
+/// `request.range` are both set to true but the server only provides a
+/// range provider the client might not render a minimap correctly or might
+/// even decide to not show any semantic tokens at all.
+@override final  ({Object? range, Object? full}) requests;
 /// The token types that the client supports.
  final  List<String> _tokenTypes;
 /// The token types that the client supports.
@@ -67510,16 +67240,16 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
   return EqualUnmodifiableListView(_formats);
 }
 
-/// Whether the client uses semantic tokens to augment existing syntax tokens.
-/// If set to `true` client side created syntax tokens and semantic tokens are
-/// both used for colorization. If set to `false` the client only uses the
-/// returned semantic tokens for colorization.
+/// Whether the client uses semantic tokens to augment existing syntax
+/// tokens. If set to `true` client side created syntax tokens and semantic
+/// tokens are both used for colorization. If set to `false` the client
+/// only uses the returned semantic tokens for colorization.
 /// If the value is `undefined` then the client behavior is not specified.
 /// @since 3.17.0
 @override final  bool? augmentsSyntaxTokens;
-/// Whether the client allows the server to actively cancel a semantic token
-/// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
-/// does the client needs to retrigger the request.
+/// Whether the client allows the server to actively cancel a semantic
+/// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
+/// If a server does the client needs to retrigger the request.
 /// @since 3.17.0
 @override final  bool? serverCancelSupport;
 /// Whether the client supports tokens that can span multiple lines.
@@ -67565,7 +67295,7 @@ abstract mixin class _$SemanticTokensClientCapabilitiesCopyWith<$Res> implements
   factory _$SemanticTokensClientCapabilitiesCopyWith(_SemanticTokensClientCapabilities value, $Res Function(_SemanticTokensClientCapabilities) _then) = __$SemanticTokensClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- ({dynamic? range, dynamic? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? augmentsSyntaxTokens, bool? serverCancelSupport, bool? multilineTokenSupport, bool? overlappingTokenSupport, bool? dynamicRegistration
+ ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? augmentsSyntaxTokens, bool? serverCancelSupport, bool? multilineTokenSupport, bool? overlappingTokenSupport, bool? dynamicRegistration
 });
 
 
@@ -67585,7 +67315,7 @@ class __$SemanticTokensClientCapabilitiesCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? requests = null,Object? tokenTypes = null,Object? tokenModifiers = null,Object? formats = null,Object? augmentsSyntaxTokens = freezed,Object? serverCancelSupport = freezed,Object? multilineTokenSupport = freezed,Object? overlappingTokenSupport = freezed,Object? dynamicRegistration = freezed,}) {
   return _then(_SemanticTokensClientCapabilities(
 requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
-as ({dynamic? range, dynamic? full}),tokenTypes: null == tokenTypes ? _self._tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
+as ({Object? range, Object? full}),tokenTypes: null == tokenTypes ? _self._tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
 as List<String>,tokenModifiers: null == tokenModifiers ? _self._tokenModifiers : tokenModifiers // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self._formats : formats // ignore: cast_nullable_to_non_nullable
 as List<TokenFormat>,augmentsSyntaxTokens: freezed == augmentsSyntaxTokens ? _self.augmentsSyntaxTokens : augmentsSyntaxTokens // ignore: cast_nullable_to_non_nullable
@@ -67746,9 +67476,9 @@ as bool?,
 /// @nodoc
 mixin _$MonikerClientCapabilities {
 
-/// Whether moniker supports dynamic registration. If this is set to `true` the
-/// client supports the new `MonikerRegistrationOptions` return value for the
-/// corresponding server capability as well.
+/// Whether moniker supports dynamic registration. If this is set to `true`
+/// the client supports the new `MonikerRegistrationOptions` return value
+/// for the corresponding server capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of MonikerClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -67817,9 +67547,9 @@ class _MonikerClientCapabilities implements MonikerClientCapabilities {
   const _MonikerClientCapabilities({this.dynamicRegistration});
   factory _MonikerClientCapabilities.fromJson(Map<String, dynamic> json) => _$MonikerClientCapabilitiesFromJson(json);
 
-/// Whether moniker supports dynamic registration. If this is set to `true` the
-/// client supports the new `MonikerRegistrationOptions` return value for the
-/// corresponding server capability as well.
+/// Whether moniker supports dynamic registration. If this is set to `true`
+/// the client supports the new `MonikerRegistrationOptions` return value
+/// for the corresponding server capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of MonikerClientCapabilities
@@ -68456,8 +68186,8 @@ as bool?,
 /// @nodoc
 mixin _$InlineCompletionClientCapabilities {
 
-/// Whether implementation supports dynamic registration for inline completion
-/// providers.
+/// Whether implementation supports dynamic registration for inline
+/// completion providers.
  bool? get dynamicRegistration;
 /// Create a copy of InlineCompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -68526,8 +68256,8 @@ class _InlineCompletionClientCapabilities implements InlineCompletionClientCapab
   const _InlineCompletionClientCapabilities({this.dynamicRegistration});
   factory _InlineCompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineCompletionClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration for inline completion
-/// providers.
+/// Whether implementation supports dynamic registration for inline
+/// completion providers.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of InlineCompletionClientCapabilities

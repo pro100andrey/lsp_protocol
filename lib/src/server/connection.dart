@@ -427,7 +427,7 @@ class Connection {
       final prepareParams = PrepareRenameParams.fromJson(params.value);
       final prepareResult = await handler(prepareParams);
 
-      return prepareResult.toJson();
+      return prepareResult;
     });
   }
 

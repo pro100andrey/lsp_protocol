@@ -132,7 +132,11 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
                     (field) => Parameter(
                       (b) {
                         final fieldDocs =
-                            formatDocComment(field.documentation) ?? [];
+                            formatDocComment(
+                              field.documentation,
+                              maxLineLength: 76,
+                            ) ??
+                            [];
                         final type = field.type.resolveType(
                           _typeResolverVisitor,
                         );
