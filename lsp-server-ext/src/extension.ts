@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
   };
 
   const clientOptions = {
-    documentSelector: [{ scheme: "file", language: "your-lang-id" }],
+    documentSelector: [{ scheme: "file", language: "lake" }],
   };
 
   const client = new LanguageClient(

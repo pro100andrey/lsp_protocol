@@ -19,7 +19,7 @@ Future<void> main() async {
     connection
       ..onInitializeRequest((params) async {
         connection.console.log('Received initialize request.');
-  
+
         return const InitializeResult(
           capabilities: ServerCapabilities(
             textDocumentSync: TextDocumentSyncOptions(
@@ -35,6 +35,9 @@ Future<void> main() async {
       })
       ..onInitializedNotification((params) async {
         connection.console.log('LSP server initialized.');
+      })
+      ..onSetTraceNotification((params) async {
+        connection.console.log('Trace set to: ${params.value}');
       })
       ..onShutdownRequest(() async {
         connection.console.log('Shutting down LSP server...');
@@ -94,6 +97,9 @@ List<Diagnostic> _validateTextDocument(String text, String sourcePath) {
 
   return diagnostics;
 }
+// final contentChanges = params.contentChanges
+//     .map((e) => TextDocumentContentChangeEvent.fromJson(e.toJson()))
+//     .toList();
 
 // Convert each line that has uppercase strings into a list of diagnostics.
 // The line "AAA bbb CCC" would be converted into two diagnostics:
@@ -105,7 +111,7 @@ Iterable<Diagnostic> _convertPatternToDiagnostic(
 ) => matches.map(
   (match) => Diagnostic(
     message:
-        '${match.input.substring(match.start, match.end)} is all uppercase.',
+        '${match.input.substring(match.start, match.end)} hi Vasya.',
     range: Range(
       start: Position(character: match.start, line: line),
       end: Position(character: match.end, line: line),

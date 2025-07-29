@@ -7,26 +7,30 @@
     "vscode": "^1.102.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages"
   ],
-  "activationEvents": [
-  "onLanguage:plaintext"
-],
-"contributes": {
-  "languages": [
-    {
-      "id": "plaintext",
-      "extensions": [".txt"],
-      "aliases": ["Plain Text"]
-    }
-  ],
-  "commands": [
-    {
-      "command": "lsp-server-ext.helloWorld",
-      "title": "Hello World"
-    }
-  ]
-},
+  "contributes": {
+    "languages": [
+      {
+        "id": "lake",
+        "aliases": [
+          "Lake",
+          "lake"
+        ],
+        "extensions": [
+          ".lake"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "lake",
+        "scopeName": "source.lake",
+        "path": "./syntaxes/lake.tmLanguage.json"
+      }
+    ]
+  },
   "main": "./out/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run compile",

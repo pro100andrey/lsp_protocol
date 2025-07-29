@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "generate (debug)",
+            "name": "Run LSP generator",
             "type": "dart",
             "request": "launch",
             "program": "bin/generate.dart",
@@ -13,7 +13,7 @@
             "args": []
         },
         {
-            "name": "Debug Dart LSP Server",
+            "name": "Run LSP Server",
             "type": "dart",
             "request": "launch",
             "program": "example/server.dart",

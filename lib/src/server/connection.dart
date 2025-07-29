@@ -48,6 +48,21 @@ class Connection {
     });
   }
 
+  /// A request to resolve the implementation locations of a symbol at
+  /// a given text document position. The request's parameter is of
+  /// type {@link TextDocumentPositionParams} the response is of type
+  /// {Definition} or a Thenable that resolves to such.
+  void onTextDocumentImplementationRequest(
+    Future<Location> Function(ImplementationParams) handler,
+  ) {
+    onRequest(RequestMethod.textDocumentImplementation, (params) async {
+      final implParams = ImplementationParams.fromJson(params.value);
+      final location = await handler(implParams);
+
+      return location.toJson();
+    });
+  } 
+
   void onInitializedNotification(
     Future<void> Function(InitializedParams) handler,
   ) {
@@ -62,13 +77,27 @@ class Connection {
   }
 
   void onShutdownRequest(Future<void> Function() handler) {
-    onRequest(RequestMethod.shutdown, (params) async => handler());
+    onRequest(RequestMethod.shutdown, (params) async {
+      await handler();
+    });
   }
 
   void onExitNotification(Future<void> Function() handler) {
     _peer.registerMethod(NotificationMethod.exit.value, (params) async {
       await handler();
     });
+  }
+
+  void onSetTraceNotification(
+    Future<void> Function(SetTraceParams) handler,
+  ) {
+    onNotification(
+      NotificationMethod.setTrace,
+      (params) async {
+        final traceParams = SetTraceParams.fromJson(params.value);
+        await handler(traceParams);
+      },
+    );
   }
 
   // Text Document

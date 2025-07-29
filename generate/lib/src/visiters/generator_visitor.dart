@@ -49,9 +49,9 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.add(visitTypeAlias(typeAlias));
       }
 
-      // for (final ref in _sealedMap.refs) {
-      //   b.body.add(_generateBaseOrClass(ref));
-      // }
+      for (final ref in _sealedMap.refs) {
+        b.body.add(_generateBaseOrClass(ref));
+      }
 
       for (final structure in protocol.structures) {
         b.body.add(visitStructure(structure));
@@ -98,6 +98,13 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final allFields = allPropertiesMap.values.toList(growable: false)
       ..sort((a, b) => a.optional ? 1 : 0);
 
+    final structDocs =
+        formatDocComment(
+          structure.documentation,
+          maxLineLength: 70,
+        ) ??
+        [];
+
     final _ = _collectInheritedProperties(
       structure,
     ).keys.toSet();
@@ -105,6 +112,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final clazz = Class(
       (b) {
         b
+          ..docs.addAll(structDocs)
           ..name = name
           ..annotations.add(refer('freezed'))
           // abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
@@ -123,10 +131,13 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
                   allFields.map(
                     (field) => Parameter(
                       (b) {
+                        final fieldDocs =
+                            formatDocComment(field.documentation) ?? [];
                         final type = field.type.resolveType(
                           _typeResolverVisitor,
                         );
                         b
+                          ..docs.addAll(fieldDocs)
                           ..name = field.name
                           ..type = refer(
                             type.optional(optional: field.optional),
@@ -210,6 +221,9 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         eb.values.add(
           EnumValue(
             (evb) {
+              final docs =
+                  formatDocComment(m.documentation, maxLineLength: 70) ?? [];
+              evb.docs.addAll(docs);
               evb.arguments.add(refer(m.value.literal));
               evb.name = _addPostfixIfKeyword(m.name.lowerFirstLetter());
             },
@@ -222,13 +236,13 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   }
 
   String _addPostfixIfKeyword(String name) {
-    if (_isKeyworkd(name)) {
-      return '$name\$';
+    if (_isKeyword(name)) {
+      return '${name}_';
     }
     return name;
   }
 
-  bool _isKeyworkd(String name) => {
+  bool _isKeyword(String name) => {
     'null',
     'class',
     'enum',

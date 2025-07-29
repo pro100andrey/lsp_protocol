@@ -6,6 +6,2281 @@ part of 'protocol.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+Definition0 _$Definition0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return Definition0(
+    value: Location.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$Definition0ToJson(Definition0 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+Definition1 _$Definition1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return Definition1(
+    value: (json['value'] as List<dynamic>)
+        .map((e) => Location.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$Definition1ToJson(Definition1 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+LSPAny0 _$LSPAny0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny0(
+    value: json['value'] as Map<String, dynamic>,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$LSPAny0ToJson(LSPAny0 instance) => <String, dynamic>{
+  'value': instance.value,
+  'runtimeType': instance.$type,
+};
+
+LSPAny1 _$LSPAny1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny1(
+    value: json['value'] as List<dynamic>,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$LSPAny1ToJson(LSPAny1 instance) => <String, dynamic>{
+  'value': instance.value,
+  'runtimeType': instance.$type,
+};
+
+LSPAny2 _$LSPAny2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny2(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$LSPAny2ToJson(LSPAny2 instance) => <String, dynamic>{
+  'value': instance.value,
+  'runtimeType': instance.$type,
+};
+
+LSPAny3 _$LSPAny3FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny3(
+    value: (json['value'] as num).toInt(),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$LSPAny3ToJson(LSPAny3 instance) => <String, dynamic>{
+  'value': instance.value,
+  'runtimeType': instance.$type,
+};
+
+LSPAny4 _$LSPAny4FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny4(
+    value: (json['value'] as num).toInt(),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$LSPAny4ToJson(LSPAny4 instance) => <String, dynamic>{
+  'value': instance.value,
+  'runtimeType': instance.$type,
+};
+
+LSPAny5 _$LSPAny5FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny5(
+    value: (json['value'] as num).toDouble(),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$LSPAny5ToJson(LSPAny5 instance) => <String, dynamic>{
+  'value': instance.value,
+  'runtimeType': instance.$type,
+};
+
+LSPAny6 _$LSPAny6FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return LSPAny6(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$LSPAny6ToJson(LSPAny6 instance) => <String, dynamic>{
+  'value': instance.value,
+  'runtimeType': instance.$type,
+};
+
+InlineValue0 _$InlineValue0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineValue0(
+    value: InlineValueText.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$InlineValue0ToJson(InlineValue0 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+InlineValue1 _$InlineValue1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineValue1(
+    value: InlineValueVariableLookup.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$InlineValue1ToJson(InlineValue1 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+InlineValue2 _$InlineValue2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineValue2(
+    value: InlineValueEvaluatableExpression.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$InlineValue2ToJson(InlineValue2 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+DocumentDiagnosticReport0 _$DocumentDiagnosticReport0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DocumentDiagnosticReport0(
+    value: RelatedFullDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$DocumentDiagnosticReport0ToJson(
+  DocumentDiagnosticReport0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+DocumentDiagnosticReport1 _$DocumentDiagnosticReport1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DocumentDiagnosticReport1(
+    value: RelatedUnchangedDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$DocumentDiagnosticReport1ToJson(
+  DocumentDiagnosticReport1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+PrepareRenameResult0 _$PrepareRenameResult0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return PrepareRenameResult0(
+    value: Range.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$PrepareRenameResult0ToJson(
+  PrepareRenameResult0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+PrepareRenameResult1 _$PrepareRenameResult1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return PrepareRenameResult1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        placeholder: $jsonValue['placeholder'] as String,
+        range: Range.fromJson($jsonValue['range'] as Map<String, dynamic>),
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$PrepareRenameResult1ToJson(
+  PrepareRenameResult1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'placeholder': instance.value.placeholder,
+    'range': instance.value.range,
+  },
+  'runtimeType': instance.$type,
+};
+
+$Rec _$recordConvert<$Rec>(Object? value, $Rec Function(Map) convert) =>
+    convert(value as Map<String, dynamic>);
+
+PrepareRenameResult2 _$PrepareRenameResult2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return PrepareRenameResult2(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (defaultBehavior: $jsonValue['defaultBehavior'] as bool),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$PrepareRenameResult2ToJson(
+  PrepareRenameResult2 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{'defaultBehavior': instance.value.defaultBehavior},
+  'runtimeType': instance.$type,
+};
+
+ProgressToken0 _$ProgressToken0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ProgressToken0(
+    value: (json['value'] as num).toInt(),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ProgressToken0ToJson(ProgressToken0 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ProgressToken1 _$ProgressToken1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ProgressToken1(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ProgressToken1ToJson(ProgressToken1 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+WorkspaceDocumentDiagnosticReport0 _$WorkspaceDocumentDiagnosticReport0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceDocumentDiagnosticReport0(
+    value: WorkspaceFullDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$WorkspaceDocumentDiagnosticReport0ToJson(
+  WorkspaceDocumentDiagnosticReport0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+WorkspaceDocumentDiagnosticReport1 _$WorkspaceDocumentDiagnosticReport1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceDocumentDiagnosticReport1(
+    value: WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$WorkspaceDocumentDiagnosticReport1ToJson(
+  WorkspaceDocumentDiagnosticReport1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+TextDocumentContentChangeEvent0 _$TextDocumentContentChangeEvent0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentContentChangeEvent0(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        range: Range.fromJson($jsonValue['range'] as Map<String, dynamic>),
+        rangeLength: ($jsonValue['rangeLength'] as num?)?.toInt(),
+        text: $jsonValue['text'] as String,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentContentChangeEvent0ToJson(
+  TextDocumentContentChangeEvent0 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'range': instance.value.range,
+    'rangeLength': instance.value.rangeLength,
+    'text': instance.value.text,
+  },
+  'runtimeType': instance.$type,
+};
+
+TextDocumentContentChangeEvent1 _$TextDocumentContentChangeEvent1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentContentChangeEvent1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (text: $jsonValue['text'] as String),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentContentChangeEvent1ToJson(
+  TextDocumentContentChangeEvent1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{'text': instance.value.text},
+  'runtimeType': instance.$type,
+};
+
+MarkedString0 _$MarkedString0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return MarkedString0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$MarkedString0ToJson(MarkedString0 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+MarkedString1 _$MarkedString1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return MarkedString1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        language: $jsonValue['language'] as String,
+        value: $jsonValue['value'] as String,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$MarkedString1ToJson(MarkedString1 instance) =>
+    <String, dynamic>{
+      'value': <String, dynamic>{
+        'language': instance.value.language,
+        'value': instance.value.value,
+      },
+      'runtimeType': instance.$type,
+    };
+
+DocumentFilter0 _$DocumentFilter0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DocumentFilter0(
+    value: json['value'],
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$DocumentFilter0ToJson(DocumentFilter0 instance) =>
+    <String, dynamic>{'value': ?instance.value, 'runtimeType': instance.$type};
+
+DocumentFilter1 _$DocumentFilter1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DocumentFilter1(
+    value: NotebookCellTextDocumentFilter.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$DocumentFilter1ToJson(DocumentFilter1 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+GlobPattern0 _$GlobPattern0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return GlobPattern0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$GlobPattern0ToJson(GlobPattern0 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+GlobPattern1 _$GlobPattern1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return GlobPattern1(
+    value: RelativePattern.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$GlobPattern1ToJson(GlobPattern1 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+TextDocumentFilter0 _$TextDocumentFilter0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentFilter0(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        language: $jsonValue['language'] as String,
+        pattern: $jsonValue['pattern'] as String?,
+        scheme: $jsonValue['scheme'] as String?,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentFilter0ToJson(
+  TextDocumentFilter0 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'language': instance.value.language,
+    'pattern': instance.value.pattern,
+    'scheme': instance.value.scheme,
+  },
+  'runtimeType': instance.$type,
+};
+
+TextDocumentFilter1 _$TextDocumentFilter1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentFilter1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        language: $jsonValue['language'] as String?,
+        pattern: $jsonValue['pattern'] as String?,
+        scheme: $jsonValue['scheme'] as String,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentFilter1ToJson(
+  TextDocumentFilter1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'language': instance.value.language,
+    'pattern': instance.value.pattern,
+    'scheme': instance.value.scheme,
+  },
+  'runtimeType': instance.$type,
+};
+
+TextDocumentFilter2 _$TextDocumentFilter2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentFilter2(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        language: $jsonValue['language'] as String?,
+        pattern: $jsonValue['pattern'] as String,
+        scheme: $jsonValue['scheme'] as String?,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentFilter2ToJson(
+  TextDocumentFilter2 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'language': instance.value.language,
+    'pattern': instance.value.pattern,
+    'scheme': instance.value.scheme,
+  },
+  'runtimeType': instance.$type,
+};
+
+NotebookDocumentFilter0 _$NotebookDocumentFilter0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookDocumentFilter0(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        notebookType: $jsonValue['notebookType'] as String,
+        pattern: $jsonValue['pattern'] as String?,
+        scheme: $jsonValue['scheme'] as String?,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$NotebookDocumentFilter0ToJson(
+  NotebookDocumentFilter0 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'notebookType': instance.value.notebookType,
+    'pattern': instance.value.pattern,
+    'scheme': instance.value.scheme,
+  },
+  'runtimeType': instance.$type,
+};
+
+NotebookDocumentFilter1 _$NotebookDocumentFilter1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookDocumentFilter1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        notebookType: $jsonValue['notebookType'] as String?,
+        pattern: $jsonValue['pattern'] as String?,
+        scheme: $jsonValue['scheme'] as String,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$NotebookDocumentFilter1ToJson(
+  NotebookDocumentFilter1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'notebookType': instance.value.notebookType,
+    'pattern': instance.value.pattern,
+    'scheme': instance.value.scheme,
+  },
+  'runtimeType': instance.$type,
+};
+
+NotebookDocumentFilter2 _$NotebookDocumentFilter2FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookDocumentFilter2(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        notebookType: $jsonValue['notebookType'] as String?,
+        pattern: $jsonValue['pattern'] as String,
+        scheme: $jsonValue['scheme'] as String?,
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$NotebookDocumentFilter2ToJson(
+  NotebookDocumentFilter2 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'notebookType': instance.value.notebookType,
+    'pattern': instance.value.pattern,
+    'scheme': instance.value.scheme,
+  },
+  'runtimeType': instance.$type,
+};
+
+TextDocumentRegistrationOptionsDocumentSelector0
+_$TextDocumentRegistrationOptionsDocumentSelector0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value']);
+  return TextDocumentRegistrationOptionsDocumentSelector0(
+    value: json['value'] as List<dynamic>,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentRegistrationOptionsDocumentSelector0ToJson(
+  TextDocumentRegistrationOptionsDocumentSelector0 instance,
+) => <String, dynamic>{'value': instance.value};
+
+WorkspaceEditDocumentChanges0 _$WorkspaceEditDocumentChanges0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceEditDocumentChanges0(
+    value: TextDocumentEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$WorkspaceEditDocumentChanges0ToJson(
+  WorkspaceEditDocumentChanges0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+WorkspaceEditDocumentChanges1 _$WorkspaceEditDocumentChanges1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceEditDocumentChanges1(
+    value: CreateFile.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$WorkspaceEditDocumentChanges1ToJson(
+  WorkspaceEditDocumentChanges1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+WorkspaceEditDocumentChanges2 _$WorkspaceEditDocumentChanges2FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceEditDocumentChanges2(
+    value: RenameFile.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$WorkspaceEditDocumentChanges2ToJson(
+  WorkspaceEditDocumentChanges2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+WorkspaceEditDocumentChanges3 _$WorkspaceEditDocumentChanges3FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceEditDocumentChanges3(
+    value: DeleteFile.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$WorkspaceEditDocumentChanges3ToJson(
+  WorkspaceEditDocumentChanges3 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+InlayHintLabel0 _$InlayHintLabel0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlayHintLabel0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$InlayHintLabel0ToJson(InlayHintLabel0 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+InlayHintLabel1 _$InlayHintLabel1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlayHintLabel1(
+    value: (json['value'] as List<dynamic>)
+        .map((e) => InlayHintLabelPart.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$InlayHintLabel1ToJson(InlayHintLabel1 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+TooltipOrDocumentation0 _$TooltipOrDocumentation0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TooltipOrDocumentation0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TooltipOrDocumentation0ToJson(
+  TooltipOrDocumentation0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+TooltipOrDocumentation1 _$TooltipOrDocumentation1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TooltipOrDocumentation1(
+    value: MarkupContent.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TooltipOrDocumentation1ToJson(
+  TooltipOrDocumentation1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+RelatedDocuments0 _$RelatedDocuments0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return RelatedDocuments0(
+    value: FullDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$RelatedDocuments0ToJson(RelatedDocuments0 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+RelatedDocuments1 _$RelatedDocuments1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return RelatedDocuments1(
+    value: UnchangedDocumentDiagnosticReport.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$RelatedDocuments1ToJson(RelatedDocuments1 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+InlineCompletionItemInsertText0 _$InlineCompletionItemInsertText0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineCompletionItemInsertText0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$InlineCompletionItemInsertText0ToJson(
+  InlineCompletionItemInsertText0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+InlineCompletionItemInsertText1 _$InlineCompletionItemInsertText1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return InlineCompletionItemInsertText1(
+    value: StringValue.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$InlineCompletionItemInsertText1ToJson(
+  InlineCompletionItemInsertText1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+DidChangeConfigurationRegistrationOptionsSection0
+_$DidChangeConfigurationRegistrationOptionsSection0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DidChangeConfigurationRegistrationOptionsSection0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$DidChangeConfigurationRegistrationOptionsSection0ToJson(
+  DidChangeConfigurationRegistrationOptionsSection0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+DidChangeConfigurationRegistrationOptionsSection1
+_$DidChangeConfigurationRegistrationOptionsSection1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return DidChangeConfigurationRegistrationOptionsSection1(
+    value: (json['value'] as List<dynamic>).map((e) => e as String).toList(),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$DidChangeConfigurationRegistrationOptionsSection1ToJson(
+  DidChangeConfigurationRegistrationOptionsSection1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+CompletionItemTextEdit0 _$CompletionItemTextEdit0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return CompletionItemTextEdit0(
+    value: TextEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$CompletionItemTextEdit0ToJson(
+  CompletionItemTextEdit0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+CompletionItemTextEdit1 _$CompletionItemTextEdit1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return CompletionItemTextEdit1(
+    value: InsertReplaceEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$CompletionItemTextEdit1ToJson(
+  CompletionItemTextEdit1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+CompletionListEditRange0 _$CompletionListEditRange0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return CompletionListEditRange0(
+    value: Range.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$CompletionListEditRange0ToJson(
+  CompletionListEditRange0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+CompletionListEditRange1 _$CompletionListEditRange1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return CompletionListEditRange1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        insert: Range.fromJson($jsonValue['insert'] as Map<String, dynamic>),
+        replace: Range.fromJson($jsonValue['replace'] as Map<String, dynamic>),
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$CompletionListEditRange1ToJson(
+  CompletionListEditRange1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'insert': instance.value.insert,
+    'replace': instance.value.replace,
+  },
+  'runtimeType': instance.$type,
+};
+
+HoverContents0 _$HoverContents0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return HoverContents0(
+    value: MarkupContent.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$HoverContents0ToJson(HoverContents0 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+HoverContents1 _$HoverContents1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return HoverContents1(
+    value: json['value'],
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$HoverContents1ToJson(HoverContents1 instance) =>
+    <String, dynamic>{'value': ?instance.value, 'runtimeType': instance.$type};
+
+HoverContents2 _$HoverContents2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return HoverContents2(
+    value: json['value'] as List<dynamic>,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$HoverContents2ToJson(HoverContents2 instance) =>
+    <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+WorkspaceSymbolLocation0 _$WorkspaceSymbolLocation0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceSymbolLocation0(
+    value: Location.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$WorkspaceSymbolLocation0ToJson(
+  WorkspaceSymbolLocation0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+WorkspaceSymbolLocation1 _$WorkspaceSymbolLocation1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceSymbolLocation1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (uri: $jsonValue['uri'] as String),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$WorkspaceSymbolLocation1ToJson(
+  WorkspaceSymbolLocation1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{'uri': instance.value.uri},
+  'runtimeType': instance.$type,
+};
+
+Range0 _$Range0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return Range0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$Range0ToJson(Range0 instance) => <String, dynamic>{
+  'value': instance.value,
+  'runtimeType': instance.$type,
+};
+
+Range1 _$Range1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return Range1(value: (), $type: json['runtimeType'] as String?);
+}
+
+Map<String, dynamic> _$Range1ToJson(Range1 instance) => <String, dynamic>{
+  'value': <String, dynamic>{},
+  'runtimeType': instance.$type,
+};
+
+SemanticTokensOptionsFull0 _$SemanticTokensOptionsFull0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return SemanticTokensOptionsFull0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$SemanticTokensOptionsFull0ToJson(
+  SemanticTokensOptionsFull0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+SemanticTokensOptionsFull1 _$SemanticTokensOptionsFull1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return SemanticTokensOptionsFull1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (delta: $jsonValue['delta'] as bool?),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$SemanticTokensOptionsFull1ToJson(
+  SemanticTokensOptionsFull1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{'delta': instance.value.delta},
+  'runtimeType': instance.$type,
+};
+
+TextDocumentEditEdits0 _$TextDocumentEditEdits0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentEditEdits0(
+    value: TextEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentEditEdits0ToJson(
+  TextDocumentEditEdits0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+TextDocumentEditEdits1 _$TextDocumentEditEdits1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentEditEdits1(
+    value: AnnotatedTextEdit.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentEditEdits1ToJson(
+  TextDocumentEditEdits1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ProcessIdOrVersion0 _$ProcessIdOrVersion0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value']);
+  return ProcessIdOrVersion0(value: (json['value'] as num).toInt());
+}
+
+Map<String, dynamic> _$ProcessIdOrVersion0ToJson(
+  ProcessIdOrVersion0 instance,
+) => <String, dynamic>{'value': instance.value};
+
+InitializeParamsRootPath0 _$InitializeParamsRootPath0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value']);
+  return InitializeParamsRootPath0(value: json['value'] as String);
+}
+
+Map<String, dynamic> _$InitializeParamsRootPath0ToJson(
+  InitializeParamsRootPath0 instance,
+) => <String, dynamic>{'value': instance.value};
+
+InitializeParamsRootUri0 _$InitializeParamsRootUri0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value']);
+  return InitializeParamsRootUri0(value: json['value'] as String);
+}
+
+Map<String, dynamic> _$InitializeParamsRootUri0ToJson(
+  InitializeParamsRootUri0 instance,
+) => <String, dynamic>{'value': instance.value};
+
+WorkspaceFoldersInitializeParamsWorkspaceFolders0
+_$WorkspaceFoldersInitializeParamsWorkspaceFolders0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value']);
+  return WorkspaceFoldersInitializeParamsWorkspaceFolders0(
+    value: (json['value'] as List<dynamic>)
+        .map((e) => WorkspaceFolder.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
+
+Map<String, dynamic> _$WorkspaceFoldersInitializeParamsWorkspaceFolders0ToJson(
+  WorkspaceFoldersInitializeParamsWorkspaceFolders0 instance,
+) => <String, dynamic>{'value': instance.value};
+
+ServerCapabilitiesTextDocumentSync0
+_$ServerCapabilitiesTextDocumentSync0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTextDocumentSync0(
+    value: TextDocumentSyncOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesTextDocumentSync0ToJson(
+  ServerCapabilitiesTextDocumentSync0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesTextDocumentSync1
+_$ServerCapabilitiesTextDocumentSync1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTextDocumentSync1(
+    value: $enumDecode(_$TextDocumentSyncKindEnumMap, json['value']),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesTextDocumentSync1ToJson(
+  ServerCapabilitiesTextDocumentSync1 instance,
+) => <String, dynamic>{
+  'value': _$TextDocumentSyncKindEnumMap[instance.value]!,
+  'runtimeType': instance.$type,
+};
+
+const _$TextDocumentSyncKindEnumMap = {
+  TextDocumentSyncKind.none: 0,
+  TextDocumentSyncKind.full: 1,
+  TextDocumentSyncKind.incremental: 2,
+};
+
+ServerCapabilitiesNotebookDocumentSync0
+_$ServerCapabilitiesNotebookDocumentSync0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesNotebookDocumentSync0(
+    value: NotebookDocumentSyncOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesNotebookDocumentSync0ToJson(
+  ServerCapabilitiesNotebookDocumentSync0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesNotebookDocumentSync1
+_$ServerCapabilitiesNotebookDocumentSync1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesNotebookDocumentSync1(
+    value: NotebookDocumentSyncRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesNotebookDocumentSync1ToJson(
+  ServerCapabilitiesNotebookDocumentSync1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesHoverProvider0 _$ServerCapabilitiesHoverProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesHoverProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesHoverProvider0ToJson(
+  ServerCapabilitiesHoverProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesHoverProvider1 _$ServerCapabilitiesHoverProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesHoverProvider1(
+    value: HoverOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesHoverProvider1ToJson(
+  ServerCapabilitiesHoverProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDeclarationProvider0
+_$ServerCapabilitiesDeclarationProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDeclarationProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDeclarationProvider0ToJson(
+  ServerCapabilitiesDeclarationProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDeclarationProvider1
+_$ServerCapabilitiesDeclarationProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDeclarationProvider1(
+    value: DeclarationOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDeclarationProvider1ToJson(
+  ServerCapabilitiesDeclarationProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDeclarationProvider2
+_$ServerCapabilitiesDeclarationProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDeclarationProvider2(
+    value: DeclarationRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDeclarationProvider2ToJson(
+  ServerCapabilitiesDeclarationProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDefinitionProvider0
+_$ServerCapabilitiesDefinitionProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDefinitionProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDefinitionProvider0ToJson(
+  ServerCapabilitiesDefinitionProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDefinitionProvider1
+_$ServerCapabilitiesDefinitionProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDefinitionProvider1(
+    value: DefinitionOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDefinitionProvider1ToJson(
+  ServerCapabilitiesDefinitionProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesTypeDefinitionProvider0
+_$ServerCapabilitiesTypeDefinitionProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeDefinitionProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesTypeDefinitionProvider0ToJson(
+  ServerCapabilitiesTypeDefinitionProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesTypeDefinitionProvider1
+_$ServerCapabilitiesTypeDefinitionProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeDefinitionProvider1(
+    value: TypeDefinitionOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesTypeDefinitionProvider1ToJson(
+  ServerCapabilitiesTypeDefinitionProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesTypeDefinitionProvider2
+_$ServerCapabilitiesTypeDefinitionProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeDefinitionProvider2(
+    value: TypeDefinitionRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesTypeDefinitionProvider2ToJson(
+  ServerCapabilitiesTypeDefinitionProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesImplementationProvider0
+_$ServerCapabilitiesImplementationProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesImplementationProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesImplementationProvider0ToJson(
+  ServerCapabilitiesImplementationProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesImplementationProvider1
+_$ServerCapabilitiesImplementationProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesImplementationProvider1(
+    value: ImplementationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesImplementationProvider1ToJson(
+  ServerCapabilitiesImplementationProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesImplementationProvider2
+_$ServerCapabilitiesImplementationProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesImplementationProvider2(
+    value: ImplementationRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesImplementationProvider2ToJson(
+  ServerCapabilitiesImplementationProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesReferencesProvider0
+_$ServerCapabilitiesReferencesProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesReferencesProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesReferencesProvider0ToJson(
+  ServerCapabilitiesReferencesProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesReferencesProvider1
+_$ServerCapabilitiesReferencesProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesReferencesProvider1(
+    value: ReferenceOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesReferencesProvider1ToJson(
+  ServerCapabilitiesReferencesProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDocumentHighlightProvider0
+_$ServerCapabilitiesDocumentHighlightProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentHighlightProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDocumentHighlightProvider0ToJson(
+  ServerCapabilitiesDocumentHighlightProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDocumentHighlightProvider1
+_$ServerCapabilitiesDocumentHighlightProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentHighlightProvider1(
+    value: DocumentHighlightOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDocumentHighlightProvider1ToJson(
+  ServerCapabilitiesDocumentHighlightProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDocumentSymbolProvider0
+_$ServerCapabilitiesDocumentSymbolProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentSymbolProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDocumentSymbolProvider0ToJson(
+  ServerCapabilitiesDocumentSymbolProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDocumentSymbolProvider1
+_$ServerCapabilitiesDocumentSymbolProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentSymbolProvider1(
+    value: DocumentSymbolOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDocumentSymbolProvider1ToJson(
+  ServerCapabilitiesDocumentSymbolProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesCodeActionProvider0
+_$ServerCapabilitiesCodeActionProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCodeActionProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesCodeActionProvider0ToJson(
+  ServerCapabilitiesCodeActionProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesCodeActionProvider1
+_$ServerCapabilitiesCodeActionProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCodeActionProvider1(
+    value: CodeActionOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesCodeActionProvider1ToJson(
+  ServerCapabilitiesCodeActionProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesColorProvider0 _$ServerCapabilitiesColorProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesColorProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesColorProvider0ToJson(
+  ServerCapabilitiesColorProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesColorProvider1 _$ServerCapabilitiesColorProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesColorProvider1(
+    value: DocumentColorOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesColorProvider1ToJson(
+  ServerCapabilitiesColorProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesColorProvider2 _$ServerCapabilitiesColorProvider2FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesColorProvider2(
+    value: DocumentColorRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesColorProvider2ToJson(
+  ServerCapabilitiesColorProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesWorkspaceSymbolProvider0
+_$ServerCapabilitiesWorkspaceSymbolProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesWorkspaceSymbolProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesWorkspaceSymbolProvider0ToJson(
+  ServerCapabilitiesWorkspaceSymbolProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesWorkspaceSymbolProvider1
+_$ServerCapabilitiesWorkspaceSymbolProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesWorkspaceSymbolProvider1(
+    value: WorkspaceSymbolOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesWorkspaceSymbolProvider1ToJson(
+  ServerCapabilitiesWorkspaceSymbolProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDocumentFormattingProvider0
+_$ServerCapabilitiesDocumentFormattingProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentFormattingProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDocumentFormattingProvider0ToJson(
+  ServerCapabilitiesDocumentFormattingProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDocumentFormattingProvider1
+_$ServerCapabilitiesDocumentFormattingProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentFormattingProvider1(
+    value: DocumentFormattingOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDocumentFormattingProvider1ToJson(
+  ServerCapabilitiesDocumentFormattingProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDocumentRangeFormattingProvider0
+_$ServerCapabilitiesDocumentRangeFormattingProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentRangeFormattingProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDocumentRangeFormattingProvider0ToJson(
+  ServerCapabilitiesDocumentRangeFormattingProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDocumentRangeFormattingProvider1
+_$ServerCapabilitiesDocumentRangeFormattingProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDocumentRangeFormattingProvider1(
+    value: DocumentRangeFormattingOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDocumentRangeFormattingProvider1ToJson(
+  ServerCapabilitiesDocumentRangeFormattingProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesRenameProvider0 _$ServerCapabilitiesRenameProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesRenameProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesRenameProvider0ToJson(
+  ServerCapabilitiesRenameProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesRenameProvider1 _$ServerCapabilitiesRenameProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesRenameProvider1(
+    value: RenameOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesRenameProvider1ToJson(
+  ServerCapabilitiesRenameProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesFoldingRangeProvider0
+_$ServerCapabilitiesFoldingRangeProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesFoldingRangeProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesFoldingRangeProvider0ToJson(
+  ServerCapabilitiesFoldingRangeProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesFoldingRangeProvider1
+_$ServerCapabilitiesFoldingRangeProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesFoldingRangeProvider1(
+    value: FoldingRangeOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesFoldingRangeProvider1ToJson(
+  ServerCapabilitiesFoldingRangeProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesFoldingRangeProvider2
+_$ServerCapabilitiesFoldingRangeProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesFoldingRangeProvider2(
+    value: FoldingRangeRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesFoldingRangeProvider2ToJson(
+  ServerCapabilitiesFoldingRangeProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesSelectionRangeProvider0
+_$ServerCapabilitiesSelectionRangeProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSelectionRangeProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesSelectionRangeProvider0ToJson(
+  ServerCapabilitiesSelectionRangeProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesSelectionRangeProvider1
+_$ServerCapabilitiesSelectionRangeProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSelectionRangeProvider1(
+    value: SelectionRangeOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesSelectionRangeProvider1ToJson(
+  ServerCapabilitiesSelectionRangeProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesSelectionRangeProvider2
+_$ServerCapabilitiesSelectionRangeProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSelectionRangeProvider2(
+    value: SelectionRangeRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesSelectionRangeProvider2ToJson(
+  ServerCapabilitiesSelectionRangeProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesCallHierarchyProvider0
+_$ServerCapabilitiesCallHierarchyProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCallHierarchyProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesCallHierarchyProvider0ToJson(
+  ServerCapabilitiesCallHierarchyProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesCallHierarchyProvider1
+_$ServerCapabilitiesCallHierarchyProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCallHierarchyProvider1(
+    value: CallHierarchyOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesCallHierarchyProvider1ToJson(
+  ServerCapabilitiesCallHierarchyProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesCallHierarchyProvider2
+_$ServerCapabilitiesCallHierarchyProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesCallHierarchyProvider2(
+    value: CallHierarchyRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesCallHierarchyProvider2ToJson(
+  ServerCapabilitiesCallHierarchyProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesLinkedEditingRangeProvider0
+_$ServerCapabilitiesLinkedEditingRangeProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesLinkedEditingRangeProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesLinkedEditingRangeProvider0ToJson(
+  ServerCapabilitiesLinkedEditingRangeProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesLinkedEditingRangeProvider1
+_$ServerCapabilitiesLinkedEditingRangeProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesLinkedEditingRangeProvider1(
+    value: LinkedEditingRangeOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesLinkedEditingRangeProvider1ToJson(
+  ServerCapabilitiesLinkedEditingRangeProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesLinkedEditingRangeProvider2
+_$ServerCapabilitiesLinkedEditingRangeProvider2FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesLinkedEditingRangeProvider2(
+    value: LinkedEditingRangeRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesLinkedEditingRangeProvider2ToJson(
+  ServerCapabilitiesLinkedEditingRangeProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesSemanticTokensProvider0
+_$ServerCapabilitiesSemanticTokensProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSemanticTokensProvider0(
+    value: SemanticTokensOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesSemanticTokensProvider0ToJson(
+  ServerCapabilitiesSemanticTokensProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesSemanticTokensProvider1
+_$ServerCapabilitiesSemanticTokensProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesSemanticTokensProvider1(
+    value: SemanticTokensRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesSemanticTokensProvider1ToJson(
+  ServerCapabilitiesSemanticTokensProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesMonikerProvider0 _$ServerCapabilitiesMonikerProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesMonikerProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesMonikerProvider0ToJson(
+  ServerCapabilitiesMonikerProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesMonikerProvider1 _$ServerCapabilitiesMonikerProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesMonikerProvider1(
+    value: MonikerOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesMonikerProvider1ToJson(
+  ServerCapabilitiesMonikerProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesMonikerProvider2 _$ServerCapabilitiesMonikerProvider2FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesMonikerProvider2(
+    value: MonikerRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesMonikerProvider2ToJson(
+  ServerCapabilitiesMonikerProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesTypeHierarchyProvider0
+_$ServerCapabilitiesTypeHierarchyProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeHierarchyProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesTypeHierarchyProvider0ToJson(
+  ServerCapabilitiesTypeHierarchyProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesTypeHierarchyProvider1
+_$ServerCapabilitiesTypeHierarchyProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeHierarchyProvider1(
+    value: TypeHierarchyOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesTypeHierarchyProvider1ToJson(
+  ServerCapabilitiesTypeHierarchyProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesTypeHierarchyProvider2
+_$ServerCapabilitiesTypeHierarchyProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesTypeHierarchyProvider2(
+    value: TypeHierarchyRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesTypeHierarchyProvider2ToJson(
+  ServerCapabilitiesTypeHierarchyProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesInlineValueProvider0
+_$ServerCapabilitiesInlineValueProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineValueProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesInlineValueProvider0ToJson(
+  ServerCapabilitiesInlineValueProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesInlineValueProvider1
+_$ServerCapabilitiesInlineValueProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineValueProvider1(
+    value: InlineValueOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesInlineValueProvider1ToJson(
+  ServerCapabilitiesInlineValueProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesInlineValueProvider2
+_$ServerCapabilitiesInlineValueProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineValueProvider2(
+    value: InlineValueRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesInlineValueProvider2ToJson(
+  ServerCapabilitiesInlineValueProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesInlayHintProvider0
+_$ServerCapabilitiesInlayHintProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlayHintProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesInlayHintProvider0ToJson(
+  ServerCapabilitiesInlayHintProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesInlayHintProvider1
+_$ServerCapabilitiesInlayHintProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlayHintProvider1(
+    value: InlayHintOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesInlayHintProvider1ToJson(
+  ServerCapabilitiesInlayHintProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesInlayHintProvider2
+_$ServerCapabilitiesInlayHintProvider2FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlayHintProvider2(
+    value: InlayHintRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesInlayHintProvider2ToJson(
+  ServerCapabilitiesInlayHintProvider2 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDiagnosticProvider0
+_$ServerCapabilitiesDiagnosticProvider0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDiagnosticProvider0(
+    value: DiagnosticOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDiagnosticProvider0ToJson(
+  ServerCapabilitiesDiagnosticProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesDiagnosticProvider1
+_$ServerCapabilitiesDiagnosticProvider1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesDiagnosticProvider1(
+    value: DiagnosticRegistrationOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesDiagnosticProvider1ToJson(
+  ServerCapabilitiesDiagnosticProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesInlineCompletionProvider0
+_$ServerCapabilitiesInlineCompletionProvider0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineCompletionProvider0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesInlineCompletionProvider0ToJson(
+  ServerCapabilitiesInlineCompletionProvider0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ServerCapabilitiesInlineCompletionProvider1
+_$ServerCapabilitiesInlineCompletionProvider1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ServerCapabilitiesInlineCompletionProvider1(
+    value: InlineCompletionOptions.fromJson(
+      json['value'] as Map<String, dynamic>,
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ServerCapabilitiesInlineCompletionProvider1ToJson(
+  ServerCapabilitiesInlineCompletionProvider1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+TextDocumentSyncOptionsSave0 _$TextDocumentSyncOptionsSave0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentSyncOptionsSave0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentSyncOptionsSave0ToJson(
+  TextDocumentSyncOptionsSave0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+TextDocumentSyncOptionsSave1 _$TextDocumentSyncOptionsSave1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return TextDocumentSyncOptionsSave1(
+    value: SaveOptions.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$TextDocumentSyncOptionsSave1ToJson(
+  TextDocumentSyncOptionsSave1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+NotebookDocumentSyncOptionsNotebookSelector0
+_$NotebookDocumentSyncOptionsNotebookSelector0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookDocumentSyncOptionsNotebookSelector0(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        cells: ($jsonValue['cells'] as List<dynamic>?)
+            ?.map(
+              (e) => _$recordConvert(
+                e,
+                ($jsonValue) => (language: $jsonValue['language'] as String),
+              ),
+            )
+            .toList(),
+        notebook: $jsonValue['notebook'],
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$NotebookDocumentSyncOptionsNotebookSelector0ToJson(
+  NotebookDocumentSyncOptionsNotebookSelector0 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'cells': instance.value.cells
+        ?.map((e) => <String, dynamic>{'language': e.language})
+        .toList(),
+    'notebook': instance.value.notebook,
+  },
+  'runtimeType': instance.$type,
+};
+
+NotebookDocumentSyncOptionsNotebookSelector1
+_$NotebookDocumentSyncOptionsNotebookSelector1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookDocumentSyncOptionsNotebookSelector1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        cells: ($jsonValue['cells'] as List<dynamic>)
+            .map(
+              (e) => _$recordConvert(
+                e,
+                ($jsonValue) => (language: $jsonValue['language'] as String),
+              ),
+            )
+            .toList(),
+        notebook: $jsonValue['notebook'],
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$NotebookDocumentSyncOptionsNotebookSelector1ToJson(
+  NotebookDocumentSyncOptionsNotebookSelector1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    'cells': instance.value.cells
+        .map((e) => <String, dynamic>{'language': e.language})
+        .toList(),
+    'notebook': instance.value.notebook,
+  },
+  'runtimeType': instance.$type,
+};
+
+WorkspaceFoldersServerCapabilitiesChangeNotifications0
+_$WorkspaceFoldersServerCapabilitiesChangeNotifications0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceFoldersServerCapabilitiesChangeNotifications0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic>
+_$WorkspaceFoldersServerCapabilitiesChangeNotifications0ToJson(
+  WorkspaceFoldersServerCapabilitiesChangeNotifications0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+WorkspaceFoldersServerCapabilitiesChangeNotifications1
+_$WorkspaceFoldersServerCapabilitiesChangeNotifications1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return WorkspaceFoldersServerCapabilitiesChangeNotifications1(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic>
+_$WorkspaceFoldersServerCapabilitiesChangeNotifications1ToJson(
+  WorkspaceFoldersServerCapabilitiesChangeNotifications1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ParameterInformationLabel0 _$ParameterInformationLabel0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ParameterInformationLabel0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ParameterInformationLabel0ToJson(
+  ParameterInformationLabel0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+ParameterInformationLabel1 _$ParameterInformationLabel1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return ParameterInformationLabel1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (
+        ($jsonValue[r'$1'] as num).toInt(),
+        ($jsonValue[r'$2'] as num).toInt(),
+      ),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ParameterInformationLabel1ToJson(
+  ParameterInformationLabel1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{
+    r'$1': instance.value.$1,
+    r'$2': instance.value.$2,
+  },
+  'runtimeType': instance.$type,
+};
+
+NotebookCellTextDocumentFilterNotebook0
+_$NotebookCellTextDocumentFilterNotebook0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookCellTextDocumentFilterNotebook0(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$NotebookCellTextDocumentFilterNotebook0ToJson(
+  NotebookCellTextDocumentFilterNotebook0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+NotebookCellTextDocumentFilterNotebook1
+_$NotebookCellTextDocumentFilterNotebook1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return NotebookCellTextDocumentFilterNotebook1(
+    value: json['value'],
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$NotebookCellTextDocumentFilterNotebook1ToJson(
+  NotebookCellTextDocumentFilterNotebook1 instance,
+) => <String, dynamic>{'value': ?instance.value, 'runtimeType': instance.$type};
+
+RelativePatternBaseUri0 _$RelativePatternBaseUri0FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return RelativePatternBaseUri0(
+    value: WorkspaceFolder.fromJson(json['value'] as Map<String, dynamic>),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$RelativePatternBaseUri0ToJson(
+  RelativePatternBaseUri0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+RelativePatternBaseUri1 _$RelativePatternBaseUri1FromJson(
+  Map<String, dynamic> json,
+) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return RelativePatternBaseUri1(
+    value: json['value'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$RelativePatternBaseUri1ToJson(
+  RelativePatternBaseUri1 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+SemanticTokensClientCapabilitiesFull0
+_$SemanticTokensClientCapabilitiesFull0FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return SemanticTokensClientCapabilitiesFull0(
+    value: json['value'] as bool,
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$SemanticTokensClientCapabilitiesFull0ToJson(
+  SemanticTokensClientCapabilitiesFull0 instance,
+) => <String, dynamic>{'value': instance.value, 'runtimeType': instance.$type};
+
+SemanticTokensClientCapabilitiesFull1
+_$SemanticTokensClientCapabilitiesFull1FromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['value', 'runtimeType']);
+  return SemanticTokensClientCapabilitiesFull1(
+    value: _$recordConvert(
+      json['value'],
+      ($jsonValue) => (delta: $jsonValue['delta'] as bool?),
+    ),
+    $type: json['runtimeType'] as String?,
+  );
+}
+
+Map<String, dynamic> _$SemanticTokensClientCapabilitiesFull1ToJson(
+  SemanticTokensClientCapabilitiesFull1 instance,
+) => <String, dynamic>{
+  'value': <String, dynamic>{'delta': instance.value.delta},
+  'runtimeType': instance.$type,
+};
+
 _ImplementationParams _$ImplementationParamsFromJson(
   Map<String, dynamic> json,
 ) {
@@ -594,13 +2869,13 @@ const _$SymbolKindEnumMap = {
   SymbolKind.module: 2,
   SymbolKind.namespace: 3,
   SymbolKind.package: 4,
-  SymbolKind.class$: 5,
+  SymbolKind.class_: 5,
   SymbolKind.method: 6,
   SymbolKind.property: 7,
   SymbolKind.field: 8,
   SymbolKind.constructor: 9,
-  SymbolKind.enum$: 10,
-  SymbolKind.interface$: 11,
+  SymbolKind.enum_: 10,
+  SymbolKind.interface_: 11,
   SymbolKind.function: 12,
   SymbolKind.variable: 13,
   SymbolKind.constant: 14,
@@ -610,15 +2885,15 @@ const _$SymbolKindEnumMap = {
   SymbolKind.array: 18,
   SymbolKind.object: 19,
   SymbolKind.key: 20,
-  SymbolKind.null$: 21,
+  SymbolKind.null_: 21,
   SymbolKind.enumMember: 22,
   SymbolKind.struct: 23,
   SymbolKind.event: 24,
-  SymbolKind.operator$: 25,
+  SymbolKind.operator_: 25,
   SymbolKind.typeParameter: 26,
 };
 
-const _$SymbolTagEnumMap = {SymbolTag.deprecated$: 1};
+const _$SymbolTagEnumMap = {SymbolTag.deprecated_: 1};
 
 _CallHierarchyRegistrationOptions _$CallHierarchyRegistrationOptionsFromJson(
   Map<String, dynamic> json,
@@ -2026,12 +4301,6 @@ Map<String, dynamic> _$TextDocumentChangeRegistrationOptionsToJson(
   'syncKind': _$TextDocumentSyncKindEnumMap[instance.syncKind]!,
 };
 
-const _$TextDocumentSyncKindEnumMap = {
-  TextDocumentSyncKind.none: 0,
-  TextDocumentSyncKind.full: 1,
-  TextDocumentSyncKind.incremental: 2,
-};
-
 _DidCloseTextDocumentParams _$DidCloseTextDocumentParamsFromJson(
   Map<String, dynamic> json,
 ) {
@@ -2303,7 +4572,7 @@ const _$InsertTextFormatEnumMap = {
   InsertTextFormat.snippet: 2,
 };
 
-const _$CompletionItemTagEnumMap = {CompletionItemTag.deprecated$: 1};
+const _$CompletionItemTagEnumMap = {CompletionItemTag.deprecated_: 1};
 
 const _$CompletionItemKindEnumMap = {
   CompletionItemKind.text: 1,
@@ -2312,13 +4581,13 @@ const _$CompletionItemKindEnumMap = {
   CompletionItemKind.constructor: 4,
   CompletionItemKind.field: 5,
   CompletionItemKind.variable: 6,
-  CompletionItemKind.class$: 7,
-  CompletionItemKind.interface$: 8,
+  CompletionItemKind.class_: 7,
+  CompletionItemKind.interface_: 8,
   CompletionItemKind.module: 9,
   CompletionItemKind.property: 10,
   CompletionItemKind.unit: 11,
-  CompletionItemKind.value$: 12,
-  CompletionItemKind.enum$: 13,
+  CompletionItemKind.value_: 12,
+  CompletionItemKind.enum_: 13,
   CompletionItemKind.keyword: 14,
   CompletionItemKind.snippet: 15,
   CompletionItemKind.color: 16,
@@ -2329,7 +4598,7 @@ const _$CompletionItemKindEnumMap = {
   CompletionItemKind.constant: 21,
   CompletionItemKind.struct: 22,
   CompletionItemKind.event: 23,
-  CompletionItemKind.operator$: 24,
+  CompletionItemKind.operator_: 24,
   CompletionItemKind.typeParameter: 25,
 };
 
@@ -4491,9 +6760,6 @@ Map<String, dynamic> _$NotebookDocumentChangeEventToJson(
   'metadata': ?instance.metadata,
 };
 
-$Rec _$recordConvert<$Rec>(Object? value, $Rec Function(Map) convert) =>
-    convert(value as Map<String, dynamic>);
-
 _NotebookDocumentIdentifier _$NotebookDocumentIdentifierFromJson(
   Map<String, dynamic> json,
 ) {
@@ -4951,7 +7217,7 @@ Map<String, dynamic> _$DiagnosticToJson(_Diagnostic instance) =>
 
 const _$DiagnosticTagEnumMap = {
   DiagnosticTag.unnecessary: 1,
-  DiagnosticTag.deprecated$: 2,
+  DiagnosticTag.deprecated_: 2,
 };
 
 const _$DiagnosticSeverityEnumMap = {

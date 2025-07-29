@@ -46,7 +46,7 @@ function activate(context) {
         });
     };
     const clientOptions = {
-        documentSelector: [{ scheme: "file", language: "your-lang-id" }],
+        documentSelector: [{ scheme: "file", language: "lake" }],
     };
     const client = new node_1.LanguageClient("lakeLanguageServer", "Lake Language Server", serverOptions, clientOptions);
     client.start();
