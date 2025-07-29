@@ -42,6 +42,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     (b) {
       b.docs.addAll(_docs());
       b.body.addAll(_generateFreezedHeader());
+      b.body.add(visitMetaData(protocol.metaData));
 
       // Generate type aliases
       for (final typeAlias in protocol.typeAliases) {
@@ -247,9 +248,10 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   );
 
   @override
-  Spec visitMetaData(MetaData metaData) => const CodeExpression(
-    Code('// MetaData visitor not implemented for generation'),
-  );
+  Spec visitMetaData(MetaData metaData) => declareConst(
+    'kLSPVersion',
+    type: refer('String'),
+  ).assign(literalString(metaData.version)).statement;
 
   @override
   Spec visitRequest(MetaRequest request) {

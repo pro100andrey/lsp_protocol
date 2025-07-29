@@ -7,6 +7,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
+const String kLSPVersion = '3.17.0';
+
 /// The definition of a symbol represented as one or many {@link Location
 /// locations}. For most programming languages there is only one location at
 /// which a symbol is defined.
