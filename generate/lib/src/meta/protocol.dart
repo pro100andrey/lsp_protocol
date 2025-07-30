@@ -141,7 +141,7 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
     'for type resolution. Use its specific visit methods instead.',
   );
 
-  String resolveType<R>(MetaReferenceVisitor<String> visitor) => switch (this) {
+  R resolveType<R>(MetaReferenceVisitor<R> visitor) => switch (this) {
     final TypeRef ref => visitor.visitTypeRef(ref),
     final ArrayRef ref => visitor.visitArrayRef(ref),
     final BaseRef ref => visitor.visitBaseRef(ref),

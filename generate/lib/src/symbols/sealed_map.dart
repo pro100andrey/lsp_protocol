@@ -113,12 +113,18 @@ final class SealedMap {
   String _resolveReferenceName(MetaReference ref) {
     final name = ref
         .when(
-          literalRef: (ref) => literalToRecord(ref, _visitor),
+          literalRef: (ref) => literalToRecord(
+            ref,
+            (r) => r.resolveType(_visitor),
+          ),
           typeRef: (ref) => ref.name,
           orRef: resolveOrRefName,
           arrayRef: (ref) => 'Array<${_resolveReferenceName(ref.element)}>',
           baseRef: (ref) => ref.name,
-          tupleRef: (ref) => tupleToRecord(ref, _visitor),
+          tupleRef: (ref) => tupleToRecord(
+            ref,
+            (r) => r.resolveType(_visitor),
+          ),
         )
         .upperFirstLetter();
 

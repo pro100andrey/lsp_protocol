@@ -3,7 +3,6 @@ import 'package:dart_style/dart_style.dart';
 
 import 'extensions/string.dart';
 import 'meta/protocol.dart';
-import 'visiters/visitor.dart';
 
 String specToCode(Spec spec, {bool format = true}) {
   final emitter = DartEmitter(
@@ -29,12 +28,15 @@ String specToCode(Spec spec, {bool format = true}) {
   return result;
 }
 
-String literalToRecord(LiteralRef ref, MetaReferenceVisitor<String> visitor) {
+String literalToRecord(
+  LiteralRef ref,
+  String Function(MetaReference) typeResolver,
+) {
   final record = RecordType(
     (rb) {
       final entries = <MapEntry<String, Reference>>[];
       for (final prop in ref.value.properties) {
-        final propType = prop.type.resolveType(visitor);
+        final propType = typeResolver(prop.type);
         final propName = prop.name;
         final type = propType.optional(optional: prop.optional);
         final typRefer = refer(type);
@@ -53,12 +55,12 @@ String literalToRecord(LiteralRef ref, MetaReferenceVisitor<String> visitor) {
 
 String tupleToRecord(
   TupleRef ref,
-  MetaReferenceVisitor<String> visitor,
+  String Function(MetaReference) typeResolver,
 ) {
   final record = RecordType(
     (rb) {
       for (final item in ref.items) {
-        final propType = item.resolveType(visitor);
+        final propType = typeResolver(item);
         rb.positionalFieldTypes.add(refer(propType));
       }
     },

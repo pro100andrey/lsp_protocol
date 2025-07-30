@@ -23,9 +23,9 @@ Future<void> main() async {
         return const InitializeResult(
           serverInfo: (name: 'LSP Server', version: '1.0.0'),
           capabilities: ServerCapabilities(
-            textDocumentSync: TextDocumentSyncOptions(
-              change: TextDocumentSyncKind.full,
-            ),
+            // textDocumentSync: TextDocumentSyncOptions(
+            //   change: TextDocumentSyncKind.full,
+            // ),
             // positionEncoding: PositionEncodingKind.uTF16,
             // notebookDocumentSync: NotebookDocumentSyncOptions(
             //   notebookSelector: [],

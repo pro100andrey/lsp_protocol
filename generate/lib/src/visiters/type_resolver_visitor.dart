@@ -41,7 +41,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
 
   @override
   String visitOrRef(OrRef ref) {
-    // return 'Object'; 
+    // return 'Object';
 
     final orName = _sealedMap.resolveOrRefType(ref);
 
@@ -79,7 +79,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
 
   @override
   String visitLiteralRef(LiteralRef ref) {
-    final result = literalToRecord(ref, this);
+    final result = literalToRecord(ref, (r) => r.resolveType(this));
 
     return result;
   }
@@ -88,5 +88,6 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
   String visitStringLiteralRef(StringLiteralRef ref) => 'String';
 
   @override
-  String visitTupleRef(TupleRef ref) => tupleToRecord(ref, this);
+  String visitTupleRef(TupleRef ref) =>
+      tupleToRecord(ref, (r) => r.resolveType(this));
 }
