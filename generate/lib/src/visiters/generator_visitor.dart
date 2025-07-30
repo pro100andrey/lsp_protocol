@@ -32,10 +32,10 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   Reference get _stringRef => refer('String');
 
-  final _disallowUnrecognizedKeysRef = refer(
-    'JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)',
-    // 'JsonSerializable(disallowUnrecognizedKeys: true, checked: true)',
-  );
+  // final _disallowUnrecognizedKeysRef = refer(
+  //   'JsonSerializable(disallowUnrecognizedKeys: true)',
+  //   // 'JsonSerializable(disallowUnrecognizedKeys: true, checked: true)',
+  // );
 
   @override
   Library visitProtocol(MetaProtocol protocol) => Library(
@@ -123,7 +123,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
           [
             Constructor(
               (b) => b
-                ..annotations.add(_disallowUnrecognizedKeysRef)
+                // ..annotations.add(_disallowUnrecognizedKeysRef)
                 ..factory = true
                 ..constant = true
                 ..redirect = refer('_$name')
@@ -307,7 +307,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
       final constructor = Constructor((cb) {
         cb
-          ..annotations.add(_disallowUnrecognizedKeysRef)
+          // ..annotations.add(_disallowUnrecognizedKeysRef)
           ..constant = true
           ..factory = true
           ..name = 'from${i + 1}'
@@ -339,7 +339,8 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
                 .map((type) => '/// Type: $type'),
           ])
           ..name = baseName
-          ..annotations.add(refer('freezed'))
+          // ..annotations.add(refer('Freezed(fromJson: false)'))
+          ..annotations.add(refer('Freezed()'))
           // abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
           ..mixins.add(refer('_\$$baseName'))
           ..sealed = true;

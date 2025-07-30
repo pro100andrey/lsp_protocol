@@ -10,3 +10,8 @@ targets:
           maybe_map: false
           when: false
           maybe_when: false
+      json_serializable:
+        options:
+          include_if_null: false
+          disallow_unrecognized_keys: true
+

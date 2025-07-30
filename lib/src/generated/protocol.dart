@@ -14,7 +14,7 @@ const String kLSPVersion = '3.17.0';
 /// which a symbol is defined.
 /// Servers should prefer returning `DefinitionLink` over `Definition` if
 /// supported by the client.
-typedef Definition = Object;
+typedef Definition = DefinitionBase;
 
 /// Information about where a symbol is defined.
 /// Provides additional metadata over normal {@link Location location}
@@ -28,11 +28,11 @@ typedef LSPArray = List<LSPAny>;
 /// value `undefined` can't be converted into JSON preserving the property
 /// name. However for convenience it is allowed and assumed that all these
 /// properties are optional as well. @since 3.17.0
-typedef LSPAny = Object;
+typedef LSPAny = LSPAnyBase;
 
 /// The declaration of a symbol representation as one or many {@link Location
 /// locations}.
-typedef Declaration = Object;
+typedef Declaration = DefinitionBase;
 
 /// Information about where a symbol is declared.
 /// Provides additional metadata over normal {@link Location location}
@@ -47,33 +47,34 @@ typedef DeclarationLink = LocationLink;
 /// (class InlineValueEvaluatableExpression) The InlineValue types combines all
 /// inline value types into one type.
 /// @since 3.17.0
-typedef InlineValue = Object;
+typedef InlineValue = InlineValueBase;
 
 /// The result of a document diagnostic pull request. A report can either be a
 /// full report containing all diagnostics for the requested document or an
 /// unchanged report indicating that nothing has changed in terms of
 /// diagnostics in comparison to the last pull request.
 /// @since 3.17.0
-typedef DocumentDiagnosticReport = Object;
-typedef PrepareRenameResult = Object;
+typedef DocumentDiagnosticReport = DocumentDiagnosticReportBase;
+typedef PrepareRenameResult = PrepareRenameResultBase;
 
 /// A document selector is the combination of one or many document filters.
 /// @sample `let sel:DocumentSelector = [{ language: 'typescript' }, {
 /// language: 'json', pattern: '**∕tsconfig.json' }]`;
 /// The use of a string as a document filter is deprecated @since 3.16.0.
 typedef DocumentSelector = List<DocumentFilter>;
-typedef ProgressToken = Object;
+typedef ProgressToken = ProgressTokenBase;
 
 /// An identifier to refer to a change annotation stored with a workspace edit.
 typedef ChangeAnnotationIdentifier = String;
 
 /// A workspace diagnostic document report.
 /// @since 3.17.0
-typedef WorkspaceDocumentDiagnosticReport = Object;
+typedef WorkspaceDocumentDiagnosticReport =
+    WorkspaceDocumentDiagnosticReportBase;
 
 /// An event describing a change to a text document. If only a text is provided
 /// it is considered to be the full content of the document.
-typedef TextDocumentContentChangeEvent = Object;
+typedef TextDocumentContentChangeEvent = TextDocumentContentChangeEventBase;
 
 /// MarkedString can be used to render human readable text. It is either a
 /// markdown string or a code-block that provides a language and a code
@@ -84,19 +85,19 @@ typedef TextDocumentContentChangeEvent = Object;
 /// ```${language} ${value} ```
 /// Note that markdown strings will be sanitized - that means html will be
 /// escaped. @deprecated use MarkupContent instead.
-typedef MarkedString = Object;
+typedef MarkedString = MarkedStringBase;
 
 /// A document filter describes a top level text document or a notebook cell
 /// document.
 /// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
-typedef DocumentFilter = Object;
+typedef DocumentFilter = DocumentFilterBase;
 
 /// LSP object definition. @since 3.17.0
 typedef LSPObject = Map<String, LSPAny>;
 
 /// The glob pattern. Either a string pattern or a relative pattern.
 /// @since 3.17.0
-typedef GlobPattern = Object;
+typedef GlobPattern = GlobPatternBase;
 
 /// A document filter denotes a document by different properties like the
 /// {@link TextDocument.languageId language}, the {@link Uri.scheme scheme} of
@@ -116,13 +117,13 @@ typedef GlobPattern = Object;
 /// applies to all package.json paths: `{ language: 'json', pattern:
 /// '**package.json' }`
 /// @since 3.17.0
-typedef TextDocumentFilter = Object;
+typedef TextDocumentFilter = TextDocumentFilterBase;
 
 /// A notebook document filter denotes a notebook document by different
 /// properties. The properties will be match against the notebook's URI (same
 /// as with documents)
 /// @since 3.17.0
-typedef NotebookDocumentFilter = Object;
+typedef NotebookDocumentFilter = NotebookDocumentFilterBase;
 
 /// The glob pattern to watch relative to the base path. Glob patterns can have
 /// the following syntax: - `*` to match zero or more characters in a path
@@ -141,12 +142,10 @@ typedef Pattern = String;
 ///
 /// Type: Location
 /// Type: Array<Location>
-@freezed
+@Freezed()
 sealed class DefinitionBase with _$DefinitionBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DefinitionBase.from1({required Location value}) = Definition0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DefinitionBase.from2({required List<Location> value}) =
       Definition1;
 
@@ -164,27 +163,20 @@ sealed class DefinitionBase with _$DefinitionBase {
 /// Type: Decimal
 /// Type: Boolean
 /// Type: Null
-@freezed
+@Freezed()
 sealed class LSPAnyBase with _$LSPAnyBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LSPAnyBase.from1({required LSPObject value}) = LSPAny0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LSPAnyBase.from2({required LSPArray value}) = LSPAny1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LSPAnyBase.from3({required String value}) = LSPAny2;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LSPAnyBase.from4({required int value}) = LSPAny3;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LSPAnyBase.from5({required int value}) = LSPAny4;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LSPAnyBase.from6({required double value}) = LSPAny5;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LSPAnyBase.from7({required bool value}) = LSPAny6;
 
   factory LSPAnyBase.fromJson(Map<String, dynamic> json) =>
@@ -196,18 +188,15 @@ sealed class LSPAnyBase with _$LSPAnyBase {
 /// Type: InlineValueText
 /// Type: InlineValueVariableLookup
 /// Type: InlineValueEvaluatableExpression
-@freezed
+@Freezed()
 sealed class InlineValueBase with _$InlineValueBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueBase.from1({required InlineValueText value}) =
       InlineValue0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueBase.from2({
     required InlineValueVariableLookup value,
   }) = InlineValue1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueBase.from3({
     required InlineValueEvaluatableExpression value,
   }) = InlineValue2;
@@ -220,14 +209,12 @@ sealed class InlineValueBase with _$InlineValueBase {
 ///
 /// Type: RelatedFullDocumentDiagnosticReport
 /// Type: RelatedUnchangedDocumentDiagnosticReport
-@freezed
+@Freezed()
 sealed class DocumentDiagnosticReportBase with _$DocumentDiagnosticReportBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentDiagnosticReportBase.from1({
     required RelatedFullDocumentDiagnosticReport value,
   }) = DocumentDiagnosticReport0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentDiagnosticReportBase.from2({
     required RelatedUnchangedDocumentDiagnosticReport value,
   }) = DocumentDiagnosticReport1;
@@ -241,18 +228,15 @@ sealed class DocumentDiagnosticReportBase with _$DocumentDiagnosticReportBase {
 /// Type: Range
 /// Type: ({Range range, String placeholder})
 /// Type: ({bool defaultBehavior})
-@freezed
+@Freezed()
 sealed class PrepareRenameResultBase with _$PrepareRenameResultBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory PrepareRenameResultBase.from1({required Range value}) =
       PrepareRenameResult0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory PrepareRenameResultBase.from2({
     required ({Range range, String placeholder}) value,
   }) = PrepareRenameResult1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory PrepareRenameResultBase.from3({
     required ({bool defaultBehavior}) value,
   }) = PrepareRenameResult2;
@@ -267,12 +251,10 @@ sealed class PrepareRenameResultBase with _$PrepareRenameResultBase {
 ///
 /// Type: Integer
 /// Type: String
-@freezed
+@Freezed()
 sealed class ProgressTokenBase with _$ProgressTokenBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ProgressTokenBase.from1({required int value}) = ProgressToken0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ProgressTokenBase.from2({required String value}) =
       ProgressToken1;
 
@@ -284,15 +266,13 @@ sealed class ProgressTokenBase with _$ProgressTokenBase {
 ///
 /// Type: WorkspaceFullDocumentDiagnosticReport
 /// Type: WorkspaceUnchangedDocumentDiagnosticReport
-@freezed
+@Freezed()
 sealed class WorkspaceDocumentDiagnosticReportBase
     with _$WorkspaceDocumentDiagnosticReportBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceDocumentDiagnosticReportBase.from1({
     required WorkspaceFullDocumentDiagnosticReport value,
   }) = WorkspaceDocumentDiagnosticReport0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceDocumentDiagnosticReportBase.from2({
     required WorkspaceUnchangedDocumentDiagnosticReport value,
   }) = WorkspaceDocumentDiagnosticReport1;
@@ -306,15 +286,13 @@ sealed class WorkspaceDocumentDiagnosticReportBase
 ///
 /// Type: ({Range range, int? rangeLength, String text})
 /// Type: ({String text})
-@freezed
+@Freezed()
 sealed class TextDocumentContentChangeEventBase
     with _$TextDocumentContentChangeEventBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentContentChangeEventBase.from1({
     required ({Range range, int? rangeLength, String text}) value,
   }) = TextDocumentContentChangeEvent0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentContentChangeEventBase.from2({
     required ({String text}) value,
   }) = TextDocumentContentChangeEvent1;
@@ -328,12 +306,10 @@ sealed class TextDocumentContentChangeEventBase
 ///
 /// Type: String
 /// Type: ({String language, String value})
-@freezed
+@Freezed()
 sealed class MarkedStringBase with _$MarkedStringBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MarkedStringBase.from1({required String value}) = MarkedString0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MarkedStringBase.from2({
     required ({String language, String value}) value,
   }) = MarkedString1;
@@ -346,13 +322,11 @@ sealed class MarkedStringBase with _$MarkedStringBase {
 ///
 /// Type: TextDocumentFilter
 /// Type: NotebookCellTextDocumentFilter
-@freezed
+@Freezed()
 sealed class DocumentFilterBase with _$DocumentFilterBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentFilterBase.from1({required TextDocumentFilter value}) =
       DocumentFilter0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentFilterBase.from2({
     required NotebookCellTextDocumentFilter value,
   }) = DocumentFilter1;
@@ -365,12 +339,10 @@ sealed class DocumentFilterBase with _$DocumentFilterBase {
 ///
 /// Type: Pattern
 /// Type: RelativePattern
-@freezed
+@Freezed()
 sealed class GlobPatternBase with _$GlobPatternBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory GlobPatternBase.from1({required Pattern value}) = GlobPattern0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory GlobPatternBase.from2({required RelativePattern value}) =
       GlobPattern1;
 
@@ -383,19 +355,16 @@ sealed class GlobPatternBase with _$GlobPatternBase {
 /// Type: ({String language, String? scheme, String? pattern})
 /// Type: ({String? language, String scheme, String? pattern})
 /// Type: ({String? language, String? scheme, String pattern})
-@freezed
+@Freezed()
 sealed class TextDocumentFilterBase with _$TextDocumentFilterBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentFilterBase.from1({
     required ({String language, String? scheme, String? pattern}) value,
   }) = TextDocumentFilter0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentFilterBase.from2({
     required ({String? language, String scheme, String? pattern}) value,
   }) = TextDocumentFilter1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentFilterBase.from3({
     required ({String? language, String? scheme, String pattern}) value,
   }) = TextDocumentFilter2;
@@ -409,19 +378,16 @@ sealed class TextDocumentFilterBase with _$TextDocumentFilterBase {
 /// Type: ({String notebookType, String? scheme, String? pattern})
 /// Type: ({String? notebookType, String scheme, String? pattern})
 /// Type: ({String? notebookType, String? scheme, String pattern})
-@freezed
+@Freezed()
 sealed class NotebookDocumentFilterBase with _$NotebookDocumentFilterBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentFilterBase.from1({
     required ({String notebookType, String? scheme, String? pattern}) value,
   }) = NotebookDocumentFilter0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentFilterBase.from2({
     required ({String? notebookType, String scheme, String? pattern}) value,
   }) = NotebookDocumentFilter1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentFilterBase.from3({
     required ({String? notebookType, String? scheme, String pattern}) value,
   }) = NotebookDocumentFilter2;
@@ -434,10 +400,9 @@ sealed class NotebookDocumentFilterBase with _$NotebookDocumentFilterBase {
 ///
 /// Type: DocumentSelector
 /// Type: Null
-@freezed
+@Freezed()
 sealed class TextDocumentRegistrationOptionsDocumentSelectorBase
     with _$TextDocumentRegistrationOptionsDocumentSelectorBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentRegistrationOptionsDocumentSelectorBase.from1({
     required DocumentSelector value,
   }) = TextDocumentRegistrationOptionsDocumentSelector0;
@@ -453,25 +418,21 @@ sealed class TextDocumentRegistrationOptionsDocumentSelectorBase
 /// Type: CreateFile
 /// Type: RenameFile
 /// Type: DeleteFile
-@freezed
+@Freezed()
 sealed class WorkspaceEditDocumentChangesBase
     with _$WorkspaceEditDocumentChangesBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceEditDocumentChangesBase.from1({
     required TextDocumentEdit value,
   }) = WorkspaceEditDocumentChanges0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceEditDocumentChangesBase.from2({
     required CreateFile value,
   }) = WorkspaceEditDocumentChanges1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceEditDocumentChangesBase.from3({
     required RenameFile value,
   }) = WorkspaceEditDocumentChanges2;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceEditDocumentChangesBase.from4({
     required DeleteFile value,
   }) = WorkspaceEditDocumentChanges3;
@@ -485,13 +446,11 @@ sealed class WorkspaceEditDocumentChangesBase
 ///
 /// Type: String
 /// Type: Array<InlayHintLabelPart>
-@freezed
+@Freezed()
 sealed class InlayHintLabelBase with _$InlayHintLabelBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintLabelBase.from1({required String value}) =
       InlayHintLabel0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintLabelBase.from2({
     required List<InlayHintLabelPart> value,
   }) = InlayHintLabel1;
@@ -508,13 +467,11 @@ sealed class InlayHintLabelBase with _$InlayHintLabelBase {
 ///
 /// Type: String
 /// Type: MarkupContent
-@freezed
+@Freezed()
 sealed class TooltipOrDocumentationBase with _$TooltipOrDocumentationBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TooltipOrDocumentationBase.from1({required String value}) =
       TooltipOrDocumentation0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TooltipOrDocumentationBase.from2({
     required MarkupContent value,
   }) = TooltipOrDocumentation1;
@@ -529,14 +486,12 @@ sealed class TooltipOrDocumentationBase with _$TooltipOrDocumentationBase {
 ///
 /// Type: FullDocumentDiagnosticReport
 /// Type: UnchangedDocumentDiagnosticReport
-@freezed
+@Freezed()
 sealed class RelatedDocumentsBase with _$RelatedDocumentsBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RelatedDocumentsBase.from1({
     required FullDocumentDiagnosticReport value,
   }) = RelatedDocuments0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RelatedDocumentsBase.from2({
     required UnchangedDocumentDiagnosticReport value,
   }) = RelatedDocuments1;
@@ -549,15 +504,13 @@ sealed class RelatedDocumentsBase with _$RelatedDocumentsBase {
 ///
 /// Type: String
 /// Type: StringValue
-@freezed
+@Freezed()
 sealed class InlineCompletionItemInsertTextBase
     with _$InlineCompletionItemInsertTextBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionItemInsertTextBase.from1({
     required String value,
   }) = InlineCompletionItemInsertText0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionItemInsertTextBase.from2({
     required StringValue value,
   }) = InlineCompletionItemInsertText1;
@@ -571,15 +524,13 @@ sealed class InlineCompletionItemInsertTextBase
 ///
 /// Type: String
 /// Type: Array<String>
-@freezed
+@Freezed()
 sealed class DidChangeConfigurationRegistrationOptionsSectionBase
     with _$DidChangeConfigurationRegistrationOptionsSectionBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeConfigurationRegistrationOptionsSectionBase.from1({
     required String value,
   }) = DidChangeConfigurationRegistrationOptionsSection0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeConfigurationRegistrationOptionsSectionBase.from2({
     required List<String> value,
   }) = DidChangeConfigurationRegistrationOptionsSection1;
@@ -593,13 +544,11 @@ sealed class DidChangeConfigurationRegistrationOptionsSectionBase
 ///
 /// Type: TextEdit
 /// Type: InsertReplaceEdit
-@freezed
+@Freezed()
 sealed class CompletionItemTextEditBase with _$CompletionItemTextEditBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionItemTextEditBase.from1({required TextEdit value}) =
       CompletionItemTextEdit0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionItemTextEditBase.from2({
     required InsertReplaceEdit value,
   }) = CompletionItemTextEdit1;
@@ -612,13 +561,11 @@ sealed class CompletionItemTextEditBase with _$CompletionItemTextEditBase {
 ///
 /// Type: Range
 /// Type: ({Range insert, Range replace})
-@freezed
+@Freezed()
 sealed class CompletionListEditRangeBase with _$CompletionListEditRangeBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionListEditRangeBase.from1({required Range value}) =
       CompletionListEditRange0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionListEditRangeBase.from2({
     required ({Range insert, Range replace}) value,
   }) = CompletionListEditRange1;
@@ -632,17 +579,14 @@ sealed class CompletionListEditRangeBase with _$CompletionListEditRangeBase {
 /// Type: MarkupContent
 /// Type: MarkedString
 /// Type: Array<MarkedString>
-@freezed
+@Freezed()
 sealed class HoverContentsBase with _$HoverContentsBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory HoverContentsBase.from1({required MarkupContent value}) =
       HoverContents0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory HoverContentsBase.from2({required MarkedString value}) =
       HoverContents1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory HoverContentsBase.from3({required List<MarkedString> value}) =
       HoverContents2;
 
@@ -654,13 +598,11 @@ sealed class HoverContentsBase with _$HoverContentsBase {
 ///
 /// Type: Location
 /// Type: ({String uri})
-@freezed
+@Freezed()
 sealed class WorkspaceSymbolLocationBase with _$WorkspaceSymbolLocationBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceSymbolLocationBase.from1({required Location value}) =
       WorkspaceSymbolLocation0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceSymbolLocationBase.from2({
     required ({String uri}) value,
   }) = WorkspaceSymbolLocation1;
@@ -674,12 +616,10 @@ sealed class WorkspaceSymbolLocationBase with _$WorkspaceSymbolLocationBase {
 ///
 /// Type: Boolean
 /// Type: ()
-@freezed
+@Freezed()
 sealed class RangeBase with _$RangeBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RangeBase.from1({required bool value}) = Range0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RangeBase.from2({required () value}) = Range1;
 
   factory RangeBase.fromJson(Map<String, dynamic> json) =>
@@ -690,14 +630,12 @@ sealed class RangeBase with _$RangeBase {
 ///
 /// Type: Boolean
 /// Type: ({bool? delta})
-@freezed
+@Freezed()
 sealed class SemanticTokensOptionsFullBase
     with _$SemanticTokensOptionsFullBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensOptionsFullBase.from1({required bool value}) =
       SemanticTokensOptionsFull0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensOptionsFullBase.from2({
     required ({bool? delta}) value,
   }) = SemanticTokensOptionsFull1;
@@ -710,13 +648,11 @@ sealed class SemanticTokensOptionsFullBase
 ///
 /// Type: TextEdit
 /// Type: AnnotatedTextEdit
-@freezed
+@Freezed()
 sealed class TextDocumentEditEditsBase with _$TextDocumentEditEditsBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentEditEditsBase.from1({required TextEdit value}) =
       TextDocumentEditEdits0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentEditEditsBase.from2({
     required AnnotatedTextEdit value,
   }) = TextDocumentEditEdits1;
@@ -732,9 +668,8 @@ sealed class TextDocumentEditEditsBase with _$TextDocumentEditEditsBase {
 ///
 /// Type: Integer
 /// Type: Null
-@freezed
+@Freezed()
 sealed class ProcessIdOrVersionBase with _$ProcessIdOrVersionBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ProcessIdOrVersionBase.from1({required int value}) =
       ProcessIdOrVersion0;
 
@@ -746,9 +681,8 @@ sealed class ProcessIdOrVersionBase with _$ProcessIdOrVersionBase {
 ///
 /// Type: String
 /// Type: Null
-@freezed
+@Freezed()
 sealed class InitializeParamsRootPathBase with _$InitializeParamsRootPathBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InitializeParamsRootPathBase.from1({required String value}) =
       InitializeParamsRootPath0;
 
@@ -760,9 +694,8 @@ sealed class InitializeParamsRootPathBase with _$InitializeParamsRootPathBase {
 ///
 /// Type: DocumentUri
 /// Type: Null
-@freezed
+@Freezed()
 sealed class InitializeParamsRootUriBase with _$InitializeParamsRootUriBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InitializeParamsRootUriBase.from1({required String value}) =
       InitializeParamsRootUri0;
 
@@ -774,10 +707,9 @@ sealed class InitializeParamsRootUriBase with _$InitializeParamsRootUriBase {
 ///
 /// Type: Array<WorkspaceFolder>
 /// Type: Null
-@freezed
+@Freezed()
 sealed class WorkspaceFoldersInitializeParamsWorkspaceFoldersBase
     with _$WorkspaceFoldersInitializeParamsWorkspaceFoldersBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.from1({
     required List<WorkspaceFolder> value,
   }) = WorkspaceFoldersInitializeParamsWorkspaceFolders0;
@@ -791,15 +723,13 @@ sealed class WorkspaceFoldersInitializeParamsWorkspaceFoldersBase
 ///
 /// Type: TextDocumentSyncOptions
 /// Type: TextDocumentSyncKind
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesTextDocumentSyncBase
     with _$ServerCapabilitiesTextDocumentSyncBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesTextDocumentSyncBase.from1({
     required TextDocumentSyncOptions value,
   }) = ServerCapabilitiesTextDocumentSync0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesTextDocumentSyncBase.from2({
     required TextDocumentSyncKind value,
   }) = ServerCapabilitiesTextDocumentSync1;
@@ -813,15 +743,13 @@ sealed class ServerCapabilitiesTextDocumentSyncBase
 ///
 /// Type: NotebookDocumentSyncOptions
 /// Type: NotebookDocumentSyncRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesNotebookDocumentSyncBase
     with _$ServerCapabilitiesNotebookDocumentSyncBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesNotebookDocumentSyncBase.from1({
     required NotebookDocumentSyncOptions value,
   }) = ServerCapabilitiesNotebookDocumentSync0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesNotebookDocumentSyncBase.from2({
     required NotebookDocumentSyncRegistrationOptions value,
   }) = ServerCapabilitiesNotebookDocumentSync1;
@@ -835,15 +763,13 @@ sealed class ServerCapabilitiesNotebookDocumentSyncBase
 ///
 /// Type: Boolean
 /// Type: HoverOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesHoverProviderBase
     with _$ServerCapabilitiesHoverProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesHoverProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesHoverProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesHoverProviderBase.from2({
     required HoverOptions value,
   }) = ServerCapabilitiesHoverProvider1;
@@ -858,20 +784,17 @@ sealed class ServerCapabilitiesHoverProviderBase
 /// Type: Boolean
 /// Type: DeclarationOptions
 /// Type: DeclarationRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesDeclarationProviderBase
     with _$ServerCapabilitiesDeclarationProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDeclarationProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesDeclarationProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDeclarationProviderBase.from2({
     required DeclarationOptions value,
   }) = ServerCapabilitiesDeclarationProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDeclarationProviderBase.from3({
     required DeclarationRegistrationOptions value,
   }) = ServerCapabilitiesDeclarationProvider2;
@@ -885,15 +808,13 @@ sealed class ServerCapabilitiesDeclarationProviderBase
 ///
 /// Type: Boolean
 /// Type: DefinitionOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesDefinitionProviderBase
     with _$ServerCapabilitiesDefinitionProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDefinitionProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesDefinitionProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDefinitionProviderBase.from2({
     required DefinitionOptions value,
   }) = ServerCapabilitiesDefinitionProvider1;
@@ -908,20 +829,17 @@ sealed class ServerCapabilitiesDefinitionProviderBase
 /// Type: Boolean
 /// Type: TypeDefinitionOptions
 /// Type: TypeDefinitionRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesTypeDefinitionProviderBase
     with _$ServerCapabilitiesTypeDefinitionProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesTypeDefinitionProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesTypeDefinitionProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesTypeDefinitionProviderBase.from2({
     required TypeDefinitionOptions value,
   }) = ServerCapabilitiesTypeDefinitionProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesTypeDefinitionProviderBase.from3({
     required TypeDefinitionRegistrationOptions value,
   }) = ServerCapabilitiesTypeDefinitionProvider2;
@@ -936,20 +854,17 @@ sealed class ServerCapabilitiesTypeDefinitionProviderBase
 /// Type: Boolean
 /// Type: ImplementationOptions
 /// Type: ImplementationRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesImplementationProviderBase
     with _$ServerCapabilitiesImplementationProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesImplementationProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesImplementationProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesImplementationProviderBase.from2({
     required ImplementationOptions value,
   }) = ServerCapabilitiesImplementationProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesImplementationProviderBase.from3({
     required ImplementationRegistrationOptions value,
   }) = ServerCapabilitiesImplementationProvider2;
@@ -963,15 +878,13 @@ sealed class ServerCapabilitiesImplementationProviderBase
 ///
 /// Type: Boolean
 /// Type: ReferenceOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesReferencesProviderBase
     with _$ServerCapabilitiesReferencesProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesReferencesProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesReferencesProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesReferencesProviderBase.from2({
     required ReferenceOptions value,
   }) = ServerCapabilitiesReferencesProvider1;
@@ -985,15 +898,13 @@ sealed class ServerCapabilitiesReferencesProviderBase
 ///
 /// Type: Boolean
 /// Type: DocumentHighlightOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesDocumentHighlightProviderBase
     with _$ServerCapabilitiesDocumentHighlightProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDocumentHighlightProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesDocumentHighlightProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDocumentHighlightProviderBase.from2({
     required DocumentHighlightOptions value,
   }) = ServerCapabilitiesDocumentHighlightProvider1;
@@ -1007,15 +918,13 @@ sealed class ServerCapabilitiesDocumentHighlightProviderBase
 ///
 /// Type: Boolean
 /// Type: DocumentSymbolOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesDocumentSymbolProviderBase
     with _$ServerCapabilitiesDocumentSymbolProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDocumentSymbolProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesDocumentSymbolProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDocumentSymbolProviderBase.from2({
     required DocumentSymbolOptions value,
   }) = ServerCapabilitiesDocumentSymbolProvider1;
@@ -1029,15 +938,13 @@ sealed class ServerCapabilitiesDocumentSymbolProviderBase
 ///
 /// Type: Boolean
 /// Type: CodeActionOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesCodeActionProviderBase
     with _$ServerCapabilitiesCodeActionProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesCodeActionProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesCodeActionProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesCodeActionProviderBase.from2({
     required CodeActionOptions value,
   }) = ServerCapabilitiesCodeActionProvider1;
@@ -1052,20 +959,17 @@ sealed class ServerCapabilitiesCodeActionProviderBase
 /// Type: Boolean
 /// Type: DocumentColorOptions
 /// Type: DocumentColorRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesColorProviderBase
     with _$ServerCapabilitiesColorProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesColorProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesColorProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesColorProviderBase.from2({
     required DocumentColorOptions value,
   }) = ServerCapabilitiesColorProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesColorProviderBase.from3({
     required DocumentColorRegistrationOptions value,
   }) = ServerCapabilitiesColorProvider2;
@@ -1079,15 +983,13 @@ sealed class ServerCapabilitiesColorProviderBase
 ///
 /// Type: Boolean
 /// Type: WorkspaceSymbolOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesWorkspaceSymbolProviderBase
     with _$ServerCapabilitiesWorkspaceSymbolProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesWorkspaceSymbolProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesWorkspaceSymbolProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesWorkspaceSymbolProviderBase.from2({
     required WorkspaceSymbolOptions value,
   }) = ServerCapabilitiesWorkspaceSymbolProvider1;
@@ -1101,15 +1003,13 @@ sealed class ServerCapabilitiesWorkspaceSymbolProviderBase
 ///
 /// Type: Boolean
 /// Type: DocumentFormattingOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesDocumentFormattingProviderBase
     with _$ServerCapabilitiesDocumentFormattingProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDocumentFormattingProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesDocumentFormattingProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDocumentFormattingProviderBase.from2({
     required DocumentFormattingOptions value,
   }) = ServerCapabilitiesDocumentFormattingProvider1;
@@ -1123,15 +1023,13 @@ sealed class ServerCapabilitiesDocumentFormattingProviderBase
 ///
 /// Type: Boolean
 /// Type: DocumentRangeFormattingOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesDocumentRangeFormattingProviderBase
     with _$ServerCapabilitiesDocumentRangeFormattingProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDocumentRangeFormattingProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesDocumentRangeFormattingProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDocumentRangeFormattingProviderBase.from2({
     required DocumentRangeFormattingOptions value,
   }) = ServerCapabilitiesDocumentRangeFormattingProvider1;
@@ -1145,15 +1043,13 @@ sealed class ServerCapabilitiesDocumentRangeFormattingProviderBase
 ///
 /// Type: Boolean
 /// Type: RenameOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesRenameProviderBase
     with _$ServerCapabilitiesRenameProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesRenameProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesRenameProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesRenameProviderBase.from2({
     required RenameOptions value,
   }) = ServerCapabilitiesRenameProvider1;
@@ -1168,20 +1064,17 @@ sealed class ServerCapabilitiesRenameProviderBase
 /// Type: Boolean
 /// Type: FoldingRangeOptions
 /// Type: FoldingRangeRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesFoldingRangeProviderBase
     with _$ServerCapabilitiesFoldingRangeProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesFoldingRangeProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesFoldingRangeProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesFoldingRangeProviderBase.from2({
     required FoldingRangeOptions value,
   }) = ServerCapabilitiesFoldingRangeProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesFoldingRangeProviderBase.from3({
     required FoldingRangeRegistrationOptions value,
   }) = ServerCapabilitiesFoldingRangeProvider2;
@@ -1196,20 +1089,17 @@ sealed class ServerCapabilitiesFoldingRangeProviderBase
 /// Type: Boolean
 /// Type: SelectionRangeOptions
 /// Type: SelectionRangeRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesSelectionRangeProviderBase
     with _$ServerCapabilitiesSelectionRangeProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesSelectionRangeProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesSelectionRangeProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesSelectionRangeProviderBase.from2({
     required SelectionRangeOptions value,
   }) = ServerCapabilitiesSelectionRangeProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesSelectionRangeProviderBase.from3({
     required SelectionRangeRegistrationOptions value,
   }) = ServerCapabilitiesSelectionRangeProvider2;
@@ -1224,20 +1114,17 @@ sealed class ServerCapabilitiesSelectionRangeProviderBase
 /// Type: Boolean
 /// Type: CallHierarchyOptions
 /// Type: CallHierarchyRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesCallHierarchyProviderBase
     with _$ServerCapabilitiesCallHierarchyProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesCallHierarchyProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesCallHierarchyProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesCallHierarchyProviderBase.from2({
     required CallHierarchyOptions value,
   }) = ServerCapabilitiesCallHierarchyProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesCallHierarchyProviderBase.from3({
     required CallHierarchyRegistrationOptions value,
   }) = ServerCapabilitiesCallHierarchyProvider2;
@@ -1252,20 +1139,17 @@ sealed class ServerCapabilitiesCallHierarchyProviderBase
 /// Type: Boolean
 /// Type: LinkedEditingRangeOptions
 /// Type: LinkedEditingRangeRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesLinkedEditingRangeProviderBase
     with _$ServerCapabilitiesLinkedEditingRangeProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesLinkedEditingRangeProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesLinkedEditingRangeProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesLinkedEditingRangeProviderBase.from2({
     required LinkedEditingRangeOptions value,
   }) = ServerCapabilitiesLinkedEditingRangeProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesLinkedEditingRangeProviderBase.from3({
     required LinkedEditingRangeRegistrationOptions value,
   }) = ServerCapabilitiesLinkedEditingRangeProvider2;
@@ -1279,15 +1163,13 @@ sealed class ServerCapabilitiesLinkedEditingRangeProviderBase
 ///
 /// Type: SemanticTokensOptions
 /// Type: SemanticTokensRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesSemanticTokensProviderBase
     with _$ServerCapabilitiesSemanticTokensProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesSemanticTokensProviderBase.from1({
     required SemanticTokensOptions value,
   }) = ServerCapabilitiesSemanticTokensProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesSemanticTokensProviderBase.from2({
     required SemanticTokensRegistrationOptions value,
   }) = ServerCapabilitiesSemanticTokensProvider1;
@@ -1302,20 +1184,17 @@ sealed class ServerCapabilitiesSemanticTokensProviderBase
 /// Type: Boolean
 /// Type: MonikerOptions
 /// Type: MonikerRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesMonikerProviderBase
     with _$ServerCapabilitiesMonikerProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesMonikerProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesMonikerProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesMonikerProviderBase.from2({
     required MonikerOptions value,
   }) = ServerCapabilitiesMonikerProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesMonikerProviderBase.from3({
     required MonikerRegistrationOptions value,
   }) = ServerCapabilitiesMonikerProvider2;
@@ -1330,20 +1209,17 @@ sealed class ServerCapabilitiesMonikerProviderBase
 /// Type: Boolean
 /// Type: TypeHierarchyOptions
 /// Type: TypeHierarchyRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesTypeHierarchyProviderBase
     with _$ServerCapabilitiesTypeHierarchyProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesTypeHierarchyProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesTypeHierarchyProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesTypeHierarchyProviderBase.from2({
     required TypeHierarchyOptions value,
   }) = ServerCapabilitiesTypeHierarchyProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesTypeHierarchyProviderBase.from3({
     required TypeHierarchyRegistrationOptions value,
   }) = ServerCapabilitiesTypeHierarchyProvider2;
@@ -1358,20 +1234,17 @@ sealed class ServerCapabilitiesTypeHierarchyProviderBase
 /// Type: Boolean
 /// Type: InlineValueOptions
 /// Type: InlineValueRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesInlineValueProviderBase
     with _$ServerCapabilitiesInlineValueProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesInlineValueProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesInlineValueProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesInlineValueProviderBase.from2({
     required InlineValueOptions value,
   }) = ServerCapabilitiesInlineValueProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesInlineValueProviderBase.from3({
     required InlineValueRegistrationOptions value,
   }) = ServerCapabilitiesInlineValueProvider2;
@@ -1386,20 +1259,17 @@ sealed class ServerCapabilitiesInlineValueProviderBase
 /// Type: Boolean
 /// Type: InlayHintOptions
 /// Type: InlayHintRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesInlayHintProviderBase
     with _$ServerCapabilitiesInlayHintProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesInlayHintProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesInlayHintProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesInlayHintProviderBase.from2({
     required InlayHintOptions value,
   }) = ServerCapabilitiesInlayHintProvider1;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesInlayHintProviderBase.from3({
     required InlayHintRegistrationOptions value,
   }) = ServerCapabilitiesInlayHintProvider2;
@@ -1413,15 +1283,13 @@ sealed class ServerCapabilitiesInlayHintProviderBase
 ///
 /// Type: DiagnosticOptions
 /// Type: DiagnosticRegistrationOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesDiagnosticProviderBase
     with _$ServerCapabilitiesDiagnosticProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDiagnosticProviderBase.from1({
     required DiagnosticOptions value,
   }) = ServerCapabilitiesDiagnosticProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesDiagnosticProviderBase.from2({
     required DiagnosticRegistrationOptions value,
   }) = ServerCapabilitiesDiagnosticProvider1;
@@ -1435,15 +1303,13 @@ sealed class ServerCapabilitiesDiagnosticProviderBase
 ///
 /// Type: Boolean
 /// Type: InlineCompletionOptions
-@freezed
+@Freezed()
 sealed class ServerCapabilitiesInlineCompletionProviderBase
     with _$ServerCapabilitiesInlineCompletionProviderBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesInlineCompletionProviderBase.from1({
     required bool value,
   }) = ServerCapabilitiesInlineCompletionProvider0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilitiesInlineCompletionProviderBase.from2({
     required InlineCompletionOptions value,
   }) = ServerCapabilitiesInlineCompletionProvider1;
@@ -1457,14 +1323,12 @@ sealed class ServerCapabilitiesInlineCompletionProviderBase
 ///
 /// Type: Boolean
 /// Type: SaveOptions
-@freezed
+@Freezed()
 sealed class TextDocumentSyncOptionsSaveBase
     with _$TextDocumentSyncOptionsSaveBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentSyncOptionsSaveBase.from1({required bool value}) =
       TextDocumentSyncOptionsSave0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentSyncOptionsSaveBase.from2({
     required SaveOptions value,
   }) = TextDocumentSyncOptionsSave1;
@@ -1475,19 +1339,25 @@ sealed class TextDocumentSyncOptionsSaveBase
 
 /// Owned by: NotebookDocumentSyncOptions(notebookSelector)
 ///
-/// Type: ({Object notebook, List<({String language})>? cells})
-/// Type: ({Object? notebook, List<({String language})> cells})
-@freezed
+/// Type: ({NotebookCellTextDocumentFilterNotebookBase notebook, List<({String language})>? cells})
+/// Type: ({NotebookCellTextDocumentFilterNotebookBase? notebook, List<({String language})> cells})
+@Freezed()
 sealed class NotebookDocumentSyncOptionsNotebookSelectorBase
     with _$NotebookDocumentSyncOptionsNotebookSelectorBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentSyncOptionsNotebookSelectorBase.from1({
-    required ({Object notebook, List<({String language})>? cells}) value,
+    required ({
+      NotebookCellTextDocumentFilterNotebookBase notebook,
+      List<({String language})>? cells,
+    })
+    value,
   }) = NotebookDocumentSyncOptionsNotebookSelector0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentSyncOptionsNotebookSelectorBase.from2({
-    required ({Object? notebook, List<({String language})> cells}) value,
+    required ({
+      NotebookCellTextDocumentFilterNotebookBase? notebook,
+      List<({String language})> cells,
+    })
+    value,
   }) = NotebookDocumentSyncOptionsNotebookSelector1;
 
   factory NotebookDocumentSyncOptionsNotebookSelectorBase.fromJson(
@@ -1499,15 +1369,13 @@ sealed class NotebookDocumentSyncOptionsNotebookSelectorBase
 ///
 /// Type: String
 /// Type: Boolean
-@freezed
+@Freezed()
 sealed class WorkspaceFoldersServerCapabilitiesChangeNotificationsBase
     with _$WorkspaceFoldersServerCapabilitiesChangeNotificationsBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFoldersServerCapabilitiesChangeNotificationsBase.from1({
     required String value,
   }) = WorkspaceFoldersServerCapabilitiesChangeNotifications0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFoldersServerCapabilitiesChangeNotificationsBase.from2({
     required bool value,
   }) = WorkspaceFoldersServerCapabilitiesChangeNotifications1;
@@ -1522,14 +1390,12 @@ sealed class WorkspaceFoldersServerCapabilitiesChangeNotificationsBase
 ///
 /// Type: String
 /// Type: (int, int)
-@freezed
+@Freezed()
 sealed class ParameterInformationLabelBase
     with _$ParameterInformationLabelBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ParameterInformationLabelBase.from1({required String value}) =
       ParameterInformationLabel0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ParameterInformationLabelBase.from2({
     required (int, int) value,
   }) = ParameterInformationLabel1;
@@ -1542,15 +1408,13 @@ sealed class ParameterInformationLabelBase
 ///
 /// Type: String
 /// Type: NotebookDocumentFilter
-@freezed
+@Freezed()
 sealed class NotebookCellTextDocumentFilterNotebookBase
     with _$NotebookCellTextDocumentFilterNotebookBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookCellTextDocumentFilterNotebookBase.from1({
     required String value,
   }) = NotebookCellTextDocumentFilterNotebook0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookCellTextDocumentFilterNotebookBase.from2({
     required NotebookDocumentFilter value,
   }) = NotebookCellTextDocumentFilterNotebook1;
@@ -1564,14 +1428,12 @@ sealed class NotebookCellTextDocumentFilterNotebookBase
 ///
 /// Type: WorkspaceFolder
 /// Type: URI
-@freezed
+@Freezed()
 sealed class RelativePatternBaseUriBase with _$RelativePatternBaseUriBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RelativePatternBaseUriBase.from1({
     required WorkspaceFolder value,
   }) = RelativePatternBaseUri0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RelativePatternBaseUriBase.from2({required String value}) =
       RelativePatternBaseUri1;
 
@@ -1583,15 +1445,13 @@ sealed class RelativePatternBaseUriBase with _$RelativePatternBaseUriBase {
 ///
 /// Type: Boolean
 /// Type: ({bool? delta})
-@freezed
+@Freezed()
 sealed class SemanticTokensClientCapabilitiesFullBase
     with _$SemanticTokensClientCapabilitiesFullBase {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensClientCapabilitiesFullBase.from1({
     required bool value,
   }) = SemanticTokensClientCapabilitiesFull0;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensClientCapabilitiesFullBase.from2({
     required ({bool? delta}) value,
   }) = SemanticTokensClientCapabilitiesFull1;
@@ -1603,7 +1463,6 @@ sealed class SemanticTokensClientCapabilitiesFullBase
 
 @freezed
 abstract class ImplementationParams with _$ImplementationParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ImplementationParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -1627,7 +1486,6 @@ abstract class ImplementationParams with _$ImplementationParams {
 /// text file.
 @freezed
 abstract class Location with _$Location {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Location({required String uri, required Range range}) =
       _Location;
 
@@ -1638,11 +1496,11 @@ abstract class Location with _$Location {
 @freezed
 abstract class ImplementationRegistrationOptions
     with _$ImplementationRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ImplementationRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1657,7 +1515,6 @@ abstract class ImplementationRegistrationOptions
 
 @freezed
 abstract class TypeDefinitionParams with _$TypeDefinitionParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeDefinitionParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -1680,11 +1537,11 @@ abstract class TypeDefinitionParams with _$TypeDefinitionParams {
 @freezed
 abstract class TypeDefinitionRegistrationOptions
     with _$TypeDefinitionRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeDefinitionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1700,7 +1557,6 @@ abstract class TypeDefinitionRegistrationOptions
 /// A workspace folder inside a client.
 @freezed
 abstract class WorkspaceFolder with _$WorkspaceFolder {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFolder({
     /// The associated URI for this workspace folder.
     required String uri,
@@ -1719,7 +1575,6 @@ abstract class WorkspaceFolder with _$WorkspaceFolder {
 @freezed
 abstract class DidChangeWorkspaceFoldersParams
     with _$DidChangeWorkspaceFoldersParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeWorkspaceFoldersParams({
     /// The actual workspace folder change event.
     required WorkspaceFoldersChangeEvent event,
@@ -1732,7 +1587,6 @@ abstract class DidChangeWorkspaceFoldersParams
 /// The parameters of a configuration request.
 @freezed
 abstract class ConfigurationParams with _$ConfigurationParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ConfigurationParams({required List<ConfigurationItem> items}) =
       _ConfigurationParams;
 
@@ -1743,7 +1597,6 @@ abstract class ConfigurationParams with _$ConfigurationParams {
 /// Parameters for a {@link DocumentColorRequest}.
 @freezed
 abstract class DocumentColorParams with _$DocumentColorParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentColorParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -1763,7 +1616,6 @@ abstract class DocumentColorParams with _$DocumentColorParams {
 /// Represents a color range from a document.
 @freezed
 abstract class ColorInformation with _$ColorInformation {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ColorInformation({
     /// The range in the document where this color appears.
     required Range range,
@@ -1779,11 +1631,11 @@ abstract class ColorInformation with _$ColorInformation {
 @freezed
 abstract class DocumentColorRegistrationOptions
     with _$DocumentColorRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentColorRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1799,7 +1651,6 @@ abstract class DocumentColorRegistrationOptions
 /// Parameters for a {@link ColorPresentationRequest}.
 @freezed
 abstract class ColorPresentationParams with _$ColorPresentationParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ColorPresentationParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -1824,7 +1675,6 @@ abstract class ColorPresentationParams with _$ColorPresentationParams {
 
 @freezed
 abstract class ColorPresentation with _$ColorPresentation {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ColorPresentation({
     /// The label of this color presentation. It will be shown on the color
     /// picker header. By default this is also the text that is inserted when
@@ -1849,7 +1699,6 @@ abstract class ColorPresentation with _$ColorPresentation {
 
 @freezed
 abstract class WorkDoneProgressOptions with _$WorkDoneProgressOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkDoneProgressOptions({bool? workDoneProgress}) =
       _WorkDoneProgressOptions;
 
@@ -1861,11 +1710,11 @@ abstract class WorkDoneProgressOptions with _$WorkDoneProgressOptions {
 @freezed
 abstract class TextDocumentRegistrationOptions
     with _$TextDocumentRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
   }) = _TextDocumentRegistrationOptions;
 
   factory TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -1875,7 +1724,6 @@ abstract class TextDocumentRegistrationOptions
 /// Parameters for a {@link FoldingRangeRequest}.
 @freezed
 abstract class FoldingRangeParams with _$FoldingRangeParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FoldingRangeParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -1897,7 +1745,6 @@ abstract class FoldingRangeParams with _$FoldingRangeParams {
 /// document. Clients are free to ignore invalid ranges.
 @freezed
 abstract class FoldingRange with _$FoldingRange {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FoldingRange({
     /// The zero-based start line of the range to fold. The folded area starts
     /// after the line's last character. To be valid, the end must be zero or
@@ -1937,11 +1784,11 @@ abstract class FoldingRange with _$FoldingRange {
 @freezed
 abstract class FoldingRangeRegistrationOptions
     with _$FoldingRangeRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FoldingRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1955,7 +1802,6 @@ abstract class FoldingRangeRegistrationOptions
 
 @freezed
 abstract class DeclarationParams with _$DeclarationParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DeclarationParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -1978,11 +1824,11 @@ abstract class DeclarationParams with _$DeclarationParams {
 @freezed
 abstract class DeclarationRegistrationOptions
     with _$DeclarationRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DeclarationRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1997,7 +1843,6 @@ abstract class DeclarationRegistrationOptions
 /// A parameter literal used in selection range requests.
 @freezed
 abstract class SelectionRangeParams with _$SelectionRangeParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SelectionRangeParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2022,7 +1867,6 @@ abstract class SelectionRangeParams with _$SelectionRangeParams {
 /// it.
 @freezed
 abstract class SelectionRange with _$SelectionRange {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SelectionRange({
     /// The {@link Range range} of this selection range.
     required Range range,
@@ -2039,11 +1883,11 @@ abstract class SelectionRange with _$SelectionRange {
 @freezed
 abstract class SelectionRangeRegistrationOptions
     with _$SelectionRangeRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SelectionRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -2059,7 +1903,6 @@ abstract class SelectionRangeRegistrationOptions
 @freezed
 abstract class WorkDoneProgressCreateParams
     with _$WorkDoneProgressCreateParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkDoneProgressCreateParams({
     /// The token to be used to report progress.
     required ProgressToken token,
@@ -2072,7 +1915,6 @@ abstract class WorkDoneProgressCreateParams
 @freezed
 abstract class WorkDoneProgressCancelParams
     with _$WorkDoneProgressCancelParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkDoneProgressCancelParams({
     /// The token to be used to report progress.
     required ProgressToken token,
@@ -2086,7 +1928,6 @@ abstract class WorkDoneProgressCancelParams
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyPrepareParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2107,7 +1948,6 @@ abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyItem with _$CallHierarchyItem {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyItem({
     /// The name of this item.
     required String name,
@@ -2147,11 +1987,11 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
 @freezed
 abstract class CallHierarchyRegistrationOptions
     with _$CallHierarchyRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -2169,7 +2009,6 @@ abstract class CallHierarchyRegistrationOptions
 @freezed
 abstract class CallHierarchyIncomingCallsParams
     with _$CallHierarchyIncomingCallsParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyIncomingCallsParams({
     required CallHierarchyItem item,
 
@@ -2191,7 +2030,6 @@ abstract class CallHierarchyIncomingCallsParams
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyIncomingCall({
     /// The item that makes the call.
     required CallHierarchyItem from,
@@ -2210,7 +2048,6 @@ abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
 @freezed
 abstract class CallHierarchyOutgoingCallsParams
     with _$CallHierarchyOutgoingCallsParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyOutgoingCallsParams({
     required CallHierarchyItem item,
 
@@ -2232,7 +2069,6 @@ abstract class CallHierarchyOutgoingCallsParams
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyOutgoingCall({
     /// The item that is called.
     required CallHierarchyItem to,
@@ -2252,7 +2088,6 @@ abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensParams with _$SemanticTokensParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2272,7 +2107,6 @@ abstract class SemanticTokensParams with _$SemanticTokensParams {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokens with _$SemanticTokens {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokens({
     /// The actual tokens.
     required List<int> data,
@@ -2291,7 +2125,6 @@ abstract class SemanticTokens with _$SemanticTokens {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensPartialResult({required List<int> data}) =
       _SemanticTokensPartialResult;
 
@@ -2303,11 +2136,11 @@ abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
 @freezed
 abstract class SemanticTokensRegistrationOptions
     with _$SemanticTokensRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The legend used by the server
     required SemanticTokensLegend legend,
@@ -2317,11 +2150,11 @@ abstract class SemanticTokensRegistrationOptions
     String? id,
 
     /// Server supports providing semantic tokens for a full document.
-    Object? full,
+    SemanticTokensOptionsFullBase? full,
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
-    Object? range,
+    RangeBase? range,
     bool? workDoneProgress,
   }) = _SemanticTokensRegistrationOptions;
 
@@ -2333,7 +2166,6 @@ abstract class SemanticTokensRegistrationOptions
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensDeltaParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2358,7 +2190,6 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensDelta with _$SemanticTokensDelta {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensDelta({
     /// The semantic token edits to transform a previous result into a new
     /// result.
@@ -2374,7 +2205,6 @@ abstract class SemanticTokensDelta with _$SemanticTokensDelta {
 @freezed
 abstract class SemanticTokensDeltaPartialResult
     with _$SemanticTokensDeltaPartialResult {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensDeltaPartialResult({
     required List<SemanticTokensEdit> edits,
   }) = _SemanticTokensDeltaPartialResult;
@@ -2387,7 +2217,6 @@ abstract class SemanticTokensDeltaPartialResult
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensRangeParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2411,7 +2240,6 @@ abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
 /// @since 3.16.0
 @freezed
 abstract class ShowDocumentParams with _$ShowDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ShowDocumentParams({
     /// The uri to show.
     required String uri,
@@ -2440,7 +2268,6 @@ abstract class ShowDocumentParams with _$ShowDocumentParams {
 /// @since 3.16.0
 @freezed
 abstract class ShowDocumentResult with _$ShowDocumentResult {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ShowDocumentResult({
     /// A boolean indicating if the show was successful.
     required bool success,
@@ -2452,7 +2279,6 @@ abstract class ShowDocumentResult with _$ShowDocumentResult {
 
 @freezed
 abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LinkedEditingRangeParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2472,7 +2298,6 @@ abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
 /// @since 3.16.0
 @freezed
 abstract class LinkedEditingRanges with _$LinkedEditingRanges {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LinkedEditingRanges({
     /// A list of ranges that can be edited together. The ranges must have
     /// identical length and contain identical text content. The ranges cannot
@@ -2492,11 +2317,11 @@ abstract class LinkedEditingRanges with _$LinkedEditingRanges {
 @freezed
 abstract class LinkedEditingRangeRegistrationOptions
     with _$LinkedEditingRangeRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LinkedEditingRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -2514,7 +2339,6 @@ abstract class LinkedEditingRangeRegistrationOptions
 /// @since 3.16.0
 @freezed
 abstract class CreateFilesParams with _$CreateFilesParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CreateFilesParams({
     /// An array of all files/folders created in this operation.
     required List<FileCreate> files,
@@ -2541,7 +2365,6 @@ abstract class CreateFilesParams with _$CreateFilesParams {
 /// capability: `workspace.workspaceEdit.failureHandling`
 @freezed
 abstract class WorkspaceEdit with _$WorkspaceEdit {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceEdit({
     /// A map of change annotations that can be referenced in
     /// `AnnotatedTextEdit`s or create, rename and delete file / folder
@@ -2563,7 +2386,7 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
     /// If a client neither supports `documentChanges` nor
     /// `workspace.workspaceEdit.resourceOperations` then only plain
     /// `TextEdit`s using the `changes` property are supported.
-    List<Object>? documentChanges,
+    List<WorkspaceEditDocumentChangesBase>? documentChanges,
 
     /// Holds changes to existing resources.
     Map<String, List<TextEdit>>? changes,
@@ -2578,7 +2401,6 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
 @freezed
 abstract class FileOperationRegistrationOptions
     with _$FileOperationRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileOperationRegistrationOptions({
     /// The actual filters.
     required List<FileOperationFilter> filters,
@@ -2594,7 +2416,6 @@ abstract class FileOperationRegistrationOptions
 /// @since 3.16.0
 @freezed
 abstract class RenameFilesParams with _$RenameFilesParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameFilesParams({
     /// An array of all files/folders renamed in this operation. When a folder
     /// is renamed, only the folder will be included, and not its children.
@@ -2610,7 +2431,6 @@ abstract class RenameFilesParams with _$RenameFilesParams {
 /// @since 3.16.0
 @freezed
 abstract class DeleteFilesParams with _$DeleteFilesParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DeleteFilesParams({
     /// An array of all files/folders deleted in this operation.
     required List<FileDelete> files,
@@ -2622,7 +2442,6 @@ abstract class DeleteFilesParams with _$DeleteFilesParams {
 
 @freezed
 abstract class MonikerParams with _$MonikerParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MonikerParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2646,7 +2465,6 @@ abstract class MonikerParams with _$MonikerParams {
 /// @since 3.16.0
 @freezed
 abstract class Moniker with _$Moniker {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Moniker({
     /// The scheme of the moniker. For example tsc or .Net
     required String scheme,
@@ -2668,11 +2486,11 @@ abstract class Moniker with _$Moniker {
 
 @freezed
 abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MonikerRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
     bool? workDoneProgress,
   }) = _MonikerRegistrationOptions;
 
@@ -2684,7 +2502,6 @@ abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
 /// @since 3.17.0
 @freezed
 abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeHierarchyPrepareParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2703,7 +2520,6 @@ abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
 /// @since 3.17.0
 @freezed
 abstract class TypeHierarchyItem with _$TypeHierarchyItem {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeHierarchyItem({
     /// The name of this item.
     required String name,
@@ -2745,11 +2561,11 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
 @freezed
 abstract class TypeHierarchyRegistrationOptions
     with _$TypeHierarchyRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeHierarchyRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -2767,7 +2583,6 @@ abstract class TypeHierarchyRegistrationOptions
 @freezed
 abstract class TypeHierarchySupertypesParams
     with _$TypeHierarchySupertypesParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeHierarchySupertypesParams({
     required TypeHierarchyItem item,
 
@@ -2787,7 +2602,6 @@ abstract class TypeHierarchySupertypesParams
 /// @since 3.17.0
 @freezed
 abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeHierarchySubtypesParams({
     required TypeHierarchyItem item,
 
@@ -2807,7 +2621,6 @@ abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
 /// @since 3.17.0
 @freezed
 abstract class InlineValueParams with _$InlineValueParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2832,11 +2645,11 @@ abstract class InlineValueParams with _$InlineValueParams {
 @freezed
 abstract class InlineValueRegistrationOptions
     with _$InlineValueRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -2852,7 +2665,6 @@ abstract class InlineValueRegistrationOptions
 /// @since 3.17.0
 @freezed
 abstract class InlayHintParams with _$InlayHintParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2872,7 +2684,6 @@ abstract class InlayHintParams with _$InlayHintParams {
 /// @since 3.17.0
 @freezed
 abstract class InlayHint with _$InlayHint {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHint({
     /// The position of this hint.
     /// If multiple hints have the same position, they will be shown in the
@@ -2882,7 +2693,7 @@ abstract class InlayHint with _$InlayHint {
     /// The label of this hint. A human readable string or an array of
     /// InlayHintLabelPart label parts.
     /// *Note* that neither the string nor the label part can be empty.
-    required Object label,
+    required InlayHintLabelBase label,
 
     /// A data entry field that is preserved on an inlay hint between a
     /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
@@ -2901,7 +2712,7 @@ abstract class InlayHint with _$InlayHint {
     bool? paddingLeft,
 
     /// The tooltip text when you hover over this item.
-    Object? tooltip,
+    TooltipOrDocumentationBase? tooltip,
 
     /// Optional text edits that are performed when accepting this inlay hint.
     /// *Note* that edits are expected to change the document so that the inlay
@@ -2923,11 +2734,11 @@ abstract class InlayHint with _$InlayHint {
 @freezed
 abstract class InlayHintRegistrationOptions
     with _$InlayHintRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -2947,7 +2758,6 @@ abstract class InlayHintRegistrationOptions
 /// @since 3.17.0
 @freezed
 abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentDiagnosticParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -2975,9 +2785,8 @@ abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
 @freezed
 abstract class DocumentDiagnosticReportPartialResult
     with _$DocumentDiagnosticReportPartialResult {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentDiagnosticReportPartialResult({
-    required Map<String, Object> relatedDocuments,
+    required Map<String, RelatedDocumentsBase> relatedDocuments,
   }) = _DocumentDiagnosticReportPartialResult;
 
   factory DocumentDiagnosticReportPartialResult.fromJson(
@@ -2990,7 +2799,6 @@ abstract class DocumentDiagnosticReportPartialResult
 @freezed
 abstract class DiagnosticServerCancellationData
     with _$DiagnosticServerCancellationData {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DiagnosticServerCancellationData({
     required bool retriggerRequest,
   }) = _DiagnosticServerCancellationData;
@@ -3005,11 +2813,11 @@ abstract class DiagnosticServerCancellationData
 @freezed
 abstract class DiagnosticRegistrationOptions
     with _$DiagnosticRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DiagnosticRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// Whether the language has inter file dependencies meaning that editing
     /// code in one file can result in a different diagnostic set in another
@@ -3038,7 +2846,6 @@ abstract class DiagnosticRegistrationOptions
 /// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceDiagnosticParams({
     /// The currently known diagnostic reports with their previous result ids.
     required List<PreviousResultId> previousResultIds,
@@ -3062,7 +2869,6 @@ abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
 /// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceDiagnosticReport({
     required List<WorkspaceDocumentDiagnosticReport> items,
   }) = _WorkspaceDiagnosticReport;
@@ -3076,7 +2882,6 @@ abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
 @freezed
 abstract class WorkspaceDiagnosticReportPartialResult
     with _$WorkspaceDiagnosticReportPartialResult {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceDiagnosticReportPartialResult({
     required List<WorkspaceDocumentDiagnosticReport> items,
   }) = _WorkspaceDiagnosticReportPartialResult;
@@ -3091,7 +2896,6 @@ abstract class WorkspaceDiagnosticReportPartialResult
 @freezed
 abstract class DidOpenNotebookDocumentParams
     with _$DidOpenNotebookDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidOpenNotebookDocumentParams({
     /// The notebook document that got opened.
     required NotebookDocument notebookDocument,
@@ -3109,7 +2913,6 @@ abstract class DidOpenNotebookDocumentParams
 @freezed
 abstract class DidChangeNotebookDocumentParams
     with _$DidChangeNotebookDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeNotebookDocumentParams({
     /// The notebook document that did change. The version number points to the
     /// version after all provided changes have been applied. If only the text
@@ -3140,7 +2943,6 @@ abstract class DidChangeNotebookDocumentParams
 @freezed
 abstract class DidSaveNotebookDocumentParams
     with _$DidSaveNotebookDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidSaveNotebookDocumentParams({
     /// The notebook document that got saved.
     required NotebookDocumentIdentifier notebookDocument,
@@ -3155,7 +2957,6 @@ abstract class DidSaveNotebookDocumentParams
 @freezed
 abstract class DidCloseNotebookDocumentParams
     with _$DidCloseNotebookDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidCloseNotebookDocumentParams({
     /// The notebook document that got closed.
     required NotebookDocumentIdentifier notebookDocument,
@@ -3173,7 +2974,6 @@ abstract class DidCloseNotebookDocumentParams
 /// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionParams with _$InlineCompletionParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -3198,7 +2998,6 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
 /// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionList with _$InlineCompletionList {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionList({
     /// The inline completion items
     required List<InlineCompletionItem> items,
@@ -3213,10 +3012,9 @@ abstract class InlineCompletionList with _$InlineCompletionList {
 /// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionItem with _$InlineCompletionItem {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionItem({
     /// The text to replace the range with. Must be set.
-    required Object insertText,
+    required InlineCompletionItemInsertTextBase insertText,
 
     /// An optional {@link Command} that is executed *after* inserting this
     /// completion.
@@ -3241,11 +3039,11 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
 @freezed
 abstract class InlineCompletionRegistrationOptions
     with _$InlineCompletionRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -3260,7 +3058,6 @@ abstract class InlineCompletionRegistrationOptions
 
 @freezed
 abstract class RegistrationParams with _$RegistrationParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RegistrationParams({
     required List<Registration> registrations,
   }) = _RegistrationParams;
@@ -3271,7 +3068,6 @@ abstract class RegistrationParams with _$RegistrationParams {
 
 @freezed
 abstract class UnregistrationParams with _$UnregistrationParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory UnregistrationParams({
     required List<Unregistration> unregisterations,
   }) = _UnregistrationParams;
@@ -3282,17 +3078,16 @@ abstract class UnregistrationParams with _$UnregistrationParams {
 
 @freezed
 abstract class InitializeParams with _$InitializeParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InitializeParams({
     /// The process Id of the parent process that started the server.
     /// Is `null` if the process has not been started by another process. If
     /// the parent process is not alive then the server should exit.
-    required Object processId,
+    required ProcessIdOrVersionBase processId,
 
     /// The rootUri of the workspace. Is null if no folder is open. If both
     /// `rootPath` and `rootUri` are set `rootUri` wins.
     /// @deprecated in favour of workspaceFolders.
-    required Object rootUri,
+    required InitializeParamsRootUriBase rootUri,
 
     /// The capabilities provided by the client (editor or tool)
     required ClientCapabilities capabilities,
@@ -3302,7 +3097,7 @@ abstract class InitializeParams with _$InitializeParams {
     /// folders. It can be `null` if the client supports workspace folders but
     /// none are configured.
     /// @since 3.6.0
-    Object? workspaceFolders,
+    WorkspaceFoldersInitializeParamsWorkspaceFoldersBase? workspaceFolders,
 
     /// The initial trace setting. If omitted trace is disabled ('off').
     TraceValues? trace,
@@ -3312,7 +3107,7 @@ abstract class InitializeParams with _$InitializeParams {
 
     /// The rootPath of the workspace. Is null if no folder is open.
     /// @deprecated in favour of rootUri.
-    Object? rootPath,
+    InitializeParamsRootPathBase? rootPath,
 
     /// The locale the client is currently showing the user interface in. This
     /// must not necessarily be the locale of the operating system.
@@ -3336,7 +3131,6 @@ abstract class InitializeParams with _$InitializeParams {
 /// The result returned from an initialize request.
 @freezed
 abstract class InitializeResult with _$InitializeResult {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InitializeResult({
     /// The capabilities the language server provides.
     required ServerCapabilities capabilities,
@@ -3354,7 +3148,6 @@ abstract class InitializeResult with _$InitializeResult {
 /// fails.
 @freezed
 abstract class InitializeError with _$InitializeError {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InitializeError({
     /// Indicates whether the client execute the following retry logic: (1)
     /// show the message provided by the ResponseError to the user (2) user
@@ -3369,7 +3162,6 @@ abstract class InitializeError with _$InitializeError {
 
 @freezed
 abstract class InitializedParams with _$InitializedParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InitializedParams() = _InitializedParams;
 
   factory InitializedParams.fromJson(Map<String, dynamic> json) =>
@@ -3380,7 +3172,6 @@ abstract class InitializedParams with _$InitializedParams {
 @freezed
 abstract class DidChangeConfigurationParams
     with _$DidChangeConfigurationParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeConfigurationParams({
     /// The actual changed settings
     required LSPAny settings,
@@ -3393,9 +3184,9 @@ abstract class DidChangeConfigurationParams
 @freezed
 abstract class DidChangeConfigurationRegistrationOptions
     with _$DidChangeConfigurationRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
-  const factory DidChangeConfigurationRegistrationOptions({Object? section}) =
-      _DidChangeConfigurationRegistrationOptions;
+  const factory DidChangeConfigurationRegistrationOptions({
+    DidChangeConfigurationRegistrationOptionsSectionBase? section,
+  }) = _DidChangeConfigurationRegistrationOptions;
 
   factory DidChangeConfigurationRegistrationOptions.fromJson(
     Map<String, dynamic> json,
@@ -3405,7 +3196,6 @@ abstract class DidChangeConfigurationRegistrationOptions
 /// The parameters of a notification message.
 @freezed
 abstract class ShowMessageParams with _$ShowMessageParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ShowMessageParams({
     /// The message type. See {@link MessageType}
     required MessageType type,
@@ -3420,7 +3210,6 @@ abstract class ShowMessageParams with _$ShowMessageParams {
 
 @freezed
 abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ShowMessageRequestParams({
     /// The message type. See {@link MessageType}
     required MessageType type,
@@ -3438,7 +3227,6 @@ abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
 
 @freezed
 abstract class MessageActionItem with _$MessageActionItem {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MessageActionItem({
     /// A short title like 'Retry', 'Open Log' etc.
     required String title,
@@ -3451,7 +3239,6 @@ abstract class MessageActionItem with _$MessageActionItem {
 /// The log message parameters.
 @freezed
 abstract class LogMessageParams with _$LogMessageParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LogMessageParams({
     /// The message type. See {@link MessageType}
     required MessageType type,
@@ -3467,7 +3254,6 @@ abstract class LogMessageParams with _$LogMessageParams {
 /// The parameters sent in an open text document notification
 @freezed
 abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidOpenTextDocumentParams({
     /// The document that was opened.
     required TextDocumentItem textDocument,
@@ -3480,7 +3266,6 @@ abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
 /// The change text document notification's parameters.
 @freezed
 abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeTextDocumentParams({
     /// The document that did change. The version number points to the version
     /// after all provided content changes have been applied.
@@ -3508,11 +3293,11 @@ abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
 @freezed
 abstract class TextDocumentChangeRegistrationOptions
     with _$TextDocumentChangeRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentChangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// How documents are synced to the server.
     required TextDocumentSyncKind syncKind,
@@ -3526,7 +3311,6 @@ abstract class TextDocumentChangeRegistrationOptions
 /// The parameters sent in a close text document notification
 @freezed
 abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidCloseTextDocumentParams({
     /// The document that was closed.
     required TextDocumentIdentifier textDocument,
@@ -3539,7 +3323,6 @@ abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
 /// The parameters sent in a save text document notification
 @freezed
 abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidSaveTextDocumentParams({
     /// The document that was saved.
     required TextDocumentIdentifier textDocument,
@@ -3557,11 +3340,11 @@ abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
 @freezed
 abstract class TextDocumentSaveRegistrationOptions
     with _$TextDocumentSaveRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentSaveRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The client is supposed to include the content on save.
     bool? includeText,
@@ -3575,7 +3358,6 @@ abstract class TextDocumentSaveRegistrationOptions
 /// The parameters sent in a will save text document notification.
 @freezed
 abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WillSaveTextDocumentParams({
     /// The document that will be saved.
     required TextDocumentIdentifier textDocument,
@@ -3591,7 +3373,6 @@ abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
 /// A text edit applicable to a text document.
 @freezed
 abstract class TextEdit with _$TextEdit {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextEdit({
     /// The range of the text document to be manipulated. To insert text into a
     /// document create a range where start === end.
@@ -3608,7 +3389,6 @@ abstract class TextEdit with _$TextEdit {
 /// The watched files change notification's parameters.
 @freezed
 abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeWatchedFilesParams({
     /// The actual file events.
     required List<FileEvent> changes,
@@ -3623,7 +3403,6 @@ abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
 @freezed
 abstract class DidChangeWatchedFilesRegistrationOptions
     with _$DidChangeWatchedFilesRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeWatchedFilesRegistrationOptions({
     /// The watchers to register.
     required List<FileSystemWatcher> watchers,
@@ -3637,7 +3416,6 @@ abstract class DidChangeWatchedFilesRegistrationOptions
 /// The publish diagnostic notification's parameters.
 @freezed
 abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory PublishDiagnosticsParams({
     /// The URI for which diagnostic information is reported.
     required String uri,
@@ -3658,7 +3436,6 @@ abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
 /// Completion parameters
 @freezed
 abstract class CompletionParams with _$CompletionParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -3687,7 +3464,6 @@ abstract class CompletionParams with _$CompletionParams {
 /// complete text that is being typed.
 @freezed
 abstract class CompletionItem with _$CompletionItem {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionItem({
     /// The label of this completion item.
     /// The label property is also by default the text that is inserted when
@@ -3748,7 +3524,7 @@ abstract class CompletionItem with _$CompletionItem {
     /// prefix of the edit's replace range, that means it must be contained and
     /// starting at the same position.
     /// @since 3.16.0 additional type `InsertReplaceEdit`
-    Object? textEdit,
+    CompletionItemTextEditBase? textEdit,
 
     /// How whitespace and indentation is handled during completion item
     /// insertion. If not provided the clients default value depends on the
@@ -3792,7 +3568,7 @@ abstract class CompletionItem with _$CompletionItem {
     bool? deprecated,
 
     /// A human-readable string that represents a doc-comment.
-    Object? documentation,
+    TooltipOrDocumentationBase? documentation,
 
     /// A human-readable string with additional information about this item,
     /// like type or symbol information.
@@ -3819,7 +3595,6 @@ abstract class CompletionItem with _$CompletionItem {
 /// items} to be presented in the editor.
 @freezed
 abstract class CompletionList with _$CompletionList {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionList({
     /// This list it not complete. Further typing results in recomputing this
     /// list.
@@ -3841,7 +3616,7 @@ abstract class CompletionList with _$CompletionList {
     /// @since 3.17.0
     ({
       List<String>? commitCharacters,
-      Object? editRange,
+      CompletionListEditRangeBase? editRange,
       InsertTextFormat? insertTextFormat,
       InsertTextMode? insertTextMode,
       LSPAny? data,
@@ -3857,11 +3632,11 @@ abstract class CompletionList with _$CompletionList {
 @freezed
 abstract class CompletionRegistrationOptions
     with _$CompletionRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The server supports the following `CompletionItem` specific
     /// capabilities.
@@ -3901,7 +3676,6 @@ abstract class CompletionRegistrationOptions
 /// Parameters for a {@link HoverRequest}.
 @freezed
 abstract class HoverParams with _$HoverParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory HoverParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -3920,10 +3694,9 @@ abstract class HoverParams with _$HoverParams {
 /// The result of a hover request.
 @freezed
 abstract class Hover with _$Hover {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Hover({
     /// The hover's content
-    required Object contents,
+    required HoverContentsBase contents,
 
     /// An optional range inside the text document that is used to visualize
     /// the hover, e.g. by changing the background color.
@@ -3936,11 +3709,11 @@ abstract class Hover with _$Hover {
 /// Registration options for a {@link HoverRequest}.
 @freezed
 abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory HoverRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
     bool? workDoneProgress,
   }) = _HoverRegistrationOptions;
 
@@ -3951,7 +3724,6 @@ abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
 /// Parameters for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpParams with _$SignatureHelpParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SignatureHelpParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -3978,7 +3750,6 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
 /// active parameter.
 @freezed
 abstract class SignatureHelp with _$SignatureHelp {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SignatureHelp({
     /// One or more signatures.
     required List<SignatureInformation> signatures,
@@ -4009,11 +3780,11 @@ abstract class SignatureHelp with _$SignatureHelp {
 @freezed
 abstract class SignatureHelpRegistrationOptions
     with _$SignatureHelpRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SignatureHelpRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// List of characters that re-trigger signature help.
     /// These trigger characters are only active when signature help is already
@@ -4035,7 +3806,6 @@ abstract class SignatureHelpRegistrationOptions
 /// Parameters for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionParams with _$DefinitionParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DefinitionParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -4059,11 +3829,11 @@ abstract class DefinitionParams with _$DefinitionParams {
 @freezed
 abstract class DefinitionRegistrationOptions
     with _$DefinitionRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DefinitionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
     bool? workDoneProgress,
   }) = _DefinitionRegistrationOptions;
 
@@ -4074,7 +3844,6 @@ abstract class DefinitionRegistrationOptions
 /// Parameters for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceParams with _$ReferenceParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ReferenceParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -4099,11 +3868,11 @@ abstract class ReferenceParams with _$ReferenceParams {
 @freezed
 abstract class ReferenceRegistrationOptions
     with _$ReferenceRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ReferenceRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
     bool? workDoneProgress,
   }) = _ReferenceRegistrationOptions;
 
@@ -4114,7 +3883,6 @@ abstract class ReferenceRegistrationOptions
 /// Parameters for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightParams with _$DocumentHighlightParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentHighlightParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -4139,7 +3907,6 @@ abstract class DocumentHighlightParams with _$DocumentHighlightParams {
 /// visualized by changing the background color of its range.
 @freezed
 abstract class DocumentHighlight with _$DocumentHighlight {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentHighlight({
     /// The range this highlight applies to.
     required Range range,
@@ -4156,11 +3923,11 @@ abstract class DocumentHighlight with _$DocumentHighlight {
 @freezed
 abstract class DocumentHighlightRegistrationOptions
     with _$DocumentHighlightRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentHighlightRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
     bool? workDoneProgress,
   }) = _DocumentHighlightRegistrationOptions;
 
@@ -4172,7 +3939,6 @@ abstract class DocumentHighlightRegistrationOptions
 /// Parameters for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolParams with _$DocumentSymbolParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentSymbolParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -4193,7 +3959,6 @@ abstract class DocumentSymbolParams with _$DocumentSymbolParams {
 /// variables, classes, interfaces etc.
 @freezed
 abstract class SymbolInformation with _$SymbolInformation {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SymbolInformation({
     /// The name of this symbol.
     required String name,
@@ -4237,7 +4002,6 @@ abstract class SymbolInformation with _$SymbolInformation {
 /// e.g. the range of an identifier.
 @freezed
 abstract class DocumentSymbol with _$DocumentSymbol {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentSymbol({
     /// The name of this symbol. Will be displayed in the user interface and
     /// therefore must not be an empty string or a string only consisting of
@@ -4281,11 +4045,11 @@ abstract class DocumentSymbol with _$DocumentSymbol {
 @freezed
 abstract class DocumentSymbolRegistrationOptions
     with _$DocumentSymbolRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentSymbolRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// A human-readable string that is shown when multiple outlines trees are
     /// shown for the same document.
@@ -4302,7 +4066,6 @@ abstract class DocumentSymbolRegistrationOptions
 /// The parameters of a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionParams with _$CodeActionParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeActionParams({
     /// The document in which the command was invoked.
     required TextDocumentIdentifier textDocument,
@@ -4331,7 +4094,6 @@ abstract class CodeActionParams with _$CodeActionParams {
 /// function when invoked.
 @freezed
 abstract class Command with _$Command {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Command({
     /// Title of the command, like `save`.
     required String title,
@@ -4354,7 +4116,6 @@ abstract class Command with _$Command {
 /// executed.
 @freezed
 abstract class CodeAction with _$CodeAction {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeAction({
     /// A short, human-readable, title for this code action.
     required String title,
@@ -4412,11 +4173,11 @@ abstract class CodeAction with _$CodeAction {
 @freezed
 abstract class CodeActionRegistrationOptions
     with _$CodeActionRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeActionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// The server provides support to resolve additional information for a
     /// code action.
@@ -4437,7 +4198,6 @@ abstract class CodeActionRegistrationOptions
 /// The parameters of a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceSymbolParams({
     /// A query string to filter symbols by. Clients may send an empty string
     /// here to request all symbols.
@@ -4461,7 +4221,6 @@ abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
 /// @since 3.17.0
 @freezed
 abstract class WorkspaceSymbol with _$WorkspaceSymbol {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceSymbol({
     /// The name of this symbol.
     required String name,
@@ -4473,7 +4232,7 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     /// location without a range depends on the client capability
     /// `workspace.symbol.resolveSupport`.
     /// See SymbolInformation#location for more details.
-    required Object location,
+    required WorkspaceSymbolLocationBase location,
 
     /// A data entry field that is preserved on a workspace symbol between a
     /// workspace symbol request and a workspace symbol resolve request.
@@ -4498,7 +4257,6 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
 @freezed
 abstract class WorkspaceSymbolRegistrationOptions
     with _$WorkspaceSymbolRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceSymbolRegistrationOptions({
     /// The server provides support to resolve additional information for a
     /// workspace symbol.
@@ -4515,7 +4273,6 @@ abstract class WorkspaceSymbolRegistrationOptions
 /// The parameters of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensParams with _$CodeLensParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeLensParams({
     /// The document to request code lens for.
     required TextDocumentIdentifier textDocument,
@@ -4540,7 +4297,6 @@ abstract class CodeLensParams with _$CodeLensParams {
 /// should be done in two stages.
 @freezed
 abstract class CodeLens with _$CodeLens {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeLens({
     /// The range in which this code lens is valid. Should only span a single
     /// line.
@@ -4561,11 +4317,11 @@ abstract class CodeLens with _$CodeLens {
 /// Registration options for a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeLensRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// Code lens has a resolve provider as well.
     bool? resolveProvider,
@@ -4579,7 +4335,6 @@ abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
 /// The parameters of a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkParams with _$DocumentLinkParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentLinkParams({
     /// The document to provide document links for.
     required TextDocumentIdentifier textDocument,
@@ -4601,7 +4356,6 @@ abstract class DocumentLinkParams with _$DocumentLinkParams {
 /// web site.
 @freezed
 abstract class DocumentLink with _$DocumentLink {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentLink({
     /// The range this link applies to.
     required Range range,
@@ -4630,11 +4384,11 @@ abstract class DocumentLink with _$DocumentLink {
 @freezed
 abstract class DocumentLinkRegistrationOptions
     with _$DocumentLinkRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentLinkRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// Document links have a resolve provider as well.
     bool? resolveProvider,
@@ -4648,7 +4402,6 @@ abstract class DocumentLinkRegistrationOptions
 /// The parameters of a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingParams with _$DocumentFormattingParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentFormattingParams({
     /// The document to format.
     required TextDocumentIdentifier textDocument,
@@ -4668,11 +4421,11 @@ abstract class DocumentFormattingParams with _$DocumentFormattingParams {
 @freezed
 abstract class DocumentFormattingRegistrationOptions
     with _$DocumentFormattingRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
     bool? workDoneProgress,
   }) = _DocumentFormattingRegistrationOptions;
 
@@ -4685,7 +4438,6 @@ abstract class DocumentFormattingRegistrationOptions
 @freezed
 abstract class DocumentRangeFormattingParams
     with _$DocumentRangeFormattingParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentRangeFormattingParams({
     /// The document to format.
     required TextDocumentIdentifier textDocument,
@@ -4708,11 +4460,11 @@ abstract class DocumentRangeFormattingParams
 @freezed
 abstract class DocumentRangeFormattingRegistrationOptions
     with _$DocumentRangeFormattingRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentRangeFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// Whether the server supports formatting multiple ranges at once.
     /// @since 3.18.0 @proposed
@@ -4730,7 +4482,6 @@ abstract class DocumentRangeFormattingRegistrationOptions
 @freezed
 abstract class DocumentRangesFormattingParams
     with _$DocumentRangesFormattingParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentRangesFormattingParams({
     /// The document to format.
     required TextDocumentIdentifier textDocument,
@@ -4753,7 +4504,6 @@ abstract class DocumentRangesFormattingParams
 @freezed
 abstract class DocumentOnTypeFormattingParams
     with _$DocumentOnTypeFormattingParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentOnTypeFormattingParams({
     /// The document to format.
     required TextDocumentIdentifier textDocument,
@@ -4782,11 +4532,11 @@ abstract class DocumentOnTypeFormattingParams
 @freezed
 abstract class DocumentOnTypeFormattingRegistrationOptions
     with _$DocumentOnTypeFormattingRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentOnTypeFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// A character on which formatting should be triggered, like `{`.
     required String firstTriggerCharacter,
@@ -4803,7 +4553,6 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
 /// The parameters of a {@link RenameRequest}.
 @freezed
 abstract class RenameParams with _$RenameParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameParams({
     /// The document to rename.
     required TextDocumentIdentifier textDocument,
@@ -4826,11 +4575,11 @@ abstract class RenameParams with _$RenameParams {
 /// Registration options for a {@link RenameRequest}.
 @freezed
 abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Object documentSelector,
+    required TextDocumentRegistrationOptionsDocumentSelectorBase
+    documentSelector,
 
     /// Renames should be checked and tested before being executed.
     /// @since version 3.12.0
@@ -4844,7 +4593,6 @@ abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
 
 @freezed
 abstract class PrepareRenameParams with _$PrepareRenameParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory PrepareRenameParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -4863,7 +4611,6 @@ abstract class PrepareRenameParams with _$PrepareRenameParams {
 /// The parameters of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandParams with _$ExecuteCommandParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ExecuteCommandParams({
     /// The identifier of the actual command handler.
     required String command,
@@ -4883,7 +4630,6 @@ abstract class ExecuteCommandParams with _$ExecuteCommandParams {
 @freezed
 abstract class ExecuteCommandRegistrationOptions
     with _$ExecuteCommandRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ExecuteCommandRegistrationOptions({
     /// The commands to be executed on the server
     required List<String> commands,
@@ -4898,7 +4644,6 @@ abstract class ExecuteCommandRegistrationOptions
 /// The parameters passed via an apply workspace edit request.
 @freezed
 abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ApplyWorkspaceEditParams({
     /// The edits to apply.
     required WorkspaceEdit edit,
@@ -4916,7 +4661,6 @@ abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
 /// @since 3.17 renamed from ApplyWorkspaceEditResponse
 @freezed
 abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ApplyWorkspaceEditResult({
     /// Indicates whether the edit was applied or not.
     required bool applied,
@@ -4939,7 +4683,6 @@ abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
 
 @freezed
 abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkDoneProgressBegin({
     required String kind,
 
@@ -4973,7 +4716,6 @@ abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
 
 @freezed
 abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkDoneProgressReport({
     required String kind,
 
@@ -5002,7 +4744,6 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
 
 @freezed
 abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkDoneProgressEnd({
     required String kind,
 
@@ -5017,7 +4758,6 @@ abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
 
 @freezed
 abstract class SetTraceParams with _$SetTraceParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SetTraceParams({required TraceValues value}) = _SetTraceParams;
 
   factory SetTraceParams.fromJson(Map<String, dynamic> json) =>
@@ -5026,7 +4766,6 @@ abstract class SetTraceParams with _$SetTraceParams {
 
 @freezed
 abstract class LogTraceParams with _$LogTraceParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LogTraceParams({required String message, String? verbose}) =
       _LogTraceParams;
 
@@ -5036,10 +4775,9 @@ abstract class LogTraceParams with _$LogTraceParams {
 
 @freezed
 abstract class CancelParams with _$CancelParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CancelParams({
     /// The request id to cancel.
-    required Object id,
+    required ProgressTokenBase id,
   }) = _CancelParams;
 
   factory CancelParams.fromJson(Map<String, dynamic> json) =>
@@ -5048,7 +4786,6 @@ abstract class CancelParams with _$CancelParams {
 
 @freezed
 abstract class ProgressParams with _$ProgressParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ProgressParams({
     /// The progress token provided by the client or server.
     required ProgressToken token,
@@ -5065,7 +4802,6 @@ abstract class ProgressParams with _$ProgressParams {
 /// a position inside that document.
 @freezed
 abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentPositionParams({
     /// The text document.
     required TextDocumentIdentifier textDocument,
@@ -5080,7 +4816,6 @@ abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
 
 @freezed
 abstract class WorkDoneProgressParams with _$WorkDoneProgressParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkDoneProgressParams({
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -5092,7 +4827,6 @@ abstract class WorkDoneProgressParams with _$WorkDoneProgressParams {
 
 @freezed
 abstract class PartialResultParams with _$PartialResultParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory PartialResultParams({
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
@@ -5108,7 +4842,6 @@ abstract class PartialResultParams with _$PartialResultParams {
 /// origin range.
 @freezed
 abstract class LocationLink with _$LocationLink {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LocationLink({
     /// The target resource identifier of this link.
     required String targetUri,
@@ -5143,7 +4876,6 @@ abstract class LocationLink with _$LocationLink {
 /// character: 23 } end : { line 6, character : 0 } } ```
 @freezed
 abstract class Range with _$Range {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Range({
     /// The range's start position.
     required Position start,
@@ -5157,7 +4889,6 @@ abstract class Range with _$Range {
 
 @freezed
 abstract class ImplementationOptions with _$ImplementationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ImplementationOptions({bool? workDoneProgress}) =
       _ImplementationOptions;
 
@@ -5169,7 +4900,6 @@ abstract class ImplementationOptions with _$ImplementationOptions {
 /// request.
 @freezed
 abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory StaticRegistrationOptions({
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -5182,7 +4912,6 @@ abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
 
 @freezed
 abstract class TypeDefinitionOptions with _$TypeDefinitionOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeDefinitionOptions({bool? workDoneProgress}) =
       _TypeDefinitionOptions;
 
@@ -5193,7 +4922,6 @@ abstract class TypeDefinitionOptions with _$TypeDefinitionOptions {
 /// The workspace folder change event.
 @freezed
 abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFoldersChangeEvent({
     /// The array of added workspace folders
     required List<WorkspaceFolder> added,
@@ -5208,7 +4936,6 @@ abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
 
 @freezed
 abstract class ConfigurationItem with _$ConfigurationItem {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ConfigurationItem({
     /// The configuration section asked for.
     String? section,
@@ -5224,7 +4951,6 @@ abstract class ConfigurationItem with _$ConfigurationItem {
 /// A literal to identify a text document in the client.
 @freezed
 abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentIdentifier({
     /// The text document's uri.
     required String uri,
@@ -5237,7 +4963,6 @@ abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
 /// Represents a color in RGBA space.
 @freezed
 abstract class Color with _$Color {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Color({
     /// The red component of this color in the range [0-1].
     required double red,
@@ -5257,7 +4982,6 @@ abstract class Color with _$Color {
 
 @freezed
 abstract class DocumentColorOptions with _$DocumentColorOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentColorOptions({bool? workDoneProgress}) =
       _DocumentColorOptions;
 
@@ -5267,7 +4991,6 @@ abstract class DocumentColorOptions with _$DocumentColorOptions {
 
 @freezed
 abstract class FoldingRangeOptions with _$FoldingRangeOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FoldingRangeOptions({bool? workDoneProgress}) =
       _FoldingRangeOptions;
 
@@ -5277,7 +5000,6 @@ abstract class FoldingRangeOptions with _$FoldingRangeOptions {
 
 @freezed
 abstract class DeclarationOptions with _$DeclarationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DeclarationOptions({bool? workDoneProgress}) =
       _DeclarationOptions;
 
@@ -5317,7 +5039,6 @@ abstract class DeclarationOptions with _$DeclarationOptions {
 /// @since 3.17.0 - support for negotiated position encoding.
 @freezed
 abstract class Position with _$Position {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Position({
     /// Line position in a document (zero-based).
     /// If a line number is greater than the number of lines in a document, it
@@ -5339,7 +5060,6 @@ abstract class Position with _$Position {
 
 @freezed
 abstract class SelectionRangeOptions with _$SelectionRangeOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SelectionRangeOptions({bool? workDoneProgress}) =
       _SelectionRangeOptions;
 
@@ -5351,7 +5071,6 @@ abstract class SelectionRangeOptions with _$SelectionRangeOptions {
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyOptions with _$CallHierarchyOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyOptions({bool? workDoneProgress}) =
       _CallHierarchyOptions;
 
@@ -5362,17 +5081,16 @@ abstract class CallHierarchyOptions with _$CallHierarchyOptions {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensOptions with _$SemanticTokensOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensOptions({
     /// The legend used by the server
     required SemanticTokensLegend legend,
 
     /// Server supports providing semantic tokens for a full document.
-    Object? full,
+    SemanticTokensOptionsFullBase? full,
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
-    Object? range,
+    RangeBase? range,
     bool? workDoneProgress,
   }) = _SemanticTokensOptions;
 
@@ -5383,7 +5101,6 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensEdit with _$SemanticTokensEdit {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensEdit({
     /// The start offset of the edit.
     required int start,
@@ -5401,7 +5118,6 @@ abstract class SemanticTokensEdit with _$SemanticTokensEdit {
 
 @freezed
 abstract class LinkedEditingRangeOptions with _$LinkedEditingRangeOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LinkedEditingRangeOptions({bool? workDoneProgress}) =
       _LinkedEditingRangeOptions;
 
@@ -5413,7 +5129,6 @@ abstract class LinkedEditingRangeOptions with _$LinkedEditingRangeOptions {
 /// @since 3.16.0
 @freezed
 abstract class FileCreate with _$FileCreate {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileCreate({
     /// A file:// URI for the location of the file/folder being created.
     required String uri,
@@ -5430,7 +5145,6 @@ abstract class FileCreate with _$FileCreate {
 /// any kind of ordering. However the edits must be non overlapping.
 @freezed
 abstract class TextDocumentEdit with _$TextDocumentEdit {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentEdit({
     /// The text document to change.
     required OptionalVersionedTextDocumentIdentifier textDocument,
@@ -5438,7 +5152,7 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
     /// The edits to be applied.
     /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
     /// client capability.
-    required List<Object> edits,
+    required List<TextDocumentEditEditsBase> edits,
   }) = _TextDocumentEdit;
 
   factory TextDocumentEdit.fromJson(Map<String, dynamic> json) =>
@@ -5448,7 +5162,6 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
 /// Create file operation.
 @freezed
 abstract class CreateFile with _$CreateFile {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CreateFile({
     /// A create
     required String kind,
@@ -5471,7 +5184,6 @@ abstract class CreateFile with _$CreateFile {
 /// Rename file operation
 @freezed
 abstract class RenameFile with _$RenameFile {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameFile({
     /// A rename
     required String kind,
@@ -5497,7 +5209,6 @@ abstract class RenameFile with _$RenameFile {
 /// Delete file operation
 @freezed
 abstract class DeleteFile with _$DeleteFile {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DeleteFile({
     /// A delete
     required String kind,
@@ -5521,7 +5232,6 @@ abstract class DeleteFile with _$DeleteFile {
 /// @since 3.16.0
 @freezed
 abstract class ChangeAnnotation with _$ChangeAnnotation {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ChangeAnnotation({
     /// A human-readable string describing the actual change. The string is
     /// rendered prominent in the user interface.
@@ -5545,7 +5255,6 @@ abstract class ChangeAnnotation with _$ChangeAnnotation {
 /// @since 3.16.0
 @freezed
 abstract class FileOperationFilter with _$FileOperationFilter {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileOperationFilter({
     /// The actual file operation pattern.
     required FileOperationPattern pattern,
@@ -5562,7 +5271,6 @@ abstract class FileOperationFilter with _$FileOperationFilter {
 /// @since 3.16.0
 @freezed
 abstract class FileRename with _$FileRename {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileRename({
     /// A file:// URI for the original location of the file/folder being
     /// renamed.
@@ -5580,7 +5288,6 @@ abstract class FileRename with _$FileRename {
 /// @since 3.16.0
 @freezed
 abstract class FileDelete with _$FileDelete {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileDelete({
     /// A file:// URI for the location of the file/folder being deleted.
     required String uri,
@@ -5592,7 +5299,6 @@ abstract class FileDelete with _$FileDelete {
 
 @freezed
 abstract class MonikerOptions with _$MonikerOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MonikerOptions({bool? workDoneProgress}) = _MonikerOptions;
 
   factory MonikerOptions.fromJson(Map<String, dynamic> json) =>
@@ -5603,7 +5309,6 @@ abstract class MonikerOptions with _$MonikerOptions {
 /// @since 3.17.0
 @freezed
 abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeHierarchyOptions({bool? workDoneProgress}) =
       _TypeHierarchyOptions;
 
@@ -5614,7 +5319,6 @@ abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
 /// @since 3.17.0
 @freezed
 abstract class InlineValueContext with _$InlineValueContext {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueContext({
     /// The stack frame (as a DAP Id) where the execution has stopped.
     required int frameId,
@@ -5633,7 +5337,6 @@ abstract class InlineValueContext with _$InlineValueContext {
 /// @since 3.17.0
 @freezed
 abstract class InlineValueText with _$InlineValueText {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueText({
     /// The document range for which the inline value applies.
     required Range range,
@@ -5653,7 +5356,6 @@ abstract class InlineValueText with _$InlineValueText {
 /// @since 3.17.0
 @freezed
 abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueVariableLookup({
     /// The document range for which the inline value applies. The range is
     /// used to extract the variable name from the underlying document.
@@ -5678,7 +5380,6 @@ abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
 @freezed
 abstract class InlineValueEvaluatableExpression
     with _$InlineValueEvaluatableExpression {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueEvaluatableExpression({
     /// The document range for which the inline value applies. The range is
     /// used to extract the evaluatable expression from the underlying
@@ -5698,7 +5399,6 @@ abstract class InlineValueEvaluatableExpression
 /// @since 3.17.0
 @freezed
 abstract class InlineValueOptions with _$InlineValueOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueOptions({bool? workDoneProgress}) =
       _InlineValueOptions;
 
@@ -5711,7 +5411,6 @@ abstract class InlineValueOptions with _$InlineValueOptions {
 /// @since 3.17.0
 @freezed
 abstract class InlayHintLabelPart with _$InlayHintLabelPart {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintLabelPart({
     /// The value of this label part.
     required String value,
@@ -5734,7 +5433,7 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
     /// The tooltip text when you hover over this label part. Depending on the
     /// client capability `inlayHint.resolveSupport` clients might resolve this
     /// property late using the resolve request.
-    Object? tooltip,
+    TooltipOrDocumentationBase? tooltip,
   }) = _InlayHintLabelPart;
 
   factory InlayHintLabelPart.fromJson(Map<String, dynamic> json) =>
@@ -5756,7 +5455,6 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
 /// script execution.
 @freezed
 abstract class MarkupContent with _$MarkupContent {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MarkupContent({
     /// The type of the Markup
     required MarkupKind kind,
@@ -5773,7 +5471,6 @@ abstract class MarkupContent with _$MarkupContent {
 /// @since 3.17.0
 @freezed
 abstract class InlayHintOptions with _$InlayHintOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintOptions({
     /// The server provides support to resolve additional information for an
     /// inlay hint item.
@@ -5790,7 +5487,6 @@ abstract class InlayHintOptions with _$InlayHintOptions {
 @freezed
 abstract class RelatedFullDocumentDiagnosticReport
     with _$RelatedFullDocumentDiagnosticReport {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RelatedFullDocumentDiagnosticReport({
     /// A full document diagnostic report.
     required String kind,
@@ -5804,7 +5500,7 @@ abstract class RelatedFullDocumentDiagnosticReport
     /// where marco definitions in a file a.cpp and result in errors in a
     /// header file b.hpp.
     /// @since 3.17.0
-    Map<String, Object>? relatedDocuments,
+    Map<String, RelatedDocumentsBase>? relatedDocuments,
 
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
@@ -5821,7 +5517,6 @@ abstract class RelatedFullDocumentDiagnosticReport
 @freezed
 abstract class RelatedUnchangedDocumentDiagnosticReport
     with _$RelatedUnchangedDocumentDiagnosticReport {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RelatedUnchangedDocumentDiagnosticReport({
     /// A document diagnostic report indicating no changes to the last result.
     /// A server can only return `unchanged` if result ids are provided.
@@ -5837,7 +5532,7 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
     /// where marco definitions in a file a.cpp and result in errors in a
     /// header file b.hpp.
     /// @since 3.17.0
-    Map<String, Object>? relatedDocuments,
+    Map<String, RelatedDocumentsBase>? relatedDocuments,
   }) = _RelatedUnchangedDocumentDiagnosticReport;
 
   factory RelatedUnchangedDocumentDiagnosticReport.fromJson(
@@ -5850,7 +5545,6 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
 @freezed
 abstract class FullDocumentDiagnosticReport
     with _$FullDocumentDiagnosticReport {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FullDocumentDiagnosticReport({
     /// A full document diagnostic report.
     required String kind,
@@ -5873,7 +5567,6 @@ abstract class FullDocumentDiagnosticReport
 @freezed
 abstract class UnchangedDocumentDiagnosticReport
     with _$UnchangedDocumentDiagnosticReport {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory UnchangedDocumentDiagnosticReport({
     /// A document diagnostic report indicating no changes to the last result.
     /// A server can only return `unchanged` if result ids are provided.
@@ -5893,7 +5586,6 @@ abstract class UnchangedDocumentDiagnosticReport
 /// @since 3.17.0
 @freezed
 abstract class DiagnosticOptions with _$DiagnosticOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DiagnosticOptions({
     /// Whether the language has inter file dependencies meaning that editing
     /// code in one file can result in a different diagnostic set in another
@@ -5918,7 +5610,6 @@ abstract class DiagnosticOptions with _$DiagnosticOptions {
 /// @since 3.17.0
 @freezed
 abstract class PreviousResultId with _$PreviousResultId {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory PreviousResultId({
     /// The URI for which the client knowns a result id.
     required String uri,
@@ -5935,7 +5626,6 @@ abstract class PreviousResultId with _$PreviousResultId {
 /// @since 3.17.0
 @freezed
 abstract class NotebookDocument with _$NotebookDocument {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocument({
     /// The notebook document's uri.
     required String uri,
@@ -5962,7 +5652,6 @@ abstract class NotebookDocument with _$NotebookDocument {
 /// An item to transfer a text document from the client to the server.
 @freezed
 abstract class TextDocumentItem with _$TextDocumentItem {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentItem({
     /// The text document's uri.
     required String uri,
@@ -5987,7 +5676,6 @@ abstract class TextDocumentItem with _$TextDocumentItem {
 @freezed
 abstract class VersionedNotebookDocumentIdentifier
     with _$VersionedNotebookDocumentIdentifier {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory VersionedNotebookDocumentIdentifier({
     /// The version number of this notebook document.
     required int version,
@@ -6005,7 +5693,6 @@ abstract class VersionedNotebookDocumentIdentifier
 /// @since 3.17.0
 @freezed
 abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentChangeEvent({
     /// Changes to cells
     ({
@@ -6039,7 +5726,6 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
 /// @since 3.17.0
 @freezed
 abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentIdentifier({
     /// The notebook document's uri.
     required String uri,
@@ -6054,7 +5740,6 @@ abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
 /// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionContext with _$InlineCompletionContext {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionContext({
     /// Describes how the inline completion was triggered.
     required InlineCompletionTriggerKind triggerKind,
@@ -6078,7 +5763,6 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
 /// @since 3.18.0 @proposed
 @freezed
 abstract class StringValue with _$StringValue {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory StringValue({
     /// The kind of string value.
     required String kind,
@@ -6095,7 +5779,6 @@ abstract class StringValue with _$StringValue {
 /// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionOptions with _$InlineCompletionOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionOptions({bool? workDoneProgress}) =
       _InlineCompletionOptions;
 
@@ -6107,7 +5790,6 @@ abstract class InlineCompletionOptions with _$InlineCompletionOptions {
 /// a provider.
 @freezed
 abstract class Registration with _$Registration {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Registration({
     /// The id used to register the request. The id can be used to deregister
     /// the request again.
@@ -6127,7 +5809,6 @@ abstract class Registration with _$Registration {
 /// General parameters to unregister a request or notification.
 @freezed
 abstract class Unregistration with _$Unregistration {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Unregistration({
     /// The id used to unregister the request or notification. Usually an id
     /// provided during the register request.
@@ -6144,17 +5825,16 @@ abstract class Unregistration with _$Unregistration {
 /// The initialize parameters
 @freezed
 abstract class TInitializeParams with _$TInitializeParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TInitializeParams({
     /// The process Id of the parent process that started the server.
     /// Is `null` if the process has not been started by another process. If
     /// the parent process is not alive then the server should exit.
-    required Object processId,
+    required ProcessIdOrVersionBase processId,
 
     /// The rootUri of the workspace. Is null if no folder is open. If both
     /// `rootPath` and `rootUri` are set `rootUri` wins.
     /// @deprecated in favour of workspaceFolders.
-    required Object rootUri,
+    required InitializeParamsRootUriBase rootUri,
 
     /// The capabilities provided by the client (editor or tool)
     required ClientCapabilities capabilities,
@@ -6167,7 +5847,7 @@ abstract class TInitializeParams with _$TInitializeParams {
 
     /// The rootPath of the workspace. Is null if no folder is open.
     /// @deprecated in favour of rootUri.
-    Object? rootPath,
+    InitializeParamsRootPathBase? rootPath,
 
     /// The locale the client is currently showing the user interface in. This
     /// must not necessarily be the locale of the operating system.
@@ -6191,14 +5871,13 @@ abstract class TInitializeParams with _$TInitializeParams {
 @freezed
 abstract class WorkspaceFoldersInitializeParams
     with _$WorkspaceFoldersInitializeParams {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFoldersInitializeParams({
     /// The workspace folders configured in the client when the server starts.
     /// This property is only available if the client supports workspace
     /// folders. It can be `null` if the client supports workspace folders but
     /// none are configured.
     /// @since 3.6.0
-    Object? workspaceFolders,
+    WorkspaceFoldersInitializeParamsWorkspaceFoldersBase? workspaceFolders,
   }) = _WorkspaceFoldersInitializeParams;
 
   factory WorkspaceFoldersInitializeParams.fromJson(
@@ -6209,21 +5888,21 @@ abstract class WorkspaceFoldersInitializeParams
 /// Defines the capabilities provided by a language server.
 @freezed
 abstract class ServerCapabilities with _$ServerCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ServerCapabilities({
     /// The server provides workspace symbol support.
-    Object? workspaceSymbolProvider,
+    ServerCapabilitiesWorkspaceSymbolProviderBase? workspaceSymbolProvider,
 
     /// The server provides document highlight support.
-    Object? documentHighlightProvider,
+    ServerCapabilitiesDocumentHighlightProviderBase? documentHighlightProvider,
 
     /// The server provides document formatting.
-    Object? documentFormattingProvider,
+    ServerCapabilitiesDocumentFormattingProviderBase?
+    documentFormattingProvider,
 
     /// The server provides code actions. CodeActionOptions may only be
     /// specified if the client states that it supports
     /// `codeActionLiteralSupport` in its initial `initialize` request.
-    Object? codeActionProvider,
+    ServerCapabilitiesCodeActionProviderBase? codeActionProvider,
 
     /// The server provides completion support.
     CompletionOptions? completionProvider,
@@ -6237,37 +5916,38 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
     /// Inline completion options used during static registration.
     /// @since 3.18.0 @proposed
-    Object? inlineCompletionProvider,
+    ServerCapabilitiesInlineCompletionProviderBase? inlineCompletionProvider,
 
     /// The server has support for pull model diagnostics.
     /// @since 3.17.0
-    Object? diagnosticProvider,
+    ServerCapabilitiesDiagnosticProviderBase? diagnosticProvider,
 
     /// The server provides inlay hints.
     /// @since 3.17.0
-    Object? inlayHintProvider,
+    ServerCapabilitiesInlayHintProviderBase? inlayHintProvider,
 
     /// The server provides goto definition support.
-    Object? definitionProvider,
+    ServerCapabilitiesDefinitionProviderBase? definitionProvider,
 
     /// The server provides Goto Declaration support.
-    Object? declarationProvider,
+    ServerCapabilitiesDeclarationProviderBase? declarationProvider,
 
     /// The server provides moniker support.
     /// @since 3.16.0
-    Object? monikerProvider,
+    ServerCapabilitiesMonikerProviderBase? monikerProvider,
 
     /// The server provides semantic tokens support.
     /// @since 3.16.0
-    Object? semanticTokensProvider,
+    ServerCapabilitiesSemanticTokensProviderBase? semanticTokensProvider,
 
     /// The server provides linked editing range support.
     /// @since 3.16.0
-    Object? linkedEditingRangeProvider,
+    ServerCapabilitiesLinkedEditingRangeProviderBase?
+    linkedEditingRangeProvider,
 
     /// The server provides call hierarchy support.
     /// @since 3.16.0
-    Object? callHierarchyProvider,
+    ServerCapabilitiesCallHierarchyProviderBase? callHierarchyProvider,
 
     /// The server provides execute command support.
     ExecuteCommandOptions? executeCommandProvider,
@@ -6275,30 +5955,31 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// Defines how text documents are synced. Is either a detailed structure
     /// defining each notification or for backwards compatibility the
     /// TextDocumentSyncKind number.
-    Object? textDocumentSync,
+    ServerCapabilitiesTextDocumentSyncBase? textDocumentSync,
 
     /// The server provides folding provider support.
-    Object? foldingRangeProvider,
+    ServerCapabilitiesFoldingRangeProviderBase? foldingRangeProvider,
 
     /// The server provides rename support. RenameOptions may only be specified
     /// if the client states that it supports `prepareSupport` in its initial
     /// `initialize` request.
-    Object? renameProvider,
+    ServerCapabilitiesRenameProviderBase? renameProvider,
 
     /// The server provides document formatting on typing.
     DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,
 
     /// The server provides document range formatting.
-    Object? documentRangeFormattingProvider,
+    ServerCapabilitiesDocumentRangeFormattingProviderBase?
+    documentRangeFormattingProvider,
 
     /// Experimental server capabilities.
     LSPAny? experimental,
 
     /// The server provides selection range support.
-    Object? selectionRangeProvider,
+    ServerCapabilitiesSelectionRangeProviderBase? selectionRangeProvider,
 
     /// The server provides color provider support.
-    Object? colorProvider,
+    ServerCapabilitiesColorProviderBase? colorProvider,
 
     /// The server provides document link support.
     DocumentLinkOptions? documentLinkProvider,
@@ -6308,10 +5989,10 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
     /// Defines how notebook documents are synced.
     /// @since 3.17.0
-    Object? notebookDocumentSync,
+    ServerCapabilitiesNotebookDocumentSyncBase? notebookDocumentSync,
 
     /// The server provides document symbol support.
-    Object? documentSymbolProvider,
+    ServerCapabilitiesDocumentSymbolProviderBase? documentSymbolProvider,
 
     /// The position encoding the server picked from the encodings offered by
     /// the client via the client capability `general.positionEncodings`.
@@ -6322,27 +6003,27 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     PositionEncodingKind? positionEncoding,
 
     /// The server provides find references support.
-    Object? referencesProvider,
+    ServerCapabilitiesReferencesProviderBase? referencesProvider,
 
     /// The server provides Goto Implementation support.
-    Object? implementationProvider,
+    ServerCapabilitiesImplementationProviderBase? implementationProvider,
 
     /// The server provides Goto Type Definition support.
-    Object? typeDefinitionProvider,
+    ServerCapabilitiesTypeDefinitionProviderBase? typeDefinitionProvider,
 
     /// The server provides inline values.
     /// @since 3.17.0
-    Object? inlineValueProvider,
+    ServerCapabilitiesInlineValueProviderBase? inlineValueProvider,
 
     /// The server provides type hierarchy support.
     /// @since 3.17.0
-    Object? typeHierarchyProvider,
+    ServerCapabilitiesTypeHierarchyProviderBase? typeHierarchyProvider,
 
     /// The server provides signature help support.
     SignatureHelpOptions? signatureHelpProvider,
 
     /// The server provides hover support.
-    Object? hoverProvider,
+    ServerCapabilitiesHoverProviderBase? hoverProvider,
   }) = _ServerCapabilities;
 
   factory ServerCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -6354,7 +6035,6 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 @freezed
 abstract class VersionedTextDocumentIdentifier
     with _$VersionedTextDocumentIdentifier {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory VersionedTextDocumentIdentifier({
     /// The text document's uri.
     required String uri,
@@ -6370,7 +6050,6 @@ abstract class VersionedTextDocumentIdentifier
 /// Save options.
 @freezed
 abstract class SaveOptions with _$SaveOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SaveOptions({
     /// The client is supposed to include the content on save.
     bool? includeText,
@@ -6383,7 +6062,6 @@ abstract class SaveOptions with _$SaveOptions {
 /// An event describing a file change.
 @freezed
 abstract class FileEvent with _$FileEvent {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileEvent({
     /// The file's uri.
     required String uri,
@@ -6398,7 +6076,6 @@ abstract class FileEvent with _$FileEvent {
 
 @freezed
 abstract class FileSystemWatcher with _$FileSystemWatcher {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileSystemWatcher({
     /// The glob pattern to watch. See {@link GlobPattern glob pattern} for
     /// more detail.
@@ -6418,7 +6095,6 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
 /// Diagnostic objects are only valid in the scope of a resource.
 @freezed
 abstract class Diagnostic with _$Diagnostic {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory Diagnostic({
     /// The range at which the message applies
     required Range range,
@@ -6450,7 +6126,7 @@ abstract class Diagnostic with _$Diagnostic {
     CodeDescription? codeDescription,
 
     /// The diagnostic's code, which usually appear in the user interface.
-    Object? code,
+    ProgressTokenBase? code,
 
     /// The diagnostic's severity. Can be omitted. If omitted it is up to the
     /// client to interpret diagnostics as error, warning, info or hint.
@@ -6465,7 +6141,6 @@ abstract class Diagnostic with _$Diagnostic {
 /// completion request is triggered.
 @freezed
 abstract class CompletionContext with _$CompletionContext {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionContext({
     /// How the completion was triggered.
     required CompletionTriggerKind triggerKind,
@@ -6484,7 +6159,6 @@ abstract class CompletionContext with _$CompletionContext {
 /// @since 3.17.0
 @freezed
 abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionItemLabelDetails({
     /// An optional string which is rendered less prominently after {@link
     /// CompletionItem.detail}. Should be used for fully qualified names and
@@ -6505,7 +6179,6 @@ abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
 /// @since 3.16.0
 @freezed
 abstract class InsertReplaceEdit with _$InsertReplaceEdit {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InsertReplaceEdit({
     /// The string to be inserted.
     required String newText,
@@ -6524,7 +6197,6 @@ abstract class InsertReplaceEdit with _$InsertReplaceEdit {
 /// Completion options.
 @freezed
 abstract class CompletionOptions with _$CompletionOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionOptions({
     /// The server supports the following `CompletionItem` specific
     /// capabilities.
@@ -6564,7 +6236,6 @@ abstract class CompletionOptions with _$CompletionOptions {
 /// Hover options.
 @freezed
 abstract class HoverOptions with _$HoverOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory HoverOptions({bool? workDoneProgress}) = _HoverOptions;
 
   factory HoverOptions.fromJson(Map<String, dynamic> json) =>
@@ -6576,7 +6247,6 @@ abstract class HoverOptions with _$HoverOptions {
 /// @since 3.15.0
 @freezed
 abstract class SignatureHelpContext with _$SignatureHelpContext {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SignatureHelpContext({
     /// Action that caused signature help to be triggered.
     required SignatureHelpTriggerKind triggerKind,
@@ -6607,7 +6277,6 @@ abstract class SignatureHelpContext with _$SignatureHelpContext {
 /// parameters.
 @freezed
 abstract class SignatureInformation with _$SignatureInformation {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SignatureInformation({
     /// The label of this signature. Will be shown in the UI.
     required String label,
@@ -6622,7 +6291,7 @@ abstract class SignatureInformation with _$SignatureInformation {
 
     /// The human-readable doc-comment of this signature. Will be shown in the
     /// UI but can be omitted.
-    Object? documentation,
+    TooltipOrDocumentationBase? documentation,
   }) = _SignatureInformation;
 
   factory SignatureInformation.fromJson(Map<String, dynamic> json) =>
@@ -6632,7 +6301,6 @@ abstract class SignatureInformation with _$SignatureInformation {
 /// Server Capabilities for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpOptions with _$SignatureHelpOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SignatureHelpOptions({
     /// List of characters that re-trigger signature help.
     /// These trigger characters are only active when signature help is already
@@ -6653,7 +6321,6 @@ abstract class SignatureHelpOptions with _$SignatureHelpOptions {
 /// Server Capabilities for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionOptions with _$DefinitionOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DefinitionOptions({bool? workDoneProgress}) =
       _DefinitionOptions;
 
@@ -6665,7 +6332,6 @@ abstract class DefinitionOptions with _$DefinitionOptions {
 /// references.
 @freezed
 abstract class ReferenceContext with _$ReferenceContext {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ReferenceContext({
     /// Include the declaration of the current symbol.
     required bool includeDeclaration,
@@ -6678,7 +6344,6 @@ abstract class ReferenceContext with _$ReferenceContext {
 /// Reference options.
 @freezed
 abstract class ReferenceOptions with _$ReferenceOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ReferenceOptions({bool? workDoneProgress}) = _ReferenceOptions;
 
   factory ReferenceOptions.fromJson(Map<String, dynamic> json) =>
@@ -6688,7 +6353,6 @@ abstract class ReferenceOptions with _$ReferenceOptions {
 /// Provider options for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentHighlightOptions({bool? workDoneProgress}) =
       _DocumentHighlightOptions;
 
@@ -6699,7 +6363,6 @@ abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
 /// A base for all symbol information.
 @freezed
 abstract class BaseSymbolInformation with _$BaseSymbolInformation {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory BaseSymbolInformation({
     /// The name of this symbol.
     required String name,
@@ -6725,7 +6388,6 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
 /// Provider options for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentSymbolOptions({
     /// A human-readable string that is shown when multiple outlines trees are
     /// shown for the same document.
@@ -6743,7 +6405,6 @@ abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
 /// is run.
 @freezed
 abstract class CodeActionContext with _$CodeActionContext {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeActionContext({
     /// An array of diagnostics known on the client side overlapping the range
     /// provided to the `textDocument/codeAction` request. They are provided so
@@ -6770,7 +6431,6 @@ abstract class CodeActionContext with _$CodeActionContext {
 /// Provider options for a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionOptions with _$CodeActionOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeActionOptions({
     /// The server provides support to resolve additional information for a
     /// code action.
@@ -6791,7 +6451,6 @@ abstract class CodeActionOptions with _$CodeActionOptions {
 /// Server capabilities for a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceSymbolOptions({
     /// The server provides support to resolve additional information for a
     /// workspace symbol.
@@ -6807,7 +6466,6 @@ abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
 /// Code Lens provider options of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensOptions with _$CodeLensOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeLensOptions({
     /// Code lens has a resolve provider as well.
     bool? resolveProvider,
@@ -6821,7 +6479,6 @@ abstract class CodeLensOptions with _$CodeLensOptions {
 /// Provider options for a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkOptions with _$DocumentLinkOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentLinkOptions({
     /// Document links have a resolve provider as well.
     bool? resolveProvider,
@@ -6835,7 +6492,6 @@ abstract class DocumentLinkOptions with _$DocumentLinkOptions {
 /// Value-object describing what options formatting should use.
 @freezed
 abstract class FormattingOptions with _$FormattingOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FormattingOptions({
     /// Size of a tab in spaces.
     required int tabSize,
@@ -6863,7 +6519,6 @@ abstract class FormattingOptions with _$FormattingOptions {
 /// Provider options for a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentFormattingOptions({bool? workDoneProgress}) =
       _DocumentFormattingOptions;
 
@@ -6875,7 +6530,6 @@ abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
 @freezed
 abstract class DocumentRangeFormattingOptions
     with _$DocumentRangeFormattingOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentRangeFormattingOptions({
     /// Whether the server supports formatting multiple ranges at once.
     /// @since 3.18.0 @proposed
@@ -6891,7 +6545,6 @@ abstract class DocumentRangeFormattingOptions
 @freezed
 abstract class DocumentOnTypeFormattingOptions
     with _$DocumentOnTypeFormattingOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentOnTypeFormattingOptions({
     /// A character on which formatting should be triggered, like `{`.
     required String firstTriggerCharacter,
@@ -6907,7 +6560,6 @@ abstract class DocumentOnTypeFormattingOptions
 /// Provider options for a {@link RenameRequest}.
 @freezed
 abstract class RenameOptions with _$RenameOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameOptions({
     /// Renames should be checked and tested before being executed.
     /// @since version 3.12.0
@@ -6922,7 +6574,6 @@ abstract class RenameOptions with _$RenameOptions {
 /// The server capabilities of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ExecuteCommandOptions({
     /// The commands to be executed on the server
     required List<String> commands,
@@ -6936,7 +6587,6 @@ abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensLegend with _$SemanticTokensLegend {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensLegend({
     /// The token types a server uses.
     required List<String> tokenTypes,
@@ -6954,7 +6604,6 @@ abstract class SemanticTokensLegend with _$SemanticTokensLegend {
 @freezed
 abstract class OptionalVersionedTextDocumentIdentifier
     with _$OptionalVersionedTextDocumentIdentifier {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory OptionalVersionedTextDocumentIdentifier({
     /// The text document's uri.
     required String uri,
@@ -6965,7 +6614,7 @@ abstract class OptionalVersionedTextDocumentIdentifier
     /// before) the server can send `null` to indicate that the version is
     /// unknown and the content on disk is the truth (as specified with
     /// document content ownership).
-    required Object version,
+    required ProcessIdOrVersionBase version,
   }) = _OptionalVersionedTextDocumentIdentifier;
 
   factory OptionalVersionedTextDocumentIdentifier.fromJson(
@@ -6977,7 +6626,6 @@ abstract class OptionalVersionedTextDocumentIdentifier
 /// @since 3.16.0.
 @freezed
 abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory AnnotatedTextEdit({
     /// The range of the text document to be manipulated. To insert text into a
     /// document create a range where start === end.
@@ -6997,7 +6645,6 @@ abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
 /// A generic resource operation.
 @freezed
 abstract class ResourceOperation with _$ResourceOperation {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ResourceOperation({
     /// The resource operation kind.
     required String kind,
@@ -7014,7 +6661,6 @@ abstract class ResourceOperation with _$ResourceOperation {
 /// Options to create a file.
 @freezed
 abstract class CreateFileOptions with _$CreateFileOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CreateFileOptions({
     /// Ignore if exists.
     bool? ignoreIfExists,
@@ -7030,7 +6676,6 @@ abstract class CreateFileOptions with _$CreateFileOptions {
 /// Rename file options
 @freezed
 abstract class RenameFileOptions with _$RenameFileOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameFileOptions({
     /// Ignores if target exists.
     bool? ignoreIfExists,
@@ -7046,7 +6691,6 @@ abstract class RenameFileOptions with _$RenameFileOptions {
 /// Delete file options
 @freezed
 abstract class DeleteFileOptions with _$DeleteFileOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DeleteFileOptions({
     /// Ignore the operation if the file doesn't exist.
     bool? ignoreIfNotExists,
@@ -7064,7 +6708,6 @@ abstract class DeleteFileOptions with _$DeleteFileOptions {
 /// @since 3.16.0
 @freezed
 abstract class FileOperationPattern with _$FileOperationPattern {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileOperationPattern({
     /// The glob pattern to match. Glob patterns can have the following syntax:
     /// - `*` to match zero or more characters in a path segment - `?` to match
@@ -7096,7 +6739,6 @@ abstract class FileOperationPattern with _$FileOperationPattern {
 @freezed
 abstract class WorkspaceFullDocumentDiagnosticReport
     with _$WorkspaceFullDocumentDiagnosticReport {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFullDocumentDiagnosticReport({
     /// A full document diagnostic report.
     required String kind,
@@ -7109,7 +6751,7 @@ abstract class WorkspaceFullDocumentDiagnosticReport
 
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
-    required Object version,
+    required ProcessIdOrVersionBase version,
 
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
@@ -7127,7 +6769,6 @@ abstract class WorkspaceFullDocumentDiagnosticReport
 @freezed
 abstract class WorkspaceUnchangedDocumentDiagnosticReport
     with _$WorkspaceUnchangedDocumentDiagnosticReport {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceUnchangedDocumentDiagnosticReport({
     /// A document diagnostic report indicating no changes to the last result.
     /// A server can only return `unchanged` if result ids are provided.
@@ -7142,7 +6783,7 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
 
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
-    required Object version,
+    required ProcessIdOrVersionBase version,
   }) = _WorkspaceUnchangedDocumentDiagnosticReport;
 
   factory WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
@@ -7157,7 +6798,6 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
 /// @since 3.17.0
 @freezed
 abstract class NotebookCell with _$NotebookCell {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookCell({
     /// The cell's kind
     required NotebookCellKind kind,
@@ -7182,7 +6822,6 @@ abstract class NotebookCell with _$NotebookCell {
 /// @since 3.17.0
 @freezed
 abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookCellArrayChange({
     /// The start oftest of the cell that changed.
     required int start,
@@ -7202,7 +6841,6 @@ abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
 /// @since 3.18.0 @proposed
 @freezed
 abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SelectedCompletionInfo({
     /// The range that will be replaced if this completion item is accepted.
     required Range range,
@@ -7218,7 +6856,6 @@ abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
 /// Defines the capabilities provided by the client.
 @freezed
 abstract class ClientCapabilities with _$ClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ClientCapabilities({
     /// Experimental client capabilities.
     LSPAny? experimental,
@@ -7247,11 +6884,10 @@ abstract class ClientCapabilities with _$ClientCapabilities {
 
 @freezed
 abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentSyncOptions({
     /// If present save notifications are sent to the server. If omitted the
     /// notification should not be sent.
-    Object? save,
+    TextDocumentSyncOptionsSaveBase? save,
 
     /// If present will save wait until requests are sent to the server. If
     /// omitted the request should not be sent.
@@ -7287,10 +6923,10 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
 /// @since 3.17.0
 @freezed
 abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentSyncOptions({
     /// The notebooks to be synced
-    required List<Object> notebookSelector,
+    required List<NotebookDocumentSyncOptionsNotebookSelectorBase>
+    notebookSelector,
 
     /// Whether save notification should be forwarded to the server. Will only
     /// be honored if mode === `notebook`.
@@ -7306,10 +6942,10 @@ abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
 @freezed
 abstract class NotebookDocumentSyncRegistrationOptions
     with _$NotebookDocumentSyncRegistrationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentSyncRegistrationOptions({
     /// The notebooks to be synced
-    required List<Object> notebookSelector,
+    required List<NotebookDocumentSyncOptionsNotebookSelectorBase>
+    notebookSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -7328,7 +6964,6 @@ abstract class NotebookDocumentSyncRegistrationOptions
 @freezed
 abstract class WorkspaceFoldersServerCapabilities
     with _$WorkspaceFoldersServerCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceFoldersServerCapabilities({
     /// Whether the server wants to receive workspace folder change
     /// notifications.
@@ -7336,7 +6971,8 @@ abstract class WorkspaceFoldersServerCapabilities
     /// notification is registered on the client side. The ID can be used to
     /// unregister for these events using the `client/unregisterCapability`
     /// request.
-    Object? changeNotifications,
+    WorkspaceFoldersServerCapabilitiesChangeNotificationsBase?
+    changeNotifications,
 
     /// The server has support for workspace folders
     bool? supported,
@@ -7351,7 +6987,6 @@ abstract class WorkspaceFoldersServerCapabilities
 /// @since 3.16.0
 @freezed
 abstract class FileOperationOptions with _$FileOperationOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileOperationOptions({
     /// The server is interested in receiving willDeleteFiles file requests.
     FileOperationRegistrationOptions? willDelete,
@@ -7380,7 +7015,6 @@ abstract class FileOperationOptions with _$FileOperationOptions {
 /// @since 3.16.0
 @freezed
 abstract class CodeDescription with _$CodeDescription {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeDescription({
     /// An URI to open with more information about the diagnostic error.
     required String href,
@@ -7397,7 +7031,6 @@ abstract class CodeDescription with _$CodeDescription {
 @freezed
 abstract class DiagnosticRelatedInformation
     with _$DiagnosticRelatedInformation {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DiagnosticRelatedInformation({
     /// The location of this related diagnostic information.
     required Location location,
@@ -7414,7 +7047,6 @@ abstract class DiagnosticRelatedInformation
 /// have a label and a doc-comment.
 @freezed
 abstract class ParameterInformation with _$ParameterInformation {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ParameterInformation({
     /// The label of this parameter information.
     /// Either a string or an inclusive start and exclusive end offsets within
@@ -7424,11 +7056,11 @@ abstract class ParameterInformation with _$ParameterInformation {
     /// *Note*: a label of type string should be a substring of its containing
     /// signature label. Its intended use case is to highlight the parameter
     /// label part in the `SignatureInformation.label`.
-    required Object label,
+    required ParameterInformationLabelBase label,
 
     /// The human-readable doc-comment of this parameter. Will be shown in the
     /// UI but can be omitted.
-    Object? documentation,
+    TooltipOrDocumentationBase? documentation,
   }) = _ParameterInformation;
 
   factory ParameterInformation.fromJson(Map<String, dynamic> json) =>
@@ -7441,12 +7073,11 @@ abstract class ParameterInformation with _$ParameterInformation {
 @freezed
 abstract class NotebookCellTextDocumentFilter
     with _$NotebookCellTextDocumentFilter {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookCellTextDocumentFilter({
     /// A filter that matches against the notebook containing the notebook
     /// cell. If a string value is provided it matches against the notebook
     /// type. '*' matches every notebook.
-    required Object notebook,
+    required NotebookCellTextDocumentFilterNotebookBase notebook,
 
     /// A language id like `python`.
     /// Will be matched against the language id of the notebook cell document.
@@ -7462,7 +7093,6 @@ abstract class NotebookCellTextDocumentFilter
 /// @since 3.16.0
 @freezed
 abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileOperationPatternOptions({
     /// The pattern should be matched ignoring casing.
     bool? ignoreCase,
@@ -7474,7 +7104,6 @@ abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
 
 @freezed
 abstract class ExecutionSummary with _$ExecutionSummary {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ExecutionSummary({
     /// A strict monotonically increasing value indicating the execution order
     /// of a cell inside a notebook.
@@ -7491,7 +7120,6 @@ abstract class ExecutionSummary with _$ExecutionSummary {
 /// Workspace specific client capabilities.
 @freezed
 abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceClientCapabilities({
     /// Capabilities specific to the folding range requests scoped to the
     /// workspace.
@@ -7565,7 +7193,6 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
 @freezed
 abstract class TextDocumentClientCapabilities
     with _$TextDocumentClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentClientCapabilities({
     /// Client capabilities specific to inline completions.
     /// @since 3.18.0 @proposed
@@ -7687,7 +7314,6 @@ abstract class TextDocumentClientCapabilities
 @freezed
 abstract class NotebookDocumentClientCapabilities
     with _$NotebookDocumentClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentClientCapabilities({
     /// Capabilities specific to notebook document synchronization
     /// @since 3.17.0
@@ -7701,7 +7327,6 @@ abstract class NotebookDocumentClientCapabilities
 
 @freezed
 abstract class WindowClientCapabilities with _$WindowClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WindowClientCapabilities({
     /// Capabilities specific to the showDocument request.
     /// @since 3.16.0
@@ -7729,7 +7354,6 @@ abstract class WindowClientCapabilities with _$WindowClientCapabilities {
 /// @since 3.16.0
 @freezed
 abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory GeneralClientCapabilities({
     /// The position encodings supported by the client. Client and server have
     /// to agree on the same position encoding to ensure that offsets (e.g.
@@ -7771,11 +7395,10 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
 /// @since 3.17.0
 @freezed
 abstract class RelativePattern with _$RelativePattern {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RelativePattern({
     /// A workspace folder or a base URI to which this pattern will be matched
     /// against relatively.
-    required Object baseUri,
+    required RelativePatternBaseUriBase baseUri,
 
     /// The actual glob pattern;
     required Pattern pattern,
@@ -7788,7 +7411,6 @@ abstract class RelativePattern with _$RelativePattern {
 @freezed
 abstract class WorkspaceEditClientCapabilities
     with _$WorkspaceEditClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceEditClientCapabilities({
     /// Whether the client in general supports change annotations on text
     /// edits, create file, rename file and delete file changes.
@@ -7823,7 +7445,6 @@ abstract class WorkspaceEditClientCapabilities
 @freezed
 abstract class DidChangeConfigurationClientCapabilities
     with _$DidChangeConfigurationClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeConfigurationClientCapabilities({
     /// Did change configuration notification supports dynamic registration.
     bool? dynamicRegistration,
@@ -7837,7 +7458,6 @@ abstract class DidChangeConfigurationClientCapabilities
 @freezed
 abstract class DidChangeWatchedFilesClientCapabilities
     with _$DidChangeWatchedFilesClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DidChangeWatchedFilesClientCapabilities({
     /// Whether the client has support for {@link RelativePattern relative
     /// pattern} or not.
@@ -7859,7 +7479,6 @@ abstract class DidChangeWatchedFilesClientCapabilities
 @freezed
 abstract class WorkspaceSymbolClientCapabilities
     with _$WorkspaceSymbolClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory WorkspaceSymbolClientCapabilities({
     /// The client support partial workspace symbols. The client will send the
     /// request `workspaceSymbol/resolve` to the server to resolve additional
@@ -7889,7 +7508,6 @@ abstract class WorkspaceSymbolClientCapabilities
 @freezed
 abstract class ExecuteCommandClientCapabilities
     with _$ExecuteCommandClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ExecuteCommandClientCapabilities({
     /// Execute command supports dynamic registration.
     bool? dynamicRegistration,
@@ -7904,7 +7522,6 @@ abstract class ExecuteCommandClientCapabilities
 @freezed
 abstract class SemanticTokensWorkspaceClientCapabilities
     with _$SemanticTokensWorkspaceClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensWorkspaceClientCapabilities({
     /// Whether the client implementation supports a refresh request sent from
     /// the server to the client.
@@ -7924,7 +7541,6 @@ abstract class SemanticTokensWorkspaceClientCapabilities
 @freezed
 abstract class CodeLensWorkspaceClientCapabilities
     with _$CodeLensWorkspaceClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeLensWorkspaceClientCapabilities({
     /// Whether the client implementation supports a refresh request sent from
     /// the server to the client.
@@ -7948,7 +7564,6 @@ abstract class CodeLensWorkspaceClientCapabilities
 @freezed
 abstract class FileOperationClientCapabilities
     with _$FileOperationClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FileOperationClientCapabilities({
     /// The client has support for sending willDeleteFiles requests.
     bool? willDelete,
@@ -7982,7 +7597,6 @@ abstract class FileOperationClientCapabilities
 @freezed
 abstract class InlineValueWorkspaceClientCapabilities
     with _$InlineValueWorkspaceClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueWorkspaceClientCapabilities({
     /// Whether the client implementation supports a refresh request sent from
     /// the server to the client.
@@ -8003,7 +7617,6 @@ abstract class InlineValueWorkspaceClientCapabilities
 @freezed
 abstract class InlayHintWorkspaceClientCapabilities
     with _$InlayHintWorkspaceClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintWorkspaceClientCapabilities({
     /// Whether the client implementation supports a refresh request sent from
     /// the server to the client.
@@ -8025,7 +7638,6 @@ abstract class InlayHintWorkspaceClientCapabilities
 @freezed
 abstract class DiagnosticWorkspaceClientCapabilities
     with _$DiagnosticWorkspaceClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DiagnosticWorkspaceClientCapabilities({
     /// Whether the client implementation supports a refresh request sent from
     /// the server to the client.
@@ -8046,7 +7658,6 @@ abstract class DiagnosticWorkspaceClientCapabilities
 @freezed
 abstract class FoldingRangeWorkspaceClientCapabilities
     with _$FoldingRangeWorkspaceClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FoldingRangeWorkspaceClientCapabilities({
     /// Whether the client implementation supports a refresh request sent from
     /// the server to the client.
@@ -8066,7 +7677,6 @@ abstract class FoldingRangeWorkspaceClientCapabilities
 @freezed
 abstract class TextDocumentSyncClientCapabilities
     with _$TextDocumentSyncClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TextDocumentSyncClientCapabilities({
     /// The client supports did save notifications.
     bool? didSave,
@@ -8092,7 +7702,6 @@ abstract class TextDocumentSyncClientCapabilities
 @freezed
 abstract class CompletionClientCapabilities
     with _$CompletionClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CompletionClientCapabilities({
     /// The client supports the following `CompletionList` specific
     /// capabilities.
@@ -8136,7 +7745,6 @@ abstract class CompletionClientCapabilities
 
 @freezed
 abstract class HoverClientCapabilities with _$HoverClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory HoverClientCapabilities({
     /// Client supports the following content formats for the content property.
     /// The order describes the preferred format of the client.
@@ -8154,7 +7762,6 @@ abstract class HoverClientCapabilities with _$HoverClientCapabilities {
 @freezed
 abstract class SignatureHelpClientCapabilities
     with _$SignatureHelpClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SignatureHelpClientCapabilities({
     /// The client supports to send additional context information for a
     /// `textDocument/signatureHelp` request. A client that opts into
@@ -8184,7 +7791,6 @@ abstract class SignatureHelpClientCapabilities
 @freezed
 abstract class DeclarationClientCapabilities
     with _$DeclarationClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DeclarationClientCapabilities({
     /// The client supports additional metadata in the form of declaration
     /// links.
@@ -8204,7 +7810,6 @@ abstract class DeclarationClientCapabilities
 @freezed
 abstract class DefinitionClientCapabilities
     with _$DefinitionClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DefinitionClientCapabilities({
     /// The client supports additional metadata in the form of definition links.
     /// @since 3.14.0
@@ -8222,7 +7827,6 @@ abstract class DefinitionClientCapabilities
 @freezed
 abstract class TypeDefinitionClientCapabilities
     with _$TypeDefinitionClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeDefinitionClientCapabilities({
     /// The client supports additional metadata in the form of definition links.
     /// Since 3.14.0
@@ -8243,7 +7847,6 @@ abstract class TypeDefinitionClientCapabilities
 @freezed
 abstract class ImplementationClientCapabilities
     with _$ImplementationClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ImplementationClientCapabilities({
     /// The client supports additional metadata in the form of definition links.
     /// @since 3.14.0
@@ -8263,7 +7866,6 @@ abstract class ImplementationClientCapabilities
 /// Client Capabilities for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ReferenceClientCapabilities({
     /// Whether references supports dynamic registration.
     bool? dynamicRegistration,
@@ -8277,7 +7879,6 @@ abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
 @freezed
 abstract class DocumentHighlightClientCapabilities
     with _$DocumentHighlightClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentHighlightClientCapabilities({
     /// Whether document highlight supports dynamic registration.
     bool? dynamicRegistration,
@@ -8292,7 +7893,6 @@ abstract class DocumentHighlightClientCapabilities
 @freezed
 abstract class DocumentSymbolClientCapabilities
     with _$DocumentSymbolClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentSymbolClientCapabilities({
     /// The client supports an additional label presented in the UI when
     /// registering a document symbol provider.
@@ -8325,7 +7925,6 @@ abstract class DocumentSymbolClientCapabilities
 @freezed
 abstract class CodeActionClientCapabilities
     with _$CodeActionClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeActionClientCapabilities({
     /// Whether the client honors the change annotations in text edits and
     /// resource operations returned via the `CodeAction#edit` property by for
@@ -8370,7 +7969,6 @@ abstract class CodeActionClientCapabilities
 /// The client capabilities  of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CodeLensClientCapabilities({
     /// Whether code lens supports dynamic registration.
     bool? dynamicRegistration,
@@ -8384,7 +7982,6 @@ abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
 @freezed
 abstract class DocumentLinkClientCapabilities
     with _$DocumentLinkClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentLinkClientCapabilities({
     /// Whether the client supports the `tooltip` property on `DocumentLink`.
     /// @since 3.15.0
@@ -8401,7 +7998,6 @@ abstract class DocumentLinkClientCapabilities
 @freezed
 abstract class DocumentColorClientCapabilities
     with _$DocumentColorClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentColorClientCapabilities({
     /// Whether implementation supports dynamic registration. If this is set to
     /// `true` the client supports the new `DocumentColorRegistrationOptions`
@@ -8417,7 +8013,6 @@ abstract class DocumentColorClientCapabilities
 @freezed
 abstract class DocumentFormattingClientCapabilities
     with _$DocumentFormattingClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentFormattingClientCapabilities({
     /// Whether formatting supports dynamic registration.
     bool? dynamicRegistration,
@@ -8432,7 +8027,6 @@ abstract class DocumentFormattingClientCapabilities
 @freezed
 abstract class DocumentRangeFormattingClientCapabilities
     with _$DocumentRangeFormattingClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentRangeFormattingClientCapabilities({
     /// Whether the client supports formatting multiple ranges at once.
     /// @since 3.18.0 @proposed
@@ -8451,7 +8045,6 @@ abstract class DocumentRangeFormattingClientCapabilities
 @freezed
 abstract class DocumentOnTypeFormattingClientCapabilities
     with _$DocumentOnTypeFormattingClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DocumentOnTypeFormattingClientCapabilities({
     /// Whether on type formatting supports dynamic registration.
     bool? dynamicRegistration,
@@ -8464,7 +8057,6 @@ abstract class DocumentOnTypeFormattingClientCapabilities
 
 @freezed
 abstract class RenameClientCapabilities with _$RenameClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RenameClientCapabilities({
     /// Whether the client honors the change annotations in text edits and
     /// resource operations returned via the rename request's workspace edit by
@@ -8494,7 +8086,6 @@ abstract class RenameClientCapabilities with _$RenameClientCapabilities {
 @freezed
 abstract class FoldingRangeClientCapabilities
     with _$FoldingRangeClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory FoldingRangeClientCapabilities({
     /// Specific options for the folding range.
     /// @since 3.17.0
@@ -8528,7 +8119,6 @@ abstract class FoldingRangeClientCapabilities
 @freezed
 abstract class SelectionRangeClientCapabilities
     with _$SelectionRangeClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SelectionRangeClientCapabilities({
     /// Whether implementation supports dynamic registration for selection
     /// range providers. If this is set to `true` the client supports the new
@@ -8546,7 +8136,6 @@ abstract class SelectionRangeClientCapabilities
 @freezed
 abstract class PublishDiagnosticsClientCapabilities
     with _$PublishDiagnosticsClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory PublishDiagnosticsClientCapabilities({
     /// Whether code action supports the `data` property which is preserved
     /// between a `textDocument/publishDiagnostics` and
@@ -8582,7 +8171,6 @@ abstract class PublishDiagnosticsClientCapabilities
 @freezed
 abstract class CallHierarchyClientCapabilities
     with _$CallHierarchyClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory CallHierarchyClientCapabilities({
     /// Whether implementation supports dynamic registration. If this is set to
     /// `true` the client supports the new `(TextDocumentRegistrationOptions &
@@ -8599,7 +8187,6 @@ abstract class CallHierarchyClientCapabilities
 @freezed
 abstract class SemanticTokensClientCapabilities
     with _$SemanticTokensClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory SemanticTokensClientCapabilities({
     /// Which requests the client supports and might send to the server
     /// depending on the server's capability. Please note that clients might
@@ -8609,7 +8196,11 @@ abstract class SemanticTokensClientCapabilities
     /// `request.range` are both set to true but the server only provides a
     /// range provider the client might not render a minimap correctly or might
     /// even decide to not show any semantic tokens at all.
-    required ({Object? range, Object? full}) requests,
+    required ({
+      RangeBase? range,
+      SemanticTokensClientCapabilitiesFullBase? full,
+    })
+    requests,
 
     /// The token types that the client supports.
     required List<String> tokenTypes,
@@ -8657,7 +8248,6 @@ abstract class SemanticTokensClientCapabilities
 @freezed
 abstract class LinkedEditingRangeClientCapabilities
     with _$LinkedEditingRangeClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory LinkedEditingRangeClientCapabilities({
     /// Whether implementation supports dynamic registration. If this is set to
     /// `true` the client supports the new `(TextDocumentRegistrationOptions &
@@ -8675,7 +8265,6 @@ abstract class LinkedEditingRangeClientCapabilities
 /// @since 3.16.0
 @freezed
 abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MonikerClientCapabilities({
     /// Whether moniker supports dynamic registration. If this is set to `true`
     /// the client supports the new `MonikerRegistrationOptions` return value
@@ -8691,7 +8280,6 @@ abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
 @freezed
 abstract class TypeHierarchyClientCapabilities
     with _$TypeHierarchyClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory TypeHierarchyClientCapabilities({
     /// Whether implementation supports dynamic registration. If this is set to
     /// `true` the client supports the new `(TextDocumentRegistrationOptions &
@@ -8709,7 +8297,6 @@ abstract class TypeHierarchyClientCapabilities
 @freezed
 abstract class InlineValueClientCapabilities
     with _$InlineValueClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineValueClientCapabilities({
     /// Whether implementation supports dynamic registration for inline value
     /// providers.
@@ -8724,7 +8311,6 @@ abstract class InlineValueClientCapabilities
 /// @since 3.17.0
 @freezed
 abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlayHintClientCapabilities({
     /// Indicates which properties a client can resolve lazily on an inlay hint.
     ({List<String> properties})? resolveSupport,
@@ -8742,7 +8328,6 @@ abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
 @freezed
 abstract class DiagnosticClientCapabilities
     with _$DiagnosticClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory DiagnosticClientCapabilities({
     /// Whether the clients supports related documents for document diagnostic
     /// pulls.
@@ -8764,7 +8349,6 @@ abstract class DiagnosticClientCapabilities
 @freezed
 abstract class InlineCompletionClientCapabilities
     with _$InlineCompletionClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory InlineCompletionClientCapabilities({
     /// Whether implementation supports dynamic registration for inline
     /// completion providers.
@@ -8781,7 +8365,6 @@ abstract class InlineCompletionClientCapabilities
 @freezed
 abstract class NotebookDocumentSyncClientCapabilities
     with _$NotebookDocumentSyncClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory NotebookDocumentSyncClientCapabilities({
     /// The client supports sending execution summary data per cell.
     bool? executionSummarySupport,
@@ -8802,7 +8385,6 @@ abstract class NotebookDocumentSyncClientCapabilities
 @freezed
 abstract class ShowMessageRequestClientCapabilities
     with _$ShowMessageRequestClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ShowMessageRequestClientCapabilities({
     /// Capabilities specific to the `MessageActionItem` type.
     ({bool? additionalPropertiesSupport})? messageActionItem,
@@ -8818,7 +8400,6 @@ abstract class ShowMessageRequestClientCapabilities
 @freezed
 abstract class ShowDocumentClientCapabilities
     with _$ShowDocumentClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory ShowDocumentClientCapabilities({
     /// The client has support for the showDocument request.
     required bool support,
@@ -8833,7 +8414,6 @@ abstract class ShowDocumentClientCapabilities
 @freezed
 abstract class RegularExpressionsClientCapabilities
     with _$RegularExpressionsClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory RegularExpressionsClientCapabilities({
     /// The engine's name.
     required String engine,
@@ -8851,7 +8431,6 @@ abstract class RegularExpressionsClientCapabilities
 /// @since 3.16.0
 @freezed
 abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
-  @JsonSerializable(disallowUnrecognizedKeys: true, includeIfNull: false)
   const factory MarkdownClientCapabilities({
     /// The name of the parser.
     required String parser,

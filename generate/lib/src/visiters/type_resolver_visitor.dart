@@ -41,7 +41,7 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
 
   @override
   String visitOrRef(OrRef ref) {
-    return 'Object'; 
+    // return 'Object'; 
 
     final orName = _sealedMap.resolveOrRefType(ref);
 

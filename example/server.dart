@@ -21,15 +21,16 @@ Future<void> main() async {
         connection.console.log('Received initialize request.');
 
         return const InitializeResult(
+          serverInfo: (name: 'LSP Server', version: '1.0.0'),
           capabilities: ServerCapabilities(
             textDocumentSync: TextDocumentSyncOptions(
               change: TextDocumentSyncKind.full,
             ),
-            positionEncoding: PositionEncodingKind.uTF16,
-            notebookDocumentSync: NotebookDocumentSyncOptions(
-              notebookSelector: [],
-              save: false,
-            ),
+            // positionEncoding: PositionEncodingKind.uTF16,
+            // notebookDocumentSync: NotebookDocumentSyncOptions(
+            //   notebookSelector: [],
+            //   save: false,
+            // ),
           ),
         );
       })
@@ -110,8 +111,7 @@ Iterable<Diagnostic> _convertPatternToDiagnostic(
   int line,
 ) => matches.map(
   (match) => Diagnostic(
-    message:
-        '${match.input.substring(match.start, match.end)} hi Vasya.',
+    message: '${match.input.substring(match.start, match.end)} hi Vasya.',
     range: Range(
       start: Position(character: match.start, line: line),
       end: Position(character: match.end, line: line),

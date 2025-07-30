@@ -16,7 +16,6 @@ sealed class BaseMeta {
 @freezed
 abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
   const factory MetaProtocol({
-    @JsonSerializable(disallowUnrecognizedKeys: true)
     required MetaData metaData,
     required List<MetaRequest> requests,
     required List<MetaNotification> notifications,
@@ -37,7 +36,7 @@ abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
 @freezed
 abstract class MetaData extends BaseMeta with _$MetaData {
   const factory MetaData({
-    @JsonSerializable(disallowUnrecognizedKeys: true) required String version,
+    required String version,
   }) = _MetaData;
 
   const MetaData._();
@@ -51,7 +50,6 @@ abstract class MetaData extends BaseMeta with _$MetaData {
 
 @freezed
 abstract class MetaRequest extends BaseMeta with _$MetaRequest {
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaRequest({
     required String method,
     required MessageDirection messageDirection,
@@ -79,42 +77,36 @@ abstract class MetaRequest extends BaseMeta with _$MetaRequest {
 sealed class MetaReference extends BaseMeta with _$MetaReference {
   const MetaReference._();
 
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('reference')
   const factory MetaReference.type({
     required TypeKind kind,
     required String name,
   }) = TypeRef;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('array')
   const factory MetaReference.array({
     required TypeKind kind,
     required MetaReference element,
   }) = ArrayRef;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('base')
   const factory MetaReference.base({
     required TypeKind kind,
     required String name,
   }) = BaseRef;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('or')
   const factory MetaReference.or({
     required TypeKind kind,
     required List<MetaReference> items,
   }) = OrRef;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('and')
   const factory MetaReference.and({
     required TypeKind kind,
     required List<MetaReference> items,
   }) = AndRef;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('map')
   const factory MetaReference.map({
     required TypeKind kind,
@@ -122,21 +114,18 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
     required MetaReference value,
   }) = MapRef;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('literal')
   const factory MetaReference.literal({
     required TypeKind kind,
     required MetaLiteral value,
   }) = LiteralRef;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('stringLiteral')
   const factory MetaReference.stringLiteral({
     required TypeKind kind,
     required String value,
   }) = StringLiteralRef;
 
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   @FreezedUnionValue('tuple')
   const factory MetaReference.tuple({
     required TypeKind kind,
@@ -177,7 +166,6 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
 
 @freezed
 abstract class MetaLiteral extends BaseMeta with _$MetaLiteral {
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaLiteral({
     required List<MetaProperty> properties,
   }) = _MetaLiteral;
@@ -194,7 +182,7 @@ abstract class MetaLiteral extends BaseMeta with _$MetaLiteral {
 @freezed
 abstract class MetaNotification extends BaseMeta with _$MetaNotification {
   const factory MetaNotification({
-    @JsonSerializable(disallowUnrecognizedKeys: true) required String method,
+    required String method,
     required MessageDirection messageDirection,
     MetaReference? params,
     String? documentation,
@@ -215,7 +203,6 @@ abstract class MetaNotification extends BaseMeta with _$MetaNotification {
 
 @freezed
 abstract class MetaProperty extends BaseMeta with _$MetaProperty {
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaProperty({
     required String name,
     required MetaReference type,
@@ -237,7 +224,6 @@ abstract class MetaProperty extends BaseMeta with _$MetaProperty {
 
 @freezed
 abstract class MetaStructure extends BaseMeta with _$MetaStructure {
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaStructure({
     required String name,
     required List<MetaProperty> properties,
@@ -259,7 +245,6 @@ abstract class MetaStructure extends BaseMeta with _$MetaStructure {
 
 @freezed
 abstract class MetaEnumMember extends BaseMeta with _$MetaEnumMember {
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaEnumMember({
     required String name,
     @IntOrStringSealedConverter() required EnumRawValue value,
@@ -303,7 +288,6 @@ sealed class EnumRawValue with _$EnumRawValue {
 
 @freezed
 abstract class MetaEnumeration extends BaseMeta with _$MetaEnumeration {
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaEnumeration({
     required String name,
     required MetaReference type,
@@ -325,7 +309,6 @@ abstract class MetaEnumeration extends BaseMeta with _$MetaEnumeration {
 
 @freezed
 abstract class MetaTypeAlias extends BaseMeta with _$MetaTypeAlias {
-  @JsonSerializable(disallowUnrecognizedKeys: true)
   const factory MetaTypeAlias({
     required String name,
     required MetaReference type,

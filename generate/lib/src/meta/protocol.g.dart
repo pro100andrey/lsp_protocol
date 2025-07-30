@@ -6,25 +6,37 @@ part of 'protocol.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_MetaProtocol _$MetaProtocolFromJson(Map<String, dynamic> json) =>
-    _MetaProtocol(
-      metaData: MetaData.fromJson(json['metaData'] as Map<String, dynamic>),
-      requests: (json['requests'] as List<dynamic>)
-          .map((e) => MetaRequest.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      notifications: (json['notifications'] as List<dynamic>)
-          .map((e) => MetaNotification.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      structures: (json['structures'] as List<dynamic>)
-          .map((e) => MetaStructure.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      enumerations: (json['enumerations'] as List<dynamic>)
-          .map((e) => MetaEnumeration.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      typeAliases: (json['typeAliases'] as List<dynamic>)
-          .map((e) => MetaTypeAlias.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+_MetaProtocol _$MetaProtocolFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'metaData',
+      'requests',
+      'notifications',
+      'structures',
+      'enumerations',
+      'typeAliases',
+    ],
+  );
+  return _MetaProtocol(
+    metaData: MetaData.fromJson(json['metaData'] as Map<String, dynamic>),
+    requests: (json['requests'] as List<dynamic>)
+        .map((e) => MetaRequest.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    notifications: (json['notifications'] as List<dynamic>)
+        .map((e) => MetaNotification.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    structures: (json['structures'] as List<dynamic>)
+        .map((e) => MetaStructure.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    enumerations: (json['enumerations'] as List<dynamic>)
+        .map((e) => MetaEnumeration.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    typeAliases: (json['typeAliases'] as List<dynamic>)
+        .map((e) => MetaTypeAlias.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$MetaProtocolToJson(_MetaProtocol instance) =>
     <String, dynamic>{
@@ -36,8 +48,10 @@ Map<String, dynamic> _$MetaProtocolToJson(_MetaProtocol instance) =>
       'typeAliases': instance.typeAliases,
     };
 
-_MetaData _$MetaDataFromJson(Map<String, dynamic> json) =>
-    _MetaData(version: json['version'] as String);
+_MetaData _$MetaDataFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['version']);
+  return _MetaData(version: json['version'] as String);
+}
 
 Map<String, dynamic> _$MetaDataToJson(_MetaData instance) => <String, dynamic>{
   'version': instance.version,
@@ -94,15 +108,15 @@ Map<String, dynamic> _$MetaRequestToJson(_MetaRequest instance) =>
     <String, dynamic>{
       'method': instance.method,
       'messageDirection': _$MessageDirectionEnumMap[instance.messageDirection]!,
-      'params': instance.params,
-      'result': instance.result,
-      'documentation': instance.documentation,
-      'partialResult': instance.partialResult,
-      'registrationOptions': instance.registrationOptions,
-      'since': instance.since,
-      'proposed': instance.proposed,
-      'registrationMethod': instance.registrationMethod,
-      'errorData': instance.errorData,
+      'params': ?instance.params,
+      'result': ?instance.result,
+      'documentation': ?instance.documentation,
+      'partialResult': ?instance.partialResult,
+      'registrationOptions': ?instance.registrationOptions,
+      'since': ?instance.since,
+      'proposed': ?instance.proposed,
+      'registrationMethod': ?instance.registrationMethod,
+      'errorData': ?instance.errorData,
     };
 
 const _$MessageDirectionEnumMap = {
@@ -262,35 +276,48 @@ _MetaLiteral _$MetaLiteralFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$MetaLiteralToJson(_MetaLiteral instance) =>
     <String, dynamic>{'properties': instance.properties};
 
-_MetaNotification _$MetaNotificationFromJson(Map<String, dynamic> json) =>
-    _MetaNotification(
-      method: json['method'] as String,
-      messageDirection: $enumDecode(
-        _$MessageDirectionEnumMap,
-        json['messageDirection'],
-      ),
-      params: json['params'] == null
-          ? null
-          : MetaReference.fromJson(json['params'] as Map<String, dynamic>),
-      documentation: json['documentation'] as String?,
-      registrationOptions: json['registrationOptions'] == null
-          ? null
-          : MetaReference.fromJson(
-              json['registrationOptions'] as Map<String, dynamic>,
-            ),
-      since: json['since'] as String?,
-      registrationMethod: json['registrationMethod'] as String?,
-    );
+_MetaNotification _$MetaNotificationFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'method',
+      'messageDirection',
+      'params',
+      'documentation',
+      'registrationOptions',
+      'since',
+      'registrationMethod',
+    ],
+  );
+  return _MetaNotification(
+    method: json['method'] as String,
+    messageDirection: $enumDecode(
+      _$MessageDirectionEnumMap,
+      json['messageDirection'],
+    ),
+    params: json['params'] == null
+        ? null
+        : MetaReference.fromJson(json['params'] as Map<String, dynamic>),
+    documentation: json['documentation'] as String?,
+    registrationOptions: json['registrationOptions'] == null
+        ? null
+        : MetaReference.fromJson(
+            json['registrationOptions'] as Map<String, dynamic>,
+          ),
+    since: json['since'] as String?,
+    registrationMethod: json['registrationMethod'] as String?,
+  );
+}
 
 Map<String, dynamic> _$MetaNotificationToJson(_MetaNotification instance) =>
     <String, dynamic>{
       'method': instance.method,
       'messageDirection': _$MessageDirectionEnumMap[instance.messageDirection]!,
-      'params': instance.params,
-      'documentation': instance.documentation,
-      'registrationOptions': instance.registrationOptions,
-      'since': instance.since,
-      'registrationMethod': instance.registrationMethod,
+      'params': ?instance.params,
+      'documentation': ?instance.documentation,
+      'registrationOptions': ?instance.registrationOptions,
+      'since': ?instance.since,
+      'registrationMethod': ?instance.registrationMethod,
     };
 
 _MetaProperty _$MetaPropertyFromJson(Map<String, dynamic> json) {
@@ -321,9 +348,9 @@ Map<String, dynamic> _$MetaPropertyToJson(_MetaProperty instance) =>
     <String, dynamic>{
       'name': instance.name,
       'type': instance.type,
-      'documentation': instance.documentation,
-      'since': instance.since,
-      'deprecated': instance.deprecated,
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
+      'deprecated': ?instance.deprecated,
       'optional': instance.optional,
       'proposed': instance.proposed,
     };
@@ -366,8 +393,8 @@ Map<String, dynamic> _$MetaStructureToJson(_MetaStructure instance) =>
     <String, dynamic>{
       'name': instance.name,
       'properties': instance.properties,
-      'documentation': instance.documentation,
-      'since': instance.since,
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
       'proposed': instance.proposed,
       'mixins': instance.mixins$,
       'extends': instance.extends$,
@@ -390,25 +417,29 @@ Map<String, dynamic> _$MetaEnumMemberToJson(_MetaEnumMember instance) =>
     <String, dynamic>{
       'name': instance.name,
       'value': const IntOrStringSealedConverter().toJson(instance.value),
-      'documentation': instance.documentation,
-      'since': instance.since,
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
     };
 
-EnumRawValueInteger _$EnumRawValueIntegerFromJson(Map<String, dynamic> json) =>
-    EnumRawValueInteger(
-      raw: json['raw'] as String,
-      $type: json['runtimeType'] as String?,
-    );
+EnumRawValueInteger _$EnumRawValueIntegerFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['raw', 'runtimeType']);
+  return EnumRawValueInteger(
+    raw: json['raw'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$EnumRawValueIntegerToJson(
   EnumRawValueInteger instance,
 ) => <String, dynamic>{'raw': instance.raw, 'runtimeType': instance.$type};
 
-EnumRawValueString _$EnumRawValueStringFromJson(Map<String, dynamic> json) =>
-    EnumRawValueString(
-      raw: json['raw'] as String,
-      $type: json['runtimeType'] as String?,
-    );
+EnumRawValueString _$EnumRawValueStringFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, allowedKeys: const ['raw', 'runtimeType']);
+  return EnumRawValueString(
+    raw: json['raw'] as String,
+    $type: json['runtimeType'] as String?,
+  );
+}
 
 Map<String, dynamic> _$EnumRawValueStringToJson(EnumRawValueString instance) =>
     <String, dynamic>{'raw': instance.raw, 'runtimeType': instance.$type};
@@ -444,9 +475,9 @@ Map<String, dynamic> _$MetaEnumerationToJson(_MetaEnumeration instance) =>
       'name': instance.name,
       'type': instance.type,
       'values': instance.values,
-      'supportsCustomValues': instance.supportsCustomValues,
-      'documentation': instance.documentation,
-      'since': instance.since,
+      'supportsCustomValues': ?instance.supportsCustomValues,
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
       'proposed': instance.proposed,
     };
 
@@ -478,9 +509,9 @@ Map<String, dynamic> _$MetaTypeAliasToJson(_MetaTypeAlias instance) =>
     <String, dynamic>{
       'name': instance.name,
       'type': instance.type,
-      'documentation': instance.documentation,
-      'since': instance.since,
-      'deprecated': instance.deprecated,
+      'documentation': ?instance.documentation,
+      'since': ?instance.since,
+      'deprecated': ?instance.deprecated,
       'proposed': instance.proposed,
       'optional': instance.optional,
     };
