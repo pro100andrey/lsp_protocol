@@ -6,6 +6,7 @@ import '../extensions/string.dart';
 import '../generator_helper.dart';
 import '../meta/protocol.dart';
 import '../symbols/sealed_map.dart';
+import '../symbols/symbols.dart';
 import '../utils.dart';
 import 'type_resolver_visitor.dart';
 import 'visitor.dart';
@@ -26,6 +27,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   }
 
   final Map<String, MetaStructure> _structures;
+  final _symbols = Symbols();
 
   late final TypeResolverVisitor _typeResolverVisitor;
   late final SealedMap _sealedMap;
@@ -38,33 +40,39 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   // );
 
   @override
-  Library visitProtocol(MetaProtocol protocol) => Library(
-    (b) {
-      b.docs.addAll(_docs());
-      b.body.addAll(_generateFreezedHeader());
-      b.body.add(visitMetaData(protocol.metaData));
+  Library visitProtocol(MetaProtocol protocol) {
+    _symbols.process(protocol);
 
-      // Generate type aliases
-      for (final typeAlias in protocol.typeAliases) {
-        b.body.add(visitTypeAlias(typeAlias));
-      }
+    final lib = Library(
+      (b) {
+        b.docs.addAll(_docs());
+        b.body.addAll(_generateFreezedHeader());
+        b.body.add(visitMetaData(protocol.metaData));
 
-      for (final ref in _sealedMap.refs) {
-        b.body.add(_generateBaseOrClass(ref));
-      }
+        // Generate type aliases
+        for (final typeAlias in protocol.typeAliases) {
+          b.body.add(visitTypeAlias(typeAlias));
+        }
 
-      for (final structure in protocol.structures) {
-        b.body.add(visitStructure(structure));
-      }
+        for (final ref in _sealedMap.refs) {
+          b.body.add(_generateBaseOrClass(ref));
+        }
 
-      for (final enumeration in protocol.enumerations) {
-        b.body.add(visitEnumeration(enumeration));
-      }
+        for (final structure in protocol.structures) {
+          b.body.add(visitStructure(structure));
+        }
 
-      b.body.add(_generateRequestMethodEnum(protocol.requests));
-      b.body.add(_generateNotificationMethodEnum(protocol.notifications));
-    },
-  );
+        for (final enumeration in protocol.enumerations) {
+          b.body.add(visitEnumeration(enumeration));
+        }
+
+        b.body.add(_generateRequestMethodEnum(protocol.requests));
+        b.body.add(_generateNotificationMethodEnum(protocol.notifications));
+      },
+    );
+
+    return lib;
+  }
 
   List<String> _docs() => [
     '/// Do not edit it manually.',
