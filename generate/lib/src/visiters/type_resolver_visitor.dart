@@ -79,7 +79,10 @@ class TypeResolverVisitor implements MetaReferenceVisitor<String> {
 
   @override
   String visitLiteralRef(LiteralRef ref) {
-    final result = literalToRecord(ref, (r) => r.resolveType(this));
+    final result = literalToRecord(
+      ref: ref,
+      typeResolver: (r) => r.resolveType(this),
+    );
 
     return result;
   }

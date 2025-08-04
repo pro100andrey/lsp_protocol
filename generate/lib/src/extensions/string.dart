@@ -7,6 +7,14 @@ extension StringExtensions on String {
   String lowerFirstLetter() =>
       isEmpty ? this : this[0].toLowerCase() + substring(1);
 
+  String postfix(String postfix) {
+    if (isEmpty || endsWith(postfix)) {
+      return this;
+    }
+
+    return this + postfix;
+  }
+
   String replaceFirstLetterIfExists(String letter, String replacement) {
     if (isEmpty || this[0] != letter) {
       return this;

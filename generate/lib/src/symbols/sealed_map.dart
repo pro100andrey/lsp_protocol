@@ -114,8 +114,8 @@ final class SealedMap {
     final name = ref
         .when(
           literalRef: (ref) => literalToRecord(
-            ref,
-            (r) => r.resolveType(_visitor),
+            ref: ref,
+            typeResolver: (r) => r.resolveType(_visitor),
           ),
           typeRef: (ref) => ref.name,
           orRef: resolveOrRefName,

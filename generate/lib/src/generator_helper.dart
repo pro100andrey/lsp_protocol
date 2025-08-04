@@ -28,17 +28,20 @@ String specToCode(Spec spec, {bool format = true}) {
   return result;
 }
 
-String literalToRecord(
-  LiteralRef ref,
-  String Function(MetaReference) typeResolver,
-) {
+String literalToRecord({
+  required LiteralRef ref,
+  required String Function(MetaReference) typeResolver,
+  bool forceOptional = false,
+}) {
   final record = RecordType(
     (rb) {
       final entries = <MapEntry<String, Reference>>[];
       for (final prop in ref.value.properties) {
         final propType = typeResolver(prop.type);
         final propName = prop.name;
-        final type = propType.optional(optional: prop.optional);
+        final type = propType.optional(
+          optional: prop.optional || forceOptional,
+        );
         final typRefer = refer(type);
 
         entries.add(MapEntry(propName, typRefer));
