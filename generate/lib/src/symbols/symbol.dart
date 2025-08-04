@@ -9,19 +9,21 @@ sealed class Symbol extends Equatable {
   );
 }
 
-final class PropertySymbol extends Symbol {
+class PropertySymbol extends Symbol {
   const PropertySymbol({
+    required this.name,
     required this.type,
-    required this.isOptional,
-    this.doc,
+    required this.optional,
+    required this.documentation,
   });
 
+  final String name;
   final String type;
-  final bool isOptional;
-  final String? doc;
+  final bool optional;
+  final String? documentation;
 
   @override
-  List<Object?> get props => [type, isOptional, doc];
+  List<Object?> get props => [name, type, optional, documentation];
 }
 
 class TypedefSymbol extends Symbol {

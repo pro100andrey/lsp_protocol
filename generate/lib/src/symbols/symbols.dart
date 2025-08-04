@@ -72,13 +72,14 @@ final class Symbols {
   void _collectStructures(Map<String, MetaStructure> structuresByName) {
     for (final struct in structuresByName.values) {
       // Contains duplicated properties
-      final allProperties = _getAllProperties(struct, structuresByName);
+      final allProperties = getAllProperties(struct, structuresByName);
       final properties = allProperties
           .map(
             (property) => PropertySymbol(
               type: resolveType(property.type),
-              isOptional: property.optional,
-              doc: property.documentation,
+              name: property.name,
+              optional: property.optional,
+              documentation: property.documentation,
             ),
           )
           .toList();
@@ -102,27 +103,41 @@ final class Symbols {
     return structsByName;
   }
 
-  Iterable<MetaProperty> _getAllProperties(
+   Map<String, MetaStructure> getStructuresByName(MetaProtocol protocol) {
+    final structsByName = <String, MetaStructure>{};
+
+    for (final struct in protocol.structures) {
+      structsByName[struct.name] = struct;
+    }
+
+    return structsByName;
+  }
+
+  Iterable<MetaProperty> getAllProperties(
     MetaStructure struct,
     Map<String, MetaStructure> structsByName,
   ) {
-    final extendsRefs = (struct.extends$ + struct.mixins$).cast<TypeRef>();
-    final extendStructs = extendsRefs.map((ref) => structsByName[ref.name]!);
-    final extendProperties = extendStructs.expand((s) => s.properties);
+    final inheritedProps = [
+      for (final ref in [...struct.extends$, ...struct.mixins$].cast<TypeRef>())
+        ...structsByName[ref.name]!.properties,
+    ];
 
-    final result = [...struct.properties, ...extendProperties]
+    final resultMap = {
+      for (final prop in inheritedProps) prop.name: prop,
+      for (final prop in struct.properties) prop.name: prop, // overrides
+    };
+
+    final sorted = resultMap.values.toList()
       ..sort((a, b) => a.name.compareTo(b.name));
 
-    // Throw if duplicate properties are found
-    final seenNames = <String>{};
-    for (final property in result) {
-      if (seenNames.contains(property.name)) {
-        print('Duplicate property name found: ${property.name} ');
+    final seen = <String>{};
+    for (final prop in sorted) {
+      if (!seen.add(prop.name)) {
+        throw Exception('Duplicate property name found: ${prop.name}');
       }
-      seenNames.add(property.name);
     }
 
-    return result;
+    return sorted;
   }
 
   String resolve({required LiteralRef ref}) {
