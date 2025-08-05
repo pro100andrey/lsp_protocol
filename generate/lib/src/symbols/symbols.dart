@@ -160,14 +160,11 @@ final class Symbols {
       typeRef: (ref) => ref.name,
       arrayRef: (ref) => 'List<${resolveType(ref.element)}>',
       baseRef: (ref) => switch (ref.name) {
-        'integer' => 'int',
-        'uinteger' => 'int',
-        'string' => 'String',
+        'integer' || 'uinteger' => 'int',
+        'string' || 'DocumentUri' || 'URI' => 'String',
         'decimal' => 'double',
         'boolean' => 'bool',
         'null' => 'Null',
-        'DocumentUri' => 'String',
-        'URI' => 'String',
         _ => throw ArgumentError(
           'Unknown base type: ${ref.name}. '
           'Ensure it is a valid Dart base type.',

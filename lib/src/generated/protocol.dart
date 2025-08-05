@@ -29,54 +29,54 @@ typedef Literal11 = ({
   List<TextDocumentItem>? didOpen,
   List<TextDocumentIdentifier>? didClose,
 });
-typedef Literal112 = ({
+typedef TextContentLiteral = ({
   VersionedTextDocumentIdentifier document,
   List<TextDocumentContentChangeEvent> changes,
 });
-typedef Literal12 = ({
+typedef Literal13 = ({
   Literal11? structure,
   List<NotebookCell>? data,
-  List<Literal112>? textContent,
+  List<TextContentLiteral>? textContent,
 });
-typedef Literal13 = ({
+typedef Literal14 = ({
   WorkspaceFoldersServerCapabilities? workspaceFolders,
   FileOperationOptions? fileOperations,
 });
-typedef Literal14 = ({bool? labelDetailsSupport});
-typedef Literal15 = ({bool cancel, List<String> retryOnContentModified});
-typedef Literal16 = ({bool? groupsOnLabel});
-typedef Literal17 = ({List<SymbolKind>? valueSet});
-typedef Literal18 = ({List<SymbolTag> valueSet});
-typedef Literal19 = ({List<String> properties});
-typedef Literal20 = ({List<CompletionItemTag> valueSet});
-typedef Literal21 = ({List<InsertTextMode> valueSet});
-typedef Literal22 = ({
+typedef Literal15 = ({bool? labelDetailsSupport});
+typedef Literal16 = ({bool cancel, List<String> retryOnContentModified});
+typedef Literal17 = ({bool? groupsOnLabel});
+typedef SymbolKindsLiteral = ({List<SymbolKind>? valueSet});
+typedef Literal19 = ({List<SymbolTag> valueSet});
+typedef Literal20 = ({List<String> properties});
+typedef CompletionItemTagsLiteral = ({List<CompletionItemTag> valueSet});
+typedef InsertTextModesLiteral = ({List<InsertTextMode> valueSet});
+typedef Literal23 = ({
   bool? snippetSupport,
   bool? commitCharactersSupport,
   List<MarkupKind>? documentationFormat,
   bool? deprecatedSupport,
   bool? preselectSupport,
-  Literal20? tagSupport,
+  CompletionItemTagsLiteral? tagSupport,
   bool? insertReplaceSupport,
-  Literal19? resolveSupport,
-  Literal21? insertTextModeSupport,
+  Literal20? resolveSupport,
+  InsertTextModesLiteral? insertTextModeSupport,
   bool? labelDetailsSupport,
 });
-typedef Literal23 = ({List<CompletionItemKind>? valueSet});
-typedef Literal24 = ({List<String>? itemDefaults});
-typedef Literal25 = ({bool? labelOffsetSupport});
-typedef Literal26 = ({
+typedef Literal24 = ({List<CompletionItemKind>? valueSet});
+typedef Literal25 = ({List<String>? itemDefaults});
+typedef Literal26 = ({bool? labelOffsetSupport});
+typedef Literal27 = ({
   List<MarkupKind>? documentationFormat,
-  Literal25? parameterInformation,
+  Literal26? parameterInformation,
   bool? activeParameterSupport,
 });
-typedef Literal27 = ({List<CodeActionKind> valueSet});
-typedef Literal28 = ({Literal27 codeActionKind});
-typedef Literal29 = ({List<FoldingRangeKind>? valueSet});
-typedef Literal30 = ({bool? collapsedText});
-typedef Literal31 = ({List<DiagnosticTag> valueSet});
-typedef ObjectFullObjectRange = ({Object? range, Object? full});
-typedef Literal33 = ({bool? additionalPropertiesSupport});
+typedef Literal28 = ({List<CodeActionKind> valueSet});
+typedef Literal29 = ({Literal28 codeActionKind});
+typedef Literal30 = ({List<FoldingRangeKind>? valueSet});
+typedef Literal31 = ({bool? collapsedText});
+typedef Literal32 = ({List<DiagnosticTag> valueSet});
+typedef Literal33 = ({Object? range, Object? full});
+typedef Literal34 = ({bool? additionalPropertiesSupport});
 
 /// The definition of a symbol represented as one or many {@link Location
 /// locations}. For most programming languages there is only one location at
