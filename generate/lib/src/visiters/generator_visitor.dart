@@ -6,6 +6,7 @@ import '../extensions/string.dart';
 import '../generator_helper.dart';
 import '../meta/protocol.dart';
 import '../symbols/sealed_map.dart';
+import '../symbols/symbol.dart';
 import '../symbols/symbols.dart';
 import '../utils.dart';
 import 'type_resolver_visitor.dart';
@@ -49,6 +50,10 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.addAll(_generateFreezedHeader());
         b.body.add(visitMetaData(protocol.metaData));
 
+        for (final literal in _symbols.literalSymbols.values) {
+          b.body.add(_generateLiteralTypeAlias(literal));
+        }
+
         // Generate type aliases
         for (final typeAlias in protocol.typeAliases) {
           b.body.add(visitTypeAlias(typeAlias));
@@ -86,6 +91,17 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     Code("part 'protocol.freezed.dart';"),
     Code("part 'protocol.g.dart';"),
   ];
+
+  Spec _generateLiteralTypeAlias(LiteralSymbol symbol) {
+    final def = TypeDef((b) {
+      b
+        ..name = symbol.displayName
+        // ..docs.addAll(formatDocComment(symbol.ref.documentation) ?? [])
+        ..definition = refer(symbol.type);
+    });
+
+    return def;
+  }
 
   @override
   TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {

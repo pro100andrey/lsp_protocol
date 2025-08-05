@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import 'rename_map.dart';
+
 sealed class Symbol extends Equatable {
   const Symbol();
 
@@ -49,6 +51,8 @@ class LiteralSymbol extends Symbol {
   final String name;
   final String type;
   final Object ref;
+
+  String get displayName => renameLiteralMap[name] ?? name;
 
   @override
   List<Object?> get props => [name, type];

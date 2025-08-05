@@ -30,7 +30,7 @@ String specToCode(Spec spec, {bool format = true}) {
 
 String literalToRecord({
   required LiteralRef ref,
-  required String Function(MetaReference) typeResolver,
+  required String Function(MetaReference ref) typeResolver,
   bool forceOptional = false,
 }) {
   final record = RecordType(

@@ -8,6 +8,75 @@ part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
 const String kLSPVersion = '3.17.0';
+typedef Literal1 = ({Range range, String placeholder});
+typedef Literal2 = ({bool defaultBehavior});
+typedef Literal3 = ({Range range, int? rangeLength, String text});
+typedef Literal4 = ({String text});
+typedef Literal5 = ({String language, String value});
+typedef Literal6 = ({String language, String? scheme, String? pattern});
+typedef Literal7 = ({String notebookType, String? scheme, String? pattern});
+typedef Literal8 = ({String name, String? version});
+typedef Literal9 = ({
+  List<String>? commitCharacters,
+  Object? editRange,
+  InsertTextFormat? insertTextFormat,
+  InsertTextMode? insertTextMode,
+  LSPAny? data,
+});
+typedef Literal10 = ({String reason});
+typedef Literal11 = ({
+  NotebookCellArrayChange array,
+  List<TextDocumentItem>? didOpen,
+  List<TextDocumentIdentifier>? didClose,
+});
+typedef Literal112 = ({
+  VersionedTextDocumentIdentifier document,
+  List<TextDocumentContentChangeEvent> changes,
+});
+typedef Literal12 = ({
+  Literal11? structure,
+  List<NotebookCell>? data,
+  List<Literal112>? textContent,
+});
+typedef Literal13 = ({
+  WorkspaceFoldersServerCapabilities? workspaceFolders,
+  FileOperationOptions? fileOperations,
+});
+typedef Literal14 = ({bool? labelDetailsSupport});
+typedef Literal15 = ({bool cancel, List<String> retryOnContentModified});
+typedef Literal16 = ({bool? groupsOnLabel});
+typedef Literal17 = ({List<SymbolKind>? valueSet});
+typedef Literal18 = ({List<SymbolTag> valueSet});
+typedef Literal19 = ({List<String> properties});
+typedef Literal20 = ({List<CompletionItemTag> valueSet});
+typedef Literal21 = ({List<InsertTextMode> valueSet});
+typedef Literal22 = ({
+  bool? snippetSupport,
+  bool? commitCharactersSupport,
+  List<MarkupKind>? documentationFormat,
+  bool? deprecatedSupport,
+  bool? preselectSupport,
+  Literal20? tagSupport,
+  bool? insertReplaceSupport,
+  Literal19? resolveSupport,
+  Literal21? insertTextModeSupport,
+  bool? labelDetailsSupport,
+});
+typedef Literal23 = ({List<CompletionItemKind>? valueSet});
+typedef Literal24 = ({List<String>? itemDefaults});
+typedef Literal25 = ({bool? labelOffsetSupport});
+typedef Literal26 = ({
+  List<MarkupKind>? documentationFormat,
+  Literal25? parameterInformation,
+  bool? activeParameterSupport,
+});
+typedef Literal27 = ({List<CodeActionKind> valueSet});
+typedef Literal28 = ({Literal27 codeActionKind});
+typedef Literal29 = ({List<FoldingRangeKind>? valueSet});
+typedef Literal30 = ({bool? collapsedText});
+typedef Literal31 = ({List<DiagnosticTag> valueSet});
+typedef ObjectFullObjectRange = ({Object? range, Object? full});
+typedef Literal33 = ({bool? additionalPropertiesSupport});
 
 /// The definition of a symbol represented as one or many {@link Location
 /// locations}. For most programming languages there is only one location at

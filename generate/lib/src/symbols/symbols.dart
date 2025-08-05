@@ -14,6 +14,9 @@ final class Symbols {
   final Map<String, TypedefSymbol> _typedefSymbols = {};
   final Map<String, LiteralSymbol> _literalSymbols = {};
 
+  Map<String, LiteralSymbol> get literalSymbols =>
+      UnmodifiableMapView(_literalSymbols);
+
   void process(MetaProtocol protocol) {
     final structsByName = _getStructuresByName(protocol);
 
@@ -39,6 +42,12 @@ final class Symbols {
             prop.type.onLiteralRef((innerLiteralRef) {
               _addLiteralSymbol(ref: innerLiteralRef, origin: prop.name);
             });
+
+            prop.type.onArrayRef((arrayRef) {
+              arrayRef.element.onLiteralRef((innerLiteralRef) {
+                _addLiteralSymbol(ref: innerLiteralRef, origin: prop.name);
+              });
+            });
           }
 
           _addLiteralSymbol(ref: literalRef, origin: property.name);
@@ -51,16 +60,20 @@ final class Symbols {
     required LiteralRef ref,
     required String origin,
   }) {
-    final name = _resolveLiteralDisplayName(ref);
+    final name = _resolveLiteralName(ref);
     if (_literalSymbols.containsKey(name)) {
-      // print('Skipping addition of literal symbol: $name');
       return;
     }
 
+    String typeResolver(MetaReference ref) => ref.when(
+      literalRef: _resolveLiteralDisplayName,
+      arrayRef: (ref) => 'List<${typeResolver(ref.element)}>',
+      orElse: resolveType,
+    );
+
     final record = literalToRecord(
       ref: ref,
-      typeResolver: resolveType,
-      forceOptional: true,
+      typeResolver: typeResolver,
     );
 
     final symbol = LiteralSymbol(name: name, type: record, ref: ref);
@@ -141,16 +154,6 @@ final class Symbols {
     return sorted;
   }
 
-  String resolve({required LiteralRef ref}) {
-    final type = literalToRecord(
-      ref: ref,
-      typeResolver: resolveType,
-      forceOptional: true,
-    );
-
-    return type;
-  }
-
   String resolveType(MetaReference ref) {
     final result = ref.when(
       literalRef: _resolveLiteralName,
@@ -170,7 +173,7 @@ final class Symbols {
           'Ensure it is a valid Dart base type.',
         ),
       },
-      orRef: (ref) => 'OrRef',
+      orRef: (ref) => 'Object',
       andRef: (ref) => 'AndRef',
       mapRef: (ref) => 'MapRef',
       tupleRef: (ref) => 'TupleRef',
@@ -206,19 +209,16 @@ final class Symbols {
     final sorted = parts.sorted((a, b) => a.compareTo(b));
     final rawName = sorted.join();
 
-
     return rawName;
   }
 
   String _resolveLiteralDisplayName(LiteralRef ref) {
-
     final rawName = _resolveLiteralName(ref);
-
     final resultName = renameLiteralMap[rawName] ?? rawName;
 
     if (resultName == rawName) {
       print('need rename for literal: $rawName');
-    } 
+    }
 
     return resultName;
   }
