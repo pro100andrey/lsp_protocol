@@ -21,19 +21,31 @@ extension MetaReferenceExtensions on MetaReference {
     T Function(MapRef ref)? mapRef,
     T Function(TupleRef ref)? tupleRef,
     T Function(StringLiteralRef ref)? stringLiteralRef,
+    T Function(MetaReference ref)? orElse,
   }) {
     final ref = this;
-    return switch (ref) {
-      LiteralRef() => literalRef?.call(ref) as T,
-      TypeRef() => typeRef?.call(ref) as T,
-      ArrayRef() => arrayRef?.call(ref) as T,
-      BaseRef() => baseRef?.call(ref) as T,
-      OrRef() => orRef?.call(ref) as T,
-      AndRef() => andRef?.call(ref) as T,
-      MapRef() => mapRef?.call(ref) as T,
-      TupleRef() => tupleRef?.call(ref) as T,
-      StringLiteralRef() => stringLiteralRef?.call(ref) as T,
+    final result = switch (ref) {
+      LiteralRef() => literalRef?.call(ref),
+      TypeRef() => typeRef?.call(ref),
+      ArrayRef() => arrayRef?.call(ref),
+      BaseRef() => baseRef?.call(ref),
+      OrRef() => orRef?.call(ref),
+      AndRef() => andRef?.call(ref),
+      MapRef() => mapRef?.call(ref),
+      TupleRef() => tupleRef?.call(ref),
+      StringLiteralRef() => stringLiteralRef?.call(ref),
     };
+
+    if (result != null) {
+      return result;
+    } else if (orElse != null) {
+      return orElse(this);
+    } else {
+      throw ArgumentError(
+        'No matching case for ${ref.runtimeType}. '
+        'Ensure you handle all cases or provide an orElse function.',
+      );
+    }
   }
 
   void onLiteralRef(

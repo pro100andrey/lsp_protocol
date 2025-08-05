@@ -6,6 +6,7 @@ import '../../generate.dart';
 import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../generator_helper.dart';
+import 'rename_map.dart';
 import 'symbol.dart';
 
 final class Symbols {
@@ -21,52 +22,52 @@ final class Symbols {
   }
 
   void _collectLiterals(MetaProtocol protocol) {
+    for (final def in protocol.typeAliases) {
+      def.type.onOrRef((orRef) {
+        for (final prop in orRef.items) {
+          prop.onLiteralRef((literalRef) {
+            _addLiteralSymbol(ref: literalRef, origin: def.name);
+          });
+        }
+      });
+    }
+
     for (final struct in protocol.structures) {
       for (final property in struct.properties) {
         property.type.onLiteralRef((literalRef) {
           for (final prop in literalRef.value.properties) {
             prop.type.onLiteralRef((innerLiteralRef) {
-              _addLiteralSymbol(
-                name: prop.name.upperFirstLetter().postfix('Literal'),
-                ref: innerLiteralRef,
-                origin: prop.name,
-              );
+              _addLiteralSymbol(ref: innerLiteralRef, origin: prop.name);
             });
           }
 
-          _addLiteralSymbol(
-            name: property.name.upperFirstLetter().postfix('Literal'),
-            ref: literalRef,
-            origin: property.name,
-          );
+          _addLiteralSymbol(ref: literalRef, origin: property.name);
         });
       }
     }
   }
 
   void _addLiteralSymbol({
-    required String name,
     required LiteralRef ref,
     required String origin,
   }) {
+    final name = _resolveLiteralDisplayName(ref);
     if (_literalSymbols.containsKey(name)) {
-      throw ArgumentError(
-        'Duplicate literal name found: $name in $origin',
-      );
+      // print('Skipping addition of literal symbol: $name');
+      return;
     }
 
     final record = literalToRecord(
       ref: ref,
       typeResolver: resolveType,
       forceOptional: true,
-      
     );
 
-    _literalSymbols[name] = LiteralSymbol(
-      name: name,
-      type: record,
-      ref: ref,
-    );
+    final symbol = LiteralSymbol(name: name, type: record, ref: ref);
+
+    _literalSymbols[name] = symbol;
+
+    print('Added literal symbol: $name');
   }
 
   void _collectStructures(Map<String, MetaStructure> structuresByName) {
@@ -103,7 +104,7 @@ final class Symbols {
     return structsByName;
   }
 
-   Map<String, MetaStructure> getStructuresByName(MetaProtocol protocol) {
+  Map<String, MetaStructure> getStructuresByName(MetaProtocol protocol) {
     final structsByName = <String, MetaStructure>{};
 
     for (final struct in protocol.structures) {
@@ -150,20 +151,6 @@ final class Symbols {
     return type;
   }
 
-  String _resolveLiteralName(LiteralRef ref) {
-    final symbol = _literalSymbols.values.firstWhereOrNull(
-      (symbol) => symbol.ref == ref,
-    );
-
-    if (symbol == null) {
-      throw ArgumentError(
-        'Literal symbol not found for reference: $ref',
-      );
-    }
-
-    return symbol.name;
-  }
-
   String resolveType(MetaReference ref) {
     final result = ref.when(
       literalRef: _resolveLiteralName,
@@ -191,5 +178,48 @@ final class Symbols {
     );
 
     return result;
+  }
+
+  String resolveDisplayName(MetaReference ref) {
+    final result = ref.when(
+      literalRef: _resolveLiteralName,
+      arrayRef: (ref) => '${resolveType(ref.element)}s',
+      orElse: (ref) => null,
+    );
+
+    if (result != null) {
+      return result;
+    }
+
+    return resolveType(ref);
+  }
+
+  String _resolveLiteralName(LiteralRef ref) {
+    final parts = ref.value.properties
+        .map(
+          (item) =>
+              '${resolveDisplayName(item.type).upperFirstLetter()}'
+              '${item.name.upperFirstLetter()}',
+        )
+        .toList(growable: false);
+
+    final sorted = parts.sorted((a, b) => a.compareTo(b));
+    final rawName = sorted.join();
+
+
+    return rawName;
+  }
+
+  String _resolveLiteralDisplayName(LiteralRef ref) {
+
+    final rawName = _resolveLiteralName(ref);
+
+    final resultName = renameLiteralMap[rawName] ?? rawName;
+
+    if (resultName == rawName) {
+      print('need rename for literal: $rawName');
+    } 
+
+    return resultName;
   }
 }
