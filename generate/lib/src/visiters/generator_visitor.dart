@@ -50,22 +50,30 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.addAll(_generateFreezedHeader());
         b.body.add(visitMetaData(protocol.metaData));
 
-        for (final literal in _symbols.literalSymbols.values) {
+        for (final typedef in _symbols.typedefs) {
+          b.body.add(_generateTypedef(typedef));
+        }
+
+        for (final literal in _symbols.literals) {
           b.body.add(_generateLiteralTypeAlias(literal));
         }
 
         // Generate type aliases
-        for (final typeAlias in protocol.typeAliases) {
-          b.body.add(visitTypeAlias(typeAlias));
+        // for (final typeAlias in protocol.typeAliases) {
+        //   b.body.add(visitTypeAlias(typeAlias));
+        // }
+
+        for (final ref in _symbols.sealed) {
+          b.body.addAll(_generateBaseOrClass(ref));
         }
 
-        for (final ref in _sealedMap.refs) {
-          b.body.add(_generateBaseOrClass(ref));
+        for (final structure in _symbols.structures) {
+          b.body.add(_generateStructure(structure));
         }
 
-        for (final structure in protocol.structures) {
-          b.body.add(visitStructure(structure));
-        }
+        // for (final structure in protocol.structures) {
+        //   b.body.add(visitStructure(structure));
+        // }
 
         for (final enumeration in protocol.enumerations) {
           b.body.add(visitEnumeration(enumeration));
@@ -83,6 +91,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     '/// Do not edit it manually.',
     '',
     '// ignore_for_file: doc_directive_unknown',
+    '// ignore_for_file: always_put_required_named_parameters_first',
   ];
 
   List<Spec> _generateFreezedHeader() => const [
@@ -96,7 +105,9 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final def = TypeDef((b) {
       b
         ..name = symbol.displayName
-        // ..docs.addAll(formatDocComment(symbol.ref.documentation) ?? [])
+        ..docs.addAll([
+          '/// Represents a literal type for ${symbol.displayName}.',
+        ])
         ..definition = refer(symbol.type);
     });
 
@@ -104,7 +115,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   }
 
   @override
-  TypeDef visitTypeAlias(MetaTypeAlias typeAlias) {
+  Spec visitTypeAlias(MetaTypeAlias typeAlias) {
     final definitionName = typeAlias.type.resolveType(_typeResolverVisitor);
 
     return TypeDef((b) {
@@ -113,6 +124,83 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         ..name = typeAlias.name
         ..definition = refer(definitionName);
     });
+  }
+
+  Spec _generateTypedef(TypedefSymbol symbol) => TypeDef((b) {
+    b
+      ..docs.addAll(formatDocComment(symbol.doc) ?? [])
+      ..name = symbol.name
+      ..definition = refer(symbol.type);
+  });
+
+  Spec _generateStructure(StructureSymbol symbol) {
+    final name = symbol.name.replaceFirstLetterIfExists('_', 'T');
+    final structDocs = formatDocComment(symbol.doc, maxLineLength: 70) ?? [];
+
+    final clazz = Class(
+      (b) {
+        b
+          ..docs.addAll(structDocs)
+          ..name = name
+          ..annotations.add(refer('freezed'))
+          // abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
+          ..mixins.add(refer('_\$$name'))
+          ..abstract = true;
+
+        b.constructors.addAll(
+          [
+            Constructor(
+              (b) => b
+                // ..annotations.add(_disallowUnrecognizedKeysRef)
+                ..factory = true
+                ..constant = true
+                ..redirect = refer('_$name')
+                ..optionalParameters.addAll(
+                  symbol.properties.map(
+                    (field) => Parameter(
+                      (b) {
+                        final fieldDocs =
+                            formatDocComment(
+                              field.documentation,
+                              maxLineLength: 76,
+                            ) ??
+                            [];
+
+                        b
+                          ..docs.addAll(fieldDocs)
+                          ..name = field.name
+                          ..type = refer(
+                            field.type.optional(optional: field.optional),
+                          )
+                          ..named = true
+                          ..required = !field.optional;
+                      },
+                    ),
+                  ),
+                ),
+            ),
+            //   factory MetaProtocol.fromJson(Map<String, Object?> json) =>
+            //       _$MetaProtocolFromJson(json);
+            Constructor(
+              (b) => b
+                ..factory = true
+                ..name = 'fromJson'
+                ..requiredParameters.add(
+                  Parameter(
+                    (b) => b
+                      ..name = 'json'
+                      ..type = refer('Map<String, dynamic>'),
+                  ),
+                )
+                ..lambda = true
+                ..body = Code('_\$${name}FromJson(json)'),
+            ),
+          ],
+        );
+      },
+    );
+
+    return clazz;
   }
 
   @override
@@ -315,83 +403,22 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   @override
   Class visitLiteral(MetaLiteral literal) => throw UnimplementedError();
 
-  Class _generateBaseOrClass(OrRef symbol) {
-    final baseName = _sealedMap.resolveOrRefType(symbol);
-    final className = _sealedMap.resolveOrRefType(symbol, isBase: false);
-
-    final constructors = <Constructor>[];
-
-    for (final (i, o) in symbol.items.indexed) {
-      final ownerType = o.resolveType(_typeResolverVisitor);
-
-      if (ownerType == 'Null') {
-        // Skip Null type
-        continue;
-      }
-
-      final constructor = Constructor((cb) {
-        cb
-          // ..annotations.add(_disallowUnrecognizedKeysRef)
-          ..constant = true
-          ..factory = true
-          ..name = 'from${i + 1}'
-          ..redirect = refer('$className$i')
-          ..optionalParameters.add(
-            Parameter((pb) {
-              pb
-                ..type = refer(ownerType)
-                ..required = true
-                ..named = true
-                ..name = 'value';
-            }),
-          );
-      });
-
-      constructors.add(constructor);
-    }
-
-    final clazz = Class(
+  List<Spec> _generateBaseOrClass(SealedSymbol symbol) {
+    final baseClass = Class(
       (b) {
         b
-          ..docs.addAll([
-            ..._sealedMap
-                .ownerNamesForOrRef(symbol)
-                .map((owner) => '/// Owned by: $owner'),
-            '///',
-            ..._sealedMap
-                .typeNamesForOrRef(symbol)
-                .map((type) => '/// Type: $type'),
-          ])
-          ..name = baseName
-          // ..annotations.add(refer('Freezed(fromJson: false)'))
-          ..annotations.add(refer('Freezed()'))
-          // abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
-          ..mixins.add(refer('_\$$baseName'))
+          ..name = symbol.displayName
           ..sealed = true;
 
         b.constructors.addAll(
           [
-            ...constructors,
-            Constructor(
-              (b) => b
-                ..factory = true
-                ..name = 'fromJson'
-                ..requiredParameters.add(
-                  Parameter(
-                    (b) => b
-                      ..name = 'json'
-                      ..type = refer('Map<String, dynamic>'),
-                  ),
-                )
-                ..lambda = true
-                ..body = Code('_\$${baseName}FromJson(json)'),
-            ),
+            Constructor((b) => b..constant = true),
           ],
         );
       },
     );
 
-    return clazz;
+    return [baseClass];
   }
 
   Map<String, MetaProperty> _collectInheritedProperties(

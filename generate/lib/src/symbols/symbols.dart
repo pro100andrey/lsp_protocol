@@ -13,15 +13,80 @@ final class Symbols {
   final Map<String, StructureSymbol> _structureSymbols = {};
   final Map<String, TypedefSymbol> _typedefSymbols = {};
   final Map<String, LiteralSymbol> _literalSymbols = {};
+  final Map<String, SealedSymbol> _sealedMap = {};
 
-  Map<String, LiteralSymbol> get literalSymbols =>
-      UnmodifiableMapView(_literalSymbols);
+  Iterable<LiteralSymbol> get literals => _literalSymbols.values;
+
+  Iterable<StructureSymbol> get structures => _structureSymbols.values;
+
+  Iterable<TypedefSymbol> get typedefs => _typedefSymbols.values;
+
+  Iterable<SealedSymbol> get sealed => _sealedMap.values;
 
   void process(MetaProtocol protocol) {
-    final structsByName = _getStructuresByName(protocol);
-
+    _collectTypedefs(protocol);
     _collectLiterals(protocol);
-    _collectStructures(structsByName);
+    _collectStructures(protocol);
+    _collectSealed(protocol);
+  }
+
+  void _collectTypedefs(MetaProtocol protocol) {
+    for (final typeAlias in protocol.typeAliases) {
+      final type = resolveType(typeAlias.type);
+      final symbol = TypedefSymbol(
+        name: typeAlias.name,
+        type: type,
+        doc: typeAlias.documentation,
+      );
+
+      _typedefSymbols[typeAlias.name] = symbol;
+    }
+  }
+
+  void _collectSealed(MetaProtocol protocol) {
+    for (final typeAlias in protocol.typeAliases) {
+      typeAlias.type.onOrRef(_addSealedSymbol);
+    }
+
+    for (final structure in protocol.structures) {
+      for (final property in structure.properties) {
+        property.type.onLiteralRef((literalRef) {
+          for (final prop in literalRef.value.properties) {
+            prop.type.onOrRef(_addSealedSymbol);
+          }
+        });
+
+        property.type.onMapRef((mapRef) {
+          mapRef.value.onOrRef(_addSealedSymbol);
+        });
+
+        property.type.onOrRef((orRef) {
+          orRef.onOrRef(_addSealedSymbol);
+        });
+
+        property.type.onArrayRef((arrayRef) {
+          arrayRef.element.onOrRef(_addSealedSymbol);
+        });
+      }
+    }
+  }
+
+  void _addSealedSymbol(OrRef orRef) {
+    final name = resolveType(orRef);
+    if (_sealedMap.containsKey(name)) {
+      return;
+    }
+
+    final types = orRef.items.map(resolveType).toList(growable: false);
+
+    final symbol = SealedSymbol(
+      name: name,
+      types: types,
+    );
+
+    print('Added sealed symbol: ${symbol.displayName}');
+
+    _sealedMap[name] = symbol;
   }
 
   void _collectLiterals(MetaProtocol protocol) {
@@ -80,10 +145,11 @@ final class Symbols {
 
     _literalSymbols[name] = symbol;
 
-    print('Added literal symbol: $name');
+    print('Added literal symbol: ${symbol.displayName}');
   }
 
-  void _collectStructures(Map<String, MetaStructure> structuresByName) {
+  void _collectStructures(MetaProtocol protocol) {
+    final structuresByName = _getStructuresByName(protocol);
     for (final struct in structuresByName.values) {
       // Contains duplicated properties
       final allProperties = getAllProperties(struct, structuresByName);
@@ -170,9 +236,10 @@ final class Symbols {
           'Ensure it is a valid Dart base type.',
         ),
       },
-      orRef: (ref) => 'Object',
+      orRef: _resolveOrRefDisplayName,
       andRef: (ref) => 'AndRef',
-      mapRef: (ref) => 'MapRef',
+      mapRef: (ref) =>
+          'Map<${resolveType(ref.key)}, ${resolveType(ref.value)}>',
       tupleRef: (ref) => 'TupleRef',
       stringLiteralRef: (ref) => 'StringLiteralRef',
     );
@@ -184,6 +251,7 @@ final class Symbols {
     final result = ref.when(
       literalRef: _resolveLiteralName,
       arrayRef: (ref) => '${resolveType(ref.element)}s',
+      orRef: _resolveOrRefName,
       orElse: (ref) => null,
     );
 
@@ -192,6 +260,24 @@ final class Symbols {
     }
 
     return resolveType(ref);
+  }
+
+  String _resolveOrRefName(OrRef orRef) {
+    final parts = orRef.items
+        .map((item) => resolveDisplayName(item).upperFirstLetter())
+        .toList(growable: false);
+
+    final sortedParts = parts.sorted((a, b) => a.compareTo(b));
+    final rawName = sortedParts.join('Or');
+
+    return rawName;
+  }
+
+  String _resolveOrRefDisplayName(OrRef orRef) {
+    final rawName = _resolveOrRefName(orRef);
+    final resultName = renameSealedMap[rawName] ?? rawName;
+
+    return resultName;
   }
 
   String _resolveLiteralName(LiteralRef ref) {

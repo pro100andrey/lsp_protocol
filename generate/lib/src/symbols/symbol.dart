@@ -32,13 +32,15 @@ class TypedefSymbol extends Symbol {
   const TypedefSymbol({
     required this.name,
     required this.type,
+    required this.doc,
   });
 
   final String name;
   final String type;
+  final String? doc;
 
   @override
-  List<Object?> get props => [name, type];
+  List<Object?> get props => [name, type, doc];
 }
 
 class LiteralSymbol extends Symbol {
@@ -58,15 +60,35 @@ class LiteralSymbol extends Symbol {
   List<Object?> get props => [name, type];
 }
 
+class SealedSymbol extends Symbol {
+  const SealedSymbol({
+    required this.name,
+    required this.types,
+    this.doc,
+  });
+
+  final String name;
+
+  final List<String> types;
+  final String? doc;
+
+  String get displayName => renameSealedMap[name] ?? name;
+
+  @override
+  List<Object?> get props => [name, types, doc];
+}
+
 class StructureSymbol extends Symbol {
   const StructureSymbol({
     required this.name,
     required this.properties,
+    this.doc,
   });
 
   final String name;
+  final String? doc;
   final List<PropertySymbol> properties;
 
   @override
-  List<Object?> get props => [name, properties];
+  List<Object?> get props => [name, properties, doc];
 }

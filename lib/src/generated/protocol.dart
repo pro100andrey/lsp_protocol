@@ -1,6 +1,7 @@
 /// Do not edit it manually.
 
 // ignore_for_file: doc_directive_unknown
+// ignore_for_file: always_put_required_named_parameters_first
 library; // Freezed header not implemented for generation
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,82 +9,13 @@ part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
 const String kLSPVersion = '3.17.0';
-typedef Literal1 = ({Range range, String placeholder});
-typedef Literal2 = ({bool defaultBehavior});
-typedef Literal3 = ({Range range, int? rangeLength, String text});
-typedef Literal4 = ({String text});
-typedef Literal5 = ({String language, String value});
-typedef Literal6 = ({String language, String? scheme, String? pattern});
-typedef Literal7 = ({String notebookType, String? scheme, String? pattern});
-typedef Literal8 = ({String name, String? version});
-typedef Literal9 = ({
-  List<String>? commitCharacters,
-  Object? editRange,
-  InsertTextFormat? insertTextFormat,
-  InsertTextMode? insertTextMode,
-  LSPAny? data,
-});
-typedef Literal10 = ({String reason});
-typedef Literal11 = ({
-  NotebookCellArrayChange array,
-  List<TextDocumentItem>? didOpen,
-  List<TextDocumentIdentifier>? didClose,
-});
-typedef TextContentLiteral = ({
-  VersionedTextDocumentIdentifier document,
-  List<TextDocumentContentChangeEvent> changes,
-});
-typedef Literal13 = ({
-  Literal11? structure,
-  List<NotebookCell>? data,
-  List<TextContentLiteral>? textContent,
-});
-typedef Literal14 = ({
-  WorkspaceFoldersServerCapabilities? workspaceFolders,
-  FileOperationOptions? fileOperations,
-});
-typedef Literal15 = ({bool? labelDetailsSupport});
-typedef Literal16 = ({bool cancel, List<String> retryOnContentModified});
-typedef Literal17 = ({bool? groupsOnLabel});
-typedef SymbolKindsLiteral = ({List<SymbolKind>? valueSet});
-typedef Literal19 = ({List<SymbolTag> valueSet});
-typedef Literal20 = ({List<String> properties});
-typedef CompletionItemTagsLiteral = ({List<CompletionItemTag> valueSet});
-typedef InsertTextModesLiteral = ({List<InsertTextMode> valueSet});
-typedef Literal23 = ({
-  bool? snippetSupport,
-  bool? commitCharactersSupport,
-  List<MarkupKind>? documentationFormat,
-  bool? deprecatedSupport,
-  bool? preselectSupport,
-  CompletionItemTagsLiteral? tagSupport,
-  bool? insertReplaceSupport,
-  Literal20? resolveSupport,
-  InsertTextModesLiteral? insertTextModeSupport,
-  bool? labelDetailsSupport,
-});
-typedef Literal24 = ({List<CompletionItemKind>? valueSet});
-typedef Literal25 = ({List<String>? itemDefaults});
-typedef Literal26 = ({bool? labelOffsetSupport});
-typedef Literal27 = ({
-  List<MarkupKind>? documentationFormat,
-  Literal26? parameterInformation,
-  bool? activeParameterSupport,
-});
-typedef Literal28 = ({List<CodeActionKind> valueSet});
-typedef Literal29 = ({Literal28 codeActionKind});
-typedef Literal30 = ({List<FoldingRangeKind>? valueSet});
-typedef Literal31 = ({bool? collapsedText});
-typedef Literal32 = ({List<DiagnosticTag> valueSet});
-typedef Literal33 = ({Object? range, Object? full});
-typedef Literal34 = ({bool? additionalPropertiesSupport});
 
 /// The definition of a symbol represented as one or many {@link Location
 /// locations}. For most programming languages there is only one location at
 /// which a symbol is defined.
 /// Servers should prefer returning `DefinitionLink` over `Definition` if
 /// supported by the client.
-typedef Definition = DefinitionBase;
+typedef Definition = Sealed1;
 
 /// Information about where a symbol is defined.
 /// Provides additional metadata over normal {@link Location location}
@@ -97,11 +29,11 @@ typedef LSPArray = List<LSPAny>;
 /// value `undefined` can't be converted into JSON preserving the property
 /// name. However for convenience it is allowed and assumed that all these
 /// properties are optional as well. @since 3.17.0
-typedef LSPAny = LSPAnyBase;
+typedef LSPAny = Sealed2;
 
 /// The declaration of a symbol representation as one or many {@link Location
 /// locations}.
-typedef Declaration = DefinitionBase;
+typedef Declaration = Sealed1;
 
 /// Information about where a symbol is declared.
 /// Provides additional metadata over normal {@link Location location}
@@ -116,34 +48,33 @@ typedef DeclarationLink = LocationLink;
 /// (class InlineValueEvaluatableExpression) The InlineValue types combines all
 /// inline value types into one type.
 /// @since 3.17.0
-typedef InlineValue = InlineValueBase;
+typedef InlineValue = Sealed3;
 
 /// The result of a document diagnostic pull request. A report can either be a
 /// full report containing all diagnostics for the requested document or an
 /// unchanged report indicating that nothing has changed in terms of
 /// diagnostics in comparison to the last pull request.
 /// @since 3.17.0
-typedef DocumentDiagnosticReport = DocumentDiagnosticReportBase;
-typedef PrepareRenameResult = PrepareRenameResultBase;
+typedef DocumentDiagnosticReport = Sealed4;
+typedef PrepareRenameResult = Sealed5;
 
 /// A document selector is the combination of one or many document filters.
 /// @sample `let sel:DocumentSelector = [{ language: 'typescript' }, {
 /// language: 'json', pattern: '**∕tsconfig.json' }]`;
 /// The use of a string as a document filter is deprecated @since 3.16.0.
 typedef DocumentSelector = List<DocumentFilter>;
-typedef ProgressToken = ProgressTokenBase;
+typedef ProgressToken = Sealed6;
 
 /// An identifier to refer to a change annotation stored with a workspace edit.
 typedef ChangeAnnotationIdentifier = String;
 
 /// A workspace diagnostic document report.
 /// @since 3.17.0
-typedef WorkspaceDocumentDiagnosticReport =
-    WorkspaceDocumentDiagnosticReportBase;
+typedef WorkspaceDocumentDiagnosticReport = Sealed7;
 
 /// An event describing a change to a text document. If only a text is provided
 /// it is considered to be the full content of the document.
-typedef TextDocumentContentChangeEvent = TextDocumentContentChangeEventBase;
+typedef TextDocumentContentChangeEvent = Sealed8;
 
 /// MarkedString can be used to render human readable text. It is either a
 /// markdown string or a code-block that provides a language and a code
@@ -154,19 +85,19 @@ typedef TextDocumentContentChangeEvent = TextDocumentContentChangeEventBase;
 /// ```${language} ${value} ```
 /// Note that markdown strings will be sanitized - that means html will be
 /// escaped. @deprecated use MarkupContent instead.
-typedef MarkedString = MarkedStringBase;
+typedef MarkedString = Sealed9;
 
 /// A document filter describes a top level text document or a notebook cell
 /// document.
 /// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
-typedef DocumentFilter = DocumentFilterBase;
+typedef DocumentFilter = Sealed10;
 
 /// LSP object definition. @since 3.17.0
 typedef LSPObject = Map<String, LSPAny>;
 
 /// The glob pattern. Either a string pattern or a relative pattern.
 /// @since 3.17.0
-typedef GlobPattern = GlobPatternBase;
+typedef GlobPattern = Sealed11;
 
 /// A document filter denotes a document by different properties like the
 /// {@link TextDocument.languageId language}, the {@link Uri.scheme scheme} of
@@ -186,13 +117,13 @@ typedef GlobPattern = GlobPatternBase;
 /// applies to all package.json paths: `{ language: 'json', pattern:
 /// '**package.json' }`
 /// @since 3.17.0
-typedef TextDocumentFilter = TextDocumentFilterBase;
+typedef TextDocumentFilter = Sealed12;
 
 /// A notebook document filter denotes a notebook document by different
 /// properties. The properties will be match against the notebook's URI (same
 /// as with documents)
 /// @since 3.17.0
-typedef NotebookDocumentFilter = NotebookDocumentFilterBase;
+typedef NotebookDocumentFilter = Sealed13;
 
 /// The glob pattern to watch relative to the base path. Glob patterns can have
 /// the following syntax: - `*` to match zero or more characters in a path
@@ -206,1342 +137,407 @@ typedef NotebookDocumentFilter = NotebookDocumentFilterBase;
 /// @since 3.17.0
 typedef Pattern = String;
 
-/// Owned by: Definition(Alias)
-/// Owned by: Declaration(Alias)
-///
-/// Type: Location
-/// Type: Array<Location>
-@Freezed()
-sealed class DefinitionBase with _$DefinitionBase {
-  const factory DefinitionBase.from1({required Location value}) = Definition0;
+/// Represents a literal type for Literal1.
+typedef Literal1 = ({Range range, String placeholder});
+
+/// Represents a literal type for Literal2.
+typedef Literal2 = ({bool defaultBehavior});
+
+/// Represents a literal type for Literal3.
+typedef Literal3 = ({Range range, int? rangeLength, String text});
+
+/// Represents a literal type for Literal4.
+typedef Literal4 = ({String text});
+
+/// Represents a literal type for Literal5.
+typedef Literal5 = ({String language, String value});
+
+/// Represents a literal type for Literal6.
+typedef Literal6 = ({String language, String? scheme, String? pattern});
+
+/// Represents a literal type for Literal7.
+typedef Literal7 = ({String notebookType, String? scheme, String? pattern});
+
+/// Represents a literal type for Literal8.
+typedef Literal8 = ({String name, String? version});
+
+/// Represents a literal type for Literal9.
+typedef Literal9 = ({
+  List<String>? commitCharacters,
+  Sealed22? editRange,
+  InsertTextFormat? insertTextFormat,
+  InsertTextMode? insertTextMode,
+  LSPAny? data,
+});
+
+/// Represents a literal type for Literal10.
+typedef Literal10 = ({String reason});
+
+/// Represents a literal type for Literal11.
+typedef Literal11 = ({
+  NotebookCellArrayChange array,
+  List<TextDocumentItem>? didOpen,
+  List<TextDocumentIdentifier>? didClose,
+});
 
-  const factory DefinitionBase.from2({required List<Location> value}) =
-      Definition1;
-
-  factory DefinitionBase.fromJson(Map<String, dynamic> json) =>
-      _$DefinitionBaseFromJson(json);
-}
-
-/// Owned by: LSPAny(Alias)
-///
-/// Type: LSPObject
-/// Type: LSPArray
-/// Type: String
-/// Type: Integer
-/// Type: Uinteger
-/// Type: Decimal
-/// Type: Boolean
-/// Type: Null
-@Freezed()
-sealed class LSPAnyBase with _$LSPAnyBase {
-  const factory LSPAnyBase.from1({required LSPObject value}) = LSPAny0;
-
-  const factory LSPAnyBase.from2({required LSPArray value}) = LSPAny1;
-
-  const factory LSPAnyBase.from3({required String value}) = LSPAny2;
-
-  const factory LSPAnyBase.from4({required int value}) = LSPAny3;
-
-  const factory LSPAnyBase.from5({required int value}) = LSPAny4;
-
-  const factory LSPAnyBase.from6({required double value}) = LSPAny5;
-
-  const factory LSPAnyBase.from7({required bool value}) = LSPAny6;
-
-  factory LSPAnyBase.fromJson(Map<String, dynamic> json) =>
-      _$LSPAnyBaseFromJson(json);
-}
-
-/// Owned by: InlineValue(Alias)
-///
-/// Type: InlineValueText
-/// Type: InlineValueVariableLookup
-/// Type: InlineValueEvaluatableExpression
-@Freezed()
-sealed class InlineValueBase with _$InlineValueBase {
-  const factory InlineValueBase.from1({required InlineValueText value}) =
-      InlineValue0;
-
-  const factory InlineValueBase.from2({
-    required InlineValueVariableLookup value,
-  }) = InlineValue1;
-
-  const factory InlineValueBase.from3({
-    required InlineValueEvaluatableExpression value,
-  }) = InlineValue2;
-
-  factory InlineValueBase.fromJson(Map<String, dynamic> json) =>
-      _$InlineValueBaseFromJson(json);
-}
-
-/// Owned by: DocumentDiagnosticReport(Alias)
-///
-/// Type: RelatedFullDocumentDiagnosticReport
-/// Type: RelatedUnchangedDocumentDiagnosticReport
-@Freezed()
-sealed class DocumentDiagnosticReportBase with _$DocumentDiagnosticReportBase {
-  const factory DocumentDiagnosticReportBase.from1({
-    required RelatedFullDocumentDiagnosticReport value,
-  }) = DocumentDiagnosticReport0;
-
-  const factory DocumentDiagnosticReportBase.from2({
-    required RelatedUnchangedDocumentDiagnosticReport value,
-  }) = DocumentDiagnosticReport1;
-
-  factory DocumentDiagnosticReportBase.fromJson(Map<String, dynamic> json) =>
-      _$DocumentDiagnosticReportBaseFromJson(json);
-}
-
-/// Owned by: PrepareRenameResult(Alias)
-///
-/// Type: Range
-/// Type: ({Range range, String placeholder})
-/// Type: ({bool defaultBehavior})
-@Freezed()
-sealed class PrepareRenameResultBase with _$PrepareRenameResultBase {
-  const factory PrepareRenameResultBase.from1({required Range value}) =
-      PrepareRenameResult0;
-
-  const factory PrepareRenameResultBase.from2({
-    required ({Range range, String placeholder}) value,
-  }) = PrepareRenameResult1;
-
-  const factory PrepareRenameResultBase.from3({
-    required ({bool defaultBehavior}) value,
-  }) = PrepareRenameResult2;
-
-  factory PrepareRenameResultBase.fromJson(Map<String, dynamic> json) =>
-      _$PrepareRenameResultBaseFromJson(json);
-}
-
-/// Owned by: ProgressToken(Alias)
-/// Owned by: CancelParams(id)
-/// Owned by: Diagnostic(code)
-///
-/// Type: Integer
-/// Type: String
-@Freezed()
-sealed class ProgressTokenBase with _$ProgressTokenBase {
-  const factory ProgressTokenBase.from1({required int value}) = ProgressToken0;
-
-  const factory ProgressTokenBase.from2({required String value}) =
-      ProgressToken1;
-
-  factory ProgressTokenBase.fromJson(Map<String, dynamic> json) =>
-      _$ProgressTokenBaseFromJson(json);
-}
-
-/// Owned by: WorkspaceDocumentDiagnosticReport(Alias)
-///
-/// Type: WorkspaceFullDocumentDiagnosticReport
-/// Type: WorkspaceUnchangedDocumentDiagnosticReport
-@Freezed()
-sealed class WorkspaceDocumentDiagnosticReportBase
-    with _$WorkspaceDocumentDiagnosticReportBase {
-  const factory WorkspaceDocumentDiagnosticReportBase.from1({
-    required WorkspaceFullDocumentDiagnosticReport value,
-  }) = WorkspaceDocumentDiagnosticReport0;
-
-  const factory WorkspaceDocumentDiagnosticReportBase.from2({
-    required WorkspaceUnchangedDocumentDiagnosticReport value,
-  }) = WorkspaceDocumentDiagnosticReport1;
-
-  factory WorkspaceDocumentDiagnosticReportBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$WorkspaceDocumentDiagnosticReportBaseFromJson(json);
-}
-
-/// Owned by: TextDocumentContentChangeEvent(Alias)
-///
-/// Type: ({Range range, int? rangeLength, String text})
-/// Type: ({String text})
-@Freezed()
-sealed class TextDocumentContentChangeEventBase
-    with _$TextDocumentContentChangeEventBase {
-  const factory TextDocumentContentChangeEventBase.from1({
-    required ({Range range, int? rangeLength, String text}) value,
-  }) = TextDocumentContentChangeEvent0;
-
-  const factory TextDocumentContentChangeEventBase.from2({
-    required ({String text}) value,
-  }) = TextDocumentContentChangeEvent1;
-
-  factory TextDocumentContentChangeEventBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$TextDocumentContentChangeEventBaseFromJson(json);
-}
-
-/// Owned by: MarkedString(Alias)
-///
-/// Type: String
-/// Type: ({String language, String value})
-@Freezed()
-sealed class MarkedStringBase with _$MarkedStringBase {
-  const factory MarkedStringBase.from1({required String value}) = MarkedString0;
-
-  const factory MarkedStringBase.from2({
-    required ({String language, String value}) value,
-  }) = MarkedString1;
-
-  factory MarkedStringBase.fromJson(Map<String, dynamic> json) =>
-      _$MarkedStringBaseFromJson(json);
-}
-
-/// Owned by: DocumentFilter(Alias)
-///
-/// Type: TextDocumentFilter
-/// Type: NotebookCellTextDocumentFilter
-@Freezed()
-sealed class DocumentFilterBase with _$DocumentFilterBase {
-  const factory DocumentFilterBase.from1({required TextDocumentFilter value}) =
-      DocumentFilter0;
-
-  const factory DocumentFilterBase.from2({
-    required NotebookCellTextDocumentFilter value,
-  }) = DocumentFilter1;
-
-  factory DocumentFilterBase.fromJson(Map<String, dynamic> json) =>
-      _$DocumentFilterBaseFromJson(json);
-}
-
-/// Owned by: GlobPattern(Alias)
-///
-/// Type: Pattern
-/// Type: RelativePattern
-@Freezed()
-sealed class GlobPatternBase with _$GlobPatternBase {
-  const factory GlobPatternBase.from1({required Pattern value}) = GlobPattern0;
-
-  const factory GlobPatternBase.from2({required RelativePattern value}) =
-      GlobPattern1;
-
-  factory GlobPatternBase.fromJson(Map<String, dynamic> json) =>
-      _$GlobPatternBaseFromJson(json);
-}
-
-/// Owned by: TextDocumentFilter(Alias)
-///
-/// Type: ({String language, String? scheme, String? pattern})
-/// Type: ({String? language, String scheme, String? pattern})
-/// Type: ({String? language, String? scheme, String pattern})
-@Freezed()
-sealed class TextDocumentFilterBase with _$TextDocumentFilterBase {
-  const factory TextDocumentFilterBase.from1({
-    required ({String language, String? scheme, String? pattern}) value,
-  }) = TextDocumentFilter0;
-
-  const factory TextDocumentFilterBase.from2({
-    required ({String? language, String scheme, String? pattern}) value,
-  }) = TextDocumentFilter1;
-
-  const factory TextDocumentFilterBase.from3({
-    required ({String? language, String? scheme, String pattern}) value,
-  }) = TextDocumentFilter2;
-
-  factory TextDocumentFilterBase.fromJson(Map<String, dynamic> json) =>
-      _$TextDocumentFilterBaseFromJson(json);
-}
-
-/// Owned by: NotebookDocumentFilter(Alias)
-///
-/// Type: ({String notebookType, String? scheme, String? pattern})
-/// Type: ({String? notebookType, String scheme, String? pattern})
-/// Type: ({String? notebookType, String? scheme, String pattern})
-@Freezed()
-sealed class NotebookDocumentFilterBase with _$NotebookDocumentFilterBase {
-  const factory NotebookDocumentFilterBase.from1({
-    required ({String notebookType, String? scheme, String? pattern}) value,
-  }) = NotebookDocumentFilter0;
-
-  const factory NotebookDocumentFilterBase.from2({
-    required ({String? notebookType, String scheme, String? pattern}) value,
-  }) = NotebookDocumentFilter1;
-
-  const factory NotebookDocumentFilterBase.from3({
-    required ({String? notebookType, String? scheme, String pattern}) value,
-  }) = NotebookDocumentFilter2;
-
-  factory NotebookDocumentFilterBase.fromJson(Map<String, dynamic> json) =>
-      _$NotebookDocumentFilterBaseFromJson(json);
-}
-
-/// Owned by: TextDocumentRegistrationOptions(documentSelector)
-///
-/// Type: DocumentSelector
-/// Type: Null
-@Freezed()
-sealed class TextDocumentRegistrationOptionsDocumentSelectorBase
-    with _$TextDocumentRegistrationOptionsDocumentSelectorBase {
-  const factory TextDocumentRegistrationOptionsDocumentSelectorBase.from1({
-    required DocumentSelector value,
-  }) = TextDocumentRegistrationOptionsDocumentSelector0;
-
-  factory TextDocumentRegistrationOptionsDocumentSelectorBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$TextDocumentRegistrationOptionsDocumentSelectorBaseFromJson(json);
-}
-
-/// Owned by: WorkspaceEdit(documentChanges)
-///
-/// Type: TextDocumentEdit
-/// Type: CreateFile
-/// Type: RenameFile
-/// Type: DeleteFile
-@Freezed()
-sealed class WorkspaceEditDocumentChangesBase
-    with _$WorkspaceEditDocumentChangesBase {
-  const factory WorkspaceEditDocumentChangesBase.from1({
-    required TextDocumentEdit value,
-  }) = WorkspaceEditDocumentChanges0;
-
-  const factory WorkspaceEditDocumentChangesBase.from2({
-    required CreateFile value,
-  }) = WorkspaceEditDocumentChanges1;
-
-  const factory WorkspaceEditDocumentChangesBase.from3({
-    required RenameFile value,
-  }) = WorkspaceEditDocumentChanges2;
-
-  const factory WorkspaceEditDocumentChangesBase.from4({
-    required DeleteFile value,
-  }) = WorkspaceEditDocumentChanges3;
-
-  factory WorkspaceEditDocumentChangesBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$WorkspaceEditDocumentChangesBaseFromJson(json);
-}
-
-/// Owned by: InlayHint(label)
-///
-/// Type: String
-/// Type: Array<InlayHintLabelPart>
-@Freezed()
-sealed class InlayHintLabelBase with _$InlayHintLabelBase {
-  const factory InlayHintLabelBase.from1({required String value}) =
-      InlayHintLabel0;
-
-  const factory InlayHintLabelBase.from2({
-    required List<InlayHintLabelPart> value,
-  }) = InlayHintLabel1;
-
-  factory InlayHintLabelBase.fromJson(Map<String, dynamic> json) =>
-      _$InlayHintLabelBaseFromJson(json);
-}
-
-/// Owned by: InlayHint(tooltip)
-/// Owned by: CompletionItem(documentation)
-/// Owned by: InlayHintLabelPart(tooltip)
-/// Owned by: SignatureInformation(documentation)
-/// Owned by: ParameterInformation(documentation)
-///
-/// Type: String
-/// Type: MarkupContent
-@Freezed()
-sealed class TooltipOrDocumentationBase with _$TooltipOrDocumentationBase {
-  const factory TooltipOrDocumentationBase.from1({required String value}) =
-      TooltipOrDocumentation0;
-
-  const factory TooltipOrDocumentationBase.from2({
-    required MarkupContent value,
-  }) = TooltipOrDocumentation1;
-
-  factory TooltipOrDocumentationBase.fromJson(Map<String, dynamic> json) =>
-      _$TooltipOrDocumentationBaseFromJson(json);
-}
-
-/// Owned by: DocumentDiagnosticReportPartialResult(relatedDocuments)
-/// Owned by: RelatedFullDocumentDiagnosticReport(relatedDocuments)
-/// Owned by: RelatedUnchangedDocumentDiagnosticReport(relatedDocuments)
-///
-/// Type: FullDocumentDiagnosticReport
-/// Type: UnchangedDocumentDiagnosticReport
-@Freezed()
-sealed class RelatedDocumentsBase with _$RelatedDocumentsBase {
-  const factory RelatedDocumentsBase.from1({
-    required FullDocumentDiagnosticReport value,
-  }) = RelatedDocuments0;
-
-  const factory RelatedDocumentsBase.from2({
-    required UnchangedDocumentDiagnosticReport value,
-  }) = RelatedDocuments1;
-
-  factory RelatedDocumentsBase.fromJson(Map<String, dynamic> json) =>
-      _$RelatedDocumentsBaseFromJson(json);
-}
-
-/// Owned by: InlineCompletionItem(insertText)
-///
-/// Type: String
-/// Type: StringValue
-@Freezed()
-sealed class InlineCompletionItemInsertTextBase
-    with _$InlineCompletionItemInsertTextBase {
-  const factory InlineCompletionItemInsertTextBase.from1({
-    required String value,
-  }) = InlineCompletionItemInsertText0;
-
-  const factory InlineCompletionItemInsertTextBase.from2({
-    required StringValue value,
-  }) = InlineCompletionItemInsertText1;
-
-  factory InlineCompletionItemInsertTextBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$InlineCompletionItemInsertTextBaseFromJson(json);
-}
-
-/// Owned by: DidChangeConfigurationRegistrationOptions(section)
-///
-/// Type: String
-/// Type: Array<String>
-@Freezed()
-sealed class DidChangeConfigurationRegistrationOptionsSectionBase
-    with _$DidChangeConfigurationRegistrationOptionsSectionBase {
-  const factory DidChangeConfigurationRegistrationOptionsSectionBase.from1({
-    required String value,
-  }) = DidChangeConfigurationRegistrationOptionsSection0;
-
-  const factory DidChangeConfigurationRegistrationOptionsSectionBase.from2({
-    required List<String> value,
-  }) = DidChangeConfigurationRegistrationOptionsSection1;
-
-  factory DidChangeConfigurationRegistrationOptionsSectionBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$DidChangeConfigurationRegistrationOptionsSectionBaseFromJson(json);
-}
-
-/// Owned by: CompletionItem(textEdit)
-///
-/// Type: TextEdit
-/// Type: InsertReplaceEdit
-@Freezed()
-sealed class CompletionItemTextEditBase with _$CompletionItemTextEditBase {
-  const factory CompletionItemTextEditBase.from1({required TextEdit value}) =
-      CompletionItemTextEdit0;
-
-  const factory CompletionItemTextEditBase.from2({
-    required InsertReplaceEdit value,
-  }) = CompletionItemTextEdit1;
-
-  factory CompletionItemTextEditBase.fromJson(Map<String, dynamic> json) =>
-      _$CompletionItemTextEditBaseFromJson(json);
-}
-
-/// Owned by: CompletionList(editRange)
-///
-/// Type: Range
-/// Type: ({Range insert, Range replace})
-@Freezed()
-sealed class CompletionListEditRangeBase with _$CompletionListEditRangeBase {
-  const factory CompletionListEditRangeBase.from1({required Range value}) =
-      CompletionListEditRange0;
-
-  const factory CompletionListEditRangeBase.from2({
-    required ({Range insert, Range replace}) value,
-  }) = CompletionListEditRange1;
-
-  factory CompletionListEditRangeBase.fromJson(Map<String, dynamic> json) =>
-      _$CompletionListEditRangeBaseFromJson(json);
-}
-
-/// Owned by: Hover(contents)
-///
-/// Type: MarkupContent
-/// Type: MarkedString
-/// Type: Array<MarkedString>
-@Freezed()
-sealed class HoverContentsBase with _$HoverContentsBase {
-  const factory HoverContentsBase.from1({required MarkupContent value}) =
-      HoverContents0;
-
-  const factory HoverContentsBase.from2({required MarkedString value}) =
-      HoverContents1;
-
-  const factory HoverContentsBase.from3({required List<MarkedString> value}) =
-      HoverContents2;
-
-  factory HoverContentsBase.fromJson(Map<String, dynamic> json) =>
-      _$HoverContentsBaseFromJson(json);
-}
-
-/// Owned by: WorkspaceSymbol(location)
-///
-/// Type: Location
-/// Type: ({String uri})
-@Freezed()
-sealed class WorkspaceSymbolLocationBase with _$WorkspaceSymbolLocationBase {
-  const factory WorkspaceSymbolLocationBase.from1({required Location value}) =
-      WorkspaceSymbolLocation0;
-
-  const factory WorkspaceSymbolLocationBase.from2({
-    required ({String uri}) value,
-  }) = WorkspaceSymbolLocation1;
-
-  factory WorkspaceSymbolLocationBase.fromJson(Map<String, dynamic> json) =>
-      _$WorkspaceSymbolLocationBaseFromJson(json);
-}
-
-/// Owned by: SemanticTokensOptions(range)
-/// Owned by: SemanticTokensClientCapabilities(range)
-///
-/// Type: Boolean
-/// Type: ()
-@Freezed()
-sealed class RangeBase with _$RangeBase {
-  const factory RangeBase.from1({required bool value}) = Range0;
-
-  const factory RangeBase.from2({required () value}) = Range1;
-
-  factory RangeBase.fromJson(Map<String, dynamic> json) =>
-      _$RangeBaseFromJson(json);
-}
-
-/// Owned by: SemanticTokensOptions(full)
-///
-/// Type: Boolean
-/// Type: ({bool? delta})
-@Freezed()
-sealed class SemanticTokensOptionsFullBase
-    with _$SemanticTokensOptionsFullBase {
-  const factory SemanticTokensOptionsFullBase.from1({required bool value}) =
-      SemanticTokensOptionsFull0;
-
-  const factory SemanticTokensOptionsFullBase.from2({
-    required ({bool? delta}) value,
-  }) = SemanticTokensOptionsFull1;
-
-  factory SemanticTokensOptionsFullBase.fromJson(Map<String, dynamic> json) =>
-      _$SemanticTokensOptionsFullBaseFromJson(json);
-}
-
-/// Owned by: TextDocumentEdit(edits)
-///
-/// Type: TextEdit
-/// Type: AnnotatedTextEdit
-@Freezed()
-sealed class TextDocumentEditEditsBase with _$TextDocumentEditEditsBase {
-  const factory TextDocumentEditEditsBase.from1({required TextEdit value}) =
-      TextDocumentEditEdits0;
-
-  const factory TextDocumentEditEditsBase.from2({
-    required AnnotatedTextEdit value,
-  }) = TextDocumentEditEdits1;
-
-  factory TextDocumentEditEditsBase.fromJson(Map<String, dynamic> json) =>
-      _$TextDocumentEditEditsBaseFromJson(json);
-}
-
-/// Owned by: _InitializeParams(processId)
-/// Owned by: OptionalVersionedTextDocumentIdentifier(version)
-/// Owned by: WorkspaceFullDocumentDiagnosticReport(version)
-/// Owned by: WorkspaceUnchangedDocumentDiagnosticReport(version)
-///
-/// Type: Integer
-/// Type: Null
-@Freezed()
-sealed class ProcessIdOrVersionBase with _$ProcessIdOrVersionBase {
-  const factory ProcessIdOrVersionBase.from1({required int value}) =
-      ProcessIdOrVersion0;
-
-  factory ProcessIdOrVersionBase.fromJson(Map<String, dynamic> json) =>
-      _$ProcessIdOrVersionBaseFromJson(json);
-}
-
-/// Owned by: _InitializeParams(rootPath)
-///
-/// Type: String
-/// Type: Null
-@Freezed()
-sealed class InitializeParamsRootPathBase with _$InitializeParamsRootPathBase {
-  const factory InitializeParamsRootPathBase.from1({required String value}) =
-      InitializeParamsRootPath0;
-
-  factory InitializeParamsRootPathBase.fromJson(Map<String, dynamic> json) =>
-      _$InitializeParamsRootPathBaseFromJson(json);
-}
-
-/// Owned by: _InitializeParams(rootUri)
-///
-/// Type: DocumentUri
-/// Type: Null
-@Freezed()
-sealed class InitializeParamsRootUriBase with _$InitializeParamsRootUriBase {
-  const factory InitializeParamsRootUriBase.from1({required String value}) =
-      InitializeParamsRootUri0;
-
-  factory InitializeParamsRootUriBase.fromJson(Map<String, dynamic> json) =>
-      _$InitializeParamsRootUriBaseFromJson(json);
-}
-
-/// Owned by: WorkspaceFoldersInitializeParams(workspaceFolders)
-///
-/// Type: Array<WorkspaceFolder>
-/// Type: Null
-@Freezed()
-sealed class WorkspaceFoldersInitializeParamsWorkspaceFoldersBase
-    with _$WorkspaceFoldersInitializeParamsWorkspaceFoldersBase {
-  const factory WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.from1({
-    required List<WorkspaceFolder> value,
-  }) = WorkspaceFoldersInitializeParamsWorkspaceFolders0;
-
-  factory WorkspaceFoldersInitializeParamsWorkspaceFoldersBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$WorkspaceFoldersInitializeParamsWorkspaceFoldersBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(textDocumentSync)
-///
-/// Type: TextDocumentSyncOptions
-/// Type: TextDocumentSyncKind
-@Freezed()
-sealed class ServerCapabilitiesTextDocumentSyncBase
-    with _$ServerCapabilitiesTextDocumentSyncBase {
-  const factory ServerCapabilitiesTextDocumentSyncBase.from1({
-    required TextDocumentSyncOptions value,
-  }) = ServerCapabilitiesTextDocumentSync0;
-
-  const factory ServerCapabilitiesTextDocumentSyncBase.from2({
-    required TextDocumentSyncKind value,
-  }) = ServerCapabilitiesTextDocumentSync1;
-
-  factory ServerCapabilitiesTextDocumentSyncBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesTextDocumentSyncBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(notebookDocumentSync)
-///
-/// Type: NotebookDocumentSyncOptions
-/// Type: NotebookDocumentSyncRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesNotebookDocumentSyncBase
-    with _$ServerCapabilitiesNotebookDocumentSyncBase {
-  const factory ServerCapabilitiesNotebookDocumentSyncBase.from1({
-    required NotebookDocumentSyncOptions value,
-  }) = ServerCapabilitiesNotebookDocumentSync0;
-
-  const factory ServerCapabilitiesNotebookDocumentSyncBase.from2({
-    required NotebookDocumentSyncRegistrationOptions value,
-  }) = ServerCapabilitiesNotebookDocumentSync1;
-
-  factory ServerCapabilitiesNotebookDocumentSyncBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesNotebookDocumentSyncBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(hoverProvider)
-///
-/// Type: Boolean
-/// Type: HoverOptions
-@Freezed()
-sealed class ServerCapabilitiesHoverProviderBase
-    with _$ServerCapabilitiesHoverProviderBase {
-  const factory ServerCapabilitiesHoverProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesHoverProvider0;
-
-  const factory ServerCapabilitiesHoverProviderBase.from2({
-    required HoverOptions value,
-  }) = ServerCapabilitiesHoverProvider1;
-
-  factory ServerCapabilitiesHoverProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesHoverProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(declarationProvider)
-///
-/// Type: Boolean
-/// Type: DeclarationOptions
-/// Type: DeclarationRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesDeclarationProviderBase
-    with _$ServerCapabilitiesDeclarationProviderBase {
-  const factory ServerCapabilitiesDeclarationProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesDeclarationProvider0;
-
-  const factory ServerCapabilitiesDeclarationProviderBase.from2({
-    required DeclarationOptions value,
-  }) = ServerCapabilitiesDeclarationProvider1;
-
-  const factory ServerCapabilitiesDeclarationProviderBase.from3({
-    required DeclarationRegistrationOptions value,
-  }) = ServerCapabilitiesDeclarationProvider2;
-
-  factory ServerCapabilitiesDeclarationProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesDeclarationProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(definitionProvider)
-///
-/// Type: Boolean
-/// Type: DefinitionOptions
-@Freezed()
-sealed class ServerCapabilitiesDefinitionProviderBase
-    with _$ServerCapabilitiesDefinitionProviderBase {
-  const factory ServerCapabilitiesDefinitionProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesDefinitionProvider0;
-
-  const factory ServerCapabilitiesDefinitionProviderBase.from2({
-    required DefinitionOptions value,
-  }) = ServerCapabilitiesDefinitionProvider1;
-
-  factory ServerCapabilitiesDefinitionProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesDefinitionProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(typeDefinitionProvider)
-///
-/// Type: Boolean
-/// Type: TypeDefinitionOptions
-/// Type: TypeDefinitionRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesTypeDefinitionProviderBase
-    with _$ServerCapabilitiesTypeDefinitionProviderBase {
-  const factory ServerCapabilitiesTypeDefinitionProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesTypeDefinitionProvider0;
-
-  const factory ServerCapabilitiesTypeDefinitionProviderBase.from2({
-    required TypeDefinitionOptions value,
-  }) = ServerCapabilitiesTypeDefinitionProvider1;
-
-  const factory ServerCapabilitiesTypeDefinitionProviderBase.from3({
-    required TypeDefinitionRegistrationOptions value,
-  }) = ServerCapabilitiesTypeDefinitionProvider2;
-
-  factory ServerCapabilitiesTypeDefinitionProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesTypeDefinitionProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(implementationProvider)
-///
-/// Type: Boolean
-/// Type: ImplementationOptions
-/// Type: ImplementationRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesImplementationProviderBase
-    with _$ServerCapabilitiesImplementationProviderBase {
-  const factory ServerCapabilitiesImplementationProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesImplementationProvider0;
-
-  const factory ServerCapabilitiesImplementationProviderBase.from2({
-    required ImplementationOptions value,
-  }) = ServerCapabilitiesImplementationProvider1;
-
-  const factory ServerCapabilitiesImplementationProviderBase.from3({
-    required ImplementationRegistrationOptions value,
-  }) = ServerCapabilitiesImplementationProvider2;
-
-  factory ServerCapabilitiesImplementationProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesImplementationProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(referencesProvider)
-///
-/// Type: Boolean
-/// Type: ReferenceOptions
-@Freezed()
-sealed class ServerCapabilitiesReferencesProviderBase
-    with _$ServerCapabilitiesReferencesProviderBase {
-  const factory ServerCapabilitiesReferencesProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesReferencesProvider0;
-
-  const factory ServerCapabilitiesReferencesProviderBase.from2({
-    required ReferenceOptions value,
-  }) = ServerCapabilitiesReferencesProvider1;
-
-  factory ServerCapabilitiesReferencesProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesReferencesProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(documentHighlightProvider)
-///
-/// Type: Boolean
-/// Type: DocumentHighlightOptions
-@Freezed()
-sealed class ServerCapabilitiesDocumentHighlightProviderBase
-    with _$ServerCapabilitiesDocumentHighlightProviderBase {
-  const factory ServerCapabilitiesDocumentHighlightProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesDocumentHighlightProvider0;
-
-  const factory ServerCapabilitiesDocumentHighlightProviderBase.from2({
-    required DocumentHighlightOptions value,
-  }) = ServerCapabilitiesDocumentHighlightProvider1;
-
-  factory ServerCapabilitiesDocumentHighlightProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesDocumentHighlightProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(documentSymbolProvider)
-///
-/// Type: Boolean
-/// Type: DocumentSymbolOptions
-@Freezed()
-sealed class ServerCapabilitiesDocumentSymbolProviderBase
-    with _$ServerCapabilitiesDocumentSymbolProviderBase {
-  const factory ServerCapabilitiesDocumentSymbolProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesDocumentSymbolProvider0;
-
-  const factory ServerCapabilitiesDocumentSymbolProviderBase.from2({
-    required DocumentSymbolOptions value,
-  }) = ServerCapabilitiesDocumentSymbolProvider1;
-
-  factory ServerCapabilitiesDocumentSymbolProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesDocumentSymbolProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(codeActionProvider)
-///
-/// Type: Boolean
-/// Type: CodeActionOptions
-@Freezed()
-sealed class ServerCapabilitiesCodeActionProviderBase
-    with _$ServerCapabilitiesCodeActionProviderBase {
-  const factory ServerCapabilitiesCodeActionProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesCodeActionProvider0;
-
-  const factory ServerCapabilitiesCodeActionProviderBase.from2({
-    required CodeActionOptions value,
-  }) = ServerCapabilitiesCodeActionProvider1;
-
-  factory ServerCapabilitiesCodeActionProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesCodeActionProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(colorProvider)
-///
-/// Type: Boolean
-/// Type: DocumentColorOptions
-/// Type: DocumentColorRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesColorProviderBase
-    with _$ServerCapabilitiesColorProviderBase {
-  const factory ServerCapabilitiesColorProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesColorProvider0;
-
-  const factory ServerCapabilitiesColorProviderBase.from2({
-    required DocumentColorOptions value,
-  }) = ServerCapabilitiesColorProvider1;
-
-  const factory ServerCapabilitiesColorProviderBase.from3({
-    required DocumentColorRegistrationOptions value,
-  }) = ServerCapabilitiesColorProvider2;
-
-  factory ServerCapabilitiesColorProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesColorProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(workspaceSymbolProvider)
-///
-/// Type: Boolean
-/// Type: WorkspaceSymbolOptions
-@Freezed()
-sealed class ServerCapabilitiesWorkspaceSymbolProviderBase
-    with _$ServerCapabilitiesWorkspaceSymbolProviderBase {
-  const factory ServerCapabilitiesWorkspaceSymbolProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesWorkspaceSymbolProvider0;
-
-  const factory ServerCapabilitiesWorkspaceSymbolProviderBase.from2({
-    required WorkspaceSymbolOptions value,
-  }) = ServerCapabilitiesWorkspaceSymbolProvider1;
-
-  factory ServerCapabilitiesWorkspaceSymbolProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesWorkspaceSymbolProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(documentFormattingProvider)
-///
-/// Type: Boolean
-/// Type: DocumentFormattingOptions
-@Freezed()
-sealed class ServerCapabilitiesDocumentFormattingProviderBase
-    with _$ServerCapabilitiesDocumentFormattingProviderBase {
-  const factory ServerCapabilitiesDocumentFormattingProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesDocumentFormattingProvider0;
-
-  const factory ServerCapabilitiesDocumentFormattingProviderBase.from2({
-    required DocumentFormattingOptions value,
-  }) = ServerCapabilitiesDocumentFormattingProvider1;
-
-  factory ServerCapabilitiesDocumentFormattingProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesDocumentFormattingProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(documentRangeFormattingProvider)
-///
-/// Type: Boolean
-/// Type: DocumentRangeFormattingOptions
-@Freezed()
-sealed class ServerCapabilitiesDocumentRangeFormattingProviderBase
-    with _$ServerCapabilitiesDocumentRangeFormattingProviderBase {
-  const factory ServerCapabilitiesDocumentRangeFormattingProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesDocumentRangeFormattingProvider0;
-
-  const factory ServerCapabilitiesDocumentRangeFormattingProviderBase.from2({
-    required DocumentRangeFormattingOptions value,
-  }) = ServerCapabilitiesDocumentRangeFormattingProvider1;
-
-  factory ServerCapabilitiesDocumentRangeFormattingProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesDocumentRangeFormattingProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(renameProvider)
-///
-/// Type: Boolean
-/// Type: RenameOptions
-@Freezed()
-sealed class ServerCapabilitiesRenameProviderBase
-    with _$ServerCapabilitiesRenameProviderBase {
-  const factory ServerCapabilitiesRenameProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesRenameProvider0;
-
-  const factory ServerCapabilitiesRenameProviderBase.from2({
-    required RenameOptions value,
-  }) = ServerCapabilitiesRenameProvider1;
-
-  factory ServerCapabilitiesRenameProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesRenameProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(foldingRangeProvider)
-///
-/// Type: Boolean
-/// Type: FoldingRangeOptions
-/// Type: FoldingRangeRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesFoldingRangeProviderBase
-    with _$ServerCapabilitiesFoldingRangeProviderBase {
-  const factory ServerCapabilitiesFoldingRangeProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesFoldingRangeProvider0;
-
-  const factory ServerCapabilitiesFoldingRangeProviderBase.from2({
-    required FoldingRangeOptions value,
-  }) = ServerCapabilitiesFoldingRangeProvider1;
-
-  const factory ServerCapabilitiesFoldingRangeProviderBase.from3({
-    required FoldingRangeRegistrationOptions value,
-  }) = ServerCapabilitiesFoldingRangeProvider2;
-
-  factory ServerCapabilitiesFoldingRangeProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesFoldingRangeProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(selectionRangeProvider)
-///
-/// Type: Boolean
-/// Type: SelectionRangeOptions
-/// Type: SelectionRangeRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesSelectionRangeProviderBase
-    with _$ServerCapabilitiesSelectionRangeProviderBase {
-  const factory ServerCapabilitiesSelectionRangeProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesSelectionRangeProvider0;
-
-  const factory ServerCapabilitiesSelectionRangeProviderBase.from2({
-    required SelectionRangeOptions value,
-  }) = ServerCapabilitiesSelectionRangeProvider1;
-
-  const factory ServerCapabilitiesSelectionRangeProviderBase.from3({
-    required SelectionRangeRegistrationOptions value,
-  }) = ServerCapabilitiesSelectionRangeProvider2;
-
-  factory ServerCapabilitiesSelectionRangeProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesSelectionRangeProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(callHierarchyProvider)
-///
-/// Type: Boolean
-/// Type: CallHierarchyOptions
-/// Type: CallHierarchyRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesCallHierarchyProviderBase
-    with _$ServerCapabilitiesCallHierarchyProviderBase {
-  const factory ServerCapabilitiesCallHierarchyProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesCallHierarchyProvider0;
-
-  const factory ServerCapabilitiesCallHierarchyProviderBase.from2({
-    required CallHierarchyOptions value,
-  }) = ServerCapabilitiesCallHierarchyProvider1;
-
-  const factory ServerCapabilitiesCallHierarchyProviderBase.from3({
-    required CallHierarchyRegistrationOptions value,
-  }) = ServerCapabilitiesCallHierarchyProvider2;
-
-  factory ServerCapabilitiesCallHierarchyProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesCallHierarchyProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(linkedEditingRangeProvider)
-///
-/// Type: Boolean
-/// Type: LinkedEditingRangeOptions
-/// Type: LinkedEditingRangeRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesLinkedEditingRangeProviderBase
-    with _$ServerCapabilitiesLinkedEditingRangeProviderBase {
-  const factory ServerCapabilitiesLinkedEditingRangeProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesLinkedEditingRangeProvider0;
-
-  const factory ServerCapabilitiesLinkedEditingRangeProviderBase.from2({
-    required LinkedEditingRangeOptions value,
-  }) = ServerCapabilitiesLinkedEditingRangeProvider1;
-
-  const factory ServerCapabilitiesLinkedEditingRangeProviderBase.from3({
-    required LinkedEditingRangeRegistrationOptions value,
-  }) = ServerCapabilitiesLinkedEditingRangeProvider2;
-
-  factory ServerCapabilitiesLinkedEditingRangeProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesLinkedEditingRangeProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(semanticTokensProvider)
-///
-/// Type: SemanticTokensOptions
-/// Type: SemanticTokensRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesSemanticTokensProviderBase
-    with _$ServerCapabilitiesSemanticTokensProviderBase {
-  const factory ServerCapabilitiesSemanticTokensProviderBase.from1({
-    required SemanticTokensOptions value,
-  }) = ServerCapabilitiesSemanticTokensProvider0;
-
-  const factory ServerCapabilitiesSemanticTokensProviderBase.from2({
-    required SemanticTokensRegistrationOptions value,
-  }) = ServerCapabilitiesSemanticTokensProvider1;
-
-  factory ServerCapabilitiesSemanticTokensProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesSemanticTokensProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(monikerProvider)
-///
-/// Type: Boolean
-/// Type: MonikerOptions
-/// Type: MonikerRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesMonikerProviderBase
-    with _$ServerCapabilitiesMonikerProviderBase {
-  const factory ServerCapabilitiesMonikerProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesMonikerProvider0;
-
-  const factory ServerCapabilitiesMonikerProviderBase.from2({
-    required MonikerOptions value,
-  }) = ServerCapabilitiesMonikerProvider1;
-
-  const factory ServerCapabilitiesMonikerProviderBase.from3({
-    required MonikerRegistrationOptions value,
-  }) = ServerCapabilitiesMonikerProvider2;
-
-  factory ServerCapabilitiesMonikerProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesMonikerProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(typeHierarchyProvider)
-///
-/// Type: Boolean
-/// Type: TypeHierarchyOptions
-/// Type: TypeHierarchyRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesTypeHierarchyProviderBase
-    with _$ServerCapabilitiesTypeHierarchyProviderBase {
-  const factory ServerCapabilitiesTypeHierarchyProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesTypeHierarchyProvider0;
-
-  const factory ServerCapabilitiesTypeHierarchyProviderBase.from2({
-    required TypeHierarchyOptions value,
-  }) = ServerCapabilitiesTypeHierarchyProvider1;
-
-  const factory ServerCapabilitiesTypeHierarchyProviderBase.from3({
-    required TypeHierarchyRegistrationOptions value,
-  }) = ServerCapabilitiesTypeHierarchyProvider2;
-
-  factory ServerCapabilitiesTypeHierarchyProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesTypeHierarchyProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(inlineValueProvider)
-///
-/// Type: Boolean
-/// Type: InlineValueOptions
-/// Type: InlineValueRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesInlineValueProviderBase
-    with _$ServerCapabilitiesInlineValueProviderBase {
-  const factory ServerCapabilitiesInlineValueProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesInlineValueProvider0;
-
-  const factory ServerCapabilitiesInlineValueProviderBase.from2({
-    required InlineValueOptions value,
-  }) = ServerCapabilitiesInlineValueProvider1;
-
-  const factory ServerCapabilitiesInlineValueProviderBase.from3({
-    required InlineValueRegistrationOptions value,
-  }) = ServerCapabilitiesInlineValueProvider2;
-
-  factory ServerCapabilitiesInlineValueProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesInlineValueProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(inlayHintProvider)
-///
-/// Type: Boolean
-/// Type: InlayHintOptions
-/// Type: InlayHintRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesInlayHintProviderBase
-    with _$ServerCapabilitiesInlayHintProviderBase {
-  const factory ServerCapabilitiesInlayHintProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesInlayHintProvider0;
-
-  const factory ServerCapabilitiesInlayHintProviderBase.from2({
-    required InlayHintOptions value,
-  }) = ServerCapabilitiesInlayHintProvider1;
-
-  const factory ServerCapabilitiesInlayHintProviderBase.from3({
-    required InlayHintRegistrationOptions value,
-  }) = ServerCapabilitiesInlayHintProvider2;
-
-  factory ServerCapabilitiesInlayHintProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesInlayHintProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(diagnosticProvider)
-///
-/// Type: DiagnosticOptions
-/// Type: DiagnosticRegistrationOptions
-@Freezed()
-sealed class ServerCapabilitiesDiagnosticProviderBase
-    with _$ServerCapabilitiesDiagnosticProviderBase {
-  const factory ServerCapabilitiesDiagnosticProviderBase.from1({
-    required DiagnosticOptions value,
-  }) = ServerCapabilitiesDiagnosticProvider0;
-
-  const factory ServerCapabilitiesDiagnosticProviderBase.from2({
-    required DiagnosticRegistrationOptions value,
-  }) = ServerCapabilitiesDiagnosticProvider1;
-
-  factory ServerCapabilitiesDiagnosticProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesDiagnosticProviderBaseFromJson(json);
-}
-
-/// Owned by: ServerCapabilities(inlineCompletionProvider)
-///
-/// Type: Boolean
-/// Type: InlineCompletionOptions
-@Freezed()
-sealed class ServerCapabilitiesInlineCompletionProviderBase
-    with _$ServerCapabilitiesInlineCompletionProviderBase {
-  const factory ServerCapabilitiesInlineCompletionProviderBase.from1({
-    required bool value,
-  }) = ServerCapabilitiesInlineCompletionProvider0;
-
-  const factory ServerCapabilitiesInlineCompletionProviderBase.from2({
-    required InlineCompletionOptions value,
-  }) = ServerCapabilitiesInlineCompletionProvider1;
-
-  factory ServerCapabilitiesInlineCompletionProviderBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ServerCapabilitiesInlineCompletionProviderBaseFromJson(json);
-}
-
-/// Owned by: TextDocumentSyncOptions(save)
-///
-/// Type: Boolean
-/// Type: SaveOptions
-@Freezed()
-sealed class TextDocumentSyncOptionsSaveBase
-    with _$TextDocumentSyncOptionsSaveBase {
-  const factory TextDocumentSyncOptionsSaveBase.from1({required bool value}) =
-      TextDocumentSyncOptionsSave0;
-
-  const factory TextDocumentSyncOptionsSaveBase.from2({
-    required SaveOptions value,
-  }) = TextDocumentSyncOptionsSave1;
-
-  factory TextDocumentSyncOptionsSaveBase.fromJson(Map<String, dynamic> json) =>
-      _$TextDocumentSyncOptionsSaveBaseFromJson(json);
-}
-
-/// Owned by: NotebookDocumentSyncOptions(notebookSelector)
-///
-/// Type: ({NotebookCellTextDocumentFilterNotebookBase notebook, List<({String language})>? cells})
-/// Type: ({NotebookCellTextDocumentFilterNotebookBase? notebook, List<({String language})> cells})
-@Freezed()
-sealed class NotebookDocumentSyncOptionsNotebookSelectorBase
-    with _$NotebookDocumentSyncOptionsNotebookSelectorBase {
-  const factory NotebookDocumentSyncOptionsNotebookSelectorBase.from1({
-    required ({
-      NotebookCellTextDocumentFilterNotebookBase notebook,
-      List<({String language})>? cells,
-    })
-    value,
-  }) = NotebookDocumentSyncOptionsNotebookSelector0;
-
-  const factory NotebookDocumentSyncOptionsNotebookSelectorBase.from2({
-    required ({
-      NotebookCellTextDocumentFilterNotebookBase? notebook,
-      List<({String language})> cells,
-    })
-    value,
-  }) = NotebookDocumentSyncOptionsNotebookSelector1;
-
-  factory NotebookDocumentSyncOptionsNotebookSelectorBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$NotebookDocumentSyncOptionsNotebookSelectorBaseFromJson(json);
-}
-
-/// Owned by: WorkspaceFoldersServerCapabilities(changeNotifications)
-///
-/// Type: String
-/// Type: Boolean
-@Freezed()
-sealed class WorkspaceFoldersServerCapabilitiesChangeNotificationsBase
-    with _$WorkspaceFoldersServerCapabilitiesChangeNotificationsBase {
-  const factory WorkspaceFoldersServerCapabilitiesChangeNotificationsBase.from1({
-    required String value,
-  }) = WorkspaceFoldersServerCapabilitiesChangeNotifications0;
-
-  const factory WorkspaceFoldersServerCapabilitiesChangeNotificationsBase.from2({
-    required bool value,
-  }) = WorkspaceFoldersServerCapabilitiesChangeNotifications1;
-
-  factory WorkspaceFoldersServerCapabilitiesChangeNotificationsBase.fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      _$WorkspaceFoldersServerCapabilitiesChangeNotificationsBaseFromJson(json);
-}
-
-/// Owned by: ParameterInformation(label)
-///
-/// Type: String
-/// Type: (int, int)
-@Freezed()
-sealed class ParameterInformationLabelBase
-    with _$ParameterInformationLabelBase {
-  const factory ParameterInformationLabelBase.from1({required String value}) =
-      ParameterInformationLabel0;
-
-  const factory ParameterInformationLabelBase.from2({
-    required (int, int) value,
-  }) = ParameterInformationLabel1;
-
-  factory ParameterInformationLabelBase.fromJson(Map<String, dynamic> json) =>
-      _$ParameterInformationLabelBaseFromJson(json);
-}
-
-/// Owned by: NotebookCellTextDocumentFilter(notebook)
-///
-/// Type: String
-/// Type: NotebookDocumentFilter
-@Freezed()
-sealed class NotebookCellTextDocumentFilterNotebookBase
-    with _$NotebookCellTextDocumentFilterNotebookBase {
-  const factory NotebookCellTextDocumentFilterNotebookBase.from1({
-    required String value,
-  }) = NotebookCellTextDocumentFilterNotebook0;
-
-  const factory NotebookCellTextDocumentFilterNotebookBase.from2({
-    required NotebookDocumentFilter value,
-  }) = NotebookCellTextDocumentFilterNotebook1;
-
-  factory NotebookCellTextDocumentFilterNotebookBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$NotebookCellTextDocumentFilterNotebookBaseFromJson(json);
-}
-
-/// Owned by: RelativePattern(baseUri)
-///
-/// Type: WorkspaceFolder
-/// Type: URI
-@Freezed()
-sealed class RelativePatternBaseUriBase with _$RelativePatternBaseUriBase {
-  const factory RelativePatternBaseUriBase.from1({
-    required WorkspaceFolder value,
-  }) = RelativePatternBaseUri0;
-
-  const factory RelativePatternBaseUriBase.from2({required String value}) =
-      RelativePatternBaseUri1;
-
-  factory RelativePatternBaseUriBase.fromJson(Map<String, dynamic> json) =>
-      _$RelativePatternBaseUriBaseFromJson(json);
-}
-
-/// Owned by: SemanticTokensClientCapabilities(full)
-///
-/// Type: Boolean
-/// Type: ({bool? delta})
-@Freezed()
-sealed class SemanticTokensClientCapabilitiesFullBase
-    with _$SemanticTokensClientCapabilitiesFullBase {
-  const factory SemanticTokensClientCapabilitiesFullBase.from1({
-    required bool value,
-  }) = SemanticTokensClientCapabilitiesFull0;
-
-  const factory SemanticTokensClientCapabilitiesFullBase.from2({
-    required ({bool? delta}) value,
-  }) = SemanticTokensClientCapabilitiesFull1;
-
-  factory SemanticTokensClientCapabilitiesFullBase.fromJson(
-    Map<String, dynamic> json,
-  ) => _$SemanticTokensClientCapabilitiesFullBaseFromJson(json);
+/// Represents a literal type for TextContentLiteral.
+typedef TextContentLiteral = ({
+  VersionedTextDocumentIdentifier document,
+  List<TextDocumentContentChangeEvent> changes,
+});
+
+/// Represents a literal type for Literal13.
+typedef Literal13 = ({
+  Literal11? structure,
+  List<NotebookCell>? data,
+  List<TextContentLiteral>? textContent,
+});
+
+/// Represents a literal type for Literal14.
+typedef Literal14 = ({
+  WorkspaceFoldersServerCapabilities? workspaceFolders,
+  FileOperationOptions? fileOperations,
+});
+
+/// Represents a literal type for Literal15.
+typedef Literal15 = ({bool? labelDetailsSupport});
+
+/// Represents a literal type for Literal16.
+typedef Literal16 = ({bool cancel, List<String> retryOnContentModified});
+
+/// Represents a literal type for Literal17.
+typedef Literal17 = ({bool? groupsOnLabel});
+
+/// Represents a literal type for SymbolKindsLiteral.
+typedef SymbolKindsLiteral = ({List<SymbolKind>? valueSet});
+
+/// Represents a literal type for Literal19.
+typedef Literal19 = ({List<SymbolTag> valueSet});
+
+/// Represents a literal type for Literal20.
+typedef Literal20 = ({List<String> properties});
+
+/// Represents a literal type for CompletionItemTagsLiteral.
+typedef CompletionItemTagsLiteral = ({List<CompletionItemTag> valueSet});
+
+/// Represents a literal type for InsertTextModesLiteral.
+typedef InsertTextModesLiteral = ({List<InsertTextMode> valueSet});
+
+/// Represents a literal type for Literal23.
+typedef Literal23 = ({
+  bool? snippetSupport,
+  bool? commitCharactersSupport,
+  List<MarkupKind>? documentationFormat,
+  bool? deprecatedSupport,
+  bool? preselectSupport,
+  CompletionItemTagsLiteral? tagSupport,
+  bool? insertReplaceSupport,
+  Literal20? resolveSupport,
+  InsertTextModesLiteral? insertTextModeSupport,
+  bool? labelDetailsSupport,
+});
+
+/// Represents a literal type for Literal24.
+typedef Literal24 = ({List<CompletionItemKind>? valueSet});
+
+/// Represents a literal type for Literal25.
+typedef Literal25 = ({List<String>? itemDefaults});
+
+/// Represents a literal type for Literal26.
+typedef Literal26 = ({bool? labelOffsetSupport});
+
+/// Represents a literal type for Literal27.
+typedef Literal27 = ({
+  List<MarkupKind>? documentationFormat,
+  Literal26? parameterInformation,
+  bool? activeParameterSupport,
+});
+
+/// Represents a literal type for Literal28.
+typedef Literal28 = ({List<CodeActionKind> valueSet});
+
+/// Represents a literal type for Literal29.
+typedef Literal29 = ({Literal28 codeActionKind});
+
+/// Represents a literal type for Literal30.
+typedef Literal30 = ({List<FoldingRangeKind>? valueSet});
+
+/// Represents a literal type for Literal31.
+typedef Literal31 = ({bool? collapsedText});
+
+/// Represents a literal type for Literal32.
+typedef Literal32 = ({List<DiagnosticTag> valueSet});
+
+/// Represents a literal type for BoolOrBoolDeltaFullOrBoolRange.
+typedef BoolOrBoolDeltaFullOrBoolRange = ({Sealed25? range, Sealed26? full});
+
+/// Represents a literal type for Literal34.
+typedef Literal34 = ({bool? additionalPropertiesSupport});
+
+sealed class Sealed1 {
+  const Sealed1();
+}
+
+sealed class Sealed2 {
+  const Sealed2();
+}
+
+sealed class Sealed3 {
+  const Sealed3();
+}
+
+sealed class Sealed4 {
+  const Sealed4();
+}
+
+sealed class Sealed5 {
+  const Sealed5();
+}
+
+sealed class Sealed6 {
+  const Sealed6();
+}
+
+sealed class Sealed7 {
+  const Sealed7();
+}
+
+sealed class Sealed8 {
+  const Sealed8();
+}
+
+sealed class Sealed9 {
+  const Sealed9();
+}
+
+sealed class Sealed10 {
+  const Sealed10();
+}
+
+sealed class Sealed11 {
+  const Sealed11();
+}
+
+sealed class Sealed12 {
+  const Sealed12();
+}
+
+sealed class Sealed13 {
+  const Sealed13();
+}
+
+sealed class Sealed14 {
+  const Sealed14();
+}
+
+sealed class Sealed15 {
+  const Sealed15();
+}
+
+sealed class Sealed16 {
+  const Sealed16();
+}
+
+sealed class Sealed17 {
+  const Sealed17();
+}
+
+sealed class Sealed18 {
+  const Sealed18();
+}
+
+sealed class Sealed19 {
+  const Sealed19();
+}
+
+sealed class Sealed20 {
+  const Sealed20();
+}
+
+sealed class Sealed21 {
+  const Sealed21();
+}
+
+sealed class Sealed22 {
+  const Sealed22();
+}
+
+sealed class Sealed23 {
+  const Sealed23();
+}
+
+sealed class Sealed24 {
+  const Sealed24();
+}
+
+sealed class Sealed25 {
+  const Sealed25();
+}
+
+sealed class Sealed26 {
+  const Sealed26();
+}
+
+sealed class Sealed27 {
+  const Sealed27();
+}
+
+sealed class Sealed28 {
+  const Sealed28();
+}
+
+sealed class Sealed29 {
+  const Sealed29();
+}
+
+sealed class Sealed30 {
+  const Sealed30();
+}
+
+sealed class Sealed31 {
+  const Sealed31();
+}
+
+sealed class Sealed32 {
+  const Sealed32();
+}
+
+sealed class Sealed33 {
+  const Sealed33();
+}
+
+sealed class Sealed34 {
+  const Sealed34();
+}
+
+sealed class Sealed35 {
+  const Sealed35();
+}
+
+sealed class Sealed36 {
+  const Sealed36();
+}
+
+sealed class Sealed37 {
+  const Sealed37();
+}
+
+sealed class Sealed38 {
+  const Sealed38();
+}
+
+sealed class Sealed39 {
+  const Sealed39();
+}
+
+sealed class Sealed40 {
+  const Sealed40();
+}
+
+sealed class Sealed41 {
+  const Sealed41();
+}
+
+sealed class Sealed42 {
+  const Sealed42();
+}
+
+sealed class Sealed43 {
+  const Sealed43();
+}
+
+sealed class Sealed44 {
+  const Sealed44();
+}
+
+sealed class Sealed45 {
+  const Sealed45();
+}
+
+sealed class Sealed46 {
+  const Sealed46();
+}
+
+sealed class Sealed47 {
+  const Sealed47();
+}
+
+sealed class Sealed48 {
+  const Sealed48();
+}
+
+sealed class Sealed49 {
+  const Sealed49();
+}
+
+sealed class Sealed50 {
+  const Sealed50();
+}
+
+sealed class Sealed51 {
+  const Sealed51();
+}
+
+sealed class Sealed52 {
+  const Sealed52();
+}
+
+sealed class Sealed53 {
+  const Sealed53();
+}
+
+sealed class Sealed54 {
+  const Sealed54();
+}
+
+sealed class Sealed55 {
+  const Sealed55();
+}
+
+sealed class Sealed56 {
+  const Sealed56();
+}
+
+sealed class Sealed57 {
+  const Sealed57();
+}
+
+sealed class Sealed58 {
+  const Sealed58();
+}
+
+sealed class Sealed59 {
+  const Sealed59();
+}
+
+sealed class Sealed60 {
+  const Sealed60();
+}
+
+sealed class Sealed61 {
+  const Sealed61();
+}
+
+sealed class Sealed62 {
+  const Sealed62();
+}
+
+sealed class Sealed63 {
+  const Sealed63();
 }
 
 @freezed
 abstract class ImplementationParams with _$ImplementationParams {
   const factory ImplementationParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    ProgressToken? partialResultToken,
 
     /// The position inside the text document.
     required Position position,
 
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    ProgressToken? partialResultToken,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -1551,11 +547,9 @@ abstract class ImplementationParams with _$ImplementationParams {
       _$ImplementationParamsFromJson(json);
 }
 
-/// Represents a location inside a resource, such as a line inside a
-/// text file.
 @freezed
 abstract class Location with _$Location {
-  const factory Location({required String uri, required Range range}) =
+  const factory Location({required Range range, required String uri}) =
       _Location;
 
   factory Location.fromJson(Map<String, dynamic> json) =>
@@ -1568,13 +562,11 @@ abstract class ImplementationRegistrationOptions
   const factory ImplementationRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _ImplementationRegistrationOptions;
 
   factory ImplementationRegistrationOptions.fromJson(
@@ -1585,15 +577,15 @@ abstract class ImplementationRegistrationOptions
 @freezed
 abstract class TypeDefinitionParams with _$TypeDefinitionParams {
   const factory TypeDefinitionParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    ProgressToken? partialResultToken,
 
     /// The position inside the text document.
     required Position position,
 
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    ProgressToken? partialResultToken,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -1609,13 +601,11 @@ abstract class TypeDefinitionRegistrationOptions
   const factory TypeDefinitionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _TypeDefinitionRegistrationOptions;
 
   factory TypeDefinitionRegistrationOptions.fromJson(
@@ -1623,24 +613,21 @@ abstract class TypeDefinitionRegistrationOptions
   ) => _$TypeDefinitionRegistrationOptionsFromJson(json);
 }
 
-/// A workspace folder inside a client.
 @freezed
 abstract class WorkspaceFolder with _$WorkspaceFolder {
   const factory WorkspaceFolder({
-    /// The associated URI for this workspace folder.
-    required String uri,
-
     /// The name of the workspace folder. Used to refer to this workspace
     /// folder in the user interface.
     required String name,
+
+    /// The associated URI for this workspace folder.
+    required String uri,
   }) = _WorkspaceFolder;
 
   factory WorkspaceFolder.fromJson(Map<String, dynamic> json) =>
       _$WorkspaceFolderFromJson(json);
 }
 
-/// The parameters of a `workspace/didChangeWorkspaceFolders`
-/// notification.
 @freezed
 abstract class DidChangeWorkspaceFoldersParams
     with _$DidChangeWorkspaceFoldersParams {
@@ -1653,7 +640,6 @@ abstract class DidChangeWorkspaceFoldersParams
       _$DidChangeWorkspaceFoldersParamsFromJson(json);
 }
 
-/// The parameters of a configuration request.
 @freezed
 abstract class ConfigurationParams with _$ConfigurationParams {
   const factory ConfigurationParams({required List<ConfigurationItem> items}) =
@@ -1663,16 +649,15 @@ abstract class ConfigurationParams with _$ConfigurationParams {
       _$ConfigurationParamsFromJson(json);
 }
 
-/// Parameters for a {@link DocumentColorRequest}.
 @freezed
 abstract class DocumentColorParams with _$DocumentColorParams {
   const factory DocumentColorParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -1682,15 +667,14 @@ abstract class DocumentColorParams with _$DocumentColorParams {
       _$DocumentColorParamsFromJson(json);
 }
 
-/// Represents a color range from a document.
 @freezed
 abstract class ColorInformation with _$ColorInformation {
   const factory ColorInformation({
-    /// The range in the document where this color appears.
-    required Range range,
-
     /// The actual color value for this color range.
     required Color color,
+
+    /// The range in the document where this color appears.
+    required Range range,
   }) = _ColorInformation;
 
   factory ColorInformation.fromJson(Map<String, dynamic> json) =>
@@ -1703,13 +687,11 @@ abstract class DocumentColorRegistrationOptions
   const factory DocumentColorRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _DocumentColorRegistrationOptions;
 
   factory DocumentColorRegistrationOptions.fromJson(
@@ -1717,22 +699,21 @@ abstract class DocumentColorRegistrationOptions
   ) => _$DocumentColorRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a {@link ColorPresentationRequest}.
 @freezed
 abstract class ColorPresentationParams with _$ColorPresentationParams {
   const factory ColorPresentationParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// The color to request presentations for.
     required Color color,
-
-    /// The range where the color would be inserted. Serves as a context.
-    required Range range,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The range where the color would be inserted. Serves as a context.
+    required Range range,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -1745,16 +726,16 @@ abstract class ColorPresentationParams with _$ColorPresentationParams {
 @freezed
 abstract class ColorPresentation with _$ColorPresentation {
   const factory ColorPresentation({
-    /// The label of this color presentation. It will be shown on the color
-    /// picker header. By default this is also the text that is inserted when
-    /// selecting this color presentation.
-    required String label,
-
     /// An optional array of additional {@link TextEdit text edits} that are
     /// applied when selecting this color presentation. Edits must not overlap
     /// with the main {@link ColorPresentation.textEdit edit} nor with
     /// themselves.
     List<TextEdit>? additionalTextEdits,
+
+    /// The label of this color presentation. It will be shown on the color
+    /// picker header. By default this is also the text that is inserted when
+    /// selecting this color presentation.
+    required String label,
 
     /// An {@link TextEdit edit} which is applied to a document when selecting
     /// this presentation for the color. When `falsy` the {@link
@@ -1775,31 +756,28 @@ abstract class WorkDoneProgressOptions with _$WorkDoneProgressOptions {
       _$WorkDoneProgressOptionsFromJson(json);
 }
 
-/// General text document registration options.
 @freezed
 abstract class TextDocumentRegistrationOptions
     with _$TextDocumentRegistrationOptions {
   const factory TextDocumentRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
   }) = _TextDocumentRegistrationOptions;
 
   factory TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$TextDocumentRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a {@link FoldingRangeRequest}.
 @freezed
 abstract class FoldingRangeParams with _$FoldingRangeParams {
   const factory FoldingRangeParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -1809,27 +787,23 @@ abstract class FoldingRangeParams with _$FoldingRangeParams {
       _$FoldingRangeParamsFromJson(json);
 }
 
-/// Represents a folding range. To be valid, start and end line must
-/// be bigger than zero and smaller than the number of lines in the
-/// document. Clients are free to ignore invalid ranges.
 @freezed
 abstract class FoldingRange with _$FoldingRange {
   const factory FoldingRange({
-    /// The zero-based start line of the range to fold. The folded area starts
-    /// after the line's last character. To be valid, the end must be zero or
-    /// larger and smaller than the number of lines in the document.
-    required int startLine,
-
-    /// The zero-based end line of the range to fold. The folded area ends with
-    /// the line's last character. To be valid, the end must be zero or larger
-    /// and smaller than the number of lines in the document.
-    required int endLine,
-
     /// The text that the client should show when the specified range is
     /// collapsed. If not defined or not supported by the client, a default
     /// will be chosen by the client.
     /// @since 3.17.0
     String? collapsedText,
+
+    /// The zero-based character offset before the folded range ends. If not
+    /// defined, defaults to the length of the end line.
+    int? endCharacter,
+
+    /// The zero-based end line of the range to fold. The folded area ends with
+    /// the line's last character. To be valid, the end must be zero or larger
+    /// and smaller than the number of lines in the document.
+    required int endLine,
 
     /// Describes the kind of the folding range such as `comment' or 'region'.
     /// The kind is used to categorize folding ranges and used by commands like
@@ -1837,13 +811,14 @@ abstract class FoldingRange with _$FoldingRange {
     /// standardized kinds.
     FoldingRangeKind? kind,
 
-    /// The zero-based character offset before the folded range ends. If not
-    /// defined, defaults to the length of the end line.
-    int? endCharacter,
-
     /// The zero-based character offset from where the folded range starts. If
     /// not defined, defaults to the length of the start line.
     int? startCharacter,
+
+    /// The zero-based start line of the range to fold. The folded area starts
+    /// after the line's last character. To be valid, the end must be zero or
+    /// larger and smaller than the number of lines in the document.
+    required int startLine,
   }) = _FoldingRange;
 
   factory FoldingRange.fromJson(Map<String, dynamic> json) =>
@@ -1856,13 +831,11 @@ abstract class FoldingRangeRegistrationOptions
   const factory FoldingRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _FoldingRangeRegistrationOptions;
 
   factory FoldingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -1872,15 +845,15 @@ abstract class FoldingRangeRegistrationOptions
 @freezed
 abstract class DeclarationParams with _$DeclarationParams {
   const factory DeclarationParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    ProgressToken? partialResultToken,
 
     /// The position inside the text document.
     required Position position,
 
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    ProgressToken? partialResultToken,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -1896,32 +869,29 @@ abstract class DeclarationRegistrationOptions
   const factory DeclarationRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _DeclarationRegistrationOptions;
 
   factory DeclarationRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$DeclarationRegistrationOptionsFromJson(json);
 }
 
-/// A parameter literal used in selection range requests.
 @freezed
 abstract class SelectionRangeParams with _$SelectionRangeParams {
   const factory SelectionRangeParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    ProgressToken? partialResultToken,
 
     /// The positions inside the text document.
     required List<Position> positions,
 
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    ProgressToken? partialResultToken,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -1931,18 +901,15 @@ abstract class SelectionRangeParams with _$SelectionRangeParams {
       _$SelectionRangeParamsFromJson(json);
 }
 
-/// A selection range represents a part of a selection hierarchy. A
-/// selection range may have a parent selection range that contains
-/// it.
 @freezed
 abstract class SelectionRange with _$SelectionRange {
   const factory SelectionRange({
-    /// The {@link Range range} of this selection range.
-    required Range range,
-
     /// The parent selection range containing this range. Therefore
     /// `parent.range` must contain `this.range`.
     SelectionRange? parent,
+
+    /// The {@link Range range} of this selection range.
+    required Range range,
   }) = _SelectionRange;
 
   factory SelectionRange.fromJson(Map<String, dynamic> json) =>
@@ -1955,13 +922,11 @@ abstract class SelectionRangeRegistrationOptions
   const factory SelectionRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _SelectionRangeRegistrationOptions;
 
   factory SelectionRangeRegistrationOptions.fromJson(
@@ -1993,16 +958,14 @@ abstract class WorkDoneProgressCancelParams
       _$WorkDoneProgressCancelParamsFromJson(json);
 }
 
-/// The parameter of a `textDocument/prepareCallHierarchy` request.
-/// @since 3.16.0
 @freezed
 abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
   const factory CallHierarchyPrepareParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// The position inside the text document.
     required Position position,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2012,20 +975,21 @@ abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
       _$CallHierarchyPrepareParamsFromJson(json);
 }
 
-/// Represents programming constructs like functions or constructors
-/// in the context of call hierarchy.
-/// @since 3.16.0
 @freezed
 abstract class CallHierarchyItem with _$CallHierarchyItem {
   const factory CallHierarchyItem({
-    /// The name of this item.
-    required String name,
+    /// A data entry field that is preserved between a call hierarchy prepare
+    /// and incoming calls or outgoing calls requests.
+    LSPAny? data,
+
+    /// More detail for this item, e.g. the signature of a function.
+    String? detail,
 
     /// The kind of this item.
     required SymbolKind kind,
 
-    /// The resource identifier of this item.
-    required String uri,
+    /// The name of this item.
+    required String name,
 
     /// The range enclosing this symbol not including leading/trailing
     /// whitespace but everything else, e.g. comments and code.
@@ -2036,36 +1000,28 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
     /// {@link CallHierarchyItem.range `range`}.
     required Range selectionRange,
 
-    /// A data entry field that is preserved between a call hierarchy prepare
-    /// and incoming calls or outgoing calls requests.
-    LSPAny? data,
-
-    /// More detail for this item, e.g. the signature of a function.
-    String? detail,
-
     /// Tags for this item.
     List<SymbolTag>? tags,
+
+    /// The resource identifier of this item.
+    required String uri,
   }) = _CallHierarchyItem;
 
   factory CallHierarchyItem.fromJson(Map<String, dynamic> json) =>
       _$CallHierarchyItemFromJson(json);
 }
 
-/// Call hierarchy options used during static or dynamic registration.
-/// @since 3.16.0
 @freezed
 abstract class CallHierarchyRegistrationOptions
     with _$CallHierarchyRegistrationOptions {
   const factory CallHierarchyRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _CallHierarchyRegistrationOptions;
 
   factory CallHierarchyRegistrationOptions.fromJson(
@@ -2073,8 +1029,6 @@ abstract class CallHierarchyRegistrationOptions
   ) => _$CallHierarchyRegistrationOptionsFromJson(json);
 }
 
-/// The parameter of a `callHierarchy/incomingCalls` request.
-/// @since 3.16.0
 @freezed
 abstract class CallHierarchyIncomingCallsParams
     with _$CallHierarchyIncomingCallsParams {
@@ -2094,9 +1048,6 @@ abstract class CallHierarchyIncomingCallsParams
   ) => _$CallHierarchyIncomingCallsParamsFromJson(json);
 }
 
-/// Represents an incoming call, e.g. a caller of a method or
-/// constructor.
-/// @since 3.16.0
 @freezed
 abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
   const factory CallHierarchyIncomingCall({
@@ -2112,8 +1063,6 @@ abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
       _$CallHierarchyIncomingCallFromJson(json);
 }
 
-/// The parameter of a `callHierarchy/outgoingCalls` request.
-/// @since 3.16.0
 @freezed
 abstract class CallHierarchyOutgoingCallsParams
     with _$CallHierarchyOutgoingCallsParams {
@@ -2133,37 +1082,33 @@ abstract class CallHierarchyOutgoingCallsParams
   ) => _$CallHierarchyOutgoingCallsParamsFromJson(json);
 }
 
-/// Represents an outgoing call, e.g. calling a getter from a method
-/// or a method from a constructor etc.
-/// @since 3.16.0
 @freezed
 abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
   const factory CallHierarchyOutgoingCall({
-    /// The item that is called.
-    required CallHierarchyItem to,
-
     /// The range at which this item is called. This is the range relative to
     /// the caller, e.g the item passed to {@link
     /// CallHierarchyItemProvider.provideCallHierarchyOutgoingCalls
     /// `provideCallHierarchyOutgoingCalls`} and not {@link
     /// CallHierarchyOutgoingCall.to `this.to`}.
     required List<Range> fromRanges,
+
+    /// The item that is called.
+    required CallHierarchyItem to,
   }) = _CallHierarchyOutgoingCall;
 
   factory CallHierarchyOutgoingCall.fromJson(Map<String, dynamic> json) =>
       _$CallHierarchyOutgoingCallFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensParams with _$SemanticTokensParams {
   const factory SemanticTokensParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2173,7 +1118,6 @@ abstract class SemanticTokensParams with _$SemanticTokensParams {
       _$SemanticTokensParamsFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokens with _$SemanticTokens {
   const factory SemanticTokens({
@@ -2191,7 +1135,6 @@ abstract class SemanticTokens with _$SemanticTokens {
       _$SemanticTokensFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
   const factory SemanticTokensPartialResult({required List<int> data}) =
@@ -2201,30 +1144,27 @@ abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
       _$SemanticTokensPartialResultFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensRegistrationOptions
     with _$SemanticTokensRegistrationOptions {
   const factory SemanticTokensRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
-    /// The legend used by the server
-    required SemanticTokensLegend legend,
+    /// Server supports providing semantic tokens for a full document.
+    Sealed26? full,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
 
-    /// Server supports providing semantic tokens for a full document.
-    SemanticTokensOptionsFullBase? full,
+    /// The legend used by the server
+    required SemanticTokensLegend legend,
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
-    RangeBase? range,
-    bool? workDoneProgress,
+    Sealed25? range,
   }) = _SemanticTokensRegistrationOptions;
 
   factory SemanticTokensRegistrationOptions.fromJson(
@@ -2232,21 +1172,20 @@ abstract class SemanticTokensRegistrationOptions
   ) => _$SemanticTokensRegistrationOptionsFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
   const factory SemanticTokensDeltaParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    ProgressToken? partialResultToken,
 
     /// The result id of a previous response. The result Id can either point to
     /// a full response or a delta response depending on what was received
     /// last.
     required String previousResultId,
 
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    ProgressToken? partialResultToken,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2256,7 +1195,6 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
       _$SemanticTokensDeltaParamsFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensDelta with _$SemanticTokensDelta {
   const factory SemanticTokensDelta({
@@ -2270,7 +1208,6 @@ abstract class SemanticTokensDelta with _$SemanticTokensDelta {
       _$SemanticTokensDeltaFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensDeltaPartialResult
     with _$SemanticTokensDeltaPartialResult {
@@ -2283,19 +1220,18 @@ abstract class SemanticTokensDeltaPartialResult
   ) => _$SemanticTokensDeltaPartialResultFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
   const factory SemanticTokensRangeParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    ProgressToken? partialResultToken,
 
     /// The range the semantic tokens are requested for.
     required Range range,
 
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    ProgressToken? partialResultToken,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2305,13 +1241,13 @@ abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
       _$SemanticTokensRangeParamsFromJson(json);
 }
 
-/// Params to show a resource in the UI.
-/// @since 3.16.0
 @freezed
 abstract class ShowDocumentParams with _$ShowDocumentParams {
   const factory ShowDocumentParams({
-    /// The uri to show.
-    required String uri,
+    /// Indicates to show the resource in an external program. To show, for
+    /// example, `https://code.visualstudio.com/` in the default WEB browser
+    /// set `external` to `true`.
+    bool? external,
 
     /// An optional selection range if the document is a text document. Clients
     /// might ignore the property if an external program is started or the file
@@ -2323,18 +1259,14 @@ abstract class ShowDocumentParams with _$ShowDocumentParams {
     /// if an external program is started.
     bool? takeFocus,
 
-    /// Indicates to show the resource in an external program. To show, for
-    /// example, `https://code.visualstudio.com/` in the default WEB browser
-    /// set `external` to `true`.
-    bool? external,
+    /// The uri to show.
+    required String uri,
   }) = _ShowDocumentParams;
 
   factory ShowDocumentParams.fromJson(Map<String, dynamic> json) =>
       _$ShowDocumentParamsFromJson(json);
 }
 
-/// The result of a showDocument request.
-/// @since 3.16.0
 @freezed
 abstract class ShowDocumentResult with _$ShowDocumentResult {
   const factory ShowDocumentResult({
@@ -2349,11 +1281,11 @@ abstract class ShowDocumentResult with _$ShowDocumentResult {
 @freezed
 abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
   const factory LinkedEditingRangeParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// The position inside the text document.
     required Position position,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2363,8 +1295,6 @@ abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
       _$LinkedEditingRangeParamsFromJson(json);
 }
 
-/// The result of a linked editing range request.
-/// @since 3.16.0
 @freezed
 abstract class LinkedEditingRanges with _$LinkedEditingRanges {
   const factory LinkedEditingRanges({
@@ -2389,13 +1319,11 @@ abstract class LinkedEditingRangeRegistrationOptions
   const factory LinkedEditingRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _LinkedEditingRangeRegistrationOptions;
 
   factory LinkedEditingRangeRegistrationOptions.fromJson(
@@ -2403,9 +1331,6 @@ abstract class LinkedEditingRangeRegistrationOptions
   ) => _$LinkedEditingRangeRegistrationOptionsFromJson(json);
 }
 
-/// The parameters sent in notifications/requests for user-initiated
-/// creation of files.
-/// @since 3.16.0
 @freezed
 abstract class CreateFilesParams with _$CreateFilesParams {
   const factory CreateFilesParams({
@@ -2417,21 +1342,6 @@ abstract class CreateFilesParams with _$CreateFilesParams {
       _$CreateFilesParamsFromJson(json);
 }
 
-/// A workspace edit represents changes to many resources managed in
-/// the workspace. The edit should either provide `changes` or
-/// `documentChanges`. If documentChanges are present they are
-/// preferred over `changes` if the client can handle versioned
-/// document edits.
-/// Since version 3.13.0 a workspace edit can contain resource
-/// operations as well. If resource operations are present clients
-/// need to execute the operations in the order in which they are
-/// provided. So a workspace edit for example can consist of the
-/// following two changes: (1) a create file a.txt and (2) a text
-/// document edit which insert text into file a.txt.
-/// An invalid sequence (e.g. (1) delete file a.txt and (2) insert
-/// text into file a.txt) will cause failure of the operation. How
-/// the client recovers from the failure is described by the client
-/// capability: `workspace.workspaceEdit.failureHandling`
 @freezed
 abstract class WorkspaceEdit with _$WorkspaceEdit {
   const factory WorkspaceEdit({
@@ -2442,6 +1352,9 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
     /// `workspace.changeAnnotationSupport`.
     /// @since 3.16.0
     Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations,
+
+    /// Holds changes to existing resources.
+    Map<String, List<TextEdit>>? changes,
 
     /// Depending on the client capability
     /// `workspace.workspaceEdit.resourceOperations` document changes are
@@ -2455,18 +1368,13 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
     /// If a client neither supports `documentChanges` nor
     /// `workspace.workspaceEdit.resourceOperations` then only plain
     /// `TextEdit`s using the `changes` property are supported.
-    List<WorkspaceEditDocumentChangesBase>? documentChanges,
-
-    /// Holds changes to existing resources.
-    Map<String, List<TextEdit>>? changes,
+    List<Sealed15>? documentChanges,
   }) = _WorkspaceEdit;
 
   factory WorkspaceEdit.fromJson(Map<String, dynamic> json) =>
       _$WorkspaceEditFromJson(json);
 }
 
-/// The options to register for file operations.
-/// @since 3.16.0
 @freezed
 abstract class FileOperationRegistrationOptions
     with _$FileOperationRegistrationOptions {
@@ -2480,9 +1388,6 @@ abstract class FileOperationRegistrationOptions
   ) => _$FileOperationRegistrationOptionsFromJson(json);
 }
 
-/// The parameters sent in notifications/requests for user-initiated
-/// renames of files.
-/// @since 3.16.0
 @freezed
 abstract class RenameFilesParams with _$RenameFilesParams {
   const factory RenameFilesParams({
@@ -2495,9 +1400,6 @@ abstract class RenameFilesParams with _$RenameFilesParams {
       _$RenameFilesParamsFromJson(json);
 }
 
-/// The parameters sent in notifications/requests for user-initiated
-/// deletes of files.
-/// @since 3.16.0
 @freezed
 abstract class DeleteFilesParams with _$DeleteFilesParams {
   const factory DeleteFilesParams({
@@ -2512,15 +1414,15 @@ abstract class DeleteFilesParams with _$DeleteFilesParams {
 @freezed
 abstract class MonikerParams with _$MonikerParams {
   const factory MonikerParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    ProgressToken? partialResultToken,
 
     /// The position inside the text document.
     required Position position,
 
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    ProgressToken? partialResultToken,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2530,23 +1432,21 @@ abstract class MonikerParams with _$MonikerParams {
       _$MonikerParamsFromJson(json);
 }
 
-/// Moniker definition to match LSIF 0.5 moniker definition.
-/// @since 3.16.0
 @freezed
 abstract class Moniker with _$Moniker {
   const factory Moniker({
-    /// The scheme of the moniker. For example tsc or .Net
-    required String scheme,
-
     /// The identifier of the moniker. The value is opaque in LSIF however
     /// schema owners are allowed to define the structure if they want.
     required String identifier,
 
-    /// The scope in which the moniker is unique
-    required UniquenessLevel unique,
-
     /// The moniker kind if known.
     MonikerKind? kind,
+
+    /// The scheme of the moniker. For example tsc or .Net
+    required String scheme,
+
+    /// The scope in which the moniker is unique
+    required UniquenessLevel unique,
   }) = _Moniker;
 
   factory Moniker.fromJson(Map<String, dynamic> json) =>
@@ -2558,25 +1458,21 @@ abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
   const factory MonikerRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
-    bool? workDoneProgress,
+    required Sealed14 documentSelector,
   }) = _MonikerRegistrationOptions;
 
   factory MonikerRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$MonikerRegistrationOptionsFromJson(json);
 }
 
-/// The parameter of a `textDocument/prepareTypeHierarchy` request.
-/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
   const factory TypeHierarchyPrepareParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// The position inside the text document.
     required Position position,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2586,18 +1482,23 @@ abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
       _$TypeHierarchyPrepareParamsFromJson(json);
 }
 
-/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyItem with _$TypeHierarchyItem {
   const factory TypeHierarchyItem({
-    /// The name of this item.
-    required String name,
+    /// A data entry field that is preserved between a type hierarchy prepare
+    /// and supertypes or subtypes requests. It could also be used to identify
+    /// the type hierarchy in the server, helping improve the performance on
+    /// resolving supertypes and subtypes.
+    LSPAny? data,
+
+    /// More detail for this item, e.g. the signature of a function.
+    String? detail,
 
     /// The kind of this item.
     required SymbolKind kind,
 
-    /// The resource identifier of this item.
-    required String uri,
+    /// The name of this item.
+    required String name,
 
     /// The range enclosing this symbol not including leading/trailing
     /// whitespace but everything else, e.g. comments and code.
@@ -2608,38 +1509,28 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
     /// {@link TypeHierarchyItem.range `range`}.
     required Range selectionRange,
 
-    /// A data entry field that is preserved between a type hierarchy prepare
-    /// and supertypes or subtypes requests. It could also be used to identify
-    /// the type hierarchy in the server, helping improve the performance on
-    /// resolving supertypes and subtypes.
-    LSPAny? data,
-
-    /// More detail for this item, e.g. the signature of a function.
-    String? detail,
-
     /// Tags for this item.
     List<SymbolTag>? tags,
+
+    /// The resource identifier of this item.
+    required String uri,
   }) = _TypeHierarchyItem;
 
   factory TypeHierarchyItem.fromJson(Map<String, dynamic> json) =>
       _$TypeHierarchyItemFromJson(json);
 }
 
-/// Type hierarchy options used during static or dynamic registration.
-/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyRegistrationOptions
     with _$TypeHierarchyRegistrationOptions {
   const factory TypeHierarchyRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _TypeHierarchyRegistrationOptions;
 
   factory TypeHierarchyRegistrationOptions.fromJson(
@@ -2647,8 +1538,6 @@ abstract class TypeHierarchyRegistrationOptions
   ) => _$TypeHierarchyRegistrationOptionsFromJson(json);
 }
 
-/// The parameter of a `typeHierarchy/supertypes` request.
-/// @since 3.17.0
 @freezed
 abstract class TypeHierarchySupertypesParams
     with _$TypeHierarchySupertypesParams {
@@ -2667,8 +1556,6 @@ abstract class TypeHierarchySupertypesParams
       _$TypeHierarchySupertypesParamsFromJson(json);
 }
 
-/// The parameter of a `typeHierarchy/subtypes` request.
-/// @since 3.17.0
 @freezed
 abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
   const factory TypeHierarchySubtypesParams({
@@ -2686,20 +1573,18 @@ abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
       _$TypeHierarchySubtypesParamsFromJson(json);
 }
 
-/// A parameter literal used in inline value requests.
-/// @since 3.17.0
 @freezed
 abstract class InlineValueParams with _$InlineValueParams {
   const factory InlineValueParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// Additional information about the context in which inline values were
+    /// requested.
+    required InlineValueContext context,
 
     /// The document range for which inline values should be computed.
     required Range range,
 
-    /// Additional information about the context in which inline values were
-    /// requested.
-    required InlineValueContext context,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2709,37 +1594,31 @@ abstract class InlineValueParams with _$InlineValueParams {
       _$InlineValueParamsFromJson(json);
 }
 
-/// Inline value options used during static or dynamic registration.
-/// @since 3.17.0
 @freezed
 abstract class InlineValueRegistrationOptions
     with _$InlineValueRegistrationOptions {
   const factory InlineValueRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _InlineValueRegistrationOptions;
 
   factory InlineValueRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$InlineValueRegistrationOptionsFromJson(json);
 }
 
-/// A parameter literal used in inlay hint requests.
-/// @since 3.17.0
 @freezed
 abstract class InlayHintParams with _$InlayHintParams {
   const factory InlayHintParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// The document range for which inlay hints should be computed.
     required Range range,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2749,30 +1628,21 @@ abstract class InlayHintParams with _$InlayHintParams {
       _$InlayHintParamsFromJson(json);
 }
 
-/// Inlay hint information.
-/// @since 3.17.0
 @freezed
 abstract class InlayHint with _$InlayHint {
   const factory InlayHint({
-    /// The position of this hint.
-    /// If multiple hints have the same position, they will be shown in the
-    /// order they appear in the response.
-    required Position position,
-
-    /// The label of this hint. A human readable string or an array of
-    /// InlayHintLabelPart label parts.
-    /// *Note* that neither the string nor the label part can be empty.
-    required InlayHintLabelBase label,
-
     /// A data entry field that is preserved on an inlay hint between a
     /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
     LSPAny? data,
 
-    /// Render padding after the hint.
-    /// Note: Padding should use the editor's background color, not the
-    /// background color of the hint itself. That means padding can be used to
-    /// visually align/separate an inlay hint.
-    bool? paddingRight,
+    /// The kind of this hint. Can be omitted in which case the client should
+    /// fall back to a reasonable default.
+    InlayHintKind? kind,
+
+    /// The label of this hint. A human readable string or an array of
+    /// InlayHintLabelPart label parts.
+    /// *Note* that neither the string nor the label part can be empty.
+    required Sealed16 label,
 
     /// Render padding before the hint.
     /// Note: Padding should use the editor's background color, not the
@@ -2780,8 +1650,16 @@ abstract class InlayHint with _$InlayHint {
     /// visually align/separate an inlay hint.
     bool? paddingLeft,
 
-    /// The tooltip text when you hover over this item.
-    TooltipOrDocumentationBase? tooltip,
+    /// Render padding after the hint.
+    /// Note: Padding should use the editor's background color, not the
+    /// background color of the hint itself. That means padding can be used to
+    /// visually align/separate an inlay hint.
+    bool? paddingRight,
+
+    /// The position of this hint.
+    /// If multiple hints have the same position, they will be shown in the
+    /// order they appear in the response.
+    required Position position,
 
     /// Optional text edits that are performed when accepting this inlay hint.
     /// *Note* that edits are expected to change the document so that the inlay
@@ -2789,25 +1667,21 @@ abstract class InlayHint with _$InlayHint {
     /// hint itself is now obsolete.
     List<TextEdit>? textEdits,
 
-    /// The kind of this hint. Can be omitted in which case the client should
-    /// fall back to a reasonable default.
-    InlayHintKind? kind,
+    /// The tooltip text when you hover over this item.
+    Sealed17? tooltip,
   }) = _InlayHint;
 
   factory InlayHint.fromJson(Map<String, dynamic> json) =>
       _$InlayHintFromJson(json);
 }
 
-/// Inlay hint options used during static or dynamic registration.
-/// @since 3.17.0
 @freezed
 abstract class InlayHintRegistrationOptions
     with _$InlayHintRegistrationOptions {
   const factory InlayHintRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -2816,30 +1690,27 @@ abstract class InlayHintRegistrationOptions
     /// The server provides support to resolve additional information for an
     /// inlay hint item.
     bool? resolveProvider,
-    bool? workDoneProgress,
   }) = _InlayHintRegistrationOptions;
 
   factory InlayHintRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$InlayHintRegistrationOptionsFromJson(json);
 }
 
-/// Parameters of the document diagnostic request.
-/// @since 3.17.0
 @freezed
 abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
   const factory DocumentDiagnosticParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
-    /// The result id of a previous response if provided.
-    String? previousResultId,
-
     /// The additional identifier  provided during registration.
     String? identifier,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The result id of a previous response if provided.
+    String? previousResultId,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2849,13 +1720,11 @@ abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
       _$DocumentDiagnosticParamsFromJson(json);
 }
 
-/// A partial result for a document diagnostic report.
-/// @since 3.17.0
 @freezed
 abstract class DocumentDiagnosticReportPartialResult
     with _$DocumentDiagnosticReportPartialResult {
   const factory DocumentDiagnosticReportPartialResult({
-    required Map<String, RelatedDocumentsBase> relatedDocuments,
+    required Map<String, Sealed18> relatedDocuments,
   }) = _DocumentDiagnosticReportPartialResult;
 
   factory DocumentDiagnosticReportPartialResult.fromJson(
@@ -2863,8 +1732,6 @@ abstract class DocumentDiagnosticReportPartialResult
   ) => _$DocumentDiagnosticReportPartialResultFromJson(json);
 }
 
-/// Cancellation data returned from a diagnostic request.
-/// @since 3.17.0
 @freezed
 abstract class DiagnosticServerCancellationData
     with _$DiagnosticServerCancellationData {
@@ -2877,16 +1744,21 @@ abstract class DiagnosticServerCancellationData
   ) => _$DiagnosticServerCancellationDataFromJson(json);
 }
 
-/// Diagnostic registration options.
-/// @since 3.17.0
 @freezed
 abstract class DiagnosticRegistrationOptions
     with _$DiagnosticRegistrationOptions {
   const factory DiagnosticRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
+
+    /// The id used to register the request. The id can be used to deregister
+    /// the request again. See also Registration#id.
+    String? id,
+
+    /// An optional identifier under which the diagnostics are managed by the
+    /// client.
+    String? identifier,
 
     /// Whether the language has inter file dependencies meaning that editing
     /// code in one file can result in a different diagnostic set in another
@@ -2896,35 +1768,24 @@ abstract class DiagnosticRegistrationOptions
 
     /// The server provides support for workspace diagnostics as well.
     required bool workspaceDiagnostics,
-
-    /// The id used to register the request. The id can be used to deregister
-    /// the request again. See also Registration#id.
-    String? id,
-
-    /// An optional identifier under which the diagnostics are managed by the
-    /// client.
-    String? identifier,
-    bool? workDoneProgress,
   }) = _DiagnosticRegistrationOptions;
 
   factory DiagnosticRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$DiagnosticRegistrationOptionsFromJson(json);
 }
 
-/// Parameters of the workspace diagnostic request.
-/// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
   const factory WorkspaceDiagnosticParams({
-    /// The currently known diagnostic reports with their previous result ids.
-    required List<PreviousResultId> previousResultIds,
-
     /// The additional identifier provided during registration.
     String? identifier,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The currently known diagnostic reports with their previous result ids.
+    required List<PreviousResultId> previousResultIds,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -2934,8 +1795,6 @@ abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
       _$WorkspaceDiagnosticParamsFromJson(json);
 }
 
-/// A workspace diagnostic report.
-/// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
   const factory WorkspaceDiagnosticReport({
@@ -2946,8 +1805,6 @@ abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
       _$WorkspaceDiagnosticReportFromJson(json);
 }
 
-/// A partial result for a workspace diagnostic report.
-/// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticReportPartialResult
     with _$WorkspaceDiagnosticReportPartialResult {
@@ -2960,35 +1817,25 @@ abstract class WorkspaceDiagnosticReportPartialResult
   ) => _$WorkspaceDiagnosticReportPartialResultFromJson(json);
 }
 
-/// The params sent in an open notebook document notification.
-/// @since 3.17.0
 @freezed
 abstract class DidOpenNotebookDocumentParams
     with _$DidOpenNotebookDocumentParams {
   const factory DidOpenNotebookDocumentParams({
-    /// The notebook document that got opened.
-    required NotebookDocument notebookDocument,
-
     /// The text documents that represent the content of a notebook cell.
     required List<TextDocumentItem> cellTextDocuments,
+
+    /// The notebook document that got opened.
+    required NotebookDocument notebookDocument,
   }) = _DidOpenNotebookDocumentParams;
 
   factory DidOpenNotebookDocumentParams.fromJson(Map<String, dynamic> json) =>
       _$DidOpenNotebookDocumentParamsFromJson(json);
 }
 
-/// The params sent in a change notebook document notification.
-/// @since 3.17.0
 @freezed
 abstract class DidChangeNotebookDocumentParams
     with _$DidChangeNotebookDocumentParams {
   const factory DidChangeNotebookDocumentParams({
-    /// The notebook document that did change. The version number points to the
-    /// version after all provided changes have been applied. If only the text
-    /// document content of a cell changes the notebook version doesn't
-    /// necessarily have to change.
-    required VersionedNotebookDocumentIdentifier notebookDocument,
-
     /// The actual changes to the notebook document.
     /// The changes describe single state changes to the notebook document. So
     /// if there are two changes c1 (at array index 0) and c2 (at array index
@@ -3001,14 +1848,18 @@ abstract class DidChangeNotebookDocumentParams
     /// them. - apply the `NotebookChangeEvent`s in a single notification in
     /// the order you receive them.
     required NotebookDocumentChangeEvent change,
+
+    /// The notebook document that did change. The version number points to the
+    /// version after all provided changes have been applied. If only the text
+    /// document content of a cell changes the notebook version doesn't
+    /// necessarily have to change.
+    required VersionedNotebookDocumentIdentifier notebookDocument,
   }) = _DidChangeNotebookDocumentParams;
 
   factory DidChangeNotebookDocumentParams.fromJson(Map<String, dynamic> json) =>
       _$DidChangeNotebookDocumentParamsFromJson(json);
 }
 
-/// The params sent in a save notebook document notification.
-/// @since 3.17.0
 @freezed
 abstract class DidSaveNotebookDocumentParams
     with _$DidSaveNotebookDocumentParams {
@@ -3021,38 +1872,34 @@ abstract class DidSaveNotebookDocumentParams
       _$DidSaveNotebookDocumentParamsFromJson(json);
 }
 
-/// The params sent in a close notebook document notification.
-/// @since 3.17.0
 @freezed
 abstract class DidCloseNotebookDocumentParams
     with _$DidCloseNotebookDocumentParams {
   const factory DidCloseNotebookDocumentParams({
-    /// The notebook document that got closed.
-    required NotebookDocumentIdentifier notebookDocument,
-
     /// The text documents that represent the content of a notebook cell that
     /// got closed.
     required List<TextDocumentIdentifier> cellTextDocuments,
+
+    /// The notebook document that got closed.
+    required NotebookDocumentIdentifier notebookDocument,
   }) = _DidCloseNotebookDocumentParams;
 
   factory DidCloseNotebookDocumentParams.fromJson(Map<String, dynamic> json) =>
       _$DidCloseNotebookDocumentParamsFromJson(json);
 }
 
-/// A parameter literal used in inline completion requests.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionParams with _$InlineCompletionParams {
   const factory InlineCompletionParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// Additional information about the context in which inline completions
+    /// were requested.
+    required InlineCompletionContext context,
 
     /// The position inside the text document.
     required Position position,
 
-    /// Additional information about the context in which inline completions
-    /// were requested.
-    required InlineCompletionContext context,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -3062,9 +1909,6 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
       _$InlineCompletionParamsFromJson(json);
 }
 
-/// Represents a collection of {@link InlineCompletionItem inline
-/// completion items} to be presented in the editor.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionList with _$InlineCompletionList {
   const factory InlineCompletionList({
@@ -3076,48 +1920,40 @@ abstract class InlineCompletionList with _$InlineCompletionList {
       _$InlineCompletionListFromJson(json);
 }
 
-/// An inline completion item represents a text snippet that is
-/// proposed inline to complete text that is being typed.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionItem with _$InlineCompletionItem {
   const factory InlineCompletionItem({
-    /// The text to replace the range with. Must be set.
-    required InlineCompletionItemInsertTextBase insertText,
-
     /// An optional {@link Command} that is executed *after* inserting this
     /// completion.
     Command? command,
-
-    /// The range to replace. Must begin and end on the same line.
-    Range? range,
 
     /// A text that is used to decide if this inline completion should be
     /// shown. When `falsy` the {@link InlineCompletionItem.insertText} is
     /// used.
     String? filterText,
+
+    /// The text to replace the range with. Must be set.
+    required Sealed19 insertText,
+
+    /// The range to replace. Must begin and end on the same line.
+    Range? range,
   }) = _InlineCompletionItem;
 
   factory InlineCompletionItem.fromJson(Map<String, dynamic> json) =>
       _$InlineCompletionItemFromJson(json);
 }
 
-/// Inline completion options used during static or dynamic
-/// registration.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionRegistrationOptions
     with _$InlineCompletionRegistrationOptions {
   const factory InlineCompletionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
-    bool? workDoneProgress,
   }) = _InlineCompletionRegistrationOptions;
 
   factory InlineCompletionRegistrationOptions.fromJson(
@@ -3148,35 +1984,15 @@ abstract class UnregistrationParams with _$UnregistrationParams {
 @freezed
 abstract class InitializeParams with _$InitializeParams {
   const factory InitializeParams({
-    /// The process Id of the parent process that started the server.
-    /// Is `null` if the process has not been started by another process. If
-    /// the parent process is not alive then the server should exit.
-    required ProcessIdOrVersionBase processId,
-
-    /// The rootUri of the workspace. Is null if no folder is open. If both
-    /// `rootPath` and `rootUri` are set `rootUri` wins.
-    /// @deprecated in favour of workspaceFolders.
-    required InitializeParamsRootUriBase rootUri,
-
     /// The capabilities provided by the client (editor or tool)
     required ClientCapabilities capabilities,
 
-    /// The workspace folders configured in the client when the server starts.
-    /// This property is only available if the client supports workspace
-    /// folders. It can be `null` if the client supports workspace folders but
-    /// none are configured.
-    /// @since 3.6.0
-    WorkspaceFoldersInitializeParamsWorkspaceFoldersBase? workspaceFolders,
-
-    /// The initial trace setting. If omitted trace is disabled ('off').
-    TraceValues? trace,
+    /// Information about the client
+    /// @since 3.15.0
+    StringNameStringVersion? clientInfo,
 
     /// User provided initialization options.
     LSPAny? initializationOptions,
-
-    /// The rootPath of the workspace. Is null if no folder is open.
-    /// @deprecated in favour of rootUri.
-    InitializeParamsRootPathBase? rootPath,
 
     /// The locale the client is currently showing the user interface in. This
     /// must not necessarily be the locale of the operating system.
@@ -3185,19 +2001,35 @@ abstract class InitializeParams with _$InitializeParams {
     /// @since 3.16.0
     String? locale,
 
-    /// Information about the client
-    /// @since 3.15.0
-    ({String name, String? version})? clientInfo,
+    /// The process Id of the parent process that started the server.
+    /// Is `null` if the process has not been started by another process. If
+    /// the parent process is not alive then the server should exit.
+    required Sealed28 processId,
 
-    /// An optional token that a server can use to report work done progress.
-    ProgressToken? workDoneToken,
+    /// The rootPath of the workspace. Is null if no folder is open.
+    /// @deprecated in favour of rootUri.
+    Sealed29? rootPath,
+
+    /// The rootUri of the workspace. Is null if no folder is open. If both
+    /// `rootPath` and `rootUri` are set `rootUri` wins.
+    /// @deprecated in favour of workspaceFolders.
+    required Sealed29 rootUri,
+
+    /// The initial trace setting. If omitted trace is disabled ('off').
+    TraceValues? trace,
+
+    /// The workspace folders configured in the client when the server starts.
+    /// This property is only available if the client supports workspace
+    /// folders. It can be `null` if the client supports workspace folders but
+    /// none are configured.
+    /// @since 3.6.0
+    Sealed30? workspaceFolders,
   }) = _InitializeParams;
 
   factory InitializeParams.fromJson(Map<String, dynamic> json) =>
       _$InitializeParamsFromJson(json);
 }
 
-/// The result returned from an initialize request.
 @freezed
 abstract class InitializeResult with _$InitializeResult {
   const factory InitializeResult({
@@ -3206,15 +2038,13 @@ abstract class InitializeResult with _$InitializeResult {
 
     /// Information about the server.
     /// @since 3.15.0
-    ({String name, String? version})? serverInfo,
+    StringNameStringVersion? serverInfo,
   }) = _InitializeResult;
 
   factory InitializeResult.fromJson(Map<String, dynamic> json) =>
       _$InitializeResultFromJson(json);
 }
 
-/// The data type of the ResponseError if the initialize request
-/// fails.
 @freezed
 abstract class InitializeError with _$InitializeError {
   const factory InitializeError({
@@ -3237,7 +2067,6 @@ abstract class InitializedParams with _$InitializedParams {
       _$InitializedParamsFromJson(json);
 }
 
-/// The parameters of a change configuration notification.
 @freezed
 abstract class DidChangeConfigurationParams
     with _$DidChangeConfigurationParams {
@@ -3253,24 +2082,22 @@ abstract class DidChangeConfigurationParams
 @freezed
 abstract class DidChangeConfigurationRegistrationOptions
     with _$DidChangeConfigurationRegistrationOptions {
-  const factory DidChangeConfigurationRegistrationOptions({
-    DidChangeConfigurationRegistrationOptionsSectionBase? section,
-  }) = _DidChangeConfigurationRegistrationOptions;
+  const factory DidChangeConfigurationRegistrationOptions({Sealed20? section}) =
+      _DidChangeConfigurationRegistrationOptions;
 
   factory DidChangeConfigurationRegistrationOptions.fromJson(
     Map<String, dynamic> json,
   ) => _$DidChangeConfigurationRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a notification message.
 @freezed
 abstract class ShowMessageParams with _$ShowMessageParams {
   const factory ShowMessageParams({
-    /// The message type. See {@link MessageType}
-    required MessageType type,
-
     /// The actual message.
     required String message,
+
+    /// The message type. See {@link MessageType}
+    required MessageType type,
   }) = _ShowMessageParams;
 
   factory ShowMessageParams.fromJson(Map<String, dynamic> json) =>
@@ -3280,14 +2107,14 @@ abstract class ShowMessageParams with _$ShowMessageParams {
 @freezed
 abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
   const factory ShowMessageRequestParams({
-    /// The message type. See {@link MessageType}
-    required MessageType type,
+    /// The message action items to present.
+    List<MessageActionItem>? actions,
 
     /// The actual message.
     required String message,
 
-    /// The message action items to present.
-    List<MessageActionItem>? actions,
+    /// The message type. See {@link MessageType}
+    required MessageType type,
   }) = _ShowMessageRequestParams;
 
   factory ShowMessageRequestParams.fromJson(Map<String, dynamic> json) =>
@@ -3305,22 +2132,20 @@ abstract class MessageActionItem with _$MessageActionItem {
       _$MessageActionItemFromJson(json);
 }
 
-/// The log message parameters.
 @freezed
 abstract class LogMessageParams with _$LogMessageParams {
   const factory LogMessageParams({
-    /// The message type. See {@link MessageType}
-    required MessageType type,
-
     /// The actual message.
     required String message,
+
+    /// The message type. See {@link MessageType}
+    required MessageType type,
   }) = _LogMessageParams;
 
   factory LogMessageParams.fromJson(Map<String, dynamic> json) =>
       _$LogMessageParamsFromJson(json);
 }
 
-/// The parameters sent in an open text document notification
 @freezed
 abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
   const factory DidOpenTextDocumentParams({
@@ -3332,14 +2157,9 @@ abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
       _$DidOpenTextDocumentParamsFromJson(json);
 }
 
-/// The change text document notification's parameters.
 @freezed
 abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
   const factory DidChangeTextDocumentParams({
-    /// The document that did change. The version number points to the version
-    /// after all provided content changes have been applied.
-    required VersionedTextDocumentIdentifier textDocument,
-
     /// The actual content changes. The content changes describe single state
     /// changes to the document. So if there are two content changes c1 (at
     /// array index 0) and c2 (at array index 1) for a document in state S then
@@ -3351,22 +2171,23 @@ abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
     /// apply the `TextDocumentContentChangeEvent`s in a single notification in
     /// the order you receive them.
     required List<TextDocumentContentChangeEvent> contentChanges,
+
+    /// The document that did change. The version number points to the version
+    /// after all provided content changes have been applied.
+    required VersionedTextDocumentIdentifier textDocument,
   }) = _DidChangeTextDocumentParams;
 
   factory DidChangeTextDocumentParams.fromJson(Map<String, dynamic> json) =>
       _$DidChangeTextDocumentParamsFromJson(json);
 }
 
-/// Describe options to be used when registered for text document
-/// change events.
 @freezed
 abstract class TextDocumentChangeRegistrationOptions
     with _$TextDocumentChangeRegistrationOptions {
   const factory TextDocumentChangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// How documents are synced to the server.
     required TextDocumentSyncKind syncKind,
@@ -3377,7 +2198,6 @@ abstract class TextDocumentChangeRegistrationOptions
   ) => _$TextDocumentChangeRegistrationOptionsFromJson(json);
 }
 
-/// The parameters sent in a close text document notification
 @freezed
 abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
   const factory DidCloseTextDocumentParams({
@@ -3389,31 +2209,28 @@ abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
       _$DidCloseTextDocumentParamsFromJson(json);
 }
 
-/// The parameters sent in a save text document notification
 @freezed
 abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
   const factory DidSaveTextDocumentParams({
-    /// The document that was saved.
-    required TextDocumentIdentifier textDocument,
-
     /// Optional the content when saved. Depends on the includeText value when
     /// the save notification was requested.
     String? text,
+
+    /// The document that was saved.
+    required TextDocumentIdentifier textDocument,
   }) = _DidSaveTextDocumentParams;
 
   factory DidSaveTextDocumentParams.fromJson(Map<String, dynamic> json) =>
       _$DidSaveTextDocumentParamsFromJson(json);
 }
 
-/// Save registration options.
 @freezed
 abstract class TextDocumentSaveRegistrationOptions
     with _$TextDocumentSaveRegistrationOptions {
   const factory TextDocumentSaveRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The client is supposed to include the content on save.
     bool? includeText,
@@ -3424,38 +2241,35 @@ abstract class TextDocumentSaveRegistrationOptions
   ) => _$TextDocumentSaveRegistrationOptionsFromJson(json);
 }
 
-/// The parameters sent in a will save text document notification.
 @freezed
 abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
   const factory WillSaveTextDocumentParams({
-    /// The document that will be saved.
-    required TextDocumentIdentifier textDocument,
-
     /// The 'TextDocumentSaveReason'.
     required TextDocumentSaveReason reason,
+
+    /// The document that will be saved.
+    required TextDocumentIdentifier textDocument,
   }) = _WillSaveTextDocumentParams;
 
   factory WillSaveTextDocumentParams.fromJson(Map<String, dynamic> json) =>
       _$WillSaveTextDocumentParamsFromJson(json);
 }
 
-/// A text edit applicable to a text document.
 @freezed
 abstract class TextEdit with _$TextEdit {
   const factory TextEdit({
+    /// The string to be inserted. For delete operations use an empty string.
+    required String newText,
+
     /// The range of the text document to be manipulated. To insert text into a
     /// document create a range where start === end.
     required Range range,
-
-    /// The string to be inserted. For delete operations use an empty string.
-    required String newText,
   }) = _TextEdit;
 
   factory TextEdit.fromJson(Map<String, dynamic> json) =>
       _$TextEditFromJson(json);
 }
 
-/// The watched files change notification's parameters.
 @freezed
 abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
   const factory DidChangeWatchedFilesParams({
@@ -3467,8 +2281,6 @@ abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
       _$DidChangeWatchedFilesParamsFromJson(json);
 }
 
-/// Describe options to be used when registered for text document
-/// change events.
 @freezed
 abstract class DidChangeWatchedFilesRegistrationOptions
     with _$DidChangeWatchedFilesRegistrationOptions {
@@ -3482,15 +2294,14 @@ abstract class DidChangeWatchedFilesRegistrationOptions
   ) => _$DidChangeWatchedFilesRegistrationOptionsFromJson(json);
 }
 
-/// The publish diagnostic notification's parameters.
 @freezed
 abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
   const factory PublishDiagnosticsParams({
-    /// The URI for which diagnostic information is reported.
-    required String uri,
-
     /// An array of diagnostic information items.
     required List<Diagnostic> diagnostics,
+
+    /// The URI for which diagnostic information is reported.
+    required String uri,
 
     /// Optional the version number of the document the diagnostics are
     /// published for.
@@ -3502,16 +2313,9 @@ abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
       _$PublishDiagnosticsParamsFromJson(json);
 }
 
-/// Completion parameters
 @freezed
 abstract class CompletionParams with _$CompletionParams {
   const factory CompletionParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
-    /// The position inside the text document.
-    required Position position,
-
     /// The completion context. This is only available if the client specifies
     /// to send this using the client capability
     /// `textDocument.completion.contextSupport === true`
@@ -3521,6 +2325,12 @@ abstract class CompletionParams with _$CompletionParams {
     /// streaming) to the client.
     ProgressToken? partialResultToken,
 
+    /// The position inside the text document.
+    required Position position,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
+
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
   }) = _CompletionParams;
@@ -3529,21 +2339,18 @@ abstract class CompletionParams with _$CompletionParams {
       _$CompletionParamsFromJson(json);
 }
 
-/// A completion item represents a text snippet that is proposed to
-/// complete text that is being typed.
 @freezed
 abstract class CompletionItem with _$CompletionItem {
   const factory CompletionItem({
-    /// The label of this completion item.
-    /// The label property is also by default the text that is inserted when
-    /// selecting this completion.
-    /// If label details are provided the label itself should be an unqualified
-    /// name of the completion item.
-    required String label,
-
-    /// A data entry field that is preserved on a completion item between a
-    /// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
-    LSPAny? data,
+    /// An optional array of additional {@link TextEdit text edits} that are
+    /// applied when selecting this completion. Edits must not overlap
+    /// (including the same insert position) with the main {@link
+    /// CompletionItem.textEdit edit} nor with themselves.
+    /// Additional text edits should be used to change text unrelated to the
+    /// current cursor position (for example adding an import statement at the
+    /// top of the file if the completion item will insert an unqualified
+    /// type).
+    List<TextEdit>? additionalTextEdits,
 
     /// An optional {@link Command command} that is executed *after* inserting
     /// this completion. *Note* that additional modifications to the current
@@ -3557,24 +2364,76 @@ abstract class CompletionItem with _$CompletionItem {
     /// characters will be ignored.
     List<String>? commitCharacters,
 
-    /// An optional array of additional {@link TextEdit text edits} that are
-    /// applied when selecting this completion. Edits must not overlap
-    /// (including the same insert position) with the main {@link
-    /// CompletionItem.textEdit edit} nor with themselves.
-    /// Additional text edits should be used to change text unrelated to the
-    /// current cursor position (for example adding an import statement at the
-    /// top of the file if the completion item will insert an unqualified
-    /// type).
-    List<TextEdit>? additionalTextEdits,
+    /// A data entry field that is preserved on a completion item between a
+    /// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
+    LSPAny? data,
 
-    /// The edit text used if the completion item is part of a CompletionList
-    /// and CompletionList defines an item default for the text edit range.
-    /// Clients will only honor this property if they opt into completion list
-    /// item defaults using the capability `completionList.itemDefaults`.
-    /// If not provided and a list's default range is provided the label
-    /// property is used as a text.
+    /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
+    bool? deprecated,
+
+    /// A human-readable string with additional information about this item,
+    /// like type or symbol information.
+    String? detail,
+
+    /// A human-readable string that represents a doc-comment.
+    Sealed17? documentation,
+
+    /// A string that should be used when filtering a set of completion items.
+    /// When `falsy` the {@link CompletionItem.label label} is used.
+    String? filterText,
+
+    /// A string that should be inserted into a document when selecting this
+    /// completion. When `falsy` the {@link CompletionItem.label label} is
+    /// used.
+    /// The `insertText` is subject to interpretation by the client side. Some
+    /// tools might not take the string literally. For example VS Code when
+    /// code complete is requested in this example `con<cursor position>` and a
+    /// completion item with an `insertText` of `console` is provided it will
+    /// only insert `sole`. Therefore it is recommended to use `textEdit`
+    /// instead since it avoids additional client side interpretation.
+    String? insertText,
+
+    /// The format of the insert text. The format applies to both the
+    /// `insertText` property and the `newText` property of a provided
+    /// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
+    /// Please note that the insertTextFormat doesn't apply to
+    /// `additionalTextEdits`.
+    InsertTextFormat? insertTextFormat,
+
+    /// How whitespace and indentation is handled during completion item
+    /// insertion. If not provided the clients default value depends on the
+    /// `textDocument.completion.insertTextMode` client capability.
+    /// @since 3.16.0
+    InsertTextMode? insertTextMode,
+
+    /// The kind of this completion item. Based of the kind an icon is chosen
+    /// by the editor.
+    CompletionItemKind? kind,
+
+    /// The label of this completion item.
+    /// The label property is also by default the text that is inserted when
+    /// selecting this completion.
+    /// If label details are provided the label itself should be an unqualified
+    /// name of the completion item.
+    required String label,
+
+    /// Additional details for the label
     /// @since 3.17.0
-    String? textEditText,
+    CompletionItemLabelDetails? labelDetails,
+
+    /// Select this item when showing.
+    /// *Note* that only one completion item can be selected and that the tool
+    /// / client decides which item that is. The rule is that the *first* item
+    /// of those that match best is selected.
+    bool? preselect,
+
+    /// A string that should be used when comparing this item with other items.
+    /// When `falsy` the {@link CompletionItem.label label} is used.
+    String? sortText,
+
+    /// Tags for this completion item.
+    /// @since 3.15.0
+    List<CompletionItemTag>? tags,
 
     /// An {@link TextEdit edit} which is applied to a document when selecting
     /// this completion. When an edit is provided the value of {@link
@@ -3593,75 +2452,22 @@ abstract class CompletionItem with _$CompletionItem {
     /// prefix of the edit's replace range, that means it must be contained and
     /// starting at the same position.
     /// @since 3.16.0 additional type `InsertReplaceEdit`
-    CompletionItemTextEditBase? textEdit,
+    Sealed21? textEdit,
 
-    /// How whitespace and indentation is handled during completion item
-    /// insertion. If not provided the clients default value depends on the
-    /// `textDocument.completion.insertTextMode` client capability.
-    /// @since 3.16.0
-    InsertTextMode? insertTextMode,
-
-    /// The format of the insert text. The format applies to both the
-    /// `insertText` property and the `newText` property of a provided
-    /// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
-    /// Please note that the insertTextFormat doesn't apply to
-    /// `additionalTextEdits`.
-    InsertTextFormat? insertTextFormat,
-
-    /// A string that should be inserted into a document when selecting this
-    /// completion. When `falsy` the {@link CompletionItem.label label} is
-    /// used.
-    /// The `insertText` is subject to interpretation by the client side. Some
-    /// tools might not take the string literally. For example VS Code when
-    /// code complete is requested in this example `con<cursor position>` and a
-    /// completion item with an `insertText` of `console` is provided it will
-    /// only insert `sole`. Therefore it is recommended to use `textEdit`
-    /// instead since it avoids additional client side interpretation.
-    String? insertText,
-
-    /// A string that should be used when filtering a set of completion items.
-    /// When `falsy` the {@link CompletionItem.label label} is used.
-    String? filterText,
-
-    /// A string that should be used when comparing this item with other items.
-    /// When `falsy` the {@link CompletionItem.label label} is used.
-    String? sortText,
-
-    /// Select this item when showing.
-    /// *Note* that only one completion item can be selected and that the tool
-    /// / client decides which item that is. The rule is that the *first* item
-    /// of those that match best is selected.
-    bool? preselect,
-
-    /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
-    bool? deprecated,
-
-    /// A human-readable string that represents a doc-comment.
-    TooltipOrDocumentationBase? documentation,
-
-    /// A human-readable string with additional information about this item,
-    /// like type or symbol information.
-    String? detail,
-
-    /// Tags for this completion item.
-    /// @since 3.15.0
-    List<CompletionItemTag>? tags,
-
-    /// The kind of this completion item. Based of the kind an icon is chosen
-    /// by the editor.
-    CompletionItemKind? kind,
-
-    /// Additional details for the label
+    /// The edit text used if the completion item is part of a CompletionList
+    /// and CompletionList defines an item default for the text edit range.
+    /// Clients will only honor this property if they opt into completion list
+    /// item defaults using the capability `completionList.itemDefaults`.
+    /// If not provided and a list's default range is provided the label
+    /// property is used as a text.
     /// @since 3.17.0
-    CompletionItemLabelDetails? labelDetails,
+    String? textEditText,
   }) = _CompletionItem;
 
   factory CompletionItem.fromJson(Map<String, dynamic> json) =>
       _$CompletionItemFromJson(json);
 }
 
-/// Represents a collection of {@link CompletionItem completion
-/// items} to be presented in the editor.
 @freezed
 abstract class CompletionList with _$CompletionList {
   const factory CompletionList({
@@ -3670,9 +2476,6 @@ abstract class CompletionList with _$CompletionList {
     /// Recomputed lists have all their items replaced (not appended) in the
     /// incomplete completion sessions.
     required bool isIncomplete,
-
-    /// The completion items.
-    required List<CompletionItem> items,
 
     /// In many cases the items of an actual completion result share the same
     /// value for properties like `commitCharacters` or the range of a text
@@ -3683,39 +2486,21 @@ abstract class CompletionList with _$CompletionList {
     /// Servers are only allowed to return default values if the client signals
     /// support for this via the `completionList.itemDefaults` capability.
     /// @since 3.17.0
-    ({
-      List<String>? commitCharacters,
-      CompletionListEditRangeBase? editRange,
-      InsertTextFormat? insertTextFormat,
-      InsertTextMode? insertTextMode,
-      LSPAny? data,
-    })?
+    InsertTextFormatInsertTextFormatInsertTextModeInsertTextModeLSPAnyDataRangeOrRangeInsertRangeReplaceEditRangeStringsCommitCharacters?
     itemDefaults,
+
+    /// The completion items.
+    required List<CompletionItem> items,
   }) = _CompletionList;
 
   factory CompletionList.fromJson(Map<String, dynamic> json) =>
       _$CompletionListFromJson(json);
 }
 
-/// Registration options for a {@link CompletionRequest}.
 @freezed
 abstract class CompletionRegistrationOptions
     with _$CompletionRegistrationOptions {
   const factory CompletionRegistrationOptions({
-    /// A document selector to identify the scope of the registration. If set
-    /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
-
-    /// The server supports the following `CompletionItem` specific
-    /// capabilities.
-    /// @since 3.17.0
-    ({bool? labelDetailsSupport})? completionItem,
-
-    /// The server provides support to resolve additional information for a
-    /// completion item.
-    bool? resolveProvider,
-
     /// The list of all possible characters that commit a completion. This
     /// field can be used if clients don't support individual commit characters
     /// per completion item. See
@@ -3724,6 +2509,19 @@ abstract class CompletionRegistrationOptions
     /// on an individual completion item the ones on the completion item win.
     /// @since 3.2.0
     List<String>? allCommitCharacters,
+
+    /// The server supports the following `CompletionItem` specific
+    /// capabilities.
+    /// @since 3.17.0
+    BoolLabelDetailsSupport? completionItem,
+
+    /// A document selector to identify the scope of the registration. If set
+    /// to null the document selector provided on the client side will be used.
+    required Sealed14 documentSelector,
+
+    /// The server provides support to resolve additional information for a
+    /// completion item.
+    bool? resolveProvider,
 
     /// Most tools trigger completion request automatically without explicitly
     /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
@@ -3735,22 +2533,20 @@ abstract class CompletionRegistrationOptions
     /// being valid inside an identifier (for example `.` in JavaScript) list
     /// them in `triggerCharacters`.
     List<String>? triggerCharacters,
-    bool? workDoneProgress,
   }) = _CompletionRegistrationOptions;
 
   factory CompletionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$CompletionRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a {@link HoverRequest}.
 @freezed
 abstract class HoverParams with _$HoverParams {
   const factory HoverParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// The position inside the text document.
     required Position position,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -3760,12 +2556,11 @@ abstract class HoverParams with _$HoverParams {
       _$HoverParamsFromJson(json);
 }
 
-/// The result of a hover request.
 @freezed
 abstract class Hover with _$Hover {
   const factory Hover({
     /// The hover's content
-    required HoverContentsBase contents,
+    required Sealed23 contents,
 
     /// An optional range inside the text document that is used to visualize
     /// the hover, e.g. by changing the background color.
@@ -3775,36 +2570,32 @@ abstract class Hover with _$Hover {
   factory Hover.fromJson(Map<String, dynamic> json) => _$HoverFromJson(json);
 }
 
-/// Registration options for a {@link HoverRequest}.
 @freezed
 abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
   const factory HoverRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
-    bool? workDoneProgress,
+    required Sealed14 documentSelector,
   }) = _HoverRegistrationOptions;
 
   factory HoverRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$HoverRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpParams with _$SignatureHelpParams {
   const factory SignatureHelpParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
-    /// The position inside the text document.
-    required Position position,
-
     /// The signature help context. This is only available if the client
     /// specifies to send this using the client capability
     /// `textDocument.signatureHelp.contextSupport === true`
     /// @since 3.15.0
     SignatureHelpContext? context,
+
+    /// The position inside the text document.
+    required Position position,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -3814,15 +2605,9 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
       _$SignatureHelpParamsFromJson(json);
 }
 
-/// Signature help represents the signature of something callable.
-/// There can be multiple signature but only one active and only one
-/// active parameter.
 @freezed
 abstract class SignatureHelp with _$SignatureHelp {
   const factory SignatureHelp({
-    /// One or more signatures.
-    required List<SignatureInformation> signatures,
-
     /// The active parameter of the active signature. If omitted or the value
     /// lies outside the range of `signatures[activeSignature].parameters`
     /// defaults to 0 if the active signature has parameters. If the active
@@ -3839,21 +2624,22 @@ abstract class SignatureHelp with _$SignatureHelp {
     /// In future version of the protocol this property might become mandatory
     /// to better express this.
     int? activeSignature,
+
+    /// One or more signatures.
+    required List<SignatureInformation> signatures,
   }) = _SignatureHelp;
 
   factory SignatureHelp.fromJson(Map<String, dynamic> json) =>
       _$SignatureHelpFromJson(json);
 }
 
-/// Registration options for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpRegistrationOptions
     with _$SignatureHelpRegistrationOptions {
   const factory SignatureHelpRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// List of characters that re-trigger signature help.
     /// These trigger characters are only active when signature help is already
@@ -3864,7 +2650,6 @@ abstract class SignatureHelpRegistrationOptions
 
     /// List of characters that trigger signature help automatically.
     List<String>? triggerCharacters,
-    bool? workDoneProgress,
   }) = _SignatureHelpRegistrationOptions;
 
   factory SignatureHelpRegistrationOptions.fromJson(
@@ -3872,19 +2657,18 @@ abstract class SignatureHelpRegistrationOptions
   ) => _$SignatureHelpRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionParams with _$DefinitionParams {
   const factory DefinitionParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    ProgressToken? partialResultToken,
 
     /// The position inside the text document.
     required Position position,
 
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    ProgressToken? partialResultToken,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -3894,36 +2678,33 @@ abstract class DefinitionParams with _$DefinitionParams {
       _$DefinitionParamsFromJson(json);
 }
 
-/// Registration options for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionRegistrationOptions
     with _$DefinitionRegistrationOptions {
   const factory DefinitionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
-    bool? workDoneProgress,
+    required Sealed14 documentSelector,
   }) = _DefinitionRegistrationOptions;
 
   factory DefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$DefinitionRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceParams with _$ReferenceParams {
   const factory ReferenceParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
-    /// The position inside the text document.
-    required Position position,
     required ReferenceContext context,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The position inside the text document.
+    required Position position,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -3933,35 +2714,31 @@ abstract class ReferenceParams with _$ReferenceParams {
       _$ReferenceParamsFromJson(json);
 }
 
-/// Registration options for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceRegistrationOptions
     with _$ReferenceRegistrationOptions {
   const factory ReferenceRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
-    bool? workDoneProgress,
+    required Sealed14 documentSelector,
   }) = _ReferenceRegistrationOptions;
 
   factory ReferenceRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$ReferenceRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightParams with _$DocumentHighlightParams {
   const factory DocumentHighlightParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
+    /// An optional token that a server can use to report partial results (e.g.
+    /// streaming) to the client.
+    ProgressToken? partialResultToken,
 
     /// The position inside the text document.
     required Position position,
 
-    /// An optional token that a server can use to report partial results (e.g.
-    /// streaming) to the client.
-    ProgressToken? partialResultToken,
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -3971,33 +2748,27 @@ abstract class DocumentHighlightParams with _$DocumentHighlightParams {
       _$DocumentHighlightParamsFromJson(json);
 }
 
-/// A document highlight is a range inside a text document which
-/// deserves special attention. Usually a document highlight is
-/// visualized by changing the background color of its range.
 @freezed
 abstract class DocumentHighlight with _$DocumentHighlight {
   const factory DocumentHighlight({
-    /// The range this highlight applies to.
-    required Range range,
-
     /// The highlight kind, default is {@link DocumentHighlightKind.Text text}.
     DocumentHighlightKind? kind,
+
+    /// The range this highlight applies to.
+    required Range range,
   }) = _DocumentHighlight;
 
   factory DocumentHighlight.fromJson(Map<String, dynamic> json) =>
       _$DocumentHighlightFromJson(json);
 }
 
-/// Registration options for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightRegistrationOptions
     with _$DocumentHighlightRegistrationOptions {
   const factory DocumentHighlightRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
-    bool? workDoneProgress,
+    required Sealed14 documentSelector,
   }) = _DocumentHighlightRegistrationOptions;
 
   factory DocumentHighlightRegistrationOptions.fromJson(
@@ -4005,16 +2776,15 @@ abstract class DocumentHighlightRegistrationOptions
   ) => _$DocumentHighlightRegistrationOptionsFromJson(json);
 }
 
-/// Parameters for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolParams with _$DocumentSymbolParams {
   const factory DocumentSymbolParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4024,13 +2794,18 @@ abstract class DocumentSymbolParams with _$DocumentSymbolParams {
       _$DocumentSymbolParamsFromJson(json);
 }
 
-/// Represents information about programming constructs like
-/// variables, classes, interfaces etc.
 @freezed
 abstract class SymbolInformation with _$SymbolInformation {
   const factory SymbolInformation({
-    /// The name of this symbol.
-    required String name,
+    /// The name of the symbol containing this symbol. This information is for
+    /// user interface purposes (e.g. to render a qualifier in the user
+    /// interface if necessary). It can't be used to re-infer a hierarchy for
+    /// the document symbols.
+    String? containerName,
+
+    /// Indicates if this symbol is deprecated.
+    /// @deprecated Use tags instead
+    bool? deprecated,
 
     /// The kind of this symbol.
     required SymbolKind kind,
@@ -4045,15 +2820,8 @@ abstract class SymbolInformation with _$SymbolInformation {
     /// hierarchy of the symbols.
     required Location location,
 
-    /// Indicates if this symbol is deprecated.
-    /// @deprecated Use tags instead
-    bool? deprecated,
-
-    /// The name of the symbol containing this symbol. This information is for
-    /// user interface purposes (e.g. to render a qualifier in the user
-    /// interface if necessary). It can't be used to re-infer a hierarchy for
-    /// the document symbols.
-    String? containerName,
+    /// The name of this symbol.
+    required String name,
 
     /// Tags for this symbol.
     /// @since 3.16.0
@@ -4064,21 +2832,26 @@ abstract class SymbolInformation with _$SymbolInformation {
       _$SymbolInformationFromJson(json);
 }
 
-/// Represents programming constructs like variables, classes,
-/// interfaces etc. that appear in a document. Document symbols can
-/// be hierarchical and they have two ranges: one that encloses its
-/// definition and one that points to its most interesting range,
-/// e.g. the range of an identifier.
 @freezed
 abstract class DocumentSymbol with _$DocumentSymbol {
   const factory DocumentSymbol({
+    /// Children of this symbol, e.g. properties of a class.
+    List<DocumentSymbol>? children,
+
+    /// Indicates if this symbol is deprecated.
+    /// @deprecated Use tags instead
+    bool? deprecated,
+
+    /// More detail for this symbol, e.g the signature of a function.
+    String? detail,
+
+    /// The kind of this symbol.
+    required SymbolKind kind,
+
     /// The name of this symbol. Will be displayed in the user interface and
     /// therefore must not be an empty string or a string only consisting of
     /// white spaces.
     required String name,
-
-    /// The kind of this symbol.
-    required SymbolKind kind,
 
     /// The range enclosing this symbol not including leading/trailing
     /// whitespace but everything else like comments. This information is
@@ -4091,40 +2864,27 @@ abstract class DocumentSymbol with _$DocumentSymbol {
     /// `range`.
     required Range selectionRange,
 
-    /// Children of this symbol, e.g. properties of a class.
-    List<DocumentSymbol>? children,
-
-    /// Indicates if this symbol is deprecated.
-    /// @deprecated Use tags instead
-    bool? deprecated,
-
     /// Tags for this document symbol.
     /// @since 3.16.0
     List<SymbolTag>? tags,
-
-    /// More detail for this symbol, e.g the signature of a function.
-    String? detail,
   }) = _DocumentSymbol;
 
   factory DocumentSymbol.fromJson(Map<String, dynamic> json) =>
       _$DocumentSymbolFromJson(json);
 }
 
-/// Registration options for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolRegistrationOptions
     with _$DocumentSymbolRegistrationOptions {
   const factory DocumentSymbolRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// A human-readable string that is shown when multiple outlines trees are
     /// shown for the same document.
     /// @since 3.16.0
     String? label,
-    bool? workDoneProgress,
   }) = _DocumentSymbolRegistrationOptions;
 
   factory DocumentSymbolRegistrationOptions.fromJson(
@@ -4132,22 +2892,21 @@ abstract class DocumentSymbolRegistrationOptions
   ) => _$DocumentSymbolRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionParams with _$CodeActionParams {
   const factory CodeActionParams({
-    /// The document in which the command was invoked.
-    required TextDocumentIdentifier textDocument,
-
-    /// The range for which the command was invoked.
-    required Range range,
-
     /// Context carrying additional information.
     required CodeActionContext context,
 
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The range for which the command was invoked.
+    required Range range,
+
+    /// The document in which the command was invoked.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4157,49 +2916,37 @@ abstract class CodeActionParams with _$CodeActionParams {
       _$CodeActionParamsFromJson(json);
 }
 
-/// Represents a reference to a command. Provides a title which will
-/// be used to represent a command in the UI and, optionally, an
-/// array of arguments which will be passed to the command handler
-/// function when invoked.
 @freezed
 abstract class Command with _$Command {
   const factory Command({
-    /// Title of the command, like `save`.
-    required String title,
+    /// Arguments that the command handler should be invoked with.
+    List<LSPAny>? arguments,
 
     /// The identifier of the actual command handler.
     required String command,
 
-    /// Arguments that the command handler should be invoked with.
-    List<LSPAny>? arguments,
+    /// Title of the command, like `save`.
+    required String title,
   }) = _Command;
 
   factory Command.fromJson(Map<String, dynamic> json) =>
       _$CommandFromJson(json);
 }
 
-/// A code action represents a change that can be performed in code,
-/// e.g. to fix a problem or to refactor code.
-/// A CodeAction must set either `edit` and/or a `command`. If both
-/// are supplied, the `edit` is applied first, then the `command` is
-/// executed.
 @freezed
 abstract class CodeAction with _$CodeAction {
   const factory CodeAction({
-    /// A short, human-readable, title for this code action.
-    required String title,
+    /// A command this code action executes. If a code action provides an edit
+    /// and a command, first the edit is executed and then the command.
+    Command? command,
 
     /// A data entry field that is preserved on a code action between a
     /// `textDocument/codeAction` and a `codeAction/resolve` request.
     /// @since 3.16.0
     LSPAny? data,
 
-    /// A command this code action executes. If a code action provides an edit
-    /// and a command, first the edit is executed and then the command.
-    Command? command,
-
-    /// The workspace edit this code action performs.
-    WorkspaceEdit? edit,
+    /// The diagnostics that this code action resolves.
+    List<Diagnostic>? diagnostics,
 
     /// Marks that the code action cannot currently be applied.
     /// Clients should follow the following guidelines regarding disabled code
@@ -4216,7 +2963,10 @@ abstract class CodeAction with _$CodeAction {
     /// returned, the client should show the user an error message with
     /// `reason` in the editor.
     /// @since 3.16.0
-    ({String reason})? disabled,
+    StringReason? disabled,
+
+    /// The workspace edit this code action performs.
+    WorkspaceEdit? edit,
 
     /// Marks this as a preferred action. Preferred actions are used by the
     /// `auto fix` command and can be targeted by keybindings.
@@ -4226,55 +2976,51 @@ abstract class CodeAction with _$CodeAction {
     /// @since 3.15.0
     bool? isPreferred,
 
-    /// The diagnostics that this code action resolves.
-    List<Diagnostic>? diagnostics,
-
     /// The kind of the code action.
     /// Used to filter code actions.
     CodeActionKind? kind,
+
+    /// A short, human-readable, title for this code action.
+    required String title,
   }) = _CodeAction;
 
   factory CodeAction.fromJson(Map<String, dynamic> json) =>
       _$CodeActionFromJson(json);
 }
 
-/// Registration options for a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionRegistrationOptions
     with _$CodeActionRegistrationOptions {
   const factory CodeActionRegistrationOptions({
+    /// CodeActionKinds that this server may return.
+    /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+    /// the server may list out every specific kind they provide.
+    List<CodeActionKind>? codeActionKinds,
+
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// The server provides support to resolve additional information for a
     /// code action.
     /// @since 3.16.0
     bool? resolveProvider,
-
-    /// CodeActionKinds that this server may return.
-    /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
-    /// the server may list out every specific kind they provide.
-    List<CodeActionKind>? codeActionKinds,
-    bool? workDoneProgress,
   }) = _CodeActionRegistrationOptions;
 
   factory CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$CodeActionRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
   const factory WorkspaceSymbolParams({
-    /// A query string to filter symbols by. Clients may send an empty string
-    /// here to request all symbols.
-    required String query,
-
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// A query string to filter symbols by. Clients may send an empty string
+    /// here to request all symbols.
+    required String query,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4284,15 +3030,18 @@ abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
       _$WorkspaceSymbolParamsFromJson(json);
 }
 
-/// A special workspace symbol that supports locations without a
-/// range.
-/// See also SymbolInformation.
-/// @since 3.17.0
 @freezed
 abstract class WorkspaceSymbol with _$WorkspaceSymbol {
   const factory WorkspaceSymbol({
-    /// The name of this symbol.
-    required String name,
+    /// The name of the symbol containing this symbol. This information is for
+    /// user interface purposes (e.g. to render a qualifier in the user
+    /// interface if necessary). It can't be used to re-infer a hierarchy for
+    /// the document symbols.
+    String? containerName,
+
+    /// A data entry field that is preserved on a workspace symbol between a
+    /// workspace symbol request and a workspace symbol resolve request.
+    LSPAny? data,
 
     /// The kind of this symbol.
     required SymbolKind kind,
@@ -4301,17 +3050,10 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     /// location without a range depends on the client capability
     /// `workspace.symbol.resolveSupport`.
     /// See SymbolInformation#location for more details.
-    required WorkspaceSymbolLocationBase location,
+    required Sealed24 location,
 
-    /// A data entry field that is preserved on a workspace symbol between a
-    /// workspace symbol request and a workspace symbol resolve request.
-    LSPAny? data,
-
-    /// The name of the symbol containing this symbol. This information is for
-    /// user interface purposes (e.g. to render a qualifier in the user
-    /// interface if necessary). It can't be used to re-infer a hierarchy for
-    /// the document symbols.
-    String? containerName,
+    /// The name of this symbol.
+    required String name,
 
     /// Tags for this symbol.
     /// @since 3.16.0
@@ -4322,7 +3064,6 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
       _$WorkspaceSymbolFromJson(json);
 }
 
-/// Registration options for a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolRegistrationOptions
     with _$WorkspaceSymbolRegistrationOptions {
@@ -4331,7 +3072,6 @@ abstract class WorkspaceSymbolRegistrationOptions
     /// workspace symbol.
     /// @since 3.17.0
     bool? resolveProvider,
-    bool? workDoneProgress,
   }) = _WorkspaceSymbolRegistrationOptions;
 
   factory WorkspaceSymbolRegistrationOptions.fromJson(
@@ -4339,16 +3079,15 @@ abstract class WorkspaceSymbolRegistrationOptions
   ) => _$WorkspaceSymbolRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensParams with _$CodeLensParams {
   const factory CodeLensParams({
-    /// The document to request code lens for.
-    required TextDocumentIdentifier textDocument,
-
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The document to request code lens for.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4358,59 +3097,49 @@ abstract class CodeLensParams with _$CodeLensParams {
       _$CodeLensParamsFromJson(json);
 }
 
-/// A code lens represents a {@link Command command} that should be
-/// shown along with source text, like the number of references, a
-/// way to run tests, etc.
-/// A code lens is _unresolved_ when no command is associated to it.
-/// For performance reasons the creation of a code lens and resolving
-/// should be done in two stages.
 @freezed
 abstract class CodeLens with _$CodeLens {
   const factory CodeLens({
-    /// The range in which this code lens is valid. Should only span a single
-    /// line.
-    required Range range,
+    /// The command this code lens represents.
+    Command? command,
 
     /// A data entry field that is preserved on a code lens item between a
     /// {@link CodeLensRequest} and a {@link CodeLensResolveRequest}
     LSPAny? data,
 
-    /// The command this code lens represents.
-    Command? command,
+    /// The range in which this code lens is valid. Should only span a single
+    /// line.
+    required Range range,
   }) = _CodeLens;
 
   factory CodeLens.fromJson(Map<String, dynamic> json) =>
       _$CodeLensFromJson(json);
 }
 
-/// Registration options for a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
   const factory CodeLensRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// Code lens has a resolve provider as well.
     bool? resolveProvider,
-    bool? workDoneProgress,
   }) = _CodeLensRegistrationOptions;
 
   factory CodeLensRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$CodeLensRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkParams with _$DocumentLinkParams {
   const factory DocumentLinkParams({
-    /// The document to provide document links for.
-    required TextDocumentIdentifier textDocument,
-
     /// An optional token that a server can use to report partial results (e.g.
     /// streaming) to the client.
     ProgressToken? partialResultToken,
+
+    /// The document to provide document links for.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4420,18 +3149,18 @@ abstract class DocumentLinkParams with _$DocumentLinkParams {
       _$DocumentLinkParamsFromJson(json);
 }
 
-/// A document link is a range in a text document that links to an
-/// internal or external resource, like another text document or a
-/// web site.
 @freezed
 abstract class DocumentLink with _$DocumentLink {
   const factory DocumentLink({
-    /// The range this link applies to.
-    required Range range,
-
     /// A data entry field that is preserved on a document link between a
     /// DocumentLinkRequest and a DocumentLinkResolveRequest.
     LSPAny? data,
+
+    /// The range this link applies to.
+    required Range range,
+
+    /// The uri this link points to. If missing a resolve request is sent later.
+    String? target,
 
     /// The tooltip text when you hover over this link.
     /// If a tooltip is provided, is will be displayed in a string that
@@ -4440,43 +3169,36 @@ abstract class DocumentLink with _$DocumentLink {
     /// and localization.
     /// @since 3.15.0
     String? tooltip,
-
-    /// The uri this link points to. If missing a resolve request is sent later.
-    String? target,
   }) = _DocumentLink;
 
   factory DocumentLink.fromJson(Map<String, dynamic> json) =>
       _$DocumentLinkFromJson(json);
 }
 
-/// Registration options for a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkRegistrationOptions
     with _$DocumentLinkRegistrationOptions {
   const factory DocumentLinkRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// Document links have a resolve provider as well.
     bool? resolveProvider,
-    bool? workDoneProgress,
   }) = _DocumentLinkRegistrationOptions;
 
   factory DocumentLinkRegistrationOptions.fromJson(Map<String, dynamic> json) =>
       _$DocumentLinkRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingParams with _$DocumentFormattingParams {
   const factory DocumentFormattingParams({
-    /// The document to format.
-    required TextDocumentIdentifier textDocument,
-
     /// The format options.
     required FormattingOptions options,
+
+    /// The document to format.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4486,16 +3208,13 @@ abstract class DocumentFormattingParams with _$DocumentFormattingParams {
       _$DocumentFormattingParamsFromJson(json);
 }
 
-/// Registration options for a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingRegistrationOptions
     with _$DocumentFormattingRegistrationOptions {
   const factory DocumentFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
-    bool? workDoneProgress,
+    required Sealed14 documentSelector,
   }) = _DocumentFormattingRegistrationOptions;
 
   factory DocumentFormattingRegistrationOptions.fromJson(
@@ -4503,19 +3222,18 @@ abstract class DocumentFormattingRegistrationOptions
   ) => _$DocumentFormattingRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a {@link DocumentRangeFormattingRequest}.
 @freezed
 abstract class DocumentRangeFormattingParams
     with _$DocumentRangeFormattingParams {
   const factory DocumentRangeFormattingParams({
-    /// The document to format.
-    required TextDocumentIdentifier textDocument,
+    /// The format options
+    required FormattingOptions options,
 
     /// The range to format
     required Range range,
 
-    /// The format options
-    required FormattingOptions options,
+    /// The document to format.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4525,20 +3243,17 @@ abstract class DocumentRangeFormattingParams
       _$DocumentRangeFormattingParamsFromJson(json);
 }
 
-/// Registration options for a {@link DocumentRangeFormattingRequest}.
 @freezed
 abstract class DocumentRangeFormattingRegistrationOptions
     with _$DocumentRangeFormattingRegistrationOptions {
   const factory DocumentRangeFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// Whether the server supports formatting multiple ranges at once.
     /// @since 3.18.0 @proposed
     bool? rangesSupport,
-    bool? workDoneProgress,
   }) = _DocumentRangeFormattingRegistrationOptions;
 
   factory DocumentRangeFormattingRegistrationOptions.fromJson(
@@ -4546,20 +3261,18 @@ abstract class DocumentRangeFormattingRegistrationOptions
   ) => _$DocumentRangeFormattingRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a {@link DocumentRangesFormattingRequest}.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class DocumentRangesFormattingParams
     with _$DocumentRangesFormattingParams {
   const factory DocumentRangesFormattingParams({
-    /// The document to format.
-    required TextDocumentIdentifier textDocument,
+    /// The format options
+    required FormattingOptions options,
 
     /// The ranges to format
     required List<Range> ranges,
 
-    /// The format options
-    required FormattingOptions options,
+    /// The document to format.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4569,19 +3282,10 @@ abstract class DocumentRangesFormattingParams
       _$DocumentRangesFormattingParamsFromJson(json);
 }
 
-/// The parameters of a {@link DocumentOnTypeFormattingRequest}.
 @freezed
 abstract class DocumentOnTypeFormattingParams
     with _$DocumentOnTypeFormattingParams {
   const factory DocumentOnTypeFormattingParams({
-    /// The document to format.
-    required TextDocumentIdentifier textDocument,
-
-    /// The position around which the on type formatting should happen. This is
-    /// not necessarily the exact position where the character denoted by the
-    /// property `ch` got typed.
-    required Position position,
-
     /// The character that has been typed that triggered the formatting on type
     /// request. That is not necessarily the last character that got inserted
     /// into the document since the client could auto insert characters as well
@@ -4590,22 +3294,27 @@ abstract class DocumentOnTypeFormattingParams
 
     /// The formatting options.
     required FormattingOptions options,
+
+    /// The position around which the on type formatting should happen. This is
+    /// not necessarily the exact position where the character denoted by the
+    /// property `ch` got typed.
+    required Position position,
+
+    /// The document to format.
+    required TextDocumentIdentifier textDocument,
   }) = _DocumentOnTypeFormattingParams;
 
   factory DocumentOnTypeFormattingParams.fromJson(Map<String, dynamic> json) =>
       _$DocumentOnTypeFormattingParamsFromJson(json);
 }
 
-/// Registration options for a {@link
-/// DocumentOnTypeFormattingRequest}.
 @freezed
 abstract class DocumentOnTypeFormattingRegistrationOptions
     with _$DocumentOnTypeFormattingRegistrationOptions {
   const factory DocumentOnTypeFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// A character on which formatting should be triggered, like `{`.
     required String firstTriggerCharacter,
@@ -4619,19 +3328,18 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
   ) => _$DocumentOnTypeFormattingRegistrationOptionsFromJson(json);
 }
 
-/// The parameters of a {@link RenameRequest}.
 @freezed
 abstract class RenameParams with _$RenameParams {
   const factory RenameParams({
-    /// The document to rename.
-    required TextDocumentIdentifier textDocument,
+    /// The new name of the symbol. If the given name is not valid the request
+    /// must return a {@link ResponseError} with an appropriate message set.
+    required String newName,
 
     /// The position at which this request was sent.
     required Position position,
 
-    /// The new name of the symbol. If the given name is not valid the request
-    /// must return a {@link ResponseError} with an appropriate message set.
-    required String newName,
+    /// The document to rename.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4641,19 +3349,16 @@ abstract class RenameParams with _$RenameParams {
       _$RenameParamsFromJson(json);
 }
 
-/// Registration options for a {@link RenameRequest}.
 @freezed
 abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
   const factory RenameRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required TextDocumentRegistrationOptionsDocumentSelectorBase
-    documentSelector,
+    required Sealed14 documentSelector,
 
     /// Renames should be checked and tested before being executed.
     /// @since version 3.12.0
     bool? prepareProvider,
-    bool? workDoneProgress,
   }) = _RenameRegistrationOptions;
 
   factory RenameRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -4663,11 +3368,11 @@ abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
 @freezed
 abstract class PrepareRenameParams with _$PrepareRenameParams {
   const factory PrepareRenameParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// The position inside the text document.
     required Position position,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4677,15 +3382,14 @@ abstract class PrepareRenameParams with _$PrepareRenameParams {
       _$PrepareRenameParamsFromJson(json);
 }
 
-/// The parameters of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandParams with _$ExecuteCommandParams {
   const factory ExecuteCommandParams({
-    /// The identifier of the actual command handler.
-    required String command,
-
     /// Arguments that the command should be invoked with.
     List<LSPAny>? arguments,
+
+    /// The identifier of the actual command handler.
+    required String command,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -4695,14 +3399,12 @@ abstract class ExecuteCommandParams with _$ExecuteCommandParams {
       _$ExecuteCommandParamsFromJson(json);
 }
 
-/// Registration options for a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandRegistrationOptions
     with _$ExecuteCommandRegistrationOptions {
   const factory ExecuteCommandRegistrationOptions({
     /// The commands to be executed on the server
     required List<String> commands,
-    bool? workDoneProgress,
   }) = _ExecuteCommandRegistrationOptions;
 
   factory ExecuteCommandRegistrationOptions.fromJson(
@@ -4710,7 +3412,6 @@ abstract class ExecuteCommandRegistrationOptions
   ) => _$ExecuteCommandRegistrationOptionsFromJson(json);
 }
 
-/// The parameters passed via an apply workspace edit request.
 @freezed
 abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
   const factory ApplyWorkspaceEditParams({
@@ -4726,8 +3427,6 @@ abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
       _$ApplyWorkspaceEditParamsFromJson(json);
 }
 
-/// The result returned from the apply workspace edit request.
-/// @since 3.17 renamed from ApplyWorkspaceEditResponse
 @freezed
 abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
   const factory ApplyWorkspaceEditResult({
@@ -4753,12 +3452,17 @@ abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
 @freezed
 abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
   const factory WorkDoneProgressBegin({
-    required String kind,
+    /// Controls if a cancel button should show to allow the user to cancel the
+    /// long running operation. Clients that don't support cancellation are
+    /// allowed to ignore the setting.
+    bool? cancellable,
+    required StringLiteralRef kind,
 
-    /// Mandatory title of the progress operation. Used to briefly inform about
-    /// the kind of operation being performed.
-    /// Examples: "Indexing" or "Linking dependencies".
-    required String title,
+    /// Optional, more detailed associated progress message. Contains
+    /// complementary information to the `title`.
+    /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+    /// If unset, the previous progress message (if any) is still valid.
+    String? message,
 
     /// Optional progress percentage to display (value 100 is considered 100%).
     /// If not provided infinite progress is assumed and clients are allowed to
@@ -4767,16 +3471,10 @@ abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
     /// that are not following this rule. The value range is [0, 100].
     int? percentage,
 
-    /// Optional, more detailed associated progress message. Contains
-    /// complementary information to the `title`.
-    /// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
-    /// If unset, the previous progress message (if any) is still valid.
-    String? message,
-
-    /// Controls if a cancel button should show to allow the user to cancel the
-    /// long running operation. Clients that don't support cancellation are
-    /// allowed to ignore the setting.
-    bool? cancellable,
+    /// Mandatory title of the progress operation. Used to briefly inform about
+    /// the kind of operation being performed.
+    /// Examples: "Indexing" or "Linking dependencies".
+    required String title,
   }) = _WorkDoneProgressBegin;
 
   factory WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) =>
@@ -4786,14 +3484,11 @@ abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
 @freezed
 abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
   const factory WorkDoneProgressReport({
-    required String kind,
-
-    /// Optional progress percentage to display (value 100 is considered 100%).
-    /// If not provided infinite progress is assumed and clients are allowed to
-    /// ignore the `percentage` value in subsequent report notifications.
-    /// The value should be steadily rising. Clients are free to ignore values
-    /// that are not following this rule. The value range is [0, 100].
-    int? percentage,
+    /// Controls enablement state of a cancel button.
+    /// Clients that don't support cancellation or don't support controlling
+    /// the button's enablement state are allowed to ignore the property.
+    bool? cancellable,
+    required StringLiteralRef kind,
 
     /// Optional, more detailed associated progress message. Contains
     /// complementary information to the `title`.
@@ -4801,10 +3496,12 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
     /// If unset, the previous progress message (if any) is still valid.
     String? message,
 
-    /// Controls enablement state of a cancel button.
-    /// Clients that don't support cancellation or don't support controlling
-    /// the button's enablement state are allowed to ignore the property.
-    bool? cancellable,
+    /// Optional progress percentage to display (value 100 is considered 100%).
+    /// If not provided infinite progress is assumed and clients are allowed to
+    /// ignore the `percentage` value in subsequent report notifications.
+    /// The value should be steadily rising. Clients are free to ignore values
+    /// that are not following this rule. The value range is [0, 100].
+    int? percentage,
   }) = _WorkDoneProgressReport;
 
   factory WorkDoneProgressReport.fromJson(Map<String, dynamic> json) =>
@@ -4814,7 +3511,7 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
 @freezed
 abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
   const factory WorkDoneProgressEnd({
-    required String kind,
+    required StringLiteralRef kind,
 
     /// Optional, a final message indicating to for example indicate the
     /// outcome of the operation.
@@ -4846,7 +3543,7 @@ abstract class LogTraceParams with _$LogTraceParams {
 abstract class CancelParams with _$CancelParams {
   const factory CancelParams({
     /// The request id to cancel.
-    required ProgressTokenBase id,
+    required Sealed6 id,
   }) = _CancelParams;
 
   factory CancelParams.fromJson(Map<String, dynamic> json) =>
@@ -4867,16 +3564,14 @@ abstract class ProgressParams with _$ProgressParams {
       _$ProgressParamsFromJson(json);
 }
 
-/// A parameter literal used in requests to pass a text document and
-/// a position inside that document.
 @freezed
 abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
   const factory TextDocumentPositionParams({
-    /// The text document.
-    required TextDocumentIdentifier textDocument,
-
     /// The position inside the text document.
     required Position position,
+
+    /// The text document.
+    required TextDocumentIdentifier textDocument,
   }) = _TextDocumentPositionParams;
 
   factory TextDocumentPositionParams.fromJson(Map<String, dynamic> json) =>
@@ -4906,14 +3601,13 @@ abstract class PartialResultParams with _$PartialResultParams {
       _$PartialResultParamsFromJson(json);
 }
 
-/// Represents the connection of two locations. Provides additional
-/// metadata over normal {@link Location locations}, including an
-/// origin range.
 @freezed
 abstract class LocationLink with _$LocationLink {
   const factory LocationLink({
-    /// The target resource identifier of this link.
-    required String targetUri,
+    /// Span of the origin of this link.
+    /// Used as the underlined span for mouse interaction. Defaults to the word
+    /// range at the definition position.
+    Range? originSelectionRange,
 
     /// The full target range of this link. If the target for example is a
     /// symbol then target range is the range enclosing this symbol not
@@ -4927,30 +3621,22 @@ abstract class LocationLink with _$LocationLink {
     /// `targetRange`. See also `DocumentSymbol#range`
     required Range targetSelectionRange,
 
-    /// Span of the origin of this link.
-    /// Used as the underlined span for mouse interaction. Defaults to the word
-    /// range at the definition position.
-    Range? originSelectionRange,
+    /// The target resource identifier of this link.
+    required String targetUri,
   }) = _LocationLink;
 
   factory LocationLink.fromJson(Map<String, dynamic> json) =>
       _$LocationLinkFromJson(json);
 }
 
-/// A range in a text document expressed as (zero-based) start and
-/// end positions.
-/// If you want to specify a range that contains a line including the
-/// line ending character(s) then use an end position denoting the
-/// start of the next line. For example: ```ts { start: { line: 5,
-/// character: 23 } end : { line 6, character : 0 } } ```
 @freezed
 abstract class Range with _$Range {
   const factory Range({
-    /// The range's start position.
-    required Position start,
-
     /// The range's end position.
     required Position end,
+
+    /// The range's start position.
+    required Position start,
   }) = _Range;
 
   factory Range.fromJson(Map<String, dynamic> json) => _$RangeFromJson(json);
@@ -4965,8 +3651,6 @@ abstract class ImplementationOptions with _$ImplementationOptions {
       _$ImplementationOptionsFromJson(json);
 }
 
-/// Static registration options to be returned in the initialize
-/// request.
 @freezed
 abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
   const factory StaticRegistrationOptions({
@@ -4988,7 +3672,6 @@ abstract class TypeDefinitionOptions with _$TypeDefinitionOptions {
       _$TypeDefinitionOptionsFromJson(json);
 }
 
-/// The workspace folder change event.
 @freezed
 abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
   const factory WorkspaceFoldersChangeEvent({
@@ -5006,18 +3689,17 @@ abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
 @freezed
 abstract class ConfigurationItem with _$ConfigurationItem {
   const factory ConfigurationItem({
-    /// The configuration section asked for.
-    String? section,
-
     /// The scope to get the configuration section for.
     String? scopeUri,
+
+    /// The configuration section asked for.
+    String? section,
   }) = _ConfigurationItem;
 
   factory ConfigurationItem.fromJson(Map<String, dynamic> json) =>
       _$ConfigurationItemFromJson(json);
 }
 
-/// A literal to identify a text document in the client.
 @freezed
 abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
   const factory TextDocumentIdentifier({
@@ -5029,21 +3711,20 @@ abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
       _$TextDocumentIdentifierFromJson(json);
 }
 
-/// Represents a color in RGBA space.
 @freezed
 abstract class Color with _$Color {
   const factory Color({
-    /// The red component of this color in the range [0-1].
-    required double red,
-
-    /// The green component of this color in the range [0-1].
-    required double green,
+    /// The alpha component of this color in the range [0-1].
+    required double alpha,
 
     /// The blue component of this color in the range [0-1].
     required double blue,
 
-    /// The alpha component of this color in the range [0-1].
-    required double alpha,
+    /// The green component of this color in the range [0-1].
+    required double green,
+
+    /// The red component of this color in the range [0-1].
+    required double red,
   }) = _Color;
 
   factory Color.fromJson(Map<String, dynamic> json) => _$ColorFromJson(json);
@@ -5076,51 +3757,21 @@ abstract class DeclarationOptions with _$DeclarationOptions {
       _$DeclarationOptionsFromJson(json);
 }
 
-/// Position in a text document expressed as zero-based line and
-/// character offset. Prior to 3.17 the offsets were always based on
-/// a UTF-16 string representation. So a string of the form `a𐐀b`
-/// the character offset of the character `a` is 0, the character
-/// offset of `𐐀` is 1 and the character offset of b is 3 since `𐐀`
-/// is represented using two code units in UTF-16. Since 3.17 clients
-/// and servers can agree on a different string encoding
-/// representation (e.g. UTF-8). The client announces it's supported
-/// encoding via the client capability
-/// [`general.positionEncodings`](https://microsoft.github.io/language-server-protocol/specifications/specification-current/#clientCapabilities).
-/// The value is an array of position encodings the client supports,
-/// with decreasing preference (e.g. the encoding at index `0` is the
-/// most preferred one). To stay backwards compatible the only
-/// mandatory encoding is UTF-16 represented via the string `utf-16`.
-/// The server can pick one of the encodings offered by the client
-/// and signals that encoding back to the client via the initialize
-/// result's property
-/// [`capabilities.positionEncoding`](https://microsoft.github.io/language-server-protocol/specifications/specification-current/#serverCapabilities).
-/// If the string value `utf-16` is missing from the client's
-/// capability `general.positionEncodings` servers can safely assume
-/// that the client supports UTF-16. If the server omits the position
-/// encoding in its initialize result the encoding defaults to the
-/// string value `utf-16`. Implementation considerations: since the
-/// conversion from one encoding into another requires the content of
-/// the file / line the conversion is best done where the file is
-/// read which is usually on the server side.
-/// Positions are line end character agnostic. So you can not specify
-/// a position that denotes `\r|\n` or `\n|` where `|` represents the
-/// character offset.
-/// @since 3.17.0 - support for negotiated position encoding.
 @freezed
 abstract class Position with _$Position {
   const factory Position({
-    /// Line position in a document (zero-based).
-    /// If a line number is greater than the number of lines in a document, it
-    /// defaults back to the number of lines in the document. If a line number
-    /// is negative, it defaults to 0.
-    required int line,
-
     /// Character offset on a line in a document (zero-based).
     /// The meaning of this offset is determined by the negotiated
     /// `PositionEncodingKind`.
     /// If the character value is greater than the line length it defaults back
     /// to the line length.
     required int character,
+
+    /// Line position in a document (zero-based).
+    /// If a line number is greater than the number of lines in a document, it
+    /// defaults back to the number of lines in the document. If a line number
+    /// is negative, it defaults to 0.
+    required int line,
   }) = _Position;
 
   factory Position.fromJson(Map<String, dynamic> json) =>
@@ -5136,8 +3787,6 @@ abstract class SelectionRangeOptions with _$SelectionRangeOptions {
       _$SelectionRangeOptionsFromJson(json);
 }
 
-/// Call hierarchy options used during static registration.
-/// @since 3.16.0
 @freezed
 abstract class CallHierarchyOptions with _$CallHierarchyOptions {
   const factory CallHierarchyOptions({bool? workDoneProgress}) =
@@ -5147,19 +3796,18 @@ abstract class CallHierarchyOptions with _$CallHierarchyOptions {
       _$CallHierarchyOptionsFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensOptions with _$SemanticTokensOptions {
   const factory SemanticTokensOptions({
+    /// Server supports providing semantic tokens for a full document.
+    Sealed26? full,
+
     /// The legend used by the server
     required SemanticTokensLegend legend,
 
-    /// Server supports providing semantic tokens for a full document.
-    SemanticTokensOptionsFullBase? full,
-
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
-    RangeBase? range,
+    Sealed25? range,
     bool? workDoneProgress,
   }) = _SemanticTokensOptions;
 
@@ -5167,18 +3815,17 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
       _$SemanticTokensOptionsFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensEdit with _$SemanticTokensEdit {
   const factory SemanticTokensEdit({
-    /// The start offset of the edit.
-    required int start,
+    /// The elements to insert.
+    List<int>? data,
 
     /// The count of elements to remove.
     required int deleteCount,
 
-    /// The elements to insert.
-    List<int>? data,
+    /// The start offset of the edit.
+    required int start,
   }) = _SemanticTokensEdit;
 
   factory SemanticTokensEdit.fromJson(Map<String, dynamic> json) =>
@@ -5194,8 +3841,6 @@ abstract class LinkedEditingRangeOptions with _$LinkedEditingRangeOptions {
       _$LinkedEditingRangeOptionsFromJson(json);
 }
 
-/// Represents information on a file/folder create.
-/// @since 3.16.0
 @freezed
 abstract class FileCreate with _$FileCreate {
   const factory FileCreate({
@@ -5207,108 +3852,98 @@ abstract class FileCreate with _$FileCreate {
       _$FileCreateFromJson(json);
 }
 
-/// Describes textual changes on a text document. A TextDocumentEdit
-/// describes all changes on a document version Si and after they are
-/// applied move the document to version Si+1. So the creator of a
-/// TextDocumentEdit doesn't need to sort the array of edits or do
-/// any kind of ordering. However the edits must be non overlapping.
 @freezed
 abstract class TextDocumentEdit with _$TextDocumentEdit {
   const factory TextDocumentEdit({
-    /// The text document to change.
-    required OptionalVersionedTextDocumentIdentifier textDocument,
-
     /// The edits to be applied.
     /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
     /// client capability.
-    required List<TextDocumentEditEditsBase> edits,
+    required List<Sealed27> edits,
+
+    /// The text document to change.
+    required OptionalVersionedTextDocumentIdentifier textDocument,
   }) = _TextDocumentEdit;
 
   factory TextDocumentEdit.fromJson(Map<String, dynamic> json) =>
       _$TextDocumentEditFromJson(json);
 }
 
-/// Create file operation.
 @freezed
 abstract class CreateFile with _$CreateFile {
   const factory CreateFile({
-    /// A create
-    required String kind,
+    /// An optional annotation identifier describing the operation.
+    /// @since 3.16.0
+    ChangeAnnotationIdentifier? annotationId,
 
-    /// The resource to create.
-    required String uri,
+    /// A create
+    required StringLiteralRef kind,
 
     /// Additional options
     CreateFileOptions? options,
 
-    /// An optional annotation identifier describing the operation.
-    /// @since 3.16.0
-    ChangeAnnotationIdentifier? annotationId,
+    /// The resource to create.
+    required String uri,
   }) = _CreateFile;
 
   factory CreateFile.fromJson(Map<String, dynamic> json) =>
       _$CreateFileFromJson(json);
 }
 
-/// Rename file operation
 @freezed
 abstract class RenameFile with _$RenameFile {
   const factory RenameFile({
-    /// A rename
-    required String kind,
+    /// An optional annotation identifier describing the operation.
+    /// @since 3.16.0
+    ChangeAnnotationIdentifier? annotationId,
 
-    /// The old (existing) location.
-    required String oldUri,
+    /// A rename
+    required StringLiteralRef kind,
 
     /// The new location.
     required String newUri,
 
+    /// The old (existing) location.
+    required String oldUri,
+
     /// Rename options.
     RenameFileOptions? options,
-
-    /// An optional annotation identifier describing the operation.
-    /// @since 3.16.0
-    ChangeAnnotationIdentifier? annotationId,
   }) = _RenameFile;
 
   factory RenameFile.fromJson(Map<String, dynamic> json) =>
       _$RenameFileFromJson(json);
 }
 
-/// Delete file operation
 @freezed
 abstract class DeleteFile with _$DeleteFile {
   const factory DeleteFile({
-    /// A delete
-    required String kind,
+    /// An optional annotation identifier describing the operation.
+    /// @since 3.16.0
+    ChangeAnnotationIdentifier? annotationId,
 
-    /// The file to delete.
-    required String uri,
+    /// A delete
+    required StringLiteralRef kind,
 
     /// Delete options.
     DeleteFileOptions? options,
 
-    /// An optional annotation identifier describing the operation.
-    /// @since 3.16.0
-    ChangeAnnotationIdentifier? annotationId,
+    /// The file to delete.
+    required String uri,
   }) = _DeleteFile;
 
   factory DeleteFile.fromJson(Map<String, dynamic> json) =>
       _$DeleteFileFromJson(json);
 }
 
-/// Additional information that describes document changes.
-/// @since 3.16.0
 @freezed
 abstract class ChangeAnnotation with _$ChangeAnnotation {
   const factory ChangeAnnotation({
-    /// A human-readable string describing the actual change. The string is
-    /// rendered prominent in the user interface.
-    required String label,
-
     /// A human-readable string which is rendered less prominent in the user
     /// interface.
     String? description,
+
+    /// A human-readable string describing the actual change. The string is
+    /// rendered prominent in the user interface.
+    required String label,
 
     /// A flag which indicates that user confirmation is needed before applying
     /// the change.
@@ -5319,9 +3954,6 @@ abstract class ChangeAnnotation with _$ChangeAnnotation {
       _$ChangeAnnotationFromJson(json);
 }
 
-/// A filter to describe in which file operation requests or
-/// notifications the server is interested in receiving.
-/// @since 3.16.0
 @freezed
 abstract class FileOperationFilter with _$FileOperationFilter {
   const factory FileOperationFilter({
@@ -5336,25 +3968,21 @@ abstract class FileOperationFilter with _$FileOperationFilter {
       _$FileOperationFilterFromJson(json);
 }
 
-/// Represents information on a file/folder rename.
-/// @since 3.16.0
 @freezed
 abstract class FileRename with _$FileRename {
   const factory FileRename({
+    /// A file:// URI for the new location of the file/folder being renamed.
+    required String newUri,
+
     /// A file:// URI for the original location of the file/folder being
     /// renamed.
     required String oldUri,
-
-    /// A file:// URI for the new location of the file/folder being renamed.
-    required String newUri,
   }) = _FileRename;
 
   factory FileRename.fromJson(Map<String, dynamic> json) =>
       _$FileRenameFromJson(json);
 }
 
-/// Represents information on a file/folder delete.
-/// @since 3.16.0
 @freezed
 abstract class FileDelete with _$FileDelete {
   const factory FileDelete({
@@ -5374,8 +4002,6 @@ abstract class MonikerOptions with _$MonikerOptions {
       _$MonikerOptionsFromJson(json);
 }
 
-/// Type hierarchy options used during static registration.
-/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
   const factory TypeHierarchyOptions({bool? workDoneProgress}) =
@@ -5385,7 +4011,6 @@ abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
       _$TypeHierarchyOptionsFromJson(json);
 }
 
-/// @since 3.17.0
 @freezed
 abstract class InlineValueContext with _$InlineValueContext {
   const factory InlineValueContext({
@@ -5402,8 +4027,6 @@ abstract class InlineValueContext with _$InlineValueContext {
       _$InlineValueContextFromJson(json);
 }
 
-/// Provide inline value as text.
-/// @since 3.17.0
 @freezed
 abstract class InlineValueText with _$InlineValueText {
   const factory InlineValueText({
@@ -5418,20 +4041,15 @@ abstract class InlineValueText with _$InlineValueText {
       _$InlineValueTextFromJson(json);
 }
 
-/// Provide inline value through a variable lookup. If only a range
-/// is specified, the variable name will be extracted from the
-/// underlying document. An optional variable name can be used to
-/// override the extracted name.
-/// @since 3.17.0
 @freezed
 abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
   const factory InlineValueVariableLookup({
+    /// How to perform the lookup.
+    required bool caseSensitiveLookup,
+
     /// The document range for which the inline value applies. The range is
     /// used to extract the variable name from the underlying document.
     required Range range,
-
-    /// How to perform the lookup.
-    required bool caseSensitiveLookup,
 
     /// If specified the name of the variable to look up.
     String? variableName,
@@ -5441,22 +4059,17 @@ abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
       _$InlineValueVariableLookupFromJson(json);
 }
 
-/// Provide an inline value through an expression evaluation. If only
-/// a range is specified, the expression will be extracted from the
-/// underlying document. An optional expression can be used to
-/// override the extracted expression.
-/// @since 3.17.0
 @freezed
 abstract class InlineValueEvaluatableExpression
     with _$InlineValueEvaluatableExpression {
   const factory InlineValueEvaluatableExpression({
+    /// If specified the expression overrides the extracted expression.
+    String? expression,
+
     /// The document range for which the inline value applies. The range is
     /// used to extract the evaluatable expression from the underlying
     /// document.
     required Range range,
-
-    /// If specified the expression overrides the extracted expression.
-    String? expression,
   }) = _InlineValueEvaluatableExpression;
 
   factory InlineValueEvaluatableExpression.fromJson(
@@ -5464,8 +4077,6 @@ abstract class InlineValueEvaluatableExpression
   ) => _$InlineValueEvaluatableExpressionFromJson(json);
 }
 
-/// Inline value options used during static registration.
-/// @since 3.17.0
 @freezed
 abstract class InlineValueOptions with _$InlineValueOptions {
   const factory InlineValueOptions({bool? workDoneProgress}) =
@@ -5475,15 +4086,9 @@ abstract class InlineValueOptions with _$InlineValueOptions {
       _$InlineValueOptionsFromJson(json);
 }
 
-/// An inlay hint label part allows for interactive and composite
-/// labels of inlay hints.
-/// @since 3.17.0
 @freezed
 abstract class InlayHintLabelPart with _$InlayHintLabelPart {
   const factory InlayHintLabelPart({
-    /// The value of this label part.
-    required String value,
-
     /// An optional command for this label part.
     /// Depending on the client capability `inlayHint.resolveSupport` clients
     /// might resolve this property late using the resolve request.
@@ -5502,26 +4107,16 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
     /// The tooltip text when you hover over this label part. Depending on the
     /// client capability `inlayHint.resolveSupport` clients might resolve this
     /// property late using the resolve request.
-    TooltipOrDocumentationBase? tooltip,
+    Sealed17? tooltip,
+
+    /// The value of this label part.
+    required String value,
   }) = _InlayHintLabelPart;
 
   factory InlayHintLabelPart.fromJson(Map<String, dynamic> json) =>
       _$InlayHintLabelPartFromJson(json);
 }
 
-/// A `MarkupContent` literal represents a string value which content
-/// is interpreted base on its kind flag. Currently the protocol
-/// supports `plaintext` and `markdown` as markup kinds.
-/// If the kind is `markdown` then the value can contain fenced code
-/// blocks like in GitHub issues. See
-/// https://help.github.com/articles/creating-and-highlighting-code-blocks/#syntax-highlighting
-/// Here is an example how such a string can be constructed using
-/// JavaScript / TypeScript: ```ts let markdown: MarkdownContent = {
-/// kind: MarkupKind.Markdown, value: [ '# Header', 'Some text',
-/// '```typescript', 'someCode();', '```' ].join('\n') }; ```
-/// *Please Note* that clients might sanitize the return markdown. A
-/// client could decide to remove HTML from the markdown to avoid
-/// script execution.
 @freezed
 abstract class MarkupContent with _$MarkupContent {
   const factory MarkupContent({
@@ -5536,8 +4131,6 @@ abstract class MarkupContent with _$MarkupContent {
       _$MarkupContentFromJson(json);
 }
 
-/// Inlay hint options used during static registration.
-/// @since 3.17.0
 @freezed
 abstract class InlayHintOptions with _$InlayHintOptions {
   const factory InlayHintOptions({
@@ -5551,17 +4144,15 @@ abstract class InlayHintOptions with _$InlayHintOptions {
       _$InlayHintOptionsFromJson(json);
 }
 
-/// A full diagnostic report with a set of related documents.
-/// @since 3.17.0
 @freezed
 abstract class RelatedFullDocumentDiagnosticReport
     with _$RelatedFullDocumentDiagnosticReport {
   const factory RelatedFullDocumentDiagnosticReport({
-    /// A full document diagnostic report.
-    required String kind,
-
     /// The actual items.
     required List<Diagnostic> items,
+
+    /// A full document diagnostic report.
+    required StringLiteralRef kind,
 
     /// Diagnostics of related documents. This information is useful in
     /// programming languages where code in a file A can generate diagnostics
@@ -5569,7 +4160,7 @@ abstract class RelatedFullDocumentDiagnosticReport
     /// where marco definitions in a file a.cpp and result in errors in a
     /// header file b.hpp.
     /// @since 3.17.0
-    Map<String, RelatedDocumentsBase>? relatedDocuments,
+    Map<String, Sealed18>? relatedDocuments,
 
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
@@ -5581,19 +4172,13 @@ abstract class RelatedFullDocumentDiagnosticReport
   ) => _$RelatedFullDocumentDiagnosticReportFromJson(json);
 }
 
-/// An unchanged diagnostic report with a set of related documents.
-/// @since 3.17.0
 @freezed
 abstract class RelatedUnchangedDocumentDiagnosticReport
     with _$RelatedUnchangedDocumentDiagnosticReport {
   const factory RelatedUnchangedDocumentDiagnosticReport({
     /// A document diagnostic report indicating no changes to the last result.
     /// A server can only return `unchanged` if result ids are provided.
-    required String kind,
-
-    /// A result id which will be sent on the next diagnostic request for the
-    /// same document.
-    required String resultId,
+    required StringLiteralRef kind,
 
     /// Diagnostics of related documents. This information is useful in
     /// programming languages where code in a file A can generate diagnostics
@@ -5601,7 +4186,11 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
     /// where marco definitions in a file a.cpp and result in errors in a
     /// header file b.hpp.
     /// @since 3.17.0
-    Map<String, RelatedDocumentsBase>? relatedDocuments,
+    Map<String, Sealed18>? relatedDocuments,
+
+    /// A result id which will be sent on the next diagnostic request for the
+    /// same document.
+    required String resultId,
   }) = _RelatedUnchangedDocumentDiagnosticReport;
 
   factory RelatedUnchangedDocumentDiagnosticReport.fromJson(
@@ -5609,17 +4198,15 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
   ) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
 }
 
-/// A diagnostic report with a full set of problems.
-/// @since 3.17.0
 @freezed
 abstract class FullDocumentDiagnosticReport
     with _$FullDocumentDiagnosticReport {
   const factory FullDocumentDiagnosticReport({
-    /// A full document diagnostic report.
-    required String kind,
-
     /// The actual items.
     required List<Diagnostic> items,
+
+    /// A full document diagnostic report.
+    required StringLiteralRef kind,
 
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
@@ -5630,16 +4217,13 @@ abstract class FullDocumentDiagnosticReport
       _$FullDocumentDiagnosticReportFromJson(json);
 }
 
-/// A diagnostic report indicating that the last returned report is
-/// still accurate.
-/// @since 3.17.0
 @freezed
 abstract class UnchangedDocumentDiagnosticReport
     with _$UnchangedDocumentDiagnosticReport {
   const factory UnchangedDocumentDiagnosticReport({
     /// A document diagnostic report indicating no changes to the last result.
     /// A server can only return `unchanged` if result ids are provided.
-    required String kind,
+    required StringLiteralRef kind,
 
     /// A result id which will be sent on the next diagnostic request for the
     /// same document.
@@ -5651,32 +4235,28 @@ abstract class UnchangedDocumentDiagnosticReport
   ) => _$UnchangedDocumentDiagnosticReportFromJson(json);
 }
 
-/// Diagnostic options.
-/// @since 3.17.0
 @freezed
 abstract class DiagnosticOptions with _$DiagnosticOptions {
   const factory DiagnosticOptions({
+    /// An optional identifier under which the diagnostics are managed by the
+    /// client.
+    String? identifier,
+
     /// Whether the language has inter file dependencies meaning that editing
     /// code in one file can result in a different diagnostic set in another
     /// file. Inter file dependencies are common for most programming languages
     /// and typically uncommon for linters.
     required bool interFileDependencies,
+    bool? workDoneProgress,
 
     /// The server provides support for workspace diagnostics as well.
     required bool workspaceDiagnostics,
-
-    /// An optional identifier under which the diagnostics are managed by the
-    /// client.
-    String? identifier,
-    bool? workDoneProgress,
   }) = _DiagnosticOptions;
 
   factory DiagnosticOptions.fromJson(Map<String, dynamic> json) =>
       _$DiagnosticOptionsFromJson(json);
 }
 
-/// A previous result id in a workspace pull request.
-/// @since 3.17.0
 @freezed
 abstract class PreviousResultId with _$PreviousResultId {
   const factory PreviousResultId({
@@ -5691,66 +4271,61 @@ abstract class PreviousResultId with _$PreviousResultId {
       _$PreviousResultIdFromJson(json);
 }
 
-/// A notebook document.
-/// @since 3.17.0
 @freezed
 abstract class NotebookDocument with _$NotebookDocument {
   const factory NotebookDocument({
-    /// The notebook document's uri.
-    required String uri,
-
-    /// The type of the notebook.
-    required String notebookType,
-
-    /// The version number of this document (it will increase after each
-    /// change, including undo/redo).
-    required int version,
-
     /// The cells of a notebook.
     required List<NotebookCell> cells,
 
     /// Additional metadata stored with the notebook document.
     /// Note: should always be an object literal (e.g. LSPObject)
     LSPObject? metadata,
+
+    /// The type of the notebook.
+    required String notebookType,
+
+    /// The notebook document's uri.
+    required String uri,
+
+    /// The version number of this document (it will increase after each
+    /// change, including undo/redo).
+    required int version,
   }) = _NotebookDocument;
 
   factory NotebookDocument.fromJson(Map<String, dynamic> json) =>
       _$NotebookDocumentFromJson(json);
 }
 
-/// An item to transfer a text document from the client to the server.
 @freezed
 abstract class TextDocumentItem with _$TextDocumentItem {
   const factory TextDocumentItem({
-    /// The text document's uri.
-    required String uri,
-
     /// The text document's language identifier.
     required String languageId,
+
+    /// The content of the opened text document.
+    required String text,
+
+    /// The text document's uri.
+    required String uri,
 
     /// The version number of this document (it will increase after each
     /// change, including undo/redo).
     required int version,
-
-    /// The content of the opened text document.
-    required String text,
   }) = _TextDocumentItem;
 
   factory TextDocumentItem.fromJson(Map<String, dynamic> json) =>
       _$TextDocumentItemFromJson(json);
 }
 
-/// A versioned notebook document identifier.
-/// @since 3.17.0
 @freezed
 abstract class VersionedNotebookDocumentIdentifier
     with _$VersionedNotebookDocumentIdentifier {
   const factory VersionedNotebookDocumentIdentifier({
-    /// The version number of this notebook document.
-    required int version,
-
     /// The notebook document's uri.
     required String uri,
+
+    /// The version number of this notebook document.
+    required int version,
   }) = _VersionedNotebookDocumentIdentifier;
 
   factory VersionedNotebookDocumentIdentifier.fromJson(
@@ -5758,28 +4333,11 @@ abstract class VersionedNotebookDocumentIdentifier
   ) => _$VersionedNotebookDocumentIdentifierFromJson(json);
 }
 
-/// A change event for a notebook document.
-/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
   const factory NotebookDocumentChangeEvent({
     /// Changes to cells
-    ({
-      ({
-        NotebookCellArrayChange array,
-        List<TextDocumentItem>? didOpen,
-        List<TextDocumentIdentifier>? didClose,
-      })?
-      structure,
-      List<NotebookCell>? data,
-      List<
-        ({
-          VersionedTextDocumentIdentifier document,
-          List<TextDocumentContentChangeEvent> changes,
-        })
-      >?
-      textContent,
-    })?
+    NotebookCellArrayChangeArrayTextDocumentIdentifiersDidCloseTextDocumentItemsDidOpenStructureNotebookCellsDataTextDocumentContentChangeEventsChangesVersionedTextDocumentIdentifierDocumentsTextContent?
     cells,
 
     /// The changed meta data if any.
@@ -5791,8 +4349,6 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
       _$NotebookDocumentChangeEventFromJson(json);
 }
 
-/// A literal to identify a notebook document in the client.
-/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
   const factory NotebookDocumentIdentifier({
@@ -5804,37 +4360,26 @@ abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
       _$NotebookDocumentIdentifierFromJson(json);
 }
 
-/// Provides information about the context in which an inline
-/// completion was requested.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionContext with _$InlineCompletionContext {
   const factory InlineCompletionContext({
-    /// Describes how the inline completion was triggered.
-    required InlineCompletionTriggerKind triggerKind,
-
     /// Provides information about the currently selected item in the
     /// autocomplete widget if it is visible.
     SelectedCompletionInfo? selectedCompletionInfo,
+
+    /// Describes how the inline completion was triggered.
+    required InlineCompletionTriggerKind triggerKind,
   }) = _InlineCompletionContext;
 
   factory InlineCompletionContext.fromJson(Map<String, dynamic> json) =>
       _$InlineCompletionContextFromJson(json);
 }
 
-/// A string value used as a snippet is a template which allows to
-/// insert text and to control the editor cursor when insertion
-/// happens.
-/// A snippet can define tab stops and placeholders with `$1`, `$2`
-/// and `${3:foo}`. `$0` defines the final tab stop, it defaults to
-/// the end of the snippet. Variables are defined with `$name` and
-/// `${name:default value}`.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class StringValue with _$StringValue {
   const factory StringValue({
     /// The kind of string value.
-    required String kind,
+    required StringLiteralRef kind,
 
     /// The snippet string.
     required String value,
@@ -5844,8 +4389,6 @@ abstract class StringValue with _$StringValue {
       _$StringValueFromJson(json);
 }
 
-/// Inline completion options used during static registration.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionOptions with _$InlineCompletionOptions {
   const factory InlineCompletionOptions({bool? workDoneProgress}) =
@@ -5855,8 +4398,6 @@ abstract class InlineCompletionOptions with _$InlineCompletionOptions {
       _$InlineCompletionOptionsFromJson(json);
 }
 
-/// General parameters to register for a notification or to register
-/// a provider.
 @freezed
 abstract class Registration with _$Registration {
   const factory Registration({
@@ -5875,7 +4416,6 @@ abstract class Registration with _$Registration {
       _$RegistrationFromJson(json);
 }
 
-/// General parameters to unregister a request or notification.
 @freezed
 abstract class Unregistration with _$Unregistration {
   const factory Unregistration({
@@ -5891,32 +4431,18 @@ abstract class Unregistration with _$Unregistration {
       _$UnregistrationFromJson(json);
 }
 
-/// The initialize parameters
 @freezed
 abstract class TInitializeParams with _$TInitializeParams {
   const factory TInitializeParams({
-    /// The process Id of the parent process that started the server.
-    /// Is `null` if the process has not been started by another process. If
-    /// the parent process is not alive then the server should exit.
-    required ProcessIdOrVersionBase processId,
-
-    /// The rootUri of the workspace. Is null if no folder is open. If both
-    /// `rootPath` and `rootUri` are set `rootUri` wins.
-    /// @deprecated in favour of workspaceFolders.
-    required InitializeParamsRootUriBase rootUri,
-
     /// The capabilities provided by the client (editor or tool)
     required ClientCapabilities capabilities,
 
-    /// The initial trace setting. If omitted trace is disabled ('off').
-    TraceValues? trace,
+    /// Information about the client
+    /// @since 3.15.0
+    StringNameStringVersion? clientInfo,
 
     /// User provided initialization options.
     LSPAny? initializationOptions,
-
-    /// The rootPath of the workspace. Is null if no folder is open.
-    /// @deprecated in favour of rootUri.
-    InitializeParamsRootPathBase? rootPath,
 
     /// The locale the client is currently showing the user interface in. This
     /// must not necessarily be the locale of the operating system.
@@ -5925,9 +4451,22 @@ abstract class TInitializeParams with _$TInitializeParams {
     /// @since 3.16.0
     String? locale,
 
-    /// Information about the client
-    /// @since 3.15.0
-    ({String name, String? version})? clientInfo,
+    /// The process Id of the parent process that started the server.
+    /// Is `null` if the process has not been started by another process. If
+    /// the parent process is not alive then the server should exit.
+    required Sealed28 processId,
+
+    /// The rootPath of the workspace. Is null if no folder is open.
+    /// @deprecated in favour of rootUri.
+    Sealed29? rootPath,
+
+    /// The rootUri of the workspace. Is null if no folder is open. If both
+    /// `rootPath` and `rootUri` are set `rootUri` wins.
+    /// @deprecated in favour of workspaceFolders.
+    required Sealed29 rootUri,
+
+    /// The initial trace setting. If omitted trace is disabled ('off').
+    TraceValues? trace,
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
@@ -5946,7 +4485,7 @@ abstract class WorkspaceFoldersInitializeParams
     /// folders. It can be `null` if the client supports workspace folders but
     /// none are configured.
     /// @since 3.6.0
-    WorkspaceFoldersInitializeParamsWorkspaceFoldersBase? workspaceFolders,
+    Sealed30? workspaceFolders,
   }) = _WorkspaceFoldersInitializeParams;
 
   factory WorkspaceFoldersInitializeParams.fromJson(
@@ -5954,114 +4493,93 @@ abstract class WorkspaceFoldersInitializeParams
   ) => _$WorkspaceFoldersInitializeParamsFromJson(json);
 }
 
-/// Defines the capabilities provided by a language server.
 @freezed
 abstract class ServerCapabilities with _$ServerCapabilities {
   const factory ServerCapabilities({
-    /// The server provides workspace symbol support.
-    ServerCapabilitiesWorkspaceSymbolProviderBase? workspaceSymbolProvider,
-
-    /// The server provides document highlight support.
-    ServerCapabilitiesDocumentHighlightProviderBase? documentHighlightProvider,
-
-    /// The server provides document formatting.
-    ServerCapabilitiesDocumentFormattingProviderBase?
-    documentFormattingProvider,
+    /// The server provides call hierarchy support.
+    /// @since 3.16.0
+    Sealed49? callHierarchyProvider,
 
     /// The server provides code actions. CodeActionOptions may only be
     /// specified if the client states that it supports
     /// `codeActionLiteralSupport` in its initial `initialize` request.
-    ServerCapabilitiesCodeActionProviderBase? codeActionProvider,
+    Sealed41? codeActionProvider,
+
+    /// The server provides code lens.
+    CodeLensOptions? codeLensProvider,
+
+    /// The server provides color provider support.
+    Sealed42? colorProvider,
 
     /// The server provides completion support.
     CompletionOptions? completionProvider,
 
-    /// Workspace specific server capabilities.
-    ({
-      WorkspaceFoldersServerCapabilities? workspaceFolders,
-      FileOperationOptions? fileOperations,
-    })?
-    workspace,
+    /// The server provides Goto Declaration support.
+    Sealed34? declarationProvider,
 
-    /// Inline completion options used during static registration.
-    /// @since 3.18.0 @proposed
-    ServerCapabilitiesInlineCompletionProviderBase? inlineCompletionProvider,
+    /// The server provides goto definition support.
+    Sealed35? definitionProvider,
 
     /// The server has support for pull model diagnostics.
     /// @since 3.17.0
-    ServerCapabilitiesDiagnosticProviderBase? diagnosticProvider,
+    Sealed56? diagnosticProvider,
 
-    /// The server provides inlay hints.
-    /// @since 3.17.0
-    ServerCapabilitiesInlayHintProviderBase? inlayHintProvider,
+    /// The server provides document formatting.
+    Sealed44? documentFormattingProvider,
 
-    /// The server provides goto definition support.
-    ServerCapabilitiesDefinitionProviderBase? definitionProvider,
+    /// The server provides document highlight support.
+    Sealed39? documentHighlightProvider,
 
-    /// The server provides Goto Declaration support.
-    ServerCapabilitiesDeclarationProviderBase? declarationProvider,
-
-    /// The server provides moniker support.
-    /// @since 3.16.0
-    ServerCapabilitiesMonikerProviderBase? monikerProvider,
-
-    /// The server provides semantic tokens support.
-    /// @since 3.16.0
-    ServerCapabilitiesSemanticTokensProviderBase? semanticTokensProvider,
-
-    /// The server provides linked editing range support.
-    /// @since 3.16.0
-    ServerCapabilitiesLinkedEditingRangeProviderBase?
-    linkedEditingRangeProvider,
-
-    /// The server provides call hierarchy support.
-    /// @since 3.16.0
-    ServerCapabilitiesCallHierarchyProviderBase? callHierarchyProvider,
-
-    /// The server provides execute command support.
-    ExecuteCommandOptions? executeCommandProvider,
-
-    /// Defines how text documents are synced. Is either a detailed structure
-    /// defining each notification or for backwards compatibility the
-    /// TextDocumentSyncKind number.
-    ServerCapabilitiesTextDocumentSyncBase? textDocumentSync,
-
-    /// The server provides folding provider support.
-    ServerCapabilitiesFoldingRangeProviderBase? foldingRangeProvider,
-
-    /// The server provides rename support. RenameOptions may only be specified
-    /// if the client states that it supports `prepareSupport` in its initial
-    /// `initialize` request.
-    ServerCapabilitiesRenameProviderBase? renameProvider,
+    /// The server provides document link support.
+    DocumentLinkOptions? documentLinkProvider,
 
     /// The server provides document formatting on typing.
     DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,
 
     /// The server provides document range formatting.
-    ServerCapabilitiesDocumentRangeFormattingProviderBase?
-    documentRangeFormattingProvider,
+    Sealed45? documentRangeFormattingProvider,
+
+    /// The server provides document symbol support.
+    Sealed40? documentSymbolProvider,
+
+    /// The server provides execute command support.
+    ExecuteCommandOptions? executeCommandProvider,
 
     /// Experimental server capabilities.
     LSPAny? experimental,
 
-    /// The server provides selection range support.
-    ServerCapabilitiesSelectionRangeProviderBase? selectionRangeProvider,
+    /// The server provides folding provider support.
+    Sealed47? foldingRangeProvider,
 
-    /// The server provides color provider support.
-    ServerCapabilitiesColorProviderBase? colorProvider,
+    /// The server provides hover support.
+    Sealed33? hoverProvider,
 
-    /// The server provides document link support.
-    DocumentLinkOptions? documentLinkProvider,
+    /// The server provides Goto Implementation support.
+    Sealed37? implementationProvider,
 
-    /// The server provides code lens.
-    CodeLensOptions? codeLensProvider,
+    /// The server provides inlay hints.
+    /// @since 3.17.0
+    Sealed55? inlayHintProvider,
+
+    /// Inline completion options used during static registration.
+    /// @since 3.18.0 @proposed
+    Sealed57? inlineCompletionProvider,
+
+    /// The server provides inline values.
+    /// @since 3.17.0
+    Sealed54? inlineValueProvider,
+
+    /// The server provides linked editing range support.
+    /// @since 3.16.0
+    Sealed50? linkedEditingRangeProvider,
+
+    /// The server provides moniker support.
+    /// @since 3.16.0
+    Sealed52? monikerProvider,
 
     /// Defines how notebook documents are synced.
     /// @since 3.17.0
-    ServerCapabilitiesNotebookDocumentSyncBase? notebookDocumentSync,
-
-    /// The server provides document symbol support.
-    ServerCapabilitiesDocumentSymbolProviderBase? documentSymbolProvider,
+    Sealed32? notebookDocumentSync,
 
     /// The position encoding the server picked from the encodings offered by
     /// the client via the client capability `general.positionEncodings`.
@@ -6072,35 +4590,47 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     PositionEncodingKind? positionEncoding,
 
     /// The server provides find references support.
-    ServerCapabilitiesReferencesProviderBase? referencesProvider,
+    Sealed38? referencesProvider,
 
-    /// The server provides Goto Implementation support.
-    ServerCapabilitiesImplementationProviderBase? implementationProvider,
+    /// The server provides rename support. RenameOptions may only be specified
+    /// if the client states that it supports `prepareSupport` in its initial
+    /// `initialize` request.
+    Sealed46? renameProvider,
 
-    /// The server provides Goto Type Definition support.
-    ServerCapabilitiesTypeDefinitionProviderBase? typeDefinitionProvider,
+    /// The server provides selection range support.
+    Sealed48? selectionRangeProvider,
 
-    /// The server provides inline values.
-    /// @since 3.17.0
-    ServerCapabilitiesInlineValueProviderBase? inlineValueProvider,
-
-    /// The server provides type hierarchy support.
-    /// @since 3.17.0
-    ServerCapabilitiesTypeHierarchyProviderBase? typeHierarchyProvider,
+    /// The server provides semantic tokens support.
+    /// @since 3.16.0
+    Sealed51? semanticTokensProvider,
 
     /// The server provides signature help support.
     SignatureHelpOptions? signatureHelpProvider,
 
-    /// The server provides hover support.
-    ServerCapabilitiesHoverProviderBase? hoverProvider,
+    /// Defines how text documents are synced. Is either a detailed structure
+    /// defining each notification or for backwards compatibility the
+    /// TextDocumentSyncKind number.
+    Sealed31? textDocumentSync,
+
+    /// The server provides Goto Type Definition support.
+    Sealed36? typeDefinitionProvider,
+
+    /// The server provides type hierarchy support.
+    /// @since 3.17.0
+    Sealed53? typeHierarchyProvider,
+
+    /// Workspace specific server capabilities.
+    FileOperationOptionsFileOperationsWorkspaceFoldersServerCapabilitiesWorkspaceFolders?
+    workspace,
+
+    /// The server provides workspace symbol support.
+    Sealed43? workspaceSymbolProvider,
   }) = _ServerCapabilities;
 
   factory ServerCapabilities.fromJson(Map<String, dynamic> json) =>
       _$ServerCapabilitiesFromJson(json);
 }
 
-/// A text document identifier to denote a specific version of a text
-/// document.
 @freezed
 abstract class VersionedTextDocumentIdentifier
     with _$VersionedTextDocumentIdentifier {
@@ -6116,7 +4646,6 @@ abstract class VersionedTextDocumentIdentifier
       _$VersionedTextDocumentIdentifierFromJson(json);
 }
 
-/// Save options.
 @freezed
 abstract class SaveOptions with _$SaveOptions {
   const factory SaveOptions({
@@ -6128,15 +4657,14 @@ abstract class SaveOptions with _$SaveOptions {
       _$SaveOptionsFromJson(json);
 }
 
-/// An event describing a file change.
 @freezed
 abstract class FileEvent with _$FileEvent {
   const factory FileEvent({
-    /// The file's uri.
-    required String uri,
-
     /// The change type.
     required FileChangeType type,
+
+    /// The file's uri.
+    required String uri,
   }) = _FileEvent;
 
   factory FileEvent.fromJson(Map<String, dynamic> json) =>
@@ -6160,16 +4688,16 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
       _$FileSystemWatcherFromJson(json);
 }
 
-/// Represents a diagnostic, such as a compiler error or warning.
-/// Diagnostic objects are only valid in the scope of a resource.
 @freezed
 abstract class Diagnostic with _$Diagnostic {
   const factory Diagnostic({
-    /// The range at which the message applies
-    required Range range,
+    /// The diagnostic's code, which usually appear in the user interface.
+    Sealed6? code,
 
-    /// The diagnostic's message. It usually appears in the user interface
-    required String message,
+    /// An optional property to describe the error code. Requires the code
+    /// field (above) to be present/not null.
+    /// @since 3.16.0
+    CodeDescription? codeDescription,
 
     /// A data entry field that is preserved between a
     /// `textDocument/publishDiagnostics` notification and
@@ -6177,55 +4705,49 @@ abstract class Diagnostic with _$Diagnostic {
     /// @since 3.16.0
     LSPAny? data,
 
+    /// The diagnostic's message. It usually appears in the user interface
+    required String message,
+
+    /// The range at which the message applies
+    required Range range,
+
     /// An array of related diagnostic information, e.g. when symbol-names
     /// within a scope collide all definitions can be marked via this property.
     List<DiagnosticRelatedInformation>? relatedInformation,
 
-    /// Additional metadata about the diagnostic.
-    /// @since 3.15.0
-    List<DiagnosticTag>? tags,
+    /// The diagnostic's severity. Can be omitted. If omitted it is up to the
+    /// client to interpret diagnostics as error, warning, info or hint.
+    DiagnosticSeverity? severity,
 
     /// A human-readable string describing the source of this diagnostic, e.g.
     /// 'typescript' or 'super lint'. It usually appears in the user interface.
     String? source,
 
-    /// An optional property to describe the error code. Requires the code
-    /// field (above) to be present/not null.
-    /// @since 3.16.0
-    CodeDescription? codeDescription,
-
-    /// The diagnostic's code, which usually appear in the user interface.
-    ProgressTokenBase? code,
-
-    /// The diagnostic's severity. Can be omitted. If omitted it is up to the
-    /// client to interpret diagnostics as error, warning, info or hint.
-    DiagnosticSeverity? severity,
+    /// Additional metadata about the diagnostic.
+    /// @since 3.15.0
+    List<DiagnosticTag>? tags,
   }) = _Diagnostic;
 
   factory Diagnostic.fromJson(Map<String, dynamic> json) =>
       _$DiagnosticFromJson(json);
 }
 
-/// Contains additional information about the context in which a
-/// completion request is triggered.
 @freezed
 abstract class CompletionContext with _$CompletionContext {
   const factory CompletionContext({
-    /// How the completion was triggered.
-    required CompletionTriggerKind triggerKind,
-
     /// The trigger character (a single character) that has trigger code
     /// complete. Is undefined if `triggerKind !==
     /// CompletionTriggerKind.TriggerCharacter`
     String? triggerCharacter,
+
+    /// How the completion was triggered.
+    required CompletionTriggerKind triggerKind,
   }) = _CompletionContext;
 
   factory CompletionContext.fromJson(Map<String, dynamic> json) =>
       _$CompletionContextFromJson(json);
 }
 
-/// Additional details for a completion item label.
-/// @since 3.17.0
 @freezed
 abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
   const factory CompletionItemLabelDetails({
@@ -6244,16 +4766,14 @@ abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
       _$CompletionItemLabelDetailsFromJson(json);
 }
 
-/// A special text edit to provide an insert and a replace operation.
-/// @since 3.16.0
 @freezed
 abstract class InsertReplaceEdit with _$InsertReplaceEdit {
   const factory InsertReplaceEdit({
-    /// The string to be inserted.
-    required String newText,
-
     /// The range if the insert is requested
     required Range insert,
+
+    /// The string to be inserted.
+    required String newText,
 
     /// The range if the replace is requested.
     required Range replace,
@@ -6263,19 +4783,9 @@ abstract class InsertReplaceEdit with _$InsertReplaceEdit {
       _$InsertReplaceEditFromJson(json);
 }
 
-/// Completion options.
 @freezed
 abstract class CompletionOptions with _$CompletionOptions {
   const factory CompletionOptions({
-    /// The server supports the following `CompletionItem` specific
-    /// capabilities.
-    /// @since 3.17.0
-    ({bool? labelDetailsSupport})? completionItem,
-
-    /// The server provides support to resolve additional information for a
-    /// completion item.
-    bool? resolveProvider,
-
     /// The list of all possible characters that commit a completion. This
     /// field can be used if clients don't support individual commit characters
     /// per completion item. See
@@ -6284,6 +4794,15 @@ abstract class CompletionOptions with _$CompletionOptions {
     /// on an individual completion item the ones on the completion item win.
     /// @since 3.2.0
     List<String>? allCommitCharacters,
+
+    /// The server supports the following `CompletionItem` specific
+    /// capabilities.
+    /// @since 3.17.0
+    BoolLabelDetailsSupport? completionItem,
+
+    /// The server provides support to resolve additional information for a
+    /// completion item.
+    bool? resolveProvider,
 
     /// Most tools trigger completion request automatically without explicitly
     /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
@@ -6302,7 +4821,6 @@ abstract class CompletionOptions with _$CompletionOptions {
       _$CompletionOptionsFromJson(json);
 }
 
-/// Hover options.
 @freezed
 abstract class HoverOptions with _$HoverOptions {
   const factory HoverOptions({bool? workDoneProgress}) = _HoverOptions;
@@ -6311,14 +4829,13 @@ abstract class HoverOptions with _$HoverOptions {
       _$HoverOptionsFromJson(json);
 }
 
-/// Additional information about the context in which a signature
-/// help request was triggered.
-/// @since 3.15.0
 @freezed
 abstract class SignatureHelpContext with _$SignatureHelpContext {
   const factory SignatureHelpContext({
-    /// Action that caused signature help to be triggered.
-    required SignatureHelpTriggerKind triggerKind,
+    /// The currently active `SignatureHelp`.
+    /// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field
+    /// updated based on the user navigating through available signatures.
+    SignatureHelp? activeSignatureHelp,
 
     /// `true` if signature help was already showing when it was triggered.
     /// Retriggers occurs when the signature help is already active and can be
@@ -6326,48 +4843,42 @@ abstract class SignatureHelpContext with _$SignatureHelpContext {
     /// document content changes.
     required bool isRetrigger,
 
-    /// The currently active `SignatureHelp`.
-    /// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field
-    /// updated based on the user navigating through available signatures.
-    SignatureHelp? activeSignatureHelp,
-
     /// Character that caused signature help to be triggered.
     /// This is undefined when `triggerKind !==
     /// SignatureHelpTriggerKind.TriggerCharacter`
     String? triggerCharacter,
+
+    /// Action that caused signature help to be triggered.
+    required SignatureHelpTriggerKind triggerKind,
   }) = _SignatureHelpContext;
 
   factory SignatureHelpContext.fromJson(Map<String, dynamic> json) =>
       _$SignatureHelpContextFromJson(json);
 }
 
-/// Represents the signature of something callable. A signature can
-/// have a label, like a function-name, a doc-comment, and a set of
-/// parameters.
 @freezed
 abstract class SignatureInformation with _$SignatureInformation {
   const factory SignatureInformation({
-    /// The label of this signature. Will be shown in the UI.
-    required String label,
-
     /// The index of the active parameter.
     /// If provided, this is used in place of `SignatureHelp.activeParameter`.
     /// @since 3.16.0
     int? activeParameter,
 
-    /// The parameters of this signature.
-    List<ParameterInformation>? parameters,
-
     /// The human-readable doc-comment of this signature. Will be shown in the
     /// UI but can be omitted.
-    TooltipOrDocumentationBase? documentation,
+    Sealed17? documentation,
+
+    /// The label of this signature. Will be shown in the UI.
+    required String label,
+
+    /// The parameters of this signature.
+    List<ParameterInformation>? parameters,
   }) = _SignatureInformation;
 
   factory SignatureInformation.fromJson(Map<String, dynamic> json) =>
       _$SignatureInformationFromJson(json);
 }
 
-/// Server Capabilities for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpOptions with _$SignatureHelpOptions {
   const factory SignatureHelpOptions({
@@ -6387,7 +4898,6 @@ abstract class SignatureHelpOptions with _$SignatureHelpOptions {
       _$SignatureHelpOptionsFromJson(json);
 }
 
-/// Server Capabilities for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionOptions with _$DefinitionOptions {
   const factory DefinitionOptions({bool? workDoneProgress}) =
@@ -6397,8 +4907,6 @@ abstract class DefinitionOptions with _$DefinitionOptions {
       _$DefinitionOptionsFromJson(json);
 }
 
-/// Value-object that contains additional information when requesting
-/// references.
 @freezed
 abstract class ReferenceContext with _$ReferenceContext {
   const factory ReferenceContext({
@@ -6410,7 +4918,6 @@ abstract class ReferenceContext with _$ReferenceContext {
       _$ReferenceContextFromJson(json);
 }
 
-/// Reference options.
 @freezed
 abstract class ReferenceOptions with _$ReferenceOptions {
   const factory ReferenceOptions({bool? workDoneProgress}) = _ReferenceOptions;
@@ -6419,7 +4926,6 @@ abstract class ReferenceOptions with _$ReferenceOptions {
       _$ReferenceOptionsFromJson(json);
 }
 
-/// Provider options for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
   const factory DocumentHighlightOptions({bool? workDoneProgress}) =
@@ -6429,21 +4935,20 @@ abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
       _$DocumentHighlightOptionsFromJson(json);
 }
 
-/// A base for all symbol information.
 @freezed
 abstract class BaseSymbolInformation with _$BaseSymbolInformation {
   const factory BaseSymbolInformation({
-    /// The name of this symbol.
-    required String name,
-
-    /// The kind of this symbol.
-    required SymbolKind kind,
-
     /// The name of the symbol containing this symbol. This information is for
     /// user interface purposes (e.g. to render a qualifier in the user
     /// interface if necessary). It can't be used to re-infer a hierarchy for
     /// the document symbols.
     String? containerName,
+
+    /// The kind of this symbol.
+    required SymbolKind kind,
+
+    /// The name of this symbol.
+    required String name,
 
     /// Tags for this symbol.
     /// @since 3.16.0
@@ -6454,7 +4959,6 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
       _$BaseSymbolInformationFromJson(json);
 }
 
-/// Provider options for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
   const factory DocumentSymbolOptions({
@@ -6469,9 +4973,6 @@ abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
       _$DocumentSymbolOptionsFromJson(json);
 }
 
-/// Contains additional diagnostic information about the context in
-/// which a {@link CodeActionProvider.provideCodeActions code action}
-/// is run.
 @freezed
 abstract class CodeActionContext with _$CodeActionContext {
   const factory CodeActionContext({
@@ -6483,33 +4984,32 @@ abstract class CodeActionContext with _$CodeActionContext {
     /// compute code actions is the provided range.
     required List<Diagnostic> diagnostics,
 
-    /// The reason why code actions were requested.
-    /// @since 3.17.0
-    CodeActionTriggerKind? triggerKind,
-
     /// Requested kind of actions to return.
     /// Actions not of this kind are filtered out by the client before being
     /// shown. So servers can omit computing them.
     List<CodeActionKind>? only,
+
+    /// The reason why code actions were requested.
+    /// @since 3.17.0
+    CodeActionTriggerKind? triggerKind,
   }) = _CodeActionContext;
 
   factory CodeActionContext.fromJson(Map<String, dynamic> json) =>
       _$CodeActionContextFromJson(json);
 }
 
-/// Provider options for a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionOptions with _$CodeActionOptions {
   const factory CodeActionOptions({
-    /// The server provides support to resolve additional information for a
-    /// code action.
-    /// @since 3.16.0
-    bool? resolveProvider,
-
     /// CodeActionKinds that this server may return.
     /// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
     /// the server may list out every specific kind they provide.
     List<CodeActionKind>? codeActionKinds,
+
+    /// The server provides support to resolve additional information for a
+    /// code action.
+    /// @since 3.16.0
+    bool? resolveProvider,
     bool? workDoneProgress,
   }) = _CodeActionOptions;
 
@@ -6517,7 +5017,6 @@ abstract class CodeActionOptions with _$CodeActionOptions {
       _$CodeActionOptionsFromJson(json);
 }
 
-/// Server capabilities for a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
   const factory WorkspaceSymbolOptions({
@@ -6532,7 +5031,6 @@ abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
       _$WorkspaceSymbolOptionsFromJson(json);
 }
 
-/// Code Lens provider options of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensOptions with _$CodeLensOptions {
   const factory CodeLensOptions({
@@ -6545,7 +5043,6 @@ abstract class CodeLensOptions with _$CodeLensOptions {
       _$CodeLensOptionsFromJson(json);
 }
 
-/// Provider options for a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkOptions with _$DocumentLinkOptions {
   const factory DocumentLinkOptions({
@@ -6558,23 +5055,22 @@ abstract class DocumentLinkOptions with _$DocumentLinkOptions {
       _$DocumentLinkOptionsFromJson(json);
 }
 
-/// Value-object describing what options formatting should use.
 @freezed
 abstract class FormattingOptions with _$FormattingOptions {
   const factory FormattingOptions({
-    /// Size of a tab in spaces.
-    required int tabSize,
+    /// Insert a newline character at the end of the file if one does not exist.
+    /// @since 3.15.0
+    bool? insertFinalNewline,
 
     /// Prefer spaces over tabs.
     required bool insertSpaces,
 
+    /// Size of a tab in spaces.
+    required int tabSize,
+
     /// Trim all newlines after the final newline at the end of the file.
     /// @since 3.15.0
     bool? trimFinalNewlines,
-
-    /// Insert a newline character at the end of the file if one does not exist.
-    /// @since 3.15.0
-    bool? insertFinalNewline,
 
     /// Trim trailing whitespace on a line.
     /// @since 3.15.0
@@ -6585,7 +5081,6 @@ abstract class FormattingOptions with _$FormattingOptions {
       _$FormattingOptionsFromJson(json);
 }
 
-/// Provider options for a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
   const factory DocumentFormattingOptions({bool? workDoneProgress}) =
@@ -6595,7 +5090,6 @@ abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
       _$DocumentFormattingOptionsFromJson(json);
 }
 
-/// Provider options for a {@link DocumentRangeFormattingRequest}.
 @freezed
 abstract class DocumentRangeFormattingOptions
     with _$DocumentRangeFormattingOptions {
@@ -6610,7 +5104,6 @@ abstract class DocumentRangeFormattingOptions
       _$DocumentRangeFormattingOptionsFromJson(json);
 }
 
-/// Provider options for a {@link DocumentOnTypeFormattingRequest}.
 @freezed
 abstract class DocumentOnTypeFormattingOptions
     with _$DocumentOnTypeFormattingOptions {
@@ -6626,7 +5119,6 @@ abstract class DocumentOnTypeFormattingOptions
       _$DocumentOnTypeFormattingOptionsFromJson(json);
 }
 
-/// Provider options for a {@link RenameRequest}.
 @freezed
 abstract class RenameOptions with _$RenameOptions {
   const factory RenameOptions({
@@ -6640,7 +5132,6 @@ abstract class RenameOptions with _$RenameOptions {
       _$RenameOptionsFromJson(json);
 }
 
-/// The server capabilities of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
   const factory ExecuteCommandOptions({
@@ -6653,23 +5144,20 @@ abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
       _$ExecuteCommandOptionsFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensLegend with _$SemanticTokensLegend {
   const factory SemanticTokensLegend({
-    /// The token types a server uses.
-    required List<String> tokenTypes,
-
     /// The token modifiers a server uses.
     required List<String> tokenModifiers,
+
+    /// The token types a server uses.
+    required List<String> tokenTypes,
   }) = _SemanticTokensLegend;
 
   factory SemanticTokensLegend.fromJson(Map<String, dynamic> json) =>
       _$SemanticTokensLegendFromJson(json);
 }
 
-/// A text document identifier to optionally denote a specific
-/// version of a text document.
 @freezed
 abstract class OptionalVersionedTextDocumentIdentifier
     with _$OptionalVersionedTextDocumentIdentifier {
@@ -6683,7 +5171,7 @@ abstract class OptionalVersionedTextDocumentIdentifier
     /// before) the server can send `null` to indicate that the version is
     /// unknown and the content on disk is the truth (as specified with
     /// document content ownership).
-    required ProcessIdOrVersionBase version,
+    required Sealed28 version,
   }) = _OptionalVersionedTextDocumentIdentifier;
 
   factory OptionalVersionedTextDocumentIdentifier.fromJson(
@@ -6691,43 +5179,39 @@ abstract class OptionalVersionedTextDocumentIdentifier
   ) => _$OptionalVersionedTextDocumentIdentifierFromJson(json);
 }
 
-/// A special text edit with an additional change annotation.
-/// @since 3.16.0.
 @freezed
 abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
   const factory AnnotatedTextEdit({
-    /// The range of the text document to be manipulated. To insert text into a
-    /// document create a range where start === end.
-    required Range range,
+    /// The actual identifier of the change annotation
+    required ChangeAnnotationIdentifier annotationId,
 
     /// The string to be inserted. For delete operations use an empty string.
     required String newText,
 
-    /// The actual identifier of the change annotation
-    required ChangeAnnotationIdentifier annotationId,
+    /// The range of the text document to be manipulated. To insert text into a
+    /// document create a range where start === end.
+    required Range range,
   }) = _AnnotatedTextEdit;
 
   factory AnnotatedTextEdit.fromJson(Map<String, dynamic> json) =>
       _$AnnotatedTextEditFromJson(json);
 }
 
-/// A generic resource operation.
 @freezed
 abstract class ResourceOperation with _$ResourceOperation {
   const factory ResourceOperation({
-    /// The resource operation kind.
-    required String kind,
-
     /// An optional annotation identifier describing the operation.
     /// @since 3.16.0
     ChangeAnnotationIdentifier? annotationId,
+
+    /// The resource operation kind.
+    required String kind,
   }) = _ResourceOperation;
 
   factory ResourceOperation.fromJson(Map<String, dynamic> json) =>
       _$ResourceOperationFromJson(json);
 }
 
-/// Options to create a file.
 @freezed
 abstract class CreateFileOptions with _$CreateFileOptions {
   const factory CreateFileOptions({
@@ -6742,7 +5226,6 @@ abstract class CreateFileOptions with _$CreateFileOptions {
       _$CreateFileOptionsFromJson(json);
 }
 
-/// Rename file options
 @freezed
 abstract class RenameFileOptions with _$RenameFileOptions {
   const factory RenameFileOptions({
@@ -6757,7 +5240,6 @@ abstract class RenameFileOptions with _$RenameFileOptions {
       _$RenameFileOptionsFromJson(json);
 }
 
-/// Delete file options
 @freezed
 abstract class DeleteFileOptions with _$DeleteFileOptions {
   const factory DeleteFileOptions({
@@ -6772,9 +5254,6 @@ abstract class DeleteFileOptions with _$DeleteFileOptions {
       _$DeleteFileOptionsFromJson(json);
 }
 
-/// A pattern to describe in which file operation requests or
-/// notifications the server is interested in receiving.
-/// @since 3.16.0
 @freezed
 abstract class FileOperationPattern with _$FileOperationPattern {
   const factory FileOperationPattern({
@@ -6790,41 +5269,38 @@ abstract class FileOperationPattern with _$FileOperationPattern {
     /// `example.0`)
     required String glob,
 
-    /// Additional options used during matching.
-    FileOperationPatternOptions? options,
-
     /// Whether to match files or folders with this pattern.
     /// Matches both if undefined.
     FileOperationPatternKind? matches,
+
+    /// Additional options used during matching.
+    FileOperationPatternOptions? options,
   }) = _FileOperationPattern;
 
   factory FileOperationPattern.fromJson(Map<String, dynamic> json) =>
       _$FileOperationPatternFromJson(json);
 }
 
-/// A full document diagnostic report for a workspace diagnostic
-/// result.
-/// @since 3.17.0
 @freezed
 abstract class WorkspaceFullDocumentDiagnosticReport
     with _$WorkspaceFullDocumentDiagnosticReport {
   const factory WorkspaceFullDocumentDiagnosticReport({
-    /// A full document diagnostic report.
-    required String kind,
-
     /// The actual items.
     required List<Diagnostic> items,
+
+    /// A full document diagnostic report.
+    required StringLiteralRef kind,
+
+    /// An optional result id. If provided it will be sent on the next
+    /// diagnostic request for the same document.
+    String? resultId,
 
     /// The URI for which diagnostic information is reported.
     required String uri,
 
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
-    required ProcessIdOrVersionBase version,
-
-    /// An optional result id. If provided it will be sent on the next
-    /// diagnostic request for the same document.
-    String? resultId,
+    required Sealed28 version,
   }) = _WorkspaceFullDocumentDiagnosticReport;
 
   factory WorkspaceFullDocumentDiagnosticReport.fromJson(
@@ -6832,16 +5308,13 @@ abstract class WorkspaceFullDocumentDiagnosticReport
   ) => _$WorkspaceFullDocumentDiagnosticReportFromJson(json);
 }
 
-/// An unchanged document diagnostic report for a workspace
-/// diagnostic result.
-/// @since 3.17.0
 @freezed
 abstract class WorkspaceUnchangedDocumentDiagnosticReport
     with _$WorkspaceUnchangedDocumentDiagnosticReport {
   const factory WorkspaceUnchangedDocumentDiagnosticReport({
     /// A document diagnostic report indicating no changes to the last result.
     /// A server can only return `unchanged` if result ids are provided.
-    required String kind,
+    required StringLiteralRef kind,
 
     /// A result id which will be sent on the next diagnostic request for the
     /// same document.
@@ -6852,7 +5325,7 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
 
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
-    required ProcessIdOrVersionBase version,
+    required Sealed28 version,
   }) = _WorkspaceUnchangedDocumentDiagnosticReport;
 
   factory WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
@@ -6860,22 +5333,17 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
   ) => _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(json);
 }
 
-/// A notebook cell.
-/// A cell's document URI must be unique across ALL notebook cells
-/// and can therefore be used to uniquely identify a notebook cell or
-/// the cell's text document.
-/// @since 3.17.0
 @freezed
 abstract class NotebookCell with _$NotebookCell {
   const factory NotebookCell({
-    /// The cell's kind
-    required NotebookCellKind kind,
-
     /// The URI of the cell's text document content.
     required String document,
 
     /// Additional execution summary information if supported by the client.
     ExecutionSummary? executionSummary,
+
+    /// The cell's kind
+    required NotebookCellKind kind,
 
     /// Additional metadata stored with the cell.
     /// Note: should always be an object literal (e.g. LSPObject)
@@ -6886,28 +5354,23 @@ abstract class NotebookCell with _$NotebookCell {
       _$NotebookCellFromJson(json);
 }
 
-/// A change describing how to move a `NotebookCell` array from state
-/// S to S'.
-/// @since 3.17.0
 @freezed
 abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
   const factory NotebookCellArrayChange({
-    /// The start oftest of the cell that changed.
-    required int start,
+    /// The new cells, if any
+    List<NotebookCell>? cells,
 
     /// The deleted cells
     required int deleteCount,
 
-    /// The new cells, if any
-    List<NotebookCell>? cells,
+    /// The start oftest of the cell that changed.
+    required int start,
   }) = _NotebookCellArrayChange;
 
   factory NotebookCellArrayChange.fromJson(Map<String, dynamic> json) =>
       _$NotebookCellArrayChangeFromJson(json);
 }
 
-/// Describes the currently selected completion item.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
   const factory SelectedCompletionInfo({
@@ -6922,7 +5385,6 @@ abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
       _$SelectedCompletionInfoFromJson(json);
 }
 
-/// Defines the capabilities provided by the client.
 @freezed
 abstract class ClientCapabilities with _$ClientCapabilities {
   const factory ClientCapabilities({
@@ -6933,15 +5395,15 @@ abstract class ClientCapabilities with _$ClientCapabilities {
     /// @since 3.16.0
     GeneralClientCapabilities? general,
 
-    /// Window specific client capabilities.
-    WindowClientCapabilities? window,
-
     /// Capabilities specific to the notebook document support.
     /// @since 3.17.0
     NotebookDocumentClientCapabilities? notebookDocument,
 
     /// Text document specific client capabilities.
     TextDocumentClientCapabilities? textDocument,
+
+    /// Window specific client capabilities.
+    WindowClientCapabilities? window,
 
     /// Workspace specific client capabilities.
     WorkspaceClientCapabilities? workspace,
@@ -6954,18 +5416,6 @@ abstract class ClientCapabilities with _$ClientCapabilities {
 @freezed
 abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
   const factory TextDocumentSyncOptions({
-    /// If present save notifications are sent to the server. If omitted the
-    /// notification should not be sent.
-    TextDocumentSyncOptionsSaveBase? save,
-
-    /// If present will save wait until requests are sent to the server. If
-    /// omitted the request should not be sent.
-    bool? willSaveWaitUntil,
-
-    /// If present will save notifications are sent to the server. If omitted
-    /// the notification should not be sent.
-    bool? willSave,
-
     /// Change notifications are sent to the server. See
     /// TextDocumentSyncKind.None, TextDocumentSyncKind.Full and
     /// TextDocumentSyncKind.Incremental. If omitted it defaults to
@@ -6975,27 +5425,29 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
     /// Open and close notifications are sent to the server. If omitted open
     /// close notification should not be sent.
     bool? openClose,
+
+    /// If present save notifications are sent to the server. If omitted the
+    /// notification should not be sent.
+    Sealed58? save,
+
+    /// If present will save notifications are sent to the server. If omitted
+    /// the notification should not be sent.
+    bool? willSave,
+
+    /// If present will save wait until requests are sent to the server. If
+    /// omitted the request should not be sent.
+    bool? willSaveWaitUntil,
   }) = _TextDocumentSyncOptions;
 
   factory TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) =>
       _$TextDocumentSyncOptionsFromJson(json);
 }
 
-/// Options specific to a notebook plus its cells to be synced to the
-/// server.
-/// If a selector provides a notebook document filter but no cell
-/// selector all cells of a matching notebook document will be
-/// synced.
-/// If a selector provides no notebook document filter but only a
-/// cell selector all notebook document that contain at least one
-/// matching cell will be synced.
-/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
   const factory NotebookDocumentSyncOptions({
     /// The notebooks to be synced
-    required List<NotebookDocumentSyncOptionsNotebookSelectorBase>
-    notebookSelector,
+    required List<Sealed59> notebookSelector,
 
     /// Whether save notification should be forwarded to the server. Will only
     /// be honored if mode === `notebook`.
@@ -7006,19 +5458,16 @@ abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
       _$NotebookDocumentSyncOptionsFromJson(json);
 }
 
-/// Registration options specific to a notebook.
-/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentSyncRegistrationOptions
     with _$NotebookDocumentSyncRegistrationOptions {
   const factory NotebookDocumentSyncRegistrationOptions({
-    /// The notebooks to be synced
-    required List<NotebookDocumentSyncOptionsNotebookSelectorBase>
-    notebookSelector,
-
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
     String? id,
+
+    /// The notebooks to be synced
+    required List<Sealed59> notebookSelector,
 
     /// Whether save notification should be forwarded to the server. Will only
     /// be honored if mode === `notebook`.
@@ -7040,8 +5489,7 @@ abstract class WorkspaceFoldersServerCapabilities
     /// notification is registered on the client side. The ID can be used to
     /// unregister for these events using the `client/unregisterCapability`
     /// request.
-    WorkspaceFoldersServerCapabilitiesChangeNotificationsBase?
-    changeNotifications,
+    Sealed60? changeNotifications,
 
     /// The server has support for workspace folders
     bool? supported,
@@ -7052,19 +5500,14 @@ abstract class WorkspaceFoldersServerCapabilities
   ) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
 }
 
-/// Options for notifications/requests for user operations on files.
-/// @since 3.16.0
 @freezed
 abstract class FileOperationOptions with _$FileOperationOptions {
   const factory FileOperationOptions({
-    /// The server is interested in receiving willDeleteFiles file requests.
-    FileOperationRegistrationOptions? willDelete,
+    /// The server is interested in receiving didCreateFiles notifications.
+    FileOperationRegistrationOptions? didCreate,
 
     /// The server is interested in receiving didDeleteFiles file notifications.
     FileOperationRegistrationOptions? didDelete,
-
-    /// The server is interested in receiving willRenameFiles requests.
-    FileOperationRegistrationOptions? willRename,
 
     /// The server is interested in receiving didRenameFiles notifications.
     FileOperationRegistrationOptions? didRename,
@@ -7072,16 +5515,17 @@ abstract class FileOperationOptions with _$FileOperationOptions {
     /// The server is interested in receiving willCreateFiles requests.
     FileOperationRegistrationOptions? willCreate,
 
-    /// The server is interested in receiving didCreateFiles notifications.
-    FileOperationRegistrationOptions? didCreate,
+    /// The server is interested in receiving willDeleteFiles file requests.
+    FileOperationRegistrationOptions? willDelete,
+
+    /// The server is interested in receiving willRenameFiles requests.
+    FileOperationRegistrationOptions? willRename,
   }) = _FileOperationOptions;
 
   factory FileOperationOptions.fromJson(Map<String, dynamic> json) =>
       _$FileOperationOptionsFromJson(json);
 }
 
-/// Structure to capture a description for an error code.
-/// @since 3.16.0
 @freezed
 abstract class CodeDescription with _$CodeDescription {
   const factory CodeDescription({
@@ -7093,10 +5537,6 @@ abstract class CodeDescription with _$CodeDescription {
       _$CodeDescriptionFromJson(json);
 }
 
-/// Represents a related message and source code location for a
-/// diagnostic. This should be used to point to code locations that
-/// cause or related to a diagnostics, e.g when duplicating a symbol
-/// in a scope.
 @freezed
 abstract class DiagnosticRelatedInformation
     with _$DiagnosticRelatedInformation {
@@ -7112,11 +5552,13 @@ abstract class DiagnosticRelatedInformation
       _$DiagnosticRelatedInformationFromJson(json);
 }
 
-/// Represents a parameter of a callable-signature. A parameter can
-/// have a label and a doc-comment.
 @freezed
 abstract class ParameterInformation with _$ParameterInformation {
   const factory ParameterInformation({
+    /// The human-readable doc-comment of this parameter. Will be shown in the
+    /// UI but can be omitted.
+    Sealed17? documentation,
+
     /// The label of this parameter information.
     /// Either a string or an inclusive start and exclusive end offsets within
     /// its containing signature label. (see SignatureInformation.label). The
@@ -7125,41 +5567,32 @@ abstract class ParameterInformation with _$ParameterInformation {
     /// *Note*: a label of type string should be a substring of its containing
     /// signature label. Its intended use case is to highlight the parameter
     /// label part in the `SignatureInformation.label`.
-    required ParameterInformationLabelBase label,
-
-    /// The human-readable doc-comment of this parameter. Will be shown in the
-    /// UI but can be omitted.
-    TooltipOrDocumentationBase? documentation,
+    required Sealed61 label,
   }) = _ParameterInformation;
 
   factory ParameterInformation.fromJson(Map<String, dynamic> json) =>
       _$ParameterInformationFromJson(json);
 }
 
-/// A notebook cell text document filter denotes a cell text document
-/// by different properties.
-/// @since 3.17.0
 @freezed
 abstract class NotebookCellTextDocumentFilter
     with _$NotebookCellTextDocumentFilter {
   const factory NotebookCellTextDocumentFilter({
-    /// A filter that matches against the notebook containing the notebook
-    /// cell. If a string value is provided it matches against the notebook
-    /// type. '*' matches every notebook.
-    required NotebookCellTextDocumentFilterNotebookBase notebook,
-
     /// A language id like `python`.
     /// Will be matched against the language id of the notebook cell document.
     /// '*' matches every language.
     String? language,
+
+    /// A filter that matches against the notebook containing the notebook
+    /// cell. If a string value is provided it matches against the notebook
+    /// type. '*' matches every notebook.
+    required Sealed62 notebook,
   }) = _NotebookCellTextDocumentFilter;
 
   factory NotebookCellTextDocumentFilter.fromJson(Map<String, dynamic> json) =>
       _$NotebookCellTextDocumentFilterFromJson(json);
 }
 
-/// Matching options for the file operation pattern.
-/// @since 3.16.0
 @freezed
 abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
   const factory FileOperationPatternOptions({
@@ -7186,19 +5619,46 @@ abstract class ExecutionSummary with _$ExecutionSummary {
       _$ExecutionSummaryFromJson(json);
 }
 
-/// Workspace specific client capabilities.
 @freezed
 abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
   const factory WorkspaceClientCapabilities({
-    /// Capabilities specific to the folding range requests scoped to the
-    /// workspace.
-    /// @since 3.18.0 @proposed
-    FoldingRangeWorkspaceClientCapabilities? foldingRange,
+    /// The client supports applying batch edits to the workspace by supporting
+    /// the request 'workspace/applyEdit'
+    bool? applyEdit,
+
+    /// Capabilities specific to the code lens requests scoped to the workspace.
+    /// @since 3.16.0.
+    CodeLensWorkspaceClientCapabilities? codeLens,
+
+    /// The client supports `workspace/configuration` requests.
+    /// @since 3.6.0
+    bool? configuration,
 
     /// Capabilities specific to the diagnostic requests scoped to the
     /// workspace.
     /// @since 3.17.0.
     DiagnosticWorkspaceClientCapabilities? diagnostics,
+
+    /// Capabilities specific to the `workspace/didChangeConfiguration`
+    /// notification.
+    DidChangeConfigurationClientCapabilities? didChangeConfiguration,
+
+    /// Capabilities specific to the `workspace/didChangeWatchedFiles`
+    /// notification.
+    DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles,
+
+    /// Capabilities specific to the `workspace/executeCommand` request.
+    ExecuteCommandClientCapabilities? executeCommand,
+
+    /// The client has support for file notifications/requests for user
+    /// operations on files.
+    /// Since 3.16.0
+    FileOperationClientCapabilities? fileOperations,
+
+    /// Capabilities specific to the folding range requests scoped to the
+    /// workspace.
+    /// @since 3.18.0 @proposed
+    FoldingRangeWorkspaceClientCapabilities? foldingRange,
 
     /// Capabilities specific to the inlay hint requests scoped to the
     /// workspace.
@@ -7210,176 +5670,145 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
     /// @since 3.17.0.
     InlineValueWorkspaceClientCapabilities? inlineValue,
 
-    /// The client has support for file notifications/requests for user
-    /// operations on files.
-    /// Since 3.16.0
-    FileOperationClientCapabilities? fileOperations,
-
-    /// Capabilities specific to the code lens requests scoped to the workspace.
-    /// @since 3.16.0.
-    CodeLensWorkspaceClientCapabilities? codeLens,
-
     /// Capabilities specific to the semantic token requests scoped to the
     /// workspace.
     /// @since 3.16.0.
     SemanticTokensWorkspaceClientCapabilities? semanticTokens,
 
-    /// The client supports `workspace/configuration` requests.
-    /// @since 3.6.0
-    bool? configuration,
-
-    /// The client has support for workspace folders.
-    /// @since 3.6.0
-    bool? workspaceFolders,
-
-    /// Capabilities specific to the `workspace/executeCommand` request.
-    ExecuteCommandClientCapabilities? executeCommand,
-
     /// Capabilities specific to the `workspace/symbol` request.
     WorkspaceSymbolClientCapabilities? symbol,
-
-    /// Capabilities specific to the `workspace/didChangeWatchedFiles`
-    /// notification.
-    DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles,
-
-    /// Capabilities specific to the `workspace/didChangeConfiguration`
-    /// notification.
-    DidChangeConfigurationClientCapabilities? didChangeConfiguration,
 
     /// Capabilities specific to `WorkspaceEdit`s.
     WorkspaceEditClientCapabilities? workspaceEdit,
 
-    /// The client supports applying batch edits to the workspace by supporting
-    /// the request 'workspace/applyEdit'
-    bool? applyEdit,
+    /// The client has support for workspace folders.
+    /// @since 3.6.0
+    bool? workspaceFolders,
   }) = _WorkspaceClientCapabilities;
 
   factory WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$WorkspaceClientCapabilitiesFromJson(json);
 }
 
-/// Text document specific client capabilities.
 @freezed
 abstract class TextDocumentClientCapabilities
     with _$TextDocumentClientCapabilities {
   const factory TextDocumentClientCapabilities({
-    /// Client capabilities specific to inline completions.
-    /// @since 3.18.0 @proposed
-    InlineCompletionClientCapabilities? inlineCompletion,
-
-    /// Capabilities specific to the diagnostic pull model.
-    /// @since 3.17.0
-    DiagnosticClientCapabilities? diagnostic,
-
-    /// Capabilities specific to the `textDocument/inlayHint` request.
-    /// @since 3.17.0
-    InlayHintClientCapabilities? inlayHint,
-
-    /// Capabilities specific to the `textDocument/inlineValue` request.
-    /// @since 3.17.0
-    InlineValueClientCapabilities? inlineValue,
-
-    /// Capabilities specific to the various type hierarchy requests.
-    /// @since 3.17.0
-    TypeHierarchyClientCapabilities? typeHierarchy,
-
-    /// Client capabilities specific to the `textDocument/moniker` request.
-    /// @since 3.16.0
-    MonikerClientCapabilities? moniker,
-
-    /// Capabilities specific to the `textDocument/linkedEditingRange` request.
-    /// @since 3.16.0
-    LinkedEditingRangeClientCapabilities? linkedEditingRange,
-
-    /// Capabilities specific to the various semantic token request.
-    /// @since 3.16.0
-    SemanticTokensClientCapabilities? semanticTokens,
-
     /// Capabilities specific to the various call hierarchy requests.
     /// @since 3.16.0
     CallHierarchyClientCapabilities? callHierarchy,
 
-    /// Capabilities specific to the `textDocument/publishDiagnostics`
-    /// notification.
-    PublishDiagnosticsClientCapabilities? publishDiagnostics,
+    /// Capabilities specific to the `textDocument/codeAction` request.
+    CodeActionClientCapabilities? codeAction,
 
-    /// Capabilities specific to the `textDocument/selectionRange` request.
-    /// @since 3.15.0
-    SelectionRangeClientCapabilities? selectionRange,
-
-    /// Capabilities specific to the `textDocument/foldingRange` request.
-    /// @since 3.10.0
-    FoldingRangeClientCapabilities? foldingRange,
-
-    /// Capabilities specific to the `textDocument/rename` request.
-    RenameClientCapabilities? rename,
-
-    /// Capabilities specific to the `textDocument/onTypeFormatting` request.
-    DocumentOnTypeFormattingClientCapabilities? onTypeFormatting,
-
-    /// Capabilities specific to the `textDocument/rangeFormatting` request.
-    DocumentRangeFormattingClientCapabilities? rangeFormatting,
-
-    /// Capabilities specific to the `textDocument/formatting` request.
-    DocumentFormattingClientCapabilities? formatting,
+    /// Capabilities specific to the `textDocument/codeLens` request.
+    CodeLensClientCapabilities? codeLens,
 
     /// Capabilities specific to the `textDocument/documentColor` and the
     /// `textDocument/colorPresentation` request.
     /// @since 3.6.0
     DocumentColorClientCapabilities? colorProvider,
 
-    /// Capabilities specific to the `textDocument/documentLink` request.
-    DocumentLinkClientCapabilities? documentLink,
-
-    /// Capabilities specific to the `textDocument/codeLens` request.
-    CodeLensClientCapabilities? codeLens,
-
-    /// Capabilities specific to the `textDocument/codeAction` request.
-    CodeActionClientCapabilities? codeAction,
-
-    /// Capabilities specific to the `textDocument/documentSymbol` request.
-    DocumentSymbolClientCapabilities? documentSymbol,
-
-    /// Capabilities specific to the `textDocument/documentHighlight` request.
-    DocumentHighlightClientCapabilities? documentHighlight,
-
-    /// Capabilities specific to the `textDocument/references` request.
-    ReferenceClientCapabilities? references,
-
-    /// Capabilities specific to the `textDocument/implementation` request.
-    /// @since 3.6.0
-    ImplementationClientCapabilities? implementation,
-
-    /// Capabilities specific to the `textDocument/typeDefinition` request.
-    /// @since 3.6.0
-    TypeDefinitionClientCapabilities? typeDefinition,
-
-    /// Capabilities specific to the `textDocument/definition` request.
-    DefinitionClientCapabilities? definition,
+    /// Capabilities specific to the `textDocument/completion` request.
+    CompletionClientCapabilities? completion,
 
     /// Capabilities specific to the `textDocument/declaration` request.
     /// @since 3.14.0
     DeclarationClientCapabilities? declaration,
 
-    /// Capabilities specific to the `textDocument/signatureHelp` request.
-    SignatureHelpClientCapabilities? signatureHelp,
+    /// Capabilities specific to the `textDocument/definition` request.
+    DefinitionClientCapabilities? definition,
+
+    /// Capabilities specific to the diagnostic pull model.
+    /// @since 3.17.0
+    DiagnosticClientCapabilities? diagnostic,
+
+    /// Capabilities specific to the `textDocument/documentHighlight` request.
+    DocumentHighlightClientCapabilities? documentHighlight,
+
+    /// Capabilities specific to the `textDocument/documentLink` request.
+    DocumentLinkClientCapabilities? documentLink,
+
+    /// Capabilities specific to the `textDocument/documentSymbol` request.
+    DocumentSymbolClientCapabilities? documentSymbol,
+
+    /// Capabilities specific to the `textDocument/foldingRange` request.
+    /// @since 3.10.0
+    FoldingRangeClientCapabilities? foldingRange,
+
+    /// Capabilities specific to the `textDocument/formatting` request.
+    DocumentFormattingClientCapabilities? formatting,
 
     /// Capabilities specific to the `textDocument/hover` request.
     HoverClientCapabilities? hover,
 
-    /// Capabilities specific to the `textDocument/completion` request.
-    CompletionClientCapabilities? completion,
+    /// Capabilities specific to the `textDocument/implementation` request.
+    /// @since 3.6.0
+    ImplementationClientCapabilities? implementation,
+
+    /// Capabilities specific to the `textDocument/inlayHint` request.
+    /// @since 3.17.0
+    InlayHintClientCapabilities? inlayHint,
+
+    /// Client capabilities specific to inline completions.
+    /// @since 3.18.0 @proposed
+    InlineCompletionClientCapabilities? inlineCompletion,
+
+    /// Capabilities specific to the `textDocument/inlineValue` request.
+    /// @since 3.17.0
+    InlineValueClientCapabilities? inlineValue,
+
+    /// Capabilities specific to the `textDocument/linkedEditingRange` request.
+    /// @since 3.16.0
+    LinkedEditingRangeClientCapabilities? linkedEditingRange,
+
+    /// Client capabilities specific to the `textDocument/moniker` request.
+    /// @since 3.16.0
+    MonikerClientCapabilities? moniker,
+
+    /// Capabilities specific to the `textDocument/onTypeFormatting` request.
+    DocumentOnTypeFormattingClientCapabilities? onTypeFormatting,
+
+    /// Capabilities specific to the `textDocument/publishDiagnostics`
+    /// notification.
+    PublishDiagnosticsClientCapabilities? publishDiagnostics,
+
+    /// Capabilities specific to the `textDocument/rangeFormatting` request.
+    DocumentRangeFormattingClientCapabilities? rangeFormatting,
+
+    /// Capabilities specific to the `textDocument/references` request.
+    ReferenceClientCapabilities? references,
+
+    /// Capabilities specific to the `textDocument/rename` request.
+    RenameClientCapabilities? rename,
+
+    /// Capabilities specific to the `textDocument/selectionRange` request.
+    /// @since 3.15.0
+    SelectionRangeClientCapabilities? selectionRange,
+
+    /// Capabilities specific to the various semantic token request.
+    /// @since 3.16.0
+    SemanticTokensClientCapabilities? semanticTokens,
+
+    /// Capabilities specific to the `textDocument/signatureHelp` request.
+    SignatureHelpClientCapabilities? signatureHelp,
 
     /// Defines which synchronization capabilities the client supports.
     TextDocumentSyncClientCapabilities? synchronization,
+
+    /// Capabilities specific to the `textDocument/typeDefinition` request.
+    /// @since 3.6.0
+    TypeDefinitionClientCapabilities? typeDefinition,
+
+    /// Capabilities specific to the various type hierarchy requests.
+    /// @since 3.17.0
+    TypeHierarchyClientCapabilities? typeHierarchy,
   }) = _TextDocumentClientCapabilities;
 
   factory TextDocumentClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$TextDocumentClientCapabilitiesFromJson(json);
 }
 
-/// Capabilities specific to the notebook document support.
-/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentClientCapabilities
     with _$NotebookDocumentClientCapabilities {
@@ -7419,11 +5848,13 @@ abstract class WindowClientCapabilities with _$WindowClientCapabilities {
       _$WindowClientCapabilitiesFromJson(json);
 }
 
-/// General client capabilities.
-/// @since 3.16.0
 @freezed
 abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
   const factory GeneralClientCapabilities({
+    /// Client capabilities specific to the client's markdown parser.
+    /// @since 3.16.0
+    MarkdownClientCapabilities? markdown,
+
     /// The position encodings supported by the client. Client and server have
     /// to agree on the same position encoding to ensure that offsets (e.g.
     /// character position in a line) are interpreted the same on both sides.
@@ -7438,10 +5869,6 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
     /// @since 3.17.0
     List<PositionEncodingKind>? positionEncodings,
 
-    /// Client capabilities specific to the client's markdown parser.
-    /// @since 3.16.0
-    MarkdownClientCapabilities? markdown,
-
     /// Client capabilities specific to regular expressions.
     /// @since 3.16.0
     RegularExpressionsClientCapabilities? regularExpressions,
@@ -7450,24 +5877,19 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
     /// (e.g. a request for which the client will not process the response
     /// anymore since the information is outdated).
     /// @since 3.17.0
-    ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,
+    BoolCancelStringsRetryOnContentModified? staleRequestSupport,
   }) = _GeneralClientCapabilities;
 
   factory GeneralClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$GeneralClientCapabilitiesFromJson(json);
 }
 
-/// A relative pattern is a helper to construct glob patterns that
-/// are matched relatively to a base URI. The common value for a
-/// `baseUri` is a workspace folder root, but it can be another
-/// absolute URI as well.
-/// @since 3.17.0
 @freezed
 abstract class RelativePattern with _$RelativePattern {
   const factory RelativePattern({
     /// A workspace folder or a base URI to which this pattern will be matched
     /// against relatively.
-    required RelativePatternBaseUriBase baseUri,
+    required Sealed63 baseUri,
 
     /// The actual glob pattern;
     required Pattern pattern,
@@ -7484,7 +5906,15 @@ abstract class WorkspaceEditClientCapabilities
     /// Whether the client in general supports change annotations on text
     /// edits, create file, rename file and delete file changes.
     /// @since 3.16.0
-    ({bool? groupsOnLabel})? changeAnnotationSupport,
+    BoolGroupsOnLabel? changeAnnotationSupport,
+
+    /// The client supports versioned document changes in `WorkspaceEdit`s
+    bool? documentChanges,
+
+    /// The failure handling strategy of a client if applying the workspace
+    /// edit fails.
+    /// @since 3.13.0
+    FailureHandlingKind? failureHandling,
 
     /// Whether the client normalizes line endings to the client specific
     /// setting. If set to `true` the client will normalize line ending
@@ -7493,18 +5923,10 @@ abstract class WorkspaceEditClientCapabilities
     /// @since 3.16.0
     bool? normalizesLineEndings,
 
-    /// The failure handling strategy of a client if applying the workspace
-    /// edit fails.
-    /// @since 3.13.0
-    FailureHandlingKind? failureHandling,
-
     /// The resource operations the client supports. Clients should at least
     /// support 'create', 'rename' and 'delete' files and folders.
     /// @since 3.13.0
     List<ResourceOperationKind>? resourceOperations,
-
-    /// The client supports versioned document changes in `WorkspaceEdit`s
-    bool? documentChanges,
   }) = _WorkspaceEditClientCapabilities;
 
   factory WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -7528,15 +5950,15 @@ abstract class DidChangeConfigurationClientCapabilities
 abstract class DidChangeWatchedFilesClientCapabilities
     with _$DidChangeWatchedFilesClientCapabilities {
   const factory DidChangeWatchedFilesClientCapabilities({
-    /// Whether the client has support for {@link RelativePattern relative
-    /// pattern} or not.
-    /// @since 3.17.0
-    bool? relativePatternSupport,
-
     /// Did change watched files notification supports dynamic registration.
     /// Please note that the current protocol doesn't support static
     /// configuration for file changes from the server side.
     bool? dynamicRegistration,
+
+    /// Whether the client has support for {@link RelativePattern relative
+    /// pattern} or not.
+    /// @since 3.17.0
+    bool? relativePatternSupport,
   }) = _DidChangeWatchedFilesClientCapabilities;
 
   factory DidChangeWatchedFilesClientCapabilities.fromJson(
@@ -7544,28 +5966,27 @@ abstract class DidChangeWatchedFilesClientCapabilities
   ) => _$DidChangeWatchedFilesClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities for a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolClientCapabilities
     with _$WorkspaceSymbolClientCapabilities {
   const factory WorkspaceSymbolClientCapabilities({
+    /// Symbol request supports dynamic registration.
+    bool? dynamicRegistration,
+
     /// The client support partial workspace symbols. The client will send the
     /// request `workspaceSymbol/resolve` to the server to resolve additional
     /// properties.
     /// @since 3.17.0
-    ({List<String> properties})? resolveSupport,
+    StringsProperties? resolveSupport,
+
+    /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
+    /// request.
+    SymbolKindsValueSet? symbolKind,
 
     /// The client supports tags on `SymbolInformation`. Clients supporting
     /// tags have to handle unknown tags gracefully.
     /// @since 3.16.0
-    ({List<SymbolTag> valueSet})? tagSupport,
-
-    /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
-    /// request.
-    ({List<SymbolKind>? valueSet})? symbolKind,
-
-    /// Symbol request supports dynamic registration.
-    bool? dynamicRegistration,
+    SymbolTagsValueSet? tagSupport,
   }) = _WorkspaceSymbolClientCapabilities;
 
   factory WorkspaceSymbolClientCapabilities.fromJson(
@@ -7573,7 +5994,6 @@ abstract class WorkspaceSymbolClientCapabilities
   ) => _$WorkspaceSymbolClientCapabilitiesFromJson(json);
 }
 
-/// The client capabilities of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandClientCapabilities
     with _$ExecuteCommandClientCapabilities {
@@ -7587,7 +6007,6 @@ abstract class ExecuteCommandClientCapabilities
   ) => _$ExecuteCommandClientCapabilitiesFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensWorkspaceClientCapabilities
     with _$SemanticTokensWorkspaceClientCapabilities {
@@ -7606,7 +6025,6 @@ abstract class SemanticTokensWorkspaceClientCapabilities
   ) => _$SemanticTokensWorkspaceClientCapabilitiesFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class CodeLensWorkspaceClientCapabilities
     with _$CodeLensWorkspaceClientCapabilities {
@@ -7625,44 +6043,37 @@ abstract class CodeLensWorkspaceClientCapabilities
   ) => _$CodeLensWorkspaceClientCapabilitiesFromJson(json);
 }
 
-/// Capabilities relating to events from file operations by the user
-/// in the client.
-/// These events do not come from the file system, they come from
-/// user operations like renaming a file in the UI.
-/// @since 3.16.0
 @freezed
 abstract class FileOperationClientCapabilities
     with _$FileOperationClientCapabilities {
   const factory FileOperationClientCapabilities({
-    /// The client has support for sending willDeleteFiles requests.
-    bool? willDelete,
+    /// The client has support for sending didCreateFiles notifications.
+    bool? didCreate,
 
     /// The client has support for sending didDeleteFiles notifications.
     bool? didDelete,
 
-    /// The client has support for sending willRenameFiles requests.
-    bool? willRename,
-
     /// The client has support for sending didRenameFiles notifications.
     bool? didRename,
-
-    /// The client has support for sending willCreateFiles requests.
-    bool? willCreate,
-
-    /// The client has support for sending didCreateFiles notifications.
-    bool? didCreate,
 
     /// Whether the client supports dynamic registration for file
     /// requests/notifications.
     bool? dynamicRegistration,
+
+    /// The client has support for sending willCreateFiles requests.
+    bool? willCreate,
+
+    /// The client has support for sending willDeleteFiles requests.
+    bool? willDelete,
+
+    /// The client has support for sending willRenameFiles requests.
+    bool? willRename,
   }) = _FileOperationClientCapabilities;
 
   factory FileOperationClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$FileOperationClientCapabilitiesFromJson(json);
 }
 
-/// Client workspace capabilities specific to inline values.
-/// @since 3.17.0
 @freezed
 abstract class InlineValueWorkspaceClientCapabilities
     with _$InlineValueWorkspaceClientCapabilities {
@@ -7681,8 +6092,6 @@ abstract class InlineValueWorkspaceClientCapabilities
   ) => _$InlineValueWorkspaceClientCapabilitiesFromJson(json);
 }
 
-/// Client workspace capabilities specific to inlay hints.
-/// @since 3.17.0
 @freezed
 abstract class InlayHintWorkspaceClientCapabilities
     with _$InlayHintWorkspaceClientCapabilities {
@@ -7701,9 +6110,6 @@ abstract class InlayHintWorkspaceClientCapabilities
   ) => _$InlayHintWorkspaceClientCapabilitiesFromJson(json);
 }
 
-/// Workspace client capabilities specific to diagnostic pull
-/// requests.
-/// @since 3.17.0
 @freezed
 abstract class DiagnosticWorkspaceClientCapabilities
     with _$DiagnosticWorkspaceClientCapabilities {
@@ -7722,8 +6128,6 @@ abstract class DiagnosticWorkspaceClientCapabilities
   ) => _$DiagnosticWorkspaceClientCapabilitiesFromJson(json);
 }
 
-/// Client workspace capabilities specific to folding ranges
-/// @since 3.18.0 @proposed
 @freezed
 abstract class FoldingRangeWorkspaceClientCapabilities
     with _$FoldingRangeWorkspaceClientCapabilities {
@@ -7750,16 +6154,16 @@ abstract class TextDocumentSyncClientCapabilities
     /// The client supports did save notifications.
     bool? didSave,
 
-    /// The client supports sending a will save request and waits for a
-    /// response providing text edits which will be applied to the document
-    /// before it is saved.
-    bool? willSaveWaitUntil,
+    /// Whether text document synchronization supports dynamic registration.
+    bool? dynamicRegistration,
 
     /// The client supports sending will save notifications.
     bool? willSave,
 
-    /// Whether text document synchronization supports dynamic registration.
-    bool? dynamicRegistration,
+    /// The client supports sending a will save request and waits for a
+    /// response providing text edits which will be applied to the document
+    /// before it is saved.
+    bool? willSaveWaitUntil,
   }) = _TextDocumentSyncClientCapabilities;
 
   factory TextDocumentSyncClientCapabilities.fromJson(
@@ -7767,45 +6171,33 @@ abstract class TextDocumentSyncClientCapabilities
   ) => _$TextDocumentSyncClientCapabilitiesFromJson(json);
 }
 
-/// Completion client capabilities
 @freezed
 abstract class CompletionClientCapabilities
     with _$CompletionClientCapabilities {
   const factory CompletionClientCapabilities({
+    /// The client supports the following `CompletionItem` specific
+    /// capabilities.
+    BoolCommitCharactersSupportBoolDeprecatedSupportBoolInsertReplaceSupportBoolLabelDetailsSupportBoolPreselectSupportBoolSnippetSupportCompletionItemTagsValueSetTagSupportInsertTextModesValueSetInsertTextModeSupportMarkupKindsDocumentationFormatStringsPropertiesResolveSupport?
+    completionItem,
+    CompletionItemKindsValueSet? completionItemKind,
+
     /// The client supports the following `CompletionList` specific
     /// capabilities.
     /// @since 3.17.0
-    ({List<String>? itemDefaults})? completionList,
+    StringsItemDefaults? completionList,
 
     /// The client supports to send additional context information for a
     /// `textDocument/completion` request.
     bool? contextSupport,
+
+    /// Whether completion supports dynamic registration.
+    bool? dynamicRegistration,
 
     /// Defines how the client handles whitespace and indentation when
     /// accepting a completion item that uses multi line text in either
     /// `insertText` or `textEdit`.
     /// @since 3.17.0
     InsertTextMode? insertTextMode,
-    ({List<CompletionItemKind>? valueSet})? completionItemKind,
-
-    /// The client supports the following `CompletionItem` specific
-    /// capabilities.
-    ({
-      bool? snippetSupport,
-      bool? commitCharactersSupport,
-      List<MarkupKind>? documentationFormat,
-      bool? deprecatedSupport,
-      bool? preselectSupport,
-      ({List<CompletionItemTag> valueSet})? tagSupport,
-      bool? insertReplaceSupport,
-      ({List<String> properties})? resolveSupport,
-      ({List<InsertTextMode> valueSet})? insertTextModeSupport,
-      bool? labelDetailsSupport,
-    })?
-    completionItem,
-
-    /// Whether completion supports dynamic registration.
-    bool? dynamicRegistration,
   }) = _CompletionClientCapabilities;
 
   factory CompletionClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -7827,7 +6219,6 @@ abstract class HoverClientCapabilities with _$HoverClientCapabilities {
       _$HoverClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpClientCapabilities
     with _$SignatureHelpClientCapabilities {
@@ -7839,72 +6230,65 @@ abstract class SignatureHelpClientCapabilities
     /// @since 3.15.0
     bool? contextSupport,
 
-    /// The client supports the following `SignatureInformation` specific
-    /// properties.
-    ({
-      List<MarkupKind>? documentationFormat,
-      ({bool? labelOffsetSupport})? parameterInformation,
-      bool? activeParameterSupport,
-    })?
-    signatureInformation,
-
     /// Whether signature help supports dynamic registration.
     bool? dynamicRegistration,
+
+    /// The client supports the following `SignatureInformation` specific
+    /// properties.
+    BoolActiveParameterSupportBoolLabelOffsetSupportParameterInformationMarkupKindsDocumentationFormat?
+    signatureInformation,
   }) = _SignatureHelpClientCapabilities;
 
   factory SignatureHelpClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$SignatureHelpClientCapabilitiesFromJson(json);
 }
 
-/// @since 3.14.0
 @freezed
 abstract class DeclarationClientCapabilities
     with _$DeclarationClientCapabilities {
   const factory DeclarationClientCapabilities({
-    /// The client supports additional metadata in the form of declaration
-    /// links.
-    bool? linkSupport,
-
     /// Whether declaration supports dynamic registration. If this is set to
     /// `true` the client supports the new `DeclarationRegistrationOptions`
     /// return value for the corresponding server capability as well.
     bool? dynamicRegistration,
+
+    /// The client supports additional metadata in the form of declaration
+    /// links.
+    bool? linkSupport,
   }) = _DeclarationClientCapabilities;
 
   factory DeclarationClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$DeclarationClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionClientCapabilities
     with _$DefinitionClientCapabilities {
   const factory DefinitionClientCapabilities({
+    /// Whether definition supports dynamic registration.
+    bool? dynamicRegistration,
+
     /// The client supports additional metadata in the form of definition links.
     /// @since 3.14.0
     bool? linkSupport,
-
-    /// Whether definition supports dynamic registration.
-    bool? dynamicRegistration,
   }) = _DefinitionClientCapabilities;
 
   factory DefinitionClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$DefinitionClientCapabilitiesFromJson(json);
 }
 
-/// Since 3.6.0
 @freezed
 abstract class TypeDefinitionClientCapabilities
     with _$TypeDefinitionClientCapabilities {
   const factory TypeDefinitionClientCapabilities({
-    /// The client supports additional metadata in the form of definition links.
-    /// Since 3.14.0
-    bool? linkSupport,
-
     /// Whether implementation supports dynamic registration. If this is set to
     /// `true` the client supports the new `TypeDefinitionRegistrationOptions`
     /// return value for the corresponding server capability as well.
     bool? dynamicRegistration,
+
+    /// The client supports additional metadata in the form of definition links.
+    /// Since 3.14.0
+    bool? linkSupport,
   }) = _TypeDefinitionClientCapabilities;
 
   factory TypeDefinitionClientCapabilities.fromJson(
@@ -7912,19 +6296,18 @@ abstract class TypeDefinitionClientCapabilities
   ) => _$TypeDefinitionClientCapabilitiesFromJson(json);
 }
 
-/// @since 3.6.0
 @freezed
 abstract class ImplementationClientCapabilities
     with _$ImplementationClientCapabilities {
   const factory ImplementationClientCapabilities({
-    /// The client supports additional metadata in the form of definition links.
-    /// @since 3.14.0
-    bool? linkSupport,
-
     /// Whether implementation supports dynamic registration. If this is set to
     /// `true` the client supports the new `ImplementationRegistrationOptions`
     /// return value for the corresponding server capability as well.
     bool? dynamicRegistration,
+
+    /// The client supports additional metadata in the form of definition links.
+    /// @since 3.14.0
+    bool? linkSupport,
   }) = _ImplementationClientCapabilities;
 
   factory ImplementationClientCapabilities.fromJson(
@@ -7932,7 +6315,6 @@ abstract class ImplementationClientCapabilities
   ) => _$ImplementationClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
   const factory ReferenceClientCapabilities({
@@ -7944,7 +6326,6 @@ abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
       _$ReferenceClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightClientCapabilities
     with _$DocumentHighlightClientCapabilities {
@@ -7958,31 +6339,30 @@ abstract class DocumentHighlightClientCapabilities
   ) => _$DocumentHighlightClientCapabilitiesFromJson(json);
 }
 
-/// Client Capabilities for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolClientCapabilities
     with _$DocumentSymbolClientCapabilities {
   const factory DocumentSymbolClientCapabilities({
+    /// Whether document symbol supports dynamic registration.
+    bool? dynamicRegistration,
+
+    /// The client supports hierarchical document symbols.
+    bool? hierarchicalDocumentSymbolSupport,
+
     /// The client supports an additional label presented in the UI when
     /// registering a document symbol provider.
     /// @since 3.16.0
     bool? labelSupport,
 
+    /// Specific capabilities for the `SymbolKind` in the
+    /// `textDocument/documentSymbol` request.
+    SymbolKindsValueSet? symbolKind,
+
     /// The client supports tags on `SymbolInformation`. Tags are supported on
     /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
     /// Clients supporting tags have to handle unknown tags gracefully.
     /// @since 3.16.0
-    ({List<SymbolTag> valueSet})? tagSupport,
-
-    /// The client supports hierarchical document symbols.
-    bool? hierarchicalDocumentSymbolSupport,
-
-    /// Specific capabilities for the `SymbolKind` in the
-    /// `textDocument/documentSymbol` request.
-    ({List<SymbolKind>? valueSet})? symbolKind,
-
-    /// Whether document symbol supports dynamic registration.
-    bool? dynamicRegistration,
+    SymbolTagsValueSet? tagSupport,
   }) = _DocumentSymbolClientCapabilities;
 
   factory DocumentSymbolClientCapabilities.fromJson(
@@ -7990,22 +6370,15 @@ abstract class DocumentSymbolClientCapabilities
   ) => _$DocumentSymbolClientCapabilitiesFromJson(json);
 }
 
-/// The Client Capabilities of a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionClientCapabilities
     with _$CodeActionClientCapabilities {
   const factory CodeActionClientCapabilities({
-    /// Whether the client honors the change annotations in text edits and
-    /// resource operations returned via the `CodeAction#edit` property by for
-    /// example presenting the workspace edit in the user interface and asking
-    /// for confirmation.
-    /// @since 3.16.0
-    bool? honorsChangeAnnotations,
-
-    /// Whether the client supports resolving additional code action properties
-    /// via a separate `codeAction/resolve` request.
-    /// @since 3.16.0
-    ({List<String> properties})? resolveSupport,
+    /// The client support code action literals of type `CodeAction` as a valid
+    /// response of the `textDocument/codeAction` request. If the property is
+    /// not set the request can only return `Command` literals.
+    /// @since 3.8.0
+    CodeActionKindsValueSetCodeActionKind? codeActionLiteralSupport,
 
     /// Whether code action supports the `data` property which is preserved
     /// between a `textDocument/codeAction` and a `codeAction/resolve` request.
@@ -8016,26 +6389,30 @@ abstract class CodeActionClientCapabilities
     /// @since 3.16.0
     bool? disabledSupport,
 
+    /// Whether code action supports dynamic registration.
+    bool? dynamicRegistration,
+
+    /// Whether the client honors the change annotations in text edits and
+    /// resource operations returned via the `CodeAction#edit` property by for
+    /// example presenting the workspace edit in the user interface and asking
+    /// for confirmation.
+    /// @since 3.16.0
+    bool? honorsChangeAnnotations,
+
     /// Whether code action supports the `isPreferred` property.
     /// @since 3.15.0
     bool? isPreferredSupport,
 
-    /// The client support code action literals of type `CodeAction` as a valid
-    /// response of the `textDocument/codeAction` request. If the property is
-    /// not set the request can only return `Command` literals.
-    /// @since 3.8.0
-    ({({List<CodeActionKind> valueSet}) codeActionKind})?
-    codeActionLiteralSupport,
-
-    /// Whether code action supports dynamic registration.
-    bool? dynamicRegistration,
+    /// Whether the client supports resolving additional code action properties
+    /// via a separate `codeAction/resolve` request.
+    /// @since 3.16.0
+    StringsProperties? resolveSupport,
   }) = _CodeActionClientCapabilities;
 
   factory CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$CodeActionClientCapabilitiesFromJson(json);
 }
 
-/// The client capabilities  of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
   const factory CodeLensClientCapabilities({
@@ -8047,17 +6424,16 @@ abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
       _$CodeLensClientCapabilitiesFromJson(json);
 }
 
-/// The client capabilities of a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkClientCapabilities
     with _$DocumentLinkClientCapabilities {
   const factory DocumentLinkClientCapabilities({
+    /// Whether document link supports dynamic registration.
+    bool? dynamicRegistration,
+
     /// Whether the client supports the `tooltip` property on `DocumentLink`.
     /// @since 3.15.0
     bool? tooltipSupport,
-
-    /// Whether document link supports dynamic registration.
-    bool? dynamicRegistration,
   }) = _DocumentLinkClientCapabilities;
 
   factory DocumentLinkClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -8078,7 +6454,6 @@ abstract class DocumentColorClientCapabilities
       _$DocumentColorClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities of a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingClientCapabilities
     with _$DocumentFormattingClientCapabilities {
@@ -8092,17 +6467,16 @@ abstract class DocumentFormattingClientCapabilities
   ) => _$DocumentFormattingClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities of a {@link DocumentRangeFormattingRequest}.
 @freezed
 abstract class DocumentRangeFormattingClientCapabilities
     with _$DocumentRangeFormattingClientCapabilities {
   const factory DocumentRangeFormattingClientCapabilities({
+    /// Whether range formatting supports dynamic registration.
+    bool? dynamicRegistration,
+
     /// Whether the client supports formatting multiple ranges at once.
     /// @since 3.18.0 @proposed
     bool? rangesSupport,
-
-    /// Whether range formatting supports dynamic registration.
-    bool? dynamicRegistration,
   }) = _DocumentRangeFormattingClientCapabilities;
 
   factory DocumentRangeFormattingClientCapabilities.fromJson(
@@ -8110,7 +6484,6 @@ abstract class DocumentRangeFormattingClientCapabilities
   ) => _$DocumentRangeFormattingClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities of a {@link DocumentOnTypeFormattingRequest}.
 @freezed
 abstract class DocumentOnTypeFormattingClientCapabilities
     with _$DocumentOnTypeFormattingClientCapabilities {
@@ -8127,6 +6500,9 @@ abstract class DocumentOnTypeFormattingClientCapabilities
 @freezed
 abstract class RenameClientCapabilities with _$RenameClientCapabilities {
   const factory RenameClientCapabilities({
+    /// Whether rename supports dynamic registration.
+    bool? dynamicRegistration,
+
     /// Whether the client honors the change annotations in text edits and
     /// resource operations returned via the rename request's workspace edit by
     /// for example presenting the workspace edit in the user interface and
@@ -8134,18 +6510,15 @@ abstract class RenameClientCapabilities with _$RenameClientCapabilities {
     /// @since 3.16.0
     bool? honorsChangeAnnotations,
 
-    /// Client supports the default behavior result.
-    /// The value indicates the default behavior used by the client.
-    /// @since 3.16.0
-    PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,
-
     /// Client supports testing for validity of rename operations before
     /// execution.
     /// @since 3.12.0
     bool? prepareSupport,
 
-    /// Whether rename supports dynamic registration.
-    bool? dynamicRegistration,
+    /// Client supports the default behavior result.
+    /// The value indicates the default behavior used by the client.
+    /// @since 3.16.0
+    PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,
   }) = _RenameClientCapabilities;
 
   factory RenameClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -8156,13 +6529,19 @@ abstract class RenameClientCapabilities with _$RenameClientCapabilities {
 abstract class FoldingRangeClientCapabilities
     with _$FoldingRangeClientCapabilities {
   const factory FoldingRangeClientCapabilities({
+    /// Whether implementation supports dynamic registration for folding range
+    /// providers. If this is set to `true` the client supports the new
+    /// `FoldingRangeRegistrationOptions` return value for the corresponding
+    /// server capability as well.
+    bool? dynamicRegistration,
+
     /// Specific options for the folding range.
     /// @since 3.17.0
-    ({bool? collapsedText})? foldingRange,
+    BoolCollapsedText? foldingRange,
 
     /// Specific options for the folding range kind.
     /// @since 3.17.0
-    ({List<FoldingRangeKind>? valueSet})? foldingRangeKind,
+    FoldingRangeKindsValueSet? foldingRangeKind,
 
     /// If set, the client signals that it only supports folding complete
     /// lines. If set, client will ignore specified `startCharacter` and
@@ -8173,12 +6552,6 @@ abstract class FoldingRangeClientCapabilities
     /// per document. The value serves as a hint, servers are free to follow
     /// the limit.
     int? rangeLimit,
-
-    /// Whether implementation supports dynamic registration for folding range
-    /// providers. If this is set to `true` the client supports the new
-    /// `FoldingRangeRegistrationOptions` return value for the corresponding
-    /// server capability as well.
-    bool? dynamicRegistration,
   }) = _FoldingRangeClientCapabilities;
 
   factory FoldingRangeClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -8201,34 +6574,33 @@ abstract class SelectionRangeClientCapabilities
   ) => _$SelectionRangeClientCapabilitiesFromJson(json);
 }
 
-/// The publish diagnostic client capabilities.
 @freezed
 abstract class PublishDiagnosticsClientCapabilities
     with _$PublishDiagnosticsClientCapabilities {
   const factory PublishDiagnosticsClientCapabilities({
+    /// Client supports a codeDescription property
+    /// @since 3.16.0
+    bool? codeDescriptionSupport,
+
     /// Whether code action supports the `data` property which is preserved
     /// between a `textDocument/publishDiagnostics` and
     /// `textDocument/codeAction` request.
     /// @since 3.16.0
     bool? dataSupport,
 
-    /// Client supports a codeDescription property
-    /// @since 3.16.0
-    bool? codeDescriptionSupport,
-
-    /// Whether the client interprets the version property of the
-    /// `textDocument/publishDiagnostics` notification's parameter.
-    /// @since 3.15.0
-    bool? versionSupport,
+    /// Whether the clients accepts diagnostics with related information.
+    bool? relatedInformation,
 
     /// Client supports the tag property to provide meta data about a
     /// diagnostic. Clients supporting tags have to handle unknown tags
     /// gracefully.
     /// @since 3.15.0
-    ({List<DiagnosticTag> valueSet})? tagSupport,
+    DiagnosticTagsValueSet? tagSupport,
 
-    /// Whether the clients accepts diagnostics with related information.
-    bool? relatedInformation,
+    /// Whether the client interprets the version property of the
+    /// `textDocument/publishDiagnostics` notification's parameter.
+    /// @since 3.15.0
+    bool? versionSupport,
   }) = _PublishDiagnosticsClientCapabilities;
 
   factory PublishDiagnosticsClientCapabilities.fromJson(
@@ -8236,7 +6608,6 @@ abstract class PublishDiagnosticsClientCapabilities
   ) => _$PublishDiagnosticsClientCapabilitiesFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class CallHierarchyClientCapabilities
     with _$CallHierarchyClientCapabilities {
@@ -8252,34 +6623,10 @@ abstract class CallHierarchyClientCapabilities
       _$CallHierarchyClientCapabilitiesFromJson(json);
 }
 
-/// @since 3.16.0
 @freezed
 abstract class SemanticTokensClientCapabilities
     with _$SemanticTokensClientCapabilities {
   const factory SemanticTokensClientCapabilities({
-    /// Which requests the client supports and might send to the server
-    /// depending on the server's capability. Please note that clients might
-    /// not show semantic tokens or degrade some of the user experience if a
-    /// range or full request is advertised by the client but not provided by
-    /// the server. If for example the client capability `requests.full` and
-    /// `request.range` are both set to true but the server only provides a
-    /// range provider the client might not render a minimap correctly or might
-    /// even decide to not show any semantic tokens at all.
-    required ({
-      RangeBase? range,
-      SemanticTokensClientCapabilitiesFullBase? full,
-    })
-    requests,
-
-    /// The token types that the client supports.
-    required List<String> tokenTypes,
-
-    /// The token modifiers that the client supports.
-    required List<String> tokenModifiers,
-
-    /// The token formats the clients supports.
-    required List<TokenFormat> formats,
-
     /// Whether the client uses semantic tokens to augment existing syntax
     /// tokens. If set to `true` client side created syntax tokens and semantic
     /// tokens are both used for colorization. If set to `false` the client
@@ -8288,11 +6635,14 @@ abstract class SemanticTokensClientCapabilities
     /// @since 3.17.0
     bool? augmentsSyntaxTokens,
 
-    /// Whether the client allows the server to actively cancel a semantic
-    /// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
-    /// If a server does the client needs to retrigger the request.
-    /// @since 3.17.0
-    bool? serverCancelSupport,
+    /// Whether implementation supports dynamic registration. If this is set to
+    /// `true` the client supports the new `(TextDocumentRegistrationOptions &
+    /// StaticRegistrationOptions)` return value for the corresponding server
+    /// capability as well.
+    bool? dynamicRegistration,
+
+    /// The token formats the clients supports.
+    required List<TokenFormat> formats,
 
     /// Whether the client supports tokens that can span multiple lines.
     bool? multilineTokenSupport,
@@ -8300,11 +6650,27 @@ abstract class SemanticTokensClientCapabilities
     /// Whether the client supports tokens that can overlap each other.
     bool? overlappingTokenSupport,
 
-    /// Whether implementation supports dynamic registration. If this is set to
-    /// `true` the client supports the new `(TextDocumentRegistrationOptions &
-    /// StaticRegistrationOptions)` return value for the corresponding server
-    /// capability as well.
-    bool? dynamicRegistration,
+    /// Which requests the client supports and might send to the server
+    /// depending on the server's capability. Please note that clients might
+    /// not show semantic tokens or degrade some of the user experience if a
+    /// range or full request is advertised by the client but not provided by
+    /// the server. If for example the client capability `requests.full` and
+    /// `request.range` are both set to true but the server only provides a
+    /// range provider the client might not render a minimap correctly or might
+    /// even decide to not show any semantic tokens at all.
+    required BoolOrBoolDeltaFullOrBoolRange requests,
+
+    /// Whether the client allows the server to actively cancel a semantic
+    /// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
+    /// If a server does the client needs to retrigger the request.
+    /// @since 3.17.0
+    bool? serverCancelSupport,
+
+    /// The token modifiers that the client supports.
+    required List<String> tokenModifiers,
+
+    /// The token types that the client supports.
+    required List<String> tokenTypes,
   }) = _SemanticTokensClientCapabilities;
 
   factory SemanticTokensClientCapabilities.fromJson(
@@ -8312,8 +6678,6 @@ abstract class SemanticTokensClientCapabilities
   ) => _$SemanticTokensClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities for the linked editing range request.
-/// @since 3.16.0
 @freezed
 abstract class LinkedEditingRangeClientCapabilities
     with _$LinkedEditingRangeClientCapabilities {
@@ -8330,8 +6694,6 @@ abstract class LinkedEditingRangeClientCapabilities
   ) => _$LinkedEditingRangeClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities specific to the moniker request.
-/// @since 3.16.0
 @freezed
 abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
   const factory MonikerClientCapabilities({
@@ -8345,7 +6707,6 @@ abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
       _$MonikerClientCapabilitiesFromJson(json);
 }
 
-/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyClientCapabilities
     with _$TypeHierarchyClientCapabilities {
@@ -8361,8 +6722,6 @@ abstract class TypeHierarchyClientCapabilities
       _$TypeHierarchyClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities specific to inline values.
-/// @since 3.17.0
 @freezed
 abstract class InlineValueClientCapabilities
     with _$InlineValueClientCapabilities {
@@ -8376,45 +6735,39 @@ abstract class InlineValueClientCapabilities
       _$InlineValueClientCapabilitiesFromJson(json);
 }
 
-/// Inlay hint client capabilities.
-/// @since 3.17.0
 @freezed
 abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
   const factory InlayHintClientCapabilities({
-    /// Indicates which properties a client can resolve lazily on an inlay hint.
-    ({List<String> properties})? resolveSupport,
-
     /// Whether inlay hints support dynamic registration.
     bool? dynamicRegistration,
+
+    /// Indicates which properties a client can resolve lazily on an inlay hint.
+    StringsProperties? resolveSupport,
   }) = _InlayHintClientCapabilities;
 
   factory InlayHintClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$InlayHintClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities specific to diagnostic pull requests.
-/// @since 3.17.0
 @freezed
 abstract class DiagnosticClientCapabilities
     with _$DiagnosticClientCapabilities {
   const factory DiagnosticClientCapabilities({
-    /// Whether the clients supports related documents for document diagnostic
-    /// pulls.
-    bool? relatedDocumentSupport,
-
     /// Whether implementation supports dynamic registration. If this is set to
     /// `true` the client supports the new `(TextDocumentRegistrationOptions &
     /// StaticRegistrationOptions)` return value for the corresponding server
     /// capability as well.
     bool? dynamicRegistration,
+
+    /// Whether the clients supports related documents for document diagnostic
+    /// pulls.
+    bool? relatedDocumentSupport,
   }) = _DiagnosticClientCapabilities;
 
   factory DiagnosticClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$DiagnosticClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities specific to inline completions.
-/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionClientCapabilities
     with _$InlineCompletionClientCapabilities {
@@ -8429,20 +6782,18 @@ abstract class InlineCompletionClientCapabilities
   ) => _$InlineCompletionClientCapabilitiesFromJson(json);
 }
 
-/// Notebook specific client capabilities.
-/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentSyncClientCapabilities
     with _$NotebookDocumentSyncClientCapabilities {
   const factory NotebookDocumentSyncClientCapabilities({
-    /// The client supports sending execution summary data per cell.
-    bool? executionSummarySupport,
-
     /// Whether implementation supports dynamic registration. If this is set to
     /// `true` the client supports the new `(TextDocumentRegistrationOptions &
     /// StaticRegistrationOptions)` return value for the corresponding server
     /// capability as well.
     bool? dynamicRegistration,
+
+    /// The client supports sending execution summary data per cell.
+    bool? executionSummarySupport,
   }) = _NotebookDocumentSyncClientCapabilities;
 
   factory NotebookDocumentSyncClientCapabilities.fromJson(
@@ -8450,13 +6801,12 @@ abstract class NotebookDocumentSyncClientCapabilities
   ) => _$NotebookDocumentSyncClientCapabilitiesFromJson(json);
 }
 
-/// Show message request client capabilities
 @freezed
 abstract class ShowMessageRequestClientCapabilities
     with _$ShowMessageRequestClientCapabilities {
   const factory ShowMessageRequestClientCapabilities({
     /// Capabilities specific to the `MessageActionItem` type.
-    ({bool? additionalPropertiesSupport})? messageActionItem,
+    BoolAdditionalPropertiesSupport? messageActionItem,
   }) = _ShowMessageRequestClientCapabilities;
 
   factory ShowMessageRequestClientCapabilities.fromJson(
@@ -8464,8 +6814,6 @@ abstract class ShowMessageRequestClientCapabilities
   ) => _$ShowMessageRequestClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities for the showDocument request.
-/// @since 3.16.0
 @freezed
 abstract class ShowDocumentClientCapabilities
     with _$ShowDocumentClientCapabilities {
@@ -8478,8 +6826,6 @@ abstract class ShowDocumentClientCapabilities
       _$ShowDocumentClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities specific to regular expressions.
-/// @since 3.16.0
 @freezed
 abstract class RegularExpressionsClientCapabilities
     with _$RegularExpressionsClientCapabilities {
@@ -8496,17 +6842,15 @@ abstract class RegularExpressionsClientCapabilities
   ) => _$RegularExpressionsClientCapabilitiesFromJson(json);
 }
 
-/// Client capabilities specific to the used markdown parser.
-/// @since 3.16.0
 @freezed
 abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
   const factory MarkdownClientCapabilities({
-    /// The name of the parser.
-    required String parser,
-
     /// A list of HTML tags that the client allows / supports in Markdown.
     /// @since 3.17.0
     List<String>? allowedTags,
+
+    /// The name of the parser.
+    required String parser,
 
     /// The version of the parser.
     String? version,
