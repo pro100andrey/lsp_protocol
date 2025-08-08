@@ -28,17 +28,17 @@ class PropertySymbol extends Symbol {
 
 class TypedefSymbol extends Symbol {
   const TypedefSymbol({
-    required this.name,
     required this.type,
+    required this.definition,
     required this.doc,
   });
 
-  final String name;
   final String type;
+  final String definition;
   final String? doc;
 
   @override
-  List<Object?> get props => [name, type, doc];
+  List<Object?> get props => [type, definition, doc];
 }
 
 class LiteralSymbol extends Symbol {

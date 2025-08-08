@@ -50,8 +50,8 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.addAll(_generateFreezedHeader());
         b.body.add(visitMetaData(protocol.metaData));
 
-        for (final typedef in _symbols.typedefs) {
-          b.body.add(_generateTypedef(typedef));
+        for (final def in _symbols.typedefs) {
+          b.body.add(_generateTypedef(def));
         }
 
         for (final literal in _symbols.literals) {
@@ -104,7 +104,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Spec _generateLiteralTypeAlias(LiteralSymbol symbol) {
     final def = TypeDef((b) {
       b
-        ..name = symbol.type
+        ..name = _symbols.displayType(symbol.type)
         ..docs.addAll([
           '/// Represents a literal type for ${symbol.type}.',
         ])
@@ -129,8 +129,8 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Spec _generateTypedef(TypedefSymbol symbol) => TypeDef((b) {
     b
       ..docs.addAll(formatDocComment(symbol.doc) ?? [])
-      ..name = symbol.name
-      ..definition = refer(symbol.type);
+      ..name = symbol.type
+      ..definition = refer(_symbols.displayType(symbol.definition));
   });
 
   Spec _generateStructure(StructureSymbol symbol) {
@@ -166,12 +166,16 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
                             ) ??
                             [];
 
+                        final type = _symbols
+                            .displayType(field.type)
+                            .optional(
+                              optional: field.optional,
+                            );
+
                         b
                           ..docs.addAll(fieldDocs)
-                          ..name = field.type
-                          ..type = refer(
-                            field.type.optional(optional: field.optional),
-                          )
+                          ..name = field.name
+                          ..type = refer(type)
                           ..named = true
                           ..required = !field.optional;
                       },
@@ -407,7 +411,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final baseClass = Class(
       (b) {
         b
-          ..name = symbol.type
+          ..name = _symbols.displayType(symbol.type)
           ..sealed = true;
 
         b.constructors.addAll(

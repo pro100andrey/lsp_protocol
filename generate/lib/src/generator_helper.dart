@@ -36,7 +36,17 @@ String literalToRecord({
   final record = RecordType(
     (rb) {
       final entries = <MapEntry<String, Reference>>[];
-      for (final prop in ref.value.properties) {
+      final props = List<MetaProperty>.from(ref.value.properties)
+        ..sort((a, b) {
+          final typeA = typeResolver(a.type);
+          final typeB = typeResolver(b.type);
+          final v1 = '${typeA.upperFirstLetter()}_${a.name}';
+          final v2 = '${typeB.upperFirstLetter()}_${b.name}';
+
+          return v1.compareTo(v2);
+        });
+
+      for (final prop in props) {
         final propType = typeResolver(prop.type);
         final propName = prop.name;
         final type = propType.optional(

@@ -14,6 +14,7 @@ final class Symbols {
   final Map<String, LiteralSymbol> _literalSymbols = {};
   final Map<String, SealedSymbol> _sealedMap = {};
   final Map<String, TupleSymbol> _renamedSymbols = {};
+  final Map<String, String> _displayNames = {};
 
   Iterable<LiteralSymbol> get literals => _literalSymbols.values;
   Iterable<StructureSymbol> get structures => _structureSymbols.values;
@@ -24,13 +25,47 @@ final class Symbols {
     _collectTypedefs(protocol);
     _collectTuples(protocol);
     _collectLiterals(protocol);
-    _collectStructures(protocol);
     _collectSealed(protocol);
+    _collectStructures(protocol);
   }
+
+  var _tupleIdx = 1;
+  void _setTupleDisplayType(String type) {
+    if (_displayNames.containsKey(type)) {
+      return; // Already set
+    }
+
+    _displayNames[type] = 'Tuple$_tupleIdx';
+    _tupleIdx++;
+  }
+
+  var _sealedIdx = 1;
+  void _setSealedDisplayType(String type) {
+    if (_displayNames.containsKey(type)) {
+      return; // Already set
+    }
+
+    _displayNames[type] = 'Sealed$_sealedIdx';
+    _sealedIdx++;
+  }
+
+  var _literalIdx = 1;
+  void _setLiteralDisplayType(String type) {
+    if (_displayNames.containsKey(type)) {
+      return; // Already set
+    }
+
+    _displayNames[type] = 'Literal$_literalIdx';
+    _literalIdx++;
+  }
+
+  String displayType(String type) => _displayNames[type] ?? type;
 
   void _collectTuples(MetaProtocol protocol) {
     void addTupleSymbol(TupleRef tupleRef) {
       final type = resolveType(tupleRef);
+      _setTupleDisplayType(type);
+
       if (_renamedSymbols.containsKey(type)) {
         return;
       }
@@ -58,8 +93,8 @@ final class Symbols {
     for (final typeAlias in protocol.typeAliases) {
       final type = resolveType(typeAlias.type);
       final symbol = TypedefSymbol(
-        name: typeAlias.name,
-        type: type,
+        type: typeAlias.name,
+        definition: type,
         doc: typeAlias.documentation,
       );
 
@@ -70,6 +105,8 @@ final class Symbols {
   void _collectSealed(MetaProtocol protocol) {
     void addSealedSymbol(OrRef orRef) {
       final type = resolveType(orRef);
+      _setSealedDisplayType(type);
+
       if (_sealedMap.containsKey(type)) {
         return;
       }
@@ -116,12 +153,14 @@ final class Symbols {
   void _collectLiterals(MetaProtocol protocol) {
     void addLiteralSymbol({required LiteralRef ref, required String origin}) {
       final type = _resolveLiteralType(ref);
+      _setLiteralDisplayType(type);
+
       if (_literalSymbols.containsKey(type)) {
         return;
       }
 
       String typeResolver(MetaReference ref) => ref.when(
-        literalRef: _resolveLiteralType,
+        literalRef: (ref) => displayType(type),
         arrayRef: (ref) => 'List<${typeResolver(ref.element)}>',
         orElse: resolveType,
       );
@@ -165,6 +204,14 @@ final class Symbols {
 
           addLiteralSymbol(ref: literalRef, origin: property.name);
         });
+
+        // property.type.onOrRef((orRef) {
+        //   for (final prop in orRef.items) {
+        //     prop.onLiteralRef((literalRef) {
+        //       addLiteralSymbol(ref: literalRef, origin: property.name);
+        //     });
+        //   }
+        // });
       }
     }
   }
@@ -270,21 +317,6 @@ final class Symbols {
     ),
   };
 
-  // String resolveDisplayName(MetaReference ref) {
-  //   final result = ref.when(
-  //     literalRef: _resolveLiteralType,
-  //     arrayRef: (ref) => '${resolveType(ref.element)}s',
-  //     orRef: _resolveOrRefName,
-  //     orElse: (ref) => null,
-  //   );
-
-  //   if (result != null) {
-  //     return result;
-  //   }
-
-  //   return resolveType(ref);
-  // }
-
   String _resolveOrRefName(OrRef orRef) {
     final parts = orRef.items.map(resolveType).toList(growable: false);
     final sortedParts = parts.sorted((a, b) => a.compareTo(b));
@@ -292,13 +324,6 @@ final class Symbols {
 
     return rawName;
   }
-
-  // String _resolveOrRefDisplayName(OrRef orRef) {
-  //   final rawName = _resolveOrRefName(orRef);
-  //   final resultName = renameType(rawName) ?? rawName;
-
-  //   return resultName;
-  // }
 
   String _resolveLiteralType(LiteralRef ref) {
     final parts = ref.value.properties
@@ -312,15 +337,4 @@ final class Symbols {
 
     return rawName;
   }
-
-  // String _resolveLiteralDisplayName(LiteralRef ref) {
-  //   final rawName = _resolveLiteralName(ref);
-  //   final resultName = renameType(rawName) ?? rawName;
-
-  //   if (resultName == rawName) {
-  //     print('need rename for literal: $rawName');
-  //   }
-
-  //   return resultName;
-  // }
 }
