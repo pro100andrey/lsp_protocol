@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import 'rename_map.dart';
-
 sealed class Symbol extends Equatable {
   const Symbol();
 
@@ -23,8 +21,6 @@ class PropertySymbol extends Symbol {
   final String type;
   final bool optional;
   final String? documentation;
-
-  String get displayType => renameType(type) ?? type;
 
   @override
   List<Object?> get props => [name, type, optional, documentation];
@@ -56,8 +52,6 @@ class LiteralSymbol extends Symbol {
   final String definition;
   final Object ref;
 
-  String get displayType => renameType(definition) ?? type;
-
   @override
   List<Object?> get props => [type, definition];
 }
@@ -71,7 +65,7 @@ class TupleSymbol extends Symbol {
   final List<String> types;
 
   @override
-  List<Object?> get props => [type,types];
+  List<Object?> get props => [type, types];
 }
 
 class SealedSymbol extends Symbol {
@@ -85,8 +79,6 @@ class SealedSymbol extends Symbol {
 
   final List<String> types;
   final String? doc;
-
-  String get displayType => renameType(type) ?? type;
 
   @override
   List<Object?> get props => [type, types, doc];

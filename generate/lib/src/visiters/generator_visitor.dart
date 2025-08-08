@@ -104,9 +104,9 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Spec _generateLiteralTypeAlias(LiteralSymbol symbol) {
     final def = TypeDef((b) {
       b
-        ..name = symbol.displayType
+        ..name = symbol.type
         ..docs.addAll([
-          '/// Represents a literal type for ${symbol.displayType}.',
+          '/// Represents a literal type for ${symbol.type}.',
         ])
         ..definition = refer(symbol.definition);
     });
@@ -168,7 +168,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
                         b
                           ..docs.addAll(fieldDocs)
-                          ..name = field.displayType
+                          ..name = field.type
                           ..type = refer(
                             field.type.optional(optional: field.optional),
                           )
@@ -407,7 +407,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final baseClass = Class(
       (b) {
         b
-          ..name = symbol.displayType
+          ..name = symbol.type
           ..sealed = true;
 
         b.constructors.addAll(
@@ -607,7 +607,7 @@ class ProtocolGenerator {
     final generatorVisitor = GeneratorVisitor(protocol);
     // Start the visitation process from the root MetaProtocol object
     final library = protocol.accept(generatorVisitor) as Library;
-    final result = specToCode(library);
+    final result = specToCode(library, format: false);
 
     return result;
   }

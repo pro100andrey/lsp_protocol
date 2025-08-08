@@ -6,7 +6,6 @@ import '../../generate.dart';
 import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../generator_helper.dart';
-import 'rename_map.dart';
 import 'symbol.dart';
 
 final class Symbols {
@@ -70,21 +69,21 @@ final class Symbols {
 
   void _collectSealed(MetaProtocol protocol) {
     void addSealedSymbol(OrRef orRef) {
-      final name = resolveType(orRef);
-      if (_sealedMap.containsKey(name)) {
+      final type = resolveType(orRef);
+      if (_sealedMap.containsKey(type)) {
         return;
       }
 
       final types = orRef.items.map(resolveType).toList(growable: false);
 
       final symbol = SealedSymbol(
-        type: name,
+        type: type,
         types: types,
       );
 
-      print('Added sealed symbol: ${symbol.displayType}');
+      print('Added sealed symbol: ${symbol.type}');
 
-      _sealedMap[name] = symbol;
+      _sealedMap[type] = symbol;
     }
 
     for (final typeAlias in protocol.typeAliases) {
@@ -116,13 +115,13 @@ final class Symbols {
 
   void _collectLiterals(MetaProtocol protocol) {
     void addLiteralSymbol({required LiteralRef ref, required String origin}) {
-      final name = _resolveLiteralName(ref);
-      if (_literalSymbols.containsKey(name)) {
+      final type = _resolveLiteralType(ref);
+      if (_literalSymbols.containsKey(type)) {
         return;
       }
 
       String typeResolver(MetaReference ref) => ref.when(
-        literalRef: _resolveLiteralDisplayName,
+        literalRef: _resolveLiteralType,
         arrayRef: (ref) => 'List<${typeResolver(ref.element)}>',
         orElse: resolveType,
       );
@@ -132,11 +131,11 @@ final class Symbols {
         typeResolver: typeResolver,
       );
 
-      final symbol = LiteralSymbol(type: name, definition: record, ref: ref);
+      final symbol = LiteralSymbol(type: type, definition: record, ref: ref);
 
-      _literalSymbols[name] = symbol;
+      _literalSymbols[type] = symbol;
 
-      print('Added literal symbol: ${symbol.displayType}');
+      print('Added literal symbol: ${symbol.type}');
     }
 
     for (final def in protocol.typeAliases) {
@@ -200,7 +199,6 @@ final class Symbols {
     }
   }
 
-
   Iterable<MetaProperty> getAllProperties(
     MetaStructure struct,
     Map<String, MetaStructure> structsByName,
@@ -230,25 +228,25 @@ final class Symbols {
 
   String resolveType(MetaReference ref) {
     final result = ref.when(
-      literalRef: _resolveLiteralName,
+      literalRef: _resolveLiteralType,
       typeRef: (ref) => ref.name,
-      arrayRef: _resolveArrayName,
-      baseRef: _resolveBaseName,
+      arrayRef: _resolveArrayType,
+      baseRef: _resolveBaseType,
       orRef: _resolveOrRefName,
       andRef: (ref) => 'AndRef',
-      mapRef: _resolveMapName,
-      tupleRef: _resolveTupleName,
+      mapRef: _resolveMapType,
+      tupleRef: _resolveTupleType,
       stringLiteralRef: (ref) => 'StringLiteralRef',
     );
 
     return result;
   }
 
-  String _resolveArrayName(ArrayRef ref) => 'List<${resolveType(ref.element)}>';
+  String _resolveArrayType(ArrayRef ref) => 'List<${resolveType(ref.element)}>';
 
-  String _resolveTupleName(TupleRef ref) {
+  String _resolveTupleType(TupleRef ref) {
     final parts = ref.items
-        .map((item) => resolveDisplayName(item).upperFirstLetter())
+        .map((item) => resolveType(item).upperFirstLetter())
         .toList(growable: false);
 
     final sorted = parts.sorted((a, b) => a.compareTo(b));
@@ -257,10 +255,10 @@ final class Symbols {
     return rawName;
   }
 
-  String _resolveMapName(MapRef ref) =>
+  String _resolveMapType(MapRef ref) =>
       'Map<${resolveType(ref.key)}, ${resolveType(ref.value)}>';
 
-  String _resolveBaseName(BaseRef ref) => switch (ref.name) {
+  String _resolveBaseType(BaseRef ref) => switch (ref.name) {
     'integer' || 'uinteger' => 'int',
     'string' || 'DocumentUri' || 'URI' => 'String',
     'decimal' => 'double',
@@ -272,62 +270,57 @@ final class Symbols {
     ),
   };
 
-  String resolveDisplayName(MetaReference ref) {
-    final result = ref.when(
-      literalRef: _resolveLiteralName,
-      arrayRef: (ref) => '${resolveType(ref.element)}s',
-      orRef: _resolveOrRefName,
-      orElse: (ref) => null,
-    );
+  // String resolveDisplayName(MetaReference ref) {
+  //   final result = ref.when(
+  //     literalRef: _resolveLiteralType,
+  //     arrayRef: (ref) => '${resolveType(ref.element)}s',
+  //     orRef: _resolveOrRefName,
+  //     orElse: (ref) => null,
+  //   );
 
-    if (result != null) {
-      return result;
-    }
+  //   if (result != null) {
+  //     return result;
+  //   }
 
-    return resolveType(ref);
-  }
+  //   return resolveType(ref);
+  // }
 
   String _resolveOrRefName(OrRef orRef) {
-    final parts = orRef.items
-        .map((item) => resolveDisplayName(item).upperFirstLetter())
-        .toList(growable: false);
-
+    final parts = orRef.items.map(resolveType).toList(growable: false);
     final sortedParts = parts.sorted((a, b) => a.compareTo(b));
     final rawName = sortedParts.join('Or');
 
     return rawName;
   }
 
-  String _resolveOrRefDisplayName(OrRef orRef) {
-    final rawName = _resolveOrRefName(orRef);
-    final resultName = renameType(rawName) ?? rawName;
+  // String _resolveOrRefDisplayName(OrRef orRef) {
+  //   final rawName = _resolveOrRefName(orRef);
+  //   final resultName = renameType(rawName) ?? rawName;
 
-    return resultName;
-  }
+  //   return resultName;
+  // }
 
-  String _resolveLiteralName(LiteralRef ref) {
+  String _resolveLiteralType(LiteralRef ref) {
     final parts = ref.value.properties
         .map(
-          (item) =>
-              '${resolveDisplayName(item.type).upperFirstLetter()}'
-              '${item.name.upperFirstLetter()}',
+          (item) => '${resolveType(item.type).upperFirstLetter()}_${item.name}',
         )
         .toList(growable: false);
 
     final sorted = parts.sorted((a, b) => a.compareTo(b));
-    final rawName = sorted.join();
+    final rawName = sorted.join(r'$');
 
     return rawName;
   }
 
-  String _resolveLiteralDisplayName(LiteralRef ref) {
-    final rawName = _resolveLiteralName(ref);
-    final resultName = renameType(rawName) ?? rawName;
+  // String _resolveLiteralDisplayName(LiteralRef ref) {
+  //   final rawName = _resolveLiteralName(ref);
+  //   final resultName = renameType(rawName) ?? rawName;
 
-    if (resultName == rawName) {
-      print('need rename for literal: $rawName');
-    }
+  //   if (resultName == rawName) {
+  //     print('need rename for literal: $rawName');
+  //   }
 
-    return resultName;
-  }
+  //   return resultName;
+  // }
 }
