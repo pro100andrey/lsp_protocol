@@ -14,20 +14,45 @@ final class Symbols {
   final Map<String, TypedefSymbol> _typedefSymbols = {};
   final Map<String, LiteralSymbol> _literalSymbols = {};
   final Map<String, SealedSymbol> _sealedMap = {};
+  final Map<String, TupleSymbol> _renamedSymbols = {};
 
   Iterable<LiteralSymbol> get literals => _literalSymbols.values;
-
   Iterable<StructureSymbol> get structures => _structureSymbols.values;
-
   Iterable<TypedefSymbol> get typedefs => _typedefSymbols.values;
-
   Iterable<SealedSymbol> get sealed => _sealedMap.values;
 
   void process(MetaProtocol protocol) {
     _collectTypedefs(protocol);
+    _collectTuples(protocol);
     _collectLiterals(protocol);
     _collectStructures(protocol);
     _collectSealed(protocol);
+  }
+
+  void _collectTuples(MetaProtocol protocol) {
+    void addTupleSymbol(TupleRef tupleRef) {
+      final type = resolveType(tupleRef);
+      if (_renamedSymbols.containsKey(type)) {
+        return;
+      }
+
+      final symbol = TupleSymbol(
+        type: type,
+        types: tupleRef.items.map(resolveType).toList(),
+      );
+
+      _renamedSymbols[type] = symbol;
+    }
+
+    for (final structure in protocol.structures) {
+      for (final property in structure.properties) {
+        property.type.onOrRef((orRef) {
+          for (final prop in orRef.items) {
+            prop.onTupleRef(addTupleSymbol);
+          }
+        });
+      }
+    }
   }
 
   void _collectTypedefs(MetaProtocol protocol) {
@@ -44,57 +69,81 @@ final class Symbols {
   }
 
   void _collectSealed(MetaProtocol protocol) {
+    void addSealedSymbol(OrRef orRef) {
+      final name = resolveType(orRef);
+      if (_sealedMap.containsKey(name)) {
+        return;
+      }
+
+      final types = orRef.items.map(resolveType).toList(growable: false);
+
+      final symbol = SealedSymbol(
+        type: name,
+        types: types,
+      );
+
+      print('Added sealed symbol: ${symbol.displayType}');
+
+      _sealedMap[name] = symbol;
+    }
+
     for (final typeAlias in protocol.typeAliases) {
-      typeAlias.type.onOrRef(_addSealedSymbol);
+      typeAlias.type.onOrRef(addSealedSymbol);
     }
 
     for (final structure in protocol.structures) {
       for (final property in structure.properties) {
         property.type.onLiteralRef((literalRef) {
           for (final prop in literalRef.value.properties) {
-            prop.type.onOrRef(_addSealedSymbol);
+            prop.type.onOrRef(addSealedSymbol);
           }
         });
 
         property.type.onMapRef((mapRef) {
-          mapRef.value.onOrRef(_addSealedSymbol);
+          mapRef.value.onOrRef(addSealedSymbol);
         });
 
         property.type.onOrRef((orRef) {
-          orRef.onOrRef(_addSealedSymbol);
+          orRef.onOrRef(addSealedSymbol);
         });
 
         property.type.onArrayRef((arrayRef) {
-          arrayRef.element.onOrRef(_addSealedSymbol);
+          arrayRef.element.onOrRef(addSealedSymbol);
         });
       }
     }
   }
 
-  void _addSealedSymbol(OrRef orRef) {
-    final name = resolveType(orRef);
-    if (_sealedMap.containsKey(name)) {
-      return;
+  void _collectLiterals(MetaProtocol protocol) {
+    void addLiteralSymbol({required LiteralRef ref, required String origin}) {
+      final name = _resolveLiteralName(ref);
+      if (_literalSymbols.containsKey(name)) {
+        return;
+      }
+
+      String typeResolver(MetaReference ref) => ref.when(
+        literalRef: _resolveLiteralDisplayName,
+        arrayRef: (ref) => 'List<${typeResolver(ref.element)}>',
+        orElse: resolveType,
+      );
+
+      final record = literalToRecord(
+        ref: ref,
+        typeResolver: typeResolver,
+      );
+
+      final symbol = LiteralSymbol(type: name, definition: record, ref: ref);
+
+      _literalSymbols[name] = symbol;
+
+      print('Added literal symbol: ${symbol.displayType}');
     }
 
-    final types = orRef.items.map(resolveType).toList(growable: false);
-
-    final symbol = SealedSymbol(
-      name: name,
-      types: types,
-    );
-
-    print('Added sealed symbol: ${symbol.displayName}');
-
-    _sealedMap[name] = symbol;
-  }
-
-  void _collectLiterals(MetaProtocol protocol) {
     for (final def in protocol.typeAliases) {
       def.type.onOrRef((orRef) {
         for (final prop in orRef.items) {
           prop.onLiteralRef((literalRef) {
-            _addLiteralSymbol(ref: literalRef, origin: def.name);
+            addLiteralSymbol(ref: literalRef, origin: def.name);
           });
         }
       });
@@ -105,51 +154,29 @@ final class Symbols {
         property.type.onLiteralRef((literalRef) {
           for (final prop in literalRef.value.properties) {
             prop.type.onLiteralRef((innerLiteralRef) {
-              _addLiteralSymbol(ref: innerLiteralRef, origin: prop.name);
+              addLiteralSymbol(ref: innerLiteralRef, origin: prop.name);
             });
 
             prop.type.onArrayRef((arrayRef) {
               arrayRef.element.onLiteralRef((innerLiteralRef) {
-                _addLiteralSymbol(ref: innerLiteralRef, origin: prop.name);
+                addLiteralSymbol(ref: innerLiteralRef, origin: prop.name);
               });
             });
           }
 
-          _addLiteralSymbol(ref: literalRef, origin: property.name);
+          addLiteralSymbol(ref: literalRef, origin: property.name);
         });
       }
     }
   }
 
-  void _addLiteralSymbol({
-    required LiteralRef ref,
-    required String origin,
-  }) {
-    final name = _resolveLiteralName(ref);
-    if (_literalSymbols.containsKey(name)) {
-      return;
+  void _collectStructures(MetaProtocol protocol) {
+    final structuresByName = <String, MetaStructure>{};
+
+    for (final struct in protocol.structures) {
+      structuresByName[struct.name] = struct;
     }
 
-    String typeResolver(MetaReference ref) => ref.when(
-      literalRef: _resolveLiteralDisplayName,
-      arrayRef: (ref) => 'List<${typeResolver(ref.element)}>',
-      orElse: resolveType,
-    );
-
-    final record = literalToRecord(
-      ref: ref,
-      typeResolver: typeResolver,
-    );
-
-    final symbol = LiteralSymbol(name: name, type: record, ref: ref);
-
-    _literalSymbols[name] = symbol;
-
-    print('Added literal symbol: ${symbol.displayName}');
-  }
-
-  void _collectStructures(MetaProtocol protocol) {
-    final structuresByName = _getStructuresByName(protocol);
     for (final struct in structuresByName.values) {
       // Contains duplicated properties
       final allProperties = getAllProperties(struct, structuresByName);
@@ -173,25 +200,6 @@ final class Symbols {
     }
   }
 
-  Map<String, MetaStructure> _getStructuresByName(MetaProtocol protocol) {
-    final structsByName = <String, MetaStructure>{};
-
-    for (final struct in protocol.structures) {
-      structsByName[struct.name] = struct;
-    }
-
-    return structsByName;
-  }
-
-  Map<String, MetaStructure> getStructuresByName(MetaProtocol protocol) {
-    final structsByName = <String, MetaStructure>{};
-
-    for (final struct in protocol.structures) {
-      structsByName[struct.name] = struct;
-    }
-
-    return structsByName;
-  }
 
   Iterable<MetaProperty> getAllProperties(
     MetaStructure struct,
@@ -224,28 +232,45 @@ final class Symbols {
     final result = ref.when(
       literalRef: _resolveLiteralName,
       typeRef: (ref) => ref.name,
-      arrayRef: (ref) => 'List<${resolveType(ref.element)}>',
-      baseRef: (ref) => switch (ref.name) {
-        'integer' || 'uinteger' => 'int',
-        'string' || 'DocumentUri' || 'URI' => 'String',
-        'decimal' => 'double',
-        'boolean' => 'bool',
-        'null' => 'Null',
-        _ => throw ArgumentError(
-          'Unknown base type: ${ref.name}. '
-          'Ensure it is a valid Dart base type.',
-        ),
-      },
-      orRef: _resolveOrRefDisplayName,
+      arrayRef: _resolveArrayName,
+      baseRef: _resolveBaseName,
+      orRef: _resolveOrRefName,
       andRef: (ref) => 'AndRef',
-      mapRef: (ref) =>
-          'Map<${resolveType(ref.key)}, ${resolveType(ref.value)}>',
-      tupleRef: (ref) => 'TupleRef',
+      mapRef: _resolveMapName,
+      tupleRef: _resolveTupleName,
       stringLiteralRef: (ref) => 'StringLiteralRef',
     );
 
     return result;
   }
+
+  String _resolveArrayName(ArrayRef ref) => 'List<${resolveType(ref.element)}>';
+
+  String _resolveTupleName(TupleRef ref) {
+    final parts = ref.items
+        .map((item) => resolveDisplayName(item).upperFirstLetter())
+        .toList(growable: false);
+
+    final sorted = parts.sorted((a, b) => a.compareTo(b));
+    final rawName = sorted.join();
+
+    return rawName;
+  }
+
+  String _resolveMapName(MapRef ref) =>
+      'Map<${resolveType(ref.key)}, ${resolveType(ref.value)}>';
+
+  String _resolveBaseName(BaseRef ref) => switch (ref.name) {
+    'integer' || 'uinteger' => 'int',
+    'string' || 'DocumentUri' || 'URI' => 'String',
+    'decimal' => 'double',
+    'boolean' => 'bool',
+    'null' => 'Null',
+    _ => throw ArgumentError(
+      'Unknown base type: ${ref.name}. '
+      'Ensure it is a valid Dart base type.',
+    ),
+  };
 
   String resolveDisplayName(MetaReference ref) {
     final result = ref.when(
@@ -275,7 +300,7 @@ final class Symbols {
 
   String _resolveOrRefDisplayName(OrRef orRef) {
     final rawName = _resolveOrRefName(orRef);
-    final resultName = renameSealedMap[rawName] ?? rawName;
+    final resultName = renameType(rawName) ?? rawName;
 
     return resultName;
   }
@@ -297,7 +322,7 @@ final class Symbols {
 
   String _resolveLiteralDisplayName(LiteralRef ref) {
     final rawName = _resolveLiteralName(ref);
-    final resultName = renameLiteralMap[rawName] ?? rawName;
+    final resultName = renameType(rawName) ?? rawName;
 
     if (resultName == rawName) {
       print('need rename for literal: $rawName');
