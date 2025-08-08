@@ -15,7 +15,7 @@ const String kLSPVersion = '3.17.0';
 /// which a symbol is defined.
 /// Servers should prefer returning `DefinitionLink` over `Definition` if
 /// supported by the client.
-typedef Definition = Sealed1;
+typedef Definition = LocationSealed;
 
 /// Information about where a symbol is defined.
 /// Provides additional metadata over normal {@link Location location}
@@ -29,11 +29,11 @@ typedef LSPArray = List<LSPAny>;
 /// value `undefined` can't be converted into JSON preserving the property
 /// name. However for convenience it is allowed and assumed that all these
 /// properties are optional as well. @since 3.17.0
-typedef LSPAny = Sealed2;
+typedef LSPAny = ObjectSealed;
 
 /// The declaration of a symbol representation as one or many {@link Location
 /// locations}.
-typedef Declaration = Sealed1;
+typedef Declaration = LocationSealed;
 
 /// Information about where a symbol is declared.
 /// Provides additional metadata over normal {@link Location location}
@@ -48,33 +48,34 @@ typedef DeclarationLink = LocationLink;
 /// (class InlineValueEvaluatableExpression) The InlineValue types combines all
 /// inline value types into one type.
 /// @since 3.17.0
-typedef InlineValue = Sealed3;
+typedef InlineValue = InlineSealed;
 
 /// The result of a document diagnostic pull request. A report can either be a
 /// full report containing all diagnostics for the requested document or an
 /// unchanged report indicating that nothing has changed in terms of
 /// diagnostics in comparison to the last pull request.
 /// @since 3.17.0
-typedef DocumentDiagnosticReport = Sealed4;
-typedef PrepareRenameResult = Sealed5;
+typedef DocumentDiagnosticReport = DocumentDiagnosticReportSealed;
+typedef PrepareRenameResult = RenameSealed;
 
 /// A document selector is the combination of one or many document filters.
 /// @sample `let sel:DocumentSelector = [{ language: 'typescript' }, {
 /// language: 'json', pattern: '**∕tsconfig.json' }]`;
 /// The use of a string as a document filter is deprecated @since 3.16.0.
 typedef DocumentSelector = List<DocumentFilter>;
-typedef ProgressToken = Sealed6;
+typedef ProgressToken = IdentifierSealed;
 
 /// An identifier to refer to a change annotation stored with a workspace edit.
 typedef ChangeAnnotationIdentifier = String;
 
 /// A workspace diagnostic document report.
 /// @since 3.17.0
-typedef WorkspaceDocumentDiagnosticReport = Sealed7;
+typedef WorkspaceDocumentDiagnosticReport =
+    WorkspaceDocumentDiagnosticReportSealed;
 
 /// An event describing a change to a text document. If only a text is provided
 /// it is considered to be the full content of the document.
-typedef TextDocumentContentChangeEvent = Sealed8;
+typedef TextDocumentContentChangeEvent = ContentChangeEventSealed;
 
 /// MarkedString can be used to render human readable text. It is either a
 /// markdown string or a code-block that provides a language and a code
@@ -85,19 +86,19 @@ typedef TextDocumentContentChangeEvent = Sealed8;
 /// ```${language} ${value} ```
 /// Note that markdown strings will be sanitized - that means html will be
 /// escaped. @deprecated use MarkupContent instead.
-typedef MarkedString = Sealed9;
+typedef MarkedString = MarkedStringSealed;
 
 /// A document filter describes a top level text document or a notebook cell
 /// document.
 /// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
-typedef DocumentFilter = Sealed10;
+typedef DocumentFilter = DocumentFilterSealed;
 
 /// LSP object definition. @since 3.17.0
 typedef LSPObject = Map<String, LSPAny>;
 
 /// The glob pattern. Either a string pattern or a relative pattern.
 /// @since 3.17.0
-typedef GlobPattern = Sealed11;
+typedef GlobPattern = GlobPatternSealed;
 
 /// A document filter denotes a document by different properties like the
 /// {@link TextDocument.languageId language}, the {@link Uri.scheme scheme} of
@@ -117,13 +118,13 @@ typedef GlobPattern = Sealed11;
 /// applies to all package.json paths: `{ language: 'json', pattern:
 /// '**package.json' }`
 /// @since 3.17.0
-typedef TextDocumentFilter = Sealed12;
+typedef TextDocumentFilter = TextDocumentFilterSealed;
 
 /// A notebook document filter denotes a notebook document by different
 /// properties. The properties will be match against the notebook's URI (same
 /// as with documents)
 /// @since 3.17.0
-typedef NotebookDocumentFilter = Sealed13;
+typedef NotebookDocumentFilter = NotebookDocumentFilterSealed;
 
 /// The glob pattern to watch relative to the base path. Glob patterns can have
 /// the following syntax: - `*` to match zero or more characters in a path
@@ -164,7 +165,7 @@ typedef Literal8 = ({String name, String? version});
 /// Represents a literal type for Literal9.
 typedef Literal9 = ({
   List<String>? commitCharacters,
-  Sealed22? editRange,
+  EditRangeSealed? editRange,
   InsertTextFormat? insertTextFormat,
   InsertTextMode? insertTextMode,
   LSPAny? data,
@@ -268,262 +269,265 @@ typedef Literal31 = ({bool? collapsedText});
 /// Represents a literal type for Literal32.
 typedef Literal32 = ({List<DiagnosticTag> valueSet});
 
-/// Represents a literal type for BoolOrBoolDeltaFullOrBoolRange.
-typedef BoolOrBoolDeltaFullOrBoolRange = ({Sealed25? range, Sealed26? full});
+/// Represents a literal type for Literal33.
+typedef Literal33 = ({
+  SemanticTokensRangeSealed? range,
+  SemanticTokensSealed? full,
+});
 
 /// Represents a literal type for Literal34.
 typedef Literal34 = ({bool? additionalPropertiesSupport});
 
-sealed class Sealed1 {
-  const Sealed1();
+sealed class LocationSealed {
+  const LocationSealed();
 }
 
-sealed class Sealed2 {
-  const Sealed2();
+sealed class ObjectSealed {
+  const ObjectSealed();
 }
 
-sealed class Sealed3 {
-  const Sealed3();
+sealed class InlineSealed {
+  const InlineSealed();
 }
 
-sealed class Sealed4 {
-  const Sealed4();
+sealed class DocumentDiagnosticReportSealed {
+  const DocumentDiagnosticReportSealed();
 }
 
-sealed class Sealed5 {
-  const Sealed5();
+sealed class RenameSealed {
+  const RenameSealed();
 }
 
-sealed class Sealed6 {
-  const Sealed6();
+sealed class IdentifierSealed {
+  const IdentifierSealed();
 }
 
-sealed class Sealed7 {
-  const Sealed7();
+sealed class WorkspaceDocumentDiagnosticReportSealed {
+  const WorkspaceDocumentDiagnosticReportSealed();
 }
 
-sealed class Sealed8 {
-  const Sealed8();
+sealed class ContentChangeEventSealed {
+  const ContentChangeEventSealed();
 }
 
-sealed class Sealed9 {
-  const Sealed9();
+sealed class MarkedStringSealed {
+  const MarkedStringSealed();
 }
 
-sealed class Sealed10 {
-  const Sealed10();
+sealed class DocumentFilterSealed {
+  const DocumentFilterSealed();
 }
 
-sealed class Sealed11 {
-  const Sealed11();
+sealed class GlobPatternSealed {
+  const GlobPatternSealed();
 }
 
-sealed class Sealed12 {
-  const Sealed12();
+sealed class TextDocumentFilterSealed {
+  const TextDocumentFilterSealed();
 }
 
-sealed class Sealed13 {
-  const Sealed13();
+sealed class NotebookDocumentFilterSealed {
+  const NotebookDocumentFilterSealed();
 }
 
-sealed class Sealed14 {
-  const Sealed14();
+sealed class DocumentSelectorSealed {
+  const DocumentSelectorSealed();
 }
 
-sealed class Sealed15 {
-  const Sealed15();
+sealed class DocumentChangeSealed {
+  const DocumentChangeSealed();
 }
 
-sealed class Sealed16 {
-  const Sealed16();
+sealed class HintLabelSealed {
+  const HintLabelSealed();
 }
 
-sealed class Sealed17 {
-  const Sealed17();
+sealed class TooltipSealed {
+  const TooltipSealed();
 }
 
-sealed class Sealed18 {
-  const Sealed18();
+sealed class RelatedDocumentSealed {
+  const RelatedDocumentSealed();
 }
 
-sealed class Sealed19 {
-  const Sealed19();
+sealed class InsertTextSealed {
+  const InsertTextSealed();
 }
 
-sealed class Sealed20 {
-  const Sealed20();
+sealed class StringsSealed {
+  const StringsSealed();
 }
 
-sealed class Sealed21 {
-  const Sealed21();
+sealed class TextEditSealed {
+  const TextEditSealed();
 }
 
-sealed class Sealed22 {
-  const Sealed22();
+sealed class EditRangeSealed {
+  const EditRangeSealed();
 }
 
-sealed class Sealed23 {
-  const Sealed23();
+sealed class HoversContentSealed {
+  const HoversContentSealed();
 }
 
-sealed class Sealed24 {
-  const Sealed24();
+sealed class SymbolLocationSealed {
+  const SymbolLocationSealed();
 }
 
-sealed class Sealed25 {
-  const Sealed25();
+sealed class SemanticTokensRangeSealed {
+  const SemanticTokensRangeSealed();
 }
 
-sealed class Sealed26 {
-  const Sealed26();
+sealed class SemanticTokensSealed {
+  const SemanticTokensSealed();
 }
 
-sealed class Sealed27 {
-  const Sealed27();
+sealed class EditsSealed {
+  const EditsSealed();
 }
 
-sealed class Sealed28 {
-  const Sealed28();
+sealed class IntOrNullSealed {
+  const IntOrNullSealed();
 }
 
-sealed class Sealed29 {
-  const Sealed29();
+sealed class StringOrNullSealed {
+  const StringOrNullSealed();
 }
 
-sealed class Sealed30 {
-  const Sealed30();
+sealed class NullOrWorkspaceFoldersSealed {
+  const NullOrWorkspaceFoldersSealed();
 }
 
-sealed class Sealed31 {
-  const Sealed31();
+sealed class TextDocumentSyncSealed {
+  const TextDocumentSyncSealed();
 }
 
-sealed class Sealed32 {
-  const Sealed32();
+sealed class NotebookDocumentSyncSealed {
+  const NotebookDocumentSyncSealed();
 }
 
-sealed class Sealed33 {
-  const Sealed33();
+sealed class HoverProviderSealed {
+  const HoverProviderSealed();
 }
 
-sealed class Sealed34 {
-  const Sealed34();
+sealed class DeclarationProviderSealed {
+  const DeclarationProviderSealed();
 }
 
-sealed class Sealed35 {
-  const Sealed35();
+sealed class DefinitionProviderSealed {
+  const DefinitionProviderSealed();
 }
 
-sealed class Sealed36 {
-  const Sealed36();
+sealed class TypeDefinitionProviderSealed {
+  const TypeDefinitionProviderSealed();
 }
 
-sealed class Sealed37 {
-  const Sealed37();
+sealed class ImplementationProviderSealed {
+  const ImplementationProviderSealed();
 }
 
-sealed class Sealed38 {
-  const Sealed38();
+sealed class ReferencesProviderSealed {
+  const ReferencesProviderSealed();
 }
 
-sealed class Sealed39 {
-  const Sealed39();
+sealed class DocumentHighlightProviderSealed {
+  const DocumentHighlightProviderSealed();
 }
 
-sealed class Sealed40 {
-  const Sealed40();
+sealed class DocumentSymbolProviderSealed {
+  const DocumentSymbolProviderSealed();
 }
 
-sealed class Sealed41 {
-  const Sealed41();
+sealed class CodeActionProviderSealed {
+  const CodeActionProviderSealed();
 }
 
-sealed class Sealed42 {
-  const Sealed42();
+sealed class ColorProviderSealed {
+  const ColorProviderSealed();
 }
 
-sealed class Sealed43 {
-  const Sealed43();
+sealed class WorkspaceSymbolProviderSealed {
+  const WorkspaceSymbolProviderSealed();
 }
 
-sealed class Sealed44 {
-  const Sealed44();
+sealed class DocumentFormattingProviderSealed {
+  const DocumentFormattingProviderSealed();
 }
 
-sealed class Sealed45 {
-  const Sealed45();
+sealed class DocumentRangeFormattingProviderSealed {
+  const DocumentRangeFormattingProviderSealed();
 }
 
-sealed class Sealed46 {
-  const Sealed46();
+sealed class RenameProviderSealed {
+  const RenameProviderSealed();
 }
 
-sealed class Sealed47 {
-  const Sealed47();
+sealed class FoldingRangeProviderSealed {
+  const FoldingRangeProviderSealed();
 }
 
-sealed class Sealed48 {
-  const Sealed48();
+sealed class SelectionRangeProviderSealed {
+  const SelectionRangeProviderSealed();
 }
 
-sealed class Sealed49 {
-  const Sealed49();
+sealed class CallHierarchyProviderSealed {
+  const CallHierarchyProviderSealed();
 }
 
-sealed class Sealed50 {
-  const Sealed50();
+sealed class LinkedEditingRangeProviderSealed {
+  const LinkedEditingRangeProviderSealed();
 }
 
-sealed class Sealed51 {
-  const Sealed51();
+sealed class SemanticTokensProviderSealed {
+  const SemanticTokensProviderSealed();
 }
 
-sealed class Sealed52 {
-  const Sealed52();
+sealed class MonikerProviderSealed {
+  const MonikerProviderSealed();
 }
 
-sealed class Sealed53 {
-  const Sealed53();
+sealed class TypeHierarchyProviderSealed {
+  const TypeHierarchyProviderSealed();
 }
 
-sealed class Sealed54 {
-  const Sealed54();
+sealed class InlineValueProviderSealed {
+  const InlineValueProviderSealed();
 }
 
-sealed class Sealed55 {
-  const Sealed55();
+sealed class InlayHintProviderSealed {
+  const InlayHintProviderSealed();
 }
 
-sealed class Sealed56 {
-  const Sealed56();
+sealed class DiagnosticProviderSealed {
+  const DiagnosticProviderSealed();
 }
 
-sealed class Sealed57 {
-  const Sealed57();
+sealed class InlineCompletionProviderSealed {
+  const InlineCompletionProviderSealed();
 }
 
-sealed class Sealed58 {
-  const Sealed58();
+sealed class SaveSealed {
+  const SaveSealed();
 }
 
-sealed class Sealed59 {
-  const Sealed59();
+sealed class NotebookSelectorSealed {
+  const NotebookSelectorSealed();
 }
 
-sealed class Sealed60 {
-  const Sealed60();
+sealed class ChangeNotificationsSealed {
+  const ChangeNotificationsSealed();
 }
 
-sealed class Sealed61 {
-  const Sealed61();
+sealed class SignatureInformationSealed {
+  const SignatureInformationSealed();
 }
 
-sealed class Sealed62 {
-  const Sealed62();
+sealed class NotebookFilterSealed {
+  const NotebookFilterSealed();
 }
 
-sealed class Sealed63 {
-  const Sealed63();
+sealed class WorkspaceFolderSealed {
+  const WorkspaceFolderSealed();
 }
 
 @freezed
@@ -562,7 +566,7 @@ abstract class ImplementationRegistrationOptions
   const factory ImplementationRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -601,7 +605,7 @@ abstract class TypeDefinitionRegistrationOptions
   const factory TypeDefinitionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -687,7 +691,7 @@ abstract class DocumentColorRegistrationOptions
   const factory DocumentColorRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -762,7 +766,7 @@ abstract class TextDocumentRegistrationOptions
   const factory TextDocumentRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
   }) = _TextDocumentRegistrationOptions;
 
   factory TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -831,7 +835,7 @@ abstract class FoldingRangeRegistrationOptions
   const factory FoldingRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -869,7 +873,7 @@ abstract class DeclarationRegistrationOptions
   const factory DeclarationRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -922,7 +926,7 @@ abstract class SelectionRangeRegistrationOptions
   const factory SelectionRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1017,7 +1021,7 @@ abstract class CallHierarchyRegistrationOptions
   const factory CallHierarchyRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1150,10 +1154,10 @@ abstract class SemanticTokensRegistrationOptions
   const factory SemanticTokensRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// Server supports providing semantic tokens for a full document.
-    Sealed26? full,
+    SemanticTokensSealed? full,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1164,7 +1168,7 @@ abstract class SemanticTokensRegistrationOptions
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
-    Sealed25? range,
+    SemanticTokensRangeSealed? range,
   }) = _SemanticTokensRegistrationOptions;
 
   factory SemanticTokensRegistrationOptions.fromJson(
@@ -1319,7 +1323,7 @@ abstract class LinkedEditingRangeRegistrationOptions
   const factory LinkedEditingRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1368,7 +1372,7 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
     /// If a client neither supports `documentChanges` nor
     /// `workspace.workspaceEdit.resourceOperations` then only plain
     /// `TextEdit`s using the `changes` property are supported.
-    List<Sealed15>? documentChanges,
+    List<DocumentChangeSealed>? documentChanges,
   }) = _WorkspaceEdit;
 
   factory WorkspaceEdit.fromJson(Map<String, dynamic> json) =>
@@ -1458,7 +1462,7 @@ abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
   const factory MonikerRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
   }) = _MonikerRegistrationOptions;
 
   factory MonikerRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -1526,7 +1530,7 @@ abstract class TypeHierarchyRegistrationOptions
   const factory TypeHierarchyRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1600,7 +1604,7 @@ abstract class InlineValueRegistrationOptions
   const factory InlineValueRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1642,7 +1646,7 @@ abstract class InlayHint with _$InlayHint {
     /// The label of this hint. A human readable string or an array of
     /// InlayHintLabelPart label parts.
     /// *Note* that neither the string nor the label part can be empty.
-    required Sealed16 label,
+    required HintLabelSealed label,
 
     /// Render padding before the hint.
     /// Note: Padding should use the editor's background color, not the
@@ -1668,7 +1672,7 @@ abstract class InlayHint with _$InlayHint {
     List<TextEdit>? textEdits,
 
     /// The tooltip text when you hover over this item.
-    Sealed17? tooltip,
+    TooltipSealed? tooltip,
   }) = _InlayHint;
 
   factory InlayHint.fromJson(Map<String, dynamic> json) =>
@@ -1681,7 +1685,7 @@ abstract class InlayHintRegistrationOptions
   const factory InlayHintRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1724,7 +1728,7 @@ abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
 abstract class DocumentDiagnosticReportPartialResult
     with _$DocumentDiagnosticReportPartialResult {
   const factory DocumentDiagnosticReportPartialResult({
-    required Map<String, Sealed18> relatedDocuments,
+    required Map<String, RelatedDocumentSealed> relatedDocuments,
   }) = _DocumentDiagnosticReportPartialResult;
 
   factory DocumentDiagnosticReportPartialResult.fromJson(
@@ -1750,7 +1754,7 @@ abstract class DiagnosticRegistrationOptions
   const factory DiagnosticRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1933,7 +1937,7 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
     String? filterText,
 
     /// The text to replace the range with. Must be set.
-    required Sealed19 insertText,
+    required InsertTextSealed insertText,
 
     /// The range to replace. Must begin and end on the same line.
     Range? range,
@@ -1949,7 +1953,7 @@ abstract class InlineCompletionRegistrationOptions
   const factory InlineCompletionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -2004,16 +2008,16 @@ abstract class InitializeParams with _$InitializeParams {
     /// The process Id of the parent process that started the server.
     /// Is `null` if the process has not been started by another process. If
     /// the parent process is not alive then the server should exit.
-    required Sealed28 processId,
+    required IntOrNullSealed processId,
 
     /// The rootPath of the workspace. Is null if no folder is open.
     /// @deprecated in favour of rootUri.
-    Sealed29? rootPath,
+    StringOrNullSealed? rootPath,
 
     /// The rootUri of the workspace. Is null if no folder is open. If both
     /// `rootPath` and `rootUri` are set `rootUri` wins.
     /// @deprecated in favour of workspaceFolders.
-    required Sealed29 rootUri,
+    required StringOrNullSealed rootUri,
 
     /// The initial trace setting. If omitted trace is disabled ('off').
     TraceValues? trace,
@@ -2023,7 +2027,7 @@ abstract class InitializeParams with _$InitializeParams {
     /// folders. It can be `null` if the client supports workspace folders but
     /// none are configured.
     /// @since 3.6.0
-    Sealed30? workspaceFolders,
+    NullOrWorkspaceFoldersSealed? workspaceFolders,
   }) = _InitializeParams;
 
   factory InitializeParams.fromJson(Map<String, dynamic> json) =>
@@ -2082,8 +2086,9 @@ abstract class DidChangeConfigurationParams
 @freezed
 abstract class DidChangeConfigurationRegistrationOptions
     with _$DidChangeConfigurationRegistrationOptions {
-  const factory DidChangeConfigurationRegistrationOptions({Sealed20? section}) =
-      _DidChangeConfigurationRegistrationOptions;
+  const factory DidChangeConfigurationRegistrationOptions({
+    StringsSealed? section,
+  }) = _DidChangeConfigurationRegistrationOptions;
 
   factory DidChangeConfigurationRegistrationOptions.fromJson(
     Map<String, dynamic> json,
@@ -2187,7 +2192,7 @@ abstract class TextDocumentChangeRegistrationOptions
   const factory TextDocumentChangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// How documents are synced to the server.
     required TextDocumentSyncKind syncKind,
@@ -2230,7 +2235,7 @@ abstract class TextDocumentSaveRegistrationOptions
   const factory TextDocumentSaveRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The client is supposed to include the content on save.
     bool? includeText,
@@ -2376,7 +2381,7 @@ abstract class CompletionItem with _$CompletionItem {
     String? detail,
 
     /// A human-readable string that represents a doc-comment.
-    Sealed17? documentation,
+    TooltipSealed? documentation,
 
     /// A string that should be used when filtering a set of completion items.
     /// When `falsy` the {@link CompletionItem.label label} is used.
@@ -2452,7 +2457,7 @@ abstract class CompletionItem with _$CompletionItem {
     /// prefix of the edit's replace range, that means it must be contained and
     /// starting at the same position.
     /// @since 3.16.0 additional type `InsertReplaceEdit`
-    Sealed21? textEdit,
+    TextEditSealed? textEdit,
 
     /// The edit text used if the completion item is part of a CompletionList
     /// and CompletionList defines an item default for the text edit range.
@@ -2517,7 +2522,7 @@ abstract class CompletionRegistrationOptions
 
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The server provides support to resolve additional information for a
     /// completion item.
@@ -2560,7 +2565,7 @@ abstract class HoverParams with _$HoverParams {
 abstract class Hover with _$Hover {
   const factory Hover({
     /// The hover's content
-    required Sealed23 contents,
+    required HoversContentSealed contents,
 
     /// An optional range inside the text document that is used to visualize
     /// the hover, e.g. by changing the background color.
@@ -2575,7 +2580,7 @@ abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
   const factory HoverRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
   }) = _HoverRegistrationOptions;
 
   factory HoverRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2639,7 +2644,7 @@ abstract class SignatureHelpRegistrationOptions
   const factory SignatureHelpRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// List of characters that re-trigger signature help.
     /// These trigger characters are only active when signature help is already
@@ -2684,7 +2689,7 @@ abstract class DefinitionRegistrationOptions
   const factory DefinitionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
   }) = _DefinitionRegistrationOptions;
 
   factory DefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2720,7 +2725,7 @@ abstract class ReferenceRegistrationOptions
   const factory ReferenceRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
   }) = _ReferenceRegistrationOptions;
 
   factory ReferenceRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2768,7 +2773,7 @@ abstract class DocumentHighlightRegistrationOptions
   const factory DocumentHighlightRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
   }) = _DocumentHighlightRegistrationOptions;
 
   factory DocumentHighlightRegistrationOptions.fromJson(
@@ -2879,7 +2884,7 @@ abstract class DocumentSymbolRegistrationOptions
   const factory DocumentSymbolRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// A human-readable string that is shown when multiple outlines trees are
     /// shown for the same document.
@@ -2999,7 +3004,7 @@ abstract class CodeActionRegistrationOptions
 
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// The server provides support to resolve additional information for a
     /// code action.
@@ -3050,7 +3055,7 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     /// location without a range depends on the client capability
     /// `workspace.symbol.resolveSupport`.
     /// See SymbolInformation#location for more details.
-    required Sealed24 location,
+    required SymbolLocationSealed location,
 
     /// The name of this symbol.
     required String name,
@@ -3121,7 +3126,7 @@ abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
   const factory CodeLensRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// Code lens has a resolve provider as well.
     bool? resolveProvider,
@@ -3181,7 +3186,7 @@ abstract class DocumentLinkRegistrationOptions
   const factory DocumentLinkRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// Document links have a resolve provider as well.
     bool? resolveProvider,
@@ -3214,7 +3219,7 @@ abstract class DocumentFormattingRegistrationOptions
   const factory DocumentFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
   }) = _DocumentFormattingRegistrationOptions;
 
   factory DocumentFormattingRegistrationOptions.fromJson(
@@ -3249,7 +3254,7 @@ abstract class DocumentRangeFormattingRegistrationOptions
   const factory DocumentRangeFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// Whether the server supports formatting multiple ranges at once.
     /// @since 3.18.0 @proposed
@@ -3314,7 +3319,7 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
   const factory DocumentOnTypeFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// A character on which formatting should be triggered, like `{`.
     required String firstTriggerCharacter,
@@ -3354,7 +3359,7 @@ abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
   const factory RenameRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Sealed14 documentSelector,
+    required DocumentSelectorSealed documentSelector,
 
     /// Renames should be checked and tested before being executed.
     /// @since version 3.12.0
@@ -3543,7 +3548,7 @@ abstract class LogTraceParams with _$LogTraceParams {
 abstract class CancelParams with _$CancelParams {
   const factory CancelParams({
     /// The request id to cancel.
-    required Sealed6 id,
+    required IdentifierSealed id,
   }) = _CancelParams;
 
   factory CancelParams.fromJson(Map<String, dynamic> json) =>
@@ -3800,14 +3805,14 @@ abstract class CallHierarchyOptions with _$CallHierarchyOptions {
 abstract class SemanticTokensOptions with _$SemanticTokensOptions {
   const factory SemanticTokensOptions({
     /// Server supports providing semantic tokens for a full document.
-    Sealed26? full,
+    SemanticTokensSealed? full,
 
     /// The legend used by the server
     required SemanticTokensLegend legend,
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
-    Sealed25? range,
+    SemanticTokensRangeSealed? range,
     bool? workDoneProgress,
   }) = _SemanticTokensOptions;
 
@@ -3858,7 +3863,7 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
     /// The edits to be applied.
     /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
     /// client capability.
-    required List<Sealed27> edits,
+    required List<EditsSealed> edits,
 
     /// The text document to change.
     required OptionalVersionedTextDocumentIdentifier textDocument,
@@ -4107,7 +4112,7 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
     /// The tooltip text when you hover over this label part. Depending on the
     /// client capability `inlayHint.resolveSupport` clients might resolve this
     /// property late using the resolve request.
-    Sealed17? tooltip,
+    TooltipSealed? tooltip,
 
     /// The value of this label part.
     required String value,
@@ -4160,7 +4165,7 @@ abstract class RelatedFullDocumentDiagnosticReport
     /// where marco definitions in a file a.cpp and result in errors in a
     /// header file b.hpp.
     /// @since 3.17.0
-    Map<String, Sealed18>? relatedDocuments,
+    Map<String, RelatedDocumentSealed>? relatedDocuments,
 
     /// An optional result id. If provided it will be sent on the next
     /// diagnostic request for the same document.
@@ -4186,7 +4191,7 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
     /// where marco definitions in a file a.cpp and result in errors in a
     /// header file b.hpp.
     /// @since 3.17.0
-    Map<String, Sealed18>? relatedDocuments,
+    Map<String, RelatedDocumentSealed>? relatedDocuments,
 
     /// A result id which will be sent on the next diagnostic request for the
     /// same document.
@@ -4454,16 +4459,16 @@ abstract class TInitializeParams with _$TInitializeParams {
     /// The process Id of the parent process that started the server.
     /// Is `null` if the process has not been started by another process. If
     /// the parent process is not alive then the server should exit.
-    required Sealed28 processId,
+    required IntOrNullSealed processId,
 
     /// The rootPath of the workspace. Is null if no folder is open.
     /// @deprecated in favour of rootUri.
-    Sealed29? rootPath,
+    StringOrNullSealed? rootPath,
 
     /// The rootUri of the workspace. Is null if no folder is open. If both
     /// `rootPath` and `rootUri` are set `rootUri` wins.
     /// @deprecated in favour of workspaceFolders.
-    required Sealed29 rootUri,
+    required StringOrNullSealed rootUri,
 
     /// The initial trace setting. If omitted trace is disabled ('off').
     TraceValues? trace,
@@ -4485,7 +4490,7 @@ abstract class WorkspaceFoldersInitializeParams
     /// folders. It can be `null` if the client supports workspace folders but
     /// none are configured.
     /// @since 3.6.0
-    Sealed30? workspaceFolders,
+    NullOrWorkspaceFoldersSealed? workspaceFolders,
   }) = _WorkspaceFoldersInitializeParams;
 
   factory WorkspaceFoldersInitializeParams.fromJson(
@@ -4498,37 +4503,37 @@ abstract class ServerCapabilities with _$ServerCapabilities {
   const factory ServerCapabilities({
     /// The server provides call hierarchy support.
     /// @since 3.16.0
-    Sealed49? callHierarchyProvider,
+    CallHierarchyProviderSealed? callHierarchyProvider,
 
     /// The server provides code actions. CodeActionOptions may only be
     /// specified if the client states that it supports
     /// `codeActionLiteralSupport` in its initial `initialize` request.
-    Sealed41? codeActionProvider,
+    CodeActionProviderSealed? codeActionProvider,
 
     /// The server provides code lens.
     CodeLensOptions? codeLensProvider,
 
     /// The server provides color provider support.
-    Sealed42? colorProvider,
+    ColorProviderSealed? colorProvider,
 
     /// The server provides completion support.
     CompletionOptions? completionProvider,
 
     /// The server provides Goto Declaration support.
-    Sealed34? declarationProvider,
+    DeclarationProviderSealed? declarationProvider,
 
     /// The server provides goto definition support.
-    Sealed35? definitionProvider,
+    DefinitionProviderSealed? definitionProvider,
 
     /// The server has support for pull model diagnostics.
     /// @since 3.17.0
-    Sealed56? diagnosticProvider,
+    DiagnosticProviderSealed? diagnosticProvider,
 
     /// The server provides document formatting.
-    Sealed44? documentFormattingProvider,
+    DocumentFormattingProviderSealed? documentFormattingProvider,
 
     /// The server provides document highlight support.
-    Sealed39? documentHighlightProvider,
+    DocumentHighlightProviderSealed? documentHighlightProvider,
 
     /// The server provides document link support.
     DocumentLinkOptions? documentLinkProvider,
@@ -4537,10 +4542,10 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,
 
     /// The server provides document range formatting.
-    Sealed45? documentRangeFormattingProvider,
+    DocumentRangeFormattingProviderSealed? documentRangeFormattingProvider,
 
     /// The server provides document symbol support.
-    Sealed40? documentSymbolProvider,
+    DocumentSymbolProviderSealed? documentSymbolProvider,
 
     /// The server provides execute command support.
     ExecuteCommandOptions? executeCommandProvider,
@@ -4549,37 +4554,37 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     LSPAny? experimental,
 
     /// The server provides folding provider support.
-    Sealed47? foldingRangeProvider,
+    FoldingRangeProviderSealed? foldingRangeProvider,
 
     /// The server provides hover support.
-    Sealed33? hoverProvider,
+    HoverProviderSealed? hoverProvider,
 
     /// The server provides Goto Implementation support.
-    Sealed37? implementationProvider,
+    ImplementationProviderSealed? implementationProvider,
 
     /// The server provides inlay hints.
     /// @since 3.17.0
-    Sealed55? inlayHintProvider,
+    InlayHintProviderSealed? inlayHintProvider,
 
     /// Inline completion options used during static registration.
     /// @since 3.18.0 @proposed
-    Sealed57? inlineCompletionProvider,
+    InlineCompletionProviderSealed? inlineCompletionProvider,
 
     /// The server provides inline values.
     /// @since 3.17.0
-    Sealed54? inlineValueProvider,
+    InlineValueProviderSealed? inlineValueProvider,
 
     /// The server provides linked editing range support.
     /// @since 3.16.0
-    Sealed50? linkedEditingRangeProvider,
+    LinkedEditingRangeProviderSealed? linkedEditingRangeProvider,
 
     /// The server provides moniker support.
     /// @since 3.16.0
-    Sealed52? monikerProvider,
+    MonikerProviderSealed? monikerProvider,
 
     /// Defines how notebook documents are synced.
     /// @since 3.17.0
-    Sealed32? notebookDocumentSync,
+    NotebookDocumentSyncSealed? notebookDocumentSync,
 
     /// The position encoding the server picked from the encodings offered by
     /// the client via the client capability `general.positionEncodings`.
@@ -4590,19 +4595,19 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     PositionEncodingKind? positionEncoding,
 
     /// The server provides find references support.
-    Sealed38? referencesProvider,
+    ReferencesProviderSealed? referencesProvider,
 
     /// The server provides rename support. RenameOptions may only be specified
     /// if the client states that it supports `prepareSupport` in its initial
     /// `initialize` request.
-    Sealed46? renameProvider,
+    RenameProviderSealed? renameProvider,
 
     /// The server provides selection range support.
-    Sealed48? selectionRangeProvider,
+    SelectionRangeProviderSealed? selectionRangeProvider,
 
     /// The server provides semantic tokens support.
     /// @since 3.16.0
-    Sealed51? semanticTokensProvider,
+    SemanticTokensProviderSealed? semanticTokensProvider,
 
     /// The server provides signature help support.
     SignatureHelpOptions? signatureHelpProvider,
@@ -4610,21 +4615,21 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// Defines how text documents are synced. Is either a detailed structure
     /// defining each notification or for backwards compatibility the
     /// TextDocumentSyncKind number.
-    Sealed31? textDocumentSync,
+    TextDocumentSyncSealed? textDocumentSync,
 
     /// The server provides Goto Type Definition support.
-    Sealed36? typeDefinitionProvider,
+    TypeDefinitionProviderSealed? typeDefinitionProvider,
 
     /// The server provides type hierarchy support.
     /// @since 3.17.0
-    Sealed53? typeHierarchyProvider,
+    TypeHierarchyProviderSealed? typeHierarchyProvider,
 
     /// Workspace specific server capabilities.
     FileOperationOptionsFileOperationsWorkspaceFoldersServerCapabilitiesWorkspaceFolders?
     workspace,
 
     /// The server provides workspace symbol support.
-    Sealed43? workspaceSymbolProvider,
+    WorkspaceSymbolProviderSealed? workspaceSymbolProvider,
   }) = _ServerCapabilities;
 
   factory ServerCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -4692,7 +4697,7 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
 abstract class Diagnostic with _$Diagnostic {
   const factory Diagnostic({
     /// The diagnostic's code, which usually appear in the user interface.
-    Sealed6? code,
+    IdentifierSealed? code,
 
     /// An optional property to describe the error code. Requires the code
     /// field (above) to be present/not null.
@@ -4866,7 +4871,7 @@ abstract class SignatureInformation with _$SignatureInformation {
 
     /// The human-readable doc-comment of this signature. Will be shown in the
     /// UI but can be omitted.
-    Sealed17? documentation,
+    TooltipSealed? documentation,
 
     /// The label of this signature. Will be shown in the UI.
     required String label,
@@ -5171,7 +5176,7 @@ abstract class OptionalVersionedTextDocumentIdentifier
     /// before) the server can send `null` to indicate that the version is
     /// unknown and the content on disk is the truth (as specified with
     /// document content ownership).
-    required Sealed28 version,
+    required IntOrNullSealed version,
   }) = _OptionalVersionedTextDocumentIdentifier;
 
   factory OptionalVersionedTextDocumentIdentifier.fromJson(
@@ -5300,7 +5305,7 @@ abstract class WorkspaceFullDocumentDiagnosticReport
 
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
-    required Sealed28 version,
+    required IntOrNullSealed version,
   }) = _WorkspaceFullDocumentDiagnosticReport;
 
   factory WorkspaceFullDocumentDiagnosticReport.fromJson(
@@ -5325,7 +5330,7 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
 
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
-    required Sealed28 version,
+    required IntOrNullSealed version,
   }) = _WorkspaceUnchangedDocumentDiagnosticReport;
 
   factory WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
@@ -5428,7 +5433,7 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
 
     /// If present save notifications are sent to the server. If omitted the
     /// notification should not be sent.
-    Sealed58? save,
+    SaveSealed? save,
 
     /// If present will save notifications are sent to the server. If omitted
     /// the notification should not be sent.
@@ -5447,7 +5452,7 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
 abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
   const factory NotebookDocumentSyncOptions({
     /// The notebooks to be synced
-    required List<Sealed59> notebookSelector,
+    required List<NotebookSelectorSealed> notebookSelector,
 
     /// Whether save notification should be forwarded to the server. Will only
     /// be honored if mode === `notebook`.
@@ -5467,7 +5472,7 @@ abstract class NotebookDocumentSyncRegistrationOptions
     String? id,
 
     /// The notebooks to be synced
-    required List<Sealed59> notebookSelector,
+    required List<NotebookSelectorSealed> notebookSelector,
 
     /// Whether save notification should be forwarded to the server. Will only
     /// be honored if mode === `notebook`.
@@ -5489,7 +5494,7 @@ abstract class WorkspaceFoldersServerCapabilities
     /// notification is registered on the client side. The ID can be used to
     /// unregister for these events using the `client/unregisterCapability`
     /// request.
-    Sealed60? changeNotifications,
+    ChangeNotificationsSealed? changeNotifications,
 
     /// The server has support for workspace folders
     bool? supported,
@@ -5557,7 +5562,7 @@ abstract class ParameterInformation with _$ParameterInformation {
   const factory ParameterInformation({
     /// The human-readable doc-comment of this parameter. Will be shown in the
     /// UI but can be omitted.
-    Sealed17? documentation,
+    TooltipSealed? documentation,
 
     /// The label of this parameter information.
     /// Either a string or an inclusive start and exclusive end offsets within
@@ -5567,7 +5572,7 @@ abstract class ParameterInformation with _$ParameterInformation {
     /// *Note*: a label of type string should be a substring of its containing
     /// signature label. Its intended use case is to highlight the parameter
     /// label part in the `SignatureInformation.label`.
-    required Sealed61 label,
+    required SignatureInformationSealed label,
   }) = _ParameterInformation;
 
   factory ParameterInformation.fromJson(Map<String, dynamic> json) =>
@@ -5586,7 +5591,7 @@ abstract class NotebookCellTextDocumentFilter
     /// A filter that matches against the notebook containing the notebook
     /// cell. If a string value is provided it matches against the notebook
     /// type. '*' matches every notebook.
-    required Sealed62 notebook,
+    required NotebookFilterSealed notebook,
   }) = _NotebookCellTextDocumentFilter;
 
   factory NotebookCellTextDocumentFilter.fromJson(Map<String, dynamic> json) =>
@@ -5889,7 +5894,7 @@ abstract class RelativePattern with _$RelativePattern {
   const factory RelativePattern({
     /// A workspace folder or a base URI to which this pattern will be matched
     /// against relatively.
-    required Sealed63 baseUri,
+    required WorkspaceFolderSealed baseUri,
 
     /// The actual glob pattern;
     required Pattern pattern,

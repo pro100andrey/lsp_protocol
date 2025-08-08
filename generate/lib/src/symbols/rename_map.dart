@@ -40,130 +40,92 @@ const renameLiteralMap = {
   'FoldingRangeKindsValueSet': 'Literal30',
   'BoolCollapsedText': 'Literal31',
   'DiagnosticTagsValueSet': 'Literal32',
-  'ObjectFullObjectRange': 'Literal33',
+  'BoolOrBoolDeltaFullOrBoolRange': 'Literal33',
   'BoolAdditionalPropertiesSupport': 'Literal34',
 };
 
 const renameSealedMap = {
-  'LocationOrLocations': 'Sealed1',
-  'BoolOrDoubleOrIntOrIntOrLSPArrayOrLSPObjectOrNullOrString': 'Sealed2',
+  'LocationOrLocations': 'LocationSealed',
+  'BoolOrDoubleOrIntOrIntOrLSPArrayOrLSPObjectOrNullOrString': 'ObjectSealed',
   'InlineValueEvaluatableExpressionOrInlineValueTextOrInlineValueVariableLookup':
-      'Sealed3',
+      'InlineSealed',
   'RelatedFullDocumentDiagnosticReportOrRelatedUnchangedDocumentDiagnosticReport':
-      'Sealed4',
-  'BoolDefaultBehaviorOrRangeOrRangeRangeStringPlaceholder': 'Sealed5',
-  'IntOrString': 'Sealed6',
+      'DocumentDiagnosticReportSealed',
+  'BoolDefaultBehaviorOrRangeOrRangeRangeStringPlaceholder': 'RenameSealed',
+  'IntOrString': 'IdentifierSealed',
   'WorkspaceFullDocumentDiagnosticReportOrWorkspaceUnchangedDocumentDiagnosticReport':
-      'Sealed7',
-  'IntRangeLengthRangeRangeStringTextOrStringText': 'Sealed8',
-  'StringOrStringLanguageStringValue': 'Sealed9',
-  'NotebookCellTextDocumentFilterOrTextDocumentFilter': 'Sealed10',
-  'PatternOrRelativePattern': 'Sealed11',
+      'WorkspaceDocumentDiagnosticReportSealed',
+  'IntRangeLengthRangeRangeStringTextOrStringText': 'ContentChangeEventSealed',
+  'StringOrStringLanguageStringValue': 'MarkedStringSealed',
+  'NotebookCellTextDocumentFilterOrTextDocumentFilter': 'DocumentFilterSealed',
+  'PatternOrRelativePattern': 'GlobPatternSealed',
   'StringLanguageStringPatternStringSchemeOrStringLanguageStringPatternStringSchemeOrStringLanguageStringPatternStringScheme':
-      'Sealed12',
+      'TextDocumentFilterSealed',
   'StringNotebookTypeStringPatternStringSchemeOrStringNotebookTypeStringPatternStringSchemeOrStringNotebookTypeStringPatternStringScheme':
-      'Sealed13',
-  'DocumentSelectorOrNull': 'Sealed14',
-  'CreateFileOrDeleteFileOrRenameFileOrTextDocumentEdit': 'Sealed15',
-  'InlayHintLabelPartsOrString': 'Sealed16',
-  'MarkupContentOrString': 'Sealed17',
-  'FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport': 'Sealed18',
-  'StringOrStringValue': 'Sealed19',
-  'StringOrStrings': 'Sealed20',
-  'InsertReplaceEditOrTextEdit': 'Sealed21',
-  'RangeOrRangeInsertRangeReplace': 'Sealed22',
-  'MarkedStringOrMarkedStringsOrMarkupContent': 'Sealed23',
-  'LocationOrStringUri': 'Sealed24',
-  'OrBool': 'Sealed25',
-  'BoolOrBoolDelta': 'Sealed26',
-  'AnnotatedTextEditOrTextEdit': 'Sealed27',
-  'IntOrNull': 'Sealed28',
-  'NullOrString': 'Sealed29',
-  'NullOrWorkspaceFolders': 'Sealed30',
-  'TextDocumentSyncKindOrTextDocumentSyncOptions': 'Sealed31',
+      'NotebookDocumentFilterSealed',
+  'DocumentSelectorOrNull': 'DocumentSelectorSealed',
+  'CreateFileOrDeleteFileOrRenameFileOrTextDocumentEdit':
+      'DocumentChangeSealed',
+  'InlayHintLabelPartsOrString': 'HintLabelSealed',
+  'MarkupContentOrString': 'TooltipSealed',
+  'FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport':
+      'RelatedDocumentSealed',
+  'StringOrStringValue': 'InsertTextSealed',
+  'StringOrStrings': 'StringsSealed',
+  'InsertReplaceEditOrTextEdit': 'TextEditSealed',
+  'RangeOrRangeInsertRangeReplace': 'EditRangeSealed',
+  'MarkedStringOrMarkedStringsOrMarkupContent': 'HoversContentSealed',
+  'LocationOrStringUri': 'SymbolLocationSealed',
+  'OrBool': 'SemanticTokensRangeSealed',
+  'BoolOrBoolDelta': 'SemanticTokensSealed',
+  'AnnotatedTextEditOrTextEdit': 'EditsSealed',
+  'IntOrNull': 'IntOrNullSealed',
+  'NullOrString': 'StringOrNullSealed',
+  'NullOrWorkspaceFolders': 'NullOrWorkspaceFoldersSealed',
+  'TextDocumentSyncKindOrTextDocumentSyncOptions': 'TextDocumentSyncSealed',
   'NotebookDocumentSyncOptionsOrNotebookDocumentSyncRegistrationOptions':
-      'Sealed32',
-  'BoolOrHoverOptions': 'Sealed33',
-  'BoolOrDeclarationOptionsOrDeclarationRegistrationOptions': 'Sealed34',
-  'BoolOrDefinitionOptions': 'Sealed35',
-  'BoolOrTypeDefinitionOptionsOrTypeDefinitionRegistrationOptions': 'Sealed36',
-  'BoolOrImplementationOptionsOrImplementationRegistrationOptions': 'Sealed37',
-  'BoolOrReferenceOptions': 'Sealed38',
-  'BoolOrDocumentHighlightOptions': 'Sealed39',
-  'BoolOrDocumentSymbolOptions': 'Sealed40',
-  'BoolOrCodeActionOptions': 'Sealed41',
-  'BoolOrDocumentColorOptionsOrDocumentColorRegistrationOptions': 'Sealed42',
-  'BoolOrWorkspaceSymbolOptions': 'Sealed43',
-  'BoolOrDocumentFormattingOptions': 'Sealed44',
-  'BoolOrDocumentRangeFormattingOptions': 'Sealed45',
-  'BoolOrRenameOptions': 'Sealed46',
-  'BoolOrFoldingRangeOptionsOrFoldingRangeRegistrationOptions': 'Sealed47',
-  'BoolOrSelectionRangeOptionsOrSelectionRangeRegistrationOptions': 'Sealed48',
-  'BoolOrCallHierarchyOptionsOrCallHierarchyRegistrationOptions': 'Sealed49',
+      'NotebookDocumentSyncSealed',
+  'BoolOrHoverOptions': 'HoverProviderSealed',
+  'BoolOrDeclarationOptionsOrDeclarationRegistrationOptions':
+      'DeclarationProviderSealed',
+  'BoolOrDefinitionOptions': 'DefinitionProviderSealed',
+  'BoolOrTypeDefinitionOptionsOrTypeDefinitionRegistrationOptions':
+      'TypeDefinitionProviderSealed',
+  'BoolOrImplementationOptionsOrImplementationRegistrationOptions':
+      'ImplementationProviderSealed',
+  'BoolOrReferenceOptions': 'ReferencesProviderSealed',
+  'BoolOrDocumentHighlightOptions': 'DocumentHighlightProviderSealed',
+  'BoolOrDocumentSymbolOptions': 'DocumentSymbolProviderSealed',
+  'BoolOrCodeActionOptions': 'CodeActionProviderSealed',
+  'BoolOrDocumentColorOptionsOrDocumentColorRegistrationOptions':
+      'ColorProviderSealed',
+  'BoolOrWorkspaceSymbolOptions': 'WorkspaceSymbolProviderSealed',
+  'BoolOrDocumentFormattingOptions': 'DocumentFormattingProviderSealed',
+  'BoolOrDocumentRangeFormattingOptions':
+      'DocumentRangeFormattingProviderSealed',
+  'BoolOrRenameOptions': 'RenameProviderSealed',
+  'BoolOrFoldingRangeOptionsOrFoldingRangeRegistrationOptions':
+      'FoldingRangeProviderSealed',
+  'BoolOrSelectionRangeOptionsOrSelectionRangeRegistrationOptions':
+      'SelectionRangeProviderSealed',
+  'BoolOrCallHierarchyOptionsOrCallHierarchyRegistrationOptions':
+      'CallHierarchyProviderSealed',
   'BoolOrLinkedEditingRangeOptionsOrLinkedEditingRangeRegistrationOptions':
-      'Sealed50',
-  'SemanticTokensOptionsOrSemanticTokensRegistrationOptions': 'Sealed51',
-  'BoolOrMonikerOptionsOrMonikerRegistrationOptions': 'Sealed52',
-  'BoolOrTypeHierarchyOptionsOrTypeHierarchyRegistrationOptions': 'Sealed53',
-  'BoolOrInlineValueOptionsOrInlineValueRegistrationOptions': 'Sealed54',
-  'BoolOrInlayHintOptionsOrInlayHintRegistrationOptions': 'Sealed55',
-  'DiagnosticOptionsOrDiagnosticRegistrationOptions': 'Sealed56',
-  'BoolOrInlineCompletionOptions': 'Sealed57',
-  'BoolOrSaveOptions': 'Sealed58',
+      'LinkedEditingRangeProviderSealed',
+  'SemanticTokensOptionsOrSemanticTokensRegistrationOptions':
+      'SemanticTokensProviderSealed',
+  'BoolOrMonikerOptionsOrMonikerRegistrationOptions': 'MonikerProviderSealed',
+  'BoolOrTypeHierarchyOptionsOrTypeHierarchyRegistrationOptions':
+      'TypeHierarchyProviderSealed',
+  'BoolOrInlineValueOptionsOrInlineValueRegistrationOptions': 'InlineValueProviderSealed',
+  'BoolOrInlayHintOptionsOrInlayHintRegistrationOptions': 'InlayHintProviderSealed',
+  'DiagnosticOptionsOrDiagnosticRegistrationOptions': 'DiagnosticProviderSealed',
+  'BoolOrInlineCompletionOptions': 'InlineCompletionProviderSealed',
+  'BoolOrSaveOptions': 'SaveSealed',
   'NotebookDocumentFilterOrStringNotebookStringLanguagesCellsOrNotebookDocumentFilterOrStringNotebookStringLanguagesCells':
-      'Sealed59',
-  'BoolOrString': 'Sealed60',
-  'StringOrTupleRef': 'Sealed61',
-  'NotebookDocumentFilterOrString': 'Sealed62',
-  'StringOrWorkspaceFolder': 'Sealed63',
+      'NotebookSelectorSealed',
+  'BoolOrString': 'ChangeNotificationsSealed',
+  'StringOrTupleRef': 'SignatureInformationSealed',
+  'NotebookDocumentFilterOrString': 'NotebookFilterSealed',
+  'StringOrWorkspaceFolder': 'WorkspaceFolderSealed',
 };
-
-
-// Added sealed symbol: InlayHintLabelPartsOrString
-// Added sealed symbol: MarkupContentOrString
-// Added sealed symbol: FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport
-// Added sealed symbol: StringOrStringValue
-// Added sealed symbol: StringOrStrings
-// Added sealed symbol: InsertReplaceEditOrTextEdit
-// Added sealed symbol: RangeOrRangeInsertRangeReplace
-// Added sealed symbol: MarkedStringOrMarkedStringsOrMarkupContent
-// Added sealed symbol: LocationOrStringUri
-// Added sealed symbol: OrBool
-// Added sealed symbol: BoolOrBoolDelta
-// Added sealed symbol: AnnotatedTextEditOrTextEdit
-// Added sealed symbol: IntOrNull
-// Added sealed symbol: NullOrString
-// Added sealed symbol: NullOrWorkspaceFolders
-// Added sealed symbol: TextDocumentSyncKindOrTextDocumentSyncOptions
-// Added sealed symbol: NotebookDocumentSyncOptionsOrNotebookDocumentSyncRegistrationOptions
-// Added sealed symbol: BoolOrHoverOptions
-// Added sealed symbol: BoolOrDeclarationOptionsOrDeclarationRegistrationOptions
-// Added sealed symbol: BoolOrDefinitionOptions
-// Added sealed symbol: BoolOrTypeDefinitionOptionsOrTypeDefinitionRegistrationOptions
-// Added sealed symbol: BoolOrImplementationOptionsOrImplementationRegistrationOptions
-// Added sealed symbol: BoolOrReferenceOptions
-// Added sealed symbol: BoolOrDocumentHighlightOptions
-// Added sealed symbol: BoolOrDocumentSymbolOptions
-// Added sealed symbol: BoolOrCodeActionOptions
-// Added sealed symbol: BoolOrDocumentColorOptionsOrDocumentColorRegistrationOptions
-// Added sealed symbol: BoolOrWorkspaceSymbolOptions
-// Added sealed symbol: BoolOrDocumentFormattingOptions
-// Added sealed symbol: BoolOrDocumentRangeFormattingOptions
-// Added sealed symbol: BoolOrRenameOptions
-// Added sealed symbol: BoolOrFoldingRangeOptionsOrFoldingRangeRegistrationOptions
-// Added sealed symbol: BoolOrSelectionRangeOptionsOrSelectionRangeRegistrationOptions
-// Added sealed symbol: BoolOrCallHierarchyOptionsOrCallHierarchyRegistrationOptions
-// Added sealed symbol: BoolOrLinkedEditingRangeOptionsOrLinkedEditingRangeRegistrationOptions
-// Added sealed symbol: SemanticTokensOptionsOrSemanticTokensRegistrationOptions
-// Added sealed symbol: BoolOrMonikerOptionsOrMonikerRegistrationOptions
-// Added sealed symbol: BoolOrTypeHierarchyOptionsOrTypeHierarchyRegistrationOptions
-// Added sealed symbol: BoolOrInlineValueOptionsOrInlineValueRegistrationOptions
-// Added sealed symbol: BoolOrInlayHintOptionsOrInlayHintRegistrationOptions
-// Added sealed symbol: DiagnosticOptionsOrDiagnosticRegistrationOptions
-// Added sealed symbol: BoolOrInlineCompletionOptions
-// Added sealed symbol: BoolOrSaveOptions
-// Added sealed symbol: NotebookDocumentFilterOrStringNotebookStringLanguagesCellsOrNotebookDocumentFilterOrStringNotebookStringLanguagesCells
-// Added sealed symbol: BoolOrString
-// Added sealed symbol: StringOrTupleRef
-// Added sealed symbol: NotebookDocumentFilterOrString
-// Added sealed symbol: StringOrWorkspaceFolder
