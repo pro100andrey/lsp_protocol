@@ -106,7 +106,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
       b
         ..name = _symbols.displayType(symbol.type)
         ..docs.addAll([
-          '/// Represents a literal type for ${symbol.type}.',
+          '/// ${symbol.doc}',
         ])
         ..definition = refer(symbol.definition);
     });
@@ -611,7 +611,7 @@ class ProtocolGenerator {
     final generatorVisitor = GeneratorVisitor(protocol);
     // Start the visitation process from the root MetaProtocol object
     final library = protocol.accept(generatorVisitor) as Library;
-    final result = specToCode(library, format: false);
+    final result = specToCode(library, format: true);
 
     return result;
   }

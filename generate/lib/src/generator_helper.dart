@@ -4,7 +4,7 @@ import 'package:dart_style/dart_style.dart';
 import 'extensions/string.dart';
 import 'meta/protocol.dart';
 
-String specToCode(Spec spec, {bool format = true}) {
+String specToCode(Spec spec, {required bool format}) {
   final emitter = DartEmitter(
     allocator: Allocator.simplePrefixing(),
     useNullSafetySyntax: true,

@@ -25,7 +25,7 @@ final class Symbols {
     _collectTypedefs(protocol);
     _collectSealed(protocol);
     _collectTuples(protocol);
-    
+
     _collectLiterals(protocol);
     _collectStructures(protocol);
   }
@@ -56,11 +56,19 @@ final class Symbols {
       return;
     }
 
-    _displayNames[type] = 'Literal$_literalIdx';
+    final value = 'Literal$_literalIdx';
+
+    _displayNames[type] = value;
     _literalIdx++;
   }
 
-  String displayType(String type) => _displayNames[type] ?? type;
+  String displayType(String type, {bool throwIfMissing = false}) {
+    if (throwIfMissing && !_displayNames.containsKey(type)) {
+      throw ArgumentError('Type not found: $type');
+    }
+
+    return _displayNames[type] ?? type;
+  }
 
   void _collectTuples(MetaProtocol protocol) {
     void addTupleSymbol(TupleRef tupleRef) {
@@ -171,7 +179,12 @@ final class Symbols {
       }
 
       String typeResolver(MetaReference ref) => ref.when(
-        literalRef: (ref) => displayType(type),
+        literalRef: (ref) {
+          final literalType = _resolveLiteralType(ref);
+          final display = displayType(literalType);
+
+          return display;
+        },
         orRef: (ref) {
           final type = resolveType(ref);
 
@@ -179,7 +192,11 @@ final class Symbols {
 
           return dType;
         },
-        arrayRef: (ref) => 'List<${typeResolver(ref.element)}>',
+        arrayRef: (ref) {
+          final elementType = resolveType(ref.element);
+          final dElementType = displayType(elementType);
+          return 'List<$dElementType>';
+        },
         orElse: resolveType,
       );
 
@@ -187,7 +204,7 @@ final class Symbols {
       final symbol = LiteralSymbol(
         type: type,
         definition: definition,
-        ref: ref,
+        doc: 'Represents a literal type for $type.',
       );
 
       _literalSymbols[type] = symbol;
@@ -205,14 +222,14 @@ final class Symbols {
 
     for (final struct in protocol.structures) {
       for (final property in struct.properties) {
-        property.type.onOrRef((orRef) {
-          orRef.forEachItem(
-            (v1) => v1.onLiteralRef(addLiteralSymbol),
-          );
-        });
-
         property.type.onLiteralRef((literalRef) {
           for (final prop in literalRef.value.properties) {
+            prop.type.onLiteralRef((innerRef) {
+              final ref = innerRef;
+
+              addLiteralSymbol(ref);
+            });
+
             prop.type.onOrRef(
               (orRef) => orRef.forEachItem(
                 (item) => item.onLiteralRef(addLiteralSymbol),
@@ -220,13 +237,20 @@ final class Symbols {
             );
 
             prop.type.onArrayRef((arrayRef) {
-              arrayRef.element.onLiteralRef(addLiteralSymbol);
+              arrayRef.element.onLiteralRef((ref) {
+                final r = ref;
+                addLiteralSymbol(r);
+              });
             });
-
-            prop.type.onLiteralRef(addLiteralSymbol);
           }
 
           addLiteralSymbol(literalRef);
+        });
+
+        property.type.onOrRef((orRef) {
+          orRef.forEachItem(
+            (v1) => v1.onLiteralRef(addLiteralSymbol),
+          );
         });
       }
     }
@@ -242,16 +266,19 @@ final class Symbols {
     for (final struct in structuresByName.values) {
       // Contains duplicated properties
       final allProperties = getAllProperties(struct, structuresByName);
-      final properties = allProperties
-          .map(
-            (property) => PropertySymbol(
-              type: resolveType(property.type),
-              name: property.name,
-              optional: property.optional,
-              documentation: property.documentation,
-            ),
-          )
-          .toList();
+      final properties = allProperties.map(
+        (property) {
+          final type = resolveType(property.type);
+          final dType = displayType(type);
+
+          return PropertySymbol(
+            type: dType,
+            name: property.name,
+            optional: property.optional,
+            documentation: property.documentation,
+          );
+        },
+      ).toList();
 
       final structureSymbol = StructureSymbol(
         name: struct.name,
@@ -305,7 +332,12 @@ final class Symbols {
     return result;
   }
 
-  String _resolveArrayType(ArrayRef ref) => 'List<${resolveType(ref.element)}>';
+  String _resolveArrayType(ArrayRef ref) {
+    final elementType = resolveType(ref.element);
+    final dElementType = displayType(elementType);
+    
+    return 'List<$dElementType>';
+  }
 
   String _resolveTupleType(TupleRef ref) {
     final parts = ref.items

@@ -45,15 +45,17 @@ class LiteralSymbol extends Symbol {
   const LiteralSymbol({
     required this.type,
     required this.definition,
-    required this.ref,
+
+    this.doc,
   });
 
   final String type;
   final String definition;
-  final Object ref;
+
+  final String? doc;
 
   @override
-  List<Object?> get props => [type, definition];
+  List<Object?> get props => [type, definition, doc];
 }
 
 class TupleSymbol extends Symbol {
