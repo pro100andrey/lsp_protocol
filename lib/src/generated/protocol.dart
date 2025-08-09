@@ -127,58 +127,66 @@ typedef Literal6 = ({String language, String? pattern, String? scheme});
 typedef Literal7 = ({String notebookType, String? pattern, String? scheme});
 /// Represents a literal type for String_name$String_version.
 typedef Literal8 = ({String name, String? version});
+/// Represents a literal type for Range_insert$Range_replace.
+typedef Literal9 = ({Range insert, Range replace});
 /// Represents a literal type for InsertTextFormat_insertTextFormat$InsertTextMode_insertTextMode$LSPAny_data$List<String>_commitCharacters$RangeOrRange_insert$Range_replace_editRange.
-typedef Literal9 = ({InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data, List<String>? commitCharacters, RangeOrRange_insert$Range_replace? editRange});
+typedef Literal10 = ({InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data, List<String>? commitCharacters, Sealed22? editRange});
 /// Represents a literal type for String_reason.
-typedef Literal10 = ({String reason});
+typedef Literal11 = ({String reason});
+/// Represents a literal type for String_uri.
+typedef Literal12 = ({String uri});
+/// Represents a literal type for .
+typedef Literal13 = ();
+/// Represents a literal type for Bool_delta.
+typedef Literal14 = ({bool? delta});
 /// Represents a literal type for List<TextDocumentIdentifier>_didClose$List<TextDocumentItem>_didOpen$NotebookCellArrayChange_array.
-typedef Literal11 = ({List<TextDocumentIdentifier>? didClose, List<TextDocumentItem>? didOpen, NotebookCellArrayChange array});
+typedef Literal15 = ({List<TextDocumentIdentifier>? didClose, List<TextDocumentItem>? didOpen, NotebookCellArrayChange array});
 /// Represents a literal type for List<TextDocumentContentChangeEvent>_changes$VersionedTextDocumentIdentifier_document.
-typedef Literal12 = ({List<TextDocumentContentChangeEvent> changes, VersionedTextDocumentIdentifier document});
+typedef Literal16 = ({List<TextDocumentContentChangeEvent> changes, VersionedTextDocumentIdentifier document});
 /// Represents a literal type for List<List<TextDocumentContentChangeEvent>_changes$VersionedTextDocumentIdentifier_document>_textContent$List<NotebookCell>_data$List<TextDocumentIdentifier>_didClose$List<TextDocumentItem>_didOpen$NotebookCellArrayChange_array_structure.
-typedef Literal13 = ({List<Literal13>? textContent, List<NotebookCell>? data, Literal13? structure});
+typedef Literal17 = ({List<Literal17>? textContent, List<NotebookCell>? data, Literal17? structure});
 /// Represents a literal type for FileOperationOptions_fileOperations$WorkspaceFoldersServerCapabilities_workspaceFolders.
-typedef Literal14 = ({FileOperationOptions? fileOperations, WorkspaceFoldersServerCapabilities? workspaceFolders});
+typedef Literal18 = ({FileOperationOptions? fileOperations, WorkspaceFoldersServerCapabilities? workspaceFolders});
 /// Represents a literal type for Bool_labelDetailsSupport.
-typedef Literal15 = ({bool? labelDetailsSupport});
+typedef Literal19 = ({bool? labelDetailsSupport});
 /// Represents a literal type for Bool_cancel$List<String>_retryOnContentModified.
-typedef Literal16 = ({bool cancel, List<String> retryOnContentModified});
+typedef Literal20 = ({bool cancel, List<String> retryOnContentModified});
 /// Represents a literal type for Bool_groupsOnLabel.
-typedef Literal17 = ({bool? groupsOnLabel});
+typedef Literal21 = ({bool? groupsOnLabel});
 /// Represents a literal type for List<SymbolKind>_valueSet.
-typedef Literal18 = ({List<SymbolKind>? valueSet});
+typedef Literal22 = ({List<SymbolKind>? valueSet});
 /// Represents a literal type for List<SymbolTag>_valueSet.
-typedef Literal19 = ({List<SymbolTag> valueSet});
+typedef Literal23 = ({List<SymbolTag> valueSet});
 /// Represents a literal type for List<String>_properties.
-typedef Literal20 = ({List<String> properties});
+typedef Literal24 = ({List<String> properties});
 /// Represents a literal type for List<CompletionItemTag>_valueSet.
-typedef Literal21 = ({List<CompletionItemTag> valueSet});
+typedef Literal25 = ({List<CompletionItemTag> valueSet});
 /// Represents a literal type for List<InsertTextMode>_valueSet.
-typedef Literal22 = ({List<InsertTextMode> valueSet});
+typedef Literal26 = ({List<InsertTextMode> valueSet});
 /// Represents a literal type for Bool_commitCharactersSupport$Bool_deprecatedSupport$Bool_insertReplaceSupport$Bool_labelDetailsSupport$Bool_preselectSupport$Bool_snippetSupport$List<CompletionItemTag>_valueSet_tagSupport$List<InsertTextMode>_valueSet_insertTextModeSupport$List<MarkupKind>_documentationFormat$List<String>_properties_resolveSupport.
-typedef Literal23 = ({bool? commitCharactersSupport, bool? deprecatedSupport, bool? insertReplaceSupport, bool? labelDetailsSupport, bool? preselectSupport, bool? snippetSupport, List<MarkupKind>? documentationFormat, Literal23? insertTextModeSupport, Literal23? resolveSupport, Literal23? tagSupport});
+typedef Literal27 = ({bool? commitCharactersSupport, bool? deprecatedSupport, bool? insertReplaceSupport, bool? labelDetailsSupport, bool? preselectSupport, bool? snippetSupport, List<MarkupKind>? documentationFormat, Literal27? insertTextModeSupport, Literal27? resolveSupport, Literal27? tagSupport});
 /// Represents a literal type for List<CompletionItemKind>_valueSet.
-typedef Literal24 = ({List<CompletionItemKind>? valueSet});
+typedef Literal28 = ({List<CompletionItemKind>? valueSet});
 /// Represents a literal type for List<String>_itemDefaults.
-typedef Literal25 = ({List<String>? itemDefaults});
+typedef Literal29 = ({List<String>? itemDefaults});
 /// Represents a literal type for Bool_labelOffsetSupport.
-typedef Literal26 = ({bool? labelOffsetSupport});
+typedef Literal30 = ({bool? labelOffsetSupport});
 /// Represents a literal type for Bool_activeParameterSupport$Bool_labelOffsetSupport_parameterInformation$List<MarkupKind>_documentationFormat.
-typedef Literal27 = ({bool? activeParameterSupport, List<MarkupKind>? documentationFormat, Literal27? parameterInformation});
+typedef Literal31 = ({bool? activeParameterSupport, List<MarkupKind>? documentationFormat, Literal31? parameterInformation});
 /// Represents a literal type for List<CodeActionKind>_valueSet.
-typedef Literal28 = ({List<CodeActionKind> valueSet});
+typedef Literal32 = ({List<CodeActionKind> valueSet});
 /// Represents a literal type for List<CodeActionKind>_valueSet_codeActionKind.
-typedef Literal29 = ({Literal29 codeActionKind});
+typedef Literal33 = ({Literal33 codeActionKind});
 /// Represents a literal type for List<FoldingRangeKind>_valueSet.
-typedef Literal30 = ({List<FoldingRangeKind>? valueSet});
+typedef Literal34 = ({List<FoldingRangeKind>? valueSet});
 /// Represents a literal type for Bool_collapsedText.
-typedef Literal31 = ({bool? collapsedText});
+typedef Literal35 = ({bool? collapsedText});
 /// Represents a literal type for List<DiagnosticTag>_valueSet.
-typedef Literal32 = ({List<DiagnosticTag> valueSet});
+typedef Literal36 = ({List<DiagnosticTag> valueSet});
 /// Represents a literal type for Bool_deltaOrbool_full$Orbool_range.
-typedef Literal33 = ({Bool_deltaOrbool? full, Orbool? range});
+typedef Literal37 = ({Sealed25? range, Sealed26? full});
 /// Represents a literal type for Bool_additionalPropertiesSupport.
-typedef Literal34 = ({bool? additionalPropertiesSupport});
+typedef Literal38 = ({bool? additionalPropertiesSupport});
 sealed class Sealed1 {const Sealed1();
 
  }
@@ -1413,7 +1421,7 @@ required bool isIncomplete, /// In many cases the items of an actual completion 
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
 /// @since 3.17.0
-Literal9? itemDefaults, /// The completion items.
+Literal10? itemDefaults, /// The completion items.
 required List<CompletionItem> items, }) = _CompletionList;
 
 factory CompletionList.fromJson(Map<String, dynamic> json) => _$CompletionListFromJson(json);
@@ -1429,7 +1437,7 @@ factory CompletionList.fromJson(Map<String, dynamic> json) => _$CompletionListFr
 List<String>? allCommitCharacters, /// The server supports the following `CompletionItem` specific
 /// capabilities.
 /// @since 3.17.0
-Literal15? completionItem, /// A document selector to identify the scope of the registration. If set
+Literal19? completionItem, /// A document selector to identify the scope of the registration. If set
 /// to null the document selector provided on the client side will be used.
 required Sealed14 documentSelector, /// The server provides support to resolve additional information for a
 /// completion item.
@@ -1676,7 +1684,7 @@ List<Diagnostic>? diagnostics, /// Marks that the code action cannot currently b
 /// returned, the client should show the user an error message with
 /// `reason` in the editor.
 /// @since 3.16.0
-Literal10? disabled, /// The workspace edit this code action performs.
+Literal11? disabled, /// The workspace edit this code action performs.
 WorkspaceEdit? edit, /// Marks this as a preferred action. Preferred actions are used by the
 /// `auto fix` command and can be targeted by keybindings.
 /// A quick fix should be marked preferred if it properly addresses the
@@ -2403,7 +2411,7 @@ factory VersionedNotebookDocumentIdentifier.fromJson(Map<String, dynamic> json) 
 
  }
 @freezed abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {const factory NotebookDocumentChangeEvent({/// Changes to cells
-Literal13? cells, /// The changed meta data if any.
+Literal17? cells, /// The changed meta data if any.
 /// Note: should always be an object literal (e.g. LSPObject)
 LSPObject? metadata, }) = _NotebookDocumentChangeEvent;
 
@@ -2543,7 +2551,7 @@ Sealed31? textDocumentSync, /// The server provides Goto Type Definition support
 Sealed36? typeDefinitionProvider, /// The server provides type hierarchy support.
 /// @since 3.17.0
 Sealed53? typeHierarchyProvider, /// Workspace specific server capabilities.
-Literal14? workspace, /// The server provides workspace symbol support.
+Literal18? workspace, /// The server provides workspace symbol support.
 Sealed43? workspaceSymbolProvider, }) = _ServerCapabilities;
 
 factory ServerCapabilities.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFromJson(json);
@@ -2640,7 +2648,7 @@ factory InsertReplaceEdit.fromJson(Map<String, dynamic> json) => _$InsertReplace
 List<String>? allCommitCharacters, /// The server supports the following `CompletionItem` specific
 /// capabilities.
 /// @since 3.17.0
-Literal15? completionItem, /// The server provides support to resolve additional information for a
+Literal19? completionItem, /// The server provides support to resolve additional information for a
 /// completion item.
 bool? resolveProvider, /// Most tools trigger completion request automatically without explicitly
 /// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
@@ -3216,7 +3224,7 @@ RegularExpressionsClientCapabilities? regularExpressions, /// Client capability 
 /// (e.g. a request for which the client will not process the response
 /// anymore since the information is outdated).
 /// @since 3.17.0
-Literal16? staleRequestSupport, }) = _GeneralClientCapabilities;
+Literal20? staleRequestSupport, }) = _GeneralClientCapabilities;
 
 factory GeneralClientCapabilities.fromJson(Map<String, dynamic> json) => _$GeneralClientCapabilitiesFromJson(json);
 
@@ -3232,7 +3240,7 @@ factory RelativePattern.fromJson(Map<String, dynamic> json) => _$RelativePattern
 @freezed abstract class WorkspaceEditClientCapabilities with _$WorkspaceEditClientCapabilities {const factory WorkspaceEditClientCapabilities({/// Whether the client in general supports change annotations on text
 /// edits, create file, rename file and delete file changes.
 /// @since 3.16.0
-Literal17? changeAnnotationSupport, /// The client supports versioned document changes in `WorkspaceEdit`s
+Literal21? changeAnnotationSupport, /// The client supports versioned document changes in `WorkspaceEdit`s
 bool? documentChanges, /// The failure handling strategy of a client if applying the workspace
 /// edit fails.
 /// @since 3.13.0
@@ -3271,12 +3279,12 @@ bool? dynamicRegistration, /// The client support partial workspace symbols. The
 /// request `workspaceSymbol/resolve` to the server to resolve additional
 /// properties.
 /// @since 3.17.0
-Literal20? resolveSupport, /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
+Literal24? resolveSupport, /// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
 /// request.
-Literal18? symbolKind, /// The client supports tags on `SymbolInformation`. Clients supporting
+Literal22? symbolKind, /// The client supports tags on `SymbolInformation`. Clients supporting
 /// tags have to handle unknown tags gracefully.
 /// @since 3.16.0
-Literal19? tagSupport, }) = _WorkspaceSymbolClientCapabilities;
+Literal23? tagSupport, }) = _WorkspaceSymbolClientCapabilities;
 
 factory WorkspaceSymbolClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolClientCapabilitiesFromJson(json);
 
@@ -3380,10 +3388,10 @@ factory TextDocumentSyncClientCapabilities.fromJson(Map<String, dynamic> json) =
  }
 @freezed abstract class CompletionClientCapabilities with _$CompletionClientCapabilities {const factory CompletionClientCapabilities({/// The client supports the following `CompletionItem` specific
 /// capabilities.
-Literal23? completionItem, Literal24? completionItemKind, /// The client supports the following `CompletionList` specific
+Literal27? completionItem, Literal28? completionItemKind, /// The client supports the following `CompletionList` specific
 /// capabilities.
 /// @since 3.17.0
-Literal25? completionList, /// The client supports to send additional context information for a
+Literal29? completionList, /// The client supports to send additional context information for a
 /// `textDocument/completion` request.
 bool? contextSupport, /// Whether completion supports dynamic registration.
 bool? dynamicRegistration, /// Defines how the client handles whitespace and indentation when
@@ -3411,7 +3419,7 @@ factory HoverClientCapabilities.fromJson(Map<String, dynamic> json) => _$HoverCl
 bool? contextSupport, /// Whether signature help supports dynamic registration.
 bool? dynamicRegistration, /// The client supports the following `SignatureInformation` specific
 /// properties.
-Literal27? signatureInformation, }) = _SignatureHelpClientCapabilities;
+Literal31? signatureInformation, }) = _SignatureHelpClientCapabilities;
 
 factory SignatureHelpClientCapabilities.fromJson(Map<String, dynamic> json) => _$SignatureHelpClientCapabilitiesFromJson(json);
 
@@ -3473,11 +3481,11 @@ bool? hierarchicalDocumentSymbolSupport, /// The client supports an additional l
 /// @since 3.16.0
 bool? labelSupport, /// Specific capabilities for the `SymbolKind` in the
 /// `textDocument/documentSymbol` request.
-Literal18? symbolKind, /// The client supports tags on `SymbolInformation`. Tags are supported on
+Literal22? symbolKind, /// The client supports tags on `SymbolInformation`. Tags are supported on
 /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
 /// Clients supporting tags have to handle unknown tags gracefully.
 /// @since 3.16.0
-Literal19? tagSupport, }) = _DocumentSymbolClientCapabilities;
+Literal23? tagSupport, }) = _DocumentSymbolClientCapabilities;
 
 factory DocumentSymbolClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentSymbolClientCapabilitiesFromJson(json);
 
@@ -3486,7 +3494,7 @@ factory DocumentSymbolClientCapabilities.fromJson(Map<String, dynamic> json) => 
 /// response of the `textDocument/codeAction` request. If the property is
 /// not set the request can only return `Command` literals.
 /// @since 3.8.0
-Literal29? codeActionLiteralSupport, /// Whether code action supports the `data` property which is preserved
+Literal33? codeActionLiteralSupport, /// Whether code action supports the `data` property which is preserved
 /// between a `textDocument/codeAction` and a `codeAction/resolve` request.
 /// @since 3.16.0
 bool? dataSupport, /// Whether code action supports the `disabled` property.
@@ -3502,7 +3510,7 @@ bool? honorsChangeAnnotations, /// Whether code action supports the `isPreferred
 bool? isPreferredSupport, /// Whether the client supports resolving additional code action properties
 /// via a separate `codeAction/resolve` request.
 /// @since 3.16.0
-Literal20? resolveSupport, }) = _CodeActionClientCapabilities;
+Literal24? resolveSupport, }) = _CodeActionClientCapabilities;
 
 factory CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeActionClientCapabilitiesFromJson(json);
 
@@ -3572,9 +3580,9 @@ factory RenameClientCapabilities.fromJson(Map<String, dynamic> json) => _$Rename
 /// server capability as well.
 bool? dynamicRegistration, /// Specific options for the folding range.
 /// @since 3.17.0
-Literal31? foldingRange, /// Specific options for the folding range kind.
+Literal35? foldingRange, /// Specific options for the folding range kind.
 /// @since 3.17.0
-Literal30? foldingRangeKind, /// If set, the client signals that it only supports folding complete
+Literal34? foldingRangeKind, /// If set, the client signals that it only supports folding complete
 /// lines. If set, client will ignore specified `startCharacter` and
 /// `endCharacter` properties in a FoldingRange.
 bool? lineFoldingOnly, /// The maximum number of folding ranges that the client prefers to receive
@@ -3605,7 +3613,7 @@ bool? relatedInformation, /// Client supports the tag property to provide meta d
 /// diagnostic. Clients supporting tags have to handle unknown tags
 /// gracefully.
 /// @since 3.15.0
-Literal32? tagSupport, /// Whether the client interprets the version property of the
+Literal36? tagSupport, /// Whether the client interprets the version property of the
 /// `textDocument/publishDiagnostics` notification's parameter.
 /// @since 3.15.0
 bool? versionSupport, }) = _PublishDiagnosticsClientCapabilities;
@@ -3643,7 +3651,7 @@ bool? overlappingTokenSupport, /// Which requests the client supports and might 
 /// `request.range` are both set to true but the server only provides a
 /// range provider the client might not render a minimap correctly or might
 /// even decide to not show any semantic tokens at all.
-required Literal33 requests, /// Whether the client allows the server to actively cancel a semantic
+required Literal37 requests, /// Whether the client allows the server to actively cancel a semantic
 /// token request, e.g. supports returning LSPErrorCodes.ServerCancelled.
 /// If a server does the client needs to retrigger the request.
 /// @since 3.17.0
@@ -3689,7 +3697,7 @@ factory InlineValueClientCapabilities.fromJson(Map<String, dynamic> json) => _$I
  }
 @freezed abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {const factory InlayHintClientCapabilities({/// Whether inlay hints support dynamic registration.
 bool? dynamicRegistration, /// Indicates which properties a client can resolve lazily on an inlay hint.
-Literal20? resolveSupport, }) = _InlayHintClientCapabilities;
+Literal24? resolveSupport, }) = _InlayHintClientCapabilities;
 
 factory InlayHintClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlayHintClientCapabilitiesFromJson(json);
 
@@ -3723,7 +3731,7 @@ factory NotebookDocumentSyncClientCapabilities.fromJson(Map<String, dynamic> jso
 
  }
 @freezed abstract class ShowMessageRequestClientCapabilities with _$ShowMessageRequestClientCapabilities {const factory ShowMessageRequestClientCapabilities({/// Capabilities specific to the `MessageActionItem` type.
-Literal34? messageActionItem}) = _ShowMessageRequestClientCapabilities;
+Literal38? messageActionItem}) = _ShowMessageRequestClientCapabilities;
 
 factory ShowMessageRequestClientCapabilities.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestClientCapabilitiesFromJson(json);
 

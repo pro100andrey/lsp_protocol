@@ -23,9 +23,10 @@ final class Symbols {
 
   void process(MetaProtocol protocol) {
     _collectTypedefs(protocol);
-    _collectTuples(protocol);
-    _collectLiterals(protocol);
     _collectSealed(protocol);
+    _collectTuples(protocol);
+    
+    _collectLiterals(protocol);
     _collectStructures(protocol);
   }
 
@@ -42,7 +43,7 @@ final class Symbols {
   var _sealedIdx = 1;
   void _setSealedDisplayType(String type) {
     if (_displayNames.containsKey(type)) {
-      return; // Already set
+      return;
     }
 
     _displayNames[type] = 'Sealed$_sealedIdx';
@@ -52,7 +53,7 @@ final class Symbols {
   var _literalIdx = 1;
   void _setLiteralDisplayType(String type) {
     if (_displayNames.containsKey(type)) {
-      return; // Already set
+      return;
     }
 
     _displayNames[type] = 'Literal$_literalIdx';
@@ -80,11 +81,11 @@ final class Symbols {
 
     for (final structure in protocol.structures) {
       for (final property in structure.properties) {
-        property.type.onOrRef((orRef) {
-          for (final prop in orRef.items) {
-            prop.onTupleRef(addTupleSymbol);
-          }
-        });
+        property.type.onOrRef(
+          (orRef) => orRef.forEachItem(
+            (item) => item.onTupleRef(addTupleSymbol),
+          ),
+        );
       }
     }
   }
@@ -118,7 +119,7 @@ final class Symbols {
         types: types,
       );
 
-      print('Added sealed symbol: ${symbol.type}');
+      print('Added sealed symbol: ${symbol.type} -> ${displayType(type)}');
 
       _sealedMap[type] = symbol;
     }
@@ -130,9 +131,19 @@ final class Symbols {
     for (final structure in protocol.structures) {
       for (final property in structure.properties) {
         property.type.onLiteralRef((literalRef) {
-          for (final prop in literalRef.value.properties) {
-            prop.type.onOrRef(addSealedSymbol);
-          }
+          literalRef.forEachProperty((prop) {
+            prop.type.onOrRef((orRef) {
+              addSealedSymbol(orRef);
+
+              orRef.forEachItem(
+                (item) => item.onLiteralRef(
+                  (literalRef1) => literalRef1.forEachProperty(
+                    (prop1) => prop1.type.onOrRef(addSealedSymbol),
+                  ),
+                ),
+              );
+            });
+          });
         });
 
         property.type.onMapRef((mapRef) {
@@ -151,7 +162,7 @@ final class Symbols {
   }
 
   void _collectLiterals(MetaProtocol protocol) {
-    void addLiteralSymbol({required LiteralRef ref, required String origin}) {
+    void addLiteralSymbol(LiteralRef ref) {
       final type = _resolveLiteralType(ref);
       _setLiteralDisplayType(type);
 
@@ -161,16 +172,23 @@ final class Symbols {
 
       String typeResolver(MetaReference ref) => ref.when(
         literalRef: (ref) => displayType(type),
+        orRef: (ref) {
+          final type = resolveType(ref);
+
+          final dType = displayType(type);
+
+          return dType;
+        },
         arrayRef: (ref) => 'List<${typeResolver(ref.element)}>',
         orElse: resolveType,
       );
 
-      final record = literalToRecord(
+      final definition = literalToRecord(ref: ref, typeResolver: typeResolver);
+      final symbol = LiteralSymbol(
+        type: type,
+        definition: definition,
         ref: ref,
-        typeResolver: typeResolver,
       );
-
-      final symbol = LiteralSymbol(type: type, definition: record, ref: ref);
 
       _literalSymbols[type] = symbol;
 
@@ -178,40 +196,38 @@ final class Symbols {
     }
 
     for (final def in protocol.typeAliases) {
-      def.type.onOrRef((orRef) {
-        for (final prop in orRef.items) {
-          prop.onLiteralRef((literalRef) {
-            addLiteralSymbol(ref: literalRef, origin: def.name);
-          });
-        }
-      });
+      def.type.onOrRef(
+        (v1) => v1.forEachItem(
+          (v2) => v2.onLiteralRef(addLiteralSymbol),
+        ),
+      );
     }
 
     for (final struct in protocol.structures) {
       for (final property in struct.properties) {
-        property.type.onLiteralRef((literalRef) {
-          for (final prop in literalRef.value.properties) {
-            prop.type.onLiteralRef((innerLiteralRef) {
-              addLiteralSymbol(ref: innerLiteralRef, origin: prop.name);
-            });
-
-            prop.type.onArrayRef((arrayRef) {
-              arrayRef.element.onLiteralRef((innerLiteralRef) {
-                addLiteralSymbol(ref: innerLiteralRef, origin: prop.name);
-              });
-            });
-          }
-
-          addLiteralSymbol(ref: literalRef, origin: property.name);
+        property.type.onOrRef((orRef) {
+          orRef.forEachItem(
+            (v1) => v1.onLiteralRef(addLiteralSymbol),
+          );
         });
 
-        // property.type.onOrRef((orRef) {
-        //   for (final prop in orRef.items) {
-        //     prop.onLiteralRef((literalRef) {
-        //       addLiteralSymbol(ref: literalRef, origin: property.name);
-        //     });
-        //   }
-        // });
+        property.type.onLiteralRef((literalRef) {
+          for (final prop in literalRef.value.properties) {
+            prop.type.onOrRef(
+              (orRef) => orRef.forEachItem(
+                (item) => item.onLiteralRef(addLiteralSymbol),
+              ),
+            );
+
+            prop.type.onArrayRef((arrayRef) {
+              arrayRef.element.onLiteralRef(addLiteralSymbol);
+            });
+
+            prop.type.onLiteralRef(addLiteralSymbol);
+          }
+
+          addLiteralSymbol(literalRef);
+        });
       }
     }
   }

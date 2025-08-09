@@ -83,3 +83,20 @@ extension MetaReferenceExtensions on MetaReference {
     void Function(StringLiteralRef ref) callback,
   ) => on<StringLiteralRef>(callback);
 }
+
+
+extension LiteralRefExtensions on LiteralRef {
+  void forEachProperty(
+    void Function(MetaProperty prop) callback,
+  ) {
+    onLiteralRef((ref) => ref.value.properties.forEach(callback));
+  }
+}
+
+extension OrRefExtensions on OrRef {
+  void forEachItem(
+    void Function(MetaReference ref) callback,
+  ) {
+    onOrRef((ref) => ref.items.forEach(callback));
+  }
+}
