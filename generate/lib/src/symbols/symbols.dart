@@ -187,7 +187,6 @@ final class Symbols {
         },
         orRef: (ref) {
           final type = resolveType(ref);
-
           final dType = displayType(type);
 
           return dType;
