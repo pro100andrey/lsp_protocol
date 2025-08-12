@@ -44,18 +44,16 @@ class TypedefSymbol extends Symbol {
 class LiteralSymbol extends Symbol {
   const LiteralSymbol({
     required this.type,
-    required this.definition,
-
-    this.doc,
+    required this.properties,
+    required this.doc,
   });
 
   final String type;
-  final String definition;
-
-  final String? doc;
+  final List<PropertySymbol> properties;
+  final List<String> doc;
 
   @override
-  List<Object?> get props => [type, definition, doc];
+  List<Object?> get props => [type, properties, doc];
 }
 
 class TupleSymbol extends Symbol {

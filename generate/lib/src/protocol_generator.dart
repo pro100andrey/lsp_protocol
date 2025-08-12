@@ -77,13 +77,29 @@ final class ProtocolGenerator {
   ).assign(literalString(metaData.version)).statement;
 
   Spec _generateLiteralTypeAlias(LiteralSymbol symbol) {
+    final buffer = StringBuffer();
+
+    for (final prop in symbol.properties) {
+      final type = prop.type.optional(optional: prop.optional);
+
+      prop.doc.forEach(buffer.writeln);
+
+      buffer.write(
+        '$type ${prop.name}${prop == symbol.properties.last ? '' : ', '}',
+      );
+    }
+
+    final rawCode = buffer.toString();
+
+    final code = rawCode.isEmpty ? '()' : '({$rawCode})';
+
+    final definition = CodeExpression(Code(code));
+
     final def = TypeDef((b) {
       b
         ..name = indexedType(symbol.type)
-        ..docs.addAll([
-          '/// ${symbol.doc}',
-        ])
-        ..definition = refer(symbol.definition);
+        ..docs.addAll(symbol.doc)
+        ..definition = definition;
     });
 
     return def;

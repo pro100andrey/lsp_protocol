@@ -3,7 +3,6 @@
 import '../../generate.dart';
 import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
-import '../generator_helper.dart';
 import '../utils.dart';
 import 'symbol.dart';
 import 'symbols_table.dart';
@@ -173,33 +172,34 @@ final class Symbols {
         return;
       }
 
-      String typeResolver(MetaReference ref) => ref.when(
-        literalRef: (ref) {
-          final literalType = ref.resolve();
-          final display = indexedType(literalType);
+      final properties = ref.value.properties
+          .map(
+            (property) {
+              final propType = property.type.resolve();
+              final dType = indexedType(propType);
 
-          return display;
-        },
-        orRef: (ref) {
-          final type = ref.resolve();
-          final dType = indexedType(type);
+              return PropertySymbol(
+                type: dType,
+                name: property.name,
+                optional: property.optional,
+                doc: property.documentation.asDoc(width: 76),
+              );
+            },
+          )
+          .toList(growable: false);
 
-          return dType;
-        },
-        arrayRef: (ref) {
-          final elementType = ref.element.resolve();
-          final dElementType = indexedType(elementType);
+      final sortedProperties = properties
+        ..sort((a, b) {
+          final v1 = '${a.type.upperFirstLetter()}_${a.name}';
+          final v2 = '${b.type.upperFirstLetter()}_${b.name}';
 
-          return 'List<$dElementType>';
-        },
-        orElse: (ref) => ref.resolve(),
-      );
+          return v1.compareTo(v2);
+        });
 
-      final definition = literalToRecord(ref: ref, typeResolver: typeResolver);
       final symbol = LiteralSymbol(
         type: type,
-        definition: definition,
-        doc: 'Represents a literal type for $type.',
+        properties: sortedProperties,
+        doc: 'Represents a literal type for $type.'.asDoc(),
       );
 
       literalsTable[type] = symbol;

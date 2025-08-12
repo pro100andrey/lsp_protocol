@@ -144,37 +144,94 @@ typedef Literal1 = ({Range range, String placeholder});
 typedef Literal2 = ({bool defaultBehavior});
 
 /// Represents a literal type for Int_rangeLength$Range_range$String_text.
-typedef Literal3 = ({int? rangeLength, Range range, String text});
+typedef Literal3 = ({
+  /// The optional length of the range that got replaced.
+  /// @deprecated use range instead.
+  int? rangeLength,
+
+  /// The range of the document that changed.
+  Range range,
+
+  /// The new text for the provided range.
+  String text,
+});
 
 /// Represents a literal type for String_text.
-typedef Literal4 = ({String text});
+typedef Literal4 = ({
+  /// The new text of the whole document.
+  String text,
+});
 
 /// Represents a literal type for String_language$String_value.
 typedef Literal5 = ({String language, String value});
 
 /// Represents a literal type for String_language$String_pattern$String_scheme.
-typedef Literal6 = ({String language, String? pattern, String? scheme});
+typedef Literal6 = ({
+  /// A language id, like `typescript`.
+  String language,
 
-/// Represents a literal type for String_notebookType$String_pattern$String_scheme.
-typedef Literal7 = ({String notebookType, String? pattern, String? scheme});
+  /// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+  String? pattern,
+
+  /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
+  String? scheme,
+});
+
+/// Represents a literal type for
+/// String_notebookType$String_pattern$String_scheme.
+typedef Literal7 = ({
+  /// The type of the enclosing notebook.
+  String notebookType,
+
+  /// A glob pattern.
+  String? pattern,
+
+  /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
+  String? scheme,
+});
 
 /// Represents a literal type for String_name$String_version.
-typedef Literal8 = ({String name, String? version});
+typedef Literal8 = ({
+  /// The name of the server as defined by the server.
+  String name,
+
+  /// The server's version as defined by the server.
+  String? version,
+});
 
 /// Represents a literal type for Range_insert$Range_replace.
 typedef Literal9 = ({Range insert, Range replace});
 
-/// Represents a literal type for InsertTextFormat_insertTextFormat$InsertTextMode_insertTextMode$LSPAny_data$List<String>_commitCharacters$RangeOrRange_insert$Range_replace_editRange.
+/// Represents a literal type for
+/// InsertTextFormat_insertTextFormat$InsertTextMode_insertTextMode$LSPAny_data$List<String>_commitCharacters$RangeOrRange_insert$Range_replace_editRange.
 typedef Literal10 = ({
+  /// A default insert text format.
+  /// @since 3.17.0
   InsertTextFormat? insertTextFormat,
+
+  /// A default insert text mode.
+  /// @since 3.17.0
   InsertTextMode? insertTextMode,
+
+  /// A default data value.
+  /// @since 3.17.0
   LSPAny? data,
+
+  /// A default commit character set.
+  /// @since 3.17.0
   List<String>? commitCharacters,
+
+  /// A default edit range.
+  /// @since 3.17.0
   Sealed22? editRange,
 });
 
 /// Represents a literal type for String_reason.
-typedef Literal11 = ({String reason});
+typedef Literal11 = ({
+  /// Human readable description of why the code action is currently disabled.
+  /// This is displayed in the code actions UI.
+  String reason,
+});
 
 /// Represents a literal type for String_uri.
 typedef Literal12 = ({String uri});
@@ -183,108 +240,270 @@ typedef Literal12 = ({String uri});
 typedef Literal13 = ();
 
 /// Represents a literal type for Bool_delta.
-typedef Literal14 = ({bool? delta});
+typedef Literal14 = ({
+  /// The server supports deltas for full documents.
+  bool? delta,
+});
 
-/// Represents a literal type for List<TextDocumentIdentifier>_didClose$List<TextDocumentItem>_didOpen$NotebookCellArrayChange_array.
+/// Represents a literal type for
+/// List<TextDocumentIdentifier>_didClose$List<TextDocumentItem>_didOpen$NotebookCellArrayChange_array.
 typedef Literal15 = ({
+  /// Additional closed cell text documents.
   List<TextDocumentIdentifier>? didClose,
+
+  /// Additional opened cell text documents.
   List<TextDocumentItem>? didOpen,
+
+  /// The change to the cell array.
   NotebookCellArrayChange array,
 });
 
-/// Represents a literal type for List<TextDocumentContentChangeEvent>_changes$VersionedTextDocumentIdentifier_document.
+/// Represents a literal type for
+/// List<TextDocumentContentChangeEvent>_changes$VersionedTextDocumentIdentifier_document.
 typedef Literal16 = ({
   List<TextDocumentContentChangeEvent> changes,
   VersionedTextDocumentIdentifier document,
 });
 
-/// Represents a literal type for List<Literal16>_textContent$List<NotebookCell>_data$List<TextDocumentIdentifier>_didClose$List<TextDocumentItem>_didOpen$NotebookCellArrayChange_array_structure.
+/// Represents a literal type for
+/// List<Literal16>_textContent$List<NotebookCell>_data$List<TextDocumentIdentifier>_didClose$List<TextDocumentItem>_didOpen$NotebookCellArrayChange_array_structure.
 typedef Literal17 = ({
+  /// Changes to the text content of notebook cells.
   List<Literal16>? textContent,
+
+  /// Changes to notebook cells properties like its kind, execution summary
+  /// or metadata.
   List<NotebookCell>? data,
+
+  /// Changes to the cell structure to add or remove cells.
   Literal15? structure,
 });
 
-/// Represents a literal type for FileOperationOptions_fileOperations$WorkspaceFoldersServerCapabilities_workspaceFolders.
+/// Represents a literal type for
+/// FileOperationOptions_fileOperations$WorkspaceFoldersServerCapabilities_workspaceFolders.
 typedef Literal18 = ({
+  /// The server is interested in notifications/requests for operations on
+  /// files.
+  /// @since 3.16.0
   FileOperationOptions? fileOperations,
+
+  /// The server supports workspace folder.
+  /// @since 3.6.0
   WorkspaceFoldersServerCapabilities? workspaceFolders,
 });
 
 /// Represents a literal type for Bool_labelDetailsSupport.
-typedef Literal19 = ({bool? labelDetailsSupport});
+typedef Literal19 = ({
+  /// The server has support for completion item label details (see also
+  /// `CompletionItemLabelDetails`) when receiving a completion item in a
+  /// resolve call.
+  /// @since 3.17.0
+  bool? labelDetailsSupport,
+});
 
-/// Represents a literal type for Bool_cancel$List<String>_retryOnContentModified.
-typedef Literal20 = ({bool cancel, List<String> retryOnContentModified});
+/// Represents a literal type for
+/// Bool_cancel$List<String>_retryOnContentModified.
+typedef Literal20 = ({
+  /// The client will actively cancel the request.
+  bool cancel,
+
+  /// The list of requests for which the client will retry the request if it
+  /// receives a response with error code `ContentModified`
+  List<String> retryOnContentModified,
+});
 
 /// Represents a literal type for Bool_groupsOnLabel.
-typedef Literal21 = ({bool? groupsOnLabel});
+typedef Literal21 = ({
+  /// Whether the client groups edits with equal labels into tree nodes, for
+  /// instance all edits labelled with "Changes in Strings" would be a tree
+  /// node.
+  bool? groupsOnLabel,
+});
 
 /// Represents a literal type for List<SymbolKind>_valueSet.
-typedef Literal22 = ({List<SymbolKind>? valueSet});
+typedef Literal22 = ({
+  /// The symbol kind values the client supports. When this property exists
+  /// the client also guarantees that it will handle values outside its set
+  /// gracefully and falls back to a default value when unknown.
+  /// If this property is not present the client only supports the symbol
+  /// kinds from `File` to `Array` as defined in the initial version of the
+  /// protocol.
+  List<SymbolKind>? valueSet,
+});
 
 /// Represents a literal type for List<SymbolTag>_valueSet.
-typedef Literal23 = ({List<SymbolTag> valueSet});
+typedef Literal23 = ({
+  /// The tags supported by the client.
+  List<SymbolTag> valueSet,
+});
 
 /// Represents a literal type for List<String>_properties.
-typedef Literal24 = ({List<String> properties});
+typedef Literal24 = ({
+  /// The properties that a client can resolve lazily. Usually
+  /// `location.range`
+  List<String> properties,
+});
 
 /// Represents a literal type for List<CompletionItemTag>_valueSet.
-typedef Literal25 = ({List<CompletionItemTag> valueSet});
+typedef Literal25 = ({
+  /// The tags supported by the client.
+  List<CompletionItemTag> valueSet,
+});
 
 /// Represents a literal type for List<InsertTextMode>_valueSet.
 typedef Literal26 = ({List<InsertTextMode> valueSet});
 
-/// Represents a literal type for Bool_commitCharactersSupport$Bool_deprecatedSupport$Bool_insertReplaceSupport$Bool_labelDetailsSupport$Bool_preselectSupport$Bool_snippetSupport$List<CompletionItemTag>_valueSet_tagSupport$List<InsertTextMode>_valueSet_insertTextModeSupport$List<MarkupKind>_documentationFormat$List<String>_properties_resolveSupport.
+/// Represents a literal type for
+/// Bool_commitCharactersSupport$Bool_deprecatedSupport$Bool_insertReplaceSupport$Bool_labelDetailsSupport$Bool_preselectSupport$Bool_snippetSupport$List<CompletionItemTag>_valueSet_tagSupport$List<InsertTextMode>_valueSet_insertTextModeSupport$List<MarkupKind>_documentationFormat$List<String>_properties_resolveSupport.
 typedef Literal27 = ({
+  /// Client supports commit characters on a completion item.
   bool? commitCharactersSupport,
+
+  /// Client supports the deprecated property on a completion item.
   bool? deprecatedSupport,
+
+  /// Client support insert replace edit to control different behavior if a
+  /// completion item is inserted in the text or should replace text.
+  /// @since 3.16.0
   bool? insertReplaceSupport,
+
+  /// The client has support for completion item label details (see also
+  /// `CompletionItemLabelDetails`).
+  /// @since 3.17.0
   bool? labelDetailsSupport,
+
+  /// Client supports the preselect property on a completion item.
   bool? preselectSupport,
+
+  /// Client supports snippets as insert text.
+  /// A snippet can define tab stops and placeholders with `$1`, `$2` and
+  /// `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of
+  /// the snippet. Placeholders with equal identifiers are linked, that is
+  /// typing in one will update others too.
   bool? snippetSupport,
+
+  /// Client supports the following content formats for the documentation
+  /// property. The order describes the preferred format of the client.
   List<MarkupKind>? documentationFormat,
+
+  /// Indicates which properties a client can resolve lazily on a completion
+  /// item. Before version 3.16.0 only the predefined properties
+  /// `documentation` and `details` could be resolved lazily.
+  /// @since 3.16.0
   Literal24? resolveSupport,
+
+  /// Client supports the tag property on a completion item. Clients
+  /// supporting tags have to handle unknown tags gracefully. Clients
+  /// especially need to preserve unknown tags when sending a completion item
+  /// back to the server in a resolve call.
+  /// @since 3.15.0
   Literal25? tagSupport,
+
+  /// The client supports the `insertTextMode` property on a completion item
+  /// to override the whitespace handling mode as defined by the client (see
+  /// `insertTextMode`).
+  /// @since 3.16.0
   Literal26? insertTextModeSupport,
 });
 
 /// Represents a literal type for List<CompletionItemKind>_valueSet.
-typedef Literal28 = ({List<CompletionItemKind>? valueSet});
+typedef Literal28 = ({
+  /// The completion item kind values the client supports. When this property
+  /// exists the client also guarantees that it will handle values outside
+  /// its set gracefully and falls back to a default value when unknown.
+  /// If this property is not present the client only supports the completion
+  /// items kinds from `Text` to `Reference` as defined in the initial
+  /// version of the protocol.
+  List<CompletionItemKind>? valueSet,
+});
 
 /// Represents a literal type for List<String>_itemDefaults.
-typedef Literal29 = ({List<String>? itemDefaults});
+typedef Literal29 = ({
+  /// The client supports the following itemDefaults on a completion list.
+  /// The value lists the supported property names of the
+  /// `CompletionList.itemDefaults` object. If omitted no properties are
+  /// supported.
+  /// @since 3.17.0
+  List<String>? itemDefaults,
+});
 
 /// Represents a literal type for Bool_labelOffsetSupport.
-typedef Literal30 = ({bool? labelOffsetSupport});
+typedef Literal30 = ({
+  /// The client supports processing label offsets instead of a simple label
+  /// string.
+  /// @since 3.14.0
+  bool? labelOffsetSupport,
+});
 
-/// Represents a literal type for Bool_activeParameterSupport$Bool_labelOffsetSupport_parameterInformation$List<MarkupKind>_documentationFormat.
+/// Represents a literal type for
+/// Bool_activeParameterSupport$Bool_labelOffsetSupport_parameterInformation$List<MarkupKind>_documentationFormat.
 typedef Literal31 = ({
+  /// The client supports the `activeParameter` property on
+  /// `SignatureInformation` literal.
+  /// @since 3.16.0
   bool? activeParameterSupport,
+
+  /// Client supports the following content formats for the documentation
+  /// property. The order describes the preferred format of the client.
   List<MarkupKind>? documentationFormat,
+
+  /// Client capabilities specific to parameter information.
   Literal30? parameterInformation,
 });
 
 /// Represents a literal type for List<CodeActionKind>_valueSet.
-typedef Literal32 = ({List<CodeActionKind> valueSet});
+typedef Literal32 = ({
+  /// The code action kind values the client supports. When this property
+  /// exists the client also guarantees that it will handle values outside
+  /// its set gracefully and falls back to a default value when unknown.
+  List<CodeActionKind> valueSet,
+});
 
 /// Represents a literal type for List<CodeActionKind>_valueSet_codeActionKind.
-typedef Literal33 = ({Literal32 codeActionKind});
+typedef Literal33 = ({
+  /// The code action kind is support with the following value set.
+  Literal32 codeActionKind,
+});
 
 /// Represents a literal type for List<FoldingRangeKind>_valueSet.
-typedef Literal34 = ({List<FoldingRangeKind>? valueSet});
+typedef Literal34 = ({
+  /// The folding range kind values the client supports. When this property
+  /// exists the client also guarantees that it will handle values outside
+  /// its set gracefully and falls back to a default value when unknown.
+  List<FoldingRangeKind>? valueSet,
+});
 
 /// Represents a literal type for Bool_collapsedText.
-typedef Literal35 = ({bool? collapsedText});
+typedef Literal35 = ({
+  /// If set, the client signals that it supports setting collapsedText on
+  /// folding ranges to display custom labels instead of the default text.
+  /// @since 3.17.0
+  bool? collapsedText,
+});
 
 /// Represents a literal type for List<DiagnosticTag>_valueSet.
-typedef Literal36 = ({List<DiagnosticTag> valueSet});
+typedef Literal36 = ({
+  /// The tags supported by the client.
+  List<DiagnosticTag> valueSet,
+});
 
 /// Represents a literal type for Bool_deltaOrbool_full$Orbool_range.
-typedef Literal37 = ({Sealed25? range, Sealed26? full});
+typedef Literal37 = ({
+  /// The client will send the `textDocument/semanticTokens/range` request if
+  /// the server provides a corresponding handler.
+  Sealed25? range,
+
+  /// The client will send the `textDocument/semanticTokens/full` request if
+  /// the server provides a corresponding handler.
+  Sealed26? full,
+});
 
 /// Represents a literal type for Bool_additionalPropertiesSupport.
-typedef Literal38 = ({bool? additionalPropertiesSupport});
+typedef Literal38 = ({
+  /// Whether the client supports additional attributes which are preserved
+  /// and send back to the server in the request's response.
+  bool? additionalPropertiesSupport,
+});
 
 sealed class Sealed1 {
   const Sealed1();
