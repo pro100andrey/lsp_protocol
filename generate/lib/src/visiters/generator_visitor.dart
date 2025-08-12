@@ -5,33 +5,18 @@ import 'package:code_builder/code_builder.dart';
 import '../extensions/string.dart';
 import '../generator_helper.dart';
 import '../meta/protocol.dart';
-import '../symbols/sealed_map.dart';
 import '../symbols/symbol.dart';
 import '../symbols/symbols.dart';
+import '../symbols/symbols_table.dart';
 import '../utils.dart';
-import 'type_resolver_visitor.dart';
 import 'visitor.dart';
 
 /// A concrete visitor that generates Dart code from MetaProtocol.
 final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   // Pass protocol for initial setup, but main logic is in visit methods
-  GeneratorVisitor(MetaProtocol protocol)
-    : _structures = Map.fromEntries(
-        protocol.structures.map((s) => MapEntry(s.name, s)),
-      ) {
-    _sealedMap = SealedMap();
-    _sealedMap.processProtocol(protocol);
+  GeneratorVisitor();
 
-    _typeResolverVisitor = TypeResolverVisitor(
-      sealedMap: _sealedMap,
-    );
-  }
-
-  final Map<String, MetaStructure> _structures;
   final _symbols = Symbols();
-
-  late final TypeResolverVisitor _typeResolverVisitor;
-  late final SealedMap _sealedMap;
 
   Reference get _stringRef => refer('String');
 
@@ -50,11 +35,11 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.addAll(_generateFreezedHeader());
         b.body.add(visitMetaData(protocol.metaData));
 
-        for (final def in _symbols.typedefs) {
+        for (final def in _symbols.typedefsTable.values) {
           b.body.add(_generateTypedef(def));
         }
 
-        for (final literal in _symbols.literals) {
+        for (final literal in _symbols.literalsTable.values) {
           b.body.add(_generateLiteralTypeAlias(literal));
         }
 
@@ -63,11 +48,11 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         //   b.body.add(visitTypeAlias(typeAlias));
         // }
 
-        for (final ref in _symbols.sealed) {
+        for (final ref in _symbols.sealedTable.values) {
           b.body.addAll(_generateBaseOrClass(ref));
         }
 
-        for (final structure in _symbols.structures) {
+        for (final structure in _symbols.structuresTable.values) {
           b.body.add(_generateStructure(structure));
         }
 
@@ -104,7 +89,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
   Spec _generateLiteralTypeAlias(LiteralSymbol symbol) {
     final def = TypeDef((b) {
       b
-        ..name = _symbols.displayType(symbol.type)
+        ..name = indexedType(symbol.type)
         ..docs.addAll([
           '/// ${symbol.doc}',
         ])
@@ -116,21 +101,14 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   @override
   Spec visitTypeAlias(MetaTypeAlias typeAlias) {
-    final definitionName = typeAlias.type.resolveType(_typeResolverVisitor);
-
-    return TypeDef((b) {
-      b
-        ..docs.addAll(formatDocComment(typeAlias.documentation) ?? [])
-        ..name = typeAlias.name
-        ..definition = refer(definitionName);
-    });
+    throw UnimplementedError();
   }
 
   Spec _generateTypedef(TypedefSymbol symbol) => TypeDef((b) {
     b
       ..docs.addAll(formatDocComment(symbol.doc) ?? [])
       ..name = symbol.type
-      ..definition = refer(_symbols.displayType(symbol.definition));
+      ..definition = refer(indexedType(symbol.definition));
   });
 
   Spec _generateStructure(StructureSymbol symbol) {
@@ -166,11 +144,9 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
                             ) ??
                             [];
 
-                        final type = _symbols
-                            .displayType(field.type)
-                            .optional(
-                              optional: field.optional,
-                            );
+                        final type = indexedType(field.type).optional(
+                          optional: field.optional,
+                        );
 
                         b
                           ..docs.addAll(fieldDocs)
@@ -209,96 +185,23 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   @override
   Class visitStructure(MetaStructure structure) {
-    final name = structure.name.replaceFirstLetterIfExists('_', 'T');
-    final allPropertiesMap = _collectAllProperties(structure);
-    final allFields = allPropertiesMap.values.toList(growable: false)
-      ..sort((a, b) => a.optional ? 1 : 0);
-
-    final structDocs =
+    final _ =
         formatDocComment(
           structure.documentation,
           maxLineLength: 70,
         ) ??
         [];
 
-    final _ = _collectInheritedProperties(
-      structure,
-    ).keys.toSet();
-
-    final clazz = Class(
-      (b) {
-        b
-          ..docs.addAll(structDocs)
-          ..name = name
-          ..annotations.add(refer('freezed'))
-          // abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
-          ..mixins.add(refer('_\$$name'))
-          ..abstract = true;
-
-        b.constructors.addAll(
-          [
-            Constructor(
-              (b) => b
-                // ..annotations.add(_disallowUnrecognizedKeysRef)
-                ..factory = true
-                ..constant = true
-                ..redirect = refer('_$name')
-                ..optionalParameters.addAll(
-                  allFields.map(
-                    (field) => Parameter(
-                      (b) {
-                        final fieldDocs =
-                            formatDocComment(
-                              field.documentation,
-                              maxLineLength: 76,
-                            ) ??
-                            [];
-                        final type = field.type.resolveType(
-                          _typeResolverVisitor,
-                        );
-                        b
-                          ..docs.addAll(fieldDocs)
-                          ..name = field.name
-                          ..type = refer(
-                            type.optional(optional: field.optional),
-                          )
-                          ..named = true
-                          ..required = !field.optional;
-                      },
-                    ),
-                  ),
-                ),
-            ),
-            //   factory MetaProtocol.fromJson(Map<String, Object?> json) =>
-            //       _$MetaProtocolFromJson(json);
-            Constructor(
-              (b) => b
-                ..factory = true
-                ..name = 'fromJson'
-                ..requiredParameters.add(
-                  Parameter(
-                    (b) => b
-                      ..name = 'json'
-                      ..type = refer('Map<String, dynamic>'),
-                  ),
-                )
-                ..lambda = true
-                ..body = Code('_\$${name}FromJson(json)'),
-            ),
-          ],
-        );
-      },
-    );
-
-    return clazz;
+    throw UnimplementedError();
   }
 
   @override
   Enum visitEnumeration(MetaEnumeration enumeration) {
     final formattedDescription =
         formatDocComment(enumeration.documentation) ?? [];
+
     // Use resolveType for the enumeration's base type
-    final typeName = enumeration.type.resolveType(_typeResolverVisitor);
+    final typeName = _symbols.resolveType(enumeration.type);
 
     final result = Enum((eb) {
       eb
@@ -411,7 +314,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     final baseClass = Class(
       (b) {
         b
-          ..name = _symbols.displayType(symbol.type)
+          ..name = indexedType(symbol.type)
           ..sealed = true;
 
         b.constructors.addAll(
@@ -423,55 +326,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     );
 
     return [baseClass];
-  }
-
-  Map<String, MetaProperty> _collectInheritedProperties(
-    MetaStructure structure,
-  ) {
-    final inheritedProperties = <String, MetaProperty>{};
-
-    // Collect from extended structures first (bottom-up)
-    for (final extendRef in structure.extends$) {
-      // Use type resolver to get the name
-      final extendedStructureName = extendRef.resolveType(_typeResolverVisitor);
-      final extendedStructure = _structures[extendedStructureName];
-      if (extendedStructure != null) {
-        final parentProperties = _collectAllProperties(extendedStructure);
-        inheritedProperties.addAll(parentProperties);
-      }
-    }
-
-    // Collect from mixins
-    for (final mixinRef in structure.mixins$) {
-      // Use type resolver to get the name
-      final mixinStructureName = mixinRef.resolveType(_typeResolverVisitor);
-      final mixinStructure = _structures[mixinStructureName];
-      if (mixinStructure != null) {
-        final mixinProperties = _collectAllProperties(mixinStructure);
-        inheritedProperties.addAll(mixinProperties);
-      }
-    }
-
-    return inheritedProperties;
-  }
-
-  /// Recursively collects all properties for a given structure,
-  /// including those inherited from extended structures and mixins.
-  /// Returns a map where keys are property names and values are MetaProperty
-  /// objects.
-  Map<String, MetaProperty> _collectAllProperties(MetaStructure structure) {
-    final collectedProperties = <String, MetaProperty>{};
-    final inheritedProperties = _collectInheritedProperties(structure);
-
-    collectedProperties.addAll(inheritedProperties);
-
-    // Add properties directly defined in the current structure
-    // (override parents/mixins)
-    for (final property in structure.properties) {
-      collectedProperties[property.name] = property;
-    }
-
-    return collectedProperties;
   }
 
   Spec _generateRequestMethodEnum(List<MetaRequest> requests) => Enum((eb) {
@@ -608,7 +462,7 @@ class ProtocolGenerator {
   final MetaProtocol protocol;
 
   String generate() {
-    final generatorVisitor = GeneratorVisitor(protocol);
+    final generatorVisitor = GeneratorVisitor();
     // Start the visitation process from the root MetaProtocol object
     final library = protocol.accept(generatorVisitor) as Library;
     final result = specToCode(library, format: true);

@@ -7,84 +7,37 @@ import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../generator_helper.dart';
 import 'symbol.dart';
+import 'symbols_table.dart';
+
 
 final class Symbols {
-  final Map<String, StructureSymbol> _structureSymbols = {};
-  final Map<String, TypedefSymbol> _typedefSymbols = {};
-  final Map<String, LiteralSymbol> _literalSymbols = {};
-  final Map<String, SealedSymbol> _sealedMap = {};
-  final Map<String, TupleSymbol> _renamedSymbols = {};
-  final Map<String, String> _displayNames = {};
+  final structuresTable = StructuresTable();
+  final typedefsTable = TypedefsTable();
+  final literalsTable = LiteralsTable();
+  final sealedTable = SealedTable();
+  final tuplesTable = TupleTable();
+  final _enumSymbols = EnumsTable();
 
-  Iterable<LiteralSymbol> get literals => _literalSymbols.values;
-  Iterable<StructureSymbol> get structures => _structureSymbols.values;
-  Iterable<TypedefSymbol> get typedefs => _typedefSymbols.values;
-  Iterable<SealedSymbol> get sealed => _sealedMap.values;
+  Iterable<EnumSymbol> get enums => _enumSymbols.values;
 
   void process(MetaProtocol protocol) {
     _collectTypedefs(protocol);
     _collectSealed(protocol);
     _collectTuples(protocol);
-
     _collectLiterals(protocol);
     _collectStructures(protocol);
-  }
-
-  var _tupleIdx = 1;
-  void _setTupleDisplayType(String type) {
-    if (_displayNames.containsKey(type)) {
-      return; // Already set
-    }
-
-    _displayNames[type] = 'Tuple$_tupleIdx';
-    _tupleIdx++;
-  }
-
-  var _sealedIdx = 1;
-  void _setSealedDisplayType(String type) {
-    if (_displayNames.containsKey(type)) {
-      return;
-    }
-
-    _displayNames[type] = 'Sealed$_sealedIdx';
-    _sealedIdx++;
-  }
-
-  var _literalIdx = 1;
-  void _setLiteralDisplayType(String type) {
-    if (_displayNames.containsKey(type)) {
-      return;
-    }
-
-    final value = 'Literal$_literalIdx';
-
-    _displayNames[type] = value;
-    _literalIdx++;
-  }
-
-  String displayType(String type, {bool throwIfMissing = false}) {
-    if (throwIfMissing && !_displayNames.containsKey(type)) {
-      throw ArgumentError('Type not found: $type');
-    }
-
-    return _displayNames[type] ?? type;
   }
 
   void _collectTuples(MetaProtocol protocol) {
     void addTupleSymbol(TupleRef tupleRef) {
       final type = resolveType(tupleRef);
-      _setTupleDisplayType(type);
-
-      if (_renamedSymbols.containsKey(type)) {
-        return;
-      }
 
       final symbol = TupleSymbol(
         type: type,
         types: tupleRef.items.map(resolveType).toList(),
       );
 
-      _renamedSymbols[type] = symbol;
+      tuplesTable[type] = symbol;
     }
 
     for (final structure in protocol.structures) {
@@ -107,18 +60,13 @@ final class Symbols {
         doc: typeAlias.documentation,
       );
 
-      _typedefSymbols[typeAlias.name] = symbol;
+      typedefsTable[typeAlias.name] = symbol;
     }
   }
 
   void _collectSealed(MetaProtocol protocol) {
     void addSealedSymbol(OrRef orRef) {
       final type = resolveType(orRef);
-      _setSealedDisplayType(type);
-
-      if (_sealedMap.containsKey(type)) {
-        return;
-      }
 
       final types = orRef.items.map(resolveType).toList(growable: false);
 
@@ -127,9 +75,9 @@ final class Symbols {
         types: types,
       );
 
-      print('Added sealed symbol: ${symbol.type} -> ${displayType(type)}');
+      print('Added sealed symbol: ${symbol.type} -> ${indexedType(type)}');
 
-      _sealedMap[type] = symbol;
+      sealedTable[type] = symbol;
     }
 
     for (final typeAlias in protocol.typeAliases) {
@@ -172,28 +120,28 @@ final class Symbols {
   void _collectLiterals(MetaProtocol protocol) {
     void addLiteralSymbol(LiteralRef ref) {
       final type = _resolveLiteralType(ref);
-      _setLiteralDisplayType(type);
 
-      if (_literalSymbols.containsKey(type)) {
+      if (literalsTable.containsKey(type)) {
         return;
       }
 
       String typeResolver(MetaReference ref) => ref.when(
         literalRef: (ref) {
           final literalType = _resolveLiteralType(ref);
-          final display = displayType(literalType);
+          final display = indexedType(literalType);
 
           return display;
         },
         orRef: (ref) {
           final type = resolveType(ref);
-          final dType = displayType(type);
+          final dType = indexedType(type);
 
           return dType;
         },
         arrayRef: (ref) {
           final elementType = resolveType(ref.element);
-          final dElementType = displayType(elementType);
+          final dElementType = indexedType(elementType);
+
           return 'List<$dElementType>';
         },
         orElse: resolveType,
@@ -206,7 +154,7 @@ final class Symbols {
         doc: 'Represents a literal type for $type.',
       );
 
-      _literalSymbols[type] = symbol;
+      literalsTable[type] = symbol;
 
       print('Added literal symbol: ${symbol.type}');
     }
@@ -268,7 +216,7 @@ final class Symbols {
       final properties = allProperties.map(
         (property) {
           final type = resolveType(property.type);
-          final dType = displayType(type);
+          final dType = indexedType(type);
 
           return PropertySymbol(
             type: dType,
@@ -284,7 +232,7 @@ final class Symbols {
         properties: properties,
       );
 
-      _structureSymbols[struct.name] = structureSymbol;
+      structuresTable[struct.name] = structureSymbol;
     }
   }
 
@@ -333,8 +281,8 @@ final class Symbols {
 
   String _resolveArrayType(ArrayRef ref) {
     final elementType = resolveType(ref.element);
-    final dElementType = displayType(elementType);
-    
+    final dElementType = indexedType(elementType);
+
     return 'List<$dElementType>';
   }
 
