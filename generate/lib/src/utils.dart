@@ -1,10 +1,19 @@
-List<String>? formatDocComment(String? input, {int maxLineLength = 80}) {
+
+extension StringExtension on String? {
+  /// Converts a string to a valid Dart identifier.
+  List<String> asDoc({int width = 80}) {
+    final doc = _formatDocComment(this, width: width) ?? [];
+    return doc;
+  }
+}
+
+List<String>? _formatDocComment(String? input, {int width = 80}) {
   if (input == null || input.trim().isEmpty) {
     return null;
   }
 
   const prefix = '/// ';
-  final maxContentLength = maxLineLength - prefix.length;
+  final maxContentLength = width - prefix.length;
 
   // Normalize newlines
   final normalized = input.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
@@ -23,7 +32,7 @@ List<String>? formatDocComment(String? input, {int maxLineLength = 80}) {
     }
 
     final singleLine = paragraph.replaceAll('\n', ' ');
-    if ((prefix.length + singleLine.length) <= maxLineLength) {
+    if ((prefix.length + singleLine.length) <= width) {
       lines.add('$prefix$singleLine');
       continue;
     }

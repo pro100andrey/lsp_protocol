@@ -14,16 +14,16 @@ class PropertySymbol extends Symbol {
     required this.name,
     required this.type,
     required this.optional,
-    required this.documentation,
+    required this.doc,
   });
 
   final String name;
   final String type;
   final bool optional;
-  final String? documentation;
+  final List<String> doc;
 
   @override
-  List<Object?> get props => [name, type, optional, documentation];
+  List<Object?> get props => [name, type, optional, doc];
 }
 
 class TypedefSymbol extends Symbol {
@@ -35,7 +35,7 @@ class TypedefSymbol extends Symbol {
 
   final String type;
   final String definition;
-  final String? doc;
+  final List<String> doc;
 
   @override
   List<Object?> get props => [type, definition, doc];
@@ -90,11 +90,11 @@ class StructureSymbol extends Symbol {
   const StructureSymbol({
     required this.name,
     required this.properties,
-    this.doc,
+    required this.doc,
   });
 
   final String name;
-  final String? doc;
+  final List<String> doc;
   final List<PropertySymbol> properties;
 
   @override
@@ -106,13 +106,13 @@ class EnumSymbol extends Symbol {
     required this.name,
     required this.valueType,
     required this.values,
-    this.doc,
+    required this.doc,
   });
 
   final String name;
   final String valueType;
   final List<EnumFieldSymbol> values;
-  final String? doc;
+  final List<String> doc;
 
   @override
   List<Object?> get props => [valueType, name, values, doc];
@@ -122,12 +122,12 @@ class EnumFieldSymbol extends Symbol {
   const EnumFieldSymbol({
     required this.name,
     required this.argument,
-    this.doc,
+    required this.doc,
   });
 
   final String name;
   final String argument;
-  final String? doc;
+  final List<String> doc;
 
   @override
   List<Object?> get props => [name, argument, doc];

@@ -4,6 +4,7 @@ import '../../generate.dart';
 import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../generator_helper.dart';
+import '../utils.dart';
 import 'symbol.dart';
 import 'symbols_table.dart';
 import 'type_resolver.dart';
@@ -54,7 +55,7 @@ final class Symbols {
               return EnumFieldSymbol(
                 name: name,
                 argument: argument,
-                doc: value.documentation,
+                doc: value.documentation.asDoc(width: 70),
               );
             },
           )
@@ -64,7 +65,7 @@ final class Symbols {
         valueType: enumeration.type.resolve(),
         values: values,
         name: enumeration.name,
-        doc: enumeration.documentation,
+        doc: enumeration.documentation.asDoc(),
       );
 
       enumSymbols[enumeration.name] = symbol;
@@ -100,7 +101,7 @@ final class Symbols {
       final symbol = TypedefSymbol(
         type: typeAlias.name,
         definition: type,
-        doc: typeAlias.documentation,
+        doc: typeAlias.documentation.asDoc(),
       );
 
       typedefsTable[typeAlias.name] = symbol;
@@ -269,7 +270,7 @@ final class Symbols {
             type: dType,
             name: property.name,
             optional: property.optional,
-            documentation: property.documentation,
+            doc: property.documentation.asDoc(width: 76),
           );
         },
       ).toList();
@@ -277,6 +278,7 @@ final class Symbols {
       final structureSymbol = StructureSymbol(
         name: struct.name,
         properties: properties,
+        doc: struct.documentation.asDoc(width: 70),
       );
 
       structuresTable[struct.name] = structureSymbol;

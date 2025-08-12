@@ -91,19 +91,18 @@ final class ProtocolGenerator {
 
   Spec _generateTypedef(TypedefSymbol symbol) => TypeDef((b) {
     b
-      ..docs.addAll(formatDocComment(symbol.doc) ?? [])
+      ..docs.addAll(symbol.doc)
       ..name = symbol.type
       ..definition = refer(indexedType(symbol.definition));
   });
 
   Spec _generateStructure(StructureSymbol symbol) {
     final name = symbol.name.replaceFirstLetterIfExists('_', 'T');
-    final structDocs = formatDocComment(symbol.doc, maxLineLength: 70) ?? [];
 
     final clazz = Class(
       (b) {
         b
-          ..docs.addAll(structDocs)
+          ..docs.addAll(symbol.doc)
           ..name = name
           ..annotations.add(refer('freezed'))
           ..mixins.add(refer('_\$$name'))
@@ -120,19 +119,12 @@ final class ProtocolGenerator {
                   symbol.properties.map(
                     (field) => Parameter(
                       (b) {
-                        final fieldDocs =
-                            formatDocComment(
-                              field.documentation,
-                              maxLineLength: 76,
-                            ) ??
-                            [];
-
                         final type = indexedType(field.type).optional(
                           optional: field.optional,
                         );
 
                         b
-                          ..docs.addAll(fieldDocs)
+                          ..docs.addAll(field.doc)
                           ..name = field.name
                           ..type = refer(type)
                           ..named = true
@@ -165,12 +157,10 @@ final class ProtocolGenerator {
   }
 
   Enum _generateEnumeration(EnumSymbol symbol) {
-    final formattedDescription = formatDocComment(symbol.doc) ?? [];
-
     final result = Enum((eb) {
       eb
         ..annotations.add(refer("JsonEnum(valueField: 'value')"))
-        ..docs.addAll(formattedDescription)
+        ..docs.addAll(symbol.doc)
         ..name = symbol.name
         ..constructors.add(
           Constructor(
@@ -208,8 +198,7 @@ final class ProtocolGenerator {
         eb.values.add(
           EnumValue(
             (evb) {
-              final docs = formatDocComment(m.doc, maxLineLength: 70) ?? [];
-              evb.docs.addAll(docs);
+              evb.docs.addAll(m.doc);
               evb.arguments.add(refer(m.argument));
               evb.name = m.name;
             },
@@ -280,7 +269,7 @@ final class ProtocolGenerator {
       final doc = [
         '/// Method: $methodPath',
         '///',
-        ...?formatDocComment(request.documentation, maxLineLength: 70),
+        ...request.documentation.asDoc(width: 70),
       ];
 
       eb.values.add(
@@ -348,7 +337,7 @@ final class ProtocolGenerator {
           final doc = [
             '/// Method: $methodPath',
             '///',
-            ...?formatDocComment(notification.documentation, maxLineLength: 70),
+            ...notification.documentation.asDoc(width: 70),
           ];
 
           eb.values.add(

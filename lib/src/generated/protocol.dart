@@ -559,6 +559,8 @@ abstract class ImplementationParams with _$ImplementationParams {
       _$ImplementationParamsFromJson(json);
 }
 
+/// Represents a location inside a resource, such as a line inside a
+/// text file.
 @freezed
 abstract class Location with _$Location {
   const factory Location({required Range range, required String uri}) =
@@ -625,6 +627,7 @@ abstract class TypeDefinitionRegistrationOptions
   ) => _$TypeDefinitionRegistrationOptionsFromJson(json);
 }
 
+/// A workspace folder inside a client.
 @freezed
 abstract class WorkspaceFolder with _$WorkspaceFolder {
   const factory WorkspaceFolder({
@@ -640,6 +643,8 @@ abstract class WorkspaceFolder with _$WorkspaceFolder {
       _$WorkspaceFolderFromJson(json);
 }
 
+/// The parameters of a `workspace/didChangeWorkspaceFolders`
+/// notification.
 @freezed
 abstract class DidChangeWorkspaceFoldersParams
     with _$DidChangeWorkspaceFoldersParams {
@@ -652,6 +657,7 @@ abstract class DidChangeWorkspaceFoldersParams
       _$DidChangeWorkspaceFoldersParamsFromJson(json);
 }
 
+/// The parameters of a configuration request.
 @freezed
 abstract class ConfigurationParams with _$ConfigurationParams {
   const factory ConfigurationParams({required List<ConfigurationItem> items}) =
@@ -661,6 +667,7 @@ abstract class ConfigurationParams with _$ConfigurationParams {
       _$ConfigurationParamsFromJson(json);
 }
 
+/// Parameters for a {@link DocumentColorRequest}.
 @freezed
 abstract class DocumentColorParams with _$DocumentColorParams {
   const factory DocumentColorParams({
@@ -679,6 +686,7 @@ abstract class DocumentColorParams with _$DocumentColorParams {
       _$DocumentColorParamsFromJson(json);
 }
 
+/// Represents a color range from a document.
 @freezed
 abstract class ColorInformation with _$ColorInformation {
   const factory ColorInformation({
@@ -711,6 +719,7 @@ abstract class DocumentColorRegistrationOptions
   ) => _$DocumentColorRegistrationOptionsFromJson(json);
 }
 
+/// Parameters for a {@link ColorPresentationRequest}.
 @freezed
 abstract class ColorPresentationParams with _$ColorPresentationParams {
   const factory ColorPresentationParams({
@@ -768,6 +777,7 @@ abstract class WorkDoneProgressOptions with _$WorkDoneProgressOptions {
       _$WorkDoneProgressOptionsFromJson(json);
 }
 
+/// General text document registration options.
 @freezed
 abstract class TextDocumentRegistrationOptions
     with _$TextDocumentRegistrationOptions {
@@ -781,6 +791,7 @@ abstract class TextDocumentRegistrationOptions
       _$TextDocumentRegistrationOptionsFromJson(json);
 }
 
+/// Parameters for a {@link FoldingRangeRequest}.
 @freezed
 abstract class FoldingRangeParams with _$FoldingRangeParams {
   const factory FoldingRangeParams({
@@ -799,6 +810,9 @@ abstract class FoldingRangeParams with _$FoldingRangeParams {
       _$FoldingRangeParamsFromJson(json);
 }
 
+/// Represents a folding range. To be valid, start and end line must
+/// be bigger than zero and smaller than the number of lines in the
+/// document. Clients are free to ignore invalid ranges.
 @freezed
 abstract class FoldingRange with _$FoldingRange {
   const factory FoldingRange({
@@ -892,6 +906,7 @@ abstract class DeclarationRegistrationOptions
       _$DeclarationRegistrationOptionsFromJson(json);
 }
 
+/// A parameter literal used in selection range requests.
 @freezed
 abstract class SelectionRangeParams with _$SelectionRangeParams {
   const factory SelectionRangeParams({
@@ -913,6 +928,9 @@ abstract class SelectionRangeParams with _$SelectionRangeParams {
       _$SelectionRangeParamsFromJson(json);
 }
 
+/// A selection range represents a part of a selection hierarchy. A
+/// selection range may have a parent selection range that contains
+/// it.
 @freezed
 abstract class SelectionRange with _$SelectionRange {
   const factory SelectionRange({
@@ -970,6 +988,8 @@ abstract class WorkDoneProgressCancelParams
       _$WorkDoneProgressCancelParamsFromJson(json);
 }
 
+/// The parameter of a `textDocument/prepareCallHierarchy` request.
+/// @since 3.16.0
 @freezed
 abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
   const factory CallHierarchyPrepareParams({
@@ -987,6 +1007,9 @@ abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
       _$CallHierarchyPrepareParamsFromJson(json);
 }
 
+/// Represents programming constructs like functions or constructors
+/// in the context of call hierarchy.
+/// @since 3.16.0
 @freezed
 abstract class CallHierarchyItem with _$CallHierarchyItem {
   const factory CallHierarchyItem({
@@ -1023,6 +1046,8 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
       _$CallHierarchyItemFromJson(json);
 }
 
+/// Call hierarchy options used during static or dynamic registration.
+/// @since 3.16.0
 @freezed
 abstract class CallHierarchyRegistrationOptions
     with _$CallHierarchyRegistrationOptions {
@@ -1041,6 +1066,8 @@ abstract class CallHierarchyRegistrationOptions
   ) => _$CallHierarchyRegistrationOptionsFromJson(json);
 }
 
+/// The parameter of a `callHierarchy/incomingCalls` request.
+/// @since 3.16.0
 @freezed
 abstract class CallHierarchyIncomingCallsParams
     with _$CallHierarchyIncomingCallsParams {
@@ -1060,6 +1087,9 @@ abstract class CallHierarchyIncomingCallsParams
   ) => _$CallHierarchyIncomingCallsParamsFromJson(json);
 }
 
+/// Represents an incoming call, e.g. a caller of a method or
+/// constructor.
+/// @since 3.16.0
 @freezed
 abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
   const factory CallHierarchyIncomingCall({
@@ -1075,6 +1105,8 @@ abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
       _$CallHierarchyIncomingCallFromJson(json);
 }
 
+/// The parameter of a `callHierarchy/outgoingCalls` request.
+/// @since 3.16.0
 @freezed
 abstract class CallHierarchyOutgoingCallsParams
     with _$CallHierarchyOutgoingCallsParams {
@@ -1094,6 +1126,9 @@ abstract class CallHierarchyOutgoingCallsParams
   ) => _$CallHierarchyOutgoingCallsParamsFromJson(json);
 }
 
+/// Represents an outgoing call, e.g. calling a getter from a method
+/// or a method from a constructor etc.
+/// @since 3.16.0
 @freezed
 abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
   const factory CallHierarchyOutgoingCall({
@@ -1112,6 +1147,7 @@ abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
       _$CallHierarchyOutgoingCallFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensParams with _$SemanticTokensParams {
   const factory SemanticTokensParams({
@@ -1130,6 +1166,7 @@ abstract class SemanticTokensParams with _$SemanticTokensParams {
       _$SemanticTokensParamsFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokens with _$SemanticTokens {
   const factory SemanticTokens({
@@ -1147,6 +1184,7 @@ abstract class SemanticTokens with _$SemanticTokens {
       _$SemanticTokensFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
   const factory SemanticTokensPartialResult({required List<int> data}) =
@@ -1156,6 +1194,7 @@ abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
       _$SemanticTokensPartialResultFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensRegistrationOptions
     with _$SemanticTokensRegistrationOptions {
@@ -1184,6 +1223,7 @@ abstract class SemanticTokensRegistrationOptions
   ) => _$SemanticTokensRegistrationOptionsFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
   const factory SemanticTokensDeltaParams({
@@ -1207,6 +1247,7 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
       _$SemanticTokensDeltaParamsFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensDelta with _$SemanticTokensDelta {
   const factory SemanticTokensDelta({
@@ -1220,6 +1261,7 @@ abstract class SemanticTokensDelta with _$SemanticTokensDelta {
       _$SemanticTokensDeltaFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensDeltaPartialResult
     with _$SemanticTokensDeltaPartialResult {
@@ -1232,6 +1274,7 @@ abstract class SemanticTokensDeltaPartialResult
   ) => _$SemanticTokensDeltaPartialResultFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
   const factory SemanticTokensRangeParams({
@@ -1253,6 +1296,8 @@ abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
       _$SemanticTokensRangeParamsFromJson(json);
 }
 
+/// Params to show a resource in the UI.
+/// @since 3.16.0
 @freezed
 abstract class ShowDocumentParams with _$ShowDocumentParams {
   const factory ShowDocumentParams({
@@ -1279,6 +1324,8 @@ abstract class ShowDocumentParams with _$ShowDocumentParams {
       _$ShowDocumentParamsFromJson(json);
 }
 
+/// The result of a showDocument request.
+/// @since 3.16.0
 @freezed
 abstract class ShowDocumentResult with _$ShowDocumentResult {
   const factory ShowDocumentResult({
@@ -1307,6 +1354,8 @@ abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
       _$LinkedEditingRangeParamsFromJson(json);
 }
 
+/// The result of a linked editing range request.
+/// @since 3.16.0
 @freezed
 abstract class LinkedEditingRanges with _$LinkedEditingRanges {
   const factory LinkedEditingRanges({
@@ -1343,6 +1392,9 @@ abstract class LinkedEditingRangeRegistrationOptions
   ) => _$LinkedEditingRangeRegistrationOptionsFromJson(json);
 }
 
+/// The parameters sent in notifications/requests for user-initiated
+/// creation of files.
+/// @since 3.16.0
 @freezed
 abstract class CreateFilesParams with _$CreateFilesParams {
   const factory CreateFilesParams({
@@ -1354,6 +1406,21 @@ abstract class CreateFilesParams with _$CreateFilesParams {
       _$CreateFilesParamsFromJson(json);
 }
 
+/// A workspace edit represents changes to many resources managed in
+/// the workspace. The edit should either provide `changes` or
+/// `documentChanges`. If documentChanges are present they are
+/// preferred over `changes` if the client can handle versioned
+/// document edits.
+/// Since version 3.13.0 a workspace edit can contain resource
+/// operations as well. If resource operations are present clients
+/// need to execute the operations in the order in which they are
+/// provided. So a workspace edit for example can consist of the
+/// following two changes: (1) a create file a.txt and (2) a text
+/// document edit which insert text into file a.txt.
+/// An invalid sequence (e.g. (1) delete file a.txt and (2) insert
+/// text into file a.txt) will cause failure of the operation. How
+/// the client recovers from the failure is described by the client
+/// capability: `workspace.workspaceEdit.failureHandling`
 @freezed
 abstract class WorkspaceEdit with _$WorkspaceEdit {
   const factory WorkspaceEdit({
@@ -1387,6 +1454,8 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
       _$WorkspaceEditFromJson(json);
 }
 
+/// The options to register for file operations.
+/// @since 3.16.0
 @freezed
 abstract class FileOperationRegistrationOptions
     with _$FileOperationRegistrationOptions {
@@ -1400,6 +1469,9 @@ abstract class FileOperationRegistrationOptions
   ) => _$FileOperationRegistrationOptionsFromJson(json);
 }
 
+/// The parameters sent in notifications/requests for user-initiated
+/// renames of files.
+/// @since 3.16.0
 @freezed
 abstract class RenameFilesParams with _$RenameFilesParams {
   const factory RenameFilesParams({
@@ -1412,6 +1484,9 @@ abstract class RenameFilesParams with _$RenameFilesParams {
       _$RenameFilesParamsFromJson(json);
 }
 
+/// The parameters sent in notifications/requests for user-initiated
+/// deletes of files.
+/// @since 3.16.0
 @freezed
 abstract class DeleteFilesParams with _$DeleteFilesParams {
   const factory DeleteFilesParams({
@@ -1444,6 +1519,8 @@ abstract class MonikerParams with _$MonikerParams {
       _$MonikerParamsFromJson(json);
 }
 
+/// Moniker definition to match LSIF 0.5 moniker definition.
+/// @since 3.16.0
 @freezed
 abstract class Moniker with _$Moniker {
   const factory Moniker({
@@ -1477,6 +1554,8 @@ abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
       _$MonikerRegistrationOptionsFromJson(json);
 }
 
+/// The parameter of a `textDocument/prepareTypeHierarchy` request.
+/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
   const factory TypeHierarchyPrepareParams({
@@ -1494,6 +1573,7 @@ abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
       _$TypeHierarchyPrepareParamsFromJson(json);
 }
 
+/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyItem with _$TypeHierarchyItem {
   const factory TypeHierarchyItem({
@@ -1532,6 +1612,8 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
       _$TypeHierarchyItemFromJson(json);
 }
 
+/// Type hierarchy options used during static or dynamic registration.
+/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyRegistrationOptions
     with _$TypeHierarchyRegistrationOptions {
@@ -1550,6 +1632,8 @@ abstract class TypeHierarchyRegistrationOptions
   ) => _$TypeHierarchyRegistrationOptionsFromJson(json);
 }
 
+/// The parameter of a `typeHierarchy/supertypes` request.
+/// @since 3.17.0
 @freezed
 abstract class TypeHierarchySupertypesParams
     with _$TypeHierarchySupertypesParams {
@@ -1568,6 +1652,8 @@ abstract class TypeHierarchySupertypesParams
       _$TypeHierarchySupertypesParamsFromJson(json);
 }
 
+/// The parameter of a `typeHierarchy/subtypes` request.
+/// @since 3.17.0
 @freezed
 abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
   const factory TypeHierarchySubtypesParams({
@@ -1585,6 +1671,8 @@ abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
       _$TypeHierarchySubtypesParamsFromJson(json);
 }
 
+/// A parameter literal used in inline value requests.
+/// @since 3.17.0
 @freezed
 abstract class InlineValueParams with _$InlineValueParams {
   const factory InlineValueParams({
@@ -1606,6 +1694,8 @@ abstract class InlineValueParams with _$InlineValueParams {
       _$InlineValueParamsFromJson(json);
 }
 
+/// Inline value options used during static or dynamic registration.
+/// @since 3.17.0
 @freezed
 abstract class InlineValueRegistrationOptions
     with _$InlineValueRegistrationOptions {
@@ -1623,6 +1713,8 @@ abstract class InlineValueRegistrationOptions
       _$InlineValueRegistrationOptionsFromJson(json);
 }
 
+/// A parameter literal used in inlay hint requests.
+/// @since 3.17.0
 @freezed
 abstract class InlayHintParams with _$InlayHintParams {
   const factory InlayHintParams({
@@ -1640,6 +1732,8 @@ abstract class InlayHintParams with _$InlayHintParams {
       _$InlayHintParamsFromJson(json);
 }
 
+/// Inlay hint information.
+/// @since 3.17.0
 @freezed
 abstract class InlayHint with _$InlayHint {
   const factory InlayHint({
@@ -1687,6 +1781,8 @@ abstract class InlayHint with _$InlayHint {
       _$InlayHintFromJson(json);
 }
 
+/// Inlay hint options used during static or dynamic registration.
+/// @since 3.17.0
 @freezed
 abstract class InlayHintRegistrationOptions
     with _$InlayHintRegistrationOptions {
@@ -1708,6 +1804,8 @@ abstract class InlayHintRegistrationOptions
       _$InlayHintRegistrationOptionsFromJson(json);
 }
 
+/// Parameters of the document diagnostic request.
+/// @since 3.17.0
 @freezed
 abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
   const factory DocumentDiagnosticParams({
@@ -1732,6 +1830,8 @@ abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
       _$DocumentDiagnosticParamsFromJson(json);
 }
 
+/// A partial result for a document diagnostic report.
+/// @since 3.17.0
 @freezed
 abstract class DocumentDiagnosticReportPartialResult
     with _$DocumentDiagnosticReportPartialResult {
@@ -1748,6 +1848,8 @@ abstract class DocumentDiagnosticReportPartialResult
   ) => _$DocumentDiagnosticReportPartialResultFromJson(json);
 }
 
+/// Cancellation data returned from a diagnostic request.
+/// @since 3.17.0
 @freezed
 abstract class DiagnosticServerCancellationData
     with _$DiagnosticServerCancellationData {
@@ -1760,6 +1862,8 @@ abstract class DiagnosticServerCancellationData
   ) => _$DiagnosticServerCancellationDataFromJson(json);
 }
 
+/// Diagnostic registration options.
+/// @since 3.17.0
 @freezed
 abstract class DiagnosticRegistrationOptions
     with _$DiagnosticRegistrationOptions {
@@ -1790,6 +1894,8 @@ abstract class DiagnosticRegistrationOptions
       _$DiagnosticRegistrationOptionsFromJson(json);
 }
 
+/// Parameters of the workspace diagnostic request.
+/// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
   const factory WorkspaceDiagnosticParams({
@@ -1811,6 +1917,8 @@ abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
       _$WorkspaceDiagnosticParamsFromJson(json);
 }
 
+/// A workspace diagnostic report.
+/// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
   const factory WorkspaceDiagnosticReport({
@@ -1821,6 +1929,8 @@ abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
       _$WorkspaceDiagnosticReportFromJson(json);
 }
 
+/// A partial result for a workspace diagnostic report.
+/// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticReportPartialResult
     with _$WorkspaceDiagnosticReportPartialResult {
@@ -1833,6 +1943,8 @@ abstract class WorkspaceDiagnosticReportPartialResult
   ) => _$WorkspaceDiagnosticReportPartialResultFromJson(json);
 }
 
+/// The params sent in an open notebook document notification.
+/// @since 3.17.0
 @freezed
 abstract class DidOpenNotebookDocumentParams
     with _$DidOpenNotebookDocumentParams {
@@ -1848,6 +1960,8 @@ abstract class DidOpenNotebookDocumentParams
       _$DidOpenNotebookDocumentParamsFromJson(json);
 }
 
+/// The params sent in a change notebook document notification.
+/// @since 3.17.0
 @freezed
 abstract class DidChangeNotebookDocumentParams
     with _$DidChangeNotebookDocumentParams {
@@ -1876,6 +1990,8 @@ abstract class DidChangeNotebookDocumentParams
       _$DidChangeNotebookDocumentParamsFromJson(json);
 }
 
+/// The params sent in a save notebook document notification.
+/// @since 3.17.0
 @freezed
 abstract class DidSaveNotebookDocumentParams
     with _$DidSaveNotebookDocumentParams {
@@ -1888,6 +2004,8 @@ abstract class DidSaveNotebookDocumentParams
       _$DidSaveNotebookDocumentParamsFromJson(json);
 }
 
+/// The params sent in a close notebook document notification.
+/// @since 3.17.0
 @freezed
 abstract class DidCloseNotebookDocumentParams
     with _$DidCloseNotebookDocumentParams {
@@ -1904,6 +2022,8 @@ abstract class DidCloseNotebookDocumentParams
       _$DidCloseNotebookDocumentParamsFromJson(json);
 }
 
+/// A parameter literal used in inline completion requests.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionParams with _$InlineCompletionParams {
   const factory InlineCompletionParams({
@@ -1925,6 +2045,9 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
       _$InlineCompletionParamsFromJson(json);
 }
 
+/// Represents a collection of {@link InlineCompletionItem inline
+/// completion items} to be presented in the editor.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionList with _$InlineCompletionList {
   const factory InlineCompletionList({
@@ -1936,6 +2059,9 @@ abstract class InlineCompletionList with _$InlineCompletionList {
       _$InlineCompletionListFromJson(json);
 }
 
+/// An inline completion item represents a text snippet that is
+/// proposed inline to complete text that is being typed.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionItem with _$InlineCompletionItem {
   const factory InlineCompletionItem({
@@ -1959,6 +2085,9 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
       _$InlineCompletionItemFromJson(json);
 }
 
+/// Inline completion options used during static or dynamic
+/// registration.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionRegistrationOptions
     with _$InlineCompletionRegistrationOptions {
@@ -2046,6 +2175,7 @@ abstract class InitializeParams with _$InitializeParams {
       _$InitializeParamsFromJson(json);
 }
 
+/// The result returned from an initialize request.
 @freezed
 abstract class InitializeResult with _$InitializeResult {
   const factory InitializeResult({
@@ -2061,6 +2191,8 @@ abstract class InitializeResult with _$InitializeResult {
       _$InitializeResultFromJson(json);
 }
 
+/// The data type of the ResponseError if the initialize request
+/// fails.
 @freezed
 abstract class InitializeError with _$InitializeError {
   const factory InitializeError({
@@ -2083,6 +2215,7 @@ abstract class InitializedParams with _$InitializedParams {
       _$InitializedParamsFromJson(json);
 }
 
+/// The parameters of a change configuration notification.
 @freezed
 abstract class DidChangeConfigurationParams
     with _$DidChangeConfigurationParams {
@@ -2106,6 +2239,7 @@ abstract class DidChangeConfigurationRegistrationOptions
   ) => _$DidChangeConfigurationRegistrationOptionsFromJson(json);
 }
 
+/// The parameters of a notification message.
 @freezed
 abstract class ShowMessageParams with _$ShowMessageParams {
   const factory ShowMessageParams({
@@ -2148,6 +2282,7 @@ abstract class MessageActionItem with _$MessageActionItem {
       _$MessageActionItemFromJson(json);
 }
 
+/// The log message parameters.
 @freezed
 abstract class LogMessageParams with _$LogMessageParams {
   const factory LogMessageParams({
@@ -2162,6 +2297,7 @@ abstract class LogMessageParams with _$LogMessageParams {
       _$LogMessageParamsFromJson(json);
 }
 
+/// The parameters sent in an open text document notification
 @freezed
 abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
   const factory DidOpenTextDocumentParams({
@@ -2173,6 +2309,7 @@ abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
       _$DidOpenTextDocumentParamsFromJson(json);
 }
 
+/// The change text document notification's parameters.
 @freezed
 abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
   const factory DidChangeTextDocumentParams({
@@ -2197,6 +2334,8 @@ abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
       _$DidChangeTextDocumentParamsFromJson(json);
 }
 
+/// Describe options to be used when registered for text document
+/// change events.
 @freezed
 abstract class TextDocumentChangeRegistrationOptions
     with _$TextDocumentChangeRegistrationOptions {
@@ -2214,6 +2353,7 @@ abstract class TextDocumentChangeRegistrationOptions
   ) => _$TextDocumentChangeRegistrationOptionsFromJson(json);
 }
 
+/// The parameters sent in a close text document notification
 @freezed
 abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
   const factory DidCloseTextDocumentParams({
@@ -2225,6 +2365,7 @@ abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
       _$DidCloseTextDocumentParamsFromJson(json);
 }
 
+/// The parameters sent in a save text document notification
 @freezed
 abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
   const factory DidSaveTextDocumentParams({
@@ -2240,6 +2381,7 @@ abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
       _$DidSaveTextDocumentParamsFromJson(json);
 }
 
+/// Save registration options.
 @freezed
 abstract class TextDocumentSaveRegistrationOptions
     with _$TextDocumentSaveRegistrationOptions {
@@ -2257,6 +2399,7 @@ abstract class TextDocumentSaveRegistrationOptions
   ) => _$TextDocumentSaveRegistrationOptionsFromJson(json);
 }
 
+/// The parameters sent in a will save text document notification.
 @freezed
 abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
   const factory WillSaveTextDocumentParams({
@@ -2271,6 +2414,7 @@ abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
       _$WillSaveTextDocumentParamsFromJson(json);
 }
 
+/// A text edit applicable to a text document.
 @freezed
 abstract class TextEdit with _$TextEdit {
   const factory TextEdit({
@@ -2286,6 +2430,7 @@ abstract class TextEdit with _$TextEdit {
       _$TextEditFromJson(json);
 }
 
+/// The watched files change notification's parameters.
 @freezed
 abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
   const factory DidChangeWatchedFilesParams({
@@ -2297,6 +2442,8 @@ abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
       _$DidChangeWatchedFilesParamsFromJson(json);
 }
 
+/// Describe options to be used when registered for text document
+/// change events.
 @freezed
 abstract class DidChangeWatchedFilesRegistrationOptions
     with _$DidChangeWatchedFilesRegistrationOptions {
@@ -2310,6 +2457,7 @@ abstract class DidChangeWatchedFilesRegistrationOptions
   ) => _$DidChangeWatchedFilesRegistrationOptionsFromJson(json);
 }
 
+/// The publish diagnostic notification's parameters.
 @freezed
 abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
   const factory PublishDiagnosticsParams({
@@ -2329,6 +2477,7 @@ abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
       _$PublishDiagnosticsParamsFromJson(json);
 }
 
+/// Completion parameters
 @freezed
 abstract class CompletionParams with _$CompletionParams {
   const factory CompletionParams({
@@ -2355,6 +2504,8 @@ abstract class CompletionParams with _$CompletionParams {
       _$CompletionParamsFromJson(json);
 }
 
+/// A completion item represents a text snippet that is proposed to
+/// complete text that is being typed.
 @freezed
 abstract class CompletionItem with _$CompletionItem {
   const factory CompletionItem({
@@ -2484,6 +2635,8 @@ abstract class CompletionItem with _$CompletionItem {
       _$CompletionItemFromJson(json);
 }
 
+/// Represents a collection of {@link CompletionItem completion
+/// items} to be presented in the editor.
 @freezed
 abstract class CompletionList with _$CompletionList {
   const factory CompletionList({
@@ -2512,6 +2665,7 @@ abstract class CompletionList with _$CompletionList {
       _$CompletionListFromJson(json);
 }
 
+/// Registration options for a {@link CompletionRequest}.
 @freezed
 abstract class CompletionRegistrationOptions
     with _$CompletionRegistrationOptions {
@@ -2554,6 +2708,7 @@ abstract class CompletionRegistrationOptions
       _$CompletionRegistrationOptionsFromJson(json);
 }
 
+/// Parameters for a {@link HoverRequest}.
 @freezed
 abstract class HoverParams with _$HoverParams {
   const factory HoverParams({
@@ -2571,6 +2726,7 @@ abstract class HoverParams with _$HoverParams {
       _$HoverParamsFromJson(json);
 }
 
+/// The result of a hover request.
 @freezed
 abstract class Hover with _$Hover {
   const factory Hover({
@@ -2585,6 +2741,7 @@ abstract class Hover with _$Hover {
   factory Hover.fromJson(Map<String, dynamic> json) => _$HoverFromJson(json);
 }
 
+/// Registration options for a {@link HoverRequest}.
 @freezed
 abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
   const factory HoverRegistrationOptions({
@@ -2597,6 +2754,7 @@ abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
       _$HoverRegistrationOptionsFromJson(json);
 }
 
+/// Parameters for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpParams with _$SignatureHelpParams {
   const factory SignatureHelpParams({
@@ -2620,6 +2778,9 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
       _$SignatureHelpParamsFromJson(json);
 }
 
+/// Signature help represents the signature of something callable.
+/// There can be multiple signature but only one active and only one
+/// active parameter.
 @freezed
 abstract class SignatureHelp with _$SignatureHelp {
   const factory SignatureHelp({
@@ -2648,6 +2809,7 @@ abstract class SignatureHelp with _$SignatureHelp {
       _$SignatureHelpFromJson(json);
 }
 
+/// Registration options for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpRegistrationOptions
     with _$SignatureHelpRegistrationOptions {
@@ -2672,6 +2834,7 @@ abstract class SignatureHelpRegistrationOptions
   ) => _$SignatureHelpRegistrationOptionsFromJson(json);
 }
 
+/// Parameters for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionParams with _$DefinitionParams {
   const factory DefinitionParams({
@@ -2693,6 +2856,7 @@ abstract class DefinitionParams with _$DefinitionParams {
       _$DefinitionParamsFromJson(json);
 }
 
+/// Registration options for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionRegistrationOptions
     with _$DefinitionRegistrationOptions {
@@ -2706,6 +2870,7 @@ abstract class DefinitionRegistrationOptions
       _$DefinitionRegistrationOptionsFromJson(json);
 }
 
+/// Parameters for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceParams with _$ReferenceParams {
   const factory ReferenceParams({
@@ -2729,6 +2894,7 @@ abstract class ReferenceParams with _$ReferenceParams {
       _$ReferenceParamsFromJson(json);
 }
 
+/// Registration options for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceRegistrationOptions
     with _$ReferenceRegistrationOptions {
@@ -2742,6 +2908,7 @@ abstract class ReferenceRegistrationOptions
       _$ReferenceRegistrationOptionsFromJson(json);
 }
 
+/// Parameters for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightParams with _$DocumentHighlightParams {
   const factory DocumentHighlightParams({
@@ -2763,6 +2930,9 @@ abstract class DocumentHighlightParams with _$DocumentHighlightParams {
       _$DocumentHighlightParamsFromJson(json);
 }
 
+/// A document highlight is a range inside a text document which
+/// deserves special attention. Usually a document highlight is
+/// visualized by changing the background color of its range.
 @freezed
 abstract class DocumentHighlight with _$DocumentHighlight {
   const factory DocumentHighlight({
@@ -2777,6 +2947,7 @@ abstract class DocumentHighlight with _$DocumentHighlight {
       _$DocumentHighlightFromJson(json);
 }
 
+/// Registration options for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightRegistrationOptions
     with _$DocumentHighlightRegistrationOptions {
@@ -2791,6 +2962,7 @@ abstract class DocumentHighlightRegistrationOptions
   ) => _$DocumentHighlightRegistrationOptionsFromJson(json);
 }
 
+/// Parameters for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolParams with _$DocumentSymbolParams {
   const factory DocumentSymbolParams({
@@ -2809,6 +2981,8 @@ abstract class DocumentSymbolParams with _$DocumentSymbolParams {
       _$DocumentSymbolParamsFromJson(json);
 }
 
+/// Represents information about programming constructs like
+/// variables, classes, interfaces etc.
 @freezed
 abstract class SymbolInformation with _$SymbolInformation {
   const factory SymbolInformation({
@@ -2847,6 +3021,11 @@ abstract class SymbolInformation with _$SymbolInformation {
       _$SymbolInformationFromJson(json);
 }
 
+/// Represents programming constructs like variables, classes,
+/// interfaces etc. that appear in a document. Document symbols can
+/// be hierarchical and they have two ranges: one that encloses its
+/// definition and one that points to its most interesting range,
+/// e.g. the range of an identifier.
 @freezed
 abstract class DocumentSymbol with _$DocumentSymbol {
   const factory DocumentSymbol({
@@ -2888,6 +3067,7 @@ abstract class DocumentSymbol with _$DocumentSymbol {
       _$DocumentSymbolFromJson(json);
 }
 
+/// Registration options for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolRegistrationOptions
     with _$DocumentSymbolRegistrationOptions {
@@ -2907,6 +3087,7 @@ abstract class DocumentSymbolRegistrationOptions
   ) => _$DocumentSymbolRegistrationOptionsFromJson(json);
 }
 
+/// The parameters of a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionParams with _$CodeActionParams {
   const factory CodeActionParams({
@@ -2931,6 +3112,10 @@ abstract class CodeActionParams with _$CodeActionParams {
       _$CodeActionParamsFromJson(json);
 }
 
+/// Represents a reference to a command. Provides a title which will
+/// be used to represent a command in the UI and, optionally, an
+/// array of arguments which will be passed to the command handler
+/// function when invoked.
 @freezed
 abstract class Command with _$Command {
   const factory Command({
@@ -2948,6 +3133,11 @@ abstract class Command with _$Command {
       _$CommandFromJson(json);
 }
 
+/// A code action represents a change that can be performed in code,
+/// e.g. to fix a problem or to refactor code.
+/// A CodeAction must set either `edit` and/or a `command`. If both
+/// are supplied, the `edit` is applied first, then the `command` is
+/// executed.
 @freezed
 abstract class CodeAction with _$CodeAction {
   const factory CodeAction({
@@ -3003,6 +3193,7 @@ abstract class CodeAction with _$CodeAction {
       _$CodeActionFromJson(json);
 }
 
+/// Registration options for a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionRegistrationOptions
     with _$CodeActionRegistrationOptions {
@@ -3026,6 +3217,7 @@ abstract class CodeActionRegistrationOptions
       _$CodeActionRegistrationOptionsFromJson(json);
 }
 
+/// The parameters of a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
   const factory WorkspaceSymbolParams({
@@ -3045,6 +3237,10 @@ abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
       _$WorkspaceSymbolParamsFromJson(json);
 }
 
+/// A special workspace symbol that supports locations without a
+/// range.
+/// See also SymbolInformation.
+/// @since 3.17.0
 @freezed
 abstract class WorkspaceSymbol with _$WorkspaceSymbol {
   const factory WorkspaceSymbol({
@@ -3079,6 +3275,7 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
       _$WorkspaceSymbolFromJson(json);
 }
 
+/// Registration options for a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolRegistrationOptions
     with _$WorkspaceSymbolRegistrationOptions {
@@ -3094,6 +3291,7 @@ abstract class WorkspaceSymbolRegistrationOptions
   ) => _$WorkspaceSymbolRegistrationOptionsFromJson(json);
 }
 
+/// The parameters of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensParams with _$CodeLensParams {
   const factory CodeLensParams({
@@ -3112,6 +3310,12 @@ abstract class CodeLensParams with _$CodeLensParams {
       _$CodeLensParamsFromJson(json);
 }
 
+/// A code lens represents a {@link Command command} that should be
+/// shown along with source text, like the number of references, a
+/// way to run tests, etc.
+/// A code lens is _unresolved_ when no command is associated to it.
+/// For performance reasons the creation of a code lens and resolving
+/// should be done in two stages.
 @freezed
 abstract class CodeLens with _$CodeLens {
   const factory CodeLens({
@@ -3131,6 +3335,7 @@ abstract class CodeLens with _$CodeLens {
       _$CodeLensFromJson(json);
 }
 
+/// Registration options for a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
   const factory CodeLensRegistrationOptions({
@@ -3146,6 +3351,7 @@ abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
       _$CodeLensRegistrationOptionsFromJson(json);
 }
 
+/// The parameters of a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkParams with _$DocumentLinkParams {
   const factory DocumentLinkParams({
@@ -3164,6 +3370,9 @@ abstract class DocumentLinkParams with _$DocumentLinkParams {
       _$DocumentLinkParamsFromJson(json);
 }
 
+/// A document link is a range in a text document that links to an
+/// internal or external resource, like another text document or a
+/// web site.
 @freezed
 abstract class DocumentLink with _$DocumentLink {
   const factory DocumentLink({
@@ -3190,6 +3399,7 @@ abstract class DocumentLink with _$DocumentLink {
       _$DocumentLinkFromJson(json);
 }
 
+/// Registration options for a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkRegistrationOptions
     with _$DocumentLinkRegistrationOptions {
@@ -3206,6 +3416,7 @@ abstract class DocumentLinkRegistrationOptions
       _$DocumentLinkRegistrationOptionsFromJson(json);
 }
 
+/// The parameters of a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingParams with _$DocumentFormattingParams {
   const factory DocumentFormattingParams({
@@ -3223,6 +3434,7 @@ abstract class DocumentFormattingParams with _$DocumentFormattingParams {
       _$DocumentFormattingParamsFromJson(json);
 }
 
+/// Registration options for a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingRegistrationOptions
     with _$DocumentFormattingRegistrationOptions {
@@ -3237,6 +3449,7 @@ abstract class DocumentFormattingRegistrationOptions
   ) => _$DocumentFormattingRegistrationOptionsFromJson(json);
 }
 
+/// The parameters of a {@link DocumentRangeFormattingRequest}.
 @freezed
 abstract class DocumentRangeFormattingParams
     with _$DocumentRangeFormattingParams {
@@ -3258,6 +3471,7 @@ abstract class DocumentRangeFormattingParams
       _$DocumentRangeFormattingParamsFromJson(json);
 }
 
+/// Registration options for a {@link DocumentRangeFormattingRequest}.
 @freezed
 abstract class DocumentRangeFormattingRegistrationOptions
     with _$DocumentRangeFormattingRegistrationOptions {
@@ -3276,6 +3490,8 @@ abstract class DocumentRangeFormattingRegistrationOptions
   ) => _$DocumentRangeFormattingRegistrationOptionsFromJson(json);
 }
 
+/// The parameters of a {@link DocumentRangesFormattingRequest}.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class DocumentRangesFormattingParams
     with _$DocumentRangesFormattingParams {
@@ -3297,6 +3513,7 @@ abstract class DocumentRangesFormattingParams
       _$DocumentRangesFormattingParamsFromJson(json);
 }
 
+/// The parameters of a {@link DocumentOnTypeFormattingRequest}.
 @freezed
 abstract class DocumentOnTypeFormattingParams
     with _$DocumentOnTypeFormattingParams {
@@ -3323,6 +3540,8 @@ abstract class DocumentOnTypeFormattingParams
       _$DocumentOnTypeFormattingParamsFromJson(json);
 }
 
+/// Registration options for a {@link
+/// DocumentOnTypeFormattingRequest}.
 @freezed
 abstract class DocumentOnTypeFormattingRegistrationOptions
     with _$DocumentOnTypeFormattingRegistrationOptions {
@@ -3343,6 +3562,7 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
   ) => _$DocumentOnTypeFormattingRegistrationOptionsFromJson(json);
 }
 
+/// The parameters of a {@link RenameRequest}.
 @freezed
 abstract class RenameParams with _$RenameParams {
   const factory RenameParams({
@@ -3364,6 +3584,7 @@ abstract class RenameParams with _$RenameParams {
       _$RenameParamsFromJson(json);
 }
 
+/// Registration options for a {@link RenameRequest}.
 @freezed
 abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
   const factory RenameRegistrationOptions({
@@ -3397,6 +3618,7 @@ abstract class PrepareRenameParams with _$PrepareRenameParams {
       _$PrepareRenameParamsFromJson(json);
 }
 
+/// The parameters of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandParams with _$ExecuteCommandParams {
   const factory ExecuteCommandParams({
@@ -3414,6 +3636,7 @@ abstract class ExecuteCommandParams with _$ExecuteCommandParams {
       _$ExecuteCommandParamsFromJson(json);
 }
 
+/// Registration options for a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandRegistrationOptions
     with _$ExecuteCommandRegistrationOptions {
@@ -3427,6 +3650,7 @@ abstract class ExecuteCommandRegistrationOptions
   ) => _$ExecuteCommandRegistrationOptionsFromJson(json);
 }
 
+/// The parameters passed via an apply workspace edit request.
 @freezed
 abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
   const factory ApplyWorkspaceEditParams({
@@ -3442,6 +3666,8 @@ abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
       _$ApplyWorkspaceEditParamsFromJson(json);
 }
 
+/// The result returned from the apply workspace edit request.
+/// @since 3.17 renamed from ApplyWorkspaceEditResponse
 @freezed
 abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
   const factory ApplyWorkspaceEditResult({
@@ -3579,6 +3805,8 @@ abstract class ProgressParams with _$ProgressParams {
       _$ProgressParamsFromJson(json);
 }
 
+/// A parameter literal used in requests to pass a text document and
+/// a position inside that document.
 @freezed
 abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
   const factory TextDocumentPositionParams({
@@ -3616,6 +3844,9 @@ abstract class PartialResultParams with _$PartialResultParams {
       _$PartialResultParamsFromJson(json);
 }
 
+/// Represents the connection of two locations. Provides additional
+/// metadata over normal {@link Location locations}, including an
+/// origin range.
 @freezed
 abstract class LocationLink with _$LocationLink {
   const factory LocationLink({
@@ -3644,6 +3875,12 @@ abstract class LocationLink with _$LocationLink {
       _$LocationLinkFromJson(json);
 }
 
+/// A range in a text document expressed as (zero-based) start and
+/// end positions.
+/// If you want to specify a range that contains a line including the
+/// line ending character(s) then use an end position denoting the
+/// start of the next line. For example: ```ts { start: { line: 5,
+/// character: 23 } end : { line 6, character : 0 } } ```
 @freezed
 abstract class Range with _$Range {
   const factory Range({
@@ -3666,6 +3903,8 @@ abstract class ImplementationOptions with _$ImplementationOptions {
       _$ImplementationOptionsFromJson(json);
 }
 
+/// Static registration options to be returned in the initialize
+/// request.
 @freezed
 abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
   const factory StaticRegistrationOptions({
@@ -3687,6 +3926,7 @@ abstract class TypeDefinitionOptions with _$TypeDefinitionOptions {
       _$TypeDefinitionOptionsFromJson(json);
 }
 
+/// The workspace folder change event.
 @freezed
 abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
   const factory WorkspaceFoldersChangeEvent({
@@ -3715,6 +3955,7 @@ abstract class ConfigurationItem with _$ConfigurationItem {
       _$ConfigurationItemFromJson(json);
 }
 
+/// A literal to identify a text document in the client.
 @freezed
 abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
   const factory TextDocumentIdentifier({
@@ -3726,6 +3967,7 @@ abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
       _$TextDocumentIdentifierFromJson(json);
 }
 
+/// Represents a color in RGBA space.
 @freezed
 abstract class Color with _$Color {
   const factory Color({
@@ -3772,6 +4014,36 @@ abstract class DeclarationOptions with _$DeclarationOptions {
       _$DeclarationOptionsFromJson(json);
 }
 
+/// Position in a text document expressed as zero-based line and
+/// character offset. Prior to 3.17 the offsets were always based on
+/// a UTF-16 string representation. So a string of the form `a𐐀b`
+/// the character offset of the character `a` is 0, the character
+/// offset of `𐐀` is 1 and the character offset of b is 3 since `𐐀`
+/// is represented using two code units in UTF-16. Since 3.17 clients
+/// and servers can agree on a different string encoding
+/// representation (e.g. UTF-8). The client announces it's supported
+/// encoding via the client capability
+/// [`general.positionEncodings`](https://microsoft.github.io/language-server-protocol/specifications/specification-current/#clientCapabilities).
+/// The value is an array of position encodings the client supports,
+/// with decreasing preference (e.g. the encoding at index `0` is the
+/// most preferred one). To stay backwards compatible the only
+/// mandatory encoding is UTF-16 represented via the string `utf-16`.
+/// The server can pick one of the encodings offered by the client
+/// and signals that encoding back to the client via the initialize
+/// result's property
+/// [`capabilities.positionEncoding`](https://microsoft.github.io/language-server-protocol/specifications/specification-current/#serverCapabilities).
+/// If the string value `utf-16` is missing from the client's
+/// capability `general.positionEncodings` servers can safely assume
+/// that the client supports UTF-16. If the server omits the position
+/// encoding in its initialize result the encoding defaults to the
+/// string value `utf-16`. Implementation considerations: since the
+/// conversion from one encoding into another requires the content of
+/// the file / line the conversion is best done where the file is
+/// read which is usually on the server side.
+/// Positions are line end character agnostic. So you can not specify
+/// a position that denotes `\r|\n` or `\n|` where `|` represents the
+/// character offset.
+/// @since 3.17.0 - support for negotiated position encoding.
 @freezed
 abstract class Position with _$Position {
   const factory Position({
@@ -3802,6 +4074,8 @@ abstract class SelectionRangeOptions with _$SelectionRangeOptions {
       _$SelectionRangeOptionsFromJson(json);
 }
 
+/// Call hierarchy options used during static registration.
+/// @since 3.16.0
 @freezed
 abstract class CallHierarchyOptions with _$CallHierarchyOptions {
   const factory CallHierarchyOptions({bool? workDoneProgress}) =
@@ -3811,6 +4085,7 @@ abstract class CallHierarchyOptions with _$CallHierarchyOptions {
       _$CallHierarchyOptionsFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensOptions with _$SemanticTokensOptions {
   const factory SemanticTokensOptions({
@@ -3830,6 +4105,7 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
       _$SemanticTokensOptionsFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensEdit with _$SemanticTokensEdit {
   const factory SemanticTokensEdit({
@@ -3856,6 +4132,8 @@ abstract class LinkedEditingRangeOptions with _$LinkedEditingRangeOptions {
       _$LinkedEditingRangeOptionsFromJson(json);
 }
 
+/// Represents information on a file/folder create.
+/// @since 3.16.0
 @freezed
 abstract class FileCreate with _$FileCreate {
   const factory FileCreate({
@@ -3867,6 +4145,11 @@ abstract class FileCreate with _$FileCreate {
       _$FileCreateFromJson(json);
 }
 
+/// Describes textual changes on a text document. A TextDocumentEdit
+/// describes all changes on a document version Si and after they are
+/// applied move the document to version Si+1. So the creator of a
+/// TextDocumentEdit doesn't need to sort the array of edits or do
+/// any kind of ordering. However the edits must be non overlapping.
 @freezed
 abstract class TextDocumentEdit with _$TextDocumentEdit {
   const factory TextDocumentEdit({
@@ -3883,6 +4166,7 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
       _$TextDocumentEditFromJson(json);
 }
 
+/// Create file operation.
 @freezed
 abstract class CreateFile with _$CreateFile {
   const factory CreateFile({
@@ -3904,6 +4188,7 @@ abstract class CreateFile with _$CreateFile {
       _$CreateFileFromJson(json);
 }
 
+/// Rename file operation
 @freezed
 abstract class RenameFile with _$RenameFile {
   const factory RenameFile({
@@ -3928,6 +4213,7 @@ abstract class RenameFile with _$RenameFile {
       _$RenameFileFromJson(json);
 }
 
+/// Delete file operation
 @freezed
 abstract class DeleteFile with _$DeleteFile {
   const factory DeleteFile({
@@ -3949,6 +4235,8 @@ abstract class DeleteFile with _$DeleteFile {
       _$DeleteFileFromJson(json);
 }
 
+/// Additional information that describes document changes.
+/// @since 3.16.0
 @freezed
 abstract class ChangeAnnotation with _$ChangeAnnotation {
   const factory ChangeAnnotation({
@@ -3969,6 +4257,9 @@ abstract class ChangeAnnotation with _$ChangeAnnotation {
       _$ChangeAnnotationFromJson(json);
 }
 
+/// A filter to describe in which file operation requests or
+/// notifications the server is interested in receiving.
+/// @since 3.16.0
 @freezed
 abstract class FileOperationFilter with _$FileOperationFilter {
   const factory FileOperationFilter({
@@ -3983,6 +4274,8 @@ abstract class FileOperationFilter with _$FileOperationFilter {
       _$FileOperationFilterFromJson(json);
 }
 
+/// Represents information on a file/folder rename.
+/// @since 3.16.0
 @freezed
 abstract class FileRename with _$FileRename {
   const factory FileRename({
@@ -3998,6 +4291,8 @@ abstract class FileRename with _$FileRename {
       _$FileRenameFromJson(json);
 }
 
+/// Represents information on a file/folder delete.
+/// @since 3.16.0
 @freezed
 abstract class FileDelete with _$FileDelete {
   const factory FileDelete({
@@ -4017,6 +4312,8 @@ abstract class MonikerOptions with _$MonikerOptions {
       _$MonikerOptionsFromJson(json);
 }
 
+/// Type hierarchy options used during static registration.
+/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
   const factory TypeHierarchyOptions({bool? workDoneProgress}) =
@@ -4026,6 +4323,7 @@ abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
       _$TypeHierarchyOptionsFromJson(json);
 }
 
+/// @since 3.17.0
 @freezed
 abstract class InlineValueContext with _$InlineValueContext {
   const factory InlineValueContext({
@@ -4042,6 +4340,8 @@ abstract class InlineValueContext with _$InlineValueContext {
       _$InlineValueContextFromJson(json);
 }
 
+/// Provide inline value as text.
+/// @since 3.17.0
 @freezed
 abstract class InlineValueText with _$InlineValueText {
   const factory InlineValueText({
@@ -4056,6 +4356,11 @@ abstract class InlineValueText with _$InlineValueText {
       _$InlineValueTextFromJson(json);
 }
 
+/// Provide inline value through a variable lookup. If only a range
+/// is specified, the variable name will be extracted from the
+/// underlying document. An optional variable name can be used to
+/// override the extracted name.
+/// @since 3.17.0
 @freezed
 abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
   const factory InlineValueVariableLookup({
@@ -4074,6 +4379,11 @@ abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
       _$InlineValueVariableLookupFromJson(json);
 }
 
+/// Provide an inline value through an expression evaluation. If only
+/// a range is specified, the expression will be extracted from the
+/// underlying document. An optional expression can be used to
+/// override the extracted expression.
+/// @since 3.17.0
 @freezed
 abstract class InlineValueEvaluatableExpression
     with _$InlineValueEvaluatableExpression {
@@ -4092,6 +4402,8 @@ abstract class InlineValueEvaluatableExpression
   ) => _$InlineValueEvaluatableExpressionFromJson(json);
 }
 
+/// Inline value options used during static registration.
+/// @since 3.17.0
 @freezed
 abstract class InlineValueOptions with _$InlineValueOptions {
   const factory InlineValueOptions({bool? workDoneProgress}) =
@@ -4101,6 +4413,9 @@ abstract class InlineValueOptions with _$InlineValueOptions {
       _$InlineValueOptionsFromJson(json);
 }
 
+/// An inlay hint label part allows for interactive and composite
+/// labels of inlay hints.
+/// @since 3.17.0
 @freezed
 abstract class InlayHintLabelPart with _$InlayHintLabelPart {
   const factory InlayHintLabelPart({
@@ -4132,6 +4447,19 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
       _$InlayHintLabelPartFromJson(json);
 }
 
+/// A `MarkupContent` literal represents a string value which content
+/// is interpreted base on its kind flag. Currently the protocol
+/// supports `plaintext` and `markdown` as markup kinds.
+/// If the kind is `markdown` then the value can contain fenced code
+/// blocks like in GitHub issues. See
+/// https://help.github.com/articles/creating-and-highlighting-code-blocks/#syntax-highlighting
+/// Here is an example how such a string can be constructed using
+/// JavaScript / TypeScript: ```ts let markdown: MarkdownContent = {
+/// kind: MarkupKind.Markdown, value: [ '# Header', 'Some text',
+/// '```typescript', 'someCode();', '```' ].join('\n') }; ```
+/// *Please Note* that clients might sanitize the return markdown. A
+/// client could decide to remove HTML from the markdown to avoid
+/// script execution.
 @freezed
 abstract class MarkupContent with _$MarkupContent {
   const factory MarkupContent({
@@ -4146,6 +4474,8 @@ abstract class MarkupContent with _$MarkupContent {
       _$MarkupContentFromJson(json);
 }
 
+/// Inlay hint options used during static registration.
+/// @since 3.17.0
 @freezed
 abstract class InlayHintOptions with _$InlayHintOptions {
   const factory InlayHintOptions({
@@ -4159,6 +4489,8 @@ abstract class InlayHintOptions with _$InlayHintOptions {
       _$InlayHintOptionsFromJson(json);
 }
 
+/// A full diagnostic report with a set of related documents.
+/// @since 3.17.0
 @freezed
 abstract class RelatedFullDocumentDiagnosticReport
     with _$RelatedFullDocumentDiagnosticReport {
@@ -4191,6 +4523,8 @@ abstract class RelatedFullDocumentDiagnosticReport
   ) => _$RelatedFullDocumentDiagnosticReportFromJson(json);
 }
 
+/// An unchanged diagnostic report with a set of related documents.
+/// @since 3.17.0
 @freezed
 abstract class RelatedUnchangedDocumentDiagnosticReport
     with _$RelatedUnchangedDocumentDiagnosticReport {
@@ -4221,6 +4555,8 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
   ) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
 }
 
+/// A diagnostic report with a full set of problems.
+/// @since 3.17.0
 @freezed
 abstract class FullDocumentDiagnosticReport
     with _$FullDocumentDiagnosticReport {
@@ -4240,6 +4576,9 @@ abstract class FullDocumentDiagnosticReport
       _$FullDocumentDiagnosticReportFromJson(json);
 }
 
+/// A diagnostic report indicating that the last returned report is
+/// still accurate.
+/// @since 3.17.0
 @freezed
 abstract class UnchangedDocumentDiagnosticReport
     with _$UnchangedDocumentDiagnosticReport {
@@ -4258,6 +4597,8 @@ abstract class UnchangedDocumentDiagnosticReport
   ) => _$UnchangedDocumentDiagnosticReportFromJson(json);
 }
 
+/// Diagnostic options.
+/// @since 3.17.0
 @freezed
 abstract class DiagnosticOptions with _$DiagnosticOptions {
   const factory DiagnosticOptions({
@@ -4280,6 +4621,8 @@ abstract class DiagnosticOptions with _$DiagnosticOptions {
       _$DiagnosticOptionsFromJson(json);
 }
 
+/// A previous result id in a workspace pull request.
+/// @since 3.17.0
 @freezed
 abstract class PreviousResultId with _$PreviousResultId {
   const factory PreviousResultId({
@@ -4294,6 +4637,8 @@ abstract class PreviousResultId with _$PreviousResultId {
       _$PreviousResultIdFromJson(json);
 }
 
+/// A notebook document.
+/// @since 3.17.0
 @freezed
 abstract class NotebookDocument with _$NotebookDocument {
   const factory NotebookDocument({
@@ -4319,6 +4664,7 @@ abstract class NotebookDocument with _$NotebookDocument {
       _$NotebookDocumentFromJson(json);
 }
 
+/// An item to transfer a text document from the client to the server.
 @freezed
 abstract class TextDocumentItem with _$TextDocumentItem {
   const factory TextDocumentItem({
@@ -4340,6 +4686,8 @@ abstract class TextDocumentItem with _$TextDocumentItem {
       _$TextDocumentItemFromJson(json);
 }
 
+/// A versioned notebook document identifier.
+/// @since 3.17.0
 @freezed
 abstract class VersionedNotebookDocumentIdentifier
     with _$VersionedNotebookDocumentIdentifier {
@@ -4356,6 +4704,8 @@ abstract class VersionedNotebookDocumentIdentifier
   ) => _$VersionedNotebookDocumentIdentifierFromJson(json);
 }
 
+/// A change event for a notebook document.
+/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
   const factory NotebookDocumentChangeEvent({
@@ -4371,6 +4721,8 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
       _$NotebookDocumentChangeEventFromJson(json);
 }
 
+/// A literal to identify a notebook document in the client.
+/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
   const factory NotebookDocumentIdentifier({
@@ -4382,6 +4734,9 @@ abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
       _$NotebookDocumentIdentifierFromJson(json);
 }
 
+/// Provides information about the context in which an inline
+/// completion was requested.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionContext with _$InlineCompletionContext {
   const factory InlineCompletionContext({
@@ -4397,6 +4752,14 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
       _$InlineCompletionContextFromJson(json);
 }
 
+/// A string value used as a snippet is a template which allows to
+/// insert text and to control the editor cursor when insertion
+/// happens.
+/// A snippet can define tab stops and placeholders with `$1`, `$2`
+/// and `${3:foo}`. `$0` defines the final tab stop, it defaults to
+/// the end of the snippet. Variables are defined with `$name` and
+/// `${name:default value}`.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class StringValue with _$StringValue {
   const factory StringValue({
@@ -4411,6 +4774,8 @@ abstract class StringValue with _$StringValue {
       _$StringValueFromJson(json);
 }
 
+/// Inline completion options used during static registration.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionOptions with _$InlineCompletionOptions {
   const factory InlineCompletionOptions({bool? workDoneProgress}) =
@@ -4420,6 +4785,8 @@ abstract class InlineCompletionOptions with _$InlineCompletionOptions {
       _$InlineCompletionOptionsFromJson(json);
 }
 
+/// General parameters to register for a notification or to register
+/// a provider.
 @freezed
 abstract class Registration with _$Registration {
   const factory Registration({
@@ -4438,6 +4805,7 @@ abstract class Registration with _$Registration {
       _$RegistrationFromJson(json);
 }
 
+/// General parameters to unregister a request or notification.
 @freezed
 abstract class Unregistration with _$Unregistration {
   const factory Unregistration({
@@ -4453,6 +4821,7 @@ abstract class Unregistration with _$Unregistration {
       _$UnregistrationFromJson(json);
 }
 
+/// The initialize parameters
 @freezed
 abstract class TInitializeParams with _$TInitializeParams {
   const factory TInitializeParams({
@@ -4515,6 +4884,7 @@ abstract class WorkspaceFoldersInitializeParams
   ) => _$WorkspaceFoldersInitializeParamsFromJson(json);
 }
 
+/// Defines the capabilities provided by a language server.
 @freezed
 abstract class ServerCapabilities with _$ServerCapabilities {
   const factory ServerCapabilities({
@@ -4652,6 +5022,8 @@ abstract class ServerCapabilities with _$ServerCapabilities {
       _$ServerCapabilitiesFromJson(json);
 }
 
+/// A text document identifier to denote a specific version of a text
+/// document.
 @freezed
 abstract class VersionedTextDocumentIdentifier
     with _$VersionedTextDocumentIdentifier {
@@ -4667,6 +5039,7 @@ abstract class VersionedTextDocumentIdentifier
       _$VersionedTextDocumentIdentifierFromJson(json);
 }
 
+/// Save options.
 @freezed
 abstract class SaveOptions with _$SaveOptions {
   const factory SaveOptions({
@@ -4678,6 +5051,7 @@ abstract class SaveOptions with _$SaveOptions {
       _$SaveOptionsFromJson(json);
 }
 
+/// An event describing a file change.
 @freezed
 abstract class FileEvent with _$FileEvent {
   const factory FileEvent({
@@ -4709,6 +5083,8 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
       _$FileSystemWatcherFromJson(json);
 }
 
+/// Represents a diagnostic, such as a compiler error or warning.
+/// Diagnostic objects are only valid in the scope of a resource.
 @freezed
 abstract class Diagnostic with _$Diagnostic {
   const factory Diagnostic({
@@ -4753,6 +5129,8 @@ abstract class Diagnostic with _$Diagnostic {
       _$DiagnosticFromJson(json);
 }
 
+/// Contains additional information about the context in which a
+/// completion request is triggered.
 @freezed
 abstract class CompletionContext with _$CompletionContext {
   const factory CompletionContext({
@@ -4769,6 +5147,8 @@ abstract class CompletionContext with _$CompletionContext {
       _$CompletionContextFromJson(json);
 }
 
+/// Additional details for a completion item label.
+/// @since 3.17.0
 @freezed
 abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
   const factory CompletionItemLabelDetails({
@@ -4787,6 +5167,8 @@ abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
       _$CompletionItemLabelDetailsFromJson(json);
 }
 
+/// A special text edit to provide an insert and a replace operation.
+/// @since 3.16.0
 @freezed
 abstract class InsertReplaceEdit with _$InsertReplaceEdit {
   const factory InsertReplaceEdit({
@@ -4804,6 +5186,7 @@ abstract class InsertReplaceEdit with _$InsertReplaceEdit {
       _$InsertReplaceEditFromJson(json);
 }
 
+/// Completion options.
 @freezed
 abstract class CompletionOptions with _$CompletionOptions {
   const factory CompletionOptions({
@@ -4842,6 +5225,7 @@ abstract class CompletionOptions with _$CompletionOptions {
       _$CompletionOptionsFromJson(json);
 }
 
+/// Hover options.
 @freezed
 abstract class HoverOptions with _$HoverOptions {
   const factory HoverOptions({bool? workDoneProgress}) = _HoverOptions;
@@ -4850,6 +5234,9 @@ abstract class HoverOptions with _$HoverOptions {
       _$HoverOptionsFromJson(json);
 }
 
+/// Additional information about the context in which a signature
+/// help request was triggered.
+/// @since 3.15.0
 @freezed
 abstract class SignatureHelpContext with _$SignatureHelpContext {
   const factory SignatureHelpContext({
@@ -4877,6 +5264,9 @@ abstract class SignatureHelpContext with _$SignatureHelpContext {
       _$SignatureHelpContextFromJson(json);
 }
 
+/// Represents the signature of something callable. A signature can
+/// have a label, like a function-name, a doc-comment, and a set of
+/// parameters.
 @freezed
 abstract class SignatureInformation with _$SignatureInformation {
   const factory SignatureInformation({
@@ -4900,6 +5290,7 @@ abstract class SignatureInformation with _$SignatureInformation {
       _$SignatureInformationFromJson(json);
 }
 
+/// Server Capabilities for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpOptions with _$SignatureHelpOptions {
   const factory SignatureHelpOptions({
@@ -4919,6 +5310,7 @@ abstract class SignatureHelpOptions with _$SignatureHelpOptions {
       _$SignatureHelpOptionsFromJson(json);
 }
 
+/// Server Capabilities for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionOptions with _$DefinitionOptions {
   const factory DefinitionOptions({bool? workDoneProgress}) =
@@ -4928,6 +5320,8 @@ abstract class DefinitionOptions with _$DefinitionOptions {
       _$DefinitionOptionsFromJson(json);
 }
 
+/// Value-object that contains additional information when requesting
+/// references.
 @freezed
 abstract class ReferenceContext with _$ReferenceContext {
   const factory ReferenceContext({
@@ -4939,6 +5333,7 @@ abstract class ReferenceContext with _$ReferenceContext {
       _$ReferenceContextFromJson(json);
 }
 
+/// Reference options.
 @freezed
 abstract class ReferenceOptions with _$ReferenceOptions {
   const factory ReferenceOptions({bool? workDoneProgress}) = _ReferenceOptions;
@@ -4947,6 +5342,7 @@ abstract class ReferenceOptions with _$ReferenceOptions {
       _$ReferenceOptionsFromJson(json);
 }
 
+/// Provider options for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
   const factory DocumentHighlightOptions({bool? workDoneProgress}) =
@@ -4956,6 +5352,7 @@ abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
       _$DocumentHighlightOptionsFromJson(json);
 }
 
+/// A base for all symbol information.
 @freezed
 abstract class BaseSymbolInformation with _$BaseSymbolInformation {
   const factory BaseSymbolInformation({
@@ -4980,6 +5377,7 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
       _$BaseSymbolInformationFromJson(json);
 }
 
+/// Provider options for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
   const factory DocumentSymbolOptions({
@@ -4994,6 +5392,9 @@ abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
       _$DocumentSymbolOptionsFromJson(json);
 }
 
+/// Contains additional diagnostic information about the context in
+/// which a {@link CodeActionProvider.provideCodeActions code action}
+/// is run.
 @freezed
 abstract class CodeActionContext with _$CodeActionContext {
   const factory CodeActionContext({
@@ -5019,6 +5420,7 @@ abstract class CodeActionContext with _$CodeActionContext {
       _$CodeActionContextFromJson(json);
 }
 
+/// Provider options for a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionOptions with _$CodeActionOptions {
   const factory CodeActionOptions({
@@ -5038,6 +5440,7 @@ abstract class CodeActionOptions with _$CodeActionOptions {
       _$CodeActionOptionsFromJson(json);
 }
 
+/// Server capabilities for a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
   const factory WorkspaceSymbolOptions({
@@ -5052,6 +5455,7 @@ abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
       _$WorkspaceSymbolOptionsFromJson(json);
 }
 
+/// Code Lens provider options of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensOptions with _$CodeLensOptions {
   const factory CodeLensOptions({
@@ -5064,6 +5468,7 @@ abstract class CodeLensOptions with _$CodeLensOptions {
       _$CodeLensOptionsFromJson(json);
 }
 
+/// Provider options for a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkOptions with _$DocumentLinkOptions {
   const factory DocumentLinkOptions({
@@ -5076,6 +5481,7 @@ abstract class DocumentLinkOptions with _$DocumentLinkOptions {
       _$DocumentLinkOptionsFromJson(json);
 }
 
+/// Value-object describing what options formatting should use.
 @freezed
 abstract class FormattingOptions with _$FormattingOptions {
   const factory FormattingOptions({
@@ -5102,6 +5508,7 @@ abstract class FormattingOptions with _$FormattingOptions {
       _$FormattingOptionsFromJson(json);
 }
 
+/// Provider options for a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
   const factory DocumentFormattingOptions({bool? workDoneProgress}) =
@@ -5111,6 +5518,7 @@ abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
       _$DocumentFormattingOptionsFromJson(json);
 }
 
+/// Provider options for a {@link DocumentRangeFormattingRequest}.
 @freezed
 abstract class DocumentRangeFormattingOptions
     with _$DocumentRangeFormattingOptions {
@@ -5125,6 +5533,7 @@ abstract class DocumentRangeFormattingOptions
       _$DocumentRangeFormattingOptionsFromJson(json);
 }
 
+/// Provider options for a {@link DocumentOnTypeFormattingRequest}.
 @freezed
 abstract class DocumentOnTypeFormattingOptions
     with _$DocumentOnTypeFormattingOptions {
@@ -5140,6 +5549,7 @@ abstract class DocumentOnTypeFormattingOptions
       _$DocumentOnTypeFormattingOptionsFromJson(json);
 }
 
+/// Provider options for a {@link RenameRequest}.
 @freezed
 abstract class RenameOptions with _$RenameOptions {
   const factory RenameOptions({
@@ -5153,6 +5563,7 @@ abstract class RenameOptions with _$RenameOptions {
       _$RenameOptionsFromJson(json);
 }
 
+/// The server capabilities of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
   const factory ExecuteCommandOptions({
@@ -5165,6 +5576,7 @@ abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
       _$ExecuteCommandOptionsFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensLegend with _$SemanticTokensLegend {
   const factory SemanticTokensLegend({
@@ -5179,6 +5591,8 @@ abstract class SemanticTokensLegend with _$SemanticTokensLegend {
       _$SemanticTokensLegendFromJson(json);
 }
 
+/// A text document identifier to optionally denote a specific
+/// version of a text document.
 @freezed
 abstract class OptionalVersionedTextDocumentIdentifier
     with _$OptionalVersionedTextDocumentIdentifier {
@@ -5200,6 +5614,8 @@ abstract class OptionalVersionedTextDocumentIdentifier
   ) => _$OptionalVersionedTextDocumentIdentifierFromJson(json);
 }
 
+/// A special text edit with an additional change annotation.
+/// @since 3.16.0.
 @freezed
 abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
   const factory AnnotatedTextEdit({
@@ -5218,6 +5634,7 @@ abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
       _$AnnotatedTextEditFromJson(json);
 }
 
+/// A generic resource operation.
 @freezed
 abstract class ResourceOperation with _$ResourceOperation {
   const factory ResourceOperation({
@@ -5233,6 +5650,7 @@ abstract class ResourceOperation with _$ResourceOperation {
       _$ResourceOperationFromJson(json);
 }
 
+/// Options to create a file.
 @freezed
 abstract class CreateFileOptions with _$CreateFileOptions {
   const factory CreateFileOptions({
@@ -5247,6 +5665,7 @@ abstract class CreateFileOptions with _$CreateFileOptions {
       _$CreateFileOptionsFromJson(json);
 }
 
+/// Rename file options
 @freezed
 abstract class RenameFileOptions with _$RenameFileOptions {
   const factory RenameFileOptions({
@@ -5261,6 +5680,7 @@ abstract class RenameFileOptions with _$RenameFileOptions {
       _$RenameFileOptionsFromJson(json);
 }
 
+/// Delete file options
 @freezed
 abstract class DeleteFileOptions with _$DeleteFileOptions {
   const factory DeleteFileOptions({
@@ -5275,6 +5695,9 @@ abstract class DeleteFileOptions with _$DeleteFileOptions {
       _$DeleteFileOptionsFromJson(json);
 }
 
+/// A pattern to describe in which file operation requests or
+/// notifications the server is interested in receiving.
+/// @since 3.16.0
 @freezed
 abstract class FileOperationPattern with _$FileOperationPattern {
   const factory FileOperationPattern({
@@ -5302,6 +5725,9 @@ abstract class FileOperationPattern with _$FileOperationPattern {
       _$FileOperationPatternFromJson(json);
 }
 
+/// A full document diagnostic report for a workspace diagnostic
+/// result.
+/// @since 3.17.0
 @freezed
 abstract class WorkspaceFullDocumentDiagnosticReport
     with _$WorkspaceFullDocumentDiagnosticReport {
@@ -5329,6 +5755,9 @@ abstract class WorkspaceFullDocumentDiagnosticReport
   ) => _$WorkspaceFullDocumentDiagnosticReportFromJson(json);
 }
 
+/// An unchanged document diagnostic report for a workspace
+/// diagnostic result.
+/// @since 3.17.0
 @freezed
 abstract class WorkspaceUnchangedDocumentDiagnosticReport
     with _$WorkspaceUnchangedDocumentDiagnosticReport {
@@ -5354,6 +5783,11 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
   ) => _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(json);
 }
 
+/// A notebook cell.
+/// A cell's document URI must be unique across ALL notebook cells
+/// and can therefore be used to uniquely identify a notebook cell or
+/// the cell's text document.
+/// @since 3.17.0
 @freezed
 abstract class NotebookCell with _$NotebookCell {
   const factory NotebookCell({
@@ -5375,6 +5809,9 @@ abstract class NotebookCell with _$NotebookCell {
       _$NotebookCellFromJson(json);
 }
 
+/// A change describing how to move a `NotebookCell` array from state
+/// S to S'.
+/// @since 3.17.0
 @freezed
 abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
   const factory NotebookCellArrayChange({
@@ -5392,6 +5829,8 @@ abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
       _$NotebookCellArrayChangeFromJson(json);
 }
 
+/// Describes the currently selected completion item.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
   const factory SelectedCompletionInfo({
@@ -5406,6 +5845,7 @@ abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
       _$SelectedCompletionInfoFromJson(json);
 }
 
+/// Defines the capabilities provided by the client.
 @freezed
 abstract class ClientCapabilities with _$ClientCapabilities {
   const factory ClientCapabilities({
@@ -5464,6 +5904,15 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
       _$TextDocumentSyncOptionsFromJson(json);
 }
 
+/// Options specific to a notebook plus its cells to be synced to the
+/// server.
+/// If a selector provides a notebook document filter but no cell
+/// selector all cells of a matching notebook document will be
+/// synced.
+/// If a selector provides no notebook document filter but only a
+/// cell selector all notebook document that contain at least one
+/// matching cell will be synced.
+/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
   const factory NotebookDocumentSyncOptions({
@@ -5479,6 +5928,8 @@ abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
       _$NotebookDocumentSyncOptionsFromJson(json);
 }
 
+/// Registration options specific to a notebook.
+/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentSyncRegistrationOptions
     with _$NotebookDocumentSyncRegistrationOptions {
@@ -5521,6 +5972,8 @@ abstract class WorkspaceFoldersServerCapabilities
   ) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
 }
 
+/// Options for notifications/requests for user operations on files.
+/// @since 3.16.0
 @freezed
 abstract class FileOperationOptions with _$FileOperationOptions {
   const factory FileOperationOptions({
@@ -5547,6 +6000,8 @@ abstract class FileOperationOptions with _$FileOperationOptions {
       _$FileOperationOptionsFromJson(json);
 }
 
+/// Structure to capture a description for an error code.
+/// @since 3.16.0
 @freezed
 abstract class CodeDescription with _$CodeDescription {
   const factory CodeDescription({
@@ -5558,6 +6013,10 @@ abstract class CodeDescription with _$CodeDescription {
       _$CodeDescriptionFromJson(json);
 }
 
+/// Represents a related message and source code location for a
+/// diagnostic. This should be used to point to code locations that
+/// cause or related to a diagnostics, e.g when duplicating a symbol
+/// in a scope.
 @freezed
 abstract class DiagnosticRelatedInformation
     with _$DiagnosticRelatedInformation {
@@ -5573,6 +6032,8 @@ abstract class DiagnosticRelatedInformation
       _$DiagnosticRelatedInformationFromJson(json);
 }
 
+/// Represents a parameter of a callable-signature. A parameter can
+/// have a label and a doc-comment.
 @freezed
 abstract class ParameterInformation with _$ParameterInformation {
   const factory ParameterInformation({
@@ -5595,6 +6056,9 @@ abstract class ParameterInformation with _$ParameterInformation {
       _$ParameterInformationFromJson(json);
 }
 
+/// A notebook cell text document filter denotes a cell text document
+/// by different properties.
+/// @since 3.17.0
 @freezed
 abstract class NotebookCellTextDocumentFilter
     with _$NotebookCellTextDocumentFilter {
@@ -5614,6 +6078,8 @@ abstract class NotebookCellTextDocumentFilter
       _$NotebookCellTextDocumentFilterFromJson(json);
 }
 
+/// Matching options for the file operation pattern.
+/// @since 3.16.0
 @freezed
 abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
   const factory FileOperationPatternOptions({
@@ -5640,6 +6106,7 @@ abstract class ExecutionSummary with _$ExecutionSummary {
       _$ExecutionSummaryFromJson(json);
 }
 
+/// Workspace specific client capabilities.
 @freezed
 abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
   const factory WorkspaceClientCapabilities({
@@ -5711,6 +6178,7 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
       _$WorkspaceClientCapabilitiesFromJson(json);
 }
 
+/// Text document specific client capabilities.
 @freezed
 abstract class TextDocumentClientCapabilities
     with _$TextDocumentClientCapabilities {
@@ -5830,6 +6298,8 @@ abstract class TextDocumentClientCapabilities
       _$TextDocumentClientCapabilitiesFromJson(json);
 }
 
+/// Capabilities specific to the notebook document support.
+/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentClientCapabilities
     with _$NotebookDocumentClientCapabilities {
@@ -5869,6 +6339,8 @@ abstract class WindowClientCapabilities with _$WindowClientCapabilities {
       _$WindowClientCapabilitiesFromJson(json);
 }
 
+/// General client capabilities.
+/// @since 3.16.0
 @freezed
 abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
   const factory GeneralClientCapabilities({
@@ -5905,6 +6377,11 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
       _$GeneralClientCapabilitiesFromJson(json);
 }
 
+/// A relative pattern is a helper to construct glob patterns that
+/// are matched relatively to a base URI. The common value for a
+/// `baseUri` is a workspace folder root, but it can be another
+/// absolute URI as well.
+/// @since 3.17.0
 @freezed
 abstract class RelativePattern with _$RelativePattern {
   const factory RelativePattern({
@@ -5987,6 +6464,7 @@ abstract class DidChangeWatchedFilesClientCapabilities
   ) => _$DidChangeWatchedFilesClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities for a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolClientCapabilities
     with _$WorkspaceSymbolClientCapabilities {
@@ -6015,6 +6493,7 @@ abstract class WorkspaceSymbolClientCapabilities
   ) => _$WorkspaceSymbolClientCapabilitiesFromJson(json);
 }
 
+/// The client capabilities of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandClientCapabilities
     with _$ExecuteCommandClientCapabilities {
@@ -6028,6 +6507,7 @@ abstract class ExecuteCommandClientCapabilities
   ) => _$ExecuteCommandClientCapabilitiesFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensWorkspaceClientCapabilities
     with _$SemanticTokensWorkspaceClientCapabilities {
@@ -6046,6 +6526,7 @@ abstract class SemanticTokensWorkspaceClientCapabilities
   ) => _$SemanticTokensWorkspaceClientCapabilitiesFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class CodeLensWorkspaceClientCapabilities
     with _$CodeLensWorkspaceClientCapabilities {
@@ -6064,6 +6545,11 @@ abstract class CodeLensWorkspaceClientCapabilities
   ) => _$CodeLensWorkspaceClientCapabilitiesFromJson(json);
 }
 
+/// Capabilities relating to events from file operations by the user
+/// in the client.
+/// These events do not come from the file system, they come from
+/// user operations like renaming a file in the UI.
+/// @since 3.16.0
 @freezed
 abstract class FileOperationClientCapabilities
     with _$FileOperationClientCapabilities {
@@ -6095,6 +6581,8 @@ abstract class FileOperationClientCapabilities
       _$FileOperationClientCapabilitiesFromJson(json);
 }
 
+/// Client workspace capabilities specific to inline values.
+/// @since 3.17.0
 @freezed
 abstract class InlineValueWorkspaceClientCapabilities
     with _$InlineValueWorkspaceClientCapabilities {
@@ -6113,6 +6601,8 @@ abstract class InlineValueWorkspaceClientCapabilities
   ) => _$InlineValueWorkspaceClientCapabilitiesFromJson(json);
 }
 
+/// Client workspace capabilities specific to inlay hints.
+/// @since 3.17.0
 @freezed
 abstract class InlayHintWorkspaceClientCapabilities
     with _$InlayHintWorkspaceClientCapabilities {
@@ -6131,6 +6621,9 @@ abstract class InlayHintWorkspaceClientCapabilities
   ) => _$InlayHintWorkspaceClientCapabilitiesFromJson(json);
 }
 
+/// Workspace client capabilities specific to diagnostic pull
+/// requests.
+/// @since 3.17.0
 @freezed
 abstract class DiagnosticWorkspaceClientCapabilities
     with _$DiagnosticWorkspaceClientCapabilities {
@@ -6149,6 +6642,8 @@ abstract class DiagnosticWorkspaceClientCapabilities
   ) => _$DiagnosticWorkspaceClientCapabilitiesFromJson(json);
 }
 
+/// Client workspace capabilities specific to folding ranges
+/// @since 3.18.0 @proposed
 @freezed
 abstract class FoldingRangeWorkspaceClientCapabilities
     with _$FoldingRangeWorkspaceClientCapabilities {
@@ -6192,6 +6687,7 @@ abstract class TextDocumentSyncClientCapabilities
   ) => _$TextDocumentSyncClientCapabilitiesFromJson(json);
 }
 
+/// Completion client capabilities
 @freezed
 abstract class CompletionClientCapabilities
     with _$CompletionClientCapabilities {
@@ -6239,6 +6735,7 @@ abstract class HoverClientCapabilities with _$HoverClientCapabilities {
       _$HoverClientCapabilitiesFromJson(json);
 }
 
+/// Client Capabilities for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpClientCapabilities
     with _$SignatureHelpClientCapabilities {
@@ -6262,6 +6759,7 @@ abstract class SignatureHelpClientCapabilities
       _$SignatureHelpClientCapabilitiesFromJson(json);
 }
 
+/// @since 3.14.0
 @freezed
 abstract class DeclarationClientCapabilities
     with _$DeclarationClientCapabilities {
@@ -6280,6 +6778,7 @@ abstract class DeclarationClientCapabilities
       _$DeclarationClientCapabilitiesFromJson(json);
 }
 
+/// Client Capabilities for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionClientCapabilities
     with _$DefinitionClientCapabilities {
@@ -6296,6 +6795,7 @@ abstract class DefinitionClientCapabilities
       _$DefinitionClientCapabilitiesFromJson(json);
 }
 
+/// Since 3.6.0
 @freezed
 abstract class TypeDefinitionClientCapabilities
     with _$TypeDefinitionClientCapabilities {
@@ -6315,6 +6815,7 @@ abstract class TypeDefinitionClientCapabilities
   ) => _$TypeDefinitionClientCapabilitiesFromJson(json);
 }
 
+/// @since 3.6.0
 @freezed
 abstract class ImplementationClientCapabilities
     with _$ImplementationClientCapabilities {
@@ -6334,6 +6835,7 @@ abstract class ImplementationClientCapabilities
   ) => _$ImplementationClientCapabilitiesFromJson(json);
 }
 
+/// Client Capabilities for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
   const factory ReferenceClientCapabilities({
@@ -6345,6 +6847,7 @@ abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
       _$ReferenceClientCapabilitiesFromJson(json);
 }
 
+/// Client Capabilities for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightClientCapabilities
     with _$DocumentHighlightClientCapabilities {
@@ -6358,6 +6861,7 @@ abstract class DocumentHighlightClientCapabilities
   ) => _$DocumentHighlightClientCapabilitiesFromJson(json);
 }
 
+/// Client Capabilities for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolClientCapabilities
     with _$DocumentSymbolClientCapabilities {
@@ -6389,6 +6893,7 @@ abstract class DocumentSymbolClientCapabilities
   ) => _$DocumentSymbolClientCapabilitiesFromJson(json);
 }
 
+/// The Client Capabilities of a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionClientCapabilities
     with _$CodeActionClientCapabilities {
@@ -6432,6 +6937,7 @@ abstract class CodeActionClientCapabilities
       _$CodeActionClientCapabilitiesFromJson(json);
 }
 
+/// The client capabilities  of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
   const factory CodeLensClientCapabilities({
@@ -6443,6 +6949,7 @@ abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
       _$CodeLensClientCapabilitiesFromJson(json);
 }
 
+/// The client capabilities of a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkClientCapabilities
     with _$DocumentLinkClientCapabilities {
@@ -6473,6 +6980,7 @@ abstract class DocumentColorClientCapabilities
       _$DocumentColorClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities of a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingClientCapabilities
     with _$DocumentFormattingClientCapabilities {
@@ -6486,6 +6994,7 @@ abstract class DocumentFormattingClientCapabilities
   ) => _$DocumentFormattingClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities of a {@link DocumentRangeFormattingRequest}.
 @freezed
 abstract class DocumentRangeFormattingClientCapabilities
     with _$DocumentRangeFormattingClientCapabilities {
@@ -6503,6 +7012,7 @@ abstract class DocumentRangeFormattingClientCapabilities
   ) => _$DocumentRangeFormattingClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities of a {@link DocumentOnTypeFormattingRequest}.
 @freezed
 abstract class DocumentOnTypeFormattingClientCapabilities
     with _$DocumentOnTypeFormattingClientCapabilities {
@@ -6593,6 +7103,7 @@ abstract class SelectionRangeClientCapabilities
   ) => _$SelectionRangeClientCapabilitiesFromJson(json);
 }
 
+/// The publish diagnostic client capabilities.
 @freezed
 abstract class PublishDiagnosticsClientCapabilities
     with _$PublishDiagnosticsClientCapabilities {
@@ -6627,6 +7138,7 @@ abstract class PublishDiagnosticsClientCapabilities
   ) => _$PublishDiagnosticsClientCapabilitiesFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class CallHierarchyClientCapabilities
     with _$CallHierarchyClientCapabilities {
@@ -6642,6 +7154,7 @@ abstract class CallHierarchyClientCapabilities
       _$CallHierarchyClientCapabilitiesFromJson(json);
 }
 
+/// @since 3.16.0
 @freezed
 abstract class SemanticTokensClientCapabilities
     with _$SemanticTokensClientCapabilities {
@@ -6697,6 +7210,8 @@ abstract class SemanticTokensClientCapabilities
   ) => _$SemanticTokensClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities for the linked editing range request.
+/// @since 3.16.0
 @freezed
 abstract class LinkedEditingRangeClientCapabilities
     with _$LinkedEditingRangeClientCapabilities {
@@ -6713,6 +7228,8 @@ abstract class LinkedEditingRangeClientCapabilities
   ) => _$LinkedEditingRangeClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities specific to the moniker request.
+/// @since 3.16.0
 @freezed
 abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
   const factory MonikerClientCapabilities({
@@ -6726,6 +7243,7 @@ abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
       _$MonikerClientCapabilitiesFromJson(json);
 }
 
+/// @since 3.17.0
 @freezed
 abstract class TypeHierarchyClientCapabilities
     with _$TypeHierarchyClientCapabilities {
@@ -6741,6 +7259,8 @@ abstract class TypeHierarchyClientCapabilities
       _$TypeHierarchyClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities specific to inline values.
+/// @since 3.17.0
 @freezed
 abstract class InlineValueClientCapabilities
     with _$InlineValueClientCapabilities {
@@ -6754,6 +7274,8 @@ abstract class InlineValueClientCapabilities
       _$InlineValueClientCapabilitiesFromJson(json);
 }
 
+/// Inlay hint client capabilities.
+/// @since 3.17.0
 @freezed
 abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
   const factory InlayHintClientCapabilities({
@@ -6768,6 +7290,8 @@ abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
       _$InlayHintClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities specific to diagnostic pull requests.
+/// @since 3.17.0
 @freezed
 abstract class DiagnosticClientCapabilities
     with _$DiagnosticClientCapabilities {
@@ -6787,6 +7311,8 @@ abstract class DiagnosticClientCapabilities
       _$DiagnosticClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities specific to inline completions.
+/// @since 3.18.0 @proposed
 @freezed
 abstract class InlineCompletionClientCapabilities
     with _$InlineCompletionClientCapabilities {
@@ -6801,6 +7327,8 @@ abstract class InlineCompletionClientCapabilities
   ) => _$InlineCompletionClientCapabilitiesFromJson(json);
 }
 
+/// Notebook specific client capabilities.
+/// @since 3.17.0
 @freezed
 abstract class NotebookDocumentSyncClientCapabilities
     with _$NotebookDocumentSyncClientCapabilities {
@@ -6820,6 +7348,7 @@ abstract class NotebookDocumentSyncClientCapabilities
   ) => _$NotebookDocumentSyncClientCapabilitiesFromJson(json);
 }
 
+/// Show message request client capabilities
 @freezed
 abstract class ShowMessageRequestClientCapabilities
     with _$ShowMessageRequestClientCapabilities {
@@ -6833,6 +7362,8 @@ abstract class ShowMessageRequestClientCapabilities
   ) => _$ShowMessageRequestClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities for the showDocument request.
+/// @since 3.16.0
 @freezed
 abstract class ShowDocumentClientCapabilities
     with _$ShowDocumentClientCapabilities {
@@ -6845,6 +7376,8 @@ abstract class ShowDocumentClientCapabilities
       _$ShowDocumentClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities specific to regular expressions.
+/// @since 3.16.0
 @freezed
 abstract class RegularExpressionsClientCapabilities
     with _$RegularExpressionsClientCapabilities {
@@ -6861,6 +7394,8 @@ abstract class RegularExpressionsClientCapabilities
   ) => _$RegularExpressionsClientCapabilitiesFromJson(json);
 }
 
+/// Client capabilities specific to the used markdown parser.
+/// @since 3.16.0
 @freezed
 abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
   const factory MarkdownClientCapabilities({
