@@ -109,7 +109,7 @@ class EnumSymbol extends Symbol {
   });
 
   final String name;
-  final List<EnumSymbol> values;
+  final List<EnumFieldSymbol> values;
   final String? doc;
 
   @override

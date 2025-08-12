@@ -27,7 +27,7 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
 
   @override
   Library visitProtocol(MetaProtocol protocol) {
-    _symbols.process(protocol);
+    _symbols.collect(protocol);
 
     final lib = Library(
       (b) {

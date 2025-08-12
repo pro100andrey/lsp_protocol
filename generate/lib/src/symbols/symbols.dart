@@ -9,23 +9,40 @@ import '../generator_helper.dart';
 import 'symbol.dart';
 import 'symbols_table.dart';
 
-
 final class Symbols {
   final structuresTable = StructuresTable();
   final typedefsTable = TypedefsTable();
   final literalsTable = LiteralsTable();
   final sealedTable = SealedTable();
   final tuplesTable = TupleTable();
-  final _enumSymbols = EnumsTable();
+  final enumSymbols = EnumsTable();
 
-  Iterable<EnumSymbol> get enums => _enumSymbols.values;
-
-  void process(MetaProtocol protocol) {
+  void collect(MetaProtocol protocol) {
     _collectTypedefs(protocol);
     _collectSealed(protocol);
     _collectTuples(protocol);
     _collectLiterals(protocol);
     _collectStructures(protocol);
+  }
+
+  void _collectEnums(MetaProtocol protocol) {
+    for (final enumeration in protocol.enumerations) {
+
+      final values = enumeration.values.map((value) {
+        return EnumFieldSymbol(
+          type: resolveType(value),
+          name: value.name,
+          doc: value.documentation,
+        );
+      }).toList();
+
+      final symbol = EnumSymbol(
+        name: enumeration.name,
+        doc: enumeration.documentation,
+      );
+
+      enumSymbols[enumeration.name] = symbol;
+    }
   }
 
   void _collectTuples(MetaProtocol protocol) {
