@@ -2,38 +2,31 @@
 
 import 'package:code_builder/code_builder.dart';
 
-import '../extensions/string.dart';
-import '../generator_helper.dart';
-import '../meta/protocol.dart';
-import '../symbols/symbol.dart';
-import '../symbols/symbols.dart';
-import '../symbols/symbols_table.dart';
-import '../utils.dart';
-import 'visitor.dart';
+import 'extensions/string.dart';
+import 'generator_helper.dart';
+import 'meta/protocol.dart';
+import 'symbols/symbol.dart';
+import 'symbols/symbols.dart';
+import 'symbols/symbols_table.dart';
+import 'utils.dart';
 
 /// A concrete visitor that generates Dart code from MetaProtocol.
-final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
+final class ProtocolGenerator {
   // Pass protocol for initial setup, but main logic is in visit methods
-  GeneratorVisitor();
+  ProtocolGenerator();
 
   final _symbols = Symbols();
 
   Reference get _stringRef => refer('String');
 
-  // final _disallowUnrecognizedKeysRef = refer(
-  //   'JsonSerializable(disallowUnrecognizedKeys: true)',
-  //   // 'JsonSerializable(disallowUnrecognizedKeys: true, checked: true)',
-  // );
-
-  @override
-  Library visitProtocol(MetaProtocol protocol) {
+  String generate(MetaProtocol protocol) {
     _symbols.collect(protocol);
 
-    final lib = Library(
+    final library = Library(
       (b) {
         b.docs.addAll(_docs());
         b.body.addAll(_generateFreezedHeader());
-        b.body.add(visitMetaData(protocol.metaData));
+        b.body.add(_generateMetadata(protocol.metaData));
 
         for (final symbol in _symbols.typedefsTable.values) {
           b.body.add(_generateTypedef(symbol));
@@ -43,7 +36,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
           b.body.add(_generateLiteralTypeAlias(symbol));
         }
 
-
         for (final symbol in _symbols.sealedTable.values) {
           b.body.addAll(_generateBaseOrClass(symbol));
         }
@@ -51,11 +43,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         for (final structure in _symbols.structuresTable.values) {
           b.body.add(_generateStructure(structure));
         }
-
-
-        // for (final enumeration in protocol.enumerations) {
-        //   b.body.add(visitEnumeration(enumeration));
-        // }
 
         for (final symbol in _symbols.enumSymbols.values) {
           b.body.add(_generateEnumeration(symbol));
@@ -66,7 +53,10 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
       },
     );
 
-    return lib;
+    // Start the visitation process from the root MetaProtocol object
+    final result = specToCode(library, format: true);
+
+    return result;
   }
 
   List<String> _docs() => [
@@ -83,6 +73,11 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     Code("part 'protocol.g.dart';"),
   ];
 
+  Spec _generateMetadata(MetaData metaData) => declareConst(
+    'kLSPVersion',
+    type: refer('String'),
+  ).assign(literalString(metaData.version)).statement;
+
   Spec _generateLiteralTypeAlias(LiteralSymbol symbol) {
     final def = TypeDef((b) {
       b
@@ -94,11 +89,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     });
 
     return def;
-  }
-
-  @override
-  Spec visitTypeAlias(MetaTypeAlias typeAlias) {
-    throw UnimplementedError();
   }
 
   Spec _generateTypedef(TypedefSymbol symbol) => TypeDef((b) {
@@ -118,7 +108,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
           ..docs.addAll(structDocs)
           ..name = name
           ..annotations.add(refer('freezed'))
-          // abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
           ..mixins.add(refer('_\$$name'))
           ..abstract = true;
 
@@ -126,7 +115,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
           [
             Constructor(
               (b) => b
-                // ..annotations.add(_disallowUnrecognizedKeysRef)
                 ..factory = true
                 ..constant = true
                 ..redirect = refer('_$name')
@@ -156,8 +144,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
                   ),
                 ),
             ),
-            //   factory MetaProtocol.fromJson(Map<String, Object?> json) =>
-            //       _$MetaProtocolFromJson(json);
             Constructor(
               (b) => b
                 ..factory = true
@@ -178,18 +164,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     );
 
     return clazz;
-  }
-
-  @override
-  Class visitStructure(MetaStructure structure) {
-    final _ =
-        formatDocComment(
-          structure.documentation,
-          maxLineLength: 70,
-        ) ??
-        [];
-
-    throw UnimplementedError();
   }
 
   Enum _generateEnumeration(EnumSymbol symbol) {
@@ -249,69 +223,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     return result;
   }
 
-  @override
-  Enum visitEnumeration(MetaEnumeration enumeration) {
-    final formattedDescription =
-        formatDocComment(enumeration.documentation) ?? [];
-
-    // Use resolveType for the enumeration's base type
-    final typeName = _symbols.resolveType(enumeration.type);
-
-    final result = Enum((eb) {
-      eb
-        ..annotations.add(refer("JsonEnum(valueField: 'value')"))
-        ..docs.addAll(formattedDescription)
-        ..name = enumeration.name
-        ..constructors.add(
-          Constructor(
-            (ecb) {
-              ecb
-                ..constant = true
-                ..requiredParameters.add(
-                  Parameter(
-                    (pb) {
-                      pb
-                        ..name = 'value'
-                        ..named = true
-                        ..toThis = true;
-                    },
-                  ),
-                )
-                ..docs.add('// The list of all values in this enumeration.');
-            },
-          ),
-        );
-
-      eb.fields.add(
-        Field(
-          (fb) {
-            fb
-              ..name = 'value'
-              ..modifier = FieldModifier.final$
-              ..type = refer(typeName)
-              ..docs.add('// The type of this enumeration.');
-          },
-        ),
-      );
-
-      for (final m in enumeration.values) {
-        eb.values.add(
-          EnumValue(
-            (evb) {
-              final docs =
-                  formatDocComment(m.documentation, maxLineLength: 70) ?? [];
-              evb.docs.addAll(docs);
-              evb.arguments.add(refer(m.value.literal));
-              evb.name = _addPostfixIfKeyword(m.name.lowerFirstLetter());
-            },
-          ),
-        );
-      }
-    });
-
-    return result;
-  }
-
   String _addPostfixIfKeyword(String name) {
     if (_isKeyword(name)) {
       return '${name}_';
@@ -332,37 +243,6 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
     'async',
     'macro',
   }.contains(name);
-
-  @override
-  Spec visitNotification(MetaNotification notification) => const CodeExpression(
-    Code('// MetaNotification visitor not implemented for generation\n'),
-  );
-
-  @override
-  Spec visitMetaData(MetaData metaData) => declareConst(
-    'kLSPVersion',
-    type: refer('String'),
-  ).assign(literalString(metaData.version)).statement;
-
-  @override
-  Spec visitRequest(MetaRequest request) {
-    throw UnimplementedError(
-      'MetaRequest visitor not implemented for generation: ${request.method}',
-    );
-  }
-
-  @override
-  Spec visitProperty(MetaProperty property) => const CodeExpression(
-    Code('// MetaProperty visitor not implemented for generation\n'),
-  );
-
-  @override
-  Spec visitEnumMember(MetaEnumMember enumMember) => const CodeExpression(
-    Code('// MetaEnumMember visitor not implemented for generation\n'),
-  );
-
-  @override
-  Class visitLiteral(MetaLiteral literal) => throw UnimplementedError();
 
   List<Spec> _generateBaseOrClass(SealedSymbol symbol) {
     final baseClass = Class(
@@ -506,21 +386,4 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
           );
         }
       });
-}
-
-/// The main entry point for the protocol generation.
-/// Orchestrates the visitation process.
-class ProtocolGenerator {
-  ProtocolGenerator(this.protocol);
-
-  final MetaProtocol protocol;
-
-  String generate() {
-    final generatorVisitor = GeneratorVisitor();
-    // Start the visitation process from the root MetaProtocol object
-    final library = protocol.accept(generatorVisitor) as Library;
-    final result = specToCode(library, format: true);
-
-    return result;
-  }
 }

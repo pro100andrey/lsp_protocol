@@ -1,16 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../visiters/visitor.dart';
 
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
-typedef OrMapReference = ({OrRef orRef, String name});
-
 sealed class BaseMeta {
   const BaseMeta();
-
-  T accept<T>(MetaProtocolVisitor<T> visitor);
 }
 
 @freezed
@@ -28,9 +23,6 @@ abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
 
   factory MetaProtocol.fromJson(Map<String, Object?> json) =>
       _$MetaProtocolFromJson(json);
-
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitProtocol(this);
 }
 
 @freezed
@@ -44,8 +36,6 @@ abstract class MetaData extends BaseMeta with _$MetaData {
   factory MetaData.fromJson(Map<String, Object?> json) =>
       _$MetaDataFromJson(json);
 
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitMetaData(this);
 }
 
 @freezed
@@ -68,9 +58,6 @@ abstract class MetaRequest extends BaseMeta with _$MetaRequest {
 
   factory MetaRequest.fromJson(Map<String, Object?> json) =>
       _$MetaRequestFromJson(json);
-
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitRequest(this);
 }
 
 @Freezed(unionKey: 'kind')
@@ -135,24 +122,6 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
   factory MetaReference.fromJson(Map<String, Object?> json) =>
       _$MetaReferenceFromJson(json);
 
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => throw UnimplementedError(
-    'MetaReference should not be visited directly by MetaProtocolVisitor '
-    'for type resolution. Use its specific visit methods instead.',
-  );
-
-  R resolveType<R>(MetaReferenceVisitor<R> visitor) => switch (this) {
-    final TypeRef ref => visitor.visitTypeRef(ref),
-    final ArrayRef ref => visitor.visitArrayRef(ref),
-    final BaseRef ref => visitor.visitBaseRef(ref),
-    final OrRef ref => visitor.visitOrRef(ref),
-    final AndRef ref => visitor.visitAndRef(ref),
-    final MapRef ref => visitor.visitMapRef(ref),
-    final LiteralRef ref => visitor.visitLiteralRef(ref),
-    final StringLiteralRef ref => visitor.visitStringLiteralRef(ref),
-    final TupleRef ref => visitor.visitTupleRef(ref),
-  };
-
   bool get isType => this is TypeRef;
   bool get isBase => this is BaseRef;
   bool get isOr => this is OrRef;
@@ -175,8 +144,6 @@ abstract class MetaLiteral extends BaseMeta with _$MetaLiteral {
   factory MetaLiteral.fromJson(Map<String, Object?> json) =>
       _$MetaLiteralFromJson(json);
 
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitLiteral(this);
 }
 
 @freezed
@@ -195,10 +162,6 @@ abstract class MetaNotification extends BaseMeta with _$MetaNotification {
 
   factory MetaNotification.fromJson(Map<String, Object?> json) =>
       _$MetaNotificationFromJson(json);
-
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) =>
-      visitor.visitNotification(this);
 }
 
 @freezed
@@ -217,9 +180,6 @@ abstract class MetaProperty extends BaseMeta with _$MetaProperty {
 
   factory MetaProperty.fromJson(Map<String, Object?> json) =>
       _$MetaPropertyFromJson(json);
-
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitProperty(this);
 }
 
 @freezed
@@ -238,9 +198,6 @@ abstract class MetaStructure extends BaseMeta with _$MetaStructure {
 
   factory MetaStructure.fromJson(Map<String, Object?> json) =>
       _$MetaStructureFromJson(json);
-
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitStructure(this);
 }
 
 @freezed
@@ -256,9 +213,6 @@ abstract class MetaEnumMember extends BaseMeta with _$MetaEnumMember {
 
   factory MetaEnumMember.fromJson(Map<String, Object?> json) =>
       _$MetaEnumMemberFromJson(json);
-
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitEnumMember(this);
 }
 
 @freezed
@@ -302,9 +256,6 @@ abstract class MetaEnumeration extends BaseMeta with _$MetaEnumeration {
 
   factory MetaEnumeration.fromJson(Map<String, Object?> json) =>
       _$MetaEnumerationFromJson(json);
-
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitEnumeration(this);
 }
 
 @freezed
@@ -323,9 +274,6 @@ abstract class MetaTypeAlias extends BaseMeta with _$MetaTypeAlias {
 
   factory MetaTypeAlias.fromJson(Map<String, Object?> json) =>
       _$MetaTypeAliasFromJson(json);
-
-  @override
-  T accept<T>(MetaProtocolVisitor<T> visitor) => visitor.visitTypeAlias(this);
 }
 
 @JsonEnum(valueField: 'kind')
