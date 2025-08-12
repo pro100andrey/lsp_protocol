@@ -1,0 +1,80 @@
+import 'package:collection/collection.dart';
+
+import '../extensions/meta_reference.dart';
+import '../extensions/string.dart';
+import '../meta/protocol.dart';
+import 'symbols_table.dart';
+
+String resolveType(MetaReference ref) {
+  final result = ref.when(
+    literalRef: resolveLiteralType,
+    typeRef: (ref) => ref.name,
+    arrayRef: resolveArrayType,
+    baseRef: resolveBaseType,
+    orRef: resolveOrRefName,
+    andRef: (ref) => 'AndRef',
+    mapRef: resolveMapType,
+    tupleRef: resolveTupleType,
+    stringLiteralRef: (ref) => 'StringLiteralRef',
+  );
+
+  return result;
+}
+
+String resolveArrayType(ArrayRef ref) {
+  final elementType = resolveType(ref.element);
+  final dElementType = indexedType(elementType);
+
+  return 'List<$dElementType>';
+}
+
+String resolveTupleType(TupleRef ref) {
+  final parts = ref.items
+      .map((item) => resolveType(item).upperFirstLetter())
+      .toList(growable: false);
+
+  final sorted = parts.sorted((a, b) => a.compareTo(b));
+  final rawName = sorted.join();
+
+  return rawName;
+}
+
+String resolveMapType(MapRef ref) =>
+    'Map<${resolveType(ref.key)}, ${resolveType(ref.value)}>';
+
+String resolveBaseType(BaseRef ref) => switch (ref.name) {
+  'integer' || 'uinteger' => 'int',
+  'string' || 'DocumentUri' || 'URI' => 'String',
+  'decimal' => 'double',
+  'boolean' => 'bool',
+  'null' => 'Null',
+  _ => throw ArgumentError(
+    'Unknown base type: ${ref.name}. '
+    'Ensure it is a valid Dart base type.',
+  ),
+};
+
+String resolveOrRefName(OrRef orRef) {
+  final parts = orRef.items.map(resolveType).toList(growable: false);
+  final sortedParts = parts.sorted((a, b) => a.compareTo(b));
+  final rawName = sortedParts.join('Or');
+
+  return rawName;
+}
+
+String resolveLiteralType(LiteralRef ref) {
+  final parts = ref.value.properties
+      .map(
+        (item) => '${resolveType(item.type).upperFirstLetter()}_${item.name}',
+      )
+      .toList(growable: false);
+
+  final sorted = parts.sorted((a, b) => a.compareTo(b));
+  final rawName = sorted.join(r'$');
+
+  return rawName;
+}
+
+extension MetaReferencesTypeResolver on MetaReference {
+  String resolve() => resolveType(this);
+}

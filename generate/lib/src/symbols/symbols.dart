@@ -1,13 +1,12 @@
 // ignore_for_file: avoid_print
 
-import 'package:collection/collection.dart';
-
 import '../../generate.dart';
 import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../generator_helper.dart';
 import 'symbol.dart';
 import 'symbols_table.dart';
+import 'type_resolver.dart';
 
 final class Symbols {
   final structuresTable = StructuresTable();
@@ -30,19 +29,39 @@ final class Symbols {
     for (final enumeration in protocol.enumerations) {
       final values = enumeration.values
           .map(
-            (value) => EnumFieldSymbol(
-              name: value.name,
-              value: switch (value.value) {
-                EnumRawValueInteger(raw: final value) => value,
-                EnumRawValueString(raw: final value) => "'$value'",
-              },
-              doc: value.documentation,
-            ),
+            (value) {
+              final rawName = value.name.lowerFirstLetter();
+
+              final keywords = {
+                'null',
+                'class',
+                'enum',
+                'value',
+                'interface',
+                'operator',
+                'static',
+                'abstract',
+                'async',
+                'macro',
+              };
+
+              final name = keywords.contains(rawName) ? '${rawName}_' : rawName;
+              final argument = switch (value.value) {
+                EnumRawValueInteger(:final raw) => raw,
+                EnumRawValueString(:final raw) => "'$raw'",
+              };
+
+              return EnumFieldSymbol(
+                name: name,
+                argument: argument,
+                doc: value.documentation,
+              );
+            },
           )
           .toList(growable: false);
 
       final symbol = EnumSymbol(
-        valueType: resolveType(enumeration.type),
+        valueType: enumeration.type.resolve(),
         values: values,
         name: enumeration.name,
         doc: enumeration.documentation,
@@ -54,11 +73,11 @@ final class Symbols {
 
   void _collectTuples(MetaProtocol protocol) {
     void addTupleSymbol(TupleRef tupleRef) {
-      final type = resolveType(tupleRef);
+      final type = tupleRef.resolve();
 
       final symbol = TupleSymbol(
         type: type,
-        types: tupleRef.items.map(resolveType).toList(),
+        types: tupleRef.items.map((item) => item.resolve()).toList(),
       );
 
       tuplesTable[type] = symbol;
@@ -77,7 +96,7 @@ final class Symbols {
 
   void _collectTypedefs(MetaProtocol protocol) {
     for (final typeAlias in protocol.typeAliases) {
-      final type = resolveType(typeAlias.type);
+      final type = typeAlias.type.resolve();
       final symbol = TypedefSymbol(
         type: typeAlias.name,
         definition: type,
@@ -90,18 +109,22 @@ final class Symbols {
 
   void _collectSealed(MetaProtocol protocol) {
     void addSealedSymbol(OrRef orRef) {
-      final type = resolveType(orRef);
+      final type = orRef.resolve();
 
-      final types = orRef.items.map(resolveType).toList(growable: false);
+      final types = orRef.items
+          .map((item) => item.resolve())
+          .toList(growable: false);
 
       final symbol = SealedSymbol(
         type: type,
         types: types,
       );
 
-      print('Added sealed symbol: ${symbol.type} -> ${indexedType(type)}');
-
       sealedTable[type] = symbol;
+
+      final displayType = indexedType(type);
+
+      print('Added sealed symbol: ${symbol.type} -> $displayType');
     }
 
     for (final typeAlias in protocol.typeAliases) {
@@ -143,7 +166,7 @@ final class Symbols {
 
   void _collectLiterals(MetaProtocol protocol) {
     void addLiteralSymbol(LiteralRef ref) {
-      final type = _resolveLiteralType(ref);
+      final type = ref.resolve();
 
       if (literalsTable.containsKey(type)) {
         return;
@@ -151,24 +174,24 @@ final class Symbols {
 
       String typeResolver(MetaReference ref) => ref.when(
         literalRef: (ref) {
-          final literalType = _resolveLiteralType(ref);
+          final literalType = ref.resolve();
           final display = indexedType(literalType);
 
           return display;
         },
         orRef: (ref) {
-          final type = resolveType(ref);
+          final type = ref.resolve();
           final dType = indexedType(type);
 
           return dType;
         },
         arrayRef: (ref) {
-          final elementType = resolveType(ref.element);
+          final elementType = ref.element.resolve();
           final dElementType = indexedType(elementType);
 
           return 'List<$dElementType>';
         },
-        orElse: resolveType,
+        orElse: (ref) => ref.resolve(),
       );
 
       final definition = literalToRecord(ref: ref, typeResolver: typeResolver);
@@ -239,7 +262,7 @@ final class Symbols {
       final allProperties = getAllProperties(struct, structuresByName);
       final properties = allProperties.map(
         (property) {
-          final type = resolveType(property.type);
+          final type = property.type.resolve();
           final dType = indexedType(type);
 
           return PropertySymbol(
@@ -285,75 +308,5 @@ final class Symbols {
     }
 
     return sorted;
-  }
-
-  String resolveType(MetaReference ref) {
-    final result = ref.when(
-      literalRef: _resolveLiteralType,
-      typeRef: (ref) => ref.name,
-      arrayRef: _resolveArrayType,
-      baseRef: _resolveBaseType,
-      orRef: _resolveOrRefName,
-      andRef: (ref) => 'AndRef',
-      mapRef: _resolveMapType,
-      tupleRef: _resolveTupleType,
-      stringLiteralRef: (ref) => 'StringLiteralRef',
-    );
-
-    return result;
-  }
-
-  String _resolveArrayType(ArrayRef ref) {
-    final elementType = resolveType(ref.element);
-    final dElementType = indexedType(elementType);
-
-    return 'List<$dElementType>';
-  }
-
-  String _resolveTupleType(TupleRef ref) {
-    final parts = ref.items
-        .map((item) => resolveType(item).upperFirstLetter())
-        .toList(growable: false);
-
-    final sorted = parts.sorted((a, b) => a.compareTo(b));
-    final rawName = sorted.join();
-
-    return rawName;
-  }
-
-  String _resolveMapType(MapRef ref) =>
-      'Map<${resolveType(ref.key)}, ${resolveType(ref.value)}>';
-
-  String _resolveBaseType(BaseRef ref) => switch (ref.name) {
-    'integer' || 'uinteger' => 'int',
-    'string' || 'DocumentUri' || 'URI' => 'String',
-    'decimal' => 'double',
-    'boolean' => 'bool',
-    'null' => 'Null',
-    _ => throw ArgumentError(
-      'Unknown base type: ${ref.name}. '
-      'Ensure it is a valid Dart base type.',
-    ),
-  };
-
-  String _resolveOrRefName(OrRef orRef) {
-    final parts = orRef.items.map(resolveType).toList(growable: false);
-    final sortedParts = parts.sorted((a, b) => a.compareTo(b));
-    final rawName = sortedParts.join('Or');
-
-    return rawName;
-  }
-
-  String _resolveLiteralType(LiteralRef ref) {
-    final parts = ref.value.properties
-        .map(
-          (item) => '${resolveType(item.type).upperFirstLetter()}_${item.name}',
-        )
-        .toList(growable: false);
-
-    final sorted = parts.sorted((a, b) => a.compareTo(b));
-    final rawName = sorted.join(r'$');
-
-    return rawName;
   }
 }

@@ -6929,7 +6929,7 @@ enum SemanticTokenModifiers {
   definition('definition'),
   readonly('readonly'),
   static_('static'),
-  deprecated_('deprecated'),
+  deprecated('deprecated'),
   abstract_('abstract'),
   async_('async'),
   modification('modification'),
@@ -7078,7 +7078,7 @@ enum SymbolKind {
 @JsonEnum(valueField: 'value')
 enum SymbolTag {
   /// Render a symbol as obsolete, usually using a strike-out.
-  deprecated_(1);
+  deprecated(1);
 
   // The list of all values in this enumeration.
   const SymbolTag(this.value);
@@ -7263,7 +7263,7 @@ enum CompletionItemKind {
 @JsonEnum(valueField: 'value')
 enum CompletionItemTag {
   /// Render a completion as obsolete, usually using a strike-out.
-  deprecated_(1);
+  deprecated(1);
 
   // The list of all values in this enumeration.
   const CompletionItemTag(this.value);
@@ -7541,7 +7541,7 @@ enum DiagnosticTag {
   /// Deprecated or obsolete code.
   /// Clients are allowed to rendered diagnostics with this tag strike
   /// through.
-  deprecated_(2);
+  deprecated(2);
 
   // The list of all values in this enumeration.
   const DiagnosticTag(this.value);

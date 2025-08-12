@@ -13,14 +13,12 @@ import 'utils.dart';
 /// A concrete visitor that generates Dart code from MetaProtocol.
 final class ProtocolGenerator {
   // Pass protocol for initial setup, but main logic is in visit methods
-  ProtocolGenerator();
-
-  final _symbols = Symbols();
+  const ProtocolGenerator();
 
   Reference get _stringRef => refer('String');
 
   String generate(MetaProtocol protocol) {
-    _symbols.collect(protocol);
+    final symbols = Symbols()..collect(protocol);
 
     final library = Library(
       (b) {
@@ -28,23 +26,23 @@ final class ProtocolGenerator {
         b.body.addAll(_generateFreezedHeader());
         b.body.add(_generateMetadata(protocol.metaData));
 
-        for (final symbol in _symbols.typedefsTable.values) {
+        for (final symbol in symbols.typedefsTable.values) {
           b.body.add(_generateTypedef(symbol));
         }
 
-        for (final symbol in _symbols.literalsTable.values) {
+        for (final symbol in symbols.literalsTable.values) {
           b.body.add(_generateLiteralTypeAlias(symbol));
         }
 
-        for (final symbol in _symbols.sealedTable.values) {
+        for (final symbol in symbols.sealedTable.values) {
           b.body.addAll(_generateBaseOrClass(symbol));
         }
 
-        for (final structure in _symbols.structuresTable.values) {
+        for (final structure in symbols.structuresTable.values) {
           b.body.add(_generateStructure(structure));
         }
 
-        for (final symbol in _symbols.enumSymbols.values) {
+        for (final symbol in symbols.enumSymbols.values) {
           b.body.add(_generateEnumeration(symbol));
         }
 
@@ -212,8 +210,8 @@ final class ProtocolGenerator {
             (evb) {
               final docs = formatDocComment(m.doc, maxLineLength: 70) ?? [];
               evb.docs.addAll(docs);
-              evb.arguments.add(refer(m.value));
-              evb.name = _addPostfixIfKeyword(m.name.lowerFirstLetter());
+              evb.arguments.add(refer(m.argument));
+              evb.name = m.name;
             },
           ),
         );
@@ -222,27 +220,6 @@ final class ProtocolGenerator {
 
     return result;
   }
-
-  String _addPostfixIfKeyword(String name) {
-    if (_isKeyword(name)) {
-      return '${name}_';
-    }
-    return name;
-  }
-
-  bool _isKeyword(String name) => {
-    'null',
-    'class',
-    'enum',
-    'value',
-    'interface',
-    'operator',
-    'static',
-    'deprecated',
-    'abstract',
-    'async',
-    'macro',
-  }.contains(name);
 
   List<Spec> _generateBaseOrClass(SealedSymbol symbol) {
     final baseClass = Class(

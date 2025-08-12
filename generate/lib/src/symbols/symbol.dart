@@ -121,14 +121,14 @@ class EnumSymbol extends Symbol {
 class EnumFieldSymbol extends Symbol {
   const EnumFieldSymbol({
     required this.name,
-    required this.value,
+    required this.argument,
     this.doc,
   });
 
   final String name;
-  final String value;
+  final String argument;
   final String? doc;
 
   @override
-  List<Object?> get props => [name, value, doc];
+  List<Object?> get props => [name, argument, doc];
 }
