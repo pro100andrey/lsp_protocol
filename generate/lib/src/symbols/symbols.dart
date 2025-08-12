@@ -26,16 +26,6 @@ final class Symbols {
     _collectEnums(protocol);
   }
 
-  bool get isType => this is TypeRef;
-  bool get isBase => this is BaseRef;
-  bool get isOr => this is OrRef;
-  bool get isAnd => this is AndRef;
-  bool get isArray => this is ArrayRef;
-  bool get isMap => this is MapRef;
-  bool get isLiteral => this is LiteralRef;
-  bool get isStringLiteral => this is StringLiteralRef;
-  bool get isTuple => this is TupleRef;
-
   void _collectEnums(MetaProtocol protocol) {
     for (final enumeration in protocol.enumerations) {
       final values = enumeration.values
