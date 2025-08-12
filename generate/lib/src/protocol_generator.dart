@@ -100,9 +100,7 @@ final class ProtocolGenerator {
     }
 
     final rawCode = buffer.toString();
-
     final code = rawCode.isEmpty ? '()' : '({$rawCode})';
-
     final definition = CodeExpression(Code(code));
 
     final def = TypeDef((b) {
