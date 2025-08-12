@@ -33,7 +33,7 @@ final class ProtocolGenerator {
         }
 
         for (final symbol in symbols.sealedTable.values) {
-          b.body.addAll(_generateBaseOrClass(symbol));
+          b.body.addAll(_generateSealedClass(symbol));
         }
 
         for (final structure in symbols.structuresTable.values) {
@@ -94,9 +94,8 @@ final class ProtocolGenerator {
 
       prop.doc.forEach(buffer.writeln);
 
-      buffer.write(
-        '$type ${prop.name}${prop == symbol.properties.last ? '' : ', '}',
-      );
+      final isLast = prop == symbol.properties.last;
+      buffer.write('$type ${prop.name}${isLast ? '' : ', '}');
     }
 
     final rawCode = buffer.toString();
@@ -234,11 +233,12 @@ final class ProtocolGenerator {
     return result;
   }
 
-  List<Spec> _generateBaseOrClass(SealedSymbol symbol) {
+  List<Spec> _generateSealedClass(SealedSymbol symbol) {
+    final baseClassType = indexedType(symbol.type);
     final baseClass = Class(
       (b) {
         b
-          ..name = indexedType(symbol.type)
+          ..name = baseClassType
           ..sealed = true;
 
         b.constructors.addAll(
@@ -249,7 +249,27 @@ final class ProtocolGenerator {
       },
     );
 
-    return [baseClass];
+    final subClasses = <Spec>[];
+
+    for (final item in symbol.types) {
+      final clazz = Class(
+        (b) {
+          final name = '${item}V';
+
+          b
+            ..name = name
+            // ..modifier = ClassModifier.final$
+            ..extend = refer(baseClassType)
+            ..constructors.add(
+              Constructor((b) => b..constant = true),
+            );
+        },
+      );
+
+      subClasses.add(clazz);
+    }
+
+    return [baseClass, ...subClasses];
   }
 
   Spec _generateRequestMethodEnum(List<MetaRequest> requests) => Enum((eb) {

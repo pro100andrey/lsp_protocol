@@ -21,6 +21,20 @@ String resolveType(MetaReference ref) {
   return result;
 }
 
+String resolveTypeLabel(MetaReference ref) {
+  final result = ref.when(
+    arrayRef: (ref) => '${ref.element.resolve()}s',
+    orElse: (ref) {
+      final resolved = ref.resolve();
+      final result = indexedType(resolved);
+
+      return result.upperFirstLetter();
+    },
+  );
+
+  return result;
+}
+
 String resolveArrayType(ArrayRef ref) {
   final elementType = resolveType(ref.element);
   final dElementType = indexedType(elementType);
@@ -77,4 +91,6 @@ String resolveLiteralType(LiteralRef ref) {
 
 extension MetaReferencesTypeResolver on MetaReference {
   String resolve() => resolveType(this);
+
+  String resolveLabel() => resolveTypeLabel(this);
 }
