@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:code_builder/code_builder.dart';
+import 'package:dart_style/dart_style.dart';
 
 import 'extensions/string.dart';
-import 'generator_helper.dart';
 import 'meta/protocol.dart';
 import 'symbols/symbol.dart';
 import 'symbols/symbols.dart';
@@ -14,8 +14,6 @@ import 'utils.dart';
 final class ProtocolGenerator {
   // Pass protocol for initial setup, but main logic is in visit methods
   const ProtocolGenerator();
-
-  Reference get _stringRef => refer('String');
 
   String generate(MetaProtocol protocol) {
     final symbols = Symbols()..collect(protocol);
@@ -52,9 +50,21 @@ final class ProtocolGenerator {
     );
 
     // Start the visitation process from the root MetaProtocol object
-    final result = specToCode(library, format: true);
+    final emitter = DartEmitter(
+      allocator: Allocator.simplePrefixing(),
+      useNullSafetySyntax: true,
+      orderDirectives: true,
+    );
 
-    return result;
+    final formatter = DartFormatter(
+      languageVersion: DartFormatter.latestLanguageVersion,
+      pageWidth: DartFormatter.defaultPageWidth,
+      trailingCommas: TrailingCommas.automate,
+    );
+
+    final dartCode = library.accept(emitter).toString();
+
+    return formatter.format(dartCode);
   }
 
   List<String> _docs() => [
@@ -273,7 +283,7 @@ final class ProtocolGenerator {
             fb
               ..name = 'value'
               ..modifier = FieldModifier.final$
-              ..type = _stringRef
+              ..type = refer('String')
               ..docs.add('// The type of this enumeration.');
           },
         ),
@@ -340,7 +350,7 @@ final class ProtocolGenerator {
                 fb
                   ..name = 'value'
                   ..modifier = FieldModifier.final$
-                  ..type = _stringRef
+                  ..type = refer('String')
                   ..docs.add('// The type of this enumeration.');
               },
             ),
