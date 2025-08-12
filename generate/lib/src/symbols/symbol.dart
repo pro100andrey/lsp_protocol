@@ -104,29 +104,31 @@ class StructureSymbol extends Symbol {
 class EnumSymbol extends Symbol {
   const EnumSymbol({
     required this.name,
+    required this.valueType,
     required this.values,
     this.doc,
   });
 
   final String name;
+  final String valueType;
   final List<EnumFieldSymbol> values;
   final String? doc;
 
   @override
-  List<Object?> get props => [name, values, doc];
+  List<Object?> get props => [valueType, name, values, doc];
 }
 
 class EnumFieldSymbol extends Symbol {
   const EnumFieldSymbol({
     required this.name,
-    required this.type,
+    required this.value,
     this.doc,
   });
 
   final String name;
-  final String type;
+  final String value;
   final String? doc;
 
   @override
-  List<Object?> get props => [name, type, doc];
+  List<Object?> get props => [name, value, doc];
 }

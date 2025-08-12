@@ -35,33 +35,30 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         b.body.addAll(_generateFreezedHeader());
         b.body.add(visitMetaData(protocol.metaData));
 
-        for (final def in _symbols.typedefsTable.values) {
-          b.body.add(_generateTypedef(def));
+        for (final symbol in _symbols.typedefsTable.values) {
+          b.body.add(_generateTypedef(symbol));
         }
 
-        for (final literal in _symbols.literalsTable.values) {
-          b.body.add(_generateLiteralTypeAlias(literal));
+        for (final symbol in _symbols.literalsTable.values) {
+          b.body.add(_generateLiteralTypeAlias(symbol));
         }
 
-        // Generate type aliases
-        // for (final typeAlias in protocol.typeAliases) {
-        //   b.body.add(visitTypeAlias(typeAlias));
-        // }
 
-        for (final ref in _symbols.sealedTable.values) {
-          b.body.addAll(_generateBaseOrClass(ref));
+        for (final symbol in _symbols.sealedTable.values) {
+          b.body.addAll(_generateBaseOrClass(symbol));
         }
 
         for (final structure in _symbols.structuresTable.values) {
           b.body.add(_generateStructure(structure));
         }
 
-        // for (final structure in protocol.structures) {
-        //   b.body.add(visitStructure(structure));
+
+        // for (final enumeration in protocol.enumerations) {
+        //   b.body.add(visitEnumeration(enumeration));
         // }
 
-        for (final enumeration in protocol.enumerations) {
-          b.body.add(visitEnumeration(enumeration));
+        for (final symbol in _symbols.enumSymbols.values) {
+          b.body.add(_generateEnumeration(symbol));
         }
 
         b.body.add(_generateRequestMethodEnum(protocol.requests));
@@ -193,6 +190,63 @@ final class GeneratorVisitor implements MetaProtocolVisitor<Spec> {
         [];
 
     throw UnimplementedError();
+  }
+
+  Enum _generateEnumeration(EnumSymbol symbol) {
+    final formattedDescription = formatDocComment(symbol.doc) ?? [];
+
+    final result = Enum((eb) {
+      eb
+        ..annotations.add(refer("JsonEnum(valueField: 'value')"))
+        ..docs.addAll(formattedDescription)
+        ..name = symbol.name
+        ..constructors.add(
+          Constructor(
+            (ecb) {
+              ecb
+                ..constant = true
+                ..requiredParameters.add(
+                  Parameter(
+                    (pb) {
+                      pb
+                        ..name = 'value'
+                        ..named = true
+                        ..toThis = true;
+                    },
+                  ),
+                )
+                ..docs.add('// The list of all values in this enumeration.');
+            },
+          ),
+        );
+
+      eb.fields.add(
+        Field(
+          (fb) {
+            fb
+              ..name = 'value'
+              ..modifier = FieldModifier.final$
+              ..type = refer(symbol.valueType)
+              ..docs.add('// The type of this enumeration.');
+          },
+        ),
+      );
+
+      for (final m in symbol.values) {
+        eb.values.add(
+          EnumValue(
+            (evb) {
+              final docs = formatDocComment(m.doc, maxLineLength: 70) ?? [];
+              evb.docs.addAll(docs);
+              evb.arguments.add(refer(m.value));
+              evb.name = _addPostfixIfKeyword(m.name.lowerFirstLetter());
+            },
+          ),
+        );
+      }
+    });
+
+    return result;
   }
 
   @override

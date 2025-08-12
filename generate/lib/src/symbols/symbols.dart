@@ -23,20 +23,24 @@ final class Symbols {
     _collectTuples(protocol);
     _collectLiterals(protocol);
     _collectStructures(protocol);
+    _collectEnums(protocol);
   }
 
   void _collectEnums(MetaProtocol protocol) {
     for (final enumeration in protocol.enumerations) {
-
-      final values = enumeration.values.map((value) {
-        return EnumFieldSymbol(
-          type: resolveType(value),
-          name: value.name,
-          doc: value.documentation,
-        );
-      }).toList();
+      final values = enumeration.values
+          .map(
+            (value) => EnumFieldSymbol(
+              name: value.name,
+              value: value.value.literal,
+              doc: value.documentation,
+            ),
+          )
+          .toList(growable: false);
 
       final symbol = EnumSymbol(
+        valueType: resolveType(enumeration.type),
+        values: values,
         name: enumeration.name,
         doc: enumeration.documentation,
       );
