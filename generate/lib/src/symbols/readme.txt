@@ -1,5 +1,0 @@
-BoolOrDoubleOrIntOrIntOrLSPArrayOrLSPObjectOrNullOrString
-DocumentSelectorOrNull
-StringOrNull
-IntOrNull
-NullOrWorkspaceFolders
