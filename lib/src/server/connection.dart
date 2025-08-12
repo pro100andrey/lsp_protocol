@@ -36,7 +36,7 @@ class Connection {
   Future<void> close() => _peer.close();
 
   // Initialization
-  
+
   void onInitializeRequest(
     Future<InitializeResult> Function(InitializeParams) handler,
   ) {
@@ -61,7 +61,7 @@ class Connection {
 
       return location.toJson();
     });
-  } 
+  }
 
   void onInitializedNotification(
     Future<void> Function(InitializedParams) handler,

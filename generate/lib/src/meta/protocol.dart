@@ -1,15 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
-sealed class BaseMeta {
-  const BaseMeta();
-}
-
 @freezed
-abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
+abstract class MetaProtocol with _$MetaProtocol {
   const factory MetaProtocol({
     required MetaData metaData,
     required List<MetaRequest> requests,
@@ -19,27 +14,22 @@ abstract class MetaProtocol extends BaseMeta with _$MetaProtocol {
     required List<MetaTypeAlias> typeAliases,
   }) = _MetaProtocol;
 
-  const MetaProtocol._();
-
   factory MetaProtocol.fromJson(Map<String, Object?> json) =>
       _$MetaProtocolFromJson(json);
 }
 
 @freezed
-abstract class MetaData extends BaseMeta with _$MetaData {
+abstract class MetaData with _$MetaData {
   const factory MetaData({
     required String version,
   }) = _MetaData;
 
-  const MetaData._();
-
   factory MetaData.fromJson(Map<String, Object?> json) =>
       _$MetaDataFromJson(json);
-
 }
 
 @freezed
-abstract class MetaRequest extends BaseMeta with _$MetaRequest {
+abstract class MetaRequest with _$MetaRequest {
   const factory MetaRequest({
     required String method,
     required MessageDirection messageDirection,
@@ -54,16 +44,12 @@ abstract class MetaRequest extends BaseMeta with _$MetaRequest {
     MetaReference? errorData,
   }) = _MetaRequest;
 
-  const MetaRequest._();
-
   factory MetaRequest.fromJson(Map<String, Object?> json) =>
       _$MetaRequestFromJson(json);
 }
 
 @Freezed(unionKey: 'kind')
-sealed class MetaReference extends BaseMeta with _$MetaReference {
-  const MetaReference._();
-
+sealed class MetaReference with _$MetaReference {
   @FreezedUnionValue('reference')
   const factory MetaReference.type({
     required TypeKind kind,
@@ -121,33 +107,20 @@ sealed class MetaReference extends BaseMeta with _$MetaReference {
 
   factory MetaReference.fromJson(Map<String, Object?> json) =>
       _$MetaReferenceFromJson(json);
-
-  bool get isType => this is TypeRef;
-  bool get isBase => this is BaseRef;
-  bool get isOr => this is OrRef;
-  bool get isAnd => this is AndRef;
-  bool get isArray => this is ArrayRef;
-  bool get isMap => this is MapRef;
-  bool get isLiteral => this is LiteralRef;
-  bool get isStringLiteral => this is StringLiteralRef;
-  bool get isTuple => this is TupleRef;
 }
 
 @freezed
-abstract class MetaLiteral extends BaseMeta with _$MetaLiteral {
+abstract class MetaLiteral with _$MetaLiteral {
   const factory MetaLiteral({
     required List<MetaProperty> properties,
   }) = _MetaLiteral;
 
-  const MetaLiteral._();
-
   factory MetaLiteral.fromJson(Map<String, Object?> json) =>
       _$MetaLiteralFromJson(json);
-
 }
 
 @freezed
-abstract class MetaNotification extends BaseMeta with _$MetaNotification {
+abstract class MetaNotification with _$MetaNotification {
   const factory MetaNotification({
     required String method,
     required MessageDirection messageDirection,
@@ -158,14 +131,12 @@ abstract class MetaNotification extends BaseMeta with _$MetaNotification {
     String? registrationMethod,
   }) = _MetaNotification;
 
-  const MetaNotification._();
-
   factory MetaNotification.fromJson(Map<String, Object?> json) =>
       _$MetaNotificationFromJson(json);
 }
 
 @freezed
-abstract class MetaProperty extends BaseMeta with _$MetaProperty {
+abstract class MetaProperty with _$MetaProperty {
   const factory MetaProperty({
     required String name,
     required MetaReference type,
@@ -176,14 +147,12 @@ abstract class MetaProperty extends BaseMeta with _$MetaProperty {
     @Default(false) bool proposed,
   }) = _MetaProperty;
 
-  const MetaProperty._();
-
   factory MetaProperty.fromJson(Map<String, Object?> json) =>
       _$MetaPropertyFromJson(json);
 }
 
 @freezed
-abstract class MetaStructure extends BaseMeta with _$MetaStructure {
+abstract class MetaStructure with _$MetaStructure {
   const factory MetaStructure({
     required String name,
     required List<MetaProperty> properties,
@@ -194,22 +163,18 @@ abstract class MetaStructure extends BaseMeta with _$MetaStructure {
     @JsonKey(name: 'extends') @Default([]) List<MetaReference> extends$,
   }) = _MetaStructure;
 
-  const MetaStructure._();
-
   factory MetaStructure.fromJson(Map<String, Object?> json) =>
       _$MetaStructureFromJson(json);
 }
 
 @freezed
-abstract class MetaEnumMember extends BaseMeta with _$MetaEnumMember {
+abstract class MetaEnumMember with _$MetaEnumMember {
   const factory MetaEnumMember({
     required String name,
     @IntOrStringSealedConverter() required EnumRawValue value,
     String? documentation,
     String? since,
   }) = _MetaEnumMember;
-
-  const MetaEnumMember._();
 
   factory MetaEnumMember.fromJson(Map<String, Object?> json) =>
       _$MetaEnumMemberFromJson(json);
@@ -226,22 +191,10 @@ sealed class EnumRawValue with _$EnumRawValue {
   const factory EnumRawValue.string({
     required String raw,
   }) = EnumRawValueString;
-
-  const EnumRawValue._();
-
-  String get type => switch (this) {
-    EnumRawValueInteger() => 'int',
-    EnumRawValueString() => 'String',
-  };
-
-  String get literal => switch (this) {
-    EnumRawValueInteger(raw: final value) => value,
-    EnumRawValueString(raw: final value) => "'$value'",
-  };
 }
 
 @freezed
-abstract class MetaEnumeration extends BaseMeta with _$MetaEnumeration {
+abstract class MetaEnumeration with _$MetaEnumeration {
   const factory MetaEnumeration({
     required String name,
     required MetaReference type,
@@ -252,14 +205,12 @@ abstract class MetaEnumeration extends BaseMeta with _$MetaEnumeration {
     @Default(false) bool proposed,
   }) = _MetaEnumeration;
 
-  const MetaEnumeration._();
-
   factory MetaEnumeration.fromJson(Map<String, Object?> json) =>
       _$MetaEnumerationFromJson(json);
 }
 
 @freezed
-abstract class MetaTypeAlias extends BaseMeta with _$MetaTypeAlias {
+abstract class MetaTypeAlias with _$MetaTypeAlias {
   const factory MetaTypeAlias({
     required String name,
     required MetaReference type,
@@ -269,8 +220,6 @@ abstract class MetaTypeAlias extends BaseMeta with _$MetaTypeAlias {
     @Default(false) bool proposed,
     @Default(false) bool optional,
   }) = _MetaTypeAlias;
-
-  const MetaTypeAlias._();
 
   factory MetaTypeAlias.fromJson(Map<String, Object?> json) =>
       _$MetaTypeAliasFromJson(json);

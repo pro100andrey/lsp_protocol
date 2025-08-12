@@ -93,8 +93,8 @@ $MetaDataCopyWith<$Res> get metaData {
 /// @nodoc
 @JsonSerializable()
 
-class _MetaProtocol extends MetaProtocol {
-  const _MetaProtocol({required this.metaData, required final  List<MetaRequest> requests, required final  List<MetaNotification> notifications, required final  List<MetaStructure> structures, required final  List<MetaEnumeration> enumerations, required final  List<MetaTypeAlias> typeAliases}): _requests = requests,_notifications = notifications,_structures = structures,_enumerations = enumerations,_typeAliases = typeAliases,super._();
+class _MetaProtocol implements MetaProtocol {
+  const _MetaProtocol({required this.metaData, required final  List<MetaRequest> requests, required final  List<MetaNotification> notifications, required final  List<MetaStructure> structures, required final  List<MetaEnumeration> enumerations, required final  List<MetaTypeAlias> typeAliases}): _requests = requests,_notifications = notifications,_structures = structures,_enumerations = enumerations,_typeAliases = typeAliases;
   factory _MetaProtocol.fromJson(Map<String, dynamic> json) => _$MetaProtocolFromJson(json);
 
 @override final  MetaData metaData;
@@ -276,8 +276,8 @@ as String,
 /// @nodoc
 @JsonSerializable()
 
-class _MetaData extends MetaData {
-  const _MetaData({required this.version}): super._();
+class _MetaData implements MetaData {
+  const _MetaData({required this.version});
   factory _MetaData.fromJson(Map<String, dynamic> json) => _$MetaDataFromJson(json);
 
 @override final  String version;
@@ -480,8 +480,8 @@ $MetaReferenceCopyWith<$Res>? get errorData {
 /// @nodoc
 @JsonSerializable()
 
-class _MetaRequest extends MetaRequest {
-  const _MetaRequest({required this.method, required this.messageDirection, this.params, this.result, this.documentation, this.partialResult, this.registrationOptions, this.since, this.proposed, this.registrationMethod, this.errorData}): super._();
+class _MetaRequest implements MetaRequest {
+  const _MetaRequest({required this.method, required this.messageDirection, this.params, this.result, this.documentation, this.partialResult, this.registrationOptions, this.since, this.proposed, this.registrationMethod, this.errorData});
   factory _MetaRequest.fromJson(Map<String, dynamic> json) => _$MetaRequestFromJson(json);
 
 @override final  String method;
@@ -745,8 +745,8 @@ as TypeKind,
 /// @nodoc
 @JsonSerializable()
 
-class TypeRef extends MetaReference {
-  const TypeRef({required this.kind, required this.name}): super._();
+class TypeRef implements MetaReference {
+  const TypeRef({required this.kind, required this.name});
   factory TypeRef.fromJson(Map<String, dynamic> json) => _$TypeRefFromJson(json);
 
 @override final  TypeKind kind;
@@ -816,8 +816,8 @@ as String,
 /// @nodoc
 @JsonSerializable()
 
-class ArrayRef extends MetaReference {
-  const ArrayRef({required this.kind, required this.element}): super._();
+class ArrayRef implements MetaReference {
+  const ArrayRef({required this.kind, required this.element});
   factory ArrayRef.fromJson(Map<String, dynamic> json) => _$ArrayRefFromJson(json);
 
 @override final  TypeKind kind;
@@ -896,8 +896,8 @@ $MetaReferenceCopyWith<$Res> get element {
 /// @nodoc
 @JsonSerializable()
 
-class BaseRef extends MetaReference {
-  const BaseRef({required this.kind, required this.name}): super._();
+class BaseRef implements MetaReference {
+  const BaseRef({required this.kind, required this.name});
   factory BaseRef.fromJson(Map<String, dynamic> json) => _$BaseRefFromJson(json);
 
 @override final  TypeKind kind;
@@ -967,8 +967,8 @@ as String,
 /// @nodoc
 @JsonSerializable()
 
-class OrRef extends MetaReference {
-  const OrRef({required this.kind, required final  List<MetaReference> items}): _items = items,super._();
+class OrRef implements MetaReference {
+  const OrRef({required this.kind, required final  List<MetaReference> items}): _items = items;
   factory OrRef.fromJson(Map<String, dynamic> json) => _$OrRefFromJson(json);
 
 @override final  TypeKind kind;
@@ -1044,8 +1044,8 @@ as List<MetaReference>,
 /// @nodoc
 @JsonSerializable()
 
-class AndRef extends MetaReference {
-  const AndRef({required this.kind, required final  List<MetaReference> items}): _items = items,super._();
+class AndRef implements MetaReference {
+  const AndRef({required this.kind, required final  List<MetaReference> items}): _items = items;
   factory AndRef.fromJson(Map<String, dynamic> json) => _$AndRefFromJson(json);
 
 @override final  TypeKind kind;
@@ -1121,8 +1121,8 @@ as List<MetaReference>,
 /// @nodoc
 @JsonSerializable()
 
-class MapRef extends MetaReference {
-  const MapRef({required this.kind, required this.key, required this.value}): super._();
+class MapRef implements MetaReference {
+  const MapRef({required this.kind, required this.key, required this.value});
   factory MapRef.fromJson(Map<String, dynamic> json) => _$MapRefFromJson(json);
 
 @override final  TypeKind kind;
@@ -1212,8 +1212,8 @@ $MetaReferenceCopyWith<$Res> get value {
 /// @nodoc
 @JsonSerializable()
 
-class LiteralRef extends MetaReference {
-  const LiteralRef({required this.kind, required this.value}): super._();
+class LiteralRef implements MetaReference {
+  const LiteralRef({required this.kind, required this.value});
   factory LiteralRef.fromJson(Map<String, dynamic> json) => _$LiteralRefFromJson(json);
 
 @override final  TypeKind kind;
@@ -1292,8 +1292,8 @@ $MetaLiteralCopyWith<$Res> get value {
 /// @nodoc
 @JsonSerializable()
 
-class StringLiteralRef extends MetaReference {
-  const StringLiteralRef({required this.kind, required this.value}): super._();
+class StringLiteralRef implements MetaReference {
+  const StringLiteralRef({required this.kind, required this.value});
   factory StringLiteralRef.fromJson(Map<String, dynamic> json) => _$StringLiteralRefFromJson(json);
 
 @override final  TypeKind kind;
@@ -1363,8 +1363,8 @@ as String,
 /// @nodoc
 @JsonSerializable()
 
-class TupleRef extends MetaReference {
-  const TupleRef({required this.kind, required final  List<MetaReference> items}): _items = items,super._();
+class TupleRef implements MetaReference {
+  const TupleRef({required this.kind, required final  List<MetaReference> items}): _items = items;
   factory TupleRef.fromJson(Map<String, dynamic> json) => _$TupleRefFromJson(json);
 
 @override final  TypeKind kind;
@@ -1505,8 +1505,8 @@ as List<MetaProperty>,
 /// @nodoc
 @JsonSerializable()
 
-class _MetaLiteral extends MetaLiteral {
-  const _MetaLiteral({required final  List<MetaProperty> properties}): _properties = properties,super._();
+class _MetaLiteral implements MetaLiteral {
+  const _MetaLiteral({required final  List<MetaProperty> properties}): _properties = properties;
   factory _MetaLiteral.fromJson(Map<String, dynamic> json) => _$MetaLiteralFromJson(json);
 
  final  List<MetaProperty> _properties;
@@ -1675,8 +1675,8 @@ $MetaReferenceCopyWith<$Res>? get registrationOptions {
 /// @nodoc
 @JsonSerializable()
 
-class _MetaNotification extends MetaNotification {
-  const _MetaNotification({required this.method, required this.messageDirection, this.params, this.documentation, this.registrationOptions, this.since, this.registrationMethod}): super._();
+class _MetaNotification implements MetaNotification {
+  const _MetaNotification({required this.method, required this.messageDirection, this.params, this.documentation, this.registrationOptions, this.since, this.registrationMethod});
   factory _MetaNotification.fromJson(Map<String, dynamic> json) => _$MetaNotificationFromJson(json);
 
 @override final  String method;
@@ -1860,8 +1860,8 @@ $MetaReferenceCopyWith<$Res> get type {
 /// @nodoc
 @JsonSerializable()
 
-class _MetaProperty extends MetaProperty {
-  const _MetaProperty({required this.name, required this.type, this.documentation, this.since, this.deprecated, this.optional = false, this.proposed = false}): super._();
+class _MetaProperty implements MetaProperty {
+  const _MetaProperty({required this.name, required this.type, this.documentation, this.since, this.deprecated, this.optional = false, this.proposed = false});
   factory _MetaProperty.fromJson(Map<String, dynamic> json) => _$MetaPropertyFromJson(json);
 
 @override final  String name;
@@ -2021,8 +2021,8 @@ as List<MetaReference>,
 /// @nodoc
 @JsonSerializable()
 
-class _MetaStructure extends MetaStructure {
-  const _MetaStructure({required this.name, required final  List<MetaProperty> properties, this.documentation, this.since, this.proposed = false, @JsonKey(name: 'mixins') final  List<MetaReference> mixins$ = const [], @JsonKey(name: 'extends') final  List<MetaReference> extends$ = const []}): _properties = properties,_mixins$ = mixins$,_extends$ = extends$,super._();
+class _MetaStructure implements MetaStructure {
+  const _MetaStructure({required this.name, required final  List<MetaProperty> properties, this.documentation, this.since, this.proposed = false, @JsonKey(name: 'mixins') final  List<MetaReference> mixins$ = const [], @JsonKey(name: 'extends') final  List<MetaReference> extends$ = const []}): _properties = properties,_mixins$ = mixins$,_extends$ = extends$;
   factory _MetaStructure.fromJson(Map<String, dynamic> json) => _$MetaStructureFromJson(json);
 
 @override final  String name;
@@ -2197,8 +2197,8 @@ $EnumRawValueCopyWith<$Res> get value {
 /// @nodoc
 @JsonSerializable()
 
-class _MetaEnumMember extends MetaEnumMember {
-  const _MetaEnumMember({required this.name, @IntOrStringSealedConverter() required this.value, this.documentation, this.since}): super._();
+class _MetaEnumMember implements MetaEnumMember {
+  const _MetaEnumMember({required this.name, @IntOrStringSealedConverter() required this.value, this.documentation, this.since});
   factory _MetaEnumMember.fromJson(Map<String, dynamic> json) => _$MetaEnumMemberFromJson(json);
 
 @override final  String name;
@@ -2369,8 +2369,8 @@ as String,
 /// @nodoc
 @JsonSerializable()
 
-class EnumRawValueInteger extends EnumRawValue {
-  const EnumRawValueInteger({required this.raw, final  String? $type}): $type = $type ?? 'integer',super._();
+class EnumRawValueInteger implements EnumRawValue {
+  const EnumRawValueInteger({required this.raw, final  String? $type}): $type = $type ?? 'integer';
   factory EnumRawValueInteger.fromJson(Map<String, dynamic> json) => _$EnumRawValueIntegerFromJson(json);
 
 @override final  String raw;
@@ -2442,8 +2442,8 @@ as String,
 /// @nodoc
 @JsonSerializable()
 
-class EnumRawValueString extends EnumRawValue {
-  const EnumRawValueString({required this.raw, final  String? $type}): $type = $type ?? 'string',super._();
+class EnumRawValueString implements EnumRawValue {
+  const EnumRawValueString({required this.raw, final  String? $type}): $type = $type ?? 'string';
   factory EnumRawValueString.fromJson(Map<String, dynamic> json) => _$EnumRawValueStringFromJson(json);
 
 @override final  String raw;
@@ -2595,8 +2595,8 @@ $MetaReferenceCopyWith<$Res> get type {
 /// @nodoc
 @JsonSerializable()
 
-class _MetaEnumeration extends MetaEnumeration {
-  const _MetaEnumeration({required this.name, required this.type, required final  List<MetaEnumMember> values, this.supportsCustomValues, this.documentation, this.since, this.proposed = false}): _values = values,super._();
+class _MetaEnumeration implements MetaEnumeration {
+  const _MetaEnumeration({required this.name, required this.type, required final  List<MetaEnumMember> values, this.supportsCustomValues, this.documentation, this.since, this.proposed = false}): _values = values;
   factory _MetaEnumeration.fromJson(Map<String, dynamic> json) => _$MetaEnumerationFromJson(json);
 
 @override final  String name;
@@ -2771,8 +2771,8 @@ $MetaReferenceCopyWith<$Res> get type {
 /// @nodoc
 @JsonSerializable()
 
-class _MetaTypeAlias extends MetaTypeAlias {
-  const _MetaTypeAlias({required this.name, required this.type, this.documentation, this.since, this.deprecated, this.proposed = false, this.optional = false}): super._();
+class _MetaTypeAlias implements MetaTypeAlias {
+  const _MetaTypeAlias({required this.name, required this.type, this.documentation, this.since, this.deprecated, this.proposed = false, this.optional = false});
   factory _MetaTypeAlias.fromJson(Map<String, dynamic> json) => _$MetaTypeAliasFromJson(json);
 
 @override final  String name;

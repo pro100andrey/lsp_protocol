@@ -84,7 +84,6 @@ extension MetaReferenceExtensions on MetaReference {
   ) => on<StringLiteralRef>(callback);
 }
 
-
 extension LiteralRefExtensions on LiteralRef {
   void forEachProperty(
     void Function(MetaProperty prop) callback,

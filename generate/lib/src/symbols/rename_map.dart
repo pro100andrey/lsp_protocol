@@ -24,8 +24,6 @@
 //   return null;
 // }
 
-
-
 // const _renameLiteralMap = {
 //   'RangeRangeStringPlaceholder': 'Literal1',
 //   'BoolDefaultBehavior': 'Literal2',
