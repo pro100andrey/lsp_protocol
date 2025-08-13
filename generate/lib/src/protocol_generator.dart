@@ -251,14 +251,14 @@ final class ProtocolGenerator {
 
     final subClasses = <Spec>[];
 
-    for (final item in symbol.types) {
+    for (final (i, item) in symbol.types.indexed) {
       final clazz = Class(
         (b) {
-          final name = '${item}V';
+          final name = '$baseClassType$i';
 
           b
             ..name = name
-            // ..modifier = ClassModifier.final$
+             ..modifier = ClassModifier.final$
             ..extend = refer(baseClassType)
             ..constructors.add(
               Constructor((b) => b..constant = true),
