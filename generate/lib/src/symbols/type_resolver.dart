@@ -71,9 +71,9 @@ String resolveBaseType(BaseRef ref) => switch (ref.name) {
 String resolveOrRefName(OrRef orRef) {
   final parts = orRef.items.map(resolveType).toList(growable: false);
   final sortedParts = parts.sorted((a, b) => a.compareTo(b));
-  final rawName = sortedParts.join('Or');
+  final rawName = sortedParts.join(',');
 
-  return rawName;
+  return 'Or${parts.length}<$rawName>';
 }
 
 String resolveLiteralType(LiteralRef ref) {

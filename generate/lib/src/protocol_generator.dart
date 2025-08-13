@@ -32,9 +32,9 @@ final class ProtocolGenerator {
           b.body.add(_generateLiteralTypeAlias(symbol));
         }
 
-        for (final symbol in symbols.sealedTable.values) {
-          b.body.addAll(_generateSealedClass(symbol));
-        }
+        // for (final symbol in symbols.sealedTable.values) {
+        //   b.body.addAll(_generateSealedClass(symbol));
+        // }
 
         for (final structure in symbols.structuresTable.values) {
           b.body.add(_generateStructure(structure));
@@ -46,6 +46,10 @@ final class ProtocolGenerator {
 
         b.body.add(_generateRequestMethodEnum(protocol.requests));
         b.body.add(_generateNotificationMethodEnum(protocol.notifications));
+
+        b.body.add(_generateOr(2));
+        b.body.add(_generateOr(3));
+        b.body.add(_generateOr(4));
       },
     );
 
@@ -64,7 +68,65 @@ final class ProtocolGenerator {
 
     final dartCode = library.accept(emitter).toString();
 
+    return dartCode;
+
     return formatter.format(dartCode);
+  }
+
+  Spec _generateOr(int numberOfTypes) {
+    final typeParams = List.generate(numberOfTypes, (i) => refer('T${i + 1}'));
+    final className = 'Or$numberOfTypes';
+
+    final clazz = Class((b) {
+      b
+        ..docs.add(
+          '/// A class representing a value that can be one of $numberOfTypes types.',
+        )
+        ..annotations.add(refer('freezed'))
+        ..abstract = true
+        ..name = className
+        ..types.addAll(typeParams)
+        ..mixins.add(
+          TypeReference(
+            (m) => m
+              ..symbol = '_\$$className'
+              ..types.addAll(typeParams),
+          ),
+        );
+
+      for (var i = 0; i < numberOfTypes; i++) {
+        b.constructors.add(
+          Constructor((ctor) {
+            ctor
+              ..constant = true
+              ..factory = true
+              ..name = 't${i + 1}'
+              ..requiredParameters.add(
+                Parameter(
+                  (p) => p
+                    ..name = 'value'
+                    ..type = refer('T${i + 1}'),
+                ),
+              )
+              ..redirect = TypeReference(
+                (t) => t
+                  ..symbol = '_${className}T${i + 1}'
+                  ..types.addAll(typeParams),
+              );
+          }),
+        );
+      }
+
+      b.constructors.add(
+        Constructor((ctor) {
+          ctor
+            ..constant = true
+            ..name = '_';
+        }),
+      );
+    });
+
+    return clazz;
   }
 
   List<String> _docs() => [
@@ -258,7 +320,7 @@ final class ProtocolGenerator {
 
           b
             ..name = name
-             ..modifier = ClassModifier.final$
+            ..modifier = ClassModifier.final$
             ..extend = refer(baseClassType)
             ..constructors.add(
               Constructor((b) => b..constant = true),
