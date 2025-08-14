@@ -69,7 +69,6 @@ final class Symbols {
       final definition = switch (typeAlias) {
         MetaTypeAlias(name: 'LSPAny') => 'Object?',
         _ => typeAlias.type.resolve(),
-
       };
 
       final symbol = TypedefSymbol(
@@ -95,10 +94,9 @@ final class Symbols {
       final properties = allProperties.map(
         (property) {
           final type = property.type.resolve();
-          final dType = indexedType(type);
 
           return PropertySymbol(
-            type: dType,
+            type: type,
             name: property.name,
             optional: property.optional,
             doc: property.documentation.asDoc(width: 76),

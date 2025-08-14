@@ -7,7 +7,6 @@ import 'extensions/string.dart';
 import 'meta/protocol.dart';
 import 'symbols/symbol.dart';
 import 'symbols/symbols.dart';
-import 'symbols/symbols_table.dart';
 import 'utils.dart';
 
 /// A concrete visitor that generates Dart code from MetaProtocol.
@@ -144,11 +143,11 @@ final class ProtocolGenerator {
     b
       ..docs.addAll(symbol.doc)
       ..name = symbol.type
-      ..definition = refer(indexedType(symbol.definition));
+      ..definition = refer(symbol.definition);
   });
 
   Spec _generateStructure(StructureSymbol symbol) {
-    final name = symbol.name.replaceFirstLetterIfExists('_', 'T');
+    final name = symbol.name.replaceFirstLetterIfExists('_', r'$');
 
     final clazz = Class(
       (b) {
@@ -170,7 +169,7 @@ final class ProtocolGenerator {
                   symbol.properties.map(
                     (field) => Parameter(
                       (b) {
-                        final type = indexedType(field.type).optional(
+                        final type = field.type.optional(
                           optional: field.optional,
                         );
 

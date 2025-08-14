@@ -39,7 +39,7 @@ extension StringExtensions on String {
   }
 
   String optional({required bool optional}) {
-    if (isEmpty || contains('?')) {
+    if (isEmpty || endsWith('?')) {
       return this;
     }
 

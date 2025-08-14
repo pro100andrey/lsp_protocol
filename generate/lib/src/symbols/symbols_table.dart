@@ -23,23 +23,10 @@ abstract class SymbolTable<T> {
   bool containsKey(String key) => _table.containsKey(key);
 }
 
-final _displayNames = <String, String>{};
-
-String indexedType(String type, {bool throwIfMissing = false}) {
-  if (throwIfMissing && !_displayNames.containsKey(type)) {
-    throw ArgumentError('Type not found: $type');
-  }
-
-  final displayType = _displayNames[type] ?? type;
-
-  return displayType;
-}
-
 final class StructuresTable extends SymbolTable<StructureSymbol> {}
 
 final class TypedefsTable extends SymbolTable<TypedefSymbol> {}
 
 final class SealedTable extends SymbolTable<SealedSymbol> {}
-
 
 final class EnumsTable extends SymbolTable<EnumSymbol> {}

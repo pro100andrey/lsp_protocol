@@ -859,7 +859,7 @@ abstract class SemanticTokensRegistrationOptions
         bool? delta,
       }),
       bool
-    >
+    >?
     full,
 
     /// The id used to register the request. The id can be used to deregister
@@ -1797,7 +1797,7 @@ abstract class InitializeParams with _$InitializeParams {
 
       /// The client's version as defined by the client.
       String? version,
-    })
+    })?
     clientInfo,
 
     /// User provided initialization options.
@@ -1854,7 +1854,7 @@ abstract class InitializeResult with _$InitializeResult {
 
       /// The server's version as defined by the server.
       String? version,
-    })
+    })?
     serverInfo,
   }) = _InitializeResult;
 
@@ -2347,7 +2347,7 @@ abstract class CompletionList with _$CompletionList {
       /// A default data value.
       /// @since 3.17.0
       LSPAny? data,
-    })
+    })?
     itemDefaults,
 
     /// The completion items.
@@ -2381,7 +2381,7 @@ abstract class CompletionRegistrationOptions
       /// call.
       /// @since 3.17.0
       bool? labelDetailsSupport,
-    })
+    })?
     completionItem,
 
     /// A document selector to identify the scope of the registration. If set
@@ -3801,7 +3801,7 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
         bool? delta,
       }),
       bool
-    >
+    >?
     full,
 
     /// The legend used by the server
@@ -4433,7 +4433,7 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
 
         /// Additional closed cell text documents.
         List<TextDocumentIdentifier>? didClose,
-      })
+      })?
       structure,
 
       /// Changes to notebook cells properties like its kind, execution summary or
@@ -4448,7 +4448,7 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
         })
       >?
       textContent,
-    })
+    })?
     cells,
 
     /// The changed meta data if any.
@@ -4562,8 +4562,8 @@ abstract class Unregistration with _$Unregistration {
 
 /// The initialize parameters
 @freezed
-abstract class TInitializeParams with _$TInitializeParams {
-  const factory TInitializeParams({
+abstract class $InitializeParams with _$$InitializeParams {
+  const factory $InitializeParams({
     /// The capabilities provided by the client (editor or tool)
     required ClientCapabilities capabilities,
 
@@ -4575,7 +4575,7 @@ abstract class TInitializeParams with _$TInitializeParams {
 
       /// The client's version as defined by the client.
       String? version,
-    })
+    })?
     clientInfo,
 
     /// User provided initialization options.
@@ -4607,10 +4607,10 @@ abstract class TInitializeParams with _$TInitializeParams {
 
     /// An optional token that a server can use to report work done progress.
     ProgressToken? workDoneToken,
-  }) = _TInitializeParams;
+  }) = _$InitializeParams;
 
-  factory TInitializeParams.fromJson(Map<String, dynamic> json) =>
-      _$TInitializeParamsFromJson(json);
+  factory $InitializeParams.fromJson(Map<String, dynamic> json) =>
+      _$$InitializeParamsFromJson(json);
 }
 
 @freezed
@@ -4779,7 +4779,7 @@ abstract class ServerCapabilities with _$ServerCapabilities {
       /// The server is interested in notifications/requests for operations on files.
       /// @since 3.16.0
       FileOperationOptions? fileOperations,
-    })
+    })?
     workspace,
 
     /// The server provides workspace symbol support.
@@ -4976,7 +4976,7 @@ abstract class CompletionOptions with _$CompletionOptions {
       /// call.
       /// @since 3.17.0
       bool? labelDetailsSupport,
-    })
+    })?
     completionItem,
 
     /// The server provides support to resolve additional information for a
@@ -6211,7 +6211,7 @@ abstract class WorkspaceEditClientCapabilities
       /// Whether the client groups edits with equal labels into tree nodes, for
       /// instance all edits labelled with "Changes in Strings" would be a tree node.
       bool? groupsOnLabel,
-    })
+    })?
     changeAnnotationSupport,
 
     /// The client supports versioned document changes in `WorkspaceEdit`s
@@ -6299,7 +6299,7 @@ abstract class WorkspaceSymbolClientCapabilities
       /// If this property is not present the client only supports the symbol kinds
       /// from `File` to `Array` as defined in the initial version of the protocol.
       List<SymbolKind>? valueSet,
-    })
+    })?
     symbolKind,
 
     /// The client supports tags on `SymbolInformation`. Clients supporting
@@ -6575,7 +6575,7 @@ abstract class CompletionClientCapabilities
       /// `CompletionItemLabelDetails`).
       /// @since 3.17.0
       bool? labelDetailsSupport,
-    })
+    })?
     completionItem,
     ({
       /// The completion item kind values the client supports. When this property
@@ -6585,7 +6585,7 @@ abstract class CompletionClientCapabilities
       /// items kinds from `Text` to `Reference` as defined in the initial version of
       /// the protocol.
       List<CompletionItemKind>? valueSet,
-    })
+    })?
     completionItemKind,
 
     /// The client supports the following `CompletionList` specific
@@ -6598,7 +6598,7 @@ abstract class CompletionClientCapabilities
       /// supported.
       /// @since 3.17.0
       List<String>? itemDefaults,
-    })
+    })?
     completionList,
 
     /// The client supports to send additional context information for a
@@ -6662,14 +6662,14 @@ abstract class SignatureHelpClientCapabilities
         /// string.
         /// @since 3.14.0
         bool? labelOffsetSupport,
-      })
+      })?
       parameterInformation,
 
       /// The client supports the `activeParameter` property on
       /// `SignatureInformation` literal.
       /// @since 3.16.0
       bool? activeParameterSupport,
-    })
+    })?
     signatureInformation,
   }) = _SignatureHelpClientCapabilities;
 
@@ -6804,7 +6804,7 @@ abstract class DocumentSymbolClientCapabilities
       /// If this property is not present the client only supports the symbol kinds
       /// from `File` to `Array` as defined in the initial version of the protocol.
       List<SymbolKind>? valueSet,
-    })
+    })?
     symbolKind,
 
     /// The client supports tags on `SymbolInformation`. Tags are supported on
@@ -7015,7 +7015,7 @@ abstract class FoldingRangeClientCapabilities
       /// folding ranges to display custom labels instead of the default text.
       /// @since 3.17.0
       bool? collapsedText,
-    })
+    })?
     foldingRange,
 
     /// Specific options for the folding range kind.
@@ -7025,7 +7025,7 @@ abstract class FoldingRangeClientCapabilities
       /// exists the client also guarantees that it will handle values outside its
       /// set gracefully and falls back to a default value when unknown.
       List<FoldingRangeKind>? valueSet,
-    })
+    })?
     foldingRangeKind,
 
     /// If set, the client signals that it only supports folding complete
@@ -7164,7 +7164,7 @@ abstract class SemanticTokensClientCapabilities
           bool? delta,
         }),
         bool
-      >
+      >?
       full,
     })
     requests,
@@ -7339,7 +7339,7 @@ abstract class ShowMessageRequestClientCapabilities
       /// Whether the client supports additional attributes which are preserved and
       /// send back to the server in the request's response.
       bool? additionalPropertiesSupport,
-    })
+    })?
     messageActionItem,
   }) = _ShowMessageRequestClientCapabilities;
 

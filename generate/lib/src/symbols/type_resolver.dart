@@ -4,7 +4,6 @@ import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../meta/protocol.dart';
 import '../utils.dart';
-import 'symbols_table.dart';
 
 String resolveType(MetaReference ref) {
   final result = ref.when(
@@ -27,9 +26,8 @@ String resolveTypeLabel(MetaReference ref) {
     arrayRef: (ref) => '${ref.element.resolve()}s',
     orElse: (ref) {
       final resolved = ref.resolve();
-      final result = indexedType(resolved);
 
-      return result.upperFirstLetter();
+      return resolved.upperFirstLetter();
     },
   );
 
@@ -38,9 +36,8 @@ String resolveTypeLabel(MetaReference ref) {
 
 String resolveArrayType(ArrayRef ref) {
   final elementType = resolveType(ref.element);
-  final dElementType = indexedType(elementType);
 
-  return 'List<$dElementType>';
+  return 'List<$elementType>';
 }
 
 String resolveTupleType(TupleRef ref) {
