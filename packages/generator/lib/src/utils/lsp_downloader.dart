@@ -3,9 +3,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:path/path.dart' as p;
+import 'package:http/http.dart';
 
-import 'downloader.dart';
+import '../../generator.dart';
 
 const _version = '3.17';
 const _dirName = 'lsp_downloads';
@@ -32,56 +32,34 @@ Uri _licenseUri() {
   return Uri.parse(url);
 }
 
-String resolvePath(String path) {
-  final resolved = p.normalize(p.absolute(path));
-
-  return resolved;
-}
-
-Future<void> writeToFile(String content, String fileName) async {
-  print('Saving content to $fileName');
-  final file = File(fileName);
-  await file.writeAsString(content);
-  print('Content saved to $fileName');
-}
-
-Future<void> createDirectoryForFilePath(String filePath) async {
-  final dir = Directory(p.dirname(filePath));
-  await createDirectory(dir.path);
-}
-
-Future<void> createDirectory(String dirPath) async {
-  final dir = Directory(dirPath);
-  if (!dir.existsSync()) {
-    print('Creating directory: ${dir.path}');
-    await dir.create(recursive: true);
-    print('Directory created: ${dir.path}');
-  } else {
-    print('Directory already exists: ${dir.path}');
-  }
-}
-
-Future<void> downloadLSPSpecAndLicense() async {
+Future<MetaProtocol> downloadAndParseLSP() async {
   await createDirectory(_dirName);
 
   if (File(fullSpecFileName).existsSync() &&
       File(fullLicenseFileName).existsSync()) {
     print('Files already exist in $_dirName, skipping download.');
-    return;
+    return _loadMetaProtocol();
   }
 
   final specUri = _lspSpecUri();
   final licenseUri = _licenseUri();
 
-  final result = await Future.wait([download(specUri), download(licenseUri)]);
+  final result = await Future.wait([_download(specUri), _download(licenseUri)]);
 
   final [specResult, licenseResult] = result;
 
   await writeToFile(specResult, fullSpecFileName);
   await writeToFile(licenseResult, fullLicenseFileName);
+
+  return _loadMetaProtocol();
 }
 
-Future<void> cleanUp() async {
+Future<void> cleanUpDownloads({required bool skip}) async {
+  if (skip) {
+    print('Skipping cleanup of $_dirName');
+    return;
+  }
+
   final dir = Directory('$_dirName/');
 
   if (dir.existsSync()) {
@@ -93,7 +71,7 @@ Future<void> cleanUp() async {
   }
 }
 
-Future<Map<String, dynamic>> loadLSPMeta() async {
+Future<MetaProtocol> _loadMetaProtocol() async {
   final file = File(fullSpecFileName);
 
   if (!file.existsSync()) {
@@ -103,5 +81,22 @@ Future<Map<String, dynamic>> loadLSPMeta() async {
   final content = await file.readAsString();
   final jsonData = jsonDecode(content) as Map<String, dynamic>;
 
-  return jsonData;
+  final metaProtocol = MetaProtocol.fromJson(jsonData);
+
+  return metaProtocol;
+}
+
+Future<String> _download(Uri uri) async {
+  print('Downloading from $uri');
+  final watch = Stopwatch()..start();
+
+  final response = await get(uri);
+  watch.stop();
+  print('Download completed in ${watch.elapsedMilliseconds} ms');
+
+  if (response.statusCode == 200) {
+    return response.body;
+  } else {
+    throw Exception('Failed to download: ${response.reasonPhrase}');
+  }
 }

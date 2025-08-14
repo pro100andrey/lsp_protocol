@@ -3,8 +3,7 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:generate/generate.dart';
-import 'package:generate/src/protocol_generator.dart';
+import 'package:generator/generator.dart';
 
 Future<void> main(List<String> args) async {
   final parser = _argParser();
@@ -16,22 +15,20 @@ Future<void> main(List<String> args) async {
     return;
   }
 
-  await downloadLSPSpecAndLicense();
-
-  final meta = await loadLSPMeta();
-  final protocol = MetaProtocol.fromJson(meta);
+  final metaProtocol = await downloadAndParseLSP();
 
   const generator = ProtocolGenerator();
-  final code = generator.generate(protocol);
+  final code = generator.generate(metaProtocol);
 
-  final outputFile = resolvePath('../lib/src/generated/protocol.dart');
+  final outputFile = resolvePath(
+    '../lsp_protocol/lib/src/generated/protocol.dart',
+  );
   await createDirectoryForFilePath(outputFile);
   await writeToFile(code, outputFile);
 
-  // Run dart run build_runner build --delete-conflicting-outputs
   await runBuildRunner();
 
-  // await cleanUp();
+  await cleanUpDownloads(skip: true);
 }
 
 Future<void> runBuildRunner() async {
@@ -39,8 +36,8 @@ Future<void> runBuildRunner() async {
     'run',
     'build_runner',
     'build',
-    '--delete-conflicting-outputs',
-  ], workingDirectory: '../');
+    '-d',
+  ], workingDirectory: '../lsp_protocol');
 
   if (result.exitCode == 0) {
     print(result.stdout);

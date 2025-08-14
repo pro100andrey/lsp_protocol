@@ -9,14 +9,14 @@
             "type": "dart",
             "request": "launch",
             "program": "bin/generate.dart",
-            "cwd": "${workspaceFolder}/generate/",
+            "cwd": "${workspaceFolder}/packages/generator/",
             "args": []
         },
         {
             "name": "Run LSP Server",
             "type": "dart",
             "request": "launch",
-            "program": "example/server.dart",
+            "program": "${workspaceFolder}/packages/lsp_server/example/server.dart",
             "args": [],
             "cwd": "${workspaceFolder}"
         },

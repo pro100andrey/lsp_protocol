@@ -4,8 +4,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:lsp_protocol/src/generated/protocol.dart';
-import 'package:lsp_protocol/src/server/connection.dart';
+import 'package:lsp_protocol/lsp_protocol.dart';
 
 Future<void> main() async {
   final server = await ServerSocket.bind(InternetAddress.loopbackIPv4, 9999);

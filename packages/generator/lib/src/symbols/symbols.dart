@@ -1,8 +1,7 @@
 // ignore_for_file: avoid_print
 
-import '../../generate.dart';
+import '../../generator.dart';
 import '../extensions/string.dart';
-import '../utils.dart';
 import 'symbol.dart';
 import 'symbols_table.dart';
 import 'type_resolver.dart';

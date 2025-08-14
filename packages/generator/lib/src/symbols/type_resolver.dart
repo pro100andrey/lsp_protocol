@@ -3,7 +3,6 @@ import 'package:collection/collection.dart';
 import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../meta/protocol.dart';
-import '../utils.dart';
 
 String resolveType(MetaReference ref) {
   final result = ref.when(

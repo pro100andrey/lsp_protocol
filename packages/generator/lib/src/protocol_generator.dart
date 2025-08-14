@@ -7,7 +7,6 @@ import 'extensions/string.dart';
 import 'meta/protocol.dart';
 import 'symbols/symbol.dart';
 import 'symbols/symbols.dart';
-import 'utils.dart';
 
 /// A concrete visitor that generates Dart code from MetaProtocol.
 final class ProtocolGenerator {
