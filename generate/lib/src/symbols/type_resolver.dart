@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../meta/protocol.dart';
+import '../utils.dart';
 import 'symbols_table.dart';
 
 String resolveType(MetaReference ref) {
@@ -77,16 +78,22 @@ String resolveOrRefName(OrRef orRef) {
 }
 
 String resolveLiteralType(LiteralRef ref) {
-  final parts = ref.value.properties
-      .map(
-        (item) => '${resolveType(item.type).upperFirstLetter()}_${item.name}',
-      )
-      .toList(growable: false);
 
-  final sorted = parts.sorted((a, b) => a.compareTo(b));
-  final rawName = sorted.join(r'$');
+  final buffer = StringBuffer();
 
-  return rawName;
+  for (final prop in ref.value.properties) {
+    final type = prop.type.resolve().optional(optional: prop.optional);
+
+    prop.documentation.asDoc().forEach(buffer.writeln);
+
+    final isLast = prop == ref.value.properties.last;
+    buffer.write('$type ${prop.name}${isLast ? '' : ', '}');
+  }
+
+  final rawCode = buffer.toString();
+  final code = rawCode.isEmpty ? '()' : '({$rawCode})';
+
+  return code;
 }
 
 extension MetaReferencesTypeResolver on MetaReference {

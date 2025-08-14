@@ -28,14 +28,6 @@ final class ProtocolGenerator {
           b.body.add(_generateTypedef(symbol));
         }
 
-        for (final symbol in symbols.literalsTable.values) {
-          b.body.add(_generateLiteralTypeAlias(symbol));
-        }
-
-        // for (final symbol in symbols.sealedTable.values) {
-        //   b.body.addAll(_generateSealedClass(symbol));
-        // }
-
         for (final structure in symbols.structuresTable.values) {
           b.body.add(_generateStructure(structure));
         }
@@ -68,7 +60,7 @@ final class ProtocolGenerator {
 
     final dartCode = library.accept(emitter).toString();
 
-    return dartCode;
+    // return dartCode;
 
     return formatter.format(dartCode);
   }
@@ -147,32 +139,6 @@ final class ProtocolGenerator {
     'kLSPVersion',
     type: refer('String'),
   ).assign(literalString(metaData.version)).statement;
-
-  Spec _generateLiteralTypeAlias(LiteralSymbol symbol) {
-    final buffer = StringBuffer();
-
-    for (final prop in symbol.properties) {
-      final type = prop.type.optional(optional: prop.optional);
-
-      prop.doc.forEach(buffer.writeln);
-
-      final isLast = prop == symbol.properties.last;
-      buffer.write('$type ${prop.name}${isLast ? '' : ', '}');
-    }
-
-    final rawCode = buffer.toString();
-    final code = rawCode.isEmpty ? '()' : '({$rawCode})';
-    final definition = CodeExpression(Code(code));
-
-    final def = TypeDef((b) {
-      b
-        ..name = indexedType(symbol.type)
-        ..docs.addAll(symbol.doc)
-        ..definition = definition;
-    });
-
-    return def;
-  }
 
   Spec _generateTypedef(TypedefSymbol symbol) => TypeDef((b) {
     b
@@ -293,45 +259,6 @@ final class ProtocolGenerator {
     });
 
     return result;
-  }
-
-  List<Spec> _generateSealedClass(SealedSymbol symbol) {
-    final baseClassType = indexedType(symbol.type);
-    final baseClass = Class(
-      (b) {
-        b
-          ..name = baseClassType
-          ..sealed = true;
-
-        b.constructors.addAll(
-          [
-            Constructor((b) => b..constant = true),
-          ],
-        );
-      },
-    );
-
-    final subClasses = <Spec>[];
-
-    for (final (i, item) in symbol.types.indexed) {
-      final clazz = Class(
-        (b) {
-          final name = '$baseClassType$i';
-
-          b
-            ..name = name
-            ..modifier = ClassModifier.final$
-            ..extend = refer(baseClassType)
-            ..constructors.add(
-              Constructor((b) => b..constant = true),
-            );
-        },
-      );
-
-      subClasses.add(clazz);
-    }
-
-    return [baseClass, ...subClasses];
   }
 
   Spec _generateRequestMethodEnum(List<MetaRequest> requests) => Enum((eb) {

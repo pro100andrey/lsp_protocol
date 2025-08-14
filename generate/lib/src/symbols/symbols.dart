@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import '../../generate.dart';
-import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../utils.dart';
 import 'symbol.dart';
@@ -11,16 +10,10 @@ import 'type_resolver.dart';
 final class Symbols {
   final structuresTable = StructuresTable();
   final typedefsTable = TypedefsTable();
-  final literalsTable = LiteralsTable();
-  final sealedTable = SealedTable();
-  final tuplesTable = TupleTable();
   final enumSymbols = EnumsTable();
 
   void collect(MetaProtocol protocol) {
     _collectTypedefs(protocol);
-    _collectSealed(protocol);
-    _collectTuples(protocol);
-    _collectLiterals(protocol);
     _collectStructures(protocol);
     _collectEnums(protocol);
   }
@@ -71,183 +64,21 @@ final class Symbols {
     }
   }
 
-  void _collectTuples(MetaProtocol protocol) {
-    void addTupleSymbol(TupleRef tupleRef) {
-      final type = tupleRef.resolve();
-
-      final symbol = TupleSymbol(
-        type: type,
-        types: tupleRef.items.map((item) => item.resolve()).toList(),
-      );
-
-      tuplesTable[type] = symbol;
-    }
-
-    for (final structure in protocol.structures) {
-      for (final property in structure.properties) {
-        property.type.onOrRef(
-          (orRef) => orRef.forEachItem(
-            (item) => item.onTupleRef(addTupleSymbol),
-          ),
-        );
-      }
-    }
-  }
-
   void _collectTypedefs(MetaProtocol protocol) {
     for (final typeAlias in protocol.typeAliases) {
-      final type = typeAlias.type.resolve();
+      final definition = switch (typeAlias) {
+        MetaTypeAlias(name: 'LSPAny') => 'Object?',
+        _ => typeAlias.type.resolve(),
+
+      };
+
       final symbol = TypedefSymbol(
         type: typeAlias.name,
-        definition: type,
+        definition: definition,
         doc: typeAlias.documentation.asDoc(),
       );
 
       typedefsTable[typeAlias.name] = symbol;
-    }
-  }
-
-  void _collectSealed(MetaProtocol protocol) {
-    void addSealedSymbol(OrRef orRef) {
-      final type = orRef.resolve();
-
-      final types = orRef.items
-          .map((item) => item.resolve())
-          .toList(growable: false);
-
-      final symbol = SealedSymbol(
-        type: type,
-        types: types,
-      );
-
-      sealedTable[type] = symbol;
-
-      final displayType = indexedType(type);
-
-      print('Added sealed symbol: ${symbol.type} -> $displayType');
-    }
-
-    for (final typeAlias in protocol.typeAliases) {
-      typeAlias.type.onOrRef(addSealedSymbol);
-    }
-
-    for (final structure in protocol.structures) {
-      for (final property in structure.properties) {
-        property.type.onLiteralRef((literalRef) {
-          literalRef.forEachProperty((prop) {
-            prop.type.onOrRef((orRef) {
-              addSealedSymbol(orRef);
-
-              orRef.forEachItem(
-                (item) => item.onLiteralRef(
-                  (literalRef1) => literalRef1.forEachProperty(
-                    (prop1) => prop1.type.onOrRef(addSealedSymbol),
-                  ),
-                ),
-              );
-            });
-          });
-        });
-
-        property.type.onMapRef((mapRef) {
-          mapRef.value.onOrRef(addSealedSymbol);
-        });
-
-        property.type.onOrRef((orRef) {
-          orRef.onOrRef(addSealedSymbol);
-        });
-
-        property.type.onArrayRef((arrayRef) {
-          arrayRef.element.onOrRef(addSealedSymbol);
-        });
-      }
-    }
-  }
-
-  void _collectLiterals(MetaProtocol protocol) {
-    void addLiteralSymbol(LiteralRef ref) {
-      final type = ref.resolve();
-
-      if (literalsTable.containsKey(type)) {
-        return;
-      }
-
-      final properties = ref.value.properties
-          .map(
-            (property) {
-              final propType = property.type.resolve();
-              final dType = indexedType(propType);
-
-              return PropertySymbol(
-                type: dType,
-                name: property.name,
-                optional: property.optional,
-                doc: property.documentation.asDoc(width: 76),
-              );
-            },
-          )
-          .toList(growable: false);
-
-      final sortedProperties = properties
-        ..sort((a, b) {
-          final v1 = '${a.type.upperFirstLetter()}_${a.name}';
-          final v2 = '${b.type.upperFirstLetter()}_${b.name}';
-
-          return v1.compareTo(v2);
-        });
-
-      final symbol = LiteralSymbol(
-        type: type,
-        properties: sortedProperties,
-        doc: 'Represents a literal type for $type.'.asDoc(),
-      );
-
-      literalsTable[type] = symbol;
-
-      print('Added literal symbol: ${symbol.type}');
-    }
-
-    for (final def in protocol.typeAliases) {
-      def.type.onOrRef(
-        (v1) => v1.forEachItem(
-          (v2) => v2.onLiteralRef(addLiteralSymbol),
-        ),
-      );
-    }
-
-    for (final struct in protocol.structures) {
-      for (final property in struct.properties) {
-        property.type.onLiteralRef((literalRef) {
-          for (final prop in literalRef.value.properties) {
-            prop.type.onLiteralRef((innerRef) {
-              final ref = innerRef;
-
-              addLiteralSymbol(ref);
-            });
-
-            prop.type.onOrRef(
-              (orRef) => orRef.forEachItem(
-                (item) => item.onLiteralRef(addLiteralSymbol),
-              ),
-            );
-
-            prop.type.onArrayRef((arrayRef) {
-              arrayRef.element.onLiteralRef((ref) {
-                final r = ref;
-                addLiteralSymbol(r);
-              });
-            });
-          }
-
-          addLiteralSymbol(literalRef);
-        });
-
-        property.type.onOrRef((orRef) {
-          orRef.forEachItem(
-            (v1) => v1.onLiteralRef(addLiteralSymbol),
-          );
-        });
-      }
     }
   }
 
