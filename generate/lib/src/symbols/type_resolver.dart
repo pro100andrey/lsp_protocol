@@ -70,8 +70,29 @@ String resolveBaseType(BaseRef ref) => switch (ref.name) {
 };
 
 String resolveOrRefName(OrRef orRef) {
+  // Handle the special case of an "or" type composed of same literals.
+  if (orRef.items.every((item) => item is LiteralRef)) {
+    final literals = orRef.items.cast<LiteralRef>();
+
+    final parts = literals.map(
+      (l) => l.value.properties.map((prop) => prop.type.resolve()).join(),
+    );
+
+    final setParts = parts.toSet();
+
+    if (setParts.length == 1 && parts.length > 1) {
+      final definition = resolveLiteralType(
+        literals.first,
+        forceOptional: true,
+      );
+
+      return definition;
+    }
+  }
+
   final parts = orRef.items.map(resolveType).toList(growable: false);
 
+  // Handle optional types which are represented as a type and 'Null'.
   switch (parts) {
     case [final type, 'Null']:
       return type.optional(optional: true);

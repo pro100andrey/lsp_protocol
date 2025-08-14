@@ -149,77 +149,31 @@ typedef GlobPattern = Or2<Pattern, RelativePattern>;
 /// applies to all package.json paths: `{ language: 'json', pattern:
 /// '**package.json' }`
 /// @since 3.17.0
-typedef TextDocumentFilter =
-    Or3<
-      ({
-        /// A language id, like `typescript`.
-        String language,
+typedef TextDocumentFilter = ({
+  /// A language id, like `typescript`.
+  String? language,
 
-        /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
-        String? scheme,
+  /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
+  String? scheme,
 
-        /// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
-        String? pattern,
-      }),
-      ({
-        /// A language id, like `typescript`.
-        String? language,
-
-        /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
-        String scheme,
-
-        /// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
-        String? pattern,
-      }),
-      ({
-        /// A language id, like `typescript`.
-        String? language,
-
-        /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
-        String? scheme,
-
-        /// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
-        String pattern,
-      })
-    >;
+  /// A glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples.
+  String? pattern,
+});
 
 /// A notebook document filter denotes a notebook document by different
 /// properties. The properties will be match against the notebook's URI (same
 /// as with documents)
 /// @since 3.17.0
-typedef NotebookDocumentFilter =
-    Or3<
-      ({
-        /// The type of the enclosing notebook.
-        String notebookType,
+typedef NotebookDocumentFilter = ({
+  /// The type of the enclosing notebook.
+  String? notebookType,
 
-        /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
-        String? scheme,
+  /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
+  String? scheme,
 
-        /// A glob pattern.
-        String? pattern,
-      }),
-      ({
-        /// The type of the enclosing notebook.
-        String? notebookType,
-
-        /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
-        String scheme,
-
-        /// A glob pattern.
-        String? pattern,
-      }),
-      ({
-        /// The type of the enclosing notebook.
-        String? notebookType,
-
-        /// A Uri {@link Uri.scheme scheme}, like `file` or `untitled`.
-        String? scheme,
-
-        /// A glob pattern.
-        String pattern,
-      })
-    >;
+  /// A glob pattern.
+  String? pattern,
+});
 
 /// The glob pattern to watch relative to the base path. Glob patterns can have
 /// the following syntax: - `*` to match zero or more characters in a path
@@ -5739,24 +5693,14 @@ abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
   const factory NotebookDocumentSyncOptions({
     /// The notebooks to be synced
     required List<
-      Or2<
-        ({
-          /// The notebook to be synced If a string value is provided it matches against
-          /// the notebook type. '*' matches every notebook.
-          Or2<NotebookDocumentFilter, String> notebook,
+      ({
+        /// The notebook to be synced If a string value is provided it matches against
+        /// the notebook type. '*' matches every notebook.
+        Or2<NotebookDocumentFilter, String>? notebook,
 
-          /// The cells of the matching notebook to be synced.
-          List<({String language})>? cells,
-        }),
-        ({
-          /// The notebook to be synced If a string value is provided it matches against
-          /// the notebook type. '*' matches every notebook.
-          Or2<NotebookDocumentFilter, String>? notebook,
-
-          /// The cells of the matching notebook to be synced.
-          List<({String language})> cells,
-        })
-      >
+        /// The cells of the matching notebook to be synced.
+        List<({String language})>? cells,
+      })
     >
     notebookSelector,
 
@@ -5781,24 +5725,14 @@ abstract class NotebookDocumentSyncRegistrationOptions
 
     /// The notebooks to be synced
     required List<
-      Or2<
-        ({
-          /// The notebook to be synced If a string value is provided it matches against
-          /// the notebook type. '*' matches every notebook.
-          Or2<NotebookDocumentFilter, String> notebook,
+      ({
+        /// The notebook to be synced If a string value is provided it matches against
+        /// the notebook type. '*' matches every notebook.
+        Or2<NotebookDocumentFilter, String>? notebook,
 
-          /// The cells of the matching notebook to be synced.
-          List<({String language})>? cells,
-        }),
-        ({
-          /// The notebook to be synced If a string value is provided it matches against
-          /// the notebook type. '*' matches every notebook.
-          Or2<NotebookDocumentFilter, String>? notebook,
-
-          /// The cells of the matching notebook to be synced.
-          List<({String language})> cells,
-        })
-      >
+        /// The cells of the matching notebook to be synced.
+        List<({String language})>? cells,
+      })
     >
     notebookSelector,
 
