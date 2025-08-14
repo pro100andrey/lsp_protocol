@@ -9,8 +9,44 @@ extension MetaReferenceExtensions on MetaReference {
     }
   }
 
-  // When using this extension, you can call the specific on methods
+  TypeKind get typeKind => when(
+    literalRef: (_) => TypeKind.literal,
+    typeRef: (_) => TypeKind.reference,
+    arrayRef: (_) => TypeKind.array,
+    baseRef: (_) => TypeKind.base$,
+    orRef: (_) => TypeKind.or,
+    andRef: (_) => TypeKind.and,
+    mapRef: (_) => TypeKind.map,
+    tupleRef: (_) => TypeKind.tuple,
+    stringLiteralRef: (_) => TypeKind.string,
+  );
 
+  T map<T>(
+    T Function(LiteralRef ref) literalRef,
+    T Function(TypeRef ref) typeRef,
+    T Function(ArrayRef ref) arrayRef,
+    T Function(BaseRef ref) baseRef,
+    T Function(OrRef ref) orRef,
+    T Function(AndRef ref) andRef,
+    T Function(MapRef ref) mapRef,
+    T Function(TupleRef ref) tupleRef,
+    T Function(StringLiteralRef ref) stringLiteralRef,
+  ) {
+    final ref = this;
+    return ref.when(
+      literalRef: literalRef,
+      typeRef: typeRef,
+      arrayRef: arrayRef,
+      baseRef: baseRef,
+      orRef: orRef,
+      andRef: andRef,
+      mapRef: mapRef,
+      tupleRef: tupleRef,
+      stringLiteralRef: stringLiteralRef,
+    );
+  }
+
+  // When using this extension, you can call the specific on methods
   T when<T>({
     T Function(LiteralRef ref)? literalRef,
     T Function(TypeRef ref)? typeRef,
@@ -21,7 +57,7 @@ extension MetaReferenceExtensions on MetaReference {
     T Function(MapRef ref)? mapRef,
     T Function(TupleRef ref)? tupleRef,
     T Function(StringLiteralRef ref)? stringLiteralRef,
-    T Function(MetaReference ref)? orElse,
+    T Function(MetaReference ref)? orElse ,
   }) {
     final ref = this;
     final result = switch (ref) {

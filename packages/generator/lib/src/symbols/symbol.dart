@@ -1,7 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 sealed class Symbol extends Equatable {
-  const Symbol();
+  const Symbol({this.ref});
+
+  final Object? ref;
 
   @override
   List<Object?> get props => throw UnimplementedError(
@@ -33,6 +35,7 @@ class TypedefSymbol extends Symbol {
     required this.type,
     required this.definition,
     required this.doc,
+    super.ref,
   });
 
   final String type;

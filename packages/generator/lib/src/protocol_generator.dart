@@ -173,7 +173,7 @@ final class ProtocolGenerator {
                         );
 
                         if (field.converter != null) {
-                          b.annotations.add(refer(' ${field.converter}()'));
+                          b.annotations.add(refer(field.converter!));
                         }
 
                         b

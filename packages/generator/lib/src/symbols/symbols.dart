@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import '../../generator.dart';
+import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import 'symbol.dart';
 import 'symbols_table.dart';
@@ -74,6 +75,7 @@ final class Symbols {
         type: typeAlias.name,
         definition: definition,
         doc: typeAlias.documentation.asDoc(),
+        ref: typeAlias.type,
       );
 
       typedefsTable[typeAlias.name] = symbol;
@@ -95,18 +97,12 @@ final class Symbols {
             (property) {
               final type = property.type.resolve();
 
-              final isTypeDef = typedefsTable.containsKey(type);
-
-              final converter = isTypeDef && type != 'LSPAny'
-                  ? '${type}Converter'
-                  : null;
-
               return PropertySymbol(
                 type: type,
                 name: property.name,
                 optional: property.optional,
                 doc: property.documentation.asDoc(width: 76),
-                converter: converter,
+                converter: _getConverter(property),
               );
             },
           )
@@ -120,6 +116,28 @@ final class Symbols {
 
       structuresTable[struct.name] = structureSymbol;
     }
+  }
+
+  String? _getConverter(MetaProperty property) {
+    final type = property.type.resolve();
+    final kind = property.type.kind;
+    final typeDef = typedefsTable[type];
+
+    var orRef = switch (typedefsTable[type]?.ref) {
+      OrRef() => '${type}Converter()',
+      _ => null,
+    };
+
+    orRef = property.type.when(orRef: (ref) => '${type}Converter()');
+
+    if (orRef != null) {
+      print('Using converter for $type: $orRef');
+    }
+
+    final needConverter = typeDef != null && type != 'LSPAny';
+
+    final converter = needConverter ? 'SealedConverter()' : null;
+    return converter;
   }
 
   Iterable<MetaProperty> getAllProperties(

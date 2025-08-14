@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
+
 @freezed
 abstract class MetaProtocol with _$MetaProtocol {
   const factory MetaProtocol({
