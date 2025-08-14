@@ -271,7 +271,7 @@ abstract class ImplementationRegistrationOptions
   const factory ImplementationRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -310,7 +310,7 @@ abstract class TypeDefinitionRegistrationOptions
   const factory TypeDefinitionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -402,7 +402,7 @@ abstract class DocumentColorRegistrationOptions
   const factory DocumentColorRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -479,7 +479,7 @@ abstract class TextDocumentRegistrationOptions
   const factory TextDocumentRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
   }) = _TextDocumentRegistrationOptions;
 
   factory TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -552,7 +552,7 @@ abstract class FoldingRangeRegistrationOptions
   const factory FoldingRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -590,7 +590,7 @@ abstract class DeclarationRegistrationOptions
   const factory DeclarationRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -647,7 +647,7 @@ abstract class SelectionRangeRegistrationOptions
   const factory SelectionRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -749,7 +749,7 @@ abstract class CallHierarchyRegistrationOptions
   const factory CallHierarchyRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -896,7 +896,7 @@ abstract class SemanticTokensRegistrationOptions
   const factory SemanticTokensRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// Server supports providing semantic tokens for a full document.
     Or2<
@@ -905,7 +905,7 @@ abstract class SemanticTokensRegistrationOptions
         bool? delta,
       }),
       bool
-    >?
+    >
     full,
 
     /// The id used to register the request. The id can be used to deregister
@@ -1082,7 +1082,7 @@ abstract class LinkedEditingRangeRegistrationOptions
   const factory LinkedEditingRangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1250,7 +1250,7 @@ abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
   const factory MonikerRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
   }) = _MonikerRegistrationOptions;
 
   factory MonikerRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -1323,7 +1323,7 @@ abstract class TypeHierarchyRegistrationOptions
   const factory TypeHierarchyRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1405,7 +1405,7 @@ abstract class InlineValueRegistrationOptions
   const factory InlineValueRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1492,7 +1492,7 @@ abstract class InlayHintRegistrationOptions
   const factory InlayHintRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1573,7 +1573,7 @@ abstract class DiagnosticRegistrationOptions
   const factory DiagnosticRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1797,7 +1797,7 @@ abstract class InlineCompletionRegistrationOptions
   const factory InlineCompletionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The id used to register the request. The id can be used to deregister
     /// the request again. See also Registration#id.
@@ -1843,7 +1843,7 @@ abstract class InitializeParams with _$InitializeParams {
 
       /// The client's version as defined by the client.
       String? version,
-    })?
+    })
     clientInfo,
 
     /// User provided initialization options.
@@ -1859,16 +1859,16 @@ abstract class InitializeParams with _$InitializeParams {
     /// The process Id of the parent process that started the server.
     /// Is `null` if the process has not been started by another process. If
     /// the parent process is not alive then the server should exit.
-    required Or2<Null, int> processId,
+    required int? processId,
 
     /// The rootPath of the workspace. Is null if no folder is open.
     /// @deprecated in favour of rootUri.
-    Or2<Null, String>? rootPath,
+    String? rootPath,
 
     /// The rootUri of the workspace. Is null if no folder is open. If both
     /// `rootPath` and `rootUri` are set `rootUri` wins.
     /// @deprecated in favour of workspaceFolders.
-    required Or2<Null, String> rootUri,
+    required String? rootUri,
 
     /// The initial trace setting. If omitted trace is disabled ('off').
     TraceValues? trace,
@@ -1878,7 +1878,7 @@ abstract class InitializeParams with _$InitializeParams {
     /// folders. It can be `null` if the client supports workspace folders but
     /// none are configured.
     /// @since 3.6.0
-    Or2<List<WorkspaceFolder>, Null>? workspaceFolders,
+    List<WorkspaceFolder>? workspaceFolders,
   }) = _InitializeParams;
 
   factory InitializeParams.fromJson(Map<String, dynamic> json) =>
@@ -1900,7 +1900,7 @@ abstract class InitializeResult with _$InitializeResult {
 
       /// The server's version as defined by the server.
       String? version,
-    })?
+    })
     serverInfo,
   }) = _InitializeResult;
 
@@ -2060,7 +2060,7 @@ abstract class TextDocumentChangeRegistrationOptions
   const factory TextDocumentChangeRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// How documents are synced to the server.
     required TextDocumentSyncKind syncKind,
@@ -2106,7 +2106,7 @@ abstract class TextDocumentSaveRegistrationOptions
   const factory TextDocumentSaveRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The client is supposed to include the content on save.
     bool? includeText,
@@ -2393,7 +2393,7 @@ abstract class CompletionList with _$CompletionList {
       /// A default data value.
       /// @since 3.17.0
       LSPAny? data,
-    })?
+    })
     itemDefaults,
 
     /// The completion items.
@@ -2427,12 +2427,12 @@ abstract class CompletionRegistrationOptions
       /// call.
       /// @since 3.17.0
       bool? labelDetailsSupport,
-    })?
+    })
     completionItem,
 
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The server provides support to resolve additional information for a
     /// completion item.
@@ -2493,7 +2493,7 @@ abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
   const factory HoverRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
   }) = _HoverRegistrationOptions;
 
   factory HoverRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2562,7 +2562,7 @@ abstract class SignatureHelpRegistrationOptions
   const factory SignatureHelpRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// List of characters that re-trigger signature help.
     /// These trigger characters are only active when signature help is already
@@ -2609,7 +2609,7 @@ abstract class DefinitionRegistrationOptions
   const factory DefinitionRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
   }) = _DefinitionRegistrationOptions;
 
   factory DefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2647,7 +2647,7 @@ abstract class ReferenceRegistrationOptions
   const factory ReferenceRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
   }) = _ReferenceRegistrationOptions;
 
   factory ReferenceRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2700,7 +2700,7 @@ abstract class DocumentHighlightRegistrationOptions
   const factory DocumentHighlightRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
   }) = _DocumentHighlightRegistrationOptions;
 
   factory DocumentHighlightRegistrationOptions.fromJson(
@@ -2820,7 +2820,7 @@ abstract class DocumentSymbolRegistrationOptions
   const factory DocumentSymbolRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// A human-readable string that is shown when multiple outlines trees are
     /// shown for the same document.
@@ -2956,7 +2956,7 @@ abstract class CodeActionRegistrationOptions
 
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// The server provides support to resolve additional information for a
     /// code action.
@@ -3092,7 +3092,7 @@ abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
   const factory CodeLensRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// Code lens has a resolve provider as well.
     bool? resolveProvider,
@@ -3157,7 +3157,7 @@ abstract class DocumentLinkRegistrationOptions
   const factory DocumentLinkRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// Document links have a resolve provider as well.
     bool? resolveProvider,
@@ -3192,7 +3192,7 @@ abstract class DocumentFormattingRegistrationOptions
   const factory DocumentFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
   }) = _DocumentFormattingRegistrationOptions;
 
   factory DocumentFormattingRegistrationOptions.fromJson(
@@ -3229,7 +3229,7 @@ abstract class DocumentRangeFormattingRegistrationOptions
   const factory DocumentRangeFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// Whether the server supports formatting multiple ranges at once.
     /// @since 3.18.0 @proposed
@@ -3299,7 +3299,7 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
   const factory DocumentOnTypeFormattingRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// A character on which formatting should be triggered, like `{`.
     required String firstTriggerCharacter,
@@ -3341,7 +3341,7 @@ abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
   const factory RenameRegistrationOptions({
     /// A document selector to identify the scope of the registration. If set
     /// to null the document selector provided on the client side will be used.
-    required Or2<DocumentSelector, Null> documentSelector,
+    required DocumentSelector? documentSelector,
 
     /// Renames should be checked and tested before being executed.
     /// @since version 3.12.0
@@ -3847,7 +3847,7 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
         bool? delta,
       }),
       bool
-    >?
+    >
     full,
 
     /// The legend used by the server
@@ -4479,7 +4479,7 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
 
         /// Additional closed cell text documents.
         List<TextDocumentIdentifier>? didClose,
-      })?
+      })
       structure,
 
       /// Changes to notebook cells properties like its kind, execution summary or
@@ -4494,7 +4494,7 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
         })
       >?
       textContent,
-    })?
+    })
     cells,
 
     /// The changed meta data if any.
@@ -4621,7 +4621,7 @@ abstract class TInitializeParams with _$TInitializeParams {
 
       /// The client's version as defined by the client.
       String? version,
-    })?
+    })
     clientInfo,
 
     /// User provided initialization options.
@@ -4637,16 +4637,16 @@ abstract class TInitializeParams with _$TInitializeParams {
     /// The process Id of the parent process that started the server.
     /// Is `null` if the process has not been started by another process. If
     /// the parent process is not alive then the server should exit.
-    required Or2<Null, int> processId,
+    required int? processId,
 
     /// The rootPath of the workspace. Is null if no folder is open.
     /// @deprecated in favour of rootUri.
-    Or2<Null, String>? rootPath,
+    String? rootPath,
 
     /// The rootUri of the workspace. Is null if no folder is open. If both
     /// `rootPath` and `rootUri` are set `rootUri` wins.
     /// @deprecated in favour of workspaceFolders.
-    required Or2<Null, String> rootUri,
+    required String? rootUri,
 
     /// The initial trace setting. If omitted trace is disabled ('off').
     TraceValues? trace,
@@ -4668,7 +4668,7 @@ abstract class WorkspaceFoldersInitializeParams
     /// folders. It can be `null` if the client supports workspace folders but
     /// none are configured.
     /// @since 3.6.0
-    Or2<List<WorkspaceFolder>, Null>? workspaceFolders,
+    List<WorkspaceFolder>? workspaceFolders,
   }) = _WorkspaceFoldersInitializeParams;
 
   factory WorkspaceFoldersInitializeParams.fromJson(
@@ -4825,7 +4825,7 @@ abstract class ServerCapabilities with _$ServerCapabilities {
       /// The server is interested in notifications/requests for operations on files.
       /// @since 3.16.0
       FileOperationOptions? fileOperations,
-    })?
+    })
     workspace,
 
     /// The server provides workspace symbol support.
@@ -5022,7 +5022,7 @@ abstract class CompletionOptions with _$CompletionOptions {
       /// call.
       /// @since 3.17.0
       bool? labelDetailsSupport,
-    })?
+    })
     completionItem,
 
     /// The server provides support to resolve additional information for a
@@ -5427,7 +5427,7 @@ abstract class OptionalVersionedTextDocumentIdentifier
     /// before) the server can send `null` to indicate that the version is
     /// unknown and the content on disk is the truth (as specified with
     /// document content ownership).
-    required Or2<Null, int> version,
+    required int? version,
   }) = _OptionalVersionedTextDocumentIdentifier;
 
   factory OptionalVersionedTextDocumentIdentifier.fromJson(
@@ -5568,7 +5568,7 @@ abstract class WorkspaceFullDocumentDiagnosticReport
 
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
-    required Or2<Null, int> version,
+    required int? version,
   }) = _WorkspaceFullDocumentDiagnosticReport;
 
   factory WorkspaceFullDocumentDiagnosticReport.fromJson(
@@ -5596,7 +5596,7 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
 
     /// The version number for which the diagnostics are reported. If the
     /// document is not marked as open `null` can be provided.
-    required Or2<Null, int> version,
+    required int? version,
   }) = _WorkspaceUnchangedDocumentDiagnosticReport;
 
   factory WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
@@ -6277,7 +6277,7 @@ abstract class WorkspaceEditClientCapabilities
       /// Whether the client groups edits with equal labels into tree nodes, for
       /// instance all edits labelled with "Changes in Strings" would be a tree node.
       bool? groupsOnLabel,
-    })?
+    })
     changeAnnotationSupport,
 
     /// The client supports versioned document changes in `WorkspaceEdit`s
@@ -6365,7 +6365,7 @@ abstract class WorkspaceSymbolClientCapabilities
       /// If this property is not present the client only supports the symbol kinds
       /// from `File` to `Array` as defined in the initial version of the protocol.
       List<SymbolKind>? valueSet,
-    })?
+    })
     symbolKind,
 
     /// The client supports tags on `SymbolInformation`. Clients supporting
@@ -6641,7 +6641,7 @@ abstract class CompletionClientCapabilities
       /// `CompletionItemLabelDetails`).
       /// @since 3.17.0
       bool? labelDetailsSupport,
-    })?
+    })
     completionItem,
     ({
       /// The completion item kind values the client supports. When this property
@@ -6651,7 +6651,7 @@ abstract class CompletionClientCapabilities
       /// items kinds from `Text` to `Reference` as defined in the initial version of
       /// the protocol.
       List<CompletionItemKind>? valueSet,
-    })?
+    })
     completionItemKind,
 
     /// The client supports the following `CompletionList` specific
@@ -6664,7 +6664,7 @@ abstract class CompletionClientCapabilities
       /// supported.
       /// @since 3.17.0
       List<String>? itemDefaults,
-    })?
+    })
     completionList,
 
     /// The client supports to send additional context information for a
@@ -6728,14 +6728,14 @@ abstract class SignatureHelpClientCapabilities
         /// string.
         /// @since 3.14.0
         bool? labelOffsetSupport,
-      })?
+      })
       parameterInformation,
 
       /// The client supports the `activeParameter` property on
       /// `SignatureInformation` literal.
       /// @since 3.16.0
       bool? activeParameterSupport,
-    })?
+    })
     signatureInformation,
   }) = _SignatureHelpClientCapabilities;
 
@@ -6870,7 +6870,7 @@ abstract class DocumentSymbolClientCapabilities
       /// If this property is not present the client only supports the symbol kinds
       /// from `File` to `Array` as defined in the initial version of the protocol.
       List<SymbolKind>? valueSet,
-    })?
+    })
     symbolKind,
 
     /// The client supports tags on `SymbolInformation`. Tags are supported on
@@ -7081,7 +7081,7 @@ abstract class FoldingRangeClientCapabilities
       /// folding ranges to display custom labels instead of the default text.
       /// @since 3.17.0
       bool? collapsedText,
-    })?
+    })
     foldingRange,
 
     /// Specific options for the folding range kind.
@@ -7091,7 +7091,7 @@ abstract class FoldingRangeClientCapabilities
       /// exists the client also guarantees that it will handle values outside its
       /// set gracefully and falls back to a default value when unknown.
       List<FoldingRangeKind>? valueSet,
-    })?
+    })
     foldingRangeKind,
 
     /// If set, the client signals that it only supports folding complete
@@ -7230,7 +7230,7 @@ abstract class SemanticTokensClientCapabilities
           bool? delta,
         }),
         bool
-      >?
+      >
       full,
     })
     requests,
@@ -7405,7 +7405,7 @@ abstract class ShowMessageRequestClientCapabilities
       /// Whether the client supports additional attributes which are preserved and
       /// send back to the server in the request's response.
       bool? additionalPropertiesSupport,
-    })?
+    })
     messageActionItem,
   }) = _ShowMessageRequestClientCapabilities;
 

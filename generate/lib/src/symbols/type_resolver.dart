@@ -72,10 +72,10 @@ String resolveBaseType(BaseRef ref) => switch (ref.name) {
 String resolveOrRefName(OrRef orRef) {
   final parts = orRef.items.map(resolveType).toList(growable: false);
 
-  // if (parts case [final type, 'Null']) {
-  //   // If the last item is Null, we can just return the type without 'OrNull'
-  //   return type;
-  // }
+  switch (parts) {
+    case [final type, 'Null']:
+      return type.optional(optional: true);
+  }
 
   final sortedParts = parts.sorted((a, b) => a.compareTo(b));
   final rawName = sortedParts.join(',');
@@ -83,11 +83,13 @@ String resolveOrRefName(OrRef orRef) {
   return 'Or${parts.length}<$rawName>';
 }
 
-String resolveLiteralType(LiteralRef ref) {
+String resolveLiteralType(LiteralRef ref, {bool forceOptional = false}) {
   final buffer = StringBuffer();
 
   for (final prop in ref.value.properties) {
-    final type = prop.type.resolve().optional(optional: prop.optional);
+    final type = prop.type.resolve().optional(
+      optional: prop.optional || forceOptional,
+    );
 
     prop.documentation.asDoc().forEach(buffer.writeln);
 
