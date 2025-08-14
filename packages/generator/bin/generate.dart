@@ -16,28 +16,24 @@ Future<void> main(List<String> args) async {
   }
 
   final metaProtocol = await downloadAndParseLSP();
-
   const generator = ProtocolGenerator();
   final code = generator.generate(metaProtocol);
 
-  final outputFile = resolvePath(
-    '../lsp_protocol/lib/src/generated/protocol.dart',
-  );
+  const wd = '../lsp_protocol';
+  final outputFile = resolvePath('$wd/lib/src/generated/protocol.dart');
   await createDirectoryForFilePath(outputFile);
   await writeToFile(code, outputFile);
-
-  await runBuildRunner();
-
+  await _runBuildRunner(wd);
   await cleanUpDownloads(skip: true);
 }
 
-Future<void> runBuildRunner() async {
+Future<void> _runBuildRunner(String wd) async {
   final result = await Process.run('dart', [
     'run',
     'build_runner',
     'build',
     '-d',
-  ], workingDirectory: '../lsp_protocol');
+  ], workingDirectory: wd);
 
   if (result.exitCode == 0) {
     print(result.stdout);
