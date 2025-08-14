@@ -14,6 +14,7 @@ class PropertySymbol extends Symbol {
     required this.name,
     required this.type,
     required this.optional,
+    required this.converter,
     required this.doc,
   });
 
@@ -21,6 +22,7 @@ class PropertySymbol extends Symbol {
   final String type;
   final bool optional;
   final List<String> doc;
+  final String? converter;
 
   @override
   List<Object?> get props => [name, type, optional, doc];
@@ -39,49 +41,6 @@ class TypedefSymbol extends Symbol {
 
   @override
   List<Object?> get props => [type, definition, doc];
-}
-
-class LiteralSymbol extends Symbol {
-  const LiteralSymbol({
-    required this.type,
-    required this.properties,
-    required this.doc,
-  });
-
-  final String type;
-  final List<PropertySymbol> properties;
-  final List<String> doc;
-
-  @override
-  List<Object?> get props => [type, properties, doc];
-}
-
-class TupleSymbol extends Symbol {
-  const TupleSymbol({
-    required this.type,
-    required this.types,
-  });
-  final String type;
-  final List<String> types;
-
-  @override
-  List<Object?> get props => [type, types];
-}
-
-class SealedSymbol extends Symbol {
-  const SealedSymbol({
-    required this.type,
-    required this.types,
-    this.doc,
-  });
-
-  final String type;
-
-  final List<String> types;
-  final String? doc;
-
-  @override
-  List<Object?> get props => [type, types, doc];
 }
 
 class StructureSymbol extends Symbol {

@@ -15,15 +15,13 @@ Future<void> main(List<String> args) async {
     return;
   }
 
-  final metaProtocol = await downloadAndParseLSP();
-  const generator = ProtocolGenerator();
-  final code = generator.generate(metaProtocol);
+  final workDir = argsResult['work_dir'] as String;
+  final code = const ProtocolGenerator().generate(await downloadAndParseLSP());
 
-  const wd = '../lsp_protocol';
-  final outputFile = resolvePath('$wd/lib/src/generated/protocol.dart');
+  final outputFile = resolvePath('$workDir/lib/src/generated/protocol.dart');
   await createDirectoryForFilePath(outputFile);
   await writeToFile(code, outputFile);
-  await _runBuildRunner(wd);
+  await _runBuildRunner(workDir);
   await cleanUpDownloads(skip: true);
 }
 
@@ -39,14 +37,20 @@ Future<void> _runBuildRunner(String wd) async {
     print(result.stdout);
     print('✅ build_runner completed successfully');
   } else {
-    print(result.stderr);
+    print(result.stderr.toString().isEmpty ? result.stdout : result.stderr);
     print('❌ build_runner failed with exit code ${result.exitCode}');
   }
 }
 
 ArgParser _argParser() {
   final parser = ArgParser()
-    ..addFlag('help', abbr: 'h', help: 'Show this help message');
+    ..addFlag('help', abbr: 'h', help: 'Show this help message')
+    ..addOption(
+      'work_dir',
+      abbr: 'w',
+      help: 'The working directory where the generated code will be placed',
+      defaultsTo: '../lsp_protocol',
+    );
 
   return parser;
 }

@@ -27,6 +27,4 @@ final class StructuresTable extends SymbolTable<StructureSymbol> {}
 
 final class TypedefsTable extends SymbolTable<TypedefSymbol> {}
 
-final class SealedTable extends SymbolTable<SealedSymbol> {}
-
 final class EnumsTable extends SymbolTable<EnumSymbol> {}

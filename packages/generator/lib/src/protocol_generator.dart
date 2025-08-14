@@ -172,6 +172,10 @@ final class ProtocolGenerator {
                           optional: field.optional,
                         );
 
+                        if (field.converter != null) {
+                          b.annotations.add(refer(' ${field.converter}()'));
+                        }
+
                         b
                           ..docs.addAll(field.doc)
                           ..name = field.name

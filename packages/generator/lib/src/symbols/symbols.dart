@@ -90,18 +90,27 @@ final class Symbols {
     for (final struct in structuresByName.values) {
       // Contains duplicated properties
       final allProperties = getAllProperties(struct, structuresByName);
-      final properties = allProperties.map(
-        (property) {
-          final type = property.type.resolve();
+      final properties = allProperties
+          .map(
+            (property) {
+              final type = property.type.resolve();
 
-          return PropertySymbol(
-            type: type,
-            name: property.name,
-            optional: property.optional,
-            doc: property.documentation.asDoc(width: 76),
-          );
-        },
-      ).toList();
+              final isTypeDef = typedefsTable.containsKey(type);
+
+              final converter = isTypeDef && type != 'LSPAny'
+                  ? '${type}Converter'
+                  : null;
+
+              return PropertySymbol(
+                type: type,
+                name: property.name,
+                optional: property.optional,
+                doc: property.documentation.asDoc(width: 76),
+                converter: converter,
+              );
+            },
+          )
+          .toList(growable: false);
 
       final structureSymbol = StructureSymbol(
         name: struct.name,
@@ -127,7 +136,7 @@ final class Symbols {
       for (final prop in struct.properties) prop.name: prop, // overrides
     };
 
-    final sorted = resultMap.values.toList()
+    final sorted = resultMap.values.toList(growable: false)
       ..sort((a, b) => a.name.compareTo(b.name));
 
     final seen = <String>{};
