@@ -16,7 +16,7 @@ class PropertySymbol extends Symbol {
     required this.name,
     required this.type,
     required this.optional,
-    required this.converter,
+   
     required this.doc,
   });
 
@@ -24,7 +24,7 @@ class PropertySymbol extends Symbol {
   final String type;
   final bool optional;
   final List<String> doc;
-  final String? converter;
+ 
 
   @override
   List<Object?> get props => [name, type, optional, doc];

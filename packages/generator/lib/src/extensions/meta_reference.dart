@@ -10,15 +10,15 @@ extension MetaReferenceExtensions on MetaReference {
   }
 
   TypeKind get typeKind => when(
-    literalRef: (_) => TypeKind.literal,
-    typeRef: (_) => TypeKind.reference,
-    arrayRef: (_) => TypeKind.array,
-    baseRef: (_) => TypeKind.base$,
-    orRef: (_) => TypeKind.or,
-    andRef: (_) => TypeKind.and,
-    mapRef: (_) => TypeKind.map,
-    tupleRef: (_) => TypeKind.tuple,
-    stringLiteralRef: (_) => TypeKind.string,
+    literalRef: (_) => .literal,
+    typeRef: (_) => .reference,
+    arrayRef: (_) => .array,
+    baseRef: (_) => .base$,
+    orRef: (_) => .or,
+    andRef: (_) => .and,
+    mapRef: (_) => .map,
+    tupleRef: (_) => .tuple,
+    stringLiteralRef: (_) => .string,
   );
 
   T map<T>(

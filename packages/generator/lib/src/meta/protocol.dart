@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'protocol.freezed.dart';
 part 'protocol.g.dart';
 
-
 @freezed
 abstract class MetaProtocol with _$MetaProtocol {
   const factory MetaProtocol({
@@ -236,17 +235,42 @@ enum TypeKind {
   and('and'),
   reference('reference'),
   string('stringLiteral'),
-  tuple('tuple');
+  tuple('tuple')
+  ;
 
   const TypeKind(this.kind);
   final String kind;
+
+  String get name {
+    switch (this) {
+      case TypeKind.array:
+        return 'List';
+      case TypeKind.base$:
+        return 'Base';
+      case TypeKind.literal:
+        return 'Literal';
+      case TypeKind.map:
+        return 'Map';
+      case TypeKind.or:
+        return 'Or';
+      case TypeKind.and:
+        return 'And';
+      case TypeKind.reference:
+        return 'Reference';
+      case TypeKind.string:
+        return 'StringLiteral';
+      case TypeKind.tuple:
+        return 'Tuple';
+    }
+  }
 }
 
 @JsonEnum(valueField: 'messageDirection')
 enum MessageDirection {
   both('both'),
   clientToServer('clientToServer'),
-  serverToClient('serverToClient');
+  serverToClient('serverToClient')
+  ;
 
   const MessageDirection(this.messageDirection);
   final String messageDirection;

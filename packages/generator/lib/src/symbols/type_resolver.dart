@@ -1,10 +1,16 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 
 import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import '../meta/protocol.dart';
 
+
+
+
 String resolveType(MetaReference ref) {
+
   final result = ref.when(
     literalRef: resolveLiteralType,
     typeRef: (ref) => ref.name,
@@ -66,6 +72,13 @@ String resolveBaseType(BaseRef ref) => switch (ref.name) {
 };
 
 String resolveOrRefName(OrRef orRef) {
+  // final items = orRef.items;
+  // final isOptional = items.any(
+  //   (item) => item is BaseRef && item.name == 'null',
+  // );
+
+  // log('isOptional: $isOptional, items: $items'); // for debugging
+
   // Handle the special case of an "or" type composed of same literals.
   if (orRef.items.every((item) => item is LiteralRef)) {
     final literals = orRef.items.cast<LiteralRef>();

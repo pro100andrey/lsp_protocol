@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
@@ -22,24 +20,24 @@ final class ProtocolGenerator {
         b.body.addAll(_generateFreezedHeader());
         b.body.add(_generateMetadata(protocol.metaData));
 
-        for (final symbol in symbols.typedefsTable.values) {
-          b.body.add(_generateTypedef(symbol));
-        }
+        // for (final symbol in symbols.typedefsTable.values) {
+        //   b.body.add(_generateTypedef(symbol));
+        // }
 
         for (final structure in symbols.structuresTable.values) {
           b.body.add(_generateStructure(structure));
         }
 
-        for (final symbol in symbols.enumSymbols.values) {
-          b.body.add(_generateEnumeration(symbol));
-        }
+        // for (final symbol in symbols.enumSymbols.values) {
+        //   b.body.add(_generateEnumeration(symbol));
+        // }
 
-        b.body.add(_generateRequestMethodEnum(protocol.requests));
-        b.body.add(_generateNotificationMethodEnum(protocol.notifications));
+        // b.body.add(_generateRequestMethodEnum(protocol.requests));
+        // b.body.add(_generateNotificationMethodEnum(protocol.notifications));
 
-        b.body.add(_generateOr(2));
-        b.body.add(_generateOr(3));
-        b.body.add(_generateOr(4));
+        // b.body.add(_generateOr(2));
+        // b.body.add(_generateOr(3));
+        // b.body.add(_generateOr(4));
       },
     );
 
@@ -121,16 +119,16 @@ final class ProtocolGenerator {
 
   List<String> _docs() => [
     '/// Do not edit it manually.',
-    '',
-    '// ignore_for_file: doc_directive_unknown',
-    '// ignore_for_file: always_put_required_named_parameters_first',
+    // '',
+    // '// ignore_for_file: doc_directive_unknown',
+    // '// ignore_for_file: always_put_required_named_parameters_first',
   ];
 
   List<Spec> _generateFreezedHeader() => const [
-    Code('// Freezed header not implemented for generation\n'),
-    Code("import 'package:freezed_annotation/freezed_annotation.dart';"),
-    Code("part 'protocol.freezed.dart';"),
-    Code("part 'protocol.g.dart';"),
+    // Code('// Freezed header not implemented for generation\n'),
+    // Code("import 'package:freezed_annotation/freezed_annotation.dart';"),
+    // Code("part 'protocol.freezed.dart';"),
+    // Code("part 'protocol.g.dart';"),
   ];
 
   Spec _generateMetadata(MetaData metaData) => declareConst(
@@ -171,10 +169,6 @@ final class ProtocolGenerator {
                         final type = field.type.optional(
                           optional: field.optional,
                         );
-
-                        if (field.converter != null) {
-                          b.annotations.add(refer(field.converter!));
-                        }
 
                         b
                           ..docs.addAll(field.doc)

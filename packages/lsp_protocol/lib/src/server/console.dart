@@ -6,7 +6,8 @@ enum _MessageType {
   warn(2),
   info(3),
   log(4),
-  debug(5);
+  debug(5)
+  ;
 
   /// Creates a new [_MessageType] with the given numeric value.
   const _MessageType(this.value);
@@ -45,8 +46,7 @@ class Console {
         'message': message,
       });
     } on Object catch (e) {
-      // ignore: avoid_print
-      print(e);
+      log('Failed to send log message: $e');
     }
   }
 }

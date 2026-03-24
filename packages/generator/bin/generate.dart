@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:io';
 
 import 'package:args/args.dart';
@@ -16,7 +14,8 @@ Future<void> main(List<String> args) async {
   }
 
   final workDir = argsResult['work_dir'] as String;
-  final code = const ProtocolGenerator().generate(await downloadAndParseLSP());
+  final protocol = await downloadAndParseLSP();
+  final code = const ProtocolGenerator().generate(protocol);
 
   final outputFile = resolvePath('$workDir/lib/src/generated/protocol.dart');
   await createDirectoryForFilePath(outputFile);

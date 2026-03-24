@@ -16,9 +16,20 @@
             "name": "Run LSP Server",
             "type": "dart",
             "request": "launch",
-            "program": "${workspaceFolder}/packages/lsp_server/example/server.dart",
+            "program": "${workspaceFolder}/packages/lsp_protocol/example/server.dart",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}/packages/lsp_protocol"
         },
+        {
+            "name": "Run LSP Extension",
+            "type": "extensionHost",
+            "request": "launch",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}/lsp-server-ext"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/lsp-server-ext/out/**/*.js"
+            ]
+        }
     ]
 }

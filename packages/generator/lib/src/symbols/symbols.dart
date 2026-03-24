@@ -1,7 +1,4 @@
-// ignore_for_file: avoid_print
-
 import '../../generator.dart';
-import '../extensions/meta_reference.dart';
 import '../extensions/string.dart';
 import 'symbol.dart';
 import 'symbols_table.dart';
@@ -13,9 +10,27 @@ final class Symbols {
   final enumSymbols = EnumsTable();
 
   void collect(MetaProtocol protocol) {
-    _collectTypedefs(protocol);
+    // _collectTypedefs(protocol);
     _collectStructures(protocol);
-    _collectEnums(protocol);
+    // _collectEnums(protocol);
+  }
+
+  void _collectTypedefs(MetaProtocol protocol) {
+    for (final typeAlias in protocol.typeAliases) {
+      final definition = switch (typeAlias) {
+        MetaTypeAlias(name: 'LSPAny') => 'Object?',
+        _ => typeAlias.type.resolve(),
+      };
+
+      final symbol = TypedefSymbol(
+        type: typeAlias.name,
+        definition: definition,
+        doc: typeAlias.documentation.asDoc(),
+        ref: typeAlias.type,
+      );
+
+      typedefsTable[typeAlias.name] = symbol;
+    }
   }
 
   void _collectEnums(MetaProtocol protocol) {
@@ -64,35 +79,21 @@ final class Symbols {
     }
   }
 
-  void _collectTypedefs(MetaProtocol protocol) {
-    for (final typeAlias in protocol.typeAliases) {
-      final definition = switch (typeAlias) {
-        MetaTypeAlias(name: 'LSPAny') => 'Object?',
-        _ => typeAlias.type.resolve(),
-      };
-
-      final symbol = TypedefSymbol(
-        type: typeAlias.name,
-        definition: definition,
-        doc: typeAlias.documentation.asDoc(),
-        ref: typeAlias.type,
-      );
-
-      typedefsTable[typeAlias.name] = symbol;
-    }
-  }
-
   void _collectStructures(MetaProtocol protocol) {
     final structuresByName = <String, MetaStructure>{};
 
     for (final struct in protocol.structures) {
+      assert(
+        !structuresByName.containsKey(struct.name),
+        'Duplicate structure name found: ${struct.name}',
+      );
+
       structuresByName[struct.name] = struct;
     }
 
     for (final struct in structuresByName.values) {
       // Contains duplicated properties
-      final allProperties = getAllProperties(struct, structuresByName);
-      final properties = allProperties
+      final properties = getAllProperties(struct, structuresByName)
           .map(
             (property) {
               final type = property.type.resolve();
@@ -102,7 +103,6 @@ final class Symbols {
                 name: property.name,
                 optional: property.optional,
                 doc: property.documentation.asDoc(width: 76),
-                converter: _getConverter(property),
               );
             },
           )
@@ -118,51 +118,48 @@ final class Symbols {
     }
   }
 
-  String? _getConverter(MetaProperty property) {
-    final type = property.type.resolve();
-    final kind = property.type.kind;
-    final typeDef = typedefsTable[type];
-
-    var orRef = switch (typedefsTable[type]?.ref) {
-      OrRef() => '${type}Converter()',
-      _ => null,
-    };
-
-    orRef = property.type.when(orRef: (ref) => '${type}Converter()');
-
-    if (orRef != null) {
-      print('Using converter for $type: $orRef');
-    }
-
-    final needConverter = typeDef != null && type != 'LSPAny';
-
-    final converter = needConverter ? 'SealedConverter()' : null;
-    return converter;
-  }
-
   Iterable<MetaProperty> getAllProperties(
     MetaStructure struct,
     Map<String, MetaStructure> structsByName,
   ) {
-    final inheritedProps = [
-      for (final ref in [...struct.extends$, ...struct.mixins$].cast<TypeRef>())
-        ...structsByName[ref.name]!.properties,
+    final mixinsList = struct.mixins$.cast<TypeRef>();
+    final extendsList = struct.extends$.cast<TypeRef>();
+
+    final extendsProperties = [
+      for (final ref in extendsList) ...structsByName[ref.name]!.properties,
     ];
 
-    final resultMap = {
-      for (final prop in inheritedProps) prop.name: prop,
-      for (final prop in struct.properties) prop.name: prop, // overrides
-    };
+    final mixinsProperties = [
+      for (final ref in mixinsList) ...structsByName[ref.name]!.properties,
+    ];
 
-    final sorted = resultMap.values.toList(growable: false)
-      ..sort((a, b) => a.name.compareTo(b.name));
+    final structProperties = struct.properties;
 
-    final seen = <String>{};
-    for (final prop in sorted) {
-      if (!seen.add(prop.name)) {
+    final result = <String, MetaProperty>{};
+
+    for (final prop in extendsProperties) {
+      if (result.containsKey(prop.name)) {
         throw Exception('Duplicate property name found: ${prop.name}');
       }
+      result[prop.name] = prop;
     }
+
+    for (final prop in mixinsProperties) {
+      if (result.containsKey(prop.name)) {
+        throw Exception('Duplicate property name found: ${prop.name}');
+      }
+      result[prop.name] = prop;
+    }
+
+    for (final prop in structProperties) {
+      if (result.containsKey(prop.name)) {
+        throw Exception('Duplicate property name found: ${prop.name}');
+      }
+      result[prop.name] = prop;
+    }
+
+    final sorted = result.values.toList(growable: false)
+      ..sort((a, b) => a.name.compareTo(b.name));
 
     return sorted;
   }
