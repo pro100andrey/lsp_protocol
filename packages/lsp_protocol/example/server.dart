@@ -12,21 +12,62 @@ Future<void> main() async {
 
   await for (final socket in server) {
     print(
-      '[server] Client connected: ${socket.remoteAddress.address}:${socket.remotePort}',
+      '[server] Client connected: '
+      '${socket.remoteAddress.address}:${socket.remotePort}',
     );
+
     final connection = Connection(socket, socket);
 
-    connection.onInitializeRequest((params) async {
-      print('[server] >>> onInitializeRequest fired!');
-      connection.console.log('Received initialize request.');
+    connection
+      // ── Lifecycle ─────────────────────────────────────────────────
+      ..onInitializeRequest((params) async {
+        print('[server] >>> initialize (${params.clientInfo?['name']})');
+        connection.console.log('Received initialize request.');
 
-      return {};
-    });
+        return InitializeResult(
+          capabilities: ServerCapabilities(
+            textDocumentSync: TextDocumentSyncKind.full.value,
+            diagnosticProvider: const DiagnosticOptions(
+              interFileDependencies: false,
+              workspaceDiagnostics: false,
+            ).toJson(),
+          ),
+          serverInfo: {'name': 'My LSP Server', 'version': '1.0.0'},
+        );
+      })
+      ..onInitializedNotification((_) async {
+        print('[server] >>> initialized');
+        connection.console.info('Server fully initialized.');
+      })
+      ..onShutdownRequest(() async {
+        print('[server] >>> shutdown');
+      })
+      ..onExitNotification(() async {
+        print('[server] >>> exit');
+        await connection.close();
+      })
+      // ── Text document sync ────────────────────────────────────────
+      ..onTextDocumentDidOpenNotification((params) async {
+        final uri = params.textDocument.uri;
+        print('[server] >>> textDocument/didOpen: $uri');
+        connection.console.log('Opened: $uri');
+      })
+      ..onTextDocumentDidChangeNotification((params) async {
+        final uri = params.textDocument.uri;
+        print('[server] >>> textDocument/didChange: $uri');
+      })
+      ..onTextDocumentDidCloseNotification((params) async {
+        final uri = params.textDocument.uri;
+        print('[server] >>> textDocument/didClose: $uri');
+      })
+      // ── Diagnostics ───────────────────────────────────────────────
+      ..onTextDocumentDiagnosticRequest((params) async {
+        final uri = params.textDocument.uri;
+        print('[server] >>> textDocument/diagnostic: $uri');
 
-    connection.onDocumentDiagnosticRequest((uri) async {
-      print('[server] >>> onDocumentDiagnosticRequest: $uri');
-      return []; // пока нет диагностик
-    });
+        // Return an empty full-document diagnostic report.
+        return {'kind': 'full', 'items': <Object?>[]};
+      });
 
     unawaited(connection.listen());
   }

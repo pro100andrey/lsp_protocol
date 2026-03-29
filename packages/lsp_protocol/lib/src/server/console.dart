@@ -1,52 +1,39 @@
 // See https://microsoft.github.io/language-server-protocol/specifications/lsp/3.18/specification/#messageType for levels and values
-import 'connection.dart';
+import 'dart:io';
 
-enum _MessageType {
-  error(1),
-  warn(2),
-  info(3),
-  log(4),
-  debug(5)
-  ;
-
-  /// Creates a new [_MessageType] with the given numeric value.
-  const _MessageType(this.value);
-
-  /// The numeric value of the message type.
-  final int value;
-}
+import '../generated/connection.dart';
+import '../generated/models.dart';
 
 /// Ask the client to log a message in its output console or log system.
 /// Interface for [window/logMessage](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.18/specification/#window_logMessage).
 class Console {
-  Console(Connection connection) : _connection = connection;
+  Console(LspConnection connection) : _connection = connection;
 
-  final Connection _connection;
+  final LspConnection _connection;
 
   /// Ask the client to log an error message.
-  void error(String message) => _send(_MessageType.error.value, message);
+  void error(String message) => _send(MessageType.error, message);
 
   /// Ask the client to log a warning message.
-  void warn(String message) => _send(_MessageType.warn.value, message);
+  void warn(String message) => _send(MessageType.warning, message);
 
   /// Ask the client to log an information message.
-  void info(String message) => _send(_MessageType.info.value, message);
+  void info(String message) => _send(MessageType.info, message);
 
   /// Ask the client to log a message.
-  void log(String message) => _send(_MessageType.log.value, message);
+  void log(String message) => _send(MessageType.log, message);
 
   /// Ask the client to log a debug message. Available since version 3.18.0 of
   /// the LSP specification.
-  void debug(String message) => _send(_MessageType.debug.value, message);
+  void debug(String message) => _send(MessageType.debug, message);
 
-  void _send(int type, String message) {
+  void _send(MessageType type, String message) {
     try {
-      _connection.sendNotification('window/logMessage', {
-        'type': type,
-        'message': message,
-      });
+      _connection.sendWindowLogMessageNotification(
+        LogMessageParams(type: type, message: message),
+      );
     } on Object catch (e) {
-      log('Failed to send log message: $e');
+      stderr.writeln('[lsp] Failed to send log message: $e');
     }
   }
 }

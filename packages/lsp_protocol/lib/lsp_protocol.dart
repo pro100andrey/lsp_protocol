@@ -1,7 +1,4 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
-library;
-
-export 'src/generated/protocol.dart';
+export 'src/generated/connection.dart';
+export 'src/generated/models.dart';
 export 'src/server/connection.dart';
+export 'src/server/console.dart';
