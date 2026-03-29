@@ -1,8 +1,10 @@
 //  GENERATED CODE – DO NOT MODIFY BY HAND
 //  LSP Version: 3.17.0
-//  ignore_for_file: lines_longer_than_80_chars
+//  ignore_for_file: lines_longer_than_80_chars, doc_directive_unknown
 
 import 'dart:async';
+
+import 'models.dart';
 
 /// Abstract LSP connection interface.
 ///
@@ -12,8 +14,6 @@ import 'dart:async';
 /// - serverToClient request      → `send<Name>Request`
 /// - clientToServer notification → `on<Name>Notification`
 /// - serverToClient notification → `send<Name>Notification`
-///
-/// All parameter/result types are Object placeholders.
 abstract interface class LspConnection {
   /// **`textDocument/implementation`** — `clientToServer`
   ///
@@ -22,7 +22,7 @@ abstract interface class LspConnection {
   /// TextDocumentPositionParams} the response is of type {@link Definition} or a
   /// Thenable that resolves to such.
   void onTextDocumentImplementationRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(ImplementationParams params) handler,
   );
 
   /// **`textDocument/typeDefinition`** — `clientToServer`
@@ -32,14 +32,14 @@ abstract interface class LspConnection {
   /// TextDocumentPositionParams} the response is of type {@link Definition} or a
   /// Thenable that resolves to such.
   void onTextDocumentTypeDefinitionRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(TypeDefinitionParams params) handler,
   );
 
   /// **`workspace/workspaceFolders`** — `serverToClient`
   ///
   /// The `workspace/workspaceFolders` is sent from the server to the client to
   /// fetch the open workspace folders.
-  Future<Object?> sendWorkspaceWorkspaceFoldersRequest();
+  Future<List<WorkspaceFolder>?> sendWorkspaceWorkspaceFoldersRequest();
 
   /// **`workspace/configuration`** — `serverToClient`
   ///
@@ -51,7 +51,9 @@ abstract interface class LspConnection {
   /// `workspace/configuration` requests) the server should register for an empty
   /// configuration change event and empty the cache if such an event is
   /// received.
-  Future<Object?> sendWorkspaceConfigurationRequest(Object? params);
+  Future<List<LSPAny>?> sendWorkspaceConfigurationRequest(
+    ConfigurationParams params,
+  );
 
   /// **`textDocument/documentColor`** — `clientToServer`
   ///
@@ -60,7 +62,8 @@ abstract interface class LspConnection {
   /// of type {@link ColorInformation ColorInformation[]} or a Thenable that
   /// resolves to such.
   void onTextDocumentDocumentColorRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<ColorInformation>?> Function(DocumentColorParams params)
+    handler,
   );
 
   /// **`textDocument/colorPresentation`** — `clientToServer`
@@ -69,7 +72,8 @@ abstract interface class LspConnection {
   /// of type {@link ColorPresentationParams} the response is of type {@link
   /// ColorInformation ColorInformation[]} or a Thenable that resolves to such.
   void onTextDocumentColorPresentationRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<ColorPresentation>?> Function(ColorPresentationParams params)
+    handler,
   );
 
   /// **`textDocument/foldingRange`** — `clientToServer`
@@ -78,13 +82,13 @@ abstract interface class LspConnection {
   /// is of type {@link FoldingRangeParams}, the response is of type {@link
   /// FoldingRangeList} or a Thenable that resolves to such.
   void onTextDocumentFoldingRangeRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<FoldingRange>?> Function(FoldingRangeParams params) handler,
   );
 
   /// **`workspace/foldingRange/refresh`** — `serverToClient`
   ///
   /// @since 3.18.0 @proposed
-  Future<Object?> sendWorkspaceFoldingRangeRefreshRequest();
+  Future<void> sendWorkspaceFoldingRangeRefreshRequest();
 
   /// **`textDocument/declaration`** — `clientToServer`
   ///
@@ -94,7 +98,7 @@ abstract interface class LspConnection {
   /// a typed array of {@link DeclarationLink} or a Thenable that resolves to
   /// such.
   void onTextDocumentDeclarationRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(DeclarationParams params) handler,
   );
 
   /// **`textDocument/selectionRange`** — `clientToServer`
@@ -104,14 +108,16 @@ abstract interface class LspConnection {
   /// {@link SelectionRange SelectionRange[]} or a Thenable that resolves to
   /// such.
   void onTextDocumentSelectionRangeRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<SelectionRange>?> Function(SelectionRangeParams params) handler,
   );
 
   /// **`window/workDoneProgress/create`** — `serverToClient`
   ///
   /// The `window/workDoneProgress/create` request is sent from the server to the
   /// client to initiate progress reporting from the server.
-  Future<Object?> sendWindowWorkDoneProgressCreateRequest(Object? params);
+  Future<void> sendWindowWorkDoneProgressCreateRequest(
+    WorkDoneProgressCreateParams params,
+  );
 
   /// **`textDocument/prepareCallHierarchy`** — `clientToServer`
   ///
@@ -120,7 +126,8 @@ abstract interface class LspConnection {
   /// hierarchy.
   /// @since 3.16.0
   void onTextDocumentPrepareCallHierarchyRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<CallHierarchyItem>?> Function(CallHierarchyPrepareParams params)
+    handler,
   );
 
   /// **`callHierarchy/incomingCalls`** — `clientToServer`
@@ -128,7 +135,10 @@ abstract interface class LspConnection {
   /// A request to resolve the incoming calls for a given `CallHierarchyItem`.
   /// @since 3.16.0
   void onCallHierarchyIncomingCallsRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<CallHierarchyIncomingCall>?> Function(
+      CallHierarchyIncomingCallsParams params,
+    )
+    handler,
   );
 
   /// **`callHierarchy/outgoingCalls`** — `clientToServer`
@@ -136,34 +146,37 @@ abstract interface class LspConnection {
   /// A request to resolve the outgoing calls for a given `CallHierarchyItem`.
   /// @since 3.16.0
   void onCallHierarchyOutgoingCallsRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<CallHierarchyOutgoingCall>?> Function(
+      CallHierarchyOutgoingCallsParams params,
+    )
+    handler,
   );
 
   /// **`textDocument/semanticTokens/full`** — `clientToServer`
   ///
   /// @since 3.16.0
   void onTextDocumentSemanticTokensFullRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<SemanticTokens?> Function(SemanticTokensParams params) handler,
   );
 
   /// **`textDocument/semanticTokens/full/delta`** — `clientToServer`
   ///
   /// @since 3.16.0
   void onTextDocumentSemanticTokensFullDeltaRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(SemanticTokensDeltaParams params) handler,
   );
 
   /// **`textDocument/semanticTokens/range`** — `clientToServer`
   ///
   /// @since 3.16.0
   void onTextDocumentSemanticTokensRangeRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<SemanticTokens?> Function(SemanticTokensRangeParams params) handler,
   );
 
   /// **`workspace/semanticTokens/refresh`** — `serverToClient`
   ///
   /// @since 3.16.0
-  Future<Object?> sendWorkspaceSemanticTokensRefreshRequest();
+  Future<void> sendWorkspaceSemanticTokensRefreshRequest();
 
   /// **`window/showDocument`** — `serverToClient`
   ///
@@ -172,14 +185,17 @@ abstract interface class LspConnection {
   /// `https://code.visualstudio.com/` will very likely open the URI in a WEB
   /// browser.
   /// @since 3.16.0
-  Future<Object?> sendWindowShowDocumentRequest(Object? params);
+  Future<ShowDocumentResult?> sendWindowShowDocumentRequest(
+    ShowDocumentParams params,
+  );
 
   /// **`textDocument/linkedEditingRange`** — `clientToServer`
   ///
   /// A request to provide ranges that can be edited together.
   /// @since 3.16.0
   void onTextDocumentLinkedEditingRangeRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<LinkedEditingRanges?> Function(LinkedEditingRangeParams params)
+    handler,
   );
 
   /// **`workspace/willCreateFiles`** — `clientToServer`
@@ -192,7 +208,7 @@ abstract interface class LspConnection {
   /// the content of the file to be created.
   /// @since 3.16.0
   void onWorkspaceWillCreateFilesRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<WorkspaceEdit?> Function(CreateFilesParams params) handler,
   );
 
   /// **`workspace/willRenameFiles`** — `clientToServer`
@@ -202,7 +218,7 @@ abstract interface class LspConnection {
   /// the client.
   /// @since 3.16.0
   void onWorkspaceWillRenameFilesRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<WorkspaceEdit?> Function(RenameFilesParams params) handler,
   );
 
   /// **`workspace/willDeleteFiles`** — `clientToServer`
@@ -211,7 +227,7 @@ abstract interface class LspConnection {
   /// when files were deleted from within the client.
   /// @since 3.16.0
   void onWorkspaceWillDeleteFilesRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<WorkspaceEdit?> Function(DeleteFilesParams params) handler,
   );
 
   /// **`textDocument/moniker`** — `clientToServer`
@@ -220,7 +236,7 @@ abstract interface class LspConnection {
   /// The request parameter is of type {@link TextDocumentPositionParams}. The
   /// response is of type {@link Moniker Moniker[]} or `null`.
   void onTextDocumentMonikerRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<Moniker>?> Function(MonikerParams params) handler,
   );
 
   /// **`textDocument/prepareTypeHierarchy`** — `clientToServer`
@@ -230,7 +246,8 @@ abstract interface class LspConnection {
   /// hierarchy.
   /// @since 3.17.0
   void onTextDocumentPrepareTypeHierarchyRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<TypeHierarchyItem>?> Function(TypeHierarchyPrepareParams params)
+    handler,
   );
 
   /// **`typeHierarchy/supertypes`** — `clientToServer`
@@ -238,7 +255,10 @@ abstract interface class LspConnection {
   /// A request to resolve the supertypes for a given `TypeHierarchyItem`.
   /// @since 3.17.0
   void onTypeHierarchySupertypesRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<TypeHierarchyItem>?> Function(
+      TypeHierarchySupertypesParams params,
+    )
+    handler,
   );
 
   /// **`typeHierarchy/subtypes`** — `clientToServer`
@@ -246,7 +266,10 @@ abstract interface class LspConnection {
   /// A request to resolve the subtypes for a given `TypeHierarchyItem`.
   /// @since 3.17.0
   void onTypeHierarchySubtypesRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<TypeHierarchyItem>?> Function(
+      TypeHierarchySubtypesParams params,
+    )
+    handler,
   );
 
   /// **`textDocument/inlineValue`** — `clientToServer`
@@ -256,13 +279,13 @@ abstract interface class LspConnection {
   /// InlineValue InlineValue[]} or a Thenable that resolves to such.
   /// @since 3.17.0
   void onTextDocumentInlineValueRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<InlineValue>?> Function(InlineValueParams params) handler,
   );
 
   /// **`workspace/inlineValue/refresh`** — `serverToClient`
   ///
   /// @since 3.17.0
-  Future<Object?> sendWorkspaceInlineValueRefreshRequest();
+  Future<void> sendWorkspaceInlineValueRefreshRequest();
 
   /// **`textDocument/inlayHint`** — `clientToServer`
   ///
@@ -271,7 +294,7 @@ abstract interface class LspConnection {
   /// InlayHint[]} or a Thenable that resolves to such.
   /// @since 3.17.0
   void onTextDocumentInlayHintRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<InlayHint>?> Function(InlayHintParams params) handler,
   );
 
   /// **`inlayHint/resolve`** — `clientToServer`
@@ -281,20 +304,21 @@ abstract interface class LspConnection {
   /// InlayHint} or a Thenable that resolves to such.
   /// @since 3.17.0
   void onInlayHintResolveRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<InlayHint?> Function(InlayHint params) handler,
   );
 
   /// **`workspace/inlayHint/refresh`** — `serverToClient`
   ///
   /// @since 3.17.0
-  Future<Object?> sendWorkspaceInlayHintRefreshRequest();
+  Future<void> sendWorkspaceInlayHintRefreshRequest();
 
   /// **`textDocument/diagnostic`** — `clientToServer`
   ///
   /// The document diagnostic request definition.
   /// @since 3.17.0
   void onTextDocumentDiagnosticRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<DocumentDiagnosticReport?> Function(DocumentDiagnosticParams params)
+    handler,
   );
 
   /// **`workspace/diagnostic`** — `clientToServer`
@@ -302,14 +326,17 @@ abstract interface class LspConnection {
   /// The workspace diagnostic request definition.
   /// @since 3.17.0
   void onWorkspaceDiagnosticRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<WorkspaceDiagnosticReport?> Function(
+      WorkspaceDiagnosticParams params,
+    )
+    handler,
   );
 
   /// **`workspace/diagnostic/refresh`** — `serverToClient`
   ///
   /// The diagnostic refresh request definition.
   /// @since 3.17.0
-  Future<Object?> sendWorkspaceDiagnosticRefreshRequest();
+  Future<void> sendWorkspaceDiagnosticRefreshRequest();
 
   /// **`textDocument/inlineCompletion`** — `clientToServer`
   ///
@@ -319,21 +346,23 @@ abstract interface class LspConnection {
   /// resolves to such.
   /// @since 3.18.0 @proposed
   void onTextDocumentInlineCompletionRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(InlineCompletionParams params) handler,
   );
 
   /// **`client/registerCapability`** — `serverToClient`
   ///
   /// The `client/registerCapability` request is sent from the server to the
   /// client to register a new capability handler on the client side.
-  Future<Object?> sendClientRegisterCapabilityRequest(Object? params);
+  Future<void> sendClientRegisterCapabilityRequest(RegistrationParams params);
 
   /// **`client/unregisterCapability`** — `serverToClient`
   ///
   /// The `client/unregisterCapability` request is sent from the server to the
   /// client to unregister a previously registered capability handler on the
   /// client side.
-  Future<Object?> sendClientUnregisterCapabilityRequest(Object? params);
+  Future<void> sendClientUnregisterCapabilityRequest(
+    UnregistrationParams params,
+  );
 
   /// **`initialize`** — `clientToServer`
   ///
@@ -341,20 +370,24 @@ abstract interface class LspConnection {
   /// once as the request after starting up the server. The requests parameter is
   /// of type {@link InitializeParams} the response if of type {@link
   /// InitializeResult} of a Thenable that resolves to such.
-  void onInitializeRequest(Future<Object?> Function(Object? params) handler);
+  void onInitializeRequest(
+    Future<InitializeResult?> Function(InitializeParams params) handler,
+  );
 
   /// **`shutdown`** — `clientToServer`
   ///
   /// A shutdown request is sent from the client to the server. It is sent once
   /// when the client decides to shutdown the server. The only notification that
   /// is sent after a shutdown request is the exit event.
-  void onShutdownRequest(Future<Object?> Function() handler);
+  void onShutdownRequest(Future<void> Function() handler);
 
   /// **`window/showMessageRequest`** — `serverToClient`
   ///
   /// The show message request is sent from the server to the client to show a
   /// message and a set of options actions to the user.
-  Future<Object?> sendWindowShowMessageRequestRequest(Object? params);
+  Future<MessageActionItem?> sendWindowShowMessageRequestRequest(
+    ShowMessageRequestParams params,
+  );
 
   /// **`textDocument/willSaveWaitUntil`** — `clientToServer`
   ///
@@ -365,7 +398,7 @@ abstract interface class LspConnection {
   /// took too long or if a server constantly fails on this request. This is done
   /// to keep the save fast and reliable.
   void onTextDocumentWillSaveWaitUntilRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<TextEdit>?> Function(WillSaveTextDocumentParams params) handler,
   );
 
   /// **`textDocument/completion`** — `clientToServer`
@@ -381,7 +414,7 @@ abstract interface class LspConnection {
   /// `filterText`, `insertText`, and `textEdit`, must not be changed during
   /// resolve.
   void onTextDocumentCompletionRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(CompletionParams params) handler,
   );
 
   /// **`completionItem/resolve`** — `clientToServer`
@@ -390,7 +423,7 @@ abstract interface class LspConnection {
   /// request's parameter is of type {@link CompletionItem} the response is of
   /// type {@link CompletionItem} or a Thenable that resolves to such.
   void onCompletionItemResolveRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<CompletionItem?> Function(CompletionItem params) handler,
   );
 
   /// **`textDocument/hover`** — `clientToServer`
@@ -399,12 +432,12 @@ abstract interface class LspConnection {
   /// request's parameter is of type {@link TextDocumentPosition} the response is
   /// of type {@link Hover} or a Thenable that resolves to such.
   void onTextDocumentHoverRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Hover?> Function(HoverParams params) handler,
   );
 
   /// **`textDocument/signatureHelp`** — `clientToServer`
   void onTextDocumentSignatureHelpRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<SignatureHelp?> Function(SignatureHelpParams params) handler,
   );
 
   /// **`textDocument/definition`** — `clientToServer`
@@ -415,7 +448,7 @@ abstract interface class LspConnection {
   /// a typed array of {@link DefinitionLink} or a Thenable that resolves to
   /// such.
   void onTextDocumentDefinitionRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(DefinitionParams params) handler,
   );
 
   /// **`textDocument/references`** — `clientToServer`
@@ -425,7 +458,7 @@ abstract interface class LspConnection {
   /// ReferenceParams} the response is of type {@link Location Location[]} or a
   /// Thenable that resolves to such.
   void onTextDocumentReferencesRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<Location>?> Function(ReferenceParams params) handler,
   );
 
   /// **`textDocument/documentHighlight`** — `clientToServer`
@@ -435,7 +468,8 @@ abstract interface class LspConnection {
   /// the request response is an array of type {@link DocumentHighlight} or a
   /// Thenable that resolves to such.
   void onTextDocumentDocumentHighlightRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<DocumentHighlight>?> Function(DocumentHighlightParams params)
+    handler,
   );
 
   /// **`textDocument/documentSymbol`** — `clientToServer`
@@ -445,14 +479,14 @@ abstract interface class LspConnection {
   /// {@link SymbolInformation SymbolInformation[]} or a Thenable that resolves
   /// to such.
   void onTextDocumentDocumentSymbolRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(DocumentSymbolParams params) handler,
   );
 
   /// **`textDocument/codeAction`** — `clientToServer`
   ///
   /// A request to provide commands for the given text document and range.
   void onTextDocumentCodeActionRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<Object?>?> Function(CodeActionParams params) handler,
   );
 
   /// **`codeAction/resolve`** — `clientToServer`
@@ -461,7 +495,7 @@ abstract interface class LspConnection {
   /// request's parameter is of type {@link CodeAction} the response is of type
   /// {@link CodeAction} or a Thenable that resolves to such.
   void onCodeActionResolveRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<CodeAction?> Function(CodeAction params) handler,
   );
 
   /// **`workspace/symbol`** — `clientToServer`
@@ -473,7 +507,7 @@ abstract interface class LspConnection {
   /// need to advertise support for WorkspaceSymbols via the client capability
   /// `workspace.symbol.resolveSupport`.
   void onWorkspaceSymbolRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<Object?> Function(WorkspaceSymbolParams params) handler,
   );
 
   /// **`workspaceSymbol/resolve`** — `clientToServer`
@@ -481,34 +515,34 @@ abstract interface class LspConnection {
   /// A request to resolve the range inside the workspace symbol's location.
   /// @since 3.17.0
   void onWorkspaceSymbolResolveRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<WorkspaceSymbol?> Function(WorkspaceSymbol params) handler,
   );
 
   /// **`textDocument/codeLens`** — `clientToServer`
   ///
   /// A request to provide code lens for the given text document.
   void onTextDocumentCodeLensRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<CodeLens>?> Function(CodeLensParams params) handler,
   );
 
   /// **`codeLens/resolve`** — `clientToServer`
   ///
   /// A request to resolve a command for a given code lens.
   void onCodeLensResolveRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<CodeLens?> Function(CodeLens params) handler,
   );
 
   /// **`workspace/codeLens/refresh`** — `serverToClient`
   ///
   /// A request to refresh all code actions
   /// @since 3.16.0
-  Future<Object?> sendWorkspaceCodeLensRefreshRequest();
+  Future<void> sendWorkspaceCodeLensRefreshRequest();
 
   /// **`textDocument/documentLink`** — `clientToServer`
   ///
   /// A request to provide document links
   void onTextDocumentDocumentLinkRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<DocumentLink>?> Function(DocumentLinkParams params) handler,
   );
 
   /// **`documentLink/resolve`** — `clientToServer`
@@ -517,21 +551,22 @@ abstract interface class LspConnection {
   /// request's parameter is of type {@link DocumentLink} the response is of type
   /// {@link DocumentLink} or a Thenable that resolves to such.
   void onDocumentLinkResolveRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<DocumentLink?> Function(DocumentLink params) handler,
   );
 
   /// **`textDocument/formatting`** — `clientToServer`
   ///
   /// A request to format a whole document.
   void onTextDocumentFormattingRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<TextEdit>?> Function(DocumentFormattingParams params) handler,
   );
 
   /// **`textDocument/rangeFormatting`** — `clientToServer`
   ///
   /// A request to format a range in a document.
   void onTextDocumentRangeFormattingRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<TextEdit>?> Function(DocumentRangeFormattingParams params)
+    handler,
   );
 
   /// **`textDocument/rangesFormatting`** — `clientToServer`
@@ -539,21 +574,23 @@ abstract interface class LspConnection {
   /// A request to format ranges in a document.
   /// @since 3.18.0 @proposed
   void onTextDocumentRangesFormattingRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<TextEdit>?> Function(DocumentRangesFormattingParams params)
+    handler,
   );
 
   /// **`textDocument/onTypeFormatting`** — `clientToServer`
   ///
   /// A request to format a document on type.
   void onTextDocumentOnTypeFormattingRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<List<TextEdit>?> Function(DocumentOnTypeFormattingParams params)
+    handler,
   );
 
   /// **`textDocument/rename`** — `clientToServer`
   ///
   /// A request to rename a symbol.
   void onTextDocumentRenameRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<WorkspaceEdit?> Function(RenameParams params) handler,
   );
 
   /// **`textDocument/prepareRename`** — `clientToServer`
@@ -561,7 +598,7 @@ abstract interface class LspConnection {
   /// A request to test and perform the setup necessary for a rename.
   /// @since 3.16 - support for default behavior
   void onTextDocumentPrepareRenameRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<PrepareRenameResult?> Function(PrepareRenameParams params) handler,
   );
 
   /// **`workspace/executeCommand`** — `clientToServer`
@@ -570,20 +607,22 @@ abstract interface class LspConnection {
   /// request might return a workspace edit which the client will apply to the
   /// workspace.
   void onWorkspaceExecuteCommandRequest(
-    Future<Object?> Function(Object? params) handler,
+    Future<LSPAny?> Function(ExecuteCommandParams params) handler,
   );
 
   /// **`workspace/applyEdit`** — `serverToClient`
   ///
   /// A request sent from the server to the client to modified certain resources.
-  Future<Object?> sendWorkspaceApplyEditRequest(Object? params);
+  Future<ApplyWorkspaceEditResult?> sendWorkspaceApplyEditRequest(
+    ApplyWorkspaceEditParams params,
+  );
 
   /// **`workspace/didChangeWorkspaceFolders`** — `clientToServer`
   ///
   /// The `workspace/didChangeWorkspaceFolders` notification is sent from the
   /// client to the server when the workspace folder configuration changes.
   void onWorkspaceDidChangeWorkspaceFoldersNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidChangeWorkspaceFoldersParams params) handler,
   );
 
   /// **`window/workDoneProgress/cancel`** — `clientToServer`
@@ -591,7 +630,7 @@ abstract interface class LspConnection {
   /// The `window/workDoneProgress/cancel` notification is sent from the client
   /// to the server to cancel a progress initiated on the server side.
   void onWindowWorkDoneProgressCancelNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(WorkDoneProgressCancelParams params) handler,
   );
 
   /// **`workspace/didCreateFiles`** — `clientToServer`
@@ -600,7 +639,7 @@ abstract interface class LspConnection {
   /// when files were created from within the client.
   /// @since 3.16.0
   void onWorkspaceDidCreateFilesNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(CreateFilesParams params) handler,
   );
 
   /// **`workspace/didRenameFiles`** — `clientToServer`
@@ -609,7 +648,7 @@ abstract interface class LspConnection {
   /// when files were renamed from within the client.
   /// @since 3.16.0
   void onWorkspaceDidRenameFilesNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(RenameFilesParams params) handler,
   );
 
   /// **`workspace/didDeleteFiles`** — `clientToServer`
@@ -619,7 +658,7 @@ abstract interface class LspConnection {
   /// the client.
   /// @since 3.16.0
   void onWorkspaceDidDeleteFilesNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DeleteFilesParams params) handler,
   );
 
   /// **`notebookDocument/didOpen`** — `clientToServer`
@@ -627,12 +666,12 @@ abstract interface class LspConnection {
   /// A notification sent when a notebook opens.
   /// @since 3.17.0
   void onNotebookDocumentDidOpenNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidOpenNotebookDocumentParams params) handler,
   );
 
   /// **`notebookDocument/didChange`** — `clientToServer`
   void onNotebookDocumentDidChangeNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidChangeNotebookDocumentParams params) handler,
   );
 
   /// **`notebookDocument/didSave`** — `clientToServer`
@@ -640,7 +679,7 @@ abstract interface class LspConnection {
   /// A notification sent when a notebook document is saved.
   /// @since 3.17.0
   void onNotebookDocumentDidSaveNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidSaveNotebookDocumentParams params) handler,
   );
 
   /// **`notebookDocument/didClose`** — `clientToServer`
@@ -648,7 +687,7 @@ abstract interface class LspConnection {
   /// A notification sent when a notebook closes.
   /// @since 3.17.0
   void onNotebookDocumentDidCloseNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidCloseNotebookDocumentParams params) handler,
   );
 
   /// **`initialized`** — `clientToServer`
@@ -656,7 +695,9 @@ abstract interface class LspConnection {
   /// The initialized notification is sent from the client to the server after
   /// the client is fully initialized and the server is allowed to send requests
   /// from the server to the client.
-  void onInitializedNotification(Future<void> Function(Object? params) handler);
+  void onInitializedNotification(
+    Future<void> Function(InitializedParams params) handler,
+  );
 
   /// **`exit`** — `clientToServer`
   ///
@@ -670,26 +711,26 @@ abstract interface class LspConnection {
   /// when the client's configuration has changed. The notification contains the
   /// changed configuration as defined by the language client.
   void onWorkspaceDidChangeConfigurationNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidChangeConfigurationParams params) handler,
   );
 
   /// **`window/showMessage`** — `serverToClient`
   ///
   /// The show message notification is sent from a server to a client to ask the
   /// client to display a particular message in the user interface.
-  void sendWindowShowMessageNotification(Object? params);
+  void sendWindowShowMessageNotification(ShowMessageParams params);
 
   /// **`window/logMessage`** — `serverToClient`
   ///
   /// The log message notification is sent from the server to the client to ask
   /// the client to log a particular message.
-  void sendWindowLogMessageNotification(Object? params);
+  void sendWindowLogMessageNotification(LogMessageParams params);
 
   /// **`telemetry/event`** — `serverToClient`
   ///
   /// The telemetry event notification is sent from the server to the client to
   /// ask the client to log telemetry data.
-  void sendTelemetryEventNotification(Object? params);
+  void sendTelemetryEventNotification(LSPAny params);
 
   /// **`textDocument/didOpen`** — `clientToServer`
   ///
@@ -702,7 +743,7 @@ abstract interface class LspConnection {
   /// close notification send before. This means open and close notification must
   /// be balanced and the max open count is one.
   void onTextDocumentDidOpenNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidOpenTextDocumentParams params) handler,
   );
 
   /// **`textDocument/didChange`** — `clientToServer`
@@ -710,7 +751,7 @@ abstract interface class LspConnection {
   /// The document change notification is sent from the client to the server to
   /// signal changes to a text document.
   void onTextDocumentDidChangeNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidChangeTextDocumentParams params) handler,
   );
 
   /// **`textDocument/didClose`** — `clientToServer`
@@ -723,7 +764,7 @@ abstract interface class LspConnection {
   /// notification doesn't mean that the document was open in an editor before. A
   /// close notification requires a previous open notification to be sent.
   void onTextDocumentDidCloseNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidCloseTextDocumentParams params) handler,
   );
 
   /// **`textDocument/didSave`** — `clientToServer`
@@ -731,7 +772,7 @@ abstract interface class LspConnection {
   /// The document save notification is sent from the client to the server when
   /// the document got saved in the client.
   void onTextDocumentDidSaveNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidSaveTextDocumentParams params) handler,
   );
 
   /// **`textDocument/willSave`** — `clientToServer`
@@ -739,7 +780,7 @@ abstract interface class LspConnection {
   /// A document will save notification is sent from the client to the server
   /// before the document is actually saved.
   void onTextDocumentWillSaveNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(WillSaveTextDocumentParams params) handler,
   );
 
   /// **`workspace/didChangeWatchedFiles`** — `clientToServer`
@@ -747,32 +788,38 @@ abstract interface class LspConnection {
   /// The watched files notification is sent from the client to the server when
   /// the client detects changes to file watched by the language client.
   void onWorkspaceDidChangeWatchedFilesNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(DidChangeWatchedFilesParams params) handler,
   );
 
   /// **`textDocument/publishDiagnostics`** — `serverToClient`
   ///
   /// Diagnostics notification are sent from the server to the client to signal
   /// results of validation runs.
-  void sendTextDocumentPublishDiagnosticsNotification(Object? params);
+  void sendTextDocumentPublishDiagnosticsNotification(
+    PublishDiagnosticsParams params,
+  );
 
   /// **`$/setTrace`** — `clientToServer`
-  void onSetTraceNotification(Future<void> Function(Object? params) handler);
+  void onSetTraceNotification(
+    Future<void> Function(SetTraceParams params) handler,
+  );
 
   /// **`$/logTrace`** — `serverToClient`
-  void sendLogTraceNotification(Object? params);
+  void sendLogTraceNotification(LogTraceParams params);
 
   /// **`$/cancelRequest`** — `both`
   void onCancelRequestNotification(
-    Future<void> Function(Object? params) handler,
+    Future<void> Function(CancelParams params) handler,
   );
 
   /// **`$/cancelRequest`** — `both`
-  void sendCancelRequestNotification(Object? params);
+  void sendCancelRequestNotification(CancelParams params);
 
   /// **`$/progress`** — `both`
-  void onProgressNotification(Future<void> Function(Object? params) handler);
+  void onProgressNotification(
+    Future<void> Function(ProgressParams params) handler,
+  );
 
   /// **`$/progress`** — `both`
-  void sendProgressNotification(Object? params);
+  void sendProgressNotification(ProgressParams params);
 }

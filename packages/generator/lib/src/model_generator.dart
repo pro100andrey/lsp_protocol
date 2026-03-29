@@ -5,6 +5,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
 import 'extensions/string.dart';
+import 'lsp_type_resolver.dart';
 import 'meta/protocol.dart';
 import 'visitor/visitor.dart';
 
@@ -22,21 +23,25 @@ import 'visitor/visitor.dart';
 /// * [MetaEnumeration]  → `enum Name { value(raw); const Name(this.value); … }`
 ///   with `static Name fromJson(Object? json)` and `T toJson()` methods
 /// * [MetaTypeAlias]    → `typedef Name = Type;`
-final class ModelGenerator implements MetaProtocolVisitor<List<Spec>> {
+final class ModelGenerator
+    with LspTypeResolver
+    implements MetaProtocolVisitor<List<Spec>> {
   ModelGenerator();
 
   // Populated in [generate] before any visiting.
-  final _structsByName = <String, MetaStructure>{};
-  final _enumNames = <String>{};
+  @override
+  final structsByName = <String, MetaStructure>{};
+  @override
+  final enumNames = <String>{};
 
   // ── Public API ────────────────────────────────────────────────────────────
 
   String generate(MetaProtocol protocol) {
     // Build look-up tables first so type resolution works during visiting.
-    _structsByName
+    structsByName
       ..clear()
       ..addAll({for (final s in protocol.structures) s.name: s});
-    _enumNames
+    enumNames
       ..clear()
       ..addAll(protocol.enumerations.map((e) => e.name));
 
@@ -285,50 +290,10 @@ final class ModelGenerator implements MetaProtocolVisitor<List<Spec>> {
     return buf.toString();
   }
 
-  // ── Type resolution ───────────────────────────────────────────────────────
+  // ── Type resolution — delegated to LspTypeResolver mixin ─────────────────
 
-  String _resolveType(MetaReference ref) => switch (ref) {
-    BaseRef(:final name) => _baseTypeName(name),
-    TypeRef(:final name) => _dartName(name),
-    ArrayRef(:final element) => 'List<${_resolveType(element)}>',
-    MapRef(:final key, :final value) =>
-      'Map<${_resolveType(key)}, ${_resolveType(value)}>',
-    OrRef(:final items) => _resolveOrType(items),
-    AndRef() => 'Object?',
-    LiteralRef() => 'Map<String, dynamic>',
-    StringLiteralRef() => 'String',
-    TupleRef(:final items) => _resolveTupleType(items),
-  };
-
-  String _resolveOrType(List<MetaReference> items) {
-    final nonNull = items
-        .where((r) => !(r is BaseRef && r.name == 'null'))
-        .toList();
-    final hasNull = nonNull.length != items.length;
-
-    if (nonNull.length == 1) {
-      return _resolveType(nonNull.first).optional(optional: hasNull);
-    }
-    // Complex union → Object?
-    return 'Object?';
-  }
-
-  String _resolveTupleType(List<MetaReference> items) {
-    if (items.length == 2) {
-      return '(${_resolveType(items[0])}, ${_resolveType(items[1])})';
-    }
-    return 'Object?';
-  }
-
-  String _baseTypeName(String name) => switch (name) {
-    'integer' || 'uinteger' => 'int',
-    'string' || 'DocumentUri' || 'URI' => 'String',
-    'decimal' => 'double',
-    'boolean' => 'bool',
-    'null' => 'Null',
-    'LSPAny' || 'object' || 'LSPObject' || 'LSPArray' => 'Object?',
-    _ => name,
-  };
+  String _resolveType(MetaReference ref) => resolveType(ref);
+  String _baseTypeName(String name) => baseTypeName(name);
 
   // ── fromJson expression helpers ───────────────────────────────────────────
 
@@ -338,11 +303,11 @@ final class ModelGenerator implements MetaProtocolVisitor<List<Spec>> {
     bool optional,
   ) => switch (ref) {
     BaseRef(:final name) => _baseFromJson(name, src, optional),
-    TypeRef(:final name) when _enumNames.contains(name) =>
+    TypeRef(:final name) when enumNames.contains(name) =>
       optional
           ? '$src == null ? null : ${_dartName(name)}.fromJson($src)'
           : '${_dartName(name)}.fromJson($src)',
-    TypeRef(:final name) when _structsByName.containsKey(name) =>
+    TypeRef(:final name) when structsByName.containsKey(name) =>
       optional
           ? '$src == null ? null '
                 ': ${_dartName(name)}.fromJson($src as Map<String, dynamic>)'
@@ -429,9 +394,8 @@ final class ModelGenerator implements MetaProtocolVisitor<List<Spec>> {
     return switch (ref) {
       BaseRef() => field,
       StringLiteralRef() => field,
-      TypeRef(:final name) when _enumNames.contains(name) =>
-        '$field$q.toJson()',
-      TypeRef(:final name) when _structsByName.containsKey(name) =>
+      TypeRef(:final name) when enumNames.contains(name) => '$field$q.toJson()',
+      TypeRef(:final name) when structsByName.containsKey(name) =>
         '$field$q.toJson()',
       TypeRef() => field,
       ArrayRef(:final element) => _arrayToJson(element, field, optional),
@@ -494,7 +458,7 @@ final class ModelGenerator implements MetaProtocolVisitor<List<Spec>> {
     // Collect inherited — extends first, then mixins (order matches LSP spec)
     for (final ref in struct.extends$) {
       if (ref case TypeRef(:final name)) {
-        final parent = _structsByName[name];
+        final parent = structsByName[name];
         if (parent != null) {
           for (final p in _flattenProperties(parent)) {
             merged[p.name] = p;
@@ -504,7 +468,7 @@ final class ModelGenerator implements MetaProtocolVisitor<List<Spec>> {
     }
     for (final ref in struct.mixins$) {
       if (ref case TypeRef(:final name)) {
-        final parent = _structsByName[name];
+        final parent = structsByName[name];
         if (parent != null) {
           for (final p in _flattenProperties(parent)) {
             merged[p.name] = p;
@@ -523,10 +487,7 @@ final class ModelGenerator implements MetaProtocolVisitor<List<Spec>> {
 
   // ── Name helpers ──────────────────────────────────────────────────────────
 
-  /// LSP names starting with `_` (private in spec, e.g. `_InitializeParams`)
-  /// are mapped to `$InitializeParams` to avoid private-symbol issues.
-  String _dartName(String name) =>
-      name.startsWith('_') ? '\$${name.substring(1)}' : name;
+  String _dartName(String name) => dartName(name);
 
   static const _reservedWords = {
     'abstract',

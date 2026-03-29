@@ -2,6 +2,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
 import 'extensions/string.dart';
+import 'lsp_type_resolver.dart';
 import 'meta/protocol.dart';
 import 'visitor/visitor.dart';
 
@@ -11,27 +12,40 @@ import 'visitor/visitor.dart';
 /// visited request / notification produces the corresponding code_builder
 /// [Method] nodes. Only [visitMetaRequest] and [visitMetaNotification] produce
 /// output; all other visitor methods return the empty list.
-///
-/// All parameter/result types are Object placeholders – to be replaced once
-/// the Dart-side representation for `or` types is finalised.
-final class ConnectionGenerator implements MetaProtocolVisitor<List<Method>> {
-  const ConnectionGenerator();
+final class ConnectionGenerator
+    with LspTypeResolver
+    implements MetaProtocolVisitor<List<Method>> {
+  ConnectionGenerator();
+
+  @override
+  final structsByName = <String, MetaStructure>{};
+  @override
+  final enumNames = <String>{};
 
   static final _void = refer('void');
-  static final _futureObject = refer('Future<Object?>');
-  static final _object = refer('Object?');
 
   // ── Public API ────────────────────────────────────────────────────────────
 
   String generate(MetaProtocol protocol) {
+    structsByName
+      ..clear()
+      ..addAll({for (final s in protocol.structures) s.name: s});
+    enumNames
+      ..clear()
+      ..addAll(protocol.enumerations.map((e) => e.name));
+
     final library = Library((b) {
       b
         ..comments.addAll([
           ' GENERATED CODE – DO NOT MODIFY BY HAND',
           ' LSP Version: ${protocol.metaData.version}',
-          ' ignore_for_file: lines_longer_than_80_chars',
+          ' ignore_for_file: lines_longer_than_80_chars,'
+              ' doc_directive_unknown',
         ])
-        ..directives.add(Directive.import('dart:async'))
+        ..directives.addAll([
+          Directive.import('dart:async'),
+          Directive.import('models.dart'),
+        ])
         ..body.add(_buildInterface(protocol));
     });
 
@@ -74,9 +88,12 @@ final class ConnectionGenerator implements MetaProtocolVisitor<List<Method>> {
   }
 
   Method _onRequestMethod(String name, MetaRequest r) {
-    final handler = r.params != null
-        ? refer('Future<Object?> Function(Object? params)')
-        : refer('Future<Object?> Function()');
+    final paramsType = r.params != null ? resolveType(r.params!) : null;
+    final resultType = _resultType(r.result);
+
+    final handler = paramsType != null
+        ? refer('Future<$resultType> Function($paramsType params)')
+        : refer('Future<$resultType> Function()');
 
     return Method((b) {
       b
@@ -95,22 +112,29 @@ final class ConnectionGenerator implements MetaProtocolVisitor<List<Method>> {
     });
   }
 
-  Method _sendRequestMethod(String name, MetaRequest r) => Method((b) {
-    b
-      ..docs.addAll(_methodDocs(r.method, r.documentation, r.messageDirection))
-      ..name = 'send${name.upperFirstLetter()}Request'
-      ..returns = _futureObject;
+  Method _sendRequestMethod(String name, MetaRequest r) {
+    final paramsType = r.params != null ? resolveType(r.params!) : null;
+    final resultType = _resultType(r.result);
 
-    if (r.params != null) {
-      b.requiredParameters.add(
-        Parameter(
-          (p) => p
-            ..name = 'params'
-            ..type = _object,
-        ),
-      );
-    }
-  });
+    return Method((b) {
+      b
+        ..docs.addAll(
+          _methodDocs(r.method, r.documentation, r.messageDirection),
+        )
+        ..name = 'send${name.upperFirstLetter()}Request'
+        ..returns = refer('Future<$resultType>');
+
+      if (paramsType != null) {
+        b.requiredParameters.add(
+          Parameter(
+            (p) => p
+              ..name = 'params'
+              ..type = refer(paramsType),
+          ),
+        );
+      }
+    });
+  }
 
   // ── Visitor: MetaNotification ─────────────────────────────────────────────
 
@@ -128,8 +152,10 @@ final class ConnectionGenerator implements MetaProtocolVisitor<List<Method>> {
   }
 
   Method _onNotificationMethod(String name, MetaNotification n) {
-    final handler = n.params != null
-        ? refer('Future<void> Function(Object? params)')
+    final paramsType = n.params != null ? resolveType(n.params!) : null;
+
+    final handler = paramsType != null
+        ? refer('Future<void> Function($paramsType params)')
         : refer('Future<void> Function()');
 
     return Method((b) {
@@ -149,24 +175,28 @@ final class ConnectionGenerator implements MetaProtocolVisitor<List<Method>> {
     });
   }
 
-  Method _sendNotificationMethod(String name, MetaNotification n) => Method((
-    b,
-  ) {
-    b
-      ..docs.addAll(_methodDocs(n.method, n.documentation, n.messageDirection))
-      ..name = 'send${name.upperFirstLetter()}Notification'
-      ..returns = _void;
+  Method _sendNotificationMethod(String name, MetaNotification n) {
+    final paramsType = n.params != null ? resolveType(n.params!) : null;
 
-    if (n.params != null) {
-      b.requiredParameters.add(
-        Parameter(
-          (p) => p
-            ..name = 'params'
-            ..type = _object,
-        ),
-      );
-    }
-  });
+    return Method((b) {
+      b
+        ..docs.addAll(
+          _methodDocs(n.method, n.documentation, n.messageDirection),
+        )
+        ..name = 'send${name.upperFirstLetter()}Notification'
+        ..returns = _void;
+
+      if (paramsType != null) {
+        b.requiredParameters.add(
+          Parameter(
+            (p) => p
+              ..name = 'params'
+              ..type = refer(paramsType),
+          ),
+        );
+      }
+    });
+  }
 
   // ── Visitor: unused ───────────────────────────────────────────────────────
 
@@ -220,6 +250,14 @@ final class ConnectionGenerator implements MetaProtocolVisitor<List<Method>> {
 
   // ── Docs ──────────────────────────────────────────────────────────────────
 
+  /// Null result (e.g. `BaseRef('null')`) → `void`; otherwise `T?`.
+  String _resultType(MetaReference? result) {
+    if (result == null) return 'void';
+    final resolved = resolveType(result);
+    if (resolved == 'Null') return 'void';
+    return resolved.optional(optional: true);
+  }
+
   List<String> _interfaceDocs() => [
     '/// Abstract LSP connection interface.',
     '///',
@@ -229,8 +267,6 @@ final class ConnectionGenerator implements MetaProtocolVisitor<List<Method>> {
     '/// - serverToClient request      → `send<Name>Request`',
     '/// - clientToServer notification → `on<Name>Notification`',
     '/// - serverToClient notification → `send<Name>Notification`',
-    '///',
-    '/// All parameter/result types are Object placeholders.',
   ];
 
   List<String> _methodDocs(

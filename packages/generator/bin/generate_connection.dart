@@ -12,7 +12,7 @@ Future<void> main(List<String> args) async {
 
   final workDir = argsResult['work_dir'] as String;
   final protocol = await downloadAndParseLSP();
-  final code = const ConnectionGenerator().generate(protocol);
+  final code = ConnectionGenerator().generate(protocol);
 
   final outputFile = resolvePath(
     '$workDir/lib/src/generated/connection.dart',
