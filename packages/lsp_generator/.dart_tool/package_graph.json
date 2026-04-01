@@ -1,0 +1,88 @@
+{
+  "roots": [
+    "lsp_generator"
+  ],
+  "packages": [
+    {
+      "name": "lsp_generator",
+      "version": "1.0.0",
+      "dependencies": [
+        "args",
+        "mason_logger"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "mason_logger",
+      "version": "0.3.5",
+      "dependencies": [
+        "ffi",
+        "io",
+        "win32"
+      ]
+    },
+    {
+      "name": "args",
+      "version": "2.7.0",
+      "dependencies": []
+    },
+    {
+      "name": "win32",
+      "version": "5.15.0",
+      "dependencies": [
+        "ffi"
+      ]
+    },
+    {
+      "name": "io",
+      "version": "1.0.5",
+      "dependencies": [
+        "meta",
+        "path",
+        "string_scanner"
+      ]
+    },
+    {
+      "name": "ffi",
+      "version": "2.2.0",
+      "dependencies": []
+    },
+    {
+      "name": "string_scanner",
+      "version": "1.4.1",
+      "dependencies": [
+        "source_span"
+      ]
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "dependencies": []
+    },
+    {
+      "name": "meta",
+      "version": "1.18.2",
+      "dependencies": []
+    },
+    {
+      "name": "source_span",
+      "version": "1.10.2",
+      "dependencies": [
+        "collection",
+        "path",
+        "term_glyph"
+      ]
+    },
+    {
+      "name": "term_glyph",
+      "version": "1.2.2",
+      "dependencies": []
+    },
+    {
+      "name": "collection",
+      "version": "1.19.1",
+      "dependencies": []
+    }
+  ],
+  "configVersion": 1
+}

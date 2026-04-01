@@ -9,26 +9,26 @@
             "type": "dart",
             "request": "launch",
             "program": "bin/generate.dart",
-            "cwd": "${workspaceFolder}/packages/generator/",
+            "cwd": "${workspaceFolder}/old_packages/generator/",
             "args": []
         },
         {
             "name": "Run LSP Server",
             "type": "dart",
             "request": "launch",
-            "program": "${workspaceFolder}/packages/lsp_protocol/example/server.dart",
+            "program": "${workspaceFolder}/old_packages/lsp_protocol/example/server.dart",
             "args": [],
-            "cwd": "${workspaceFolder}/packages/lsp_protocol"
+            "cwd": "${workspaceFolder}/old_packages/lsp_protocol"
         },
         {
             "name": "Run LSP Extension",
             "type": "extensionHost",
             "request": "launch",
             "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}/lsp-server-ext"
+                "--extensionDevelopmentPath=${workspaceFolder}/old_packages/lsp_server_ext"
             ],
             "outFiles": [
-                "${workspaceFolder}/lsp-server-ext/out/**/*.js"
+                "${workspaceFolder}/old_packages/lsp_server_ext/out/**/*.js"
             ]
         }
     ]

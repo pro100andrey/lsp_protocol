@@ -25,8 +25,11 @@ mixin class LspConnectionMixin implements LspConnection {
     Future<Object?> Function(TypeDefinitionParams params) handler,
   ) => peer.registerMethod(
     LspMethod.textDocumentTypeDefinition.value,
-    (p) =>
-        handler(TypeDefinitionParams.fromJson(p.value as Map<String, dynamic>)),
+    (p) {
+      final result =  handler(TypeDefinitionParams.fromJson(p.value as Map<String, dynamic>));
+
+      return result;
+    },
   );
 
   @override
