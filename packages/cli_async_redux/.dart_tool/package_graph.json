@@ -1,0 +1,34 @@
+{
+  "roots": [
+    "cli_async_redux"
+  ],
+  "packages": [
+    {
+      "name": "cli_async_redux",
+      "version": "1.0.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ],
+      "devDependencies": [
+        "pro_lints"
+      ]
+    },
+    {
+      "name": "collection",
+      "version": "1.19.1",
+      "dependencies": []
+    },
+    {
+      "name": "pro_lints",
+      "version": "5.1.0",
+      "dependencies": []
+    },
+    {
+      "name": "meta",
+      "version": "1.18.2",
+      "dependencies": []
+    }
+  ],
+  "configVersion": 1
+}

@@ -5,6 +5,7 @@
 /// packages/lsp_protocol/lib/src/generated/models.dart
 library;
 
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:generator/generator.dart';
@@ -33,5 +34,5 @@ Future<void> main(List<String> args) async {
   await outFile.writeAsString(source);
 
   final lineCount = source.split('\n').length;
-  print('Generated $lineCount lines → $outPath');
+  log('Generated $lineCount lines → $outPath');
 }

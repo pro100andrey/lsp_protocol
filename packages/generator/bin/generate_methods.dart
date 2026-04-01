@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:args/args.dart';
 import 'package:generator/generator.dart';
 
@@ -6,7 +8,7 @@ Future<void> main(List<String> args) async {
   final argsResult = parser.parse(args);
 
   if (argsResult['help'] as bool) {
-    print(parser.usage);
+    log(parser.usage);
     return;
   }
 
@@ -19,7 +21,7 @@ Future<void> main(List<String> args) async {
   );
   await createDirectoryForFilePath(outputFile);
   await writeToFile(code, outputFile);
-  print('✅ Generated $outputFile');
+  log('✅ Generated $outputFile');
 }
 
 ArgParser _argParser() => ArgParser()

@@ -1,0 +1,104 @@
+import 'store.dart';
+import 'store_exception.dart';
+
+/// You may globally wrap the reducer to allow for some pre or post-processing.
+/// Note: if the action also have a [ReduxAction.wrapReduce] method, this global
+/// wrapper will be called AFTER (it will wrap the action's wrapper which wraps
+/// the action's reducer).
+///
+/// If [ifShouldProcess] is overridden to return `false`, the wrapper will
+/// be turned of.
+///
+/// The [process] method gets the old-state and the new-state, and returns
+/// the end state that you want to send to the store. Note: In sync reducers,
+/// the old-state is the state before the reducer is called. However, in
+/// async reducers, the old-state is the state AFTER the reducer returns
+/// but before the reducer's result is committed to the store.
+///
+/// For example, this wrapper checks if `newState.someInfo` is out of range,
+/// and if that's the case it's logged and changed to some valid value:
+abstract class WrapReduce<St> {
+  /// Returns true if [process] should be called.
+  bool ifShouldProcess() => true;
+
+  /// Processes the state change.
+  ///
+  /// [oldState] is the state before the reducer ran.
+  /// [newState] is the state returned by the reducer.
+  ///
+  /// Returns the new state to be saved in the store.
+  St process({
+    required St oldState,
+    required St newState,
+    required ReduxAction<St> action,
+  });
+
+  /// Wraps the given [reduce] function.
+  ///
+  /// The [store] is provided for context.
+  /// Returns a new reducer function that includes the wrapping logic.
+  Reducer<St> wrapReduce(
+    Reducer<St> reduce,
+    Store<St> store,
+    ReduxAction<St> action,
+  ) {
+    if (!ifShouldProcess()) {
+      return reduce;
+    }
+    // 1) Sync reducer.
+    else {
+      if (reduce is St? Function()) {
+        return () {
+          // The old-state right before calling the sync reducer.
+          final oldState = store.state;
+
+          // This is the state returned by the reducer.
+          final newState = reduce();
+
+          // If the reducer returned null, or the same instance, do nothing.
+          if (newState == null || identical(store.state, newState)) {
+            return newState;
+          }
+
+          return process(
+            oldState: oldState,
+            newState: newState,
+            action: action,
+          );
+        };
+      }
+      // 2) Async reducer.
+      else if (reduce is Future<St?> Function()) {
+        return () async {
+          //
+          // The is the state returned by the reducer.
+          final newState = await reduce();
+
+          // This is the state right after the reducer returns,
+          // but before it's committed to the store.
+          final oldState = store.state;
+
+          // If the reducer returned null, or returned the same instance,
+          // don't do anything.
+          if (newState == null || identical(store.state, newState)) {
+            return newState;
+          }
+
+          return process(
+            oldState: oldState,
+            newState: newState,
+            action: action,
+          );
+        };
+      }
+      // Not defined.
+      else {
+        throw StoreException(
+          'Reducer should return `St?` or `Future<St?>`. '
+          'Do not return `FutureOr<St?>`. '
+          "Reduce is of type: '${reduce.runtimeType}'.",
+        );
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+name: cli_async_redux
+description: A lightweight Redux implementation for CLI applications with async action support.
+version: 1.0.0
+publish_to: "none"
+
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  collection: ^1.19.1
+  meta: ^1.17.0
+
+dev_dependencies:
+  pro_lints: ^5.0.0
