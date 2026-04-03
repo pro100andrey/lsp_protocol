@@ -2,46 +2,16 @@
   "configVersion": 2,
   "packages": [
     {
-      "name": "args",
-      "rootUri": "file:///home/koma/.pub-cache/hosted/pub.dev/args-2.7.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
-    },
-    {
-      "name": "cli_async_redux",
-      "rootUri": "../../cli_async_redux",
-      "packageUri": "lib/",
-      "languageVersion": "3.10"
-    },
-    {
-      "name": "cli_utils",
-      "rootUri": "../../cli_utils",
-      "packageUri": "lib/",
-      "languageVersion": "3.10"
-    },
-    {
       "name": "collection",
       "rootUri": "file:///home/koma/.pub-cache/hosted/pub.dev/collection-1.19.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
-      "name": "ffi",
-      "rootUri": "file:///home/koma/.pub-cache/hosted/pub.dev/ffi-2.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
       "name": "io",
       "rootUri": "file:///home/koma/.pub-cache/hosted/pub.dev/io-1.0.5",
       "packageUri": "lib/",
       "languageVersion": "3.4"
-    },
-    {
-      "name": "mason_logger",
-      "rootUri": "file:///home/koma/.pub-cache/hosted/pub.dev/mason_logger-0.3.5",
-      "packageUri": "lib/",
-      "languageVersion": "3.5"
     },
     {
       "name": "meta",
@@ -56,16 +26,16 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "pro_lints",
+      "rootUri": "file:///home/koma/.pub-cache/hosted/pub.dev/pro_lints-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
       "name": "source_span",
       "rootUri": "file:///home/koma/.pub-cache/hosted/pub.dev/source_span-1.10.2",
       "packageUri": "lib/",
       "languageVersion": "3.1"
-    },
-    {
-      "name": "stack_trace",
-      "rootUri": "file:///home/koma/.pub-cache/hosted/pub.dev/stack_trace-1.12.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
     },
     {
       "name": "string_scanner",
@@ -80,16 +50,10 @@
       "languageVersion": "3.1"
     },
     {
-      "name": "win32",
-      "rootUri": "file:///home/koma/.pub-cache/hosted/pub.dev/win32-5.15.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.8"
-    },
-    {
-      "name": "lsp_generator",
+      "name": "cli_utils",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "3.11"
+      "languageVersion": "3.10"
     }
   ],
   "generator": "pub",

@@ -2,9 +2,16 @@ name: lsp_generator
 description: A code generator for generating code from LSP specifications.
 version: 1.0.0
 
+publish_to: none
+
 environment: 
   sdk: ^3.11.4
 
 dependencies:
   args: 2.7.0
+  cli_async_redux:
+    path: ../cli_async_redux
+  cli_utils: 
+    path: ../cli_utils
   mason_logger: ^0.3.3
+  stack_trace: ^1.12.1

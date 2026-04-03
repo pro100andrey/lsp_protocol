@@ -1,0 +1,70 @@
+{
+  "roots": [
+    "cli_utils"
+  ],
+  "packages": [
+    {
+      "name": "cli_utils",
+      "version": "1.0.0",
+      "dependencies": [
+        "io",
+        "meta",
+        "path"
+      ],
+      "devDependencies": [
+        "pro_lints"
+      ]
+    },
+    {
+      "name": "pro_lints",
+      "version": "5.1.0",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "dependencies": []
+    },
+    {
+      "name": "meta",
+      "version": "1.18.2",
+      "dependencies": []
+    },
+    {
+      "name": "io",
+      "version": "1.0.5",
+      "dependencies": [
+        "meta",
+        "path",
+        "string_scanner"
+      ]
+    },
+    {
+      "name": "string_scanner",
+      "version": "1.4.1",
+      "dependencies": [
+        "source_span"
+      ]
+    },
+    {
+      "name": "source_span",
+      "version": "1.10.2",
+      "dependencies": [
+        "collection",
+        "path",
+        "term_glyph"
+      ]
+    },
+    {
+      "name": "term_glyph",
+      "version": "1.2.2",
+      "dependencies": []
+    },
+    {
+      "name": "collection",
+      "version": "1.19.1",
+      "dependencies": []
+    }
+  ],
+  "configVersion": 1
+}

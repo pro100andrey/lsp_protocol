@@ -8,9 +8,19 @@
       "version": "1.0.0",
       "dependencies": [
         "args",
-        "mason_logger"
+        "cli_async_redux",
+        "cli_utils",
+        "mason_logger",
+        "stack_trace"
       ],
       "devDependencies": []
+    },
+    {
+      "name": "stack_trace",
+      "version": "1.12.1",
+      "dependencies": [
+        "path"
+      ]
     },
     {
       "name": "mason_logger",
@@ -22,8 +32,30 @@
       ]
     },
     {
+      "name": "cli_utils",
+      "version": "1.0.0",
+      "dependencies": [
+        "io",
+        "meta",
+        "path"
+      ]
+    },
+    {
+      "name": "cli_async_redux",
+      "version": "1.0.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
       "name": "args",
       "version": "2.7.0",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
       "dependencies": []
     },
     {
@@ -48,21 +80,21 @@
       "dependencies": []
     },
     {
+      "name": "meta",
+      "version": "1.18.2",
+      "dependencies": []
+    },
+    {
+      "name": "collection",
+      "version": "1.19.1",
+      "dependencies": []
+    },
+    {
       "name": "string_scanner",
       "version": "1.4.1",
       "dependencies": [
         "source_span"
       ]
-    },
-    {
-      "name": "path",
-      "version": "1.9.1",
-      "dependencies": []
-    },
-    {
-      "name": "meta",
-      "version": "1.18.2",
-      "dependencies": []
     },
     {
       "name": "source_span",
@@ -76,11 +108,6 @@
     {
       "name": "term_glyph",
       "version": "1.2.2",
-      "dependencies": []
-    },
-    {
-      "name": "collection",
-      "version": "1.19.1",
       "dependencies": []
     }
   ],
