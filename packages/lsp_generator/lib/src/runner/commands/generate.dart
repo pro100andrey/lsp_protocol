@@ -19,6 +19,6 @@ final class GenerateCommand extends Command with WithStore {
 
   @override
   Future<void> run() async {
-    await dispatchAndWait(DownloadAction());
+    await dispatchAndWait(FetchLSPModelAction());
   }
 }

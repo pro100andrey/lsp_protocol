@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../../common.dart';
 import '../../models/protocol.dart';
 
-final class DownloadAction extends BaseAction {
+final class FetchLSPModelAction extends BaseAction {
   @override
   Future<AppState?> reduce() async {
     final version = select.lspVersion;
