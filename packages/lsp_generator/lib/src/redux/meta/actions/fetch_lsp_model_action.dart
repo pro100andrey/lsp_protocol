@@ -7,7 +7,7 @@ import '../../models/protocol.dart';
 
 final class FetchLSPModelAction extends BaseAction {
   @override
-  Future<AppState?> reduce() async {
+  Future<AppState> reduce() async {
     final version = select.lspVersion;
 
     final downloadProgress = logger.progress(
