@@ -1,10 +1,11 @@
+import 'dart:developer';
 import 'dart:io';
 
-Future<void> main(List<String> args) async {
+Future<void> main(List<String> args)  {
   _test();
 
   if (args.isEmpty) {
-    print('Usage: lsp_generator <spec_file>');
+    log('Usage: lsp_generator <spec_file>');
     exit(1);
   }
 

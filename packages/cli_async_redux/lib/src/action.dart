@@ -23,7 +23,7 @@ abstract class ReduxAction<St> {
   /// The current status of this action (waiting, failed, etc.).
   ActionStatus get status => _status;
 
-  bool _completedFuture = false;
+  var _completedFuture = false;
 
   /// Sets the store for this action.
   ///

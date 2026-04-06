@@ -1,3 +1,5 @@
+// Ignore for single member abstract classes, as these are just interfaces for
+// observers.
 // ignore_for_file: one_member_abstracts
 
 import 'store.dart';

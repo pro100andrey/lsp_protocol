@@ -4,11 +4,11 @@ version: 1.0.0
 publish_to: "none"
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.11.4
 
 dependencies:
   collection: ^1.19.1
-  meta: ^1.17.0
+  meta: ^1.18.2
 
 dev_dependencies:
-  pro_lints: ^5.0.0
+  pro_lints: ^5.1.0

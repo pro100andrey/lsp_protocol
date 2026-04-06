@@ -55,10 +55,9 @@ extension StopWatchExtension on Stopwatch {
     final inSeconds = inMilliseconds ~/ 1000;
 
     if (inMicroseconds < 1000) {
-      // ignore: unnecessary_brace_in_string_interps
-      return '${inMicroseconds}μs'.dim;
+      return '$inMicroseconds μs'.dim;
     } else if (inMilliseconds < 1000) {
-      return '${inMilliseconds}ms';
+      return '$inMilliseconds ms';
     } else if (inSeconds < 60) {
       return '${(inMilliseconds / 1000).toStringAsFixed(2)}s'.yellow;
     } else {

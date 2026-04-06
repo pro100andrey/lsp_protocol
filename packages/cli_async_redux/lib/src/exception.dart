@@ -156,40 +156,40 @@ class ReduxException implements Exception {
   }
 
   /// Generic error
-  static const int exGeneric = 1;
+  static const exGeneric = 1;
 
   /// User aborted the operation.
-  static const int exUserAborted = 2;
+  static const exUserAborted = 2;
 
   /// CLI usage error.
-  static const int exUsage = 64;
+  static const exUsage = 64;
 
   /// Invalid data format/type.
-  static const int exData = 65;
+  static const exData = 65;
 
   /// Input file missing or unreadable.
-  static const int exNoInput = 66;
+  static const exNoInput = 66;
 
   /// Host not found or unreachable.
-  static const int exNoHost = 68;
+  static const exNoHost = 68;
 
   /// Service unavailable (e.g., 503, timeout).
-  static const int exUnavailable = 69;
+  static const exUnavailable = 69;
 
   /// Internal software error.
-  static const int exSoftware = 70;
+  static const exSoftware = 70;
 
   /// I/O failure during read/write operations.
-  static const int exIO = 74;
+  static const exIO = 74;
 
   /// Temporary failure (retry might succeed).
-  static const int exTempFail = 75;
+  static const exTempFail = 75;
 
   /// Permission denied (e.g., authentication failure).
-  static const int exNoPerm = 77;
+  static const exNoPerm = 77;
 
   /// Configuration file missing or invalid.
-  static const int exConfig = 78;
+  static const exConfig = 78;
 
   /// Some message shown to the user.
   final String? message;
