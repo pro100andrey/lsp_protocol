@@ -5,4 +5,9 @@ part 'app_state.freezed.dart';
 @freezed
 abstract class AppState with _$AppState {
   const factory AppState() = _AppState;
+
+
+  factory AppState.initial() => const AppState(
+
+  );
 }
