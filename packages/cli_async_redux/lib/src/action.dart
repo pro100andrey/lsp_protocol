@@ -1,3 +1,6 @@
+//
+// ignore_for_file: unsafe_variance
+
 part of 'store.dart';
 
 /// All actions you create must extend this class `ReduxAction`.
