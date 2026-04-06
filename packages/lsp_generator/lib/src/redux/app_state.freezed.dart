@@ -14,30 +14,70 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppState {
 
-
+ DownloaderState get downloader;
+/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AppStateCopyWith<AppState> get copyWith => _$AppStateCopyWithImpl<AppState>(this as AppState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.downloader, downloader) || other.downloader == downloader));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,downloader);
 
 @override
 String toString() {
-  return 'AppState()';
+  return 'AppState(downloader: $downloader)';
 }
 
 
 }
 
 /// @nodoc
-class $AppStateCopyWith<$Res>  {
-$AppStateCopyWith(AppState _, $Res Function(AppState) __);
+abstract mixin class $AppStateCopyWith<$Res>  {
+  factory $AppStateCopyWith(AppState value, $Res Function(AppState) _then) = _$AppStateCopyWithImpl;
+@useResult
+$Res call({
+ DownloaderState downloader
+});
+
+
+$DownloaderStateCopyWith<$Res> get downloader;
+
+}
+/// @nodoc
+class _$AppStateCopyWithImpl<$Res>
+    implements $AppStateCopyWith<$Res> {
+  _$AppStateCopyWithImpl(this._self, this._then);
+
+  final AppState _self;
+  final $Res Function(AppState) _then;
+
+/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? downloader = null,}) {
+  return _then(_self.copyWith(
+downloader: null == downloader ? _self.downloader : downloader // ignore: cast_nullable_to_non_nullable
+as DownloaderState,
+  ));
+}
+/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DownloaderStateCopyWith<$Res> get downloader {
+  
+  return $DownloaderStateCopyWith<$Res>(_self.downloader, (value) {
+    return _then(_self.copyWith(downloader: value));
+  });
+}
 }
 
 
@@ -119,10 +159,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DownloaderState downloader)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default();case _:
+return $default(_that.downloader);case _:
   return orElse();
 
 }
@@ -140,10 +180,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DownloaderState downloader)  $default,) {final _that = this;
 switch (_that) {
 case _AppState():
-return $default();case _:
+return $default(_that.downloader);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +200,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DownloaderState downloader)?  $default,) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default();case _:
+return $default(_that.downloader);case _:
   return null;
 
 }
@@ -175,32 +215,75 @@ return $default();case _:
 
 
 class _AppState implements AppState {
-  const _AppState();
+  const _AppState({required this.downloader});
   
 
+@override final  DownloaderState downloader;
 
-
+/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AppStateCopyWith<_AppState> get copyWith => __$AppStateCopyWithImpl<_AppState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.downloader, downloader) || other.downloader == downloader));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,downloader);
 
 @override
 String toString() {
-  return 'AppState()';
+  return 'AppState(downloader: $downloader)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
+  factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) _then) = __$AppStateCopyWithImpl;
+@override @useResult
+$Res call({
+ DownloaderState downloader
+});
 
 
+@override $DownloaderStateCopyWith<$Res> get downloader;
+
+}
+/// @nodoc
+class __$AppStateCopyWithImpl<$Res>
+    implements _$AppStateCopyWith<$Res> {
+  __$AppStateCopyWithImpl(this._self, this._then);
+
+  final _AppState _self;
+  final $Res Function(_AppState) _then;
+
+/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? downloader = null,}) {
+  return _then(_AppState(
+downloader: null == downloader ? _self.downloader : downloader // ignore: cast_nullable_to_non_nullable
+as DownloaderState,
+  ));
+}
+
+/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DownloaderStateCopyWith<$Res> get downloader {
+  
+  return $DownloaderStateCopyWith<$Res>(_self.downloader, (value) {
+    return _then(_self.copyWith(downloader: value));
+  });
+}
+}
 
 // dart format on

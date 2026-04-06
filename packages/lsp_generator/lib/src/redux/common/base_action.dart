@@ -9,7 +9,7 @@ abstract class BaseAction extends ReduxAction<AppState> {
   /// Mason logger for console output with progress indicators and styling.
   Logger get logger => store.prop();
 
-  Selectors get selectors => Selectors(state);
+  Selectors get select => Selectors(state);
 
   /// Wraps PocketBase client exceptions into [ReduxException]s.
   ///
