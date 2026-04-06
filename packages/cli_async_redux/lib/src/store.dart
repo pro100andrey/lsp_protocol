@@ -331,6 +331,8 @@ final class Store<St> {
         // The exception is thrown after the async gap, so that it doesn't
         // interrupt the processes.
         else {
+          // Ignore the returned future, because we don't want to interrupt the
+          // code
           // ignore: discarded_futures
           Future.microtask(() {
             final type = actionOrActionTypeOrList.runtimeType;
@@ -350,6 +352,7 @@ final class Store<St> {
     // after the async gap, so we don't interrupt the code. But we return false
     //(not waiting).
     else {
+      // Ignore the returned future, because we don't want to interrupt the code
       // ignore: discarded_futures
       Future.microtask(() {
         throw StoreException(
@@ -397,6 +400,8 @@ final class Store<St> {
               .wrappedError;
           return (error is ReduxException) ? error : null;
         } else {
+          // Ignore the returned future, because we don't want to interrupt the
+          // code
           // ignore: discarded_futures
           Future.microtask(() {
             throw StoreException(
@@ -411,6 +416,7 @@ final class Store<St> {
     // 3) If something different was passed, it's an error. We show the error
     // after the async gap, so we don't interrupt the code. But we return null.
     else {
+      // Ignore the returned future, because we don't want to interrupt the code
       // ignore: discarded_futures
       Future.microtask(() {
         throw StoreException(
@@ -448,6 +454,8 @@ final class Store<St> {
         if (actionType is Type) {
           result = _failedActions.remove(actionType);
         } else {
+          // Ignore the returned future, because we don't want to interrupt the 
+          // code
           // ignore: discarded_futures
           Future.microtask(() {
             throw StoreException(
@@ -464,6 +472,7 @@ final class Store<St> {
     // 3) If something different was passed, it's an error. We show the error
     // after the async gap, so we don't interrupt the code. But we return null.
     else {
+      // Ignore the returned future, because we don't want to interrupt the code
       // ignore: discarded_futures
       Future.microtask(() {
         throw StoreException(
@@ -495,7 +504,7 @@ final class Store<St> {
     bool Function(St) condition, {
     bool completeImmediately = true,
     int? timeoutMillis,
-  }) async {
+  }) {
     //
     // If the condition is already true when `waitCondition` is called.
     if (condition(_state)) {
@@ -590,6 +599,7 @@ final class Store<St> {
     Object? processedError;
 
     try {
+      // Ignore the returned future, because we don't want to interrupt the code
       // ignore: discarded_futures
       _applyReducer(action);
       action._status = action._status.copy(hasFinishedMethodReduce: true);
@@ -948,7 +958,8 @@ final class Store<St> {
     return null;
   }
 
-  void _throws(errorMsg, Object? error, StackTrace stackTrace) {
+  void _throws(Object errorMsg, Object? error, StackTrace stackTrace) {
+    // Ignore the returned future, because we don't want to interrupt the code.
     // ignore: discarded_futures
     Future(() {
       Error.throwWithStackTrace(
@@ -1060,7 +1071,10 @@ extension StorePropsExtension on Store<dynamic> {
   /// If the property is a [Timer], [Future], or [Stream], it will be properly
   /// cancelled/closed.
   void disposeProp(Object? value, Object? keyToDispose) {
-    disposeProps(({key, value}) => key == keyToDispose && value == value);
+    final valueToDispose = value;
+    disposeProps(
+      ({key, value}) => key == keyToDispose && value == valueToDispose,
+    );
   }
 
   /// Disposes properties based on a predicate.
@@ -1101,9 +1115,13 @@ extension StorePropsExtension on Store<dynamic> {
       case Future():
         obj.ignore();
       case StreamSubscription():
+        // Ignore the returned future, because we don't want to interrupt the
+        // code
         // ignore: discarded_futures
         obj.cancel();
       case StreamConsumer():
+        // Ignore the returned future, because we don't want to interrupt the
+        // code
         // ignore: discarded_futures
         obj.close();
       case Sink():

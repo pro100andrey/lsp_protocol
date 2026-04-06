@@ -233,8 +233,9 @@ class ReduxException implements Exception {
           runtimeType == other.runtimeType &&
           message == other.message &&
           reason == other.reason &&
-          exitCode == other.exitCode;
+          exitCode == other.exitCode &&
+          code == other.code;
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, reason, exitCode);
+  int get hashCode => Object.hash(runtimeType, message, reason, exitCode, code);
 }

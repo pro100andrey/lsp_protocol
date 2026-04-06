@@ -71,11 +71,12 @@ abstract class WrapReduce<St> {
       else if (reduce is Future<St?> Function()) {
         return () async {
           //
-          // The is the state returned by the reducer.
+          // This is the state returned by the reducer.
           final newState = await reduce();
 
-          // This is the state right after the reducer returns,
-          // but before it's committed to the store.
+          // This is the state at the moment the async reducer returned,
+          // not the state when the reducer started (which may have changed
+          // while the async reducer was running).
           final oldState = store.state;
 
           // If the reducer returned null, or returned the same instance,

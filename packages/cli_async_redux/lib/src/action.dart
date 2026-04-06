@@ -224,10 +224,10 @@ abstract class ReduxAction<St> {
     );
   }
 
-  /// An async reducer (one that returns Future<AppState?>) must never complete
-  /// without at least one await, because this may result in state changes being
-  /// lost. It's up to you to make sure all code paths in the reducer pass
-  /// through at least one `await`.
+  /// An async reducer (one that returns `Future<AppState?>`) must never
+  /// complete without at least one await, because this may result in state
+  /// changes being lost. It's up to you to make sure all code paths in the \
+  /// reducer pass through at least one `await`.
   ///
   /// Futures defined by async functions with no `await` are called "completed
   /// futures". It's generally easy to make sure an async reducer does not
