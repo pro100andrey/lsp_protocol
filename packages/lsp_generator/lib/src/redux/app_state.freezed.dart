@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppState {
 
- DownloaderState get downloader;
+ MetaState get meta;
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $AppStateCopyWith<AppState> get copyWith => _$AppStateCopyWithImpl<AppState>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.downloader, downloader) || other.downloader == downloader));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,downloader);
+int get hashCode => Object.hash(runtimeType,meta);
 
 @override
 String toString() {
-  return 'AppState(downloader: $downloader)';
+  return 'AppState(meta: $meta)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $AppStateCopyWith<$Res>  {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) _then) = _$AppStateCopyWithImpl;
 @useResult
 $Res call({
- DownloaderState downloader
+ MetaState meta
 });
 
 
-$DownloaderStateCopyWith<$Res> get downloader;
+$MetaStateCopyWith<$Res> get meta;
 
 }
 /// @nodoc
@@ -62,20 +62,20 @@ class _$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? downloader = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? meta = null,}) {
   return _then(_self.copyWith(
-downloader: null == downloader ? _self.downloader : downloader // ignore: cast_nullable_to_non_nullable
-as DownloaderState,
+meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaState,
   ));
 }
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$DownloaderStateCopyWith<$Res> get downloader {
+$MetaStateCopyWith<$Res> get meta {
   
-  return $DownloaderStateCopyWith<$Res>(_self.downloader, (value) {
-    return _then(_self.copyWith(downloader: value));
+  return $MetaStateCopyWith<$Res>(_self.meta, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }
@@ -159,10 +159,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DownloaderState downloader)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( MetaState meta)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.downloader);case _:
+return $default(_that.meta);case _:
   return orElse();
 
 }
@@ -180,10 +180,10 @@ return $default(_that.downloader);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DownloaderState downloader)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( MetaState meta)  $default,) {final _that = this;
 switch (_that) {
 case _AppState():
-return $default(_that.downloader);case _:
+return $default(_that.meta);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -200,10 +200,10 @@ return $default(_that.downloader);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DownloaderState downloader)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( MetaState meta)?  $default,) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.downloader);case _:
+return $default(_that.meta);case _:
   return null;
 
 }
@@ -215,10 +215,10 @@ return $default(_that.downloader);case _:
 
 
 class _AppState implements AppState {
-  const _AppState({required this.downloader});
+  const _AppState({required this.meta});
   
 
-@override final  DownloaderState downloader;
+@override final  MetaState meta;
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
@@ -230,16 +230,16 @@ _$AppStateCopyWith<_AppState> get copyWith => __$AppStateCopyWithImpl<_AppState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.downloader, downloader) || other.downloader == downloader));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,downloader);
+int get hashCode => Object.hash(runtimeType,meta);
 
 @override
 String toString() {
-  return 'AppState(downloader: $downloader)';
+  return 'AppState(meta: $meta)';
 }
 
 
@@ -250,11 +250,11 @@ abstract mixin class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res>
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) _then) = __$AppStateCopyWithImpl;
 @override @useResult
 $Res call({
- DownloaderState downloader
+ MetaState meta
 });
 
 
-@override $DownloaderStateCopyWith<$Res> get downloader;
+@override $MetaStateCopyWith<$Res> get meta;
 
 }
 /// @nodoc
@@ -267,10 +267,10 @@ class __$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? downloader = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? meta = null,}) {
   return _then(_AppState(
-downloader: null == downloader ? _self.downloader : downloader // ignore: cast_nullable_to_non_nullable
-as DownloaderState,
+meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaState,
   ));
 }
 
@@ -278,10 +278,10 @@ as DownloaderState,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$DownloaderStateCopyWith<$Res> get downloader {
+$MetaStateCopyWith<$Res> get meta {
   
-  return $DownloaderStateCopyWith<$Res>(_self.downloader, (value) {
-    return _then(_self.copyWith(downloader: value));
+  return $MetaStateCopyWith<$Res>(_self.meta, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }
