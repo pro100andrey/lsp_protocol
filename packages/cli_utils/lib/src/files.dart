@@ -28,10 +28,10 @@ PathCache _getPathCache(String path) {
   final type = FileSystemEntity.typeSync(path);
   return (
     path: path,
-    notFound: type == FileSystemEntityType.notFound,
-    isFile: type == FileSystemEntityType.file,
-    isDirectory: type == FileSystemEntityType.directory,
-    isLink: type == FileSystemEntityType.link,
+    notFound: type == .notFound,
+    isFile: type == .file,
+    isDirectory: type == .directory,
+    isLink: type == .link,
     isAbsolute: p.isAbsolute(path),
     isRelative: p.isRelative(path),
     normalized: p.normalize(path),
@@ -156,7 +156,7 @@ extension type DirectoryPath._(PathCache _cache) implements FileEntityPath {
 
     // Parent must exist and be a directory
     return parentDir.existsSync() &&
-        FileSystemEntity.typeSync(parentPath) == FileSystemEntityType.directory;
+        FileSystemEntity.typeSync(parentPath) == .directory;
   }
 
   /// Creates the directory in the file system.
@@ -211,18 +211,11 @@ extension type FilePath._(PathCache _cache) implements FileEntityPath {
       _file.createSync(recursive: recursive);
 
   /// Reads the file contents as a list of lines synchronously.
-  List<String> readAsLines() {
-    final lines = _file.readAsLinesSync();
-    return lines;
-  }
+  List<String> readAsLines() => _file.readAsLinesSync();
 
   /// Writes the given [content] string to the file synchronously.
-  void writeAsString(String content) {
-    _file.writeAsStringSync(content);
-  }
+  void writeAsString(String content) => _file.writeAsStringSync(content);
 
   /// Writes the given list of bytes [bytes] to the file synchronously.
-  void writeAsBytes(List<int> bytes) {
-    _file.writeAsBytesSync(bytes);
-  }
+  void writeAsBytes(List<int> bytes) => _file.writeAsBytesSync(bytes);
 }

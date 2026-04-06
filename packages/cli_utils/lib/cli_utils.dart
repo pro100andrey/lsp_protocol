@@ -2,5 +2,5 @@
 library;
 
 export 'src/extensions.dart';
-export 'src/path.dart';
+export 'src/files.dart';
 export 'src/string_style.dart';

@@ -4,12 +4,12 @@ version: 1.0.0
 publish_to: "none"
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.11.4
 
 dependencies:
   io: ^1.0.5
-  meta: ^1.17.0
+  meta: ^1.18.2
   path: ^1.9.1
 
 dev_dependencies:
-  pro_lints: ^5.0.0
+  pro_lints: ^5.1.0
