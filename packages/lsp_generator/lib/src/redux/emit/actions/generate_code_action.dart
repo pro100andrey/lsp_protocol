@@ -26,8 +26,9 @@ final class GenerateCodeAction extends BaseAction {
       final raw = lib.accept(dartEmitter).toString();
       try {
         return formatter.format(raw);
-      } catch (_) {
-        // Return unformatted if the formatter fails (e.g. syntax error in generated code).
+      } on Object catch (_) {
+        // Return unformatted if the formatter fails (e.g. syntax error in 
+        // generated code).
         return raw;
       }
     }
@@ -40,7 +41,9 @@ final class GenerateCodeAction extends BaseAction {
     final srcDir = pkgDir.join('lib/src');
     final libDir = pkgDir.join('lib');
 
-    if (srcDir.notFound) srcDir.create(recursive: true);
+    if (srcDir.notFound) {
+      srcDir.create(recursive: true);
+    }
 
     srcDir.joinFile('structures.dart').writeAsString(structures);
     srcDir.joinFile('enumerations.dart').writeAsString(enumerations);

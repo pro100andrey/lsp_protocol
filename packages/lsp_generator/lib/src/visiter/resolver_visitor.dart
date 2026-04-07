@@ -351,22 +351,12 @@ final class _ResolvePass extends MetaVisitor {
     if (alias is! ResolvedAlias) {
       return;
     }
-    // ResolvedAlias is const so we replace it in the registry
-    final resolved = ResolvedAlias(
-      name: typeAlias.name,
-      type: _r.resolveRef(
-        typeAlias.type,
-        parentName: typeAlias.name,
-      ),
-      documentation: typeAlias.documentation,
-      since: typeAlias.since,
-      proposed: typeAlias.proposed,
+    // Mutate in-place so every AliasType(ref=alias) reference in structures
+    // automatically sees the resolved type — regardless of visit order.
+    alias.type = _r.resolveRef(
+      typeAlias.type,
+      parentName: typeAlias.name,
     );
-    _r._registry[typeAlias.name] = resolved;
-    final idx = _r._aliases.indexOf(alias);
-    if (idx >= 0) {
-      _r._aliases[idx] = resolved;
-    }
   }
 
   // Enumerations: all member data captured in pass 1 — nothing to resolve.

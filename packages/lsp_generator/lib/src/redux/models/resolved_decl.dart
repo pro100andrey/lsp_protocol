@@ -69,7 +69,7 @@ final class ResolvedEnum extends ResolvedDecl {
 
 /// A resolved type alias.
 final class ResolvedAlias extends ResolvedDecl {
-  const ResolvedAlias({
+  ResolvedAlias({
     required super.name,
     required this.type,
     super.documentation,
@@ -77,7 +77,8 @@ final class ResolvedAlias extends ResolvedDecl {
     super.proposed,
   });
 
-  final ResolvedType type;
+  /// Mutable so pass-2 can update in-place; all [AliasType] refs auto-update.
+  ResolvedType type;
 
   @override
   String toString() => 'ResolvedAlias($name)';

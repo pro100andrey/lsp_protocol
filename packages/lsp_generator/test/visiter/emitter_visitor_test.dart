@@ -438,7 +438,7 @@ void main() {
   group('EmitterVisitor integration (real metaModel.json)', () {
     late ResolvedState resolved;
 
-    setUpAll(() async {
+    setUpAll(()  {
       final file = File('../lsp_specification/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);

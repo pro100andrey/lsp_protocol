@@ -41,7 +41,7 @@ final class CompletionListItemDefaults {
         commitCharacters: (json['commitCharacters'] as List<Object?>?)
             ?.map((e) => e as String)
             .toList(),
-        editRange: json['editRange'] as Object?,
+        editRange: json['editRange'],
         insertTextFormat: json['insertTextFormat'] == null
             ? null
             : InsertTextFormat.values.firstWhere(
@@ -52,7 +52,7 @@ final class CompletionListItemDefaults {
             : InsertTextMode.values.firstWhere(
                 (e) => e.value == json['insertTextMode'] as int,
               ),
-        data: json['data'] as LSPAny?,
+        data: json['data'],
       );
 
   final List<String>? commitCharacters;
@@ -1105,8 +1105,8 @@ final class SemanticTokensClientCapabilitiesRequests {
   factory SemanticTokensClientCapabilitiesRequests.fromJson(
     Map<String, Object?> json,
   ) => SemanticTokensClientCapabilitiesRequests(
-    range: json['range'] as Object?,
-    full: json['full'] as Object?,
+    range: json['range'],
+    full: json['full'],
   );
 
   final Object? range;
@@ -1384,8 +1384,8 @@ final class ImplementationParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
       );
 
   final TextDocumentIdentifier textDocument;
@@ -1494,8 +1494,8 @@ final class TypeDefinitionParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
       );
 
   final TextDocumentIdentifier textDocument;
@@ -1640,8 +1640,8 @@ final class DocumentColorParams {
 
   factory DocumentColorParams.fromJson(Map<String, Object?> json) =>
       DocumentColorParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -1746,8 +1746,8 @@ final class ColorPresentationParams {
 
   factory ColorPresentationParams.fromJson(Map<String, Object?> json) =>
       ColorPresentationParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -1887,8 +1887,8 @@ final class FoldingRangeParams {
 
   factory FoldingRangeParams.fromJson(Map<String, Object?> json) =>
       FoldingRangeParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -2035,8 +2035,8 @@ final class DeclarationParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
       );
 
   final TextDocumentIdentifier textDocument;
@@ -2119,8 +2119,8 @@ final class SelectionRangeParams {
 
   factory SelectionRangeParams.fromJson(Map<String, Object?> json) =>
       SelectionRangeParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -2274,7 +2274,7 @@ final class CallHierarchyPrepareParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
       );
 
   final TextDocumentIdentifier textDocument;
@@ -2330,7 +2330,7 @@ final class CallHierarchyItem {
     selectionRange: Range.fromJson(
       json['selectionRange'] as Map<String, Object?>,
     ),
-    data: json['data'] as LSPAny?,
+    data: json['data'],
   );
 
   final String name;
@@ -2439,8 +2439,8 @@ final class CallHierarchyIncomingCallsParams {
   factory CallHierarchyIncomingCallsParams.fromJson(
     Map<String, Object?> json,
   ) => CallHierarchyIncomingCallsParams(
-    workDoneToken: json['workDoneToken'] as ProgressToken?,
-    partialResultToken: json['partialResultToken'] as ProgressToken?,
+    workDoneToken: json['workDoneToken'],
+    partialResultToken: json['partialResultToken'],
     item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
   );
 
@@ -2519,8 +2519,8 @@ final class CallHierarchyOutgoingCallsParams {
   factory CallHierarchyOutgoingCallsParams.fromJson(
     Map<String, Object?> json,
   ) => CallHierarchyOutgoingCallsParams(
-    workDoneToken: json['workDoneToken'] as ProgressToken?,
-    partialResultToken: json['partialResultToken'] as ProgressToken?,
+    workDoneToken: json['workDoneToken'],
+    partialResultToken: json['partialResultToken'],
     item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
   );
 
@@ -2593,8 +2593,8 @@ final class SemanticTokensParams {
 
   factory SemanticTokensParams.fromJson(Map<String, Object?> json) =>
       SemanticTokensParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -2687,8 +2687,8 @@ final class SemanticTokensRegistrationOptions {
     legend: SemanticTokensLegend.fromJson(
       json['legend'] as Map<String, Object?>,
     ),
-    range: json['range'] as Object?,
-    full: json['full'] as Object?,
+    range: json['range'],
+    full: json['full'],
     id: json['id'] as String?,
   );
 
@@ -2743,8 +2743,8 @@ final class SemanticTokensDeltaParams {
 
   factory SemanticTokensDeltaParams.fromJson(Map<String, Object?> json) =>
       SemanticTokensDeltaParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -2847,8 +2847,8 @@ final class SemanticTokensRangeParams {
 
   factory SemanticTokensRangeParams.fromJson(Map<String, Object?> json) =>
       SemanticTokensRangeParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -2968,7 +2968,7 @@ final class LinkedEditingRangeParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
       );
 
   final TextDocumentIdentifier textDocument;
@@ -3238,8 +3238,8 @@ final class MonikerParams {
       json['textDocument'] as Map<String, Object?>,
     ),
     position: Position.fromJson(json['position'] as Map<String, Object?>),
-    workDoneToken: json['workDoneToken'] as ProgressToken?,
-    partialResultToken: json['partialResultToken'] as ProgressToken?,
+    workDoneToken: json['workDoneToken'],
+    partialResultToken: json['partialResultToken'],
   );
 
   final TextDocumentIdentifier textDocument;
@@ -3374,7 +3374,7 @@ final class TypeHierarchyPrepareParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
       );
 
   final TextDocumentIdentifier textDocument;
@@ -3427,7 +3427,7 @@ final class TypeHierarchyItem {
     selectionRange: Range.fromJson(
       json['selectionRange'] as Map<String, Object?>,
     ),
-    data: json['data'] as LSPAny?,
+    data: json['data'],
   );
 
   final String name;
@@ -3535,8 +3535,8 @@ final class TypeHierarchySupertypesParams {
 
   factory TypeHierarchySupertypesParams.fromJson(Map<String, Object?> json) =>
       TypeHierarchySupertypesParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         item: TypeHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
       );
 
@@ -3577,8 +3577,8 @@ final class TypeHierarchySubtypesParams {
 
   factory TypeHierarchySubtypesParams.fromJson(Map<String, Object?> json) =>
       TypeHierarchySubtypesParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         item: TypeHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
       );
 
@@ -3620,7 +3620,7 @@ final class InlineValueParams {
 
   factory InlineValueParams.fromJson(Map<String, Object?> json) =>
       InlineValueParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -3714,7 +3714,7 @@ final class InlayHintParams {
 
   factory InlayHintParams.fromJson(Map<String, Object?> json) =>
       InlayHintParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -3772,10 +3772,10 @@ final class InlayHint {
     textEdits: (json['textEdits'] as List<Object?>?)
         ?.map((e) => TextEdit.fromJson(e as Map<String, Object?>))
         .toList(),
-    tooltip: json['tooltip'] as Object?,
+    tooltip: json['tooltip'],
     paddingLeft: json['paddingLeft'] as bool?,
     paddingRight: json['paddingRight'] as bool?,
-    data: json['data'] as LSPAny?,
+    data: json['data'],
   );
 
   final Position position;
@@ -3891,8 +3891,8 @@ final class DocumentDiagnosticParams {
 
   factory DocumentDiagnosticParams.fromJson(Map<String, Object?> json) =>
       DocumentDiagnosticParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -4062,8 +4062,8 @@ final class WorkspaceDiagnosticParams {
 
   factory WorkspaceDiagnosticParams.fromJson(Map<String, Object?> json) =>
       WorkspaceDiagnosticParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         identifier: json['identifier'] as String?,
         previousResultIds: (json['previousResultIds'] as List<Object?>)
             .map((e) => PreviousResultId.fromJson(e as Map<String, Object?>))
@@ -4312,7 +4312,7 @@ final class InlineCompletionParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
         context: InlineCompletionContext.fromJson(
           json['context'] as Map<String, Object?>,
         ),
@@ -4534,7 +4534,7 @@ final class InitializeParams {
 
   factory InitializeParams.fromJson(Map<String, Object?> json) =>
       InitializeParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
         processId: json['processId'] as int?,
         clientInfo: json['clientInfo'] == null
             ? null
@@ -4547,7 +4547,7 @@ final class InitializeParams {
         capabilities: ClientCapabilities.fromJson(
           json['capabilities'] as Map<String, Object?>,
         ),
-        initializationOptions: json['initializationOptions'] as LSPAny?,
+        initializationOptions: json['initializationOptions'],
         trace: json['trace'] == null
             ? null
             : TraceValues.values.firstWhere(
@@ -4705,9 +4705,7 @@ final class DidChangeConfigurationRegistrationOptions {
 
   factory DidChangeConfigurationRegistrationOptions.fromJson(
     Map<String, Object?> json,
-  ) => DidChangeConfigurationRegistrationOptions(
-    section: json['section'] as Object?,
-  );
+  ) => DidChangeConfigurationRegistrationOptions(section: json['section']);
 
   final Object? section;
 
@@ -5185,8 +5183,8 @@ final class CompletionParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         context: json['context'] == null
             ? null
             : CompletionContext.fromJson(
@@ -5270,7 +5268,7 @@ final class CompletionItem {
         ?.map((e) => e as CompletionItemTag)
         .toList(),
     detail: json['detail'] as String?,
-    documentation: json['documentation'] as Object?,
+    documentation: json['documentation'],
     deprecated: json['deprecated'] as bool?,
     preselect: json['preselect'] as bool?,
     sortText: json['sortText'] as String?,
@@ -5286,7 +5284,7 @@ final class CompletionItem {
         : InsertTextMode.values.firstWhere(
             (e) => e.value == json['insertTextMode'] as int,
           ),
-    textEdit: json['textEdit'] as Object?,
+    textEdit: json['textEdit'],
     textEditText: json['textEditText'] as String?,
     additionalTextEdits: (json['additionalTextEdits'] as List<Object?>?)
         ?.map((e) => TextEdit.fromJson(e as Map<String, Object?>))
@@ -5297,7 +5295,7 @@ final class CompletionItem {
     command: json['command'] == null
         ? null
         : Command.fromJson(json['command'] as Map<String, Object?>),
-    data: json['data'] as LSPAny?,
+    data: json['data'],
   );
 
   final String label;
@@ -5535,7 +5533,7 @@ final class HoverParams {
       json['textDocument'] as Map<String, Object?>,
     ),
     position: Position.fromJson(json['position'] as Map<String, Object?>),
-    workDoneToken: json['workDoneToken'] as ProgressToken?,
+    workDoneToken: json['workDoneToken'],
   );
 
   final TextDocumentIdentifier textDocument;
@@ -5634,7 +5632,7 @@ final class SignatureHelpParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
         context: json['context'] == null
             ? null
             : SignatureHelpContext.fromJson(
@@ -5782,8 +5780,8 @@ final class DefinitionParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
       );
 
   final TextDocumentIdentifier textDocument;
@@ -5865,8 +5863,8 @@ final class ReferenceParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         context: ReferenceContext.fromJson(
           json['context'] as Map<String, Object?>,
         ),
@@ -5955,8 +5953,8 @@ final class DocumentHighlightParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
       );
 
   final TextDocumentIdentifier textDocument;
@@ -6061,8 +6059,8 @@ final class DocumentSymbolParams {
 
   factory DocumentSymbolParams.fromJson(Map<String, Object?> json) =>
       DocumentSymbolParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -6290,8 +6288,8 @@ final class CodeActionParams {
 
   factory CodeActionParams.fromJson(Map<String, Object?> json) =>
       CodeActionParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -6405,7 +6403,7 @@ final class CodeAction {
     command: json['command'] == null
         ? null
         : Command.fromJson(json['command'] as Map<String, Object?>),
-    data: json['data'] as LSPAny?,
+    data: json['data'],
   );
 
   final String title;
@@ -6517,8 +6515,8 @@ final class WorkspaceSymbolParams {
 
   factory WorkspaceSymbolParams.fromJson(Map<String, Object?> json) =>
       WorkspaceSymbolParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         query: json['query'] as String,
       );
 
@@ -6570,7 +6568,7 @@ final class WorkspaceSymbol {
     tags: (json['tags'] as List<Object?>?)?.map((e) => e as SymbolTag).toList(),
     containerName: json['containerName'] as String?,
     location: json['location'] as Object,
-    data: json['data'] as LSPAny?,
+    data: json['data'],
   );
 
   final String name;
@@ -6656,8 +6654,8 @@ final class CodeLensParams {
   });
 
   factory CodeLensParams.fromJson(Map<String, Object?> json) => CodeLensParams(
-    workDoneToken: json['workDoneToken'] as ProgressToken?,
-    partialResultToken: json['partialResultToken'] as ProgressToken?,
+    workDoneToken: json['workDoneToken'],
+    partialResultToken: json['partialResultToken'],
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, Object?>,
     ),
@@ -6701,7 +6699,7 @@ final class CodeLens {
     command: json['command'] == null
         ? null
         : Command.fromJson(json['command'] as Map<String, Object?>),
-    data: json['data'] as LSPAny?,
+    data: json['data'],
   );
 
   final Range range;
@@ -6775,8 +6773,8 @@ final class DocumentLinkParams {
 
   factory DocumentLinkParams.fromJson(Map<String, Object?> json) =>
       DocumentLinkParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
+        partialResultToken: json['partialResultToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -6821,7 +6819,7 @@ final class DocumentLink {
     range: Range.fromJson(json['range'] as Map<String, Object?>),
     target: json['target'] as String?,
     tooltip: json['tooltip'] as String?,
-    data: json['data'] as LSPAny?,
+    data: json['data'],
   );
 
   final Range range;
@@ -6904,7 +6902,7 @@ final class DocumentFormattingParams {
 
   factory DocumentFormattingParams.fromJson(Map<String, Object?> json) =>
       DocumentFormattingParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -6983,7 +6981,7 @@ final class DocumentRangeFormattingParams {
 
   factory DocumentRangeFormattingParams.fromJson(Map<String, Object?> json) =>
       DocumentRangeFormattingParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -7078,7 +7076,7 @@ final class DocumentRangesFormattingParams {
 
   factory DocumentRangesFormattingParams.fromJson(Map<String, Object?> json) =>
       DocumentRangesFormattingParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -7224,7 +7222,7 @@ final class RenameParams {
   });
 
   factory RenameParams.fromJson(Map<String, Object?> json) => RenameParams(
-    workDoneToken: json['workDoneToken'] as ProgressToken?,
+    workDoneToken: json['workDoneToken'],
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, Object?>,
     ),
@@ -7315,7 +7313,7 @@ final class PrepareRenameParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
       );
 
   final TextDocumentIdentifier textDocument;
@@ -7353,7 +7351,7 @@ final class ExecuteCommandParams {
 
   factory ExecuteCommandParams.fromJson(Map<String, Object?> json) =>
       ExecuteCommandParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
+        workDoneToken: json['workDoneToken'],
         command: json['command'] as String,
         arguments: (json['arguments'] as List<Object?>?)
             ?.map((e) => e as LSPAny)
@@ -7727,9 +7725,7 @@ final class WorkDoneProgressParams {
   const WorkDoneProgressParams({this.workDoneToken});
 
   factory WorkDoneProgressParams.fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressParams(
-        workDoneToken: json['workDoneToken'] as ProgressToken?,
-      );
+      WorkDoneProgressParams(workDoneToken: json['workDoneToken']);
 
   final ProgressToken? workDoneToken;
 
@@ -7747,9 +7743,7 @@ final class PartialResultParams {
   const PartialResultParams({this.partialResultToken});
 
   factory PartialResultParams.fromJson(Map<String, Object?> json) =>
-      PartialResultParams(
-        partialResultToken: json['partialResultToken'] as ProgressToken?,
-      );
+      PartialResultParams(partialResultToken: json['partialResultToken']);
 
   final ProgressToken? partialResultToken;
 
@@ -8176,8 +8170,8 @@ final class SemanticTokensOptions {
         legend: SemanticTokensLegend.fromJson(
           json['legend'] as Map<String, Object?>,
         ),
-        range: json['range'] as Object?,
-        full: json['full'] as Object?,
+        range: json['range'],
+        full: json['full'],
       );
 
   final bool? workDoneProgress;
@@ -8800,7 +8794,7 @@ final class InlayHintLabelPart {
   factory InlayHintLabelPart.fromJson(Map<String, Object?> json) =>
       InlayHintLabelPart(
         value: json['value'] as String,
-        tooltip: json['tooltip'] as Object?,
+        tooltip: json['tooltip'],
         location: json['location'] == null
             ? null
             : Location.fromJson(json['location'] as Map<String, Object?>),
@@ -9458,7 +9452,7 @@ final class Registration {
   factory Registration.fromJson(Map<String, Object?> json) => Registration(
     id: json['id'] as String,
     method: json['method'] as String,
-    registerOptions: json['registerOptions'] as LSPAny?,
+    registerOptions: json['registerOptions'],
   );
 
   final String id;
@@ -9581,27 +9575,27 @@ final class ServerCapabilities {
     positionEncoding: json['positionEncoding'] == null
         ? null
         : PositionEncodingKind(json['positionEncoding'] as String),
-    textDocumentSync: json['textDocumentSync'] as Object?,
-    notebookDocumentSync: json['notebookDocumentSync'] as Object?,
+    textDocumentSync: json['textDocumentSync'],
+    notebookDocumentSync: json['notebookDocumentSync'],
     completionProvider: json['completionProvider'] == null
         ? null
         : CompletionOptions.fromJson(
             json['completionProvider'] as Map<String, Object?>,
           ),
-    hoverProvider: json['hoverProvider'] as Object?,
+    hoverProvider: json['hoverProvider'],
     signatureHelpProvider: json['signatureHelpProvider'] == null
         ? null
         : SignatureHelpOptions.fromJson(
             json['signatureHelpProvider'] as Map<String, Object?>,
           ),
-    declarationProvider: json['declarationProvider'] as Object?,
-    definitionProvider: json['definitionProvider'] as Object?,
-    typeDefinitionProvider: json['typeDefinitionProvider'] as Object?,
-    implementationProvider: json['implementationProvider'] as Object?,
-    referencesProvider: json['referencesProvider'] as Object?,
-    documentHighlightProvider: json['documentHighlightProvider'] as Object?,
-    documentSymbolProvider: json['documentSymbolProvider'] as Object?,
-    codeActionProvider: json['codeActionProvider'] as Object?,
+    declarationProvider: json['declarationProvider'],
+    definitionProvider: json['definitionProvider'],
+    typeDefinitionProvider: json['typeDefinitionProvider'],
+    implementationProvider: json['implementationProvider'],
+    referencesProvider: json['referencesProvider'],
+    documentHighlightProvider: json['documentHighlightProvider'],
+    documentSymbolProvider: json['documentSymbolProvider'],
+    codeActionProvider: json['codeActionProvider'],
     codeLensProvider: json['codeLensProvider'] == null
         ? null
         : CodeLensOptions.fromJson(
@@ -9612,40 +9606,39 @@ final class ServerCapabilities {
         : DocumentLinkOptions.fromJson(
             json['documentLinkProvider'] as Map<String, Object?>,
           ),
-    colorProvider: json['colorProvider'] as Object?,
-    workspaceSymbolProvider: json['workspaceSymbolProvider'] as Object?,
-    documentFormattingProvider: json['documentFormattingProvider'] as Object?,
-    documentRangeFormattingProvider:
-        json['documentRangeFormattingProvider'] as Object?,
+    colorProvider: json['colorProvider'],
+    workspaceSymbolProvider: json['workspaceSymbolProvider'],
+    documentFormattingProvider: json['documentFormattingProvider'],
+    documentRangeFormattingProvider: json['documentRangeFormattingProvider'],
     documentOnTypeFormattingProvider:
         json['documentOnTypeFormattingProvider'] == null
         ? null
         : DocumentOnTypeFormattingOptions.fromJson(
             json['documentOnTypeFormattingProvider'] as Map<String, Object?>,
           ),
-    renameProvider: json['renameProvider'] as Object?,
-    foldingRangeProvider: json['foldingRangeProvider'] as Object?,
-    selectionRangeProvider: json['selectionRangeProvider'] as Object?,
+    renameProvider: json['renameProvider'],
+    foldingRangeProvider: json['foldingRangeProvider'],
+    selectionRangeProvider: json['selectionRangeProvider'],
     executeCommandProvider: json['executeCommandProvider'] == null
         ? null
         : ExecuteCommandOptions.fromJson(
             json['executeCommandProvider'] as Map<String, Object?>,
           ),
-    callHierarchyProvider: json['callHierarchyProvider'] as Object?,
-    linkedEditingRangeProvider: json['linkedEditingRangeProvider'] as Object?,
-    semanticTokensProvider: json['semanticTokensProvider'] as Object?,
-    monikerProvider: json['monikerProvider'] as Object?,
-    typeHierarchyProvider: json['typeHierarchyProvider'] as Object?,
-    inlineValueProvider: json['inlineValueProvider'] as Object?,
-    inlayHintProvider: json['inlayHintProvider'] as Object?,
-    diagnosticProvider: json['diagnosticProvider'] as Object?,
-    inlineCompletionProvider: json['inlineCompletionProvider'] as Object?,
+    callHierarchyProvider: json['callHierarchyProvider'],
+    linkedEditingRangeProvider: json['linkedEditingRangeProvider'],
+    semanticTokensProvider: json['semanticTokensProvider'],
+    monikerProvider: json['monikerProvider'],
+    typeHierarchyProvider: json['typeHierarchyProvider'],
+    inlineValueProvider: json['inlineValueProvider'],
+    inlayHintProvider: json['inlayHintProvider'],
+    diagnosticProvider: json['diagnosticProvider'],
+    inlineCompletionProvider: json['inlineCompletionProvider'],
     workspace: json['workspace'] == null
         ? null
         : ServerCapabilitiesWorkspace.fromJson(
             json['workspace'] as Map<String, Object?>,
           ),
-    experimental: json['experimental'] as LSPAny?,
+    experimental: json['experimental'],
   );
 
   final PositionEncodingKind? positionEncoding;
@@ -9967,7 +9960,7 @@ final class Diagnostic {
         : DiagnosticSeverity.values.firstWhere(
             (e) => e.value == json['severity'] as int,
           ),
-    code: json['code'] as Object?,
+    code: json['code'],
     codeDescription: json['codeDescription'] == null
         ? null
         : CodeDescription.fromJson(
@@ -9984,7 +9977,7 @@ final class Diagnostic {
               DiagnosticRelatedInformation.fromJson(e as Map<String, Object?>),
         )
         .toList(),
-    data: json['data'] as LSPAny?,
+    data: json['data'],
   );
 
   final Range range;
@@ -10291,7 +10284,7 @@ final class SignatureInformation {
   factory SignatureInformation.fromJson(Map<String, Object?> json) =>
       SignatureInformation(
         label: json['label'] as String,
-        documentation: json['documentation'] as Object?,
+        documentation: json['documentation'],
         parameters: (json['parameters'] as List<Object?>?)
             ?.map(
               (e) => ParameterInformation.fromJson(e as Map<String, Object?>),
@@ -11454,7 +11447,7 @@ final class ClientCapabilities {
             : GeneralClientCapabilities.fromJson(
                 json['general'] as Map<String, Object?>,
               ),
-        experimental: json['experimental'] as LSPAny?,
+        experimental: json['experimental'],
       );
 
   final WorkspaceClientCapabilities? workspace;
@@ -11516,7 +11509,7 @@ final class TextDocumentSyncOptions {
               ),
         willSave: json['willSave'] as bool?,
         willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
-        save: json['save'] as Object?,
+        save: json['save'],
       );
 
   final bool? openClose;
@@ -11656,7 +11649,7 @@ final class WorkspaceFoldersServerCapabilities {
     Map<String, Object?> json,
   ) => WorkspaceFoldersServerCapabilities(
     supported: json['supported'] as bool?,
-    changeNotifications: json['changeNotifications'] as Object?,
+    changeNotifications: json['changeNotifications'],
   );
 
   final bool? supported;
@@ -11825,7 +11818,7 @@ final class ParameterInformation {
   factory ParameterInformation.fromJson(Map<String, Object?> json) =>
       ParameterInformation(
         label: json['label'] as Object,
-        documentation: json['documentation'] as Object?,
+        documentation: json['documentation'],
       );
 
   final Object label;

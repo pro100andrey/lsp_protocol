@@ -83,11 +83,17 @@ final class EmitterVisitor {
     void walk(ResolvedType type) {
       switch (type) {
         case ClassType():
-          if (currentFile != _structuresFile) needsStructures = true;
+          if (currentFile != _structuresFile) {
+            needsStructures = true;
+          }
         case EnumType():
-          if (currentFile != _enumerationsFile) needsEnumerations = true;
+          if (currentFile != _enumerationsFile) {
+            needsEnumerations = true;
+          }
         case AliasType():
-          if (currentFile != _aliasesFile) needsAliases = true;
+          if (currentFile != _aliasesFile) {
+            needsAliases = true;
+          }
         case ListType(:final element):
           walk(element);
         case MapType(:final key, :final value):
@@ -99,9 +105,7 @@ final class EmitterVisitor {
       }
     }
 
-    for (final t in types) {
-      walk(t);
-    }
+    types.forEach(walk);
 
     return [
       if (needsStructures) Directive.import(_structuresFile),
@@ -155,7 +159,9 @@ final class EmitterVisitor {
     Set<String>? visited,
   ]) {
     visited ??= {};
-    if (!visited.add(cls.name)) return [];
+    if (!visited.add(cls.name)) {
+      return [];
+    }
 
     final ownNames = cls.properties.map((p) => p.name).toSet();
     final inherited = <ResolvedProperty>[];
@@ -163,7 +169,9 @@ final class EmitterVisitor {
 
     void addFrom(Iterable<ResolvedProperty> props) {
       for (final p in props) {
-        if (inheritedSeen.add(p.name)) inherited.add(p);
+        if (inheritedSeen.add(p.name)) {
+          inherited.add(p);
+        }
       }
     }
 
@@ -298,10 +306,31 @@ final class EmitterVisitor {
     EnumType(:final ref) when optional =>
       "json['$name'] == null ? null : ${ref.name}(json['$name'] as ${ref.valueType})",
     EnumType(:final ref) => "${ref.name}(json['$name'] as ${ref.valueType})",
+    // UnionType resolves to Object — 'as Object?' is an unnecessary cast.
+    UnionType() when optional => "json['$name']",
+    UnionType() => "json['$name'] as Object",
+    // DartCoreType('Object?') is already Object? — no cast needed.
+    DartCoreType(:final dartName) when dartName == 'Object?' => "json['$name']",
+    // AliasType that resolves to an Object-like type — 'as AliasName?' expands
+    // to 'as Object?' which Dart flags as an unnecessary cast.
+    AliasType(:final ref) when optional && _isEffectivelyObject(ref.type) =>
+      "json['$name']",
     _ =>
       optional
           ? "json['$name'] as ${_dartTypeName(type)}?"
           : "json['$name'] as ${_dartTypeName(type)}",
+  };
+
+  /// Returns `true` when [type] ultimately resolves to `Object` or `Object?`,
+  /// meaning a cast from a JSON map value (already `Object?`) would be
+  /// flagged as [unnecessary_cast] by the Dart analyser.
+  static bool _isEffectivelyObject(ResolvedType type) => switch (type) {
+    UnionType() => true,
+    DartCoreType(:final dartName) =>
+      dartName == 'Object' || dartName == 'Object?',
+    AliasType(:final ref) => _isEffectivelyObject(ref.type),
+    NullableType(:final inner) => _isEffectivelyObject(inner),
+    _ => false,
   };
 
   /// Returns the Dart type name string for a resolved type, used in string

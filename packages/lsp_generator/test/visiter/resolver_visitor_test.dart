@@ -59,12 +59,12 @@ void main() {
       expect(v.resolveRef(_base('null')), isDartCoreType('Null'));
     });
 
-    test('URI → Uri', () {
-      expect(v.resolveRef(_base('URI')), isDartCoreType('Uri'));
+    test('URI → String', () {
+      expect(v.resolveRef(_base('URI')), isDartCoreType('String'));
     });
 
-    test('DocumentUri → Uri', () {
-      expect(v.resolveRef(_base('DocumentUri')), isDartCoreType('Uri'));
+    test('DocumentUri → String', () {
+      expect(v.resolveRef(_base('DocumentUri')), isDartCoreType('String'));
     });
 
     test('RegExp → String', () {
@@ -358,9 +358,9 @@ void main() {
         () => cls = visitor.registry['TextDocumentItem']! as ResolvedClass,
       );
 
-      test('uri → Uri', () {
+      test('uri → String', () {
         final p = cls.properties.firstWhere((p) => p.name == 'uri');
-        expect(p.type, isDartCoreType('Uri'));
+        expect(p.type, isDartCoreType('String'));
       });
 
       test('languageId → String', () {
