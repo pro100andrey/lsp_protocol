@@ -14,9 +14,13 @@ extension type Selectors(AppState state) {
 
   /// LSP License URI
   Uri get lspLicenseUri => Uri.parse(
-    'https://microsoft.github.io/anguage-server-protocol/License-code.txt',
+    'https://microsoft.github.io/language-server-protocol/License-code.txt',
   );
 
   /// LSP MetaModel
   MetaProtocol get protocol => state.meta.protocol!;
+
+  /// Resolved output directory: explicit override or default package path.
+  String get resolvedOutputDir =>
+      state.meta.outputDir ?? 'packages/lsp_specification';
 }

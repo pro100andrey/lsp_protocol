@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cli_utils/cli_utils.dart';
 import 'package:http/http.dart' as http;
 
 import '../../common.dart';
@@ -36,6 +37,14 @@ final class FetchLSPModelAction extends BaseAction {
       final meta = MetaProtocol.fromJson(jsonData);
 
       parserProgress.complete('Successfully parsed');
+
+      final saveProgress = logger.progress('Saving metaModel.json...');
+      final outDir = DirectoryPath(select.resolvedOutputDir);
+      if (outDir.notFound) {
+        outDir.create(recursive: true);
+      }
+      outDir.joinFile('metaModel.json').writeAsString(body);
+      saveProgress.complete('Saved to ${outDir.path}/metaModel.json');
 
       return state.copyWith.meta(protocol: meta);
     } catch (e) {

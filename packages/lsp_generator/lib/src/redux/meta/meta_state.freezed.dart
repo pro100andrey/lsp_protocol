@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MetaState {
 
- String get version; MetaProtocol? get protocol;
+ String get version; MetaProtocol? get protocol; String? get outputDir;
 /// Create a copy of MetaState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $MetaStateCopyWith<MetaState> get copyWith => _$MetaStateCopyWithImpl<MetaState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaState&&(identical(other.version, version) || other.version == version)&&(identical(other.protocol, protocol) || other.protocol == protocol));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaState&&(identical(other.version, version) || other.version == version)&&(identical(other.protocol, protocol) || other.protocol == protocol)&&(identical(other.outputDir, outputDir) || other.outputDir == outputDir));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,version,protocol);
+int get hashCode => Object.hash(runtimeType,version,protocol,outputDir);
 
 @override
 String toString() {
-  return 'MetaState(version: $version, protocol: $protocol)';
+  return 'MetaState(version: $version, protocol: $protocol, outputDir: $outputDir)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $MetaStateCopyWith<$Res>  {
   factory $MetaStateCopyWith(MetaState value, $Res Function(MetaState) _then) = _$MetaStateCopyWithImpl;
 @useResult
 $Res call({
- String version, MetaProtocol? protocol
+ String version, MetaProtocol? protocol, String? outputDir
 });
 
 
@@ -62,11 +62,12 @@ class _$MetaStateCopyWithImpl<$Res>
 
 /// Create a copy of MetaState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? version = null,Object? protocol = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? version = null,Object? protocol = freezed,Object? outputDir = freezed,}) {
   return _then(_self.copyWith(
 version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as String,protocol: freezed == protocol ? _self.protocol : protocol // ignore: cast_nullable_to_non_nullable
-as MetaProtocol?,
+as MetaProtocol?,outputDir: freezed == outputDir ? _self.outputDir : outputDir // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 /// Create a copy of MetaState
@@ -163,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String version,  MetaProtocol? protocol)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String version,  MetaProtocol? protocol,  String? outputDir)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MetaState() when $default != null:
-return $default(_that.version,_that.protocol);case _:
+return $default(_that.version,_that.protocol,_that.outputDir);case _:
   return orElse();
 
 }
@@ -184,10 +185,10 @@ return $default(_that.version,_that.protocol);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String version,  MetaProtocol? protocol)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String version,  MetaProtocol? protocol,  String? outputDir)  $default,) {final _that = this;
 switch (_that) {
 case _MetaState():
-return $default(_that.version,_that.protocol);case _:
+return $default(_that.version,_that.protocol,_that.outputDir);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -204,10 +205,10 @@ return $default(_that.version,_that.protocol);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String version,  MetaProtocol? protocol)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String version,  MetaProtocol? protocol,  String? outputDir)?  $default,) {final _that = this;
 switch (_that) {
 case _MetaState() when $default != null:
-return $default(_that.version,_that.protocol);case _:
+return $default(_that.version,_that.protocol,_that.outputDir);case _:
   return null;
 
 }
@@ -219,11 +220,12 @@ return $default(_that.version,_that.protocol);case _:
 
 
 class _MetaState implements MetaState {
-  const _MetaState({this.version = '3.17', this.protocol});
+  const _MetaState({this.version = '3.17', this.protocol, this.outputDir});
   
 
 @override@JsonKey() final  String version;
 @override final  MetaProtocol? protocol;
+@override final  String? outputDir;
 
 /// Create a copy of MetaState
 /// with the given fields replaced by the non-null parameter values.
@@ -235,16 +237,16 @@ _$MetaStateCopyWith<_MetaState> get copyWith => __$MetaStateCopyWithImpl<_MetaSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaState&&(identical(other.version, version) || other.version == version)&&(identical(other.protocol, protocol) || other.protocol == protocol));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaState&&(identical(other.version, version) || other.version == version)&&(identical(other.protocol, protocol) || other.protocol == protocol)&&(identical(other.outputDir, outputDir) || other.outputDir == outputDir));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,version,protocol);
+int get hashCode => Object.hash(runtimeType,version,protocol,outputDir);
 
 @override
 String toString() {
-  return 'MetaState(version: $version, protocol: $protocol)';
+  return 'MetaState(version: $version, protocol: $protocol, outputDir: $outputDir)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$MetaStateCopyWith<$Res> implements $MetaStateCopyWith<$Re
   factory _$MetaStateCopyWith(_MetaState value, $Res Function(_MetaState) _then) = __$MetaStateCopyWithImpl;
 @override @useResult
 $Res call({
- String version, MetaProtocol? protocol
+ String version, MetaProtocol? protocol, String? outputDir
 });
 
 
@@ -272,11 +274,12 @@ class __$MetaStateCopyWithImpl<$Res>
 
 /// Create a copy of MetaState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? version = null,Object? protocol = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? version = null,Object? protocol = freezed,Object? outputDir = freezed,}) {
   return _then(_MetaState(
 version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as String,protocol: freezed == protocol ? _self.protocol : protocol // ignore: cast_nullable_to_non_nullable
-as MetaProtocol?,
+as MetaProtocol?,outputDir: freezed == outputDir ? _self.outputDir : outputDir // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

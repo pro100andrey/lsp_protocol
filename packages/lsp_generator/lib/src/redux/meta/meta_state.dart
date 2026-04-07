@@ -9,5 +9,6 @@ abstract class MetaState with _$MetaState {
   const factory MetaState({
     @Default('3.17') String version,
     MetaProtocol? protocol,
+    String? outputDir,
   }) = _MetaState;
 }

@@ -6,7 +6,15 @@ import '../../redux/meta/meta.dart';
 import 'with_store.dart';
 
 final class GenerateCommand extends Command with WithStore {
-  GenerateCommand({required this.store});
+  GenerateCommand({required this.store}) {
+    argParser.addOption(
+      'output',
+      abbr: 'o',
+      help:
+          'Output directory for generated files. '
+          'Defaults to packages/lsp_specification.',
+    );
+  }
 
   @override
   final name = 'generate';
@@ -19,6 +27,14 @@ final class GenerateCommand extends Command with WithStore {
 
   @override
   Future<void> run() async {
-    await dispatchAndWait(FetchLSPModelAction());
+    final outputPath = argResults?['output'] as String?;
+    if (outputPath != null) {
+      dispatchSync(SetOutputDirAction(path: outputPath));
+    }
+
+    await store.dispatchAndWaitAll([
+      FetchLSPModelAction(),
+      FetchLSPLicenseAction(),
+    ]);
   }
 }
