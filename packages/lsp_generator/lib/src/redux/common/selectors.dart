@@ -1,4 +1,5 @@
 import '../app_state.dart';
+import '../emit/emit_state.dart';
 import '../models/protocol.dart';
 import '../resolved/resolved_state.dart';
 
@@ -27,4 +28,7 @@ extension type Selectors(AppState state) {
   /// Resolved output directory: explicit override or default package path.
   String get resolvedOutputDir =>
       state.meta.outputDir ?? 'packages/lsp_specification';
+
+  /// Emitted code state.
+  EmitState get emit => state.emit!;
 }

@@ -13,7 +13,9 @@ dependencies:
     path: ../cli_async_redux
   cli_utils: 
     path: ../cli_utils
+  code_builder: ^4.11.1
   collection: ^1.19.1
+  dart_style: ^3.1.0
   fast_immutable_collections: ^11.1.0
   freezed_annotation: ^3.1.0
   http: ^1.6.0
