@@ -1,4 +1,4 @@
-/// Downloader State
+/// Meta State for LSP Generator
 library;
 
 export 'actions/fetch_lsp_license_action.dart';
