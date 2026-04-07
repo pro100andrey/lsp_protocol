@@ -1,110 +1,54 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'resolved_decl.dart';
+
+part 'resolved_type.freezed.dart';
 
 /// Resolved IR type — all name-string references are replaced with object
 /// references. Use a Dart 3 sealed switch for exhaustive dispatch.
-sealed class ResolvedType {
-  const ResolvedType();
-}
+@freezed
+sealed class ResolvedType with _$ResolvedType {
+  /// A Dart core / built-in type (String, int, bool, double, Uri, Null, etc.)
+  ///
+  /// [dartName] is the exact Dart type name, e.g. `'String'`, `'int'`, `'Object?'`.
+  const factory ResolvedType.dartCore({required String dartName}) =
+      DartCoreType;
 
-/// A Dart core / built-in type (String, int, bool, double, Uri, Null, etc.)
-final class DartCoreType extends ResolvedType {
-  const DartCoreType(this.dartName);
+  /// Reference to a named [ResolvedClass] (structure or extracted literal).
+  const factory ResolvedType.classType({required ResolvedClass ref}) =
+      ClassType;
 
-  /// The exact Dart type name, e.g. `'String'`, `'int'`, `'Object?'`.
-  final String dartName;
+  /// Reference to a named [ResolvedEnum].
+  const factory ResolvedType.enumType({required ResolvedEnum ref}) = EnumType;
 
-  @override
-  String toString() => 'DartCoreType($dartName)';
-}
+  /// Reference to a named [ResolvedAlias].
+  const factory ResolvedType.aliasType({required ResolvedAlias ref}) =
+      AliasType;
 
-/// Reference to a named [ResolvedClass] (structure or extracted literal).
-final class ClassType extends ResolvedType {
-  const ClassType(this.ref);
+  /// `List<element>`
+  const factory ResolvedType.listType({required ResolvedType element}) =
+      ListType;
 
-  final ResolvedClass ref;
+  /// `Map<key, value>`
+  const factory ResolvedType.mapType({
+    required ResolvedType key,
+    required ResolvedType value,
+  }) = MapType;
 
-  @override
-  String toString() => 'ClassType(${ref.name})';
-}
+  /// `T?` — produced when `OrRef` contains exactly one non-null item and `null`.
+  const factory ResolvedType.nullableType({required ResolvedType inner}) =
+      NullableType;
 
-/// Reference to a named [ResolvedEnum].
-final class EnumType extends ResolvedType {
-  const EnumType(this.ref);
+  /// A union of two or more types that cannot be collapsed to [NullableType].
+  /// Produced by `OrRef([A, B, C])` or `AndRef(...)`.
+  const factory ResolvedType.unionType({required List<ResolvedType> items}) =
+      UnionType;
 
-  final ResolvedEnum ref;
+  /// Positional tuple — `Tuple<[T0, T1, ...]>`.
+  const factory ResolvedType.tupleType({required List<ResolvedType> items}) =
+      TupleType;
 
-  @override
-  String toString() => 'EnumType(${ref.name})';
-}
-
-/// Reference to a named [ResolvedAlias].
-final class AliasType extends ResolvedType {
-  const AliasType(this.ref);
-
-  final ResolvedAlias ref;
-
-  @override
-  String toString() => 'AliasType(${ref.name})';
-}
-
-/// `List<element>`
-final class ListType extends ResolvedType {
-  const ListType(this.element);
-
-  final ResolvedType element;
-
-  @override
-  String toString() => 'ListType($element)';
-}
-
-/// `Map<key, value>`
-final class MapType extends ResolvedType {
-  const MapType(this.key, this.value);
-
-  final ResolvedType key;
-  final ResolvedType value;
-
-  @override
-  String toString() => 'MapType($key, $value)';
-}
-
-/// `T?` — produced when `OrRef` contains exactly one non-null item and `null`.
-final class NullableType extends ResolvedType {
-  const NullableType(this.inner);
-
-  final ResolvedType inner;
-
-  @override
-  String toString() => 'NullableType($inner)';
-}
-
-/// A union of two or more types that cannot be collapsed to [NullableType].
-/// Produced by `OrRef([A, B, C])` or `AndRef(...)`.
-final class UnionType extends ResolvedType {
-  const UnionType(this.items);
-
-  final List<ResolvedType> items;
-
-  @override
-  String toString() => 'UnionType($items)';
-}
-
-/// Positional tuple — `Tuple<[T0, T1, ...]>`.
-final class TupleType extends ResolvedType {
-  const TupleType(this.items);
-
-  final List<ResolvedType> items;
-
-  @override
-  String toString() => 'TupleType($items)';
-}
-
-/// A literal string constant value (from `StringLiteralRef`).
-final class StringLiteralType extends ResolvedType {
-  const StringLiteralType(this.value);
-
-  final String value;
-
-  @override
-  String toString() => "StringLiteralType('$value')";
+  /// A literal string constant value (from `StringLiteralRef`).
+  const factory ResolvedType.stringLiteralType({required String value}) =
+      StringLiteralType;
 }

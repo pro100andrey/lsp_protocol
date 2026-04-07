@@ -24,8 +24,10 @@ ResolvedEnum _enum(String name, {bool supportsCustomValues = false}) =>
       supportsCustomValues: supportsCustomValues,
     );
 
-ResolvedAlias _alias(String name) =>
-    ResolvedAlias(name: name, type: const DartCoreType('String'));
+ResolvedAlias _alias(String name) => ResolvedAlias(
+  name: name,
+  type: DartCoreType(dartName: 'String'),
+);
 
 // ---------------------------------------------------------------------------
 // Tests
@@ -34,53 +36,59 @@ ResolvedAlias _alias(String name) =>
 void main() {
   group('toTypeRef — DartCoreType', () {
     test('String', () {
-      expect(_emit(toTypeRef(const DartCoreType('String'))), equals('String'));
+      expect(
+        _emit(toTypeRef(DartCoreType(dartName: 'String'))),
+        equals('String'),
+      );
     });
 
     test('int', () {
-      expect(_emit(toTypeRef(const DartCoreType('int'))), equals('int'));
+      expect(_emit(toTypeRef(DartCoreType(dartName: 'int'))), equals('int'));
     });
 
     test('double', () {
-      expect(_emit(toTypeRef(const DartCoreType('double'))), equals('double'));
+      expect(
+        _emit(toTypeRef(DartCoreType(dartName: 'double'))),
+        equals('double'),
+      );
     });
 
     test('bool', () {
-      expect(_emit(toTypeRef(const DartCoreType('bool'))), equals('bool'));
+      expect(_emit(toTypeRef(DartCoreType(dartName: 'bool'))), equals('bool'));
     });
 
     test('Null', () {
-      expect(_emit(toTypeRef(const DartCoreType('Null'))), equals('Null'));
+      expect(_emit(toTypeRef(DartCoreType(dartName: 'Null'))), equals('Null'));
     });
 
     test('Uri', () {
-      expect(_emit(toTypeRef(const DartCoreType('Uri'))), equals('Uri'));
+      expect(_emit(toTypeRef(DartCoreType(dartName: 'Uri'))), equals('Uri'));
     });
 
     test('Object? (LSPAny mapping)', () {
       expect(
-        _emit(toTypeRef(const DartCoreType('Object?'))),
+        _emit(toTypeRef(DartCoreType(dartName: 'Object?'))),
         equals('Object?'),
       );
     });
 
     test('Map<String, Object?> (LSPObject mapping)', () {
       expect(
-        _emit(toTypeRef(const DartCoreType('Map<String, Object?>'))),
+        _emit(toTypeRef(DartCoreType(dartName: 'Map<String, Object?>'))),
         equals('Map<String,Object?>'),
       );
     });
 
     test('List<Object?> (LSPArray mapping)', () {
       expect(
-        _emit(toTypeRef(const DartCoreType('List<Object?>'))),
+        _emit(toTypeRef(DartCoreType(dartName: 'List<Object?>'))),
         equals('List<Object?>'),
       );
     });
 
     test('unknown name falls through to plain refer', () {
       expect(
-        _emit(toTypeRef(const DartCoreType('CustomType'))),
+        _emit(toTypeRef(DartCoreType(dartName: 'CustomType'))),
         equals('CustomType'),
       );
     });
@@ -88,14 +96,17 @@ void main() {
 
   group('toTypeRef — ClassType', () {
     test('emits class name', () {
-      expect(_emit(toTypeRef(ClassType(_cls('Position')))), equals('Position'));
+      expect(
+        _emit(toTypeRef(ClassType(ref: _cls('Position')))),
+        equals('Position'),
+      );
     });
   });
 
   group('toTypeRef — EnumType', () {
     test('emits enum name', () {
       expect(
-        _emit(toTypeRef(EnumType(_enum('DiagnosticSeverity')))),
+        _emit(toTypeRef(EnumType(ref: _enum('DiagnosticSeverity')))),
         equals('DiagnosticSeverity'),
       );
     });
@@ -104,7 +115,7 @@ void main() {
   group('toTypeRef — AliasType', () {
     test('emits alias name', () {
       expect(
-        _emit(toTypeRef(AliasType(_alias('DocumentUri')))),
+        _emit(toTypeRef(AliasType(ref: _alias('DocumentUri')))),
         equals('DocumentUri'),
       );
     });
@@ -113,28 +124,36 @@ void main() {
   group('toTypeRef — ListType', () {
     test('List<String>', () {
       expect(
-        _emit(toTypeRef(const ListType(DartCoreType('String')))),
+        _emit(toTypeRef(ListType(element: DartCoreType(dartName: 'String')))),
         equals('List<String>'),
       );
     });
 
     test('List<int>', () {
       expect(
-        _emit(toTypeRef(const ListType(DartCoreType('int')))),
+        _emit(toTypeRef(ListType(element: DartCoreType(dartName: 'int')))),
         equals('List<int>'),
       );
     });
 
     test('List<Position> (ClassType element)', () {
       expect(
-        _emit(toTypeRef(ListType(ClassType(_cls('Position'))))),
+        _emit(
+          toTypeRef(ListType(element: ClassType(ref: _cls('Position')))),
+        ),
         equals('List<Position>'),
       );
     });
 
     test('nested List<List<String>>', () {
       expect(
-        _emit(toTypeRef(const ListType(ListType(DartCoreType('String'))))),
+        _emit(
+          toTypeRef(
+            ListType(
+              element: ListType(element: DartCoreType(dartName: 'String')),
+            ),
+          ),
+        ),
         equals('List<List<String>>'),
       );
     });
@@ -145,7 +164,10 @@ void main() {
       expect(
         _emit(
           toTypeRef(
-            const MapType(DartCoreType('String'), DartCoreType('String')),
+            MapType(
+              key: DartCoreType(dartName: 'String'),
+              value: DartCoreType(dartName: 'String'),
+            ),
           ),
         ),
         equals('Map<String,String>'),
@@ -156,7 +178,10 @@ void main() {
       expect(
         _emit(
           toTypeRef(
-            const MapType(DartCoreType('String'), DartCoreType('Object?')),
+            MapType(
+              key: DartCoreType(dartName: 'String'),
+              value: DartCoreType(dartName: 'Object?'),
+            ),
           ),
         ),
         equals('Map<String,Object?>'),
@@ -167,14 +192,16 @@ void main() {
   group('toTypeRef — NullableType', () {
     test('String?', () {
       expect(
-        _emit(toTypeRef(const NullableType(DartCoreType('String')))),
+        _emit(
+          toTypeRef(NullableType(inner: DartCoreType(dartName: 'String'))),
+        ),
         equals('String?'),
       );
     });
 
     test('int?', () {
       expect(
-        _emit(toTypeRef(const NullableType(DartCoreType('int')))),
+        _emit(toTypeRef(NullableType(inner: DartCoreType(dartName: 'int')))),
         equals('int?'),
       );
     });
@@ -183,7 +210,9 @@ void main() {
       expect(
         _emit(
           toTypeRef(
-            const NullableType(ListType(DartCoreType('String'))),
+            NullableType(
+              inner: ListType(element: DartCoreType(dartName: 'String')),
+            ),
           ),
         ),
         equals('List<String>?'),
@@ -192,7 +221,7 @@ void main() {
 
     test('Position? (ClassType wrapped)', () {
       expect(
-        _emit(toTypeRef(NullableType(ClassType(_cls('Position'))))),
+        _emit(toTypeRef(NullableType(inner: ClassType(ref: _cls('Position'))))),
         equals('Position?'),
       );
     });
@@ -203,10 +232,12 @@ void main() {
       expect(
         _emit(
           toTypeRef(
-            const UnionType([
-              DartCoreType('String'),
-              DartCoreType('int'),
-            ]),
+            UnionType(
+              items: [
+                DartCoreType(dartName: 'String'),
+                DartCoreType(dartName: 'int'),
+              ],
+            ),
           ),
         ),
         equals('Object'),
@@ -219,10 +250,12 @@ void main() {
       expect(
         _emit(
           toTypeRef(
-            const TupleType([
-              DartCoreType('int'),
-              DartCoreType('String'),
-            ]),
+            TupleType(
+              items: [
+                DartCoreType(dartName: 'int'),
+                DartCoreType(dartName: 'String'),
+              ],
+            ),
           ),
         ),
         equals('List<Object?>'),
@@ -233,7 +266,7 @@ void main() {
   group('toTypeRef — StringLiteralType', () {
     test('collapses to String', () {
       expect(
-        _emit(toTypeRef(const StringLiteralType('snippet'))),
+        _emit(toTypeRef(StringLiteralType(value: 'snippet'))),
         equals('String'),
       );
     });

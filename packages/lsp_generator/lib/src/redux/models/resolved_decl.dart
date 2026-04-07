@@ -1,87 +1,69 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'resolved_type.dart';
+
+part 'resolved_decl.freezed.dart';
 
 /// Resolved IR declaration — a named top-level entity in the LSP model.
 /// All [ResolvedType] fields are fully resolved (no string-name references).
 sealed class ResolvedDecl {
-  const ResolvedDecl({
-    required this.name,
-    this.documentation,
-    this.since,
-    this.proposed = false,
-  });
-
-  final String name;
-  final String? documentation;
-  final String? since;
-  final bool proposed;
+  String get name;
+  String? get documentation;
+  String? get since;
+  bool get proposed;
 }
 
+// ---------------------------------------------------------------------------
+// Concrete declarations
+// ---------------------------------------------------------------------------
+
 /// A resolved structure or extracted inline literal.
-final class ResolvedClass extends ResolvedDecl {
-  ResolvedClass({
-    required super.name,
-    required this.properties,
-    this.extends$ = const [],
-    this.mixins$ = const [],
-    this.isAnonymous = false,
-    super.documentation,
-    super.since,
-    super.proposed,
-  });
-
-  final List<ResolvedProperty> properties;
-
-  /// Resolved `extends` chain (already [ResolvedType], not strings).
-  final List<ResolvedType> extends$;
-
-  /// Resolved `mixins` chain.
-  final List<ResolvedType> mixins$;
-
-  /// `true` for classes extracted from an inline `LiteralRef`.
-  final bool isAnonymous;
-
-  @override
-  String toString() => 'ResolvedClass($name)';
+///
+/// Uses `@unfreezed` so that [properties], [extends$], and [mixins$] remain
+/// mutable lists — required by the two-pass resolver.
+@unfreezed
+abstract class ResolvedClass with _$ResolvedClass implements ResolvedDecl {
+  factory ResolvedClass({
+    required String name,
+    required List<ResolvedProperty> properties,
+    @Default([]) List<ResolvedType> extends$,
+    @Default([]) List<ResolvedType> mixins$,
+    @Default(false) bool isAnonymous,
+    String? documentation,
+    String? since,
+    @Default(false) bool proposed,
+  }) = _ResolvedClass;
+  ResolvedClass._();
 }
 
 /// A resolved enumeration.
-final class ResolvedEnum extends ResolvedDecl {
-  const ResolvedEnum({
-    required super.name,
-    required this.members,
-    required this.valueType,
-    this.supportsCustomValues = false,
-    super.documentation,
-    super.since,
-    super.proposed,
-  });
-
-  final List<ResolvedEnumMember> members;
-
-  /// The underlying value type: `String` or `int`.
-  final String valueType;
-
-  final bool supportsCustomValues;
-
-  @override
-  String toString() => 'ResolvedEnum($name)';
+@freezed
+abstract class ResolvedEnum with _$ResolvedEnum implements ResolvedDecl {
+  const factory ResolvedEnum({
+    required String name,
+    required List<ResolvedEnumMember> members,
+    required String valueType,
+    @Default(false) bool supportsCustomValues,
+    String? documentation,
+    String? since,
+    @Default(false) bool proposed,
+  }) = _ResolvedEnum;
 }
 
 /// A resolved type alias.
-final class ResolvedAlias extends ResolvedDecl {
-  ResolvedAlias({
-    required super.name,
-    required this.type,
-    super.documentation,
-    super.since,
-    super.proposed,
-  });
-
-  /// Mutable so pass-2 can update in-place; all [AliasType] refs auto-update.
-  ResolvedType type;
-
-  @override
-  String toString() => 'ResolvedAlias($name)';
+///
+/// Uses `@unfreezed` so that [type] can be mutated in-place by the two-pass
+/// resolver — all [AliasType] refs then automatically see the resolved type.
+@unfreezed
+abstract class ResolvedAlias with _$ResolvedAlias implements ResolvedDecl {
+  factory ResolvedAlias({
+    required String name,
+    required ResolvedType type,
+    String? documentation,
+    String? since,
+    @Default(false) bool proposed,
+  }) = _ResolvedAlias;
+  ResolvedAlias._();
 }
 
 // ---------------------------------------------------------------------------
@@ -89,43 +71,27 @@ final class ResolvedAlias extends ResolvedDecl {
 // ---------------------------------------------------------------------------
 
 /// A property of a [ResolvedClass].
-final class ResolvedProperty {
-  const ResolvedProperty({
-    required this.name,
-    required this.type,
-    this.optional = false,
-    this.documentation,
-    this.since,
-    this.deprecated,
-  });
-
-  final String name;
-  final ResolvedType type;
-  final bool optional;
-  final String? documentation;
-  final String? since;
-  final String? deprecated;
-
-  @override
-  String toString() => 'ResolvedProperty($name: $type)';
+@freezed
+abstract class ResolvedProperty with _$ResolvedProperty {
+  const factory ResolvedProperty({
+    required String name,
+    required ResolvedType type,
+    @Default(false) bool optional,
+    String? documentation,
+    String? since,
+    String? deprecated,
+  }) = _ResolvedProperty;
 }
 
 /// A member of a [ResolvedEnum].
-final class ResolvedEnumMember {
-  const ResolvedEnumMember({
-    required this.name,
-    required this.value,
-    this.documentation,
-    this.since,
-  });
+@freezed
+abstract class ResolvedEnumMember with _$ResolvedEnumMember {
+  const factory ResolvedEnumMember({
+    required String name,
 
-  final String name;
-
-  /// Raw value as a string (may be int or string depending on enum kind).
-  final String value;
-  final String? documentation;
-  final String? since;
-
-  @override
-  String toString() => 'ResolvedEnumMember($name = $value)';
+    /// Raw value as a string (may be int or string depending on enum kind).
+    required String value,
+    String? documentation,
+    String? since,
+  }) = _ResolvedEnumMember;
 }

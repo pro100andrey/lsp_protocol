@@ -97,8 +97,8 @@ void main() {
           _cls(
             'Position',
             properties: [
-              _prop('line', const DartCoreType('int')),
-              _prop('character', const DartCoreType('int')),
+              _prop('line', DartCoreType(dartName: 'int')),
+              _prop('character', DartCoreType(dartName: 'int')),
             ],
           ),
         ],
@@ -113,8 +113,8 @@ void main() {
           _cls(
             'Range',
             properties: [
-              _prop('start', ClassType(_cls('Position'))),
-              _prop('end', ClassType(_cls('Position'))),
+              _prop('start', ClassType(ref: _cls('Position'))),
+              _prop('end', ClassType(ref: _cls('Position'))),
             ],
           ),
         ],
@@ -130,9 +130,9 @@ void main() {
           _cls(
             'TextEdit',
             properties: [
-              _prop('range', ClassType(_cls('Range'))),
-              _prop('newText', const DartCoreType('String')),
-              _prop('newEol', const DartCoreType('String'), optional: true),
+              _prop('range', ClassType(ref: _cls('Range'))),
+              _prop('newText', DartCoreType(dartName: 'String')),
+              _prop('newEol', DartCoreType(dartName: 'String'), optional: true),
             ],
           ),
         ],
@@ -147,7 +147,7 @@ void main() {
           _cls(
             'Position',
             properties: [
-              _prop('line', const DartCoreType('int')),
+              _prop('line', DartCoreType(dartName: 'int')),
             ],
           ),
         ],
@@ -166,7 +166,7 @@ void main() {
           _cls(
             'Position',
             properties: [
-              _prop('line', const DartCoreType('int')),
+              _prop('line', DartCoreType(dartName: 'int')),
             ],
           ),
         ],
@@ -182,8 +182,8 @@ void main() {
           _cls(
             'Position',
             properties: [
-              _prop('line', const DartCoreType('int')),
-              _prop('character', const DartCoreType('int')),
+              _prop('line', DartCoreType(dartName: 'int')),
+              _prop('character', DartCoreType(dartName: 'int')),
             ],
           ),
         ],
@@ -206,14 +206,14 @@ void main() {
       final posClass = _cls(
         'Position',
         properties: [
-          _prop('line', const DartCoreType('int')),
+          _prop('line', DartCoreType(dartName: 'int')),
         ],
       );
       final rangeClass = _cls(
         'Range',
         properties: [
-          _prop('start', ClassType(posClass)),
-          _prop('end', ClassType(posClass)),
+          _prop('start', ClassType(ref: posClass)),
+          _prop('end', ClassType(ref: posClass)),
         ],
       );
       final state = _stateWith(classes: [posClass, rangeClass]);
@@ -234,7 +234,10 @@ void main() {
           _cls(
             'Foo',
             properties: [
-              _prop('items', const ListType(DartCoreType('String'))),
+              _prop(
+                'items',
+                ListType(element: DartCoreType(dartName: 'String')),
+              ),
             ],
           ),
         ],
@@ -252,7 +255,7 @@ void main() {
             properties: [
               _prop(
                 'items',
-                const ListType(DartCoreType('int')),
+                ListType(element: DartCoreType(dartName: 'int')),
                 optional: true,
               ),
             ],
@@ -270,7 +273,7 @@ void main() {
           _cls(
             'Foo',
             properties: [
-              _prop('pos', ClassType(posClass), optional: true),
+              _prop('pos', ClassType(ref: posClass), optional: true),
             ],
           ),
         ],
@@ -287,7 +290,7 @@ void main() {
           _cls(
             'Range',
             properties: [
-              _prop('start', ClassType(posClass)),
+              _prop('start', ClassType(ref: posClass)),
             ],
           ),
         ],
@@ -396,7 +399,7 @@ void main() {
     test('generates typedef for string alias', () {
       final state = _stateWith(
         aliases: [
-          _alias('DocumentUri', const DartCoreType('String')),
+          _alias('DocumentUri', DartCoreType(dartName: 'String')),
         ],
       );
       final src = _format(EmitterVisitor(state).buildAliases());
@@ -406,7 +409,10 @@ void main() {
     test('generates typedef for list alias', () {
       final state = _stateWith(
         aliases: [
-          _alias('StringList', const ListType(DartCoreType('String'))),
+          _alias(
+            'StringList',
+            ListType(element: DartCoreType(dartName: 'String')),
+          ),
         ],
       );
       final src = _format(EmitterVisitor(state).buildAliases());
@@ -418,11 +424,13 @@ void main() {
         aliases: [
           _alias(
             'LSPAny',
-            const UnionType([
-              DartCoreType('String'),
-              DartCoreType('int'),
-              DartCoreType('bool'),
-            ]),
+            UnionType(
+              items: [
+                DartCoreType(dartName: 'String'),
+                DartCoreType(dartName: 'int'),
+                DartCoreType(dartName: 'bool'),
+              ],
+            ),
           ),
         ],
       );
@@ -438,7 +446,7 @@ void main() {
   group('EmitterVisitor integration (real metaModel.json)', () {
     late ResolvedState resolved;
 
-    setUpAll(()  {
+    setUpAll(() {
       final file = File('../lsp_specification/metaModel.json');
       final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
       final protocol = MetaProtocol.fromJson(json);

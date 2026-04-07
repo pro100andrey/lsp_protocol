@@ -42,26 +42,38 @@ final class ResolverVisitor {
       case TypeRef():
         final decl = _registry[ref.name];
         if (decl == null) {
-          return DartCoreType(ref.name);
+          return DartCoreType(dartName: ref.name);
         }
         return switch (decl) {
-          ResolvedClass() => ClassType(decl),
-          ResolvedEnum() => EnumType(decl),
-          ResolvedAlias() => AliasType(decl),
+          ResolvedClass() => ClassType(ref: decl),
+          ResolvedEnum() => EnumType(ref: decl),
+          ResolvedAlias() => AliasType(ref: decl),
         };
 
       case BaseRef():
-        return DartCoreType(_baseRefToDart(ref.name));
+        return DartCoreType(dartName: _baseRefToDart(ref.name));
 
       case ArrayRef():
         return ListType(
-          resolveRef(ref.element, parentName: parentName, fieldName: fieldName),
+          element: resolveRef(
+            ref.element,
+            parentName: parentName,
+            fieldName: fieldName,
+          ),
         );
 
       case MapRef():
         return MapType(
-          resolveRef(ref.key, parentName: parentName, fieldName: fieldName),
-          resolveRef(ref.value, parentName: parentName, fieldName: fieldName),
+          key: resolveRef(
+            ref.key,
+            parentName: parentName,
+            fieldName: fieldName,
+          ),
+          value: resolveRef(
+            ref.value,
+            parentName: parentName,
+            fieldName: fieldName,
+          ),
         );
 
       case OrRef():
@@ -69,7 +81,7 @@ final class ResolverVisitor {
 
       case AndRef():
         return UnionType(
-          ref.items
+          items: ref.items
               .map(
                 (item) => resolveRef(
                   item,
@@ -82,7 +94,7 @@ final class ResolverVisitor {
 
       case TupleRef():
         return TupleType(
-          ref.items
+          items: ref.items
               .map(
                 (item) => resolveRef(
                   item,
@@ -101,7 +113,7 @@ final class ResolverVisitor {
         );
 
       case StringLiteralRef():
-        return StringLiteralType(ref.value);
+        return StringLiteralType(value: ref.value);
     }
   }
 
@@ -122,7 +134,7 @@ final class ResolverVisitor {
 
     if (nullItems.length == 1 && nonNullItems.length == 1) {
       return NullableType(
-        resolveRef(
+        inner: resolveRef(
           nonNullItems.first,
           parentName: parentName,
           fieldName: fieldName,
@@ -132,7 +144,7 @@ final class ResolverVisitor {
 
     // Multiple non-null types → UnionType
     return UnionType(
-      items
+      items: items
           .map(
             (item) => resolveRef(
               item,
@@ -155,7 +167,7 @@ final class ResolverVisitor {
     // Re-use if already extracted (same position visited twice)
     final existing = _registry[syntheticName];
     if (existing is ResolvedClass) {
-      return ClassType(existing);
+      return ClassType(ref: existing);
     }
 
     final cls = ResolvedClass(
@@ -185,7 +197,7 @@ final class ResolverVisitor {
       );
     }
 
-    return ClassType(cls);
+    return ClassType(ref: cls);
   }
 
   static bool _isNull(MetaReference ref) =>
@@ -283,7 +295,7 @@ final class _RegisterPass extends MetaVisitor {
     // Shell with placeholder type; resolved in pass 2
     final alias = ResolvedAlias(
       name: typeAlias.name,
-      type: const DartCoreType('Object?'),
+      type: DartCoreType(dartName: 'Object?'),
       documentation: typeAlias.documentation,
       since: typeAlias.since,
       proposed: typeAlias.proposed,
