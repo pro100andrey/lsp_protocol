@@ -10,7 +10,8 @@ part 'resolved_type.freezed.dart';
 sealed class ResolvedType with _$ResolvedType {
   /// A Dart core / built-in type (String, int, bool, double, Uri, Null, etc.)
   ///
-  /// [dartName] is the exact Dart type name, e.g. `'String'`, `'int'`, `'Object?'`.
+  /// [dartName] is the exact Dart type name, e.g. `'String'`, `'int'`, 
+  /// `'Object?'`.
   const factory ResolvedType.dartCore({required String dartName}) =
       DartCoreType;
 
@@ -35,7 +36,8 @@ sealed class ResolvedType with _$ResolvedType {
     required ResolvedType value,
   }) = MapType;
 
-  /// `T?` — produced when `OrRef` contains exactly one non-null item and `null`.
+  /// `T?` — produced when `OrRef` contains exactly one non-null item and 
+  /// `null`.
   const factory ResolvedType.nullableType({required ResolvedType inner}) =
       NullableType;
 

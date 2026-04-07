@@ -83,15 +83,17 @@ void main() {
       expect(src.contains('class '), isFalse);
     });
 
-    test('generates a final class with correct name', () {
+    test('generates an abstract @freezed class with correct name', () {
       final state = _stateWith(
         classes: [_cls('Position', properties: [])],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains('final class Position'));
+      expect(src, contains('abstract class Position'));
+      expect(src, contains('@freezed'));
+      expect(src, contains(r'with _$Position'));
     });
 
-    test('generates const constructor', () {
+    test('generates redirecting const factory constructor', () {
       final state = _stateWith(
         classes: [
           _cls(
@@ -104,10 +106,12 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains('const Position('));
+      expect(src, contains('const factory Position('));
+      // Freezed redirect target (may wrap to next line after dart_style).
+      expect(src, contains('_Position'));
     });
 
-    test('generates final fields', () {
+    test('generates factory params (not fields) for properties', () {
       final state = _stateWith(
         classes: [
           _cls(
@@ -120,11 +124,14 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains('final Position start'));
-      expect(src, contains('final Position end'));
+      // Fields live in the redirecting factory parameters.
+      expect(src, contains('required Position start'));
+      expect(src, contains('required Position end'));
+      // No standalone field declarations.
+      expect(src, isNot(contains('final Position start')));
     });
 
-    test('generates optional field as nullable', () {
+    test('generates optional factory param as nullable', () {
       final state = _stateWith(
         classes: [
           _cls(
@@ -142,10 +149,10 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains('final String? newEol'));
+      expect(src, contains('String? newEol'));
     });
 
-    test('generates fromJson factory', () {
+    test('generates static fromJson method', () {
       final state = _stateWith(
         classes: [
           _cls(
@@ -159,7 +166,7 @@ void main() {
       final src = _format(EmitterVisitor(state).buildStructures());
       expect(
         src,
-        contains('factory Position.fromJson(Map<String, Object?> json)'),
+        contains('static Position fromJson(Map<String, Object?> json)'),
       );
       expect(src, contains("json['line'] as int"));
     });
@@ -178,24 +185,6 @@ void main() {
       final src = _format(EmitterVisitor(state).buildStructures());
       expect(src, contains('Map<String, Object?> toJson()'));
       expect(src, contains("'line': line"));
-    });
-
-    test('generates copyWith method', () {
-      final state = _stateWith(
-        classes: [
-          _cls(
-            'Position',
-            properties: [
-              _prop('line', const DartCoreType(dartName: 'int')),
-              _prop('character', const DartCoreType(dartName: 'int')),
-            ],
-          ),
-        ],
-      );
-      final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains('Position copyWith('));
-      expect(src, contains('line ?? this.line'));
-      expect(src, contains('character ?? this.character'));
     });
 
     test('anonymous classes appear before named classes', () {
@@ -616,16 +605,17 @@ void main() {
 
     test('structiures output contains Position class', () {
       final src = _format(EmitterVisitor(resolved).buildStructures());
-      expect(src, contains('final class Position'));
-      expect(src, contains('final int line'));
-      expect(src, contains('final int character'));
+      expect(src, contains('abstract class Position'));
+      expect(src, contains('@freezed'));
+      expect(src, contains('required int line'));
+      expect(src, contains('required int character'));
     });
 
     test('structures output contains Range class', () {
       final src = _format(EmitterVisitor(resolved).buildStructures());
-      expect(src, contains('final class Range'));
-      expect(src, contains('final Position start'));
-      expect(src, contains('final Position end'));
+      expect(src, contains('abstract class Range'));
+      expect(src, contains('required Position start'));
+      expect(src, contains('required Position end'));
     });
 
     test('buildEnumerations() emits valid formattable Dart', () {
@@ -664,7 +654,7 @@ void main() {
       final src = _format(EmitterVisitor(resolved).buildStructures());
       // All anonymous classes (isAnonymous == true) have \$ in their name by convention.
       // Just verify Position (a named class) exists and the output is not empty.
-      expect(src, contains('final class'));
+      expect(src, contains('abstract class'));
     });
   });
 }

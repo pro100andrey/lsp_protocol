@@ -80,7 +80,13 @@ final class EmitterVisitor {
     return Library(
       (b) => b
         ..comments.add(_header)
+        ..directives.add(
+          Directive.import(
+            'package:freezed_annotation/freezed_annotation.dart',
+          ),
+        )
         ..directives.addAll(_crossImports(allTypes, _structuresFile))
+        ..directives.add(Directive.part('structures.freezed.dart'))
         ..body.addAll([
           ...anonymous.map(_buildClass),
           ...named.map(_buildClass),
@@ -131,6 +137,12 @@ final class EmitterVisitor {
     return Library(
       (b) => b
         ..comments.add(_header)
+        ..directives.add(
+          Directive.import(
+            'package:freezed_annotation/freezed_annotation.dart',
+          ),
+        )
+        ..directives.add(Directive.part('scalar_unions.freezed.dart'))
         ..body.addAll(specs),
     );
   }
@@ -158,7 +170,13 @@ final class EmitterVisitor {
     return Library(
       (b) => b
         ..comments.add(_header)
+        ..directives.add(
+          Directive.import(
+            'package:freezed_annotation/freezed_annotation.dart',
+          ),
+        )
         ..directives.addAll(_crossImports(referencedTypes, _unionsFile))
+        ..directives.add(Directive.part('unions.freezed.dart'))
         ..body.addAll(specs),
     );
   }
@@ -225,32 +243,43 @@ final class EmitterVisitor {
     // LSP extends/mixins are structural (not Dart inheritance) — flatten all
     // inherited properties into the class so it stands alone.
     final allProps = _allProperties(cls);
+
+    // Freezed mixin and redirect names strip leading underscores from the class
+    // name: `_Foo` → mixin `_$Foo`, redirect `__Foo` (still library-private).
+    final publicPart = cls.name.startsWith('_')
+        ? cls.name.substring(1)
+        : cls.name;
+
     return Class((b) {
       b
         ..name = cls.name
-        ..modifier = ClassModifier.final$;
+        ..abstract = true
+        ..annotations.add(refer('freezed'));
+
+      b.mixins.add(refer('_\$$publicPart'));
 
       if (cls.documentation != null) {
         b.docs.add('/// ${cls.documentation!.replaceAll('\n', '\n/// ')}');
       }
 
-      // Fields (own + inherited from extends/mixins)
-      for (final prop in allProps) {
-        b.fields.add(_buildField(prop));
-      }
+      // Private const constructor — required by freezed to allow instance methods.
+      b.constructors.add(
+        Constructor(
+          (b) => b
+            ..constant = true
+            ..name = '_',
+        ),
+      );
 
-      // Constructor
-      b.constructors.add(_buildConstructor(allProps));
+      // Redirecting factory — freezed generates getters, copyWith, ==, hashCode.
+      b.constructors.add(
+        _buildRedirectingFactory(cls.name, allProps, publicPart),
+      );
 
-      // copyWith
-      if (allProps.isNotEmpty) {
-        b.methods.add(_buildCopyWith(cls.name, allProps));
-      }
+      // static fromJson (not a factory constructor — freezed reserves that slot).
+      b.methods.add(_buildFromJsonMethod(cls.name, allProps));
 
-      // fromJson
-      b.constructors.add(_buildFromJson(cls.name, allProps));
-
-      // toJson
+      // toJson — instance method, enabled by private const constructor.
       b.methods.add(_buildToJson(allProps));
     });
   }
@@ -295,27 +324,31 @@ final class EmitterVisitor {
     ];
   }
 
-  Field _buildField(ResolvedProperty prop) {
-    final type = prop.optional
-        ? toTypeRef(prop.type).rebuild((b) => b.isNullable = true)
-        : toTypeRef(prop.type);
-    return Field(
-      (b) => b
-        ..name = prop.name
-        ..type = type
-        ..modifier = FieldModifier.final$,
-    );
-  }
-
-  Constructor _buildConstructor(List<ResolvedProperty> props) => Constructor(
+  /// Redirecting factory constructor: `const factory Foo({...}) = _Foo;`
+  /// Freezed reads these to generate the concrete `_Foo` class with fields,
+  /// getters, `copyWith`, `==`, `hashCode`, and `toString`.
+  ///
+  /// For private classes (`_Foo`), the redirect target is `__Foo` (double
+  /// underscore), keeping the implementation library-private while the freezed
+  /// mixin is named `_$Foo` (no leading underscore on the suffix).
+  Constructor _buildRedirectingFactory(
+    String className,
+    List<ResolvedProperty> props,
+    String publicPart,
+  ) => Constructor(
     (b) => b
       ..constant = true
+      ..factory = true
+      // Prepend `_` to className: for `Foo` → `_Foo`; for `_Foo` → `__Foo`.
+      ..redirect = refer('_$className')
       ..optionalParameters.addAll(
         props.map(
           (p) => Parameter(
             (b) => b
               ..name = p.name
-              ..toThis = true
+              ..type = p.optional
+                  ? toTypeRef(p.type).rebuild((b) => b.isNullable = true)
+                  : toTypeRef(p.type)
               ..named = true
               ..required = !p.optional,
           ),
@@ -323,39 +356,12 @@ final class EmitterVisitor {
       ),
   );
 
-  Method _buildCopyWith(String className, List<ResolvedProperty> props) {
-    final params = <Parameter>[];
-    final args = <String, Expression>{};
-
-    for (final prop in props) {
-      final baseRef = toTypeRef(prop.type);
-      // copyWith param is always nullable so callers can omit it.
-      final paramType = baseRef.rebuild((b) => b.isNullable = true);
-
-      params.add(
-        Parameter(
-          (b) => b
-            ..name = prop.name
-            ..type = paramType
-            ..named = true,
-        ),
-      );
-
-      args[prop.name] = CodeExpression(
-        Code('${prop.name} ?? this.${prop.name}'),
-      );
-    }
-
-    return Method(
-      (b) => b
-        ..name = 'copyWith'
-        ..returns = refer(className)
-        ..optionalParameters.addAll(params)
-        ..body = refer(className).call([], args).code,
-    );
-  }
-
-  Constructor _buildFromJson(String className, List<ResolvedProperty> props) {
+  /// Static `fromJson` method (not a factory constructor — freezed occupies
+  /// the `factory ClassName.fromJson` slot for its generated deserialiser).
+  Method _buildFromJsonMethod(
+    String className,
+    List<ResolvedProperty> props,
+  ) {
     final args = <String, Expression>{};
     for (final prop in props) {
       args[prop.name] = CodeExpression(
@@ -363,10 +369,11 @@ final class EmitterVisitor {
       );
     }
 
-    return Constructor(
+    return Method(
       (b) => b
         ..name = 'fromJson'
-        ..factory = true
+        ..static = true
+        ..returns = refer(className)
         ..requiredParameters.add(
           Parameter(
             (b) => b
@@ -857,32 +864,59 @@ final class EmitterVisitor {
     _ => 'Unknown',
   };
 
+  /// Lowercase first character of [suffix] to form a factory constructor name.
+  String _factoryName(String suffix) {
+    if (suffix.isEmpty) return suffix;
+    return suffix[0].toLowerCase() + suffix.substring(1);
+  }
+
   List<Spec> _buildScalarUnionSpecs(String name, List<DartCoreType> scalars) {
     final buf = StringBuffer();
-    buf.writeln('sealed class $name {');
-    buf.writeln('  static $name fromJson(Object? json) {');
-    for (final s in scalars.sublist(0, scalars.length - 1)) {
-      final vn = '$name\$${_variantSuffix(s, name)}';
-      buf.writeln('    if (json is ${s.dartName}) return $vn(json);');
+
+    // (suffix, dartName, cls, factoryName) for each variant
+    final variants = scalars
+        .map(
+          (s) => (
+            suffix: _variantSuffix(s, name),
+            dartName: s.dartName,
+          ),
+        )
+        .toList();
+
+    buf.writeln('@freezed');
+    buf.writeln('sealed class $name with _\$$name {');
+    buf.writeln('  const $name._();');
+    buf.writeln();
+    for (final v in variants) {
+      final cls = '$name\$${v.suffix}';
+      final fn = _safeIdentifier(_factoryName(v.suffix));
+      buf.writeln(
+        '  const factory $name.$fn({required ${v.dartName} value}) = $cls;',
+      );
     }
-    final last = scalars.last;
+    buf.writeln();
+    buf.writeln('  static $name fromJson(Object? json) {');
+    for (final v in variants.sublist(0, variants.length - 1)) {
+      final fn = _safeIdentifier(_factoryName(v.suffix));
+      buf.writeln(
+        '    if (json is ${v.dartName}) return $name.$fn(value: json);',
+      );
+    }
+    final last = variants.last;
+    final lastFn = _safeIdentifier(_factoryName(last.suffix));
     buf.writeln(
-      '    return $name\$${_variantSuffix(last, name)}(json as ${last.dartName});',
+      '    return $name.$lastFn(value: json as ${last.dartName});',
     );
     buf.writeln('  }');
-    buf.writeln('  Object toJson();');
+    buf.writeln();
+    buf.writeln('  Object toJson() => switch (this) {');
+    for (final v in variants) {
+      final cls = '$name\$${v.suffix}';
+      buf.writeln('    $cls(:final value) => value,');
+    }
+    buf.writeln('  };');
     buf.writeln('}');
     buf.writeln();
-    for (final s in scalars) {
-      final vn = '$name\$${_variantSuffix(s, name)}';
-      buf.writeln('final class $vn extends $name {');
-      buf.writeln('  $vn(this.value);');
-      buf.writeln('  final ${s.dartName} value;');
-      buf.writeln('  @override');
-      buf.writeln('  ${s.dartName} toJson() => value;');
-      buf.writeln('}');
-      buf.writeln();
-    }
     return [Code(buf.toString())];
   }
 
@@ -892,41 +926,61 @@ final class EmitterVisitor {
     ClassType struct,
   ) {
     final buf = StringBuffer();
-    final sv = '$name\$${_variantSuffix(struct, name)}';
-    buf.writeln('sealed class $name {');
+
+    final structSuffix = _variantSuffix(struct, name);
+    final structCls = '$name\$$structSuffix';
+    final structFn = _safeIdentifier(_factoryName(structSuffix));
+
+    final scalarVariants = scalars
+        .map(
+          (s) => (
+            suffix: _variantSuffix(s, name),
+            dartName: s.dartName,
+          ),
+        )
+        .toList();
+
+    buf.writeln('@freezed');
+    buf.writeln('sealed class $name with _\$$name {');
+    buf.writeln('  const $name._();');
+    buf.writeln();
+    buf.writeln(
+      '  const factory $name.$structFn({required ${struct.ref.name} value}) = $structCls;',
+    );
+    for (final v in scalarVariants) {
+      final cls = '$name\$${v.suffix}';
+      final fn = _safeIdentifier(_factoryName(v.suffix));
+      buf.writeln(
+        '  const factory $name.$fn({required ${v.dartName} value}) = $cls;',
+      );
+    }
+    buf.writeln();
     buf.writeln('  static $name fromJson(Object? json) {');
     buf.writeln(
-      '    if (json is Map<String, Object?>) return $sv(${struct.ref.name}.fromJson(json));',
+      '    if (json is Map<String, Object?>) return $name.$structFn(value: ${struct.ref.name}.fromJson(json));',
     );
-    for (final s in scalars.sublist(0, scalars.length - 1)) {
-      final vn = '$name\$${_variantSuffix(s, name)}';
-      buf.writeln('    if (json is ${s.dartName}) return $vn(json);');
+    for (final v in scalarVariants.sublist(0, scalarVariants.length - 1)) {
+      final fn = _safeIdentifier(_factoryName(v.suffix));
+      buf.writeln(
+        '    if (json is ${v.dartName}) return $name.$fn(value: json);',
+      );
     }
-    final last = scalars.last;
+    final last = scalarVariants.last;
+    final lastFn = _safeIdentifier(_factoryName(last.suffix));
     buf.writeln(
-      '    return $name\$${_variantSuffix(last, name)}(json as ${last.dartName});',
+      '    return $name.$lastFn(value: json as ${last.dartName});',
     );
     buf.writeln('  }');
-    buf.writeln('  Object toJson();');
-    buf.writeln('}');
     buf.writeln();
-    buf.writeln('final class $sv extends $name {');
-    buf.writeln('  $sv(this.value);');
-    buf.writeln('  final ${struct.ref.name} value;');
-    buf.writeln('  @override');
-    buf.writeln('  Map<String, Object?> toJson() => value.toJson();');
-    buf.writeln('}');
-    buf.writeln();
-    for (final s in scalars) {
-      final vn = '$name\$${_variantSuffix(s, name)}';
-      buf.writeln('final class $vn extends $name {');
-      buf.writeln('  $vn(this.value);');
-      buf.writeln('  final ${s.dartName} value;');
-      buf.writeln('  @override');
-      buf.writeln('  ${s.dartName} toJson() => value;');
-      buf.writeln('}');
-      buf.writeln();
+    buf.writeln('  Object toJson() => switch (this) {');
+    buf.writeln('    $structCls(:final value) => value.toJson(),');
+    for (final v in scalarVariants) {
+      final cls = '$name\$${v.suffix}';
+      buf.writeln('    $cls(:final value) => value,');
     }
+    buf.writeln('  };');
+    buf.writeln('}');
+    buf.writeln();
     return [Code(buf.toString())];
   }
 
@@ -936,40 +990,44 @@ final class EmitterVisitor {
     ListType list,
   ) {
     final buf = StringBuffer();
-    final sv = '$name\$${_variantSuffix(struct, name)}';
-    final lv = '$name\$List';
+
+    final structSuffix = _variantSuffix(struct, name);
+    final structCls = '$name\$$structSuffix';
+    final structFn = _safeIdentifier(_factoryName(structSuffix));
+    final listCls = '$name\$List';
+    const listFn = 'list';
     final elemType = _dartTypeName(list.element);
     final elemFromJson = _listElementCast(list.element);
     final elemToJson = _toJsonCallerFor(list.element, 'e');
 
-    buf.writeln('sealed class $name {');
+    buf.writeln('@freezed');
+    buf.writeln('sealed class $name with _\$$name {');
+    buf.writeln('  const $name._();');
+    buf.writeln();
+    buf.writeln(
+      '  const factory $name.$structFn({required ${struct.ref.name} value}) = $structCls;',
+    );
+    buf.writeln(
+      '  const factory $name.$listFn({required List<$elemType> value}) = $listCls;',
+    );
+    buf.writeln();
     buf.writeln('  static $name fromJson(Object? json) {');
     buf.writeln('    if (json is List) {');
     buf.writeln(
-      '      return $lv((json as List<Object?>).map((e) => $elemFromJson).toList());',
+      '      return $name.$listFn(value: (json as List<Object?>).map((e) => $elemFromJson).toList());',
     );
     buf.writeln('    }');
     buf.writeln(
-      '    return $sv(${struct.ref.name}.fromJson(json as Map<String, Object?>));',
+      '    return $name.$structFn(value: ${struct.ref.name}.fromJson(json as Map<String, Object?>));',
     );
     buf.writeln('  }');
-    buf.writeln('  Object toJson();');
-    buf.writeln('}');
     buf.writeln();
-    buf.writeln('final class $sv extends $name {');
-    buf.writeln('  $sv(this.value);');
-    buf.writeln('  final ${struct.ref.name} value;');
-    buf.writeln('  @override');
-    buf.writeln('  Map<String, Object?> toJson() => value.toJson();');
-    buf.writeln('}');
-    buf.writeln();
-    buf.writeln('final class $lv extends $name {');
-    buf.writeln('  $lv(this.value);');
-    buf.writeln('  final List<$elemType> value;');
-    buf.writeln('  @override');
+    buf.writeln('  Object toJson() => switch (this) {');
+    buf.writeln('    $structCls(:final value) => value.toJson(),');
     buf.writeln(
-      '  List<Object?> toJson() => value.map((e) => $elemToJson).toList();',
+      '    $listCls(:final value) => value.map((e) => $elemToJson).toList(),',
     );
+    buf.writeln('  };');
     buf.writeln('}');
     buf.writeln();
     return [Code(buf.toString())];
@@ -980,36 +1038,60 @@ final class EmitterVisitor {
     List<_UnionCheck> checks,
   ) {
     final buf = StringBuffer();
-    buf.writeln('sealed class $name {');
+
+    // Unique variants in encounter order (checks may repeat the same variant
+    // as the unconditional else branch).
+    final seenSuffixes = <String>{};
+    final variants =
+        <({String suffix, String cls, String fn, String structName})>[];
+    for (final check in checks) {
+      final suffix = _variantSuffix(check.variant, name);
+      if (seenSuffixes.add(suffix)) {
+        variants.add((
+          suffix: suffix,
+          cls: '$name\$$suffix',
+          fn: _safeIdentifier(_factoryName(suffix)),
+          structName: check.variant.ref.name,
+        ));
+      }
+    }
+
+    buf.writeln('@freezed');
+    buf.writeln('sealed class $name with _\$$name {');
+    buf.writeln('  const $name._();');
+    buf.writeln();
+    for (final v in variants) {
+      buf.writeln(
+        '  const factory $name.${v.fn}({required ${v.structName} value}) = ${v.cls};',
+      );
+    }
+    buf.writeln();
     buf.writeln('  static $name fromJson(Map<String, Object?> json) {');
     for (final check in checks.sublist(0, checks.length - 1)) {
-      final vn = '$name\$${_variantSuffix(check.variant, name)}';
+      final suffix = _variantSuffix(check.variant, name);
+      final fn = _safeIdentifier(_factoryName(suffix));
       final cond = check.literalValue != null
           ? "json['${check.fieldName}'] == '${check.literalValue}'"
           : "json.containsKey('${check.fieldName}')";
       buf.writeln(
-        '    if ($cond) return $vn(${check.variant.ref.name}.fromJson(json));',
+        '    if ($cond) return $name.$fn(value: ${check.variant.ref.name}.fromJson(json));',
       );
     }
     final last = checks.last;
-    final lvn = '$name\$${_variantSuffix(last.variant, name)}';
-    buf.writeln('    return $lvn(${last.variant.ref.name}.fromJson(json));');
+    final lastSuffix = _variantSuffix(last.variant, name);
+    final lastFn = _safeIdentifier(_factoryName(lastSuffix));
+    buf.writeln(
+      '    return $name.$lastFn(value: ${last.variant.ref.name}.fromJson(json));',
+    );
     buf.writeln('  }');
-    buf.writeln('  Object toJson();');
+    buf.writeln();
+    buf.writeln('  Object toJson() => switch (this) {');
+    for (final v in variants) {
+      buf.writeln('    ${v.cls}(:final value) => value.toJson(),');
+    }
+    buf.writeln('  };');
     buf.writeln('}');
     buf.writeln();
-    final seen = <String>{};
-    for (final check in checks) {
-      final vn = '$name\$${_variantSuffix(check.variant, name)}';
-      if (!seen.add(vn)) continue;
-      buf.writeln('final class $vn extends $name {');
-      buf.writeln('  $vn(this.value);');
-      buf.writeln('  final ${check.variant.ref.name} value;');
-      buf.writeln('  @override');
-      buf.writeln('  Map<String, Object?> toJson() => value.toJson();');
-      buf.writeln('}');
-      buf.writeln();
-    }
     return [Code(buf.toString())];
   }
 

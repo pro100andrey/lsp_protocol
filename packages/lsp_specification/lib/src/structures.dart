@@ -1,27 +1,27 @@
 // GENERATED — do not edit.
 
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'enumerations.dart';
 import 'scalar_unions.dart';
 import 'type_aliases.dart';
 import 'unions.dart';
 
-final class InitializeResultServerInfo {
-  const InitializeResultServerInfo({required this.name, this.version});
+part 'structures.freezed.dart';
 
-  factory InitializeResultServerInfo.fromJson(Map<String, Object?> json) =>
+@freezed
+abstract class InitializeResultServerInfo with _$InitializeResultServerInfo {
+  const InitializeResultServerInfo._();
+
+  const factory InitializeResultServerInfo({
+    required String name,
+    String? version,
+  }) = _InitializeResultServerInfo;
+
+  static InitializeResultServerInfo fromJson(Map<String, Object?> json) =>
       InitializeResultServerInfo(
         name: json['name'] as String,
         version: json['version'] as String?,
-      );
-
-  final String name;
-
-  final String? version;
-
-  InitializeResultServerInfo copyWith({String? name, String? version}) =>
-      InitializeResultServerInfo(
-        name: name ?? this.name,
-        version: version ?? this.version,
       );
 
   Map<String, Object?> toJson() {
@@ -29,16 +29,19 @@ final class InitializeResultServerInfo {
   }
 }
 
-final class CompletionListItemDefaults {
-  const CompletionListItemDefaults({
-    this.commitCharacters,
-    this.editRange,
-    this.insertTextFormat,
-    this.insertTextMode,
-    this.data,
-  });
+@freezed
+abstract class CompletionListItemDefaults with _$CompletionListItemDefaults {
+  const CompletionListItemDefaults._();
 
-  factory CompletionListItemDefaults.fromJson(Map<String, Object?> json) =>
+  const factory CompletionListItemDefaults({
+    List<String>? commitCharacters,
+    Object? editRange,
+    InsertTextFormat? insertTextFormat,
+    InsertTextMode? insertTextMode,
+    LSPAny? data,
+  }) = _CompletionListItemDefaults;
+
+  static CompletionListItemDefaults fromJson(Map<String, Object?> json) =>
       CompletionListItemDefaults(
         commitCharacters: (json['commitCharacters'] as List<Object?>?)
             ?.map((e) => e as String)
@@ -57,30 +60,6 @@ final class CompletionListItemDefaults {
         data: json['data'],
       );
 
-  final List<String>? commitCharacters;
-
-  final Object? editRange;
-
-  final InsertTextFormat? insertTextFormat;
-
-  final InsertTextMode? insertTextMode;
-
-  final LSPAny? data;
-
-  CompletionListItemDefaults copyWith({
-    List<String>? commitCharacters,
-    Object? editRange,
-    InsertTextFormat? insertTextFormat,
-    InsertTextMode? insertTextMode,
-    LSPAny? data,
-  }) => CompletionListItemDefaults(
-    commitCharacters: commitCharacters ?? this.commitCharacters,
-    editRange: editRange ?? this.editRange,
-    insertTextFormat: insertTextFormat ?? this.insertTextFormat,
-    insertTextMode: insertTextMode ?? this.insertTextMode,
-    data: data ?? this.data,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'commitCharacters': commitCharacters,
@@ -92,29 +71,21 @@ final class CompletionListItemDefaults {
   }
 }
 
-final class CompletionListItemDefaultsEditRange {
-  const CompletionListItemDefaultsEditRange({
-    required this.insert,
-    required this.replace,
-  });
+@freezed
+abstract class CompletionListItemDefaultsEditRange
+    with _$CompletionListItemDefaultsEditRange {
+  const CompletionListItemDefaultsEditRange._();
 
-  factory CompletionListItemDefaultsEditRange.fromJson(
+  const factory CompletionListItemDefaultsEditRange({
+    required Range insert,
+    required Range replace,
+  }) = _CompletionListItemDefaultsEditRange;
+
+  static CompletionListItemDefaultsEditRange fromJson(
     Map<String, Object?> json,
   ) => CompletionListItemDefaultsEditRange(
     insert: Range.fromJson(json['insert'] as Map<String, Object?>),
     replace: Range.fromJson(json['replace'] as Map<String, Object?>),
-  );
-
-  final Range insert;
-
-  final Range replace;
-
-  CompletionListItemDefaultsEditRange copyWith({
-    Range? insert,
-    Range? replace,
-  }) => CompletionListItemDefaultsEditRange(
-    insert: insert ?? this.insert,
-    replace: replace ?? this.replace,
   );
 
   Map<String, Object?> toJson() {
@@ -125,42 +96,43 @@ final class CompletionListItemDefaultsEditRange {
   }
 }
 
-final class CodeActionDisabled {
-  const CodeActionDisabled({required this.reason});
+@freezed
+abstract class CodeActionDisabled with _$CodeActionDisabled {
+  const CodeActionDisabled._();
 
-  factory CodeActionDisabled.fromJson(Map<String, Object?> json) =>
+  const factory CodeActionDisabled({required String reason}) =
+      _CodeActionDisabled;
+
+  static CodeActionDisabled fromJson(Map<String, Object?> json) =>
       CodeActionDisabled(reason: json['reason'] as String);
-
-  final String reason;
-
-  CodeActionDisabled copyWith({String? reason}) =>
-      CodeActionDisabled(reason: reason ?? this.reason);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'reason': reason};
   }
 }
 
-final class WorkspaceSymbolLocation {
-  const WorkspaceSymbolLocation({required this.uri});
+@freezed
+abstract class WorkspaceSymbolLocation with _$WorkspaceSymbolLocation {
+  const WorkspaceSymbolLocation._();
 
-  factory WorkspaceSymbolLocation.fromJson(Map<String, Object?> json) =>
+  const factory WorkspaceSymbolLocation({required String uri}) =
+      _WorkspaceSymbolLocation;
+
+  static WorkspaceSymbolLocation fromJson(Map<String, Object?> json) =>
       WorkspaceSymbolLocation(uri: json['uri'] as String);
-
-  final String uri;
-
-  WorkspaceSymbolLocation copyWith({String? uri}) =>
-      WorkspaceSymbolLocation(uri: uri ?? this.uri);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'uri': uri};
   }
 }
 
-final class SemanticTokensOptionsRange {
-  const SemanticTokensOptionsRange();
+@freezed
+abstract class SemanticTokensOptionsRange with _$SemanticTokensOptionsRange {
+  const SemanticTokensOptionsRange._();
 
-  factory SemanticTokensOptionsRange.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensOptionsRange() = _SemanticTokensOptionsRange;
+
+  static SemanticTokensOptionsRange fromJson(Map<String, Object?> json) =>
       SemanticTokensOptionsRange();
 
   Map<String, Object?> toJson() {
@@ -168,64 +140,50 @@ final class SemanticTokensOptionsRange {
   }
 }
 
-final class SemanticTokensOptionsFull {
-  const SemanticTokensOptionsFull({this.delta});
+@freezed
+abstract class SemanticTokensOptionsFull with _$SemanticTokensOptionsFull {
+  const SemanticTokensOptionsFull._();
 
-  factory SemanticTokensOptionsFull.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensOptionsFull({bool? delta}) =
+      _SemanticTokensOptionsFull;
+
+  static SemanticTokensOptionsFull fromJson(Map<String, Object?> json) =>
       SemanticTokensOptionsFull(delta: json['delta'] as bool?);
-
-  final bool? delta;
-
-  SemanticTokensOptionsFull copyWith({bool? delta}) =>
-      SemanticTokensOptionsFull(delta: delta ?? this.delta);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'delta': delta};
   }
 }
 
-final class NotebookDocumentChangeEventCells {
-  const NotebookDocumentChangeEventCells({
-    this.structure,
-    this.data,
-    this.textContent,
-  });
+@freezed
+abstract class NotebookDocumentChangeEventCells
+    with _$NotebookDocumentChangeEventCells {
+  const NotebookDocumentChangeEventCells._();
 
-  factory NotebookDocumentChangeEventCells.fromJson(
-    Map<String, Object?> json,
-  ) => NotebookDocumentChangeEventCells(
-    structure: json['structure'] == null
-        ? null
-        : NotebookDocumentChangeEventCellsStructure.fromJson(
-            json['structure'] as Map<String, Object?>,
-          ),
-    data: (json['data'] as List<Object?>?)
-        ?.map((e) => NotebookCell.fromJson(e as Map<String, Object?>))
-        .toList(),
-    textContent: (json['textContent'] as List<Object?>?)
-        ?.map(
-          (e) => NotebookDocumentChangeEventCellsTextContent.fromJson(
-            e as Map<String, Object?>,
-          ),
-        )
-        .toList(),
-  );
-
-  final NotebookDocumentChangeEventCellsStructure? structure;
-
-  final List<NotebookCell>? data;
-
-  final List<NotebookDocumentChangeEventCellsTextContent>? textContent;
-
-  NotebookDocumentChangeEventCells copyWith({
+  const factory NotebookDocumentChangeEventCells({
     NotebookDocumentChangeEventCellsStructure? structure,
     List<NotebookCell>? data,
     List<NotebookDocumentChangeEventCellsTextContent>? textContent,
-  }) => NotebookDocumentChangeEventCells(
-    structure: structure ?? this.structure,
-    data: data ?? this.data,
-    textContent: textContent ?? this.textContent,
-  );
+  }) = _NotebookDocumentChangeEventCells;
+
+  static NotebookDocumentChangeEventCells fromJson(Map<String, Object?> json) =>
+      NotebookDocumentChangeEventCells(
+        structure: json['structure'] == null
+            ? null
+            : NotebookDocumentChangeEventCellsStructure.fromJson(
+                json['structure'] as Map<String, Object?>,
+              ),
+        data: (json['data'] as List<Object?>?)
+            ?.map((e) => NotebookCell.fromJson(e as Map<String, Object?>))
+            .toList(),
+        textContent: (json['textContent'] as List<Object?>?)
+            ?.map(
+              (e) => NotebookDocumentChangeEventCellsTextContent.fromJson(
+                e as Map<String, Object?>,
+              ),
+            )
+            .toList(),
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -236,14 +194,18 @@ final class NotebookDocumentChangeEventCells {
   }
 }
 
-final class NotebookDocumentChangeEventCellsStructure {
-  const NotebookDocumentChangeEventCellsStructure({
-    required this.array,
-    this.didOpen,
-    this.didClose,
-  });
+@freezed
+abstract class NotebookDocumentChangeEventCellsStructure
+    with _$NotebookDocumentChangeEventCellsStructure {
+  const NotebookDocumentChangeEventCellsStructure._();
 
-  factory NotebookDocumentChangeEventCellsStructure.fromJson(
+  const factory NotebookDocumentChangeEventCellsStructure({
+    required NotebookCellArrayChange array,
+    List<TextDocumentItem>? didOpen,
+    List<TextDocumentIdentifier>? didClose,
+  }) = _NotebookDocumentChangeEventCellsStructure;
+
+  static NotebookDocumentChangeEventCellsStructure fromJson(
     Map<String, Object?> json,
   ) => NotebookDocumentChangeEventCellsStructure(
     array: NotebookCellArrayChange.fromJson(
@@ -257,22 +219,6 @@ final class NotebookDocumentChangeEventCellsStructure {
         .toList(),
   );
 
-  final NotebookCellArrayChange array;
-
-  final List<TextDocumentItem>? didOpen;
-
-  final List<TextDocumentIdentifier>? didClose;
-
-  NotebookDocumentChangeEventCellsStructure copyWith({
-    NotebookCellArrayChange? array,
-    List<TextDocumentItem>? didOpen,
-    List<TextDocumentIdentifier>? didClose,
-  }) => NotebookDocumentChangeEventCellsStructure(
-    array: array ?? this.array,
-    didOpen: didOpen ?? this.didOpen,
-    didClose: didClose ?? this.didClose,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'array': array.toJson(),
@@ -282,13 +228,17 @@ final class NotebookDocumentChangeEventCellsStructure {
   }
 }
 
-final class NotebookDocumentChangeEventCellsTextContent {
-  const NotebookDocumentChangeEventCellsTextContent({
-    required this.document,
-    required this.changes,
-  });
+@freezed
+abstract class NotebookDocumentChangeEventCellsTextContent
+    with _$NotebookDocumentChangeEventCellsTextContent {
+  const NotebookDocumentChangeEventCellsTextContent._();
 
-  factory NotebookDocumentChangeEventCellsTextContent.fromJson(
+  const factory NotebookDocumentChangeEventCellsTextContent({
+    required VersionedTextDocumentIdentifier document,
+    required List<TextDocumentContentChangeEvent> changes,
+  }) = _NotebookDocumentChangeEventCellsTextContent;
+
+  static NotebookDocumentChangeEventCellsTextContent fromJson(
     Map<String, Object?> json,
   ) => NotebookDocumentChangeEventCellsTextContent(
     document: VersionedTextDocumentIdentifier.fromJson(
@@ -299,40 +249,24 @@ final class NotebookDocumentChangeEventCellsTextContent {
         .toList(),
   );
 
-  final VersionedTextDocumentIdentifier document;
-
-  final List<TextDocumentContentChangeEvent> changes;
-
-  NotebookDocumentChangeEventCellsTextContent copyWith({
-    VersionedTextDocumentIdentifier? document,
-    List<TextDocumentContentChangeEvent>? changes,
-  }) => NotebookDocumentChangeEventCellsTextContent(
-    document: document ?? this.document,
-    changes: changes ?? this.changes,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'document': document.toJson(), 'changes': changes};
   }
 }
 
-final class _InitializeParamsClientInfo {
-  const _InitializeParamsClientInfo({required this.name, this.version});
+@freezed
+abstract class _InitializeParamsClientInfo with _$InitializeParamsClientInfo {
+  const _InitializeParamsClientInfo._();
 
-  factory _InitializeParamsClientInfo.fromJson(Map<String, Object?> json) =>
+  const factory _InitializeParamsClientInfo({
+    required String name,
+    String? version,
+  }) = __InitializeParamsClientInfo;
+
+  static _InitializeParamsClientInfo fromJson(Map<String, Object?> json) =>
       _InitializeParamsClientInfo(
         name: json['name'] as String,
         version: json['version'] as String?,
-      );
-
-  final String name;
-
-  final String? version;
-
-  _InitializeParamsClientInfo copyWith({String? name, String? version}) =>
-      _InitializeParamsClientInfo(
-        name: name ?? this.name,
-        version: version ?? this.version,
       );
 
   Map<String, Object?> toJson() {
@@ -340,13 +274,16 @@ final class _InitializeParamsClientInfo {
   }
 }
 
-final class ServerCapabilitiesWorkspace {
-  const ServerCapabilitiesWorkspace({
-    this.workspaceFolders,
-    this.fileOperations,
-  });
+@freezed
+abstract class ServerCapabilitiesWorkspace with _$ServerCapabilitiesWorkspace {
+  const ServerCapabilitiesWorkspace._();
 
-  factory ServerCapabilitiesWorkspace.fromJson(Map<String, Object?> json) =>
+  const factory ServerCapabilitiesWorkspace({
+    WorkspaceFoldersServerCapabilities? workspaceFolders,
+    FileOperationOptions? fileOperations,
+  }) = _ServerCapabilitiesWorkspace;
+
+  static ServerCapabilitiesWorkspace fromJson(Map<String, Object?> json) =>
       ServerCapabilitiesWorkspace(
         workspaceFolders: json['workspaceFolders'] == null
             ? null
@@ -360,18 +297,6 @@ final class ServerCapabilitiesWorkspace {
               ),
       );
 
-  final WorkspaceFoldersServerCapabilities? workspaceFolders;
-
-  final FileOperationOptions? fileOperations;
-
-  ServerCapabilitiesWorkspace copyWith({
-    WorkspaceFoldersServerCapabilities? workspaceFolders,
-    FileOperationOptions? fileOperations,
-  }) => ServerCapabilitiesWorkspace(
-    workspaceFolders: workspaceFolders ?? this.workspaceFolders,
-    fileOperations: fileOperations ?? this.fileOperations,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workspaceFolders': workspaceFolders?.toJson(),
@@ -380,19 +305,17 @@ final class ServerCapabilitiesWorkspace {
   }
 }
 
-final class CompletionOptionsCompletionItem {
-  const CompletionOptionsCompletionItem({this.labelDetailsSupport});
+@freezed
+abstract class CompletionOptionsCompletionItem
+    with _$CompletionOptionsCompletionItem {
+  const CompletionOptionsCompletionItem._();
 
-  factory CompletionOptionsCompletionItem.fromJson(Map<String, Object?> json) =>
+  const factory CompletionOptionsCompletionItem({bool? labelDetailsSupport}) =
+      _CompletionOptionsCompletionItem;
+
+  static CompletionOptionsCompletionItem fromJson(Map<String, Object?> json) =>
       CompletionOptionsCompletionItem(
         labelDetailsSupport: json['labelDetailsSupport'] as bool?,
-      );
-
-  final bool? labelDetailsSupport;
-
-  CompletionOptionsCompletionItem copyWith({bool? labelDetailsSupport}) =>
-      CompletionOptionsCompletionItem(
-        labelDetailsSupport: labelDetailsSupport ?? this.labelDetailsSupport,
       );
 
   Map<String, Object?> toJson() {
@@ -400,13 +323,17 @@ final class CompletionOptionsCompletionItem {
   }
 }
 
-final class NotebookDocumentSyncOptionsNotebookSelector {
-  const NotebookDocumentSyncOptionsNotebookSelector({
-    required this.notebook,
-    this.cells,
-  });
+@freezed
+abstract class NotebookDocumentSyncOptionsNotebookSelector
+    with _$NotebookDocumentSyncOptionsNotebookSelector {
+  const NotebookDocumentSyncOptionsNotebookSelector._();
 
-  factory NotebookDocumentSyncOptionsNotebookSelector.fromJson(
+  const factory NotebookDocumentSyncOptionsNotebookSelector({
+    required Object notebook,
+    List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells,
+  }) = _NotebookDocumentSyncOptionsNotebookSelector;
+
+  static NotebookDocumentSyncOptionsNotebookSelector fromJson(
     Map<String, Object?> json,
   ) => NotebookDocumentSyncOptionsNotebookSelector(
     notebook: json['notebook'] as Object,
@@ -419,18 +346,6 @@ final class NotebookDocumentSyncOptionsNotebookSelector {
         .toList(),
   );
 
-  final Object notebook;
-
-  final List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells;
-
-  NotebookDocumentSyncOptionsNotebookSelector copyWith({
-    Object? notebook,
-    List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells,
-  }) => NotebookDocumentSyncOptionsNotebookSelector(
-    notebook: notebook ?? this.notebook,
-    cells: cells ?? this.cells,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'notebook': notebook,
@@ -439,23 +354,19 @@ final class NotebookDocumentSyncOptionsNotebookSelector {
   }
 }
 
-final class NotebookDocumentSyncOptionsNotebookSelectorCells {
-  const NotebookDocumentSyncOptionsNotebookSelectorCells({
-    required this.language,
-  });
+@freezed
+abstract class NotebookDocumentSyncOptionsNotebookSelectorCells
+    with _$NotebookDocumentSyncOptionsNotebookSelectorCells {
+  const NotebookDocumentSyncOptionsNotebookSelectorCells._();
 
-  factory NotebookDocumentSyncOptionsNotebookSelectorCells.fromJson(
+  const factory NotebookDocumentSyncOptionsNotebookSelectorCells({
+    required String language,
+  }) = _NotebookDocumentSyncOptionsNotebookSelectorCells;
+
+  static NotebookDocumentSyncOptionsNotebookSelectorCells fromJson(
     Map<String, Object?> json,
   ) => NotebookDocumentSyncOptionsNotebookSelectorCells(
     language: json['language'] as String,
-  );
-
-  final String language;
-
-  NotebookDocumentSyncOptionsNotebookSelectorCells copyWith({
-    String? language,
-  }) => NotebookDocumentSyncOptionsNotebookSelectorCells(
-    language: language ?? this.language,
   );
 
   Map<String, Object?> toJson() {
@@ -463,32 +374,23 @@ final class NotebookDocumentSyncOptionsNotebookSelectorCells {
   }
 }
 
-final class GeneralClientCapabilitiesStaleRequestSupport {
-  const GeneralClientCapabilitiesStaleRequestSupport({
-    required this.cancel,
-    required this.retryOnContentModified,
-  });
+@freezed
+abstract class GeneralClientCapabilitiesStaleRequestSupport
+    with _$GeneralClientCapabilitiesStaleRequestSupport {
+  const GeneralClientCapabilitiesStaleRequestSupport._();
 
-  factory GeneralClientCapabilitiesStaleRequestSupport.fromJson(
+  const factory GeneralClientCapabilitiesStaleRequestSupport({
+    required bool cancel,
+    required List<String> retryOnContentModified,
+  }) = _GeneralClientCapabilitiesStaleRequestSupport;
+
+  static GeneralClientCapabilitiesStaleRequestSupport fromJson(
     Map<String, Object?> json,
   ) => GeneralClientCapabilitiesStaleRequestSupport(
     cancel: json['cancel'] as bool,
     retryOnContentModified: (json['retryOnContentModified'] as List<Object?>)
         .map((e) => e as String)
         .toList(),
-  );
-
-  final bool cancel;
-
-  final List<String> retryOnContentModified;
-
-  GeneralClientCapabilitiesStaleRequestSupport copyWith({
-    bool? cancel,
-    List<String>? retryOnContentModified,
-  }) => GeneralClientCapabilitiesStaleRequestSupport(
-    cancel: cancel ?? this.cancel,
-    retryOnContentModified:
-        retryOnContentModified ?? this.retryOnContentModified,
   );
 
   Map<String, Object?> toJson() {
@@ -499,23 +401,19 @@ final class GeneralClientCapabilitiesStaleRequestSupport {
   }
 }
 
-final class WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
-  const WorkspaceEditClientCapabilitiesChangeAnnotationSupport({
-    this.groupsOnLabel,
-  });
+@freezed
+abstract class WorkspaceEditClientCapabilitiesChangeAnnotationSupport
+    with _$WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
+  const WorkspaceEditClientCapabilitiesChangeAnnotationSupport._();
 
-  factory WorkspaceEditClientCapabilitiesChangeAnnotationSupport.fromJson(
+  const factory WorkspaceEditClientCapabilitiesChangeAnnotationSupport({
+    bool? groupsOnLabel,
+  }) = _WorkspaceEditClientCapabilitiesChangeAnnotationSupport;
+
+  static WorkspaceEditClientCapabilitiesChangeAnnotationSupport fromJson(
     Map<String, Object?> json,
   ) => WorkspaceEditClientCapabilitiesChangeAnnotationSupport(
     groupsOnLabel: json['groupsOnLabel'] as bool?,
-  );
-
-  final bool? groupsOnLabel;
-
-  WorkspaceEditClientCapabilitiesChangeAnnotationSupport copyWith({
-    bool? groupsOnLabel,
-  }) => WorkspaceEditClientCapabilitiesChangeAnnotationSupport(
-    groupsOnLabel: groupsOnLabel ?? this.groupsOnLabel,
   );
 
   Map<String, Object?> toJson() {
@@ -523,10 +421,16 @@ final class WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
   }
 }
 
-final class WorkspaceSymbolClientCapabilitiesSymbolKind {
-  const WorkspaceSymbolClientCapabilitiesSymbolKind({this.valueSet});
+@freezed
+abstract class WorkspaceSymbolClientCapabilitiesSymbolKind
+    with _$WorkspaceSymbolClientCapabilitiesSymbolKind {
+  const WorkspaceSymbolClientCapabilitiesSymbolKind._();
 
-  factory WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(
+  const factory WorkspaceSymbolClientCapabilitiesSymbolKind({
+    List<SymbolKind>? valueSet,
+  }) = _WorkspaceSymbolClientCapabilitiesSymbolKind;
+
+  static WorkspaceSymbolClientCapabilitiesSymbolKind fromJson(
     Map<String, Object?> json,
   ) => WorkspaceSymbolClientCapabilitiesSymbolKind(
     valueSet: (json['valueSet'] as List<Object?>?)
@@ -534,23 +438,21 @@ final class WorkspaceSymbolClientCapabilitiesSymbolKind {
         .toList(),
   );
 
-  final List<SymbolKind>? valueSet;
-
-  WorkspaceSymbolClientCapabilitiesSymbolKind copyWith({
-    List<SymbolKind>? valueSet,
-  }) => WorkspaceSymbolClientCapabilitiesSymbolKind(
-    valueSet: valueSet ?? this.valueSet,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class WorkspaceSymbolClientCapabilitiesTagSupport {
-  const WorkspaceSymbolClientCapabilitiesTagSupport({required this.valueSet});
+@freezed
+abstract class WorkspaceSymbolClientCapabilitiesTagSupport
+    with _$WorkspaceSymbolClientCapabilitiesTagSupport {
+  const WorkspaceSymbolClientCapabilitiesTagSupport._();
 
-  factory WorkspaceSymbolClientCapabilitiesTagSupport.fromJson(
+  const factory WorkspaceSymbolClientCapabilitiesTagSupport({
+    required List<SymbolTag> valueSet,
+  }) = _WorkspaceSymbolClientCapabilitiesTagSupport;
+
+  static WorkspaceSymbolClientCapabilitiesTagSupport fromJson(
     Map<String, Object?> json,
   ) => WorkspaceSymbolClientCapabilitiesTagSupport(
     valueSet: (json['valueSet'] as List<Object?>)
@@ -558,25 +460,21 @@ final class WorkspaceSymbolClientCapabilitiesTagSupport {
         .toList(),
   );
 
-  final List<SymbolTag> valueSet;
-
-  WorkspaceSymbolClientCapabilitiesTagSupport copyWith({
-    List<SymbolTag>? valueSet,
-  }) => WorkspaceSymbolClientCapabilitiesTagSupport(
-    valueSet: valueSet ?? this.valueSet,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class WorkspaceSymbolClientCapabilitiesResolveSupport {
-  const WorkspaceSymbolClientCapabilitiesResolveSupport({
-    required this.properties,
-  });
+@freezed
+abstract class WorkspaceSymbolClientCapabilitiesResolveSupport
+    with _$WorkspaceSymbolClientCapabilitiesResolveSupport {
+  const WorkspaceSymbolClientCapabilitiesResolveSupport._();
 
-  factory WorkspaceSymbolClientCapabilitiesResolveSupport.fromJson(
+  const factory WorkspaceSymbolClientCapabilitiesResolveSupport({
+    required List<String> properties,
+  }) = _WorkspaceSymbolClientCapabilitiesResolveSupport;
+
+  static WorkspaceSymbolClientCapabilitiesResolveSupport fromJson(
     Map<String, Object?> json,
   ) => WorkspaceSymbolClientCapabilitiesResolveSupport(
     properties: (json['properties'] as List<Object?>)
@@ -584,34 +482,31 @@ final class WorkspaceSymbolClientCapabilitiesResolveSupport {
         .toList(),
   );
 
-  final List<String> properties;
-
-  WorkspaceSymbolClientCapabilitiesResolveSupport copyWith({
-    List<String>? properties,
-  }) => WorkspaceSymbolClientCapabilitiesResolveSupport(
-    properties: properties ?? this.properties,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'properties': properties};
   }
 }
 
-final class CompletionClientCapabilitiesCompletionItem {
-  const CompletionClientCapabilitiesCompletionItem({
-    this.snippetSupport,
-    this.commitCharactersSupport,
-    this.documentationFormat,
-    this.deprecatedSupport,
-    this.preselectSupport,
-    this.tagSupport,
-    this.insertReplaceSupport,
-    this.resolveSupport,
-    this.insertTextModeSupport,
-    this.labelDetailsSupport,
-  });
+@freezed
+abstract class CompletionClientCapabilitiesCompletionItem
+    with _$CompletionClientCapabilitiesCompletionItem {
+  const CompletionClientCapabilitiesCompletionItem._();
 
-  factory CompletionClientCapabilitiesCompletionItem.fromJson(
+  const factory CompletionClientCapabilitiesCompletionItem({
+    bool? snippetSupport,
+    bool? commitCharactersSupport,
+    List<MarkupKind>? documentationFormat,
+    bool? deprecatedSupport,
+    bool? preselectSupport,
+    CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,
+    bool? insertReplaceSupport,
+    CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,
+    CompletionClientCapabilitiesCompletionItemInsertTextModeSupport?
+    insertTextModeSupport,
+    bool? labelDetailsSupport,
+  }) = _CompletionClientCapabilitiesCompletionItem;
+
+  static CompletionClientCapabilitiesCompletionItem fromJson(
     Map<String, Object?> json,
   ) => CompletionClientCapabilitiesCompletionItem(
     snippetSupport: json['snippetSupport'] as bool?,
@@ -640,54 +535,6 @@ final class CompletionClientCapabilitiesCompletionItem {
     labelDetailsSupport: json['labelDetailsSupport'] as bool?,
   );
 
-  final bool? snippetSupport;
-
-  final bool? commitCharactersSupport;
-
-  final List<MarkupKind>? documentationFormat;
-
-  final bool? deprecatedSupport;
-
-  final bool? preselectSupport;
-
-  final CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport;
-
-  final bool? insertReplaceSupport;
-
-  final CompletionClientCapabilitiesCompletionItemResolveSupport?
-  resolveSupport;
-
-  final CompletionClientCapabilitiesCompletionItemInsertTextModeSupport?
-  insertTextModeSupport;
-
-  final bool? labelDetailsSupport;
-
-  CompletionClientCapabilitiesCompletionItem copyWith({
-    bool? snippetSupport,
-    bool? commitCharactersSupport,
-    List<MarkupKind>? documentationFormat,
-    bool? deprecatedSupport,
-    bool? preselectSupport,
-    CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,
-    bool? insertReplaceSupport,
-    CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,
-    CompletionClientCapabilitiesCompletionItemInsertTextModeSupport?
-    insertTextModeSupport,
-    bool? labelDetailsSupport,
-  }) => CompletionClientCapabilitiesCompletionItem(
-    snippetSupport: snippetSupport ?? this.snippetSupport,
-    commitCharactersSupport:
-        commitCharactersSupport ?? this.commitCharactersSupport,
-    documentationFormat: documentationFormat ?? this.documentationFormat,
-    deprecatedSupport: deprecatedSupport ?? this.deprecatedSupport,
-    preselectSupport: preselectSupport ?? this.preselectSupport,
-    tagSupport: tagSupport ?? this.tagSupport,
-    insertReplaceSupport: insertReplaceSupport ?? this.insertReplaceSupport,
-    resolveSupport: resolveSupport ?? this.resolveSupport,
-    insertTextModeSupport: insertTextModeSupport ?? this.insertTextModeSupport,
-    labelDetailsSupport: labelDetailsSupport ?? this.labelDetailsSupport,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'snippetSupport': snippetSupport,
@@ -704,12 +551,16 @@ final class CompletionClientCapabilitiesCompletionItem {
   }
 }
 
-final class CompletionClientCapabilitiesCompletionItemTagSupport {
-  const CompletionClientCapabilitiesCompletionItemTagSupport({
-    required this.valueSet,
-  });
+@freezed
+abstract class CompletionClientCapabilitiesCompletionItemTagSupport
+    with _$CompletionClientCapabilitiesCompletionItemTagSupport {
+  const CompletionClientCapabilitiesCompletionItemTagSupport._();
 
-  factory CompletionClientCapabilitiesCompletionItemTagSupport.fromJson(
+  const factory CompletionClientCapabilitiesCompletionItemTagSupport({
+    required List<CompletionItemTag> valueSet,
+  }) = _CompletionClientCapabilitiesCompletionItemTagSupport;
+
+  static CompletionClientCapabilitiesCompletionItemTagSupport fromJson(
     Map<String, Object?> json,
   ) => CompletionClientCapabilitiesCompletionItemTagSupport(
     valueSet: (json['valueSet'] as List<Object?>)
@@ -717,25 +568,21 @@ final class CompletionClientCapabilitiesCompletionItemTagSupport {
         .toList(),
   );
 
-  final List<CompletionItemTag> valueSet;
-
-  CompletionClientCapabilitiesCompletionItemTagSupport copyWith({
-    List<CompletionItemTag>? valueSet,
-  }) => CompletionClientCapabilitiesCompletionItemTagSupport(
-    valueSet: valueSet ?? this.valueSet,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class CompletionClientCapabilitiesCompletionItemResolveSupport {
-  const CompletionClientCapabilitiesCompletionItemResolveSupport({
-    required this.properties,
-  });
+@freezed
+abstract class CompletionClientCapabilitiesCompletionItemResolveSupport
+    with _$CompletionClientCapabilitiesCompletionItemResolveSupport {
+  const CompletionClientCapabilitiesCompletionItemResolveSupport._();
 
-  factory CompletionClientCapabilitiesCompletionItemResolveSupport.fromJson(
+  const factory CompletionClientCapabilitiesCompletionItemResolveSupport({
+    required List<String> properties,
+  }) = _CompletionClientCapabilitiesCompletionItemResolveSupport;
+
+  static CompletionClientCapabilitiesCompletionItemResolveSupport fromJson(
     Map<String, Object?> json,
   ) => CompletionClientCapabilitiesCompletionItemResolveSupport(
     properties: (json['properties'] as List<Object?>)
@@ -743,49 +590,43 @@ final class CompletionClientCapabilitiesCompletionItemResolveSupport {
         .toList(),
   );
 
-  final List<String> properties;
-
-  CompletionClientCapabilitiesCompletionItemResolveSupport copyWith({
-    List<String>? properties,
-  }) => CompletionClientCapabilitiesCompletionItemResolveSupport(
-    properties: properties ?? this.properties,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'properties': properties};
   }
 }
 
-final class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
-  const CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({
-    required this.valueSet,
-  });
+@freezed
+abstract class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
+    with _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
+  const CompletionClientCapabilitiesCompletionItemInsertTextModeSupport._();
 
-  factory CompletionClientCapabilitiesCompletionItemInsertTextModeSupport.fromJson(
-    Map<String, Object?> json,
-  ) => CompletionClientCapabilitiesCompletionItemInsertTextModeSupport(
-    valueSet: (json['valueSet'] as List<Object?>)
-        .map((e) => e as InsertTextMode)
-        .toList(),
-  );
+  const factory CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({
+    required List<InsertTextMode> valueSet,
+  }) = _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport;
 
-  final List<InsertTextMode> valueSet;
-
-  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport copyWith({
-    List<InsertTextMode>? valueSet,
-  }) => CompletionClientCapabilitiesCompletionItemInsertTextModeSupport(
-    valueSet: valueSet ?? this.valueSet,
-  );
+  static CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
+  fromJson(Map<String, Object?> json) =>
+      CompletionClientCapabilitiesCompletionItemInsertTextModeSupport(
+        valueSet: (json['valueSet'] as List<Object?>)
+            .map((e) => e as InsertTextMode)
+            .toList(),
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class CompletionClientCapabilitiesCompletionItemKind {
-  const CompletionClientCapabilitiesCompletionItemKind({this.valueSet});
+@freezed
+abstract class CompletionClientCapabilitiesCompletionItemKind
+    with _$CompletionClientCapabilitiesCompletionItemKind {
+  const CompletionClientCapabilitiesCompletionItemKind._();
 
-  factory CompletionClientCapabilitiesCompletionItemKind.fromJson(
+  const factory CompletionClientCapabilitiesCompletionItemKind({
+    List<CompletionItemKind>? valueSet,
+  }) = _CompletionClientCapabilitiesCompletionItemKind;
+
+  static CompletionClientCapabilitiesCompletionItemKind fromJson(
     Map<String, Object?> json,
   ) => CompletionClientCapabilitiesCompletionItemKind(
     valueSet: (json['valueSet'] as List<Object?>?)
@@ -793,23 +634,21 @@ final class CompletionClientCapabilitiesCompletionItemKind {
         .toList(),
   );
 
-  final List<CompletionItemKind>? valueSet;
-
-  CompletionClientCapabilitiesCompletionItemKind copyWith({
-    List<CompletionItemKind>? valueSet,
-  }) => CompletionClientCapabilitiesCompletionItemKind(
-    valueSet: valueSet ?? this.valueSet,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class CompletionClientCapabilitiesCompletionList {
-  const CompletionClientCapabilitiesCompletionList({this.itemDefaults});
+@freezed
+abstract class CompletionClientCapabilitiesCompletionList
+    with _$CompletionClientCapabilitiesCompletionList {
+  const CompletionClientCapabilitiesCompletionList._();
 
-  factory CompletionClientCapabilitiesCompletionList.fromJson(
+  const factory CompletionClientCapabilitiesCompletionList({
+    List<String>? itemDefaults,
+  }) = _CompletionClientCapabilitiesCompletionList;
+
+  static CompletionClientCapabilitiesCompletionList fromJson(
     Map<String, Object?> json,
   ) => CompletionClientCapabilitiesCompletionList(
     itemDefaults: (json['itemDefaults'] as List<Object?>?)
@@ -817,27 +656,24 @@ final class CompletionClientCapabilitiesCompletionList {
         .toList(),
   );
 
-  final List<String>? itemDefaults;
-
-  CompletionClientCapabilitiesCompletionList copyWith({
-    List<String>? itemDefaults,
-  }) => CompletionClientCapabilitiesCompletionList(
-    itemDefaults: itemDefaults ?? this.itemDefaults,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'itemDefaults': itemDefaults};
   }
 }
 
-final class SignatureHelpClientCapabilitiesSignatureInformation {
-  const SignatureHelpClientCapabilitiesSignatureInformation({
-    this.documentationFormat,
-    this.parameterInformation,
-    this.activeParameterSupport,
-  });
+@freezed
+abstract class SignatureHelpClientCapabilitiesSignatureInformation
+    with _$SignatureHelpClientCapabilitiesSignatureInformation {
+  const SignatureHelpClientCapabilitiesSignatureInformation._();
 
-  factory SignatureHelpClientCapabilitiesSignatureInformation.fromJson(
+  const factory SignatureHelpClientCapabilitiesSignatureInformation({
+    List<MarkupKind>? documentationFormat,
+    SignatureHelpClientCapabilitiesSignatureInformationParameterInformation?
+    parameterInformation,
+    bool? activeParameterSupport,
+  }) = _SignatureHelpClientCapabilitiesSignatureInformation;
+
+  static SignatureHelpClientCapabilitiesSignatureInformation fromJson(
     Map<String, Object?> json,
   ) => SignatureHelpClientCapabilitiesSignatureInformation(
     documentationFormat: (json['documentationFormat'] as List<Object?>?)
@@ -851,25 +687,6 @@ final class SignatureHelpClientCapabilitiesSignatureInformation {
     activeParameterSupport: json['activeParameterSupport'] as bool?,
   );
 
-  final List<MarkupKind>? documentationFormat;
-
-  final SignatureHelpClientCapabilitiesSignatureInformationParameterInformation?
-  parameterInformation;
-
-  final bool? activeParameterSupport;
-
-  SignatureHelpClientCapabilitiesSignatureInformation copyWith({
-    List<MarkupKind>? documentationFormat,
-    SignatureHelpClientCapabilitiesSignatureInformationParameterInformation?
-    parameterInformation,
-    bool? activeParameterSupport,
-  }) => SignatureHelpClientCapabilitiesSignatureInformation(
-    documentationFormat: documentationFormat ?? this.documentationFormat,
-    parameterInformation: parameterInformation ?? this.parameterInformation,
-    activeParameterSupport:
-        activeParameterSupport ?? this.activeParameterSupport,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'documentationFormat': documentationFormat,
@@ -879,23 +696,20 @@ final class SignatureHelpClientCapabilitiesSignatureInformation {
   }
 }
 
-final class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
-  const SignatureHelpClientCapabilitiesSignatureInformationParameterInformation({
-    this.labelOffsetSupport,
-  });
+@freezed
+abstract class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
+    with
+        _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
+  const SignatureHelpClientCapabilitiesSignatureInformationParameterInformation._();
 
-  factory SignatureHelpClientCapabilitiesSignatureInformationParameterInformation.fromJson(
-    Map<String, Object?> json,
-  ) => SignatureHelpClientCapabilitiesSignatureInformationParameterInformation(
-    labelOffsetSupport: json['labelOffsetSupport'] as bool?,
-  );
+  const factory SignatureHelpClientCapabilitiesSignatureInformationParameterInformation({
+    bool? labelOffsetSupport,
+  }) = _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation;
 
-  final bool? labelOffsetSupport;
-
-  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
-  copyWith({bool? labelOffsetSupport}) =>
+  static SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
+  fromJson(Map<String, Object?> json) =>
       SignatureHelpClientCapabilitiesSignatureInformationParameterInformation(
-        labelOffsetSupport: labelOffsetSupport ?? this.labelOffsetSupport,
+        labelOffsetSupport: json['labelOffsetSupport'] as bool?,
       );
 
   Map<String, Object?> toJson() {
@@ -903,10 +717,16 @@ final class SignatureHelpClientCapabilitiesSignatureInformationParameterInformat
   }
 }
 
-final class DocumentSymbolClientCapabilitiesSymbolKind {
-  const DocumentSymbolClientCapabilitiesSymbolKind({this.valueSet});
+@freezed
+abstract class DocumentSymbolClientCapabilitiesSymbolKind
+    with _$DocumentSymbolClientCapabilitiesSymbolKind {
+  const DocumentSymbolClientCapabilitiesSymbolKind._();
 
-  factory DocumentSymbolClientCapabilitiesSymbolKind.fromJson(
+  const factory DocumentSymbolClientCapabilitiesSymbolKind({
+    List<SymbolKind>? valueSet,
+  }) = _DocumentSymbolClientCapabilitiesSymbolKind;
+
+  static DocumentSymbolClientCapabilitiesSymbolKind fromJson(
     Map<String, Object?> json,
   ) => DocumentSymbolClientCapabilitiesSymbolKind(
     valueSet: (json['valueSet'] as List<Object?>?)
@@ -914,23 +734,21 @@ final class DocumentSymbolClientCapabilitiesSymbolKind {
         .toList(),
   );
 
-  final List<SymbolKind>? valueSet;
-
-  DocumentSymbolClientCapabilitiesSymbolKind copyWith({
-    List<SymbolKind>? valueSet,
-  }) => DocumentSymbolClientCapabilitiesSymbolKind(
-    valueSet: valueSet ?? this.valueSet,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class DocumentSymbolClientCapabilitiesTagSupport {
-  const DocumentSymbolClientCapabilitiesTagSupport({required this.valueSet});
+@freezed
+abstract class DocumentSymbolClientCapabilitiesTagSupport
+    with _$DocumentSymbolClientCapabilitiesTagSupport {
+  const DocumentSymbolClientCapabilitiesTagSupport._();
 
-  factory DocumentSymbolClientCapabilitiesTagSupport.fromJson(
+  const factory DocumentSymbolClientCapabilitiesTagSupport({
+    required List<SymbolTag> valueSet,
+  }) = _DocumentSymbolClientCapabilitiesTagSupport;
+
+  static DocumentSymbolClientCapabilitiesTagSupport fromJson(
     Map<String, Object?> json,
   ) => DocumentSymbolClientCapabilitiesTagSupport(
     valueSet: (json['valueSet'] as List<Object?>)
@@ -938,25 +756,22 @@ final class DocumentSymbolClientCapabilitiesTagSupport {
         .toList(),
   );
 
-  final List<SymbolTag> valueSet;
-
-  DocumentSymbolClientCapabilitiesTagSupport copyWith({
-    List<SymbolTag>? valueSet,
-  }) => DocumentSymbolClientCapabilitiesTagSupport(
-    valueSet: valueSet ?? this.valueSet,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class CodeActionClientCapabilitiesCodeActionLiteralSupport {
-  const CodeActionClientCapabilitiesCodeActionLiteralSupport({
-    required this.codeActionKind,
-  });
+@freezed
+abstract class CodeActionClientCapabilitiesCodeActionLiteralSupport
+    with _$CodeActionClientCapabilitiesCodeActionLiteralSupport {
+  const CodeActionClientCapabilitiesCodeActionLiteralSupport._();
 
-  factory CodeActionClientCapabilitiesCodeActionLiteralSupport.fromJson(
+  const factory CodeActionClientCapabilitiesCodeActionLiteralSupport({
+    required CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
+    codeActionKind,
+  }) = _CodeActionClientCapabilitiesCodeActionLiteralSupport;
+
+  static CodeActionClientCapabilitiesCodeActionLiteralSupport fromJson(
     Map<String, Object?> json,
   ) => CodeActionClientCapabilitiesCodeActionLiteralSupport(
     codeActionKind:
@@ -965,51 +780,43 @@ final class CodeActionClientCapabilitiesCodeActionLiteralSupport {
         ),
   );
 
-  final CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
-  codeActionKind;
-
-  CodeActionClientCapabilitiesCodeActionLiteralSupport copyWith({
-    CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind?
-    codeActionKind,
-  }) => CodeActionClientCapabilitiesCodeActionLiteralSupport(
-    codeActionKind: codeActionKind ?? this.codeActionKind,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'codeActionKind': codeActionKind.toJson()};
   }
 }
 
-final class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind {
-  const CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind({
-    required this.valueSet,
-  });
+@freezed
+abstract class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
+    with _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind {
+  const CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind._();
 
-  factory CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind.fromJson(
-    Map<String, Object?> json,
-  ) => CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind(
-    valueSet: (json['valueSet'] as List<Object?>)
-        .map((e) => e as CodeActionKind)
-        .toList(),
-  );
+  const factory CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind({
+    required List<CodeActionKind> valueSet,
+  }) = _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind;
 
-  final List<CodeActionKind> valueSet;
-
-  CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind copyWith({
-    List<CodeActionKind>? valueSet,
-  }) => CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind(
-    valueSet: valueSet ?? this.valueSet,
-  );
+  static CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
+  fromJson(Map<String, Object?> json) =>
+      CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind(
+        valueSet: (json['valueSet'] as List<Object?>)
+            .map((e) => e as CodeActionKind)
+            .toList(),
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class CodeActionClientCapabilitiesResolveSupport {
-  const CodeActionClientCapabilitiesResolveSupport({required this.properties});
+@freezed
+abstract class CodeActionClientCapabilitiesResolveSupport
+    with _$CodeActionClientCapabilitiesResolveSupport {
+  const CodeActionClientCapabilitiesResolveSupport._();
 
-  factory CodeActionClientCapabilitiesResolveSupport.fromJson(
+  const factory CodeActionClientCapabilitiesResolveSupport({
+    required List<String> properties,
+  }) = _CodeActionClientCapabilitiesResolveSupport;
+
+  static CodeActionClientCapabilitiesResolveSupport fromJson(
     Map<String, Object?> json,
   ) => CodeActionClientCapabilitiesResolveSupport(
     properties: (json['properties'] as List<Object?>)
@@ -1017,23 +824,21 @@ final class CodeActionClientCapabilitiesResolveSupport {
         .toList(),
   );
 
-  final List<String> properties;
-
-  CodeActionClientCapabilitiesResolveSupport copyWith({
-    List<String>? properties,
-  }) => CodeActionClientCapabilitiesResolveSupport(
-    properties: properties ?? this.properties,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'properties': properties};
   }
 }
 
-final class FoldingRangeClientCapabilitiesFoldingRangeKind {
-  const FoldingRangeClientCapabilitiesFoldingRangeKind({this.valueSet});
+@freezed
+abstract class FoldingRangeClientCapabilitiesFoldingRangeKind
+    with _$FoldingRangeClientCapabilitiesFoldingRangeKind {
+  const FoldingRangeClientCapabilitiesFoldingRangeKind._();
 
-  factory FoldingRangeClientCapabilitiesFoldingRangeKind.fromJson(
+  const factory FoldingRangeClientCapabilitiesFoldingRangeKind({
+    List<FoldingRangeKind>? valueSet,
+  }) = _FoldingRangeClientCapabilitiesFoldingRangeKind;
+
+  static FoldingRangeClientCapabilitiesFoldingRangeKind fromJson(
     Map<String, Object?> json,
   ) => FoldingRangeClientCapabilitiesFoldingRangeKind(
     valueSet: (json['valueSet'] as List<Object?>?)
@@ -1041,46 +846,41 @@ final class FoldingRangeClientCapabilitiesFoldingRangeKind {
         .toList(),
   );
 
-  final List<FoldingRangeKind>? valueSet;
-
-  FoldingRangeClientCapabilitiesFoldingRangeKind copyWith({
-    List<FoldingRangeKind>? valueSet,
-  }) => FoldingRangeClientCapabilitiesFoldingRangeKind(
-    valueSet: valueSet ?? this.valueSet,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class FoldingRangeClientCapabilitiesFoldingRange {
-  const FoldingRangeClientCapabilitiesFoldingRange({this.collapsedText});
+@freezed
+abstract class FoldingRangeClientCapabilitiesFoldingRange
+    with _$FoldingRangeClientCapabilitiesFoldingRange {
+  const FoldingRangeClientCapabilitiesFoldingRange._();
 
-  factory FoldingRangeClientCapabilitiesFoldingRange.fromJson(
+  const factory FoldingRangeClientCapabilitiesFoldingRange({
+    bool? collapsedText,
+  }) = _FoldingRangeClientCapabilitiesFoldingRange;
+
+  static FoldingRangeClientCapabilitiesFoldingRange fromJson(
     Map<String, Object?> json,
   ) => FoldingRangeClientCapabilitiesFoldingRange(
     collapsedText: json['collapsedText'] as bool?,
   );
-
-  final bool? collapsedText;
-
-  FoldingRangeClientCapabilitiesFoldingRange copyWith({bool? collapsedText}) =>
-      FoldingRangeClientCapabilitiesFoldingRange(
-        collapsedText: collapsedText ?? this.collapsedText,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'collapsedText': collapsedText};
   }
 }
 
-final class PublishDiagnosticsClientCapabilitiesTagSupport {
-  const PublishDiagnosticsClientCapabilitiesTagSupport({
-    required this.valueSet,
-  });
+@freezed
+abstract class PublishDiagnosticsClientCapabilitiesTagSupport
+    with _$PublishDiagnosticsClientCapabilitiesTagSupport {
+  const PublishDiagnosticsClientCapabilitiesTagSupport._();
 
-  factory PublishDiagnosticsClientCapabilitiesTagSupport.fromJson(
+  const factory PublishDiagnosticsClientCapabilitiesTagSupport({
+    required List<DiagnosticTag> valueSet,
+  }) = _PublishDiagnosticsClientCapabilitiesTagSupport;
+
+  static PublishDiagnosticsClientCapabilitiesTagSupport fromJson(
     Map<String, Object?> json,
   ) => PublishDiagnosticsClientCapabilitiesTagSupport(
     valueSet: (json['valueSet'] as List<Object?>)
@@ -1088,39 +888,26 @@ final class PublishDiagnosticsClientCapabilitiesTagSupport {
         .toList(),
   );
 
-  final List<DiagnosticTag> valueSet;
-
-  PublishDiagnosticsClientCapabilitiesTagSupport copyWith({
-    List<DiagnosticTag>? valueSet,
-  }) => PublishDiagnosticsClientCapabilitiesTagSupport(
-    valueSet: valueSet ?? this.valueSet,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'valueSet': valueSet};
   }
 }
 
-final class SemanticTokensClientCapabilitiesRequests {
-  const SemanticTokensClientCapabilitiesRequests({this.range, this.full});
+@freezed
+abstract class SemanticTokensClientCapabilitiesRequests
+    with _$SemanticTokensClientCapabilitiesRequests {
+  const SemanticTokensClientCapabilitiesRequests._();
 
-  factory SemanticTokensClientCapabilitiesRequests.fromJson(
+  const factory SemanticTokensClientCapabilitiesRequests({
+    Object? range,
+    Object? full,
+  }) = _SemanticTokensClientCapabilitiesRequests;
+
+  static SemanticTokensClientCapabilitiesRequests fromJson(
     Map<String, Object?> json,
   ) => SemanticTokensClientCapabilitiesRequests(
     range: json['range'],
     full: json['full'],
-  );
-
-  final Object? range;
-
-  final Object? full;
-
-  SemanticTokensClientCapabilitiesRequests copyWith({
-    Object? range,
-    Object? full,
-  }) => SemanticTokensClientCapabilitiesRequests(
-    range: range ?? this.range,
-    full: full ?? this.full,
   );
 
   Map<String, Object?> toJson() {
@@ -1128,10 +915,15 @@ final class SemanticTokensClientCapabilitiesRequests {
   }
 }
 
-final class SemanticTokensClientCapabilitiesRequestsRange {
-  const SemanticTokensClientCapabilitiesRequestsRange();
+@freezed
+abstract class SemanticTokensClientCapabilitiesRequestsRange
+    with _$SemanticTokensClientCapabilitiesRequestsRange {
+  const SemanticTokensClientCapabilitiesRequestsRange._();
 
-  factory SemanticTokensClientCapabilitiesRequestsRange.fromJson(
+  const factory SemanticTokensClientCapabilitiesRequestsRange() =
+      _SemanticTokensClientCapabilitiesRequestsRange;
+
+  static SemanticTokensClientCapabilitiesRequestsRange fromJson(
     Map<String, Object?> json,
   ) => SemanticTokensClientCapabilitiesRequestsRange();
 
@@ -1140,29 +932,35 @@ final class SemanticTokensClientCapabilitiesRequestsRange {
   }
 }
 
-final class SemanticTokensClientCapabilitiesRequestsFull {
-  const SemanticTokensClientCapabilitiesRequestsFull({this.delta});
+@freezed
+abstract class SemanticTokensClientCapabilitiesRequestsFull
+    with _$SemanticTokensClientCapabilitiesRequestsFull {
+  const SemanticTokensClientCapabilitiesRequestsFull._();
 
-  factory SemanticTokensClientCapabilitiesRequestsFull.fromJson(
+  const factory SemanticTokensClientCapabilitiesRequestsFull({bool? delta}) =
+      _SemanticTokensClientCapabilitiesRequestsFull;
+
+  static SemanticTokensClientCapabilitiesRequestsFull fromJson(
     Map<String, Object?> json,
   ) => SemanticTokensClientCapabilitiesRequestsFull(
     delta: json['delta'] as bool?,
   );
-
-  final bool? delta;
-
-  SemanticTokensClientCapabilitiesRequestsFull copyWith({bool? delta}) =>
-      SemanticTokensClientCapabilitiesRequestsFull(delta: delta ?? this.delta);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'delta': delta};
   }
 }
 
-final class InlayHintClientCapabilitiesResolveSupport {
-  const InlayHintClientCapabilitiesResolveSupport({required this.properties});
+@freezed
+abstract class InlayHintClientCapabilitiesResolveSupport
+    with _$InlayHintClientCapabilitiesResolveSupport {
+  const InlayHintClientCapabilitiesResolveSupport._();
 
-  factory InlayHintClientCapabilitiesResolveSupport.fromJson(
+  const factory InlayHintClientCapabilitiesResolveSupport({
+    required List<String> properties,
+  }) = _InlayHintClientCapabilitiesResolveSupport;
+
+  static InlayHintClientCapabilitiesResolveSupport fromJson(
     Map<String, Object?> json,
   ) => InlayHintClientCapabilitiesResolveSupport(
     properties: (json['properties'] as List<Object?>)
@@ -1170,37 +968,24 @@ final class InlayHintClientCapabilitiesResolveSupport {
         .toList(),
   );
 
-  final List<String> properties;
-
-  InlayHintClientCapabilitiesResolveSupport copyWith({
-    List<String>? properties,
-  }) => InlayHintClientCapabilitiesResolveSupport(
-    properties: properties ?? this.properties,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'properties': properties};
   }
 }
 
-final class ShowMessageRequestClientCapabilitiesMessageActionItem {
-  const ShowMessageRequestClientCapabilitiesMessageActionItem({
-    this.additionalPropertiesSupport,
-  });
+@freezed
+abstract class ShowMessageRequestClientCapabilitiesMessageActionItem
+    with _$ShowMessageRequestClientCapabilitiesMessageActionItem {
+  const ShowMessageRequestClientCapabilitiesMessageActionItem._();
 
-  factory ShowMessageRequestClientCapabilitiesMessageActionItem.fromJson(
+  const factory ShowMessageRequestClientCapabilitiesMessageActionItem({
+    bool? additionalPropertiesSupport,
+  }) = _ShowMessageRequestClientCapabilitiesMessageActionItem;
+
+  static ShowMessageRequestClientCapabilitiesMessageActionItem fromJson(
     Map<String, Object?> json,
   ) => ShowMessageRequestClientCapabilitiesMessageActionItem(
     additionalPropertiesSupport: json['additionalPropertiesSupport'] as bool?,
-  );
-
-  final bool? additionalPropertiesSupport;
-
-  ShowMessageRequestClientCapabilitiesMessageActionItem copyWith({
-    bool? additionalPropertiesSupport,
-  }) => ShowMessageRequestClientCapabilitiesMessageActionItem(
-    additionalPropertiesSupport:
-        additionalPropertiesSupport ?? this.additionalPropertiesSupport,
   );
 
   Map<String, Object?> toJson() {
@@ -1210,23 +995,19 @@ final class ShowMessageRequestClientCapabilitiesMessageActionItem {
   }
 }
 
-final class PrepareRenameResult {
-  const PrepareRenameResult({required this.range, required this.placeholder});
+@freezed
+abstract class PrepareRenameResult with _$PrepareRenameResult {
+  const PrepareRenameResult._();
 
-  factory PrepareRenameResult.fromJson(Map<String, Object?> json) =>
+  const factory PrepareRenameResult({
+    required Range range,
+    required String placeholder,
+  }) = _PrepareRenameResult;
+
+  static PrepareRenameResult fromJson(Map<String, Object?> json) =>
       PrepareRenameResult(
         range: Range.fromJson(json['range'] as Map<String, Object?>),
         placeholder: json['placeholder'] as String,
-      );
-
-  final Range range;
-
-  final String placeholder;
-
-  PrepareRenameResult copyWith({Range? range, String? placeholder}) =>
-      PrepareRenameResult(
-        range: range ?? this.range,
-        placeholder: placeholder ?? this.placeholder,
       );
 
   Map<String, Object?> toJson() {
@@ -1237,35 +1018,23 @@ final class PrepareRenameResult {
   }
 }
 
-final class TextDocumentContentChangeEvent {
-  const TextDocumentContentChangeEvent({
-    required this.range,
-    this.rangeLength,
-    required this.text,
-  });
+@freezed
+abstract class TextDocumentContentChangeEvent
+    with _$TextDocumentContentChangeEvent {
+  const TextDocumentContentChangeEvent._();
 
-  factory TextDocumentContentChangeEvent.fromJson(Map<String, Object?> json) =>
+  const factory TextDocumentContentChangeEvent({
+    required Range range,
+    int? rangeLength,
+    required String text,
+  }) = _TextDocumentContentChangeEvent;
+
+  static TextDocumentContentChangeEvent fromJson(Map<String, Object?> json) =>
       TextDocumentContentChangeEvent(
         range: Range.fromJson(json['range'] as Map<String, Object?>),
         rangeLength: json['rangeLength'] as int?,
         text: json['text'] as String,
       );
-
-  final Range range;
-
-  final int? rangeLength;
-
-  final String text;
-
-  TextDocumentContentChangeEvent copyWith({
-    Range? range,
-    int? rangeLength,
-    String? text,
-  }) => TextDocumentContentChangeEvent(
-    range: range ?? this.range,
-    rangeLength: rangeLength ?? this.rangeLength,
-    text: text ?? this.text,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -1276,21 +1045,18 @@ final class TextDocumentContentChangeEvent {
   }
 }
 
-final class MarkedString {
-  const MarkedString({required this.language, required this.value});
+@freezed
+abstract class MarkedString with _$MarkedString {
+  const MarkedString._();
 
-  factory MarkedString.fromJson(Map<String, Object?> json) => MarkedString(
+  const factory MarkedString({
+    required String language,
+    required String value,
+  }) = _MarkedString;
+
+  static MarkedString fromJson(Map<String, Object?> json) => MarkedString(
     language: json['language'] as String,
     value: json['value'] as String,
-  );
-
-  final String language;
-
-  final String value;
-
-  MarkedString copyWith({String? language, String? value}) => MarkedString(
-    language: language ?? this.language,
-    value: value ?? this.value,
   );
 
   Map<String, Object?> toJson() {
@@ -1298,31 +1064,22 @@ final class MarkedString {
   }
 }
 
-final class TextDocumentFilter {
-  const TextDocumentFilter({required this.language, this.scheme, this.pattern});
+@freezed
+abstract class TextDocumentFilter with _$TextDocumentFilter {
+  const TextDocumentFilter._();
 
-  factory TextDocumentFilter.fromJson(Map<String, Object?> json) =>
+  const factory TextDocumentFilter({
+    required String language,
+    String? scheme,
+    String? pattern,
+  }) = _TextDocumentFilter;
+
+  static TextDocumentFilter fromJson(Map<String, Object?> json) =>
       TextDocumentFilter(
         language: json['language'] as String,
         scheme: json['scheme'] as String?,
         pattern: json['pattern'] as String?,
       );
-
-  final String language;
-
-  final String? scheme;
-
-  final String? pattern;
-
-  TextDocumentFilter copyWith({
-    String? language,
-    String? scheme,
-    String? pattern,
-  }) => TextDocumentFilter(
-    language: language ?? this.language,
-    scheme: scheme ?? this.scheme,
-    pattern: pattern ?? this.pattern,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -1333,35 +1090,22 @@ final class TextDocumentFilter {
   }
 }
 
-final class NotebookDocumentFilter {
-  const NotebookDocumentFilter({
-    required this.notebookType,
-    this.scheme,
-    this.pattern,
-  });
+@freezed
+abstract class NotebookDocumentFilter with _$NotebookDocumentFilter {
+  const NotebookDocumentFilter._();
 
-  factory NotebookDocumentFilter.fromJson(Map<String, Object?> json) =>
+  const factory NotebookDocumentFilter({
+    required String notebookType,
+    String? scheme,
+    String? pattern,
+  }) = _NotebookDocumentFilter;
+
+  static NotebookDocumentFilter fromJson(Map<String, Object?> json) =>
       NotebookDocumentFilter(
         notebookType: json['notebookType'] as String,
         scheme: json['scheme'] as String?,
         pattern: json['pattern'] as String?,
       );
-
-  final String notebookType;
-
-  final String? scheme;
-
-  final String? pattern;
-
-  NotebookDocumentFilter copyWith({
-    String? notebookType,
-    String? scheme,
-    String? pattern,
-  }) => NotebookDocumentFilter(
-    notebookType: notebookType ?? this.notebookType,
-    scheme: scheme ?? this.scheme,
-    pattern: pattern ?? this.pattern,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -1372,15 +1116,18 @@ final class NotebookDocumentFilter {
   }
 }
 
-final class ImplementationParams {
-  const ImplementationParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    this.partialResultToken,
-  });
+@freezed
+abstract class ImplementationParams with _$ImplementationParams {
+  const ImplementationParams._();
 
-  factory ImplementationParams.fromJson(Map<String, Object?> json) =>
+  const factory ImplementationParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+  }) = _ImplementationParams;
+
+  static ImplementationParams fromJson(Map<String, Object?> json) =>
       ImplementationParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -1394,26 +1141,6 @@ final class ImplementationParams {
             : ProgressToken.fromJson(json['partialResultToken']),
       );
 
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  ImplementationParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-  }) => ImplementationParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
@@ -1426,55 +1153,40 @@ final class ImplementationParams {
 
 /// Represents a location inside a resource, such as a line
 /// inside a text file.
-final class Location {
-  const Location({required this.uri, required this.range});
+@freezed
+abstract class Location with _$Location {
+  const Location._();
 
-  factory Location.fromJson(Map<String, Object?> json) => Location(
+  const factory Location({required String uri, required Range range}) =
+      _Location;
+
+  static Location fromJson(Map<String, Object?> json) => Location(
     uri: json['uri'] as String,
     range: Range.fromJson(json['range'] as Map<String, Object?>),
   );
-
-  final String uri;
-
-  final Range range;
-
-  Location copyWith({String? uri, Range? range}) =>
-      Location(uri: uri ?? this.uri, range: range ?? this.range);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'uri': uri, 'range': range.toJson()};
   }
 }
 
-final class ImplementationRegistrationOptions {
-  const ImplementationRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.id,
-  });
+@freezed
+abstract class ImplementationRegistrationOptions
+    with _$ImplementationRegistrationOptions {
+  const ImplementationRegistrationOptions._();
 
-  factory ImplementationRegistrationOptions.fromJson(
+  const factory ImplementationRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    String? id,
+  }) = _ImplementationRegistrationOptions;
+
+  static ImplementationRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => ImplementationRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
     workDoneProgress: json['workDoneProgress'] as bool?,
     id: json['id'] as String?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final String? id;
-
-  ImplementationRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    String? id,
-  }) => ImplementationRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    id: id ?? this.id,
   );
 
   Map<String, Object?> toJson() {
@@ -1486,15 +1198,18 @@ final class ImplementationRegistrationOptions {
   }
 }
 
-final class TypeDefinitionParams {
-  const TypeDefinitionParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    this.partialResultToken,
-  });
+@freezed
+abstract class TypeDefinitionParams with _$TypeDefinitionParams {
+  const TypeDefinitionParams._();
 
-  factory TypeDefinitionParams.fromJson(Map<String, Object?> json) =>
+  const factory TypeDefinitionParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+  }) = _TypeDefinitionParams;
+
+  static TypeDefinitionParams fromJson(Map<String, Object?> json) =>
       TypeDefinitionParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -1508,26 +1223,6 @@ final class TypeDefinitionParams {
             : ProgressToken.fromJson(json['partialResultToken']),
       );
 
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  TypeDefinitionParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-  }) => TypeDefinitionParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
@@ -1538,35 +1233,23 @@ final class TypeDefinitionParams {
   }
 }
 
-final class TypeDefinitionRegistrationOptions {
-  const TypeDefinitionRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.id,
-  });
+@freezed
+abstract class TypeDefinitionRegistrationOptions
+    with _$TypeDefinitionRegistrationOptions {
+  const TypeDefinitionRegistrationOptions._();
 
-  factory TypeDefinitionRegistrationOptions.fromJson(
+  const factory TypeDefinitionRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    String? id,
+  }) = _TypeDefinitionRegistrationOptions;
+
+  static TypeDefinitionRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => TypeDefinitionRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
     workDoneProgress: json['workDoneProgress'] as bool?,
     id: json['id'] as String?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final String? id;
-
-  TypeDefinitionRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    String? id,
-  }) => TypeDefinitionRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    id: id ?? this.id,
   );
 
   Map<String, Object?> toJson() {
@@ -1579,18 +1262,15 @@ final class TypeDefinitionRegistrationOptions {
 }
 
 /// A workspace folder inside a client.
-final class WorkspaceFolder {
-  const WorkspaceFolder({required this.uri, required this.name});
+@freezed
+abstract class WorkspaceFolder with _$WorkspaceFolder {
+  const WorkspaceFolder._();
 
-  factory WorkspaceFolder.fromJson(Map<String, Object?> json) =>
+  const factory WorkspaceFolder({required String uri, required String name}) =
+      _WorkspaceFolder;
+
+  static WorkspaceFolder fromJson(Map<String, Object?> json) =>
       WorkspaceFolder(uri: json['uri'] as String, name: json['name'] as String);
-
-  final String uri;
-
-  final String name;
-
-  WorkspaceFolder copyWith({String? uri, String? name}) =>
-      WorkspaceFolder(uri: uri ?? this.uri, name: name ?? this.name);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'uri': uri, 'name': name};
@@ -1598,21 +1278,21 @@ final class WorkspaceFolder {
 }
 
 /// The parameters of a `workspace/didChangeWorkspaceFolders` notification.
-final class DidChangeWorkspaceFoldersParams {
-  const DidChangeWorkspaceFoldersParams({required this.event});
+@freezed
+abstract class DidChangeWorkspaceFoldersParams
+    with _$DidChangeWorkspaceFoldersParams {
+  const DidChangeWorkspaceFoldersParams._();
 
-  factory DidChangeWorkspaceFoldersParams.fromJson(Map<String, Object?> json) =>
+  const factory DidChangeWorkspaceFoldersParams({
+    required WorkspaceFoldersChangeEvent event,
+  }) = _DidChangeWorkspaceFoldersParams;
+
+  static DidChangeWorkspaceFoldersParams fromJson(Map<String, Object?> json) =>
       DidChangeWorkspaceFoldersParams(
         event: WorkspaceFoldersChangeEvent.fromJson(
           json['event'] as Map<String, Object?>,
         ),
       );
-
-  final WorkspaceFoldersChangeEvent event;
-
-  DidChangeWorkspaceFoldersParams copyWith({
-    WorkspaceFoldersChangeEvent? event,
-  }) => DidChangeWorkspaceFoldersParams(event: event ?? this.event);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'event': event.toJson()};
@@ -1620,20 +1300,19 @@ final class DidChangeWorkspaceFoldersParams {
 }
 
 /// The parameters of a configuration request.
-final class ConfigurationParams {
-  const ConfigurationParams({required this.items});
+@freezed
+abstract class ConfigurationParams with _$ConfigurationParams {
+  const ConfigurationParams._();
 
-  factory ConfigurationParams.fromJson(Map<String, Object?> json) =>
+  const factory ConfigurationParams({required List<ConfigurationItem> items}) =
+      _ConfigurationParams;
+
+  static ConfigurationParams fromJson(Map<String, Object?> json) =>
       ConfigurationParams(
         items: (json['items'] as List<Object?>)
             .map((e) => ConfigurationItem.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final List<ConfigurationItem> items;
-
-  ConfigurationParams copyWith({List<ConfigurationItem>? items}) =>
-      ConfigurationParams(items: items ?? this.items);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'items': items.map((e) => e.toJson()).toList()};
@@ -1641,14 +1320,17 @@ final class ConfigurationParams {
 }
 
 /// Parameters for a {@link DocumentColorRequest}.
-final class DocumentColorParams {
-  const DocumentColorParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-  });
+@freezed
+abstract class DocumentColorParams with _$DocumentColorParams {
+  const DocumentColorParams._();
 
-  factory DocumentColorParams.fromJson(Map<String, Object?> json) =>
+  const factory DocumentColorParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+  }) = _DocumentColorParams;
+
+  static DocumentColorParams fromJson(Map<String, Object?> json) =>
       DocumentColorParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -1661,22 +1343,6 @@ final class DocumentColorParams {
         ),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  DocumentColorParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-  }) => DocumentColorParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -1687,57 +1353,41 @@ final class DocumentColorParams {
 }
 
 /// Represents a color range from a document.
-final class ColorInformation {
-  const ColorInformation({required this.range, required this.color});
+@freezed
+abstract class ColorInformation with _$ColorInformation {
+  const ColorInformation._();
 
-  factory ColorInformation.fromJson(Map<String, Object?> json) =>
+  const factory ColorInformation({required Range range, required Color color}) =
+      _ColorInformation;
+
+  static ColorInformation fromJson(Map<String, Object?> json) =>
       ColorInformation(
         range: Range.fromJson(json['range'] as Map<String, Object?>),
         color: Color.fromJson(json['color'] as Map<String, Object?>),
       );
-
-  final Range range;
-
-  final Color color;
-
-  ColorInformation copyWith({Range? range, Color? color}) =>
-      ColorInformation(range: range ?? this.range, color: color ?? this.color);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'range': range.toJson(), 'color': color.toJson()};
   }
 }
 
-final class DocumentColorRegistrationOptions {
-  const DocumentColorRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.id,
-  });
+@freezed
+abstract class DocumentColorRegistrationOptions
+    with _$DocumentColorRegistrationOptions {
+  const DocumentColorRegistrationOptions._();
 
-  factory DocumentColorRegistrationOptions.fromJson(
-    Map<String, Object?> json,
-  ) => DocumentColorRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    id: json['id'] as String?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final String? id;
-
-  DocumentColorRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
+  const factory DocumentColorRegistrationOptions({
+    required DocumentSelector? documentSelector,
     bool? workDoneProgress,
     String? id,
-  }) => DocumentColorRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    id: id ?? this.id,
-  );
+  }) = _DocumentColorRegistrationOptions;
+
+  static DocumentColorRegistrationOptions fromJson(Map<String, Object?> json) =>
+      DocumentColorRegistrationOptions(
+        documentSelector: json['documentSelector'] as DocumentSelector?,
+        workDoneProgress: json['workDoneProgress'] as bool?,
+        id: json['id'] as String?,
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -1749,16 +1399,19 @@ final class DocumentColorRegistrationOptions {
 }
 
 /// Parameters for a {@link ColorPresentationRequest}.
-final class ColorPresentationParams {
-  const ColorPresentationParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-    required this.color,
-    required this.range,
-  });
+@freezed
+abstract class ColorPresentationParams with _$ColorPresentationParams {
+  const ColorPresentationParams._();
 
-  factory ColorPresentationParams.fromJson(Map<String, Object?> json) =>
+  const factory ColorPresentationParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+    required Color color,
+    required Range range,
+  }) = _ColorPresentationParams;
+
+  static ColorPresentationParams fromJson(Map<String, Object?> json) =>
       ColorPresentationParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -1773,30 +1426,6 @@ final class ColorPresentationParams {
         range: Range.fromJson(json['range'] as Map<String, Object?>),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final Color color;
-
-  final Range range;
-
-  ColorPresentationParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-    Color? color,
-    Range? range,
-  }) => ColorPresentationParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-    color: color ?? this.color,
-    range: range ?? this.range,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -1808,14 +1437,17 @@ final class ColorPresentationParams {
   }
 }
 
-final class ColorPresentation {
-  const ColorPresentation({
-    required this.label,
-    this.textEdit,
-    this.additionalTextEdits,
-  });
+@freezed
+abstract class ColorPresentation with _$ColorPresentation {
+  const ColorPresentation._();
 
-  factory ColorPresentation.fromJson(Map<String, Object?> json) =>
+  const factory ColorPresentation({
+    required String label,
+    TextEdit? textEdit,
+    List<TextEdit>? additionalTextEdits,
+  }) = _ColorPresentation;
+
+  static ColorPresentation fromJson(Map<String, Object?> json) =>
       ColorPresentation(
         label: json['label'] as String,
         textEdit: json['textEdit'] == null
@@ -1825,22 +1457,6 @@ final class ColorPresentation {
             ?.map((e) => TextEdit.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final String label;
-
-  final TextEdit? textEdit;
-
-  final List<TextEdit>? additionalTextEdits;
-
-  ColorPresentation copyWith({
-    String? label,
-    TextEdit? textEdit,
-    List<TextEdit>? additionalTextEdits,
-  }) => ColorPresentation(
-    label: label ?? this.label,
-    textEdit: textEdit ?? this.textEdit,
-    additionalTextEdits: additionalTextEdits ?? this.additionalTextEdits,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -1853,19 +1469,16 @@ final class ColorPresentation {
   }
 }
 
-final class WorkDoneProgressOptions {
-  const WorkDoneProgressOptions({this.workDoneProgress});
+@freezed
+abstract class WorkDoneProgressOptions with _$WorkDoneProgressOptions {
+  const WorkDoneProgressOptions._();
 
-  factory WorkDoneProgressOptions.fromJson(Map<String, Object?> json) =>
+  const factory WorkDoneProgressOptions({bool? workDoneProgress}) =
+      _WorkDoneProgressOptions;
+
+  static WorkDoneProgressOptions fromJson(Map<String, Object?> json) =>
       WorkDoneProgressOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  final bool? workDoneProgress;
-
-  WorkDoneProgressOptions copyWith({bool? workDoneProgress}) =>
-      WorkDoneProgressOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
       );
 
   Map<String, Object?> toJson() {
@@ -1874,21 +1487,19 @@ final class WorkDoneProgressOptions {
 }
 
 /// General text document registration options.
-final class TextDocumentRegistrationOptions {
-  const TextDocumentRegistrationOptions({required this.documentSelector});
+@freezed
+abstract class TextDocumentRegistrationOptions
+    with _$TextDocumentRegistrationOptions {
+  const TextDocumentRegistrationOptions._();
 
-  factory TextDocumentRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory TextDocumentRegistrationOptions({
+    required DocumentSelector? documentSelector,
+  }) = _TextDocumentRegistrationOptions;
+
+  static TextDocumentRegistrationOptions fromJson(Map<String, Object?> json) =>
       TextDocumentRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  TextDocumentRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-  }) => TextDocumentRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'documentSelector': documentSelector};
@@ -1896,14 +1507,17 @@ final class TextDocumentRegistrationOptions {
 }
 
 /// Parameters for a {@link FoldingRangeRequest}.
-final class FoldingRangeParams {
-  const FoldingRangeParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-  });
+@freezed
+abstract class FoldingRangeParams with _$FoldingRangeParams {
+  const FoldingRangeParams._();
 
-  factory FoldingRangeParams.fromJson(Map<String, Object?> json) =>
+  const factory FoldingRangeParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+  }) = _FoldingRangeParams;
+
+  static FoldingRangeParams fromJson(Map<String, Object?> json) =>
       FoldingRangeParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -1916,22 +1530,6 @@ final class FoldingRangeParams {
         ),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  FoldingRangeParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-  }) => FoldingRangeParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -1943,17 +1541,20 @@ final class FoldingRangeParams {
 
 /// Represents a folding range. To be valid, start and end line must be bigger than zero and smaller
 /// than the number of lines in the document. Clients are free to ignore invalid ranges.
-final class FoldingRange {
-  const FoldingRange({
-    required this.startLine,
-    this.startCharacter,
-    required this.endLine,
-    this.endCharacter,
-    this.kind,
-    this.collapsedText,
-  });
+@freezed
+abstract class FoldingRange with _$FoldingRange {
+  const FoldingRange._();
 
-  factory FoldingRange.fromJson(Map<String, Object?> json) => FoldingRange(
+  const factory FoldingRange({
+    required int startLine,
+    int? startCharacter,
+    required int endLine,
+    int? endCharacter,
+    FoldingRangeKind? kind,
+    String? collapsedText,
+  }) = _FoldingRange;
+
+  static FoldingRange fromJson(Map<String, Object?> json) => FoldingRange(
     startLine: json['startLine'] as int,
     startCharacter: json['startCharacter'] as int?,
     endLine: json['endLine'] as int,
@@ -1962,34 +1563,6 @@ final class FoldingRange {
         ? null
         : FoldingRangeKind(json['kind'] as String),
     collapsedText: json['collapsedText'] as String?,
-  );
-
-  final int startLine;
-
-  final int? startCharacter;
-
-  final int endLine;
-
-  final int? endCharacter;
-
-  final FoldingRangeKind? kind;
-
-  final String? collapsedText;
-
-  FoldingRange copyWith({
-    int? startLine,
-    int? startCharacter,
-    int? endLine,
-    int? endCharacter,
-    FoldingRangeKind? kind,
-    String? collapsedText,
-  }) => FoldingRange(
-    startLine: startLine ?? this.startLine,
-    startCharacter: startCharacter ?? this.startCharacter,
-    endLine: endLine ?? this.endLine,
-    endCharacter: endCharacter ?? this.endCharacter,
-    kind: kind ?? this.kind,
-    collapsedText: collapsedText ?? this.collapsedText,
   );
 
   Map<String, Object?> toJson() {
@@ -2004,35 +1577,23 @@ final class FoldingRange {
   }
 }
 
-final class FoldingRangeRegistrationOptions {
-  const FoldingRangeRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.id,
-  });
+@freezed
+abstract class FoldingRangeRegistrationOptions
+    with _$FoldingRangeRegistrationOptions {
+  const FoldingRangeRegistrationOptions._();
 
-  factory FoldingRangeRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory FoldingRangeRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    String? id,
+  }) = _FoldingRangeRegistrationOptions;
+
+  static FoldingRangeRegistrationOptions fromJson(Map<String, Object?> json) =>
       FoldingRangeRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
         id: json['id'] as String?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final String? id;
-
-  FoldingRangeRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    String? id,
-  }) => FoldingRangeRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    id: id ?? this.id,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2043,15 +1604,18 @@ final class FoldingRangeRegistrationOptions {
   }
 }
 
-final class DeclarationParams {
-  const DeclarationParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    this.partialResultToken,
-  });
+@freezed
+abstract class DeclarationParams with _$DeclarationParams {
+  const DeclarationParams._();
 
-  factory DeclarationParams.fromJson(Map<String, Object?> json) =>
+  const factory DeclarationParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+  }) = _DeclarationParams;
+
+  static DeclarationParams fromJson(Map<String, Object?> json) =>
       DeclarationParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -2065,26 +1629,6 @@ final class DeclarationParams {
             : ProgressToken.fromJson(json['partialResultToken']),
       );
 
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  DeclarationParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-  }) => DeclarationParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
@@ -2095,35 +1639,23 @@ final class DeclarationParams {
   }
 }
 
-final class DeclarationRegistrationOptions {
-  const DeclarationRegistrationOptions({
-    this.workDoneProgress,
-    required this.documentSelector,
-    this.id,
-  });
+@freezed
+abstract class DeclarationRegistrationOptions
+    with _$DeclarationRegistrationOptions {
+  const DeclarationRegistrationOptions._();
 
-  factory DeclarationRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory DeclarationRegistrationOptions({
+    bool? workDoneProgress,
+    required DocumentSelector? documentSelector,
+    String? id,
+  }) = _DeclarationRegistrationOptions;
+
+  static DeclarationRegistrationOptions fromJson(Map<String, Object?> json) =>
       DeclarationRegistrationOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         documentSelector: json['documentSelector'] as DocumentSelector?,
         id: json['id'] as String?,
       );
-
-  final bool? workDoneProgress;
-
-  final DocumentSelector? documentSelector;
-
-  final String? id;
-
-  DeclarationRegistrationOptions copyWith({
-    bool? workDoneProgress,
-    DocumentSelector? documentSelector,
-    String? id,
-  }) => DeclarationRegistrationOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    documentSelector: documentSelector ?? this.documentSelector,
-    id: id ?? this.id,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2135,15 +1667,18 @@ final class DeclarationRegistrationOptions {
 }
 
 /// A parameter literal used in selection range requests.
-final class SelectionRangeParams {
-  const SelectionRangeParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-    required this.positions,
-  });
+@freezed
+abstract class SelectionRangeParams with _$SelectionRangeParams {
+  const SelectionRangeParams._();
 
-  factory SelectionRangeParams.fromJson(Map<String, Object?> json) =>
+  const factory SelectionRangeParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+    required List<Position> positions,
+  }) = _SelectionRangeParams;
+
+  static SelectionRangeParams fromJson(Map<String, Object?> json) =>
       SelectionRangeParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -2159,26 +1694,6 @@ final class SelectionRangeParams {
             .toList(),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final List<Position> positions;
-
-  SelectionRangeParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-    List<Position>? positions,
-  }) => SelectionRangeParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-    positions: positions ?? this.positions,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -2191,22 +1706,19 @@ final class SelectionRangeParams {
 
 /// A selection range represents a part of a selection hierarchy. A selection range
 /// may have a parent selection range that contains it.
-final class SelectionRange {
-  const SelectionRange({required this.range, this.parent});
+@freezed
+abstract class SelectionRange with _$SelectionRange {
+  const SelectionRange._();
 
-  factory SelectionRange.fromJson(Map<String, Object?> json) => SelectionRange(
+  const factory SelectionRange({required Range range, SelectionRange? parent}) =
+      _SelectionRange;
+
+  static SelectionRange fromJson(Map<String, Object?> json) => SelectionRange(
     range: Range.fromJson(json['range'] as Map<String, Object?>),
     parent: json['parent'] == null
         ? null
         : SelectionRange.fromJson(json['parent'] as Map<String, Object?>),
   );
-
-  final Range range;
-
-  final SelectionRange? parent;
-
-  SelectionRange copyWith({Range? range, SelectionRange? parent}) =>
-      SelectionRange(range: range ?? this.range, parent: parent ?? this.parent);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2216,35 +1728,23 @@ final class SelectionRange {
   }
 }
 
-final class SelectionRangeRegistrationOptions {
-  const SelectionRangeRegistrationOptions({
-    this.workDoneProgress,
-    required this.documentSelector,
-    this.id,
-  });
+@freezed
+abstract class SelectionRangeRegistrationOptions
+    with _$SelectionRangeRegistrationOptions {
+  const SelectionRangeRegistrationOptions._();
 
-  factory SelectionRangeRegistrationOptions.fromJson(
+  const factory SelectionRangeRegistrationOptions({
+    bool? workDoneProgress,
+    required DocumentSelector? documentSelector,
+    String? id,
+  }) = _SelectionRangeRegistrationOptions;
+
+  static SelectionRangeRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => SelectionRangeRegistrationOptions(
     workDoneProgress: json['workDoneProgress'] as bool?,
     documentSelector: json['documentSelector'] as DocumentSelector?,
     id: json['id'] as String?,
-  );
-
-  final bool? workDoneProgress;
-
-  final DocumentSelector? documentSelector;
-
-  final String? id;
-
-  SelectionRangeRegistrationOptions copyWith({
-    bool? workDoneProgress,
-    DocumentSelector? documentSelector,
-    String? id,
-  }) => SelectionRangeRegistrationOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    documentSelector: documentSelector ?? this.documentSelector,
-    id: id ?? this.id,
   );
 
   Map<String, Object?> toJson() {
@@ -2256,36 +1756,36 @@ final class SelectionRangeRegistrationOptions {
   }
 }
 
-final class WorkDoneProgressCreateParams {
-  const WorkDoneProgressCreateParams({required this.token});
+@freezed
+abstract class WorkDoneProgressCreateParams
+    with _$WorkDoneProgressCreateParams {
+  const WorkDoneProgressCreateParams._();
 
-  factory WorkDoneProgressCreateParams.fromJson(Map<String, Object?> json) =>
+  const factory WorkDoneProgressCreateParams({required ProgressToken token}) =
+      _WorkDoneProgressCreateParams;
+
+  static WorkDoneProgressCreateParams fromJson(Map<String, Object?> json) =>
       WorkDoneProgressCreateParams(
         token: ProgressToken.fromJson(json['token']),
       );
-
-  final ProgressToken token;
-
-  WorkDoneProgressCreateParams copyWith({ProgressToken? token}) =>
-      WorkDoneProgressCreateParams(token: token ?? this.token);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'token': token.toJson()};
   }
 }
 
-final class WorkDoneProgressCancelParams {
-  const WorkDoneProgressCancelParams({required this.token});
+@freezed
+abstract class WorkDoneProgressCancelParams
+    with _$WorkDoneProgressCancelParams {
+  const WorkDoneProgressCancelParams._();
 
-  factory WorkDoneProgressCancelParams.fromJson(Map<String, Object?> json) =>
+  const factory WorkDoneProgressCancelParams({required ProgressToken token}) =
+      _WorkDoneProgressCancelParams;
+
+  static WorkDoneProgressCancelParams fromJson(Map<String, Object?> json) =>
       WorkDoneProgressCancelParams(
         token: ProgressToken.fromJson(json['token']),
       );
-
-  final ProgressToken token;
-
-  WorkDoneProgressCancelParams copyWith({ProgressToken? token}) =>
-      WorkDoneProgressCancelParams(token: token ?? this.token);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'token': token.toJson()};
@@ -2295,14 +1795,17 @@ final class WorkDoneProgressCancelParams {
 /// The parameter of a `textDocument/prepareCallHierarchy` request.
 ///
 /// @since 3.16.0
-final class CallHierarchyPrepareParams {
-  const CallHierarchyPrepareParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-  });
+@freezed
+abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
+  const CallHierarchyPrepareParams._();
 
-  factory CallHierarchyPrepareParams.fromJson(Map<String, Object?> json) =>
+  const factory CallHierarchyPrepareParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+  }) = _CallHierarchyPrepareParams;
+
+  static CallHierarchyPrepareParams fromJson(Map<String, Object?> json) =>
       CallHierarchyPrepareParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -2312,22 +1815,6 @@ final class CallHierarchyPrepareParams {
             ? null
             : ProgressToken.fromJson(json['workDoneToken']),
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  CallHierarchyPrepareParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-  }) => CallHierarchyPrepareParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2342,19 +1829,22 @@ final class CallHierarchyPrepareParams {
 /// of call hierarchy.
 ///
 /// @since 3.16.0
-final class CallHierarchyItem {
-  const CallHierarchyItem({
-    required this.name,
-    required this.kind,
-    this.tags,
-    this.detail,
-    required this.uri,
-    required this.range,
-    required this.selectionRange,
-    this.data,
-  });
+@freezed
+abstract class CallHierarchyItem with _$CallHierarchyItem {
+  const CallHierarchyItem._();
 
-  factory CallHierarchyItem.fromJson(
+  const factory CallHierarchyItem({
+    required String name,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
+    String? detail,
+    required String uri,
+    required Range range,
+    required Range selectionRange,
+    LSPAny? data,
+  }) = _CallHierarchyItem;
+
+  static CallHierarchyItem fromJson(
     Map<String, Object?> json,
   ) => CallHierarchyItem(
     name: json['name'] as String,
@@ -2367,42 +1857,6 @@ final class CallHierarchyItem {
       json['selectionRange'] as Map<String, Object?>,
     ),
     data: json['data'],
-  );
-
-  final String name;
-
-  final SymbolKind kind;
-
-  final List<SymbolTag>? tags;
-
-  final String? detail;
-
-  final String uri;
-
-  final Range range;
-
-  final Range selectionRange;
-
-  final LSPAny? data;
-
-  CallHierarchyItem copyWith({
-    String? name,
-    SymbolKind? kind,
-    List<SymbolTag>? tags,
-    String? detail,
-    String? uri,
-    Range? range,
-    Range? selectionRange,
-    LSPAny? data,
-  }) => CallHierarchyItem(
-    name: name ?? this.name,
-    kind: kind ?? this.kind,
-    tags: tags ?? this.tags,
-    detail: detail ?? this.detail,
-    uri: uri ?? this.uri,
-    range: range ?? this.range,
-    selectionRange: selectionRange ?? this.selectionRange,
-    data: data ?? this.data,
   );
 
   Map<String, Object?> toJson() {
@@ -2422,36 +1876,23 @@ final class CallHierarchyItem {
 /// Call hierarchy options used during static or dynamic registration.
 ///
 /// @since 3.16.0
-final class CallHierarchyRegistrationOptions {
-  const CallHierarchyRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.id,
-  });
+@freezed
+abstract class CallHierarchyRegistrationOptions
+    with _$CallHierarchyRegistrationOptions {
+  const CallHierarchyRegistrationOptions._();
 
-  factory CallHierarchyRegistrationOptions.fromJson(
-    Map<String, Object?> json,
-  ) => CallHierarchyRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    id: json['id'] as String?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final String? id;
-
-  CallHierarchyRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
+  const factory CallHierarchyRegistrationOptions({
+    required DocumentSelector? documentSelector,
     bool? workDoneProgress,
     String? id,
-  }) => CallHierarchyRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    id: id ?? this.id,
-  );
+  }) = _CallHierarchyRegistrationOptions;
+
+  static CallHierarchyRegistrationOptions fromJson(Map<String, Object?> json) =>
+      CallHierarchyRegistrationOptions(
+        documentSelector: json['documentSelector'] as DocumentSelector?,
+        workDoneProgress: json['workDoneProgress'] as bool?,
+        id: json['id'] as String?,
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2465,40 +1906,27 @@ final class CallHierarchyRegistrationOptions {
 /// The parameter of a `callHierarchy/incomingCalls` request.
 ///
 /// @since 3.16.0
-final class CallHierarchyIncomingCallsParams {
-  const CallHierarchyIncomingCallsParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.item,
-  });
+@freezed
+abstract class CallHierarchyIncomingCallsParams
+    with _$CallHierarchyIncomingCallsParams {
+  const CallHierarchyIncomingCallsParams._();
 
-  factory CallHierarchyIncomingCallsParams.fromJson(
-    Map<String, Object?> json,
-  ) => CallHierarchyIncomingCallsParams(
-    workDoneToken: json['workDoneToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['workDoneToken']),
-    partialResultToken: json['partialResultToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['partialResultToken']),
-    item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
-  );
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final CallHierarchyItem item;
-
-  CallHierarchyIncomingCallsParams copyWith({
+  const factory CallHierarchyIncomingCallsParams({
     ProgressToken? workDoneToken,
     ProgressToken? partialResultToken,
-    CallHierarchyItem? item,
-  }) => CallHierarchyIncomingCallsParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    item: item ?? this.item,
-  );
+    required CallHierarchyItem item,
+  }) = _CallHierarchyIncomingCallsParams;
+
+  static CallHierarchyIncomingCallsParams fromJson(Map<String, Object?> json) =>
+      CallHierarchyIncomingCallsParams(
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
+        item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2512,31 +1940,22 @@ final class CallHierarchyIncomingCallsParams {
 /// Represents an incoming call, e.g. a caller of a method or constructor.
 ///
 /// @since 3.16.0
-final class CallHierarchyIncomingCall {
-  const CallHierarchyIncomingCall({
-    required this.from,
-    required this.fromRanges,
-  });
+@freezed
+abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
+  const CallHierarchyIncomingCall._();
 
-  factory CallHierarchyIncomingCall.fromJson(Map<String, Object?> json) =>
+  const factory CallHierarchyIncomingCall({
+    required CallHierarchyItem from,
+    required List<Range> fromRanges,
+  }) = _CallHierarchyIncomingCall;
+
+  static CallHierarchyIncomingCall fromJson(Map<String, Object?> json) =>
       CallHierarchyIncomingCall(
         from: CallHierarchyItem.fromJson(json['from'] as Map<String, Object?>),
         fromRanges: (json['fromRanges'] as List<Object?>)
             .map((e) => Range.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final CallHierarchyItem from;
-
-  final List<Range> fromRanges;
-
-  CallHierarchyIncomingCall copyWith({
-    CallHierarchyItem? from,
-    List<Range>? fromRanges,
-  }) => CallHierarchyIncomingCall(
-    from: from ?? this.from,
-    fromRanges: fromRanges ?? this.fromRanges,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2549,40 +1968,27 @@ final class CallHierarchyIncomingCall {
 /// The parameter of a `callHierarchy/outgoingCalls` request.
 ///
 /// @since 3.16.0
-final class CallHierarchyOutgoingCallsParams {
-  const CallHierarchyOutgoingCallsParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.item,
-  });
+@freezed
+abstract class CallHierarchyOutgoingCallsParams
+    with _$CallHierarchyOutgoingCallsParams {
+  const CallHierarchyOutgoingCallsParams._();
 
-  factory CallHierarchyOutgoingCallsParams.fromJson(
-    Map<String, Object?> json,
-  ) => CallHierarchyOutgoingCallsParams(
-    workDoneToken: json['workDoneToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['workDoneToken']),
-    partialResultToken: json['partialResultToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['partialResultToken']),
-    item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
-  );
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final CallHierarchyItem item;
-
-  CallHierarchyOutgoingCallsParams copyWith({
+  const factory CallHierarchyOutgoingCallsParams({
     ProgressToken? workDoneToken,
     ProgressToken? partialResultToken,
-    CallHierarchyItem? item,
-  }) => CallHierarchyOutgoingCallsParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    item: item ?? this.item,
-  );
+    required CallHierarchyItem item,
+  }) = _CallHierarchyOutgoingCallsParams;
+
+  static CallHierarchyOutgoingCallsParams fromJson(Map<String, Object?> json) =>
+      CallHierarchyOutgoingCallsParams(
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
+        item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2596,28 +2002,22 @@ final class CallHierarchyOutgoingCallsParams {
 /// Represents an outgoing call, e.g. calling a getter from a method or a method from a constructor etc.
 ///
 /// @since 3.16.0
-final class CallHierarchyOutgoingCall {
-  const CallHierarchyOutgoingCall({required this.to, required this.fromRanges});
+@freezed
+abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
+  const CallHierarchyOutgoingCall._();
 
-  factory CallHierarchyOutgoingCall.fromJson(Map<String, Object?> json) =>
+  const factory CallHierarchyOutgoingCall({
+    required CallHierarchyItem to,
+    required List<Range> fromRanges,
+  }) = _CallHierarchyOutgoingCall;
+
+  static CallHierarchyOutgoingCall fromJson(Map<String, Object?> json) =>
       CallHierarchyOutgoingCall(
         to: CallHierarchyItem.fromJson(json['to'] as Map<String, Object?>),
         fromRanges: (json['fromRanges'] as List<Object?>)
             .map((e) => Range.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final CallHierarchyItem to;
-
-  final List<Range> fromRanges;
-
-  CallHierarchyOutgoingCall copyWith({
-    CallHierarchyItem? to,
-    List<Range>? fromRanges,
-  }) => CallHierarchyOutgoingCall(
-    to: to ?? this.to,
-    fromRanges: fromRanges ?? this.fromRanges,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2628,14 +2028,17 @@ final class CallHierarchyOutgoingCall {
 }
 
 /// @since 3.16.0
-final class SemanticTokensParams {
-  const SemanticTokensParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-  });
+@freezed
+abstract class SemanticTokensParams with _$SemanticTokensParams {
+  const SemanticTokensParams._();
 
-  factory SemanticTokensParams.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+  }) = _SemanticTokensParams;
+
+  static SemanticTokensParams fromJson(Map<String, Object?> json) =>
       SemanticTokensParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -2648,22 +2051,6 @@ final class SemanticTokensParams {
         ),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  SemanticTokensParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-  }) => SemanticTokensParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -2674,23 +2061,17 @@ final class SemanticTokensParams {
 }
 
 /// @since 3.16.0
-final class SemanticTokens {
-  const SemanticTokens({this.resultId, required this.data});
+@freezed
+abstract class SemanticTokens with _$SemanticTokens {
+  const SemanticTokens._();
 
-  factory SemanticTokens.fromJson(Map<String, Object?> json) => SemanticTokens(
+  const factory SemanticTokens({String? resultId, required List<int> data}) =
+      _SemanticTokens;
+
+  static SemanticTokens fromJson(Map<String, Object?> json) => SemanticTokens(
     resultId: json['resultId'] as String?,
     data: (json['data'] as List<Object?>).map((e) => e as int).toList(),
   );
-
-  final String? resultId;
-
-  final List<int> data;
-
-  SemanticTokens copyWith({String? resultId, List<int>? data}) =>
-      SemanticTokens(
-        resultId: resultId ?? this.resultId,
-        data: data ?? this.data,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'resultId': resultId, 'data': data};
@@ -2698,18 +2079,17 @@ final class SemanticTokens {
 }
 
 /// @since 3.16.0
-final class SemanticTokensPartialResult {
-  const SemanticTokensPartialResult({required this.data});
+@freezed
+abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
+  const SemanticTokensPartialResult._();
 
-  factory SemanticTokensPartialResult.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensPartialResult({required List<int> data}) =
+      _SemanticTokensPartialResult;
+
+  static SemanticTokensPartialResult fromJson(Map<String, Object?> json) =>
       SemanticTokensPartialResult(
         data: (json['data'] as List<Object?>).map((e) => e as int).toList(),
       );
-
-  final List<int> data;
-
-  SemanticTokensPartialResult copyWith({List<int>? data}) =>
-      SemanticTokensPartialResult(data: data ?? this.data);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'data': data};
@@ -2717,17 +2097,21 @@ final class SemanticTokensPartialResult {
 }
 
 /// @since 3.16.0
-final class SemanticTokensRegistrationOptions {
-  const SemanticTokensRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    required this.legend,
-    this.range,
-    this.full,
-    this.id,
-  });
+@freezed
+abstract class SemanticTokensRegistrationOptions
+    with _$SemanticTokensRegistrationOptions {
+  const SemanticTokensRegistrationOptions._();
 
-  factory SemanticTokensRegistrationOptions.fromJson(
+  const factory SemanticTokensRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    required SemanticTokensLegend legend,
+    Object? range,
+    Object? full,
+    String? id,
+  }) = _SemanticTokensRegistrationOptions;
+
+  static SemanticTokensRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => SemanticTokensRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
@@ -2738,34 +2122,6 @@ final class SemanticTokensRegistrationOptions {
     range: json['range'],
     full: json['full'],
     id: json['id'] as String?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final SemanticTokensLegend legend;
-
-  final Object? range;
-
-  final Object? full;
-
-  final String? id;
-
-  SemanticTokensRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    SemanticTokensLegend? legend,
-    Object? range,
-    Object? full,
-    String? id,
-  }) => SemanticTokensRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    legend: legend ?? this.legend,
-    range: range ?? this.range,
-    full: full ?? this.full,
-    id: id ?? this.id,
   );
 
   Map<String, Object?> toJson() {
@@ -2781,15 +2137,18 @@ final class SemanticTokensRegistrationOptions {
 }
 
 /// @since 3.16.0
-final class SemanticTokensDeltaParams {
-  const SemanticTokensDeltaParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-    required this.previousResultId,
-  });
+@freezed
+abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
+  const SemanticTokensDeltaParams._();
 
-  factory SemanticTokensDeltaParams.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensDeltaParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+    required String previousResultId,
+  }) = _SemanticTokensDeltaParams;
+
+  static SemanticTokensDeltaParams fromJson(Map<String, Object?> json) =>
       SemanticTokensDeltaParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -2803,26 +2162,6 @@ final class SemanticTokensDeltaParams {
         previousResultId: json['previousResultId'] as String,
       );
 
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final String previousResultId;
-
-  SemanticTokensDeltaParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-    String? previousResultId,
-  }) => SemanticTokensDeltaParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-    previousResultId: previousResultId ?? this.previousResultId,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -2834,28 +2173,22 @@ final class SemanticTokensDeltaParams {
 }
 
 /// @since 3.16.0
-final class SemanticTokensDelta {
-  const SemanticTokensDelta({this.resultId, required this.edits});
+@freezed
+abstract class SemanticTokensDelta with _$SemanticTokensDelta {
+  const SemanticTokensDelta._();
 
-  factory SemanticTokensDelta.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensDelta({
+    String? resultId,
+    required List<SemanticTokensEdit> edits,
+  }) = _SemanticTokensDelta;
+
+  static SemanticTokensDelta fromJson(Map<String, Object?> json) =>
       SemanticTokensDelta(
         resultId: json['resultId'] as String?,
         edits: (json['edits'] as List<Object?>)
             .map((e) => SemanticTokensEdit.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final String? resultId;
-
-  final List<SemanticTokensEdit> edits;
-
-  SemanticTokensDelta copyWith({
-    String? resultId,
-    List<SemanticTokensEdit>? edits,
-  }) => SemanticTokensDelta(
-    resultId: resultId ?? this.resultId,
-    edits: edits ?? this.edits,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2866,22 +2199,21 @@ final class SemanticTokensDelta {
 }
 
 /// @since 3.16.0
-final class SemanticTokensDeltaPartialResult {
-  const SemanticTokensDeltaPartialResult({required this.edits});
+@freezed
+abstract class SemanticTokensDeltaPartialResult
+    with _$SemanticTokensDeltaPartialResult {
+  const SemanticTokensDeltaPartialResult._();
 
-  factory SemanticTokensDeltaPartialResult.fromJson(
-    Map<String, Object?> json,
-  ) => SemanticTokensDeltaPartialResult(
-    edits: (json['edits'] as List<Object?>)
-        .map((e) => SemanticTokensEdit.fromJson(e as Map<String, Object?>))
-        .toList(),
-  );
+  const factory SemanticTokensDeltaPartialResult({
+    required List<SemanticTokensEdit> edits,
+  }) = _SemanticTokensDeltaPartialResult;
 
-  final List<SemanticTokensEdit> edits;
-
-  SemanticTokensDeltaPartialResult copyWith({
-    List<SemanticTokensEdit>? edits,
-  }) => SemanticTokensDeltaPartialResult(edits: edits ?? this.edits);
+  static SemanticTokensDeltaPartialResult fromJson(Map<String, Object?> json) =>
+      SemanticTokensDeltaPartialResult(
+        edits: (json['edits'] as List<Object?>)
+            .map((e) => SemanticTokensEdit.fromJson(e as Map<String, Object?>))
+            .toList(),
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'edits': edits.map((e) => e.toJson()).toList()};
@@ -2889,15 +2221,18 @@ final class SemanticTokensDeltaPartialResult {
 }
 
 /// @since 3.16.0
-final class SemanticTokensRangeParams {
-  const SemanticTokensRangeParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-    required this.range,
-  });
+@freezed
+abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
+  const SemanticTokensRangeParams._();
 
-  factory SemanticTokensRangeParams.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensRangeParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+    required Range range,
+  }) = _SemanticTokensRangeParams;
+
+  static SemanticTokensRangeParams fromJson(Map<String, Object?> json) =>
       SemanticTokensRangeParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -2910,26 +2245,6 @@ final class SemanticTokensRangeParams {
         ),
         range: Range.fromJson(json['range'] as Map<String, Object?>),
       );
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final Range range;
-
-  SemanticTokensRangeParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-    Range? range,
-  }) => SemanticTokensRangeParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-    range: range ?? this.range,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2944,15 +2259,18 @@ final class SemanticTokensRangeParams {
 /// Params to show a resource in the UI.
 ///
 /// @since 3.16.0
-final class ShowDocumentParams {
-  const ShowDocumentParams({
-    required this.uri,
-    this.external,
-    this.takeFocus,
-    this.selection,
-  });
+@freezed
+abstract class ShowDocumentParams with _$ShowDocumentParams {
+  const ShowDocumentParams._();
 
-  factory ShowDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory ShowDocumentParams({
+    required String uri,
+    bool? external,
+    bool? takeFocus,
+    Range? selection,
+  }) = _ShowDocumentParams;
+
+  static ShowDocumentParams fromJson(Map<String, Object?> json) =>
       ShowDocumentParams(
         uri: json['uri'] as String,
         external: json['external'] as bool?,
@@ -2961,26 +2279,6 @@ final class ShowDocumentParams {
             ? null
             : Range.fromJson(json['selection'] as Map<String, Object?>),
       );
-
-  final String uri;
-
-  final bool? external;
-
-  final bool? takeFocus;
-
-  final Range? selection;
-
-  ShowDocumentParams copyWith({
-    String? uri,
-    bool? external,
-    bool? takeFocus,
-    Range? selection,
-  }) => ShowDocumentParams(
-    uri: uri ?? this.uri,
-    external: external ?? this.external,
-    takeFocus: takeFocus ?? this.takeFocus,
-    selection: selection ?? this.selection,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -2995,30 +2293,32 @@ final class ShowDocumentParams {
 /// The result of a showDocument request.
 ///
 /// @since 3.16.0
-final class ShowDocumentResult {
-  const ShowDocumentResult({required this.success});
+@freezed
+abstract class ShowDocumentResult with _$ShowDocumentResult {
+  const ShowDocumentResult._();
 
-  factory ShowDocumentResult.fromJson(Map<String, Object?> json) =>
+  const factory ShowDocumentResult({required bool success}) =
+      _ShowDocumentResult;
+
+  static ShowDocumentResult fromJson(Map<String, Object?> json) =>
       ShowDocumentResult(success: json['success'] as bool);
-
-  final bool success;
-
-  ShowDocumentResult copyWith({bool? success}) =>
-      ShowDocumentResult(success: success ?? this.success);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'success': success};
   }
 }
 
-final class LinkedEditingRangeParams {
-  const LinkedEditingRangeParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-  });
+@freezed
+abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
+  const LinkedEditingRangeParams._();
 
-  factory LinkedEditingRangeParams.fromJson(Map<String, Object?> json) =>
+  const factory LinkedEditingRangeParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+  }) = _LinkedEditingRangeParams;
+
+  static LinkedEditingRangeParams fromJson(Map<String, Object?> json) =>
       LinkedEditingRangeParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -3028,22 +2328,6 @@ final class LinkedEditingRangeParams {
             ? null
             : ProgressToken.fromJson(json['workDoneToken']),
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  LinkedEditingRangeParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-  }) => LinkedEditingRangeParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3057,25 +2341,21 @@ final class LinkedEditingRangeParams {
 /// The result of a linked editing range request.
 ///
 /// @since 3.16.0
-final class LinkedEditingRanges {
-  const LinkedEditingRanges({required this.ranges, this.wordPattern});
+@freezed
+abstract class LinkedEditingRanges with _$LinkedEditingRanges {
+  const LinkedEditingRanges._();
 
-  factory LinkedEditingRanges.fromJson(Map<String, Object?> json) =>
+  const factory LinkedEditingRanges({
+    required List<Range> ranges,
+    String? wordPattern,
+  }) = _LinkedEditingRanges;
+
+  static LinkedEditingRanges fromJson(Map<String, Object?> json) =>
       LinkedEditingRanges(
         ranges: (json['ranges'] as List<Object?>)
             .map((e) => Range.fromJson(e as Map<String, Object?>))
             .toList(),
         wordPattern: json['wordPattern'] as String?,
-      );
-
-  final List<Range> ranges;
-
-  final String? wordPattern;
-
-  LinkedEditingRanges copyWith({List<Range>? ranges, String? wordPattern}) =>
-      LinkedEditingRanges(
-        ranges: ranges ?? this.ranges,
-        wordPattern: wordPattern ?? this.wordPattern,
       );
 
   Map<String, Object?> toJson() {
@@ -3086,35 +2366,23 @@ final class LinkedEditingRanges {
   }
 }
 
-final class LinkedEditingRangeRegistrationOptions {
-  const LinkedEditingRangeRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.id,
-  });
+@freezed
+abstract class LinkedEditingRangeRegistrationOptions
+    with _$LinkedEditingRangeRegistrationOptions {
+  const LinkedEditingRangeRegistrationOptions._();
 
-  factory LinkedEditingRangeRegistrationOptions.fromJson(
+  const factory LinkedEditingRangeRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    String? id,
+  }) = _LinkedEditingRangeRegistrationOptions;
+
+  static LinkedEditingRangeRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => LinkedEditingRangeRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
     workDoneProgress: json['workDoneProgress'] as bool?,
     id: json['id'] as String?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final String? id;
-
-  LinkedEditingRangeRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    String? id,
-  }) => LinkedEditingRangeRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    id: id ?? this.id,
   );
 
   Map<String, Object?> toJson() {
@@ -3130,20 +2398,19 @@ final class LinkedEditingRangeRegistrationOptions {
 /// files.
 ///
 /// @since 3.16.0
-final class CreateFilesParams {
-  const CreateFilesParams({required this.files});
+@freezed
+abstract class CreateFilesParams with _$CreateFilesParams {
+  const CreateFilesParams._();
 
-  factory CreateFilesParams.fromJson(Map<String, Object?> json) =>
+  const factory CreateFilesParams({required List<FileCreate> files}) =
+      _CreateFilesParams;
+
+  static CreateFilesParams fromJson(Map<String, Object?> json) =>
       CreateFilesParams(
         files: (json['files'] as List<Object?>)
             .map((e) => FileCreate.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final List<FileCreate> files;
-
-  CreateFilesParams copyWith({List<FileCreate>? files}) =>
-      CreateFilesParams(files: files ?? this.files);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'files': files.map((e) => e.toJson()).toList()};
@@ -3162,14 +2429,17 @@ final class CreateFilesParams {
 /// An invalid sequence (e.g. (1) delete file a.txt and (2) insert text into file a.txt) will
 /// cause failure of the operation. How the client recovers from the failure is described by
 /// the client capability: `workspace.workspaceEdit.failureHandling`
-final class WorkspaceEdit {
-  const WorkspaceEdit({
-    this.changes,
-    this.documentChanges,
-    this.changeAnnotations,
-  });
+@freezed
+abstract class WorkspaceEdit with _$WorkspaceEdit {
+  const WorkspaceEdit._();
 
-  factory WorkspaceEdit.fromJson(Map<String, Object?> json) => WorkspaceEdit(
+  const factory WorkspaceEdit({
+    Map<String, List<TextEdit>>? changes,
+    List<Object>? documentChanges,
+    Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations,
+  }) = _WorkspaceEdit;
+
+  static WorkspaceEdit fromJson(Map<String, Object?> json) => WorkspaceEdit(
     changes: (json['changes'] as Map<String, Object?>?)?.map(
       (k, v) => MapEntry(k, v as List<TextEdit>),
     ),
@@ -3181,22 +2451,6 @@ final class WorkspaceEdit {
           (k, v) =>
               MapEntry(k, ChangeAnnotation.fromJson(v as Map<String, Object?>)),
         ),
-  );
-
-  final Map<String, List<TextEdit>>? changes;
-
-  final List<Object>? documentChanges;
-
-  final Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations;
-
-  WorkspaceEdit copyWith({
-    Map<String, List<TextEdit>>? changes,
-    List<Object>? documentChanges,
-    Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations,
-  }) => WorkspaceEdit(
-    changes: changes ?? this.changes,
-    documentChanges: documentChanges ?? this.documentChanges,
-    changeAnnotations: changeAnnotations ?? this.changeAnnotations,
   );
 
   Map<String, Object?> toJson() {
@@ -3211,22 +2465,21 @@ final class WorkspaceEdit {
 /// The options to register for file operations.
 ///
 /// @since 3.16.0
-final class FileOperationRegistrationOptions {
-  const FileOperationRegistrationOptions({required this.filters});
+@freezed
+abstract class FileOperationRegistrationOptions
+    with _$FileOperationRegistrationOptions {
+  const FileOperationRegistrationOptions._();
 
-  factory FileOperationRegistrationOptions.fromJson(
-    Map<String, Object?> json,
-  ) => FileOperationRegistrationOptions(
-    filters: (json['filters'] as List<Object?>)
-        .map((e) => FileOperationFilter.fromJson(e as Map<String, Object?>))
-        .toList(),
-  );
+  const factory FileOperationRegistrationOptions({
+    required List<FileOperationFilter> filters,
+  }) = _FileOperationRegistrationOptions;
 
-  final List<FileOperationFilter> filters;
-
-  FileOperationRegistrationOptions copyWith({
-    List<FileOperationFilter>? filters,
-  }) => FileOperationRegistrationOptions(filters: filters ?? this.filters);
+  static FileOperationRegistrationOptions fromJson(Map<String, Object?> json) =>
+      FileOperationRegistrationOptions(
+        filters: (json['filters'] as List<Object?>)
+            .map((e) => FileOperationFilter.fromJson(e as Map<String, Object?>))
+            .toList(),
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3239,20 +2492,19 @@ final class FileOperationRegistrationOptions {
 /// files.
 ///
 /// @since 3.16.0
-final class RenameFilesParams {
-  const RenameFilesParams({required this.files});
+@freezed
+abstract class RenameFilesParams with _$RenameFilesParams {
+  const RenameFilesParams._();
 
-  factory RenameFilesParams.fromJson(Map<String, Object?> json) =>
+  const factory RenameFilesParams({required List<FileRename> files}) =
+      _RenameFilesParams;
+
+  static RenameFilesParams fromJson(Map<String, Object?> json) =>
       RenameFilesParams(
         files: (json['files'] as List<Object?>)
             .map((e) => FileRename.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final List<FileRename> files;
-
-  RenameFilesParams copyWith({List<FileRename>? files}) =>
-      RenameFilesParams(files: files ?? this.files);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'files': files.map((e) => e.toJson()).toList()};
@@ -3263,35 +2515,37 @@ final class RenameFilesParams {
 /// files.
 ///
 /// @since 3.16.0
-final class DeleteFilesParams {
-  const DeleteFilesParams({required this.files});
+@freezed
+abstract class DeleteFilesParams with _$DeleteFilesParams {
+  const DeleteFilesParams._();
 
-  factory DeleteFilesParams.fromJson(Map<String, Object?> json) =>
+  const factory DeleteFilesParams({required List<FileDelete> files}) =
+      _DeleteFilesParams;
+
+  static DeleteFilesParams fromJson(Map<String, Object?> json) =>
       DeleteFilesParams(
         files: (json['files'] as List<Object?>)
             .map((e) => FileDelete.fromJson(e as Map<String, Object?>))
             .toList(),
       );
 
-  final List<FileDelete> files;
-
-  DeleteFilesParams copyWith({List<FileDelete>? files}) =>
-      DeleteFilesParams(files: files ?? this.files);
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'files': files.map((e) => e.toJson()).toList()};
   }
 }
 
-final class MonikerParams {
-  const MonikerParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    this.partialResultToken,
-  });
+@freezed
+abstract class MonikerParams with _$MonikerParams {
+  const MonikerParams._();
 
-  factory MonikerParams.fromJson(Map<String, Object?> json) => MonikerParams(
+  const factory MonikerParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+  }) = _MonikerParams;
+
+  static MonikerParams fromJson(Map<String, Object?> json) => MonikerParams(
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, Object?>,
     ),
@@ -3302,26 +2556,6 @@ final class MonikerParams {
     partialResultToken: json['partialResultToken'] == null
         ? null
         : ProgressToken.fromJson(json['partialResultToken']),
-  );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  MonikerParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-  }) => MonikerParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
   );
 
   Map<String, Object?> toJson() {
@@ -3337,15 +2571,18 @@ final class MonikerParams {
 /// Moniker definition to match LSIF 0.5 moniker definition.
 ///
 /// @since 3.16.0
-final class Moniker {
-  const Moniker({
-    required this.scheme,
-    required this.identifier,
-    required this.unique,
-    this.kind,
-  });
+@freezed
+abstract class Moniker with _$Moniker {
+  const Moniker._();
 
-  factory Moniker.fromJson(Map<String, Object?> json) => Moniker(
+  const factory Moniker({
+    required String scheme,
+    required String identifier,
+    required UniquenessLevel unique,
+    MonikerKind? kind,
+  }) = _Moniker;
+
+  static Moniker fromJson(Map<String, Object?> json) => Moniker(
     scheme: json['scheme'] as String,
     identifier: json['identifier'] as String,
     unique: UniquenessLevel.values.firstWhere(
@@ -3358,26 +2595,6 @@ final class Moniker {
           ),
   );
 
-  final String scheme;
-
-  final String identifier;
-
-  final UniquenessLevel unique;
-
-  final MonikerKind? kind;
-
-  Moniker copyWith({
-    String? scheme,
-    String? identifier,
-    UniquenessLevel? unique,
-    MonikerKind? kind,
-  }) => Moniker(
-    scheme: scheme ?? this.scheme,
-    identifier: identifier ?? this.identifier,
-    unique: unique ?? this.unique,
-    kind: kind ?? this.kind,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'scheme': scheme,
@@ -3388,29 +2605,20 @@ final class Moniker {
   }
 }
 
-final class MonikerRegistrationOptions {
-  const MonikerRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-  });
+@freezed
+abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
+  const MonikerRegistrationOptions._();
 
-  factory MonikerRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory MonikerRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+  }) = _MonikerRegistrationOptions;
+
+  static MonikerRegistrationOptions fromJson(Map<String, Object?> json) =>
       MonikerRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  MonikerRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-  }) => MonikerRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3423,14 +2631,17 @@ final class MonikerRegistrationOptions {
 /// The parameter of a `textDocument/prepareTypeHierarchy` request.
 ///
 /// @since 3.17.0
-final class TypeHierarchyPrepareParams {
-  const TypeHierarchyPrepareParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-  });
+@freezed
+abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
+  const TypeHierarchyPrepareParams._();
 
-  factory TypeHierarchyPrepareParams.fromJson(Map<String, Object?> json) =>
+  const factory TypeHierarchyPrepareParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+  }) = _TypeHierarchyPrepareParams;
+
+  static TypeHierarchyPrepareParams fromJson(Map<String, Object?> json) =>
       TypeHierarchyPrepareParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -3440,22 +2651,6 @@ final class TypeHierarchyPrepareParams {
             ? null
             : ProgressToken.fromJson(json['workDoneToken']),
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  TypeHierarchyPrepareParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-  }) => TypeHierarchyPrepareParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3467,19 +2662,22 @@ final class TypeHierarchyPrepareParams {
 }
 
 /// @since 3.17.0
-final class TypeHierarchyItem {
-  const TypeHierarchyItem({
-    required this.name,
-    required this.kind,
-    this.tags,
-    this.detail,
-    required this.uri,
-    required this.range,
-    required this.selectionRange,
-    this.data,
-  });
+@freezed
+abstract class TypeHierarchyItem with _$TypeHierarchyItem {
+  const TypeHierarchyItem._();
 
-  factory TypeHierarchyItem.fromJson(
+  const factory TypeHierarchyItem({
+    required String name,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
+    String? detail,
+    required String uri,
+    required Range range,
+    required Range selectionRange,
+    LSPAny? data,
+  }) = _TypeHierarchyItem;
+
+  static TypeHierarchyItem fromJson(
     Map<String, Object?> json,
   ) => TypeHierarchyItem(
     name: json['name'] as String,
@@ -3492,42 +2690,6 @@ final class TypeHierarchyItem {
       json['selectionRange'] as Map<String, Object?>,
     ),
     data: json['data'],
-  );
-
-  final String name;
-
-  final SymbolKind kind;
-
-  final List<SymbolTag>? tags;
-
-  final String? detail;
-
-  final String uri;
-
-  final Range range;
-
-  final Range selectionRange;
-
-  final LSPAny? data;
-
-  TypeHierarchyItem copyWith({
-    String? name,
-    SymbolKind? kind,
-    List<SymbolTag>? tags,
-    String? detail,
-    String? uri,
-    Range? range,
-    Range? selectionRange,
-    LSPAny? data,
-  }) => TypeHierarchyItem(
-    name: name ?? this.name,
-    kind: kind ?? this.kind,
-    tags: tags ?? this.tags,
-    detail: detail ?? this.detail,
-    uri: uri ?? this.uri,
-    range: range ?? this.range,
-    selectionRange: selectionRange ?? this.selectionRange,
-    data: data ?? this.data,
   );
 
   Map<String, Object?> toJson() {
@@ -3547,36 +2709,23 @@ final class TypeHierarchyItem {
 /// Type hierarchy options used during static or dynamic registration.
 ///
 /// @since 3.17.0
-final class TypeHierarchyRegistrationOptions {
-  const TypeHierarchyRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.id,
-  });
+@freezed
+abstract class TypeHierarchyRegistrationOptions
+    with _$TypeHierarchyRegistrationOptions {
+  const TypeHierarchyRegistrationOptions._();
 
-  factory TypeHierarchyRegistrationOptions.fromJson(
-    Map<String, Object?> json,
-  ) => TypeHierarchyRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    id: json['id'] as String?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final String? id;
-
-  TypeHierarchyRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
+  const factory TypeHierarchyRegistrationOptions({
+    required DocumentSelector? documentSelector,
     bool? workDoneProgress,
     String? id,
-  }) => TypeHierarchyRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    id: id ?? this.id,
-  );
+  }) = _TypeHierarchyRegistrationOptions;
+
+  static TypeHierarchyRegistrationOptions fromJson(Map<String, Object?> json) =>
+      TypeHierarchyRegistrationOptions(
+        documentSelector: json['documentSelector'] as DocumentSelector?,
+        workDoneProgress: json['workDoneProgress'] as bool?,
+        id: json['id'] as String?,
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3590,14 +2739,18 @@ final class TypeHierarchyRegistrationOptions {
 /// The parameter of a `typeHierarchy/supertypes` request.
 ///
 /// @since 3.17.0
-final class TypeHierarchySupertypesParams {
-  const TypeHierarchySupertypesParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.item,
-  });
+@freezed
+abstract class TypeHierarchySupertypesParams
+    with _$TypeHierarchySupertypesParams {
+  const TypeHierarchySupertypesParams._();
 
-  factory TypeHierarchySupertypesParams.fromJson(Map<String, Object?> json) =>
+  const factory TypeHierarchySupertypesParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TypeHierarchyItem item,
+  }) = _TypeHierarchySupertypesParams;
+
+  static TypeHierarchySupertypesParams fromJson(Map<String, Object?> json) =>
       TypeHierarchySupertypesParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -3607,22 +2760,6 @@ final class TypeHierarchySupertypesParams {
             : ProgressToken.fromJson(json['partialResultToken']),
         item: TypeHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
       );
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TypeHierarchyItem item;
-
-  TypeHierarchySupertypesParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TypeHierarchyItem? item,
-  }) => TypeHierarchySupertypesParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    item: item ?? this.item,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3636,14 +2773,17 @@ final class TypeHierarchySupertypesParams {
 /// The parameter of a `typeHierarchy/subtypes` request.
 ///
 /// @since 3.17.0
-final class TypeHierarchySubtypesParams {
-  const TypeHierarchySubtypesParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.item,
-  });
+@freezed
+abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
+  const TypeHierarchySubtypesParams._();
 
-  factory TypeHierarchySubtypesParams.fromJson(Map<String, Object?> json) =>
+  const factory TypeHierarchySubtypesParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TypeHierarchyItem item,
+  }) = _TypeHierarchySubtypesParams;
+
+  static TypeHierarchySubtypesParams fromJson(Map<String, Object?> json) =>
       TypeHierarchySubtypesParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -3653,22 +2793,6 @@ final class TypeHierarchySubtypesParams {
             : ProgressToken.fromJson(json['partialResultToken']),
         item: TypeHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
       );
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TypeHierarchyItem item;
-
-  TypeHierarchySubtypesParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TypeHierarchyItem? item,
-  }) => TypeHierarchySubtypesParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    item: item ?? this.item,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3682,15 +2806,18 @@ final class TypeHierarchySubtypesParams {
 /// A parameter literal used in inline value requests.
 ///
 /// @since 3.17.0
-final class InlineValueParams {
-  const InlineValueParams({
-    this.workDoneToken,
-    required this.textDocument,
-    required this.range,
-    required this.context,
-  });
+@freezed
+abstract class InlineValueParams with _$InlineValueParams {
+  const InlineValueParams._();
 
-  factory InlineValueParams.fromJson(Map<String, Object?> json) =>
+  const factory InlineValueParams({
+    ProgressToken? workDoneToken,
+    required TextDocumentIdentifier textDocument,
+    required Range range,
+    required InlineValueContext context,
+  }) = _InlineValueParams;
+
+  static InlineValueParams fromJson(Map<String, Object?> json) =>
       InlineValueParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -3703,26 +2830,6 @@ final class InlineValueParams {
           json['context'] as Map<String, Object?>,
         ),
       );
-
-  final ProgressToken? workDoneToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final Range range;
-
-  final InlineValueContext context;
-
-  InlineValueParams copyWith({
-    ProgressToken? workDoneToken,
-    TextDocumentIdentifier? textDocument,
-    Range? range,
-    InlineValueContext? context,
-  }) => InlineValueParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    textDocument: textDocument ?? this.textDocument,
-    range: range ?? this.range,
-    context: context ?? this.context,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3737,35 +2844,23 @@ final class InlineValueParams {
 /// Inline value options used during static or dynamic registration.
 ///
 /// @since 3.17.0
-final class InlineValueRegistrationOptions {
-  const InlineValueRegistrationOptions({
-    this.workDoneProgress,
-    required this.documentSelector,
-    this.id,
-  });
+@freezed
+abstract class InlineValueRegistrationOptions
+    with _$InlineValueRegistrationOptions {
+  const InlineValueRegistrationOptions._();
 
-  factory InlineValueRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory InlineValueRegistrationOptions({
+    bool? workDoneProgress,
+    required DocumentSelector? documentSelector,
+    String? id,
+  }) = _InlineValueRegistrationOptions;
+
+  static InlineValueRegistrationOptions fromJson(Map<String, Object?> json) =>
       InlineValueRegistrationOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         documentSelector: json['documentSelector'] as DocumentSelector?,
         id: json['id'] as String?,
       );
-
-  final bool? workDoneProgress;
-
-  final DocumentSelector? documentSelector;
-
-  final String? id;
-
-  InlineValueRegistrationOptions copyWith({
-    bool? workDoneProgress,
-    DocumentSelector? documentSelector,
-    String? id,
-  }) => InlineValueRegistrationOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    documentSelector: documentSelector ?? this.documentSelector,
-    id: id ?? this.id,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3779,38 +2874,24 @@ final class InlineValueRegistrationOptions {
 /// A parameter literal used in inlay hint requests.
 ///
 /// @since 3.17.0
-final class InlayHintParams {
-  const InlayHintParams({
-    this.workDoneToken,
-    required this.textDocument,
-    required this.range,
-  });
+@freezed
+abstract class InlayHintParams with _$InlayHintParams {
+  const InlayHintParams._();
 
-  factory InlayHintParams.fromJson(Map<String, Object?> json) =>
-      InlayHintParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-      );
-
-  final ProgressToken? workDoneToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final Range range;
-
-  InlayHintParams copyWith({
+  const factory InlayHintParams({
     ProgressToken? workDoneToken,
-    TextDocumentIdentifier? textDocument,
-    Range? range,
-  }) => InlayHintParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    textDocument: textDocument ?? this.textDocument,
-    range: range ?? this.range,
+    required TextDocumentIdentifier textDocument,
+    required Range range,
+  }) = _InlayHintParams;
+
+  static InlayHintParams fromJson(Map<String, Object?> json) => InlayHintParams(
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['workDoneToken']),
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, Object?>,
+    ),
+    range: Range.fromJson(json['range'] as Map<String, Object?>),
   );
 
   Map<String, Object?> toJson() {
@@ -3825,19 +2906,22 @@ final class InlayHintParams {
 /// Inlay hint information.
 ///
 /// @since 3.17.0
-final class InlayHint {
-  const InlayHint({
-    required this.position,
-    required this.label,
-    this.kind,
-    this.textEdits,
-    this.tooltip,
-    this.paddingLeft,
-    this.paddingRight,
-    this.data,
-  });
+@freezed
+abstract class InlayHint with _$InlayHint {
+  const InlayHint._();
 
-  factory InlayHint.fromJson(Map<String, Object?> json) => InlayHint(
+  const factory InlayHint({
+    required Position position,
+    required Object label,
+    InlayHintKind? kind,
+    List<TextEdit>? textEdits,
+    Object? tooltip,
+    bool? paddingLeft,
+    bool? paddingRight,
+    LSPAny? data,
+  }) = _InlayHint;
+
+  static InlayHint fromJson(Map<String, Object?> json) => InlayHint(
     position: Position.fromJson(json['position'] as Map<String, Object?>),
     label: json['label'] as Object,
     kind: json['kind'] == null
@@ -3852,42 +2936,6 @@ final class InlayHint {
     paddingLeft: json['paddingLeft'] as bool?,
     paddingRight: json['paddingRight'] as bool?,
     data: json['data'],
-  );
-
-  final Position position;
-
-  final Object label;
-
-  final InlayHintKind? kind;
-
-  final List<TextEdit>? textEdits;
-
-  final Object? tooltip;
-
-  final bool? paddingLeft;
-
-  final bool? paddingRight;
-
-  final LSPAny? data;
-
-  InlayHint copyWith({
-    Position? position,
-    Object? label,
-    InlayHintKind? kind,
-    List<TextEdit>? textEdits,
-    Object? tooltip,
-    bool? paddingLeft,
-    bool? paddingRight,
-    LSPAny? data,
-  }) => InlayHint(
-    position: position ?? this.position,
-    label: label ?? this.label,
-    kind: kind ?? this.kind,
-    textEdits: textEdits ?? this.textEdits,
-    tooltip: tooltip ?? this.tooltip,
-    paddingLeft: paddingLeft ?? this.paddingLeft,
-    paddingRight: paddingRight ?? this.paddingRight,
-    data: data ?? this.data,
   );
 
   Map<String, Object?> toJson() {
@@ -3907,41 +2955,25 @@ final class InlayHint {
 /// Inlay hint options used during static or dynamic registration.
 ///
 /// @since 3.17.0
-final class InlayHintRegistrationOptions {
-  const InlayHintRegistrationOptions({
-    this.workDoneProgress,
-    this.resolveProvider,
-    required this.documentSelector,
-    this.id,
-  });
+@freezed
+abstract class InlayHintRegistrationOptions
+    with _$InlayHintRegistrationOptions {
+  const InlayHintRegistrationOptions._();
 
-  factory InlayHintRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory InlayHintRegistrationOptions({
+    bool? workDoneProgress,
+    bool? resolveProvider,
+    required DocumentSelector? documentSelector,
+    String? id,
+  }) = _InlayHintRegistrationOptions;
+
+  static InlayHintRegistrationOptions fromJson(Map<String, Object?> json) =>
       InlayHintRegistrationOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         resolveProvider: json['resolveProvider'] as bool?,
         documentSelector: json['documentSelector'] as DocumentSelector?,
         id: json['id'] as String?,
       );
-
-  final bool? workDoneProgress;
-
-  final bool? resolveProvider;
-
-  final DocumentSelector? documentSelector;
-
-  final String? id;
-
-  InlayHintRegistrationOptions copyWith({
-    bool? workDoneProgress,
-    bool? resolveProvider,
-    DocumentSelector? documentSelector,
-    String? id,
-  }) => InlayHintRegistrationOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
-    documentSelector: documentSelector ?? this.documentSelector,
-    id: id ?? this.id,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -3956,16 +2988,19 @@ final class InlayHintRegistrationOptions {
 /// Parameters of the document diagnostic request.
 ///
 /// @since 3.17.0
-final class DocumentDiagnosticParams {
-  const DocumentDiagnosticParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-    this.identifier,
-    this.previousResultId,
-  });
+@freezed
+abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
+  const DocumentDiagnosticParams._();
 
-  factory DocumentDiagnosticParams.fromJson(Map<String, Object?> json) =>
+  const factory DocumentDiagnosticParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+    String? identifier,
+    String? previousResultId,
+  }) = _DocumentDiagnosticParams;
+
+  static DocumentDiagnosticParams fromJson(Map<String, Object?> json) =>
       DocumentDiagnosticParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -3979,30 +3014,6 @@ final class DocumentDiagnosticParams {
         identifier: json['identifier'] as String?,
         previousResultId: json['previousResultId'] as String?,
       );
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final String? identifier;
-
-  final String? previousResultId;
-
-  DocumentDiagnosticParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-    String? identifier,
-    String? previousResultId,
-  }) => DocumentDiagnosticParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-    identifier: identifier ?? this.identifier,
-    previousResultId: previousResultId ?? this.previousResultId,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4018,23 +3029,21 @@ final class DocumentDiagnosticParams {
 /// A partial result for a document diagnostic report.
 ///
 /// @since 3.17.0
-final class DocumentDiagnosticReportPartialResult {
-  const DocumentDiagnosticReportPartialResult({required this.relatedDocuments});
+@freezed
+abstract class DocumentDiagnosticReportPartialResult
+    with _$DocumentDiagnosticReportPartialResult {
+  const DocumentDiagnosticReportPartialResult._();
 
-  factory DocumentDiagnosticReportPartialResult.fromJson(
+  const factory DocumentDiagnosticReportPartialResult({
+    required Map<String, Object> relatedDocuments,
+  }) = _DocumentDiagnosticReportPartialResult;
+
+  static DocumentDiagnosticReportPartialResult fromJson(
     Map<String, Object?> json,
   ) => DocumentDiagnosticReportPartialResult(
     relatedDocuments: (json['relatedDocuments'] as Map<String, Object?>).map(
       (k, v) => MapEntry(k, v as Object),
     ),
-  );
-
-  final Map<String, Object> relatedDocuments;
-
-  DocumentDiagnosticReportPartialResult copyWith({
-    Map<String, Object>? relatedDocuments,
-  }) => DocumentDiagnosticReportPartialResult(
-    relatedDocuments: relatedDocuments ?? this.relatedDocuments,
   );
 
   Map<String, Object?> toJson() {
@@ -4045,20 +3054,18 @@ final class DocumentDiagnosticReportPartialResult {
 /// Cancellation data returned from a diagnostic request.
 ///
 /// @since 3.17.0
-final class DiagnosticServerCancellationData {
-  const DiagnosticServerCancellationData({required this.retriggerRequest});
+@freezed
+abstract class DiagnosticServerCancellationData
+    with _$DiagnosticServerCancellationData {
+  const DiagnosticServerCancellationData._();
 
-  factory DiagnosticServerCancellationData.fromJson(
-    Map<String, Object?> json,
-  ) => DiagnosticServerCancellationData(
-    retriggerRequest: json['retriggerRequest'] as bool,
-  );
+  const factory DiagnosticServerCancellationData({
+    required bool retriggerRequest,
+  }) = _DiagnosticServerCancellationData;
 
-  final bool retriggerRequest;
-
-  DiagnosticServerCancellationData copyWith({bool? retriggerRequest}) =>
+  static DiagnosticServerCancellationData fromJson(Map<String, Object?> json) =>
       DiagnosticServerCancellationData(
-        retriggerRequest: retriggerRequest ?? this.retriggerRequest,
+        retriggerRequest: json['retriggerRequest'] as bool,
       );
 
   Map<String, Object?> toJson() {
@@ -4069,17 +3076,21 @@ final class DiagnosticServerCancellationData {
 /// Diagnostic registration options.
 ///
 /// @since 3.17.0
-final class DiagnosticRegistrationOptions {
-  const DiagnosticRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.identifier,
-    required this.interFileDependencies,
-    required this.workspaceDiagnostics,
-    this.id,
-  });
+@freezed
+abstract class DiagnosticRegistrationOptions
+    with _$DiagnosticRegistrationOptions {
+  const DiagnosticRegistrationOptions._();
 
-  factory DiagnosticRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory DiagnosticRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    String? identifier,
+    required bool interFileDependencies,
+    required bool workspaceDiagnostics,
+    String? id,
+  }) = _DiagnosticRegistrationOptions;
+
+  static DiagnosticRegistrationOptions fromJson(Map<String, Object?> json) =>
       DiagnosticRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
@@ -4088,34 +3099,6 @@ final class DiagnosticRegistrationOptions {
         workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
         id: json['id'] as String?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final String? identifier;
-
-  final bool interFileDependencies;
-
-  final bool workspaceDiagnostics;
-
-  final String? id;
-
-  DiagnosticRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    String? identifier,
-    bool? interFileDependencies,
-    bool? workspaceDiagnostics,
-    String? id,
-  }) => DiagnosticRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    identifier: identifier ?? this.identifier,
-    interFileDependencies: interFileDependencies ?? this.interFileDependencies,
-    workspaceDiagnostics: workspaceDiagnostics ?? this.workspaceDiagnostics,
-    id: id ?? this.id,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4132,15 +3115,18 @@ final class DiagnosticRegistrationOptions {
 /// Parameters of the workspace diagnostic request.
 ///
 /// @since 3.17.0
-final class WorkspaceDiagnosticParams {
-  const WorkspaceDiagnosticParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    this.identifier,
-    required this.previousResultIds,
-  });
+@freezed
+abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
+  const WorkspaceDiagnosticParams._();
 
-  factory WorkspaceDiagnosticParams.fromJson(Map<String, Object?> json) =>
+  const factory WorkspaceDiagnosticParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    String? identifier,
+    required List<PreviousResultId> previousResultIds,
+  }) = _WorkspaceDiagnosticParams;
+
+  static WorkspaceDiagnosticParams fromJson(Map<String, Object?> json) =>
       WorkspaceDiagnosticParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -4153,26 +3139,6 @@ final class WorkspaceDiagnosticParams {
             .map((e) => PreviousResultId.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final String? identifier;
-
-  final List<PreviousResultId> previousResultIds;
-
-  WorkspaceDiagnosticParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    String? identifier,
-    List<PreviousResultId>? previousResultIds,
-  }) => WorkspaceDiagnosticParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    identifier: identifier ?? this.identifier,
-    previousResultIds: previousResultIds ?? this.previousResultIds,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4187,21 +3153,20 @@ final class WorkspaceDiagnosticParams {
 /// A workspace diagnostic report.
 ///
 /// @since 3.17.0
-final class WorkspaceDiagnosticReport {
-  const WorkspaceDiagnosticReport({required this.items});
+@freezed
+abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
+  const WorkspaceDiagnosticReport._();
 
-  factory WorkspaceDiagnosticReport.fromJson(Map<String, Object?> json) =>
+  const factory WorkspaceDiagnosticReport({
+    required List<WorkspaceDocumentDiagnosticReport> items,
+  }) = _WorkspaceDiagnosticReport;
+
+  static WorkspaceDiagnosticReport fromJson(Map<String, Object?> json) =>
       WorkspaceDiagnosticReport(
         items: (json['items'] as List<Object?>)
             .map((e) => e as WorkspaceDocumentDiagnosticReport)
             .toList(),
       );
-
-  final List<WorkspaceDocumentDiagnosticReport> items;
-
-  WorkspaceDiagnosticReport copyWith({
-    List<WorkspaceDocumentDiagnosticReport>? items,
-  }) => WorkspaceDiagnosticReport(items: items ?? this.items);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'items': items};
@@ -4211,22 +3176,22 @@ final class WorkspaceDiagnosticReport {
 /// A partial result for a workspace diagnostic report.
 ///
 /// @since 3.17.0
-final class WorkspaceDiagnosticReportPartialResult {
-  const WorkspaceDiagnosticReportPartialResult({required this.items});
+@freezed
+abstract class WorkspaceDiagnosticReportPartialResult
+    with _$WorkspaceDiagnosticReportPartialResult {
+  const WorkspaceDiagnosticReportPartialResult._();
 
-  factory WorkspaceDiagnosticReportPartialResult.fromJson(
+  const factory WorkspaceDiagnosticReportPartialResult({
+    required List<WorkspaceDocumentDiagnosticReport> items,
+  }) = _WorkspaceDiagnosticReportPartialResult;
+
+  static WorkspaceDiagnosticReportPartialResult fromJson(
     Map<String, Object?> json,
   ) => WorkspaceDiagnosticReportPartialResult(
     items: (json['items'] as List<Object?>)
         .map((e) => e as WorkspaceDocumentDiagnosticReport)
         .toList(),
   );
-
-  final List<WorkspaceDocumentDiagnosticReport> items;
-
-  WorkspaceDiagnosticReportPartialResult copyWith({
-    List<WorkspaceDocumentDiagnosticReport>? items,
-  }) => WorkspaceDiagnosticReportPartialResult(items: items ?? this.items);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'items': items};
@@ -4236,13 +3201,17 @@ final class WorkspaceDiagnosticReportPartialResult {
 /// The params sent in an open notebook document notification.
 ///
 /// @since 3.17.0
-final class DidOpenNotebookDocumentParams {
-  const DidOpenNotebookDocumentParams({
-    required this.notebookDocument,
-    required this.cellTextDocuments,
-  });
+@freezed
+abstract class DidOpenNotebookDocumentParams
+    with _$DidOpenNotebookDocumentParams {
+  const DidOpenNotebookDocumentParams._();
 
-  factory DidOpenNotebookDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory DidOpenNotebookDocumentParams({
+    required NotebookDocument notebookDocument,
+    required List<TextDocumentItem> cellTextDocuments,
+  }) = _DidOpenNotebookDocumentParams;
+
+  static DidOpenNotebookDocumentParams fromJson(Map<String, Object?> json) =>
       DidOpenNotebookDocumentParams(
         notebookDocument: NotebookDocument.fromJson(
           json['notebookDocument'] as Map<String, Object?>,
@@ -4251,18 +3220,6 @@ final class DidOpenNotebookDocumentParams {
             .map((e) => TextDocumentItem.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final NotebookDocument notebookDocument;
-
-  final List<TextDocumentItem> cellTextDocuments;
-
-  DidOpenNotebookDocumentParams copyWith({
-    NotebookDocument? notebookDocument,
-    List<TextDocumentItem>? cellTextDocuments,
-  }) => DidOpenNotebookDocumentParams(
-    notebookDocument: notebookDocument ?? this.notebookDocument,
-    cellTextDocuments: cellTextDocuments ?? this.cellTextDocuments,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4275,13 +3232,17 @@ final class DidOpenNotebookDocumentParams {
 /// The params sent in a change notebook document notification.
 ///
 /// @since 3.17.0
-final class DidChangeNotebookDocumentParams {
-  const DidChangeNotebookDocumentParams({
-    required this.notebookDocument,
-    required this.change,
-  });
+@freezed
+abstract class DidChangeNotebookDocumentParams
+    with _$DidChangeNotebookDocumentParams {
+  const DidChangeNotebookDocumentParams._();
 
-  factory DidChangeNotebookDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory DidChangeNotebookDocumentParams({
+    required VersionedNotebookDocumentIdentifier notebookDocument,
+    required NotebookDocumentChangeEvent change,
+  }) = _DidChangeNotebookDocumentParams;
+
+  static DidChangeNotebookDocumentParams fromJson(Map<String, Object?> json) =>
       DidChangeNotebookDocumentParams(
         notebookDocument: VersionedNotebookDocumentIdentifier.fromJson(
           json['notebookDocument'] as Map<String, Object?>,
@@ -4290,18 +3251,6 @@ final class DidChangeNotebookDocumentParams {
           json['change'] as Map<String, Object?>,
         ),
       );
-
-  final VersionedNotebookDocumentIdentifier notebookDocument;
-
-  final NotebookDocumentChangeEvent change;
-
-  DidChangeNotebookDocumentParams copyWith({
-    VersionedNotebookDocumentIdentifier? notebookDocument,
-    NotebookDocumentChangeEvent? change,
-  }) => DidChangeNotebookDocumentParams(
-    notebookDocument: notebookDocument ?? this.notebookDocument,
-    change: change ?? this.change,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4314,23 +3263,21 @@ final class DidChangeNotebookDocumentParams {
 /// The params sent in a save notebook document notification.
 ///
 /// @since 3.17.0
-final class DidSaveNotebookDocumentParams {
-  const DidSaveNotebookDocumentParams({required this.notebookDocument});
+@freezed
+abstract class DidSaveNotebookDocumentParams
+    with _$DidSaveNotebookDocumentParams {
+  const DidSaveNotebookDocumentParams._();
 
-  factory DidSaveNotebookDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory DidSaveNotebookDocumentParams({
+    required NotebookDocumentIdentifier notebookDocument,
+  }) = _DidSaveNotebookDocumentParams;
+
+  static DidSaveNotebookDocumentParams fromJson(Map<String, Object?> json) =>
       DidSaveNotebookDocumentParams(
         notebookDocument: NotebookDocumentIdentifier.fromJson(
           json['notebookDocument'] as Map<String, Object?>,
         ),
       );
-
-  final NotebookDocumentIdentifier notebookDocument;
-
-  DidSaveNotebookDocumentParams copyWith({
-    NotebookDocumentIdentifier? notebookDocument,
-  }) => DidSaveNotebookDocumentParams(
-    notebookDocument: notebookDocument ?? this.notebookDocument,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'notebookDocument': notebookDocument.toJson()};
@@ -4340,13 +3287,17 @@ final class DidSaveNotebookDocumentParams {
 /// The params sent in a close notebook document notification.
 ///
 /// @since 3.17.0
-final class DidCloseNotebookDocumentParams {
-  const DidCloseNotebookDocumentParams({
-    required this.notebookDocument,
-    required this.cellTextDocuments,
-  });
+@freezed
+abstract class DidCloseNotebookDocumentParams
+    with _$DidCloseNotebookDocumentParams {
+  const DidCloseNotebookDocumentParams._();
 
-  factory DidCloseNotebookDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory DidCloseNotebookDocumentParams({
+    required NotebookDocumentIdentifier notebookDocument,
+    required List<TextDocumentIdentifier> cellTextDocuments,
+  }) = _DidCloseNotebookDocumentParams;
+
+  static DidCloseNotebookDocumentParams fromJson(Map<String, Object?> json) =>
       DidCloseNotebookDocumentParams(
         notebookDocument: NotebookDocumentIdentifier.fromJson(
           json['notebookDocument'] as Map<String, Object?>,
@@ -4357,18 +3308,6 @@ final class DidCloseNotebookDocumentParams {
             )
             .toList(),
       );
-
-  final NotebookDocumentIdentifier notebookDocument;
-
-  final List<TextDocumentIdentifier> cellTextDocuments;
-
-  DidCloseNotebookDocumentParams copyWith({
-    NotebookDocumentIdentifier? notebookDocument,
-    List<TextDocumentIdentifier>? cellTextDocuments,
-  }) => DidCloseNotebookDocumentParams(
-    notebookDocument: notebookDocument ?? this.notebookDocument,
-    cellTextDocuments: cellTextDocuments ?? this.cellTextDocuments,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4382,15 +3321,18 @@ final class DidCloseNotebookDocumentParams {
 ///
 /// @since 3.18.0
 /// @proposed
-final class InlineCompletionParams {
-  const InlineCompletionParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    required this.context,
-  });
+@freezed
+abstract class InlineCompletionParams with _$InlineCompletionParams {
+  const InlineCompletionParams._();
 
-  factory InlineCompletionParams.fromJson(Map<String, Object?> json) =>
+  const factory InlineCompletionParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+    required InlineCompletionContext context,
+  }) = _InlineCompletionParams;
+
+  static InlineCompletionParams fromJson(Map<String, Object?> json) =>
       InlineCompletionParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -4403,26 +3345,6 @@ final class InlineCompletionParams {
           json['context'] as Map<String, Object?>,
         ),
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final InlineCompletionContext context;
-
-  InlineCompletionParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-    InlineCompletionContext? context,
-  }) => InlineCompletionParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    context: context ?? this.context,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4438,10 +3360,15 @@ final class InlineCompletionParams {
 ///
 /// @since 3.18.0
 /// @proposed
-final class InlineCompletionList {
-  const InlineCompletionList({required this.items});
+@freezed
+abstract class InlineCompletionList with _$InlineCompletionList {
+  const InlineCompletionList._();
 
-  factory InlineCompletionList.fromJson(Map<String, Object?> json) =>
+  const factory InlineCompletionList({
+    required List<InlineCompletionItem> items,
+  }) = _InlineCompletionList;
+
+  static InlineCompletionList fromJson(Map<String, Object?> json) =>
       InlineCompletionList(
         items: (json['items'] as List<Object?>)
             .map(
@@ -4449,11 +3376,6 @@ final class InlineCompletionList {
             )
             .toList(),
       );
-
-  final List<InlineCompletionItem> items;
-
-  InlineCompletionList copyWith({List<InlineCompletionItem>? items}) =>
-      InlineCompletionList(items: items ?? this.items);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'items': items.map((e) => e.toJson()).toList()};
@@ -4464,15 +3386,18 @@ final class InlineCompletionList {
 ///
 /// @since 3.18.0
 /// @proposed
-final class InlineCompletionItem {
-  const InlineCompletionItem({
-    required this.insertText,
-    this.filterText,
-    this.range,
-    this.command,
-  });
+@freezed
+abstract class InlineCompletionItem with _$InlineCompletionItem {
+  const InlineCompletionItem._();
 
-  factory InlineCompletionItem.fromJson(Map<String, Object?> json) =>
+  const factory InlineCompletionItem({
+    required Object insertText,
+    String? filterText,
+    Range? range,
+    Command? command,
+  }) = _InlineCompletionItem;
+
+  static InlineCompletionItem fromJson(Map<String, Object?> json) =>
       InlineCompletionItem(
         insertText: json['insertText'] as Object,
         filterText: json['filterText'] as String?,
@@ -4483,26 +3408,6 @@ final class InlineCompletionItem {
             ? null
             : Command.fromJson(json['command'] as Map<String, Object?>),
       );
-
-  final Object insertText;
-
-  final String? filterText;
-
-  final Range? range;
-
-  final Command? command;
-
-  InlineCompletionItem copyWith({
-    Object? insertText,
-    String? filterText,
-    Range? range,
-    Command? command,
-  }) => InlineCompletionItem(
-    insertText: insertText ?? this.insertText,
-    filterText: filterText ?? this.filterText,
-    range: range ?? this.range,
-    command: command ?? this.command,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4518,35 +3423,23 @@ final class InlineCompletionItem {
 ///
 /// @since 3.18.0
 /// @proposed
-final class InlineCompletionRegistrationOptions {
-  const InlineCompletionRegistrationOptions({
-    this.workDoneProgress,
-    required this.documentSelector,
-    this.id,
-  });
+@freezed
+abstract class InlineCompletionRegistrationOptions
+    with _$InlineCompletionRegistrationOptions {
+  const InlineCompletionRegistrationOptions._();
 
-  factory InlineCompletionRegistrationOptions.fromJson(
+  const factory InlineCompletionRegistrationOptions({
+    bool? workDoneProgress,
+    required DocumentSelector? documentSelector,
+    String? id,
+  }) = _InlineCompletionRegistrationOptions;
+
+  static InlineCompletionRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => InlineCompletionRegistrationOptions(
     workDoneProgress: json['workDoneProgress'] as bool?,
     documentSelector: json['documentSelector'] as DocumentSelector?,
     id: json['id'] as String?,
-  );
-
-  final bool? workDoneProgress;
-
-  final DocumentSelector? documentSelector;
-
-  final String? id;
-
-  InlineCompletionRegistrationOptions copyWith({
-    bool? workDoneProgress,
-    DocumentSelector? documentSelector,
-    String? id,
-  }) => InlineCompletionRegistrationOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    documentSelector: documentSelector ?? this.documentSelector,
-    id: id ?? this.id,
   );
 
   Map<String, Object?> toJson() {
@@ -4558,20 +3451,20 @@ final class InlineCompletionRegistrationOptions {
   }
 }
 
-final class RegistrationParams {
-  const RegistrationParams({required this.registrations});
+@freezed
+abstract class RegistrationParams with _$RegistrationParams {
+  const RegistrationParams._();
 
-  factory RegistrationParams.fromJson(Map<String, Object?> json) =>
+  const factory RegistrationParams({
+    required List<Registration> registrations,
+  }) = _RegistrationParams;
+
+  static RegistrationParams fromJson(Map<String, Object?> json) =>
       RegistrationParams(
         registrations: (json['registrations'] as List<Object?>)
             .map((e) => Registration.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final List<Registration> registrations;
-
-  RegistrationParams copyWith({List<Registration>? registrations}) =>
-      RegistrationParams(registrations: registrations ?? this.registrations);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4580,21 +3473,19 @@ final class RegistrationParams {
   }
 }
 
-final class UnregistrationParams {
-  const UnregistrationParams({required this.unregisterations});
+@freezed
+abstract class UnregistrationParams with _$UnregistrationParams {
+  const UnregistrationParams._();
 
-  factory UnregistrationParams.fromJson(Map<String, Object?> json) =>
+  const factory UnregistrationParams({
+    required List<Unregistration> unregisterations,
+  }) = _UnregistrationParams;
+
+  static UnregistrationParams fromJson(Map<String, Object?> json) =>
       UnregistrationParams(
         unregisterations: (json['unregisterations'] as List<Object?>)
             .map((e) => Unregistration.fromJson(e as Map<String, Object?>))
             .toList(),
-      );
-
-  final List<Unregistration> unregisterations;
-
-  UnregistrationParams copyWith({List<Unregistration>? unregisterations}) =>
-      UnregistrationParams(
-        unregisterations: unregisterations ?? this.unregisterations,
       );
 
   Map<String, Object?> toJson() {
@@ -4604,21 +3495,24 @@ final class UnregistrationParams {
   }
 }
 
-final class InitializeParams {
-  const InitializeParams({
-    this.workDoneToken,
-    required this.processId,
-    this.clientInfo,
-    this.locale,
-    this.rootPath,
-    required this.rootUri,
-    required this.capabilities,
-    this.initializationOptions,
-    this.trace,
-    this.workspaceFolders,
-  });
+@freezed
+abstract class InitializeParams with _$InitializeParams {
+  const InitializeParams._();
 
-  factory InitializeParams.fromJson(Map<String, Object?> json) =>
+  const factory InitializeParams({
+    ProgressToken? workDoneToken,
+    required int? processId,
+    _InitializeParamsClientInfo? clientInfo,
+    String? locale,
+    String? rootPath,
+    required String? rootUri,
+    required ClientCapabilities capabilities,
+    LSPAny? initializationOptions,
+    TraceValues? trace,
+    List<WorkspaceFolder>? workspaceFolders,
+  }) = _InitializeParams;
+
+  static InitializeParams fromJson(Map<String, Object?> json) =>
       InitializeParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -4646,50 +3540,6 @@ final class InitializeParams {
             .toList(),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final int? processId;
-
-  final _InitializeParamsClientInfo? clientInfo;
-
-  final String? locale;
-
-  final String? rootPath;
-
-  final String? rootUri;
-
-  final ClientCapabilities capabilities;
-
-  final LSPAny? initializationOptions;
-
-  final TraceValues? trace;
-
-  final List<WorkspaceFolder>? workspaceFolders;
-
-  InitializeParams copyWith({
-    ProgressToken? workDoneToken,
-    int? processId,
-    _InitializeParamsClientInfo? clientInfo,
-    String? locale,
-    String? rootPath,
-    String? rootUri,
-    ClientCapabilities? capabilities,
-    LSPAny? initializationOptions,
-    TraceValues? trace,
-    List<WorkspaceFolder>? workspaceFolders,
-  }) => InitializeParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    processId: processId ?? this.processId,
-    clientInfo: clientInfo ?? this.clientInfo,
-    locale: locale ?? this.locale,
-    rootPath: rootPath ?? this.rootPath,
-    rootUri: rootUri ?? this.rootUri,
-    capabilities: capabilities ?? this.capabilities,
-    initializationOptions: initializationOptions ?? this.initializationOptions,
-    trace: trace ?? this.trace,
-    workspaceFolders: workspaceFolders ?? this.workspaceFolders,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -4707,10 +3557,16 @@ final class InitializeParams {
 }
 
 /// The result returned from an initialize request.
-final class InitializeResult {
-  const InitializeResult({required this.capabilities, this.serverInfo});
+@freezed
+abstract class InitializeResult with _$InitializeResult {
+  const InitializeResult._();
 
-  factory InitializeResult.fromJson(Map<String, Object?> json) =>
+  const factory InitializeResult({
+    required ServerCapabilities capabilities,
+    InitializeResultServerInfo? serverInfo,
+  }) = _InitializeResult;
+
+  static InitializeResult fromJson(Map<String, Object?> json) =>
       InitializeResult(
         capabilities: ServerCapabilities.fromJson(
           json['capabilities'] as Map<String, Object?>,
@@ -4722,18 +3578,6 @@ final class InitializeResult {
               ),
       );
 
-  final ServerCapabilities capabilities;
-
-  final InitializeResultServerInfo? serverInfo;
-
-  InitializeResult copyWith({
-    ServerCapabilities? capabilities,
-    InitializeResultServerInfo? serverInfo,
-  }) => InitializeResult(
-    capabilities: capabilities ?? this.capabilities,
-    serverInfo: serverInfo ?? this.serverInfo,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'capabilities': capabilities.toJson(),
@@ -4744,26 +3588,27 @@ final class InitializeResult {
 
 /// The data type of the ResponseError if the
 /// initialize request fails.
-final class InitializeError {
-  const InitializeError({required this.retry});
+@freezed
+abstract class InitializeError with _$InitializeError {
+  const InitializeError._();
 
-  factory InitializeError.fromJson(Map<String, Object?> json) =>
+  const factory InitializeError({required bool retry}) = _InitializeError;
+
+  static InitializeError fromJson(Map<String, Object?> json) =>
       InitializeError(retry: json['retry'] as bool);
-
-  final bool retry;
-
-  InitializeError copyWith({bool? retry}) =>
-      InitializeError(retry: retry ?? this.retry);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'retry': retry};
   }
 }
 
-final class InitializedParams {
-  const InitializedParams();
+@freezed
+abstract class InitializedParams with _$InitializedParams {
+  const InitializedParams._();
 
-  factory InitializedParams.fromJson(Map<String, Object?> json) =>
+  const factory InitializedParams() = _InitializedParams;
+
+  static InitializedParams fromJson(Map<String, Object?> json) =>
       InitializedParams();
 
   Map<String, Object?> toJson() {
@@ -4772,35 +3617,33 @@ final class InitializedParams {
 }
 
 /// The parameters of a change configuration notification.
-final class DidChangeConfigurationParams {
-  const DidChangeConfigurationParams({required this.settings});
+@freezed
+abstract class DidChangeConfigurationParams
+    with _$DidChangeConfigurationParams {
+  const DidChangeConfigurationParams._();
 
-  factory DidChangeConfigurationParams.fromJson(Map<String, Object?> json) =>
+  const factory DidChangeConfigurationParams({required LSPAny settings}) =
+      _DidChangeConfigurationParams;
+
+  static DidChangeConfigurationParams fromJson(Map<String, Object?> json) =>
       DidChangeConfigurationParams(settings: json['settings'] as LSPAny);
-
-  final LSPAny settings;
-
-  DidChangeConfigurationParams copyWith({LSPAny? settings}) =>
-      DidChangeConfigurationParams(settings: settings ?? this.settings);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'settings': settings};
   }
 }
 
-final class DidChangeConfigurationRegistrationOptions {
-  const DidChangeConfigurationRegistrationOptions({this.section});
+@freezed
+abstract class DidChangeConfigurationRegistrationOptions
+    with _$DidChangeConfigurationRegistrationOptions {
+  const DidChangeConfigurationRegistrationOptions._();
 
-  factory DidChangeConfigurationRegistrationOptions.fromJson(
+  const factory DidChangeConfigurationRegistrationOptions({Object? section}) =
+      _DidChangeConfigurationRegistrationOptions;
+
+  static DidChangeConfigurationRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => DidChangeConfigurationRegistrationOptions(section: json['section']);
-
-  final Object? section;
-
-  DidChangeConfigurationRegistrationOptions copyWith({Object? section}) =>
-      DidChangeConfigurationRegistrationOptions(
-        section: section ?? this.section,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'section': section};
@@ -4808,10 +3651,16 @@ final class DidChangeConfigurationRegistrationOptions {
 }
 
 /// The parameters of a notification message.
-final class ShowMessageParams {
-  const ShowMessageParams({required this.type, required this.message});
+@freezed
+abstract class ShowMessageParams with _$ShowMessageParams {
+  const ShowMessageParams._();
 
-  factory ShowMessageParams.fromJson(Map<String, Object?> json) =>
+  const factory ShowMessageParams({
+    required MessageType type,
+    required String message,
+  }) = _ShowMessageParams;
+
+  static ShowMessageParams fromJson(Map<String, Object?> json) =>
       ShowMessageParams(
         type: MessageType.values.firstWhere(
           (e) => e.value == json['type'] as int,
@@ -4819,29 +3668,22 @@ final class ShowMessageParams {
         message: json['message'] as String,
       );
 
-  final MessageType type;
-
-  final String message;
-
-  ShowMessageParams copyWith({MessageType? type, String? message}) =>
-      ShowMessageParams(
-        type: type ?? this.type,
-        message: message ?? this.message,
-      );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'type': type.value, 'message': message};
   }
 }
 
-final class ShowMessageRequestParams {
-  const ShowMessageRequestParams({
-    required this.type,
-    required this.message,
-    this.actions,
-  });
+@freezed
+abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
+  const ShowMessageRequestParams._();
 
-  factory ShowMessageRequestParams.fromJson(Map<String, Object?> json) =>
+  const factory ShowMessageRequestParams({
+    required MessageType type,
+    required String message,
+    List<MessageActionItem>? actions,
+  }) = _ShowMessageRequestParams;
+
+  static ShowMessageRequestParams fromJson(Map<String, Object?> json) =>
       ShowMessageRequestParams(
         type: MessageType.values.firstWhere(
           (e) => e.value == json['type'] as int,
@@ -4852,22 +3694,6 @@ final class ShowMessageRequestParams {
             .toList(),
       );
 
-  final MessageType type;
-
-  final String message;
-
-  final List<MessageActionItem>? actions;
-
-  ShowMessageRequestParams copyWith({
-    MessageType? type,
-    String? message,
-    List<MessageActionItem>? actions,
-  }) => ShowMessageRequestParams(
-    type: type ?? this.type,
-    message: message ?? this.message,
-    actions: actions ?? this.actions,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'type': type.value,
@@ -4877,16 +3703,14 @@ final class ShowMessageRequestParams {
   }
 }
 
-final class MessageActionItem {
-  const MessageActionItem({required this.title});
+@freezed
+abstract class MessageActionItem with _$MessageActionItem {
+  const MessageActionItem._();
 
-  factory MessageActionItem.fromJson(Map<String, Object?> json) =>
+  const factory MessageActionItem({required String title}) = _MessageActionItem;
+
+  static MessageActionItem fromJson(Map<String, Object?> json) =>
       MessageActionItem(title: json['title'] as String);
-
-  final String title;
-
-  MessageActionItem copyWith({String? title}) =>
-      MessageActionItem(title: title ?? this.title);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'title': title};
@@ -4894,25 +3718,21 @@ final class MessageActionItem {
 }
 
 /// The log message parameters.
-final class LogMessageParams {
-  const LogMessageParams({required this.type, required this.message});
+@freezed
+abstract class LogMessageParams with _$LogMessageParams {
+  const LogMessageParams._();
 
-  factory LogMessageParams.fromJson(Map<String, Object?> json) =>
+  const factory LogMessageParams({
+    required MessageType type,
+    required String message,
+  }) = _LogMessageParams;
+
+  static LogMessageParams fromJson(Map<String, Object?> json) =>
       LogMessageParams(
         type: MessageType.values.firstWhere(
           (e) => e.value == json['type'] as int,
         ),
         message: json['message'] as String,
-      );
-
-  final MessageType type;
-
-  final String message;
-
-  LogMessageParams copyWith({MessageType? type, String? message}) =>
-      LogMessageParams(
-        type: type ?? this.type,
-        message: message ?? this.message,
       );
 
   Map<String, Object?> toJson() {
@@ -4921,21 +3741,19 @@ final class LogMessageParams {
 }
 
 /// The parameters sent in an open text document notification
-final class DidOpenTextDocumentParams {
-  const DidOpenTextDocumentParams({required this.textDocument});
+@freezed
+abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
+  const DidOpenTextDocumentParams._();
 
-  factory DidOpenTextDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory DidOpenTextDocumentParams({
+    required TextDocumentItem textDocument,
+  }) = _DidOpenTextDocumentParams;
+
+  static DidOpenTextDocumentParams fromJson(Map<String, Object?> json) =>
       DidOpenTextDocumentParams(
         textDocument: TextDocumentItem.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
-      );
-
-  final TextDocumentItem textDocument;
-
-  DidOpenTextDocumentParams copyWith({TextDocumentItem? textDocument}) =>
-      DidOpenTextDocumentParams(
-        textDocument: textDocument ?? this.textDocument,
       );
 
   Map<String, Object?> toJson() {
@@ -4944,13 +3762,16 @@ final class DidOpenTextDocumentParams {
 }
 
 /// The change text document notification's parameters.
-final class DidChangeTextDocumentParams {
-  const DidChangeTextDocumentParams({
-    required this.textDocument,
-    required this.contentChanges,
-  });
+@freezed
+abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
+  const DidChangeTextDocumentParams._();
 
-  factory DidChangeTextDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory DidChangeTextDocumentParams({
+    required VersionedTextDocumentIdentifier textDocument,
+    required List<TextDocumentContentChangeEvent> contentChanges,
+  }) = _DidChangeTextDocumentParams;
+
+  static DidChangeTextDocumentParams fromJson(Map<String, Object?> json) =>
       DidChangeTextDocumentParams(
         textDocument: VersionedTextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -4959,18 +3780,6 @@ final class DidChangeTextDocumentParams {
             .map((e) => e as TextDocumentContentChangeEvent)
             .toList(),
       );
-
-  final VersionedTextDocumentIdentifier textDocument;
-
-  final List<TextDocumentContentChangeEvent> contentChanges;
-
-  DidChangeTextDocumentParams copyWith({
-    VersionedTextDocumentIdentifier? textDocument,
-    List<TextDocumentContentChangeEvent>? contentChanges,
-  }) => DidChangeTextDocumentParams(
-    textDocument: textDocument ?? this.textDocument,
-    contentChanges: contentChanges ?? this.contentChanges,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -4981,31 +3790,23 @@ final class DidChangeTextDocumentParams {
 }
 
 /// Describe options to be used when registered for text document change events.
-final class TextDocumentChangeRegistrationOptions {
-  const TextDocumentChangeRegistrationOptions({
-    required this.documentSelector,
-    required this.syncKind,
-  });
+@freezed
+abstract class TextDocumentChangeRegistrationOptions
+    with _$TextDocumentChangeRegistrationOptions {
+  const TextDocumentChangeRegistrationOptions._();
 
-  factory TextDocumentChangeRegistrationOptions.fromJson(
+  const factory TextDocumentChangeRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    required TextDocumentSyncKind syncKind,
+  }) = _TextDocumentChangeRegistrationOptions;
+
+  static TextDocumentChangeRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => TextDocumentChangeRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
     syncKind: TextDocumentSyncKind.values.firstWhere(
       (e) => e.value == json['syncKind'] as int,
     ),
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final TextDocumentSyncKind syncKind;
-
-  TextDocumentChangeRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    TextDocumentSyncKind? syncKind,
-  }) => TextDocumentChangeRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    syncKind: syncKind ?? this.syncKind,
   );
 
   Map<String, Object?> toJson() {
@@ -5017,21 +3818,19 @@ final class TextDocumentChangeRegistrationOptions {
 }
 
 /// The parameters sent in a close text document notification
-final class DidCloseTextDocumentParams {
-  const DidCloseTextDocumentParams({required this.textDocument});
+@freezed
+abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
+  const DidCloseTextDocumentParams._();
 
-  factory DidCloseTextDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory DidCloseTextDocumentParams({
+    required TextDocumentIdentifier textDocument,
+  }) = _DidCloseTextDocumentParams;
+
+  static DidCloseTextDocumentParams fromJson(Map<String, Object?> json) =>
       DidCloseTextDocumentParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
-      );
-
-  final TextDocumentIdentifier textDocument;
-
-  DidCloseTextDocumentParams copyWith({TextDocumentIdentifier? textDocument}) =>
-      DidCloseTextDocumentParams(
-        textDocument: textDocument ?? this.textDocument,
       );
 
   Map<String, Object?> toJson() {
@@ -5040,28 +3839,22 @@ final class DidCloseTextDocumentParams {
 }
 
 /// The parameters sent in a save text document notification
-final class DidSaveTextDocumentParams {
-  const DidSaveTextDocumentParams({required this.textDocument, this.text});
+@freezed
+abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
+  const DidSaveTextDocumentParams._();
 
-  factory DidSaveTextDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory DidSaveTextDocumentParams({
+    required TextDocumentIdentifier textDocument,
+    String? text,
+  }) = _DidSaveTextDocumentParams;
+
+  static DidSaveTextDocumentParams fromJson(Map<String, Object?> json) =>
       DidSaveTextDocumentParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
         text: json['text'] as String?,
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final String? text;
-
-  DidSaveTextDocumentParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    String? text,
-  }) => DidSaveTextDocumentParams(
-    textDocument: textDocument ?? this.textDocument,
-    text: text ?? this.text,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -5072,29 +3865,21 @@ final class DidSaveTextDocumentParams {
 }
 
 /// Save registration options.
-final class TextDocumentSaveRegistrationOptions {
-  const TextDocumentSaveRegistrationOptions({
-    required this.documentSelector,
-    this.includeText,
-  });
+@freezed
+abstract class TextDocumentSaveRegistrationOptions
+    with _$TextDocumentSaveRegistrationOptions {
+  const TextDocumentSaveRegistrationOptions._();
 
-  factory TextDocumentSaveRegistrationOptions.fromJson(
+  const factory TextDocumentSaveRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? includeText,
+  }) = _TextDocumentSaveRegistrationOptions;
+
+  static TextDocumentSaveRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => TextDocumentSaveRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
     includeText: json['includeText'] as bool?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? includeText;
-
-  TextDocumentSaveRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? includeText,
-  }) => TextDocumentSaveRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    includeText: includeText ?? this.includeText,
   );
 
   Map<String, Object?> toJson() {
@@ -5106,13 +3891,16 @@ final class TextDocumentSaveRegistrationOptions {
 }
 
 /// The parameters sent in a will save text document notification.
-final class WillSaveTextDocumentParams {
-  const WillSaveTextDocumentParams({
-    required this.textDocument,
-    required this.reason,
-  });
+@freezed
+abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
+  const WillSaveTextDocumentParams._();
 
-  factory WillSaveTextDocumentParams.fromJson(Map<String, Object?> json) =>
+  const factory WillSaveTextDocumentParams({
+    required TextDocumentIdentifier textDocument,
+    required TextDocumentSaveReason reason,
+  }) = _WillSaveTextDocumentParams;
+
+  static WillSaveTextDocumentParams fromJson(Map<String, Object?> json) =>
       WillSaveTextDocumentParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -5121,18 +3909,6 @@ final class WillSaveTextDocumentParams {
           (e) => e.value == json['reason'] as int,
         ),
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final TextDocumentSaveReason reason;
-
-  WillSaveTextDocumentParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    TextDocumentSaveReason? reason,
-  }) => WillSaveTextDocumentParams(
-    textDocument: textDocument ?? this.textDocument,
-    reason: reason ?? this.reason,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -5143,20 +3919,17 @@ final class WillSaveTextDocumentParams {
 }
 
 /// A text edit applicable to a text document.
-final class TextEdit {
-  const TextEdit({required this.range, required this.newText});
+@freezed
+abstract class TextEdit with _$TextEdit {
+  const TextEdit._();
 
-  factory TextEdit.fromJson(Map<String, Object?> json) => TextEdit(
+  const factory TextEdit({required Range range, required String newText}) =
+      _TextEdit;
+
+  static TextEdit fromJson(Map<String, Object?> json) => TextEdit(
     range: Range.fromJson(json['range'] as Map<String, Object?>),
     newText: json['newText'] as String,
   );
-
-  final Range range;
-
-  final String newText;
-
-  TextEdit copyWith({Range? range, String? newText}) =>
-      TextEdit(range: range ?? this.range, newText: newText ?? this.newText);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'range': range.toJson(), 'newText': newText};
@@ -5164,20 +3937,20 @@ final class TextEdit {
 }
 
 /// The watched files change notification's parameters.
-final class DidChangeWatchedFilesParams {
-  const DidChangeWatchedFilesParams({required this.changes});
+@freezed
+abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
+  const DidChangeWatchedFilesParams._();
 
-  factory DidChangeWatchedFilesParams.fromJson(Map<String, Object?> json) =>
+  const factory DidChangeWatchedFilesParams({
+    required List<FileEvent> changes,
+  }) = _DidChangeWatchedFilesParams;
+
+  static DidChangeWatchedFilesParams fromJson(Map<String, Object?> json) =>
       DidChangeWatchedFilesParams(
         changes: (json['changes'] as List<Object?>)
             .map((e) => FileEvent.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final List<FileEvent> changes;
-
-  DidChangeWatchedFilesParams copyWith({List<FileEvent>? changes}) =>
-      DidChangeWatchedFilesParams(changes: changes ?? this.changes);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -5187,23 +3960,21 @@ final class DidChangeWatchedFilesParams {
 }
 
 /// Describe options to be used when registered for text document change events.
-final class DidChangeWatchedFilesRegistrationOptions {
-  const DidChangeWatchedFilesRegistrationOptions({required this.watchers});
+@freezed
+abstract class DidChangeWatchedFilesRegistrationOptions
+    with _$DidChangeWatchedFilesRegistrationOptions {
+  const DidChangeWatchedFilesRegistrationOptions._();
 
-  factory DidChangeWatchedFilesRegistrationOptions.fromJson(
+  const factory DidChangeWatchedFilesRegistrationOptions({
+    required List<FileSystemWatcher> watchers,
+  }) = _DidChangeWatchedFilesRegistrationOptions;
+
+  static DidChangeWatchedFilesRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => DidChangeWatchedFilesRegistrationOptions(
     watchers: (json['watchers'] as List<Object?>)
         .map((e) => FileSystemWatcher.fromJson(e as Map<String, Object?>))
         .toList(),
-  );
-
-  final List<FileSystemWatcher> watchers;
-
-  DidChangeWatchedFilesRegistrationOptions copyWith({
-    List<FileSystemWatcher>? watchers,
-  }) => DidChangeWatchedFilesRegistrationOptions(
-    watchers: watchers ?? this.watchers,
   );
 
   Map<String, Object?> toJson() {
@@ -5214,14 +3985,17 @@ final class DidChangeWatchedFilesRegistrationOptions {
 }
 
 /// The publish diagnostic notification's parameters.
-final class PublishDiagnosticsParams {
-  const PublishDiagnosticsParams({
-    required this.uri,
-    this.version,
-    required this.diagnostics,
-  });
+@freezed
+abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
+  const PublishDiagnosticsParams._();
 
-  factory PublishDiagnosticsParams.fromJson(Map<String, Object?> json) =>
+  const factory PublishDiagnosticsParams({
+    required String uri,
+    int? version,
+    required List<Diagnostic> diagnostics,
+  }) = _PublishDiagnosticsParams;
+
+  static PublishDiagnosticsParams fromJson(Map<String, Object?> json) =>
       PublishDiagnosticsParams(
         uri: json['uri'] as String,
         version: json['version'] as int?,
@@ -5229,22 +4003,6 @@ final class PublishDiagnosticsParams {
             .map((e) => Diagnostic.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final String uri;
-
-  final int? version;
-
-  final List<Diagnostic> diagnostics;
-
-  PublishDiagnosticsParams copyWith({
-    String? uri,
-    int? version,
-    List<Diagnostic>? diagnostics,
-  }) => PublishDiagnosticsParams(
-    uri: uri ?? this.uri,
-    version: version ?? this.version,
-    diagnostics: diagnostics ?? this.diagnostics,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -5256,16 +4014,19 @@ final class PublishDiagnosticsParams {
 }
 
 /// Completion parameters
-final class CompletionParams {
-  const CompletionParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    this.partialResultToken,
-    this.context,
-  });
+@freezed
+abstract class CompletionParams with _$CompletionParams {
+  const CompletionParams._();
 
-  factory CompletionParams.fromJson(Map<String, Object?> json) =>
+  const factory CompletionParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    CompletionContext? context,
+  }) = _CompletionParams;
+
+  static CompletionParams fromJson(Map<String, Object?> json) =>
       CompletionParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -5284,30 +4045,6 @@ final class CompletionParams {
               ),
       );
 
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final CompletionContext? context;
-
-  CompletionParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    CompletionContext? context,
-  }) => CompletionParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    context: context ?? this.context,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
@@ -5321,30 +4058,33 @@ final class CompletionParams {
 
 /// A completion item represents a text snippet that is
 /// proposed to complete text that is being typed.
-final class CompletionItem {
-  const CompletionItem({
-    required this.label,
-    this.labelDetails,
-    this.kind,
-    this.tags,
-    this.detail,
-    this.documentation,
-    this.deprecated,
-    this.preselect,
-    this.sortText,
-    this.filterText,
-    this.insertText,
-    this.insertTextFormat,
-    this.insertTextMode,
-    this.textEdit,
-    this.textEditText,
-    this.additionalTextEdits,
-    this.commitCharacters,
-    this.command,
-    this.data,
-  });
+@freezed
+abstract class CompletionItem with _$CompletionItem {
+  const CompletionItem._();
 
-  factory CompletionItem.fromJson(Map<String, Object?> json) => CompletionItem(
+  const factory CompletionItem({
+    required String label,
+    CompletionItemLabelDetails? labelDetails,
+    CompletionItemKind? kind,
+    List<CompletionItemTag>? tags,
+    String? detail,
+    Object? documentation,
+    bool? deprecated,
+    bool? preselect,
+    String? sortText,
+    String? filterText,
+    String? insertText,
+    InsertTextFormat? insertTextFormat,
+    InsertTextMode? insertTextMode,
+    Object? textEdit,
+    String? textEditText,
+    List<TextEdit>? additionalTextEdits,
+    List<String>? commitCharacters,
+    Command? command,
+    LSPAny? data,
+  }) = _CompletionItem;
+
+  static CompletionItem fromJson(Map<String, Object?> json) => CompletionItem(
     label: json['label'] as String,
     labelDetails: json['labelDetails'] == null
         ? null
@@ -5390,86 +4130,6 @@ final class CompletionItem {
     data: json['data'],
   );
 
-  final String label;
-
-  final CompletionItemLabelDetails? labelDetails;
-
-  final CompletionItemKind? kind;
-
-  final List<CompletionItemTag>? tags;
-
-  final String? detail;
-
-  final Object? documentation;
-
-  final bool? deprecated;
-
-  final bool? preselect;
-
-  final String? sortText;
-
-  final String? filterText;
-
-  final String? insertText;
-
-  final InsertTextFormat? insertTextFormat;
-
-  final InsertTextMode? insertTextMode;
-
-  final Object? textEdit;
-
-  final String? textEditText;
-
-  final List<TextEdit>? additionalTextEdits;
-
-  final List<String>? commitCharacters;
-
-  final Command? command;
-
-  final LSPAny? data;
-
-  CompletionItem copyWith({
-    String? label,
-    CompletionItemLabelDetails? labelDetails,
-    CompletionItemKind? kind,
-    List<CompletionItemTag>? tags,
-    String? detail,
-    Object? documentation,
-    bool? deprecated,
-    bool? preselect,
-    String? sortText,
-    String? filterText,
-    String? insertText,
-    InsertTextFormat? insertTextFormat,
-    InsertTextMode? insertTextMode,
-    Object? textEdit,
-    String? textEditText,
-    List<TextEdit>? additionalTextEdits,
-    List<String>? commitCharacters,
-    Command? command,
-    LSPAny? data,
-  }) => CompletionItem(
-    label: label ?? this.label,
-    labelDetails: labelDetails ?? this.labelDetails,
-    kind: kind ?? this.kind,
-    tags: tags ?? this.tags,
-    detail: detail ?? this.detail,
-    documentation: documentation ?? this.documentation,
-    deprecated: deprecated ?? this.deprecated,
-    preselect: preselect ?? this.preselect,
-    sortText: sortText ?? this.sortText,
-    filterText: filterText ?? this.filterText,
-    insertText: insertText ?? this.insertText,
-    insertTextFormat: insertTextFormat ?? this.insertTextFormat,
-    insertTextMode: insertTextMode ?? this.insertTextMode,
-    textEdit: textEdit ?? this.textEdit,
-    textEditText: textEditText ?? this.textEditText,
-    additionalTextEdits: additionalTextEdits ?? this.additionalTextEdits,
-    commitCharacters: commitCharacters ?? this.commitCharacters,
-    command: command ?? this.command,
-    data: data ?? this.data,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'label': label,
@@ -5499,14 +4159,17 @@ final class CompletionItem {
 
 /// Represents a collection of {@link CompletionItem completion items} to be presented
 /// in the editor.
-final class CompletionList {
-  const CompletionList({
-    required this.isIncomplete,
-    this.itemDefaults,
-    required this.items,
-  });
+@freezed
+abstract class CompletionList with _$CompletionList {
+  const CompletionList._();
 
-  factory CompletionList.fromJson(Map<String, Object?> json) => CompletionList(
+  const factory CompletionList({
+    required bool isIncomplete,
+    CompletionListItemDefaults? itemDefaults,
+    required List<CompletionItem> items,
+  }) = _CompletionList;
+
+  static CompletionList fromJson(Map<String, Object?> json) => CompletionList(
     isIncomplete: json['isIncomplete'] as bool,
     itemDefaults: json['itemDefaults'] == null
         ? null
@@ -5516,22 +4179,6 @@ final class CompletionList {
     items: (json['items'] as List<Object?>)
         .map((e) => CompletionItem.fromJson(e as Map<String, Object?>))
         .toList(),
-  );
-
-  final bool isIncomplete;
-
-  final CompletionListItemDefaults? itemDefaults;
-
-  final List<CompletionItem> items;
-
-  CompletionList copyWith({
-    bool? isIncomplete,
-    CompletionListItemDefaults? itemDefaults,
-    List<CompletionItem>? items,
-  }) => CompletionList(
-    isIncomplete: isIncomplete ?? this.isIncomplete,
-    itemDefaults: itemDefaults ?? this.itemDefaults,
-    items: items ?? this.items,
   );
 
   Map<String, Object?> toJson() {
@@ -5544,17 +4191,21 @@ final class CompletionList {
 }
 
 /// Registration options for a {@link CompletionRequest}.
-final class CompletionRegistrationOptions {
-  const CompletionRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.triggerCharacters,
-    this.allCommitCharacters,
-    this.resolveProvider,
-    this.completionItem,
-  });
+@freezed
+abstract class CompletionRegistrationOptions
+    with _$CompletionRegistrationOptions {
+  const CompletionRegistrationOptions._();
 
-  factory CompletionRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory CompletionRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    List<String>? triggerCharacters,
+    List<String>? allCommitCharacters,
+    bool? resolveProvider,
+    CompletionOptionsCompletionItem? completionItem,
+  }) = _CompletionRegistrationOptions;
+
+  static CompletionRegistrationOptions fromJson(Map<String, Object?> json) =>
       CompletionRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
@@ -5572,34 +4223,6 @@ final class CompletionRegistrationOptions {
               ),
       );
 
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final List<String>? triggerCharacters;
-
-  final List<String>? allCommitCharacters;
-
-  final bool? resolveProvider;
-
-  final CompletionOptionsCompletionItem? completionItem;
-
-  CompletionRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    List<String>? triggerCharacters,
-    List<String>? allCommitCharacters,
-    bool? resolveProvider,
-    CompletionOptionsCompletionItem? completionItem,
-  }) => CompletionRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    triggerCharacters: triggerCharacters ?? this.triggerCharacters,
-    allCommitCharacters: allCommitCharacters ?? this.allCommitCharacters,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
-    completionItem: completionItem ?? this.completionItem,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'documentSelector': documentSelector,
@@ -5613,14 +4236,17 @@ final class CompletionRegistrationOptions {
 }
 
 /// Parameters for a {@link HoverRequest}.
-final class HoverParams {
-  const HoverParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-  });
+@freezed
+abstract class HoverParams with _$HoverParams {
+  const HoverParams._();
 
-  factory HoverParams.fromJson(Map<String, Object?> json) => HoverParams(
+  const factory HoverParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+  }) = _HoverParams;
+
+  static HoverParams fromJson(Map<String, Object?> json) => HoverParams(
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, Object?>,
     ),
@@ -5628,22 +4254,6 @@ final class HoverParams {
     workDoneToken: json['workDoneToken'] == null
         ? null
         : ProgressToken.fromJson(json['workDoneToken']),
-  );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  HoverParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-  }) => HoverParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
   );
 
   Map<String, Object?> toJson() {
@@ -5656,22 +4266,18 @@ final class HoverParams {
 }
 
 /// The result of a hover request.
-final class Hover {
-  const Hover({required this.contents, this.range});
+@freezed
+abstract class Hover with _$Hover {
+  const Hover._();
 
-  factory Hover.fromJson(Map<String, Object?> json) => Hover(
+  const factory Hover({required Object contents, Range? range}) = _Hover;
+
+  static Hover fromJson(Map<String, Object?> json) => Hover(
     contents: json['contents'] as Object,
     range: json['range'] == null
         ? null
         : Range.fromJson(json['range'] as Map<String, Object?>),
   );
-
-  final Object contents;
-
-  final Range? range;
-
-  Hover copyWith({Object? contents, Range? range}) =>
-      Hover(contents: contents ?? this.contents, range: range ?? this.range);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'contents': contents, 'range': range?.toJson()};
@@ -5679,29 +4285,20 @@ final class Hover {
 }
 
 /// Registration options for a {@link HoverRequest}.
-final class HoverRegistrationOptions {
-  const HoverRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-  });
+@freezed
+abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
+  const HoverRegistrationOptions._();
 
-  factory HoverRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory HoverRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+  }) = _HoverRegistrationOptions;
+
+  static HoverRegistrationOptions fromJson(Map<String, Object?> json) =>
       HoverRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  HoverRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-  }) => HoverRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -5712,15 +4309,18 @@ final class HoverRegistrationOptions {
 }
 
 /// Parameters for a {@link SignatureHelpRequest}.
-final class SignatureHelpParams {
-  const SignatureHelpParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    this.context,
-  });
+@freezed
+abstract class SignatureHelpParams with _$SignatureHelpParams {
+  const SignatureHelpParams._();
 
-  factory SignatureHelpParams.fromJson(Map<String, Object?> json) =>
+  const factory SignatureHelpParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+    SignatureHelpContext? context,
+  }) = _SignatureHelpParams;
+
+  static SignatureHelpParams fromJson(Map<String, Object?> json) =>
       SignatureHelpParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -5736,26 +4336,6 @@ final class SignatureHelpParams {
               ),
       );
 
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final SignatureHelpContext? context;
-
-  SignatureHelpParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-    SignatureHelpContext? context,
-  }) => SignatureHelpParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    context: context ?? this.context,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
@@ -5769,35 +4349,22 @@ final class SignatureHelpParams {
 /// Signature help represents the signature of something
 /// callable. There can be multiple signature but only one
 /// active and only one active parameter.
-final class SignatureHelp {
-  const SignatureHelp({
-    required this.signatures,
-    this.activeSignature,
-    this.activeParameter,
-  });
+@freezed
+abstract class SignatureHelp with _$SignatureHelp {
+  const SignatureHelp._();
 
-  factory SignatureHelp.fromJson(Map<String, Object?> json) => SignatureHelp(
+  const factory SignatureHelp({
+    required List<SignatureInformation> signatures,
+    int? activeSignature,
+    int? activeParameter,
+  }) = _SignatureHelp;
+
+  static SignatureHelp fromJson(Map<String, Object?> json) => SignatureHelp(
     signatures: (json['signatures'] as List<Object?>)
         .map((e) => SignatureInformation.fromJson(e as Map<String, Object?>))
         .toList(),
     activeSignature: json['activeSignature'] as int?,
     activeParameter: json['activeParameter'] as int?,
-  );
-
-  final List<SignatureInformation> signatures;
-
-  final int? activeSignature;
-
-  final int? activeParameter;
-
-  SignatureHelp copyWith({
-    List<SignatureInformation>? signatures,
-    int? activeSignature,
-    int? activeParameter,
-  }) => SignatureHelp(
-    signatures: signatures ?? this.signatures,
-    activeSignature: activeSignature ?? this.activeSignature,
-    activeParameter: activeParameter ?? this.activeParameter,
   );
 
   Map<String, Object?> toJson() {
@@ -5810,46 +4377,29 @@ final class SignatureHelp {
 }
 
 /// Registration options for a {@link SignatureHelpRequest}.
-final class SignatureHelpRegistrationOptions {
-  const SignatureHelpRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.triggerCharacters,
-    this.retriggerCharacters,
-  });
+@freezed
+abstract class SignatureHelpRegistrationOptions
+    with _$SignatureHelpRegistrationOptions {
+  const SignatureHelpRegistrationOptions._();
 
-  factory SignatureHelpRegistrationOptions.fromJson(
-    Map<String, Object?> json,
-  ) => SignatureHelpRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    triggerCharacters: (json['triggerCharacters'] as List<Object?>?)
-        ?.map((e) => e as String)
-        .toList(),
-    retriggerCharacters: (json['retriggerCharacters'] as List<Object?>?)
-        ?.map((e) => e as String)
-        .toList(),
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final List<String>? triggerCharacters;
-
-  final List<String>? retriggerCharacters;
-
-  SignatureHelpRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
+  const factory SignatureHelpRegistrationOptions({
+    required DocumentSelector? documentSelector,
     bool? workDoneProgress,
     List<String>? triggerCharacters,
     List<String>? retriggerCharacters,
-  }) => SignatureHelpRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    triggerCharacters: triggerCharacters ?? this.triggerCharacters,
-    retriggerCharacters: retriggerCharacters ?? this.retriggerCharacters,
-  );
+  }) = _SignatureHelpRegistrationOptions;
+
+  static SignatureHelpRegistrationOptions fromJson(Map<String, Object?> json) =>
+      SignatureHelpRegistrationOptions(
+        documentSelector: json['documentSelector'] as DocumentSelector?,
+        workDoneProgress: json['workDoneProgress'] as bool?,
+        triggerCharacters: (json['triggerCharacters'] as List<Object?>?)
+            ?.map((e) => e as String)
+            .toList(),
+        retriggerCharacters: (json['retriggerCharacters'] as List<Object?>?)
+            ?.map((e) => e as String)
+            .toList(),
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -5862,15 +4412,18 @@ final class SignatureHelpRegistrationOptions {
 }
 
 /// Parameters for a {@link DefinitionRequest}.
-final class DefinitionParams {
-  const DefinitionParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    this.partialResultToken,
-  });
+@freezed
+abstract class DefinitionParams with _$DefinitionParams {
+  const DefinitionParams._();
 
-  factory DefinitionParams.fromJson(Map<String, Object?> json) =>
+  const factory DefinitionParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+  }) = _DefinitionParams;
+
+  static DefinitionParams fromJson(Map<String, Object?> json) =>
       DefinitionParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -5884,26 +4437,6 @@ final class DefinitionParams {
             : ProgressToken.fromJson(json['partialResultToken']),
       );
 
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  DefinitionParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-  }) => DefinitionParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
@@ -5915,29 +4448,21 @@ final class DefinitionParams {
 }
 
 /// Registration options for a {@link DefinitionRequest}.
-final class DefinitionRegistrationOptions {
-  const DefinitionRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-  });
+@freezed
+abstract class DefinitionRegistrationOptions
+    with _$DefinitionRegistrationOptions {
+  const DefinitionRegistrationOptions._();
 
-  factory DefinitionRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory DefinitionRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+  }) = _DefinitionRegistrationOptions;
+
+  static DefinitionRegistrationOptions fromJson(Map<String, Object?> json) =>
       DefinitionRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  DefinitionRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-  }) => DefinitionRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -5948,54 +4473,30 @@ final class DefinitionRegistrationOptions {
 }
 
 /// Parameters for a {@link ReferencesRequest}.
-final class ReferenceParams {
-  const ReferenceParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.context,
-  });
+@freezed
+abstract class ReferenceParams with _$ReferenceParams {
+  const ReferenceParams._();
 
-  factory ReferenceParams.fromJson(Map<String, Object?> json) =>
-      ReferenceParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        context: ReferenceContext.fromJson(
-          json['context'] as Map<String, Object?>,
-        ),
-      );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final ReferenceContext context;
-
-  ReferenceParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
+  const factory ReferenceParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
     ProgressToken? workDoneToken,
     ProgressToken? partialResultToken,
-    ReferenceContext? context,
-  }) => ReferenceParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    context: context ?? this.context,
+    required ReferenceContext context,
+  }) = _ReferenceParams;
+
+  static ReferenceParams fromJson(Map<String, Object?> json) => ReferenceParams(
+    textDocument: TextDocumentIdentifier.fromJson(
+      json['textDocument'] as Map<String, Object?>,
+    ),
+    position: Position.fromJson(json['position'] as Map<String, Object?>),
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['workDoneToken']),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['partialResultToken']),
+    context: ReferenceContext.fromJson(json['context'] as Map<String, Object?>),
   );
 
   Map<String, Object?> toJson() {
@@ -6010,29 +4511,21 @@ final class ReferenceParams {
 }
 
 /// Registration options for a {@link ReferencesRequest}.
-final class ReferenceRegistrationOptions {
-  const ReferenceRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-  });
+@freezed
+abstract class ReferenceRegistrationOptions
+    with _$ReferenceRegistrationOptions {
+  const ReferenceRegistrationOptions._();
 
-  factory ReferenceRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory ReferenceRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+  }) = _ReferenceRegistrationOptions;
+
+  static ReferenceRegistrationOptions fromJson(Map<String, Object?> json) =>
       ReferenceRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  ReferenceRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-  }) => ReferenceRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -6043,15 +4536,18 @@ final class ReferenceRegistrationOptions {
 }
 
 /// Parameters for a {@link DocumentHighlightRequest}.
-final class DocumentHighlightParams {
-  const DocumentHighlightParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-    this.partialResultToken,
-  });
+@freezed
+abstract class DocumentHighlightParams with _$DocumentHighlightParams {
+  const DocumentHighlightParams._();
 
-  factory DocumentHighlightParams.fromJson(Map<String, Object?> json) =>
+  const factory DocumentHighlightParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+  }) = _DocumentHighlightParams;
+
+  static DocumentHighlightParams fromJson(Map<String, Object?> json) =>
       DocumentHighlightParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -6064,26 +4560,6 @@ final class DocumentHighlightParams {
             ? null
             : ProgressToken.fromJson(json['partialResultToken']),
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  DocumentHighlightParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-  }) => DocumentHighlightParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -6098,10 +4574,16 @@ final class DocumentHighlightParams {
 /// A document highlight is a range inside a text document which deserves
 /// special attention. Usually a document highlight is visualized by changing
 /// the background color of its range.
-final class DocumentHighlight {
-  const DocumentHighlight({required this.range, this.kind});
+@freezed
+abstract class DocumentHighlight with _$DocumentHighlight {
+  const DocumentHighlight._();
 
-  factory DocumentHighlight.fromJson(Map<String, Object?> json) =>
+  const factory DocumentHighlight({
+    required Range range,
+    DocumentHighlightKind? kind,
+  }) = _DocumentHighlight;
+
+  static DocumentHighlight fromJson(Map<String, Object?> json) =>
       DocumentHighlight(
         range: Range.fromJson(json['range'] as Map<String, Object?>),
         kind: json['kind'] == null
@@ -6111,42 +4593,27 @@ final class DocumentHighlight {
               ),
       );
 
-  final Range range;
-
-  final DocumentHighlightKind? kind;
-
-  DocumentHighlight copyWith({Range? range, DocumentHighlightKind? kind}) =>
-      DocumentHighlight(range: range ?? this.range, kind: kind ?? this.kind);
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'range': range.toJson(), 'kind': kind?.value};
   }
 }
 
 /// Registration options for a {@link DocumentHighlightRequest}.
-final class DocumentHighlightRegistrationOptions {
-  const DocumentHighlightRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-  });
+@freezed
+abstract class DocumentHighlightRegistrationOptions
+    with _$DocumentHighlightRegistrationOptions {
+  const DocumentHighlightRegistrationOptions._();
 
-  factory DocumentHighlightRegistrationOptions.fromJson(
+  const factory DocumentHighlightRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+  }) = _DocumentHighlightRegistrationOptions;
+
+  static DocumentHighlightRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => DocumentHighlightRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
     workDoneProgress: json['workDoneProgress'] as bool?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  DocumentHighlightRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-  }) => DocumentHighlightRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
   );
 
   Map<String, Object?> toJson() {
@@ -6158,14 +4625,17 @@ final class DocumentHighlightRegistrationOptions {
 }
 
 /// Parameters for a {@link DocumentSymbolRequest}.
-final class DocumentSymbolParams {
-  const DocumentSymbolParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-  });
+@freezed
+abstract class DocumentSymbolParams with _$DocumentSymbolParams {
+  const DocumentSymbolParams._();
 
-  factory DocumentSymbolParams.fromJson(Map<String, Object?> json) =>
+  const factory DocumentSymbolParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+  }) = _DocumentSymbolParams;
+
+  static DocumentSymbolParams fromJson(Map<String, Object?> json) =>
       DocumentSymbolParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -6178,22 +4648,6 @@ final class DocumentSymbolParams {
         ),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  DocumentSymbolParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-  }) => DocumentSymbolParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -6205,17 +4659,20 @@ final class DocumentSymbolParams {
 
 /// Represents information about programming constructs like variables, classes,
 /// interfaces etc.
-final class SymbolInformation {
-  const SymbolInformation({
-    required this.name,
-    required this.kind,
-    this.tags,
-    this.containerName,
-    this.deprecated,
-    required this.location,
-  });
+@freezed
+abstract class SymbolInformation with _$SymbolInformation {
+  const SymbolInformation._();
 
-  factory SymbolInformation.fromJson(
+  const factory SymbolInformation({
+    required String name,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
+    String? containerName,
+    bool? deprecated,
+    required Location location,
+  }) = _SymbolInformation;
+
+  static SymbolInformation fromJson(
     Map<String, Object?> json,
   ) => SymbolInformation(
     name: json['name'] as String,
@@ -6224,34 +4681,6 @@ final class SymbolInformation {
     containerName: json['containerName'] as String?,
     deprecated: json['deprecated'] as bool?,
     location: Location.fromJson(json['location'] as Map<String, Object?>),
-  );
-
-  final String name;
-
-  final SymbolKind kind;
-
-  final List<SymbolTag>? tags;
-
-  final String? containerName;
-
-  final bool? deprecated;
-
-  final Location location;
-
-  SymbolInformation copyWith({
-    String? name,
-    SymbolKind? kind,
-    List<SymbolTag>? tags,
-    String? containerName,
-    bool? deprecated,
-    Location? location,
-  }) => SymbolInformation(
-    name: name ?? this.name,
-    kind: kind ?? this.kind,
-    tags: tags ?? this.tags,
-    containerName: containerName ?? this.containerName,
-    deprecated: deprecated ?? this.deprecated,
-    location: location ?? this.location,
   );
 
   Map<String, Object?> toJson() {
@@ -6270,19 +4699,22 @@ final class SymbolInformation {
 /// that appear in a document. Document symbols can be hierarchical and they
 /// have two ranges: one that encloses its definition and one that points to
 /// its most interesting range, e.g. the range of an identifier.
-final class DocumentSymbol {
-  const DocumentSymbol({
-    required this.name,
-    this.detail,
-    required this.kind,
-    this.tags,
-    this.deprecated,
-    required this.range,
-    required this.selectionRange,
-    this.children,
-  });
+@freezed
+abstract class DocumentSymbol with _$DocumentSymbol {
+  const DocumentSymbol._();
 
-  factory DocumentSymbol.fromJson(Map<String, Object?> json) => DocumentSymbol(
+  const factory DocumentSymbol({
+    required String name,
+    String? detail,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
+    bool? deprecated,
+    required Range range,
+    required Range selectionRange,
+    List<DocumentSymbol>? children,
+  }) = _DocumentSymbol;
+
+  static DocumentSymbol fromJson(Map<String, Object?> json) => DocumentSymbol(
     name: json['name'] as String,
     detail: json['detail'] as String?,
     kind: SymbolKind.values.firstWhere((e) => e.value == json['kind'] as int),
@@ -6295,42 +4727,6 @@ final class DocumentSymbol {
     children: (json['children'] as List<Object?>?)
         ?.map((e) => DocumentSymbol.fromJson(e as Map<String, Object?>))
         .toList(),
-  );
-
-  final String name;
-
-  final String? detail;
-
-  final SymbolKind kind;
-
-  final List<SymbolTag>? tags;
-
-  final bool? deprecated;
-
-  final Range range;
-
-  final Range selectionRange;
-
-  final List<DocumentSymbol>? children;
-
-  DocumentSymbol copyWith({
-    String? name,
-    String? detail,
-    SymbolKind? kind,
-    List<SymbolTag>? tags,
-    bool? deprecated,
-    Range? range,
-    Range? selectionRange,
-    List<DocumentSymbol>? children,
-  }) => DocumentSymbol(
-    name: name ?? this.name,
-    detail: detail ?? this.detail,
-    kind: kind ?? this.kind,
-    tags: tags ?? this.tags,
-    deprecated: deprecated ?? this.deprecated,
-    range: range ?? this.range,
-    selectionRange: selectionRange ?? this.selectionRange,
-    children: children ?? this.children,
   );
 
   Map<String, Object?> toJson() {
@@ -6348,35 +4744,23 @@ final class DocumentSymbol {
 }
 
 /// Registration options for a {@link DocumentSymbolRequest}.
-final class DocumentSymbolRegistrationOptions {
-  const DocumentSymbolRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.label,
-  });
+@freezed
+abstract class DocumentSymbolRegistrationOptions
+    with _$DocumentSymbolRegistrationOptions {
+  const DocumentSymbolRegistrationOptions._();
 
-  factory DocumentSymbolRegistrationOptions.fromJson(
+  const factory DocumentSymbolRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    String? label,
+  }) = _DocumentSymbolRegistrationOptions;
+
+  static DocumentSymbolRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => DocumentSymbolRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
     workDoneProgress: json['workDoneProgress'] as bool?,
     label: json['label'] as String?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final String? label;
-
-  DocumentSymbolRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    String? label,
-  }) => DocumentSymbolRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    label: label ?? this.label,
   );
 
   Map<String, Object?> toJson() {
@@ -6389,16 +4773,19 @@ final class DocumentSymbolRegistrationOptions {
 }
 
 /// The parameters of a {@link CodeActionRequest}.
-final class CodeActionParams {
-  const CodeActionParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-    required this.range,
-    required this.context,
-  });
+@freezed
+abstract class CodeActionParams with _$CodeActionParams {
+  const CodeActionParams._();
 
-  factory CodeActionParams.fromJson(Map<String, Object?> json) =>
+  const factory CodeActionParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+    required Range range,
+    required CodeActionContext context,
+  }) = _CodeActionParams;
+
+  static CodeActionParams fromJson(Map<String, Object?> json) =>
       CodeActionParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -6415,30 +4802,6 @@ final class CodeActionParams {
         ),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final Range range;
-
-  final CodeActionContext context;
-
-  CodeActionParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-    Range? range,
-    CodeActionContext? context,
-  }) => CodeActionParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-    range: range ?? this.range,
-    context: context ?? this.context,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -6454,29 +4817,23 @@ final class CodeActionParams {
 /// will be used to represent a command in the UI and, optionally,
 /// an array of arguments which will be passed to the command handler
 /// function when invoked.
-final class Command {
-  const Command({required this.title, required this.command, this.arguments});
+@freezed
+abstract class Command with _$Command {
+  const Command._();
 
-  factory Command.fromJson(Map<String, Object?> json) => Command(
+  const factory Command({
+    required String title,
+    required String command,
+    List<LSPAny>? arguments,
+  }) = _Command;
+
+  static Command fromJson(Map<String, Object?> json) => Command(
     title: json['title'] as String,
     command: json['command'] as String,
     arguments: (json['arguments'] as List<Object?>?)
         ?.map((e) => e as LSPAny)
         .toList(),
   );
-
-  final String title;
-
-  final String command;
-
-  final List<LSPAny>? arguments;
-
-  Command copyWith({String? title, String? command, List<LSPAny>? arguments}) =>
-      Command(
-        title: title ?? this.title,
-        command: command ?? this.command,
-        arguments: arguments ?? this.arguments,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -6491,19 +4848,22 @@ final class Command {
 /// to refactor code.
 ///
 /// A CodeAction must set either `edit` and/or a `command`. If both are supplied, the `edit` is applied first, then the `command` is executed.
-final class CodeAction {
-  const CodeAction({
-    required this.title,
-    this.kind,
-    this.diagnostics,
-    this.isPreferred,
-    this.disabled,
-    this.edit,
-    this.command,
-    this.data,
-  });
+@freezed
+abstract class CodeAction with _$CodeAction {
+  const CodeAction._();
 
-  factory CodeAction.fromJson(Map<String, Object?> json) => CodeAction(
+  const factory CodeAction({
+    required String title,
+    CodeActionKind? kind,
+    List<Diagnostic>? diagnostics,
+    bool? isPreferred,
+    CodeActionDisabled? disabled,
+    WorkspaceEdit? edit,
+    Command? command,
+    LSPAny? data,
+  }) = _CodeAction;
+
+  static CodeAction fromJson(Map<String, Object?> json) => CodeAction(
     title: json['title'] as String,
     kind: json['kind'] == null ? null : CodeActionKind(json['kind'] as String),
     diagnostics: (json['diagnostics'] as List<Object?>?)
@@ -6522,42 +4882,6 @@ final class CodeAction {
     data: json['data'],
   );
 
-  final String title;
-
-  final CodeActionKind? kind;
-
-  final List<Diagnostic>? diagnostics;
-
-  final bool? isPreferred;
-
-  final CodeActionDisabled? disabled;
-
-  final WorkspaceEdit? edit;
-
-  final Command? command;
-
-  final LSPAny? data;
-
-  CodeAction copyWith({
-    String? title,
-    CodeActionKind? kind,
-    List<Diagnostic>? diagnostics,
-    bool? isPreferred,
-    CodeActionDisabled? disabled,
-    WorkspaceEdit? edit,
-    Command? command,
-    LSPAny? data,
-  }) => CodeAction(
-    title: title ?? this.title,
-    kind: kind ?? this.kind,
-    diagnostics: diagnostics ?? this.diagnostics,
-    isPreferred: isPreferred ?? this.isPreferred,
-    disabled: disabled ?? this.disabled,
-    edit: edit ?? this.edit,
-    command: command ?? this.command,
-    data: data ?? this.data,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'title': title,
@@ -6573,15 +4897,19 @@ final class CodeAction {
 }
 
 /// Registration options for a {@link CodeActionRequest}.
-final class CodeActionRegistrationOptions {
-  const CodeActionRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.codeActionKinds,
-    this.resolveProvider,
-  });
+@freezed
+abstract class CodeActionRegistrationOptions
+    with _$CodeActionRegistrationOptions {
+  const CodeActionRegistrationOptions._();
 
-  factory CodeActionRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory CodeActionRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    List<CodeActionKind>? codeActionKinds,
+    bool? resolveProvider,
+  }) = _CodeActionRegistrationOptions;
+
+  static CodeActionRegistrationOptions fromJson(Map<String, Object?> json) =>
       CodeActionRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
@@ -6590,26 +4918,6 @@ final class CodeActionRegistrationOptions {
             .toList(),
         resolveProvider: json['resolveProvider'] as bool?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final List<CodeActionKind>? codeActionKinds;
-
-  final bool? resolveProvider;
-
-  CodeActionRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    List<CodeActionKind>? codeActionKinds,
-    bool? resolveProvider,
-  }) => CodeActionRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    codeActionKinds: codeActionKinds ?? this.codeActionKinds,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -6622,14 +4930,17 @@ final class CodeActionRegistrationOptions {
 }
 
 /// The parameters of a {@link WorkspaceSymbolRequest}.
-final class WorkspaceSymbolParams {
-  const WorkspaceSymbolParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.query,
-  });
+@freezed
+abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
+  const WorkspaceSymbolParams._();
 
-  factory WorkspaceSymbolParams.fromJson(Map<String, Object?> json) =>
+  const factory WorkspaceSymbolParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required String query,
+  }) = _WorkspaceSymbolParams;
+
+  static WorkspaceSymbolParams fromJson(Map<String, Object?> json) =>
       WorkspaceSymbolParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -6639,22 +4950,6 @@ final class WorkspaceSymbolParams {
             : ProgressToken.fromJson(json['partialResultToken']),
         query: json['query'] as String,
       );
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final String query;
-
-  WorkspaceSymbolParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    String? query,
-  }) => WorkspaceSymbolParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    query: query ?? this.query,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -6670,53 +4965,26 @@ final class WorkspaceSymbolParams {
 /// See also SymbolInformation.
 ///
 /// @since 3.17.0
-final class WorkspaceSymbol {
-  const WorkspaceSymbol({
-    required this.name,
-    required this.kind,
-    this.tags,
-    this.containerName,
-    required this.location,
-    this.data,
-  });
+@freezed
+abstract class WorkspaceSymbol with _$WorkspaceSymbol {
+  const WorkspaceSymbol._();
 
-  factory WorkspaceSymbol.fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceSymbol(
+  const factory WorkspaceSymbol({
+    required String name,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
+    String? containerName,
+    required Object location,
+    LSPAny? data,
+  }) = _WorkspaceSymbol;
+
+  static WorkspaceSymbol fromJson(Map<String, Object?> json) => WorkspaceSymbol(
     name: json['name'] as String,
     kind: SymbolKind.values.firstWhere((e) => e.value == json['kind'] as int),
     tags: (json['tags'] as List<Object?>?)?.map((e) => e as SymbolTag).toList(),
     containerName: json['containerName'] as String?,
     location: json['location'] as Object,
     data: json['data'],
-  );
-
-  final String name;
-
-  final SymbolKind kind;
-
-  final List<SymbolTag>? tags;
-
-  final String? containerName;
-
-  final Object location;
-
-  final LSPAny? data;
-
-  WorkspaceSymbol copyWith({
-    String? name,
-    SymbolKind? kind,
-    List<SymbolTag>? tags,
-    String? containerName,
-    Object? location,
-    LSPAny? data,
-  }) => WorkspaceSymbol(
-    name: name ?? this.name,
-    kind: kind ?? this.kind,
-    tags: tags ?? this.tags,
-    containerName: containerName ?? this.containerName,
-    location: location ?? this.location,
-    data: data ?? this.data,
   );
 
   Map<String, Object?> toJson() {
@@ -6732,29 +5000,21 @@ final class WorkspaceSymbol {
 }
 
 /// Registration options for a {@link WorkspaceSymbolRequest}.
-final class WorkspaceSymbolRegistrationOptions {
-  const WorkspaceSymbolRegistrationOptions({
-    this.workDoneProgress,
-    this.resolveProvider,
-  });
+@freezed
+abstract class WorkspaceSymbolRegistrationOptions
+    with _$WorkspaceSymbolRegistrationOptions {
+  const WorkspaceSymbolRegistrationOptions._();
 
-  factory WorkspaceSymbolRegistrationOptions.fromJson(
+  const factory WorkspaceSymbolRegistrationOptions({
+    bool? workDoneProgress,
+    bool? resolveProvider,
+  }) = _WorkspaceSymbolRegistrationOptions;
+
+  static WorkspaceSymbolRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => WorkspaceSymbolRegistrationOptions(
     workDoneProgress: json['workDoneProgress'] as bool?,
     resolveProvider: json['resolveProvider'] as bool?,
-  );
-
-  final bool? workDoneProgress;
-
-  final bool? resolveProvider;
-
-  WorkspaceSymbolRegistrationOptions copyWith({
-    bool? workDoneProgress,
-    bool? resolveProvider,
-  }) => WorkspaceSymbolRegistrationOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
   );
 
   Map<String, Object?> toJson() {
@@ -6766,14 +5026,17 @@ final class WorkspaceSymbolRegistrationOptions {
 }
 
 /// The parameters of a {@link CodeLensRequest}.
-final class CodeLensParams {
-  const CodeLensParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-  });
+@freezed
+abstract class CodeLensParams with _$CodeLensParams {
+  const CodeLensParams._();
 
-  factory CodeLensParams.fromJson(Map<String, Object?> json) => CodeLensParams(
+  const factory CodeLensParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+  }) = _CodeLensParams;
+
+  static CodeLensParams fromJson(Map<String, Object?> json) => CodeLensParams(
     workDoneToken: json['workDoneToken'] == null
         ? null
         : ProgressToken.fromJson(json['workDoneToken']),
@@ -6783,22 +5046,6 @@ final class CodeLensParams {
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, Object?>,
     ),
-  );
-
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  CodeLensParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-  }) => CodeLensParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
   );
 
   Map<String, Object?> toJson() {
@@ -6815,27 +5062,22 @@ final class CodeLensParams {
 ///
 /// A code lens is _unresolved_ when no command is associated to it. For performance
 /// reasons the creation of a code lens and resolving should be done in two stages.
-final class CodeLens {
-  const CodeLens({required this.range, this.command, this.data});
+@freezed
+abstract class CodeLens with _$CodeLens {
+  const CodeLens._();
 
-  factory CodeLens.fromJson(Map<String, Object?> json) => CodeLens(
+  const factory CodeLens({
+    required Range range,
+    Command? command,
+    LSPAny? data,
+  }) = _CodeLens;
+
+  static CodeLens fromJson(Map<String, Object?> json) => CodeLens(
     range: Range.fromJson(json['range'] as Map<String, Object?>),
     command: json['command'] == null
         ? null
         : Command.fromJson(json['command'] as Map<String, Object?>),
     data: json['data'],
-  );
-
-  final Range range;
-
-  final Command? command;
-
-  final LSPAny? data;
-
-  CodeLens copyWith({Range? range, Command? command, LSPAny? data}) => CodeLens(
-    range: range ?? this.range,
-    command: command ?? this.command,
-    data: data ?? this.data,
   );
 
   Map<String, Object?> toJson() {
@@ -6848,35 +5090,22 @@ final class CodeLens {
 }
 
 /// Registration options for a {@link CodeLensRequest}.
-final class CodeLensRegistrationOptions {
-  const CodeLensRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.resolveProvider,
-  });
+@freezed
+abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
+  const CodeLensRegistrationOptions._();
 
-  factory CodeLensRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory CodeLensRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    bool? resolveProvider,
+  }) = _CodeLensRegistrationOptions;
+
+  static CodeLensRegistrationOptions fromJson(Map<String, Object?> json) =>
       CodeLensRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
         resolveProvider: json['resolveProvider'] as bool?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final bool? resolveProvider;
-
-  CodeLensRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    bool? resolveProvider,
-  }) => CodeLensRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -6888,14 +5117,17 @@ final class CodeLensRegistrationOptions {
 }
 
 /// The parameters of a {@link DocumentLinkRequest}.
-final class DocumentLinkParams {
-  const DocumentLinkParams({
-    this.workDoneToken,
-    this.partialResultToken,
-    required this.textDocument,
-  });
+@freezed
+abstract class DocumentLinkParams with _$DocumentLinkParams {
+  const DocumentLinkParams._();
 
-  factory DocumentLinkParams.fromJson(Map<String, Object?> json) =>
+  const factory DocumentLinkParams({
+    ProgressToken? workDoneToken,
+    ProgressToken? partialResultToken,
+    required TextDocumentIdentifier textDocument,
+  }) = _DocumentLinkParams;
+
+  static DocumentLinkParams fromJson(Map<String, Object?> json) =>
       DocumentLinkParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -6908,22 +5140,6 @@ final class DocumentLinkParams {
         ),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final ProgressToken? partialResultToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  DocumentLinkParams copyWith({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
-    TextDocumentIdentifier? textDocument,
-  }) => DocumentLinkParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    partialResultToken: partialResultToken ?? this.partialResultToken,
-    textDocument: textDocument ?? this.textDocument,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -6935,39 +5151,22 @@ final class DocumentLinkParams {
 
 /// A document link is a range in a text document that links to an internal or external resource, like another
 /// text document or a web site.
-final class DocumentLink {
-  const DocumentLink({
-    required this.range,
-    this.target,
-    this.tooltip,
-    this.data,
-  });
+@freezed
+abstract class DocumentLink with _$DocumentLink {
+  const DocumentLink._();
 
-  factory DocumentLink.fromJson(Map<String, Object?> json) => DocumentLink(
+  const factory DocumentLink({
+    required Range range,
+    String? target,
+    String? tooltip,
+    LSPAny? data,
+  }) = _DocumentLink;
+
+  static DocumentLink fromJson(Map<String, Object?> json) => DocumentLink(
     range: Range.fromJson(json['range'] as Map<String, Object?>),
     target: json['target'] as String?,
     tooltip: json['tooltip'] as String?,
     data: json['data'],
-  );
-
-  final Range range;
-
-  final String? target;
-
-  final String? tooltip;
-
-  final LSPAny? data;
-
-  DocumentLink copyWith({
-    Range? range,
-    String? target,
-    String? tooltip,
-    LSPAny? data,
-  }) => DocumentLink(
-    range: range ?? this.range,
-    target: target ?? this.target,
-    tooltip: tooltip ?? this.tooltip,
-    data: data ?? this.data,
   );
 
   Map<String, Object?> toJson() {
@@ -6981,35 +5180,23 @@ final class DocumentLink {
 }
 
 /// Registration options for a {@link DocumentLinkRequest}.
-final class DocumentLinkRegistrationOptions {
-  const DocumentLinkRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.resolveProvider,
-  });
+@freezed
+abstract class DocumentLinkRegistrationOptions
+    with _$DocumentLinkRegistrationOptions {
+  const DocumentLinkRegistrationOptions._();
 
-  factory DocumentLinkRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory DocumentLinkRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    bool? resolveProvider,
+  }) = _DocumentLinkRegistrationOptions;
+
+  static DocumentLinkRegistrationOptions fromJson(Map<String, Object?> json) =>
       DocumentLinkRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
         resolveProvider: json['resolveProvider'] as bool?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final bool? resolveProvider;
-
-  DocumentLinkRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    bool? resolveProvider,
-  }) => DocumentLinkRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -7021,14 +5208,17 @@ final class DocumentLinkRegistrationOptions {
 }
 
 /// The parameters of a {@link DocumentFormattingRequest}.
-final class DocumentFormattingParams {
-  const DocumentFormattingParams({
-    this.workDoneToken,
-    required this.textDocument,
-    required this.options,
-  });
+@freezed
+abstract class DocumentFormattingParams with _$DocumentFormattingParams {
+  const DocumentFormattingParams._();
 
-  factory DocumentFormattingParams.fromJson(Map<String, Object?> json) =>
+  const factory DocumentFormattingParams({
+    ProgressToken? workDoneToken,
+    required TextDocumentIdentifier textDocument,
+    required FormattingOptions options,
+  }) = _DocumentFormattingParams;
+
+  static DocumentFormattingParams fromJson(Map<String, Object?> json) =>
       DocumentFormattingParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -7041,22 +5231,6 @@ final class DocumentFormattingParams {
         ),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final FormattingOptions options;
-
-  DocumentFormattingParams copyWith({
-    ProgressToken? workDoneToken,
-    TextDocumentIdentifier? textDocument,
-    FormattingOptions? options,
-  }) => DocumentFormattingParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    textDocument: textDocument ?? this.textDocument,
-    options: options ?? this.options,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -7067,29 +5241,21 @@ final class DocumentFormattingParams {
 }
 
 /// Registration options for a {@link DocumentFormattingRequest}.
-final class DocumentFormattingRegistrationOptions {
-  const DocumentFormattingRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-  });
+@freezed
+abstract class DocumentFormattingRegistrationOptions
+    with _$DocumentFormattingRegistrationOptions {
+  const DocumentFormattingRegistrationOptions._();
 
-  factory DocumentFormattingRegistrationOptions.fromJson(
+  const factory DocumentFormattingRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+  }) = _DocumentFormattingRegistrationOptions;
+
+  static DocumentFormattingRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => DocumentFormattingRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
     workDoneProgress: json['workDoneProgress'] as bool?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  DocumentFormattingRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-  }) => DocumentFormattingRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
   );
 
   Map<String, Object?> toJson() {
@@ -7101,15 +5267,19 @@ final class DocumentFormattingRegistrationOptions {
 }
 
 /// The parameters of a {@link DocumentRangeFormattingRequest}.
-final class DocumentRangeFormattingParams {
-  const DocumentRangeFormattingParams({
-    this.workDoneToken,
-    required this.textDocument,
-    required this.range,
-    required this.options,
-  });
+@freezed
+abstract class DocumentRangeFormattingParams
+    with _$DocumentRangeFormattingParams {
+  const DocumentRangeFormattingParams._();
 
-  factory DocumentRangeFormattingParams.fromJson(Map<String, Object?> json) =>
+  const factory DocumentRangeFormattingParams({
+    ProgressToken? workDoneToken,
+    required TextDocumentIdentifier textDocument,
+    required Range range,
+    required FormattingOptions options,
+  }) = _DocumentRangeFormattingParams;
+
+  static DocumentRangeFormattingParams fromJson(Map<String, Object?> json) =>
       DocumentRangeFormattingParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -7123,26 +5293,6 @@ final class DocumentRangeFormattingParams {
         ),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final Range range;
-
-  final FormattingOptions options;
-
-  DocumentRangeFormattingParams copyWith({
-    ProgressToken? workDoneToken,
-    TextDocumentIdentifier? textDocument,
-    Range? range,
-    FormattingOptions? options,
-  }) => DocumentRangeFormattingParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    textDocument: textDocument ?? this.textDocument,
-    range: range ?? this.range,
-    options: options ?? this.options,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -7154,35 +5304,23 @@ final class DocumentRangeFormattingParams {
 }
 
 /// Registration options for a {@link DocumentRangeFormattingRequest}.
-final class DocumentRangeFormattingRegistrationOptions {
-  const DocumentRangeFormattingRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.rangesSupport,
-  });
+@freezed
+abstract class DocumentRangeFormattingRegistrationOptions
+    with _$DocumentRangeFormattingRegistrationOptions {
+  const DocumentRangeFormattingRegistrationOptions._();
 
-  factory DocumentRangeFormattingRegistrationOptions.fromJson(
+  const factory DocumentRangeFormattingRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    bool? rangesSupport,
+  }) = _DocumentRangeFormattingRegistrationOptions;
+
+  static DocumentRangeFormattingRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => DocumentRangeFormattingRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
     workDoneProgress: json['workDoneProgress'] as bool?,
     rangesSupport: json['rangesSupport'] as bool?,
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final bool? rangesSupport;
-
-  DocumentRangeFormattingRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    bool? rangesSupport,
-  }) => DocumentRangeFormattingRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    rangesSupport: rangesSupport ?? this.rangesSupport,
   );
 
   Map<String, Object?> toJson() {
@@ -7198,15 +5336,19 @@ final class DocumentRangeFormattingRegistrationOptions {
 ///
 /// @since 3.18.0
 /// @proposed
-final class DocumentRangesFormattingParams {
-  const DocumentRangesFormattingParams({
-    this.workDoneToken,
-    required this.textDocument,
-    required this.ranges,
-    required this.options,
-  });
+@freezed
+abstract class DocumentRangesFormattingParams
+    with _$DocumentRangesFormattingParams {
+  const DocumentRangesFormattingParams._();
 
-  factory DocumentRangesFormattingParams.fromJson(Map<String, Object?> json) =>
+  const factory DocumentRangesFormattingParams({
+    ProgressToken? workDoneToken,
+    required TextDocumentIdentifier textDocument,
+    required List<Range> ranges,
+    required FormattingOptions options,
+  }) = _DocumentRangesFormattingParams;
+
+  static DocumentRangesFormattingParams fromJson(Map<String, Object?> json) =>
       DocumentRangesFormattingParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -7222,26 +5364,6 @@ final class DocumentRangesFormattingParams {
         ),
       );
 
-  final ProgressToken? workDoneToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final List<Range> ranges;
-
-  final FormattingOptions options;
-
-  DocumentRangesFormattingParams copyWith({
-    ProgressToken? workDoneToken,
-    TextDocumentIdentifier? textDocument,
-    List<Range>? ranges,
-    FormattingOptions? options,
-  }) => DocumentRangesFormattingParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    textDocument: textDocument ?? this.textDocument,
-    ranges: ranges ?? this.ranges,
-    options: options ?? this.options,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneToken': workDoneToken?.toJson(),
@@ -7253,15 +5375,19 @@ final class DocumentRangesFormattingParams {
 }
 
 /// The parameters of a {@link DocumentOnTypeFormattingRequest}.
-final class DocumentOnTypeFormattingParams {
-  const DocumentOnTypeFormattingParams({
-    required this.textDocument,
-    required this.position,
-    required this.ch,
-    required this.options,
-  });
+@freezed
+abstract class DocumentOnTypeFormattingParams
+    with _$DocumentOnTypeFormattingParams {
+  const DocumentOnTypeFormattingParams._();
 
-  factory DocumentOnTypeFormattingParams.fromJson(Map<String, Object?> json) =>
+  const factory DocumentOnTypeFormattingParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    required String ch,
+    required FormattingOptions options,
+  }) = _DocumentOnTypeFormattingParams;
+
+  static DocumentOnTypeFormattingParams fromJson(Map<String, Object?> json) =>
       DocumentOnTypeFormattingParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -7272,26 +5398,6 @@ final class DocumentOnTypeFormattingParams {
           json['options'] as Map<String, Object?>,
         ),
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final String ch;
-
-  final FormattingOptions options;
-
-  DocumentOnTypeFormattingParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    String? ch,
-    FormattingOptions? options,
-  }) => DocumentOnTypeFormattingParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    ch: ch ?? this.ch,
-    options: options ?? this.options,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -7304,14 +5410,18 @@ final class DocumentOnTypeFormattingParams {
 }
 
 /// Registration options for a {@link DocumentOnTypeFormattingRequest}.
-final class DocumentOnTypeFormattingRegistrationOptions {
-  const DocumentOnTypeFormattingRegistrationOptions({
-    required this.documentSelector,
-    required this.firstTriggerCharacter,
-    this.moreTriggerCharacter,
-  });
+@freezed
+abstract class DocumentOnTypeFormattingRegistrationOptions
+    with _$DocumentOnTypeFormattingRegistrationOptions {
+  const DocumentOnTypeFormattingRegistrationOptions._();
 
-  factory DocumentOnTypeFormattingRegistrationOptions.fromJson(
+  const factory DocumentOnTypeFormattingRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    required String firstTriggerCharacter,
+    List<String>? moreTriggerCharacter,
+  }) = _DocumentOnTypeFormattingRegistrationOptions;
+
+  static DocumentOnTypeFormattingRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => DocumentOnTypeFormattingRegistrationOptions(
     documentSelector: json['documentSelector'] as DocumentSelector?,
@@ -7319,22 +5429,6 @@ final class DocumentOnTypeFormattingRegistrationOptions {
     moreTriggerCharacter: (json['moreTriggerCharacter'] as List<Object?>?)
         ?.map((e) => e as String)
         .toList(),
-  );
-
-  final DocumentSelector? documentSelector;
-
-  final String firstTriggerCharacter;
-
-  final List<String>? moreTriggerCharacter;
-
-  DocumentOnTypeFormattingRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    String? firstTriggerCharacter,
-    List<String>? moreTriggerCharacter,
-  }) => DocumentOnTypeFormattingRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    firstTriggerCharacter: firstTriggerCharacter ?? this.firstTriggerCharacter,
-    moreTriggerCharacter: moreTriggerCharacter ?? this.moreTriggerCharacter,
   );
 
   Map<String, Object?> toJson() {
@@ -7347,15 +5441,18 @@ final class DocumentOnTypeFormattingRegistrationOptions {
 }
 
 /// The parameters of a {@link RenameRequest}.
-final class RenameParams {
-  const RenameParams({
-    this.workDoneToken,
-    required this.textDocument,
-    required this.position,
-    required this.newName,
-  });
+@freezed
+abstract class RenameParams with _$RenameParams {
+  const RenameParams._();
 
-  factory RenameParams.fromJson(Map<String, Object?> json) => RenameParams(
+  const factory RenameParams({
+    ProgressToken? workDoneToken,
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    required String newName,
+  }) = _RenameParams;
+
+  static RenameParams fromJson(Map<String, Object?> json) => RenameParams(
     workDoneToken: json['workDoneToken'] == null
         ? null
         : ProgressToken.fromJson(json['workDoneToken']),
@@ -7364,26 +5461,6 @@ final class RenameParams {
     ),
     position: Position.fromJson(json['position'] as Map<String, Object?>),
     newName: json['newName'] as String,
-  );
-
-  final ProgressToken? workDoneToken;
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final String newName;
-
-  RenameParams copyWith({
-    ProgressToken? workDoneToken,
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    String? newName,
-  }) => RenameParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    newName: newName ?? this.newName,
   );
 
   Map<String, Object?> toJson() {
@@ -7397,35 +5474,22 @@ final class RenameParams {
 }
 
 /// Registration options for a {@link RenameRequest}.
-final class RenameRegistrationOptions {
-  const RenameRegistrationOptions({
-    required this.documentSelector,
-    this.workDoneProgress,
-    this.prepareProvider,
-  });
+@freezed
+abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
+  const RenameRegistrationOptions._();
 
-  factory RenameRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory RenameRegistrationOptions({
+    required DocumentSelector? documentSelector,
+    bool? workDoneProgress,
+    bool? prepareProvider,
+  }) = _RenameRegistrationOptions;
+
+  static RenameRegistrationOptions fromJson(Map<String, Object?> json) =>
       RenameRegistrationOptions(
         documentSelector: json['documentSelector'] as DocumentSelector?,
         workDoneProgress: json['workDoneProgress'] as bool?,
         prepareProvider: json['prepareProvider'] as bool?,
       );
-
-  final DocumentSelector? documentSelector;
-
-  final bool? workDoneProgress;
-
-  final bool? prepareProvider;
-
-  RenameRegistrationOptions copyWith({
-    DocumentSelector? documentSelector,
-    bool? workDoneProgress,
-    bool? prepareProvider,
-  }) => RenameRegistrationOptions(
-    documentSelector: documentSelector ?? this.documentSelector,
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    prepareProvider: prepareProvider ?? this.prepareProvider,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -7436,14 +5500,17 @@ final class RenameRegistrationOptions {
   }
 }
 
-final class PrepareRenameParams {
-  const PrepareRenameParams({
-    required this.textDocument,
-    required this.position,
-    this.workDoneToken,
-  });
+@freezed
+abstract class PrepareRenameParams with _$PrepareRenameParams {
+  const PrepareRenameParams._();
 
-  factory PrepareRenameParams.fromJson(Map<String, Object?> json) =>
+  const factory PrepareRenameParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+    ProgressToken? workDoneToken,
+  }) = _PrepareRenameParams;
+
+  static PrepareRenameParams fromJson(Map<String, Object?> json) =>
       PrepareRenameParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -7453,22 +5520,6 @@ final class PrepareRenameParams {
             ? null
             : ProgressToken.fromJson(json['workDoneToken']),
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  final ProgressToken? workDoneToken;
-
-  PrepareRenameParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-    ProgressToken? workDoneToken,
-  }) => PrepareRenameParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -7480,14 +5531,17 @@ final class PrepareRenameParams {
 }
 
 /// The parameters of a {@link ExecuteCommandRequest}.
-final class ExecuteCommandParams {
-  const ExecuteCommandParams({
-    this.workDoneToken,
-    required this.command,
-    this.arguments,
-  });
+@freezed
+abstract class ExecuteCommandParams with _$ExecuteCommandParams {
+  const ExecuteCommandParams._();
 
-  factory ExecuteCommandParams.fromJson(Map<String, Object?> json) =>
+  const factory ExecuteCommandParams({
+    ProgressToken? workDoneToken,
+    required String command,
+    List<LSPAny>? arguments,
+  }) = _ExecuteCommandParams;
+
+  static ExecuteCommandParams fromJson(Map<String, Object?> json) =>
       ExecuteCommandParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
@@ -7497,22 +5551,6 @@ final class ExecuteCommandParams {
             ?.map((e) => e as LSPAny)
             .toList(),
       );
-
-  final ProgressToken? workDoneToken;
-
-  final String command;
-
-  final List<LSPAny>? arguments;
-
-  ExecuteCommandParams copyWith({
-    ProgressToken? workDoneToken,
-    String? command,
-    List<LSPAny>? arguments,
-  }) => ExecuteCommandParams(
-    workDoneToken: workDoneToken ?? this.workDoneToken,
-    command: command ?? this.command,
-    arguments: arguments ?? this.arguments,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -7524,31 +5562,23 @@ final class ExecuteCommandParams {
 }
 
 /// Registration options for a {@link ExecuteCommandRequest}.
-final class ExecuteCommandRegistrationOptions {
-  const ExecuteCommandRegistrationOptions({
-    this.workDoneProgress,
-    required this.commands,
-  });
+@freezed
+abstract class ExecuteCommandRegistrationOptions
+    with _$ExecuteCommandRegistrationOptions {
+  const ExecuteCommandRegistrationOptions._();
 
-  factory ExecuteCommandRegistrationOptions.fromJson(
+  const factory ExecuteCommandRegistrationOptions({
+    bool? workDoneProgress,
+    required List<String> commands,
+  }) = _ExecuteCommandRegistrationOptions;
+
+  static ExecuteCommandRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => ExecuteCommandRegistrationOptions(
     workDoneProgress: json['workDoneProgress'] as bool?,
     commands: (json['commands'] as List<Object?>)
         .map((e) => e as String)
         .toList(),
-  );
-
-  final bool? workDoneProgress;
-
-  final List<String> commands;
-
-  ExecuteCommandRegistrationOptions copyWith({
-    bool? workDoneProgress,
-    List<String>? commands,
-  }) => ExecuteCommandRegistrationOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    commands: commands ?? this.commands,
   );
 
   Map<String, Object?> toJson() {
@@ -7560,23 +5590,19 @@ final class ExecuteCommandRegistrationOptions {
 }
 
 /// The parameters passed via an apply workspace edit request.
-final class ApplyWorkspaceEditParams {
-  const ApplyWorkspaceEditParams({this.label, required this.edit});
+@freezed
+abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
+  const ApplyWorkspaceEditParams._();
 
-  factory ApplyWorkspaceEditParams.fromJson(Map<String, Object?> json) =>
+  const factory ApplyWorkspaceEditParams({
+    String? label,
+    required WorkspaceEdit edit,
+  }) = _ApplyWorkspaceEditParams;
+
+  static ApplyWorkspaceEditParams fromJson(Map<String, Object?> json) =>
       ApplyWorkspaceEditParams(
         label: json['label'] as String?,
         edit: WorkspaceEdit.fromJson(json['edit'] as Map<String, Object?>),
-      );
-
-  final String? label;
-
-  final WorkspaceEdit edit;
-
-  ApplyWorkspaceEditParams copyWith({String? label, WorkspaceEdit? edit}) =>
-      ApplyWorkspaceEditParams(
-        label: label ?? this.label,
-        edit: edit ?? this.edit,
       );
 
   Map<String, Object?> toJson() {
@@ -7587,35 +5613,22 @@ final class ApplyWorkspaceEditParams {
 /// The result returned from the apply workspace edit request.
 ///
 /// @since 3.17 renamed from ApplyWorkspaceEditResponse
-final class ApplyWorkspaceEditResult {
-  const ApplyWorkspaceEditResult({
-    required this.applied,
-    this.failureReason,
-    this.failedChange,
-  });
+@freezed
+abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
+  const ApplyWorkspaceEditResult._();
 
-  factory ApplyWorkspaceEditResult.fromJson(Map<String, Object?> json) =>
+  const factory ApplyWorkspaceEditResult({
+    required bool applied,
+    String? failureReason,
+    int? failedChange,
+  }) = _ApplyWorkspaceEditResult;
+
+  static ApplyWorkspaceEditResult fromJson(Map<String, Object?> json) =>
       ApplyWorkspaceEditResult(
         applied: json['applied'] as bool,
         failureReason: json['failureReason'] as String?,
         failedChange: json['failedChange'] as int?,
       );
-
-  final bool applied;
-
-  final String? failureReason;
-
-  final int? failedChange;
-
-  ApplyWorkspaceEditResult copyWith({
-    bool? applied,
-    String? failureReason,
-    int? failedChange,
-  }) => ApplyWorkspaceEditResult(
-    applied: applied ?? this.applied,
-    failureReason: failureReason ?? this.failureReason,
-    failedChange: failedChange ?? this.failedChange,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -7626,16 +5639,19 @@ final class ApplyWorkspaceEditResult {
   }
 }
 
-final class WorkDoneProgressBegin {
-  const WorkDoneProgressBegin({
-    required this.kind,
-    required this.title,
-    this.cancellable,
-    this.message,
-    this.percentage,
-  });
+@freezed
+abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
+  const WorkDoneProgressBegin._();
 
-  factory WorkDoneProgressBegin.fromJson(Map<String, Object?> json) =>
+  const factory WorkDoneProgressBegin({
+    required String kind,
+    required String title,
+    bool? cancellable,
+    String? message,
+    int? percentage,
+  }) = _WorkDoneProgressBegin;
+
+  static WorkDoneProgressBegin fromJson(Map<String, Object?> json) =>
       WorkDoneProgressBegin(
         kind: json['kind'] as String,
         title: json['title'] as String,
@@ -7643,30 +5659,6 @@ final class WorkDoneProgressBegin {
         message: json['message'] as String?,
         percentage: json['percentage'] as int?,
       );
-
-  final String kind;
-
-  final String title;
-
-  final bool? cancellable;
-
-  final String? message;
-
-  final int? percentage;
-
-  WorkDoneProgressBegin copyWith({
-    String? kind,
-    String? title,
-    bool? cancellable,
-    String? message,
-    int? percentage,
-  }) => WorkDoneProgressBegin(
-    kind: kind ?? this.kind,
-    title: title ?? this.title,
-    cancellable: cancellable ?? this.cancellable,
-    message: message ?? this.message,
-    percentage: percentage ?? this.percentage,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -7679,41 +5671,24 @@ final class WorkDoneProgressBegin {
   }
 }
 
-final class WorkDoneProgressReport {
-  const WorkDoneProgressReport({
-    required this.kind,
-    this.cancellable,
-    this.message,
-    this.percentage,
-  });
+@freezed
+abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
+  const WorkDoneProgressReport._();
 
-  factory WorkDoneProgressReport.fromJson(Map<String, Object?> json) =>
+  const factory WorkDoneProgressReport({
+    required String kind,
+    bool? cancellable,
+    String? message,
+    int? percentage,
+  }) = _WorkDoneProgressReport;
+
+  static WorkDoneProgressReport fromJson(Map<String, Object?> json) =>
       WorkDoneProgressReport(
         kind: json['kind'] as String,
         cancellable: json['cancellable'] as bool?,
         message: json['message'] as String?,
         percentage: json['percentage'] as int?,
       );
-
-  final String kind;
-
-  final bool? cancellable;
-
-  final String? message;
-
-  final int? percentage;
-
-  WorkDoneProgressReport copyWith({
-    String? kind,
-    bool? cancellable,
-    String? message,
-    int? percentage,
-  }) => WorkDoneProgressReport(
-    kind: kind ?? this.kind,
-    cancellable: cancellable ?? this.cancellable,
-    message: message ?? this.message,
-    percentage: percentage ?? this.percentage,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -7725,23 +5700,17 @@ final class WorkDoneProgressReport {
   }
 }
 
-final class WorkDoneProgressEnd {
-  const WorkDoneProgressEnd({required this.kind, this.message});
+@freezed
+abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
+  const WorkDoneProgressEnd._();
 
-  factory WorkDoneProgressEnd.fromJson(Map<String, Object?> json) =>
+  const factory WorkDoneProgressEnd({required String kind, String? message}) =
+      _WorkDoneProgressEnd;
+
+  static WorkDoneProgressEnd fromJson(Map<String, Object?> json) =>
       WorkDoneProgressEnd(
         kind: json['kind'] as String,
         message: json['message'] as String?,
-      );
-
-  final String kind;
-
-  final String? message;
-
-  WorkDoneProgressEnd copyWith({String? kind, String? message}) =>
-      WorkDoneProgressEnd(
-        kind: kind ?? this.kind,
-        message: message ?? this.message,
       );
 
   Map<String, Object?> toJson() {
@@ -7749,40 +5718,33 @@ final class WorkDoneProgressEnd {
   }
 }
 
-final class SetTraceParams {
-  const SetTraceParams({required this.value});
+@freezed
+abstract class SetTraceParams with _$SetTraceParams {
+  const SetTraceParams._();
 
-  factory SetTraceParams.fromJson(Map<String, Object?> json) => SetTraceParams(
+  const factory SetTraceParams({required TraceValues value}) = _SetTraceParams;
+
+  static SetTraceParams fromJson(Map<String, Object?> json) => SetTraceParams(
     value: TraceValues.values.firstWhere(
       (e) => e.value == json['value'] as String,
     ),
   );
-
-  final TraceValues value;
-
-  SetTraceParams copyWith({TraceValues? value}) =>
-      SetTraceParams(value: value ?? this.value);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'value': value.value};
   }
 }
 
-final class LogTraceParams {
-  const LogTraceParams({required this.message, this.verbose});
+@freezed
+abstract class LogTraceParams with _$LogTraceParams {
+  const LogTraceParams._();
 
-  factory LogTraceParams.fromJson(Map<String, Object?> json) => LogTraceParams(
+  const factory LogTraceParams({required String message, String? verbose}) =
+      _LogTraceParams;
+
+  static LogTraceParams fromJson(Map<String, Object?> json) => LogTraceParams(
     message: json['message'] as String,
     verbose: json['verbose'] as String?,
-  );
-
-  final String message;
-
-  final String? verbose;
-
-  LogTraceParams copyWith({String? message, String? verbose}) => LogTraceParams(
-    message: message ?? this.message,
-    verbose: verbose ?? this.verbose,
   );
 
   Map<String, Object?> toJson() {
@@ -7790,35 +5752,33 @@ final class LogTraceParams {
   }
 }
 
-final class CancelParams {
-  const CancelParams({required this.id});
+@freezed
+abstract class CancelParams with _$CancelParams {
+  const CancelParams._();
 
-  factory CancelParams.fromJson(Map<String, Object?> json) =>
+  const factory CancelParams({required Object id}) = _CancelParams;
+
+  static CancelParams fromJson(Map<String, Object?> json) =>
       CancelParams(id: json['id'] as Object);
-
-  final Object id;
-
-  CancelParams copyWith({Object? id}) => CancelParams(id: id ?? this.id);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'id': id};
   }
 }
 
-final class ProgressParams {
-  const ProgressParams({required this.token, required this.value});
+@freezed
+abstract class ProgressParams with _$ProgressParams {
+  const ProgressParams._();
 
-  factory ProgressParams.fromJson(Map<String, Object?> json) => ProgressParams(
+  const factory ProgressParams({
+    required ProgressToken token,
+    required LSPAny value,
+  }) = _ProgressParams;
+
+  static ProgressParams fromJson(Map<String, Object?> json) => ProgressParams(
     token: ProgressToken.fromJson(json['token']),
     value: json['value'] as LSPAny,
   );
-
-  final ProgressToken token;
-
-  final LSPAny value;
-
-  ProgressParams copyWith({ProgressToken? token, LSPAny? value}) =>
-      ProgressParams(token: token ?? this.token, value: value ?? this.value);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'token': token.toJson(), 'value': value};
@@ -7827,31 +5787,22 @@ final class ProgressParams {
 
 /// A parameter literal used in requests to pass a text document and a position inside that
 /// document.
-final class TextDocumentPositionParams {
-  const TextDocumentPositionParams({
-    required this.textDocument,
-    required this.position,
-  });
+@freezed
+abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
+  const TextDocumentPositionParams._();
 
-  factory TextDocumentPositionParams.fromJson(Map<String, Object?> json) =>
+  const factory TextDocumentPositionParams({
+    required TextDocumentIdentifier textDocument,
+    required Position position,
+  }) = _TextDocumentPositionParams;
+
+  static TextDocumentPositionParams fromJson(Map<String, Object?> json) =>
       TextDocumentPositionParams(
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
       );
-
-  final TextDocumentIdentifier textDocument;
-
-  final Position position;
-
-  TextDocumentPositionParams copyWith({
-    TextDocumentIdentifier? textDocument,
-    Position? position,
-  }) => TextDocumentPositionParams(
-    textDocument: textDocument ?? this.textDocument,
-    position: position ?? this.position,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -7861,21 +5812,18 @@ final class TextDocumentPositionParams {
   }
 }
 
-final class WorkDoneProgressParams {
-  const WorkDoneProgressParams({this.workDoneToken});
+@freezed
+abstract class WorkDoneProgressParams with _$WorkDoneProgressParams {
+  const WorkDoneProgressParams._();
 
-  factory WorkDoneProgressParams.fromJson(Map<String, Object?> json) =>
+  const factory WorkDoneProgressParams({ProgressToken? workDoneToken}) =
+      _WorkDoneProgressParams;
+
+  static WorkDoneProgressParams fromJson(Map<String, Object?> json) =>
       WorkDoneProgressParams(
         workDoneToken: json['workDoneToken'] == null
             ? null
             : ProgressToken.fromJson(json['workDoneToken']),
-      );
-
-  final ProgressToken? workDoneToken;
-
-  WorkDoneProgressParams copyWith({ProgressToken? workDoneToken}) =>
-      WorkDoneProgressParams(
-        workDoneToken: workDoneToken ?? this.workDoneToken,
       );
 
   Map<String, Object?> toJson() {
@@ -7883,21 +5831,18 @@ final class WorkDoneProgressParams {
   }
 }
 
-final class PartialResultParams {
-  const PartialResultParams({this.partialResultToken});
+@freezed
+abstract class PartialResultParams with _$PartialResultParams {
+  const PartialResultParams._();
 
-  factory PartialResultParams.fromJson(Map<String, Object?> json) =>
+  const factory PartialResultParams({ProgressToken? partialResultToken}) =
+      _PartialResultParams;
+
+  static PartialResultParams fromJson(Map<String, Object?> json) =>
       PartialResultParams(
         partialResultToken: json['partialResultToken'] == null
             ? null
             : ProgressToken.fromJson(json['partialResultToken']),
-      );
-
-  final ProgressToken? partialResultToken;
-
-  PartialResultParams copyWith({ProgressToken? partialResultToken}) =>
-      PartialResultParams(
-        partialResultToken: partialResultToken ?? this.partialResultToken,
       );
 
   Map<String, Object?> toJson() {
@@ -7909,15 +5854,18 @@ final class PartialResultParams {
 
 /// Represents the connection of two locations. Provides additional metadata over normal {@link Location locations},
 /// including an origin range.
-final class LocationLink {
-  const LocationLink({
-    this.originSelectionRange,
-    required this.targetUri,
-    required this.targetRange,
-    required this.targetSelectionRange,
-  });
+@freezed
+abstract class LocationLink with _$LocationLink {
+  const LocationLink._();
 
-  factory LocationLink.fromJson(Map<String, Object?> json) => LocationLink(
+  const factory LocationLink({
+    Range? originSelectionRange,
+    required String targetUri,
+    required Range targetRange,
+    required Range targetSelectionRange,
+  }) = _LocationLink;
+
+  static LocationLink fromJson(Map<String, Object?> json) => LocationLink(
     originSelectionRange: json['originSelectionRange'] == null
         ? null
         : Range.fromJson(json['originSelectionRange'] as Map<String, Object?>),
@@ -7926,26 +5874,6 @@ final class LocationLink {
     targetSelectionRange: Range.fromJson(
       json['targetSelectionRange'] as Map<String, Object?>,
     ),
-  );
-
-  final Range? originSelectionRange;
-
-  final String targetUri;
-
-  final Range targetRange;
-
-  final Range targetSelectionRange;
-
-  LocationLink copyWith({
-    Range? originSelectionRange,
-    String? targetUri,
-    Range? targetRange,
-    Range? targetSelectionRange,
-  }) => LocationLink(
-    originSelectionRange: originSelectionRange ?? this.originSelectionRange,
-    targetUri: targetUri ?? this.targetUri,
-    targetRange: targetRange ?? this.targetRange,
-    targetSelectionRange: targetSelectionRange ?? this.targetSelectionRange,
   );
 
   Map<String, Object?> toJson() {
@@ -7969,39 +5897,33 @@ final class LocationLink {
 ///     end : { line 6, character : 0 }
 /// }
 /// ```
-final class Range {
-  const Range({required this.start, required this.end});
+@freezed
+abstract class Range with _$Range {
+  const Range._();
 
-  factory Range.fromJson(Map<String, Object?> json) => Range(
+  const factory Range({required Position start, required Position end}) =
+      _Range;
+
+  static Range fromJson(Map<String, Object?> json) => Range(
     start: Position.fromJson(json['start'] as Map<String, Object?>),
     end: Position.fromJson(json['end'] as Map<String, Object?>),
   );
-
-  final Position start;
-
-  final Position end;
-
-  Range copyWith({Position? start, Position? end}) =>
-      Range(start: start ?? this.start, end: end ?? this.end);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'start': start.toJson(), 'end': end.toJson()};
   }
 }
 
-final class ImplementationOptions {
-  const ImplementationOptions({this.workDoneProgress});
+@freezed
+abstract class ImplementationOptions with _$ImplementationOptions {
+  const ImplementationOptions._();
 
-  factory ImplementationOptions.fromJson(Map<String, Object?> json) =>
+  const factory ImplementationOptions({bool? workDoneProgress}) =
+      _ImplementationOptions;
+
+  static ImplementationOptions fromJson(Map<String, Object?> json) =>
       ImplementationOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  final bool? workDoneProgress;
-
-  ImplementationOptions copyWith({bool? workDoneProgress}) =>
-      ImplementationOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
       );
 
   Map<String, Object?> toJson() {
@@ -8011,35 +5933,31 @@ final class ImplementationOptions {
 
 /// Static registration options to be returned in the initialize
 /// request.
-final class StaticRegistrationOptions {
-  const StaticRegistrationOptions({this.id});
+@freezed
+abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
+  const StaticRegistrationOptions._();
 
-  factory StaticRegistrationOptions.fromJson(Map<String, Object?> json) =>
+  const factory StaticRegistrationOptions({String? id}) =
+      _StaticRegistrationOptions;
+
+  static StaticRegistrationOptions fromJson(Map<String, Object?> json) =>
       StaticRegistrationOptions(id: json['id'] as String?);
-
-  final String? id;
-
-  StaticRegistrationOptions copyWith({String? id}) =>
-      StaticRegistrationOptions(id: id ?? this.id);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'id': id};
   }
 }
 
-final class TypeDefinitionOptions {
-  const TypeDefinitionOptions({this.workDoneProgress});
+@freezed
+abstract class TypeDefinitionOptions with _$TypeDefinitionOptions {
+  const TypeDefinitionOptions._();
 
-  factory TypeDefinitionOptions.fromJson(Map<String, Object?> json) =>
+  const factory TypeDefinitionOptions({bool? workDoneProgress}) =
+      _TypeDefinitionOptions;
+
+  static TypeDefinitionOptions fromJson(Map<String, Object?> json) =>
       TypeDefinitionOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  final bool? workDoneProgress;
-
-  TypeDefinitionOptions copyWith({bool? workDoneProgress}) =>
-      TypeDefinitionOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
       );
 
   Map<String, Object?> toJson() {
@@ -8048,13 +5966,16 @@ final class TypeDefinitionOptions {
 }
 
 /// The workspace folder change event.
-final class WorkspaceFoldersChangeEvent {
-  const WorkspaceFoldersChangeEvent({
-    required this.added,
-    required this.removed,
-  });
+@freezed
+abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
+  const WorkspaceFoldersChangeEvent._();
 
-  factory WorkspaceFoldersChangeEvent.fromJson(Map<String, Object?> json) =>
+  const factory WorkspaceFoldersChangeEvent({
+    required List<WorkspaceFolder> added,
+    required List<WorkspaceFolder> removed,
+  }) = _WorkspaceFoldersChangeEvent;
+
+  static WorkspaceFoldersChangeEvent fromJson(Map<String, Object?> json) =>
       WorkspaceFoldersChangeEvent(
         added: (json['added'] as List<Object?>)
             .map((e) => WorkspaceFolder.fromJson(e as Map<String, Object?>))
@@ -8064,18 +5985,6 @@ final class WorkspaceFoldersChangeEvent {
             .toList(),
       );
 
-  final List<WorkspaceFolder> added;
-
-  final List<WorkspaceFolder> removed;
-
-  WorkspaceFoldersChangeEvent copyWith({
-    List<WorkspaceFolder>? added,
-    List<WorkspaceFolder>? removed,
-  }) => WorkspaceFoldersChangeEvent(
-    added: added ?? this.added,
-    removed: removed ?? this.removed,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'added': added.map((e) => e.toJson()).toList(),
@@ -8084,23 +5993,17 @@ final class WorkspaceFoldersChangeEvent {
   }
 }
 
-final class ConfigurationItem {
-  const ConfigurationItem({this.scopeUri, this.section});
+@freezed
+abstract class ConfigurationItem with _$ConfigurationItem {
+  const ConfigurationItem._();
 
-  factory ConfigurationItem.fromJson(Map<String, Object?> json) =>
+  const factory ConfigurationItem({String? scopeUri, String? section}) =
+      _ConfigurationItem;
+
+  static ConfigurationItem fromJson(Map<String, Object?> json) =>
       ConfigurationItem(
         scopeUri: json['scopeUri'] as String?,
         section: json['section'] as String?,
-      );
-
-  final String? scopeUri;
-
-  final String? section;
-
-  ConfigurationItem copyWith({String? scopeUri, String? section}) =>
-      ConfigurationItem(
-        scopeUri: scopeUri ?? this.scopeUri,
-        section: section ?? this.section,
       );
 
   Map<String, Object?> toJson() {
@@ -8109,16 +6012,15 @@ final class ConfigurationItem {
 }
 
 /// A literal to identify a text document in the client.
-final class TextDocumentIdentifier {
-  const TextDocumentIdentifier({required this.uri});
+@freezed
+abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
+  const TextDocumentIdentifier._();
 
-  factory TextDocumentIdentifier.fromJson(Map<String, Object?> json) =>
+  const factory TextDocumentIdentifier({required String uri}) =
+      _TextDocumentIdentifier;
+
+  static TextDocumentIdentifier fromJson(Map<String, Object?> json) =>
       TextDocumentIdentifier(uri: json['uri'] as String);
-
-  final String uri;
-
-  TextDocumentIdentifier copyWith({String? uri}) =>
-      TextDocumentIdentifier(uri: uri ?? this.uri);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'uri': uri};
@@ -8126,36 +6028,23 @@ final class TextDocumentIdentifier {
 }
 
 /// Represents a color in RGBA space.
-final class Color {
-  const Color({
-    required this.red,
-    required this.green,
-    required this.blue,
-    required this.alpha,
-  });
+@freezed
+abstract class Color with _$Color {
+  const Color._();
 
-  factory Color.fromJson(Map<String, Object?> json) => Color(
+  const factory Color({
+    required double red,
+    required double green,
+    required double blue,
+    required double alpha,
+  }) = _Color;
+
+  static Color fromJson(Map<String, Object?> json) => Color(
     red: json['red'] as double,
     green: json['green'] as double,
     blue: json['blue'] as double,
     alpha: json['alpha'] as double,
   );
-
-  final double red;
-
-  final double green;
-
-  final double blue;
-
-  final double alpha;
-
-  Color copyWith({double? red, double? green, double? blue, double? alpha}) =>
-      Color(
-        red: red ?? this.red,
-        green: green ?? this.green,
-        blue: blue ?? this.blue,
-        alpha: alpha ?? this.alpha,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -8167,52 +6056,45 @@ final class Color {
   }
 }
 
-final class DocumentColorOptions {
-  const DocumentColorOptions({this.workDoneProgress});
+@freezed
+abstract class DocumentColorOptions with _$DocumentColorOptions {
+  const DocumentColorOptions._();
 
-  factory DocumentColorOptions.fromJson(Map<String, Object?> json) =>
+  const factory DocumentColorOptions({bool? workDoneProgress}) =
+      _DocumentColorOptions;
+
+  static DocumentColorOptions fromJson(Map<String, Object?> json) =>
       DocumentColorOptions(workDoneProgress: json['workDoneProgress'] as bool?);
 
-  final bool? workDoneProgress;
-
-  DocumentColorOptions copyWith({bool? workDoneProgress}) =>
-      DocumentColorOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-      );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
   }
 }
 
-final class FoldingRangeOptions {
-  const FoldingRangeOptions({this.workDoneProgress});
+@freezed
+abstract class FoldingRangeOptions with _$FoldingRangeOptions {
+  const FoldingRangeOptions._();
 
-  factory FoldingRangeOptions.fromJson(Map<String, Object?> json) =>
+  const factory FoldingRangeOptions({bool? workDoneProgress}) =
+      _FoldingRangeOptions;
+
+  static FoldingRangeOptions fromJson(Map<String, Object?> json) =>
       FoldingRangeOptions(workDoneProgress: json['workDoneProgress'] as bool?);
 
-  final bool? workDoneProgress;
-
-  FoldingRangeOptions copyWith({bool? workDoneProgress}) => FoldingRangeOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
   }
 }
 
-final class DeclarationOptions {
-  const DeclarationOptions({this.workDoneProgress});
+@freezed
+abstract class DeclarationOptions with _$DeclarationOptions {
+  const DeclarationOptions._();
 
-  factory DeclarationOptions.fromJson(Map<String, Object?> json) =>
+  const factory DeclarationOptions({bool? workDoneProgress}) =
+      _DeclarationOptions;
+
+  static DeclarationOptions fromJson(Map<String, Object?> json) =>
       DeclarationOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  final bool? workDoneProgress;
-
-  DeclarationOptions copyWith({bool? workDoneProgress}) => DeclarationOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
@@ -8246,37 +6128,31 @@ final class DeclarationOptions {
 /// that denotes `\r|\n` or `\n|` where `|` represents the character offset.
 ///
 /// @since 3.17.0 - support for negotiated position encoding.
-final class Position {
-  const Position({required this.line, required this.character});
+@freezed
+abstract class Position with _$Position {
+  const Position._();
 
-  factory Position.fromJson(Map<String, Object?> json) =>
+  const factory Position({required int line, required int character}) =
+      _Position;
+
+  static Position fromJson(Map<String, Object?> json) =>
       Position(line: json['line'] as int, character: json['character'] as int);
-
-  final int line;
-
-  final int character;
-
-  Position copyWith({int? line, int? character}) =>
-      Position(line: line ?? this.line, character: character ?? this.character);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'line': line, 'character': character};
   }
 }
 
-final class SelectionRangeOptions {
-  const SelectionRangeOptions({this.workDoneProgress});
+@freezed
+abstract class SelectionRangeOptions with _$SelectionRangeOptions {
+  const SelectionRangeOptions._();
 
-  factory SelectionRangeOptions.fromJson(Map<String, Object?> json) =>
+  const factory SelectionRangeOptions({bool? workDoneProgress}) =
+      _SelectionRangeOptions;
+
+  static SelectionRangeOptions fromJson(Map<String, Object?> json) =>
       SelectionRangeOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  final bool? workDoneProgress;
-
-  SelectionRangeOptions copyWith({bool? workDoneProgress}) =>
-      SelectionRangeOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
       );
 
   Map<String, Object?> toJson() {
@@ -8287,18 +6163,15 @@ final class SelectionRangeOptions {
 /// Call hierarchy options used during static registration.
 ///
 /// @since 3.16.0
-final class CallHierarchyOptions {
-  const CallHierarchyOptions({this.workDoneProgress});
+@freezed
+abstract class CallHierarchyOptions with _$CallHierarchyOptions {
+  const CallHierarchyOptions._();
 
-  factory CallHierarchyOptions.fromJson(Map<String, Object?> json) =>
+  const factory CallHierarchyOptions({bool? workDoneProgress}) =
+      _CallHierarchyOptions;
+
+  static CallHierarchyOptions fromJson(Map<String, Object?> json) =>
       CallHierarchyOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  final bool? workDoneProgress;
-
-  CallHierarchyOptions copyWith({bool? workDoneProgress}) =>
-      CallHierarchyOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
@@ -8306,15 +6179,18 @@ final class CallHierarchyOptions {
 }
 
 /// @since 3.16.0
-final class SemanticTokensOptions {
-  const SemanticTokensOptions({
-    this.workDoneProgress,
-    required this.legend,
-    this.range,
-    this.full,
-  });
+@freezed
+abstract class SemanticTokensOptions with _$SemanticTokensOptions {
+  const SemanticTokensOptions._();
 
-  factory SemanticTokensOptions.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensOptions({
+    bool? workDoneProgress,
+    required SemanticTokensLegend legend,
+    Object? range,
+    Object? full,
+  }) = _SemanticTokensOptions;
+
+  static SemanticTokensOptions fromJson(Map<String, Object?> json) =>
       SemanticTokensOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         legend: SemanticTokensLegend.fromJson(
@@ -8323,26 +6199,6 @@ final class SemanticTokensOptions {
         range: json['range'],
         full: json['full'],
       );
-
-  final bool? workDoneProgress;
-
-  final SemanticTokensLegend legend;
-
-  final Object? range;
-
-  final Object? full;
-
-  SemanticTokensOptions copyWith({
-    bool? workDoneProgress,
-    SemanticTokensLegend? legend,
-    Object? range,
-    Object? full,
-  }) => SemanticTokensOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    legend: legend ?? this.legend,
-    range: range ?? this.range,
-    full: full ?? this.full,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -8355,35 +6211,22 @@ final class SemanticTokensOptions {
 }
 
 /// @since 3.16.0
-final class SemanticTokensEdit {
-  const SemanticTokensEdit({
-    required this.start,
-    required this.deleteCount,
-    this.data,
-  });
+@freezed
+abstract class SemanticTokensEdit with _$SemanticTokensEdit {
+  const SemanticTokensEdit._();
 
-  factory SemanticTokensEdit.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensEdit({
+    required int start,
+    required int deleteCount,
+    List<int>? data,
+  }) = _SemanticTokensEdit;
+
+  static SemanticTokensEdit fromJson(Map<String, Object?> json) =>
       SemanticTokensEdit(
         start: json['start'] as int,
         deleteCount: json['deleteCount'] as int,
         data: (json['data'] as List<Object?>?)?.map((e) => e as int).toList(),
       );
-
-  final int start;
-
-  final int deleteCount;
-
-  final List<int>? data;
-
-  SemanticTokensEdit copyWith({
-    int? start,
-    int? deleteCount,
-    List<int>? data,
-  }) => SemanticTokensEdit(
-    start: start ?? this.start,
-    deleteCount: deleteCount ?? this.deleteCount,
-    data: data ?? this.data,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -8394,19 +6237,16 @@ final class SemanticTokensEdit {
   }
 }
 
-final class LinkedEditingRangeOptions {
-  const LinkedEditingRangeOptions({this.workDoneProgress});
+@freezed
+abstract class LinkedEditingRangeOptions with _$LinkedEditingRangeOptions {
+  const LinkedEditingRangeOptions._();
 
-  factory LinkedEditingRangeOptions.fromJson(Map<String, Object?> json) =>
+  const factory LinkedEditingRangeOptions({bool? workDoneProgress}) =
+      _LinkedEditingRangeOptions;
+
+  static LinkedEditingRangeOptions fromJson(Map<String, Object?> json) =>
       LinkedEditingRangeOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  final bool? workDoneProgress;
-
-  LinkedEditingRangeOptions copyWith({bool? workDoneProgress}) =>
-      LinkedEditingRangeOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
       );
 
   Map<String, Object?> toJson() {
@@ -8417,15 +6257,14 @@ final class LinkedEditingRangeOptions {
 /// Represents information on a file/folder create.
 ///
 /// @since 3.16.0
-final class FileCreate {
-  const FileCreate({required this.uri});
+@freezed
+abstract class FileCreate with _$FileCreate {
+  const FileCreate._();
 
-  factory FileCreate.fromJson(Map<String, Object?> json) =>
+  const factory FileCreate({required String uri}) = _FileCreate;
+
+  static FileCreate fromJson(Map<String, Object?> json) =>
       FileCreate(uri: json['uri'] as String);
-
-  final String uri;
-
-  FileCreate copyWith({String? uri}) => FileCreate(uri: uri ?? this.uri);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'uri': uri};
@@ -8436,10 +6275,16 @@ final class FileCreate {
 /// on a document version Si and after they are applied move the document to version Si+1.
 /// So the creator of a TextDocumentEdit doesn't need to sort the array of edits or do any
 /// kind of ordering. However the edits must be non overlapping.
-final class TextDocumentEdit {
-  const TextDocumentEdit({required this.textDocument, required this.edits});
+@freezed
+abstract class TextDocumentEdit with _$TextDocumentEdit {
+  const TextDocumentEdit._();
 
-  factory TextDocumentEdit.fromJson(Map<String, Object?> json) =>
+  const factory TextDocumentEdit({
+    required OptionalVersionedTextDocumentIdentifier textDocument,
+    required List<Object> edits,
+  }) = _TextDocumentEdit;
+
+  static TextDocumentEdit fromJson(Map<String, Object?> json) =>
       TextDocumentEdit(
         textDocument: OptionalVersionedTextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
@@ -8448,18 +6293,6 @@ final class TextDocumentEdit {
             .map((e) => e as Object)
             .toList(),
       );
-
-  final OptionalVersionedTextDocumentIdentifier textDocument;
-
-  final List<Object> edits;
-
-  TextDocumentEdit copyWith({
-    OptionalVersionedTextDocumentIdentifier? textDocument,
-    List<Object>? edits,
-  }) => TextDocumentEdit(
-    textDocument: textDocument ?? this.textDocument,
-    edits: edits ?? this.edits,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -8470,41 +6303,24 @@ final class TextDocumentEdit {
 }
 
 /// Create file operation.
-final class CreateFile {
-  const CreateFile({
-    this.annotationId,
-    required this.kind,
-    required this.uri,
-    this.options,
-  });
+@freezed
+abstract class CreateFile with _$CreateFile {
+  const CreateFile._();
 
-  factory CreateFile.fromJson(Map<String, Object?> json) => CreateFile(
+  const factory CreateFile({
+    ChangeAnnotationIdentifier? annotationId,
+    required String kind,
+    required String uri,
+    CreateFileOptions? options,
+  }) = _CreateFile;
+
+  static CreateFile fromJson(Map<String, Object?> json) => CreateFile(
     annotationId: json['annotationId'] as ChangeAnnotationIdentifier?,
     kind: json['kind'] as String,
     uri: json['uri'] as String,
     options: json['options'] == null
         ? null
         : CreateFileOptions.fromJson(json['options'] as Map<String, Object?>),
-  );
-
-  final ChangeAnnotationIdentifier? annotationId;
-
-  final String kind;
-
-  final String uri;
-
-  final CreateFileOptions? options;
-
-  CreateFile copyWith({
-    ChangeAnnotationIdentifier? annotationId,
-    String? kind,
-    String? uri,
-    CreateFileOptions? options,
-  }) => CreateFile(
-    annotationId: annotationId ?? this.annotationId,
-    kind: kind ?? this.kind,
-    uri: uri ?? this.uri,
-    options: options ?? this.options,
   );
 
   Map<String, Object?> toJson() {
@@ -8518,16 +6334,19 @@ final class CreateFile {
 }
 
 /// Rename file operation
-final class RenameFile {
-  const RenameFile({
-    this.annotationId,
-    required this.kind,
-    required this.oldUri,
-    required this.newUri,
-    this.options,
-  });
+@freezed
+abstract class RenameFile with _$RenameFile {
+  const RenameFile._();
 
-  factory RenameFile.fromJson(Map<String, Object?> json) => RenameFile(
+  const factory RenameFile({
+    ChangeAnnotationIdentifier? annotationId,
+    required String kind,
+    required String oldUri,
+    required String newUri,
+    RenameFileOptions? options,
+  }) = _RenameFile;
+
+  static RenameFile fromJson(Map<String, Object?> json) => RenameFile(
     annotationId: json['annotationId'] as ChangeAnnotationIdentifier?,
     kind: json['kind'] as String,
     oldUri: json['oldUri'] as String,
@@ -8535,30 +6354,6 @@ final class RenameFile {
     options: json['options'] == null
         ? null
         : RenameFileOptions.fromJson(json['options'] as Map<String, Object?>),
-  );
-
-  final ChangeAnnotationIdentifier? annotationId;
-
-  final String kind;
-
-  final String oldUri;
-
-  final String newUri;
-
-  final RenameFileOptions? options;
-
-  RenameFile copyWith({
-    ChangeAnnotationIdentifier? annotationId,
-    String? kind,
-    String? oldUri,
-    String? newUri,
-    RenameFileOptions? options,
-  }) => RenameFile(
-    annotationId: annotationId ?? this.annotationId,
-    kind: kind ?? this.kind,
-    oldUri: oldUri ?? this.oldUri,
-    newUri: newUri ?? this.newUri,
-    options: options ?? this.options,
   );
 
   Map<String, Object?> toJson() {
@@ -8573,41 +6368,24 @@ final class RenameFile {
 }
 
 /// Delete file operation
-final class DeleteFile {
-  const DeleteFile({
-    this.annotationId,
-    required this.kind,
-    required this.uri,
-    this.options,
-  });
+@freezed
+abstract class DeleteFile with _$DeleteFile {
+  const DeleteFile._();
 
-  factory DeleteFile.fromJson(Map<String, Object?> json) => DeleteFile(
+  const factory DeleteFile({
+    ChangeAnnotationIdentifier? annotationId,
+    required String kind,
+    required String uri,
+    DeleteFileOptions? options,
+  }) = _DeleteFile;
+
+  static DeleteFile fromJson(Map<String, Object?> json) => DeleteFile(
     annotationId: json['annotationId'] as ChangeAnnotationIdentifier?,
     kind: json['kind'] as String,
     uri: json['uri'] as String,
     options: json['options'] == null
         ? null
         : DeleteFileOptions.fromJson(json['options'] as Map<String, Object?>),
-  );
-
-  final ChangeAnnotationIdentifier? annotationId;
-
-  final String kind;
-
-  final String uri;
-
-  final DeleteFileOptions? options;
-
-  DeleteFile copyWith({
-    ChangeAnnotationIdentifier? annotationId,
-    String? kind,
-    String? uri,
-    DeleteFileOptions? options,
-  }) => DeleteFile(
-    annotationId: annotationId ?? this.annotationId,
-    kind: kind ?? this.kind,
-    uri: uri ?? this.uri,
-    options: options ?? this.options,
   );
 
   Map<String, Object?> toJson() {
@@ -8623,35 +6401,22 @@ final class DeleteFile {
 /// Additional information that describes document changes.
 ///
 /// @since 3.16.0
-final class ChangeAnnotation {
-  const ChangeAnnotation({
-    required this.label,
-    this.needsConfirmation,
-    this.description,
-  });
+@freezed
+abstract class ChangeAnnotation with _$ChangeAnnotation {
+  const ChangeAnnotation._();
 
-  factory ChangeAnnotation.fromJson(Map<String, Object?> json) =>
+  const factory ChangeAnnotation({
+    required String label,
+    bool? needsConfirmation,
+    String? description,
+  }) = _ChangeAnnotation;
+
+  static ChangeAnnotation fromJson(Map<String, Object?> json) =>
       ChangeAnnotation(
         label: json['label'] as String,
         needsConfirmation: json['needsConfirmation'] as bool?,
         description: json['description'] as String?,
       );
-
-  final String label;
-
-  final bool? needsConfirmation;
-
-  final String? description;
-
-  ChangeAnnotation copyWith({
-    String? label,
-    bool? needsConfirmation,
-    String? description,
-  }) => ChangeAnnotation(
-    label: label ?? this.label,
-    needsConfirmation: needsConfirmation ?? this.needsConfirmation,
-    description: description ?? this.description,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -8666,28 +6431,22 @@ final class ChangeAnnotation {
 /// the server is interested in receiving.
 ///
 /// @since 3.16.0
-final class FileOperationFilter {
-  const FileOperationFilter({this.scheme, required this.pattern});
+@freezed
+abstract class FileOperationFilter with _$FileOperationFilter {
+  const FileOperationFilter._();
 
-  factory FileOperationFilter.fromJson(Map<String, Object?> json) =>
+  const factory FileOperationFilter({
+    String? scheme,
+    required FileOperationPattern pattern,
+  }) = _FileOperationFilter;
+
+  static FileOperationFilter fromJson(Map<String, Object?> json) =>
       FileOperationFilter(
         scheme: json['scheme'] as String?,
         pattern: FileOperationPattern.fromJson(
           json['pattern'] as Map<String, Object?>,
         ),
       );
-
-  final String? scheme;
-
-  final FileOperationPattern pattern;
-
-  FileOperationFilter copyWith({
-    String? scheme,
-    FileOperationPattern? pattern,
-  }) => FileOperationFilter(
-    scheme: scheme ?? this.scheme,
-    pattern: pattern ?? this.pattern,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'scheme': scheme, 'pattern': pattern.toJson()};
@@ -8697,20 +6456,17 @@ final class FileOperationFilter {
 /// Represents information on a file/folder rename.
 ///
 /// @since 3.16.0
-final class FileRename {
-  const FileRename({required this.oldUri, required this.newUri});
+@freezed
+abstract class FileRename with _$FileRename {
+  const FileRename._();
 
-  factory FileRename.fromJson(Map<String, Object?> json) => FileRename(
+  const factory FileRename({required String oldUri, required String newUri}) =
+      _FileRename;
+
+  static FileRename fromJson(Map<String, Object?> json) => FileRename(
     oldUri: json['oldUri'] as String,
     newUri: json['newUri'] as String,
   );
-
-  final String oldUri;
-
-  final String newUri;
-
-  FileRename copyWith({String? oldUri, String? newUri}) =>
-      FileRename(oldUri: oldUri ?? this.oldUri, newUri: newUri ?? this.newUri);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'oldUri': oldUri, 'newUri': newUri};
@@ -8720,32 +6476,28 @@ final class FileRename {
 /// Represents information on a file/folder delete.
 ///
 /// @since 3.16.0
-final class FileDelete {
-  const FileDelete({required this.uri});
+@freezed
+abstract class FileDelete with _$FileDelete {
+  const FileDelete._();
 
-  factory FileDelete.fromJson(Map<String, Object?> json) =>
+  const factory FileDelete({required String uri}) = _FileDelete;
+
+  static FileDelete fromJson(Map<String, Object?> json) =>
       FileDelete(uri: json['uri'] as String);
-
-  final String uri;
-
-  FileDelete copyWith({String? uri}) => FileDelete(uri: uri ?? this.uri);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'uri': uri};
   }
 }
 
-final class MonikerOptions {
-  const MonikerOptions({this.workDoneProgress});
+@freezed
+abstract class MonikerOptions with _$MonikerOptions {
+  const MonikerOptions._();
 
-  factory MonikerOptions.fromJson(Map<String, Object?> json) =>
+  const factory MonikerOptions({bool? workDoneProgress}) = _MonikerOptions;
+
+  static MonikerOptions fromJson(Map<String, Object?> json) =>
       MonikerOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  final bool? workDoneProgress;
-
-  MonikerOptions copyWith({bool? workDoneProgress}) => MonikerOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
@@ -8755,18 +6507,15 @@ final class MonikerOptions {
 /// Type hierarchy options used during static registration.
 ///
 /// @since 3.17.0
-final class TypeHierarchyOptions {
-  const TypeHierarchyOptions({this.workDoneProgress});
+@freezed
+abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
+  const TypeHierarchyOptions._();
 
-  factory TypeHierarchyOptions.fromJson(Map<String, Object?> json) =>
+  const factory TypeHierarchyOptions({bool? workDoneProgress}) =
+      _TypeHierarchyOptions;
+
+  static TypeHierarchyOptions fromJson(Map<String, Object?> json) =>
       TypeHierarchyOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  final bool? workDoneProgress;
-
-  TypeHierarchyOptions copyWith({bool? workDoneProgress}) =>
-      TypeHierarchyOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
@@ -8774,28 +6523,21 @@ final class TypeHierarchyOptions {
 }
 
 /// @since 3.17.0
-final class InlineValueContext {
-  const InlineValueContext({
-    required this.frameId,
-    required this.stoppedLocation,
-  });
+@freezed
+abstract class InlineValueContext with _$InlineValueContext {
+  const InlineValueContext._();
 
-  factory InlineValueContext.fromJson(Map<String, Object?> json) =>
+  const factory InlineValueContext({
+    required int frameId,
+    required Range stoppedLocation,
+  }) = _InlineValueContext;
+
+  static InlineValueContext fromJson(Map<String, Object?> json) =>
       InlineValueContext(
         frameId: json['frameId'] as int,
         stoppedLocation: Range.fromJson(
           json['stoppedLocation'] as Map<String, Object?>,
         ),
-      );
-
-  final int frameId;
-
-  final Range stoppedLocation;
-
-  InlineValueContext copyWith({int? frameId, Range? stoppedLocation}) =>
-      InlineValueContext(
-        frameId: frameId ?? this.frameId,
-        stoppedLocation: stoppedLocation ?? this.stoppedLocation,
       );
 
   Map<String, Object?> toJson() {
@@ -8809,21 +6551,17 @@ final class InlineValueContext {
 /// Provide inline value as text.
 ///
 /// @since 3.17.0
-final class InlineValueText {
-  const InlineValueText({required this.range, required this.text});
+@freezed
+abstract class InlineValueText with _$InlineValueText {
+  const InlineValueText._();
 
-  factory InlineValueText.fromJson(Map<String, Object?> json) =>
-      InlineValueText(
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        text: json['text'] as String,
-      );
+  const factory InlineValueText({required Range range, required String text}) =
+      _InlineValueText;
 
-  final Range range;
-
-  final String text;
-
-  InlineValueText copyWith({Range? range, String? text}) =>
-      InlineValueText(range: range ?? this.range, text: text ?? this.text);
+  static InlineValueText fromJson(Map<String, Object?> json) => InlineValueText(
+    range: Range.fromJson(json['range'] as Map<String, Object?>),
+    text: json['text'] as String,
+  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'range': range.toJson(), 'text': text};
@@ -8835,35 +6573,22 @@ final class InlineValueText {
 /// An optional variable name can be used to override the extracted name.
 ///
 /// @since 3.17.0
-final class InlineValueVariableLookup {
-  const InlineValueVariableLookup({
-    required this.range,
-    this.variableName,
-    required this.caseSensitiveLookup,
-  });
+@freezed
+abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
+  const InlineValueVariableLookup._();
 
-  factory InlineValueVariableLookup.fromJson(Map<String, Object?> json) =>
+  const factory InlineValueVariableLookup({
+    required Range range,
+    String? variableName,
+    required bool caseSensitiveLookup,
+  }) = _InlineValueVariableLookup;
+
+  static InlineValueVariableLookup fromJson(Map<String, Object?> json) =>
       InlineValueVariableLookup(
         range: Range.fromJson(json['range'] as Map<String, Object?>),
         variableName: json['variableName'] as String?,
         caseSensitiveLookup: json['caseSensitiveLookup'] as bool,
       );
-
-  final Range range;
-
-  final String? variableName;
-
-  final bool caseSensitiveLookup;
-
-  InlineValueVariableLookup copyWith({
-    Range? range,
-    String? variableName,
-    bool? caseSensitiveLookup,
-  }) => InlineValueVariableLookup(
-    range: range ?? this.range,
-    variableName: variableName ?? this.variableName,
-    caseSensitiveLookup: caseSensitiveLookup ?? this.caseSensitiveLookup,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -8879,30 +6604,21 @@ final class InlineValueVariableLookup {
 /// An optional expression can be used to override the extracted expression.
 ///
 /// @since 3.17.0
-final class InlineValueEvaluatableExpression {
-  const InlineValueEvaluatableExpression({
-    required this.range,
-    this.expression,
-  });
+@freezed
+abstract class InlineValueEvaluatableExpression
+    with _$InlineValueEvaluatableExpression {
+  const InlineValueEvaluatableExpression._();
 
-  factory InlineValueEvaluatableExpression.fromJson(
-    Map<String, Object?> json,
-  ) => InlineValueEvaluatableExpression(
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    expression: json['expression'] as String?,
-  );
-
-  final Range range;
-
-  final String? expression;
-
-  InlineValueEvaluatableExpression copyWith({
-    Range? range,
+  const factory InlineValueEvaluatableExpression({
+    required Range range,
     String? expression,
-  }) => InlineValueEvaluatableExpression(
-    range: range ?? this.range,
-    expression: expression ?? this.expression,
-  );
+  }) = _InlineValueEvaluatableExpression;
+
+  static InlineValueEvaluatableExpression fromJson(Map<String, Object?> json) =>
+      InlineValueEvaluatableExpression(
+        range: Range.fromJson(json['range'] as Map<String, Object?>),
+        expression: json['expression'] as String?,
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'range': range.toJson(), 'expression': expression};
@@ -8912,17 +6628,15 @@ final class InlineValueEvaluatableExpression {
 /// Inline value options used during static registration.
 ///
 /// @since 3.17.0
-final class InlineValueOptions {
-  const InlineValueOptions({this.workDoneProgress});
+@freezed
+abstract class InlineValueOptions with _$InlineValueOptions {
+  const InlineValueOptions._();
 
-  factory InlineValueOptions.fromJson(Map<String, Object?> json) =>
+  const factory InlineValueOptions({bool? workDoneProgress}) =
+      _InlineValueOptions;
+
+  static InlineValueOptions fromJson(Map<String, Object?> json) =>
       InlineValueOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  final bool? workDoneProgress;
-
-  InlineValueOptions copyWith({bool? workDoneProgress}) => InlineValueOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
@@ -8933,15 +6647,18 @@ final class InlineValueOptions {
 /// of inlay hints.
 ///
 /// @since 3.17.0
-final class InlayHintLabelPart {
-  const InlayHintLabelPart({
-    required this.value,
-    this.tooltip,
-    this.location,
-    this.command,
-  });
+@freezed
+abstract class InlayHintLabelPart with _$InlayHintLabelPart {
+  const InlayHintLabelPart._();
 
-  factory InlayHintLabelPart.fromJson(Map<String, Object?> json) =>
+  const factory InlayHintLabelPart({
+    required String value,
+    Object? tooltip,
+    Location? location,
+    Command? command,
+  }) = _InlayHintLabelPart;
+
+  static InlayHintLabelPart fromJson(Map<String, Object?> json) =>
       InlayHintLabelPart(
         value: json['value'] as String,
         tooltip: json['tooltip'],
@@ -8952,26 +6669,6 @@ final class InlayHintLabelPart {
             ? null
             : Command.fromJson(json['command'] as Map<String, Object?>),
       );
-
-  final String value;
-
-  final Object? tooltip;
-
-  final Location? location;
-
-  final Command? command;
-
-  InlayHintLabelPart copyWith({
-    String? value,
-    Object? tooltip,
-    Location? location,
-    Command? command,
-  }) => InlayHintLabelPart(
-    value: value ?? this.value,
-    tooltip: tooltip ?? this.tooltip,
-    location: location ?? this.location,
-    command: command ?? this.command,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -9005,22 +6702,21 @@ final class InlayHintLabelPart {
 ///
 /// *Please Note* that clients might sanitize the return markdown. A client could decide to
 /// remove HTML from the markdown to avoid script execution.
-final class MarkupContent {
-  const MarkupContent({required this.kind, required this.value});
+@freezed
+abstract class MarkupContent with _$MarkupContent {
+  const MarkupContent._();
 
-  factory MarkupContent.fromJson(Map<String, Object?> json) => MarkupContent(
+  const factory MarkupContent({
+    required MarkupKind kind,
+    required String value,
+  }) = _MarkupContent;
+
+  static MarkupContent fromJson(Map<String, Object?> json) => MarkupContent(
     kind: MarkupKind.values.firstWhere(
       (e) => e.value == json['kind'] as String,
     ),
     value: json['value'] as String,
   );
-
-  final MarkupKind kind;
-
-  final String value;
-
-  MarkupContent copyWith({MarkupKind? kind, String? value}) =>
-      MarkupContent(kind: kind ?? this.kind, value: value ?? this.value);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'kind': kind.value, 'value': value};
@@ -9030,23 +6726,19 @@ final class MarkupContent {
 /// Inlay hint options used during static registration.
 ///
 /// @since 3.17.0
-final class InlayHintOptions {
-  const InlayHintOptions({this.workDoneProgress, this.resolveProvider});
+@freezed
+abstract class InlayHintOptions with _$InlayHintOptions {
+  const InlayHintOptions._();
 
-  factory InlayHintOptions.fromJson(Map<String, Object?> json) =>
+  const factory InlayHintOptions({
+    bool? workDoneProgress,
+    bool? resolveProvider,
+  }) = _InlayHintOptions;
+
+  static InlayHintOptions fromJson(Map<String, Object?> json) =>
       InlayHintOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         resolveProvider: json['resolveProvider'] as bool?,
-      );
-
-  final bool? workDoneProgress;
-
-  final bool? resolveProvider;
-
-  InlayHintOptions copyWith({bool? workDoneProgress, bool? resolveProvider}) =>
-      InlayHintOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-        resolveProvider: resolveProvider ?? this.resolveProvider,
       );
 
   Map<String, Object?> toJson() {
@@ -9060,15 +6752,19 @@ final class InlayHintOptions {
 /// A full diagnostic report with a set of related documents.
 ///
 /// @since 3.17.0
-final class RelatedFullDocumentDiagnosticReport {
-  const RelatedFullDocumentDiagnosticReport({
-    required this.kind,
-    this.resultId,
-    required this.items,
-    this.relatedDocuments,
-  });
+@freezed
+abstract class RelatedFullDocumentDiagnosticReport
+    with _$RelatedFullDocumentDiagnosticReport {
+  const RelatedFullDocumentDiagnosticReport._();
 
-  factory RelatedFullDocumentDiagnosticReport.fromJson(
+  const factory RelatedFullDocumentDiagnosticReport({
+    required String kind,
+    String? resultId,
+    required List<Diagnostic> items,
+    Map<String, Object>? relatedDocuments,
+  }) = _RelatedFullDocumentDiagnosticReport;
+
+  static RelatedFullDocumentDiagnosticReport fromJson(
     Map<String, Object?> json,
   ) => RelatedFullDocumentDiagnosticReport(
     kind: json['kind'] as String,
@@ -9079,26 +6775,6 @@ final class RelatedFullDocumentDiagnosticReport {
     relatedDocuments: (json['relatedDocuments'] as Map<String, Object?>?)?.map(
       (k, v) => MapEntry(k, v as Object),
     ),
-  );
-
-  final String kind;
-
-  final String? resultId;
-
-  final List<Diagnostic> items;
-
-  final Map<String, Object>? relatedDocuments;
-
-  RelatedFullDocumentDiagnosticReport copyWith({
-    String? kind,
-    String? resultId,
-    List<Diagnostic>? items,
-    Map<String, Object>? relatedDocuments,
-  }) => RelatedFullDocumentDiagnosticReport(
-    kind: kind ?? this.kind,
-    resultId: resultId ?? this.resultId,
-    items: items ?? this.items,
-    relatedDocuments: relatedDocuments ?? this.relatedDocuments,
   );
 
   Map<String, Object?> toJson() {
@@ -9114,14 +6790,18 @@ final class RelatedFullDocumentDiagnosticReport {
 /// An unchanged diagnostic report with a set of related documents.
 ///
 /// @since 3.17.0
-final class RelatedUnchangedDocumentDiagnosticReport {
-  const RelatedUnchangedDocumentDiagnosticReport({
-    required this.kind,
-    required this.resultId,
-    this.relatedDocuments,
-  });
+@freezed
+abstract class RelatedUnchangedDocumentDiagnosticReport
+    with _$RelatedUnchangedDocumentDiagnosticReport {
+  const RelatedUnchangedDocumentDiagnosticReport._();
 
-  factory RelatedUnchangedDocumentDiagnosticReport.fromJson(
+  const factory RelatedUnchangedDocumentDiagnosticReport({
+    required String kind,
+    required String resultId,
+    Map<String, Object>? relatedDocuments,
+  }) = _RelatedUnchangedDocumentDiagnosticReport;
+
+  static RelatedUnchangedDocumentDiagnosticReport fromJson(
     Map<String, Object?> json,
   ) => RelatedUnchangedDocumentDiagnosticReport(
     kind: json['kind'] as String,
@@ -9129,22 +6809,6 @@ final class RelatedUnchangedDocumentDiagnosticReport {
     relatedDocuments: (json['relatedDocuments'] as Map<String, Object?>?)?.map(
       (k, v) => MapEntry(k, v as Object),
     ),
-  );
-
-  final String kind;
-
-  final String resultId;
-
-  final Map<String, Object>? relatedDocuments;
-
-  RelatedUnchangedDocumentDiagnosticReport copyWith({
-    String? kind,
-    String? resultId,
-    Map<String, Object>? relatedDocuments,
-  }) => RelatedUnchangedDocumentDiagnosticReport(
-    kind: kind ?? this.kind,
-    resultId: resultId ?? this.resultId,
-    relatedDocuments: relatedDocuments ?? this.relatedDocuments,
   );
 
   Map<String, Object?> toJson() {
@@ -9159,14 +6823,18 @@ final class RelatedUnchangedDocumentDiagnosticReport {
 /// A diagnostic report with a full set of problems.
 ///
 /// @since 3.17.0
-final class FullDocumentDiagnosticReport {
-  const FullDocumentDiagnosticReport({
-    required this.kind,
-    this.resultId,
-    required this.items,
-  });
+@freezed
+abstract class FullDocumentDiagnosticReport
+    with _$FullDocumentDiagnosticReport {
+  const FullDocumentDiagnosticReport._();
 
-  factory FullDocumentDiagnosticReport.fromJson(Map<String, Object?> json) =>
+  const factory FullDocumentDiagnosticReport({
+    required String kind,
+    String? resultId,
+    required List<Diagnostic> items,
+  }) = _FullDocumentDiagnosticReport;
+
+  static FullDocumentDiagnosticReport fromJson(Map<String, Object?> json) =>
       FullDocumentDiagnosticReport(
         kind: json['kind'] as String,
         resultId: json['resultId'] as String?,
@@ -9174,22 +6842,6 @@ final class FullDocumentDiagnosticReport {
             .map((e) => Diagnostic.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final String kind;
-
-  final String? resultId;
-
-  final List<Diagnostic> items;
-
-  FullDocumentDiagnosticReport copyWith({
-    String? kind,
-    String? resultId,
-    List<Diagnostic>? items,
-  }) => FullDocumentDiagnosticReport(
-    kind: kind ?? this.kind,
-    resultId: resultId ?? this.resultId,
-    items: items ?? this.items,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -9204,29 +6856,21 @@ final class FullDocumentDiagnosticReport {
 /// report is still accurate.
 ///
 /// @since 3.17.0
-final class UnchangedDocumentDiagnosticReport {
-  const UnchangedDocumentDiagnosticReport({
-    required this.kind,
-    required this.resultId,
-  });
+@freezed
+abstract class UnchangedDocumentDiagnosticReport
+    with _$UnchangedDocumentDiagnosticReport {
+  const UnchangedDocumentDiagnosticReport._();
 
-  factory UnchangedDocumentDiagnosticReport.fromJson(
+  const factory UnchangedDocumentDiagnosticReport({
+    required String kind,
+    required String resultId,
+  }) = _UnchangedDocumentDiagnosticReport;
+
+  static UnchangedDocumentDiagnosticReport fromJson(
     Map<String, Object?> json,
   ) => UnchangedDocumentDiagnosticReport(
     kind: json['kind'] as String,
     resultId: json['resultId'] as String,
-  );
-
-  final String kind;
-
-  final String resultId;
-
-  UnchangedDocumentDiagnosticReport copyWith({
-    String? kind,
-    String? resultId,
-  }) => UnchangedDocumentDiagnosticReport(
-    kind: kind ?? this.kind,
-    resultId: resultId ?? this.resultId,
   );
 
   Map<String, Object?> toJson() {
@@ -9237,41 +6881,24 @@ final class UnchangedDocumentDiagnosticReport {
 /// Diagnostic options.
 ///
 /// @since 3.17.0
-final class DiagnosticOptions {
-  const DiagnosticOptions({
-    this.workDoneProgress,
-    this.identifier,
-    required this.interFileDependencies,
-    required this.workspaceDiagnostics,
-  });
+@freezed
+abstract class DiagnosticOptions with _$DiagnosticOptions {
+  const DiagnosticOptions._();
 
-  factory DiagnosticOptions.fromJson(Map<String, Object?> json) =>
+  const factory DiagnosticOptions({
+    bool? workDoneProgress,
+    String? identifier,
+    required bool interFileDependencies,
+    required bool workspaceDiagnostics,
+  }) = _DiagnosticOptions;
+
+  static DiagnosticOptions fromJson(Map<String, Object?> json) =>
       DiagnosticOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         identifier: json['identifier'] as String?,
         interFileDependencies: json['interFileDependencies'] as bool,
         workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
       );
-
-  final bool? workDoneProgress;
-
-  final String? identifier;
-
-  final bool interFileDependencies;
-
-  final bool workspaceDiagnostics;
-
-  DiagnosticOptions copyWith({
-    bool? workDoneProgress,
-    String? identifier,
-    bool? interFileDependencies,
-    bool? workspaceDiagnostics,
-  }) => DiagnosticOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    identifier: identifier ?? this.identifier,
-    interFileDependencies: interFileDependencies ?? this.interFileDependencies,
-    workspaceDiagnostics: workspaceDiagnostics ?? this.workspaceDiagnostics,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -9286,21 +6913,18 @@ final class DiagnosticOptions {
 /// A previous result id in a workspace pull request.
 ///
 /// @since 3.17.0
-final class PreviousResultId {
-  const PreviousResultId({required this.uri, required this.value});
+@freezed
+abstract class PreviousResultId with _$PreviousResultId {
+  const PreviousResultId._();
 
-  factory PreviousResultId.fromJson(Map<String, Object?> json) =>
+  const factory PreviousResultId({required String uri, required String value}) =
+      _PreviousResultId;
+
+  static PreviousResultId fromJson(Map<String, Object?> json) =>
       PreviousResultId(
         uri: json['uri'] as String,
         value: json['value'] as String,
       );
-
-  final String uri;
-
-  final String value;
-
-  PreviousResultId copyWith({String? uri, String? value}) =>
-      PreviousResultId(uri: uri ?? this.uri, value: value ?? this.value);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'uri': uri, 'value': value};
@@ -9310,16 +6934,19 @@ final class PreviousResultId {
 /// A notebook document.
 ///
 /// @since 3.17.0
-final class NotebookDocument {
-  const NotebookDocument({
-    required this.uri,
-    required this.notebookType,
-    required this.version,
-    this.metadata,
-    required this.cells,
-  });
+@freezed
+abstract class NotebookDocument with _$NotebookDocument {
+  const NotebookDocument._();
 
-  factory NotebookDocument.fromJson(Map<String, Object?> json) =>
+  const factory NotebookDocument({
+    required String uri,
+    required String notebookType,
+    required int version,
+    LSPObject? metadata,
+    required List<NotebookCell> cells,
+  }) = _NotebookDocument;
+
+  static NotebookDocument fromJson(Map<String, Object?> json) =>
       NotebookDocument(
         uri: json['uri'] as String,
         notebookType: json['notebookType'] as String,
@@ -9329,30 +6956,6 @@ final class NotebookDocument {
             .map((e) => NotebookCell.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final String uri;
-
-  final String notebookType;
-
-  final int version;
-
-  final LSPObject? metadata;
-
-  final List<NotebookCell> cells;
-
-  NotebookDocument copyWith({
-    String? uri,
-    String? notebookType,
-    int? version,
-    LSPObject? metadata,
-    List<NotebookCell>? cells,
-  }) => NotebookDocument(
-    uri: uri ?? this.uri,
-    notebookType: notebookType ?? this.notebookType,
-    version: version ?? this.version,
-    metadata: metadata ?? this.metadata,
-    cells: cells ?? this.cells,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -9367,41 +6970,24 @@ final class NotebookDocument {
 
 /// An item to transfer a text document from the client to the
 /// server.
-final class TextDocumentItem {
-  const TextDocumentItem({
-    required this.uri,
-    required this.languageId,
-    required this.version,
-    required this.text,
-  });
+@freezed
+abstract class TextDocumentItem with _$TextDocumentItem {
+  const TextDocumentItem._();
 
-  factory TextDocumentItem.fromJson(Map<String, Object?> json) =>
+  const factory TextDocumentItem({
+    required String uri,
+    required String languageId,
+    required int version,
+    required String text,
+  }) = _TextDocumentItem;
+
+  static TextDocumentItem fromJson(Map<String, Object?> json) =>
       TextDocumentItem(
         uri: json['uri'] as String,
         languageId: json['languageId'] as String,
         version: json['version'] as int,
         text: json['text'] as String,
       );
-
-  final String uri;
-
-  final String languageId;
-
-  final int version;
-
-  final String text;
-
-  TextDocumentItem copyWith({
-    String? uri,
-    String? languageId,
-    int? version,
-    String? text,
-  }) => TextDocumentItem(
-    uri: uri ?? this.uri,
-    languageId: languageId ?? this.languageId,
-    version: version ?? this.version,
-    text: text ?? this.text,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -9416,28 +7002,22 @@ final class TextDocumentItem {
 /// A versioned notebook document identifier.
 ///
 /// @since 3.17.0
-final class VersionedNotebookDocumentIdentifier {
-  const VersionedNotebookDocumentIdentifier({
-    required this.version,
-    required this.uri,
-  });
+@freezed
+abstract class VersionedNotebookDocumentIdentifier
+    with _$VersionedNotebookDocumentIdentifier {
+  const VersionedNotebookDocumentIdentifier._();
 
-  factory VersionedNotebookDocumentIdentifier.fromJson(
+  const factory VersionedNotebookDocumentIdentifier({
+    required int version,
+    required String uri,
+  }) = _VersionedNotebookDocumentIdentifier;
+
+  static VersionedNotebookDocumentIdentifier fromJson(
     Map<String, Object?> json,
   ) => VersionedNotebookDocumentIdentifier(
     version: json['version'] as int,
     uri: json['uri'] as String,
   );
-
-  final int version;
-
-  final String uri;
-
-  VersionedNotebookDocumentIdentifier copyWith({int? version, String? uri}) =>
-      VersionedNotebookDocumentIdentifier(
-        version: version ?? this.version,
-        uri: uri ?? this.uri,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'version': version, 'uri': uri};
@@ -9447,10 +7027,16 @@ final class VersionedNotebookDocumentIdentifier {
 /// A change event for a notebook document.
 ///
 /// @since 3.17.0
-final class NotebookDocumentChangeEvent {
-  const NotebookDocumentChangeEvent({this.metadata, this.cells});
+@freezed
+abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
+  const NotebookDocumentChangeEvent._();
 
-  factory NotebookDocumentChangeEvent.fromJson(Map<String, Object?> json) =>
+  const factory NotebookDocumentChangeEvent({
+    LSPObject? metadata,
+    NotebookDocumentChangeEventCells? cells,
+  }) = _NotebookDocumentChangeEvent;
+
+  static NotebookDocumentChangeEvent fromJson(Map<String, Object?> json) =>
       NotebookDocumentChangeEvent(
         metadata: json['metadata'] as LSPObject?,
         cells: json['cells'] == null
@@ -9460,18 +7046,6 @@ final class NotebookDocumentChangeEvent {
               ),
       );
 
-  final LSPObject? metadata;
-
-  final NotebookDocumentChangeEventCells? cells;
-
-  NotebookDocumentChangeEvent copyWith({
-    LSPObject? metadata,
-    NotebookDocumentChangeEventCells? cells,
-  }) => NotebookDocumentChangeEvent(
-    metadata: metadata ?? this.metadata,
-    cells: cells ?? this.cells,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'metadata': metadata, 'cells': cells?.toJson()};
   }
@@ -9480,16 +7054,15 @@ final class NotebookDocumentChangeEvent {
 /// A literal to identify a notebook document in the client.
 ///
 /// @since 3.17.0
-final class NotebookDocumentIdentifier {
-  const NotebookDocumentIdentifier({required this.uri});
+@freezed
+abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
+  const NotebookDocumentIdentifier._();
 
-  factory NotebookDocumentIdentifier.fromJson(Map<String, Object?> json) =>
+  const factory NotebookDocumentIdentifier({required String uri}) =
+      _NotebookDocumentIdentifier;
+
+  static NotebookDocumentIdentifier fromJson(Map<String, Object?> json) =>
       NotebookDocumentIdentifier(uri: json['uri'] as String);
-
-  final String uri;
-
-  NotebookDocumentIdentifier copyWith({String? uri}) =>
-      NotebookDocumentIdentifier(uri: uri ?? this.uri);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'uri': uri};
@@ -9500,13 +7073,16 @@ final class NotebookDocumentIdentifier {
 ///
 /// @since 3.18.0
 /// @proposed
-final class InlineCompletionContext {
-  const InlineCompletionContext({
-    required this.triggerKind,
-    this.selectedCompletionInfo,
-  });
+@freezed
+abstract class InlineCompletionContext with _$InlineCompletionContext {
+  const InlineCompletionContext._();
 
-  factory InlineCompletionContext.fromJson(Map<String, Object?> json) =>
+  const factory InlineCompletionContext({
+    required InlineCompletionTriggerKind triggerKind,
+    SelectedCompletionInfo? selectedCompletionInfo,
+  }) = _InlineCompletionContext;
+
+  static InlineCompletionContext fromJson(Map<String, Object?> json) =>
       InlineCompletionContext(
         triggerKind: InlineCompletionTriggerKind.values.firstWhere(
           (e) => e.value == json['triggerKind'] as int,
@@ -9517,19 +7093,6 @@ final class InlineCompletionContext {
                 json['selectedCompletionInfo'] as Map<String, Object?>,
               ),
       );
-
-  final InlineCompletionTriggerKind triggerKind;
-
-  final SelectedCompletionInfo? selectedCompletionInfo;
-
-  InlineCompletionContext copyWith({
-    InlineCompletionTriggerKind? triggerKind,
-    SelectedCompletionInfo? selectedCompletionInfo,
-  }) => InlineCompletionContext(
-    triggerKind: triggerKind ?? this.triggerKind,
-    selectedCompletionInfo:
-        selectedCompletionInfo ?? this.selectedCompletionInfo,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -9549,18 +7112,15 @@ final class InlineCompletionContext {
 ///
 /// @since 3.18.0
 /// @proposed
-final class StringValue {
-  const StringValue({required this.kind, required this.value});
+@freezed
+abstract class StringValue with _$StringValue {
+  const StringValue._();
 
-  factory StringValue.fromJson(Map<String, Object?> json) =>
+  const factory StringValue({required String kind, required String value}) =
+      _StringValue;
+
+  static StringValue fromJson(Map<String, Object?> json) =>
       StringValue(kind: json['kind'] as String, value: json['value'] as String);
-
-  final String kind;
-
-  final String value;
-
-  StringValue copyWith({String? kind, String? value}) =>
-      StringValue(kind: kind ?? this.kind, value: value ?? this.value);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'kind': kind, 'value': value};
@@ -9571,19 +7131,16 @@ final class StringValue {
 ///
 /// @since 3.18.0
 /// @proposed
-final class InlineCompletionOptions {
-  const InlineCompletionOptions({this.workDoneProgress});
+@freezed
+abstract class InlineCompletionOptions with _$InlineCompletionOptions {
+  const InlineCompletionOptions._();
 
-  factory InlineCompletionOptions.fromJson(Map<String, Object?> json) =>
+  const factory InlineCompletionOptions({bool? workDoneProgress}) =
+      _InlineCompletionOptions;
+
+  static InlineCompletionOptions fromJson(Map<String, Object?> json) =>
       InlineCompletionOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  final bool? workDoneProgress;
-
-  InlineCompletionOptions copyWith({bool? workDoneProgress}) =>
-      InlineCompletionOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
       );
 
   Map<String, Object?> toJson() {
@@ -9592,33 +7149,20 @@ final class InlineCompletionOptions {
 }
 
 /// General parameters to register for a notification or to register a provider.
-final class Registration {
-  const Registration({
-    required this.id,
-    required this.method,
-    this.registerOptions,
-  });
+@freezed
+abstract class Registration with _$Registration {
+  const Registration._();
 
-  factory Registration.fromJson(Map<String, Object?> json) => Registration(
+  const factory Registration({
+    required String id,
+    required String method,
+    LSPAny? registerOptions,
+  }) = _Registration;
+
+  static Registration fromJson(Map<String, Object?> json) => Registration(
     id: json['id'] as String,
     method: json['method'] as String,
     registerOptions: json['registerOptions'],
-  );
-
-  final String id;
-
-  final String method;
-
-  final LSPAny? registerOptions;
-
-  Registration copyWith({
-    String? id,
-    String? method,
-    LSPAny? registerOptions,
-  }) => Registration(
-    id: id ?? this.id,
-    method: method ?? this.method,
-    registerOptions: registerOptions ?? this.registerOptions,
   );
 
   Map<String, Object?> toJson() {
@@ -9631,44 +7175,38 @@ final class Registration {
 }
 
 /// General parameters to unregister a request or notification.
-final class Unregistration {
-  const Unregistration({required this.id, required this.method});
+@freezed
+abstract class Unregistration with _$Unregistration {
+  const Unregistration._();
 
-  factory Unregistration.fromJson(Map<String, Object?> json) => Unregistration(
+  const factory Unregistration({required String id, required String method}) =
+      _Unregistration;
+
+  static Unregistration fromJson(Map<String, Object?> json) => Unregistration(
     id: json['id'] as String,
     method: json['method'] as String,
   );
-
-  final String id;
-
-  final String method;
-
-  Unregistration copyWith({String? id, String? method}) =>
-      Unregistration(id: id ?? this.id, method: method ?? this.method);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'id': id, 'method': method};
   }
 }
 
-final class WorkspaceFoldersInitializeParams {
-  const WorkspaceFoldersInitializeParams({this.workspaceFolders});
+@freezed
+abstract class WorkspaceFoldersInitializeParams
+    with _$WorkspaceFoldersInitializeParams {
+  const WorkspaceFoldersInitializeParams._();
 
-  factory WorkspaceFoldersInitializeParams.fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceFoldersInitializeParams(
-    workspaceFolders: (json['workspaceFolders'] as List<Object?>?)
-        ?.map((e) => WorkspaceFolder.fromJson(e as Map<String, Object?>))
-        .toList(),
-  );
-
-  final List<WorkspaceFolder>? workspaceFolders;
-
-  WorkspaceFoldersInitializeParams copyWith({
+  const factory WorkspaceFoldersInitializeParams({
     List<WorkspaceFolder>? workspaceFolders,
-  }) => WorkspaceFoldersInitializeParams(
-    workspaceFolders: workspaceFolders ?? this.workspaceFolders,
-  );
+  }) = _WorkspaceFoldersInitializeParams;
+
+  static WorkspaceFoldersInitializeParams fromJson(Map<String, Object?> json) =>
+      WorkspaceFoldersInitializeParams(
+        workspaceFolders: (json['workspaceFolders'] as List<Object?>?)
+            ?.map((e) => WorkspaceFolder.fromJson(e as Map<String, Object?>))
+            .toList(),
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -9679,47 +7217,50 @@ final class WorkspaceFoldersInitializeParams {
 
 /// Defines the capabilities provided by a language
 /// server.
-final class ServerCapabilities {
-  const ServerCapabilities({
-    this.positionEncoding,
-    this.textDocumentSync,
-    this.notebookDocumentSync,
-    this.completionProvider,
-    this.hoverProvider,
-    this.signatureHelpProvider,
-    this.declarationProvider,
-    this.definitionProvider,
-    this.typeDefinitionProvider,
-    this.implementationProvider,
-    this.referencesProvider,
-    this.documentHighlightProvider,
-    this.documentSymbolProvider,
-    this.codeActionProvider,
-    this.codeLensProvider,
-    this.documentLinkProvider,
-    this.colorProvider,
-    this.workspaceSymbolProvider,
-    this.documentFormattingProvider,
-    this.documentRangeFormattingProvider,
-    this.documentOnTypeFormattingProvider,
-    this.renameProvider,
-    this.foldingRangeProvider,
-    this.selectionRangeProvider,
-    this.executeCommandProvider,
-    this.callHierarchyProvider,
-    this.linkedEditingRangeProvider,
-    this.semanticTokensProvider,
-    this.monikerProvider,
-    this.typeHierarchyProvider,
-    this.inlineValueProvider,
-    this.inlayHintProvider,
-    this.diagnosticProvider,
-    this.inlineCompletionProvider,
-    this.workspace,
-    this.experimental,
-  });
+@freezed
+abstract class ServerCapabilities with _$ServerCapabilities {
+  const ServerCapabilities._();
 
-  factory ServerCapabilities.fromJson(
+  const factory ServerCapabilities({
+    PositionEncodingKind? positionEncoding,
+    Object? textDocumentSync,
+    Object? notebookDocumentSync,
+    CompletionOptions? completionProvider,
+    Object? hoverProvider,
+    SignatureHelpOptions? signatureHelpProvider,
+    Object? declarationProvider,
+    Object? definitionProvider,
+    Object? typeDefinitionProvider,
+    Object? implementationProvider,
+    Object? referencesProvider,
+    Object? documentHighlightProvider,
+    Object? documentSymbolProvider,
+    Object? codeActionProvider,
+    CodeLensOptions? codeLensProvider,
+    DocumentLinkOptions? documentLinkProvider,
+    Object? colorProvider,
+    Object? workspaceSymbolProvider,
+    Object? documentFormattingProvider,
+    Object? documentRangeFormattingProvider,
+    DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,
+    Object? renameProvider,
+    Object? foldingRangeProvider,
+    Object? selectionRangeProvider,
+    ExecuteCommandOptions? executeCommandProvider,
+    Object? callHierarchyProvider,
+    Object? linkedEditingRangeProvider,
+    Object? semanticTokensProvider,
+    Object? monikerProvider,
+    Object? typeHierarchyProvider,
+    Object? inlineValueProvider,
+    Object? inlayHintProvider,
+    Object? diagnosticProvider,
+    Object? inlineCompletionProvider,
+    ServerCapabilitiesWorkspace? workspace,
+    LSPAny? experimental,
+  }) = _ServerCapabilities;
+
+  static ServerCapabilities fromJson(
     Map<String, Object?> json,
   ) => ServerCapabilities(
     positionEncoding: json['positionEncoding'] == null
@@ -9791,168 +7332,6 @@ final class ServerCapabilities {
     experimental: json['experimental'],
   );
 
-  final PositionEncodingKind? positionEncoding;
-
-  final Object? textDocumentSync;
-
-  final Object? notebookDocumentSync;
-
-  final CompletionOptions? completionProvider;
-
-  final Object? hoverProvider;
-
-  final SignatureHelpOptions? signatureHelpProvider;
-
-  final Object? declarationProvider;
-
-  final Object? definitionProvider;
-
-  final Object? typeDefinitionProvider;
-
-  final Object? implementationProvider;
-
-  final Object? referencesProvider;
-
-  final Object? documentHighlightProvider;
-
-  final Object? documentSymbolProvider;
-
-  final Object? codeActionProvider;
-
-  final CodeLensOptions? codeLensProvider;
-
-  final DocumentLinkOptions? documentLinkProvider;
-
-  final Object? colorProvider;
-
-  final Object? workspaceSymbolProvider;
-
-  final Object? documentFormattingProvider;
-
-  final Object? documentRangeFormattingProvider;
-
-  final DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
-
-  final Object? renameProvider;
-
-  final Object? foldingRangeProvider;
-
-  final Object? selectionRangeProvider;
-
-  final ExecuteCommandOptions? executeCommandProvider;
-
-  final Object? callHierarchyProvider;
-
-  final Object? linkedEditingRangeProvider;
-
-  final Object? semanticTokensProvider;
-
-  final Object? monikerProvider;
-
-  final Object? typeHierarchyProvider;
-
-  final Object? inlineValueProvider;
-
-  final Object? inlayHintProvider;
-
-  final Object? diagnosticProvider;
-
-  final Object? inlineCompletionProvider;
-
-  final ServerCapabilitiesWorkspace? workspace;
-
-  final LSPAny? experimental;
-
-  ServerCapabilities copyWith({
-    PositionEncodingKind? positionEncoding,
-    Object? textDocumentSync,
-    Object? notebookDocumentSync,
-    CompletionOptions? completionProvider,
-    Object? hoverProvider,
-    SignatureHelpOptions? signatureHelpProvider,
-    Object? declarationProvider,
-    Object? definitionProvider,
-    Object? typeDefinitionProvider,
-    Object? implementationProvider,
-    Object? referencesProvider,
-    Object? documentHighlightProvider,
-    Object? documentSymbolProvider,
-    Object? codeActionProvider,
-    CodeLensOptions? codeLensProvider,
-    DocumentLinkOptions? documentLinkProvider,
-    Object? colorProvider,
-    Object? workspaceSymbolProvider,
-    Object? documentFormattingProvider,
-    Object? documentRangeFormattingProvider,
-    DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,
-    Object? renameProvider,
-    Object? foldingRangeProvider,
-    Object? selectionRangeProvider,
-    ExecuteCommandOptions? executeCommandProvider,
-    Object? callHierarchyProvider,
-    Object? linkedEditingRangeProvider,
-    Object? semanticTokensProvider,
-    Object? monikerProvider,
-    Object? typeHierarchyProvider,
-    Object? inlineValueProvider,
-    Object? inlayHintProvider,
-    Object? diagnosticProvider,
-    Object? inlineCompletionProvider,
-    ServerCapabilitiesWorkspace? workspace,
-    LSPAny? experimental,
-  }) => ServerCapabilities(
-    positionEncoding: positionEncoding ?? this.positionEncoding,
-    textDocumentSync: textDocumentSync ?? this.textDocumentSync,
-    notebookDocumentSync: notebookDocumentSync ?? this.notebookDocumentSync,
-    completionProvider: completionProvider ?? this.completionProvider,
-    hoverProvider: hoverProvider ?? this.hoverProvider,
-    signatureHelpProvider: signatureHelpProvider ?? this.signatureHelpProvider,
-    declarationProvider: declarationProvider ?? this.declarationProvider,
-    definitionProvider: definitionProvider ?? this.definitionProvider,
-    typeDefinitionProvider:
-        typeDefinitionProvider ?? this.typeDefinitionProvider,
-    implementationProvider:
-        implementationProvider ?? this.implementationProvider,
-    referencesProvider: referencesProvider ?? this.referencesProvider,
-    documentHighlightProvider:
-        documentHighlightProvider ?? this.documentHighlightProvider,
-    documentSymbolProvider:
-        documentSymbolProvider ?? this.documentSymbolProvider,
-    codeActionProvider: codeActionProvider ?? this.codeActionProvider,
-    codeLensProvider: codeLensProvider ?? this.codeLensProvider,
-    documentLinkProvider: documentLinkProvider ?? this.documentLinkProvider,
-    colorProvider: colorProvider ?? this.colorProvider,
-    workspaceSymbolProvider:
-        workspaceSymbolProvider ?? this.workspaceSymbolProvider,
-    documentFormattingProvider:
-        documentFormattingProvider ?? this.documentFormattingProvider,
-    documentRangeFormattingProvider:
-        documentRangeFormattingProvider ?? this.documentRangeFormattingProvider,
-    documentOnTypeFormattingProvider:
-        documentOnTypeFormattingProvider ??
-        this.documentOnTypeFormattingProvider,
-    renameProvider: renameProvider ?? this.renameProvider,
-    foldingRangeProvider: foldingRangeProvider ?? this.foldingRangeProvider,
-    selectionRangeProvider:
-        selectionRangeProvider ?? this.selectionRangeProvider,
-    executeCommandProvider:
-        executeCommandProvider ?? this.executeCommandProvider,
-    callHierarchyProvider: callHierarchyProvider ?? this.callHierarchyProvider,
-    linkedEditingRangeProvider:
-        linkedEditingRangeProvider ?? this.linkedEditingRangeProvider,
-    semanticTokensProvider:
-        semanticTokensProvider ?? this.semanticTokensProvider,
-    monikerProvider: monikerProvider ?? this.monikerProvider,
-    typeHierarchyProvider: typeHierarchyProvider ?? this.typeHierarchyProvider,
-    inlineValueProvider: inlineValueProvider ?? this.inlineValueProvider,
-    inlayHintProvider: inlayHintProvider ?? this.inlayHintProvider,
-    diagnosticProvider: diagnosticProvider ?? this.diagnosticProvider,
-    inlineCompletionProvider:
-        inlineCompletionProvider ?? this.inlineCompletionProvider,
-    workspace: workspace ?? this.workspace,
-    experimental: experimental ?? this.experimental,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'positionEncoding': positionEncoding?.value,
@@ -9997,26 +7376,20 @@ final class ServerCapabilities {
 }
 
 /// A text document identifier to denote a specific version of a text document.
-final class VersionedTextDocumentIdentifier {
-  const VersionedTextDocumentIdentifier({
-    required this.uri,
-    required this.version,
-  });
+@freezed
+abstract class VersionedTextDocumentIdentifier
+    with _$VersionedTextDocumentIdentifier {
+  const VersionedTextDocumentIdentifier._();
 
-  factory VersionedTextDocumentIdentifier.fromJson(Map<String, Object?> json) =>
+  const factory VersionedTextDocumentIdentifier({
+    required String uri,
+    required int version,
+  }) = _VersionedTextDocumentIdentifier;
+
+  static VersionedTextDocumentIdentifier fromJson(Map<String, Object?> json) =>
       VersionedTextDocumentIdentifier(
         uri: json['uri'] as String,
         version: json['version'] as int,
-      );
-
-  final String uri;
-
-  final int version;
-
-  VersionedTextDocumentIdentifier copyWith({String? uri, int? version}) =>
-      VersionedTextDocumentIdentifier(
-        uri: uri ?? this.uri,
-        version: version ?? this.version,
       );
 
   Map<String, Object?> toJson() {
@@ -10025,16 +7398,14 @@ final class VersionedTextDocumentIdentifier {
 }
 
 /// Save options.
-final class SaveOptions {
-  const SaveOptions({this.includeText});
+@freezed
+abstract class SaveOptions with _$SaveOptions {
+  const SaveOptions._();
 
-  factory SaveOptions.fromJson(Map<String, Object?> json) =>
+  const factory SaveOptions({bool? includeText}) = _SaveOptions;
+
+  static SaveOptions fromJson(Map<String, Object?> json) =>
       SaveOptions(includeText: json['includeText'] as bool?);
-
-  final bool? includeText;
-
-  SaveOptions copyWith({bool? includeText}) =>
-      SaveOptions(includeText: includeText ?? this.includeText);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'includeText': includeText};
@@ -10042,45 +7413,38 @@ final class SaveOptions {
 }
 
 /// An event describing a file change.
-final class FileEvent {
-  const FileEvent({required this.uri, required this.type});
+@freezed
+abstract class FileEvent with _$FileEvent {
+  const FileEvent._();
 
-  factory FileEvent.fromJson(Map<String, Object?> json) => FileEvent(
+  const factory FileEvent({required String uri, required FileChangeType type}) =
+      _FileEvent;
+
+  static FileEvent fromJson(Map<String, Object?> json) => FileEvent(
     uri: json['uri'] as String,
     type: FileChangeType.values.firstWhere(
       (e) => e.value == json['type'] as int,
     ),
   );
 
-  final String uri;
-
-  final FileChangeType type;
-
-  FileEvent copyWith({String? uri, FileChangeType? type}) =>
-      FileEvent(uri: uri ?? this.uri, type: type ?? this.type);
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'uri': uri, 'type': type.value};
   }
 }
 
-final class FileSystemWatcher {
-  const FileSystemWatcher({required this.globPattern, this.kind});
+@freezed
+abstract class FileSystemWatcher with _$FileSystemWatcher {
+  const FileSystemWatcher._();
 
-  factory FileSystemWatcher.fromJson(Map<String, Object?> json) =>
+  const factory FileSystemWatcher({
+    required GlobPattern globPattern,
+    WatchKind? kind,
+  }) = _FileSystemWatcher;
+
+  static FileSystemWatcher fromJson(Map<String, Object?> json) =>
       FileSystemWatcher(
         globPattern: json['globPattern'] as GlobPattern,
         kind: json['kind'] == null ? null : WatchKind(json['kind'] as int),
-      );
-
-  final GlobPattern globPattern;
-
-  final WatchKind? kind;
-
-  FileSystemWatcher copyWith({GlobPattern? globPattern, WatchKind? kind}) =>
-      FileSystemWatcher(
-        globPattern: globPattern ?? this.globPattern,
-        kind: kind ?? this.kind,
       );
 
   Map<String, Object?> toJson() {
@@ -10090,20 +7454,23 @@ final class FileSystemWatcher {
 
 /// Represents a diagnostic, such as a compiler error or warning. Diagnostic objects
 /// are only valid in the scope of a resource.
-final class Diagnostic {
-  const Diagnostic({
-    required this.range,
-    this.severity,
-    this.code,
-    this.codeDescription,
-    this.source,
-    required this.message,
-    this.tags,
-    this.relatedInformation,
-    this.data,
-  });
+@freezed
+abstract class Diagnostic with _$Diagnostic {
+  const Diagnostic._();
 
-  factory Diagnostic.fromJson(Map<String, Object?> json) => Diagnostic(
+  const factory Diagnostic({
+    required Range range,
+    DiagnosticSeverity? severity,
+    Object? code,
+    CodeDescription? codeDescription,
+    String? source,
+    required String message,
+    List<DiagnosticTag>? tags,
+    List<DiagnosticRelatedInformation>? relatedInformation,
+    LSPAny? data,
+  }) = _Diagnostic;
+
+  static Diagnostic fromJson(Map<String, Object?> json) => Diagnostic(
     range: Range.fromJson(json['range'] as Map<String, Object?>),
     severity: json['severity'] == null
         ? null
@@ -10130,46 +7497,6 @@ final class Diagnostic {
     data: json['data'],
   );
 
-  final Range range;
-
-  final DiagnosticSeverity? severity;
-
-  final Object? code;
-
-  final CodeDescription? codeDescription;
-
-  final String? source;
-
-  final String message;
-
-  final List<DiagnosticTag>? tags;
-
-  final List<DiagnosticRelatedInformation>? relatedInformation;
-
-  final LSPAny? data;
-
-  Diagnostic copyWith({
-    Range? range,
-    DiagnosticSeverity? severity,
-    Object? code,
-    CodeDescription? codeDescription,
-    String? source,
-    String? message,
-    List<DiagnosticTag>? tags,
-    List<DiagnosticRelatedInformation>? relatedInformation,
-    LSPAny? data,
-  }) => Diagnostic(
-    range: range ?? this.range,
-    severity: severity ?? this.severity,
-    code: code ?? this.code,
-    codeDescription: codeDescription ?? this.codeDescription,
-    source: source ?? this.source,
-    message: message ?? this.message,
-    tags: tags ?? this.tags,
-    relatedInformation: relatedInformation ?? this.relatedInformation,
-    data: data ?? this.data,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'range': range.toJson(),
@@ -10186,28 +7513,22 @@ final class Diagnostic {
 }
 
 /// Contains additional information about the context in which a completion request is triggered.
-final class CompletionContext {
-  const CompletionContext({required this.triggerKind, this.triggerCharacter});
+@freezed
+abstract class CompletionContext with _$CompletionContext {
+  const CompletionContext._();
 
-  factory CompletionContext.fromJson(Map<String, Object?> json) =>
+  const factory CompletionContext({
+    required CompletionTriggerKind triggerKind,
+    String? triggerCharacter,
+  }) = _CompletionContext;
+
+  static CompletionContext fromJson(Map<String, Object?> json) =>
       CompletionContext(
         triggerKind: CompletionTriggerKind.values.firstWhere(
           (e) => e.value == json['triggerKind'] as int,
         ),
         triggerCharacter: json['triggerCharacter'] as String?,
       );
-
-  final CompletionTriggerKind triggerKind;
-
-  final String? triggerCharacter;
-
-  CompletionContext copyWith({
-    CompletionTriggerKind? triggerKind,
-    String? triggerCharacter,
-  }) => CompletionContext(
-    triggerKind: triggerKind ?? this.triggerKind,
-    triggerCharacter: triggerCharacter ?? this.triggerCharacter,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10220,23 +7541,19 @@ final class CompletionContext {
 /// Additional details for a completion item label.
 ///
 /// @since 3.17.0
-final class CompletionItemLabelDetails {
-  const CompletionItemLabelDetails({this.detail, this.description});
+@freezed
+abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
+  const CompletionItemLabelDetails._();
 
-  factory CompletionItemLabelDetails.fromJson(Map<String, Object?> json) =>
+  const factory CompletionItemLabelDetails({
+    String? detail,
+    String? description,
+  }) = _CompletionItemLabelDetails;
+
+  static CompletionItemLabelDetails fromJson(Map<String, Object?> json) =>
       CompletionItemLabelDetails(
         detail: json['detail'] as String?,
         description: json['description'] as String?,
-      );
-
-  final String? detail;
-
-  final String? description;
-
-  CompletionItemLabelDetails copyWith({String? detail, String? description}) =>
-      CompletionItemLabelDetails(
-        detail: detail ?? this.detail,
-        description: description ?? this.description,
       );
 
   Map<String, Object?> toJson() {
@@ -10247,35 +7564,22 @@ final class CompletionItemLabelDetails {
 /// A special text edit to provide an insert and a replace operation.
 ///
 /// @since 3.16.0
-final class InsertReplaceEdit {
-  const InsertReplaceEdit({
-    required this.newText,
-    required this.insert,
-    required this.replace,
-  });
+@freezed
+abstract class InsertReplaceEdit with _$InsertReplaceEdit {
+  const InsertReplaceEdit._();
 
-  factory InsertReplaceEdit.fromJson(Map<String, Object?> json) =>
+  const factory InsertReplaceEdit({
+    required String newText,
+    required Range insert,
+    required Range replace,
+  }) = _InsertReplaceEdit;
+
+  static InsertReplaceEdit fromJson(Map<String, Object?> json) =>
       InsertReplaceEdit(
         newText: json['newText'] as String,
         insert: Range.fromJson(json['insert'] as Map<String, Object?>),
         replace: Range.fromJson(json['replace'] as Map<String, Object?>),
       );
-
-  final String newText;
-
-  final Range insert;
-
-  final Range replace;
-
-  InsertReplaceEdit copyWith({
-    String? newText,
-    Range? insert,
-    Range? replace,
-  }) => InsertReplaceEdit(
-    newText: newText ?? this.newText,
-    insert: insert ?? this.insert,
-    replace: replace ?? this.replace,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10287,16 +7591,19 @@ final class InsertReplaceEdit {
 }
 
 /// Completion options.
-final class CompletionOptions {
-  const CompletionOptions({
-    this.workDoneProgress,
-    this.triggerCharacters,
-    this.allCommitCharacters,
-    this.resolveProvider,
-    this.completionItem,
-  });
+@freezed
+abstract class CompletionOptions with _$CompletionOptions {
+  const CompletionOptions._();
 
-  factory CompletionOptions.fromJson(Map<String, Object?> json) =>
+  const factory CompletionOptions({
+    bool? workDoneProgress,
+    List<String>? triggerCharacters,
+    List<String>? allCommitCharacters,
+    bool? resolveProvider,
+    CompletionOptionsCompletionItem? completionItem,
+  }) = _CompletionOptions;
+
+  static CompletionOptions fromJson(Map<String, Object?> json) =>
       CompletionOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         triggerCharacters: (json['triggerCharacters'] as List<Object?>?)
@@ -10313,30 +7620,6 @@ final class CompletionOptions {
               ),
       );
 
-  final bool? workDoneProgress;
-
-  final List<String>? triggerCharacters;
-
-  final List<String>? allCommitCharacters;
-
-  final bool? resolveProvider;
-
-  final CompletionOptionsCompletionItem? completionItem;
-
-  CompletionOptions copyWith({
-    bool? workDoneProgress,
-    List<String>? triggerCharacters,
-    List<String>? allCommitCharacters,
-    bool? resolveProvider,
-    CompletionOptionsCompletionItem? completionItem,
-  }) => CompletionOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    triggerCharacters: triggerCharacters ?? this.triggerCharacters,
-    allCommitCharacters: allCommitCharacters ?? this.allCommitCharacters,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
-    completionItem: completionItem ?? this.completionItem,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneProgress': workDoneProgress,
@@ -10349,16 +7632,14 @@ final class CompletionOptions {
 }
 
 /// Hover options.
-final class HoverOptions {
-  const HoverOptions({this.workDoneProgress});
+@freezed
+abstract class HoverOptions with _$HoverOptions {
+  const HoverOptions._();
 
-  factory HoverOptions.fromJson(Map<String, Object?> json) =>
+  const factory HoverOptions({bool? workDoneProgress}) = _HoverOptions;
+
+  static HoverOptions fromJson(Map<String, Object?> json) =>
       HoverOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  final bool? workDoneProgress;
-
-  HoverOptions copyWith({bool? workDoneProgress}) =>
-      HoverOptions(workDoneProgress: workDoneProgress ?? this.workDoneProgress);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
@@ -10368,15 +7649,18 @@ final class HoverOptions {
 /// Additional information about the context in which a signature help request was triggered.
 ///
 /// @since 3.15.0
-final class SignatureHelpContext {
-  const SignatureHelpContext({
-    required this.triggerKind,
-    this.triggerCharacter,
-    required this.isRetrigger,
-    this.activeSignatureHelp,
-  });
+@freezed
+abstract class SignatureHelpContext with _$SignatureHelpContext {
+  const SignatureHelpContext._();
 
-  factory SignatureHelpContext.fromJson(Map<String, Object?> json) =>
+  const factory SignatureHelpContext({
+    required SignatureHelpTriggerKind triggerKind,
+    String? triggerCharacter,
+    required bool isRetrigger,
+    SignatureHelp? activeSignatureHelp,
+  }) = _SignatureHelpContext;
+
+  static SignatureHelpContext fromJson(Map<String, Object?> json) =>
       SignatureHelpContext(
         triggerKind: SignatureHelpTriggerKind.values.firstWhere(
           (e) => e.value == json['triggerKind'] as int,
@@ -10389,26 +7673,6 @@ final class SignatureHelpContext {
                 json['activeSignatureHelp'] as Map<String, Object?>,
               ),
       );
-
-  final SignatureHelpTriggerKind triggerKind;
-
-  final String? triggerCharacter;
-
-  final bool isRetrigger;
-
-  final SignatureHelp? activeSignatureHelp;
-
-  SignatureHelpContext copyWith({
-    SignatureHelpTriggerKind? triggerKind,
-    String? triggerCharacter,
-    bool? isRetrigger,
-    SignatureHelp? activeSignatureHelp,
-  }) => SignatureHelpContext(
-    triggerKind: triggerKind ?? this.triggerKind,
-    triggerCharacter: triggerCharacter ?? this.triggerCharacter,
-    isRetrigger: isRetrigger ?? this.isRetrigger,
-    activeSignatureHelp: activeSignatureHelp ?? this.activeSignatureHelp,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10423,15 +7687,18 @@ final class SignatureHelpContext {
 /// Represents the signature of something callable. A signature
 /// can have a label, like a function-name, a doc-comment, and
 /// a set of parameters.
-final class SignatureInformation {
-  const SignatureInformation({
-    required this.label,
-    this.documentation,
-    this.parameters,
-    this.activeParameter,
-  });
+@freezed
+abstract class SignatureInformation with _$SignatureInformation {
+  const SignatureInformation._();
 
-  factory SignatureInformation.fromJson(Map<String, Object?> json) =>
+  const factory SignatureInformation({
+    required String label,
+    Object? documentation,
+    List<ParameterInformation>? parameters,
+    int? activeParameter,
+  }) = _SignatureInformation;
+
+  static SignatureInformation fromJson(Map<String, Object?> json) =>
       SignatureInformation(
         label: json['label'] as String,
         documentation: json['documentation'],
@@ -10442,26 +7709,6 @@ final class SignatureInformation {
             .toList(),
         activeParameter: json['activeParameter'] as int?,
       );
-
-  final String label;
-
-  final Object? documentation;
-
-  final List<ParameterInformation>? parameters;
-
-  final int? activeParameter;
-
-  SignatureInformation copyWith({
-    String? label,
-    Object? documentation,
-    List<ParameterInformation>? parameters,
-    int? activeParameter,
-  }) => SignatureInformation(
-    label: label ?? this.label,
-    documentation: documentation ?? this.documentation,
-    parameters: parameters ?? this.parameters,
-    activeParameter: activeParameter ?? this.activeParameter,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10474,14 +7721,17 @@ final class SignatureInformation {
 }
 
 /// Server Capabilities for a {@link SignatureHelpRequest}.
-final class SignatureHelpOptions {
-  const SignatureHelpOptions({
-    this.workDoneProgress,
-    this.triggerCharacters,
-    this.retriggerCharacters,
-  });
+@freezed
+abstract class SignatureHelpOptions with _$SignatureHelpOptions {
+  const SignatureHelpOptions._();
 
-  factory SignatureHelpOptions.fromJson(Map<String, Object?> json) =>
+  const factory SignatureHelpOptions({
+    bool? workDoneProgress,
+    List<String>? triggerCharacters,
+    List<String>? retriggerCharacters,
+  }) = _SignatureHelpOptions;
+
+  static SignatureHelpOptions fromJson(Map<String, Object?> json) =>
       SignatureHelpOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         triggerCharacters: (json['triggerCharacters'] as List<Object?>?)
@@ -10491,22 +7741,6 @@ final class SignatureHelpOptions {
             ?.map((e) => e as String)
             .toList(),
       );
-
-  final bool? workDoneProgress;
-
-  final List<String>? triggerCharacters;
-
-  final List<String>? retriggerCharacters;
-
-  SignatureHelpOptions copyWith({
-    bool? workDoneProgress,
-    List<String>? triggerCharacters,
-    List<String>? retriggerCharacters,
-  }) => SignatureHelpOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    triggerCharacters: triggerCharacters ?? this.triggerCharacters,
-    retriggerCharacters: retriggerCharacters ?? this.retriggerCharacters,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10518,17 +7752,15 @@ final class SignatureHelpOptions {
 }
 
 /// Server Capabilities for a {@link DefinitionRequest}.
-final class DefinitionOptions {
-  const DefinitionOptions({this.workDoneProgress});
+@freezed
+abstract class DefinitionOptions with _$DefinitionOptions {
+  const DefinitionOptions._();
 
-  factory DefinitionOptions.fromJson(Map<String, Object?> json) =>
+  const factory DefinitionOptions({bool? workDoneProgress}) =
+      _DefinitionOptions;
+
+  static DefinitionOptions fromJson(Map<String, Object?> json) =>
       DefinitionOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  final bool? workDoneProgress;
-
-  DefinitionOptions copyWith({bool? workDoneProgress}) => DefinitionOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
@@ -10537,17 +7769,15 @@ final class DefinitionOptions {
 
 /// Value-object that contains additional information when
 /// requesting references.
-final class ReferenceContext {
-  const ReferenceContext({required this.includeDeclaration});
+@freezed
+abstract class ReferenceContext with _$ReferenceContext {
+  const ReferenceContext._();
 
-  factory ReferenceContext.fromJson(Map<String, Object?> json) =>
+  const factory ReferenceContext({required bool includeDeclaration}) =
+      _ReferenceContext;
+
+  static ReferenceContext fromJson(Map<String, Object?> json) =>
       ReferenceContext(includeDeclaration: json['includeDeclaration'] as bool);
-
-  final bool includeDeclaration;
-
-  ReferenceContext copyWith({bool? includeDeclaration}) => ReferenceContext(
-    includeDeclaration: includeDeclaration ?? this.includeDeclaration,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'includeDeclaration': includeDeclaration};
@@ -10555,17 +7785,14 @@ final class ReferenceContext {
 }
 
 /// Reference options.
-final class ReferenceOptions {
-  const ReferenceOptions({this.workDoneProgress});
+@freezed
+abstract class ReferenceOptions with _$ReferenceOptions {
+  const ReferenceOptions._();
 
-  factory ReferenceOptions.fromJson(Map<String, Object?> json) =>
+  const factory ReferenceOptions({bool? workDoneProgress}) = _ReferenceOptions;
+
+  static ReferenceOptions fromJson(Map<String, Object?> json) =>
       ReferenceOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  final bool? workDoneProgress;
-
-  ReferenceOptions copyWith({bool? workDoneProgress}) => ReferenceOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'workDoneProgress': workDoneProgress};
@@ -10573,19 +7800,16 @@ final class ReferenceOptions {
 }
 
 /// Provider options for a {@link DocumentHighlightRequest}.
-final class DocumentHighlightOptions {
-  const DocumentHighlightOptions({this.workDoneProgress});
+@freezed
+abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
+  const DocumentHighlightOptions._();
 
-  factory DocumentHighlightOptions.fromJson(Map<String, Object?> json) =>
+  const factory DocumentHighlightOptions({bool? workDoneProgress}) =
+      _DocumentHighlightOptions;
+
+  static DocumentHighlightOptions fromJson(Map<String, Object?> json) =>
       DocumentHighlightOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  final bool? workDoneProgress;
-
-  DocumentHighlightOptions copyWith({bool? workDoneProgress}) =>
-      DocumentHighlightOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
       );
 
   Map<String, Object?> toJson() {
@@ -10594,41 +7818,24 @@ final class DocumentHighlightOptions {
 }
 
 /// A base for all symbol information.
-final class BaseSymbolInformation {
-  const BaseSymbolInformation({
-    required this.name,
-    required this.kind,
-    this.tags,
-    this.containerName,
-  });
+@freezed
+abstract class BaseSymbolInformation with _$BaseSymbolInformation {
+  const BaseSymbolInformation._();
 
-  factory BaseSymbolInformation.fromJson(
+  const factory BaseSymbolInformation({
+    required String name,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
+    String? containerName,
+  }) = _BaseSymbolInformation;
+
+  static BaseSymbolInformation fromJson(
     Map<String, Object?> json,
   ) => BaseSymbolInformation(
     name: json['name'] as String,
     kind: SymbolKind.values.firstWhere((e) => e.value == json['kind'] as int),
     tags: (json['tags'] as List<Object?>?)?.map((e) => e as SymbolTag).toList(),
     containerName: json['containerName'] as String?,
-  );
-
-  final String name;
-
-  final SymbolKind kind;
-
-  final List<SymbolTag>? tags;
-
-  final String? containerName;
-
-  BaseSymbolInformation copyWith({
-    String? name,
-    SymbolKind? kind,
-    List<SymbolTag>? tags,
-    String? containerName,
-  }) => BaseSymbolInformation(
-    name: name ?? this.name,
-    kind: kind ?? this.kind,
-    tags: tags ?? this.tags,
-    containerName: containerName ?? this.containerName,
   );
 
   Map<String, Object?> toJson() {
@@ -10642,23 +7849,17 @@ final class BaseSymbolInformation {
 }
 
 /// Provider options for a {@link DocumentSymbolRequest}.
-final class DocumentSymbolOptions {
-  const DocumentSymbolOptions({this.workDoneProgress, this.label});
+@freezed
+abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
+  const DocumentSymbolOptions._();
 
-  factory DocumentSymbolOptions.fromJson(Map<String, Object?> json) =>
+  const factory DocumentSymbolOptions({bool? workDoneProgress, String? label}) =
+      _DocumentSymbolOptions;
+
+  static DocumentSymbolOptions fromJson(Map<String, Object?> json) =>
       DocumentSymbolOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         label: json['label'] as String?,
-      );
-
-  final bool? workDoneProgress;
-
-  final String? label;
-
-  DocumentSymbolOptions copyWith({bool? workDoneProgress, String? label}) =>
-      DocumentSymbolOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-        label: label ?? this.label,
       );
 
   Map<String, Object?> toJson() {
@@ -10671,14 +7872,17 @@ final class DocumentSymbolOptions {
 
 /// Contains additional diagnostic information about the context in which
 /// a {@link CodeActionProvider.provideCodeActions code action} is run.
-final class CodeActionContext {
-  const CodeActionContext({
-    required this.diagnostics,
-    this.only,
-    this.triggerKind,
-  });
+@freezed
+abstract class CodeActionContext with _$CodeActionContext {
+  const CodeActionContext._();
 
-  factory CodeActionContext.fromJson(Map<String, Object?> json) =>
+  const factory CodeActionContext({
+    required List<Diagnostic> diagnostics,
+    List<CodeActionKind>? only,
+    CodeActionTriggerKind? triggerKind,
+  }) = _CodeActionContext;
+
+  static CodeActionContext fromJson(Map<String, Object?> json) =>
       CodeActionContext(
         diagnostics: (json['diagnostics'] as List<Object?>)
             .map((e) => Diagnostic.fromJson(e as Map<String, Object?>))
@@ -10693,22 +7897,6 @@ final class CodeActionContext {
               ),
       );
 
-  final List<Diagnostic> diagnostics;
-
-  final List<CodeActionKind>? only;
-
-  final CodeActionTriggerKind? triggerKind;
-
-  CodeActionContext copyWith({
-    List<Diagnostic>? diagnostics,
-    List<CodeActionKind>? only,
-    CodeActionTriggerKind? triggerKind,
-  }) => CodeActionContext(
-    diagnostics: diagnostics ?? this.diagnostics,
-    only: only ?? this.only,
-    triggerKind: triggerKind ?? this.triggerKind,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'diagnostics': diagnostics.map((e) => e.toJson()).toList(),
@@ -10719,14 +7907,17 @@ final class CodeActionContext {
 }
 
 /// Provider options for a {@link CodeActionRequest}.
-final class CodeActionOptions {
-  const CodeActionOptions({
-    this.workDoneProgress,
-    this.codeActionKinds,
-    this.resolveProvider,
-  });
+@freezed
+abstract class CodeActionOptions with _$CodeActionOptions {
+  const CodeActionOptions._();
 
-  factory CodeActionOptions.fromJson(Map<String, Object?> json) =>
+  const factory CodeActionOptions({
+    bool? workDoneProgress,
+    List<CodeActionKind>? codeActionKinds,
+    bool? resolveProvider,
+  }) = _CodeActionOptions;
+
+  static CodeActionOptions fromJson(Map<String, Object?> json) =>
       CodeActionOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         codeActionKinds: (json['codeActionKinds'] as List<Object?>?)
@@ -10734,22 +7925,6 @@ final class CodeActionOptions {
             .toList(),
         resolveProvider: json['resolveProvider'] as bool?,
       );
-
-  final bool? workDoneProgress;
-
-  final List<CodeActionKind>? codeActionKinds;
-
-  final bool? resolveProvider;
-
-  CodeActionOptions copyWith({
-    bool? workDoneProgress,
-    List<CodeActionKind>? codeActionKinds,
-    bool? resolveProvider,
-  }) => CodeActionOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    codeActionKinds: codeActionKinds ?? this.codeActionKinds,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10761,26 +7936,20 @@ final class CodeActionOptions {
 }
 
 /// Server capabilities for a {@link WorkspaceSymbolRequest}.
-final class WorkspaceSymbolOptions {
-  const WorkspaceSymbolOptions({this.workDoneProgress, this.resolveProvider});
+@freezed
+abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
+  const WorkspaceSymbolOptions._();
 
-  factory WorkspaceSymbolOptions.fromJson(Map<String, Object?> json) =>
+  const factory WorkspaceSymbolOptions({
+    bool? workDoneProgress,
+    bool? resolveProvider,
+  }) = _WorkspaceSymbolOptions;
+
+  static WorkspaceSymbolOptions fromJson(Map<String, Object?> json) =>
       WorkspaceSymbolOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         resolveProvider: json['resolveProvider'] as bool?,
       );
-
-  final bool? workDoneProgress;
-
-  final bool? resolveProvider;
-
-  WorkspaceSymbolOptions copyWith({
-    bool? workDoneProgress,
-    bool? resolveProvider,
-  }) => WorkspaceSymbolOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10791,24 +7960,19 @@ final class WorkspaceSymbolOptions {
 }
 
 /// Code Lens provider options of a {@link CodeLensRequest}.
-final class CodeLensOptions {
-  const CodeLensOptions({this.workDoneProgress, this.resolveProvider});
+@freezed
+abstract class CodeLensOptions with _$CodeLensOptions {
+  const CodeLensOptions._();
 
-  factory CodeLensOptions.fromJson(Map<String, Object?> json) =>
-      CodeLensOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        resolveProvider: json['resolveProvider'] as bool?,
-      );
+  const factory CodeLensOptions({
+    bool? workDoneProgress,
+    bool? resolveProvider,
+  }) = _CodeLensOptions;
 
-  final bool? workDoneProgress;
-
-  final bool? resolveProvider;
-
-  CodeLensOptions copyWith({bool? workDoneProgress, bool? resolveProvider}) =>
-      CodeLensOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-        resolveProvider: resolveProvider ?? this.resolveProvider,
-      );
+  static CodeLensOptions fromJson(Map<String, Object?> json) => CodeLensOptions(
+    workDoneProgress: json['workDoneProgress'] as bool?,
+    resolveProvider: json['resolveProvider'] as bool?,
+  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10819,26 +7983,20 @@ final class CodeLensOptions {
 }
 
 /// Provider options for a {@link DocumentLinkRequest}.
-final class DocumentLinkOptions {
-  const DocumentLinkOptions({this.workDoneProgress, this.resolveProvider});
+@freezed
+abstract class DocumentLinkOptions with _$DocumentLinkOptions {
+  const DocumentLinkOptions._();
 
-  factory DocumentLinkOptions.fromJson(Map<String, Object?> json) =>
+  const factory DocumentLinkOptions({
+    bool? workDoneProgress,
+    bool? resolveProvider,
+  }) = _DocumentLinkOptions;
+
+  static DocumentLinkOptions fromJson(Map<String, Object?> json) =>
       DocumentLinkOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         resolveProvider: json['resolveProvider'] as bool?,
       );
-
-  final bool? workDoneProgress;
-
-  final bool? resolveProvider;
-
-  DocumentLinkOptions copyWith({
-    bool? workDoneProgress,
-    bool? resolveProvider,
-  }) => DocumentLinkOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    resolveProvider: resolveProvider ?? this.resolveProvider,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10849,16 +8007,19 @@ final class DocumentLinkOptions {
 }
 
 /// Value-object describing what options formatting should use.
-final class FormattingOptions {
-  const FormattingOptions({
-    required this.tabSize,
-    required this.insertSpaces,
-    this.trimTrailingWhitespace,
-    this.insertFinalNewline,
-    this.trimFinalNewlines,
-  });
+@freezed
+abstract class FormattingOptions with _$FormattingOptions {
+  const FormattingOptions._();
 
-  factory FormattingOptions.fromJson(Map<String, Object?> json) =>
+  const factory FormattingOptions({
+    required int tabSize,
+    required bool insertSpaces,
+    bool? trimTrailingWhitespace,
+    bool? insertFinalNewline,
+    bool? trimFinalNewlines,
+  }) = _FormattingOptions;
+
+  static FormattingOptions fromJson(Map<String, Object?> json) =>
       FormattingOptions(
         tabSize: json['tabSize'] as int,
         insertSpaces: json['insertSpaces'] as bool,
@@ -10866,31 +8027,6 @@ final class FormattingOptions {
         insertFinalNewline: json['insertFinalNewline'] as bool?,
         trimFinalNewlines: json['trimFinalNewlines'] as bool?,
       );
-
-  final int tabSize;
-
-  final bool insertSpaces;
-
-  final bool? trimTrailingWhitespace;
-
-  final bool? insertFinalNewline;
-
-  final bool? trimFinalNewlines;
-
-  FormattingOptions copyWith({
-    int? tabSize,
-    bool? insertSpaces,
-    bool? trimTrailingWhitespace,
-    bool? insertFinalNewline,
-    bool? trimFinalNewlines,
-  }) => FormattingOptions(
-    tabSize: tabSize ?? this.tabSize,
-    insertSpaces: insertSpaces ?? this.insertSpaces,
-    trimTrailingWhitespace:
-        trimTrailingWhitespace ?? this.trimTrailingWhitespace,
-    insertFinalNewline: insertFinalNewline ?? this.insertFinalNewline,
-    trimFinalNewlines: trimFinalNewlines ?? this.trimFinalNewlines,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10904,19 +8040,16 @@ final class FormattingOptions {
 }
 
 /// Provider options for a {@link DocumentFormattingRequest}.
-final class DocumentFormattingOptions {
-  const DocumentFormattingOptions({this.workDoneProgress});
+@freezed
+abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
+  const DocumentFormattingOptions._();
 
-  factory DocumentFormattingOptions.fromJson(Map<String, Object?> json) =>
+  const factory DocumentFormattingOptions({bool? workDoneProgress}) =
+      _DocumentFormattingOptions;
+
+  static DocumentFormattingOptions fromJson(Map<String, Object?> json) =>
       DocumentFormattingOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  final bool? workDoneProgress;
-
-  DocumentFormattingOptions copyWith({bool? workDoneProgress}) =>
-      DocumentFormattingOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
       );
 
   Map<String, Object?> toJson() {
@@ -10925,29 +8058,21 @@ final class DocumentFormattingOptions {
 }
 
 /// Provider options for a {@link DocumentRangeFormattingRequest}.
-final class DocumentRangeFormattingOptions {
-  const DocumentRangeFormattingOptions({
-    this.workDoneProgress,
-    this.rangesSupport,
-  });
+@freezed
+abstract class DocumentRangeFormattingOptions
+    with _$DocumentRangeFormattingOptions {
+  const DocumentRangeFormattingOptions._();
 
-  factory DocumentRangeFormattingOptions.fromJson(Map<String, Object?> json) =>
+  const factory DocumentRangeFormattingOptions({
+    bool? workDoneProgress,
+    bool? rangesSupport,
+  }) = _DocumentRangeFormattingOptions;
+
+  static DocumentRangeFormattingOptions fromJson(Map<String, Object?> json) =>
       DocumentRangeFormattingOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         rangesSupport: json['rangesSupport'] as bool?,
       );
-
-  final bool? workDoneProgress;
-
-  final bool? rangesSupport;
-
-  DocumentRangeFormattingOptions copyWith({
-    bool? workDoneProgress,
-    bool? rangesSupport,
-  }) => DocumentRangeFormattingOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    rangesSupport: rangesSupport ?? this.rangesSupport,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10958,31 +8083,23 @@ final class DocumentRangeFormattingOptions {
 }
 
 /// Provider options for a {@link DocumentOnTypeFormattingRequest}.
-final class DocumentOnTypeFormattingOptions {
-  const DocumentOnTypeFormattingOptions({
-    required this.firstTriggerCharacter,
-    this.moreTriggerCharacter,
-  });
+@freezed
+abstract class DocumentOnTypeFormattingOptions
+    with _$DocumentOnTypeFormattingOptions {
+  const DocumentOnTypeFormattingOptions._();
 
-  factory DocumentOnTypeFormattingOptions.fromJson(Map<String, Object?> json) =>
+  const factory DocumentOnTypeFormattingOptions({
+    required String firstTriggerCharacter,
+    List<String>? moreTriggerCharacter,
+  }) = _DocumentOnTypeFormattingOptions;
+
+  static DocumentOnTypeFormattingOptions fromJson(Map<String, Object?> json) =>
       DocumentOnTypeFormattingOptions(
         firstTriggerCharacter: json['firstTriggerCharacter'] as String,
         moreTriggerCharacter: (json['moreTriggerCharacter'] as List<Object?>?)
             ?.map((e) => e as String)
             .toList(),
       );
-
-  final String firstTriggerCharacter;
-
-  final List<String>? moreTriggerCharacter;
-
-  DocumentOnTypeFormattingOptions copyWith({
-    String? firstTriggerCharacter,
-    List<String>? moreTriggerCharacter,
-  }) => DocumentOnTypeFormattingOptions(
-    firstTriggerCharacter: firstTriggerCharacter ?? this.firstTriggerCharacter,
-    moreTriggerCharacter: moreTriggerCharacter ?? this.moreTriggerCharacter,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -10993,23 +8110,17 @@ final class DocumentOnTypeFormattingOptions {
 }
 
 /// Provider options for a {@link RenameRequest}.
-final class RenameOptions {
-  const RenameOptions({this.workDoneProgress, this.prepareProvider});
+@freezed
+abstract class RenameOptions with _$RenameOptions {
+  const RenameOptions._();
 
-  factory RenameOptions.fromJson(Map<String, Object?> json) => RenameOptions(
+  const factory RenameOptions({bool? workDoneProgress, bool? prepareProvider}) =
+      _RenameOptions;
+
+  static RenameOptions fromJson(Map<String, Object?> json) => RenameOptions(
     workDoneProgress: json['workDoneProgress'] as bool?,
     prepareProvider: json['prepareProvider'] as bool?,
   );
-
-  final bool? workDoneProgress;
-
-  final bool? prepareProvider;
-
-  RenameOptions copyWith({bool? workDoneProgress, bool? prepareProvider}) =>
-      RenameOptions(
-        workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-        prepareProvider: prepareProvider ?? this.prepareProvider,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -11020,28 +8131,22 @@ final class RenameOptions {
 }
 
 /// The server capabilities of a {@link ExecuteCommandRequest}.
-final class ExecuteCommandOptions {
-  const ExecuteCommandOptions({this.workDoneProgress, required this.commands});
+@freezed
+abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
+  const ExecuteCommandOptions._();
 
-  factory ExecuteCommandOptions.fromJson(Map<String, Object?> json) =>
+  const factory ExecuteCommandOptions({
+    bool? workDoneProgress,
+    required List<String> commands,
+  }) = _ExecuteCommandOptions;
+
+  static ExecuteCommandOptions fromJson(Map<String, Object?> json) =>
       ExecuteCommandOptions(
         workDoneProgress: json['workDoneProgress'] as bool?,
         commands: (json['commands'] as List<Object?>)
             .map((e) => e as String)
             .toList(),
       );
-
-  final bool? workDoneProgress;
-
-  final List<String> commands;
-
-  ExecuteCommandOptions copyWith({
-    bool? workDoneProgress,
-    List<String>? commands,
-  }) => ExecuteCommandOptions(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    commands: commands ?? this.commands,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -11052,13 +8157,16 @@ final class ExecuteCommandOptions {
 }
 
 /// @since 3.16.0
-final class SemanticTokensLegend {
-  const SemanticTokensLegend({
-    required this.tokenTypes,
-    required this.tokenModifiers,
-  });
+@freezed
+abstract class SemanticTokensLegend with _$SemanticTokensLegend {
+  const SemanticTokensLegend._();
 
-  factory SemanticTokensLegend.fromJson(Map<String, Object?> json) =>
+  const factory SemanticTokensLegend({
+    required List<String> tokenTypes,
+    required List<String> tokenModifiers,
+  }) = _SemanticTokensLegend;
+
+  static SemanticTokensLegend fromJson(Map<String, Object?> json) =>
       SemanticTokensLegend(
         tokenTypes: (json['tokenTypes'] as List<Object?>)
             .map((e) => e as String)
@@ -11067,18 +8175,6 @@ final class SemanticTokensLegend {
             .map((e) => e as String)
             .toList(),
       );
-
-  final List<String> tokenTypes;
-
-  final List<String> tokenModifiers;
-
-  SemanticTokensLegend copyWith({
-    List<String>? tokenTypes,
-    List<String>? tokenModifiers,
-  }) => SemanticTokensLegend(
-    tokenTypes: tokenTypes ?? this.tokenTypes,
-    tokenModifiers: tokenModifiers ?? this.tokenModifiers,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -11089,29 +8185,21 @@ final class SemanticTokensLegend {
 }
 
 /// A text document identifier to optionally denote a specific version of a text document.
-final class OptionalVersionedTextDocumentIdentifier {
-  const OptionalVersionedTextDocumentIdentifier({
-    required this.uri,
-    required this.version,
-  });
+@freezed
+abstract class OptionalVersionedTextDocumentIdentifier
+    with _$OptionalVersionedTextDocumentIdentifier {
+  const OptionalVersionedTextDocumentIdentifier._();
 
-  factory OptionalVersionedTextDocumentIdentifier.fromJson(
+  const factory OptionalVersionedTextDocumentIdentifier({
+    required String uri,
+    required int? version,
+  }) = _OptionalVersionedTextDocumentIdentifier;
+
+  static OptionalVersionedTextDocumentIdentifier fromJson(
     Map<String, Object?> json,
   ) => OptionalVersionedTextDocumentIdentifier(
     uri: json['uri'] as String,
     version: json['version'] as int?,
-  );
-
-  final String uri;
-
-  final int? version;
-
-  OptionalVersionedTextDocumentIdentifier copyWith({
-    String? uri,
-    int? version,
-  }) => OptionalVersionedTextDocumentIdentifier(
-    uri: uri ?? this.uri,
-    version: version ?? this.version,
   );
 
   Map<String, Object?> toJson() {
@@ -11122,35 +8210,22 @@ final class OptionalVersionedTextDocumentIdentifier {
 /// A special text edit with an additional change annotation.
 ///
 /// @since 3.16.0.
-final class AnnotatedTextEdit {
-  const AnnotatedTextEdit({
-    required this.range,
-    required this.newText,
-    required this.annotationId,
-  });
+@freezed
+abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
+  const AnnotatedTextEdit._();
 
-  factory AnnotatedTextEdit.fromJson(Map<String, Object?> json) =>
+  const factory AnnotatedTextEdit({
+    required Range range,
+    required String newText,
+    required ChangeAnnotationIdentifier annotationId,
+  }) = _AnnotatedTextEdit;
+
+  static AnnotatedTextEdit fromJson(Map<String, Object?> json) =>
       AnnotatedTextEdit(
         range: Range.fromJson(json['range'] as Map<String, Object?>),
         newText: json['newText'] as String,
         annotationId: json['annotationId'] as ChangeAnnotationIdentifier,
       );
-
-  final Range range;
-
-  final String newText;
-
-  final ChangeAnnotationIdentifier annotationId;
-
-  AnnotatedTextEdit copyWith({
-    Range? range,
-    String? newText,
-    ChangeAnnotationIdentifier? annotationId,
-  }) => AnnotatedTextEdit(
-    range: range ?? this.range,
-    newText: newText ?? this.newText,
-    annotationId: annotationId ?? this.annotationId,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -11162,26 +8237,20 @@ final class AnnotatedTextEdit {
 }
 
 /// A generic resource operation.
-final class ResourceOperation {
-  const ResourceOperation({required this.kind, this.annotationId});
+@freezed
+abstract class ResourceOperation with _$ResourceOperation {
+  const ResourceOperation._();
 
-  factory ResourceOperation.fromJson(Map<String, Object?> json) =>
+  const factory ResourceOperation({
+    required String kind,
+    ChangeAnnotationIdentifier? annotationId,
+  }) = _ResourceOperation;
+
+  static ResourceOperation fromJson(Map<String, Object?> json) =>
       ResourceOperation(
         kind: json['kind'] as String,
         annotationId: json['annotationId'] as ChangeAnnotationIdentifier?,
       );
-
-  final String kind;
-
-  final ChangeAnnotationIdentifier? annotationId;
-
-  ResourceOperation copyWith({
-    String? kind,
-    ChangeAnnotationIdentifier? annotationId,
-  }) => ResourceOperation(
-    kind: kind ?? this.kind,
-    annotationId: annotationId ?? this.annotationId,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'kind': kind, 'annotationId': annotationId};
@@ -11189,23 +8258,17 @@ final class ResourceOperation {
 }
 
 /// Options to create a file.
-final class CreateFileOptions {
-  const CreateFileOptions({this.overwrite, this.ignoreIfExists});
+@freezed
+abstract class CreateFileOptions with _$CreateFileOptions {
+  const CreateFileOptions._();
 
-  factory CreateFileOptions.fromJson(Map<String, Object?> json) =>
+  const factory CreateFileOptions({bool? overwrite, bool? ignoreIfExists}) =
+      _CreateFileOptions;
+
+  static CreateFileOptions fromJson(Map<String, Object?> json) =>
       CreateFileOptions(
         overwrite: json['overwrite'] as bool?,
         ignoreIfExists: json['ignoreIfExists'] as bool?,
-      );
-
-  final bool? overwrite;
-
-  final bool? ignoreIfExists;
-
-  CreateFileOptions copyWith({bool? overwrite, bool? ignoreIfExists}) =>
-      CreateFileOptions(
-        overwrite: overwrite ?? this.overwrite,
-        ignoreIfExists: ignoreIfExists ?? this.ignoreIfExists,
       );
 
   Map<String, Object?> toJson() {
@@ -11217,23 +8280,17 @@ final class CreateFileOptions {
 }
 
 /// Rename file options
-final class RenameFileOptions {
-  const RenameFileOptions({this.overwrite, this.ignoreIfExists});
+@freezed
+abstract class RenameFileOptions with _$RenameFileOptions {
+  const RenameFileOptions._();
 
-  factory RenameFileOptions.fromJson(Map<String, Object?> json) =>
+  const factory RenameFileOptions({bool? overwrite, bool? ignoreIfExists}) =
+      _RenameFileOptions;
+
+  static RenameFileOptions fromJson(Map<String, Object?> json) =>
       RenameFileOptions(
         overwrite: json['overwrite'] as bool?,
         ignoreIfExists: json['ignoreIfExists'] as bool?,
-      );
-
-  final bool? overwrite;
-
-  final bool? ignoreIfExists;
-
-  RenameFileOptions copyWith({bool? overwrite, bool? ignoreIfExists}) =>
-      RenameFileOptions(
-        overwrite: overwrite ?? this.overwrite,
-        ignoreIfExists: ignoreIfExists ?? this.ignoreIfExists,
       );
 
   Map<String, Object?> toJson() {
@@ -11245,23 +8302,17 @@ final class RenameFileOptions {
 }
 
 /// Delete file options
-final class DeleteFileOptions {
-  const DeleteFileOptions({this.recursive, this.ignoreIfNotExists});
+@freezed
+abstract class DeleteFileOptions with _$DeleteFileOptions {
+  const DeleteFileOptions._();
 
-  factory DeleteFileOptions.fromJson(Map<String, Object?> json) =>
+  const factory DeleteFileOptions({bool? recursive, bool? ignoreIfNotExists}) =
+      _DeleteFileOptions;
+
+  static DeleteFileOptions fromJson(Map<String, Object?> json) =>
       DeleteFileOptions(
         recursive: json['recursive'] as bool?,
         ignoreIfNotExists: json['ignoreIfNotExists'] as bool?,
-      );
-
-  final bool? recursive;
-
-  final bool? ignoreIfNotExists;
-
-  DeleteFileOptions copyWith({bool? recursive, bool? ignoreIfNotExists}) =>
-      DeleteFileOptions(
-        recursive: recursive ?? this.recursive,
-        ignoreIfNotExists: ignoreIfNotExists ?? this.ignoreIfNotExists,
       );
 
   Map<String, Object?> toJson() {
@@ -11276,10 +8327,17 @@ final class DeleteFileOptions {
 /// the server is interested in receiving.
 ///
 /// @since 3.16.0
-final class FileOperationPattern {
-  const FileOperationPattern({required this.glob, this.matches, this.options});
+@freezed
+abstract class FileOperationPattern with _$FileOperationPattern {
+  const FileOperationPattern._();
 
-  factory FileOperationPattern.fromJson(Map<String, Object?> json) =>
+  const factory FileOperationPattern({
+    required String glob,
+    FileOperationPatternKind? matches,
+    FileOperationPatternOptions? options,
+  }) = _FileOperationPattern;
+
+  static FileOperationPattern fromJson(Map<String, Object?> json) =>
       FileOperationPattern(
         glob: json['glob'] as String,
         matches: json['matches'] == null
@@ -11294,22 +8352,6 @@ final class FileOperationPattern {
               ),
       );
 
-  final String glob;
-
-  final FileOperationPatternKind? matches;
-
-  final FileOperationPatternOptions? options;
-
-  FileOperationPattern copyWith({
-    String? glob,
-    FileOperationPatternKind? matches,
-    FileOperationPatternOptions? options,
-  }) => FileOperationPattern(
-    glob: glob ?? this.glob,
-    matches: matches ?? this.matches,
-    options: options ?? this.options,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'glob': glob,
@@ -11322,16 +8364,20 @@ final class FileOperationPattern {
 /// A full document diagnostic report for a workspace diagnostic result.
 ///
 /// @since 3.17.0
-final class WorkspaceFullDocumentDiagnosticReport {
-  const WorkspaceFullDocumentDiagnosticReport({
-    required this.kind,
-    this.resultId,
-    required this.items,
-    required this.uri,
-    required this.version,
-  });
+@freezed
+abstract class WorkspaceFullDocumentDiagnosticReport
+    with _$WorkspaceFullDocumentDiagnosticReport {
+  const WorkspaceFullDocumentDiagnosticReport._();
 
-  factory WorkspaceFullDocumentDiagnosticReport.fromJson(
+  const factory WorkspaceFullDocumentDiagnosticReport({
+    required String kind,
+    String? resultId,
+    required List<Diagnostic> items,
+    required String uri,
+    required int? version,
+  }) = _WorkspaceFullDocumentDiagnosticReport;
+
+  static WorkspaceFullDocumentDiagnosticReport fromJson(
     Map<String, Object?> json,
   ) => WorkspaceFullDocumentDiagnosticReport(
     kind: json['kind'] as String,
@@ -11341,30 +8387,6 @@ final class WorkspaceFullDocumentDiagnosticReport {
         .toList(),
     uri: json['uri'] as String,
     version: json['version'] as int?,
-  );
-
-  final String kind;
-
-  final String? resultId;
-
-  final List<Diagnostic> items;
-
-  final String uri;
-
-  final int? version;
-
-  WorkspaceFullDocumentDiagnosticReport copyWith({
-    String? kind,
-    String? resultId,
-    List<Diagnostic>? items,
-    String? uri,
-    int? version,
-  }) => WorkspaceFullDocumentDiagnosticReport(
-    kind: kind ?? this.kind,
-    resultId: resultId ?? this.resultId,
-    items: items ?? this.items,
-    uri: uri ?? this.uri,
-    version: version ?? this.version,
   );
 
   Map<String, Object?> toJson() {
@@ -11381,41 +8403,25 @@ final class WorkspaceFullDocumentDiagnosticReport {
 /// An unchanged document diagnostic report for a workspace diagnostic result.
 ///
 /// @since 3.17.0
-final class WorkspaceUnchangedDocumentDiagnosticReport {
-  const WorkspaceUnchangedDocumentDiagnosticReport({
-    required this.kind,
-    required this.resultId,
-    required this.uri,
-    required this.version,
-  });
+@freezed
+abstract class WorkspaceUnchangedDocumentDiagnosticReport
+    with _$WorkspaceUnchangedDocumentDiagnosticReport {
+  const WorkspaceUnchangedDocumentDiagnosticReport._();
 
-  factory WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
+  const factory WorkspaceUnchangedDocumentDiagnosticReport({
+    required String kind,
+    required String resultId,
+    required String uri,
+    required int? version,
+  }) = _WorkspaceUnchangedDocumentDiagnosticReport;
+
+  static WorkspaceUnchangedDocumentDiagnosticReport fromJson(
     Map<String, Object?> json,
   ) => WorkspaceUnchangedDocumentDiagnosticReport(
     kind: json['kind'] as String,
     resultId: json['resultId'] as String,
     uri: json['uri'] as String,
     version: json['version'] as int?,
-  );
-
-  final String kind;
-
-  final String resultId;
-
-  final String uri;
-
-  final int? version;
-
-  WorkspaceUnchangedDocumentDiagnosticReport copyWith({
-    String? kind,
-    String? resultId,
-    String? uri,
-    int? version,
-  }) => WorkspaceUnchangedDocumentDiagnosticReport(
-    kind: kind ?? this.kind,
-    resultId: resultId ?? this.resultId,
-    uri: uri ?? this.uri,
-    version: version ?? this.version,
   );
 
   Map<String, Object?> toJson() {
@@ -11435,15 +8441,18 @@ final class WorkspaceUnchangedDocumentDiagnosticReport {
 /// notebook cell or the cell's text document.
 ///
 /// @since 3.17.0
-final class NotebookCell {
-  const NotebookCell({
-    required this.kind,
-    required this.document,
-    this.metadata,
-    this.executionSummary,
-  });
+@freezed
+abstract class NotebookCell with _$NotebookCell {
+  const NotebookCell._();
 
-  factory NotebookCell.fromJson(Map<String, Object?> json) => NotebookCell(
+  const factory NotebookCell({
+    required NotebookCellKind kind,
+    required String document,
+    LSPObject? metadata,
+    ExecutionSummary? executionSummary,
+  }) = _NotebookCell;
+
+  static NotebookCell fromJson(Map<String, Object?> json) => NotebookCell(
     kind: NotebookCellKind.values.firstWhere(
       (e) => e.value == json['kind'] as int,
     ),
@@ -11454,26 +8463,6 @@ final class NotebookCell {
         : ExecutionSummary.fromJson(
             json['executionSummary'] as Map<String, Object?>,
           ),
-  );
-
-  final NotebookCellKind kind;
-
-  final String document;
-
-  final LSPObject? metadata;
-
-  final ExecutionSummary? executionSummary;
-
-  NotebookCell copyWith({
-    NotebookCellKind? kind,
-    String? document,
-    LSPObject? metadata,
-    ExecutionSummary? executionSummary,
-  }) => NotebookCell(
-    kind: kind ?? this.kind,
-    document: document ?? this.document,
-    metadata: metadata ?? this.metadata,
-    executionSummary: executionSummary ?? this.executionSummary,
   );
 
   Map<String, Object?> toJson() {
@@ -11490,14 +8479,17 @@ final class NotebookCell {
 /// array from state S to S'.
 ///
 /// @since 3.17.0
-final class NotebookCellArrayChange {
-  const NotebookCellArrayChange({
-    required this.start,
-    required this.deleteCount,
-    this.cells,
-  });
+@freezed
+abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
+  const NotebookCellArrayChange._();
 
-  factory NotebookCellArrayChange.fromJson(Map<String, Object?> json) =>
+  const factory NotebookCellArrayChange({
+    required int start,
+    required int deleteCount,
+    List<NotebookCell>? cells,
+  }) = _NotebookCellArrayChange;
+
+  static NotebookCellArrayChange fromJson(Map<String, Object?> json) =>
       NotebookCellArrayChange(
         start: json['start'] as int,
         deleteCount: json['deleteCount'] as int,
@@ -11505,22 +8497,6 @@ final class NotebookCellArrayChange {
             ?.map((e) => NotebookCell.fromJson(e as Map<String, Object?>))
             .toList(),
       );
-
-  final int start;
-
-  final int deleteCount;
-
-  final List<NotebookCell>? cells;
-
-  NotebookCellArrayChange copyWith({
-    int? start,
-    int? deleteCount,
-    List<NotebookCell>? cells,
-  }) => NotebookCellArrayChange(
-    start: start ?? this.start,
-    deleteCount: deleteCount ?? this.deleteCount,
-    cells: cells ?? this.cells,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -11535,23 +8511,19 @@ final class NotebookCellArrayChange {
 ///
 /// @since 3.18.0
 /// @proposed
-final class SelectedCompletionInfo {
-  const SelectedCompletionInfo({required this.range, required this.text});
+@freezed
+abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
+  const SelectedCompletionInfo._();
 
-  factory SelectedCompletionInfo.fromJson(Map<String, Object?> json) =>
+  const factory SelectedCompletionInfo({
+    required Range range,
+    required String text,
+  }) = _SelectedCompletionInfo;
+
+  static SelectedCompletionInfo fromJson(Map<String, Object?> json) =>
       SelectedCompletionInfo(
         range: Range.fromJson(json['range'] as Map<String, Object?>),
         text: json['text'] as String,
-      );
-
-  final Range range;
-
-  final String text;
-
-  SelectedCompletionInfo copyWith({Range? range, String? text}) =>
-      SelectedCompletionInfo(
-        range: range ?? this.range,
-        text: text ?? this.text,
       );
 
   Map<String, Object?> toJson() {
@@ -11560,17 +8532,20 @@ final class SelectedCompletionInfo {
 }
 
 /// Defines the capabilities provided by the client.
-final class ClientCapabilities {
-  const ClientCapabilities({
-    this.workspace,
-    this.textDocument,
-    this.notebookDocument,
-    this.window,
-    this.general,
-    this.experimental,
-  });
+@freezed
+abstract class ClientCapabilities with _$ClientCapabilities {
+  const ClientCapabilities._();
 
-  factory ClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory ClientCapabilities({
+    WorkspaceClientCapabilities? workspace,
+    TextDocumentClientCapabilities? textDocument,
+    NotebookDocumentClientCapabilities? notebookDocument,
+    WindowClientCapabilities? window,
+    GeneralClientCapabilities? general,
+    LSPAny? experimental,
+  }) = _ClientCapabilities;
+
+  static ClientCapabilities fromJson(Map<String, Object?> json) =>
       ClientCapabilities(
         workspace: json['workspace'] == null
             ? null
@@ -11600,34 +8575,6 @@ final class ClientCapabilities {
         experimental: json['experimental'],
       );
 
-  final WorkspaceClientCapabilities? workspace;
-
-  final TextDocumentClientCapabilities? textDocument;
-
-  final NotebookDocumentClientCapabilities? notebookDocument;
-
-  final WindowClientCapabilities? window;
-
-  final GeneralClientCapabilities? general;
-
-  final LSPAny? experimental;
-
-  ClientCapabilities copyWith({
-    WorkspaceClientCapabilities? workspace,
-    TextDocumentClientCapabilities? textDocument,
-    NotebookDocumentClientCapabilities? notebookDocument,
-    WindowClientCapabilities? window,
-    GeneralClientCapabilities? general,
-    LSPAny? experimental,
-  }) => ClientCapabilities(
-    workspace: workspace ?? this.workspace,
-    textDocument: textDocument ?? this.textDocument,
-    notebookDocument: notebookDocument ?? this.notebookDocument,
-    window: window ?? this.window,
-    general: general ?? this.general,
-    experimental: experimental ?? this.experimental,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workspace': workspace?.toJson(),
@@ -11640,16 +8587,19 @@ final class ClientCapabilities {
   }
 }
 
-final class TextDocumentSyncOptions {
-  const TextDocumentSyncOptions({
-    this.openClose,
-    this.change,
-    this.willSave,
-    this.willSaveWaitUntil,
-    this.save,
-  });
+@freezed
+abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
+  const TextDocumentSyncOptions._();
 
-  factory TextDocumentSyncOptions.fromJson(Map<String, Object?> json) =>
+  const factory TextDocumentSyncOptions({
+    bool? openClose,
+    TextDocumentSyncKind? change,
+    bool? willSave,
+    bool? willSaveWaitUntil,
+    Object? save,
+  }) = _TextDocumentSyncOptions;
+
+  static TextDocumentSyncOptions fromJson(Map<String, Object?> json) =>
       TextDocumentSyncOptions(
         openClose: json['openClose'] as bool?,
         change: json['change'] == null
@@ -11661,30 +8611,6 @@ final class TextDocumentSyncOptions {
         willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
         save: json['save'],
       );
-
-  final bool? openClose;
-
-  final TextDocumentSyncKind? change;
-
-  final bool? willSave;
-
-  final bool? willSaveWaitUntil;
-
-  final Object? save;
-
-  TextDocumentSyncOptions copyWith({
-    bool? openClose,
-    TextDocumentSyncKind? change,
-    bool? willSave,
-    bool? willSaveWaitUntil,
-    Object? save,
-  }) => TextDocumentSyncOptions(
-    openClose: openClose ?? this.openClose,
-    change: change ?? this.change,
-    willSave: willSave ?? this.willSave,
-    willSaveWaitUntil: willSaveWaitUntil ?? this.willSaveWaitUntil,
-    save: save ?? this.save,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -11710,31 +8636,22 @@ final class TextDocumentSyncOptions {
 /// cell will be synced.
 ///
 /// @since 3.17.0
-final class NotebookDocumentSyncOptions {
-  const NotebookDocumentSyncOptions({
-    required this.notebookSelector,
-    this.save,
-  });
+@freezed
+abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
+  const NotebookDocumentSyncOptions._();
 
-  factory NotebookDocumentSyncOptions.fromJson(Map<String, Object?> json) =>
+  const factory NotebookDocumentSyncOptions({
+    required List<Object> notebookSelector,
+    bool? save,
+  }) = _NotebookDocumentSyncOptions;
+
+  static NotebookDocumentSyncOptions fromJson(Map<String, Object?> json) =>
       NotebookDocumentSyncOptions(
         notebookSelector: (json['notebookSelector'] as List<Object?>)
             .map((e) => e as Object)
             .toList(),
         save: json['save'] as bool?,
       );
-
-  final List<Object> notebookSelector;
-
-  final bool? save;
-
-  NotebookDocumentSyncOptions copyWith({
-    List<Object>? notebookSelector,
-    bool? save,
-  }) => NotebookDocumentSyncOptions(
-    notebookSelector: notebookSelector ?? this.notebookSelector,
-    save: save ?? this.save,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -11747,14 +8664,18 @@ final class NotebookDocumentSyncOptions {
 /// Registration options specific to a notebook.
 ///
 /// @since 3.17.0
-final class NotebookDocumentSyncRegistrationOptions {
-  const NotebookDocumentSyncRegistrationOptions({
-    required this.notebookSelector,
-    this.save,
-    this.id,
-  });
+@freezed
+abstract class NotebookDocumentSyncRegistrationOptions
+    with _$NotebookDocumentSyncRegistrationOptions {
+  const NotebookDocumentSyncRegistrationOptions._();
 
-  factory NotebookDocumentSyncRegistrationOptions.fromJson(
+  const factory NotebookDocumentSyncRegistrationOptions({
+    required List<Object> notebookSelector,
+    bool? save,
+    String? id,
+  }) = _NotebookDocumentSyncRegistrationOptions;
+
+  static NotebookDocumentSyncRegistrationOptions fromJson(
     Map<String, Object?> json,
   ) => NotebookDocumentSyncRegistrationOptions(
     notebookSelector: (json['notebookSelector'] as List<Object?>)
@@ -11762,22 +8683,6 @@ final class NotebookDocumentSyncRegistrationOptions {
         .toList(),
     save: json['save'] as bool?,
     id: json['id'] as String?,
-  );
-
-  final List<Object> notebookSelector;
-
-  final bool? save;
-
-  final String? id;
-
-  NotebookDocumentSyncRegistrationOptions copyWith({
-    List<Object>? notebookSelector,
-    bool? save,
-    String? id,
-  }) => NotebookDocumentSyncRegistrationOptions(
-    notebookSelector: notebookSelector ?? this.notebookSelector,
-    save: save ?? this.save,
-    id: id ?? this.id,
   );
 
   Map<String, Object?> toJson() {
@@ -11789,29 +8694,21 @@ final class NotebookDocumentSyncRegistrationOptions {
   }
 }
 
-final class WorkspaceFoldersServerCapabilities {
-  const WorkspaceFoldersServerCapabilities({
-    this.supported,
-    this.changeNotifications,
-  });
+@freezed
+abstract class WorkspaceFoldersServerCapabilities
+    with _$WorkspaceFoldersServerCapabilities {
+  const WorkspaceFoldersServerCapabilities._();
 
-  factory WorkspaceFoldersServerCapabilities.fromJson(
+  const factory WorkspaceFoldersServerCapabilities({
+    bool? supported,
+    Object? changeNotifications,
+  }) = _WorkspaceFoldersServerCapabilities;
+
+  static WorkspaceFoldersServerCapabilities fromJson(
     Map<String, Object?> json,
   ) => WorkspaceFoldersServerCapabilities(
     supported: json['supported'] as bool?,
     changeNotifications: json['changeNotifications'],
-  );
-
-  final bool? supported;
-
-  final Object? changeNotifications;
-
-  WorkspaceFoldersServerCapabilities copyWith({
-    bool? supported,
-    Object? changeNotifications,
-  }) => WorkspaceFoldersServerCapabilities(
-    supported: supported ?? this.supported,
-    changeNotifications: changeNotifications ?? this.changeNotifications,
   );
 
   Map<String, Object?> toJson() {
@@ -11825,17 +8722,20 @@ final class WorkspaceFoldersServerCapabilities {
 /// Options for notifications/requests for user operations on files.
 ///
 /// @since 3.16.0
-final class FileOperationOptions {
-  const FileOperationOptions({
-    this.didCreate,
-    this.willCreate,
-    this.didRename,
-    this.willRename,
-    this.didDelete,
-    this.willDelete,
-  });
+@freezed
+abstract class FileOperationOptions with _$FileOperationOptions {
+  const FileOperationOptions._();
 
-  factory FileOperationOptions.fromJson(Map<String, Object?> json) =>
+  const factory FileOperationOptions({
+    FileOperationRegistrationOptions? didCreate,
+    FileOperationRegistrationOptions? willCreate,
+    FileOperationRegistrationOptions? didRename,
+    FileOperationRegistrationOptions? willRename,
+    FileOperationRegistrationOptions? didDelete,
+    FileOperationRegistrationOptions? willDelete,
+  }) = _FileOperationOptions;
+
+  static FileOperationOptions fromJson(Map<String, Object?> json) =>
       FileOperationOptions(
         didCreate: json['didCreate'] == null
             ? null
@@ -11869,34 +8769,6 @@ final class FileOperationOptions {
               ),
       );
 
-  final FileOperationRegistrationOptions? didCreate;
-
-  final FileOperationRegistrationOptions? willCreate;
-
-  final FileOperationRegistrationOptions? didRename;
-
-  final FileOperationRegistrationOptions? willRename;
-
-  final FileOperationRegistrationOptions? didDelete;
-
-  final FileOperationRegistrationOptions? willDelete;
-
-  FileOperationOptions copyWith({
-    FileOperationRegistrationOptions? didCreate,
-    FileOperationRegistrationOptions? willCreate,
-    FileOperationRegistrationOptions? didRename,
-    FileOperationRegistrationOptions? willRename,
-    FileOperationRegistrationOptions? didDelete,
-    FileOperationRegistrationOptions? willDelete,
-  }) => FileOperationOptions(
-    didCreate: didCreate ?? this.didCreate,
-    willCreate: willCreate ?? this.willCreate,
-    didRename: didRename ?? this.didRename,
-    willRename: willRename ?? this.willRename,
-    didDelete: didDelete ?? this.didDelete,
-    willDelete: willDelete ?? this.willDelete,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'didCreate': didCreate?.toJson(),
@@ -11912,16 +8784,14 @@ final class FileOperationOptions {
 /// Structure to capture a description for an error code.
 ///
 /// @since 3.16.0
-final class CodeDescription {
-  const CodeDescription({required this.href});
+@freezed
+abstract class CodeDescription with _$CodeDescription {
+  const CodeDescription._();
 
-  factory CodeDescription.fromJson(Map<String, Object?> json) =>
+  const factory CodeDescription({required String href}) = _CodeDescription;
+
+  static CodeDescription fromJson(Map<String, Object?> json) =>
       CodeDescription(href: json['href'] as String);
-
-  final String href;
-
-  CodeDescription copyWith({String? href}) =>
-      CodeDescription(href: href ?? this.href);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'href': href};
@@ -11931,29 +8801,21 @@ final class CodeDescription {
 /// Represents a related message and source code location for a diagnostic. This should be
 /// used to point to code locations that cause or related to a diagnostics, e.g when duplicating
 /// a symbol in a scope.
-final class DiagnosticRelatedInformation {
-  const DiagnosticRelatedInformation({
-    required this.location,
-    required this.message,
-  });
+@freezed
+abstract class DiagnosticRelatedInformation
+    with _$DiagnosticRelatedInformation {
+  const DiagnosticRelatedInformation._();
 
-  factory DiagnosticRelatedInformation.fromJson(Map<String, Object?> json) =>
+  const factory DiagnosticRelatedInformation({
+    required Location location,
+    required String message,
+  }) = _DiagnosticRelatedInformation;
+
+  static DiagnosticRelatedInformation fromJson(Map<String, Object?> json) =>
       DiagnosticRelatedInformation(
         location: Location.fromJson(json['location'] as Map<String, Object?>),
         message: json['message'] as String,
       );
-
-  final Location location;
-
-  final String message;
-
-  DiagnosticRelatedInformation copyWith({
-    Location? location,
-    String? message,
-  }) => DiagnosticRelatedInformation(
-    location: location ?? this.location,
-    message: message ?? this.message,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'location': location.toJson(), 'message': message};
@@ -11962,23 +8824,19 @@ final class DiagnosticRelatedInformation {
 
 /// Represents a parameter of a callable-signature. A parameter can
 /// have a label and a doc-comment.
-final class ParameterInformation {
-  const ParameterInformation({required this.label, this.documentation});
+@freezed
+abstract class ParameterInformation with _$ParameterInformation {
+  const ParameterInformation._();
 
-  factory ParameterInformation.fromJson(Map<String, Object?> json) =>
+  const factory ParameterInformation({
+    required Object label,
+    Object? documentation,
+  }) = _ParameterInformation;
+
+  static ParameterInformation fromJson(Map<String, Object?> json) =>
       ParameterInformation(
         label: json['label'] as Object,
         documentation: json['documentation'],
-      );
-
-  final Object label;
-
-  final Object? documentation;
-
-  ParameterInformation copyWith({Object? label, Object? documentation}) =>
-      ParameterInformation(
-        label: label ?? this.label,
-        documentation: documentation ?? this.documentation,
       );
 
   Map<String, Object?> toJson() {
@@ -11990,26 +8848,21 @@ final class ParameterInformation {
 /// document by different properties.
 ///
 /// @since 3.17.0
-final class NotebookCellTextDocumentFilter {
-  const NotebookCellTextDocumentFilter({required this.notebook, this.language});
+@freezed
+abstract class NotebookCellTextDocumentFilter
+    with _$NotebookCellTextDocumentFilter {
+  const NotebookCellTextDocumentFilter._();
 
-  factory NotebookCellTextDocumentFilter.fromJson(Map<String, Object?> json) =>
+  const factory NotebookCellTextDocumentFilter({
+    required Object notebook,
+    String? language,
+  }) = _NotebookCellTextDocumentFilter;
+
+  static NotebookCellTextDocumentFilter fromJson(Map<String, Object?> json) =>
       NotebookCellTextDocumentFilter(
         notebook: json['notebook'] as Object,
         language: json['language'] as String?,
       );
-
-  final Object notebook;
-
-  final String? language;
-
-  NotebookCellTextDocumentFilter copyWith({
-    Object? notebook,
-    String? language,
-  }) => NotebookCellTextDocumentFilter(
-    notebook: notebook ?? this.notebook,
-    language: language ?? this.language,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'notebook': notebook, 'language': language};
@@ -12019,39 +8872,32 @@ final class NotebookCellTextDocumentFilter {
 /// Matching options for the file operation pattern.
 ///
 /// @since 3.16.0
-final class FileOperationPatternOptions {
-  const FileOperationPatternOptions({this.ignoreCase});
+@freezed
+abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
+  const FileOperationPatternOptions._();
 
-  factory FileOperationPatternOptions.fromJson(Map<String, Object?> json) =>
+  const factory FileOperationPatternOptions({bool? ignoreCase}) =
+      _FileOperationPatternOptions;
+
+  static FileOperationPatternOptions fromJson(Map<String, Object?> json) =>
       FileOperationPatternOptions(ignoreCase: json['ignoreCase'] as bool?);
-
-  final bool? ignoreCase;
-
-  FileOperationPatternOptions copyWith({bool? ignoreCase}) =>
-      FileOperationPatternOptions(ignoreCase: ignoreCase ?? this.ignoreCase);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'ignoreCase': ignoreCase};
   }
 }
 
-final class ExecutionSummary {
-  const ExecutionSummary({required this.executionOrder, this.success});
+@freezed
+abstract class ExecutionSummary with _$ExecutionSummary {
+  const ExecutionSummary._();
 
-  factory ExecutionSummary.fromJson(Map<String, Object?> json) =>
+  const factory ExecutionSummary({required int executionOrder, bool? success}) =
+      _ExecutionSummary;
+
+  static ExecutionSummary fromJson(Map<String, Object?> json) =>
       ExecutionSummary(
         executionOrder: json['executionOrder'] as int,
         success: json['success'] as bool?,
-      );
-
-  final int executionOrder;
-
-  final bool? success;
-
-  ExecutionSummary copyWith({int? executionOrder, bool? success}) =>
-      ExecutionSummary(
-        executionOrder: executionOrder ?? this.executionOrder,
-        success: success ?? this.success,
       );
 
   Map<String, Object?> toJson() {
@@ -12063,26 +8909,29 @@ final class ExecutionSummary {
 }
 
 /// Workspace specific client capabilities.
-final class WorkspaceClientCapabilities {
-  const WorkspaceClientCapabilities({
-    this.applyEdit,
-    this.workspaceEdit,
-    this.didChangeConfiguration,
-    this.didChangeWatchedFiles,
-    this.symbol,
-    this.executeCommand,
-    this.workspaceFolders,
-    this.configuration,
-    this.semanticTokens,
-    this.codeLens,
-    this.fileOperations,
-    this.inlineValue,
-    this.inlayHint,
-    this.diagnostics,
-    this.foldingRange,
-  });
+@freezed
+abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
+  const WorkspaceClientCapabilities._();
 
-  factory WorkspaceClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory WorkspaceClientCapabilities({
+    bool? applyEdit,
+    WorkspaceEditClientCapabilities? workspaceEdit,
+    DidChangeConfigurationClientCapabilities? didChangeConfiguration,
+    DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles,
+    WorkspaceSymbolClientCapabilities? symbol,
+    ExecuteCommandClientCapabilities? executeCommand,
+    bool? workspaceFolders,
+    bool? configuration,
+    SemanticTokensWorkspaceClientCapabilities? semanticTokens,
+    CodeLensWorkspaceClientCapabilities? codeLens,
+    FileOperationClientCapabilities? fileOperations,
+    InlineValueWorkspaceClientCapabilities? inlineValue,
+    InlayHintWorkspaceClientCapabilities? inlayHint,
+    DiagnosticWorkspaceClientCapabilities? diagnostics,
+    FoldingRangeWorkspaceClientCapabilities? foldingRange,
+  }) = _WorkspaceClientCapabilities;
+
+  static WorkspaceClientCapabilities fromJson(Map<String, Object?> json) =>
       WorkspaceClientCapabilities(
         applyEdit: json['applyEdit'] as bool?,
         workspaceEdit: json['workspaceEdit'] == null
@@ -12149,71 +8998,6 @@ final class WorkspaceClientCapabilities {
               ),
       );
 
-  final bool? applyEdit;
-
-  final WorkspaceEditClientCapabilities? workspaceEdit;
-
-  final DidChangeConfigurationClientCapabilities? didChangeConfiguration;
-
-  final DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles;
-
-  final WorkspaceSymbolClientCapabilities? symbol;
-
-  final ExecuteCommandClientCapabilities? executeCommand;
-
-  final bool? workspaceFolders;
-
-  final bool? configuration;
-
-  final SemanticTokensWorkspaceClientCapabilities? semanticTokens;
-
-  final CodeLensWorkspaceClientCapabilities? codeLens;
-
-  final FileOperationClientCapabilities? fileOperations;
-
-  final InlineValueWorkspaceClientCapabilities? inlineValue;
-
-  final InlayHintWorkspaceClientCapabilities? inlayHint;
-
-  final DiagnosticWorkspaceClientCapabilities? diagnostics;
-
-  final FoldingRangeWorkspaceClientCapabilities? foldingRange;
-
-  WorkspaceClientCapabilities copyWith({
-    bool? applyEdit,
-    WorkspaceEditClientCapabilities? workspaceEdit,
-    DidChangeConfigurationClientCapabilities? didChangeConfiguration,
-    DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles,
-    WorkspaceSymbolClientCapabilities? symbol,
-    ExecuteCommandClientCapabilities? executeCommand,
-    bool? workspaceFolders,
-    bool? configuration,
-    SemanticTokensWorkspaceClientCapabilities? semanticTokens,
-    CodeLensWorkspaceClientCapabilities? codeLens,
-    FileOperationClientCapabilities? fileOperations,
-    InlineValueWorkspaceClientCapabilities? inlineValue,
-    InlayHintWorkspaceClientCapabilities? inlayHint,
-    DiagnosticWorkspaceClientCapabilities? diagnostics,
-    FoldingRangeWorkspaceClientCapabilities? foldingRange,
-  }) => WorkspaceClientCapabilities(
-    applyEdit: applyEdit ?? this.applyEdit,
-    workspaceEdit: workspaceEdit ?? this.workspaceEdit,
-    didChangeConfiguration:
-        didChangeConfiguration ?? this.didChangeConfiguration,
-    didChangeWatchedFiles: didChangeWatchedFiles ?? this.didChangeWatchedFiles,
-    symbol: symbol ?? this.symbol,
-    executeCommand: executeCommand ?? this.executeCommand,
-    workspaceFolders: workspaceFolders ?? this.workspaceFolders,
-    configuration: configuration ?? this.configuration,
-    semanticTokens: semanticTokens ?? this.semanticTokens,
-    codeLens: codeLens ?? this.codeLens,
-    fileOperations: fileOperations ?? this.fileOperations,
-    inlineValue: inlineValue ?? this.inlineValue,
-    inlayHint: inlayHint ?? this.inlayHint,
-    diagnostics: diagnostics ?? this.diagnostics,
-    foldingRange: foldingRange ?? this.foldingRange,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'applyEdit': applyEdit,
@@ -12236,42 +9020,46 @@ final class WorkspaceClientCapabilities {
 }
 
 /// Text document specific client capabilities.
-final class TextDocumentClientCapabilities {
-  const TextDocumentClientCapabilities({
-    this.synchronization,
-    this.completion,
-    this.hover,
-    this.signatureHelp,
-    this.declaration,
-    this.definition,
-    this.typeDefinition,
-    this.implementation,
-    this.references,
-    this.documentHighlight,
-    this.documentSymbol,
-    this.codeAction,
-    this.codeLens,
-    this.documentLink,
-    this.colorProvider,
-    this.formatting,
-    this.rangeFormatting,
-    this.onTypeFormatting,
-    this.rename,
-    this.foldingRange,
-    this.selectionRange,
-    this.publishDiagnostics,
-    this.callHierarchy,
-    this.semanticTokens,
-    this.linkedEditingRange,
-    this.moniker,
-    this.typeHierarchy,
-    this.inlineValue,
-    this.inlayHint,
-    this.diagnostic,
-    this.inlineCompletion,
-  });
+@freezed
+abstract class TextDocumentClientCapabilities
+    with _$TextDocumentClientCapabilities {
+  const TextDocumentClientCapabilities._();
 
-  factory TextDocumentClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory TextDocumentClientCapabilities({
+    TextDocumentSyncClientCapabilities? synchronization,
+    CompletionClientCapabilities? completion,
+    HoverClientCapabilities? hover,
+    SignatureHelpClientCapabilities? signatureHelp,
+    DeclarationClientCapabilities? declaration,
+    DefinitionClientCapabilities? definition,
+    TypeDefinitionClientCapabilities? typeDefinition,
+    ImplementationClientCapabilities? implementation,
+    ReferenceClientCapabilities? references,
+    DocumentHighlightClientCapabilities? documentHighlight,
+    DocumentSymbolClientCapabilities? documentSymbol,
+    CodeActionClientCapabilities? codeAction,
+    CodeLensClientCapabilities? codeLens,
+    DocumentLinkClientCapabilities? documentLink,
+    DocumentColorClientCapabilities? colorProvider,
+    DocumentFormattingClientCapabilities? formatting,
+    DocumentRangeFormattingClientCapabilities? rangeFormatting,
+    DocumentOnTypeFormattingClientCapabilities? onTypeFormatting,
+    RenameClientCapabilities? rename,
+    FoldingRangeClientCapabilities? foldingRange,
+    SelectionRangeClientCapabilities? selectionRange,
+    PublishDiagnosticsClientCapabilities? publishDiagnostics,
+    CallHierarchyClientCapabilities? callHierarchy,
+    SemanticTokensClientCapabilities? semanticTokens,
+    LinkedEditingRangeClientCapabilities? linkedEditingRange,
+    MonikerClientCapabilities? moniker,
+    TypeHierarchyClientCapabilities? typeHierarchy,
+    InlineValueClientCapabilities? inlineValue,
+    InlayHintClientCapabilities? inlayHint,
+    DiagnosticClientCapabilities? diagnostic,
+    InlineCompletionClientCapabilities? inlineCompletion,
+  }) = _TextDocumentClientCapabilities;
+
+  static TextDocumentClientCapabilities fromJson(Map<String, Object?> json) =>
       TextDocumentClientCapabilities(
         synchronization: json['synchronization'] == null
             ? null
@@ -12430,134 +9218,6 @@ final class TextDocumentClientCapabilities {
               ),
       );
 
-  final TextDocumentSyncClientCapabilities? synchronization;
-
-  final CompletionClientCapabilities? completion;
-
-  final HoverClientCapabilities? hover;
-
-  final SignatureHelpClientCapabilities? signatureHelp;
-
-  final DeclarationClientCapabilities? declaration;
-
-  final DefinitionClientCapabilities? definition;
-
-  final TypeDefinitionClientCapabilities? typeDefinition;
-
-  final ImplementationClientCapabilities? implementation;
-
-  final ReferenceClientCapabilities? references;
-
-  final DocumentHighlightClientCapabilities? documentHighlight;
-
-  final DocumentSymbolClientCapabilities? documentSymbol;
-
-  final CodeActionClientCapabilities? codeAction;
-
-  final CodeLensClientCapabilities? codeLens;
-
-  final DocumentLinkClientCapabilities? documentLink;
-
-  final DocumentColorClientCapabilities? colorProvider;
-
-  final DocumentFormattingClientCapabilities? formatting;
-
-  final DocumentRangeFormattingClientCapabilities? rangeFormatting;
-
-  final DocumentOnTypeFormattingClientCapabilities? onTypeFormatting;
-
-  final RenameClientCapabilities? rename;
-
-  final FoldingRangeClientCapabilities? foldingRange;
-
-  final SelectionRangeClientCapabilities? selectionRange;
-
-  final PublishDiagnosticsClientCapabilities? publishDiagnostics;
-
-  final CallHierarchyClientCapabilities? callHierarchy;
-
-  final SemanticTokensClientCapabilities? semanticTokens;
-
-  final LinkedEditingRangeClientCapabilities? linkedEditingRange;
-
-  final MonikerClientCapabilities? moniker;
-
-  final TypeHierarchyClientCapabilities? typeHierarchy;
-
-  final InlineValueClientCapabilities? inlineValue;
-
-  final InlayHintClientCapabilities? inlayHint;
-
-  final DiagnosticClientCapabilities? diagnostic;
-
-  final InlineCompletionClientCapabilities? inlineCompletion;
-
-  TextDocumentClientCapabilities copyWith({
-    TextDocumentSyncClientCapabilities? synchronization,
-    CompletionClientCapabilities? completion,
-    HoverClientCapabilities? hover,
-    SignatureHelpClientCapabilities? signatureHelp,
-    DeclarationClientCapabilities? declaration,
-    DefinitionClientCapabilities? definition,
-    TypeDefinitionClientCapabilities? typeDefinition,
-    ImplementationClientCapabilities? implementation,
-    ReferenceClientCapabilities? references,
-    DocumentHighlightClientCapabilities? documentHighlight,
-    DocumentSymbolClientCapabilities? documentSymbol,
-    CodeActionClientCapabilities? codeAction,
-    CodeLensClientCapabilities? codeLens,
-    DocumentLinkClientCapabilities? documentLink,
-    DocumentColorClientCapabilities? colorProvider,
-    DocumentFormattingClientCapabilities? formatting,
-    DocumentRangeFormattingClientCapabilities? rangeFormatting,
-    DocumentOnTypeFormattingClientCapabilities? onTypeFormatting,
-    RenameClientCapabilities? rename,
-    FoldingRangeClientCapabilities? foldingRange,
-    SelectionRangeClientCapabilities? selectionRange,
-    PublishDiagnosticsClientCapabilities? publishDiagnostics,
-    CallHierarchyClientCapabilities? callHierarchy,
-    SemanticTokensClientCapabilities? semanticTokens,
-    LinkedEditingRangeClientCapabilities? linkedEditingRange,
-    MonikerClientCapabilities? moniker,
-    TypeHierarchyClientCapabilities? typeHierarchy,
-    InlineValueClientCapabilities? inlineValue,
-    InlayHintClientCapabilities? inlayHint,
-    DiagnosticClientCapabilities? diagnostic,
-    InlineCompletionClientCapabilities? inlineCompletion,
-  }) => TextDocumentClientCapabilities(
-    synchronization: synchronization ?? this.synchronization,
-    completion: completion ?? this.completion,
-    hover: hover ?? this.hover,
-    signatureHelp: signatureHelp ?? this.signatureHelp,
-    declaration: declaration ?? this.declaration,
-    definition: definition ?? this.definition,
-    typeDefinition: typeDefinition ?? this.typeDefinition,
-    implementation: implementation ?? this.implementation,
-    references: references ?? this.references,
-    documentHighlight: documentHighlight ?? this.documentHighlight,
-    documentSymbol: documentSymbol ?? this.documentSymbol,
-    codeAction: codeAction ?? this.codeAction,
-    codeLens: codeLens ?? this.codeLens,
-    documentLink: documentLink ?? this.documentLink,
-    colorProvider: colorProvider ?? this.colorProvider,
-    formatting: formatting ?? this.formatting,
-    rangeFormatting: rangeFormatting ?? this.rangeFormatting,
-    onTypeFormatting: onTypeFormatting ?? this.onTypeFormatting,
-    rename: rename ?? this.rename,
-    foldingRange: foldingRange ?? this.foldingRange,
-    selectionRange: selectionRange ?? this.selectionRange,
-    publishDiagnostics: publishDiagnostics ?? this.publishDiagnostics,
-    callHierarchy: callHierarchy ?? this.callHierarchy,
-    semanticTokens: semanticTokens ?? this.semanticTokens,
-    linkedEditingRange: linkedEditingRange ?? this.linkedEditingRange,
-    moniker: moniker ?? this.moniker,
-    typeHierarchy: typeHierarchy ?? this.typeHierarchy,
-    inlineValue: inlineValue ?? this.inlineValue,
-    inlayHint: inlayHint ?? this.inlayHint,
-    diagnostic: diagnostic ?? this.diagnostic,
-    inlineCompletion: inlineCompletion ?? this.inlineCompletion,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'synchronization': synchronization?.toJson(),
@@ -12598,10 +9258,16 @@ final class TextDocumentClientCapabilities {
 /// Capabilities specific to the notebook document support.
 ///
 /// @since 3.17.0
-final class NotebookDocumentClientCapabilities {
-  const NotebookDocumentClientCapabilities({required this.synchronization});
+@freezed
+abstract class NotebookDocumentClientCapabilities
+    with _$NotebookDocumentClientCapabilities {
+  const NotebookDocumentClientCapabilities._();
 
-  factory NotebookDocumentClientCapabilities.fromJson(
+  const factory NotebookDocumentClientCapabilities({
+    required NotebookDocumentSyncClientCapabilities synchronization,
+  }) = _NotebookDocumentClientCapabilities;
+
+  static NotebookDocumentClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => NotebookDocumentClientCapabilities(
     synchronization: NotebookDocumentSyncClientCapabilities.fromJson(
@@ -12609,27 +9275,22 @@ final class NotebookDocumentClientCapabilities {
     ),
   );
 
-  final NotebookDocumentSyncClientCapabilities synchronization;
-
-  NotebookDocumentClientCapabilities copyWith({
-    NotebookDocumentSyncClientCapabilities? synchronization,
-  }) => NotebookDocumentClientCapabilities(
-    synchronization: synchronization ?? this.synchronization,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{'synchronization': synchronization.toJson()};
   }
 }
 
-final class WindowClientCapabilities {
-  const WindowClientCapabilities({
-    this.workDoneProgress,
-    this.showMessage,
-    this.showDocument,
-  });
+@freezed
+abstract class WindowClientCapabilities with _$WindowClientCapabilities {
+  const WindowClientCapabilities._();
 
-  factory WindowClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory WindowClientCapabilities({
+    bool? workDoneProgress,
+    ShowMessageRequestClientCapabilities? showMessage,
+    ShowDocumentClientCapabilities? showDocument,
+  }) = _WindowClientCapabilities;
+
+  static WindowClientCapabilities fromJson(Map<String, Object?> json) =>
       WindowClientCapabilities(
         workDoneProgress: json['workDoneProgress'] as bool?,
         showMessage: json['showMessage'] == null
@@ -12644,22 +9305,6 @@ final class WindowClientCapabilities {
               ),
       );
 
-  final bool? workDoneProgress;
-
-  final ShowMessageRequestClientCapabilities? showMessage;
-
-  final ShowDocumentClientCapabilities? showDocument;
-
-  WindowClientCapabilities copyWith({
-    bool? workDoneProgress,
-    ShowMessageRequestClientCapabilities? showMessage,
-    ShowDocumentClientCapabilities? showDocument,
-  }) => WindowClientCapabilities(
-    workDoneProgress: workDoneProgress ?? this.workDoneProgress,
-    showMessage: showMessage ?? this.showMessage,
-    showDocument: showDocument ?? this.showDocument,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'workDoneProgress': workDoneProgress,
@@ -12672,15 +9317,18 @@ final class WindowClientCapabilities {
 /// General client capabilities.
 ///
 /// @since 3.16.0
-final class GeneralClientCapabilities {
-  const GeneralClientCapabilities({
-    this.staleRequestSupport,
-    this.regularExpressions,
-    this.markdown,
-    this.positionEncodings,
-  });
+@freezed
+abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
+  const GeneralClientCapabilities._();
 
-  factory GeneralClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory GeneralClientCapabilities({
+    GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport,
+    RegularExpressionsClientCapabilities? regularExpressions,
+    MarkdownClientCapabilities? markdown,
+    List<PositionEncodingKind>? positionEncodings,
+  }) = _GeneralClientCapabilities;
+
+  static GeneralClientCapabilities fromJson(Map<String, Object?> json) =>
       GeneralClientCapabilities(
         staleRequestSupport: json['staleRequestSupport'] == null
             ? null
@@ -12702,26 +9350,6 @@ final class GeneralClientCapabilities {
             .toList(),
       );
 
-  final GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport;
-
-  final RegularExpressionsClientCapabilities? regularExpressions;
-
-  final MarkdownClientCapabilities? markdown;
-
-  final List<PositionEncodingKind>? positionEncodings;
-
-  GeneralClientCapabilities copyWith({
-    GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport,
-    RegularExpressionsClientCapabilities? regularExpressions,
-    MarkdownClientCapabilities? markdown,
-    List<PositionEncodingKind>? positionEncodings,
-  }) => GeneralClientCapabilities(
-    staleRequestSupport: staleRequestSupport ?? this.staleRequestSupport,
-    regularExpressions: regularExpressions ?? this.regularExpressions,
-    markdown: markdown ?? this.markdown,
-    positionEncodings: positionEncodings ?? this.positionEncodings,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'staleRequestSupport': staleRequestSupport?.toJson(),
@@ -12737,40 +9365,40 @@ final class GeneralClientCapabilities {
 /// folder root, but it can be another absolute URI as well.
 ///
 /// @since 3.17.0
-final class RelativePattern {
-  const RelativePattern({required this.baseUri, required this.pattern});
+@freezed
+abstract class RelativePattern with _$RelativePattern {
+  const RelativePattern._();
 
-  factory RelativePattern.fromJson(Map<String, Object?> json) =>
-      RelativePattern(
-        baseUri: json['baseUri'] as Object,
-        pattern: json['pattern'] as Pattern,
-      );
+  const factory RelativePattern({
+    required Object baseUri,
+    required Pattern pattern,
+  }) = _RelativePattern;
 
-  final Object baseUri;
-
-  final Pattern pattern;
-
-  RelativePattern copyWith({Object? baseUri, Pattern? pattern}) =>
-      RelativePattern(
-        baseUri: baseUri ?? this.baseUri,
-        pattern: pattern ?? this.pattern,
-      );
+  static RelativePattern fromJson(Map<String, Object?> json) => RelativePattern(
+    baseUri: json['baseUri'] as Object,
+    pattern: json['pattern'] as Pattern,
+  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'baseUri': baseUri, 'pattern': pattern};
   }
 }
 
-final class WorkspaceEditClientCapabilities {
-  const WorkspaceEditClientCapabilities({
-    this.documentChanges,
-    this.resourceOperations,
-    this.failureHandling,
-    this.normalizesLineEndings,
-    this.changeAnnotationSupport,
-  });
+@freezed
+abstract class WorkspaceEditClientCapabilities
+    with _$WorkspaceEditClientCapabilities {
+  const WorkspaceEditClientCapabilities._();
 
-  factory WorkspaceEditClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory WorkspaceEditClientCapabilities({
+    bool? documentChanges,
+    List<ResourceOperationKind>? resourceOperations,
+    FailureHandlingKind? failureHandling,
+    bool? normalizesLineEndings,
+    WorkspaceEditClientCapabilitiesChangeAnnotationSupport?
+    changeAnnotationSupport,
+  }) = _WorkspaceEditClientCapabilities;
+
+  static WorkspaceEditClientCapabilities fromJson(Map<String, Object?> json) =>
       WorkspaceEditClientCapabilities(
         documentChanges: json['documentChanges'] as bool?,
         resourceOperations: (json['resourceOperations'] as List<Object?>?)
@@ -12789,33 +9417,6 @@ final class WorkspaceEditClientCapabilities {
               ),
       );
 
-  final bool? documentChanges;
-
-  final List<ResourceOperationKind>? resourceOperations;
-
-  final FailureHandlingKind? failureHandling;
-
-  final bool? normalizesLineEndings;
-
-  final WorkspaceEditClientCapabilitiesChangeAnnotationSupport?
-  changeAnnotationSupport;
-
-  WorkspaceEditClientCapabilities copyWith({
-    bool? documentChanges,
-    List<ResourceOperationKind>? resourceOperations,
-    FailureHandlingKind? failureHandling,
-    bool? normalizesLineEndings,
-    WorkspaceEditClientCapabilitiesChangeAnnotationSupport?
-    changeAnnotationSupport,
-  }) => WorkspaceEditClientCapabilities(
-    documentChanges: documentChanges ?? this.documentChanges,
-    resourceOperations: resourceOperations ?? this.resourceOperations,
-    failureHandling: failureHandling ?? this.failureHandling,
-    normalizesLineEndings: normalizesLineEndings ?? this.normalizesLineEndings,
-    changeAnnotationSupport:
-        changeAnnotationSupport ?? this.changeAnnotationSupport,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'documentChanges': documentChanges,
@@ -12827,21 +9428,19 @@ final class WorkspaceEditClientCapabilities {
   }
 }
 
-final class DidChangeConfigurationClientCapabilities {
-  const DidChangeConfigurationClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class DidChangeConfigurationClientCapabilities
+    with _$DidChangeConfigurationClientCapabilities {
+  const DidChangeConfigurationClientCapabilities._();
 
-  factory DidChangeConfigurationClientCapabilities.fromJson(
+  const factory DidChangeConfigurationClientCapabilities({
+    bool? dynamicRegistration,
+  }) = _DidChangeConfigurationClientCapabilities;
+
+  static DidChangeConfigurationClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => DidChangeConfigurationClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  DidChangeConfigurationClientCapabilities copyWith({
-    bool? dynamicRegistration,
-  }) => DidChangeConfigurationClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
   );
 
   Map<String, Object?> toJson() {
@@ -12849,30 +9448,21 @@ final class DidChangeConfigurationClientCapabilities {
   }
 }
 
-final class DidChangeWatchedFilesClientCapabilities {
-  const DidChangeWatchedFilesClientCapabilities({
-    this.dynamicRegistration,
-    this.relativePatternSupport,
-  });
+@freezed
+abstract class DidChangeWatchedFilesClientCapabilities
+    with _$DidChangeWatchedFilesClientCapabilities {
+  const DidChangeWatchedFilesClientCapabilities._();
 
-  factory DidChangeWatchedFilesClientCapabilities.fromJson(
+  const factory DidChangeWatchedFilesClientCapabilities({
+    bool? dynamicRegistration,
+    bool? relativePatternSupport,
+  }) = _DidChangeWatchedFilesClientCapabilities;
+
+  static DidChangeWatchedFilesClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => DidChangeWatchedFilesClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
     relativePatternSupport: json['relativePatternSupport'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  final bool? relativePatternSupport;
-
-  DidChangeWatchedFilesClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? relativePatternSupport,
-  }) => DidChangeWatchedFilesClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    relativePatternSupport:
-        relativePatternSupport ?? this.relativePatternSupport,
   );
 
   Map<String, Object?> toJson() {
@@ -12884,15 +9474,19 @@ final class DidChangeWatchedFilesClientCapabilities {
 }
 
 /// Client capabilities for a {@link WorkspaceSymbolRequest}.
-final class WorkspaceSymbolClientCapabilities {
-  const WorkspaceSymbolClientCapabilities({
-    this.dynamicRegistration,
-    this.symbolKind,
-    this.tagSupport,
-    this.resolveSupport,
-  });
+@freezed
+abstract class WorkspaceSymbolClientCapabilities
+    with _$WorkspaceSymbolClientCapabilities {
+  const WorkspaceSymbolClientCapabilities._();
 
-  factory WorkspaceSymbolClientCapabilities.fromJson(
+  const factory WorkspaceSymbolClientCapabilities({
+    bool? dynamicRegistration,
+    WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind,
+    WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport,
+    WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport,
+  }) = _WorkspaceSymbolClientCapabilities;
+
+  static WorkspaceSymbolClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => WorkspaceSymbolClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
@@ -12913,26 +9507,6 @@ final class WorkspaceSymbolClientCapabilities {
           ),
   );
 
-  final bool? dynamicRegistration;
-
-  final WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind;
-
-  final WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport;
-
-  final WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport;
-
-  WorkspaceSymbolClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind,
-    WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport,
-    WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport,
-  }) => WorkspaceSymbolClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    symbolKind: symbolKind ?? this.symbolKind,
-    tagSupport: tagSupport ?? this.tagSupport,
-    resolveSupport: resolveSupport ?? this.resolveSupport,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'dynamicRegistration': dynamicRegistration,
@@ -12944,20 +9518,17 @@ final class WorkspaceSymbolClientCapabilities {
 }
 
 /// The client capabilities of a {@link ExecuteCommandRequest}.
-final class ExecuteCommandClientCapabilities {
-  const ExecuteCommandClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class ExecuteCommandClientCapabilities
+    with _$ExecuteCommandClientCapabilities {
+  const ExecuteCommandClientCapabilities._();
 
-  factory ExecuteCommandClientCapabilities.fromJson(
-    Map<String, Object?> json,
-  ) => ExecuteCommandClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
+  const factory ExecuteCommandClientCapabilities({bool? dynamicRegistration}) =
+      _ExecuteCommandClientCapabilities;
 
-  final bool? dynamicRegistration;
-
-  ExecuteCommandClientCapabilities copyWith({bool? dynamicRegistration}) =>
+  static ExecuteCommandClientCapabilities fromJson(Map<String, Object?> json) =>
       ExecuteCommandClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
+        dynamicRegistration: json['dynamicRegistration'] as bool?,
       );
 
   Map<String, Object?> toJson() {
@@ -12966,21 +9537,20 @@ final class ExecuteCommandClientCapabilities {
 }
 
 /// @since 3.16.0
-final class SemanticTokensWorkspaceClientCapabilities {
-  const SemanticTokensWorkspaceClientCapabilities({this.refreshSupport});
+@freezed
+abstract class SemanticTokensWorkspaceClientCapabilities
+    with _$SemanticTokensWorkspaceClientCapabilities {
+  const SemanticTokensWorkspaceClientCapabilities._();
 
-  factory SemanticTokensWorkspaceClientCapabilities.fromJson(
+  const factory SemanticTokensWorkspaceClientCapabilities({
+    bool? refreshSupport,
+  }) = _SemanticTokensWorkspaceClientCapabilities;
+
+  static SemanticTokensWorkspaceClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => SemanticTokensWorkspaceClientCapabilities(
     refreshSupport: json['refreshSupport'] as bool?,
   );
-
-  final bool? refreshSupport;
-
-  SemanticTokensWorkspaceClientCapabilities copyWith({bool? refreshSupport}) =>
-      SemanticTokensWorkspaceClientCapabilities(
-        refreshSupport: refreshSupport ?? this.refreshSupport,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'refreshSupport': refreshSupport};
@@ -12988,21 +9558,19 @@ final class SemanticTokensWorkspaceClientCapabilities {
 }
 
 /// @since 3.16.0
-final class CodeLensWorkspaceClientCapabilities {
-  const CodeLensWorkspaceClientCapabilities({this.refreshSupport});
+@freezed
+abstract class CodeLensWorkspaceClientCapabilities
+    with _$CodeLensWorkspaceClientCapabilities {
+  const CodeLensWorkspaceClientCapabilities._();
 
-  factory CodeLensWorkspaceClientCapabilities.fromJson(
+  const factory CodeLensWorkspaceClientCapabilities({bool? refreshSupport}) =
+      _CodeLensWorkspaceClientCapabilities;
+
+  static CodeLensWorkspaceClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => CodeLensWorkspaceClientCapabilities(
     refreshSupport: json['refreshSupport'] as bool?,
   );
-
-  final bool? refreshSupport;
-
-  CodeLensWorkspaceClientCapabilities copyWith({bool? refreshSupport}) =>
-      CodeLensWorkspaceClientCapabilities(
-        refreshSupport: refreshSupport ?? this.refreshSupport,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'refreshSupport': refreshSupport};
@@ -13015,18 +9583,22 @@ final class CodeLensWorkspaceClientCapabilities {
 /// like renaming a file in the UI.
 ///
 /// @since 3.16.0
-final class FileOperationClientCapabilities {
-  const FileOperationClientCapabilities({
-    this.dynamicRegistration,
-    this.didCreate,
-    this.willCreate,
-    this.didRename,
-    this.willRename,
-    this.didDelete,
-    this.willDelete,
-  });
+@freezed
+abstract class FileOperationClientCapabilities
+    with _$FileOperationClientCapabilities {
+  const FileOperationClientCapabilities._();
 
-  factory FileOperationClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory FileOperationClientCapabilities({
+    bool? dynamicRegistration,
+    bool? didCreate,
+    bool? willCreate,
+    bool? didRename,
+    bool? willRename,
+    bool? didDelete,
+    bool? willDelete,
+  }) = _FileOperationClientCapabilities;
+
+  static FileOperationClientCapabilities fromJson(Map<String, Object?> json) =>
       FileOperationClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         didCreate: json['didCreate'] as bool?,
@@ -13036,38 +9608,6 @@ final class FileOperationClientCapabilities {
         didDelete: json['didDelete'] as bool?,
         willDelete: json['willDelete'] as bool?,
       );
-
-  final bool? dynamicRegistration;
-
-  final bool? didCreate;
-
-  final bool? willCreate;
-
-  final bool? didRename;
-
-  final bool? willRename;
-
-  final bool? didDelete;
-
-  final bool? willDelete;
-
-  FileOperationClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? didCreate,
-    bool? willCreate,
-    bool? didRename,
-    bool? willRename,
-    bool? didDelete,
-    bool? willDelete,
-  }) => FileOperationClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    didCreate: didCreate ?? this.didCreate,
-    willCreate: willCreate ?? this.willCreate,
-    didRename: didRename ?? this.didRename,
-    willRename: willRename ?? this.willRename,
-    didDelete: didDelete ?? this.didDelete,
-    willDelete: willDelete ?? this.willDelete,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -13085,21 +9625,19 @@ final class FileOperationClientCapabilities {
 /// Client workspace capabilities specific to inline values.
 ///
 /// @since 3.17.0
-final class InlineValueWorkspaceClientCapabilities {
-  const InlineValueWorkspaceClientCapabilities({this.refreshSupport});
+@freezed
+abstract class InlineValueWorkspaceClientCapabilities
+    with _$InlineValueWorkspaceClientCapabilities {
+  const InlineValueWorkspaceClientCapabilities._();
 
-  factory InlineValueWorkspaceClientCapabilities.fromJson(
+  const factory InlineValueWorkspaceClientCapabilities({bool? refreshSupport}) =
+      _InlineValueWorkspaceClientCapabilities;
+
+  static InlineValueWorkspaceClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => InlineValueWorkspaceClientCapabilities(
     refreshSupport: json['refreshSupport'] as bool?,
   );
-
-  final bool? refreshSupport;
-
-  InlineValueWorkspaceClientCapabilities copyWith({bool? refreshSupport}) =>
-      InlineValueWorkspaceClientCapabilities(
-        refreshSupport: refreshSupport ?? this.refreshSupport,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'refreshSupport': refreshSupport};
@@ -13109,21 +9647,19 @@ final class InlineValueWorkspaceClientCapabilities {
 /// Client workspace capabilities specific to inlay hints.
 ///
 /// @since 3.17.0
-final class InlayHintWorkspaceClientCapabilities {
-  const InlayHintWorkspaceClientCapabilities({this.refreshSupport});
+@freezed
+abstract class InlayHintWorkspaceClientCapabilities
+    with _$InlayHintWorkspaceClientCapabilities {
+  const InlayHintWorkspaceClientCapabilities._();
 
-  factory InlayHintWorkspaceClientCapabilities.fromJson(
+  const factory InlayHintWorkspaceClientCapabilities({bool? refreshSupport}) =
+      _InlayHintWorkspaceClientCapabilities;
+
+  static InlayHintWorkspaceClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => InlayHintWorkspaceClientCapabilities(
     refreshSupport: json['refreshSupport'] as bool?,
   );
-
-  final bool? refreshSupport;
-
-  InlayHintWorkspaceClientCapabilities copyWith({bool? refreshSupport}) =>
-      InlayHintWorkspaceClientCapabilities(
-        refreshSupport: refreshSupport ?? this.refreshSupport,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'refreshSupport': refreshSupport};
@@ -13133,21 +9669,19 @@ final class InlayHintWorkspaceClientCapabilities {
 /// Workspace client capabilities specific to diagnostic pull requests.
 ///
 /// @since 3.17.0
-final class DiagnosticWorkspaceClientCapabilities {
-  const DiagnosticWorkspaceClientCapabilities({this.refreshSupport});
+@freezed
+abstract class DiagnosticWorkspaceClientCapabilities
+    with _$DiagnosticWorkspaceClientCapabilities {
+  const DiagnosticWorkspaceClientCapabilities._();
 
-  factory DiagnosticWorkspaceClientCapabilities.fromJson(
+  const factory DiagnosticWorkspaceClientCapabilities({bool? refreshSupport}) =
+      _DiagnosticWorkspaceClientCapabilities;
+
+  static DiagnosticWorkspaceClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => DiagnosticWorkspaceClientCapabilities(
     refreshSupport: json['refreshSupport'] as bool?,
   );
-
-  final bool? refreshSupport;
-
-  DiagnosticWorkspaceClientCapabilities copyWith({bool? refreshSupport}) =>
-      DiagnosticWorkspaceClientCapabilities(
-        refreshSupport: refreshSupport ?? this.refreshSupport,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'refreshSupport': refreshSupport};
@@ -13158,62 +9692,45 @@ final class DiagnosticWorkspaceClientCapabilities {
 ///
 /// @since 3.18.0
 /// @proposed
-final class FoldingRangeWorkspaceClientCapabilities {
-  const FoldingRangeWorkspaceClientCapabilities({this.refreshSupport});
+@freezed
+abstract class FoldingRangeWorkspaceClientCapabilities
+    with _$FoldingRangeWorkspaceClientCapabilities {
+  const FoldingRangeWorkspaceClientCapabilities._();
 
-  factory FoldingRangeWorkspaceClientCapabilities.fromJson(
+  const factory FoldingRangeWorkspaceClientCapabilities({
+    bool? refreshSupport,
+  }) = _FoldingRangeWorkspaceClientCapabilities;
+
+  static FoldingRangeWorkspaceClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => FoldingRangeWorkspaceClientCapabilities(
     refreshSupport: json['refreshSupport'] as bool?,
   );
-
-  final bool? refreshSupport;
-
-  FoldingRangeWorkspaceClientCapabilities copyWith({bool? refreshSupport}) =>
-      FoldingRangeWorkspaceClientCapabilities(
-        refreshSupport: refreshSupport ?? this.refreshSupport,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'refreshSupport': refreshSupport};
   }
 }
 
-final class TextDocumentSyncClientCapabilities {
-  const TextDocumentSyncClientCapabilities({
-    this.dynamicRegistration,
-    this.willSave,
-    this.willSaveWaitUntil,
-    this.didSave,
-  });
+@freezed
+abstract class TextDocumentSyncClientCapabilities
+    with _$TextDocumentSyncClientCapabilities {
+  const TextDocumentSyncClientCapabilities._();
 
-  factory TextDocumentSyncClientCapabilities.fromJson(
+  const factory TextDocumentSyncClientCapabilities({
+    bool? dynamicRegistration,
+    bool? willSave,
+    bool? willSaveWaitUntil,
+    bool? didSave,
+  }) = _TextDocumentSyncClientCapabilities;
+
+  static TextDocumentSyncClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => TextDocumentSyncClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
     willSave: json['willSave'] as bool?,
     willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
     didSave: json['didSave'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  final bool? willSave;
-
-  final bool? willSaveWaitUntil;
-
-  final bool? didSave;
-
-  TextDocumentSyncClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? willSave,
-    bool? willSaveWaitUntil,
-    bool? didSave,
-  }) => TextDocumentSyncClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    willSave: willSave ?? this.willSave,
-    willSaveWaitUntil: willSaveWaitUntil ?? this.willSaveWaitUntil,
-    didSave: didSave ?? this.didSave,
   );
 
   Map<String, Object?> toJson() {
@@ -13227,17 +9744,21 @@ final class TextDocumentSyncClientCapabilities {
 }
 
 /// Completion client capabilities
-final class CompletionClientCapabilities {
-  const CompletionClientCapabilities({
-    this.dynamicRegistration,
-    this.completionItem,
-    this.completionItemKind,
-    this.insertTextMode,
-    this.contextSupport,
-    this.completionList,
-  });
+@freezed
+abstract class CompletionClientCapabilities
+    with _$CompletionClientCapabilities {
+  const CompletionClientCapabilities._();
 
-  factory CompletionClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory CompletionClientCapabilities({
+    bool? dynamicRegistration,
+    CompletionClientCapabilitiesCompletionItem? completionItem,
+    CompletionClientCapabilitiesCompletionItemKind? completionItemKind,
+    InsertTextMode? insertTextMode,
+    bool? contextSupport,
+    CompletionClientCapabilitiesCompletionList? completionList,
+  }) = _CompletionClientCapabilities;
+
+  static CompletionClientCapabilities fromJson(Map<String, Object?> json) =>
       CompletionClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         completionItem: json['completionItem'] == null
@@ -13263,34 +9784,6 @@ final class CompletionClientCapabilities {
               ),
       );
 
-  final bool? dynamicRegistration;
-
-  final CompletionClientCapabilitiesCompletionItem? completionItem;
-
-  final CompletionClientCapabilitiesCompletionItemKind? completionItemKind;
-
-  final InsertTextMode? insertTextMode;
-
-  final bool? contextSupport;
-
-  final CompletionClientCapabilitiesCompletionList? completionList;
-
-  CompletionClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    CompletionClientCapabilitiesCompletionItem? completionItem,
-    CompletionClientCapabilitiesCompletionItemKind? completionItemKind,
-    InsertTextMode? insertTextMode,
-    bool? contextSupport,
-    CompletionClientCapabilitiesCompletionList? completionList,
-  }) => CompletionClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    completionItem: completionItem ?? this.completionItem,
-    completionItemKind: completionItemKind ?? this.completionItemKind,
-    insertTextMode: insertTextMode ?? this.insertTextMode,
-    contextSupport: contextSupport ?? this.contextSupport,
-    completionList: completionList ?? this.completionList,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'dynamicRegistration': dynamicRegistration,
@@ -13303,28 +9796,22 @@ final class CompletionClientCapabilities {
   }
 }
 
-final class HoverClientCapabilities {
-  const HoverClientCapabilities({this.dynamicRegistration, this.contentFormat});
+@freezed
+abstract class HoverClientCapabilities with _$HoverClientCapabilities {
+  const HoverClientCapabilities._();
 
-  factory HoverClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory HoverClientCapabilities({
+    bool? dynamicRegistration,
+    List<MarkupKind>? contentFormat,
+  }) = _HoverClientCapabilities;
+
+  static HoverClientCapabilities fromJson(Map<String, Object?> json) =>
       HoverClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         contentFormat: (json['contentFormat'] as List<Object?>?)
             ?.map((e) => e as MarkupKind)
             .toList(),
       );
-
-  final bool? dynamicRegistration;
-
-  final List<MarkupKind>? contentFormat;
-
-  HoverClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    List<MarkupKind>? contentFormat,
-  }) => HoverClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    contentFormat: contentFormat ?? this.contentFormat,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -13335,14 +9822,18 @@ final class HoverClientCapabilities {
 }
 
 /// Client Capabilities for a {@link SignatureHelpRequest}.
-final class SignatureHelpClientCapabilities {
-  const SignatureHelpClientCapabilities({
-    this.dynamicRegistration,
-    this.signatureInformation,
-    this.contextSupport,
-  });
+@freezed
+abstract class SignatureHelpClientCapabilities
+    with _$SignatureHelpClientCapabilities {
+  const SignatureHelpClientCapabilities._();
 
-  factory SignatureHelpClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory SignatureHelpClientCapabilities({
+    bool? dynamicRegistration,
+    SignatureHelpClientCapabilitiesSignatureInformation? signatureInformation,
+    bool? contextSupport,
+  }) = _SignatureHelpClientCapabilities;
+
+  static SignatureHelpClientCapabilities fromJson(Map<String, Object?> json) =>
       SignatureHelpClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         signatureInformation: json['signatureInformation'] == null
@@ -13352,23 +9843,6 @@ final class SignatureHelpClientCapabilities {
               ),
         contextSupport: json['contextSupport'] as bool?,
       );
-
-  final bool? dynamicRegistration;
-
-  final SignatureHelpClientCapabilitiesSignatureInformation?
-  signatureInformation;
-
-  final bool? contextSupport;
-
-  SignatureHelpClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    SignatureHelpClientCapabilitiesSignatureInformation? signatureInformation,
-    bool? contextSupport,
-  }) => SignatureHelpClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    signatureInformation: signatureInformation ?? this.signatureInformation,
-    contextSupport: contextSupport ?? this.contextSupport,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -13380,29 +9854,21 @@ final class SignatureHelpClientCapabilities {
 }
 
 /// @since 3.14.0
-final class DeclarationClientCapabilities {
-  const DeclarationClientCapabilities({
-    this.dynamicRegistration,
-    this.linkSupport,
-  });
+@freezed
+abstract class DeclarationClientCapabilities
+    with _$DeclarationClientCapabilities {
+  const DeclarationClientCapabilities._();
 
-  factory DeclarationClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory DeclarationClientCapabilities({
+    bool? dynamicRegistration,
+    bool? linkSupport,
+  }) = _DeclarationClientCapabilities;
+
+  static DeclarationClientCapabilities fromJson(Map<String, Object?> json) =>
       DeclarationClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         linkSupport: json['linkSupport'] as bool?,
       );
-
-  final bool? dynamicRegistration;
-
-  final bool? linkSupport;
-
-  DeclarationClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? linkSupport,
-  }) => DeclarationClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    linkSupport: linkSupport ?? this.linkSupport,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -13413,29 +9879,21 @@ final class DeclarationClientCapabilities {
 }
 
 /// Client Capabilities for a {@link DefinitionRequest}.
-final class DefinitionClientCapabilities {
-  const DefinitionClientCapabilities({
-    this.dynamicRegistration,
-    this.linkSupport,
-  });
+@freezed
+abstract class DefinitionClientCapabilities
+    with _$DefinitionClientCapabilities {
+  const DefinitionClientCapabilities._();
 
-  factory DefinitionClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory DefinitionClientCapabilities({
+    bool? dynamicRegistration,
+    bool? linkSupport,
+  }) = _DefinitionClientCapabilities;
+
+  static DefinitionClientCapabilities fromJson(Map<String, Object?> json) =>
       DefinitionClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         linkSupport: json['linkSupport'] as bool?,
       );
-
-  final bool? dynamicRegistration;
-
-  final bool? linkSupport;
-
-  DefinitionClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? linkSupport,
-  }) => DefinitionClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    linkSupport: linkSupport ?? this.linkSupport,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -13446,30 +9904,21 @@ final class DefinitionClientCapabilities {
 }
 
 /// Since 3.6.0
-final class TypeDefinitionClientCapabilities {
-  const TypeDefinitionClientCapabilities({
-    this.dynamicRegistration,
-    this.linkSupport,
-  });
+@freezed
+abstract class TypeDefinitionClientCapabilities
+    with _$TypeDefinitionClientCapabilities {
+  const TypeDefinitionClientCapabilities._();
 
-  factory TypeDefinitionClientCapabilities.fromJson(
-    Map<String, Object?> json,
-  ) => TypeDefinitionClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-    linkSupport: json['linkSupport'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  final bool? linkSupport;
-
-  TypeDefinitionClientCapabilities copyWith({
+  const factory TypeDefinitionClientCapabilities({
     bool? dynamicRegistration,
     bool? linkSupport,
-  }) => TypeDefinitionClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    linkSupport: linkSupport ?? this.linkSupport,
-  );
+  }) = _TypeDefinitionClientCapabilities;
+
+  static TypeDefinitionClientCapabilities fromJson(Map<String, Object?> json) =>
+      TypeDefinitionClientCapabilities(
+        dynamicRegistration: json['dynamicRegistration'] as bool?,
+        linkSupport: json['linkSupport'] as bool?,
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -13480,30 +9929,21 @@ final class TypeDefinitionClientCapabilities {
 }
 
 /// @since 3.6.0
-final class ImplementationClientCapabilities {
-  const ImplementationClientCapabilities({
-    this.dynamicRegistration,
-    this.linkSupport,
-  });
+@freezed
+abstract class ImplementationClientCapabilities
+    with _$ImplementationClientCapabilities {
+  const ImplementationClientCapabilities._();
 
-  factory ImplementationClientCapabilities.fromJson(
-    Map<String, Object?> json,
-  ) => ImplementationClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-    linkSupport: json['linkSupport'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  final bool? linkSupport;
-
-  ImplementationClientCapabilities copyWith({
+  const factory ImplementationClientCapabilities({
     bool? dynamicRegistration,
     bool? linkSupport,
-  }) => ImplementationClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    linkSupport: linkSupport ?? this.linkSupport,
-  );
+  }) = _ImplementationClientCapabilities;
+
+  static ImplementationClientCapabilities fromJson(Map<String, Object?> json) =>
+      ImplementationClientCapabilities(
+        dynamicRegistration: json['dynamicRegistration'] as bool?,
+        linkSupport: json['linkSupport'] as bool?,
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -13514,19 +9954,16 @@ final class ImplementationClientCapabilities {
 }
 
 /// Client Capabilities for a {@link ReferencesRequest}.
-final class ReferenceClientCapabilities {
-  const ReferenceClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
+  const ReferenceClientCapabilities._();
 
-  factory ReferenceClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory ReferenceClientCapabilities({bool? dynamicRegistration}) =
+      _ReferenceClientCapabilities;
+
+  static ReferenceClientCapabilities fromJson(Map<String, Object?> json) =>
       ReferenceClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  final bool? dynamicRegistration;
-
-  ReferenceClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      ReferenceClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
       );
 
   Map<String, Object?> toJson() {
@@ -13535,21 +9972,20 @@ final class ReferenceClientCapabilities {
 }
 
 /// Client Capabilities for a {@link DocumentHighlightRequest}.
-final class DocumentHighlightClientCapabilities {
-  const DocumentHighlightClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class DocumentHighlightClientCapabilities
+    with _$DocumentHighlightClientCapabilities {
+  const DocumentHighlightClientCapabilities._();
 
-  factory DocumentHighlightClientCapabilities.fromJson(
+  const factory DocumentHighlightClientCapabilities({
+    bool? dynamicRegistration,
+  }) = _DocumentHighlightClientCapabilities;
+
+  static DocumentHighlightClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => DocumentHighlightClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-
-  final bool? dynamicRegistration;
-
-  DocumentHighlightClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      DocumentHighlightClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'dynamicRegistration': dynamicRegistration};
@@ -13557,59 +9993,36 @@ final class DocumentHighlightClientCapabilities {
 }
 
 /// Client Capabilities for a {@link DocumentSymbolRequest}.
-final class DocumentSymbolClientCapabilities {
-  const DocumentSymbolClientCapabilities({
-    this.dynamicRegistration,
-    this.symbolKind,
-    this.hierarchicalDocumentSymbolSupport,
-    this.tagSupport,
-    this.labelSupport,
-  });
+@freezed
+abstract class DocumentSymbolClientCapabilities
+    with _$DocumentSymbolClientCapabilities {
+  const DocumentSymbolClientCapabilities._();
 
-  factory DocumentSymbolClientCapabilities.fromJson(
-    Map<String, Object?> json,
-  ) => DocumentSymbolClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-    symbolKind: json['symbolKind'] == null
-        ? null
-        : DocumentSymbolClientCapabilitiesSymbolKind.fromJson(
-            json['symbolKind'] as Map<String, Object?>,
-          ),
-    hierarchicalDocumentSymbolSupport:
-        json['hierarchicalDocumentSymbolSupport'] as bool?,
-    tagSupport: json['tagSupport'] == null
-        ? null
-        : DocumentSymbolClientCapabilitiesTagSupport.fromJson(
-            json['tagSupport'] as Map<String, Object?>,
-          ),
-    labelSupport: json['labelSupport'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  final DocumentSymbolClientCapabilitiesSymbolKind? symbolKind;
-
-  final bool? hierarchicalDocumentSymbolSupport;
-
-  final DocumentSymbolClientCapabilitiesTagSupport? tagSupport;
-
-  final bool? labelSupport;
-
-  DocumentSymbolClientCapabilities copyWith({
+  const factory DocumentSymbolClientCapabilities({
     bool? dynamicRegistration,
     DocumentSymbolClientCapabilitiesSymbolKind? symbolKind,
     bool? hierarchicalDocumentSymbolSupport,
     DocumentSymbolClientCapabilitiesTagSupport? tagSupport,
     bool? labelSupport,
-  }) => DocumentSymbolClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    symbolKind: symbolKind ?? this.symbolKind,
-    hierarchicalDocumentSymbolSupport:
-        hierarchicalDocumentSymbolSupport ??
-        this.hierarchicalDocumentSymbolSupport,
-    tagSupport: tagSupport ?? this.tagSupport,
-    labelSupport: labelSupport ?? this.labelSupport,
-  );
+  }) = _DocumentSymbolClientCapabilities;
+
+  static DocumentSymbolClientCapabilities fromJson(Map<String, Object?> json) =>
+      DocumentSymbolClientCapabilities(
+        dynamicRegistration: json['dynamicRegistration'] as bool?,
+        symbolKind: json['symbolKind'] == null
+            ? null
+            : DocumentSymbolClientCapabilitiesSymbolKind.fromJson(
+                json['symbolKind'] as Map<String, Object?>,
+              ),
+        hierarchicalDocumentSymbolSupport:
+            json['hierarchicalDocumentSymbolSupport'] as bool?,
+        tagSupport: json['tagSupport'] == null
+            ? null
+            : DocumentSymbolClientCapabilitiesTagSupport.fromJson(
+                json['tagSupport'] as Map<String, Object?>,
+              ),
+        labelSupport: json['labelSupport'] as bool?,
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -13623,18 +10036,23 @@ final class DocumentSymbolClientCapabilities {
 }
 
 /// The Client Capabilities of a {@link CodeActionRequest}.
-final class CodeActionClientCapabilities {
-  const CodeActionClientCapabilities({
-    this.dynamicRegistration,
-    this.codeActionLiteralSupport,
-    this.isPreferredSupport,
-    this.disabledSupport,
-    this.dataSupport,
-    this.resolveSupport,
-    this.honorsChangeAnnotations,
-  });
+@freezed
+abstract class CodeActionClientCapabilities
+    with _$CodeActionClientCapabilities {
+  const CodeActionClientCapabilities._();
 
-  factory CodeActionClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory CodeActionClientCapabilities({
+    bool? dynamicRegistration,
+    CodeActionClientCapabilitiesCodeActionLiteralSupport?
+    codeActionLiteralSupport,
+    bool? isPreferredSupport,
+    bool? disabledSupport,
+    bool? dataSupport,
+    CodeActionClientCapabilitiesResolveSupport? resolveSupport,
+    bool? honorsChangeAnnotations,
+  }) = _CodeActionClientCapabilities;
+
+  static CodeActionClientCapabilities fromJson(Map<String, Object?> json) =>
       CodeActionClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         codeActionLiteralSupport: json['codeActionLiteralSupport'] == null
@@ -13653,42 +10071,6 @@ final class CodeActionClientCapabilities {
         honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool?,
       );
 
-  final bool? dynamicRegistration;
-
-  final CodeActionClientCapabilitiesCodeActionLiteralSupport?
-  codeActionLiteralSupport;
-
-  final bool? isPreferredSupport;
-
-  final bool? disabledSupport;
-
-  final bool? dataSupport;
-
-  final CodeActionClientCapabilitiesResolveSupport? resolveSupport;
-
-  final bool? honorsChangeAnnotations;
-
-  CodeActionClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    CodeActionClientCapabilitiesCodeActionLiteralSupport?
-    codeActionLiteralSupport,
-    bool? isPreferredSupport,
-    bool? disabledSupport,
-    bool? dataSupport,
-    CodeActionClientCapabilitiesResolveSupport? resolveSupport,
-    bool? honorsChangeAnnotations,
-  }) => CodeActionClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    codeActionLiteralSupport:
-        codeActionLiteralSupport ?? this.codeActionLiteralSupport,
-    isPreferredSupport: isPreferredSupport ?? this.isPreferredSupport,
-    disabledSupport: disabledSupport ?? this.disabledSupport,
-    dataSupport: dataSupport ?? this.dataSupport,
-    resolveSupport: resolveSupport ?? this.resolveSupport,
-    honorsChangeAnnotations:
-        honorsChangeAnnotations ?? this.honorsChangeAnnotations,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'dynamicRegistration': dynamicRegistration,
@@ -13703,19 +10085,16 @@ final class CodeActionClientCapabilities {
 }
 
 /// The client capabilities  of a {@link CodeLensRequest}.
-final class CodeLensClientCapabilities {
-  const CodeLensClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
+  const CodeLensClientCapabilities._();
 
-  factory CodeLensClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory CodeLensClientCapabilities({bool? dynamicRegistration}) =
+      _CodeLensClientCapabilities;
+
+  static CodeLensClientCapabilities fromJson(Map<String, Object?> json) =>
       CodeLensClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  final bool? dynamicRegistration;
-
-  CodeLensClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      CodeLensClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
       );
 
   Map<String, Object?> toJson() {
@@ -13724,29 +10103,21 @@ final class CodeLensClientCapabilities {
 }
 
 /// The client capabilities of a {@link DocumentLinkRequest}.
-final class DocumentLinkClientCapabilities {
-  const DocumentLinkClientCapabilities({
-    this.dynamicRegistration,
-    this.tooltipSupport,
-  });
+@freezed
+abstract class DocumentLinkClientCapabilities
+    with _$DocumentLinkClientCapabilities {
+  const DocumentLinkClientCapabilities._();
 
-  factory DocumentLinkClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory DocumentLinkClientCapabilities({
+    bool? dynamicRegistration,
+    bool? tooltipSupport,
+  }) = _DocumentLinkClientCapabilities;
+
+  static DocumentLinkClientCapabilities fromJson(Map<String, Object?> json) =>
       DocumentLinkClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         tooltipSupport: json['tooltipSupport'] as bool?,
       );
-
-  final bool? dynamicRegistration;
-
-  final bool? tooltipSupport;
-
-  DocumentLinkClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? tooltipSupport,
-  }) => DocumentLinkClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    tooltipSupport: tooltipSupport ?? this.tooltipSupport,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -13756,19 +10127,17 @@ final class DocumentLinkClientCapabilities {
   }
 }
 
-final class DocumentColorClientCapabilities {
-  const DocumentColorClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class DocumentColorClientCapabilities
+    with _$DocumentColorClientCapabilities {
+  const DocumentColorClientCapabilities._();
 
-  factory DocumentColorClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory DocumentColorClientCapabilities({bool? dynamicRegistration}) =
+      _DocumentColorClientCapabilities;
+
+  static DocumentColorClientCapabilities fromJson(Map<String, Object?> json) =>
       DocumentColorClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  final bool? dynamicRegistration;
-
-  DocumentColorClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      DocumentColorClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
       );
 
   Map<String, Object?> toJson() {
@@ -13777,21 +10146,20 @@ final class DocumentColorClientCapabilities {
 }
 
 /// Client capabilities of a {@link DocumentFormattingRequest}.
-final class DocumentFormattingClientCapabilities {
-  const DocumentFormattingClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class DocumentFormattingClientCapabilities
+    with _$DocumentFormattingClientCapabilities {
+  const DocumentFormattingClientCapabilities._();
 
-  factory DocumentFormattingClientCapabilities.fromJson(
+  const factory DocumentFormattingClientCapabilities({
+    bool? dynamicRegistration,
+  }) = _DocumentFormattingClientCapabilities;
+
+  static DocumentFormattingClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => DocumentFormattingClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-
-  final bool? dynamicRegistration;
-
-  DocumentFormattingClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      DocumentFormattingClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'dynamicRegistration': dynamicRegistration};
@@ -13799,29 +10167,21 @@ final class DocumentFormattingClientCapabilities {
 }
 
 /// Client capabilities of a {@link DocumentRangeFormattingRequest}.
-final class DocumentRangeFormattingClientCapabilities {
-  const DocumentRangeFormattingClientCapabilities({
-    this.dynamicRegistration,
-    this.rangesSupport,
-  });
+@freezed
+abstract class DocumentRangeFormattingClientCapabilities
+    with _$DocumentRangeFormattingClientCapabilities {
+  const DocumentRangeFormattingClientCapabilities._();
 
-  factory DocumentRangeFormattingClientCapabilities.fromJson(
+  const factory DocumentRangeFormattingClientCapabilities({
+    bool? dynamicRegistration,
+    bool? rangesSupport,
+  }) = _DocumentRangeFormattingClientCapabilities;
+
+  static DocumentRangeFormattingClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => DocumentRangeFormattingClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
     rangesSupport: json['rangesSupport'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  final bool? rangesSupport;
-
-  DocumentRangeFormattingClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? rangesSupport,
-  }) => DocumentRangeFormattingClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    rangesSupport: rangesSupport ?? this.rangesSupport,
   );
 
   Map<String, Object?> toJson() {
@@ -13833,21 +10193,19 @@ final class DocumentRangeFormattingClientCapabilities {
 }
 
 /// Client capabilities of a {@link DocumentOnTypeFormattingRequest}.
-final class DocumentOnTypeFormattingClientCapabilities {
-  const DocumentOnTypeFormattingClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class DocumentOnTypeFormattingClientCapabilities
+    with _$DocumentOnTypeFormattingClientCapabilities {
+  const DocumentOnTypeFormattingClientCapabilities._();
 
-  factory DocumentOnTypeFormattingClientCapabilities.fromJson(
+  const factory DocumentOnTypeFormattingClientCapabilities({
+    bool? dynamicRegistration,
+  }) = _DocumentOnTypeFormattingClientCapabilities;
+
+  static DocumentOnTypeFormattingClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => DocumentOnTypeFormattingClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  DocumentOnTypeFormattingClientCapabilities copyWith({
-    bool? dynamicRegistration,
-  }) => DocumentOnTypeFormattingClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
   );
 
   Map<String, Object?> toJson() {
@@ -13855,15 +10213,18 @@ final class DocumentOnTypeFormattingClientCapabilities {
   }
 }
 
-final class RenameClientCapabilities {
-  const RenameClientCapabilities({
-    this.dynamicRegistration,
-    this.prepareSupport,
-    this.prepareSupportDefaultBehavior,
-    this.honorsChangeAnnotations,
-  });
+@freezed
+abstract class RenameClientCapabilities with _$RenameClientCapabilities {
+  const RenameClientCapabilities._();
 
-  factory RenameClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory RenameClientCapabilities({
+    bool? dynamicRegistration,
+    bool? prepareSupport,
+    PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,
+    bool? honorsChangeAnnotations,
+  }) = _RenameClientCapabilities;
+
+  static RenameClientCapabilities fromJson(Map<String, Object?> json) =>
       RenameClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         prepareSupport: json['prepareSupport'] as bool?,
@@ -13876,28 +10237,6 @@ final class RenameClientCapabilities {
         honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool?,
       );
 
-  final bool? dynamicRegistration;
-
-  final bool? prepareSupport;
-
-  final PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior;
-
-  final bool? honorsChangeAnnotations;
-
-  RenameClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? prepareSupport,
-    PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,
-    bool? honorsChangeAnnotations,
-  }) => RenameClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    prepareSupport: prepareSupport ?? this.prepareSupport,
-    prepareSupportDefaultBehavior:
-        prepareSupportDefaultBehavior ?? this.prepareSupportDefaultBehavior,
-    honorsChangeAnnotations:
-        honorsChangeAnnotations ?? this.honorsChangeAnnotations,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'dynamicRegistration': dynamicRegistration,
@@ -13908,16 +10247,20 @@ final class RenameClientCapabilities {
   }
 }
 
-final class FoldingRangeClientCapabilities {
-  const FoldingRangeClientCapabilities({
-    this.dynamicRegistration,
-    this.rangeLimit,
-    this.lineFoldingOnly,
-    this.foldingRangeKind,
-    this.foldingRange,
-  });
+@freezed
+abstract class FoldingRangeClientCapabilities
+    with _$FoldingRangeClientCapabilities {
+  const FoldingRangeClientCapabilities._();
 
-  factory FoldingRangeClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory FoldingRangeClientCapabilities({
+    bool? dynamicRegistration,
+    int? rangeLimit,
+    bool? lineFoldingOnly,
+    FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind,
+    FoldingRangeClientCapabilitiesFoldingRange? foldingRange,
+  }) = _FoldingRangeClientCapabilities;
+
+  static FoldingRangeClientCapabilities fromJson(Map<String, Object?> json) =>
       FoldingRangeClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         rangeLimit: json['rangeLimit'] as int?,
@@ -13934,30 +10277,6 @@ final class FoldingRangeClientCapabilities {
               ),
       );
 
-  final bool? dynamicRegistration;
-
-  final int? rangeLimit;
-
-  final bool? lineFoldingOnly;
-
-  final FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind;
-
-  final FoldingRangeClientCapabilitiesFoldingRange? foldingRange;
-
-  FoldingRangeClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    int? rangeLimit,
-    bool? lineFoldingOnly,
-    FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind,
-    FoldingRangeClientCapabilitiesFoldingRange? foldingRange,
-  }) => FoldingRangeClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    rangeLimit: rangeLimit ?? this.rangeLimit,
-    lineFoldingOnly: lineFoldingOnly ?? this.lineFoldingOnly,
-    foldingRangeKind: foldingRangeKind ?? this.foldingRangeKind,
-    foldingRange: foldingRange ?? this.foldingRange,
-  );
-
   Map<String, Object?> toJson() {
     return <String, Object?>{
       'dynamicRegistration': dynamicRegistration,
@@ -13969,20 +10288,17 @@ final class FoldingRangeClientCapabilities {
   }
 }
 
-final class SelectionRangeClientCapabilities {
-  const SelectionRangeClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class SelectionRangeClientCapabilities
+    with _$SelectionRangeClientCapabilities {
+  const SelectionRangeClientCapabilities._();
 
-  factory SelectionRangeClientCapabilities.fromJson(
-    Map<String, Object?> json,
-  ) => SelectionRangeClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
+  const factory SelectionRangeClientCapabilities({bool? dynamicRegistration}) =
+      _SelectionRangeClientCapabilities;
 
-  final bool? dynamicRegistration;
-
-  SelectionRangeClientCapabilities copyWith({bool? dynamicRegistration}) =>
+  static SelectionRangeClientCapabilities fromJson(Map<String, Object?> json) =>
       SelectionRangeClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
+        dynamicRegistration: json['dynamicRegistration'] as bool?,
       );
 
   Map<String, Object?> toJson() {
@@ -13991,16 +10307,20 @@ final class SelectionRangeClientCapabilities {
 }
 
 /// The publish diagnostic client capabilities.
-final class PublishDiagnosticsClientCapabilities {
-  const PublishDiagnosticsClientCapabilities({
-    this.relatedInformation,
-    this.tagSupport,
-    this.versionSupport,
-    this.codeDescriptionSupport,
-    this.dataSupport,
-  });
+@freezed
+abstract class PublishDiagnosticsClientCapabilities
+    with _$PublishDiagnosticsClientCapabilities {
+  const PublishDiagnosticsClientCapabilities._();
 
-  factory PublishDiagnosticsClientCapabilities.fromJson(
+  const factory PublishDiagnosticsClientCapabilities({
+    bool? relatedInformation,
+    PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport,
+    bool? versionSupport,
+    bool? codeDescriptionSupport,
+    bool? dataSupport,
+  }) = _PublishDiagnosticsClientCapabilities;
+
+  static PublishDiagnosticsClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => PublishDiagnosticsClientCapabilities(
     relatedInformation: json['relatedInformation'] as bool?,
@@ -14012,31 +10332,6 @@ final class PublishDiagnosticsClientCapabilities {
     versionSupport: json['versionSupport'] as bool?,
     codeDescriptionSupport: json['codeDescriptionSupport'] as bool?,
     dataSupport: json['dataSupport'] as bool?,
-  );
-
-  final bool? relatedInformation;
-
-  final PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport;
-
-  final bool? versionSupport;
-
-  final bool? codeDescriptionSupport;
-
-  final bool? dataSupport;
-
-  PublishDiagnosticsClientCapabilities copyWith({
-    bool? relatedInformation,
-    PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport,
-    bool? versionSupport,
-    bool? codeDescriptionSupport,
-    bool? dataSupport,
-  }) => PublishDiagnosticsClientCapabilities(
-    relatedInformation: relatedInformation ?? this.relatedInformation,
-    tagSupport: tagSupport ?? this.tagSupport,
-    versionSupport: versionSupport ?? this.versionSupport,
-    codeDescriptionSupport:
-        codeDescriptionSupport ?? this.codeDescriptionSupport,
-    dataSupport: dataSupport ?? this.dataSupport,
   );
 
   Map<String, Object?> toJson() {
@@ -14051,19 +10346,17 @@ final class PublishDiagnosticsClientCapabilities {
 }
 
 /// @since 3.16.0
-final class CallHierarchyClientCapabilities {
-  const CallHierarchyClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class CallHierarchyClientCapabilities
+    with _$CallHierarchyClientCapabilities {
+  const CallHierarchyClientCapabilities._();
 
-  factory CallHierarchyClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory CallHierarchyClientCapabilities({bool? dynamicRegistration}) =
+      _CallHierarchyClientCapabilities;
+
+  static CallHierarchyClientCapabilities fromJson(Map<String, Object?> json) =>
       CallHierarchyClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  final bool? dynamicRegistration;
-
-  CallHierarchyClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      CallHierarchyClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
       );
 
   Map<String, Object?> toJson() {
@@ -14072,81 +10365,43 @@ final class CallHierarchyClientCapabilities {
 }
 
 /// @since 3.16.0
-final class SemanticTokensClientCapabilities {
-  const SemanticTokensClientCapabilities({
-    this.dynamicRegistration,
-    required this.requests,
-    required this.tokenTypes,
-    required this.tokenModifiers,
-    required this.formats,
-    this.overlappingTokenSupport,
-    this.multilineTokenSupport,
-    this.serverCancelSupport,
-    this.augmentsSyntaxTokens,
-  });
+@freezed
+abstract class SemanticTokensClientCapabilities
+    with _$SemanticTokensClientCapabilities {
+  const SemanticTokensClientCapabilities._();
 
-  factory SemanticTokensClientCapabilities.fromJson(
-    Map<String, Object?> json,
-  ) => SemanticTokensClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-    requests: SemanticTokensClientCapabilitiesRequests.fromJson(
-      json['requests'] as Map<String, Object?>,
-    ),
-    tokenTypes: (json['tokenTypes'] as List<Object?>)
-        .map((e) => e as String)
-        .toList(),
-    tokenModifiers: (json['tokenModifiers'] as List<Object?>)
-        .map((e) => e as String)
-        .toList(),
-    formats: (json['formats'] as List<Object?>)
-        .map((e) => e as TokenFormat)
-        .toList(),
-    overlappingTokenSupport: json['overlappingTokenSupport'] as bool?,
-    multilineTokenSupport: json['multilineTokenSupport'] as bool?,
-    serverCancelSupport: json['serverCancelSupport'] as bool?,
-    augmentsSyntaxTokens: json['augmentsSyntaxTokens'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  final SemanticTokensClientCapabilitiesRequests requests;
-
-  final List<String> tokenTypes;
-
-  final List<String> tokenModifiers;
-
-  final List<TokenFormat> formats;
-
-  final bool? overlappingTokenSupport;
-
-  final bool? multilineTokenSupport;
-
-  final bool? serverCancelSupport;
-
-  final bool? augmentsSyntaxTokens;
-
-  SemanticTokensClientCapabilities copyWith({
+  const factory SemanticTokensClientCapabilities({
     bool? dynamicRegistration,
-    SemanticTokensClientCapabilitiesRequests? requests,
-    List<String>? tokenTypes,
-    List<String>? tokenModifiers,
-    List<TokenFormat>? formats,
+    required SemanticTokensClientCapabilitiesRequests requests,
+    required List<String> tokenTypes,
+    required List<String> tokenModifiers,
+    required List<TokenFormat> formats,
     bool? overlappingTokenSupport,
     bool? multilineTokenSupport,
     bool? serverCancelSupport,
     bool? augmentsSyntaxTokens,
-  }) => SemanticTokensClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    requests: requests ?? this.requests,
-    tokenTypes: tokenTypes ?? this.tokenTypes,
-    tokenModifiers: tokenModifiers ?? this.tokenModifiers,
-    formats: formats ?? this.formats,
-    overlappingTokenSupport:
-        overlappingTokenSupport ?? this.overlappingTokenSupport,
-    multilineTokenSupport: multilineTokenSupport ?? this.multilineTokenSupport,
-    serverCancelSupport: serverCancelSupport ?? this.serverCancelSupport,
-    augmentsSyntaxTokens: augmentsSyntaxTokens ?? this.augmentsSyntaxTokens,
-  );
+  }) = _SemanticTokensClientCapabilities;
+
+  static SemanticTokensClientCapabilities fromJson(Map<String, Object?> json) =>
+      SemanticTokensClientCapabilities(
+        dynamicRegistration: json['dynamicRegistration'] as bool?,
+        requests: SemanticTokensClientCapabilitiesRequests.fromJson(
+          json['requests'] as Map<String, Object?>,
+        ),
+        tokenTypes: (json['tokenTypes'] as List<Object?>)
+            .map((e) => e as String)
+            .toList(),
+        tokenModifiers: (json['tokenModifiers'] as List<Object?>)
+            .map((e) => e as String)
+            .toList(),
+        formats: (json['formats'] as List<Object?>)
+            .map((e) => e as TokenFormat)
+            .toList(),
+        overlappingTokenSupport: json['overlappingTokenSupport'] as bool?,
+        multilineTokenSupport: json['multilineTokenSupport'] as bool?,
+        serverCancelSupport: json['serverCancelSupport'] as bool?,
+        augmentsSyntaxTokens: json['augmentsSyntaxTokens'] as bool?,
+      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -14166,21 +10421,20 @@ final class SemanticTokensClientCapabilities {
 /// Client capabilities for the linked editing range request.
 ///
 /// @since 3.16.0
-final class LinkedEditingRangeClientCapabilities {
-  const LinkedEditingRangeClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class LinkedEditingRangeClientCapabilities
+    with _$LinkedEditingRangeClientCapabilities {
+  const LinkedEditingRangeClientCapabilities._();
 
-  factory LinkedEditingRangeClientCapabilities.fromJson(
+  const factory LinkedEditingRangeClientCapabilities({
+    bool? dynamicRegistration,
+  }) = _LinkedEditingRangeClientCapabilities;
+
+  static LinkedEditingRangeClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => LinkedEditingRangeClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-
-  final bool? dynamicRegistration;
-
-  LinkedEditingRangeClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      LinkedEditingRangeClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'dynamicRegistration': dynamicRegistration};
@@ -14190,19 +10444,16 @@ final class LinkedEditingRangeClientCapabilities {
 /// Client capabilities specific to the moniker request.
 ///
 /// @since 3.16.0
-final class MonikerClientCapabilities {
-  const MonikerClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
+  const MonikerClientCapabilities._();
 
-  factory MonikerClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory MonikerClientCapabilities({bool? dynamicRegistration}) =
+      _MonikerClientCapabilities;
+
+  static MonikerClientCapabilities fromJson(Map<String, Object?> json) =>
       MonikerClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  final bool? dynamicRegistration;
-
-  MonikerClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      MonikerClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
       );
 
   Map<String, Object?> toJson() {
@@ -14211,19 +10462,17 @@ final class MonikerClientCapabilities {
 }
 
 /// @since 3.17.0
-final class TypeHierarchyClientCapabilities {
-  const TypeHierarchyClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class TypeHierarchyClientCapabilities
+    with _$TypeHierarchyClientCapabilities {
+  const TypeHierarchyClientCapabilities._();
 
-  factory TypeHierarchyClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory TypeHierarchyClientCapabilities({bool? dynamicRegistration}) =
+      _TypeHierarchyClientCapabilities;
+
+  static TypeHierarchyClientCapabilities fromJson(Map<String, Object?> json) =>
       TypeHierarchyClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  final bool? dynamicRegistration;
-
-  TypeHierarchyClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      TypeHierarchyClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
       );
 
   Map<String, Object?> toJson() {
@@ -14234,19 +10483,17 @@ final class TypeHierarchyClientCapabilities {
 /// Client capabilities specific to inline values.
 ///
 /// @since 3.17.0
-final class InlineValueClientCapabilities {
-  const InlineValueClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class InlineValueClientCapabilities
+    with _$InlineValueClientCapabilities {
+  const InlineValueClientCapabilities._();
 
-  factory InlineValueClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory InlineValueClientCapabilities({bool? dynamicRegistration}) =
+      _InlineValueClientCapabilities;
+
+  static InlineValueClientCapabilities fromJson(Map<String, Object?> json) =>
       InlineValueClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  final bool? dynamicRegistration;
-
-  InlineValueClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      InlineValueClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
       );
 
   Map<String, Object?> toJson() {
@@ -14257,13 +10504,16 @@ final class InlineValueClientCapabilities {
 /// Inlay hint client capabilities.
 ///
 /// @since 3.17.0
-final class InlayHintClientCapabilities {
-  const InlayHintClientCapabilities({
-    this.dynamicRegistration,
-    this.resolveSupport,
-  });
+@freezed
+abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
+  const InlayHintClientCapabilities._();
 
-  factory InlayHintClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory InlayHintClientCapabilities({
+    bool? dynamicRegistration,
+    InlayHintClientCapabilitiesResolveSupport? resolveSupport,
+  }) = _InlayHintClientCapabilities;
+
+  static InlayHintClientCapabilities fromJson(Map<String, Object?> json) =>
       InlayHintClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         resolveSupport: json['resolveSupport'] == null
@@ -14272,18 +10522,6 @@ final class InlayHintClientCapabilities {
                 json['resolveSupport'] as Map<String, Object?>,
               ),
       );
-
-  final bool? dynamicRegistration;
-
-  final InlayHintClientCapabilitiesResolveSupport? resolveSupport;
-
-  InlayHintClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    InlayHintClientCapabilitiesResolveSupport? resolveSupport,
-  }) => InlayHintClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    resolveSupport: resolveSupport ?? this.resolveSupport,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -14296,30 +10534,21 @@ final class InlayHintClientCapabilities {
 /// Client capabilities specific to diagnostic pull requests.
 ///
 /// @since 3.17.0
-final class DiagnosticClientCapabilities {
-  const DiagnosticClientCapabilities({
-    this.dynamicRegistration,
-    this.relatedDocumentSupport,
-  });
+@freezed
+abstract class DiagnosticClientCapabilities
+    with _$DiagnosticClientCapabilities {
+  const DiagnosticClientCapabilities._();
 
-  factory DiagnosticClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory DiagnosticClientCapabilities({
+    bool? dynamicRegistration,
+    bool? relatedDocumentSupport,
+  }) = _DiagnosticClientCapabilities;
+
+  static DiagnosticClientCapabilities fromJson(Map<String, Object?> json) =>
       DiagnosticClientCapabilities(
         dynamicRegistration: json['dynamicRegistration'] as bool?,
         relatedDocumentSupport: json['relatedDocumentSupport'] as bool?,
       );
-
-  final bool? dynamicRegistration;
-
-  final bool? relatedDocumentSupport;
-
-  DiagnosticClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? relatedDocumentSupport,
-  }) => DiagnosticClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    relatedDocumentSupport:
-        relatedDocumentSupport ?? this.relatedDocumentSupport,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
@@ -14333,21 +10562,20 @@ final class DiagnosticClientCapabilities {
 ///
 /// @since 3.18.0
 /// @proposed
-final class InlineCompletionClientCapabilities {
-  const InlineCompletionClientCapabilities({this.dynamicRegistration});
+@freezed
+abstract class InlineCompletionClientCapabilities
+    with _$InlineCompletionClientCapabilities {
+  const InlineCompletionClientCapabilities._();
 
-  factory InlineCompletionClientCapabilities.fromJson(
+  const factory InlineCompletionClientCapabilities({
+    bool? dynamicRegistration,
+  }) = _InlineCompletionClientCapabilities;
+
+  static InlineCompletionClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => InlineCompletionClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
   );
-
-  final bool? dynamicRegistration;
-
-  InlineCompletionClientCapabilities copyWith({bool? dynamicRegistration}) =>
-      InlineCompletionClientCapabilities(
-        dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-      );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'dynamicRegistration': dynamicRegistration};
@@ -14357,30 +10585,21 @@ final class InlineCompletionClientCapabilities {
 /// Notebook specific client capabilities.
 ///
 /// @since 3.17.0
-final class NotebookDocumentSyncClientCapabilities {
-  const NotebookDocumentSyncClientCapabilities({
-    this.dynamicRegistration,
-    this.executionSummarySupport,
-  });
+@freezed
+abstract class NotebookDocumentSyncClientCapabilities
+    with _$NotebookDocumentSyncClientCapabilities {
+  const NotebookDocumentSyncClientCapabilities._();
 
-  factory NotebookDocumentSyncClientCapabilities.fromJson(
+  const factory NotebookDocumentSyncClientCapabilities({
+    bool? dynamicRegistration,
+    bool? executionSummarySupport,
+  }) = _NotebookDocumentSyncClientCapabilities;
+
+  static NotebookDocumentSyncClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => NotebookDocumentSyncClientCapabilities(
     dynamicRegistration: json['dynamicRegistration'] as bool?,
     executionSummarySupport: json['executionSummarySupport'] as bool?,
-  );
-
-  final bool? dynamicRegistration;
-
-  final bool? executionSummarySupport;
-
-  NotebookDocumentSyncClientCapabilities copyWith({
-    bool? dynamicRegistration,
-    bool? executionSummarySupport,
-  }) => NotebookDocumentSyncClientCapabilities(
-    dynamicRegistration: dynamicRegistration ?? this.dynamicRegistration,
-    executionSummarySupport:
-        executionSummarySupport ?? this.executionSummarySupport,
   );
 
   Map<String, Object?> toJson() {
@@ -14392,10 +10611,16 @@ final class NotebookDocumentSyncClientCapabilities {
 }
 
 /// Show message request client capabilities
-final class ShowMessageRequestClientCapabilities {
-  const ShowMessageRequestClientCapabilities({this.messageActionItem});
+@freezed
+abstract class ShowMessageRequestClientCapabilities
+    with _$ShowMessageRequestClientCapabilities {
+  const ShowMessageRequestClientCapabilities._();
 
-  factory ShowMessageRequestClientCapabilities.fromJson(
+  const factory ShowMessageRequestClientCapabilities({
+    ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem,
+  }) = _ShowMessageRequestClientCapabilities;
+
+  static ShowMessageRequestClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => ShowMessageRequestClientCapabilities(
     messageActionItem: json['messageActionItem'] == null
@@ -14403,15 +10628,6 @@ final class ShowMessageRequestClientCapabilities {
         : ShowMessageRequestClientCapabilitiesMessageActionItem.fromJson(
             json['messageActionItem'] as Map<String, Object?>,
           ),
-  );
-
-  final ShowMessageRequestClientCapabilitiesMessageActionItem?
-  messageActionItem;
-
-  ShowMessageRequestClientCapabilities copyWith({
-    ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem,
-  }) => ShowMessageRequestClientCapabilities(
-    messageActionItem: messageActionItem ?? this.messageActionItem,
   );
 
   Map<String, Object?> toJson() {
@@ -14422,16 +10638,16 @@ final class ShowMessageRequestClientCapabilities {
 /// Client capabilities for the showDocument request.
 ///
 /// @since 3.16.0
-final class ShowDocumentClientCapabilities {
-  const ShowDocumentClientCapabilities({required this.support});
+@freezed
+abstract class ShowDocumentClientCapabilities
+    with _$ShowDocumentClientCapabilities {
+  const ShowDocumentClientCapabilities._();
 
-  factory ShowDocumentClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory ShowDocumentClientCapabilities({required bool support}) =
+      _ShowDocumentClientCapabilities;
+
+  static ShowDocumentClientCapabilities fromJson(Map<String, Object?> json) =>
       ShowDocumentClientCapabilities(support: json['support'] as bool);
-
-  final bool support;
-
-  ShowDocumentClientCapabilities copyWith({bool? support}) =>
-      ShowDocumentClientCapabilities(support: support ?? this.support);
 
   Map<String, Object?> toJson() {
     return <String, Object?>{'support': support};
@@ -14441,29 +10657,21 @@ final class ShowDocumentClientCapabilities {
 /// Client capabilities specific to regular expressions.
 ///
 /// @since 3.16.0
-final class RegularExpressionsClientCapabilities {
-  const RegularExpressionsClientCapabilities({
-    required this.engine,
-    this.version,
-  });
+@freezed
+abstract class RegularExpressionsClientCapabilities
+    with _$RegularExpressionsClientCapabilities {
+  const RegularExpressionsClientCapabilities._();
 
-  factory RegularExpressionsClientCapabilities.fromJson(
+  const factory RegularExpressionsClientCapabilities({
+    required String engine,
+    String? version,
+  }) = _RegularExpressionsClientCapabilities;
+
+  static RegularExpressionsClientCapabilities fromJson(
     Map<String, Object?> json,
   ) => RegularExpressionsClientCapabilities(
     engine: json['engine'] as String,
     version: json['version'] as String?,
-  );
-
-  final String engine;
-
-  final String? version;
-
-  RegularExpressionsClientCapabilities copyWith({
-    String? engine,
-    String? version,
-  }) => RegularExpressionsClientCapabilities(
-    engine: engine ?? this.engine,
-    version: version ?? this.version,
   );
 
   Map<String, Object?> toJson() {
@@ -14474,14 +10682,17 @@ final class RegularExpressionsClientCapabilities {
 /// Client capabilities specific to the used markdown parser.
 ///
 /// @since 3.16.0
-final class MarkdownClientCapabilities {
-  const MarkdownClientCapabilities({
-    required this.parser,
-    this.version,
-    this.allowedTags,
-  });
+@freezed
+abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
+  const MarkdownClientCapabilities._();
 
-  factory MarkdownClientCapabilities.fromJson(Map<String, Object?> json) =>
+  const factory MarkdownClientCapabilities({
+    required String parser,
+    String? version,
+    List<String>? allowedTags,
+  }) = _MarkdownClientCapabilities;
+
+  static MarkdownClientCapabilities fromJson(Map<String, Object?> json) =>
       MarkdownClientCapabilities(
         parser: json['parser'] as String,
         version: json['version'] as String?,
@@ -14489,22 +10700,6 @@ final class MarkdownClientCapabilities {
             ?.map((e) => e as String)
             .toList(),
       );
-
-  final String parser;
-
-  final String? version;
-
-  final List<String>? allowedTags;
-
-  MarkdownClientCapabilities copyWith({
-    String? parser,
-    String? version,
-    List<String>? allowedTags,
-  }) => MarkdownClientCapabilities(
-    parser: parser ?? this.parser,
-    version: version ?? this.version,
-    allowedTags: allowedTags ?? this.allowedTags,
-  );
 
   Map<String, Object?> toJson() {
     return <String, Object?>{

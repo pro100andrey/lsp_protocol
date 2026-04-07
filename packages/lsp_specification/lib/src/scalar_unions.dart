@@ -1,24 +1,24 @@
 // GENERATED — do not edit.
 
-sealed class ProgressToken {
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'scalar_unions.freezed.dart';
+
+@freezed
+sealed class ProgressToken with _$ProgressToken {
+  const ProgressToken._();
+
+  const factory ProgressToken.int({required int value}) = ProgressToken$Int;
+  const factory ProgressToken.string({required String value}) =
+      ProgressToken$String;
+
   static ProgressToken fromJson(Object? json) {
-    if (json is int) return ProgressToken$Int(json);
-    return ProgressToken$String(json as String);
+    if (json is int) return ProgressToken.int(value: json);
+    return ProgressToken.string(value: json as String);
   }
 
-  Object toJson();
-}
-
-final class ProgressToken$Int extends ProgressToken {
-  ProgressToken$Int(this.value);
-  final int value;
-  @override
-  int toJson() => value;
-}
-
-final class ProgressToken$String extends ProgressToken {
-  ProgressToken$String(this.value);
-  final String value;
-  @override
-  String toJson() => value;
+  Object toJson() => switch (this) {
+    ProgressToken$Int(:final value) => value,
+    ProgressToken$String(:final value) => value,
+  };
 }
