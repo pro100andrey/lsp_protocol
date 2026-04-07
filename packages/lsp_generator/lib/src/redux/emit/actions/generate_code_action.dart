@@ -17,6 +17,7 @@ final class GenerateCodeAction extends BaseAction {
       orderDirectives: true,
       useNullSafetySyntax: true,
     );
+
     final formatter = DartFormatter(
       languageVersion: DartFormatter.latestLanguageVersion,
     );
@@ -39,6 +40,7 @@ final class GenerateCodeAction extends BaseAction {
     if (outDir.notFound) {
       outDir.create(recursive: true);
     }
+    
     outDir.joinFile('structures.dart').writeAsString(structures);
     outDir.joinFile('enumerations.dart').writeAsString(enumerations);
     outDir.joinFile('type_aliases.dart').writeAsString(aliases);

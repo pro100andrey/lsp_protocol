@@ -1,0 +1,6 @@
+name: lsp_specification
+description: Generated LSP 3.17 Dart bindings.
+version: 0.1.0
+
+environment:
+  sdk: "^3.0.0"

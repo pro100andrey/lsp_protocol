@@ -14,6 +14,9 @@ final class EmitterVisitor {
   final ResolvedState _resolved;
 
   static const _header = 'GENERATED — do not edit.';
+  static const _structuresFile = 'structures.dart';
+  static const _enumerationsFile = 'enumerations.dart';
+  static const _aliasesFile = 'type_aliases.dart';
 
   // ---------------------------------------------------------------------------
   // Public API
@@ -24,9 +27,14 @@ final class EmitterVisitor {
     final anonymous = _resolved.classes.where((c) => c.isAnonymous);
     final named = _resolved.classes.where((c) => !c.isAnonymous);
 
+    final allTypes = _resolved.classes.expand(
+      (c) => [...c.properties.map((p) => p.type), ...c.extends$, ...c.mixins$],
+    );
+
     return Library(
       (b) => b
         ..comments.add(_header)
+        ..directives.addAll(_crossImports(allTypes, _structuresFile))
         ..body.addAll([
           ...anonymous.map(_buildClass),
           ...named.map(_buildClass),
@@ -42,52 +50,130 @@ final class EmitterVisitor {
   );
 
   /// Builds a [Library] containing all resolved type aliases.
-  Library buildAliases() => Library(
-    (b) => b
-      ..comments.add(_header)
-      ..body.addAll(_resolved.aliases.map(_buildAlias)),
-  );
+  Library buildAliases() {
+    final allTypes = _resolved.aliases.map((a) => a.type);
+    return Library(
+      (b) => b
+        ..comments.add(_header)
+        ..directives.addAll(_crossImports(allTypes, _aliasesFile))
+        ..body.addAll(_resolved.aliases.map(_buildAlias)),
+    );
+  }
+
+  /// Returns [Directive.import] entries for types from a different output file.
+  ///
+  /// Walks [types] recursively; skips [currentFile] (no self-import).
+  Iterable<Directive> _crossImports(
+    Iterable<ResolvedType> types,
+    String currentFile,
+  ) {
+    var needsStructures = false;
+    var needsEnumerations = false;
+    var needsAliases = false;
+
+    void walk(ResolvedType type) {
+      switch (type) {
+        case ClassType():
+          if (currentFile != _structuresFile) needsStructures = true;
+        case EnumType():
+          if (currentFile != _enumerationsFile) needsEnumerations = true;
+        case AliasType():
+          if (currentFile != _aliasesFile) needsAliases = true;
+        case ListType(:final element):
+          walk(element);
+        case MapType(:final key, :final value):
+          walk(key);
+          walk(value);
+        case NullableType(:final inner):
+          walk(inner);
+        default:
+      }
+    }
+
+    for (final t in types) {
+      walk(t);
+    }
+
+    return [
+      if (needsStructures) Directive.import(_structuresFile),
+      if (needsEnumerations) Directive.import(_enumerationsFile),
+      if (needsAliases) Directive.import(_aliasesFile),
+    ];
+  }
 
   // ---------------------------------------------------------------------------
   // Class builder
   // ---------------------------------------------------------------------------
 
-  Spec _buildClass(ResolvedClass cls) => Class((b) {
-    b
-      ..name = cls.name
-      ..modifier = ClassModifier.final$;
+  Spec _buildClass(ResolvedClass cls) {
+    // LSP extends/mixins are structural (not Dart inheritance) — flatten all
+    // inherited properties into the class so it stands alone.
+    final allProps = _allProperties(cls);
+    return Class((b) {
+      b
+        ..name = cls.name
+        ..modifier = ClassModifier.final$;
 
-    if (cls.documentation != null) {
-      b.docs.add('/// ${cls.documentation!.replaceAll('\n', '\n/// ')}');
+      if (cls.documentation != null) {
+        b.docs.add('/// ${cls.documentation!.replaceAll('\n', '\n/// ')}');
+      }
+
+      // Fields (own + inherited from extends/mixins)
+      for (final prop in allProps) {
+        b.fields.add(_buildField(prop));
+      }
+
+      // Constructor
+      b.constructors.add(_buildConstructor(allProps));
+
+      // copyWith
+      if (allProps.isNotEmpty) {
+        b.methods.add(_buildCopyWith(cls.name, allProps));
+      }
+
+      // fromJson
+      b.constructors.add(_buildFromJson(cls.name, allProps));
+
+      // toJson
+      b.methods.add(_buildToJson(allProps));
+    });
+  }
+
+  /// Collects all properties for [cls] by recursively flattening its
+  /// extends/mixins chain. Own properties take precedence (deduplicated by name).
+  List<ResolvedProperty> _allProperties(
+    ResolvedClass cls, [
+    Set<String>? visited,
+  ]) {
+    visited ??= {};
+    if (!visited.add(cls.name)) return [];
+
+    final ownNames = cls.properties.map((p) => p.name).toSet();
+    final inherited = <ResolvedProperty>[];
+    final inheritedSeen = <String>{};
+
+    void addFrom(Iterable<ResolvedProperty> props) {
+      for (final p in props) {
+        if (inheritedSeen.add(p.name)) inherited.add(p);
+      }
     }
 
-    // extends / with
-    if (cls.extends$.isNotEmpty && cls.extends$.first is ClassType) {
-      b.extend = toTypeRef(cls.extends$.first);
+    for (final ext in cls.extends$) {
+      if (ext case ClassType(:final ref)) {
+        addFrom(_allProperties(ref, visited));
+      }
     }
     for (final mixin in cls.mixins$) {
-      b.mixins.add(toTypeRef(mixin));
+      if (mixin case ClassType(:final ref)) {
+        addFrom(_allProperties(ref, visited));
+      }
     }
 
-    // Fields
-    for (final prop in cls.properties) {
-      b.fields.add(_buildField(prop));
-    }
-
-    // Constructor
-    b.constructors.add(_buildConstructor(cls));
-
-    // copyWith
-    if (cls.properties.isNotEmpty) {
-      b.methods.add(_buildCopyWith(cls));
-    }
-
-    // fromJson
-    b.constructors.add(_buildFromJson(cls));
-
-    // toJson
-    b.methods.add(_buildToJson(cls));
-  });
+    return [
+      ...inherited.where((p) => !ownNames.contains(p.name)),
+      ...cls.properties,
+    ];
+  }
 
   Field _buildField(ResolvedProperty prop) {
     final type = prop.optional
@@ -101,11 +187,11 @@ final class EmitterVisitor {
     );
   }
 
-  Constructor _buildConstructor(ResolvedClass cls) => Constructor(
+  Constructor _buildConstructor(List<ResolvedProperty> props) => Constructor(
     (b) => b
       ..constant = true
       ..optionalParameters.addAll(
-        cls.properties.map(
+        props.map(
           (p) => Parameter(
             (b) => b
               ..name = p.name
@@ -117,12 +203,11 @@ final class EmitterVisitor {
       ),
   );
 
-  Method _buildCopyWith(ResolvedClass cls) {
-    // Build the parameter list and the constructor call arguments.
+  Method _buildCopyWith(String className, List<ResolvedProperty> props) {
     final params = <Parameter>[];
     final args = <String, Expression>{};
 
-    for (final prop in cls.properties) {
+    for (final prop in props) {
       final baseRef = toTypeRef(prop.type);
       // copyWith param is always nullable so callers can omit it.
       final paramType = baseRef.rebuild((b) => b.isNullable = true);
@@ -136,7 +221,6 @@ final class EmitterVisitor {
         ),
       );
 
-      // value = param ?? this.prop
       args[prop.name] = CodeExpression(
         Code('${prop.name} ?? this.${prop.name}'),
       );
@@ -145,15 +229,15 @@ final class EmitterVisitor {
     return Method(
       (b) => b
         ..name = 'copyWith'
-        ..returns = refer(cls.name)
+        ..returns = refer(className)
         ..optionalParameters.addAll(params)
-        ..body = refer(cls.name).call([], args).code,
+        ..body = refer(className).call([], args).code,
     );
   }
 
-  Constructor _buildFromJson(ResolvedClass cls) {
+  Constructor _buildFromJson(String className, List<ResolvedProperty> props) {
     final args = <String, Expression>{};
-    for (final prop in cls.properties) {
+    for (final prop in props) {
       args[prop.name] = CodeExpression(
         Code(_fromJsonCode(prop.name, prop.type, prop.optional)),
       );
@@ -174,7 +258,7 @@ final class EmitterVisitor {
               ),
           ),
         )
-        ..body = refer(cls.name).call([], args).code,
+        ..body = refer(className).call([], args).code,
     );
   }
 
@@ -241,9 +325,9 @@ final class EmitterVisitor {
     _ => 'v as ${_dartTypeName(value)}',
   };
 
-  Method _buildToJson(ResolvedClass cls) {
+  Method _buildToJson(List<ResolvedProperty> props) {
     final entries = <Object?, Object?>{};
-    for (final prop in cls.properties) {
+    for (final prop in props) {
       entries[literalString(prop.name)] = _toJsonExpr(prop);
     }
 
@@ -267,14 +351,23 @@ final class EmitterVisitor {
     NullableType(inner: ClassType()) => CodeExpression(
       Code('${prop.name}?.toJson()'),
     ),
+    ClassType() when prop.optional => CodeExpression(
+      Code('${prop.name}?.toJson()'),
+    ),
     ClassType() => CodeExpression(Code('${prop.name}.toJson()')),
     NullableType(inner: ListType(element: ClassType())) => CodeExpression(
+      Code('${prop.name}?.map((e) => e.toJson()).toList()'),
+    ),
+    ListType(element: ClassType()) when prop.optional => CodeExpression(
       Code('${prop.name}?.map((e) => e.toJson()).toList()'),
     ),
     ListType(element: ClassType()) => CodeExpression(
       Code('${prop.name}.map((e) => e.toJson()).toList()'),
     ),
     NullableType(inner: EnumType()) => CodeExpression(
+      Code('${prop.name}?.value'),
+    ),
+    EnumType() when prop.optional => CodeExpression(
       Code('${prop.name}?.value'),
     ),
     EnumType() => CodeExpression(Code('${prop.name}.value')),
