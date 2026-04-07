@@ -6,3 +6,4 @@ export 'common/base_action.dart';
 export 'observers/action_observer.dart';
 export 'observers/error_observer.dart';
 export 'observers/global_wrap_error.dart';
+export 'resolved/resolved.dart';
