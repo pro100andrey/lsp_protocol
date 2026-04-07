@@ -36,14 +36,29 @@ final class GenerateCodeAction extends BaseAction {
     final enumerations = emit(visitor.buildEnumerations());
     final aliases = emit(visitor.buildAliases());
 
-    final outDir = DirectoryPath(select.resolvedOutputDir);
-    if (outDir.notFound) {
-      outDir.create(recursive: true);
-    }
-    
-    outDir.joinFile('structures.dart').writeAsString(structures);
-    outDir.joinFile('enumerations.dart').writeAsString(enumerations);
-    outDir.joinFile('type_aliases.dart').writeAsString(aliases);
+    final pkgDir = DirectoryPath(select.resolvedOutputDir);
+    final srcDir = pkgDir.join('lib/src');
+    final libDir = pkgDir.join('lib');
+
+    if (srcDir.notFound) srcDir.create(recursive: true);
+
+    srcDir.joinFile('structures.dart').writeAsString(structures);
+    srcDir.joinFile('enumerations.dart').writeAsString(enumerations);
+    srcDir.joinFile('type_aliases.dart').writeAsString(aliases);
+
+    // Barrel file: lib/<packageName>.dart
+    final packageName = pkgDir.basename;
+    final barrelLib = Library(
+      (b) => b
+        ..comments.add('GENERATED — do not edit.')
+        ..directives.addAll([
+          Directive.export('src/structures.dart'),
+          Directive.export('src/enumerations.dart'),
+          Directive.export('src/type_aliases.dart'),
+        ]),
+    );
+    final barrel = formatter.format(barrelLib.accept(dartEmitter).toString());
+    libDir.joinFile('$packageName.dart').writeAsString(barrel);
 
     return state.copyWith(
       emit: EmitState(

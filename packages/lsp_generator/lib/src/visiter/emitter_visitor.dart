@@ -25,7 +25,11 @@ final class EmitterVisitor {
   /// Builds a [Library] containing all resolved classes (anonymous first).
   Library buildStructures() {
     final anonymous = _resolved.classes.where((c) => c.isAnonymous);
-    final named = _resolved.classes.where((c) => !c.isAnonymous);
+    // Skip non-anonymous LSP base classes (names starting with '_') — they are
+    // structural ancestors flattened into their descendants and unused in Dart.
+    final named = _resolved.classes.where(
+      (c) => !c.isAnonymous && !c.name.startsWith('_'),
+    );
 
     final allTypes = _resolved.classes.expand(
       (c) => [...c.properties.map((p) => p.type), ...c.extends$, ...c.mixins$],
@@ -51,12 +55,17 @@ final class EmitterVisitor {
 
   /// Builds a [Library] containing all resolved type aliases.
   Library buildAliases() {
-    final allTypes = _resolved.aliases.map((a) => a.type);
+    // Skip aliases whose name is already a class — avoids ambiguous_export.
+    final classNames = _resolved.classes.map((c) => c.name).toSet();
+    final aliases = _resolved.aliases.where(
+      (a) => !classNames.contains(a.name),
+    );
+    final allTypes = aliases.map((a) => a.type);
     return Library(
       (b) => b
         ..comments.add(_header)
         ..directives.addAll(_crossImports(allTypes, _aliasesFile))
-        ..body.addAll(_resolved.aliases.map(_buildAlias)),
+        ..body.addAll(aliases.map(_buildAlias)),
     );
   }
 

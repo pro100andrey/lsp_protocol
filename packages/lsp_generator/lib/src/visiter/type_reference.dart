@@ -45,7 +45,6 @@ TypeReference _dartCore(String name) => switch (name) {
   'double' => TypeReference((b) => b..symbol = 'double'),
   'bool' => TypeReference((b) => b..symbol = 'bool'),
   'Null' => TypeReference((b) => b..symbol = 'Null'),
-  'Uri' => TypeReference((b) => b..symbol = 'Uri'),
   'Object?' => TypeReference(
     (b) => b
       ..symbol = 'Object'

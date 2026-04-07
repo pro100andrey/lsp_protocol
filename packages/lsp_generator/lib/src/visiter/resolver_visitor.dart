@@ -197,7 +197,7 @@ final class ResolverVisitor {
     'decimal' => 'double',
     'boolean' => 'bool',
     'null' => 'Null',
-    'URI' || 'DocumentUri' => 'Uri',
+    'URI' || 'DocumentUri' => 'String',
     'RegExp' => 'String',
     'LSPAny' => 'Object?',
     'LSPObject' => 'Map<String, Object?>',
