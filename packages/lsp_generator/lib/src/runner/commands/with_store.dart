@@ -19,4 +19,8 @@ mixin WithStore {
   /// Dispatch multiple actions in sequence.
   List<ReduxAction<AppState>> Function(List<ReduxAction<AppState>> actions)
   get dispatchAll => store.dispatchAll;
+
+  /// Dispatch all actions and wait for their completion.
+  Future<void> Function(List<ReduxAction<AppState>> actions)
+  get dispatchAndWaitAll => store.dispatchAndWaitAll;
 }

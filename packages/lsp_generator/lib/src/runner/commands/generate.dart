@@ -32,7 +32,7 @@ final class GenerateCommand extends Command with WithStore {
       dispatchSync(SetOutputDirAction(path: outputPath));
     }
 
-    await store.dispatchAndWaitAll([
+    await dispatchAndWaitAll([
       FetchLSPModelAction(),
       FetchLSPLicenseAction(),
     ]);
