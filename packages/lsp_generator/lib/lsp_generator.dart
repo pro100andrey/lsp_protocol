@@ -2,3 +2,4 @@
 library;
 
 export 'src/runner/runner.dart';
+export 'src/visiter/meta_visitor.dart';
