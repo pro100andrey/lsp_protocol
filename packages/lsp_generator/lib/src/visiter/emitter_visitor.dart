@@ -5,6 +5,31 @@ import '../redux/models/resolved_type.dart';
 import '../redux/resolved/resolved_state.dart';
 import 'type_reference.dart';
 
+// ---------------------------------------------------------------------------
+// Union classification
+// ---------------------------------------------------------------------------
+
+enum _UnionKind { scalar, scalarStruct, structList, structStruct, mixed }
+
+/// One discriminator check for a struct+struct union.
+///
+/// For the _last_ check in a list: [fieldName] is empty and no condition is
+/// emitted (it is the unconditional else branch).
+typedef _UnionCheck = ({
+  /// The struct variant returned when the condition matches.
+  ClassType variant,
+
+  /// Field name used for the check.
+  String fieldName,
+
+  /// Non-null  → kind discriminator: `json['fieldName'] == 'literalValue'`.
+  /// Null      → presence discriminator: `json.containsKey('fieldName')`.
+  /// Empty [fieldName] → else branch (no condition).
+  String? literalValue,
+});
+
+// ---------------------------------------------------------------------------
+
 /// Builds code_builder [Library] objects from a fully resolved [ResolvedState].
 ///
 /// Each [Library] can be emitted to a Dart source string via [DartEmitter].
@@ -17,6 +42,23 @@ final class EmitterVisitor {
   static const _structuresFile = 'structures.dart';
   static const _enumerationsFile = 'enumerations.dart';
   static const _aliasesFile = 'type_aliases.dart';
+  static const _unionsFile = 'unions.dart';
+
+  /// Scalar-only unions (e.g. `ProgressToken = int | string`). These live in a
+  /// separate file so that `structures.dart` can import them without circulars.
+  static const _scalarUnionsFile = 'scalar_unions.dart';
+
+  /// All class names (including anonymous) — used to filter conflicting aliases.
+  late final Set<String> _classNames = _resolved.classes
+      .map((c) => c.name)
+      .toSet();
+
+  /// Names of aliases emitted as sealed union classes (all union files combined).
+  late final Set<String> _sealedUnionNames = _computeSealedUnionNames();
+
+  /// Subset of [_sealedUnionNames]: purely scalar unions (only [DartCoreType]
+  /// items). Emitted to [_scalarUnionsFile]; no import of structures needed.
+  late final Set<String> _scalarUnionNames = _computeScalarUnionNames();
 
   // ---------------------------------------------------------------------------
   // Public API
@@ -56,9 +98,10 @@ final class EmitterVisitor {
   /// Builds a [Library] containing all resolved type aliases.
   Library buildAliases() {
     // Skip aliases whose name is already a class — avoids ambiguous_export.
-    final classNames = _resolved.classes.map((c) => c.name).toSet();
+    // Skip aliases handled as sealed union classes by [buildUnions].
     final aliases = _resolved.aliases.where(
-      (a) => !classNames.contains(a.name),
+      (a) =>
+          !_classNames.contains(a.name) && !_sealedUnionNames.contains(a.name),
     );
     final allTypes = aliases.map((a) => a.type);
     return Library(
@@ -66,6 +109,57 @@ final class EmitterVisitor {
         ..comments.add(_header)
         ..directives.addAll(_crossImports(allTypes, _aliasesFile))
         ..body.addAll(aliases.map(_buildAlias)),
+    );
+  }
+
+  /// Builds a [Library] containing sealed classes for purely scalar unions
+  /// (e.g. `ProgressToken = int | string`). Written to [_scalarUnionsFile].
+  ///
+  /// This file does **not** import `structures.dart`, so `structures.dart` can
+  /// safely import this file without creating a circular dependency.
+  Library buildScalarUnions() {
+    final specs = <Spec>[];
+
+    for (final name in _scalarUnionNames) {
+      final alias = _resolved.aliases.firstWhere((a) => a.name == name);
+      final ut = alias.type as UnionType;
+      final kind = _classifyUnion(ut);
+      specs.addAll(_buildUnionSpecs(name, ut, kind));
+    }
+
+    // Scalar unions reference no structs — no cross-imports needed.
+    return Library(
+      (b) => b
+        ..comments.add(_header)
+        ..body.addAll(specs),
+    );
+  }
+
+  /// Builds a [Library] containing typed sealed union classes for all
+  /// non-scalar sealed union aliases (struct-based: struct+list, struct+struct).
+  ///
+  /// Sealed subclass naming: `${AliasName}\$${VariantSuffix}` — the `\$` acts
+  /// as a separator and prevents name conflicts with generated struct classes.
+  Library buildUnions() {
+    final specs = <Spec>[];
+    final referencedTypes = <ResolvedType>[];
+
+    // Only non-scalar sealed unions — scalar ones live in buildScalarUnions().
+    final nonScalarNames = _sealedUnionNames.difference(_scalarUnionNames);
+
+    for (final name in nonScalarNames) {
+      final alias = _resolved.aliases.firstWhere((a) => a.name == name);
+      final ut = alias.type as UnionType;
+      final kind = _classifyUnion(ut);
+      specs.addAll(_buildUnionSpecs(name, ut, kind));
+      referencedTypes.addAll(ut.items);
+    }
+
+    return Library(
+      (b) => b
+        ..comments.add(_header)
+        ..directives.addAll(_crossImports(referencedTypes, _unionsFile))
+        ..body.addAll(specs),
     );
   }
 
@@ -79,6 +173,8 @@ final class EmitterVisitor {
     var needsStructures = false;
     var needsEnumerations = false;
     var needsAliases = false;
+    var needsScalarUnions = false;
+    var needsUnions = false;
 
     void walk(ResolvedType type) {
       switch (type) {
@@ -90,8 +186,13 @@ final class EmitterVisitor {
           if (currentFile != _enumerationsFile) {
             needsEnumerations = true;
           }
-        case AliasType():
-          if (currentFile != _aliasesFile) {
+        case AliasType(:final ref):
+          // Sealed union aliases live in their own files, not type_aliases.dart.
+          if (_scalarUnionNames.contains(ref.name)) {
+            if (currentFile != _scalarUnionsFile) needsScalarUnions = true;
+          } else if (_sealedUnionNames.contains(ref.name)) {
+            if (currentFile != _unionsFile) needsUnions = true;
+          } else if (currentFile != _aliasesFile) {
             needsAliases = true;
           }
         case ListType(:final element):
@@ -111,6 +212,8 @@ final class EmitterVisitor {
       if (needsStructures) Directive.import(_structuresFile),
       if (needsEnumerations) Directive.import(_enumerationsFile),
       if (needsAliases) Directive.import(_aliasesFile),
+      if (needsScalarUnions) Directive.import(_scalarUnionsFile),
+      if (needsUnions) Directive.import(_unionsFile),
     ];
   }
 
@@ -306,6 +409,19 @@ final class EmitterVisitor {
     EnumType(:final ref) when optional =>
       "json['$name'] == null ? null : ${ref.name}(json['$name'] as ${ref.valueType})",
     EnumType(:final ref) => "${ref.name}(json['$name'] as ${ref.valueType})",
+    // Scalar sealed union (e.g. ProgressToken = int | string) — call static
+    // fromJson which accepts Object?.
+    AliasType(:final ref)
+        when _scalarUnionNames.contains(ref.name) && optional =>
+      "json['$name'] == null ? null : ${ref.name}.fromJson(json['$name'])",
+    AliasType(:final ref) when _scalarUnionNames.contains(ref.name) =>
+      "${ref.name}.fromJson(json['$name'])",
+    // Struct-based sealed union — fromJson expects Map<String, Object?>.
+    AliasType(:final ref)
+        when _sealedUnionNames.contains(ref.name) && optional =>
+      "json['$name'] == null ? null : ${ref.name}.fromJson(json['$name'] as Map<String, Object?>)",
+    AliasType(:final ref) when _sealedUnionNames.contains(ref.name) =>
+      "${ref.name}.fromJson(json['$name'] as Map<String, Object?>)",
     // UnionType resolves to Object — 'as Object?' is an unnecessary cast.
     UnionType() when optional => "json['$name']",
     UnionType() => "json['$name'] as Object",
@@ -409,6 +525,14 @@ final class EmitterVisitor {
       Code('${prop.name}?.value'),
     ),
     EnumType() => CodeExpression(Code('${prop.name}.value')),
+    NullableType(inner: AliasType(:final ref))
+        when _sealedUnionNames.contains(ref.name) =>
+      CodeExpression(Code('${prop.name}?.toJson()')),
+    AliasType(:final ref)
+        when _sealedUnionNames.contains(ref.name) && prop.optional =>
+      CodeExpression(Code('${prop.name}?.toJson()')),
+    AliasType(:final ref) when _sealedUnionNames.contains(ref.name) =>
+      CodeExpression(Code('${prop.name}.toJson()')),
     _ => CodeExpression(Code(prop.name)),
   };
 
@@ -552,6 +676,348 @@ final class EmitterVisitor {
       ..name = alias.name
       ..definition = toTypeRef(alias.type),
   );
+
+  // ---------------------------------------------------------------------------
+  // Union helpers — classification, discriminator, code generation
+  // ---------------------------------------------------------------------------
+
+  /// Unions where all items are pure scalars ([DartCoreType]) — no struct refs,
+  /// so they can live in a file that `structures.dart` safely imports.
+  Set<String> _computeScalarUnionNames() => _sealedUnionNames.where((name) {
+    final alias = _resolved.aliases.firstWhere((a) => a.name == name);
+    return _classifyUnion(alias.type as UnionType) == _UnionKind.scalar;
+  }).toSet();
+
+  /// Computes the set of alias names that [buildUnions]/[buildScalarUnions]
+  /// will emit as sealed classes — i.e. non-mixed unions where a discriminator
+  /// can be found.
+  Set<String> _computeSealedUnionNames() {
+    final result = <String>{};
+    for (final alias in _resolved.aliases) {
+      if (_classNames.contains(alias.name)) continue;
+      if (alias.type is! UnionType) continue;
+      final ut = alias.type as UnionType;
+      final kind = _classifyUnion(ut);
+      if (kind == _UnionKind.mixed) continue;
+      if (kind == _UnionKind.structStruct) {
+        final structs = ut.items.whereType<ClassType>().toList();
+        if (_findStructDiscriminator(structs) == null) continue;
+      }
+      result.add(alias.name);
+    }
+    return result;
+  }
+
+  _UnionKind _classifyUnion(UnionType u) {
+    final scalars = u.items.whereType<DartCoreType>().toList();
+    final structs = u.items.whereType<ClassType>().toList();
+    final lists = u.items.whereType<ListType>().toList();
+    final others = u.items.where(
+      (t) => t is! DartCoreType && t is! ClassType && t is! ListType,
+    );
+
+    if (others.isNotEmpty) return _UnionKind.mixed;
+    if (structs.isEmpty && lists.isEmpty) return _UnionKind.scalar;
+    if (lists.isEmpty && scalars.isNotEmpty && structs.isNotEmpty) {
+      final uniqueStructs = structs.map((t) => t.ref.name).toSet();
+      return uniqueStructs.length == 1
+          ? _UnionKind.scalarStruct
+          : _UnionKind.mixed;
+    }
+    if (scalars.isEmpty && lists.isNotEmpty && structs.isNotEmpty) {
+      return _UnionKind.structList;
+    }
+    if (scalars.isEmpty && lists.isEmpty && structs.length >= 2) {
+      final uniqueStructs = structs.map((t) => t.ref.name).toSet();
+      return uniqueStructs.length >= 2
+          ? _UnionKind.structStruct
+          : _UnionKind.mixed;
+    }
+    return _UnionKind.mixed;
+  }
+
+  /// Returns a list of discriminator checks (last entry = else branch) or
+  /// `null` if no reliable discriminator can be found.
+  List<_UnionCheck>? _findStructDiscriminator(List<ClassType> variants) {
+    // Deduplicate by struct name.
+    final seen = <String>{};
+    final unique = variants.where((t) => seen.add(t.ref.name)).toList();
+    if (unique.length < 2) return null;
+
+    final propMaps = [for (final v in unique) _allPropertiesMap(v.ref)];
+    final requiredSets = [
+      for (final m in propMaps)
+        {
+          for (final e in m.entries)
+            if (!e.value.optional) e.key,
+        },
+    ];
+    final commonRequired = requiredSets.reduce((a, b) => a.intersection(b));
+
+    // Kind discriminator: shared required property with distinct StringLiteralType values.
+    for (final propName in commonRequired) {
+      final literals = <String>[];
+      var valid = true;
+      for (final m in propMaps) {
+        final t = m[propName]?.type;
+        if (t case StringLiteralType(:final value)) {
+          literals.add(value);
+        } else {
+          valid = false;
+          break;
+        }
+      }
+      if (valid && literals.toSet().length == unique.length) {
+        return [
+          for (var i = 0; i < unique.length; i++)
+            (
+              variant: unique[i],
+              fieldName: propName,
+              literalValue: literals[i],
+            ),
+        ];
+      }
+    }
+
+    // Presence discriminator: each variant (except the last) has a required
+    // field that no other variant requires.
+    final checks = <_UnionCheck>[];
+    ClassType? elseVariant;
+    for (var i = 0; i < unique.length; i++) {
+      final otherRequired = <String>{};
+      for (var j = 0; j < unique.length; j++) {
+        if (j != i) otherRequired.addAll(requiredSets[j]);
+      }
+      final uniqueProps = requiredSets[i].difference(otherRequired);
+      if (uniqueProps.isEmpty) {
+        if (elseVariant != null) return null;
+        elseVariant = unique[i];
+      } else {
+        checks.add((
+          variant: unique[i],
+          fieldName: uniqueProps.first,
+          literalValue: null,
+        ));
+      }
+    }
+    checks.add((
+      variant: elseVariant ?? unique.last,
+      fieldName: '',
+      literalValue: null,
+    ));
+    return checks;
+  }
+
+  Map<String, ResolvedProperty> _allPropertiesMap(ResolvedClass cls) => {
+    for (final p in _allProperties(cls)) p.name: p,
+  };
+
+  // ---------------------------------------------------------------------------
+  // Union spec builders (raw Dart code strings via [Code])
+  // ---------------------------------------------------------------------------
+
+  List<Spec> _buildUnionSpecs(String name, UnionType ut, _UnionKind kind) =>
+      switch (kind) {
+        _UnionKind.scalar => _buildScalarUnionSpecs(
+          name,
+          ut.items.whereType<DartCoreType>().toList(),
+        ),
+        _UnionKind.scalarStruct => _buildScalarStructUnionSpecs(
+          name,
+          ut.items.whereType<DartCoreType>().toList(),
+          ut.items.whereType<ClassType>().first,
+        ),
+        _UnionKind.structList => _buildStructListUnionSpecs(
+          name,
+          ut.items.whereType<ClassType>().first,
+          ut.items.whereType<ListType>().first,
+        ),
+        _UnionKind.structStruct => _buildStructStructUnionSpecs(
+          name,
+          _findStructDiscriminator(ut.items.whereType<ClassType>().toList())!,
+        ),
+        _UnionKind.mixed => [],
+      };
+
+  /// Variant suffix: strips the [aliasName] prefix from struct names so that
+  /// e.g. `InlineValue` + `InlineValueText` → suffix `Text`.
+  String _variantSuffix(ResolvedType item, String aliasName) => switch (item) {
+    DartCoreType(:final dartName) => switch (dartName) {
+      'int' => 'Int',
+      'String' => 'String',
+      'bool' => 'Bool',
+      'double' => 'Double',
+      _ => dartName,
+    },
+    ClassType(:final ref) =>
+      ref.name.startsWith(aliasName) && ref.name.length > aliasName.length
+          ? ref.name.substring(aliasName.length)
+          : ref.name,
+    ListType() => 'List',
+    _ => 'Unknown',
+  };
+
+  List<Spec> _buildScalarUnionSpecs(String name, List<DartCoreType> scalars) {
+    final buf = StringBuffer();
+    buf.writeln('sealed class $name {');
+    buf.writeln('  static $name fromJson(Object? json) {');
+    for (final s in scalars.sublist(0, scalars.length - 1)) {
+      final vn = '$name\$${_variantSuffix(s, name)}';
+      buf.writeln('    if (json is ${s.dartName}) return $vn(json);');
+    }
+    final last = scalars.last;
+    buf.writeln(
+      '    return $name\$${_variantSuffix(last, name)}(json as ${last.dartName});',
+    );
+    buf.writeln('  }');
+    buf.writeln('  Object toJson();');
+    buf.writeln('}');
+    buf.writeln();
+    for (final s in scalars) {
+      final vn = '$name\$${_variantSuffix(s, name)}';
+      buf.writeln('final class $vn extends $name {');
+      buf.writeln('  $vn(this.value);');
+      buf.writeln('  final ${s.dartName} value;');
+      buf.writeln('  @override');
+      buf.writeln('  ${s.dartName} toJson() => value;');
+      buf.writeln('}');
+      buf.writeln();
+    }
+    return [Code(buf.toString())];
+  }
+
+  List<Spec> _buildScalarStructUnionSpecs(
+    String name,
+    List<DartCoreType> scalars,
+    ClassType struct,
+  ) {
+    final buf = StringBuffer();
+    final sv = '$name\$${_variantSuffix(struct, name)}';
+    buf.writeln('sealed class $name {');
+    buf.writeln('  static $name fromJson(Object? json) {');
+    buf.writeln(
+      '    if (json is Map<String, Object?>) return $sv(${struct.ref.name}.fromJson(json));',
+    );
+    for (final s in scalars.sublist(0, scalars.length - 1)) {
+      final vn = '$name\$${_variantSuffix(s, name)}';
+      buf.writeln('    if (json is ${s.dartName}) return $vn(json);');
+    }
+    final last = scalars.last;
+    buf.writeln(
+      '    return $name\$${_variantSuffix(last, name)}(json as ${last.dartName});',
+    );
+    buf.writeln('  }');
+    buf.writeln('  Object toJson();');
+    buf.writeln('}');
+    buf.writeln();
+    buf.writeln('final class $sv extends $name {');
+    buf.writeln('  $sv(this.value);');
+    buf.writeln('  final ${struct.ref.name} value;');
+    buf.writeln('  @override');
+    buf.writeln('  Map<String, Object?> toJson() => value.toJson();');
+    buf.writeln('}');
+    buf.writeln();
+    for (final s in scalars) {
+      final vn = '$name\$${_variantSuffix(s, name)}';
+      buf.writeln('final class $vn extends $name {');
+      buf.writeln('  $vn(this.value);');
+      buf.writeln('  final ${s.dartName} value;');
+      buf.writeln('  @override');
+      buf.writeln('  ${s.dartName} toJson() => value;');
+      buf.writeln('}');
+      buf.writeln();
+    }
+    return [Code(buf.toString())];
+  }
+
+  List<Spec> _buildStructListUnionSpecs(
+    String name,
+    ClassType struct,
+    ListType list,
+  ) {
+    final buf = StringBuffer();
+    final sv = '$name\$${_variantSuffix(struct, name)}';
+    final lv = '$name\$List';
+    final elemType = _dartTypeName(list.element);
+    final elemFromJson = _listElementCast(list.element);
+    final elemToJson = _toJsonCallerFor(list.element, 'e');
+
+    buf.writeln('sealed class $name {');
+    buf.writeln('  static $name fromJson(Object? json) {');
+    buf.writeln('    if (json is List) {');
+    buf.writeln(
+      '      return $lv((json as List<Object?>).map((e) => $elemFromJson).toList());',
+    );
+    buf.writeln('    }');
+    buf.writeln(
+      '    return $sv(${struct.ref.name}.fromJson(json as Map<String, Object?>));',
+    );
+    buf.writeln('  }');
+    buf.writeln('  Object toJson();');
+    buf.writeln('}');
+    buf.writeln();
+    buf.writeln('final class $sv extends $name {');
+    buf.writeln('  $sv(this.value);');
+    buf.writeln('  final ${struct.ref.name} value;');
+    buf.writeln('  @override');
+    buf.writeln('  Map<String, Object?> toJson() => value.toJson();');
+    buf.writeln('}');
+    buf.writeln();
+    buf.writeln('final class $lv extends $name {');
+    buf.writeln('  $lv(this.value);');
+    buf.writeln('  final List<$elemType> value;');
+    buf.writeln('  @override');
+    buf.writeln(
+      '  List<Object?> toJson() => value.map((e) => $elemToJson).toList();',
+    );
+    buf.writeln('}');
+    buf.writeln();
+    return [Code(buf.toString())];
+  }
+
+  List<Spec> _buildStructStructUnionSpecs(
+    String name,
+    List<_UnionCheck> checks,
+  ) {
+    final buf = StringBuffer();
+    buf.writeln('sealed class $name {');
+    buf.writeln('  static $name fromJson(Map<String, Object?> json) {');
+    for (final check in checks.sublist(0, checks.length - 1)) {
+      final vn = '$name\$${_variantSuffix(check.variant, name)}';
+      final cond = check.literalValue != null
+          ? "json['${check.fieldName}'] == '${check.literalValue}'"
+          : "json.containsKey('${check.fieldName}')";
+      buf.writeln(
+        '    if ($cond) return $vn(${check.variant.ref.name}.fromJson(json));',
+      );
+    }
+    final last = checks.last;
+    final lvn = '$name\$${_variantSuffix(last.variant, name)}';
+    buf.writeln('    return $lvn(${last.variant.ref.name}.fromJson(json));');
+    buf.writeln('  }');
+    buf.writeln('  Object toJson();');
+    buf.writeln('}');
+    buf.writeln();
+    final seen = <String>{};
+    for (final check in checks) {
+      final vn = '$name\$${_variantSuffix(check.variant, name)}';
+      if (!seen.add(vn)) continue;
+      buf.writeln('final class $vn extends $name {');
+      buf.writeln('  $vn(this.value);');
+      buf.writeln('  final ${check.variant.ref.name} value;');
+      buf.writeln('  @override');
+      buf.writeln('  Map<String, Object?> toJson() => value.toJson();');
+      buf.writeln('}');
+      buf.writeln();
+    }
+    return [Code(buf.toString())];
+  }
+
+  String _toJsonCallerFor(ResolvedType t, String v) => switch (t) {
+    ClassType() => '$v.toJson()',
+    EnumType() => '$v.value',
+    _ => v,
+  };
 
   // ---------------------------------------------------------------------------
   // Helpers

@@ -97,8 +97,8 @@ void main() {
           _cls(
             'Position',
             properties: [
-              _prop('line', DartCoreType(dartName: 'int')),
-              _prop('character', DartCoreType(dartName: 'int')),
+              _prop('line', const DartCoreType(dartName: 'int')),
+              _prop('character', const DartCoreType(dartName: 'int')),
             ],
           ),
         ],
@@ -131,8 +131,12 @@ void main() {
             'TextEdit',
             properties: [
               _prop('range', ClassType(ref: _cls('Range'))),
-              _prop('newText', DartCoreType(dartName: 'String')),
-              _prop('newEol', DartCoreType(dartName: 'String'), optional: true),
+              _prop('newText', const DartCoreType(dartName: 'String')),
+              _prop(
+                'newEol',
+                const DartCoreType(dartName: 'String'),
+                optional: true,
+              ),
             ],
           ),
         ],
@@ -147,7 +151,7 @@ void main() {
           _cls(
             'Position',
             properties: [
-              _prop('line', DartCoreType(dartName: 'int')),
+              _prop('line', const DartCoreType(dartName: 'int')),
             ],
           ),
         ],
@@ -166,7 +170,7 @@ void main() {
           _cls(
             'Position',
             properties: [
-              _prop('line', DartCoreType(dartName: 'int')),
+              _prop('line', const DartCoreType(dartName: 'int')),
             ],
           ),
         ],
@@ -182,8 +186,8 @@ void main() {
           _cls(
             'Position',
             properties: [
-              _prop('line', DartCoreType(dartName: 'int')),
-              _prop('character', DartCoreType(dartName: 'int')),
+              _prop('line', const DartCoreType(dartName: 'int')),
+              _prop('character', const DartCoreType(dartName: 'int')),
             ],
           ),
         ],
@@ -206,7 +210,7 @@ void main() {
       final posClass = _cls(
         'Position',
         properties: [
-          _prop('line', DartCoreType(dartName: 'int')),
+          _prop('line', const DartCoreType(dartName: 'int')),
         ],
       );
       final rangeClass = _cls(
@@ -236,7 +240,7 @@ void main() {
             properties: [
               _prop(
                 'items',
-                ListType(element: DartCoreType(dartName: 'String')),
+                const ListType(element: DartCoreType(dartName: 'String')),
               ),
             ],
           ),
@@ -255,7 +259,7 @@ void main() {
             properties: [
               _prop(
                 'items',
-                ListType(element: DartCoreType(dartName: 'int')),
+                const ListType(element: DartCoreType(dartName: 'int')),
                 optional: true,
               ),
             ],
@@ -399,7 +403,7 @@ void main() {
     test('generates typedef for string alias', () {
       final state = _stateWith(
         aliases: [
-          _alias('DocumentUri', DartCoreType(dartName: 'String')),
+          _alias('DocumentUri', const DartCoreType(dartName: 'String')),
         ],
       );
       final src = _format(EmitterVisitor(state).buildAliases());
@@ -411,7 +415,7 @@ void main() {
         aliases: [
           _alias(
             'StringList',
-            ListType(element: DartCoreType(dartName: 'String')),
+            const ListType(element: DartCoreType(dartName: 'String')),
           ),
         ],
       );
@@ -420,15 +424,19 @@ void main() {
     });
 
     test('generates typedef for union alias (collapsed to Object)', () {
+      // A union that includes a MapType is classified as 'mixed' → Object.
       final state = _stateWith(
         aliases: [
           _alias(
             'LSPAny',
-            UnionType(
+            const UnionType(
               items: [
                 DartCoreType(dartName: 'String'),
                 DartCoreType(dartName: 'int'),
-                DartCoreType(dartName: 'bool'),
+                MapType(
+                  key: DartCoreType(dartName: 'String'),
+                  value: DartCoreType(dartName: 'Object'),
+                ),
               ],
             ),
           ),
@@ -436,6 +444,146 @@ void main() {
       );
       final src = _format(EmitterVisitor(state).buildAliases());
       expect(src, contains('typedef LSPAny = Object'));
+    });
+
+    test('skips sealed union alias in buildAliases()', () {
+      // A 2-scalar union is sealed → absent from buildAliases() output.
+      final state = _stateWith(
+        aliases: [
+          _alias(
+            'ProgressToken',
+            const UnionType(
+              items: [
+                DartCoreType(dartName: 'int'),
+                DartCoreType(dartName: 'String'),
+              ],
+            ),
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildAliases());
+      expect(src, isNot(contains('typedef ProgressToken')));
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // buildUnions() — sealed union classes
+  // ---------------------------------------------------------------------------
+
+  group('EmitterVisitor.buildUnions()', () {
+    test('scalar union generates sealed class + 2 variants', () {
+      final state = _stateWith(
+        aliases: [
+          _alias(
+            'ProgressToken',
+            const UnionType(
+              items: [
+                DartCoreType(dartName: 'int'),
+                DartCoreType(dartName: 'String'),
+              ],
+            ),
+          ),
+        ],
+      );
+      // Scalar unions go to buildScalarUnions(), not buildUnions().
+      final src = _format(EmitterVisitor(state).buildScalarUnions());
+      expect(src, contains('sealed class ProgressToken'));
+      expect(src, contains(r'ProgressToken$Int'));
+      expect(src, contains(r'ProgressToken$String'));
+      expect(src, contains('static ProgressToken fromJson'));
+      expect(src, contains('Object toJson()'));
+    });
+
+    test('scalar union fromJson checks first variant by type', () {
+      final state = _stateWith(
+        aliases: [
+          _alias(
+            'ProgressToken',
+            const UnionType(
+              items: [
+                DartCoreType(dartName: 'int'),
+                DartCoreType(dartName: 'String'),
+              ],
+            ),
+          ),
+        ],
+      );
+      // Scalar unions go to buildScalarUnions().
+      final src = _format(EmitterVisitor(state).buildScalarUnions());
+      expect(src, contains('if (json is int)'));
+    });
+
+    test('scalar union absent from buildUnions()', () {
+      final state = _stateWith(
+        aliases: [
+          _alias(
+            'ProgressToken',
+            const UnionType(
+              items: [
+                DartCoreType(dartName: 'int'),
+                DartCoreType(dartName: 'String'),
+              ],
+            ),
+          ),
+        ],
+      );
+      // Scalar unions go to buildScalarUnions(), buildUnions() stays empty.
+      final src = _format(EmitterVisitor(state).buildUnions());
+      expect(src, isNot(contains('ProgressToken')));
+    });
+
+    test('mixed union absent from buildUnions()', () {
+      final state = _stateWith(
+        aliases: [
+          _alias(
+            'LSPAny',
+            const UnionType(
+              items: [
+                DartCoreType(dartName: 'String'),
+                MapType(
+                  key: DartCoreType(dartName: 'String'),
+                  value: DartCoreType(dartName: 'Object'),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildUnions());
+      expect(src, isNot(contains('LSPAny')));
+    });
+
+    test('buildUnions() integration emits valid Dart', () {
+      final file = File('../lsp_specification/metaModel.json');
+      final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
+      final protocol = MetaProtocol.fromJson(json);
+      final resolver = ResolverVisitor()..resolve(protocol);
+      final resolved = ResolvedState(
+        registry: resolver.registry,
+        classes: resolver.classes.toList(),
+        enumerations: resolver.enumerations.toList(),
+        aliases: resolver.aliases.toList(),
+      );
+      final lib = EmitterVisitor(resolved).buildUnions();
+      expect(() => _format(lib), returnsNormally);
+    });
+
+    test('buildUnions() integration contains ProgressToken sealed class', () {
+      final file = File('../lsp_specification/metaModel.json');
+      final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
+      final protocol = MetaProtocol.fromJson(json);
+      final resolver = ResolverVisitor()..resolve(protocol);
+      final resolved = ResolvedState(
+        registry: resolver.registry,
+        classes: resolver.classes.toList(),
+        enumerations: resolver.enumerations.toList(),
+        aliases: resolver.aliases.toList(),
+      );
+      // ProgressToken is scalar → lives in buildScalarUnions(), not buildUnions().
+      final scalarSrc = _format(EmitterVisitor(resolved).buildScalarUnions());
+      expect(scalarSrc, contains('sealed class ProgressToken'));
+      expect(scalarSrc, contains(r'ProgressToken$Int'));
+      expect(scalarSrc, contains(r'ProgressToken$String'));
     });
   });
 

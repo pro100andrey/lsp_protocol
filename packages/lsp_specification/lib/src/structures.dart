@@ -1,7 +1,9 @@
 // GENERATED — do not edit.
 
 import 'enumerations.dart';
+import 'scalar_unions.dart';
 import 'type_aliases.dart';
+import 'unions.dart';
 
 final class InitializeResultServerInfo {
   const InitializeResultServerInfo({required this.name, this.version});
@@ -1384,8 +1386,12 @@ final class ImplementationParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
       );
 
   final TextDocumentIdentifier textDocument;
@@ -1412,8 +1418,8 @@ final class ImplementationParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
     };
   }
 }
@@ -1494,8 +1500,12 @@ final class TypeDefinitionParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
       );
 
   final TextDocumentIdentifier textDocument;
@@ -1522,8 +1532,8 @@ final class TypeDefinitionParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
     };
   }
 }
@@ -1640,8 +1650,12 @@ final class DocumentColorParams {
 
   factory DocumentColorParams.fromJson(Map<String, Object?> json) =>
       DocumentColorParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -1665,8 +1679,8 @@ final class DocumentColorParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
     };
   }
@@ -1746,8 +1760,12 @@ final class ColorPresentationParams {
 
   factory ColorPresentationParams.fromJson(Map<String, Object?> json) =>
       ColorPresentationParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -1781,8 +1799,8 @@ final class ColorPresentationParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'color': color.toJson(),
       'range': range.toJson(),
@@ -1887,8 +1905,12 @@ final class FoldingRangeParams {
 
   factory FoldingRangeParams.fromJson(Map<String, Object?> json) =>
       FoldingRangeParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -1912,8 +1934,8 @@ final class FoldingRangeParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
     };
   }
@@ -2035,8 +2057,12 @@ final class DeclarationParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
       );
 
   final TextDocumentIdentifier textDocument;
@@ -2063,8 +2089,8 @@ final class DeclarationParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
     };
   }
 }
@@ -2119,8 +2145,12 @@ final class SelectionRangeParams {
 
   factory SelectionRangeParams.fromJson(Map<String, Object?> json) =>
       SelectionRangeParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -2151,8 +2181,8 @@ final class SelectionRangeParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'positions': positions.map((e) => e.toJson()).toList(),
     };
@@ -2230,7 +2260,9 @@ final class WorkDoneProgressCreateParams {
   const WorkDoneProgressCreateParams({required this.token});
 
   factory WorkDoneProgressCreateParams.fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressCreateParams(token: json['token'] as ProgressToken);
+      WorkDoneProgressCreateParams(
+        token: ProgressToken.fromJson(json['token']),
+      );
 
   final ProgressToken token;
 
@@ -2238,7 +2270,7 @@ final class WorkDoneProgressCreateParams {
       WorkDoneProgressCreateParams(token: token ?? this.token);
 
   Map<String, Object?> toJson() {
-    return <String, Object?>{'token': token};
+    return <String, Object?>{'token': token.toJson()};
   }
 }
 
@@ -2246,7 +2278,9 @@ final class WorkDoneProgressCancelParams {
   const WorkDoneProgressCancelParams({required this.token});
 
   factory WorkDoneProgressCancelParams.fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressCancelParams(token: json['token'] as ProgressToken);
+      WorkDoneProgressCancelParams(
+        token: ProgressToken.fromJson(json['token']),
+      );
 
   final ProgressToken token;
 
@@ -2254,7 +2288,7 @@ final class WorkDoneProgressCancelParams {
       WorkDoneProgressCancelParams(token: token ?? this.token);
 
   Map<String, Object?> toJson() {
-    return <String, Object?>{'token': token};
+    return <String, Object?>{'token': token.toJson()};
   }
 }
 
@@ -2274,7 +2308,9 @@ final class CallHierarchyPrepareParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
       );
 
   final TextDocumentIdentifier textDocument;
@@ -2297,7 +2333,7 @@ final class CallHierarchyPrepareParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
     };
   }
 }
@@ -2439,8 +2475,12 @@ final class CallHierarchyIncomingCallsParams {
   factory CallHierarchyIncomingCallsParams.fromJson(
     Map<String, Object?> json,
   ) => CallHierarchyIncomingCallsParams(
-    workDoneToken: json['workDoneToken'],
-    partialResultToken: json['partialResultToken'],
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['workDoneToken']),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['partialResultToken']),
     item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
   );
 
@@ -2462,8 +2502,8 @@ final class CallHierarchyIncomingCallsParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'item': item.toJson(),
     };
   }
@@ -2519,8 +2559,12 @@ final class CallHierarchyOutgoingCallsParams {
   factory CallHierarchyOutgoingCallsParams.fromJson(
     Map<String, Object?> json,
   ) => CallHierarchyOutgoingCallsParams(
-    workDoneToken: json['workDoneToken'],
-    partialResultToken: json['partialResultToken'],
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['workDoneToken']),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['partialResultToken']),
     item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
   );
 
@@ -2542,8 +2586,8 @@ final class CallHierarchyOutgoingCallsParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'item': item.toJson(),
     };
   }
@@ -2593,8 +2637,12 @@ final class SemanticTokensParams {
 
   factory SemanticTokensParams.fromJson(Map<String, Object?> json) =>
       SemanticTokensParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -2618,8 +2666,8 @@ final class SemanticTokensParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
     };
   }
@@ -2743,8 +2791,12 @@ final class SemanticTokensDeltaParams {
 
   factory SemanticTokensDeltaParams.fromJson(Map<String, Object?> json) =>
       SemanticTokensDeltaParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -2773,8 +2825,8 @@ final class SemanticTokensDeltaParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'previousResultId': previousResultId,
     };
@@ -2847,8 +2899,12 @@ final class SemanticTokensRangeParams {
 
   factory SemanticTokensRangeParams.fromJson(Map<String, Object?> json) =>
       SemanticTokensRangeParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -2877,8 +2933,8 @@ final class SemanticTokensRangeParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'range': range.toJson(),
     };
@@ -2968,7 +3024,9 @@ final class LinkedEditingRangeParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
       );
 
   final TextDocumentIdentifier textDocument;
@@ -2991,7 +3049,7 @@ final class LinkedEditingRangeParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
     };
   }
 }
@@ -3238,8 +3296,12 @@ final class MonikerParams {
       json['textDocument'] as Map<String, Object?>,
     ),
     position: Position.fromJson(json['position'] as Map<String, Object?>),
-    workDoneToken: json['workDoneToken'],
-    partialResultToken: json['partialResultToken'],
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['workDoneToken']),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['partialResultToken']),
   );
 
   final TextDocumentIdentifier textDocument;
@@ -3266,8 +3328,8 @@ final class MonikerParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
     };
   }
 }
@@ -3374,7 +3436,9 @@ final class TypeHierarchyPrepareParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
       );
 
   final TextDocumentIdentifier textDocument;
@@ -3397,7 +3461,7 @@ final class TypeHierarchyPrepareParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
     };
   }
 }
@@ -3535,8 +3599,12 @@ final class TypeHierarchySupertypesParams {
 
   factory TypeHierarchySupertypesParams.fromJson(Map<String, Object?> json) =>
       TypeHierarchySupertypesParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         item: TypeHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
       );
 
@@ -3558,8 +3626,8 @@ final class TypeHierarchySupertypesParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'item': item.toJson(),
     };
   }
@@ -3577,8 +3645,12 @@ final class TypeHierarchySubtypesParams {
 
   factory TypeHierarchySubtypesParams.fromJson(Map<String, Object?> json) =>
       TypeHierarchySubtypesParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         item: TypeHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
       );
 
@@ -3600,8 +3672,8 @@ final class TypeHierarchySubtypesParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'item': item.toJson(),
     };
   }
@@ -3620,7 +3692,9 @@ final class InlineValueParams {
 
   factory InlineValueParams.fromJson(Map<String, Object?> json) =>
       InlineValueParams(
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -3652,7 +3726,7 @@ final class InlineValueParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'range': range.toJson(),
       'context': context.toJson(),
@@ -3714,7 +3788,9 @@ final class InlayHintParams {
 
   factory InlayHintParams.fromJson(Map<String, Object?> json) =>
       InlayHintParams(
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -3739,7 +3815,7 @@ final class InlayHintParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'range': range.toJson(),
     };
@@ -3891,8 +3967,12 @@ final class DocumentDiagnosticParams {
 
   factory DocumentDiagnosticParams.fromJson(Map<String, Object?> json) =>
       DocumentDiagnosticParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -3926,8 +4006,8 @@ final class DocumentDiagnosticParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'identifier': identifier,
       'previousResultId': previousResultId,
@@ -4062,8 +4142,12 @@ final class WorkspaceDiagnosticParams {
 
   factory WorkspaceDiagnosticParams.fromJson(Map<String, Object?> json) =>
       WorkspaceDiagnosticParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         identifier: json['identifier'] as String?,
         previousResultIds: (json['previousResultIds'] as List<Object?>)
             .map((e) => PreviousResultId.fromJson(e as Map<String, Object?>))
@@ -4092,8 +4176,8 @@ final class WorkspaceDiagnosticParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'identifier': identifier,
       'previousResultIds': previousResultIds.map((e) => e.toJson()).toList(),
     };
@@ -4312,7 +4396,9 @@ final class InlineCompletionParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
         context: InlineCompletionContext.fromJson(
           json['context'] as Map<String, Object?>,
         ),
@@ -4342,7 +4428,7 @@ final class InlineCompletionParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'context': context.toJson(),
     };
   }
@@ -4534,7 +4620,9 @@ final class InitializeParams {
 
   factory InitializeParams.fromJson(Map<String, Object?> json) =>
       InitializeParams(
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
         processId: json['processId'] as int?,
         clientInfo: json['clientInfo'] == null
             ? null
@@ -4604,7 +4692,7 @@ final class InitializeParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'processId': processId,
       'clientInfo': clientInfo?.toJson(),
       'locale': locale,
@@ -5183,8 +5271,12 @@ final class CompletionParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         context: json['context'] == null
             ? null
             : CompletionContext.fromJson(
@@ -5220,8 +5312,8 @@ final class CompletionParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'context': context?.toJson(),
     };
   }
@@ -5533,7 +5625,9 @@ final class HoverParams {
       json['textDocument'] as Map<String, Object?>,
     ),
     position: Position.fromJson(json['position'] as Map<String, Object?>),
-    workDoneToken: json['workDoneToken'],
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['workDoneToken']),
   );
 
   final TextDocumentIdentifier textDocument;
@@ -5556,7 +5650,7 @@ final class HoverParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
     };
   }
 }
@@ -5632,7 +5726,9 @@ final class SignatureHelpParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
         context: json['context'] == null
             ? null
             : SignatureHelpContext.fromJson(
@@ -5664,7 +5760,7 @@ final class SignatureHelpParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'context': context?.toJson(),
     };
   }
@@ -5780,8 +5876,12 @@ final class DefinitionParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
       );
 
   final TextDocumentIdentifier textDocument;
@@ -5808,8 +5908,8 @@ final class DefinitionParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
     };
   }
 }
@@ -5863,8 +5963,12 @@ final class ReferenceParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         context: ReferenceContext.fromJson(
           json['context'] as Map<String, Object?>,
         ),
@@ -5898,8 +6002,8 @@ final class ReferenceParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'context': context.toJson(),
     };
   }
@@ -5953,8 +6057,12 @@ final class DocumentHighlightParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
       );
 
   final TextDocumentIdentifier textDocument;
@@ -5981,8 +6089,8 @@ final class DocumentHighlightParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
     };
   }
 }
@@ -6059,8 +6167,12 @@ final class DocumentSymbolParams {
 
   factory DocumentSymbolParams.fromJson(Map<String, Object?> json) =>
       DocumentSymbolParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -6084,8 +6196,8 @@ final class DocumentSymbolParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
     };
   }
@@ -6288,8 +6400,12 @@ final class CodeActionParams {
 
   factory CodeActionParams.fromJson(Map<String, Object?> json) =>
       CodeActionParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -6325,8 +6441,8 @@ final class CodeActionParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'range': range.toJson(),
       'context': context.toJson(),
@@ -6515,8 +6631,12 @@ final class WorkspaceSymbolParams {
 
   factory WorkspaceSymbolParams.fromJson(Map<String, Object?> json) =>
       WorkspaceSymbolParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         query: json['query'] as String,
       );
 
@@ -6538,8 +6658,8 @@ final class WorkspaceSymbolParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'query': query,
     };
   }
@@ -6654,8 +6774,12 @@ final class CodeLensParams {
   });
 
   factory CodeLensParams.fromJson(Map<String, Object?> json) => CodeLensParams(
-    workDoneToken: json['workDoneToken'],
-    partialResultToken: json['partialResultToken'],
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['workDoneToken']),
+    partialResultToken: json['partialResultToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['partialResultToken']),
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, Object?>,
     ),
@@ -6679,8 +6803,8 @@ final class CodeLensParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
     };
   }
@@ -6773,8 +6897,12 @@ final class DocumentLinkParams {
 
   factory DocumentLinkParams.fromJson(Map<String, Object?> json) =>
       DocumentLinkParams(
-        workDoneToken: json['workDoneToken'],
-        partialResultToken: json['partialResultToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -6798,8 +6926,8 @@ final class DocumentLinkParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
-      'partialResultToken': partialResultToken,
+      'workDoneToken': workDoneToken?.toJson(),
+      'partialResultToken': partialResultToken?.toJson(),
       'textDocument': textDocument.toJson(),
     };
   }
@@ -6902,7 +7030,9 @@ final class DocumentFormattingParams {
 
   factory DocumentFormattingParams.fromJson(Map<String, Object?> json) =>
       DocumentFormattingParams(
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -6929,7 +7059,7 @@ final class DocumentFormattingParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'options': options.toJson(),
     };
@@ -6981,7 +7111,9 @@ final class DocumentRangeFormattingParams {
 
   factory DocumentRangeFormattingParams.fromJson(Map<String, Object?> json) =>
       DocumentRangeFormattingParams(
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -7013,7 +7145,7 @@ final class DocumentRangeFormattingParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'range': range.toJson(),
       'options': options.toJson(),
@@ -7076,7 +7208,9 @@ final class DocumentRangesFormattingParams {
 
   factory DocumentRangesFormattingParams.fromJson(Map<String, Object?> json) =>
       DocumentRangesFormattingParams(
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
         textDocument: TextDocumentIdentifier.fromJson(
           json['textDocument'] as Map<String, Object?>,
         ),
@@ -7110,7 +7244,7 @@ final class DocumentRangesFormattingParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'ranges': ranges.map((e) => e.toJson()).toList(),
       'options': options.toJson(),
@@ -7222,7 +7356,9 @@ final class RenameParams {
   });
 
   factory RenameParams.fromJson(Map<String, Object?> json) => RenameParams(
-    workDoneToken: json['workDoneToken'],
+    workDoneToken: json['workDoneToken'] == null
+        ? null
+        : ProgressToken.fromJson(json['workDoneToken']),
     textDocument: TextDocumentIdentifier.fromJson(
       json['textDocument'] as Map<String, Object?>,
     ),
@@ -7252,7 +7388,7 @@ final class RenameParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
       'newName': newName,
@@ -7313,7 +7449,9 @@ final class PrepareRenameParams {
           json['textDocument'] as Map<String, Object?>,
         ),
         position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
       );
 
   final TextDocumentIdentifier textDocument;
@@ -7336,7 +7474,7 @@ final class PrepareRenameParams {
     return <String, Object?>{
       'textDocument': textDocument.toJson(),
       'position': position.toJson(),
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
     };
   }
 }
@@ -7351,7 +7489,9 @@ final class ExecuteCommandParams {
 
   factory ExecuteCommandParams.fromJson(Map<String, Object?> json) =>
       ExecuteCommandParams(
-        workDoneToken: json['workDoneToken'],
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
         command: json['command'] as String,
         arguments: (json['arguments'] as List<Object?>?)
             ?.map((e) => e as LSPAny)
@@ -7376,7 +7516,7 @@ final class ExecuteCommandParams {
 
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'workDoneToken': workDoneToken,
+      'workDoneToken': workDoneToken?.toJson(),
       'command': command,
       'arguments': arguments,
     };
@@ -7669,7 +7809,7 @@ final class ProgressParams {
   const ProgressParams({required this.token, required this.value});
 
   factory ProgressParams.fromJson(Map<String, Object?> json) => ProgressParams(
-    token: json['token'] as ProgressToken,
+    token: ProgressToken.fromJson(json['token']),
     value: json['value'] as LSPAny,
   );
 
@@ -7681,7 +7821,7 @@ final class ProgressParams {
       ProgressParams(token: token ?? this.token, value: value ?? this.value);
 
   Map<String, Object?> toJson() {
-    return <String, Object?>{'token': token, 'value': value};
+    return <String, Object?>{'token': token.toJson(), 'value': value};
   }
 }
 
@@ -7725,7 +7865,11 @@ final class WorkDoneProgressParams {
   const WorkDoneProgressParams({this.workDoneToken});
 
   factory WorkDoneProgressParams.fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressParams(workDoneToken: json['workDoneToken']);
+      WorkDoneProgressParams(
+        workDoneToken: json['workDoneToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['workDoneToken']),
+      );
 
   final ProgressToken? workDoneToken;
 
@@ -7735,7 +7879,7 @@ final class WorkDoneProgressParams {
       );
 
   Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneToken': workDoneToken};
+    return <String, Object?>{'workDoneToken': workDoneToken?.toJson()};
   }
 }
 
@@ -7743,7 +7887,11 @@ final class PartialResultParams {
   const PartialResultParams({this.partialResultToken});
 
   factory PartialResultParams.fromJson(Map<String, Object?> json) =>
-      PartialResultParams(partialResultToken: json['partialResultToken']);
+      PartialResultParams(
+        partialResultToken: json['partialResultToken'] == null
+            ? null
+            : ProgressToken.fromJson(json['partialResultToken']),
+      );
 
   final ProgressToken? partialResultToken;
 
@@ -7753,7 +7901,9 @@ final class PartialResultParams {
       );
 
   Map<String, Object?> toJson() {
-    return <String, Object?>{'partialResultToken': partialResultToken};
+    return <String, Object?>{
+      'partialResultToken': partialResultToken?.toJson(),
+    };
   }
 }
 

@@ -27,7 +27,7 @@ final class GenerateCodeAction extends BaseAction {
       try {
         return formatter.format(raw);
       } on Object catch (_) {
-        // Return unformatted if the formatter fails (e.g. syntax error in 
+        // Return unformatted if the formatter fails (e.g. syntax error in
         // generated code).
         return raw;
       }
@@ -36,6 +36,8 @@ final class GenerateCodeAction extends BaseAction {
     final structures = emit(visitor.buildStructures());
     final enumerations = emit(visitor.buildEnumerations());
     final aliases = emit(visitor.buildAliases());
+    final scalarUnions = emit(visitor.buildScalarUnions());
+    final unions = emit(visitor.buildUnions());
 
     final pkgDir = DirectoryPath(select.resolvedOutputDir);
     final srcDir = pkgDir.join('lib/src');
@@ -48,6 +50,8 @@ final class GenerateCodeAction extends BaseAction {
     srcDir.joinFile('structures.dart').writeAsString(structures);
     srcDir.joinFile('enumerations.dart').writeAsString(enumerations);
     srcDir.joinFile('type_aliases.dart').writeAsString(aliases);
+    srcDir.joinFile('scalar_unions.dart').writeAsString(scalarUnions);
+    srcDir.joinFile('unions.dart').writeAsString(unions);
 
     // Barrel file: lib/<packageName>.dart
     final packageName = pkgDir.basename;
@@ -58,6 +62,8 @@ final class GenerateCodeAction extends BaseAction {
           Directive.export('src/structures.dart'),
           Directive.export('src/enumerations.dart'),
           Directive.export('src/type_aliases.dart'),
+          Directive.export('src/scalar_unions.dart'),
+          Directive.export('src/unions.dart'),
         ]),
     );
     final barrel = formatter.format(barrelLib.accept(dartEmitter).toString());
@@ -68,6 +74,8 @@ final class GenerateCodeAction extends BaseAction {
         structures: structures,
         enumerations: enumerations,
         aliases: aliases,
+        scalarUnions: scalarUnions,
+        unions: unions,
       ),
     );
   }

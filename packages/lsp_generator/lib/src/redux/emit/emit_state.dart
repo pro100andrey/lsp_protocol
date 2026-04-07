@@ -4,9 +4,13 @@ final class EmitState {
     required this.structures,
     required this.enumerations,
     required this.aliases,
+    required this.scalarUnions,
+    required this.unions,
   });
 
   final String structures;
   final String enumerations;
   final String aliases;
+  final String scalarUnions;
+  final String unions;
 }
