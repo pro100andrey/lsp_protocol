@@ -26,6 +26,7 @@ dev_dependencies:
   freezed: ^3.2.5
   json_serializable: ^6.13.1
   pro_lints: ^5.1.0
+  test: ^1.31.0
 
 executables: 
   lsp_generator: bin/lsp_generator.dart
