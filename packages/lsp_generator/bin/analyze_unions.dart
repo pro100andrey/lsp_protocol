@@ -213,9 +213,8 @@ void _printNormalizability(List<_Entry> all) {
     bySignature.putIfAbsent(_signature(e), () => []).add(e);
   }
 
-  final shared =
-      bySignature.entries.where((kv) => kv.value.length > 1).toList()
-        ..sort((a, b) => b.value.length.compareTo(a.value.length));
+  final shared = bySignature.entries.where((kv) => kv.value.length > 1).toList()
+    ..sort((a, b) => b.value.length.compareTo(a.value.length));
 
   print('=== Identical unions (can be extracted into one sealed class) ===');
   if (shared.isEmpty) {
