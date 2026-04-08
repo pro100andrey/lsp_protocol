@@ -44,8 +44,6 @@ CLI args
 
 ## Build & Test Commands
 
-Run inside the relevant package directory (e.g. `cd packages/lsp_generator`):
-
 ```bash
 # Regenerate freezed/json files after editing protocol.dart or app_state.dart
 dart run build_runner build --delete-conflicting-outputs
@@ -54,11 +52,12 @@ dart run build_runner build --delete-conflicting-outputs
 dart analyze
 
 # Tests
+cd packages/lsp_generator
 dart test
 
 # Run the generator directly
-dart run bin/lsp_generator.dart generate
-dart run bin/lsp_generator.dart generate --verbose
+dart run packages/lsp_generator/bin/lsp_generator.dart generate
+dart run packages/lsp_generator/bin/lsp_generator.dart generate --verbose
 
 # Or via pre-compiled binary
 ./packages/lsp_generator/lsp_generator generate
