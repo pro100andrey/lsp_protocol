@@ -9,12 +9,13 @@ sealed class ProgressToken with _$ProgressToken {
   const ProgressToken._();
 
   const factory ProgressToken.int({required int value}) = ProgressToken$Int;
+
   const factory ProgressToken.string({required String value}) =
       ProgressToken$String;
 
   static ProgressToken fromJson(Object? json) {
     if (json is int) return ProgressToken.int(value: json);
-    return ProgressToken.string(value: json as String);
+    return ProgressToken.string(value: (json as String));
   }
 
   Object toJson() => switch (this) {

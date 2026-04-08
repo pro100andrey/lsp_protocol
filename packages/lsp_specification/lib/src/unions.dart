@@ -12,6 +12,7 @@ sealed class Definition with _$Definition {
 
   const factory Definition.location({required Location value}) =
       Definition$Location;
+
   const factory Definition.list({required List<Location> value}) =
       Definition$List;
 
@@ -24,7 +25,7 @@ sealed class Definition with _$Definition {
       );
     }
     return Definition.location(
-      value: Location.fromJson(json as Map<String, Object?>),
+      value: Location.fromJson((json as Map<String, Object?>)),
     );
   }
 
@@ -40,6 +41,7 @@ sealed class Declaration with _$Declaration {
 
   const factory Declaration.location({required Location value}) =
       Declaration$Location;
+
   const factory Declaration.list({required List<Location> value}) =
       Declaration$List;
 
@@ -52,7 +54,7 @@ sealed class Declaration with _$Declaration {
       );
     }
     return Declaration.location(
-      value: Location.fromJson(json as Map<String, Object?>),
+      value: Location.fromJson((json as Map<String, Object?>)),
     );
   }
 
@@ -68,9 +70,11 @@ sealed class InlineValue with _$InlineValue {
 
   const factory InlineValue.text({required InlineValueText value}) =
       InlineValue$Text;
+
   const factory InlineValue.variableLookup({
     required InlineValueVariableLookup value,
   }) = InlineValue$VariableLookup;
+
   const factory InlineValue.evaluatableExpression({
     required InlineValueEvaluatableExpression value,
   }) = InlineValue$EvaluatableExpression;
@@ -101,6 +105,7 @@ sealed class DocumentDiagnosticReport with _$DocumentDiagnosticReport {
   const factory DocumentDiagnosticReport.relatedFullDocumentDiagnosticReport({
     required RelatedFullDocumentDiagnosticReport value,
   }) = DocumentDiagnosticReport$RelatedFullDocumentDiagnosticReport;
+
   const factory DocumentDiagnosticReport.relatedUnchangedDocumentDiagnosticReport({
     required RelatedUnchangedDocumentDiagnosticReport value,
   }) = DocumentDiagnosticReport$RelatedUnchangedDocumentDiagnosticReport;
@@ -135,6 +140,7 @@ sealed class WorkspaceDocumentDiagnosticReport
   const factory WorkspaceDocumentDiagnosticReport.workspaceFullDocumentDiagnosticReport({
     required WorkspaceFullDocumentDiagnosticReport value,
   }) = WorkspaceDocumentDiagnosticReport$WorkspaceFullDocumentDiagnosticReport;
+
   const factory WorkspaceDocumentDiagnosticReport.workspaceUnchangedDocumentDiagnosticReport({
     required WorkspaceUnchangedDocumentDiagnosticReport value,
   }) =

@@ -718,22 +718,88 @@ final class EmitterVisitor {
         ..types.add(refer('dynamic')),
     );
 
+    // Helper: inline closure `(e) => <body>`
+    Expression closure(Code body) => Method(
+      (b) => b
+        ..lambda = true
+        ..requiredParameters.add(Parameter((b) => b..name = 'e'))
+        ..body = body,
+    ).closure;
+
     final Code fromBody;
     final Code toBody;
 
     switch (entry.kind) {
       case _ConverterKind.openEnum:
-        final raw = entry.valueType == 'int' ? 'int' : 'String';
-        fromBody = Code('json.map((e) => $n(e as $raw)).toList()');
-        toBody = const Code('object.map((e) => e.value).toList()');
+        final raw = refer(entry.valueType == 'int' ? 'int' : 'String');
+        fromBody = refer('json')
+            .property('map')
+            .call([
+              closure(refer(n).call([refer('e').asA(raw)]).code),
+            ])
+            .property('toList')
+            .call([])
+            .code;
+        toBody = refer('object')
+            .property('map')
+            .call([closure(refer('e').property('value').code)])
+            .property('toList')
+            .call([])
+            .code;
       case _ConverterKind.scalarUnion:
-        fromBody = Code('json.map((e) => $n.fromJson(e as Object)).toList()');
-        toBody = const Code('object.map((e) => e.toJson()).toList()');
+        fromBody = refer('json')
+            .property('map')
+            .call([
+              closure(
+                refer(n).newInstanceNamed('fromJson', [
+                  refer('e').asA(refer('Object')),
+                ]).code,
+              ),
+            ])
+            .property('toList')
+            .call([])
+            .code;
+        toBody = refer('object')
+            .property('map')
+            .call([closure(refer('e').property('toJson').call([]).code)])
+            .property('toList')
+            .call([])
+            .code;
       case _ConverterKind.structUnion:
-        fromBody = Code(
-          'json.map((e) => $n.fromJson(e as Map<String, Object?>)).toList()',
+        final mapType = TypeReference(
+          (b) => b
+            ..symbol = 'Map'
+            ..types.addAll([
+              refer('String'),
+              TypeReference(
+                (b) => b
+                  ..symbol = 'Object'
+                  ..isNullable = true,
+              ),
+            ]),
         );
-        toBody = const Code('object.map<Object>((e) => e.toJson()).toList()');
+        fromBody = refer('json')
+            .property('map')
+            .call([
+              closure(
+                refer(
+                  n,
+                ).newInstanceNamed('fromJson', [refer('e').asA(mapType)]).code,
+              ),
+            ])
+            .property('toList')
+            .call([])
+            .code;
+        toBody = refer('object')
+            .property('map')
+            .call(
+              [closure(refer('e').property('toJson').call([]).code)],
+              {},
+              [refer('Object')],
+            )
+            .property('toList')
+            .call([])
+            .code;
     }
 
     return Class(
@@ -1070,7 +1136,7 @@ final class EmitterVisitor {
   };
 
   // ---------------------------------------------------------------------------
-  // Union spec builders (raw Dart code strings via [Code])
+  // Union spec builders (code_builder Class / Constructor / Method)
   // ---------------------------------------------------------------------------
 
   List<Spec> _buildUnionSpecs(String name, UnionType ut, _UnionKind kind) =>
@@ -1121,53 +1187,97 @@ final class EmitterVisitor {
   }
 
   List<Spec> _buildScalarUnionSpecs(String name, List<DartCoreType> scalars) {
-    final buf = StringBuffer();
-
-    // (suffix, dartName, cls, factoryName) for each variant
     final variants = scalars
-        .map(
-          (s) => (
-            suffix: _variantSuffix(s, name),
-            dartName: s.dartName,
-          ),
-        )
+        .map((s) => (suffix: _variantSuffix(s, name), dartName: s.dartName))
         .toList();
 
-    buf.writeln('@freezed');
-    buf.writeln('sealed class $name with _\$$name {');
-    buf.writeln('  const $name._();');
-    buf.writeln();
-    for (final v in variants) {
-      final cls = '$name\$${v.suffix}';
-      final fn = _safeIdentifier(_factoryName(v.suffix));
-      buf.writeln(
-        '  const factory $name.$fn({required ${v.dartName} value}) = $cls;',
-      );
-    }
-    buf.writeln();
-    buf.writeln('  static $name fromJson(Object? json) {');
-    for (final v in variants.sublist(0, variants.length - 1)) {
-      final fn = _safeIdentifier(_factoryName(v.suffix));
-      buf.writeln(
-        '    if (json is ${v.dartName}) return $name.$fn(value: json);',
-      );
-    }
-    final last = variants.last;
-    final lastFn = _safeIdentifier(_factoryName(last.suffix));
-    buf.writeln(
-      '    return $name.$lastFn(value: json as ${last.dartName});',
-    );
-    buf.writeln('  }');
-    buf.writeln();
-    buf.writeln('  Object toJson() => switch (this) {');
-    for (final v in variants) {
-      final cls = '$name\$${v.suffix}';
-      buf.writeln('    $cls(:final value) => value,');
-    }
-    buf.writeln('  };');
-    buf.writeln('}');
-    buf.writeln();
-    return [Code(buf.toString())];
+    final switchCases = variants
+        .map((v) => '    $name\$${v.suffix}(:final value) => value,')
+        .join('\n');
+
+    return [
+      Class(
+        (b) => b
+          ..name = name
+          ..sealed = true
+          ..annotations.add(refer('freezed'))
+          ..mixins.add(refer('_\$$name'))
+          ..constructors.add(
+            Constructor(
+              (b) => b
+                ..constant = true
+                ..name = '_',
+            ),
+          )
+          ..constructors.addAll(
+            variants.map(
+              (v) => Constructor(
+                (b) => b
+                  ..constant = true
+                  ..factory = true
+                  ..name = _safeIdentifier(_factoryName(v.suffix))
+                  ..optionalParameters.add(
+                    Parameter(
+                      (b) => b
+                        ..name = 'value'
+                        ..named = true
+                        ..required = true
+                        ..type = refer(v.dartName),
+                    ),
+                  )
+                  ..redirect = refer('$name\$${v.suffix}'),
+              ),
+            ),
+          )
+          ..methods.add(
+            Method(
+              (b) => b
+                ..static = true
+                ..returns = refer(name)
+                ..name = 'fromJson'
+                ..requiredParameters.add(
+                  Parameter(
+                    (b) => b
+                      ..name = 'json'
+                      ..type = TypeReference(
+                        (b) => b
+                          ..symbol = 'Object'
+                          ..isNullable = true,
+                      ),
+                  ),
+                )
+                ..body = Block((b) {
+                  for (final v in variants.sublist(0, variants.length - 1)) {
+                    final fn = _safeIdentifier(_factoryName(v.suffix));
+                    b.statements.add(
+                      Code(
+                        'if (json is ${v.dartName})'
+                        ' return $name.$fn(value: json);',
+                      ),
+                    );
+                  }
+                  final last = variants.last;
+                  b.addExpression(
+                    refer(name).newInstanceNamed(
+                      _safeIdentifier(_factoryName(last.suffix)),
+                      [],
+                      {'value': refer('json').asA(refer(last.dartName))},
+                    ).returned,
+                  );
+                }),
+            ),
+          )
+          ..methods.add(
+            Method(
+              (b) => b
+                ..returns = refer('Object')
+                ..name = 'toJson'
+                ..lambda = true
+                ..body = Code('switch (this) {\n$switchCases\n  }'),
+            ),
+          ),
+      ),
+    ];
   }
 
   List<Spec> _buildScalarStructUnionSpecs(
@@ -1175,63 +1285,131 @@ final class EmitterVisitor {
     List<DartCoreType> scalars,
     ClassType struct,
   ) {
-    final buf = StringBuffer();
-
     final structSuffix = _variantSuffix(struct, name);
     final structCls = '$name\$$structSuffix';
     final structFn = _safeIdentifier(_factoryName(structSuffix));
 
     final scalarVariants = scalars
-        .map(
-          (s) => (
-            suffix: _variantSuffix(s, name),
-            dartName: s.dartName,
-          ),
-        )
+        .map((s) => (suffix: _variantSuffix(s, name), dartName: s.dartName))
         .toList();
 
-    buf.writeln('@freezed');
-    buf.writeln('sealed class $name with _\$$name {');
-    buf.writeln('  const $name._();');
-    buf.writeln();
-    buf.writeln(
-      '  const factory $name.$structFn({required ${struct.ref.name} value}) = $structCls;',
-    );
-    for (final v in scalarVariants) {
-      final cls = '$name\$${v.suffix}';
-      final fn = _safeIdentifier(_factoryName(v.suffix));
-      buf.writeln(
-        '  const factory $name.$fn({required ${v.dartName} value}) = $cls;',
-      );
-    }
-    buf.writeln();
-    buf.writeln('  static $name fromJson(Object? json) {');
-    buf.writeln(
-      '    if (json is Map<String, Object?>) return $name.$structFn(value: ${struct.ref.name}.fromJson(json));',
-    );
-    for (final v in scalarVariants.sublist(0, scalarVariants.length - 1)) {
-      final fn = _safeIdentifier(_factoryName(v.suffix));
-      buf.writeln(
-        '    if (json is ${v.dartName}) return $name.$fn(value: json);',
-      );
-    }
-    final last = scalarVariants.last;
-    final lastFn = _safeIdentifier(_factoryName(last.suffix));
-    buf.writeln(
-      '    return $name.$lastFn(value: json as ${last.dartName});',
-    );
-    buf.writeln('  }');
-    buf.writeln();
-    buf.writeln('  Object toJson() => switch (this) {');
-    buf.writeln('    $structCls(:final value) => value.toJson(),');
-    for (final v in scalarVariants) {
-      final cls = '$name\$${v.suffix}';
-      buf.writeln('    $cls(:final value) => value,');
-    }
-    buf.writeln('  };');
-    buf.writeln('}');
-    buf.writeln();
-    return [Code(buf.toString())];
+    final switchCases = [
+      '    $structCls(:final value) => value.toJson(),',
+      ...scalarVariants.map(
+        (v) => '    $name\$${v.suffix}(:final value) => value,',
+      ),
+    ].join('\n');
+
+    return [
+      Class(
+        (b) => b
+          ..name = name
+          ..sealed = true
+          ..annotations.add(refer('freezed'))
+          ..mixins.add(refer('_\$$name'))
+          ..constructors.add(
+            Constructor(
+              (b) => b
+                ..constant = true
+                ..name = '_',
+            ),
+          )
+          ..constructors.add(
+            Constructor(
+              (b) => b
+                ..constant = true
+                ..factory = true
+                ..name = structFn
+                ..optionalParameters.add(
+                  Parameter(
+                    (b) => b
+                      ..name = 'value'
+                      ..named = true
+                      ..required = true
+                      ..type = refer(struct.ref.name),
+                  ),
+                )
+                ..redirect = refer(structCls),
+            ),
+          )
+          ..constructors.addAll(
+            scalarVariants.map(
+              (v) => Constructor(
+                (b) => b
+                  ..constant = true
+                  ..factory = true
+                  ..name = _safeIdentifier(_factoryName(v.suffix))
+                  ..optionalParameters.add(
+                    Parameter(
+                      (b) => b
+                        ..name = 'value'
+                        ..named = true
+                        ..required = true
+                        ..type = refer(v.dartName),
+                    ),
+                  )
+                  ..redirect = refer('$name\$${v.suffix}'),
+              ),
+            ),
+          )
+          ..methods.add(
+            Method(
+              (b) => b
+                ..static = true
+                ..returns = refer(name)
+                ..name = 'fromJson'
+                ..requiredParameters.add(
+                  Parameter(
+                    (b) => b
+                      ..name = 'json'
+                      ..type = TypeReference(
+                        (b) => b
+                          ..symbol = 'Object'
+                          ..isNullable = true,
+                      ),
+                  ),
+                )
+                ..body = Block((b) {
+                  b.statements.add(
+                    Code(
+                      'if (json is Map<String, Object?>)'
+                      ' return $name.$structFn(value: ${struct.ref.name}.fromJson(json));',
+                    ),
+                  );
+                  for (final v in scalarVariants.sublist(
+                    0,
+                    scalarVariants.length - 1,
+                  )) {
+                    final fn = _safeIdentifier(_factoryName(v.suffix));
+                    b.statements.add(
+                      Code(
+                        'if (json is ${v.dartName})'
+                        ' return $name.$fn(value: json);',
+                      ),
+                    );
+                  }
+                  final last = scalarVariants.last;
+                  b.addExpression(
+                    refer(name).newInstanceNamed(
+                      _safeIdentifier(_factoryName(last.suffix)),
+                      [],
+                      {'value': refer('json').asA(refer(last.dartName))},
+                    ).returned,
+                  );
+                }),
+            ),
+          )
+          ..methods.add(
+            Method(
+              (b) => b
+                ..returns = refer('Object')
+                ..name = 'toJson'
+                ..lambda = true
+                ..body = Code('switch (this) {\n$switchCases\n  }'),
+            ),
+          ),
+      ),
+    ];
   }
 
   List<Spec> _buildStructListUnionSpecs(
@@ -1239,58 +1417,169 @@ final class EmitterVisitor {
     ClassType struct,
     ListType list,
   ) {
-    final buf = StringBuffer();
-
     final structSuffix = _variantSuffix(struct, name);
     final structCls = '$name\$$structSuffix';
     final structFn = _safeIdentifier(_factoryName(structSuffix));
-    final listCls = '$name\$List';
+    const listCls = r'$List';
     const listFn = 'list';
+
     final elemType = _dartTypeName(list.element);
     final elemFromJson = _listElementCast(list.element);
     final elemToJson = _toJsonCallerFor(list.element, 'e');
 
-    buf.writeln('@freezed');
-    buf.writeln('sealed class $name with _\$$name {');
-    buf.writeln('  const $name._();');
-    buf.writeln();
-    buf.writeln(
-      '  const factory $name.$structFn({required ${struct.ref.name} value}) = $structCls;',
+    final mapType = TypeReference(
+      (b) => b
+        ..symbol = 'Map'
+        ..types.addAll([
+          refer('String'),
+          TypeReference(
+            (b) => b
+              ..symbol = 'Object'
+              ..isNullable = true,
+          ),
+        ]),
     );
-    buf.writeln(
-      '  const factory $name.$listFn({required List<$elemType> value}) = $listCls;',
+    final listObjectNullable = TypeReference(
+      (b) => b
+        ..symbol = 'List'
+        ..types.add(
+          TypeReference(
+            (b) => b
+              ..symbol = 'Object'
+              ..isNullable = true,
+          ),
+        ),
     );
-    buf.writeln();
-    buf.writeln('  static $name fromJson(Object? json) {');
-    buf.writeln('    if (json is List) {');
-    buf.writeln(
-      '      return $name.$listFn(value: (json as List<Object?>).map((e) => $elemFromJson).toList());',
-    );
-    buf.writeln('    }');
-    buf.writeln(
-      '    return $name.$structFn(value: ${struct.ref.name}.fromJson(json as Map<String, Object?>));',
-    );
-    buf.writeln('  }');
-    buf.writeln();
-    buf.writeln('  Object toJson() => switch (this) {');
-    buf.writeln('    $structCls(:final value) => value.toJson(),');
-    buf.writeln(
-      '    $listCls(:final value) => value.map((e) => $elemToJson).toList(),',
-    );
-    buf.writeln('  };');
-    buf.writeln('}');
-    buf.writeln();
-    return [Code(buf.toString())];
+
+    // List variant fromJson: (json as List<Object?>).map((e) => $elemFromJson).toList()
+    final listFromExpr = refer('json')
+        .asA(listObjectNullable)
+        .property('map')
+        .call([
+          Method(
+            (b) => b
+              ..lambda = true
+              ..requiredParameters.add(
+                Parameter((b) => b..name = 'e'),
+              )
+              ..body = Code(elemFromJson),
+          ).closure,
+        ])
+        .property('toList')
+        .call([]);
+
+    final switchCases = [
+      '    $name\$$structSuffix(:final value) => value.toJson(),',
+      '    $name$listCls(:final value) => value.map((e) => $elemToJson).toList(),',
+    ].join('\n');
+
+    return [
+      Class(
+        (b) => b
+          ..name = name
+          ..sealed = true
+          ..annotations.add(refer('freezed'))
+          ..mixins.add(refer('_\$$name'))
+          ..constructors.add(
+            Constructor(
+              (b) => b
+                ..constant = true
+                ..name = '_',
+            ),
+          )
+          ..constructors.add(
+            Constructor(
+              (b) => b
+                ..constant = true
+                ..factory = true
+                ..name = structFn
+                ..optionalParameters.add(
+                  Parameter(
+                    (b) => b
+                      ..name = 'value'
+                      ..named = true
+                      ..required = true
+                      ..type = refer(struct.ref.name),
+                  ),
+                )
+                ..redirect = refer(structCls),
+            ),
+          )
+          ..constructors.add(
+            Constructor(
+              (b) => b
+                ..constant = true
+                ..factory = true
+                ..name = listFn
+                ..optionalParameters.add(
+                  Parameter(
+                    (b) => b
+                      ..name = 'value'
+                      ..named = true
+                      ..required = true
+                      ..type = TypeReference(
+                        (b) => b
+                          ..symbol = 'List'
+                          ..types.add(refer(elemType)),
+                      ),
+                  ),
+                )
+                ..redirect = refer('$name\$List'),
+            ),
+          )
+          ..methods.add(
+            Method(
+              (b) => b
+                ..static = true
+                ..returns = refer(name)
+                ..name = 'fromJson'
+                ..requiredParameters.add(
+                  Parameter(
+                    (b) => b
+                      ..name = 'json'
+                      ..type = TypeReference(
+                        (b) => b
+                          ..symbol = 'Object'
+                          ..isNullable = true,
+                      ),
+                  ),
+                )
+                ..body = Block((b) {
+                  b.statements.add(const Code('if (json is List) {'));
+                  b.addExpression(
+                    refer(name).newInstanceNamed(listFn, [], {
+                      'value': listFromExpr,
+                    }).returned,
+                  );
+                  b.statements.add(const Code('}'));
+                  b.addExpression(
+                    refer(name).newInstanceNamed(structFn, [], {
+                      'value': refer(struct.ref.name).newInstanceNamed(
+                        'fromJson',
+                        [refer('json').asA(mapType)],
+                      ),
+                    }).returned,
+                  );
+                }),
+            ),
+          )
+          ..methods.add(
+            Method(
+              (b) => b
+                ..returns = refer('Object')
+                ..name = 'toJson'
+                ..lambda = true
+                ..body = Code('switch (this) {\n$switchCases\n  }'),
+            ),
+          ),
+      ),
+    ];
   }
 
   List<Spec> _buildStructStructUnionSpecs(
     String name,
     List<_UnionCheck> checks,
   ) {
-    final buf = StringBuffer();
-
-    // Unique variants in encounter order (checks may repeat the same variant
-    // as the unconditional else branch).
     final seenSuffixes = <String>{};
     final variants =
         <({String suffix, String cls, String fn, String structName})>[];
@@ -1306,43 +1595,110 @@ final class EmitterVisitor {
       }
     }
 
-    buf.writeln('@freezed');
-    buf.writeln('sealed class $name with _\$$name {');
-    buf.writeln('  const $name._();');
-    buf.writeln();
-    for (final v in variants) {
-      buf.writeln(
-        '  const factory $name.${v.fn}({required ${v.structName} value}) = ${v.cls};',
-      );
-    }
-    buf.writeln();
-    buf.writeln('  static $name fromJson(Map<String, Object?> json) {');
-    for (final check in checks.sublist(0, checks.length - 1)) {
-      final suffix = _variantSuffix(check.variant, name);
-      final fn = _safeIdentifier(_factoryName(suffix));
-      final cond = check.literalValue != null
-          ? "json['${check.fieldName}'] == '${check.literalValue}'"
-          : "json.containsKey('${check.fieldName}')";
-      buf.writeln(
-        '    if ($cond) return $name.$fn(value: ${check.variant.ref.name}.fromJson(json));',
-      );
-    }
-    final last = checks.last;
-    final lastSuffix = _variantSuffix(last.variant, name);
-    final lastFn = _safeIdentifier(_factoryName(lastSuffix));
-    buf.writeln(
-      '    return $name.$lastFn(value: ${last.variant.ref.name}.fromJson(json));',
-    );
-    buf.writeln('  }');
-    buf.writeln();
-    buf.writeln('  Object toJson() => switch (this) {');
-    for (final v in variants) {
-      buf.writeln('    ${v.cls}(:final value) => value.toJson(),');
-    }
-    buf.writeln('  };');
-    buf.writeln('}');
-    buf.writeln();
-    return [Code(buf.toString())];
+    final switchCases = variants
+        .map((v) => '    ${v.cls}(:final value) => value.toJson(),')
+        .join('\n');
+
+    return [
+      Class(
+        (b) => b
+          ..name = name
+          ..sealed = true
+          ..annotations.add(refer('freezed'))
+          ..mixins.add(refer('_\$$name'))
+          ..constructors.add(
+            Constructor(
+              (b) => b
+                ..constant = true
+                ..name = '_',
+            ),
+          )
+          ..constructors.addAll(
+            variants.map(
+              (v) => Constructor(
+                (b) => b
+                  ..constant = true
+                  ..factory = true
+                  ..name = v.fn
+                  ..optionalParameters.add(
+                    Parameter(
+                      (b) => b
+                        ..name = 'value'
+                        ..named = true
+                        ..required = true
+                        ..type = refer(v.structName),
+                    ),
+                  )
+                  ..redirect = refer(v.cls),
+              ),
+            ),
+          )
+          ..methods.add(
+            Method(
+              (b) => b
+                ..static = true
+                ..returns = refer(name)
+                ..name = 'fromJson'
+                ..requiredParameters.add(
+                  Parameter(
+                    (b) => b
+                      ..name = 'json'
+                      ..type = TypeReference(
+                        (b) => b
+                          ..symbol = 'Map'
+                          ..types.addAll([
+                            refer('String'),
+                            TypeReference(
+                              (b) => b
+                                ..symbol = 'Object'
+                                ..isNullable = true,
+                            ),
+                          ]),
+                      ),
+                  ),
+                )
+                ..body = Block((b) {
+                  for (final check in checks.sublist(0, checks.length - 1)) {
+                    final suffix = _variantSuffix(check.variant, name);
+                    final fn = _safeIdentifier(_factoryName(suffix));
+                    final cond = check.literalValue != null
+                        ? "json['${check.fieldName}'] == '${check.literalValue}'"
+                        : "json.containsKey('${check.fieldName}')";
+                    b.statements.add(
+                      Code(
+                        'if ($cond)'
+                        ' return $name.$fn(value: ${check.variant.ref.name}.fromJson(json));',
+                      ),
+                    );
+                  }
+                  final last = checks.last;
+                  b.addExpression(
+                    refer(name).newInstanceNamed(
+                      _safeIdentifier(
+                        _factoryName(_variantSuffix(last.variant, name)),
+                      ),
+                      [],
+                      {
+                        'value': refer(
+                          last.variant.ref.name,
+                        ).newInstanceNamed('fromJson', [refer('json')]),
+                      },
+                    ).returned,
+                  );
+                }),
+            ),
+          )
+          ..methods.add(
+            Method(
+              (b) => b
+                ..returns = refer('Object')
+                ..name = 'toJson'
+                ..lambda = true
+                ..body = Code('switch (this) {\n$switchCases\n  }'),
+            ),
+          ),
+      ),
+    ];
   }
 
   /// Returns the Dart type name string for a resolved type, used in string

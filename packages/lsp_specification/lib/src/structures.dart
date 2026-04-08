@@ -12,8 +12,10 @@ part 'structures.g.dart';
 
 class _ProgressTokenConverter extends JsonConverter<ProgressToken, Object> {
   const _ProgressTokenConverter();
+
   @override
   ProgressToken fromJson(Object json) => ProgressToken.fromJson(json);
+
   @override
   Object toJson(ProgressToken object) => object.toJson();
 }
@@ -21,16 +23,20 @@ class _ProgressTokenConverter extends JsonConverter<ProgressToken, Object> {
 class _FoldingRangeKindConverter
     extends JsonConverter<FoldingRangeKind, String> {
   const _FoldingRangeKindConverter();
+
   @override
   FoldingRangeKind fromJson(String json) => FoldingRangeKind(json);
+
   @override
   String toJson(FoldingRangeKind object) => object.value;
 }
 
 class _CodeActionKindConverter extends JsonConverter<CodeActionKind, String> {
   const _CodeActionKindConverter();
+
   @override
   CodeActionKind fromJson(String json) => CodeActionKind(json);
+
   @override
   String toJson(CodeActionKind object) => object.value;
 }
@@ -38,16 +44,20 @@ class _CodeActionKindConverter extends JsonConverter<CodeActionKind, String> {
 class _PositionEncodingKindConverter
     extends JsonConverter<PositionEncodingKind, String> {
   const _PositionEncodingKindConverter();
+
   @override
   PositionEncodingKind fromJson(String json) => PositionEncodingKind(json);
+
   @override
   String toJson(PositionEncodingKind object) => object.value;
 }
 
 class _WatchKindConverter extends JsonConverter<WatchKind, int> {
   const _WatchKindConverter();
+
   @override
   WatchKind fromJson(int json) => WatchKind(json);
+
   @override
   int toJson(WatchKind object) => object.value;
 }
@@ -56,14 +66,16 @@ class _WorkspaceDocumentDiagnosticReportListConverter
     extends
         JsonConverter<List<WorkspaceDocumentDiagnosticReport>, List<dynamic>> {
   const _WorkspaceDocumentDiagnosticReportListConverter();
+
   @override
   List<WorkspaceDocumentDiagnosticReport> fromJson(List<dynamic> json) => json
       .map(
         (e) => WorkspaceDocumentDiagnosticReport.fromJson(
-          e as Map<String, Object?>,
+          (e as Map<String, Object?>),
         ),
       )
       .toList();
+
   @override
   List<dynamic> toJson(List<WorkspaceDocumentDiagnosticReport> object) =>
       object.map<Object>((e) => e.toJson()).toList();
@@ -72,9 +84,11 @@ class _WorkspaceDocumentDiagnosticReportListConverter
 class _CodeActionKindListConverter
     extends JsonConverter<List<CodeActionKind>, List<dynamic>> {
   const _CodeActionKindListConverter();
+
   @override
   List<CodeActionKind> fromJson(List<dynamic> json) =>
-      json.map((e) => CodeActionKind(e as String)).toList();
+      json.map((e) => CodeActionKind((e as String))).toList();
+
   @override
   List<dynamic> toJson(List<CodeActionKind> object) =>
       object.map((e) => e.value).toList();
@@ -83,9 +97,11 @@ class _CodeActionKindListConverter
 class _PositionEncodingKindListConverter
     extends JsonConverter<List<PositionEncodingKind>, List<dynamic>> {
   const _PositionEncodingKindListConverter();
+
   @override
   List<PositionEncodingKind> fromJson(List<dynamic> json) =>
-      json.map((e) => PositionEncodingKind(e as String)).toList();
+      json.map((e) => PositionEncodingKind((e as String))).toList();
+
   @override
   List<dynamic> toJson(List<PositionEncodingKind> object) =>
       object.map((e) => e.value).toList();
@@ -94,9 +110,11 @@ class _PositionEncodingKindListConverter
 class _FoldingRangeKindListConverter
     extends JsonConverter<List<FoldingRangeKind>, List<dynamic>> {
   const _FoldingRangeKindListConverter();
+
   @override
   List<FoldingRangeKind> fromJson(List<dynamic> json) =>
-      json.map((e) => FoldingRangeKind(e as String)).toList();
+      json.map((e) => FoldingRangeKind((e as String))).toList();
+
   @override
   List<dynamic> toJson(List<FoldingRangeKind> object) =>
       object.map((e) => e.value).toList();

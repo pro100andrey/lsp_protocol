@@ -80,6 +80,39 @@ dart run bin/lsp_generator.dart generate --verbose
 2. Extend `Command` and mix in `WithStore` (from `commands/with_store.dart`) to access the store
 3. Register in `runner.dart` with `..addCommand(MyCommand(store: store))`
 
+### Code generation with code_builder
+
+All code that _generates Dart source_ must use `code_builder` entities — never
+build Dart text via `StringBuffer` or raw multi-line string interpolation.
+
+| Construct                              | code_builder API                                                                                    |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Class (abstract / final / sealed)      | `Class((b) => b..name = '...'..modifier = ClassModifier.sealed...)`                                 |
+| Constructor (const, factory, redirect) | `Constructor((b) => b..constant = true..factory = true..redirect = refer('_Foo'))`                  |
+| Field / parameter                      | `Field(...)`, `Parameter((b) => b..name = '...'..type = refer('T'))`                                |
+| Method with lambda body                | `Method((b) => b..lambda = true..body = expr.code)`                                                 |
+| Method with block body                 | `Method((b) => b..body = Block((b) { b.addExpression(...); }))`                                     |
+| Expression: property / call / asA      | `refer('x').property('v').call([]).asA(refer('T'))`                                                 |
+| Expression: new instance named         | `refer('Foo').newInstanceNamed('fromJson', [refer('json')])`                                        |
+| Inline closure                         | `Method((b) => b..lambda = true..requiredParameters.add(Parameter(...))..body = expr.code).closure` |
+| Type with generics                     | `TypeReference((b) => b..symbol = 'Map'..types.addAll([refer('String'), ...]))`                     |
+| Annotations                            | `b.annotations.add(refer('freezed'))`                                                               |
+| `@JsonEnum(...)`                       | `refer('JsonEnum').call([], {'valueField': literalString('value')})`                                |
+
+**Rules:**
+
+- Method bodies that are simple expressions: use `..lambda = true` and set
+  `..body` to a code_builder `Expression.code`.
+- If-statement branches in block bodies: `Code('if (json is T) return ...;')` is
+  acceptable for genuinely imperative control flow (type checks, guard clauses)
+  that code_builder has no native spec for.
+- Switch expressions with pattern matching (Dart 3 destructuring) must use
+  `Code('switch (this) { Variant(:final v) => ... }')` — there is no
+  code_builder API for this syntax. Build the case strings from structured data,
+  not free-form interpolation.
+- **Never** use `StringBuffer` to build an entire class, method, or block body.
+  Use code_builder `Class`, `Constructor`, `Method`, and `Block` for all structure.
+
 ### Models (protocol.dart pattern)
 
 - Annotate with `@freezed` / `@Freezed(unionKey: 'kind')` for sealed unions
