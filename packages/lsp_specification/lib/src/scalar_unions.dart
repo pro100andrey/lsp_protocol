@@ -14,7 +14,9 @@ sealed class ProgressToken with _$ProgressToken {
       ProgressToken$String;
 
   static ProgressToken fromJson(Object? json) {
-    if (json is int) return ProgressToken.int(value: json);
+    if (json is int) {
+      return ProgressToken.int(value: json);
+    }
     return ProgressToken.string(value: (json as String));
   }
 

@@ -46,6 +46,21 @@ typedef _ConverterEntry = ({
 
 // ---------------------------------------------------------------------------
 
+/// Generates a Dart `if` (optionally `else`) statement from code_builder
+/// [condition] and block bodies.
+Code ifStatement(Expression condition, Block ifBlock, [Block? elseBlock]) {
+  final visiter = DartEmitter();
+  final conditionV = condition.accept(visiter);
+  final ifBlockV = ifBlock.accept(visiter);
+  final elseBlockV = elseBlock?.accept(visiter);
+
+  final ifElse =
+      'if($conditionV){$ifBlockV}'
+      '${elseBlockV != null ? 'else {$elseBlockV}' : ''}';
+
+  return Code(ifElse);
+}
+
 /// Builds code_builder [Library] objects from a fully resolved [ResolvedState].
 ///
 /// Each [Library] can be emitted to a Dart source string via [DartEmitter].
@@ -830,7 +845,8 @@ final class EmitterVisitor {
     );
   }
 
-  /// Creates an `@override` method with one required parameter and a lambda body.
+  /// Creates an `@override` method with one required parameter and a lambda
+  /// body.
   Method _converterMethod({
     required String name,
     required Reference returns,
@@ -1017,46 +1033,64 @@ final class EmitterVisitor {
   Set<String> _computeSealedUnionNames() {
     final result = <String>{};
     for (final alias in _resolved.aliases) {
-      if (_classNames.contains(alias.name)) continue;
-      if (alias.type is! UnionType) continue;
+      if (_classNames.contains(alias.name)) {
+        continue;
+      }
+
+      if (alias.type is! UnionType) {
+        continue;
+      }
+
       final ut = alias.type as UnionType;
       final kind = _classifyUnion(ut);
-      if (kind == _UnionKind.mixed) continue;
+
+      if (kind == _UnionKind.mixed) {
+        continue;
+      }
+
       if (kind == _UnionKind.structStruct) {
         final structs = ut.items.whereType<ClassType>().toList();
-        if (_findStructDiscriminator(structs) == null) continue;
+        if (_findStructDiscriminator(structs) == null) {
+          continue;
+        }
       }
+
       result.add(alias.name);
     }
     return result;
   }
 
   _UnionKind _classifyUnion(UnionType u) {
-    final scalars = u.items.whereType<DartCoreType>().toList();
-    final structs = u.items.whereType<ClassType>().toList();
-    final lists = u.items.whereType<ListType>().toList();
+    final scalars = u.items.whereType<DartCoreType>().toList(growable: false);
+    final structs = u.items.whereType<ClassType>().toList(growable: false);
+    final lists = u.items.whereType<ListType>().toList(growable: false);
     final others = u.items.where(
       (t) => t is! DartCoreType && t is! ClassType && t is! ListType,
     );
 
-    if (others.isNotEmpty) return _UnionKind.mixed;
-    if (structs.isEmpty && lists.isEmpty) return _UnionKind.scalar;
+    if (others.isNotEmpty) {
+      return .mixed;
+    }
+
+    if (structs.isEmpty && lists.isEmpty) {
+      return .scalar;
+    }
+
     if (lists.isEmpty && scalars.isNotEmpty && structs.isNotEmpty) {
       final uniqueStructs = structs.map((t) => t.ref.name).toSet();
-      return uniqueStructs.length == 1
-          ? _UnionKind.scalarStruct
-          : _UnionKind.mixed;
+      return uniqueStructs.length == 1 ? .scalarStruct : .mixed;
     }
+
     if (scalars.isEmpty && lists.isNotEmpty && structs.isNotEmpty) {
-      return _UnionKind.structList;
+      return .structList;
     }
+
     if (scalars.isEmpty && lists.isEmpty && structs.length >= 2) {
       final uniqueStructs = structs.map((t) => t.ref.name).toSet();
-      return uniqueStructs.length >= 2
-          ? _UnionKind.structStruct
-          : _UnionKind.mixed;
+      return uniqueStructs.length >= 2 ? .structStruct : .mixed;
     }
-    return _UnionKind.mixed;
+
+    return .mixed;
   }
 
   /// Returns a list of discriminator checks (last entry = else branch) or
@@ -1065,7 +1099,9 @@ final class EmitterVisitor {
     // Deduplicate by struct name.
     final seen = <String>{};
     final unique = variants.where((t) => seen.add(t.ref.name)).toList();
-    if (unique.length < 2) return null;
+    if (unique.length < 2) {
+      return null;
+    }
 
     final propMaps = [for (final v in unique) _allPropertiesMap(v.ref)];
     final requiredSets = [
@@ -1077,7 +1113,8 @@ final class EmitterVisitor {
     ];
     final commonRequired = requiredSets.reduce((a, b) => a.intersection(b));
 
-    // Kind discriminator: shared required property with distinct StringLiteralType values.
+    // Kind discriminator: shared required property with distinct
+    // StringLiteralType values.
     for (final propName in commonRequired) {
       final literals = <String>[];
       var valid = true;
@@ -1090,6 +1127,7 @@ final class EmitterVisitor {
           break;
         }
       }
+
       if (valid && literals.toSet().length == unique.length) {
         return [
           for (var i = 0; i < unique.length; i++)
@@ -1109,11 +1147,15 @@ final class EmitterVisitor {
     for (var i = 0; i < unique.length; i++) {
       final otherRequired = <String>{};
       for (var j = 0; j < unique.length; j++) {
-        if (j != i) otherRequired.addAll(requiredSets[j]);
+        if (j != i) {
+          otherRequired.addAll(requiredSets[j]);
+        }
       }
       final uniqueProps = requiredSets[i].difference(otherRequired);
       if (uniqueProps.isEmpty) {
-        if (elseVariant != null) return null;
+        if (elseVariant != null) {
+          return null;
+        }
         elseVariant = unique[i];
       } else {
         checks.add((
@@ -1128,6 +1170,7 @@ final class EmitterVisitor {
       fieldName: '',
       literalValue: null,
     ));
+
     return checks;
   }
 
@@ -1182,7 +1225,10 @@ final class EmitterVisitor {
 
   /// Lowercase first character of [suffix] to form a factory constructor name.
   String _factoryName(String suffix) {
-    if (suffix.isEmpty) return suffix;
+    if (suffix.isEmpty) {
+      return suffix;
+    }
+
     return suffix[0].toLowerCase() + suffix.substring(1);
   }
 
@@ -1250,9 +1296,15 @@ final class EmitterVisitor {
                   for (final v in variants.sublist(0, variants.length - 1)) {
                     final fn = _safeIdentifier(_factoryName(v.suffix));
                     b.statements.add(
-                      Code(
-                        'if (json is ${v.dartName})'
-                        ' return $name.$fn(value: json);',
+                      ifStatement(
+                        CodeExpression(Code('json is ${v.dartName}')),
+                        Block(
+                          (bb) => bb.addExpression(
+                            refer(name).newInstanceNamed(fn, [], {
+                              'value': refer('json'),
+                            }).returned,
+                          ),
+                        ),
                       ),
                     );
                   }
@@ -1371,9 +1423,19 @@ final class EmitterVisitor {
                 )
                 ..body = Block((b) {
                   b.statements.add(
-                    Code(
-                      'if (json is Map<String, Object?>)'
-                      ' return $name.$structFn(value: ${struct.ref.name}.fromJson(json));',
+                    ifStatement(
+                      const CodeExpression(
+                        Code('json is Map<String, Object?>'),
+                      ),
+                      Block(
+                        (bb) => bb.addExpression(
+                          refer(name).newInstanceNamed(structFn, [], {
+                            'value': refer(
+                              struct.ref.name,
+                            ).newInstanceNamed('fromJson', [refer('json')]),
+                          }).returned,
+                        ),
+                      ),
                     ),
                   );
                   for (final v in scalarVariants.sublist(
@@ -1382,9 +1444,15 @@ final class EmitterVisitor {
                   )) {
                     final fn = _safeIdentifier(_factoryName(v.suffix));
                     b.statements.add(
-                      Code(
-                        'if (json is ${v.dartName})'
-                        ' return $name.$fn(value: json);',
+                      ifStatement(
+                        CodeExpression(Code('json is ${v.dartName}')),
+                        Block(
+                          (bb) => bb.addExpression(
+                            refer(name).newInstanceNamed(fn, [], {
+                              'value': refer('json'),
+                            }).returned,
+                          ),
+                        ),
                       ),
                     );
                   }
@@ -1545,13 +1613,18 @@ final class EmitterVisitor {
                   ),
                 )
                 ..body = Block((b) {
-                  b.statements.add(const Code('if (json is List) {'));
-                  b.addExpression(
-                    refer(name).newInstanceNamed(listFn, [], {
-                      'value': listFromExpr,
-                    }).returned,
+                  b.statements.add(
+                    ifStatement(
+                      const CodeExpression(Code('json is List')),
+                      Block(
+                        (bb) => bb.addExpression(
+                          refer(name).newInstanceNamed(listFn, [], {
+                            'value': listFromExpr,
+                          }).returned,
+                        ),
+                      ),
+                    ),
                   );
-                  b.statements.add(const Code('}'));
                   b.addExpression(
                     refer(name).newInstanceNamed(structFn, [], {
                       'value': refer(struct.ref.name).newInstanceNamed(
@@ -1661,13 +1734,25 @@ final class EmitterVisitor {
                   for (final check in checks.sublist(0, checks.length - 1)) {
                     final suffix = _variantSuffix(check.variant, name);
                     final fn = _safeIdentifier(_factoryName(suffix));
-                    final cond = check.literalValue != null
-                        ? "json['${check.fieldName}'] == '${check.literalValue}'"
-                        : "json.containsKey('${check.fieldName}')";
+                    final condExpr = check.literalValue != null
+                        ? refer('json')
+                              .index(literalString(check.fieldName))
+                              .equalTo(literalString(check.literalValue!))
+                        : refer('json').property('containsKey').call([
+                            literalString(check.fieldName),
+                          ]);
                     b.statements.add(
-                      Code(
-                        'if ($cond)'
-                        ' return $name.$fn(value: ${check.variant.ref.name}.fromJson(json));',
+                      ifStatement(
+                        condExpr,
+                        Block(
+                          (bb) => bb.addExpression(
+                            refer(name).newInstanceNamed(fn, [], {
+                              'value': refer(
+                                check.variant.ref.name,
+                              ).newInstanceNamed('fromJson', [refer('json')]),
+                            }).returned,
+                          ),
+                        ),
                       ),
                     );
                   }

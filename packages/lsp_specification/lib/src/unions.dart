@@ -19,7 +19,7 @@ sealed class Definition with _$Definition {
   static Definition fromJson(Object? json) {
     if (json is List) {
       return Definition.list(
-        value: (json as List<Object?>)
+        value: (json as List<Object>)
             .map((e) => Location.fromJson(e as Map<String, Object?>))
             .toList(),
       );
@@ -48,7 +48,7 @@ sealed class Declaration with _$Declaration {
   static Declaration fromJson(Object? json) {
     if (json is List) {
       return Declaration.list(
-        value: (json as List<Object?>)
+        value: (json as List<Object>)
             .map((e) => Location.fromJson(e as Map<String, Object?>))
             .toList(),
       );
@@ -80,12 +80,14 @@ sealed class InlineValue with _$InlineValue {
   }) = InlineValue$EvaluatableExpression;
 
   static InlineValue fromJson(Map<String, Object?> json) {
-    if (json.containsKey('text'))
+    if (json.containsKey('text')) {
       return InlineValue.text(value: InlineValueText.fromJson(json));
-    if (json.containsKey('caseSensitiveLookup'))
+    }
+    if (json.containsKey('caseSensitiveLookup')) {
       return InlineValue.variableLookup(
         value: InlineValueVariableLookup.fromJson(json),
       );
+    }
     return InlineValue.evaluatableExpression(
       value: InlineValueEvaluatableExpression.fromJson(json),
     );
@@ -111,10 +113,11 @@ sealed class DocumentDiagnosticReport with _$DocumentDiagnosticReport {
   }) = DocumentDiagnosticReport$RelatedUnchangedDocumentDiagnosticReport;
 
   static DocumentDiagnosticReport fromJson(Map<String, Object?> json) {
-    if (json['kind'] == 'full')
+    if (json['kind'] == 'full') {
       return DocumentDiagnosticReport.relatedFullDocumentDiagnosticReport(
         value: RelatedFullDocumentDiagnosticReport.fromJson(json),
       );
+    }
     return DocumentDiagnosticReport.relatedUnchangedDocumentDiagnosticReport(
       value: RelatedUnchangedDocumentDiagnosticReport.fromJson(json),
     );
@@ -147,10 +150,11 @@ sealed class WorkspaceDocumentDiagnosticReport
       WorkspaceDocumentDiagnosticReport$WorkspaceUnchangedDocumentDiagnosticReport;
 
   static WorkspaceDocumentDiagnosticReport fromJson(Map<String, Object?> json) {
-    if (json['kind'] == 'full')
+    if (json['kind'] == 'full') {
       return WorkspaceDocumentDiagnosticReport.workspaceFullDocumentDiagnosticReport(
         value: WorkspaceFullDocumentDiagnosticReport.fromJson(json),
       );
+    }
     return WorkspaceDocumentDiagnosticReport.workspaceUnchangedDocumentDiagnosticReport(
       value: WorkspaceUnchangedDocumentDiagnosticReport.fromJson(json),
     );
