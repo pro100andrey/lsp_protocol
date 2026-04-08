@@ -13,7 +13,7 @@ enum _UnionKind { scalar, scalarStruct, structList, structStruct, mixed }
 
 /// One discriminator check for a struct+struct union.
 ///
-/// For the _last_ check in a list: [fieldName] is empty and no condition is
+/// For the _last_ check in a list: 'fieldName' is empty and no condition is
 /// emitted (it is the unconditional else branch).
 typedef _UnionCheck = ({
   /// The struct variant returned when the condition matches.
@@ -31,7 +31,8 @@ typedef _UnionCheck = ({
 // ---------------------------------------------------------------------------
 
 /// Discriminates how a converter class is generated.
-/// Closed Dart enums use `@JsonEnum(valueField: 'value')` — no converter needed.
+/// Closed Dart enums use `@JsonEnum(valueField: 'value')` — no converter
+/// needed.
 enum _ConverterKind { openEnum, scalarUnion, structUnion }
 
 /// Metadata about a single needed JsonConverter.
@@ -63,12 +64,14 @@ final class EmitterVisitor {
   /// separate file so that `structures.dart` can import them without circulars.
   static const _scalarUnionsFile = 'scalar_unions.dart';
 
-  /// All class names (including anonymous) — used to filter conflicting aliases.
+  /// All class names (including anonymous) — used to filter conflicting
+  /// aliases.
   late final Set<String> _classNames = _resolved.classes
       .map((c) => c.name)
       .toSet();
 
-  /// Names of aliases emitted as sealed union classes (all union files combined).
+  /// Names of aliases emitted as sealed union classes (all union files
+  /// combined).
   late final Set<String> _sealedUnionNames = _computeSealedUnionNames();
 
   /// Subset of [_sealedUnionNames]: purely scalar unions (only [DartCoreType]
@@ -175,7 +178,8 @@ final class EmitterVisitor {
   }
 
   /// Builds a [Library] containing typed sealed union classes for all
-  /// non-scalar sealed union aliases (struct-based: struct+list, struct+struct).
+  /// non-scalar sealed union aliases (struct-based: struct+list,
+  /// struct+struct).
   ///
   /// Sealed subclass naming: `${AliasName}\$${VariantSuffix}` — the `\$` acts
   /// as a separator and prevents name conflicts with generated struct classes.
@@ -232,11 +236,16 @@ final class EmitterVisitor {
             needsEnumerations = true;
           }
         case AliasType(:final ref):
-          // Sealed union aliases live in their own files, not type_aliases.dart.
+          // Sealed union aliases live in their own files, not
+          // type_aliases.dart.
           if (_scalarUnionNames.contains(ref.name)) {
-            if (currentFile != _scalarUnionsFile) needsScalarUnions = true;
+            if (currentFile != _scalarUnionsFile) {
+              needsScalarUnions = true;
+            }
           } else if (_sealedUnionNames.contains(ref.name)) {
-            if (currentFile != _unionsFile) needsUnions = true;
+            if (currentFile != _unionsFile) {
+              needsUnions = true;
+            }
           } else if (currentFile != _aliasesFile) {
             needsAliases = true;
           }
@@ -267,12 +276,16 @@ final class EmitterVisitor {
   // ---------------------------------------------------------------------------
 
   Spec _buildClass(ResolvedClass cls) {
-    // For underscore-prefixed anonymous structs (e.g. `_InitializeParamsClientInfo`),
-    // use plain @JsonSerializable instead of @freezed. When the abstract class name
-    // starts with `_`, freezed generates a top-level `_$XxxFromJson` wrapper AND
-    // json_serializable also generates `_$XxxFromJson` for the private concrete
-    // class — they collide. Plain @JsonSerializable avoids this entirely.
-    if (cls.name.startsWith('_')) return _buildPrivateJsonClass(cls);
+    // For underscore-prefixed anonymous structs (e.g.
+    // `_InitializeParamsClientInfo`),  use plain @JsonSerializable instead
+    //of @freezed. When the abstract class name
+    // starts with `_`, freezed generates a top-level `_$XxxFromJson` wrapper
+    // AND json_serializable also generates `_$XxxFromJson` for the private
+    // concrete class — they collide. Plain @JsonSerializable avoids this
+    // entirely.
+    if (cls.name.startsWith('_')) {
+      return _buildPrivateJsonClass(cls);
+    }
 
     // LSP extends/mixins are structural (not Dart inheritance) — flatten all
     // inherited properties into the class so it stands alone.
@@ -296,7 +309,8 @@ final class EmitterVisitor {
         b.docs.add('/// ${cls.documentation!.replaceAll('\n', '\n/// ')}');
       }
 
-      // Private const constructor — required by freezed for sealed matching / instance methods.
+      // Private const constructor — required by freezed for sealed matching /
+      //  instance methods.
       b.constructors.add(
         Constructor(
           (b) => b
@@ -305,12 +319,14 @@ final class EmitterVisitor {
         ),
       );
 
-      // Redirecting factory — freezed generates getters, copyWith, ==, hashCode.
+      // Redirecting factory — freezed generates getters, copyWith, ==,
+      // hashCode.
       b.constructors.add(
         _buildRedirectingFactory(cls.name, allProps, publicPart),
       );
 
-      // Standard json_serializable fromJson factory — freezed generates toJson in its mixin.
+      // Standard json_serializable fromJson factory — freezed generates toJson
+      // in its mixin.
       b.constructors.add(
         Constructor(
           (b) => b
@@ -403,7 +419,9 @@ final class EmitterVisitor {
                   ? toTypeRef(p.type).rebuild((b) => b.isNullable = true)
                   : toTypeRef(p.type);
             final ann = _converterAnnotationFor(p.type);
-            if (ann != null) b.annotations.add(ann);
+            if (ann != null) {
+              b.annotations.add(ann);
+            }
           }),
         );
       }
@@ -492,7 +510,9 @@ final class EmitterVisitor {
               ..named = true
               ..required = !p.optional;
             final ann = _converterAnnotationFor(p.type);
-            if (ann != null) b.annotations.add(ann);
+            if (ann != null) {
+              b.annotations.add(ann);
+            }
           }),
         ),
       ),
@@ -608,85 +628,164 @@ final class EmitterVisitor {
     return (scalar: scalar, list: list);
   }
 
-  /// Emits one `Code` [Spec] per needed converter (scalar + list variants).
+  /// Emits one [Spec] per needed converter (scalar + list variants).
   Iterable<Spec> _buildConverterSpecs() sync* {
     final needs = _converterNeeds;
     // Emit scalar converters for types used directly as fields.
     for (final entry in needs.scalar.values) {
-      yield Code(_scalarConverterCode(entry));
+      yield _scalarConverterSpec(entry);
     }
     // Emit list converters for types used as List<...> elements.
     for (final entry in needs.list.values) {
-      yield Code(_listConverterCode(entry));
+      yield _listConverterSpec(entry);
     }
   }
 
-  String _scalarConverterCode(_ConverterEntry entry) {
+  Class _scalarConverterSpec(_ConverterEntry entry) {
     final n = entry.name;
-    switch (entry.kind) {
-      case _ConverterKind.openEnum:
-        final raw = entry.valueType == 'int' ? 'int' : 'String';
-        return '''
-class _${n}Converter extends JsonConverter<$n, $raw> {
-  const _${n}Converter();
-  @override
-  $n fromJson($raw json) => $n(json);
-  @override
-  $raw toJson($n object) => object.value;
-}
-''';
-      case _ConverterKind.scalarUnion:
-        return '''
-class _${n}Converter extends JsonConverter<$n, Object> {
-  const _${n}Converter();
-  @override
-  $n fromJson(Object json) => $n.fromJson(json);
-  @override
-  Object toJson($n object) => object.toJson();
-}
-''';
-      case _ConverterKind.structUnion:
-        return '''
-class _${n}Converter extends JsonConverter<$n, Map<String, Object?>> {
-  const _${n}Converter();
-  @override
-  $n fromJson(Map<String, Object?> json) => $n.fromJson(json);
-  @override
-  Map<String, Object?> toJson($n object) => object.toJson() as Map<String, Object?>;
-}
-''';
-    }
-  }
+    final mapStringObjectNullable = TypeReference(
+      (b) => b
+        ..symbol = 'Map'
+        ..types.addAll([
+          refer('String'),
+          TypeReference(
+            (b) => b
+              ..symbol = 'Object'
+              ..isNullable = true,
+          ),
+        ]),
+    );
 
-  String _listConverterCode(_ConverterEntry entry) {
-    final n = entry.name;
-    final String fromBody;
-    final String toBody;
+    final Reference rawType;
+    final Code fromBody;
+    final Code toBody;
 
     switch (entry.kind) {
       case _ConverterKind.openEnum:
-        final raw = entry.valueType == 'int' ? 'int' : 'String';
-        fromBody = 'json.map((e) => $n(e as $raw)).toList()';
-        toBody = 'object.map((e) => e.value).toList()';
+        rawType = refer(entry.valueType == 'int' ? 'int' : 'String');
+        fromBody = refer(n).call([refer('json')]).code;
+        toBody = refer('object').property('value').code;
       case _ConverterKind.scalarUnion:
-        fromBody = 'json.map((e) => $n.fromJson(e as Object)).toList()';
-        toBody = 'object.map((e) => e.toJson()).toList()';
+        rawType = refer('Object');
+        fromBody = refer(n).newInstanceNamed('fromJson', [refer('json')]).code;
+        toBody = refer('object').property('toJson').call([]).code;
       case _ConverterKind.structUnion:
-        fromBody =
-            'json.map((e) => $n.fromJson(e as Map<String, Object?>)).toList()';
-        toBody = 'object.map<Object>((e) => e.toJson()).toList()';
+        rawType = mapStringObjectNullable;
+        fromBody = refer(n).newInstanceNamed('fromJson', [refer('json')]).code;
+        toBody = refer(
+          'object',
+        ).property('toJson').call([]).asA(mapStringObjectNullable).code;
     }
 
-    return '''
-class _${n}ListConverter extends JsonConverter<List<$n>, List<dynamic>> {
-  const _${n}ListConverter();
-  @override
-  List<$n> fromJson(List<dynamic> json) => $fromBody;
-  @override
-  List<dynamic> toJson(List<$n> object) => $toBody;
-}
-''';
+    return Class(
+      (b) => b
+        ..name = '_${n}Converter'
+        ..extend = TypeReference(
+          (b) => b
+            ..symbol = 'JsonConverter'
+            ..types.addAll([refer(n), rawType]),
+        )
+        ..constructors.add(Constructor((b) => b..constant = true))
+        ..methods.addAll([
+          _converterMethod(
+            name: 'fromJson',
+            returns: refer(n),
+            paramName: 'json',
+            paramType: rawType,
+            body: fromBody,
+          ),
+          _converterMethod(
+            name: 'toJson',
+            returns: rawType,
+            paramName: 'object',
+            paramType: refer(n),
+            body: toBody,
+          ),
+        ]),
+    );
   }
+
+  Class _listConverterSpec(_ConverterEntry entry) {
+    final n = entry.name;
+    final listN = TypeReference(
+      (b) => b
+        ..symbol = 'List'
+        ..types.add(refer(n)),
+    );
+    final listDynamic = TypeReference(
+      (b) => b
+        ..symbol = 'List'
+        ..types.add(refer('dynamic')),
+    );
+
+    final Code fromBody;
+    final Code toBody;
+
+    switch (entry.kind) {
+      case _ConverterKind.openEnum:
+        final raw = entry.valueType == 'int' ? 'int' : 'String';
+        fromBody = Code('json.map((e) => $n(e as $raw)).toList()');
+        toBody = const Code('object.map((e) => e.value).toList()');
+      case _ConverterKind.scalarUnion:
+        fromBody = Code('json.map((e) => $n.fromJson(e as Object)).toList()');
+        toBody = const Code('object.map((e) => e.toJson()).toList()');
+      case _ConverterKind.structUnion:
+        fromBody = Code(
+          'json.map((e) => $n.fromJson(e as Map<String, Object?>)).toList()',
+        );
+        toBody = const Code('object.map<Object>((e) => e.toJson()).toList()');
+    }
+
+    return Class(
+      (b) => b
+        ..name = '_${n}ListConverter'
+        ..extend = TypeReference(
+          (b) => b
+            ..symbol = 'JsonConverter'
+            ..types.addAll([listN, listDynamic]),
+        )
+        ..constructors.add(Constructor((b) => b..constant = true))
+        ..methods.addAll([
+          _converterMethod(
+            name: 'fromJson',
+            returns: listN,
+            paramName: 'json',
+            paramType: listDynamic,
+            body: fromBody,
+          ),
+          _converterMethod(
+            name: 'toJson',
+            returns: listDynamic,
+            paramName: 'object',
+            paramType: listN,
+            body: toBody,
+          ),
+        ]),
+    );
+  }
+
+  /// Creates an `@override` method with one required parameter and a lambda body.
+  Method _converterMethod({
+    required String name,
+    required Reference returns,
+    required String paramName,
+    required Reference paramType,
+    required Code body,
+  }) => Method(
+    (b) => b
+      ..annotations.add(refer('override'))
+      ..name = name
+      ..returns = returns
+      ..requiredParameters.add(
+        Parameter(
+          (b) => b
+            ..name = paramName
+            ..type = paramType,
+        ),
+      )
+      ..lambda = true
+      ..body = body,
+  );
 
   // ---------------------------------------------------------------------------
   // Enum builder
