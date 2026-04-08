@@ -310,7 +310,7 @@ void main() {
       expect(src.contains('class '), isFalse);
     });
 
-    test('regular enum produces dart enum with value field', () {
+    test('regular enum produces dart enum with value field and @JsonEnum', () {
       final state = _stateWith(
         enumerations: [
           _enum('DiagnosticSeverity', 'int', [
@@ -324,6 +324,12 @@ void main() {
       expect(src, contains('final int value'));
       expect(src, contains('error(1)'));
       expect(src, contains('warning(2)'));
+      // json_serializable uses @JsonEnum(valueField:) for encode/decode
+      expect(src, contains("@JsonEnum(valueField: 'value')"));
+      expect(
+        src,
+        contains("import 'package:json_annotation/json_annotation.dart'"),
+      );
     });
 
     test('string enum produces dart enum with string values', () {

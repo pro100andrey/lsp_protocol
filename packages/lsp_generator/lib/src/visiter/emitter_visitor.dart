@@ -31,7 +31,8 @@ typedef _UnionCheck = ({
 // ---------------------------------------------------------------------------
 
 /// Discriminates how a converter class is generated.
-enum _ConverterKind { closedEnum, openEnum, scalarUnion, structUnion }
+/// Closed Dart enums use `@JsonEnum(valueField: 'value')` — no converter needed.
+enum _ConverterKind { openEnum, scalarUnion, structUnion }
 
 /// Metadata about a single needed JsonConverter.
 typedef _ConverterEntry = ({
@@ -121,6 +122,9 @@ final class EmitterVisitor {
   Library buildEnumerations() => Library(
     (b) => b
       ..comments.add(_header)
+      ..directives.add(
+        Directive.import('package:json_annotation/json_annotation.dart'),
+      )
       ..body.addAll(_resolved.enumerations.map(_buildEnum)),
   );
 
@@ -507,6 +511,12 @@ final class EmitterVisitor {
     final inner = type is NullableType ? type.inner : type;
 
     switch (inner) {
+      // Closed Dart enums: @JsonEnum(valueField: 'value') handles them natively
+      // — no converter annotation needed.
+      case EnumType(:final ref) when !ref.supportsCustomValues:
+        return null;
+
+      // Open enums (supportsCustomValues = final class): need a converter.
       case EnumType(:final ref):
         return refer('_${ref.name}Converter').call([]);
 
@@ -518,6 +528,9 @@ final class EmitterVisitor {
       case ListType(element: final el):
         final elemInner = el is NullableType ? el.inner : el;
         switch (elemInner) {
+          // Closed enums in lists: json_serializable handles via $enumDecode.
+          case EnumType(:final ref) when !ref.supportsCustomValues:
+            return null;
           case EnumType(:final ref):
             return refer('_${ref.name}ListConverter').call([]);
           case AliasType(:final ref)
@@ -553,14 +566,11 @@ final class EmitterVisitor {
     void processType(ResolvedType type) {
       final inner = type is NullableType ? type.inner : type;
       switch (inner) {
+        // Closed Dart enums: @JsonEnum handles them — no converter to register.
+        case EnumType(:final ref) when !ref.supportsCustomValues:
+          break;
         case EnumType(:final ref):
-          register(
-            ref.name,
-            ref.supportsCustomValues
-                ? _ConverterKind.openEnum
-                : _ConverterKind.closedEnum,
-            ref.valueType,
-          );
+          register(ref.name, _ConverterKind.openEnum, ref.valueType);
         case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
           register(ref.name, _ConverterKind.scalarUnion, '');
         case AliasType(:final ref) when _sealedUnionNames.contains(ref.name):
@@ -569,14 +579,11 @@ final class EmitterVisitor {
         case ListType(element: final el):
           final elemInner = el is NullableType ? el.inner : el;
           switch (elemInner) {
+            // Closed enums in lists: no converter needed.
+            case EnumType(:final ref) when !ref.supportsCustomValues:
+              break;
             case EnumType(:final ref):
-              registerList(
-                ref.name,
-                ref.supportsCustomValues
-                    ? _ConverterKind.openEnum
-                    : _ConverterKind.closedEnum,
-                ref.valueType,
-              );
+              registerList(ref.name, _ConverterKind.openEnum, ref.valueType);
             case AliasType(:final ref)
                 when _scalarUnionNames.contains(ref.name):
               registerList(ref.name, _ConverterKind.scalarUnion, '');
@@ -617,17 +624,6 @@ final class EmitterVisitor {
   String _scalarConverterCode(_ConverterEntry entry) {
     final n = entry.name;
     switch (entry.kind) {
-      case _ConverterKind.closedEnum:
-        final raw = entry.valueType == 'int' ? 'int' : 'String';
-        return '''
-class _${n}Converter extends JsonConverter<$n, $raw> {
-  const _${n}Converter();
-  @override
-  $n fromJson($raw json) => $n.values.firstWhere((e) => e.value == json);
-  @override
-  $raw toJson($n object) => object.value;
-}
-''';
       case _ConverterKind.openEnum:
         final raw = entry.valueType == 'int' ? 'int' : 'String';
         return '''
@@ -668,11 +664,6 @@ class _${n}Converter extends JsonConverter<$n, Map<String, Object?>> {
     final String toBody;
 
     switch (entry.kind) {
-      case _ConverterKind.closedEnum:
-        final raw = entry.valueType == 'int' ? 'int' : 'String';
-        fromBody =
-            'json.map((e) => $n.values.firstWhere((k) => k.value == e as $raw)).toList()';
-        toBody = 'object.map((e) => e.value).toList()';
       case _ConverterKind.openEnum:
         final raw = entry.valueType == 'int' ? 'int' : 'String';
         fromBody = 'json.map((e) => $n(e as $raw)).toList()';
@@ -714,6 +705,12 @@ class _${n}ListConverter extends JsonConverter<List<$n>, List<dynamic>> {
 
     return Enum((b) {
       b.name = en.name;
+
+      // @JsonEnum(valueField: 'value') lets json_serializable encode/decode
+      // using the `value` field instead of the enum name.
+      b.annotations.add(
+        refer('JsonEnum').call([], {'valueField': literalString('value')}),
+      );
 
       if (en.documentation != null) {
         b.docs.add('/// ${en.documentation!.replaceAll('\n', '\n/// ')}');

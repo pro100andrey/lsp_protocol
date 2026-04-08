@@ -1,5 +1,7 @@
 // GENERATED — do not edit.
 
+import 'package:json_annotation/json_annotation.dart';
+
 /// A set of predefined token types. This set is not fixed
 /// an clients can specify additional token types via the
 /// corresponding client capabilities.
@@ -114,6 +116,7 @@ final class SemanticTokenModifiers {
 /// The document diagnostic report kinds.
 ///
 /// @since 3.17.0
+@JsonEnum(valueField: 'value')
 enum DocumentDiagnosticReportKind {
   /// A diagnostic report with a full
   /// set of problems.
@@ -203,7 +206,7 @@ final class FoldingRangeKind {
 }
 
 /// A symbol kind.
-
+@JsonEnum(valueField: 'value')
 enum SymbolKind {
   File(1),
   Module(2),
@@ -240,6 +243,7 @@ enum SymbolKind {
 /// Symbol tags are extra annotations that tweak the rendering of a symbol.
 ///
 /// @since 3.16
+@JsonEnum(valueField: 'value')
 enum SymbolTag {
   /// Render a symbol as obsolete, usually using a strike-out.
   Deprecated(1);
@@ -252,6 +256,7 @@ enum SymbolTag {
 /// Moniker uniqueness level to define scope of the moniker.
 ///
 /// @since 3.16.0
+@JsonEnum(valueField: 'value')
 enum UniquenessLevel {
   /// The moniker is only unique inside a document
   document('document'),
@@ -276,6 +281,7 @@ enum UniquenessLevel {
 /// The moniker kind.
 ///
 /// @since 3.16.0
+@JsonEnum(valueField: 'value')
 enum MonikerKind {
   /// The moniker represent a symbol that is imported into a project
   import_('import'),
@@ -295,6 +301,7 @@ enum MonikerKind {
 /// Inlay hint kinds.
 ///
 /// @since 3.17.0
+@JsonEnum(valueField: 'value')
 enum InlayHintKind {
   /// An inlay hint that for a type annotation.
   Type(1),
@@ -308,6 +315,7 @@ enum InlayHintKind {
 }
 
 /// The message type
+@JsonEnum(valueField: 'value')
 enum MessageType {
   /// An error message.
   Error(1),
@@ -333,6 +341,7 @@ enum MessageType {
 
 /// Defines how the host (editor) should sync
 /// document changes to the language server.
+@JsonEnum(valueField: 'value')
 enum TextDocumentSyncKind {
   /// Documents should not be synced at all.
   None(0),
@@ -352,6 +361,7 @@ enum TextDocumentSyncKind {
 }
 
 /// Represents reasons why a text document is saved.
+@JsonEnum(valueField: 'value')
 enum TextDocumentSaveReason {
   /// Manually triggered, e.g. by the user pressing save, by starting debugging,
   /// or by an API call.
@@ -369,6 +379,7 @@ enum TextDocumentSaveReason {
 }
 
 /// The kind of a completion entry.
+@JsonEnum(valueField: 'value')
 enum CompletionItemKind {
   Text(1),
   Method(2),
@@ -405,6 +416,7 @@ enum CompletionItemKind {
 /// item.
 ///
 /// @since 3.15.0
+@JsonEnum(valueField: 'value')
 enum CompletionItemTag {
   /// Render a completion as obsolete, usually using a strike-out.
   Deprecated(1);
@@ -416,6 +428,7 @@ enum CompletionItemTag {
 
 /// Defines whether the insert text in a completion item should be interpreted as
 /// plain text or a snippet.
+@JsonEnum(valueField: 'value')
 enum InsertTextFormat {
   /// The primary text to be inserted is treated as a plain string.
   PlainText(1),
@@ -439,6 +452,7 @@ enum InsertTextFormat {
 /// item insertion.
 ///
 /// @since 3.16.0
+@JsonEnum(valueField: 'value')
 enum InsertTextMode {
   /// The insertion or replace strings is taken as it is. If the
   /// value is multi line the lines below the cursor will be
@@ -462,6 +476,7 @@ enum InsertTextMode {
 }
 
 /// A document highlight kind.
+@JsonEnum(valueField: 'value')
 enum DocumentHighlightKind {
   /// A textual occurrence.
   Text(1),
@@ -550,6 +565,7 @@ final class CodeActionKind {
   static const CodeActionKind SourceFixAll = CodeActionKind('source.fixAll');
 }
 
+@JsonEnum(valueField: 'value')
 enum TraceValues {
   /// Turn tracing off.
   Off('off'),
@@ -570,6 +586,7 @@ enum TraceValues {
 ///
 /// Please note that `MarkupKinds` must not start with a `$`. This kinds
 /// are reserved for internal usage.
+@JsonEnum(valueField: 'value')
 enum MarkupKind {
   /// Plain text is supported as a content format
   PlainText('plaintext'),
@@ -586,6 +603,7 @@ enum MarkupKind {
 ///
 /// @since 3.18.0
 /// @proposed
+@JsonEnum(valueField: 'value')
 enum InlineCompletionTriggerKind {
   /// Completion was triggered explicitly by a user gesture.
   Invoked(0),
@@ -624,6 +642,7 @@ final class PositionEncodingKind {
 }
 
 /// The file event type
+@JsonEnum(valueField: 'value')
 enum FileChangeType {
   /// The file got created.
   Created(1),
@@ -655,6 +674,7 @@ final class WatchKind {
 }
 
 /// The diagnostic's severity.
+@JsonEnum(valueField: 'value')
 enum DiagnosticSeverity {
   /// Reports an error.
   Error(1),
@@ -676,6 +696,7 @@ enum DiagnosticSeverity {
 /// The diagnostic tags.
 ///
 /// @since 3.15.0
+@JsonEnum(valueField: 'value')
 enum DiagnosticTag {
   /// Unused or unnecessary code.
   ///
@@ -694,6 +715,7 @@ enum DiagnosticTag {
 }
 
 /// How a completion was triggered
+@JsonEnum(valueField: 'value')
 enum CompletionTriggerKind {
   /// Completion was triggered by typing an identifier (24x7 code
   /// complete), manual invocation (e.g Ctrl+Space) or via API.
@@ -714,6 +736,7 @@ enum CompletionTriggerKind {
 /// How a signature help was triggered.
 ///
 /// @since 3.15.0
+@JsonEnum(valueField: 'value')
 enum SignatureHelpTriggerKind {
   /// Signature help was invoked manually by the user or by a command.
   Invoked(1),
@@ -732,6 +755,7 @@ enum SignatureHelpTriggerKind {
 /// The reason why code actions were requested.
 ///
 /// @since 3.17.0
+@JsonEnum(valueField: 'value')
 enum CodeActionTriggerKind {
   /// Code actions were explicitly requested by the user or by an extension.
   Invoked(1),
@@ -751,6 +775,7 @@ enum CodeActionTriggerKind {
 /// both.
 ///
 /// @since 3.16.0
+@JsonEnum(valueField: 'value')
 enum FileOperationPatternKind {
   /// The pattern matches a file only.
   file('file'),
@@ -766,6 +791,7 @@ enum FileOperationPatternKind {
 /// A notebook cell kind.
 ///
 /// @since 3.17.0
+@JsonEnum(valueField: 'value')
 enum NotebookCellKind {
   /// A markup-cell is formatted source that is used for display.
   Markup(1),
@@ -778,6 +804,7 @@ enum NotebookCellKind {
   final int value;
 }
 
+@JsonEnum(valueField: 'value')
 enum ResourceOperationKind {
   /// Supports creating new files and folders.
   Create('create'),
@@ -793,6 +820,7 @@ enum ResourceOperationKind {
   final String value;
 }
 
+@JsonEnum(valueField: 'value')
 enum FailureHandlingKind {
   /// Applying the workspace change is simply aborted if one of the changes provided
   /// fails. All operations executed before the failing operation stay executed.
@@ -816,6 +844,7 @@ enum FailureHandlingKind {
   final String value;
 }
 
+@JsonEnum(valueField: 'value')
 enum PrepareSupportDefaultBehavior {
   /// The client's default behavior is to select the identifier
   /// according the to language's syntax rule.
@@ -826,6 +855,7 @@ enum PrepareSupportDefaultBehavior {
   final int value;
 }
 
+@JsonEnum(valueField: 'value')
 enum TokenFormat {
   Relative('relative');
 

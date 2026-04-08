@@ -27,143 +27,12 @@ class _FoldingRangeKindConverter
   String toJson(FoldingRangeKind object) => object.value;
 }
 
-class _SymbolKindConverter extends JsonConverter<SymbolKind, int> {
-  const _SymbolKindConverter();
-  @override
-  SymbolKind fromJson(int json) =>
-      SymbolKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(SymbolKind object) => object.value;
-}
-
-class _UniquenessLevelConverter extends JsonConverter<UniquenessLevel, String> {
-  const _UniquenessLevelConverter();
-  @override
-  UniquenessLevel fromJson(String json) =>
-      UniquenessLevel.values.firstWhere((e) => e.value == json);
-  @override
-  String toJson(UniquenessLevel object) => object.value;
-}
-
-class _MonikerKindConverter extends JsonConverter<MonikerKind, String> {
-  const _MonikerKindConverter();
-  @override
-  MonikerKind fromJson(String json) =>
-      MonikerKind.values.firstWhere((e) => e.value == json);
-  @override
-  String toJson(MonikerKind object) => object.value;
-}
-
-class _InlayHintKindConverter extends JsonConverter<InlayHintKind, int> {
-  const _InlayHintKindConverter();
-  @override
-  InlayHintKind fromJson(int json) =>
-      InlayHintKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(InlayHintKind object) => object.value;
-}
-
-class _TraceValuesConverter extends JsonConverter<TraceValues, String> {
-  const _TraceValuesConverter();
-  @override
-  TraceValues fromJson(String json) =>
-      TraceValues.values.firstWhere((e) => e.value == json);
-  @override
-  String toJson(TraceValues object) => object.value;
-}
-
-class _MessageTypeConverter extends JsonConverter<MessageType, int> {
-  const _MessageTypeConverter();
-  @override
-  MessageType fromJson(int json) =>
-      MessageType.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(MessageType object) => object.value;
-}
-
-class _TextDocumentSyncKindConverter
-    extends JsonConverter<TextDocumentSyncKind, int> {
-  const _TextDocumentSyncKindConverter();
-  @override
-  TextDocumentSyncKind fromJson(int json) =>
-      TextDocumentSyncKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(TextDocumentSyncKind object) => object.value;
-}
-
-class _TextDocumentSaveReasonConverter
-    extends JsonConverter<TextDocumentSaveReason, int> {
-  const _TextDocumentSaveReasonConverter();
-  @override
-  TextDocumentSaveReason fromJson(int json) =>
-      TextDocumentSaveReason.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(TextDocumentSaveReason object) => object.value;
-}
-
-class _CompletionItemKindConverter
-    extends JsonConverter<CompletionItemKind, int> {
-  const _CompletionItemKindConverter();
-  @override
-  CompletionItemKind fromJson(int json) =>
-      CompletionItemKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(CompletionItemKind object) => object.value;
-}
-
-class _InsertTextFormatConverter extends JsonConverter<InsertTextFormat, int> {
-  const _InsertTextFormatConverter();
-  @override
-  InsertTextFormat fromJson(int json) =>
-      InsertTextFormat.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(InsertTextFormat object) => object.value;
-}
-
-class _InsertTextModeConverter extends JsonConverter<InsertTextMode, int> {
-  const _InsertTextModeConverter();
-  @override
-  InsertTextMode fromJson(int json) =>
-      InsertTextMode.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(InsertTextMode object) => object.value;
-}
-
-class _DocumentHighlightKindConverter
-    extends JsonConverter<DocumentHighlightKind, int> {
-  const _DocumentHighlightKindConverter();
-  @override
-  DocumentHighlightKind fromJson(int json) =>
-      DocumentHighlightKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(DocumentHighlightKind object) => object.value;
-}
-
 class _CodeActionKindConverter extends JsonConverter<CodeActionKind, String> {
   const _CodeActionKindConverter();
   @override
   CodeActionKind fromJson(String json) => CodeActionKind(json);
   @override
   String toJson(CodeActionKind object) => object.value;
-}
-
-class _MarkupKindConverter extends JsonConverter<MarkupKind, String> {
-  const _MarkupKindConverter();
-  @override
-  MarkupKind fromJson(String json) =>
-      MarkupKind.values.firstWhere((e) => e.value == json);
-  @override
-  String toJson(MarkupKind object) => object.value;
-}
-
-class _InlineCompletionTriggerKindConverter
-    extends JsonConverter<InlineCompletionTriggerKind, int> {
-  const _InlineCompletionTriggerKindConverter();
-  @override
-  InlineCompletionTriggerKind fromJson(int json) =>
-      InlineCompletionTriggerKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(InlineCompletionTriggerKind object) => object.value;
 }
 
 class _PositionEncodingKindConverter
@@ -175,112 +44,12 @@ class _PositionEncodingKindConverter
   String toJson(PositionEncodingKind object) => object.value;
 }
 
-class _FileChangeTypeConverter extends JsonConverter<FileChangeType, int> {
-  const _FileChangeTypeConverter();
-  @override
-  FileChangeType fromJson(int json) =>
-      FileChangeType.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(FileChangeType object) => object.value;
-}
-
 class _WatchKindConverter extends JsonConverter<WatchKind, int> {
   const _WatchKindConverter();
   @override
   WatchKind fromJson(int json) => WatchKind(json);
   @override
   int toJson(WatchKind object) => object.value;
-}
-
-class _DiagnosticSeverityConverter
-    extends JsonConverter<DiagnosticSeverity, int> {
-  const _DiagnosticSeverityConverter();
-  @override
-  DiagnosticSeverity fromJson(int json) =>
-      DiagnosticSeverity.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(DiagnosticSeverity object) => object.value;
-}
-
-class _CompletionTriggerKindConverter
-    extends JsonConverter<CompletionTriggerKind, int> {
-  const _CompletionTriggerKindConverter();
-  @override
-  CompletionTriggerKind fromJson(int json) =>
-      CompletionTriggerKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(CompletionTriggerKind object) => object.value;
-}
-
-class _SignatureHelpTriggerKindConverter
-    extends JsonConverter<SignatureHelpTriggerKind, int> {
-  const _SignatureHelpTriggerKindConverter();
-  @override
-  SignatureHelpTriggerKind fromJson(int json) =>
-      SignatureHelpTriggerKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(SignatureHelpTriggerKind object) => object.value;
-}
-
-class _CodeActionTriggerKindConverter
-    extends JsonConverter<CodeActionTriggerKind, int> {
-  const _CodeActionTriggerKindConverter();
-  @override
-  CodeActionTriggerKind fromJson(int json) =>
-      CodeActionTriggerKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(CodeActionTriggerKind object) => object.value;
-}
-
-class _FileOperationPatternKindConverter
-    extends JsonConverter<FileOperationPatternKind, String> {
-  const _FileOperationPatternKindConverter();
-  @override
-  FileOperationPatternKind fromJson(String json) =>
-      FileOperationPatternKind.values.firstWhere((e) => e.value == json);
-  @override
-  String toJson(FileOperationPatternKind object) => object.value;
-}
-
-class _NotebookCellKindConverter extends JsonConverter<NotebookCellKind, int> {
-  const _NotebookCellKindConverter();
-  @override
-  NotebookCellKind fromJson(int json) =>
-      NotebookCellKind.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(NotebookCellKind object) => object.value;
-}
-
-class _FailureHandlingKindConverter
-    extends JsonConverter<FailureHandlingKind, String> {
-  const _FailureHandlingKindConverter();
-  @override
-  FailureHandlingKind fromJson(String json) =>
-      FailureHandlingKind.values.firstWhere((e) => e.value == json);
-  @override
-  String toJson(FailureHandlingKind object) => object.value;
-}
-
-class _PrepareSupportDefaultBehaviorConverter
-    extends JsonConverter<PrepareSupportDefaultBehavior, int> {
-  const _PrepareSupportDefaultBehaviorConverter();
-  @override
-  PrepareSupportDefaultBehavior fromJson(int json) =>
-      PrepareSupportDefaultBehavior.values.firstWhere((e) => e.value == json);
-  @override
-  int toJson(PrepareSupportDefaultBehavior object) => object.value;
-}
-
-class _SymbolTagListConverter
-    extends JsonConverter<List<SymbolTag>, List<dynamic>> {
-  const _SymbolTagListConverter();
-  @override
-  List<SymbolTag> fromJson(List<dynamic> json) => json
-      .map((e) => SymbolTag.values.firstWhere((k) => k.value == e as int))
-      .toList();
-  @override
-  List<dynamic> toJson(List<SymbolTag> object) =>
-      object.map((e) => e.value).toList();
 }
 
 class _WorkspaceDocumentDiagnosticReportListConverter
@@ -300,20 +69,6 @@ class _WorkspaceDocumentDiagnosticReportListConverter
       object.map<Object>((e) => e.toJson()).toList();
 }
 
-class _CompletionItemTagListConverter
-    extends JsonConverter<List<CompletionItemTag>, List<dynamic>> {
-  const _CompletionItemTagListConverter();
-  @override
-  List<CompletionItemTag> fromJson(List<dynamic> json) => json
-      .map(
-        (e) => CompletionItemTag.values.firstWhere((k) => k.value == e as int),
-      )
-      .toList();
-  @override
-  List<dynamic> toJson(List<CompletionItemTag> object) =>
-      object.map((e) => e.value).toList();
-}
-
 class _CodeActionKindListConverter
     extends JsonConverter<List<CodeActionKind>, List<dynamic>> {
   const _CodeActionKindListConverter();
@@ -325,18 +80,6 @@ class _CodeActionKindListConverter
       object.map((e) => e.value).toList();
 }
 
-class _DiagnosticTagListConverter
-    extends JsonConverter<List<DiagnosticTag>, List<dynamic>> {
-  const _DiagnosticTagListConverter();
-  @override
-  List<DiagnosticTag> fromJson(List<dynamic> json) => json
-      .map((e) => DiagnosticTag.values.firstWhere((k) => k.value == e as int))
-      .toList();
-  @override
-  List<dynamic> toJson(List<DiagnosticTag> object) =>
-      object.map((e) => e.value).toList();
-}
-
 class _PositionEncodingKindListConverter
     extends JsonConverter<List<PositionEncodingKind>, List<dynamic>> {
   const _PositionEncodingKindListConverter();
@@ -345,84 +88,6 @@ class _PositionEncodingKindListConverter
       json.map((e) => PositionEncodingKind(e as String)).toList();
   @override
   List<dynamic> toJson(List<PositionEncodingKind> object) =>
-      object.map((e) => e.value).toList();
-}
-
-class _ResourceOperationKindListConverter
-    extends JsonConverter<List<ResourceOperationKind>, List<dynamic>> {
-  const _ResourceOperationKindListConverter();
-  @override
-  List<ResourceOperationKind> fromJson(List<dynamic> json) => json
-      .map(
-        (e) => ResourceOperationKind.values.firstWhere(
-          (k) => k.value == e as String,
-        ),
-      )
-      .toList();
-  @override
-  List<dynamic> toJson(List<ResourceOperationKind> object) =>
-      object.map((e) => e.value).toList();
-}
-
-class _MarkupKindListConverter
-    extends JsonConverter<List<MarkupKind>, List<dynamic>> {
-  const _MarkupKindListConverter();
-  @override
-  List<MarkupKind> fromJson(List<dynamic> json) => json
-      .map((e) => MarkupKind.values.firstWhere((k) => k.value == e as String))
-      .toList();
-  @override
-  List<dynamic> toJson(List<MarkupKind> object) =>
-      object.map((e) => e.value).toList();
-}
-
-class _TokenFormatListConverter
-    extends JsonConverter<List<TokenFormat>, List<dynamic>> {
-  const _TokenFormatListConverter();
-  @override
-  List<TokenFormat> fromJson(List<dynamic> json) => json
-      .map((e) => TokenFormat.values.firstWhere((k) => k.value == e as String))
-      .toList();
-  @override
-  List<dynamic> toJson(List<TokenFormat> object) =>
-      object.map((e) => e.value).toList();
-}
-
-class _SymbolKindListConverter
-    extends JsonConverter<List<SymbolKind>, List<dynamic>> {
-  const _SymbolKindListConverter();
-  @override
-  List<SymbolKind> fromJson(List<dynamic> json) => json
-      .map((e) => SymbolKind.values.firstWhere((k) => k.value == e as int))
-      .toList();
-  @override
-  List<dynamic> toJson(List<SymbolKind> object) =>
-      object.map((e) => e.value).toList();
-}
-
-class _InsertTextModeListConverter
-    extends JsonConverter<List<InsertTextMode>, List<dynamic>> {
-  const _InsertTextModeListConverter();
-  @override
-  List<InsertTextMode> fromJson(List<dynamic> json) => json
-      .map((e) => InsertTextMode.values.firstWhere((k) => k.value == e as int))
-      .toList();
-  @override
-  List<dynamic> toJson(List<InsertTextMode> object) =>
-      object.map((e) => e.value).toList();
-}
-
-class _CompletionItemKindListConverter
-    extends JsonConverter<List<CompletionItemKind>, List<dynamic>> {
-  const _CompletionItemKindListConverter();
-  @override
-  List<CompletionItemKind> fromJson(List<dynamic> json) => json
-      .map(
-        (e) => CompletionItemKind.values.firstWhere((k) => k.value == e as int),
-      )
-      .toList();
-  @override
-  List<dynamic> toJson(List<CompletionItemKind> object) =>
       object.map((e) => e.value).toList();
 }
 
@@ -457,8 +122,8 @@ abstract class CompletionListItemDefaults with _$CompletionListItemDefaults {
   const factory CompletionListItemDefaults({
     List<String>? commitCharacters,
     Object? editRange,
-    @_InsertTextFormatConverter() InsertTextFormat? insertTextFormat,
-    @_InsertTextModeConverter() InsertTextMode? insertTextMode,
+    InsertTextFormat? insertTextFormat,
+    InsertTextMode? insertTextMode,
     LSPAny? data,
   }) = _CompletionListItemDefaults;
 
@@ -674,7 +339,7 @@ abstract class WorkspaceSymbolClientCapabilitiesSymbolKind
   const WorkspaceSymbolClientCapabilitiesSymbolKind._();
 
   const factory WorkspaceSymbolClientCapabilitiesSymbolKind({
-    @_SymbolKindListConverter() List<SymbolKind>? valueSet,
+    List<SymbolKind>? valueSet,
   }) = _WorkspaceSymbolClientCapabilitiesSymbolKind;
 
   factory WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(
@@ -688,7 +353,7 @@ abstract class WorkspaceSymbolClientCapabilitiesTagSupport
   const WorkspaceSymbolClientCapabilitiesTagSupport._();
 
   const factory WorkspaceSymbolClientCapabilitiesTagSupport({
-    @_SymbolTagListConverter() required List<SymbolTag> valueSet,
+    required List<SymbolTag> valueSet,
   }) = _WorkspaceSymbolClientCapabilitiesTagSupport;
 
   factory WorkspaceSymbolClientCapabilitiesTagSupport.fromJson(
@@ -718,7 +383,7 @@ abstract class CompletionClientCapabilitiesCompletionItem
   const factory CompletionClientCapabilitiesCompletionItem({
     bool? snippetSupport,
     bool? commitCharactersSupport,
-    @_MarkupKindListConverter() List<MarkupKind>? documentationFormat,
+    List<MarkupKind>? documentationFormat,
     bool? deprecatedSupport,
     bool? preselectSupport,
     CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,
@@ -740,7 +405,6 @@ abstract class CompletionClientCapabilitiesCompletionItemTagSupport
   const CompletionClientCapabilitiesCompletionItemTagSupport._();
 
   const factory CompletionClientCapabilitiesCompletionItemTagSupport({
-    @_CompletionItemTagListConverter()
     required List<CompletionItemTag> valueSet,
   }) = _CompletionClientCapabilitiesCompletionItemTagSupport;
 
@@ -769,7 +433,7 @@ abstract class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
   const CompletionClientCapabilitiesCompletionItemInsertTextModeSupport._();
 
   const factory CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({
-    @_InsertTextModeListConverter() required List<InsertTextMode> valueSet,
+    required List<InsertTextMode> valueSet,
   }) = _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport;
 
   factory CompletionClientCapabilitiesCompletionItemInsertTextModeSupport.fromJson(
@@ -786,7 +450,7 @@ abstract class CompletionClientCapabilitiesCompletionItemKind
   const CompletionClientCapabilitiesCompletionItemKind._();
 
   const factory CompletionClientCapabilitiesCompletionItemKind({
-    @_CompletionItemKindListConverter() List<CompletionItemKind>? valueSet,
+    List<CompletionItemKind>? valueSet,
   }) = _CompletionClientCapabilitiesCompletionItemKind;
 
   factory CompletionClientCapabilitiesCompletionItemKind.fromJson(
@@ -814,7 +478,7 @@ abstract class SignatureHelpClientCapabilitiesSignatureInformation
   const SignatureHelpClientCapabilitiesSignatureInformation._();
 
   const factory SignatureHelpClientCapabilitiesSignatureInformation({
-    @_MarkupKindListConverter() List<MarkupKind>? documentationFormat,
+    List<MarkupKind>? documentationFormat,
     SignatureHelpClientCapabilitiesSignatureInformationParameterInformation?
     parameterInformation,
     bool? activeParameterSupport,
@@ -849,7 +513,7 @@ abstract class DocumentSymbolClientCapabilitiesSymbolKind
   const DocumentSymbolClientCapabilitiesSymbolKind._();
 
   const factory DocumentSymbolClientCapabilitiesSymbolKind({
-    @_SymbolKindListConverter() List<SymbolKind>? valueSet,
+    List<SymbolKind>? valueSet,
   }) = _DocumentSymbolClientCapabilitiesSymbolKind;
 
   factory DocumentSymbolClientCapabilitiesSymbolKind.fromJson(
@@ -863,7 +527,7 @@ abstract class DocumentSymbolClientCapabilitiesTagSupport
   const DocumentSymbolClientCapabilitiesTagSupport._();
 
   const factory DocumentSymbolClientCapabilitiesTagSupport({
-    @_SymbolTagListConverter() required List<SymbolTag> valueSet,
+    required List<SymbolTag> valueSet,
   }) = _DocumentSymbolClientCapabilitiesTagSupport;
 
   factory DocumentSymbolClientCapabilitiesTagSupport.fromJson(
@@ -951,7 +615,7 @@ abstract class PublishDiagnosticsClientCapabilitiesTagSupport
   const PublishDiagnosticsClientCapabilitiesTagSupport._();
 
   const factory PublishDiagnosticsClientCapabilitiesTagSupport({
-    @_DiagnosticTagListConverter() required List<DiagnosticTag> valueSet,
+    required List<DiagnosticTag> valueSet,
   }) = _PublishDiagnosticsClientCapabilitiesTagSupport;
 
   factory PublishDiagnosticsClientCapabilitiesTagSupport.fromJson(
@@ -1486,8 +1150,8 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
 
   const factory CallHierarchyItem({
     required String name,
-    @_SymbolKindConverter() required SymbolKind kind,
-    @_SymbolTagListConverter() List<SymbolTag>? tags,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
     String? detail,
     required String uri,
     required Range range,
@@ -1899,8 +1563,8 @@ abstract class Moniker with _$Moniker {
   const factory Moniker({
     required String scheme,
     required String identifier,
-    @_UniquenessLevelConverter() required UniquenessLevel unique,
-    @_MonikerKindConverter() MonikerKind? kind,
+    required UniquenessLevel unique,
+    MonikerKind? kind,
   }) = _Moniker;
 
   factory Moniker.fromJson(Map<String, dynamic> json) =>
@@ -1944,8 +1608,8 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
 
   const factory TypeHierarchyItem({
     required String name,
-    @_SymbolKindConverter() required SymbolKind kind,
-    @_SymbolTagListConverter() List<SymbolTag>? tags,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
     String? detail,
     required String uri,
     required Range range,
@@ -2074,7 +1738,7 @@ abstract class InlayHint with _$InlayHint {
   const factory InlayHint({
     required Position position,
     required Object label,
-    @_InlayHintKindConverter() InlayHintKind? kind,
+    InlayHintKind? kind,
     List<TextEdit>? textEdits,
     Object? tooltip,
     bool? paddingLeft,
@@ -2409,7 +2073,7 @@ abstract class InitializeParams with _$InitializeParams {
     required String? rootUri,
     required ClientCapabilities capabilities,
     LSPAny? initializationOptions,
-    @_TraceValuesConverter() TraceValues? trace,
+    TraceValues? trace,
     List<WorkspaceFolder>? workspaceFolders,
   }) = _InitializeParams;
 
@@ -2485,7 +2149,7 @@ abstract class ShowMessageParams with _$ShowMessageParams {
   const ShowMessageParams._();
 
   const factory ShowMessageParams({
-    @_MessageTypeConverter() required MessageType type,
+    required MessageType type,
     required String message,
   }) = _ShowMessageParams;
 
@@ -2498,7 +2162,7 @@ abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
   const ShowMessageRequestParams._();
 
   const factory ShowMessageRequestParams({
-    @_MessageTypeConverter() required MessageType type,
+    required MessageType type,
     required String message,
     List<MessageActionItem>? actions,
   }) = _ShowMessageRequestParams;
@@ -2523,7 +2187,7 @@ abstract class LogMessageParams with _$LogMessageParams {
   const LogMessageParams._();
 
   const factory LogMessageParams({
-    @_MessageTypeConverter() required MessageType type,
+    required MessageType type,
     required String message,
   }) = _LogMessageParams;
 
@@ -2566,7 +2230,7 @@ abstract class TextDocumentChangeRegistrationOptions
 
   const factory TextDocumentChangeRegistrationOptions({
     required DocumentSelector? documentSelector,
-    @_TextDocumentSyncKindConverter() required TextDocumentSyncKind syncKind,
+    required TextDocumentSyncKind syncKind,
   }) = _TextDocumentChangeRegistrationOptions;
 
   factory TextDocumentChangeRegistrationOptions.fromJson(
@@ -2624,7 +2288,7 @@ abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
 
   const factory WillSaveTextDocumentParams({
     required TextDocumentIdentifier textDocument,
-    @_TextDocumentSaveReasonConverter() required TextDocumentSaveReason reason,
+    required TextDocumentSaveReason reason,
   }) = _WillSaveTextDocumentParams;
 
   factory WillSaveTextDocumentParams.fromJson(Map<String, dynamic> json) =>
@@ -2712,8 +2376,8 @@ abstract class CompletionItem with _$CompletionItem {
   const factory CompletionItem({
     required String label,
     CompletionItemLabelDetails? labelDetails,
-    @_CompletionItemKindConverter() CompletionItemKind? kind,
-    @_CompletionItemTagListConverter() List<CompletionItemTag>? tags,
+    CompletionItemKind? kind,
+    List<CompletionItemTag>? tags,
     String? detail,
     Object? documentation,
     bool? deprecated,
@@ -2721,8 +2385,8 @@ abstract class CompletionItem with _$CompletionItem {
     String? sortText,
     String? filterText,
     String? insertText,
-    @_InsertTextFormatConverter() InsertTextFormat? insertTextFormat,
-    @_InsertTextModeConverter() InsertTextMode? insertTextMode,
+    InsertTextFormat? insertTextFormat,
+    InsertTextMode? insertTextMode,
     Object? textEdit,
     String? textEditText,
     List<TextEdit>? additionalTextEdits,
@@ -2948,7 +2612,7 @@ abstract class DocumentHighlight with _$DocumentHighlight {
 
   const factory DocumentHighlight({
     required Range range,
-    @_DocumentHighlightKindConverter() DocumentHighlightKind? kind,
+    DocumentHighlightKind? kind,
   }) = _DocumentHighlight;
 
   factory DocumentHighlight.fromJson(Map<String, dynamic> json) =>
@@ -2994,8 +2658,8 @@ abstract class SymbolInformation with _$SymbolInformation {
 
   const factory SymbolInformation({
     required String name,
-    @_SymbolKindConverter() required SymbolKind kind,
-    @_SymbolTagListConverter() List<SymbolTag>? tags,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
     String? containerName,
     bool? deprecated,
     required Location location,
@@ -3016,8 +2680,8 @@ abstract class DocumentSymbol with _$DocumentSymbol {
   const factory DocumentSymbol({
     required String name,
     String? detail,
-    @_SymbolKindConverter() required SymbolKind kind,
-    @_SymbolTagListConverter() List<SymbolTag>? tags,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
     bool? deprecated,
     required Range range,
     required Range selectionRange,
@@ -3146,8 +2810,8 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
 
   const factory WorkspaceSymbol({
     required String name,
-    @_SymbolKindConverter() required SymbolKind kind,
-    @_SymbolTagListConverter() List<SymbolTag>? tags,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
     String? containerName,
     required Object location,
     LSPAny? data,
@@ -3542,9 +3206,7 @@ abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
 abstract class SetTraceParams with _$SetTraceParams {
   const SetTraceParams._();
 
-  const factory SetTraceParams({
-    @_TraceValuesConverter() required TraceValues value,
-  }) = _SetTraceParams;
+  const factory SetTraceParams({required TraceValues value}) = _SetTraceParams;
 
   factory SetTraceParams.fromJson(Map<String, dynamic> json) =>
       _$SetTraceParamsFromJson(json);
@@ -4177,7 +3839,7 @@ abstract class MarkupContent with _$MarkupContent {
   const MarkupContent._();
 
   const factory MarkupContent({
-    @_MarkupKindConverter() required MarkupKind kind,
+    required MarkupKind kind,
     required String value,
   }) = _MarkupContent;
 
@@ -4402,7 +4064,6 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
   const InlineCompletionContext._();
 
   const factory InlineCompletionContext({
-    @_InlineCompletionTriggerKindConverter()
     required InlineCompletionTriggerKind triggerKind,
     SelectedCompletionInfo? selectedCompletionInfo,
   }) = _InlineCompletionContext;
@@ -4568,10 +4229,8 @@ abstract class SaveOptions with _$SaveOptions {
 abstract class FileEvent with _$FileEvent {
   const FileEvent._();
 
-  const factory FileEvent({
-    required String uri,
-    @_FileChangeTypeConverter() required FileChangeType type,
-  }) = _FileEvent;
+  const factory FileEvent({required String uri, required FileChangeType type}) =
+      _FileEvent;
 
   factory FileEvent.fromJson(Map<String, dynamic> json) =>
       _$FileEventFromJson(json);
@@ -4598,12 +4257,12 @@ abstract class Diagnostic with _$Diagnostic {
 
   const factory Diagnostic({
     required Range range,
-    @_DiagnosticSeverityConverter() DiagnosticSeverity? severity,
+    DiagnosticSeverity? severity,
     Object? code,
     CodeDescription? codeDescription,
     String? source,
     required String message,
-    @_DiagnosticTagListConverter() List<DiagnosticTag>? tags,
+    List<DiagnosticTag>? tags,
     List<DiagnosticRelatedInformation>? relatedInformation,
     LSPAny? data,
   }) = _Diagnostic;
@@ -4618,7 +4277,6 @@ abstract class CompletionContext with _$CompletionContext {
   const CompletionContext._();
 
   const factory CompletionContext({
-    @_CompletionTriggerKindConverter()
     required CompletionTriggerKind triggerKind,
     String? triggerCharacter,
   }) = _CompletionContext;
@@ -4696,7 +4354,6 @@ abstract class SignatureHelpContext with _$SignatureHelpContext {
   const SignatureHelpContext._();
 
   const factory SignatureHelpContext({
-    @_SignatureHelpTriggerKindConverter()
     required SignatureHelpTriggerKind triggerKind,
     String? triggerCharacter,
     required bool isRetrigger,
@@ -4795,8 +4452,8 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
 
   const factory BaseSymbolInformation({
     required String name,
-    @_SymbolKindConverter() required SymbolKind kind,
-    @_SymbolTagListConverter() List<SymbolTag>? tags,
+    required SymbolKind kind,
+    List<SymbolTag>? tags,
     String? containerName,
   }) = _BaseSymbolInformation;
 
@@ -4825,7 +4482,7 @@ abstract class CodeActionContext with _$CodeActionContext {
   const factory CodeActionContext({
     required List<Diagnostic> diagnostics,
     @_CodeActionKindListConverter() List<CodeActionKind>? only,
-    @_CodeActionTriggerKindConverter() CodeActionTriggerKind? triggerKind,
+    CodeActionTriggerKind? triggerKind,
   }) = _CodeActionContext;
 
   factory CodeActionContext.fromJson(Map<String, dynamic> json) =>
@@ -5081,7 +4738,7 @@ abstract class FileOperationPattern with _$FileOperationPattern {
 
   const factory FileOperationPattern({
     required String glob,
-    @_FileOperationPatternKindConverter() FileOperationPatternKind? matches,
+    FileOperationPatternKind? matches,
     FileOperationPatternOptions? options,
   }) = _FileOperationPattern;
 
@@ -5142,7 +4799,7 @@ abstract class NotebookCell with _$NotebookCell {
   const NotebookCell._();
 
   const factory NotebookCell({
-    @_NotebookCellKindConverter() required NotebookCellKind kind,
+    required NotebookCellKind kind,
     required String document,
     LSPObject? metadata,
     ExecutionSummary? executionSummary,
@@ -5211,7 +4868,7 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
 
   const factory TextDocumentSyncOptions({
     bool? openClose,
-    @_TextDocumentSyncKindConverter() TextDocumentSyncKind? change,
+    TextDocumentSyncKind? change,
     bool? willSave,
     bool? willSaveWaitUntil,
     Object? save,
@@ -5535,9 +5192,8 @@ abstract class WorkspaceEditClientCapabilities
 
   const factory WorkspaceEditClientCapabilities({
     bool? documentChanges,
-    @_ResourceOperationKindListConverter()
     List<ResourceOperationKind>? resourceOperations,
-    @_FailureHandlingKindConverter() FailureHandlingKind? failureHandling,
+    FailureHandlingKind? failureHandling,
     bool? normalizesLineEndings,
     WorkspaceEditClientCapabilitiesChangeAnnotationSupport?
     changeAnnotationSupport,
@@ -5755,7 +5411,7 @@ abstract class CompletionClientCapabilities
     bool? dynamicRegistration,
     CompletionClientCapabilitiesCompletionItem? completionItem,
     CompletionClientCapabilitiesCompletionItemKind? completionItemKind,
-    @_InsertTextModeConverter() InsertTextMode? insertTextMode,
+    InsertTextMode? insertTextMode,
     bool? contextSupport,
     CompletionClientCapabilitiesCompletionList? completionList,
   }) = _CompletionClientCapabilities;
@@ -5770,7 +5426,7 @@ abstract class HoverClientCapabilities with _$HoverClientCapabilities {
 
   const factory HoverClientCapabilities({
     bool? dynamicRegistration,
-    @_MarkupKindListConverter() List<MarkupKind>? contentFormat,
+    List<MarkupKind>? contentFormat,
   }) = _HoverClientCapabilities;
 
   factory HoverClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -6014,7 +5670,6 @@ abstract class RenameClientCapabilities with _$RenameClientCapabilities {
   const factory RenameClientCapabilities({
     bool? dynamicRegistration,
     bool? prepareSupport,
-    @_PrepareSupportDefaultBehaviorConverter()
     PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,
     bool? honorsChangeAnnotations,
   }) = _RenameClientCapabilities;
@@ -6096,7 +5751,7 @@ abstract class SemanticTokensClientCapabilities
     required SemanticTokensClientCapabilitiesRequests requests,
     required List<String> tokenTypes,
     required List<String> tokenModifiers,
-    @_TokenFormatListConverter() required List<TokenFormat> formats,
+    required List<TokenFormat> formats,
     bool? overlappingTokenSupport,
     bool? multilineTokenSupport,
     bool? serverCancelSupport,

@@ -281,7 +281,7 @@ as String?,
 /// @nodoc
 mixin _$CompletionListItemDefaults {
 
- List<String>? get commitCharacters; Object? get editRange;@_InsertTextFormatConverter() InsertTextFormat? get insertTextFormat;@_InsertTextModeConverter() InsertTextMode? get insertTextMode; LSPAny? get data;
+ List<String>? get commitCharacters; Object? get editRange; InsertTextFormat? get insertTextFormat; InsertTextMode? get insertTextMode; LSPAny? get data;
 /// Create a copy of CompletionListItemDefaults
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -314,7 +314,7 @@ abstract mixin class $CompletionListItemDefaultsCopyWith<$Res>  {
   factory $CompletionListItemDefaultsCopyWith(CompletionListItemDefaults value, $Res Function(CompletionListItemDefaults) _then) = _$CompletionListItemDefaultsCopyWithImpl;
 @useResult
 $Res call({
- List<String>? commitCharacters, Object? editRange,@_InsertTextFormatConverter() InsertTextFormat? insertTextFormat,@_InsertTextModeConverter() InsertTextMode? insertTextMode, LSPAny? data
+ List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data
 });
 
 
@@ -421,7 +421,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String>? commitCharacters,  Object? editRange, @_InsertTextFormatConverter()  InsertTextFormat? insertTextFormat, @_InsertTextModeConverter()  InsertTextMode? insertTextMode,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String>? commitCharacters,  Object? editRange,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionListItemDefaults() when $default != null:
 return $default(_that.commitCharacters,_that.editRange,_that.insertTextFormat,_that.insertTextMode,_that.data);case _:
@@ -442,7 +442,7 @@ return $default(_that.commitCharacters,_that.editRange,_that.insertTextFormat,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String>? commitCharacters,  Object? editRange, @_InsertTextFormatConverter()  InsertTextFormat? insertTextFormat, @_InsertTextModeConverter()  InsertTextMode? insertTextMode,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String>? commitCharacters,  Object? editRange,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionListItemDefaults():
 return $default(_that.commitCharacters,_that.editRange,_that.insertTextFormat,_that.insertTextMode,_that.data);case _:
@@ -462,7 +462,7 @@ return $default(_that.commitCharacters,_that.editRange,_that.insertTextFormat,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String>? commitCharacters,  Object? editRange, @_InsertTextFormatConverter()  InsertTextFormat? insertTextFormat, @_InsertTextModeConverter()  InsertTextMode? insertTextMode,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String>? commitCharacters,  Object? editRange,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionListItemDefaults() when $default != null:
 return $default(_that.commitCharacters,_that.editRange,_that.insertTextFormat,_that.insertTextMode,_that.data);case _:
@@ -477,7 +477,7 @@ return $default(_that.commitCharacters,_that.editRange,_that.insertTextFormat,_t
 @JsonSerializable()
 
 class _CompletionListItemDefaults extends CompletionListItemDefaults {
-  const _CompletionListItemDefaults({final  List<String>? commitCharacters, this.editRange, @_InsertTextFormatConverter() this.insertTextFormat, @_InsertTextModeConverter() this.insertTextMode, this.data}): _commitCharacters = commitCharacters,super._();
+  const _CompletionListItemDefaults({final  List<String>? commitCharacters, this.editRange, this.insertTextFormat, this.insertTextMode, this.data}): _commitCharacters = commitCharacters,super._();
   factory _CompletionListItemDefaults.fromJson(Map<String, dynamic> json) => _$CompletionListItemDefaultsFromJson(json);
 
  final  List<String>? _commitCharacters;
@@ -490,8 +490,8 @@ class _CompletionListItemDefaults extends CompletionListItemDefaults {
 }
 
 @override final  Object? editRange;
-@override@_InsertTextFormatConverter() final  InsertTextFormat? insertTextFormat;
-@override@_InsertTextModeConverter() final  InsertTextMode? insertTextMode;
+@override final  InsertTextFormat? insertTextFormat;
+@override final  InsertTextMode? insertTextMode;
 @override final  LSPAny? data;
 
 /// Create a copy of CompletionListItemDefaults
@@ -527,7 +527,7 @@ abstract mixin class _$CompletionListItemDefaultsCopyWith<$Res> implements $Comp
   factory _$CompletionListItemDefaultsCopyWith(_CompletionListItemDefaults value, $Res Function(_CompletionListItemDefaults) _then) = __$CompletionListItemDefaultsCopyWithImpl;
 @override @useResult
 $Res call({
- List<String>? commitCharacters, Object? editRange,@_InsertTextFormatConverter() InsertTextFormat? insertTextFormat,@_InsertTextModeConverter() InsertTextMode? insertTextMode, LSPAny? data
+ List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data
 });
 
 
@@ -4398,7 +4398,7 @@ as bool?,
 /// @nodoc
 mixin _$WorkspaceSymbolClientCapabilitiesSymbolKind {
 
-@_SymbolKindListConverter() List<SymbolKind>? get valueSet;
+ List<SymbolKind>? get valueSet;
 /// Create a copy of WorkspaceSymbolClientCapabilitiesSymbolKind
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4431,7 +4431,7 @@ abstract mixin class $WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res> 
   factory $WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith(WorkspaceSymbolClientCapabilitiesSymbolKind value, $Res Function(WorkspaceSymbolClientCapabilitiesSymbolKind) _then) = _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl;
 @useResult
 $Res call({
-@_SymbolKindListConverter() List<SymbolKind>? valueSet
+ List<SymbolKind>? valueSet
 });
 
 
@@ -4536,7 +4536,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_SymbolKindListConverter()  List<SymbolKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SymbolKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbolClientCapabilitiesSymbolKind() when $default != null:
 return $default(_that.valueSet);case _:
@@ -4557,7 +4557,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_SymbolKindListConverter()  List<SymbolKind>? valueSet)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SymbolKind>? valueSet)  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbolClientCapabilitiesSymbolKind():
 return $default(_that.valueSet);case _:
@@ -4577,7 +4577,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_SymbolKindListConverter()  List<SymbolKind>? valueSet)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SymbolKind>? valueSet)?  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbolClientCapabilitiesSymbolKind() when $default != null:
 return $default(_that.valueSet);case _:
@@ -4592,11 +4592,11 @@ return $default(_that.valueSet);case _:
 @JsonSerializable()
 
 class _WorkspaceSymbolClientCapabilitiesSymbolKind extends WorkspaceSymbolClientCapabilitiesSymbolKind {
-  const _WorkspaceSymbolClientCapabilitiesSymbolKind({@_SymbolKindListConverter() final  List<SymbolKind>? valueSet}): _valueSet = valueSet,super._();
+  const _WorkspaceSymbolClientCapabilitiesSymbolKind({final  List<SymbolKind>? valueSet}): _valueSet = valueSet,super._();
   factory _WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolClientCapabilitiesSymbolKindFromJson(json);
 
  final  List<SymbolKind>? _valueSet;
-@override@_SymbolKindListConverter() List<SymbolKind>? get valueSet {
+@override List<SymbolKind>? get valueSet {
   final value = _valueSet;
   if (value == null) return null;
   if (_valueSet is EqualUnmodifiableListView) return _valueSet;
@@ -4638,7 +4638,7 @@ abstract mixin class _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res>
   factory _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith(_WorkspaceSymbolClientCapabilitiesSymbolKind value, $Res Function(_WorkspaceSymbolClientCapabilitiesSymbolKind) _then) = __$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl;
 @override @useResult
 $Res call({
-@_SymbolKindListConverter() List<SymbolKind>? valueSet
+ List<SymbolKind>? valueSet
 });
 
 
@@ -4669,7 +4669,7 @@ as List<SymbolKind>?,
 /// @nodoc
 mixin _$WorkspaceSymbolClientCapabilitiesTagSupport {
 
-@_SymbolTagListConverter() List<SymbolTag> get valueSet;
+ List<SymbolTag> get valueSet;
 /// Create a copy of WorkspaceSymbolClientCapabilitiesTagSupport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4702,7 +4702,7 @@ abstract mixin class $WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res> 
   factory $WorkspaceSymbolClientCapabilitiesTagSupportCopyWith(WorkspaceSymbolClientCapabilitiesTagSupport value, $Res Function(WorkspaceSymbolClientCapabilitiesTagSupport) _then) = _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl;
 @useResult
 $Res call({
-@_SymbolTagListConverter() List<SymbolTag> valueSet
+ List<SymbolTag> valueSet
 });
 
 
@@ -4807,7 +4807,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_SymbolTagListConverter()  List<SymbolTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SymbolTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbolClientCapabilitiesTagSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -4828,7 +4828,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_SymbolTagListConverter()  List<SymbolTag> valueSet)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SymbolTag> valueSet)  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbolClientCapabilitiesTagSupport():
 return $default(_that.valueSet);case _:
@@ -4848,7 +4848,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_SymbolTagListConverter()  List<SymbolTag> valueSet)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SymbolTag> valueSet)?  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbolClientCapabilitiesTagSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -4863,11 +4863,11 @@ return $default(_that.valueSet);case _:
 @JsonSerializable()
 
 class _WorkspaceSymbolClientCapabilitiesTagSupport extends WorkspaceSymbolClientCapabilitiesTagSupport {
-  const _WorkspaceSymbolClientCapabilitiesTagSupport({@_SymbolTagListConverter() required final  List<SymbolTag> valueSet}): _valueSet = valueSet,super._();
+  const _WorkspaceSymbolClientCapabilitiesTagSupport({required final  List<SymbolTag> valueSet}): _valueSet = valueSet,super._();
   factory _WorkspaceSymbolClientCapabilitiesTagSupport.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolClientCapabilitiesTagSupportFromJson(json);
 
  final  List<SymbolTag> _valueSet;
-@override@_SymbolTagListConverter() List<SymbolTag> get valueSet {
+@override List<SymbolTag> get valueSet {
   if (_valueSet is EqualUnmodifiableListView) return _valueSet;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_valueSet);
@@ -4907,7 +4907,7 @@ abstract mixin class _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res>
   factory _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith(_WorkspaceSymbolClientCapabilitiesTagSupport value, $Res Function(_WorkspaceSymbolClientCapabilitiesTagSupport) _then) = __$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl;
 @override @useResult
 $Res call({
-@_SymbolTagListConverter() List<SymbolTag> valueSet
+ List<SymbolTag> valueSet
 });
 
 
@@ -5207,7 +5207,7 @@ as List<String>,
 /// @nodoc
 mixin _$CompletionClientCapabilitiesCompletionItem {
 
- bool? get snippetSupport; bool? get commitCharactersSupport;@_MarkupKindListConverter() List<MarkupKind>? get documentationFormat; bool? get deprecatedSupport; bool? get preselectSupport; CompletionClientCapabilitiesCompletionItemTagSupport? get tagSupport; bool? get insertReplaceSupport; CompletionClientCapabilitiesCompletionItemResolveSupport? get resolveSupport; CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? get insertTextModeSupport; bool? get labelDetailsSupport;
+ bool? get snippetSupport; bool? get commitCharactersSupport; List<MarkupKind>? get documentationFormat; bool? get deprecatedSupport; bool? get preselectSupport; CompletionClientCapabilitiesCompletionItemTagSupport? get tagSupport; bool? get insertReplaceSupport; CompletionClientCapabilitiesCompletionItemResolveSupport? get resolveSupport; CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? get insertTextModeSupport; bool? get labelDetailsSupport;
 /// Create a copy of CompletionClientCapabilitiesCompletionItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -5240,7 +5240,7 @@ abstract mixin class $CompletionClientCapabilitiesCompletionItemCopyWith<$Res>  
   factory $CompletionClientCapabilitiesCompletionItemCopyWith(CompletionClientCapabilitiesCompletionItem value, $Res Function(CompletionClientCapabilitiesCompletionItem) _then) = _$CompletionClientCapabilitiesCompletionItemCopyWithImpl;
 @useResult
 $Res call({
- bool? snippetSupport, bool? commitCharactersSupport,@_MarkupKindListConverter() List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport, bool? insertReplaceSupport, CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport, CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport, bool? labelDetailsSupport
+ bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport, bool? insertReplaceSupport, CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport, CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport, bool? labelDetailsSupport
 });
 
 
@@ -5390,7 +5390,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? snippetSupport,  bool? commitCharactersSupport, @_MarkupKindListConverter()  List<MarkupKind>? documentationFormat,  bool? deprecatedSupport,  bool? preselectSupport,  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,  bool? insertReplaceSupport,  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport,  bool? labelDetailsSupport)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? snippetSupport,  bool? commitCharactersSupport,  List<MarkupKind>? documentationFormat,  bool? deprecatedSupport,  bool? preselectSupport,  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,  bool? insertReplaceSupport,  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport,  bool? labelDetailsSupport)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItem() when $default != null:
 return $default(_that.snippetSupport,_that.commitCharactersSupport,_that.documentationFormat,_that.deprecatedSupport,_that.preselectSupport,_that.tagSupport,_that.insertReplaceSupport,_that.resolveSupport,_that.insertTextModeSupport,_that.labelDetailsSupport);case _:
@@ -5411,7 +5411,7 @@ return $default(_that.snippetSupport,_that.commitCharactersSupport,_that.documen
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? snippetSupport,  bool? commitCharactersSupport, @_MarkupKindListConverter()  List<MarkupKind>? documentationFormat,  bool? deprecatedSupport,  bool? preselectSupport,  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,  bool? insertReplaceSupport,  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport,  bool? labelDetailsSupport)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? snippetSupport,  bool? commitCharactersSupport,  List<MarkupKind>? documentationFormat,  bool? deprecatedSupport,  bool? preselectSupport,  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,  bool? insertReplaceSupport,  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport,  bool? labelDetailsSupport)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItem():
 return $default(_that.snippetSupport,_that.commitCharactersSupport,_that.documentationFormat,_that.deprecatedSupport,_that.preselectSupport,_that.tagSupport,_that.insertReplaceSupport,_that.resolveSupport,_that.insertTextModeSupport,_that.labelDetailsSupport);case _:
@@ -5431,7 +5431,7 @@ return $default(_that.snippetSupport,_that.commitCharactersSupport,_that.documen
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? snippetSupport,  bool? commitCharactersSupport, @_MarkupKindListConverter()  List<MarkupKind>? documentationFormat,  bool? deprecatedSupport,  bool? preselectSupport,  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,  bool? insertReplaceSupport,  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport,  bool? labelDetailsSupport)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? snippetSupport,  bool? commitCharactersSupport,  List<MarkupKind>? documentationFormat,  bool? deprecatedSupport,  bool? preselectSupport,  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,  bool? insertReplaceSupport,  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport,  bool? labelDetailsSupport)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItem() when $default != null:
 return $default(_that.snippetSupport,_that.commitCharactersSupport,_that.documentationFormat,_that.deprecatedSupport,_that.preselectSupport,_that.tagSupport,_that.insertReplaceSupport,_that.resolveSupport,_that.insertTextModeSupport,_that.labelDetailsSupport);case _:
@@ -5446,13 +5446,13 @@ return $default(_that.snippetSupport,_that.commitCharactersSupport,_that.documen
 @JsonSerializable()
 
 class _CompletionClientCapabilitiesCompletionItem extends CompletionClientCapabilitiesCompletionItem {
-  const _CompletionClientCapabilitiesCompletionItem({this.snippetSupport, this.commitCharactersSupport, @_MarkupKindListConverter() final  List<MarkupKind>? documentationFormat, this.deprecatedSupport, this.preselectSupport, this.tagSupport, this.insertReplaceSupport, this.resolveSupport, this.insertTextModeSupport, this.labelDetailsSupport}): _documentationFormat = documentationFormat,super._();
+  const _CompletionClientCapabilitiesCompletionItem({this.snippetSupport, this.commitCharactersSupport, final  List<MarkupKind>? documentationFormat, this.deprecatedSupport, this.preselectSupport, this.tagSupport, this.insertReplaceSupport, this.resolveSupport, this.insertTextModeSupport, this.labelDetailsSupport}): _documentationFormat = documentationFormat,super._();
   factory _CompletionClientCapabilitiesCompletionItem.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionItemFromJson(json);
 
 @override final  bool? snippetSupport;
 @override final  bool? commitCharactersSupport;
  final  List<MarkupKind>? _documentationFormat;
-@override@_MarkupKindListConverter() List<MarkupKind>? get documentationFormat {
+@override List<MarkupKind>? get documentationFormat {
   final value = _documentationFormat;
   if (value == null) return null;
   if (_documentationFormat is EqualUnmodifiableListView) return _documentationFormat;
@@ -5501,7 +5501,7 @@ abstract mixin class _$CompletionClientCapabilitiesCompletionItemCopyWith<$Res> 
   factory _$CompletionClientCapabilitiesCompletionItemCopyWith(_CompletionClientCapabilitiesCompletionItem value, $Res Function(_CompletionClientCapabilitiesCompletionItem) _then) = __$CompletionClientCapabilitiesCompletionItemCopyWithImpl;
 @override @useResult
 $Res call({
- bool? snippetSupport, bool? commitCharactersSupport,@_MarkupKindListConverter() List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport, bool? insertReplaceSupport, CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport, CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport, bool? labelDetailsSupport
+ bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport, bool? insertReplaceSupport, CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport, CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport, bool? labelDetailsSupport
 });
 
 
@@ -5577,7 +5577,7 @@ $CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res>? 
 /// @nodoc
 mixin _$CompletionClientCapabilitiesCompletionItemTagSupport {
 
-@_CompletionItemTagListConverter() List<CompletionItemTag> get valueSet;
+ List<CompletionItemTag> get valueSet;
 /// Create a copy of CompletionClientCapabilitiesCompletionItemTagSupport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -5610,7 +5610,7 @@ abstract mixin class $CompletionClientCapabilitiesCompletionItemTagSupportCopyWi
   factory $CompletionClientCapabilitiesCompletionItemTagSupportCopyWith(CompletionClientCapabilitiesCompletionItemTagSupport value, $Res Function(CompletionClientCapabilitiesCompletionItemTagSupport) _then) = _$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl;
 @useResult
 $Res call({
-@_CompletionItemTagListConverter() List<CompletionItemTag> valueSet
+ List<CompletionItemTag> valueSet
 });
 
 
@@ -5715,7 +5715,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_CompletionItemTagListConverter()  List<CompletionItemTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<CompletionItemTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItemTagSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -5736,7 +5736,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_CompletionItemTagListConverter()  List<CompletionItemTag> valueSet)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<CompletionItemTag> valueSet)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItemTagSupport():
 return $default(_that.valueSet);case _:
@@ -5756,7 +5756,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_CompletionItemTagListConverter()  List<CompletionItemTag> valueSet)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<CompletionItemTag> valueSet)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItemTagSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -5771,11 +5771,11 @@ return $default(_that.valueSet);case _:
 @JsonSerializable()
 
 class _CompletionClientCapabilitiesCompletionItemTagSupport extends CompletionClientCapabilitiesCompletionItemTagSupport {
-  const _CompletionClientCapabilitiesCompletionItemTagSupport({@_CompletionItemTagListConverter() required final  List<CompletionItemTag> valueSet}): _valueSet = valueSet,super._();
+  const _CompletionClientCapabilitiesCompletionItemTagSupport({required final  List<CompletionItemTag> valueSet}): _valueSet = valueSet,super._();
   factory _CompletionClientCapabilitiesCompletionItemTagSupport.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionItemTagSupportFromJson(json);
 
  final  List<CompletionItemTag> _valueSet;
-@override@_CompletionItemTagListConverter() List<CompletionItemTag> get valueSet {
+@override List<CompletionItemTag> get valueSet {
   if (_valueSet is EqualUnmodifiableListView) return _valueSet;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_valueSet);
@@ -5815,7 +5815,7 @@ abstract mixin class _$CompletionClientCapabilitiesCompletionItemTagSupportCopyW
   factory _$CompletionClientCapabilitiesCompletionItemTagSupportCopyWith(_CompletionClientCapabilitiesCompletionItemTagSupport value, $Res Function(_CompletionClientCapabilitiesCompletionItemTagSupport) _then) = __$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl;
 @override @useResult
 $Res call({
-@_CompletionItemTagListConverter() List<CompletionItemTag> valueSet
+ List<CompletionItemTag> valueSet
 });
 
 
@@ -6115,7 +6115,7 @@ as List<String>,
 /// @nodoc
 mixin _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
 
-@_InsertTextModeListConverter() List<InsertTextMode> get valueSet;
+ List<InsertTextMode> get valueSet;
 /// Create a copy of CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -6148,7 +6148,7 @@ abstract mixin class $CompletionClientCapabilitiesCompletionItemInsertTextModeSu
   factory $CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith(CompletionClientCapabilitiesCompletionItemInsertTextModeSupport value, $Res Function(CompletionClientCapabilitiesCompletionItemInsertTextModeSupport) _then) = _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl;
 @useResult
 $Res call({
-@_InsertTextModeListConverter() List<InsertTextMode> valueSet
+ List<InsertTextMode> valueSet
 });
 
 
@@ -6253,7 +6253,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_InsertTextModeListConverter()  List<InsertTextMode> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<InsertTextMode> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -6274,7 +6274,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_InsertTextModeListConverter()  List<InsertTextMode> valueSet)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<InsertTextMode> valueSet)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport():
 return $default(_that.valueSet);case _:
@@ -6294,7 +6294,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_InsertTextModeListConverter()  List<InsertTextMode> valueSet)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<InsertTextMode> valueSet)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -6309,11 +6309,11 @@ return $default(_that.valueSet);case _:
 @JsonSerializable()
 
 class _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport extends CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
-  const _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({@_InsertTextModeListConverter() required final  List<InsertTextMode> valueSet}): _valueSet = valueSet,super._();
+  const _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({required final  List<InsertTextMode> valueSet}): _valueSet = valueSet,super._();
   factory _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportFromJson(json);
 
  final  List<InsertTextMode> _valueSet;
-@override@_InsertTextModeListConverter() List<InsertTextMode> get valueSet {
+@override List<InsertTextMode> get valueSet {
   if (_valueSet is EqualUnmodifiableListView) return _valueSet;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_valueSet);
@@ -6353,7 +6353,7 @@ abstract mixin class _$CompletionClientCapabilitiesCompletionItemInsertTextModeS
   factory _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith(_CompletionClientCapabilitiesCompletionItemInsertTextModeSupport value, $Res Function(_CompletionClientCapabilitiesCompletionItemInsertTextModeSupport) _then) = __$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl;
 @override @useResult
 $Res call({
-@_InsertTextModeListConverter() List<InsertTextMode> valueSet
+ List<InsertTextMode> valueSet
 });
 
 
@@ -6384,7 +6384,7 @@ as List<InsertTextMode>,
 /// @nodoc
 mixin _$CompletionClientCapabilitiesCompletionItemKind {
 
-@_CompletionItemKindListConverter() List<CompletionItemKind>? get valueSet;
+ List<CompletionItemKind>? get valueSet;
 /// Create a copy of CompletionClientCapabilitiesCompletionItemKind
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -6417,7 +6417,7 @@ abstract mixin class $CompletionClientCapabilitiesCompletionItemKindCopyWith<$Re
   factory $CompletionClientCapabilitiesCompletionItemKindCopyWith(CompletionClientCapabilitiesCompletionItemKind value, $Res Function(CompletionClientCapabilitiesCompletionItemKind) _then) = _$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl;
 @useResult
 $Res call({
-@_CompletionItemKindListConverter() List<CompletionItemKind>? valueSet
+ List<CompletionItemKind>? valueSet
 });
 
 
@@ -6522,7 +6522,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_CompletionItemKindListConverter()  List<CompletionItemKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<CompletionItemKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItemKind() when $default != null:
 return $default(_that.valueSet);case _:
@@ -6543,7 +6543,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_CompletionItemKindListConverter()  List<CompletionItemKind>? valueSet)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<CompletionItemKind>? valueSet)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItemKind():
 return $default(_that.valueSet);case _:
@@ -6563,7 +6563,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_CompletionItemKindListConverter()  List<CompletionItemKind>? valueSet)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<CompletionItemKind>? valueSet)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilitiesCompletionItemKind() when $default != null:
 return $default(_that.valueSet);case _:
@@ -6578,11 +6578,11 @@ return $default(_that.valueSet);case _:
 @JsonSerializable()
 
 class _CompletionClientCapabilitiesCompletionItemKind extends CompletionClientCapabilitiesCompletionItemKind {
-  const _CompletionClientCapabilitiesCompletionItemKind({@_CompletionItemKindListConverter() final  List<CompletionItemKind>? valueSet}): _valueSet = valueSet,super._();
+  const _CompletionClientCapabilitiesCompletionItemKind({final  List<CompletionItemKind>? valueSet}): _valueSet = valueSet,super._();
   factory _CompletionClientCapabilitiesCompletionItemKind.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionItemKindFromJson(json);
 
  final  List<CompletionItemKind>? _valueSet;
-@override@_CompletionItemKindListConverter() List<CompletionItemKind>? get valueSet {
+@override List<CompletionItemKind>? get valueSet {
   final value = _valueSet;
   if (value == null) return null;
   if (_valueSet is EqualUnmodifiableListView) return _valueSet;
@@ -6624,7 +6624,7 @@ abstract mixin class _$CompletionClientCapabilitiesCompletionItemKindCopyWith<$R
   factory _$CompletionClientCapabilitiesCompletionItemKindCopyWith(_CompletionClientCapabilitiesCompletionItemKind value, $Res Function(_CompletionClientCapabilitiesCompletionItemKind) _then) = __$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl;
 @override @useResult
 $Res call({
-@_CompletionItemKindListConverter() List<CompletionItemKind>? valueSet
+ List<CompletionItemKind>? valueSet
 });
 
 
@@ -6926,7 +6926,7 @@ as List<String>?,
 /// @nodoc
 mixin _$SignatureHelpClientCapabilitiesSignatureInformation {
 
-@_MarkupKindListConverter() List<MarkupKind>? get documentationFormat; SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? get parameterInformation; bool? get activeParameterSupport;
+ List<MarkupKind>? get documentationFormat; SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? get parameterInformation; bool? get activeParameterSupport;
 /// Create a copy of SignatureHelpClientCapabilitiesSignatureInformation
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -6959,7 +6959,7 @@ abstract mixin class $SignatureHelpClientCapabilitiesSignatureInformationCopyWit
   factory $SignatureHelpClientCapabilitiesSignatureInformationCopyWith(SignatureHelpClientCapabilitiesSignatureInformation value, $Res Function(SignatureHelpClientCapabilitiesSignatureInformation) _then) = _$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl;
 @useResult
 $Res call({
-@_MarkupKindListConverter() List<MarkupKind>? documentationFormat, SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation, bool? activeParameterSupport
+ List<MarkupKind>? documentationFormat, SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation, bool? activeParameterSupport
 });
 
 
@@ -7078,7 +7078,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_MarkupKindListConverter()  List<MarkupKind>? documentationFormat,  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation,  bool? activeParameterSupport)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MarkupKind>? documentationFormat,  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation,  bool? activeParameterSupport)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignatureHelpClientCapabilitiesSignatureInformation() when $default != null:
 return $default(_that.documentationFormat,_that.parameterInformation,_that.activeParameterSupport);case _:
@@ -7099,7 +7099,7 @@ return $default(_that.documentationFormat,_that.parameterInformation,_that.activ
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_MarkupKindListConverter()  List<MarkupKind>? documentationFormat,  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation,  bool? activeParameterSupport)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MarkupKind>? documentationFormat,  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation,  bool? activeParameterSupport)  $default,) {final _that = this;
 switch (_that) {
 case _SignatureHelpClientCapabilitiesSignatureInformation():
 return $default(_that.documentationFormat,_that.parameterInformation,_that.activeParameterSupport);case _:
@@ -7119,7 +7119,7 @@ return $default(_that.documentationFormat,_that.parameterInformation,_that.activ
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_MarkupKindListConverter()  List<MarkupKind>? documentationFormat,  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation,  bool? activeParameterSupport)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MarkupKind>? documentationFormat,  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation,  bool? activeParameterSupport)?  $default,) {final _that = this;
 switch (_that) {
 case _SignatureHelpClientCapabilitiesSignatureInformation() when $default != null:
 return $default(_that.documentationFormat,_that.parameterInformation,_that.activeParameterSupport);case _:
@@ -7134,11 +7134,11 @@ return $default(_that.documentationFormat,_that.parameterInformation,_that.activ
 @JsonSerializable()
 
 class _SignatureHelpClientCapabilitiesSignatureInformation extends SignatureHelpClientCapabilitiesSignatureInformation {
-  const _SignatureHelpClientCapabilitiesSignatureInformation({@_MarkupKindListConverter() final  List<MarkupKind>? documentationFormat, this.parameterInformation, this.activeParameterSupport}): _documentationFormat = documentationFormat,super._();
+  const _SignatureHelpClientCapabilitiesSignatureInformation({final  List<MarkupKind>? documentationFormat, this.parameterInformation, this.activeParameterSupport}): _documentationFormat = documentationFormat,super._();
   factory _SignatureHelpClientCapabilitiesSignatureInformation.fromJson(Map<String, dynamic> json) => _$SignatureHelpClientCapabilitiesSignatureInformationFromJson(json);
 
  final  List<MarkupKind>? _documentationFormat;
-@override@_MarkupKindListConverter() List<MarkupKind>? get documentationFormat {
+@override List<MarkupKind>? get documentationFormat {
   final value = _documentationFormat;
   if (value == null) return null;
   if (_documentationFormat is EqualUnmodifiableListView) return _documentationFormat;
@@ -7182,7 +7182,7 @@ abstract mixin class _$SignatureHelpClientCapabilitiesSignatureInformationCopyWi
   factory _$SignatureHelpClientCapabilitiesSignatureInformationCopyWith(_SignatureHelpClientCapabilitiesSignatureInformation value, $Res Function(_SignatureHelpClientCapabilitiesSignatureInformation) _then) = __$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl;
 @override @useResult
 $Res call({
-@_MarkupKindListConverter() List<MarkupKind>? documentationFormat, SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation, bool? activeParameterSupport
+ List<MarkupKind>? documentationFormat, SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation, bool? activeParameterSupport
 });
 
 
@@ -7490,7 +7490,7 @@ as bool?,
 /// @nodoc
 mixin _$DocumentSymbolClientCapabilitiesSymbolKind {
 
-@_SymbolKindListConverter() List<SymbolKind>? get valueSet;
+ List<SymbolKind>? get valueSet;
 /// Create a copy of DocumentSymbolClientCapabilitiesSymbolKind
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -7523,7 +7523,7 @@ abstract mixin class $DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res>  
   factory $DocumentSymbolClientCapabilitiesSymbolKindCopyWith(DocumentSymbolClientCapabilitiesSymbolKind value, $Res Function(DocumentSymbolClientCapabilitiesSymbolKind) _then) = _$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl;
 @useResult
 $Res call({
-@_SymbolKindListConverter() List<SymbolKind>? valueSet
+ List<SymbolKind>? valueSet
 });
 
 
@@ -7628,7 +7628,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_SymbolKindListConverter()  List<SymbolKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SymbolKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentSymbolClientCapabilitiesSymbolKind() when $default != null:
 return $default(_that.valueSet);case _:
@@ -7649,7 +7649,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_SymbolKindListConverter()  List<SymbolKind>? valueSet)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SymbolKind>? valueSet)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbolClientCapabilitiesSymbolKind():
 return $default(_that.valueSet);case _:
@@ -7669,7 +7669,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_SymbolKindListConverter()  List<SymbolKind>? valueSet)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SymbolKind>? valueSet)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbolClientCapabilitiesSymbolKind() when $default != null:
 return $default(_that.valueSet);case _:
@@ -7684,11 +7684,11 @@ return $default(_that.valueSet);case _:
 @JsonSerializable()
 
 class _DocumentSymbolClientCapabilitiesSymbolKind extends DocumentSymbolClientCapabilitiesSymbolKind {
-  const _DocumentSymbolClientCapabilitiesSymbolKind({@_SymbolKindListConverter() final  List<SymbolKind>? valueSet}): _valueSet = valueSet,super._();
+  const _DocumentSymbolClientCapabilitiesSymbolKind({final  List<SymbolKind>? valueSet}): _valueSet = valueSet,super._();
   factory _DocumentSymbolClientCapabilitiesSymbolKind.fromJson(Map<String, dynamic> json) => _$DocumentSymbolClientCapabilitiesSymbolKindFromJson(json);
 
  final  List<SymbolKind>? _valueSet;
-@override@_SymbolKindListConverter() List<SymbolKind>? get valueSet {
+@override List<SymbolKind>? get valueSet {
   final value = _valueSet;
   if (value == null) return null;
   if (_valueSet is EqualUnmodifiableListView) return _valueSet;
@@ -7730,7 +7730,7 @@ abstract mixin class _$DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res> 
   factory _$DocumentSymbolClientCapabilitiesSymbolKindCopyWith(_DocumentSymbolClientCapabilitiesSymbolKind value, $Res Function(_DocumentSymbolClientCapabilitiesSymbolKind) _then) = __$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl;
 @override @useResult
 $Res call({
-@_SymbolKindListConverter() List<SymbolKind>? valueSet
+ List<SymbolKind>? valueSet
 });
 
 
@@ -7761,7 +7761,7 @@ as List<SymbolKind>?,
 /// @nodoc
 mixin _$DocumentSymbolClientCapabilitiesTagSupport {
 
-@_SymbolTagListConverter() List<SymbolTag> get valueSet;
+ List<SymbolTag> get valueSet;
 /// Create a copy of DocumentSymbolClientCapabilitiesTagSupport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -7794,7 +7794,7 @@ abstract mixin class $DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res>  
   factory $DocumentSymbolClientCapabilitiesTagSupportCopyWith(DocumentSymbolClientCapabilitiesTagSupport value, $Res Function(DocumentSymbolClientCapabilitiesTagSupport) _then) = _$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl;
 @useResult
 $Res call({
-@_SymbolTagListConverter() List<SymbolTag> valueSet
+ List<SymbolTag> valueSet
 });
 
 
@@ -7899,7 +7899,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_SymbolTagListConverter()  List<SymbolTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SymbolTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentSymbolClientCapabilitiesTagSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -7920,7 +7920,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_SymbolTagListConverter()  List<SymbolTag> valueSet)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SymbolTag> valueSet)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbolClientCapabilitiesTagSupport():
 return $default(_that.valueSet);case _:
@@ -7940,7 +7940,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_SymbolTagListConverter()  List<SymbolTag> valueSet)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SymbolTag> valueSet)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbolClientCapabilitiesTagSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -7955,11 +7955,11 @@ return $default(_that.valueSet);case _:
 @JsonSerializable()
 
 class _DocumentSymbolClientCapabilitiesTagSupport extends DocumentSymbolClientCapabilitiesTagSupport {
-  const _DocumentSymbolClientCapabilitiesTagSupport({@_SymbolTagListConverter() required final  List<SymbolTag> valueSet}): _valueSet = valueSet,super._();
+  const _DocumentSymbolClientCapabilitiesTagSupport({required final  List<SymbolTag> valueSet}): _valueSet = valueSet,super._();
   factory _DocumentSymbolClientCapabilitiesTagSupport.fromJson(Map<String, dynamic> json) => _$DocumentSymbolClientCapabilitiesTagSupportFromJson(json);
 
  final  List<SymbolTag> _valueSet;
-@override@_SymbolTagListConverter() List<SymbolTag> get valueSet {
+@override List<SymbolTag> get valueSet {
   if (_valueSet is EqualUnmodifiableListView) return _valueSet;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_valueSet);
@@ -7999,7 +7999,7 @@ abstract mixin class _$DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res> 
   factory _$DocumentSymbolClientCapabilitiesTagSupportCopyWith(_DocumentSymbolClientCapabilitiesTagSupport value, $Res Function(_DocumentSymbolClientCapabilitiesTagSupport) _then) = __$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl;
 @override @useResult
 $Res call({
-@_SymbolTagListConverter() List<SymbolTag> valueSet
+ List<SymbolTag> valueSet
 });
 
 
@@ -9383,7 +9383,7 @@ as bool?,
 /// @nodoc
 mixin _$PublishDiagnosticsClientCapabilitiesTagSupport {
 
-@_DiagnosticTagListConverter() List<DiagnosticTag> get valueSet;
+ List<DiagnosticTag> get valueSet;
 /// Create a copy of PublishDiagnosticsClientCapabilitiesTagSupport
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -9416,7 +9416,7 @@ abstract mixin class $PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Re
   factory $PublishDiagnosticsClientCapabilitiesTagSupportCopyWith(PublishDiagnosticsClientCapabilitiesTagSupport value, $Res Function(PublishDiagnosticsClientCapabilitiesTagSupport) _then) = _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl;
 @useResult
 $Res call({
-@_DiagnosticTagListConverter() List<DiagnosticTag> valueSet
+ List<DiagnosticTag> valueSet
 });
 
 
@@ -9521,7 +9521,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_DiagnosticTagListConverter()  List<DiagnosticTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<DiagnosticTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PublishDiagnosticsClientCapabilitiesTagSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -9542,7 +9542,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_DiagnosticTagListConverter()  List<DiagnosticTag> valueSet)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<DiagnosticTag> valueSet)  $default,) {final _that = this;
 switch (_that) {
 case _PublishDiagnosticsClientCapabilitiesTagSupport():
 return $default(_that.valueSet);case _:
@@ -9562,7 +9562,7 @@ return $default(_that.valueSet);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_DiagnosticTagListConverter()  List<DiagnosticTag> valueSet)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<DiagnosticTag> valueSet)?  $default,) {final _that = this;
 switch (_that) {
 case _PublishDiagnosticsClientCapabilitiesTagSupport() when $default != null:
 return $default(_that.valueSet);case _:
@@ -9577,11 +9577,11 @@ return $default(_that.valueSet);case _:
 @JsonSerializable()
 
 class _PublishDiagnosticsClientCapabilitiesTagSupport extends PublishDiagnosticsClientCapabilitiesTagSupport {
-  const _PublishDiagnosticsClientCapabilitiesTagSupport({@_DiagnosticTagListConverter() required final  List<DiagnosticTag> valueSet}): _valueSet = valueSet,super._();
+  const _PublishDiagnosticsClientCapabilitiesTagSupport({required final  List<DiagnosticTag> valueSet}): _valueSet = valueSet,super._();
   factory _PublishDiagnosticsClientCapabilitiesTagSupport.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsClientCapabilitiesTagSupportFromJson(json);
 
  final  List<DiagnosticTag> _valueSet;
-@override@_DiagnosticTagListConverter() List<DiagnosticTag> get valueSet {
+@override List<DiagnosticTag> get valueSet {
   if (_valueSet is EqualUnmodifiableListView) return _valueSet;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_valueSet);
@@ -9621,7 +9621,7 @@ abstract mixin class _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$R
   factory _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith(_PublishDiagnosticsClientCapabilitiesTagSupport value, $Res Function(_PublishDiagnosticsClientCapabilitiesTagSupport) _then) = __$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl;
 @override @useResult
 $Res call({
-@_DiagnosticTagListConverter() List<DiagnosticTag> valueSet
+ List<DiagnosticTag> valueSet
 });
 
 
@@ -20117,7 +20117,7 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 /// @nodoc
 mixin _$CallHierarchyItem {
 
- String get name;@_SymbolKindConverter() SymbolKind get kind;@_SymbolTagListConverter() List<SymbolTag>? get tags; String? get detail; String get uri; Range get range; Range get selectionRange; LSPAny? get data;
+ String get name; SymbolKind get kind; List<SymbolTag>? get tags; String? get detail; String get uri; Range get range; Range get selectionRange; LSPAny? get data;
 /// Create a copy of CallHierarchyItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -20150,7 +20150,7 @@ abstract mixin class $CallHierarchyItemCopyWith<$Res>  {
   factory $CallHierarchyItemCopyWith(CallHierarchyItem value, $Res Function(CallHierarchyItem) _then) = _$CallHierarchyItemCopyWithImpl;
 @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
 });
 
 
@@ -20279,7 +20279,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CallHierarchyItem() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.range,_that.selectionRange,_that.data);case _:
@@ -20300,7 +20300,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.ra
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _CallHierarchyItem():
 return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.range,_that.selectionRange,_that.data);case _:
@@ -20320,7 +20320,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.ra
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _CallHierarchyItem() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.range,_that.selectionRange,_that.data);case _:
@@ -20335,13 +20335,13 @@ return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.ra
 @JsonSerializable()
 
 class _CallHierarchyItem extends CallHierarchyItem {
-  const _CallHierarchyItem({required this.name, @_SymbolKindConverter() required this.kind, @_SymbolTagListConverter() final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags,super._();
+  const _CallHierarchyItem({required this.name, required this.kind, final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags,super._();
   factory _CallHierarchyItem.fromJson(Map<String, dynamic> json) => _$CallHierarchyItemFromJson(json);
 
 @override final  String name;
-@override@_SymbolKindConverter() final  SymbolKind kind;
+@override final  SymbolKind kind;
  final  List<SymbolTag>? _tags;
-@override@_SymbolTagListConverter() List<SymbolTag>? get tags {
+@override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
   if (_tags is EqualUnmodifiableListView) return _tags;
@@ -20388,7 +20388,7 @@ abstract mixin class _$CallHierarchyItemCopyWith<$Res> implements $CallHierarchy
   factory _$CallHierarchyItemCopyWith(_CallHierarchyItem value, $Res Function(_CallHierarchyItem) _then) = __$CallHierarchyItemCopyWithImpl;
 @override @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
 });
 
 
@@ -27543,7 +27543,7 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 /// @nodoc
 mixin _$Moniker {
 
- String get scheme; String get identifier;@_UniquenessLevelConverter() UniquenessLevel get unique;@_MonikerKindConverter() MonikerKind? get kind;
+ String get scheme; String get identifier; UniquenessLevel get unique; MonikerKind? get kind;
 /// Create a copy of Moniker
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -27576,7 +27576,7 @@ abstract mixin class $MonikerCopyWith<$Res>  {
   factory $MonikerCopyWith(Moniker value, $Res Function(Moniker) _then) = _$MonikerCopyWithImpl;
 @useResult
 $Res call({
- String scheme, String identifier,@_UniquenessLevelConverter() UniquenessLevel unique,@_MonikerKindConverter() MonikerKind? kind
+ String scheme, String identifier, UniquenessLevel unique, MonikerKind? kind
 });
 
 
@@ -27684,7 +27684,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String scheme,  String identifier, @_UniquenessLevelConverter()  UniquenessLevel unique, @_MonikerKindConverter()  MonikerKind? kind)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String scheme,  String identifier,  UniquenessLevel unique,  MonikerKind? kind)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Moniker() when $default != null:
 return $default(_that.scheme,_that.identifier,_that.unique,_that.kind);case _:
@@ -27705,7 +27705,7 @@ return $default(_that.scheme,_that.identifier,_that.unique,_that.kind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String scheme,  String identifier, @_UniquenessLevelConverter()  UniquenessLevel unique, @_MonikerKindConverter()  MonikerKind? kind)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String scheme,  String identifier,  UniquenessLevel unique,  MonikerKind? kind)  $default,) {final _that = this;
 switch (_that) {
 case _Moniker():
 return $default(_that.scheme,_that.identifier,_that.unique,_that.kind);case _:
@@ -27725,7 +27725,7 @@ return $default(_that.scheme,_that.identifier,_that.unique,_that.kind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String scheme,  String identifier, @_UniquenessLevelConverter()  UniquenessLevel unique, @_MonikerKindConverter()  MonikerKind? kind)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String scheme,  String identifier,  UniquenessLevel unique,  MonikerKind? kind)?  $default,) {final _that = this;
 switch (_that) {
 case _Moniker() when $default != null:
 return $default(_that.scheme,_that.identifier,_that.unique,_that.kind);case _:
@@ -27740,13 +27740,13 @@ return $default(_that.scheme,_that.identifier,_that.unique,_that.kind);case _:
 @JsonSerializable()
 
 class _Moniker extends Moniker {
-  const _Moniker({required this.scheme, required this.identifier, @_UniquenessLevelConverter() required this.unique, @_MonikerKindConverter() this.kind}): super._();
+  const _Moniker({required this.scheme, required this.identifier, required this.unique, this.kind}): super._();
   factory _Moniker.fromJson(Map<String, dynamic> json) => _$MonikerFromJson(json);
 
 @override final  String scheme;
 @override final  String identifier;
-@override@_UniquenessLevelConverter() final  UniquenessLevel unique;
-@override@_MonikerKindConverter() final  MonikerKind? kind;
+@override final  UniquenessLevel unique;
+@override final  MonikerKind? kind;
 
 /// Create a copy of Moniker
 /// with the given fields replaced by the non-null parameter values.
@@ -27781,7 +27781,7 @@ abstract mixin class _$MonikerCopyWith<$Res> implements $MonikerCopyWith<$Res> {
   factory _$MonikerCopyWith(_Moniker value, $Res Function(_Moniker) _then) = __$MonikerCopyWithImpl;
 @override @useResult
 $Res call({
- String scheme, String identifier,@_UniquenessLevelConverter() UniquenessLevel unique,@_MonikerKindConverter() MonikerKind? kind
+ String scheme, String identifier, UniquenessLevel unique, MonikerKind? kind
 });
 
 
@@ -28418,7 +28418,7 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 /// @nodoc
 mixin _$TypeHierarchyItem {
 
- String get name;@_SymbolKindConverter() SymbolKind get kind;@_SymbolTagListConverter() List<SymbolTag>? get tags; String? get detail; String get uri; Range get range; Range get selectionRange; LSPAny? get data;
+ String get name; SymbolKind get kind; List<SymbolTag>? get tags; String? get detail; String get uri; Range get range; Range get selectionRange; LSPAny? get data;
 /// Create a copy of TypeHierarchyItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28451,7 +28451,7 @@ abstract mixin class $TypeHierarchyItemCopyWith<$Res>  {
   factory $TypeHierarchyItemCopyWith(TypeHierarchyItem value, $Res Function(TypeHierarchyItem) _then) = _$TypeHierarchyItemCopyWithImpl;
 @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
 });
 
 
@@ -28580,7 +28580,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TypeHierarchyItem() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.range,_that.selectionRange,_that.data);case _:
@@ -28601,7 +28601,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.ra
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _TypeHierarchyItem():
 return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.range,_that.selectionRange,_that.data);case _:
@@ -28621,7 +28621,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.ra
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? detail,  String uri,  Range range,  Range selectionRange,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _TypeHierarchyItem() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.range,_that.selectionRange,_that.data);case _:
@@ -28636,13 +28636,13 @@ return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.ra
 @JsonSerializable()
 
 class _TypeHierarchyItem extends TypeHierarchyItem {
-  const _TypeHierarchyItem({required this.name, @_SymbolKindConverter() required this.kind, @_SymbolTagListConverter() final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags,super._();
+  const _TypeHierarchyItem({required this.name, required this.kind, final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags,super._();
   factory _TypeHierarchyItem.fromJson(Map<String, dynamic> json) => _$TypeHierarchyItemFromJson(json);
 
 @override final  String name;
-@override@_SymbolKindConverter() final  SymbolKind kind;
+@override final  SymbolKind kind;
  final  List<SymbolTag>? _tags;
-@override@_SymbolTagListConverter() List<SymbolTag>? get tags {
+@override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
   if (_tags is EqualUnmodifiableListView) return _tags;
@@ -28689,7 +28689,7 @@ abstract mixin class _$TypeHierarchyItemCopyWith<$Res> implements $TypeHierarchy
   factory _$TypeHierarchyItemCopyWith(_TypeHierarchyItem value, $Res Function(_TypeHierarchyItem) _then) = __$TypeHierarchyItemCopyWithImpl;
 @override @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? detail, String uri, Range range, Range selectionRange, LSPAny? data
 });
 
 
@@ -30647,7 +30647,7 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlayHint {
 
- Position get position; Object get label;@_InlayHintKindConverter() InlayHintKind? get kind; List<TextEdit>? get textEdits; Object? get tooltip; bool? get paddingLeft; bool? get paddingRight; LSPAny? get data;
+ Position get position; Object get label; InlayHintKind? get kind; List<TextEdit>? get textEdits; Object? get tooltip; bool? get paddingLeft; bool? get paddingRight; LSPAny? get data;
 /// Create a copy of InlayHint
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30680,7 +30680,7 @@ abstract mixin class $InlayHintCopyWith<$Res>  {
   factory $InlayHintCopyWith(InlayHint value, $Res Function(InlayHint) _then) = _$InlayHintCopyWithImpl;
 @useResult
 $Res call({
- Position position, Object label,@_InlayHintKindConverter() InlayHintKind? kind, List<TextEdit>? textEdits, Object? tooltip, bool? paddingLeft, bool? paddingRight, LSPAny? data
+ Position position, Object label, InlayHintKind? kind, List<TextEdit>? textEdits, Object? tooltip, bool? paddingLeft, bool? paddingRight, LSPAny? data
 });
 
 
@@ -30798,7 +30798,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Position position,  Object label, @_InlayHintKindConverter()  InlayHintKind? kind,  List<TextEdit>? textEdits,  Object? tooltip,  bool? paddingLeft,  bool? paddingRight,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Position position,  Object label,  InlayHintKind? kind,  List<TextEdit>? textEdits,  Object? tooltip,  bool? paddingLeft,  bool? paddingRight,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InlayHint() when $default != null:
 return $default(_that.position,_that.label,_that.kind,_that.textEdits,_that.tooltip,_that.paddingLeft,_that.paddingRight,_that.data);case _:
@@ -30819,7 +30819,7 @@ return $default(_that.position,_that.label,_that.kind,_that.textEdits,_that.tool
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Position position,  Object label, @_InlayHintKindConverter()  InlayHintKind? kind,  List<TextEdit>? textEdits,  Object? tooltip,  bool? paddingLeft,  bool? paddingRight,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Position position,  Object label,  InlayHintKind? kind,  List<TextEdit>? textEdits,  Object? tooltip,  bool? paddingLeft,  bool? paddingRight,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _InlayHint():
 return $default(_that.position,_that.label,_that.kind,_that.textEdits,_that.tooltip,_that.paddingLeft,_that.paddingRight,_that.data);case _:
@@ -30839,7 +30839,7 @@ return $default(_that.position,_that.label,_that.kind,_that.textEdits,_that.tool
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Position position,  Object label, @_InlayHintKindConverter()  InlayHintKind? kind,  List<TextEdit>? textEdits,  Object? tooltip,  bool? paddingLeft,  bool? paddingRight,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Position position,  Object label,  InlayHintKind? kind,  List<TextEdit>? textEdits,  Object? tooltip,  bool? paddingLeft,  bool? paddingRight,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _InlayHint() when $default != null:
 return $default(_that.position,_that.label,_that.kind,_that.textEdits,_that.tooltip,_that.paddingLeft,_that.paddingRight,_that.data);case _:
@@ -30854,12 +30854,12 @@ return $default(_that.position,_that.label,_that.kind,_that.textEdits,_that.tool
 @JsonSerializable()
 
 class _InlayHint extends InlayHint {
-  const _InlayHint({required this.position, required this.label, @_InlayHintKindConverter() this.kind, final  List<TextEdit>? textEdits, this.tooltip, this.paddingLeft, this.paddingRight, this.data}): _textEdits = textEdits,super._();
+  const _InlayHint({required this.position, required this.label, this.kind, final  List<TextEdit>? textEdits, this.tooltip, this.paddingLeft, this.paddingRight, this.data}): _textEdits = textEdits,super._();
   factory _InlayHint.fromJson(Map<String, dynamic> json) => _$InlayHintFromJson(json);
 
 @override final  Position position;
 @override final  Object label;
-@override@_InlayHintKindConverter() final  InlayHintKind? kind;
+@override final  InlayHintKind? kind;
  final  List<TextEdit>? _textEdits;
 @override List<TextEdit>? get textEdits {
   final value = _textEdits;
@@ -30907,7 +30907,7 @@ abstract mixin class _$InlayHintCopyWith<$Res> implements $InlayHintCopyWith<$Re
   factory _$InlayHintCopyWith(_InlayHint value, $Res Function(_InlayHint) _then) = __$InlayHintCopyWithImpl;
 @override @useResult
 $Res call({
- Position position, Object label,@_InlayHintKindConverter() InlayHintKind? kind, List<TextEdit>? textEdits, Object? tooltip, bool? paddingLeft, bool? paddingRight, LSPAny? data
+ Position position, Object label, InlayHintKind? kind, List<TextEdit>? textEdits, Object? tooltip, bool? paddingLeft, bool? paddingRight, LSPAny? data
 });
 
 
@@ -36169,7 +36169,7 @@ as List<Unregistration>,
 /// @nodoc
 mixin _$InitializeParams {
 
-@_ProgressTokenConverter() ProgressToken? get workDoneToken; int? get processId; _InitializeParamsClientInfo? get clientInfo; String? get locale; String? get rootPath; String? get rootUri; ClientCapabilities get capabilities; LSPAny? get initializationOptions;@_TraceValuesConverter() TraceValues? get trace; List<WorkspaceFolder>? get workspaceFolders;
+@_ProgressTokenConverter() ProgressToken? get workDoneToken; int? get processId; _InitializeParamsClientInfo? get clientInfo; String? get locale; String? get rootPath; String? get rootUri; ClientCapabilities get capabilities; LSPAny? get initializationOptions; TraceValues? get trace; List<WorkspaceFolder>? get workspaceFolders;
 /// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -36202,7 +36202,7 @@ abstract mixin class $InitializeParamsCopyWith<$Res>  {
   factory $InitializeParamsCopyWith(InitializeParams value, $Res Function(InitializeParams) _then) = _$InitializeParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, _InitializeParamsClientInfo? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions,@_TraceValuesConverter() TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, _InitializeParamsClientInfo? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
@@ -36336,7 +36336,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  _InitializeParamsClientInfo? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions, @_TraceValuesConverter()  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  _InitializeParamsClientInfo? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InitializeParams() when $default != null:
 return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.locale,_that.rootPath,_that.rootUri,_that.capabilities,_that.initializationOptions,_that.trace,_that.workspaceFolders);case _:
@@ -36357,7 +36357,7 @@ return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.local
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  _InitializeParamsClientInfo? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions, @_TraceValuesConverter()  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  _InitializeParamsClientInfo? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)  $default,) {final _that = this;
 switch (_that) {
 case _InitializeParams():
 return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.locale,_that.rootPath,_that.rootUri,_that.capabilities,_that.initializationOptions,_that.trace,_that.workspaceFolders);case _:
@@ -36377,7 +36377,7 @@ return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.local
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  _InitializeParamsClientInfo? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions, @_TraceValuesConverter()  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  _InitializeParamsClientInfo? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,) {final _that = this;
 switch (_that) {
 case _InitializeParams() when $default != null:
 return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.locale,_that.rootPath,_that.rootUri,_that.capabilities,_that.initializationOptions,_that.trace,_that.workspaceFolders);case _:
@@ -36392,7 +36392,7 @@ return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.local
 @JsonSerializable()
 
 class _InitializeParams extends InitializeParams {
-  const _InitializeParams({@_ProgressTokenConverter() this.workDoneToken, required this.processId, this.clientInfo, this.locale, this.rootPath, required this.rootUri, required this.capabilities, this.initializationOptions, @_TraceValuesConverter() this.trace, final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders,super._();
+  const _InitializeParams({@_ProgressTokenConverter() this.workDoneToken, required this.processId, this.clientInfo, this.locale, this.rootPath, required this.rootUri, required this.capabilities, this.initializationOptions, this.trace, final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders,super._();
   factory _InitializeParams.fromJson(Map<String, dynamic> json) => _$InitializeParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -36403,7 +36403,7 @@ class _InitializeParams extends InitializeParams {
 @override final  String? rootUri;
 @override final  ClientCapabilities capabilities;
 @override final  LSPAny? initializationOptions;
-@override@_TraceValuesConverter() final  TraceValues? trace;
+@override final  TraceValues? trace;
  final  List<WorkspaceFolder>? _workspaceFolders;
 @override List<WorkspaceFolder>? get workspaceFolders {
   final value = _workspaceFolders;
@@ -36447,7 +36447,7 @@ abstract mixin class _$InitializeParamsCopyWith<$Res> implements $InitializePara
   factory _$InitializeParamsCopyWith(_InitializeParams value, $Res Function(_InitializeParams) _then) = __$InitializeParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, _InitializeParamsClientInfo? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions,@_TraceValuesConverter() TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, _InitializeParamsClientInfo? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
@@ -37798,7 +37798,7 @@ section: freezed == section ? _self.section : section ,
 /// @nodoc
 mixin _$ShowMessageParams {
 
-@_MessageTypeConverter() MessageType get type; String get message;
+ MessageType get type; String get message;
 /// Create a copy of ShowMessageParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37831,7 +37831,7 @@ abstract mixin class $ShowMessageParamsCopyWith<$Res>  {
   factory $ShowMessageParamsCopyWith(ShowMessageParams value, $Res Function(ShowMessageParams) _then) = _$ShowMessageParamsCopyWithImpl;
 @useResult
 $Res call({
-@_MessageTypeConverter() MessageType type, String message
+ MessageType type, String message
 });
 
 
@@ -37937,7 +37937,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_MessageTypeConverter()  MessageType type,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( MessageType type,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ShowMessageParams() when $default != null:
 return $default(_that.type,_that.message);case _:
@@ -37958,7 +37958,7 @@ return $default(_that.type,_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_MessageTypeConverter()  MessageType type,  String message)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( MessageType type,  String message)  $default,) {final _that = this;
 switch (_that) {
 case _ShowMessageParams():
 return $default(_that.type,_that.message);case _:
@@ -37978,7 +37978,7 @@ return $default(_that.type,_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_MessageTypeConverter()  MessageType type,  String message)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( MessageType type,  String message)?  $default,) {final _that = this;
 switch (_that) {
 case _ShowMessageParams() when $default != null:
 return $default(_that.type,_that.message);case _:
@@ -37993,10 +37993,10 @@ return $default(_that.type,_that.message);case _:
 @JsonSerializable()
 
 class _ShowMessageParams extends ShowMessageParams {
-  const _ShowMessageParams({@_MessageTypeConverter() required this.type, required this.message}): super._();
+  const _ShowMessageParams({required this.type, required this.message}): super._();
   factory _ShowMessageParams.fromJson(Map<String, dynamic> json) => _$ShowMessageParamsFromJson(json);
 
-@override@_MessageTypeConverter() final  MessageType type;
+@override final  MessageType type;
 @override final  String message;
 
 /// Create a copy of ShowMessageParams
@@ -38032,7 +38032,7 @@ abstract mixin class _$ShowMessageParamsCopyWith<$Res> implements $ShowMessagePa
   factory _$ShowMessageParamsCopyWith(_ShowMessageParams value, $Res Function(_ShowMessageParams) _then) = __$ShowMessageParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_MessageTypeConverter() MessageType type, String message
+ MessageType type, String message
 });
 
 
@@ -38064,7 +38064,7 @@ as String,
 /// @nodoc
 mixin _$ShowMessageRequestParams {
 
-@_MessageTypeConverter() MessageType get type; String get message; List<MessageActionItem>? get actions;
+ MessageType get type; String get message; List<MessageActionItem>? get actions;
 /// Create a copy of ShowMessageRequestParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38097,7 +38097,7 @@ abstract mixin class $ShowMessageRequestParamsCopyWith<$Res>  {
   factory $ShowMessageRequestParamsCopyWith(ShowMessageRequestParams value, $Res Function(ShowMessageRequestParams) _then) = _$ShowMessageRequestParamsCopyWithImpl;
 @useResult
 $Res call({
-@_MessageTypeConverter() MessageType type, String message, List<MessageActionItem>? actions
+ MessageType type, String message, List<MessageActionItem>? actions
 });
 
 
@@ -38204,7 +38204,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_MessageTypeConverter()  MessageType type,  String message,  List<MessageActionItem>? actions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( MessageType type,  String message,  List<MessageActionItem>? actions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ShowMessageRequestParams() when $default != null:
 return $default(_that.type,_that.message,_that.actions);case _:
@@ -38225,7 +38225,7 @@ return $default(_that.type,_that.message,_that.actions);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_MessageTypeConverter()  MessageType type,  String message,  List<MessageActionItem>? actions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( MessageType type,  String message,  List<MessageActionItem>? actions)  $default,) {final _that = this;
 switch (_that) {
 case _ShowMessageRequestParams():
 return $default(_that.type,_that.message,_that.actions);case _:
@@ -38245,7 +38245,7 @@ return $default(_that.type,_that.message,_that.actions);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_MessageTypeConverter()  MessageType type,  String message,  List<MessageActionItem>? actions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( MessageType type,  String message,  List<MessageActionItem>? actions)?  $default,) {final _that = this;
 switch (_that) {
 case _ShowMessageRequestParams() when $default != null:
 return $default(_that.type,_that.message,_that.actions);case _:
@@ -38260,10 +38260,10 @@ return $default(_that.type,_that.message,_that.actions);case _:
 @JsonSerializable()
 
 class _ShowMessageRequestParams extends ShowMessageRequestParams {
-  const _ShowMessageRequestParams({@_MessageTypeConverter() required this.type, required this.message, final  List<MessageActionItem>? actions}): _actions = actions,super._();
+  const _ShowMessageRequestParams({required this.type, required this.message, final  List<MessageActionItem>? actions}): _actions = actions,super._();
   factory _ShowMessageRequestParams.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestParamsFromJson(json);
 
-@override@_MessageTypeConverter() final  MessageType type;
+@override final  MessageType type;
 @override final  String message;
  final  List<MessageActionItem>? _actions;
 @override List<MessageActionItem>? get actions {
@@ -38308,7 +38308,7 @@ abstract mixin class _$ShowMessageRequestParamsCopyWith<$Res> implements $ShowMe
   factory _$ShowMessageRequestParamsCopyWith(_ShowMessageRequestParams value, $Res Function(_ShowMessageRequestParams) _then) = __$ShowMessageRequestParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_MessageTypeConverter() MessageType type, String message, List<MessageActionItem>? actions
+ MessageType type, String message, List<MessageActionItem>? actions
 });
 
 
@@ -38604,7 +38604,7 @@ as String,
 /// @nodoc
 mixin _$LogMessageParams {
 
-@_MessageTypeConverter() MessageType get type; String get message;
+ MessageType get type; String get message;
 /// Create a copy of LogMessageParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38637,7 +38637,7 @@ abstract mixin class $LogMessageParamsCopyWith<$Res>  {
   factory $LogMessageParamsCopyWith(LogMessageParams value, $Res Function(LogMessageParams) _then) = _$LogMessageParamsCopyWithImpl;
 @useResult
 $Res call({
-@_MessageTypeConverter() MessageType type, String message
+ MessageType type, String message
 });
 
 
@@ -38743,7 +38743,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_MessageTypeConverter()  MessageType type,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( MessageType type,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LogMessageParams() when $default != null:
 return $default(_that.type,_that.message);case _:
@@ -38764,7 +38764,7 @@ return $default(_that.type,_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_MessageTypeConverter()  MessageType type,  String message)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( MessageType type,  String message)  $default,) {final _that = this;
 switch (_that) {
 case _LogMessageParams():
 return $default(_that.type,_that.message);case _:
@@ -38784,7 +38784,7 @@ return $default(_that.type,_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_MessageTypeConverter()  MessageType type,  String message)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( MessageType type,  String message)?  $default,) {final _that = this;
 switch (_that) {
 case _LogMessageParams() when $default != null:
 return $default(_that.type,_that.message);case _:
@@ -38799,10 +38799,10 @@ return $default(_that.type,_that.message);case _:
 @JsonSerializable()
 
 class _LogMessageParams extends LogMessageParams {
-  const _LogMessageParams({@_MessageTypeConverter() required this.type, required this.message}): super._();
+  const _LogMessageParams({required this.type, required this.message}): super._();
   factory _LogMessageParams.fromJson(Map<String, dynamic> json) => _$LogMessageParamsFromJson(json);
 
-@override@_MessageTypeConverter() final  MessageType type;
+@override final  MessageType type;
 @override final  String message;
 
 /// Create a copy of LogMessageParams
@@ -38838,7 +38838,7 @@ abstract mixin class _$LogMessageParamsCopyWith<$Res> implements $LogMessagePara
   factory _$LogMessageParamsCopyWith(_LogMessageParams value, $Res Function(_LogMessageParams) _then) = __$LogMessageParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_MessageTypeConverter() MessageType type, String message
+ MessageType type, String message
 });
 
 
@@ -39441,7 +39441,7 @@ $VersionedTextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$TextDocumentChangeRegistrationOptions {
 
- DocumentSelector? get documentSelector;@_TextDocumentSyncKindConverter() TextDocumentSyncKind get syncKind;
+ DocumentSelector? get documentSelector; TextDocumentSyncKind get syncKind;
 /// Create a copy of TextDocumentChangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -39474,7 +39474,7 @@ abstract mixin class $TextDocumentChangeRegistrationOptionsCopyWith<$Res>  {
   factory $TextDocumentChangeRegistrationOptionsCopyWith(TextDocumentChangeRegistrationOptions value, $Res Function(TextDocumentChangeRegistrationOptions) _then) = _$TextDocumentChangeRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- DocumentSelector? documentSelector,@_TextDocumentSyncKindConverter() TextDocumentSyncKind syncKind
+ DocumentSelector? documentSelector, TextDocumentSyncKind syncKind
 });
 
 
@@ -39580,7 +39580,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector, @_TextDocumentSyncKindConverter()  TextDocumentSyncKind syncKind)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  TextDocumentSyncKind syncKind)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TextDocumentChangeRegistrationOptions() when $default != null:
 return $default(_that.documentSelector,_that.syncKind);case _:
@@ -39601,7 +39601,7 @@ return $default(_that.documentSelector,_that.syncKind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector, @_TextDocumentSyncKindConverter()  TextDocumentSyncKind syncKind)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  TextDocumentSyncKind syncKind)  $default,) {final _that = this;
 switch (_that) {
 case _TextDocumentChangeRegistrationOptions():
 return $default(_that.documentSelector,_that.syncKind);case _:
@@ -39621,7 +39621,7 @@ return $default(_that.documentSelector,_that.syncKind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DocumentSelector? documentSelector, @_TextDocumentSyncKindConverter()  TextDocumentSyncKind syncKind)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DocumentSelector? documentSelector,  TextDocumentSyncKind syncKind)?  $default,) {final _that = this;
 switch (_that) {
 case _TextDocumentChangeRegistrationOptions() when $default != null:
 return $default(_that.documentSelector,_that.syncKind);case _:
@@ -39636,7 +39636,7 @@ return $default(_that.documentSelector,_that.syncKind);case _:
 @JsonSerializable()
 
 class _TextDocumentChangeRegistrationOptions extends TextDocumentChangeRegistrationOptions {
-  const _TextDocumentChangeRegistrationOptions({required final  DocumentSelector? documentSelector, @_TextDocumentSyncKindConverter() required this.syncKind}): _documentSelector = documentSelector,super._();
+  const _TextDocumentChangeRegistrationOptions({required final  DocumentSelector? documentSelector, required this.syncKind}): _documentSelector = documentSelector,super._();
   factory _TextDocumentChangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentChangeRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -39648,7 +39648,7 @@ class _TextDocumentChangeRegistrationOptions extends TextDocumentChangeRegistrat
   return EqualUnmodifiableListView(value);
 }
 
-@override@_TextDocumentSyncKindConverter() final  TextDocumentSyncKind syncKind;
+@override final  TextDocumentSyncKind syncKind;
 
 /// Create a copy of TextDocumentChangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -39683,7 +39683,7 @@ abstract mixin class _$TextDocumentChangeRegistrationOptionsCopyWith<$Res> imple
   factory _$TextDocumentChangeRegistrationOptionsCopyWith(_TextDocumentChangeRegistrationOptions value, $Res Function(_TextDocumentChangeRegistrationOptions) _then) = __$TextDocumentChangeRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- DocumentSelector? documentSelector,@_TextDocumentSyncKindConverter() TextDocumentSyncKind syncKind
+ DocumentSelector? documentSelector, TextDocumentSyncKind syncKind
 });
 
 
@@ -40554,7 +40554,7 @@ as bool?,
 /// @nodoc
 mixin _$WillSaveTextDocumentParams {
 
- TextDocumentIdentifier get textDocument;@_TextDocumentSaveReasonConverter() TextDocumentSaveReason get reason;
+ TextDocumentIdentifier get textDocument; TextDocumentSaveReason get reason;
 /// Create a copy of WillSaveTextDocumentParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -40587,7 +40587,7 @@ abstract mixin class $WillSaveTextDocumentParamsCopyWith<$Res>  {
   factory $WillSaveTextDocumentParamsCopyWith(WillSaveTextDocumentParams value, $Res Function(WillSaveTextDocumentParams) _then) = _$WillSaveTextDocumentParamsCopyWithImpl;
 @useResult
 $Res call({
- TextDocumentIdentifier textDocument,@_TextDocumentSaveReasonConverter() TextDocumentSaveReason reason
+ TextDocumentIdentifier textDocument, TextDocumentSaveReason reason
 });
 
 
@@ -40702,7 +40702,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextDocumentIdentifier textDocument, @_TextDocumentSaveReasonConverter()  TextDocumentSaveReason reason)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TextDocumentIdentifier textDocument,  TextDocumentSaveReason reason)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WillSaveTextDocumentParams() when $default != null:
 return $default(_that.textDocument,_that.reason);case _:
@@ -40723,7 +40723,7 @@ return $default(_that.textDocument,_that.reason);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextDocumentIdentifier textDocument, @_TextDocumentSaveReasonConverter()  TextDocumentSaveReason reason)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TextDocumentIdentifier textDocument,  TextDocumentSaveReason reason)  $default,) {final _that = this;
 switch (_that) {
 case _WillSaveTextDocumentParams():
 return $default(_that.textDocument,_that.reason);case _:
@@ -40743,7 +40743,7 @@ return $default(_that.textDocument,_that.reason);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextDocumentIdentifier textDocument, @_TextDocumentSaveReasonConverter()  TextDocumentSaveReason reason)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TextDocumentIdentifier textDocument,  TextDocumentSaveReason reason)?  $default,) {final _that = this;
 switch (_that) {
 case _WillSaveTextDocumentParams() when $default != null:
 return $default(_that.textDocument,_that.reason);case _:
@@ -40758,11 +40758,11 @@ return $default(_that.textDocument,_that.reason);case _:
 @JsonSerializable()
 
 class _WillSaveTextDocumentParams extends WillSaveTextDocumentParams {
-  const _WillSaveTextDocumentParams({required this.textDocument, @_TextDocumentSaveReasonConverter() required this.reason}): super._();
+  const _WillSaveTextDocumentParams({required this.textDocument, required this.reason}): super._();
   factory _WillSaveTextDocumentParams.fromJson(Map<String, dynamic> json) => _$WillSaveTextDocumentParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
-@override@_TextDocumentSaveReasonConverter() final  TextDocumentSaveReason reason;
+@override final  TextDocumentSaveReason reason;
 
 /// Create a copy of WillSaveTextDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -40797,7 +40797,7 @@ abstract mixin class _$WillSaveTextDocumentParamsCopyWith<$Res> implements $Will
   factory _$WillSaveTextDocumentParamsCopyWith(_WillSaveTextDocumentParams value, $Res Function(_WillSaveTextDocumentParams) _then) = __$WillSaveTextDocumentParamsCopyWithImpl;
 @override @useResult
 $Res call({
- TextDocumentIdentifier textDocument,@_TextDocumentSaveReasonConverter() TextDocumentSaveReason reason
+ TextDocumentIdentifier textDocument, TextDocumentSaveReason reason
 });
 
 
@@ -42318,7 +42318,7 @@ $CompletionContextCopyWith<$Res>? get context {
 /// @nodoc
 mixin _$CompletionItem {
 
- String get label; CompletionItemLabelDetails? get labelDetails;@_CompletionItemKindConverter() CompletionItemKind? get kind;@_CompletionItemTagListConverter() List<CompletionItemTag>? get tags; String? get detail; Object? get documentation; bool? get deprecated; bool? get preselect; String? get sortText; String? get filterText; String? get insertText;@_InsertTextFormatConverter() InsertTextFormat? get insertTextFormat;@_InsertTextModeConverter() InsertTextMode? get insertTextMode; Object? get textEdit; String? get textEditText; List<TextEdit>? get additionalTextEdits; List<String>? get commitCharacters; Command? get command; LSPAny? get data;
+ String get label; CompletionItemLabelDetails? get labelDetails; CompletionItemKind? get kind; List<CompletionItemTag>? get tags; String? get detail; Object? get documentation; bool? get deprecated; bool? get preselect; String? get sortText; String? get filterText; String? get insertText; InsertTextFormat? get insertTextFormat; InsertTextMode? get insertTextMode; Object? get textEdit; String? get textEditText; List<TextEdit>? get additionalTextEdits; List<String>? get commitCharacters; Command? get command; LSPAny? get data;
 /// Create a copy of CompletionItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -42351,7 +42351,7 @@ abstract mixin class $CompletionItemCopyWith<$Res>  {
   factory $CompletionItemCopyWith(CompletionItem value, $Res Function(CompletionItem) _then) = _$CompletionItemCopyWithImpl;
 @useResult
 $Res call({
- String label, CompletionItemLabelDetails? labelDetails,@_CompletionItemKindConverter() CompletionItemKind? kind,@_CompletionItemTagListConverter() List<CompletionItemTag>? tags, String? detail, Object? documentation, bool? deprecated, bool? preselect, String? sortText, String? filterText, String? insertText,@_InsertTextFormatConverter() InsertTextFormat? insertTextFormat,@_InsertTextModeConverter() InsertTextMode? insertTextMode, Object? textEdit, String? textEditText, List<TextEdit>? additionalTextEdits, List<String>? commitCharacters, Command? command, LSPAny? data
+ String label, CompletionItemLabelDetails? labelDetails, CompletionItemKind? kind, List<CompletionItemTag>? tags, String? detail, Object? documentation, bool? deprecated, bool? preselect, String? sortText, String? filterText, String? insertText, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, Object? textEdit, String? textEditText, List<TextEdit>? additionalTextEdits, List<String>? commitCharacters, Command? command, LSPAny? data
 });
 
 
@@ -42495,7 +42495,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String label,  CompletionItemLabelDetails? labelDetails, @_CompletionItemKindConverter()  CompletionItemKind? kind, @_CompletionItemTagListConverter()  List<CompletionItemTag>? tags,  String? detail,  Object? documentation,  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText, @_InsertTextFormatConverter()  InsertTextFormat? insertTextFormat, @_InsertTextModeConverter()  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String label,  CompletionItemLabelDetails? labelDetails,  CompletionItemKind? kind,  List<CompletionItemTag>? tags,  String? detail,  Object? documentation,  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionItem() when $default != null:
 return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detail,_that.documentation,_that.deprecated,_that.preselect,_that.sortText,_that.filterText,_that.insertText,_that.insertTextFormat,_that.insertTextMode,_that.textEdit,_that.textEditText,_that.additionalTextEdits,_that.commitCharacters,_that.command,_that.data);case _:
@@ -42516,7 +42516,7 @@ return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detai
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String label,  CompletionItemLabelDetails? labelDetails, @_CompletionItemKindConverter()  CompletionItemKind? kind, @_CompletionItemTagListConverter()  List<CompletionItemTag>? tags,  String? detail,  Object? documentation,  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText, @_InsertTextFormatConverter()  InsertTextFormat? insertTextFormat, @_InsertTextModeConverter()  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String label,  CompletionItemLabelDetails? labelDetails,  CompletionItemKind? kind,  List<CompletionItemTag>? tags,  String? detail,  Object? documentation,  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionItem():
 return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detail,_that.documentation,_that.deprecated,_that.preselect,_that.sortText,_that.filterText,_that.insertText,_that.insertTextFormat,_that.insertTextMode,_that.textEdit,_that.textEditText,_that.additionalTextEdits,_that.commitCharacters,_that.command,_that.data);case _:
@@ -42536,7 +42536,7 @@ return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detai
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String label,  CompletionItemLabelDetails? labelDetails, @_CompletionItemKindConverter()  CompletionItemKind? kind, @_CompletionItemTagListConverter()  List<CompletionItemTag>? tags,  String? detail,  Object? documentation,  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText, @_InsertTextFormatConverter()  InsertTextFormat? insertTextFormat, @_InsertTextModeConverter()  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String label,  CompletionItemLabelDetails? labelDetails,  CompletionItemKind? kind,  List<CompletionItemTag>? tags,  String? detail,  Object? documentation,  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionItem() when $default != null:
 return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detail,_that.documentation,_that.deprecated,_that.preselect,_that.sortText,_that.filterText,_that.insertText,_that.insertTextFormat,_that.insertTextMode,_that.textEdit,_that.textEditText,_that.additionalTextEdits,_that.commitCharacters,_that.command,_that.data);case _:
@@ -42551,14 +42551,14 @@ return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detai
 @JsonSerializable()
 
 class _CompletionItem extends CompletionItem {
-  const _CompletionItem({required this.label, this.labelDetails, @_CompletionItemKindConverter() this.kind, @_CompletionItemTagListConverter() final  List<CompletionItemTag>? tags, this.detail, this.documentation, this.deprecated, this.preselect, this.sortText, this.filterText, this.insertText, @_InsertTextFormatConverter() this.insertTextFormat, @_InsertTextModeConverter() this.insertTextMode, this.textEdit, this.textEditText, final  List<TextEdit>? additionalTextEdits, final  List<String>? commitCharacters, this.command, this.data}): _tags = tags,_additionalTextEdits = additionalTextEdits,_commitCharacters = commitCharacters,super._();
+  const _CompletionItem({required this.label, this.labelDetails, this.kind, final  List<CompletionItemTag>? tags, this.detail, this.documentation, this.deprecated, this.preselect, this.sortText, this.filterText, this.insertText, this.insertTextFormat, this.insertTextMode, this.textEdit, this.textEditText, final  List<TextEdit>? additionalTextEdits, final  List<String>? commitCharacters, this.command, this.data}): _tags = tags,_additionalTextEdits = additionalTextEdits,_commitCharacters = commitCharacters,super._();
   factory _CompletionItem.fromJson(Map<String, dynamic> json) => _$CompletionItemFromJson(json);
 
 @override final  String label;
 @override final  CompletionItemLabelDetails? labelDetails;
-@override@_CompletionItemKindConverter() final  CompletionItemKind? kind;
+@override final  CompletionItemKind? kind;
  final  List<CompletionItemTag>? _tags;
-@override@_CompletionItemTagListConverter() List<CompletionItemTag>? get tags {
+@override List<CompletionItemTag>? get tags {
   final value = _tags;
   if (value == null) return null;
   if (_tags is EqualUnmodifiableListView) return _tags;
@@ -42573,8 +42573,8 @@ class _CompletionItem extends CompletionItem {
 @override final  String? sortText;
 @override final  String? filterText;
 @override final  String? insertText;
-@override@_InsertTextFormatConverter() final  InsertTextFormat? insertTextFormat;
-@override@_InsertTextModeConverter() final  InsertTextMode? insertTextMode;
+@override final  InsertTextFormat? insertTextFormat;
+@override final  InsertTextMode? insertTextMode;
 @override final  Object? textEdit;
 @override final  String? textEditText;
  final  List<TextEdit>? _additionalTextEdits;
@@ -42631,7 +42631,7 @@ abstract mixin class _$CompletionItemCopyWith<$Res> implements $CompletionItemCo
   factory _$CompletionItemCopyWith(_CompletionItem value, $Res Function(_CompletionItem) _then) = __$CompletionItemCopyWithImpl;
 @override @useResult
 $Res call({
- String label, CompletionItemLabelDetails? labelDetails,@_CompletionItemKindConverter() CompletionItemKind? kind,@_CompletionItemTagListConverter() List<CompletionItemTag>? tags, String? detail, Object? documentation, bool? deprecated, bool? preselect, String? sortText, String? filterText, String? insertText,@_InsertTextFormatConverter() InsertTextFormat? insertTextFormat,@_InsertTextModeConverter() InsertTextMode? insertTextMode, Object? textEdit, String? textEditText, List<TextEdit>? additionalTextEdits, List<String>? commitCharacters, Command? command, LSPAny? data
+ String label, CompletionItemLabelDetails? labelDetails, CompletionItemKind? kind, List<CompletionItemTag>? tags, String? detail, Object? documentation, bool? deprecated, bool? preselect, String? sortText, String? filterText, String? insertText, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, Object? textEdit, String? textEditText, List<TextEdit>? additionalTextEdits, List<String>? commitCharacters, Command? command, LSPAny? data
 });
 
 
@@ -46781,7 +46781,7 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 /// @nodoc
 mixin _$DocumentHighlight {
 
- Range get range;@_DocumentHighlightKindConverter() DocumentHighlightKind? get kind;
+ Range get range; DocumentHighlightKind? get kind;
 /// Create a copy of DocumentHighlight
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46814,7 +46814,7 @@ abstract mixin class $DocumentHighlightCopyWith<$Res>  {
   factory $DocumentHighlightCopyWith(DocumentHighlight value, $Res Function(DocumentHighlight) _then) = _$DocumentHighlightCopyWithImpl;
 @useResult
 $Res call({
- Range range,@_DocumentHighlightKindConverter() DocumentHighlightKind? kind
+ Range range, DocumentHighlightKind? kind
 });
 
 
@@ -46929,7 +46929,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Range range, @_DocumentHighlightKindConverter()  DocumentHighlightKind? kind)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Range range,  DocumentHighlightKind? kind)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentHighlight() when $default != null:
 return $default(_that.range,_that.kind);case _:
@@ -46950,7 +46950,7 @@ return $default(_that.range,_that.kind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Range range, @_DocumentHighlightKindConverter()  DocumentHighlightKind? kind)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Range range,  DocumentHighlightKind? kind)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentHighlight():
 return $default(_that.range,_that.kind);case _:
@@ -46970,7 +46970,7 @@ return $default(_that.range,_that.kind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Range range, @_DocumentHighlightKindConverter()  DocumentHighlightKind? kind)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Range range,  DocumentHighlightKind? kind)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentHighlight() when $default != null:
 return $default(_that.range,_that.kind);case _:
@@ -46985,11 +46985,11 @@ return $default(_that.range,_that.kind);case _:
 @JsonSerializable()
 
 class _DocumentHighlight extends DocumentHighlight {
-  const _DocumentHighlight({required this.range, @_DocumentHighlightKindConverter() this.kind}): super._();
+  const _DocumentHighlight({required this.range, this.kind}): super._();
   factory _DocumentHighlight.fromJson(Map<String, dynamic> json) => _$DocumentHighlightFromJson(json);
 
 @override final  Range range;
-@override@_DocumentHighlightKindConverter() final  DocumentHighlightKind? kind;
+@override final  DocumentHighlightKind? kind;
 
 /// Create a copy of DocumentHighlight
 /// with the given fields replaced by the non-null parameter values.
@@ -47024,7 +47024,7 @@ abstract mixin class _$DocumentHighlightCopyWith<$Res> implements $DocumentHighl
   factory _$DocumentHighlightCopyWith(_DocumentHighlight value, $Res Function(_DocumentHighlight) _then) = __$DocumentHighlightCopyWithImpl;
 @override @useResult
 $Res call({
- Range range,@_DocumentHighlightKindConverter() DocumentHighlightKind? kind
+ Range range, DocumentHighlightKind? kind
 });
 
 
@@ -47674,7 +47674,7 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$SymbolInformation {
 
- String get name;@_SymbolKindConverter() SymbolKind get kind;@_SymbolTagListConverter() List<SymbolTag>? get tags; String? get containerName; bool? get deprecated; Location get location;
+ String get name; SymbolKind get kind; List<SymbolTag>? get tags; String? get containerName; bool? get deprecated; Location get location;
 /// Create a copy of SymbolInformation
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -47707,7 +47707,7 @@ abstract mixin class $SymbolInformationCopyWith<$Res>  {
   factory $SymbolInformationCopyWith(SymbolInformation value, $Res Function(SymbolInformation) _then) = _$SymbolInformationCopyWithImpl;
 @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? containerName, bool? deprecated, Location location
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName, bool? deprecated, Location location
 });
 
 
@@ -47826,7 +47826,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? containerName,  bool? deprecated,  Location location)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName,  bool? deprecated,  Location location)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SymbolInformation() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.deprecated,_that.location);case _:
@@ -47847,7 +47847,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.depre
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? containerName,  bool? deprecated,  Location location)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName,  bool? deprecated,  Location location)  $default,) {final _that = this;
 switch (_that) {
 case _SymbolInformation():
 return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.deprecated,_that.location);case _:
@@ -47867,7 +47867,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.depre
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? containerName,  bool? deprecated,  Location location)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName,  bool? deprecated,  Location location)?  $default,) {final _that = this;
 switch (_that) {
 case _SymbolInformation() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.deprecated,_that.location);case _:
@@ -47882,13 +47882,13 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.depre
 @JsonSerializable()
 
 class _SymbolInformation extends SymbolInformation {
-  const _SymbolInformation({required this.name, @_SymbolKindConverter() required this.kind, @_SymbolTagListConverter() final  List<SymbolTag>? tags, this.containerName, this.deprecated, required this.location}): _tags = tags,super._();
+  const _SymbolInformation({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, this.deprecated, required this.location}): _tags = tags,super._();
   factory _SymbolInformation.fromJson(Map<String, dynamic> json) => _$SymbolInformationFromJson(json);
 
 @override final  String name;
-@override@_SymbolKindConverter() final  SymbolKind kind;
+@override final  SymbolKind kind;
  final  List<SymbolTag>? _tags;
-@override@_SymbolTagListConverter() List<SymbolTag>? get tags {
+@override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
   if (_tags is EqualUnmodifiableListView) return _tags;
@@ -47933,7 +47933,7 @@ abstract mixin class _$SymbolInformationCopyWith<$Res> implements $SymbolInforma
   factory _$SymbolInformationCopyWith(_SymbolInformation value, $Res Function(_SymbolInformation) _then) = __$SymbolInformationCopyWithImpl;
 @override @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? containerName, bool? deprecated, Location location
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName, bool? deprecated, Location location
 });
 
 
@@ -47978,7 +47978,7 @@ $LocationCopyWith<$Res> get location {
 /// @nodoc
 mixin _$DocumentSymbol {
 
- String get name; String? get detail;@_SymbolKindConverter() SymbolKind get kind;@_SymbolTagListConverter() List<SymbolTag>? get tags; bool? get deprecated; Range get range; Range get selectionRange; List<DocumentSymbol>? get children;
+ String get name; String? get detail; SymbolKind get kind; List<SymbolTag>? get tags; bool? get deprecated; Range get range; Range get selectionRange; List<DocumentSymbol>? get children;
 /// Create a copy of DocumentSymbol
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48011,7 +48011,7 @@ abstract mixin class $DocumentSymbolCopyWith<$Res>  {
   factory $DocumentSymbolCopyWith(DocumentSymbol value, $Res Function(DocumentSymbol) _then) = _$DocumentSymbolCopyWithImpl;
 @useResult
 $Res call({
- String name, String? detail,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
+ String name, String? detail, SymbolKind kind, List<SymbolTag>? tags, bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
 });
 
 
@@ -48141,7 +48141,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String? detail, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String? detail,  SymbolKind kind,  List<SymbolTag>? tags,  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentSymbol() when $default != null:
 return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_that.range,_that.selectionRange,_that.children);case _:
@@ -48162,7 +48162,7 @@ return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String? detail, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String? detail,  SymbolKind kind,  List<SymbolTag>? tags,  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbol():
 return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_that.range,_that.selectionRange,_that.children);case _:
@@ -48182,7 +48182,7 @@ return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String? detail, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String? detail,  SymbolKind kind,  List<SymbolTag>? tags,  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbol() when $default != null:
 return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_that.range,_that.selectionRange,_that.children);case _:
@@ -48197,14 +48197,14 @@ return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_
 @JsonSerializable()
 
 class _DocumentSymbol extends DocumentSymbol {
-  const _DocumentSymbol({required this.name, this.detail, @_SymbolKindConverter() required this.kind, @_SymbolTagListConverter() final  List<SymbolTag>? tags, this.deprecated, required this.range, required this.selectionRange, final  List<DocumentSymbol>? children}): _tags = tags,_children = children,super._();
+  const _DocumentSymbol({required this.name, this.detail, required this.kind, final  List<SymbolTag>? tags, this.deprecated, required this.range, required this.selectionRange, final  List<DocumentSymbol>? children}): _tags = tags,_children = children,super._();
   factory _DocumentSymbol.fromJson(Map<String, dynamic> json) => _$DocumentSymbolFromJson(json);
 
 @override final  String name;
 @override final  String? detail;
-@override@_SymbolKindConverter() final  SymbolKind kind;
+@override final  SymbolKind kind;
  final  List<SymbolTag>? _tags;
-@override@_SymbolTagListConverter() List<SymbolTag>? get tags {
+@override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
   if (_tags is EqualUnmodifiableListView) return _tags;
@@ -48258,7 +48258,7 @@ abstract mixin class _$DocumentSymbolCopyWith<$Res> implements $DocumentSymbolCo
   factory _$DocumentSymbolCopyWith(_DocumentSymbol value, $Res Function(_DocumentSymbol) _then) = __$DocumentSymbolCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String? detail,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
+ String name, String? detail, SymbolKind kind, List<SymbolTag>? tags, bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
 });
 
 
@@ -50212,7 +50212,7 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 /// @nodoc
 mixin _$WorkspaceSymbol {
 
- String get name;@_SymbolKindConverter() SymbolKind get kind;@_SymbolTagListConverter() List<SymbolTag>? get tags; String? get containerName; Object get location; LSPAny? get data;
+ String get name; SymbolKind get kind; List<SymbolTag>? get tags; String? get containerName; Object get location; LSPAny? get data;
 /// Create a copy of WorkspaceSymbol
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -50245,7 +50245,7 @@ abstract mixin class $WorkspaceSymbolCopyWith<$Res>  {
   factory $WorkspaceSymbolCopyWith(WorkspaceSymbol value, $Res Function(WorkspaceSymbol) _then) = _$WorkspaceSymbolCopyWithImpl;
 @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? containerName, Object location, LSPAny? data
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName, Object location, LSPAny? data
 });
 
 
@@ -50353,7 +50353,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? containerName,  Object location,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName,  Object location,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbol() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.location,_that.data);case _:
@@ -50374,7 +50374,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.locat
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? containerName,  Object location,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName,  Object location,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbol():
 return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.location,_that.data);case _:
@@ -50394,7 +50394,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.locat
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? containerName,  Object location,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName,  Object location,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbol() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.location,_that.data);case _:
@@ -50409,13 +50409,13 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.locat
 @JsonSerializable()
 
 class _WorkspaceSymbol extends WorkspaceSymbol {
-  const _WorkspaceSymbol({required this.name, @_SymbolKindConverter() required this.kind, @_SymbolTagListConverter() final  List<SymbolTag>? tags, this.containerName, required this.location, this.data}): _tags = tags,super._();
+  const _WorkspaceSymbol({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, required this.location, this.data}): _tags = tags,super._();
   factory _WorkspaceSymbol.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolFromJson(json);
 
 @override final  String name;
-@override@_SymbolKindConverter() final  SymbolKind kind;
+@override final  SymbolKind kind;
  final  List<SymbolTag>? _tags;
-@override@_SymbolTagListConverter() List<SymbolTag>? get tags {
+@override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
   if (_tags is EqualUnmodifiableListView) return _tags;
@@ -50460,7 +50460,7 @@ abstract mixin class _$WorkspaceSymbolCopyWith<$Res> implements $WorkspaceSymbol
   factory _$WorkspaceSymbolCopyWith(_WorkspaceSymbol value, $Res Function(_WorkspaceSymbol) _then) = __$WorkspaceSymbolCopyWithImpl;
 @override @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? containerName, Object location, LSPAny? data
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName, Object location, LSPAny? data
 });
 
 
@@ -57637,7 +57637,7 @@ as String?,
 /// @nodoc
 mixin _$SetTraceParams {
 
-@_TraceValuesConverter() TraceValues get value;
+ TraceValues get value;
 /// Create a copy of SetTraceParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -57670,7 +57670,7 @@ abstract mixin class $SetTraceParamsCopyWith<$Res>  {
   factory $SetTraceParamsCopyWith(SetTraceParams value, $Res Function(SetTraceParams) _then) = _$SetTraceParamsCopyWithImpl;
 @useResult
 $Res call({
-@_TraceValuesConverter() TraceValues value
+ TraceValues value
 });
 
 
@@ -57775,7 +57775,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_TraceValuesConverter()  TraceValues value)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TraceValues value)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SetTraceParams() when $default != null:
 return $default(_that.value);case _:
@@ -57796,7 +57796,7 @@ return $default(_that.value);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_TraceValuesConverter()  TraceValues value)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TraceValues value)  $default,) {final _that = this;
 switch (_that) {
 case _SetTraceParams():
 return $default(_that.value);case _:
@@ -57816,7 +57816,7 @@ return $default(_that.value);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_TraceValuesConverter()  TraceValues value)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TraceValues value)?  $default,) {final _that = this;
 switch (_that) {
 case _SetTraceParams() when $default != null:
 return $default(_that.value);case _:
@@ -57831,10 +57831,10 @@ return $default(_that.value);case _:
 @JsonSerializable()
 
 class _SetTraceParams extends SetTraceParams {
-  const _SetTraceParams({@_TraceValuesConverter() required this.value}): super._();
+  const _SetTraceParams({required this.value}): super._();
   factory _SetTraceParams.fromJson(Map<String, dynamic> json) => _$SetTraceParamsFromJson(json);
 
-@override@_TraceValuesConverter() final  TraceValues value;
+@override final  TraceValues value;
 
 /// Create a copy of SetTraceParams
 /// with the given fields replaced by the non-null parameter values.
@@ -57869,7 +57869,7 @@ abstract mixin class _$SetTraceParamsCopyWith<$Res> implements $SetTraceParamsCo
   factory _$SetTraceParamsCopyWith(_SetTraceParams value, $Res Function(_SetTraceParams) _then) = __$SetTraceParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_TraceValuesConverter() TraceValues value
+ TraceValues value
 });
 
 
@@ -69266,7 +69266,7 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 mixin _$MarkupContent {
 
-@_MarkupKindConverter() MarkupKind get kind; String get value;
+ MarkupKind get kind; String get value;
 /// Create a copy of MarkupContent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -69299,7 +69299,7 @@ abstract mixin class $MarkupContentCopyWith<$Res>  {
   factory $MarkupContentCopyWith(MarkupContent value, $Res Function(MarkupContent) _then) = _$MarkupContentCopyWithImpl;
 @useResult
 $Res call({
-@_MarkupKindConverter() MarkupKind kind, String value
+ MarkupKind kind, String value
 });
 
 
@@ -69405,7 +69405,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_MarkupKindConverter()  MarkupKind kind,  String value)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( MarkupKind kind,  String value)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MarkupContent() when $default != null:
 return $default(_that.kind,_that.value);case _:
@@ -69426,7 +69426,7 @@ return $default(_that.kind,_that.value);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_MarkupKindConverter()  MarkupKind kind,  String value)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( MarkupKind kind,  String value)  $default,) {final _that = this;
 switch (_that) {
 case _MarkupContent():
 return $default(_that.kind,_that.value);case _:
@@ -69446,7 +69446,7 @@ return $default(_that.kind,_that.value);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_MarkupKindConverter()  MarkupKind kind,  String value)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( MarkupKind kind,  String value)?  $default,) {final _that = this;
 switch (_that) {
 case _MarkupContent() when $default != null:
 return $default(_that.kind,_that.value);case _:
@@ -69461,10 +69461,10 @@ return $default(_that.kind,_that.value);case _:
 @JsonSerializable()
 
 class _MarkupContent extends MarkupContent {
-  const _MarkupContent({@_MarkupKindConverter() required this.kind, required this.value}): super._();
+  const _MarkupContent({required this.kind, required this.value}): super._();
   factory _MarkupContent.fromJson(Map<String, dynamic> json) => _$MarkupContentFromJson(json);
 
-@override@_MarkupKindConverter() final  MarkupKind kind;
+@override final  MarkupKind kind;
 @override final  String value;
 
 /// Create a copy of MarkupContent
@@ -69500,7 +69500,7 @@ abstract mixin class _$MarkupContentCopyWith<$Res> implements $MarkupContentCopy
   factory _$MarkupContentCopyWith(_MarkupContent value, $Res Function(_MarkupContent) _then) = __$MarkupContentCopyWithImpl;
 @override @useResult
 $Res call({
-@_MarkupKindConverter() MarkupKind kind, String value
+ MarkupKind kind, String value
 });
 
 
@@ -72828,7 +72828,7 @@ as String,
 /// @nodoc
 mixin _$InlineCompletionContext {
 
-@_InlineCompletionTriggerKindConverter() InlineCompletionTriggerKind get triggerKind; SelectedCompletionInfo? get selectedCompletionInfo;
+ InlineCompletionTriggerKind get triggerKind; SelectedCompletionInfo? get selectedCompletionInfo;
 /// Create a copy of InlineCompletionContext
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -72861,7 +72861,7 @@ abstract mixin class $InlineCompletionContextCopyWith<$Res>  {
   factory $InlineCompletionContextCopyWith(InlineCompletionContext value, $Res Function(InlineCompletionContext) _then) = _$InlineCompletionContextCopyWithImpl;
 @useResult
 $Res call({
-@_InlineCompletionTriggerKindConverter() InlineCompletionTriggerKind triggerKind, SelectedCompletionInfo? selectedCompletionInfo
+ InlineCompletionTriggerKind triggerKind, SelectedCompletionInfo? selectedCompletionInfo
 });
 
 
@@ -72979,7 +72979,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_InlineCompletionTriggerKindConverter()  InlineCompletionTriggerKind triggerKind,  SelectedCompletionInfo? selectedCompletionInfo)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( InlineCompletionTriggerKind triggerKind,  SelectedCompletionInfo? selectedCompletionInfo)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InlineCompletionContext() when $default != null:
 return $default(_that.triggerKind,_that.selectedCompletionInfo);case _:
@@ -73000,7 +73000,7 @@ return $default(_that.triggerKind,_that.selectedCompletionInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_InlineCompletionTriggerKindConverter()  InlineCompletionTriggerKind triggerKind,  SelectedCompletionInfo? selectedCompletionInfo)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( InlineCompletionTriggerKind triggerKind,  SelectedCompletionInfo? selectedCompletionInfo)  $default,) {final _that = this;
 switch (_that) {
 case _InlineCompletionContext():
 return $default(_that.triggerKind,_that.selectedCompletionInfo);case _:
@@ -73020,7 +73020,7 @@ return $default(_that.triggerKind,_that.selectedCompletionInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_InlineCompletionTriggerKindConverter()  InlineCompletionTriggerKind triggerKind,  SelectedCompletionInfo? selectedCompletionInfo)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( InlineCompletionTriggerKind triggerKind,  SelectedCompletionInfo? selectedCompletionInfo)?  $default,) {final _that = this;
 switch (_that) {
 case _InlineCompletionContext() when $default != null:
 return $default(_that.triggerKind,_that.selectedCompletionInfo);case _:
@@ -73035,10 +73035,10 @@ return $default(_that.triggerKind,_that.selectedCompletionInfo);case _:
 @JsonSerializable()
 
 class _InlineCompletionContext extends InlineCompletionContext {
-  const _InlineCompletionContext({@_InlineCompletionTriggerKindConverter() required this.triggerKind, this.selectedCompletionInfo}): super._();
+  const _InlineCompletionContext({required this.triggerKind, this.selectedCompletionInfo}): super._();
   factory _InlineCompletionContext.fromJson(Map<String, dynamic> json) => _$InlineCompletionContextFromJson(json);
 
-@override@_InlineCompletionTriggerKindConverter() final  InlineCompletionTriggerKind triggerKind;
+@override final  InlineCompletionTriggerKind triggerKind;
 @override final  SelectedCompletionInfo? selectedCompletionInfo;
 
 /// Create a copy of InlineCompletionContext
@@ -73074,7 +73074,7 @@ abstract mixin class _$InlineCompletionContextCopyWith<$Res> implements $InlineC
   factory _$InlineCompletionContextCopyWith(_InlineCompletionContext value, $Res Function(_InlineCompletionContext) _then) = __$InlineCompletionContextCopyWithImpl;
 @override @useResult
 $Res call({
-@_InlineCompletionTriggerKindConverter() InlineCompletionTriggerKind triggerKind, SelectedCompletionInfo? selectedCompletionInfo
+ InlineCompletionTriggerKind triggerKind, SelectedCompletionInfo? selectedCompletionInfo
 });
 
 
@@ -75460,7 +75460,7 @@ as bool?,
 /// @nodoc
 mixin _$FileEvent {
 
- String get uri;@_FileChangeTypeConverter() FileChangeType get type;
+ String get uri; FileChangeType get type;
 /// Create a copy of FileEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -75493,7 +75493,7 @@ abstract mixin class $FileEventCopyWith<$Res>  {
   factory $FileEventCopyWith(FileEvent value, $Res Function(FileEvent) _then) = _$FileEventCopyWithImpl;
 @useResult
 $Res call({
- String uri,@_FileChangeTypeConverter() FileChangeType type
+ String uri, FileChangeType type
 });
 
 
@@ -75599,7 +75599,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String uri, @_FileChangeTypeConverter()  FileChangeType type)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String uri,  FileChangeType type)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FileEvent() when $default != null:
 return $default(_that.uri,_that.type);case _:
@@ -75620,7 +75620,7 @@ return $default(_that.uri,_that.type);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String uri, @_FileChangeTypeConverter()  FileChangeType type)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String uri,  FileChangeType type)  $default,) {final _that = this;
 switch (_that) {
 case _FileEvent():
 return $default(_that.uri,_that.type);case _:
@@ -75640,7 +75640,7 @@ return $default(_that.uri,_that.type);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String uri, @_FileChangeTypeConverter()  FileChangeType type)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String uri,  FileChangeType type)?  $default,) {final _that = this;
 switch (_that) {
 case _FileEvent() when $default != null:
 return $default(_that.uri,_that.type);case _:
@@ -75655,11 +75655,11 @@ return $default(_that.uri,_that.type);case _:
 @JsonSerializable()
 
 class _FileEvent extends FileEvent {
-  const _FileEvent({required this.uri, @_FileChangeTypeConverter() required this.type}): super._();
+  const _FileEvent({required this.uri, required this.type}): super._();
   factory _FileEvent.fromJson(Map<String, dynamic> json) => _$FileEventFromJson(json);
 
 @override final  String uri;
-@override@_FileChangeTypeConverter() final  FileChangeType type;
+@override final  FileChangeType type;
 
 /// Create a copy of FileEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -75694,7 +75694,7 @@ abstract mixin class _$FileEventCopyWith<$Res> implements $FileEventCopyWith<$Re
   factory _$FileEventCopyWith(_FileEvent value, $Res Function(_FileEvent) _then) = __$FileEventCopyWithImpl;
 @override @useResult
 $Res call({
- String uri,@_FileChangeTypeConverter() FileChangeType type
+ String uri, FileChangeType type
 });
 
 
@@ -75990,7 +75990,7 @@ as WatchKind?,
 /// @nodoc
 mixin _$Diagnostic {
 
- Range get range;@_DiagnosticSeverityConverter() DiagnosticSeverity? get severity; Object? get code; CodeDescription? get codeDescription; String? get source; String get message;@_DiagnosticTagListConverter() List<DiagnosticTag>? get tags; List<DiagnosticRelatedInformation>? get relatedInformation; LSPAny? get data;
+ Range get range; DiagnosticSeverity? get severity; Object? get code; CodeDescription? get codeDescription; String? get source; String get message; List<DiagnosticTag>? get tags; List<DiagnosticRelatedInformation>? get relatedInformation; LSPAny? get data;
 /// Create a copy of Diagnostic
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -76023,7 +76023,7 @@ abstract mixin class $DiagnosticCopyWith<$Res>  {
   factory $DiagnosticCopyWith(Diagnostic value, $Res Function(Diagnostic) _then) = _$DiagnosticCopyWithImpl;
 @useResult
 $Res call({
- Range range,@_DiagnosticSeverityConverter() DiagnosticSeverity? severity, Object? code, CodeDescription? codeDescription, String? source, String message,@_DiagnosticTagListConverter() List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
+ Range range, DiagnosticSeverity? severity, Object? code, CodeDescription? codeDescription, String? source, String message, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
 });
 
 
@@ -76155,7 +76155,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Range range, @_DiagnosticSeverityConverter()  DiagnosticSeverity? severity,  Object? code,  CodeDescription? codeDescription,  String? source,  String message, @_DiagnosticTagListConverter()  List<DiagnosticTag>? tags,  List<DiagnosticRelatedInformation>? relatedInformation,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Range range,  DiagnosticSeverity? severity,  Object? code,  CodeDescription? codeDescription,  String? source,  String message,  List<DiagnosticTag>? tags,  List<DiagnosticRelatedInformation>? relatedInformation,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Diagnostic() when $default != null:
 return $default(_that.range,_that.severity,_that.code,_that.codeDescription,_that.source,_that.message,_that.tags,_that.relatedInformation,_that.data);case _:
@@ -76176,7 +76176,7 @@ return $default(_that.range,_that.severity,_that.code,_that.codeDescription,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Range range, @_DiagnosticSeverityConverter()  DiagnosticSeverity? severity,  Object? code,  CodeDescription? codeDescription,  String? source,  String message, @_DiagnosticTagListConverter()  List<DiagnosticTag>? tags,  List<DiagnosticRelatedInformation>? relatedInformation,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Range range,  DiagnosticSeverity? severity,  Object? code,  CodeDescription? codeDescription,  String? source,  String message,  List<DiagnosticTag>? tags,  List<DiagnosticRelatedInformation>? relatedInformation,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _Diagnostic():
 return $default(_that.range,_that.severity,_that.code,_that.codeDescription,_that.source,_that.message,_that.tags,_that.relatedInformation,_that.data);case _:
@@ -76196,7 +76196,7 @@ return $default(_that.range,_that.severity,_that.code,_that.codeDescription,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Range range, @_DiagnosticSeverityConverter()  DiagnosticSeverity? severity,  Object? code,  CodeDescription? codeDescription,  String? source,  String message, @_DiagnosticTagListConverter()  List<DiagnosticTag>? tags,  List<DiagnosticRelatedInformation>? relatedInformation,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Range range,  DiagnosticSeverity? severity,  Object? code,  CodeDescription? codeDescription,  String? source,  String message,  List<DiagnosticTag>? tags,  List<DiagnosticRelatedInformation>? relatedInformation,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _Diagnostic() when $default != null:
 return $default(_that.range,_that.severity,_that.code,_that.codeDescription,_that.source,_that.message,_that.tags,_that.relatedInformation,_that.data);case _:
@@ -76211,17 +76211,17 @@ return $default(_that.range,_that.severity,_that.code,_that.codeDescription,_tha
 @JsonSerializable()
 
 class _Diagnostic extends Diagnostic {
-  const _Diagnostic({required this.range, @_DiagnosticSeverityConverter() this.severity, this.code, this.codeDescription, this.source, required this.message, @_DiagnosticTagListConverter() final  List<DiagnosticTag>? tags, final  List<DiagnosticRelatedInformation>? relatedInformation, this.data}): _tags = tags,_relatedInformation = relatedInformation,super._();
+  const _Diagnostic({required this.range, this.severity, this.code, this.codeDescription, this.source, required this.message, final  List<DiagnosticTag>? tags, final  List<DiagnosticRelatedInformation>? relatedInformation, this.data}): _tags = tags,_relatedInformation = relatedInformation,super._();
   factory _Diagnostic.fromJson(Map<String, dynamic> json) => _$DiagnosticFromJson(json);
 
 @override final  Range range;
-@override@_DiagnosticSeverityConverter() final  DiagnosticSeverity? severity;
+@override final  DiagnosticSeverity? severity;
 @override final  Object? code;
 @override final  CodeDescription? codeDescription;
 @override final  String? source;
 @override final  String message;
  final  List<DiagnosticTag>? _tags;
-@override@_DiagnosticTagListConverter() List<DiagnosticTag>? get tags {
+@override List<DiagnosticTag>? get tags {
   final value = _tags;
   if (value == null) return null;
   if (_tags is EqualUnmodifiableListView) return _tags;
@@ -76273,7 +76273,7 @@ abstract mixin class _$DiagnosticCopyWith<$Res> implements $DiagnosticCopyWith<$
   factory _$DiagnosticCopyWith(_Diagnostic value, $Res Function(_Diagnostic) _then) = __$DiagnosticCopyWithImpl;
 @override @useResult
 $Res call({
- Range range,@_DiagnosticSeverityConverter() DiagnosticSeverity? severity, Object? code, CodeDescription? codeDescription, String? source, String message,@_DiagnosticTagListConverter() List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
+ Range range, DiagnosticSeverity? severity, Object? code, CodeDescription? codeDescription, String? source, String message, List<DiagnosticTag>? tags, List<DiagnosticRelatedInformation>? relatedInformation, LSPAny? data
 });
 
 
@@ -76331,7 +76331,7 @@ $CodeDescriptionCopyWith<$Res>? get codeDescription {
 /// @nodoc
 mixin _$CompletionContext {
 
-@_CompletionTriggerKindConverter() CompletionTriggerKind get triggerKind; String? get triggerCharacter;
+ CompletionTriggerKind get triggerKind; String? get triggerCharacter;
 /// Create a copy of CompletionContext
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -76364,7 +76364,7 @@ abstract mixin class $CompletionContextCopyWith<$Res>  {
   factory $CompletionContextCopyWith(CompletionContext value, $Res Function(CompletionContext) _then) = _$CompletionContextCopyWithImpl;
 @useResult
 $Res call({
-@_CompletionTriggerKindConverter() CompletionTriggerKind triggerKind, String? triggerCharacter
+ CompletionTriggerKind triggerKind, String? triggerCharacter
 });
 
 
@@ -76470,7 +76470,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_CompletionTriggerKindConverter()  CompletionTriggerKind triggerKind,  String? triggerCharacter)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CompletionTriggerKind triggerKind,  String? triggerCharacter)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionContext() when $default != null:
 return $default(_that.triggerKind,_that.triggerCharacter);case _:
@@ -76491,7 +76491,7 @@ return $default(_that.triggerKind,_that.triggerCharacter);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_CompletionTriggerKindConverter()  CompletionTriggerKind triggerKind,  String? triggerCharacter)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CompletionTriggerKind triggerKind,  String? triggerCharacter)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionContext():
 return $default(_that.triggerKind,_that.triggerCharacter);case _:
@@ -76511,7 +76511,7 @@ return $default(_that.triggerKind,_that.triggerCharacter);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_CompletionTriggerKindConverter()  CompletionTriggerKind triggerKind,  String? triggerCharacter)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CompletionTriggerKind triggerKind,  String? triggerCharacter)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionContext() when $default != null:
 return $default(_that.triggerKind,_that.triggerCharacter);case _:
@@ -76526,10 +76526,10 @@ return $default(_that.triggerKind,_that.triggerCharacter);case _:
 @JsonSerializable()
 
 class _CompletionContext extends CompletionContext {
-  const _CompletionContext({@_CompletionTriggerKindConverter() required this.triggerKind, this.triggerCharacter}): super._();
+  const _CompletionContext({required this.triggerKind, this.triggerCharacter}): super._();
   factory _CompletionContext.fromJson(Map<String, dynamic> json) => _$CompletionContextFromJson(json);
 
-@override@_CompletionTriggerKindConverter() final  CompletionTriggerKind triggerKind;
+@override final  CompletionTriggerKind triggerKind;
 @override final  String? triggerCharacter;
 
 /// Create a copy of CompletionContext
@@ -76565,7 +76565,7 @@ abstract mixin class _$CompletionContextCopyWith<$Res> implements $CompletionCon
   factory _$CompletionContextCopyWith(_CompletionContext value, $Res Function(_CompletionContext) _then) = __$CompletionContextCopyWithImpl;
 @override @useResult
 $Res call({
-@_CompletionTriggerKindConverter() CompletionTriggerKind triggerKind, String? triggerCharacter
+ CompletionTriggerKind triggerKind, String? triggerCharacter
 });
 
 
@@ -77746,7 +77746,7 @@ as bool?,
 /// @nodoc
 mixin _$SignatureHelpContext {
 
-@_SignatureHelpTriggerKindConverter() SignatureHelpTriggerKind get triggerKind; String? get triggerCharacter; bool get isRetrigger; SignatureHelp? get activeSignatureHelp;
+ SignatureHelpTriggerKind get triggerKind; String? get triggerCharacter; bool get isRetrigger; SignatureHelp? get activeSignatureHelp;
 /// Create a copy of SignatureHelpContext
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -77779,7 +77779,7 @@ abstract mixin class $SignatureHelpContextCopyWith<$Res>  {
   factory $SignatureHelpContextCopyWith(SignatureHelpContext value, $Res Function(SignatureHelpContext) _then) = _$SignatureHelpContextCopyWithImpl;
 @useResult
 $Res call({
-@_SignatureHelpTriggerKindConverter() SignatureHelpTriggerKind triggerKind, String? triggerCharacter, bool isRetrigger, SignatureHelp? activeSignatureHelp
+ SignatureHelpTriggerKind triggerKind, String? triggerCharacter, bool isRetrigger, SignatureHelp? activeSignatureHelp
 });
 
 
@@ -77899,7 +77899,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_SignatureHelpTriggerKindConverter()  SignatureHelpTriggerKind triggerKind,  String? triggerCharacter,  bool isRetrigger,  SignatureHelp? activeSignatureHelp)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SignatureHelpTriggerKind triggerKind,  String? triggerCharacter,  bool isRetrigger,  SignatureHelp? activeSignatureHelp)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignatureHelpContext() when $default != null:
 return $default(_that.triggerKind,_that.triggerCharacter,_that.isRetrigger,_that.activeSignatureHelp);case _:
@@ -77920,7 +77920,7 @@ return $default(_that.triggerKind,_that.triggerCharacter,_that.isRetrigger,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_SignatureHelpTriggerKindConverter()  SignatureHelpTriggerKind triggerKind,  String? triggerCharacter,  bool isRetrigger,  SignatureHelp? activeSignatureHelp)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SignatureHelpTriggerKind triggerKind,  String? triggerCharacter,  bool isRetrigger,  SignatureHelp? activeSignatureHelp)  $default,) {final _that = this;
 switch (_that) {
 case _SignatureHelpContext():
 return $default(_that.triggerKind,_that.triggerCharacter,_that.isRetrigger,_that.activeSignatureHelp);case _:
@@ -77940,7 +77940,7 @@ return $default(_that.triggerKind,_that.triggerCharacter,_that.isRetrigger,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_SignatureHelpTriggerKindConverter()  SignatureHelpTriggerKind triggerKind,  String? triggerCharacter,  bool isRetrigger,  SignatureHelp? activeSignatureHelp)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SignatureHelpTriggerKind triggerKind,  String? triggerCharacter,  bool isRetrigger,  SignatureHelp? activeSignatureHelp)?  $default,) {final _that = this;
 switch (_that) {
 case _SignatureHelpContext() when $default != null:
 return $default(_that.triggerKind,_that.triggerCharacter,_that.isRetrigger,_that.activeSignatureHelp);case _:
@@ -77955,10 +77955,10 @@ return $default(_that.triggerKind,_that.triggerCharacter,_that.isRetrigger,_that
 @JsonSerializable()
 
 class _SignatureHelpContext extends SignatureHelpContext {
-  const _SignatureHelpContext({@_SignatureHelpTriggerKindConverter() required this.triggerKind, this.triggerCharacter, required this.isRetrigger, this.activeSignatureHelp}): super._();
+  const _SignatureHelpContext({required this.triggerKind, this.triggerCharacter, required this.isRetrigger, this.activeSignatureHelp}): super._();
   factory _SignatureHelpContext.fromJson(Map<String, dynamic> json) => _$SignatureHelpContextFromJson(json);
 
-@override@_SignatureHelpTriggerKindConverter() final  SignatureHelpTriggerKind triggerKind;
+@override final  SignatureHelpTriggerKind triggerKind;
 @override final  String? triggerCharacter;
 @override final  bool isRetrigger;
 @override final  SignatureHelp? activeSignatureHelp;
@@ -77996,7 +77996,7 @@ abstract mixin class _$SignatureHelpContextCopyWith<$Res> implements $SignatureH
   factory _$SignatureHelpContextCopyWith(_SignatureHelpContext value, $Res Function(_SignatureHelpContext) _then) = __$SignatureHelpContextCopyWithImpl;
 @override @useResult
 $Res call({
-@_SignatureHelpTriggerKindConverter() SignatureHelpTriggerKind triggerKind, String? triggerCharacter, bool isRetrigger, SignatureHelp? activeSignatureHelp
+ SignatureHelpTriggerKind triggerKind, String? triggerCharacter, bool isRetrigger, SignatureHelp? activeSignatureHelp
 });
 
 
@@ -79657,7 +79657,7 @@ as bool?,
 /// @nodoc
 mixin _$BaseSymbolInformation {
 
- String get name;@_SymbolKindConverter() SymbolKind get kind;@_SymbolTagListConverter() List<SymbolTag>? get tags; String? get containerName;
+ String get name; SymbolKind get kind; List<SymbolTag>? get tags; String? get containerName;
 /// Create a copy of BaseSymbolInformation
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -79690,7 +79690,7 @@ abstract mixin class $BaseSymbolInformationCopyWith<$Res>  {
   factory $BaseSymbolInformationCopyWith(BaseSymbolInformation value, $Res Function(BaseSymbolInformation) _then) = _$BaseSymbolInformationCopyWithImpl;
 @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? containerName
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName
 });
 
 
@@ -79798,7 +79798,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? containerName)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BaseSymbolInformation() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.containerName);case _:
@@ -79819,7 +79819,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? containerName)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName)  $default,) {final _that = this;
 switch (_that) {
 case _BaseSymbolInformation():
 return $default(_that.name,_that.kind,_that.tags,_that.containerName);case _:
@@ -79839,7 +79839,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @_SymbolKindConverter()  SymbolKind kind, @_SymbolTagListConverter()  List<SymbolTag>? tags,  String? containerName)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName)?  $default,) {final _that = this;
 switch (_that) {
 case _BaseSymbolInformation() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.containerName);case _:
@@ -79854,13 +79854,13 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName);case _:
 @JsonSerializable()
 
 class _BaseSymbolInformation extends BaseSymbolInformation {
-  const _BaseSymbolInformation({required this.name, @_SymbolKindConverter() required this.kind, @_SymbolTagListConverter() final  List<SymbolTag>? tags, this.containerName}): _tags = tags,super._();
+  const _BaseSymbolInformation({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName}): _tags = tags,super._();
   factory _BaseSymbolInformation.fromJson(Map<String, dynamic> json) => _$BaseSymbolInformationFromJson(json);
 
 @override final  String name;
-@override@_SymbolKindConverter() final  SymbolKind kind;
+@override final  SymbolKind kind;
  final  List<SymbolTag>? _tags;
-@override@_SymbolTagListConverter() List<SymbolTag>? get tags {
+@override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
   if (_tags is EqualUnmodifiableListView) return _tags;
@@ -79903,7 +79903,7 @@ abstract mixin class _$BaseSymbolInformationCopyWith<$Res> implements $BaseSymbo
   factory _$BaseSymbolInformationCopyWith(_BaseSymbolInformation value, $Res Function(_BaseSymbolInformation) _then) = __$BaseSymbolInformationCopyWithImpl;
 @override @useResult
 $Res call({
- String name,@_SymbolKindConverter() SymbolKind kind,@_SymbolTagListConverter() List<SymbolTag>? tags, String? containerName
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName
 });
 
 
@@ -80203,7 +80203,7 @@ as String?,
 /// @nodoc
 mixin _$CodeActionContext {
 
- List<Diagnostic> get diagnostics;@_CodeActionKindListConverter() List<CodeActionKind>? get only;@_CodeActionTriggerKindConverter() CodeActionTriggerKind? get triggerKind;
+ List<Diagnostic> get diagnostics;@_CodeActionKindListConverter() List<CodeActionKind>? get only; CodeActionTriggerKind? get triggerKind;
 /// Create a copy of CodeActionContext
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -80236,7 +80236,7 @@ abstract mixin class $CodeActionContextCopyWith<$Res>  {
   factory $CodeActionContextCopyWith(CodeActionContext value, $Res Function(CodeActionContext) _then) = _$CodeActionContextCopyWithImpl;
 @useResult
 $Res call({
- List<Diagnostic> diagnostics,@_CodeActionKindListConverter() List<CodeActionKind>? only,@_CodeActionTriggerKindConverter() CodeActionTriggerKind? triggerKind
+ List<Diagnostic> diagnostics,@_CodeActionKindListConverter() List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
 });
 
 
@@ -80343,7 +80343,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics, @_CodeActionKindListConverter()  List<CodeActionKind>? only, @_CodeActionTriggerKindConverter()  CodeActionTriggerKind? triggerKind)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics, @_CodeActionKindListConverter()  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeActionContext() when $default != null:
 return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
@@ -80364,7 +80364,7 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics, @_CodeActionKindListConverter()  List<CodeActionKind>? only, @_CodeActionTriggerKindConverter()  CodeActionTriggerKind? triggerKind)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics, @_CodeActionKindListConverter()  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionContext():
 return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
@@ -80384,7 +80384,7 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Diagnostic> diagnostics, @_CodeActionKindListConverter()  List<CodeActionKind>? only, @_CodeActionTriggerKindConverter()  CodeActionTriggerKind? triggerKind)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Diagnostic> diagnostics, @_CodeActionKindListConverter()  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionContext() when $default != null:
 return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
@@ -80399,7 +80399,7 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 @JsonSerializable()
 
 class _CodeActionContext extends CodeActionContext {
-  const _CodeActionContext({required final  List<Diagnostic> diagnostics, @_CodeActionKindListConverter() final  List<CodeActionKind>? only, @_CodeActionTriggerKindConverter() this.triggerKind}): _diagnostics = diagnostics,_only = only,super._();
+  const _CodeActionContext({required final  List<Diagnostic> diagnostics, @_CodeActionKindListConverter() final  List<CodeActionKind>? only, this.triggerKind}): _diagnostics = diagnostics,_only = only,super._();
   factory _CodeActionContext.fromJson(Map<String, dynamic> json) => _$CodeActionContextFromJson(json);
 
  final  List<Diagnostic> _diagnostics;
@@ -80418,7 +80418,7 @@ class _CodeActionContext extends CodeActionContext {
   return EqualUnmodifiableListView(value);
 }
 
-@override@_CodeActionTriggerKindConverter() final  CodeActionTriggerKind? triggerKind;
+@override final  CodeActionTriggerKind? triggerKind;
 
 /// Create a copy of CodeActionContext
 /// with the given fields replaced by the non-null parameter values.
@@ -80453,7 +80453,7 @@ abstract mixin class _$CodeActionContextCopyWith<$Res> implements $CodeActionCon
   factory _$CodeActionContextCopyWith(_CodeActionContext value, $Res Function(_CodeActionContext) _then) = __$CodeActionContextCopyWithImpl;
 @override @useResult
 $Res call({
- List<Diagnostic> diagnostics,@_CodeActionKindListConverter() List<CodeActionKind>? only,@_CodeActionTriggerKindConverter() CodeActionTriggerKind? triggerKind
+ List<Diagnostic> diagnostics,@_CodeActionKindListConverter() List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
 });
 
 
@@ -85072,7 +85072,7 @@ as bool?,
 /// @nodoc
 mixin _$FileOperationPattern {
 
- String get glob;@_FileOperationPatternKindConverter() FileOperationPatternKind? get matches; FileOperationPatternOptions? get options;
+ String get glob; FileOperationPatternKind? get matches; FileOperationPatternOptions? get options;
 /// Create a copy of FileOperationPattern
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -85105,7 +85105,7 @@ abstract mixin class $FileOperationPatternCopyWith<$Res>  {
   factory $FileOperationPatternCopyWith(FileOperationPattern value, $Res Function(FileOperationPattern) _then) = _$FileOperationPatternCopyWithImpl;
 @useResult
 $Res call({
- String glob,@_FileOperationPatternKindConverter() FileOperationPatternKind? matches, FileOperationPatternOptions? options
+ String glob, FileOperationPatternKind? matches, FileOperationPatternOptions? options
 });
 
 
@@ -85224,7 +85224,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String glob, @_FileOperationPatternKindConverter()  FileOperationPatternKind? matches,  FileOperationPatternOptions? options)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String glob,  FileOperationPatternKind? matches,  FileOperationPatternOptions? options)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FileOperationPattern() when $default != null:
 return $default(_that.glob,_that.matches,_that.options);case _:
@@ -85245,7 +85245,7 @@ return $default(_that.glob,_that.matches,_that.options);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String glob, @_FileOperationPatternKindConverter()  FileOperationPatternKind? matches,  FileOperationPatternOptions? options)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String glob,  FileOperationPatternKind? matches,  FileOperationPatternOptions? options)  $default,) {final _that = this;
 switch (_that) {
 case _FileOperationPattern():
 return $default(_that.glob,_that.matches,_that.options);case _:
@@ -85265,7 +85265,7 @@ return $default(_that.glob,_that.matches,_that.options);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String glob, @_FileOperationPatternKindConverter()  FileOperationPatternKind? matches,  FileOperationPatternOptions? options)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String glob,  FileOperationPatternKind? matches,  FileOperationPatternOptions? options)?  $default,) {final _that = this;
 switch (_that) {
 case _FileOperationPattern() when $default != null:
 return $default(_that.glob,_that.matches,_that.options);case _:
@@ -85280,11 +85280,11 @@ return $default(_that.glob,_that.matches,_that.options);case _:
 @JsonSerializable()
 
 class _FileOperationPattern extends FileOperationPattern {
-  const _FileOperationPattern({required this.glob, @_FileOperationPatternKindConverter() this.matches, this.options}): super._();
+  const _FileOperationPattern({required this.glob, this.matches, this.options}): super._();
   factory _FileOperationPattern.fromJson(Map<String, dynamic> json) => _$FileOperationPatternFromJson(json);
 
 @override final  String glob;
-@override@_FileOperationPatternKindConverter() final  FileOperationPatternKind? matches;
+@override final  FileOperationPatternKind? matches;
 @override final  FileOperationPatternOptions? options;
 
 /// Create a copy of FileOperationPattern
@@ -85320,7 +85320,7 @@ abstract mixin class _$FileOperationPatternCopyWith<$Res> implements $FileOperat
   factory _$FileOperationPatternCopyWith(_FileOperationPattern value, $Res Function(_FileOperationPattern) _then) = __$FileOperationPatternCopyWithImpl;
 @override @useResult
 $Res call({
- String glob,@_FileOperationPatternKindConverter() FileOperationPatternKind? matches, FileOperationPatternOptions? options
+ String glob, FileOperationPatternKind? matches, FileOperationPatternOptions? options
 });
 
 
@@ -85918,7 +85918,7 @@ as int?,
 /// @nodoc
 mixin _$NotebookCell {
 
-@_NotebookCellKindConverter() NotebookCellKind get kind; String get document; LSPObject? get metadata; ExecutionSummary? get executionSummary;
+ NotebookCellKind get kind; String get document; LSPObject? get metadata; ExecutionSummary? get executionSummary;
 /// Create a copy of NotebookCell
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -85951,7 +85951,7 @@ abstract mixin class $NotebookCellCopyWith<$Res>  {
   factory $NotebookCellCopyWith(NotebookCell value, $Res Function(NotebookCell) _then) = _$NotebookCellCopyWithImpl;
 @useResult
 $Res call({
-@_NotebookCellKindConverter() NotebookCellKind kind, String document, LSPObject? metadata, ExecutionSummary? executionSummary
+ NotebookCellKind kind, String document, LSPObject? metadata, ExecutionSummary? executionSummary
 });
 
 
@@ -86071,7 +86071,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_NotebookCellKindConverter()  NotebookCellKind kind,  String document,  LSPObject? metadata,  ExecutionSummary? executionSummary)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( NotebookCellKind kind,  String document,  LSPObject? metadata,  ExecutionSummary? executionSummary)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NotebookCell() when $default != null:
 return $default(_that.kind,_that.document,_that.metadata,_that.executionSummary);case _:
@@ -86092,7 +86092,7 @@ return $default(_that.kind,_that.document,_that.metadata,_that.executionSummary)
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_NotebookCellKindConverter()  NotebookCellKind kind,  String document,  LSPObject? metadata,  ExecutionSummary? executionSummary)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( NotebookCellKind kind,  String document,  LSPObject? metadata,  ExecutionSummary? executionSummary)  $default,) {final _that = this;
 switch (_that) {
 case _NotebookCell():
 return $default(_that.kind,_that.document,_that.metadata,_that.executionSummary);case _:
@@ -86112,7 +86112,7 @@ return $default(_that.kind,_that.document,_that.metadata,_that.executionSummary)
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_NotebookCellKindConverter()  NotebookCellKind kind,  String document,  LSPObject? metadata,  ExecutionSummary? executionSummary)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( NotebookCellKind kind,  String document,  LSPObject? metadata,  ExecutionSummary? executionSummary)?  $default,) {final _that = this;
 switch (_that) {
 case _NotebookCell() when $default != null:
 return $default(_that.kind,_that.document,_that.metadata,_that.executionSummary);case _:
@@ -86127,10 +86127,10 @@ return $default(_that.kind,_that.document,_that.metadata,_that.executionSummary)
 @JsonSerializable()
 
 class _NotebookCell extends NotebookCell {
-  const _NotebookCell({@_NotebookCellKindConverter() required this.kind, required this.document, final  LSPObject? metadata, this.executionSummary}): _metadata = metadata,super._();
+  const _NotebookCell({required this.kind, required this.document, final  LSPObject? metadata, this.executionSummary}): _metadata = metadata,super._();
   factory _NotebookCell.fromJson(Map<String, dynamic> json) => _$NotebookCellFromJson(json);
 
-@override@_NotebookCellKindConverter() final  NotebookCellKind kind;
+@override final  NotebookCellKind kind;
 @override final  String document;
  final  LSPObject? _metadata;
 @override LSPObject? get metadata {
@@ -86176,7 +86176,7 @@ abstract mixin class _$NotebookCellCopyWith<$Res> implements $NotebookCellCopyWi
   factory _$NotebookCellCopyWith(_NotebookCell value, $Res Function(_NotebookCell) _then) = __$NotebookCellCopyWithImpl;
 @override @useResult
 $Res call({
-@_NotebookCellKindConverter() NotebookCellKind kind, String document, LSPObject? metadata, ExecutionSummary? executionSummary
+ NotebookCellKind kind, String document, LSPObject? metadata, ExecutionSummary? executionSummary
 });
 
 
@@ -87179,7 +87179,7 @@ $GeneralClientCapabilitiesCopyWith<$Res>? get general {
 /// @nodoc
 mixin _$TextDocumentSyncOptions {
 
- bool? get openClose;@_TextDocumentSyncKindConverter() TextDocumentSyncKind? get change; bool? get willSave; bool? get willSaveWaitUntil; Object? get save;
+ bool? get openClose; TextDocumentSyncKind? get change; bool? get willSave; bool? get willSaveWaitUntil; Object? get save;
 /// Create a copy of TextDocumentSyncOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -87212,7 +87212,7 @@ abstract mixin class $TextDocumentSyncOptionsCopyWith<$Res>  {
   factory $TextDocumentSyncOptionsCopyWith(TextDocumentSyncOptions value, $Res Function(TextDocumentSyncOptions) _then) = _$TextDocumentSyncOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? openClose,@_TextDocumentSyncKindConverter() TextDocumentSyncKind? change, bool? willSave, bool? willSaveWaitUntil, Object? save
+ bool? openClose, TextDocumentSyncKind? change, bool? willSave, bool? willSaveWaitUntil, Object? save
 });
 
 
@@ -87320,7 +87320,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? openClose, @_TextDocumentSyncKindConverter()  TextDocumentSyncKind? change,  bool? willSave,  bool? willSaveWaitUntil,  Object? save)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? openClose,  TextDocumentSyncKind? change,  bool? willSave,  bool? willSaveWaitUntil,  Object? save)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TextDocumentSyncOptions() when $default != null:
 return $default(_that.openClose,_that.change,_that.willSave,_that.willSaveWaitUntil,_that.save);case _:
@@ -87341,7 +87341,7 @@ return $default(_that.openClose,_that.change,_that.willSave,_that.willSaveWaitUn
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? openClose, @_TextDocumentSyncKindConverter()  TextDocumentSyncKind? change,  bool? willSave,  bool? willSaveWaitUntil,  Object? save)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? openClose,  TextDocumentSyncKind? change,  bool? willSave,  bool? willSaveWaitUntil,  Object? save)  $default,) {final _that = this;
 switch (_that) {
 case _TextDocumentSyncOptions():
 return $default(_that.openClose,_that.change,_that.willSave,_that.willSaveWaitUntil,_that.save);case _:
@@ -87361,7 +87361,7 @@ return $default(_that.openClose,_that.change,_that.willSave,_that.willSaveWaitUn
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? openClose, @_TextDocumentSyncKindConverter()  TextDocumentSyncKind? change,  bool? willSave,  bool? willSaveWaitUntil,  Object? save)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? openClose,  TextDocumentSyncKind? change,  bool? willSave,  bool? willSaveWaitUntil,  Object? save)?  $default,) {final _that = this;
 switch (_that) {
 case _TextDocumentSyncOptions() when $default != null:
 return $default(_that.openClose,_that.change,_that.willSave,_that.willSaveWaitUntil,_that.save);case _:
@@ -87376,11 +87376,11 @@ return $default(_that.openClose,_that.change,_that.willSave,_that.willSaveWaitUn
 @JsonSerializable()
 
 class _TextDocumentSyncOptions extends TextDocumentSyncOptions {
-  const _TextDocumentSyncOptions({this.openClose, @_TextDocumentSyncKindConverter() this.change, this.willSave, this.willSaveWaitUntil, this.save}): super._();
+  const _TextDocumentSyncOptions({this.openClose, this.change, this.willSave, this.willSaveWaitUntil, this.save}): super._();
   factory _TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentSyncOptionsFromJson(json);
 
 @override final  bool? openClose;
-@override@_TextDocumentSyncKindConverter() final  TextDocumentSyncKind? change;
+@override final  TextDocumentSyncKind? change;
 @override final  bool? willSave;
 @override final  bool? willSaveWaitUntil;
 @override final  Object? save;
@@ -87418,7 +87418,7 @@ abstract mixin class _$TextDocumentSyncOptionsCopyWith<$Res> implements $TextDoc
   factory _$TextDocumentSyncOptionsCopyWith(_TextDocumentSyncOptions value, $Res Function(_TextDocumentSyncOptions) _then) = __$TextDocumentSyncOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? openClose,@_TextDocumentSyncKindConverter() TextDocumentSyncKind? change, bool? willSave, bool? willSaveWaitUntil, Object? save
+ bool? openClose, TextDocumentSyncKind? change, bool? willSave, bool? willSaveWaitUntil, Object? save
 });
 
 
@@ -93191,7 +93191,7 @@ as Pattern,
 /// @nodoc
 mixin _$WorkspaceEditClientCapabilities {
 
- bool? get documentChanges;@_ResourceOperationKindListConverter() List<ResourceOperationKind>? get resourceOperations;@_FailureHandlingKindConverter() FailureHandlingKind? get failureHandling; bool? get normalizesLineEndings; WorkspaceEditClientCapabilitiesChangeAnnotationSupport? get changeAnnotationSupport;
+ bool? get documentChanges; List<ResourceOperationKind>? get resourceOperations; FailureHandlingKind? get failureHandling; bool? get normalizesLineEndings; WorkspaceEditClientCapabilitiesChangeAnnotationSupport? get changeAnnotationSupport;
 /// Create a copy of WorkspaceEditClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -93224,7 +93224,7 @@ abstract mixin class $WorkspaceEditClientCapabilitiesCopyWith<$Res>  {
   factory $WorkspaceEditClientCapabilitiesCopyWith(WorkspaceEditClientCapabilities value, $Res Function(WorkspaceEditClientCapabilities) _then) = _$WorkspaceEditClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? documentChanges,@_ResourceOperationKindListConverter() List<ResourceOperationKind>? resourceOperations,@_FailureHandlingKindConverter() FailureHandlingKind? failureHandling, bool? normalizesLineEndings, WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport
+ bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport
 });
 
 
@@ -93345,7 +93345,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? documentChanges, @_ResourceOperationKindListConverter()  List<ResourceOperationKind>? resourceOperations, @_FailureHandlingKindConverter()  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? documentChanges,  List<ResourceOperationKind>? resourceOperations,  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WorkspaceEditClientCapabilities() when $default != null:
 return $default(_that.documentChanges,_that.resourceOperations,_that.failureHandling,_that.normalizesLineEndings,_that.changeAnnotationSupport);case _:
@@ -93366,7 +93366,7 @@ return $default(_that.documentChanges,_that.resourceOperations,_that.failureHand
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? documentChanges, @_ResourceOperationKindListConverter()  List<ResourceOperationKind>? resourceOperations, @_FailureHandlingKindConverter()  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? documentChanges,  List<ResourceOperationKind>? resourceOperations,  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport)  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceEditClientCapabilities():
 return $default(_that.documentChanges,_that.resourceOperations,_that.failureHandling,_that.normalizesLineEndings,_that.changeAnnotationSupport);case _:
@@ -93386,7 +93386,7 @@ return $default(_that.documentChanges,_that.resourceOperations,_that.failureHand
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? documentChanges, @_ResourceOperationKindListConverter()  List<ResourceOperationKind>? resourceOperations, @_FailureHandlingKindConverter()  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? documentChanges,  List<ResourceOperationKind>? resourceOperations,  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport)?  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceEditClientCapabilities() when $default != null:
 return $default(_that.documentChanges,_that.resourceOperations,_that.failureHandling,_that.normalizesLineEndings,_that.changeAnnotationSupport);case _:
@@ -93401,12 +93401,12 @@ return $default(_that.documentChanges,_that.resourceOperations,_that.failureHand
 @JsonSerializable()
 
 class _WorkspaceEditClientCapabilities extends WorkspaceEditClientCapabilities {
-  const _WorkspaceEditClientCapabilities({this.documentChanges, @_ResourceOperationKindListConverter() final  List<ResourceOperationKind>? resourceOperations, @_FailureHandlingKindConverter() this.failureHandling, this.normalizesLineEndings, this.changeAnnotationSupport}): _resourceOperations = resourceOperations,super._();
+  const _WorkspaceEditClientCapabilities({this.documentChanges, final  List<ResourceOperationKind>? resourceOperations, this.failureHandling, this.normalizesLineEndings, this.changeAnnotationSupport}): _resourceOperations = resourceOperations,super._();
   factory _WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceEditClientCapabilitiesFromJson(json);
 
 @override final  bool? documentChanges;
  final  List<ResourceOperationKind>? _resourceOperations;
-@override@_ResourceOperationKindListConverter() List<ResourceOperationKind>? get resourceOperations {
+@override List<ResourceOperationKind>? get resourceOperations {
   final value = _resourceOperations;
   if (value == null) return null;
   if (_resourceOperations is EqualUnmodifiableListView) return _resourceOperations;
@@ -93414,7 +93414,7 @@ class _WorkspaceEditClientCapabilities extends WorkspaceEditClientCapabilities {
   return EqualUnmodifiableListView(value);
 }
 
-@override@_FailureHandlingKindConverter() final  FailureHandlingKind? failureHandling;
+@override final  FailureHandlingKind? failureHandling;
 @override final  bool? normalizesLineEndings;
 @override final  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport;
 
@@ -93451,7 +93451,7 @@ abstract mixin class _$WorkspaceEditClientCapabilitiesCopyWith<$Res> implements 
   factory _$WorkspaceEditClientCapabilitiesCopyWith(_WorkspaceEditClientCapabilities value, $Res Function(_WorkspaceEditClientCapabilities) _then) = __$WorkspaceEditClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? documentChanges,@_ResourceOperationKindListConverter() List<ResourceOperationKind>? resourceOperations,@_FailureHandlingKindConverter() FailureHandlingKind? failureHandling, bool? normalizesLineEndings, WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport
+ bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport
 });
 
 
@@ -96765,7 +96765,7 @@ as bool?,
 /// @nodoc
 mixin _$CompletionClientCapabilities {
 
- bool? get dynamicRegistration; CompletionClientCapabilitiesCompletionItem? get completionItem; CompletionClientCapabilitiesCompletionItemKind? get completionItemKind;@_InsertTextModeConverter() InsertTextMode? get insertTextMode; bool? get contextSupport; CompletionClientCapabilitiesCompletionList? get completionList;
+ bool? get dynamicRegistration; CompletionClientCapabilitiesCompletionItem? get completionItem; CompletionClientCapabilitiesCompletionItemKind? get completionItemKind; InsertTextMode? get insertTextMode; bool? get contextSupport; CompletionClientCapabilitiesCompletionList? get completionList;
 /// Create a copy of CompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -96798,7 +96798,7 @@ abstract mixin class $CompletionClientCapabilitiesCopyWith<$Res>  {
   factory $CompletionClientCapabilitiesCopyWith(CompletionClientCapabilities value, $Res Function(CompletionClientCapabilities) _then) = _$CompletionClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, CompletionClientCapabilitiesCompletionItem? completionItem, CompletionClientCapabilitiesCompletionItemKind? completionItemKind,@_InsertTextModeConverter() InsertTextMode? insertTextMode, bool? contextSupport, CompletionClientCapabilitiesCompletionList? completionList
+ bool? dynamicRegistration, CompletionClientCapabilitiesCompletionItem? completionItem, CompletionClientCapabilitiesCompletionItemKind? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, CompletionClientCapabilitiesCompletionList? completionList
 });
 
 
@@ -96944,7 +96944,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  CompletionClientCapabilitiesCompletionItem? completionItem,  CompletionClientCapabilitiesCompletionItemKind? completionItemKind, @_InsertTextModeConverter()  InsertTextMode? insertTextMode,  bool? contextSupport,  CompletionClientCapabilitiesCompletionList? completionList)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  CompletionClientCapabilitiesCompletionItem? completionItem,  CompletionClientCapabilitiesCompletionItemKind? completionItemKind,  InsertTextMode? insertTextMode,  bool? contextSupport,  CompletionClientCapabilitiesCompletionList? completionList)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.completionItem,_that.completionItemKind,_that.insertTextMode,_that.contextSupport,_that.completionList);case _:
@@ -96965,7 +96965,7 @@ return $default(_that.dynamicRegistration,_that.completionItem,_that.completionI
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  CompletionClientCapabilitiesCompletionItem? completionItem,  CompletionClientCapabilitiesCompletionItemKind? completionItemKind, @_InsertTextModeConverter()  InsertTextMode? insertTextMode,  bool? contextSupport,  CompletionClientCapabilitiesCompletionList? completionList)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  CompletionClientCapabilitiesCompletionItem? completionItem,  CompletionClientCapabilitiesCompletionItemKind? completionItemKind,  InsertTextMode? insertTextMode,  bool? contextSupport,  CompletionClientCapabilitiesCompletionList? completionList)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilities():
 return $default(_that.dynamicRegistration,_that.completionItem,_that.completionItemKind,_that.insertTextMode,_that.contextSupport,_that.completionList);case _:
@@ -96985,7 +96985,7 @@ return $default(_that.dynamicRegistration,_that.completionItem,_that.completionI
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  CompletionClientCapabilitiesCompletionItem? completionItem,  CompletionClientCapabilitiesCompletionItemKind? completionItemKind, @_InsertTextModeConverter()  InsertTextMode? insertTextMode,  bool? contextSupport,  CompletionClientCapabilitiesCompletionList? completionList)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  CompletionClientCapabilitiesCompletionItem? completionItem,  CompletionClientCapabilitiesCompletionItemKind? completionItemKind,  InsertTextMode? insertTextMode,  bool? contextSupport,  CompletionClientCapabilitiesCompletionList? completionList)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.completionItem,_that.completionItemKind,_that.insertTextMode,_that.contextSupport,_that.completionList);case _:
@@ -97000,13 +97000,13 @@ return $default(_that.dynamicRegistration,_that.completionItem,_that.completionI
 @JsonSerializable()
 
 class _CompletionClientCapabilities extends CompletionClientCapabilities {
-  const _CompletionClientCapabilities({this.dynamicRegistration, this.completionItem, this.completionItemKind, @_InsertTextModeConverter() this.insertTextMode, this.contextSupport, this.completionList}): super._();
+  const _CompletionClientCapabilities({this.dynamicRegistration, this.completionItem, this.completionItemKind, this.insertTextMode, this.contextSupport, this.completionList}): super._();
   factory _CompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
 @override final  CompletionClientCapabilitiesCompletionItem? completionItem;
 @override final  CompletionClientCapabilitiesCompletionItemKind? completionItemKind;
-@override@_InsertTextModeConverter() final  InsertTextMode? insertTextMode;
+@override final  InsertTextMode? insertTextMode;
 @override final  bool? contextSupport;
 @override final  CompletionClientCapabilitiesCompletionList? completionList;
 
@@ -97043,7 +97043,7 @@ abstract mixin class _$CompletionClientCapabilitiesCopyWith<$Res> implements $Co
   factory _$CompletionClientCapabilitiesCopyWith(_CompletionClientCapabilities value, $Res Function(_CompletionClientCapabilities) _then) = __$CompletionClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, CompletionClientCapabilitiesCompletionItem? completionItem, CompletionClientCapabilitiesCompletionItemKind? completionItemKind,@_InsertTextModeConverter() InsertTextMode? insertTextMode, bool? contextSupport, CompletionClientCapabilitiesCompletionList? completionList
+ bool? dynamicRegistration, CompletionClientCapabilitiesCompletionItem? completionItem, CompletionClientCapabilitiesCompletionItemKind? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, CompletionClientCapabilitiesCompletionList? completionList
 });
 
 
@@ -97115,7 +97115,7 @@ $CompletionClientCapabilitiesCompletionListCopyWith<$Res>? get completionList {
 /// @nodoc
 mixin _$HoverClientCapabilities {
 
- bool? get dynamicRegistration;@_MarkupKindListConverter() List<MarkupKind>? get contentFormat;
+ bool? get dynamicRegistration; List<MarkupKind>? get contentFormat;
 /// Create a copy of HoverClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -97148,7 +97148,7 @@ abstract mixin class $HoverClientCapabilitiesCopyWith<$Res>  {
   factory $HoverClientCapabilitiesCopyWith(HoverClientCapabilities value, $Res Function(HoverClientCapabilities) _then) = _$HoverClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration,@_MarkupKindListConverter() List<MarkupKind>? contentFormat
+ bool? dynamicRegistration, List<MarkupKind>? contentFormat
 });
 
 
@@ -97254,7 +97254,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration, @_MarkupKindListConverter()  List<MarkupKind>? contentFormat)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  List<MarkupKind>? contentFormat)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HoverClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.contentFormat);case _:
@@ -97275,7 +97275,7 @@ return $default(_that.dynamicRegistration,_that.contentFormat);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration, @_MarkupKindListConverter()  List<MarkupKind>? contentFormat)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  List<MarkupKind>? contentFormat)  $default,) {final _that = this;
 switch (_that) {
 case _HoverClientCapabilities():
 return $default(_that.dynamicRegistration,_that.contentFormat);case _:
@@ -97295,7 +97295,7 @@ return $default(_that.dynamicRegistration,_that.contentFormat);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration, @_MarkupKindListConverter()  List<MarkupKind>? contentFormat)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  List<MarkupKind>? contentFormat)?  $default,) {final _that = this;
 switch (_that) {
 case _HoverClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.contentFormat);case _:
@@ -97310,12 +97310,12 @@ return $default(_that.dynamicRegistration,_that.contentFormat);case _:
 @JsonSerializable()
 
 class _HoverClientCapabilities extends HoverClientCapabilities {
-  const _HoverClientCapabilities({this.dynamicRegistration, @_MarkupKindListConverter() final  List<MarkupKind>? contentFormat}): _contentFormat = contentFormat,super._();
+  const _HoverClientCapabilities({this.dynamicRegistration, final  List<MarkupKind>? contentFormat}): _contentFormat = contentFormat,super._();
   factory _HoverClientCapabilities.fromJson(Map<String, dynamic> json) => _$HoverClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
  final  List<MarkupKind>? _contentFormat;
-@override@_MarkupKindListConverter() List<MarkupKind>? get contentFormat {
+@override List<MarkupKind>? get contentFormat {
   final value = _contentFormat;
   if (value == null) return null;
   if (_contentFormat is EqualUnmodifiableListView) return _contentFormat;
@@ -97357,7 +97357,7 @@ abstract mixin class _$HoverClientCapabilitiesCopyWith<$Res> implements $HoverCl
   factory _$HoverClientCapabilitiesCopyWith(_HoverClientCapabilities value, $Res Function(_HoverClientCapabilities) _then) = __$HoverClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration,@_MarkupKindListConverter() List<MarkupKind>? contentFormat
+ bool? dynamicRegistration, List<MarkupKind>? contentFormat
 });
 
 
@@ -101508,7 +101508,7 @@ as bool?,
 /// @nodoc
 mixin _$RenameClientCapabilities {
 
- bool? get dynamicRegistration; bool? get prepareSupport;@_PrepareSupportDefaultBehaviorConverter() PrepareSupportDefaultBehavior? get prepareSupportDefaultBehavior; bool? get honorsChangeAnnotations;
+ bool? get dynamicRegistration; bool? get prepareSupport; PrepareSupportDefaultBehavior? get prepareSupportDefaultBehavior; bool? get honorsChangeAnnotations;
 /// Create a copy of RenameClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -101541,7 +101541,7 @@ abstract mixin class $RenameClientCapabilitiesCopyWith<$Res>  {
   factory $RenameClientCapabilitiesCopyWith(RenameClientCapabilities value, $Res Function(RenameClientCapabilities) _then) = _$RenameClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, bool? prepareSupport,@_PrepareSupportDefaultBehaviorConverter() PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior, bool? honorsChangeAnnotations
+ bool? dynamicRegistration, bool? prepareSupport, PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior, bool? honorsChangeAnnotations
 });
 
 
@@ -101649,7 +101649,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  bool? prepareSupport, @_PrepareSupportDefaultBehaviorConverter()  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,  bool? honorsChangeAnnotations)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  bool? prepareSupport,  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,  bool? honorsChangeAnnotations)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RenameClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.prepareSupport,_that.prepareSupportDefaultBehavior,_that.honorsChangeAnnotations);case _:
@@ -101670,7 +101670,7 @@ return $default(_that.dynamicRegistration,_that.prepareSupport,_that.prepareSupp
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  bool? prepareSupport, @_PrepareSupportDefaultBehaviorConverter()  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,  bool? honorsChangeAnnotations)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  bool? prepareSupport,  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,  bool? honorsChangeAnnotations)  $default,) {final _that = this;
 switch (_that) {
 case _RenameClientCapabilities():
 return $default(_that.dynamicRegistration,_that.prepareSupport,_that.prepareSupportDefaultBehavior,_that.honorsChangeAnnotations);case _:
@@ -101690,7 +101690,7 @@ return $default(_that.dynamicRegistration,_that.prepareSupport,_that.prepareSupp
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  bool? prepareSupport, @_PrepareSupportDefaultBehaviorConverter()  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,  bool? honorsChangeAnnotations)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  bool? prepareSupport,  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,  bool? honorsChangeAnnotations)?  $default,) {final _that = this;
 switch (_that) {
 case _RenameClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.prepareSupport,_that.prepareSupportDefaultBehavior,_that.honorsChangeAnnotations);case _:
@@ -101705,12 +101705,12 @@ return $default(_that.dynamicRegistration,_that.prepareSupport,_that.prepareSupp
 @JsonSerializable()
 
 class _RenameClientCapabilities extends RenameClientCapabilities {
-  const _RenameClientCapabilities({this.dynamicRegistration, this.prepareSupport, @_PrepareSupportDefaultBehaviorConverter() this.prepareSupportDefaultBehavior, this.honorsChangeAnnotations}): super._();
+  const _RenameClientCapabilities({this.dynamicRegistration, this.prepareSupport, this.prepareSupportDefaultBehavior, this.honorsChangeAnnotations}): super._();
   factory _RenameClientCapabilities.fromJson(Map<String, dynamic> json) => _$RenameClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
 @override final  bool? prepareSupport;
-@override@_PrepareSupportDefaultBehaviorConverter() final  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior;
+@override final  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior;
 @override final  bool? honorsChangeAnnotations;
 
 /// Create a copy of RenameClientCapabilities
@@ -101746,7 +101746,7 @@ abstract mixin class _$RenameClientCapabilitiesCopyWith<$Res> implements $Rename
   factory _$RenameClientCapabilitiesCopyWith(_RenameClientCapabilities value, $Res Function(_RenameClientCapabilities) _then) = __$RenameClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, bool? prepareSupport,@_PrepareSupportDefaultBehaviorConverter() PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior, bool? honorsChangeAnnotations
+ bool? dynamicRegistration, bool? prepareSupport, PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior, bool? honorsChangeAnnotations
 });
 
 
@@ -102928,7 +102928,7 @@ as bool?,
 /// @nodoc
 mixin _$SemanticTokensClientCapabilities {
 
- bool? get dynamicRegistration; SemanticTokensClientCapabilitiesRequests get requests; List<String> get tokenTypes; List<String> get tokenModifiers;@_TokenFormatListConverter() List<TokenFormat> get formats; bool? get overlappingTokenSupport; bool? get multilineTokenSupport; bool? get serverCancelSupport; bool? get augmentsSyntaxTokens;
+ bool? get dynamicRegistration; SemanticTokensClientCapabilitiesRequests get requests; List<String> get tokenTypes; List<String> get tokenModifiers; List<TokenFormat> get formats; bool? get overlappingTokenSupport; bool? get multilineTokenSupport; bool? get serverCancelSupport; bool? get augmentsSyntaxTokens;
 /// Create a copy of SemanticTokensClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -102961,7 +102961,7 @@ abstract mixin class $SemanticTokensClientCapabilitiesCopyWith<$Res>  {
   factory $SemanticTokensClientCapabilitiesCopyWith(SemanticTokensClientCapabilities value, $Res Function(SemanticTokensClientCapabilities) _then) = _$SemanticTokensClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, SemanticTokensClientCapabilitiesRequests requests, List<String> tokenTypes, List<String> tokenModifiers,@_TokenFormatListConverter() List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
+ bool? dynamicRegistration, SemanticTokensClientCapabilitiesRequests requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
 });
 
 
@@ -103083,7 +103083,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  SemanticTokensClientCapabilitiesRequests requests,  List<String> tokenTypes,  List<String> tokenModifiers, @_TokenFormatListConverter()  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  SemanticTokensClientCapabilitiesRequests requests,  List<String> tokenTypes,  List<String> tokenModifiers,  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SemanticTokensClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.tokenModifiers,_that.formats,_that.overlappingTokenSupport,_that.multilineTokenSupport,_that.serverCancelSupport,_that.augmentsSyntaxTokens);case _:
@@ -103104,7 +103104,7 @@ return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  SemanticTokensClientCapabilitiesRequests requests,  List<String> tokenTypes,  List<String> tokenModifiers, @_TokenFormatListConverter()  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  SemanticTokensClientCapabilitiesRequests requests,  List<String> tokenTypes,  List<String> tokenModifiers,  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)  $default,) {final _that = this;
 switch (_that) {
 case _SemanticTokensClientCapabilities():
 return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.tokenModifiers,_that.formats,_that.overlappingTokenSupport,_that.multilineTokenSupport,_that.serverCancelSupport,_that.augmentsSyntaxTokens);case _:
@@ -103124,7 +103124,7 @@ return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  SemanticTokensClientCapabilitiesRequests requests,  List<String> tokenTypes,  List<String> tokenModifiers, @_TokenFormatListConverter()  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  SemanticTokensClientCapabilitiesRequests requests,  List<String> tokenTypes,  List<String> tokenModifiers,  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)?  $default,) {final _that = this;
 switch (_that) {
 case _SemanticTokensClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.tokenModifiers,_that.formats,_that.overlappingTokenSupport,_that.multilineTokenSupport,_that.serverCancelSupport,_that.augmentsSyntaxTokens);case _:
@@ -103139,7 +103139,7 @@ return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.
 @JsonSerializable()
 
 class _SemanticTokensClientCapabilities extends SemanticTokensClientCapabilities {
-  const _SemanticTokensClientCapabilities({this.dynamicRegistration, required this.requests, required final  List<String> tokenTypes, required final  List<String> tokenModifiers, @_TokenFormatListConverter() required final  List<TokenFormat> formats, this.overlappingTokenSupport, this.multilineTokenSupport, this.serverCancelSupport, this.augmentsSyntaxTokens}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,_formats = formats,super._();
+  const _SemanticTokensClientCapabilities({this.dynamicRegistration, required this.requests, required final  List<String> tokenTypes, required final  List<String> tokenModifiers, required final  List<TokenFormat> formats, this.overlappingTokenSupport, this.multilineTokenSupport, this.serverCancelSupport, this.augmentsSyntaxTokens}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,_formats = formats,super._();
   factory _SemanticTokensClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -103159,7 +103159,7 @@ class _SemanticTokensClientCapabilities extends SemanticTokensClientCapabilities
 }
 
  final  List<TokenFormat> _formats;
-@override@_TokenFormatListConverter() List<TokenFormat> get formats {
+@override List<TokenFormat> get formats {
   if (_formats is EqualUnmodifiableListView) return _formats;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_formats);
@@ -103203,7 +103203,7 @@ abstract mixin class _$SemanticTokensClientCapabilitiesCopyWith<$Res> implements
   factory _$SemanticTokensClientCapabilitiesCopyWith(_SemanticTokensClientCapabilities value, $Res Function(_SemanticTokensClientCapabilities) _then) = __$SemanticTokensClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, SemanticTokensClientCapabilitiesRequests requests, List<String> tokenTypes, List<String> tokenModifiers,@_TokenFormatListConverter() List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
+ bool? dynamicRegistration, SemanticTokensClientCapabilitiesRequests requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
 });
 
 
