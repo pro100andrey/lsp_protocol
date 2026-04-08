@@ -152,7 +152,7 @@ void main() {
       expect(src, contains('String? newEol'));
     });
 
-    test('generates static fromJson method', () {
+    test(r'generates factory fromJson delegating to _$XxxFromJson', () {
       final state = _stateWith(
         classes: [
           _cls(
@@ -164,14 +164,17 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
+      // json_serializable pattern: factory constructor delegates to generated fn
       expect(
         src,
-        contains('static Position fromJson(Map<String, Object?> json)'),
+        contains('factory Position.fromJson(Map<String, dynamic> json)'),
       );
-      expect(src, contains("json['line'] as int"));
+      expect(src, contains(r'_$PositionFromJson(json)'));
+      // No manual inline deserialization
+      expect(src, isNot(contains("json['line'] as int")));
     });
 
-    test('generates toJson method', () {
+    test('toJson is in freezed mixin, not inlined in class', () {
       final state = _stateWith(
         classes: [
           _cls(
@@ -183,8 +186,10 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains('Map<String, Object?> toJson()'));
-      expect(src, contains("'line': line"));
+      // json_serializable + freezed: toJson comes from the generated mixin,
+      // so no manual Map<String, Object?> toJson() body in the source class.
+      expect(src, isNot(contains('Map<String, Object?> toJson()')));
+      expect(src, isNot(contains("'line': line")));
     });
 
     test('anonymous classes appear before named classes', () {
@@ -195,7 +200,7 @@ void main() {
       expect(src.indexOf(r'Anon$0'), lessThan(src.indexOf('Foo')));
     });
 
-    test('nested class fromJson deserializes via fromJson call', () {
+    test('nested class factory fromJson uses json_serializable delegation', () {
       final posClass = _cls(
         'Position',
         properties: [
@@ -211,17 +216,14 @@ void main() {
       );
       final state = _stateWith(classes: [posClass, rangeClass]);
       final src = _format(EmitterVisitor(state).buildStructures());
-      expect(
-        src,
-        contains("Position.fromJson(json['start'] as Map<String, Object?>)"),
-      );
-      expect(
-        src,
-        contains("Position.fromJson(json['end'] as Map<String, Object?>)"),
-      );
+      // Each class delegates to _$XxxFromJson — no manual nested calls
+      expect(src, contains(r'_$PositionFromJson(json)'));
+      expect(src, contains(r'_$RangeFromJson(json)'));
+      // No manual inline deserialization of nested classes
+      expect(src, isNot(contains("Position.fromJson(json['start']")));
     });
 
-    test('list field generates correct fromJson', () {
+    test(r'list field: delegation to _$FooFromJson (no inline cast)', () {
       final state = _stateWith(
         classes: [
           _cls(
@@ -236,30 +238,35 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains("json['items'] as List<Object?>"));
-      expect(src, contains('map((e) => e as String)'));
+      // json_serializable handles the List<String> deserialization automatically
+      expect(src, contains(r'_$FooFromJson(json)'));
+      expect(src, isNot(contains("json['items'] as List<Object?>")));
     });
 
-    test('optional list generates nullable cast', () {
-      final state = _stateWith(
-        classes: [
-          _cls(
-            'Foo',
-            properties: [
-              _prop(
-                'items',
-                const ListType(element: DartCoreType(dartName: 'int')),
-                optional: true,
-              ),
-            ],
-          ),
-        ],
-      );
-      final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains("json['items'] as List<Object?>?"));
-    });
+    test(
+      r'optional list: delegation to _$FooFromJson (no inline nullable cast)',
+      () {
+        final state = _stateWith(
+          classes: [
+            _cls(
+              'Foo',
+              properties: [
+                _prop(
+                  'items',
+                  const ListType(element: DartCoreType(dartName: 'int')),
+                  optional: true,
+                ),
+              ],
+            ),
+          ],
+        );
+        final src = _format(EmitterVisitor(state).buildStructures());
+        expect(src, contains(r'_$FooFromJson(json)'));
+        expect(src, isNot(contains("json['items'] as List<Object?>?")));
+      },
+    );
 
-    test('nullable class field in fromJson uses null guard', () {
+    test('optional class field: delegation, no manual null guard', () {
       final posClass = _cls('Position', properties: []);
       final state = _stateWith(
         classes: [
@@ -272,11 +279,12 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains("json['pos'] == null"));
-      expect(src, contains('Position.fromJson'));
+      // json_serializable handles nullable fields — no manual null guard needed
+      expect(src, contains(r'_$FooFromJson(json)'));
+      expect(src, isNot(contains("json['pos'] == null")));
     });
 
-    test('class toJson delegates to nested toJson', () {
+    test('class toJson is generated by freezed mixin, not inlined', () {
       final posClass = _cls('Position', properties: []);
       final state = _stateWith(
         classes: [
@@ -289,7 +297,9 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      expect(src, contains('start.toJson()'));
+      // No manual start.toJson() call in the source — freezed/json_serializable
+      // generates the toJson mixin method
+      expect(src, isNot(contains('start.toJson()')));
     });
   });
 

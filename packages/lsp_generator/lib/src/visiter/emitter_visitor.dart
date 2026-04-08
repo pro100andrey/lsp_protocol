@@ -30,6 +30,20 @@ typedef _UnionCheck = ({
 
 // ---------------------------------------------------------------------------
 
+/// Discriminates how a converter class is generated.
+enum _ConverterKind { closedEnum, openEnum, scalarUnion, structUnion }
+
+/// Metadata about a single needed JsonConverter.
+typedef _ConverterEntry = ({
+  String name,
+  _ConverterKind kind,
+
+  /// `'int'` or `'String'` for enum-based converters, `''` otherwise.
+  String valueType,
+});
+
+// ---------------------------------------------------------------------------
+
 /// Builds code_builder [Library] objects from a fully resolved [ResolvedState].
 ///
 /// Each [Library] can be emitted to a Dart source string via [DartEmitter].
@@ -60,6 +74,13 @@ final class EmitterVisitor {
   /// items). Emitted to [_scalarUnionsFile]; no import of structures needed.
   late final Set<String> _scalarUnionNames = _computeScalarUnionNames();
 
+  /// Converter classes needed in `structures.dart`, keyed by type name.
+  late final ({
+    Map<String, _ConverterEntry> scalar,
+    Map<String, _ConverterEntry> list,
+  })
+  _converterNeeds = _computeConverterNeeds();
+
   // ---------------------------------------------------------------------------
   // Public API
   // ---------------------------------------------------------------------------
@@ -87,7 +108,9 @@ final class EmitterVisitor {
         )
         ..directives.addAll(_crossImports(allTypes, _structuresFile))
         ..directives.add(Directive.part('structures.freezed.dart'))
+        ..directives.add(Directive.part('structures.g.dart'))
         ..body.addAll([
+          ..._buildConverterSpecs(),
           ...anonymous.map(_buildClass),
           ...named.map(_buildClass),
         ]),
@@ -240,6 +263,13 @@ final class EmitterVisitor {
   // ---------------------------------------------------------------------------
 
   Spec _buildClass(ResolvedClass cls) {
+    // For underscore-prefixed anonymous structs (e.g. `_InitializeParamsClientInfo`),
+    // use plain @JsonSerializable instead of @freezed. When the abstract class name
+    // starts with `_`, freezed generates a top-level `_$XxxFromJson` wrapper AND
+    // json_serializable also generates `_$XxxFromJson` for the private concrete
+    // class — they collide. Plain @JsonSerializable avoids this entirely.
+    if (cls.name.startsWith('_')) return _buildPrivateJsonClass(cls);
+
     // LSP extends/mixins are structural (not Dart inheritance) — flatten all
     // inherited properties into the class so it stands alone.
     final allProps = _allProperties(cls);
@@ -262,7 +292,7 @@ final class EmitterVisitor {
         b.docs.add('/// ${cls.documentation!.replaceAll('\n', '\n/// ')}');
       }
 
-      // Private const constructor — required by freezed to allow instance methods.
+      // Private const constructor — required by freezed for sealed matching / instance methods.
       b.constructors.add(
         Constructor(
           (b) => b
@@ -276,11 +306,28 @@ final class EmitterVisitor {
         _buildRedirectingFactory(cls.name, allProps, publicPart),
       );
 
-      // static fromJson (not a factory constructor — freezed reserves that slot).
-      b.methods.add(_buildFromJsonMethod(cls.name, allProps));
-
-      // toJson — instance method, enabled by private const constructor.
-      b.methods.add(_buildToJson(allProps));
+      // Standard json_serializable fromJson factory — freezed generates toJson in its mixin.
+      b.constructors.add(
+        Constructor(
+          (b) => b
+            ..factory = true
+            ..name = 'fromJson'
+            ..requiredParameters.add(
+              Parameter(
+                (b) => b
+                  ..name = 'json'
+                  ..type = TypeReference(
+                    (b) => b
+                      ..symbol = 'Map'
+                      ..types.addAll([refer('String'), refer('dynamic')]),
+                  ),
+              ),
+            )
+            ..body = refer(
+              '_\$${publicPart}FromJson',
+            ).call([refer('json')]).code,
+        ),
+      );
     });
   }
 
@@ -324,6 +371,95 @@ final class EmitterVisitor {
     ];
   }
 
+  /// Builds a plain `@JsonSerializable` class for underscore-prefixed anonymous
+  /// structs. These avoid the naming conflict that arises when `@freezed` is
+  /// used with a leading-underscore class name (freezed and json_serializable
+  /// both generate `_$XxxFromJson` with incompatible signatures).
+  Class _buildPrivateJsonClass(ResolvedClass cls) {
+    final allProps = _allProperties(cls);
+    // json_serializable strips ALL leading underscores when naming helpers:
+    // `_Foo` → `_$FooFromJson`, `__Foo` → `_$FooFromJson`.
+    final baseName = cls.name.replaceFirst(RegExp('^_+'), '');
+
+    return Class((b) {
+      b.name = cls.name;
+      b.annotations.add(refer('JsonSerializable').call([]));
+      if (cls.documentation != null) {
+        b.docs.add('/// ${cls.documentation!.replaceAll('\n', '\n/// ')}');
+      }
+
+      // Final fields (plain class — no freezed mixin).
+      for (final p in allProps) {
+        b.fields.add(
+          Field((b) {
+            b
+              ..modifier = FieldModifier.final$
+              ..name = p.name
+              ..type = p.optional
+                  ? toTypeRef(p.type).rebuild((b) => b.isNullable = true)
+                  : toTypeRef(p.type);
+            final ann = _converterAnnotationFor(p.type);
+            if (ann != null) b.annotations.add(ann);
+          }),
+        );
+      }
+
+      // Const constructor — parameters mirror the fields.
+      b.constructors.add(
+        Constructor(
+          (b) => b
+            ..constant = true
+            ..optionalParameters.addAll(
+              allProps.map(
+                (p) => Parameter(
+                  (b) => b
+                    ..name = p.name
+                    ..toThis = true
+                    ..named = true
+                    ..required = !p.optional,
+                ),
+              ),
+            ),
+        ),
+      );
+
+      // fromJson factory delegating to json_serializable's generated function.
+      b.constructors.add(
+        Constructor(
+          (b) => b
+            ..factory = true
+            ..name = 'fromJson'
+            ..requiredParameters.add(
+              Parameter(
+                (b) => b
+                  ..name = 'json'
+                  ..type = TypeReference(
+                    (b) => b
+                      ..symbol = 'Map'
+                      ..types.addAll([refer('String'), refer('dynamic')]),
+                  ),
+              ),
+            )
+            ..body = refer('_\$${baseName}FromJson').call([refer('json')]).code,
+        ),
+      );
+
+      // toJson method delegating to json_serializable's generated function.
+      b.methods.add(
+        Method(
+          (b) => b
+            ..name = 'toJson'
+            ..returns = TypeReference(
+              (b) => b
+                ..symbol = 'Map'
+                ..types.addAll([refer('String'), refer('dynamic')]),
+            )
+            ..body = refer('_\$${baseName}ToJson').call([refer('this')]).code,
+        ),
+      );
+    });
+  }
+
   /// Redirecting factory constructor: `const factory Foo({...}) = _Foo;`
   /// Freezed reads these to generate the concrete `_Foo` class with fields,
   /// getters, `copyWith`, `==`, `hashCode`, and `toString`.
@@ -343,205 +479,223 @@ final class EmitterVisitor {
       ..redirect = refer('_$className')
       ..optionalParameters.addAll(
         props.map(
-          (p) => Parameter(
-            (b) => b
+          (p) => Parameter((b) {
+            b
               ..name = p.name
               ..type = p.optional
                   ? toTypeRef(p.type).rebuild((b) => b.isNullable = true)
                   : toTypeRef(p.type)
               ..named = true
-              ..required = !p.optional,
-          ),
+              ..required = !p.optional;
+            final ann = _converterAnnotationFor(p.type);
+            if (ann != null) b.annotations.add(ann);
+          }),
         ),
       ),
   );
 
-  /// Static `fromJson` method (not a factory constructor — freezed occupies
-  /// the `factory ClassName.fromJson` slot for its generated deserialiser).
-  Method _buildFromJsonMethod(
-    String className,
-    List<ResolvedProperty> props,
-  ) {
-    final args = <String, Expression>{};
-    for (final prop in props) {
-      args[prop.name] = CodeExpression(
-        Code(_fromJsonCode(prop.name, prop.type, prop.optional)),
-      );
-    }
+  // ---------------------------------------------------------------------------
+  // Converter infrastructure (json_serializable)
+  // ---------------------------------------------------------------------------
 
-    return Method(
-      (b) => b
-        ..name = 'fromJson'
-        ..static = true
-        ..returns = refer(className)
-        ..requiredParameters.add(
-          Parameter(
-            (b) => b
-              ..name = 'json'
-              ..type = TypeReference(
-                (b) => b
-                  ..symbol = 'Map'
-                  ..types.addAll([refer('String'), refer('Object?')]),
-              ),
-          ),
-        )
-        ..body = refer(className).call([], args).code,
-    );
+  /// Returns a call expression for the converter annotation that should be
+  /// placed on a factory parameter of the given [type], or `null`
+  /// if no annotation is needed (json_serializable handles the type natively).
+  Expression? _converterAnnotationFor(ResolvedType type) {
+    // Strip the outer NullableType — the converter itself is non-nullable;
+    // json_serializable adds the null check around the converter call.
+    final inner = type is NullableType ? type.inner : type;
+
+    switch (inner) {
+      case EnumType(:final ref):
+        return refer('_${ref.name}Converter').call([]);
+
+      case AliasType(:final ref)
+          when _scalarUnionNames.contains(ref.name) ||
+              _sealedUnionNames.contains(ref.name):
+        return refer('_${ref.name}Converter').call([]);
+
+      case ListType(element: final el):
+        final elemInner = el is NullableType ? el.inner : el;
+        switch (elemInner) {
+          case EnumType(:final ref):
+            return refer('_${ref.name}ListConverter').call([]);
+          case AliasType(:final ref)
+              when _scalarUnionNames.contains(ref.name) ||
+                  _sealedUnionNames.contains(ref.name):
+            return refer('_${ref.name}ListConverter').call([]);
+          default:
+            return null;
+        }
+
+      default:
+        return null;
+    }
   }
 
-  /// Returns a Dart expression string that reads and casts `json['name']`
-  /// to the appropriate Dart type.
-  String _fromJsonCode(
-    String name,
-    ResolvedType type,
-    bool optional,
-  ) => switch (type) {
-    NullableType(:final inner) => _fromJsonCode(name, inner, true),
-    ClassType(:final ref) when optional =>
-      "json['$name'] == null ? null : ${ref.name}.fromJson(json['$name'] as Map<String, Object?>)",
-    ClassType(:final ref) =>
-      "${ref.name}.fromJson(json['$name'] as Map<String, Object?>)",
-    MapType(value: final value) when optional =>
-      "(json['$name'] as Map<String, Object?>?)?.map((k, v) => MapEntry(k, ${_mapValueCast(value)}))",
-    MapType(value: final value) =>
-      "(json['$name'] as Map<String, Object?>).map((k, v) => MapEntry(k, ${_mapValueCast(value)}))",
-    ListType(:final element) when optional =>
-      "(json['$name'] as List<Object?>?)?.map((e) => ${_listElementCast(element)}).toList()",
-    ListType(:final element) =>
-      "(json['$name'] as List<Object?>).map((e) => ${_listElementCast(element)}).toList()",
-    EnumType(:final ref) when !ref.supportsCustomValues && optional =>
-      "json['$name'] == null ? null : ${ref.name}.values.firstWhere((e) => e.value == json['$name'] as ${ref.valueType})",
-    EnumType(:final ref) when !ref.supportsCustomValues =>
-      "${ref.name}.values.firstWhere((e) => e.value == json['$name'] as ${ref.valueType})",
-    EnumType(:final ref) when optional =>
-      "json['$name'] == null ? null : ${ref.name}(json['$name'] as ${ref.valueType})",
-    EnumType(:final ref) => "${ref.name}(json['$name'] as ${ref.valueType})",
-    // Scalar sealed union (e.g. ProgressToken = int | string) — call static
-    // fromJson which accepts Object?.
-    AliasType(:final ref)
-        when _scalarUnionNames.contains(ref.name) && optional =>
-      "json['$name'] == null ? null : ${ref.name}.fromJson(json['$name'])",
-    AliasType(:final ref) when _scalarUnionNames.contains(ref.name) =>
-      "${ref.name}.fromJson(json['$name'])",
-    // Struct-based sealed union — fromJson expects Map<String, Object?>.
-    AliasType(:final ref)
-        when _sealedUnionNames.contains(ref.name) && optional =>
-      "json['$name'] == null ? null : ${ref.name}.fromJson(json['$name'] as Map<String, Object?>)",
-    AliasType(:final ref) when _sealedUnionNames.contains(ref.name) =>
-      "${ref.name}.fromJson(json['$name'] as Map<String, Object?>)",
-    // UnionType resolves to Object — 'as Object?' is an unnecessary cast.
-    UnionType() when optional => "json['$name']",
-    UnionType() => "json['$name'] as Object",
-    // DartCoreType('Object?') is already Object? — no cast needed.
-    DartCoreType(:final dartName) when dartName == 'Object?' => "json['$name']",
-    // AliasType that resolves to an Object-like type — 'as AliasName?' expands
-    // to 'as Object?' which Dart flags as an unnecessary cast.
-    AliasType(:final ref) when optional && _isEffectivelyObject(ref.type) =>
-      "json['$name']",
-    _ =>
-      optional
-          ? "json['$name'] as ${_dartTypeName(type)}?"
-          : "json['$name'] as ${_dartTypeName(type)}",
-  };
+  /// Walks every property of every resolved class and collects the set of
+  /// converter classes that need to be emitted into `structures.dart`.
+  ({Map<String, _ConverterEntry> scalar, Map<String, _ConverterEntry> list})
+  _computeConverterNeeds() {
+    final scalar = <String, _ConverterEntry>{};
+    final list = <String, _ConverterEntry>{};
 
-  /// Returns `true` when [type] ultimately resolves to `Object` or `Object?`,
-  /// meaning a cast from a JSON map value (already `Object?`) would be
-  /// flagged as [unnecessary_cast] by the Dart analyser.
-  static bool _isEffectivelyObject(ResolvedType type) => switch (type) {
-    UnionType() => true,
-    DartCoreType(:final dartName) =>
-      dartName == 'Object' || dartName == 'Object?',
-    AliasType(:final ref) => _isEffectivelyObject(ref.type),
-    NullableType(:final inner) => _isEffectivelyObject(inner),
-    _ => false,
-  };
-
-  /// Returns the Dart type name string for a resolved type, used in string
-  /// interpolation contexts (e.g. inside `Code('...')` bodies).
-  String _dartTypeName(ResolvedType type) => switch (type) {
-    DartCoreType(:final dartName) => dartName,
-    ClassType(:final ref) => ref.name,
-    EnumType(:final ref) => ref.name,
-    AliasType(:final ref) => ref.name,
-    ListType(:final element) => 'List<${_dartTypeName(element)}>',
-    MapType(:final key, :final value) =>
-      'Map<${_dartTypeName(key)}, ${_dartTypeName(value)}>',
-    NullableType(:final inner) => '${_dartTypeName(inner)}?',
-    UnionType() => 'Object',
-    TupleType() => 'List<Object?>',
-    StringLiteralType() => 'String',
-  };
-
-  String _listElementCast(ResolvedType element) => switch (element) {
-    ClassType(:final ref) => '${ref.name}.fromJson(e as Map<String, Object?>)',
-    NullableType(inner: ClassType(:final ref)) =>
-      'e == null ? null : ${ref.name}.fromJson(e as Map<String, Object?>)',
-    _ => 'e as ${_dartTypeName(element)}',
-  };
-
-  String _mapValueCast(ResolvedType value) => switch (value) {
-    ClassType(:final ref) => '${ref.name}.fromJson(v as Map<String, Object?>)',
-    NullableType(inner: ClassType(:final ref)) =>
-      'v == null ? null : ${ref.name}.fromJson(v as Map<String, Object?>)',
-    _ => 'v as ${_dartTypeName(value)}',
-  };
-
-  Method _buildToJson(List<ResolvedProperty> props) {
-    final entries = <Object?, Object?>{};
-    for (final prop in props) {
-      entries[literalString(prop.name)] = _toJsonExpr(prop);
+    void register(String name, _ConverterKind kind, String valueType) {
+      scalar[name] ??= (name: name, kind: kind, valueType: valueType);
     }
 
-    return Method(
-      (b) => b
-        ..name = 'toJson'
-        ..returns = TypeReference(
-          (b) => b
-            ..symbol = 'Map'
-            ..types.addAll([refer('String'), refer('Object?')]),
-        )
-        ..body = literalMap(
-          entries,
-          refer('String'),
-          refer('Object?'),
-        ).returned.statement,
-    );
+    void registerList(String name, _ConverterKind kind, String valueType) {
+      // Add to list map only. If the type also appears as a direct (non-list)
+      // field, register() will be called separately and will populate scalar.
+      list[name] ??= (name: name, kind: kind, valueType: valueType);
+    }
+
+    void processType(ResolvedType type) {
+      final inner = type is NullableType ? type.inner : type;
+      switch (inner) {
+        case EnumType(:final ref):
+          register(
+            ref.name,
+            ref.supportsCustomValues
+                ? _ConverterKind.openEnum
+                : _ConverterKind.closedEnum,
+            ref.valueType,
+          );
+        case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
+          register(ref.name, _ConverterKind.scalarUnion, '');
+        case AliasType(:final ref) when _sealedUnionNames.contains(ref.name):
+          register(ref.name, _ConverterKind.structUnion, '');
+
+        case ListType(element: final el):
+          final elemInner = el is NullableType ? el.inner : el;
+          switch (elemInner) {
+            case EnumType(:final ref):
+              registerList(
+                ref.name,
+                ref.supportsCustomValues
+                    ? _ConverterKind.openEnum
+                    : _ConverterKind.closedEnum,
+                ref.valueType,
+              );
+            case AliasType(:final ref)
+                when _scalarUnionNames.contains(ref.name):
+              registerList(ref.name, _ConverterKind.scalarUnion, '');
+            case AliasType(:final ref)
+                when _sealedUnionNames.contains(ref.name):
+              registerList(ref.name, _ConverterKind.structUnion, '');
+            default:
+              break;
+          }
+
+        default:
+          break;
+      }
+    }
+
+    for (final cls in _resolved.classes) {
+      for (final prop in _allProperties(cls)) {
+        processType(prop.type);
+      }
+    }
+
+    return (scalar: scalar, list: list);
   }
 
-  Expression _toJsonExpr(ResolvedProperty prop) => switch (prop.type) {
-    NullableType(inner: ClassType()) => CodeExpression(
-      Code('${prop.name}?.toJson()'),
-    ),
-    ClassType() when prop.optional => CodeExpression(
-      Code('${prop.name}?.toJson()'),
-    ),
-    ClassType() => CodeExpression(Code('${prop.name}.toJson()')),
-    NullableType(inner: ListType(element: ClassType())) => CodeExpression(
-      Code('${prop.name}?.map((e) => e.toJson()).toList()'),
-    ),
-    ListType(element: ClassType()) when prop.optional => CodeExpression(
-      Code('${prop.name}?.map((e) => e.toJson()).toList()'),
-    ),
-    ListType(element: ClassType()) => CodeExpression(
-      Code('${prop.name}.map((e) => e.toJson()).toList()'),
-    ),
-    NullableType(inner: EnumType()) => CodeExpression(
-      Code('${prop.name}?.value'),
-    ),
-    EnumType() when prop.optional => CodeExpression(
-      Code('${prop.name}?.value'),
-    ),
-    EnumType() => CodeExpression(Code('${prop.name}.value')),
-    NullableType(inner: AliasType(:final ref))
-        when _sealedUnionNames.contains(ref.name) =>
-      CodeExpression(Code('${prop.name}?.toJson()')),
-    AliasType(:final ref)
-        when _sealedUnionNames.contains(ref.name) && prop.optional =>
-      CodeExpression(Code('${prop.name}?.toJson()')),
-    AliasType(:final ref) when _sealedUnionNames.contains(ref.name) =>
-      CodeExpression(Code('${prop.name}.toJson()')),
-    _ => CodeExpression(Code(prop.name)),
-  };
+  /// Emits one `Code` [Spec] per needed converter (scalar + list variants).
+  Iterable<Spec> _buildConverterSpecs() sync* {
+    final needs = _converterNeeds;
+    // Emit scalar converters for types used directly as fields.
+    for (final entry in needs.scalar.values) {
+      yield Code(_scalarConverterCode(entry));
+    }
+    // Emit list converters for types used as List<...> elements.
+    for (final entry in needs.list.values) {
+      yield Code(_listConverterCode(entry));
+    }
+  }
+
+  String _scalarConverterCode(_ConverterEntry entry) {
+    final n = entry.name;
+    switch (entry.kind) {
+      case _ConverterKind.closedEnum:
+        final raw = entry.valueType == 'int' ? 'int' : 'String';
+        return '''
+class _${n}Converter extends JsonConverter<$n, $raw> {
+  const _${n}Converter();
+  @override
+  $n fromJson($raw json) => $n.values.firstWhere((e) => e.value == json);
+  @override
+  $raw toJson($n object) => object.value;
+}
+''';
+      case _ConverterKind.openEnum:
+        final raw = entry.valueType == 'int' ? 'int' : 'String';
+        return '''
+class _${n}Converter extends JsonConverter<$n, $raw> {
+  const _${n}Converter();
+  @override
+  $n fromJson($raw json) => $n(json);
+  @override
+  $raw toJson($n object) => object.value;
+}
+''';
+      case _ConverterKind.scalarUnion:
+        return '''
+class _${n}Converter extends JsonConverter<$n, Object> {
+  const _${n}Converter();
+  @override
+  $n fromJson(Object json) => $n.fromJson(json);
+  @override
+  Object toJson($n object) => object.toJson();
+}
+''';
+      case _ConverterKind.structUnion:
+        return '''
+class _${n}Converter extends JsonConverter<$n, Map<String, Object?>> {
+  const _${n}Converter();
+  @override
+  $n fromJson(Map<String, Object?> json) => $n.fromJson(json);
+  @override
+  Map<String, Object?> toJson($n object) => object.toJson() as Map<String, Object?>;
+}
+''';
+    }
+  }
+
+  String _listConverterCode(_ConverterEntry entry) {
+    final n = entry.name;
+    final String fromBody;
+    final String toBody;
+
+    switch (entry.kind) {
+      case _ConverterKind.closedEnum:
+        final raw = entry.valueType == 'int' ? 'int' : 'String';
+        fromBody =
+            'json.map((e) => $n.values.firstWhere((k) => k.value == e as $raw)).toList()';
+        toBody = 'object.map((e) => e.value).toList()';
+      case _ConverterKind.openEnum:
+        final raw = entry.valueType == 'int' ? 'int' : 'String';
+        fromBody = 'json.map((e) => $n(e as $raw)).toList()';
+        toBody = 'object.map((e) => e.value).toList()';
+      case _ConverterKind.scalarUnion:
+        fromBody = 'json.map((e) => $n.fromJson(e as Object)).toList()';
+        toBody = 'object.map((e) => e.toJson()).toList()';
+      case _ConverterKind.structUnion:
+        fromBody =
+            'json.map((e) => $n.fromJson(e as Map<String, Object?>)).toList()';
+        toBody = 'object.map<Object>((e) => e.toJson()).toList()';
+    }
+
+    return '''
+class _${n}ListConverter extends JsonConverter<List<$n>, List<dynamic>> {
+  const _${n}ListConverter();
+  @override
+  List<$n> fromJson(List<dynamic> json) => $fromBody;
+  @override
+  List<dynamic> toJson(List<$n> object) => $toBody;
+}
+''';
+  }
 
   // ---------------------------------------------------------------------------
   // Enum builder
@@ -1094,6 +1248,29 @@ final class EmitterVisitor {
     buf.writeln();
     return [Code(buf.toString())];
   }
+
+  /// Returns the Dart type name string for a resolved type, used in string
+  /// interpolation contexts (e.g. inside `Code('...')` bodies for union specs).
+  String _dartTypeName(ResolvedType type) => switch (type) {
+    DartCoreType(:final dartName) => dartName,
+    ClassType(:final ref) => ref.name,
+    EnumType(:final ref) => ref.name,
+    AliasType(:final ref) => ref.name,
+    ListType(:final element) => 'List<${_dartTypeName(element)}>',
+    MapType(:final key, :final value) =>
+      'Map<${_dartTypeName(key)}, ${_dartTypeName(value)}>',
+    NullableType(:final inner) => '${_dartTypeName(inner)}?',
+    UnionType() => 'Object',
+    TupleType() => 'List<Object?>',
+    StringLiteralType() => 'String',
+  };
+
+  String _listElementCast(ResolvedType element) => switch (element) {
+    ClassType(:final ref) => '${ref.name}.fromJson(e as Map<String, Object?>)',
+    NullableType(inner: ClassType(:final ref)) =>
+      'e == null ? null : ${ref.name}.fromJson(e as Map<String, Object?>)',
+    _ => 'e as ${_dartTypeName(element)}',
+  };
 
   String _toJsonCallerFor(ResolvedType t, String v) => switch (t) {
     ClassType() => '$v.toJson()',

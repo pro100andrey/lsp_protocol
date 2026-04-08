@@ -203,6 +203,7 @@ final class FoldingRangeKind {
 }
 
 /// A symbol kind.
+
 enum SymbolKind {
   File(1),
   Module(2),

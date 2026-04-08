@@ -8,6 +8,434 @@ import 'type_aliases.dart';
 import 'unions.dart';
 
 part 'structures.freezed.dart';
+part 'structures.g.dart';
+
+class _ProgressTokenConverter extends JsonConverter<ProgressToken, Object> {
+  const _ProgressTokenConverter();
+  @override
+  ProgressToken fromJson(Object json) => ProgressToken.fromJson(json);
+  @override
+  Object toJson(ProgressToken object) => object.toJson();
+}
+
+class _FoldingRangeKindConverter
+    extends JsonConverter<FoldingRangeKind, String> {
+  const _FoldingRangeKindConverter();
+  @override
+  FoldingRangeKind fromJson(String json) => FoldingRangeKind(json);
+  @override
+  String toJson(FoldingRangeKind object) => object.value;
+}
+
+class _SymbolKindConverter extends JsonConverter<SymbolKind, int> {
+  const _SymbolKindConverter();
+  @override
+  SymbolKind fromJson(int json) =>
+      SymbolKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(SymbolKind object) => object.value;
+}
+
+class _UniquenessLevelConverter extends JsonConverter<UniquenessLevel, String> {
+  const _UniquenessLevelConverter();
+  @override
+  UniquenessLevel fromJson(String json) =>
+      UniquenessLevel.values.firstWhere((e) => e.value == json);
+  @override
+  String toJson(UniquenessLevel object) => object.value;
+}
+
+class _MonikerKindConverter extends JsonConverter<MonikerKind, String> {
+  const _MonikerKindConverter();
+  @override
+  MonikerKind fromJson(String json) =>
+      MonikerKind.values.firstWhere((e) => e.value == json);
+  @override
+  String toJson(MonikerKind object) => object.value;
+}
+
+class _InlayHintKindConverter extends JsonConverter<InlayHintKind, int> {
+  const _InlayHintKindConverter();
+  @override
+  InlayHintKind fromJson(int json) =>
+      InlayHintKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(InlayHintKind object) => object.value;
+}
+
+class _TraceValuesConverter extends JsonConverter<TraceValues, String> {
+  const _TraceValuesConverter();
+  @override
+  TraceValues fromJson(String json) =>
+      TraceValues.values.firstWhere((e) => e.value == json);
+  @override
+  String toJson(TraceValues object) => object.value;
+}
+
+class _MessageTypeConverter extends JsonConverter<MessageType, int> {
+  const _MessageTypeConverter();
+  @override
+  MessageType fromJson(int json) =>
+      MessageType.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(MessageType object) => object.value;
+}
+
+class _TextDocumentSyncKindConverter
+    extends JsonConverter<TextDocumentSyncKind, int> {
+  const _TextDocumentSyncKindConverter();
+  @override
+  TextDocumentSyncKind fromJson(int json) =>
+      TextDocumentSyncKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(TextDocumentSyncKind object) => object.value;
+}
+
+class _TextDocumentSaveReasonConverter
+    extends JsonConverter<TextDocumentSaveReason, int> {
+  const _TextDocumentSaveReasonConverter();
+  @override
+  TextDocumentSaveReason fromJson(int json) =>
+      TextDocumentSaveReason.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(TextDocumentSaveReason object) => object.value;
+}
+
+class _CompletionItemKindConverter
+    extends JsonConverter<CompletionItemKind, int> {
+  const _CompletionItemKindConverter();
+  @override
+  CompletionItemKind fromJson(int json) =>
+      CompletionItemKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(CompletionItemKind object) => object.value;
+}
+
+class _InsertTextFormatConverter extends JsonConverter<InsertTextFormat, int> {
+  const _InsertTextFormatConverter();
+  @override
+  InsertTextFormat fromJson(int json) =>
+      InsertTextFormat.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(InsertTextFormat object) => object.value;
+}
+
+class _InsertTextModeConverter extends JsonConverter<InsertTextMode, int> {
+  const _InsertTextModeConverter();
+  @override
+  InsertTextMode fromJson(int json) =>
+      InsertTextMode.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(InsertTextMode object) => object.value;
+}
+
+class _DocumentHighlightKindConverter
+    extends JsonConverter<DocumentHighlightKind, int> {
+  const _DocumentHighlightKindConverter();
+  @override
+  DocumentHighlightKind fromJson(int json) =>
+      DocumentHighlightKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(DocumentHighlightKind object) => object.value;
+}
+
+class _CodeActionKindConverter extends JsonConverter<CodeActionKind, String> {
+  const _CodeActionKindConverter();
+  @override
+  CodeActionKind fromJson(String json) => CodeActionKind(json);
+  @override
+  String toJson(CodeActionKind object) => object.value;
+}
+
+class _MarkupKindConverter extends JsonConverter<MarkupKind, String> {
+  const _MarkupKindConverter();
+  @override
+  MarkupKind fromJson(String json) =>
+      MarkupKind.values.firstWhere((e) => e.value == json);
+  @override
+  String toJson(MarkupKind object) => object.value;
+}
+
+class _InlineCompletionTriggerKindConverter
+    extends JsonConverter<InlineCompletionTriggerKind, int> {
+  const _InlineCompletionTriggerKindConverter();
+  @override
+  InlineCompletionTriggerKind fromJson(int json) =>
+      InlineCompletionTriggerKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(InlineCompletionTriggerKind object) => object.value;
+}
+
+class _PositionEncodingKindConverter
+    extends JsonConverter<PositionEncodingKind, String> {
+  const _PositionEncodingKindConverter();
+  @override
+  PositionEncodingKind fromJson(String json) => PositionEncodingKind(json);
+  @override
+  String toJson(PositionEncodingKind object) => object.value;
+}
+
+class _FileChangeTypeConverter extends JsonConverter<FileChangeType, int> {
+  const _FileChangeTypeConverter();
+  @override
+  FileChangeType fromJson(int json) =>
+      FileChangeType.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(FileChangeType object) => object.value;
+}
+
+class _WatchKindConverter extends JsonConverter<WatchKind, int> {
+  const _WatchKindConverter();
+  @override
+  WatchKind fromJson(int json) => WatchKind(json);
+  @override
+  int toJson(WatchKind object) => object.value;
+}
+
+class _DiagnosticSeverityConverter
+    extends JsonConverter<DiagnosticSeverity, int> {
+  const _DiagnosticSeverityConverter();
+  @override
+  DiagnosticSeverity fromJson(int json) =>
+      DiagnosticSeverity.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(DiagnosticSeverity object) => object.value;
+}
+
+class _CompletionTriggerKindConverter
+    extends JsonConverter<CompletionTriggerKind, int> {
+  const _CompletionTriggerKindConverter();
+  @override
+  CompletionTriggerKind fromJson(int json) =>
+      CompletionTriggerKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(CompletionTriggerKind object) => object.value;
+}
+
+class _SignatureHelpTriggerKindConverter
+    extends JsonConverter<SignatureHelpTriggerKind, int> {
+  const _SignatureHelpTriggerKindConverter();
+  @override
+  SignatureHelpTriggerKind fromJson(int json) =>
+      SignatureHelpTriggerKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(SignatureHelpTriggerKind object) => object.value;
+}
+
+class _CodeActionTriggerKindConverter
+    extends JsonConverter<CodeActionTriggerKind, int> {
+  const _CodeActionTriggerKindConverter();
+  @override
+  CodeActionTriggerKind fromJson(int json) =>
+      CodeActionTriggerKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(CodeActionTriggerKind object) => object.value;
+}
+
+class _FileOperationPatternKindConverter
+    extends JsonConverter<FileOperationPatternKind, String> {
+  const _FileOperationPatternKindConverter();
+  @override
+  FileOperationPatternKind fromJson(String json) =>
+      FileOperationPatternKind.values.firstWhere((e) => e.value == json);
+  @override
+  String toJson(FileOperationPatternKind object) => object.value;
+}
+
+class _NotebookCellKindConverter extends JsonConverter<NotebookCellKind, int> {
+  const _NotebookCellKindConverter();
+  @override
+  NotebookCellKind fromJson(int json) =>
+      NotebookCellKind.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(NotebookCellKind object) => object.value;
+}
+
+class _FailureHandlingKindConverter
+    extends JsonConverter<FailureHandlingKind, String> {
+  const _FailureHandlingKindConverter();
+  @override
+  FailureHandlingKind fromJson(String json) =>
+      FailureHandlingKind.values.firstWhere((e) => e.value == json);
+  @override
+  String toJson(FailureHandlingKind object) => object.value;
+}
+
+class _PrepareSupportDefaultBehaviorConverter
+    extends JsonConverter<PrepareSupportDefaultBehavior, int> {
+  const _PrepareSupportDefaultBehaviorConverter();
+  @override
+  PrepareSupportDefaultBehavior fromJson(int json) =>
+      PrepareSupportDefaultBehavior.values.firstWhere((e) => e.value == json);
+  @override
+  int toJson(PrepareSupportDefaultBehavior object) => object.value;
+}
+
+class _SymbolTagListConverter
+    extends JsonConverter<List<SymbolTag>, List<dynamic>> {
+  const _SymbolTagListConverter();
+  @override
+  List<SymbolTag> fromJson(List<dynamic> json) => json
+      .map((e) => SymbolTag.values.firstWhere((k) => k.value == e as int))
+      .toList();
+  @override
+  List<dynamic> toJson(List<SymbolTag> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _WorkspaceDocumentDiagnosticReportListConverter
+    extends
+        JsonConverter<List<WorkspaceDocumentDiagnosticReport>, List<dynamic>> {
+  const _WorkspaceDocumentDiagnosticReportListConverter();
+  @override
+  List<WorkspaceDocumentDiagnosticReport> fromJson(List<dynamic> json) => json
+      .map(
+        (e) => WorkspaceDocumentDiagnosticReport.fromJson(
+          e as Map<String, Object?>,
+        ),
+      )
+      .toList();
+  @override
+  List<dynamic> toJson(List<WorkspaceDocumentDiagnosticReport> object) =>
+      object.map<Object>((e) => e.toJson()).toList();
+}
+
+class _CompletionItemTagListConverter
+    extends JsonConverter<List<CompletionItemTag>, List<dynamic>> {
+  const _CompletionItemTagListConverter();
+  @override
+  List<CompletionItemTag> fromJson(List<dynamic> json) => json
+      .map(
+        (e) => CompletionItemTag.values.firstWhere((k) => k.value == e as int),
+      )
+      .toList();
+  @override
+  List<dynamic> toJson(List<CompletionItemTag> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _CodeActionKindListConverter
+    extends JsonConverter<List<CodeActionKind>, List<dynamic>> {
+  const _CodeActionKindListConverter();
+  @override
+  List<CodeActionKind> fromJson(List<dynamic> json) =>
+      json.map((e) => CodeActionKind(e as String)).toList();
+  @override
+  List<dynamic> toJson(List<CodeActionKind> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _DiagnosticTagListConverter
+    extends JsonConverter<List<DiagnosticTag>, List<dynamic>> {
+  const _DiagnosticTagListConverter();
+  @override
+  List<DiagnosticTag> fromJson(List<dynamic> json) => json
+      .map((e) => DiagnosticTag.values.firstWhere((k) => k.value == e as int))
+      .toList();
+  @override
+  List<dynamic> toJson(List<DiagnosticTag> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _PositionEncodingKindListConverter
+    extends JsonConverter<List<PositionEncodingKind>, List<dynamic>> {
+  const _PositionEncodingKindListConverter();
+  @override
+  List<PositionEncodingKind> fromJson(List<dynamic> json) =>
+      json.map((e) => PositionEncodingKind(e as String)).toList();
+  @override
+  List<dynamic> toJson(List<PositionEncodingKind> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _ResourceOperationKindListConverter
+    extends JsonConverter<List<ResourceOperationKind>, List<dynamic>> {
+  const _ResourceOperationKindListConverter();
+  @override
+  List<ResourceOperationKind> fromJson(List<dynamic> json) => json
+      .map(
+        (e) => ResourceOperationKind.values.firstWhere(
+          (k) => k.value == e as String,
+        ),
+      )
+      .toList();
+  @override
+  List<dynamic> toJson(List<ResourceOperationKind> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _MarkupKindListConverter
+    extends JsonConverter<List<MarkupKind>, List<dynamic>> {
+  const _MarkupKindListConverter();
+  @override
+  List<MarkupKind> fromJson(List<dynamic> json) => json
+      .map((e) => MarkupKind.values.firstWhere((k) => k.value == e as String))
+      .toList();
+  @override
+  List<dynamic> toJson(List<MarkupKind> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _TokenFormatListConverter
+    extends JsonConverter<List<TokenFormat>, List<dynamic>> {
+  const _TokenFormatListConverter();
+  @override
+  List<TokenFormat> fromJson(List<dynamic> json) => json
+      .map((e) => TokenFormat.values.firstWhere((k) => k.value == e as String))
+      .toList();
+  @override
+  List<dynamic> toJson(List<TokenFormat> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _SymbolKindListConverter
+    extends JsonConverter<List<SymbolKind>, List<dynamic>> {
+  const _SymbolKindListConverter();
+  @override
+  List<SymbolKind> fromJson(List<dynamic> json) => json
+      .map((e) => SymbolKind.values.firstWhere((k) => k.value == e as int))
+      .toList();
+  @override
+  List<dynamic> toJson(List<SymbolKind> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _InsertTextModeListConverter
+    extends JsonConverter<List<InsertTextMode>, List<dynamic>> {
+  const _InsertTextModeListConverter();
+  @override
+  List<InsertTextMode> fromJson(List<dynamic> json) => json
+      .map((e) => InsertTextMode.values.firstWhere((k) => k.value == e as int))
+      .toList();
+  @override
+  List<dynamic> toJson(List<InsertTextMode> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _CompletionItemKindListConverter
+    extends JsonConverter<List<CompletionItemKind>, List<dynamic>> {
+  const _CompletionItemKindListConverter();
+  @override
+  List<CompletionItemKind> fromJson(List<dynamic> json) => json
+      .map(
+        (e) => CompletionItemKind.values.firstWhere((k) => k.value == e as int),
+      )
+      .toList();
+  @override
+  List<dynamic> toJson(List<CompletionItemKind> object) =>
+      object.map((e) => e.value).toList();
+}
+
+class _FoldingRangeKindListConverter
+    extends JsonConverter<List<FoldingRangeKind>, List<dynamic>> {
+  const _FoldingRangeKindListConverter();
+  @override
+  List<FoldingRangeKind> fromJson(List<dynamic> json) =>
+      json.map((e) => FoldingRangeKind(e as String)).toList();
+  @override
+  List<dynamic> toJson(List<FoldingRangeKind> object) =>
+      object.map((e) => e.value).toList();
+}
 
 @freezed
 abstract class InitializeResultServerInfo with _$InitializeResultServerInfo {
@@ -18,15 +446,8 @@ abstract class InitializeResultServerInfo with _$InitializeResultServerInfo {
     String? version,
   }) = _InitializeResultServerInfo;
 
-  static InitializeResultServerInfo fromJson(Map<String, Object?> json) =>
-      InitializeResultServerInfo(
-        name: json['name'] as String,
-        version: json['version'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'name': name, 'version': version};
-  }
+  factory InitializeResultServerInfo.fromJson(Map<String, dynamic> json) =>
+      _$InitializeResultServerInfoFromJson(json);
 }
 
 @freezed
@@ -36,39 +457,13 @@ abstract class CompletionListItemDefaults with _$CompletionListItemDefaults {
   const factory CompletionListItemDefaults({
     List<String>? commitCharacters,
     Object? editRange,
-    InsertTextFormat? insertTextFormat,
-    InsertTextMode? insertTextMode,
+    @_InsertTextFormatConverter() InsertTextFormat? insertTextFormat,
+    @_InsertTextModeConverter() InsertTextMode? insertTextMode,
     LSPAny? data,
   }) = _CompletionListItemDefaults;
 
-  static CompletionListItemDefaults fromJson(Map<String, Object?> json) =>
-      CompletionListItemDefaults(
-        commitCharacters: (json['commitCharacters'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-        editRange: json['editRange'],
-        insertTextFormat: json['insertTextFormat'] == null
-            ? null
-            : InsertTextFormat.values.firstWhere(
-                (e) => e.value == json['insertTextFormat'] as int,
-              ),
-        insertTextMode: json['insertTextMode'] == null
-            ? null
-            : InsertTextMode.values.firstWhere(
-                (e) => e.value == json['insertTextMode'] as int,
-              ),
-        data: json['data'],
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'commitCharacters': commitCharacters,
-      'editRange': editRange,
-      'insertTextFormat': insertTextFormat?.value,
-      'insertTextMode': insertTextMode?.value,
-      'data': data,
-    };
-  }
+  factory CompletionListItemDefaults.fromJson(Map<String, dynamic> json) =>
+      _$CompletionListItemDefaultsFromJson(json);
 }
 
 @freezed
@@ -81,19 +476,9 @@ abstract class CompletionListItemDefaultsEditRange
     required Range replace,
   }) = _CompletionListItemDefaultsEditRange;
 
-  static CompletionListItemDefaultsEditRange fromJson(
-    Map<String, Object?> json,
-  ) => CompletionListItemDefaultsEditRange(
-    insert: Range.fromJson(json['insert'] as Map<String, Object?>),
-    replace: Range.fromJson(json['replace'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'insert': insert.toJson(),
-      'replace': replace.toJson(),
-    };
-  }
+  factory CompletionListItemDefaultsEditRange.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CompletionListItemDefaultsEditRangeFromJson(json);
 }
 
 @freezed
@@ -103,12 +488,8 @@ abstract class CodeActionDisabled with _$CodeActionDisabled {
   const factory CodeActionDisabled({required String reason}) =
       _CodeActionDisabled;
 
-  static CodeActionDisabled fromJson(Map<String, Object?> json) =>
-      CodeActionDisabled(reason: json['reason'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'reason': reason};
-  }
+  factory CodeActionDisabled.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionDisabledFromJson(json);
 }
 
 @freezed
@@ -118,12 +499,8 @@ abstract class WorkspaceSymbolLocation with _$WorkspaceSymbolLocation {
   const factory WorkspaceSymbolLocation({required String uri}) =
       _WorkspaceSymbolLocation;
 
-  static WorkspaceSymbolLocation fromJson(Map<String, Object?> json) =>
-      WorkspaceSymbolLocation(uri: json['uri'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri};
-  }
+  factory WorkspaceSymbolLocation.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceSymbolLocationFromJson(json);
 }
 
 @freezed
@@ -132,12 +509,8 @@ abstract class SemanticTokensOptionsRange with _$SemanticTokensOptionsRange {
 
   const factory SemanticTokensOptionsRange() = _SemanticTokensOptionsRange;
 
-  static SemanticTokensOptionsRange fromJson(Map<String, Object?> json) =>
-      SemanticTokensOptionsRange();
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{};
-  }
+  factory SemanticTokensOptionsRange.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensOptionsRangeFromJson(json);
 }
 
 @freezed
@@ -147,12 +520,8 @@ abstract class SemanticTokensOptionsFull with _$SemanticTokensOptionsFull {
   const factory SemanticTokensOptionsFull({bool? delta}) =
       _SemanticTokensOptionsFull;
 
-  static SemanticTokensOptionsFull fromJson(Map<String, Object?> json) =>
-      SemanticTokensOptionsFull(delta: json['delta'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'delta': delta};
-  }
+  factory SemanticTokensOptionsFull.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensOptionsFullFromJson(json);
 }
 
 @freezed
@@ -166,32 +535,9 @@ abstract class NotebookDocumentChangeEventCells
     List<NotebookDocumentChangeEventCellsTextContent>? textContent,
   }) = _NotebookDocumentChangeEventCells;
 
-  static NotebookDocumentChangeEventCells fromJson(Map<String, Object?> json) =>
-      NotebookDocumentChangeEventCells(
-        structure: json['structure'] == null
-            ? null
-            : NotebookDocumentChangeEventCellsStructure.fromJson(
-                json['structure'] as Map<String, Object?>,
-              ),
-        data: (json['data'] as List<Object?>?)
-            ?.map((e) => NotebookCell.fromJson(e as Map<String, Object?>))
-            .toList(),
-        textContent: (json['textContent'] as List<Object?>?)
-            ?.map(
-              (e) => NotebookDocumentChangeEventCellsTextContent.fromJson(
-                e as Map<String, Object?>,
-              ),
-            )
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'structure': structure?.toJson(),
-      'data': data?.map((e) => e.toJson()).toList(),
-      'textContent': textContent?.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory NotebookDocumentChangeEventCells.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentChangeEventCellsFromJson(json);
 }
 
 @freezed
@@ -205,27 +551,9 @@ abstract class NotebookDocumentChangeEventCellsStructure
     List<TextDocumentIdentifier>? didClose,
   }) = _NotebookDocumentChangeEventCellsStructure;
 
-  static NotebookDocumentChangeEventCellsStructure fromJson(
-    Map<String, Object?> json,
-  ) => NotebookDocumentChangeEventCellsStructure(
-    array: NotebookCellArrayChange.fromJson(
-      json['array'] as Map<String, Object?>,
-    ),
-    didOpen: (json['didOpen'] as List<Object?>?)
-        ?.map((e) => TextDocumentItem.fromJson(e as Map<String, Object?>))
-        .toList(),
-    didClose: (json['didClose'] as List<Object?>?)
-        ?.map((e) => TextDocumentIdentifier.fromJson(e as Map<String, Object?>))
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'array': array.toJson(),
-      'didOpen': didOpen?.map((e) => e.toJson()).toList(),
-      'didClose': didClose?.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory NotebookDocumentChangeEventCellsStructure.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentChangeEventCellsStructureFromJson(json);
 }
 
 @freezed
@@ -238,40 +566,23 @@ abstract class NotebookDocumentChangeEventCellsTextContent
     required List<TextDocumentContentChangeEvent> changes,
   }) = _NotebookDocumentChangeEventCellsTextContent;
 
-  static NotebookDocumentChangeEventCellsTextContent fromJson(
-    Map<String, Object?> json,
-  ) => NotebookDocumentChangeEventCellsTextContent(
-    document: VersionedTextDocumentIdentifier.fromJson(
-      json['document'] as Map<String, Object?>,
-    ),
-    changes: (json['changes'] as List<Object?>)
-        .map((e) => e as TextDocumentContentChangeEvent)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'document': document.toJson(), 'changes': changes};
-  }
+  factory NotebookDocumentChangeEventCellsTextContent.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentChangeEventCellsTextContentFromJson(json);
 }
 
-@freezed
-abstract class _InitializeParamsClientInfo with _$InitializeParamsClientInfo {
-  const _InitializeParamsClientInfo._();
+@JsonSerializable()
+class _InitializeParamsClientInfo {
+  const _InitializeParamsClientInfo({required this.name, this.version});
 
-  const factory _InitializeParamsClientInfo({
-    required String name,
-    String? version,
-  }) = __InitializeParamsClientInfo;
+  factory _InitializeParamsClientInfo.fromJson(Map<String, dynamic> json) =>
+      _$InitializeParamsClientInfoFromJson(json);
 
-  static _InitializeParamsClientInfo fromJson(Map<String, Object?> json) =>
-      _InitializeParamsClientInfo(
-        name: json['name'] as String,
-        version: json['version'] as String?,
-      );
+  final String name;
 
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'name': name, 'version': version};
-  }
+  final String? version;
+
+  Map<String, dynamic> toJson() => _$InitializeParamsClientInfoToJson(this);
 }
 
 @freezed
@@ -283,26 +594,8 @@ abstract class ServerCapabilitiesWorkspace with _$ServerCapabilitiesWorkspace {
     FileOperationOptions? fileOperations,
   }) = _ServerCapabilitiesWorkspace;
 
-  static ServerCapabilitiesWorkspace fromJson(Map<String, Object?> json) =>
-      ServerCapabilitiesWorkspace(
-        workspaceFolders: json['workspaceFolders'] == null
-            ? null
-            : WorkspaceFoldersServerCapabilities.fromJson(
-                json['workspaceFolders'] as Map<String, Object?>,
-              ),
-        fileOperations: json['fileOperations'] == null
-            ? null
-            : FileOperationOptions.fromJson(
-                json['fileOperations'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workspaceFolders': workspaceFolders?.toJson(),
-      'fileOperations': fileOperations?.toJson(),
-    };
-  }
+  factory ServerCapabilitiesWorkspace.fromJson(Map<String, dynamic> json) =>
+      _$ServerCapabilitiesWorkspaceFromJson(json);
 }
 
 @freezed
@@ -313,14 +606,8 @@ abstract class CompletionOptionsCompletionItem
   const factory CompletionOptionsCompletionItem({bool? labelDetailsSupport}) =
       _CompletionOptionsCompletionItem;
 
-  static CompletionOptionsCompletionItem fromJson(Map<String, Object?> json) =>
-      CompletionOptionsCompletionItem(
-        labelDetailsSupport: json['labelDetailsSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'labelDetailsSupport': labelDetailsSupport};
-  }
+  factory CompletionOptionsCompletionItem.fromJson(Map<String, dynamic> json) =>
+      _$CompletionOptionsCompletionItemFromJson(json);
 }
 
 @freezed
@@ -333,25 +620,9 @@ abstract class NotebookDocumentSyncOptionsNotebookSelector
     List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells,
   }) = _NotebookDocumentSyncOptionsNotebookSelector;
 
-  static NotebookDocumentSyncOptionsNotebookSelector fromJson(
-    Map<String, Object?> json,
-  ) => NotebookDocumentSyncOptionsNotebookSelector(
-    notebook: json['notebook'] as Object,
-    cells: (json['cells'] as List<Object?>?)
-        ?.map(
-          (e) => NotebookDocumentSyncOptionsNotebookSelectorCells.fromJson(
-            e as Map<String, Object?>,
-          ),
-        )
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'notebook': notebook,
-      'cells': cells?.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory NotebookDocumentSyncOptionsNotebookSelector.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentSyncOptionsNotebookSelectorFromJson(json);
 }
 
 @freezed
@@ -363,15 +634,9 @@ abstract class NotebookDocumentSyncOptionsNotebookSelectorCells
     required String language,
   }) = _NotebookDocumentSyncOptionsNotebookSelectorCells;
 
-  static NotebookDocumentSyncOptionsNotebookSelectorCells fromJson(
-    Map<String, Object?> json,
-  ) => NotebookDocumentSyncOptionsNotebookSelectorCells(
-    language: json['language'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'language': language};
-  }
+  factory NotebookDocumentSyncOptionsNotebookSelectorCells.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentSyncOptionsNotebookSelectorCellsFromJson(json);
 }
 
 @freezed
@@ -384,21 +649,9 @@ abstract class GeneralClientCapabilitiesStaleRequestSupport
     required List<String> retryOnContentModified,
   }) = _GeneralClientCapabilitiesStaleRequestSupport;
 
-  static GeneralClientCapabilitiesStaleRequestSupport fromJson(
-    Map<String, Object?> json,
-  ) => GeneralClientCapabilitiesStaleRequestSupport(
-    cancel: json['cancel'] as bool,
-    retryOnContentModified: (json['retryOnContentModified'] as List<Object?>)
-        .map((e) => e as String)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'cancel': cancel,
-      'retryOnContentModified': retryOnContentModified,
-    };
-  }
+  factory GeneralClientCapabilitiesStaleRequestSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$GeneralClientCapabilitiesStaleRequestSupportFromJson(json);
 }
 
 @freezed
@@ -410,15 +663,9 @@ abstract class WorkspaceEditClientCapabilitiesChangeAnnotationSupport
     bool? groupsOnLabel,
   }) = _WorkspaceEditClientCapabilitiesChangeAnnotationSupport;
 
-  static WorkspaceEditClientCapabilitiesChangeAnnotationSupport fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceEditClientCapabilitiesChangeAnnotationSupport(
-    groupsOnLabel: json['groupsOnLabel'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'groupsOnLabel': groupsOnLabel};
-  }
+  factory WorkspaceEditClientCapabilitiesChangeAnnotationSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportFromJson(json);
 }
 
 @freezed
@@ -427,20 +674,12 @@ abstract class WorkspaceSymbolClientCapabilitiesSymbolKind
   const WorkspaceSymbolClientCapabilitiesSymbolKind._();
 
   const factory WorkspaceSymbolClientCapabilitiesSymbolKind({
-    List<SymbolKind>? valueSet,
+    @_SymbolKindListConverter() List<SymbolKind>? valueSet,
   }) = _WorkspaceSymbolClientCapabilitiesSymbolKind;
 
-  static WorkspaceSymbolClientCapabilitiesSymbolKind fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceSymbolClientCapabilitiesSymbolKind(
-    valueSet: (json['valueSet'] as List<Object?>?)
-        ?.map((e) => e as SymbolKind)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
+  factory WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceSymbolClientCapabilitiesSymbolKindFromJson(json);
 }
 
 @freezed
@@ -449,20 +688,12 @@ abstract class WorkspaceSymbolClientCapabilitiesTagSupport
   const WorkspaceSymbolClientCapabilitiesTagSupport._();
 
   const factory WorkspaceSymbolClientCapabilitiesTagSupport({
-    required List<SymbolTag> valueSet,
+    @_SymbolTagListConverter() required List<SymbolTag> valueSet,
   }) = _WorkspaceSymbolClientCapabilitiesTagSupport;
 
-  static WorkspaceSymbolClientCapabilitiesTagSupport fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceSymbolClientCapabilitiesTagSupport(
-    valueSet: (json['valueSet'] as List<Object?>)
-        .map((e) => e as SymbolTag)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
+  factory WorkspaceSymbolClientCapabilitiesTagSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceSymbolClientCapabilitiesTagSupportFromJson(json);
 }
 
 @freezed
@@ -474,17 +705,9 @@ abstract class WorkspaceSymbolClientCapabilitiesResolveSupport
     required List<String> properties,
   }) = _WorkspaceSymbolClientCapabilitiesResolveSupport;
 
-  static WorkspaceSymbolClientCapabilitiesResolveSupport fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceSymbolClientCapabilitiesResolveSupport(
-    properties: (json['properties'] as List<Object?>)
-        .map((e) => e as String)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'properties': properties};
-  }
+  factory WorkspaceSymbolClientCapabilitiesResolveSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceSymbolClientCapabilitiesResolveSupportFromJson(json);
 }
 
 @freezed
@@ -495,7 +718,7 @@ abstract class CompletionClientCapabilitiesCompletionItem
   const factory CompletionClientCapabilitiesCompletionItem({
     bool? snippetSupport,
     bool? commitCharactersSupport,
-    List<MarkupKind>? documentationFormat,
+    @_MarkupKindListConverter() List<MarkupKind>? documentationFormat,
     bool? deprecatedSupport,
     bool? preselectSupport,
     CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,
@@ -506,49 +729,9 @@ abstract class CompletionClientCapabilitiesCompletionItem
     bool? labelDetailsSupport,
   }) = _CompletionClientCapabilitiesCompletionItem;
 
-  static CompletionClientCapabilitiesCompletionItem fromJson(
-    Map<String, Object?> json,
-  ) => CompletionClientCapabilitiesCompletionItem(
-    snippetSupport: json['snippetSupport'] as bool?,
-    commitCharactersSupport: json['commitCharactersSupport'] as bool?,
-    documentationFormat: (json['documentationFormat'] as List<Object?>?)
-        ?.map((e) => e as MarkupKind)
-        .toList(),
-    deprecatedSupport: json['deprecatedSupport'] as bool?,
-    preselectSupport: json['preselectSupport'] as bool?,
-    tagSupport: json['tagSupport'] == null
-        ? null
-        : CompletionClientCapabilitiesCompletionItemTagSupport.fromJson(
-            json['tagSupport'] as Map<String, Object?>,
-          ),
-    insertReplaceSupport: json['insertReplaceSupport'] as bool?,
-    resolveSupport: json['resolveSupport'] == null
-        ? null
-        : CompletionClientCapabilitiesCompletionItemResolveSupport.fromJson(
-            json['resolveSupport'] as Map<String, Object?>,
-          ),
-    insertTextModeSupport: json['insertTextModeSupport'] == null
-        ? null
-        : CompletionClientCapabilitiesCompletionItemInsertTextModeSupport.fromJson(
-            json['insertTextModeSupport'] as Map<String, Object?>,
-          ),
-    labelDetailsSupport: json['labelDetailsSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'snippetSupport': snippetSupport,
-      'commitCharactersSupport': commitCharactersSupport,
-      'documentationFormat': documentationFormat,
-      'deprecatedSupport': deprecatedSupport,
-      'preselectSupport': preselectSupport,
-      'tagSupport': tagSupport?.toJson(),
-      'insertReplaceSupport': insertReplaceSupport,
-      'resolveSupport': resolveSupport?.toJson(),
-      'insertTextModeSupport': insertTextModeSupport?.toJson(),
-      'labelDetailsSupport': labelDetailsSupport,
-    };
-  }
+  factory CompletionClientCapabilitiesCompletionItem.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CompletionClientCapabilitiesCompletionItemFromJson(json);
 }
 
 @freezed
@@ -557,20 +740,13 @@ abstract class CompletionClientCapabilitiesCompletionItemTagSupport
   const CompletionClientCapabilitiesCompletionItemTagSupport._();
 
   const factory CompletionClientCapabilitiesCompletionItemTagSupport({
+    @_CompletionItemTagListConverter()
     required List<CompletionItemTag> valueSet,
   }) = _CompletionClientCapabilitiesCompletionItemTagSupport;
 
-  static CompletionClientCapabilitiesCompletionItemTagSupport fromJson(
-    Map<String, Object?> json,
-  ) => CompletionClientCapabilitiesCompletionItemTagSupport(
-    valueSet: (json['valueSet'] as List<Object?>)
-        .map((e) => e as CompletionItemTag)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
+  factory CompletionClientCapabilitiesCompletionItemTagSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CompletionClientCapabilitiesCompletionItemTagSupportFromJson(json);
 }
 
 @freezed
@@ -582,17 +758,9 @@ abstract class CompletionClientCapabilitiesCompletionItemResolveSupport
     required List<String> properties,
   }) = _CompletionClientCapabilitiesCompletionItemResolveSupport;
 
-  static CompletionClientCapabilitiesCompletionItemResolveSupport fromJson(
-    Map<String, Object?> json,
-  ) => CompletionClientCapabilitiesCompletionItemResolveSupport(
-    properties: (json['properties'] as List<Object?>)
-        .map((e) => e as String)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'properties': properties};
-  }
+  factory CompletionClientCapabilitiesCompletionItemResolveSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CompletionClientCapabilitiesCompletionItemResolveSupportFromJson(json);
 }
 
 @freezed
@@ -601,20 +769,15 @@ abstract class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
   const CompletionClientCapabilitiesCompletionItemInsertTextModeSupport._();
 
   const factory CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({
-    required List<InsertTextMode> valueSet,
+    @_InsertTextModeListConverter() required List<InsertTextMode> valueSet,
   }) = _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport;
 
-  static CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
-  fromJson(Map<String, Object?> json) =>
-      CompletionClientCapabilitiesCompletionItemInsertTextModeSupport(
-        valueSet: (json['valueSet'] as List<Object?>)
-            .map((e) => e as InsertTextMode)
-            .toList(),
+  factory CompletionClientCapabilitiesCompletionItemInsertTextModeSupport.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportFromJson(
+        json,
       );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
 }
 
 @freezed
@@ -623,20 +786,12 @@ abstract class CompletionClientCapabilitiesCompletionItemKind
   const CompletionClientCapabilitiesCompletionItemKind._();
 
   const factory CompletionClientCapabilitiesCompletionItemKind({
-    List<CompletionItemKind>? valueSet,
+    @_CompletionItemKindListConverter() List<CompletionItemKind>? valueSet,
   }) = _CompletionClientCapabilitiesCompletionItemKind;
 
-  static CompletionClientCapabilitiesCompletionItemKind fromJson(
-    Map<String, Object?> json,
-  ) => CompletionClientCapabilitiesCompletionItemKind(
-    valueSet: (json['valueSet'] as List<Object?>?)
-        ?.map((e) => e as CompletionItemKind)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
+  factory CompletionClientCapabilitiesCompletionItemKind.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CompletionClientCapabilitiesCompletionItemKindFromJson(json);
 }
 
 @freezed
@@ -648,17 +803,9 @@ abstract class CompletionClientCapabilitiesCompletionList
     List<String>? itemDefaults,
   }) = _CompletionClientCapabilitiesCompletionList;
 
-  static CompletionClientCapabilitiesCompletionList fromJson(
-    Map<String, Object?> json,
-  ) => CompletionClientCapabilitiesCompletionList(
-    itemDefaults: (json['itemDefaults'] as List<Object?>?)
-        ?.map((e) => e as String)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'itemDefaults': itemDefaults};
-  }
+  factory CompletionClientCapabilitiesCompletionList.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CompletionClientCapabilitiesCompletionListFromJson(json);
 }
 
 @freezed
@@ -667,33 +814,15 @@ abstract class SignatureHelpClientCapabilitiesSignatureInformation
   const SignatureHelpClientCapabilitiesSignatureInformation._();
 
   const factory SignatureHelpClientCapabilitiesSignatureInformation({
-    List<MarkupKind>? documentationFormat,
+    @_MarkupKindListConverter() List<MarkupKind>? documentationFormat,
     SignatureHelpClientCapabilitiesSignatureInformationParameterInformation?
     parameterInformation,
     bool? activeParameterSupport,
   }) = _SignatureHelpClientCapabilitiesSignatureInformation;
 
-  static SignatureHelpClientCapabilitiesSignatureInformation fromJson(
-    Map<String, Object?> json,
-  ) => SignatureHelpClientCapabilitiesSignatureInformation(
-    documentationFormat: (json['documentationFormat'] as List<Object?>?)
-        ?.map((e) => e as MarkupKind)
-        .toList(),
-    parameterInformation: json['parameterInformation'] == null
-        ? null
-        : SignatureHelpClientCapabilitiesSignatureInformationParameterInformation.fromJson(
-            json['parameterInformation'] as Map<String, Object?>,
-          ),
-    activeParameterSupport: json['activeParameterSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentationFormat': documentationFormat,
-      'parameterInformation': parameterInformation?.toJson(),
-      'activeParameterSupport': activeParameterSupport,
-    };
-  }
+  factory SignatureHelpClientCapabilitiesSignatureInformation.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SignatureHelpClientCapabilitiesSignatureInformationFromJson(json);
 }
 
 @freezed
@@ -706,15 +835,12 @@ abstract class SignatureHelpClientCapabilitiesSignatureInformationParameterInfor
     bool? labelOffsetSupport,
   }) = _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation;
 
-  static SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
-  fromJson(Map<String, Object?> json) =>
-      SignatureHelpClientCapabilitiesSignatureInformationParameterInformation(
-        labelOffsetSupport: json['labelOffsetSupport'] as bool?,
+  factory SignatureHelpClientCapabilitiesSignatureInformationParameterInformation.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationFromJson(
+        json,
       );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'labelOffsetSupport': labelOffsetSupport};
-  }
 }
 
 @freezed
@@ -723,20 +849,12 @@ abstract class DocumentSymbolClientCapabilitiesSymbolKind
   const DocumentSymbolClientCapabilitiesSymbolKind._();
 
   const factory DocumentSymbolClientCapabilitiesSymbolKind({
-    List<SymbolKind>? valueSet,
+    @_SymbolKindListConverter() List<SymbolKind>? valueSet,
   }) = _DocumentSymbolClientCapabilitiesSymbolKind;
 
-  static DocumentSymbolClientCapabilitiesSymbolKind fromJson(
-    Map<String, Object?> json,
-  ) => DocumentSymbolClientCapabilitiesSymbolKind(
-    valueSet: (json['valueSet'] as List<Object?>?)
-        ?.map((e) => e as SymbolKind)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
+  factory DocumentSymbolClientCapabilitiesSymbolKind.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentSymbolClientCapabilitiesSymbolKindFromJson(json);
 }
 
 @freezed
@@ -745,20 +863,12 @@ abstract class DocumentSymbolClientCapabilitiesTagSupport
   const DocumentSymbolClientCapabilitiesTagSupport._();
 
   const factory DocumentSymbolClientCapabilitiesTagSupport({
-    required List<SymbolTag> valueSet,
+    @_SymbolTagListConverter() required List<SymbolTag> valueSet,
   }) = _DocumentSymbolClientCapabilitiesTagSupport;
 
-  static DocumentSymbolClientCapabilitiesTagSupport fromJson(
-    Map<String, Object?> json,
-  ) => DocumentSymbolClientCapabilitiesTagSupport(
-    valueSet: (json['valueSet'] as List<Object?>)
-        .map((e) => e as SymbolTag)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
+  factory DocumentSymbolClientCapabilitiesTagSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentSymbolClientCapabilitiesTagSupportFromJson(json);
 }
 
 @freezed
@@ -771,18 +881,9 @@ abstract class CodeActionClientCapabilitiesCodeActionLiteralSupport
     codeActionKind,
   }) = _CodeActionClientCapabilitiesCodeActionLiteralSupport;
 
-  static CodeActionClientCapabilitiesCodeActionLiteralSupport fromJson(
-    Map<String, Object?> json,
-  ) => CodeActionClientCapabilitiesCodeActionLiteralSupport(
-    codeActionKind:
-        CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind.fromJson(
-          json['codeActionKind'] as Map<String, Object?>,
-        ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'codeActionKind': codeActionKind.toJson()};
-  }
+  factory CodeActionClientCapabilitiesCodeActionLiteralSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CodeActionClientCapabilitiesCodeActionLiteralSupportFromJson(json);
 }
 
 @freezed
@@ -791,20 +892,15 @@ abstract class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKin
   const CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind._();
 
   const factory CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind({
-    required List<CodeActionKind> valueSet,
+    @_CodeActionKindListConverter() required List<CodeActionKind> valueSet,
   }) = _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind;
 
-  static CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
-  fromJson(Map<String, Object?> json) =>
-      CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind(
-        valueSet: (json['valueSet'] as List<Object?>)
-            .map((e) => e as CodeActionKind)
-            .toList(),
+  factory CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindFromJson(
+        json,
       );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
 }
 
 @freezed
@@ -816,17 +912,9 @@ abstract class CodeActionClientCapabilitiesResolveSupport
     required List<String> properties,
   }) = _CodeActionClientCapabilitiesResolveSupport;
 
-  static CodeActionClientCapabilitiesResolveSupport fromJson(
-    Map<String, Object?> json,
-  ) => CodeActionClientCapabilitiesResolveSupport(
-    properties: (json['properties'] as List<Object?>)
-        .map((e) => e as String)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'properties': properties};
-  }
+  factory CodeActionClientCapabilitiesResolveSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CodeActionClientCapabilitiesResolveSupportFromJson(json);
 }
 
 @freezed
@@ -835,20 +923,12 @@ abstract class FoldingRangeClientCapabilitiesFoldingRangeKind
   const FoldingRangeClientCapabilitiesFoldingRangeKind._();
 
   const factory FoldingRangeClientCapabilitiesFoldingRangeKind({
-    List<FoldingRangeKind>? valueSet,
+    @_FoldingRangeKindListConverter() List<FoldingRangeKind>? valueSet,
   }) = _FoldingRangeClientCapabilitiesFoldingRangeKind;
 
-  static FoldingRangeClientCapabilitiesFoldingRangeKind fromJson(
-    Map<String, Object?> json,
-  ) => FoldingRangeClientCapabilitiesFoldingRangeKind(
-    valueSet: (json['valueSet'] as List<Object?>?)
-        ?.map((e) => e as FoldingRangeKind)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
+  factory FoldingRangeClientCapabilitiesFoldingRangeKind.fromJson(
+    Map<String, dynamic> json,
+  ) => _$FoldingRangeClientCapabilitiesFoldingRangeKindFromJson(json);
 }
 
 @freezed
@@ -860,15 +940,9 @@ abstract class FoldingRangeClientCapabilitiesFoldingRange
     bool? collapsedText,
   }) = _FoldingRangeClientCapabilitiesFoldingRange;
 
-  static FoldingRangeClientCapabilitiesFoldingRange fromJson(
-    Map<String, Object?> json,
-  ) => FoldingRangeClientCapabilitiesFoldingRange(
-    collapsedText: json['collapsedText'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'collapsedText': collapsedText};
-  }
+  factory FoldingRangeClientCapabilitiesFoldingRange.fromJson(
+    Map<String, dynamic> json,
+  ) => _$FoldingRangeClientCapabilitiesFoldingRangeFromJson(json);
 }
 
 @freezed
@@ -877,20 +951,12 @@ abstract class PublishDiagnosticsClientCapabilitiesTagSupport
   const PublishDiagnosticsClientCapabilitiesTagSupport._();
 
   const factory PublishDiagnosticsClientCapabilitiesTagSupport({
-    required List<DiagnosticTag> valueSet,
+    @_DiagnosticTagListConverter() required List<DiagnosticTag> valueSet,
   }) = _PublishDiagnosticsClientCapabilitiesTagSupport;
 
-  static PublishDiagnosticsClientCapabilitiesTagSupport fromJson(
-    Map<String, Object?> json,
-  ) => PublishDiagnosticsClientCapabilitiesTagSupport(
-    valueSet: (json['valueSet'] as List<Object?>)
-        .map((e) => e as DiagnosticTag)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'valueSet': valueSet};
-  }
+  factory PublishDiagnosticsClientCapabilitiesTagSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$PublishDiagnosticsClientCapabilitiesTagSupportFromJson(json);
 }
 
 @freezed
@@ -903,16 +969,9 @@ abstract class SemanticTokensClientCapabilitiesRequests
     Object? full,
   }) = _SemanticTokensClientCapabilitiesRequests;
 
-  static SemanticTokensClientCapabilitiesRequests fromJson(
-    Map<String, Object?> json,
-  ) => SemanticTokensClientCapabilitiesRequests(
-    range: json['range'],
-    full: json['full'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'range': range, 'full': full};
-  }
+  factory SemanticTokensClientCapabilitiesRequests.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SemanticTokensClientCapabilitiesRequestsFromJson(json);
 }
 
 @freezed
@@ -923,13 +982,9 @@ abstract class SemanticTokensClientCapabilitiesRequestsRange
   const factory SemanticTokensClientCapabilitiesRequestsRange() =
       _SemanticTokensClientCapabilitiesRequestsRange;
 
-  static SemanticTokensClientCapabilitiesRequestsRange fromJson(
-    Map<String, Object?> json,
-  ) => SemanticTokensClientCapabilitiesRequestsRange();
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{};
-  }
+  factory SemanticTokensClientCapabilitiesRequestsRange.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SemanticTokensClientCapabilitiesRequestsRangeFromJson(json);
 }
 
 @freezed
@@ -940,15 +995,9 @@ abstract class SemanticTokensClientCapabilitiesRequestsFull
   const factory SemanticTokensClientCapabilitiesRequestsFull({bool? delta}) =
       _SemanticTokensClientCapabilitiesRequestsFull;
 
-  static SemanticTokensClientCapabilitiesRequestsFull fromJson(
-    Map<String, Object?> json,
-  ) => SemanticTokensClientCapabilitiesRequestsFull(
-    delta: json['delta'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'delta': delta};
-  }
+  factory SemanticTokensClientCapabilitiesRequestsFull.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SemanticTokensClientCapabilitiesRequestsFullFromJson(json);
 }
 
 @freezed
@@ -960,17 +1009,9 @@ abstract class InlayHintClientCapabilitiesResolveSupport
     required List<String> properties,
   }) = _InlayHintClientCapabilitiesResolveSupport;
 
-  static InlayHintClientCapabilitiesResolveSupport fromJson(
-    Map<String, Object?> json,
-  ) => InlayHintClientCapabilitiesResolveSupport(
-    properties: (json['properties'] as List<Object?>)
-        .map((e) => e as String)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'properties': properties};
-  }
+  factory InlayHintClientCapabilitiesResolveSupport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$InlayHintClientCapabilitiesResolveSupportFromJson(json);
 }
 
 @freezed
@@ -982,17 +1023,9 @@ abstract class ShowMessageRequestClientCapabilitiesMessageActionItem
     bool? additionalPropertiesSupport,
   }) = _ShowMessageRequestClientCapabilitiesMessageActionItem;
 
-  static ShowMessageRequestClientCapabilitiesMessageActionItem fromJson(
-    Map<String, Object?> json,
-  ) => ShowMessageRequestClientCapabilitiesMessageActionItem(
-    additionalPropertiesSupport: json['additionalPropertiesSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'additionalPropertiesSupport': additionalPropertiesSupport,
-    };
-  }
+  factory ShowMessageRequestClientCapabilitiesMessageActionItem.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ShowMessageRequestClientCapabilitiesMessageActionItemFromJson(json);
 }
 
 @freezed
@@ -1004,18 +1037,8 @@ abstract class PrepareRenameResult with _$PrepareRenameResult {
     required String placeholder,
   }) = _PrepareRenameResult;
 
-  static PrepareRenameResult fromJson(Map<String, Object?> json) =>
-      PrepareRenameResult(
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        placeholder: json['placeholder'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'range': range.toJson(),
-      'placeholder': placeholder,
-    };
-  }
+  factory PrepareRenameResult.fromJson(Map<String, dynamic> json) =>
+      _$PrepareRenameResultFromJson(json);
 }
 
 @freezed
@@ -1029,20 +1052,8 @@ abstract class TextDocumentContentChangeEvent
     required String text,
   }) = _TextDocumentContentChangeEvent;
 
-  static TextDocumentContentChangeEvent fromJson(Map<String, Object?> json) =>
-      TextDocumentContentChangeEvent(
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        rangeLength: json['rangeLength'] as int?,
-        text: json['text'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'range': range.toJson(),
-      'rangeLength': rangeLength,
-      'text': text,
-    };
-  }
+  factory TextDocumentContentChangeEvent.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentContentChangeEventFromJson(json);
 }
 
 @freezed
@@ -1054,14 +1065,8 @@ abstract class MarkedString with _$MarkedString {
     required String value,
   }) = _MarkedString;
 
-  static MarkedString fromJson(Map<String, Object?> json) => MarkedString(
-    language: json['language'] as String,
-    value: json['value'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'language': language, 'value': value};
-  }
+  factory MarkedString.fromJson(Map<String, dynamic> json) =>
+      _$MarkedStringFromJson(json);
 }
 
 @freezed
@@ -1074,20 +1079,8 @@ abstract class TextDocumentFilter with _$TextDocumentFilter {
     String? pattern,
   }) = _TextDocumentFilter;
 
-  static TextDocumentFilter fromJson(Map<String, Object?> json) =>
-      TextDocumentFilter(
-        language: json['language'] as String,
-        scheme: json['scheme'] as String?,
-        pattern: json['pattern'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'language': language,
-      'scheme': scheme,
-      'pattern': pattern,
-    };
-  }
+  factory TextDocumentFilter.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentFilterFromJson(json);
 }
 
 @freezed
@@ -1100,20 +1093,8 @@ abstract class NotebookDocumentFilter with _$NotebookDocumentFilter {
     String? pattern,
   }) = _NotebookDocumentFilter;
 
-  static NotebookDocumentFilter fromJson(Map<String, Object?> json) =>
-      NotebookDocumentFilter(
-        notebookType: json['notebookType'] as String,
-        scheme: json['scheme'] as String?,
-        pattern: json['pattern'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'notebookType': notebookType,
-      'scheme': scheme,
-      'pattern': pattern,
-    };
-  }
+  factory NotebookDocumentFilter.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentFilterFromJson(json);
 }
 
 @freezed
@@ -1123,32 +1104,12 @@ abstract class ImplementationParams with _$ImplementationParams {
   const factory ImplementationParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _ImplementationParams;
 
-  static ImplementationParams fromJson(Map<String, Object?> json) =>
-      ImplementationParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-    };
-  }
+  factory ImplementationParams.fromJson(Map<String, dynamic> json) =>
+      _$ImplementationParamsFromJson(json);
 }
 
 /// Represents a location inside a resource, such as a line
@@ -1160,14 +1121,8 @@ abstract class Location with _$Location {
   const factory Location({required String uri, required Range range}) =
       _Location;
 
-  static Location fromJson(Map<String, Object?> json) => Location(
-    uri: json['uri'] as String,
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri, 'range': range.toJson()};
-  }
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
 }
 
 @freezed
@@ -1181,21 +1136,9 @@ abstract class ImplementationRegistrationOptions
     String? id,
   }) = _ImplementationRegistrationOptions;
 
-  static ImplementationRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => ImplementationRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    id: json['id'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'id': id,
-    };
-  }
+  factory ImplementationRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ImplementationRegistrationOptionsFromJson(json);
 }
 
 @freezed
@@ -1205,32 +1148,12 @@ abstract class TypeDefinitionParams with _$TypeDefinitionParams {
   const factory TypeDefinitionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _TypeDefinitionParams;
 
-  static TypeDefinitionParams fromJson(Map<String, Object?> json) =>
-      TypeDefinitionParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-    };
-  }
+  factory TypeDefinitionParams.fromJson(Map<String, dynamic> json) =>
+      _$TypeDefinitionParamsFromJson(json);
 }
 
 @freezed
@@ -1244,21 +1167,9 @@ abstract class TypeDefinitionRegistrationOptions
     String? id,
   }) = _TypeDefinitionRegistrationOptions;
 
-  static TypeDefinitionRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => TypeDefinitionRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    id: json['id'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'id': id,
-    };
-  }
+  factory TypeDefinitionRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TypeDefinitionRegistrationOptionsFromJson(json);
 }
 
 /// A workspace folder inside a client.
@@ -1269,12 +1180,8 @@ abstract class WorkspaceFolder with _$WorkspaceFolder {
   const factory WorkspaceFolder({required String uri, required String name}) =
       _WorkspaceFolder;
 
-  static WorkspaceFolder fromJson(Map<String, Object?> json) =>
-      WorkspaceFolder(uri: json['uri'] as String, name: json['name'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri, 'name': name};
-  }
+  factory WorkspaceFolder.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceFolderFromJson(json);
 }
 
 /// The parameters of a `workspace/didChangeWorkspaceFolders` notification.
@@ -1287,16 +1194,8 @@ abstract class DidChangeWorkspaceFoldersParams
     required WorkspaceFoldersChangeEvent event,
   }) = _DidChangeWorkspaceFoldersParams;
 
-  static DidChangeWorkspaceFoldersParams fromJson(Map<String, Object?> json) =>
-      DidChangeWorkspaceFoldersParams(
-        event: WorkspaceFoldersChangeEvent.fromJson(
-          json['event'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'event': event.toJson()};
-  }
+  factory DidChangeWorkspaceFoldersParams.fromJson(Map<String, dynamic> json) =>
+      _$DidChangeWorkspaceFoldersParamsFromJson(json);
 }
 
 /// The parameters of a configuration request.
@@ -1307,16 +1206,8 @@ abstract class ConfigurationParams with _$ConfigurationParams {
   const factory ConfigurationParams({required List<ConfigurationItem> items}) =
       _ConfigurationParams;
 
-  static ConfigurationParams fromJson(Map<String, Object?> json) =>
-      ConfigurationParams(
-        items: (json['items'] as List<Object?>)
-            .map((e) => ConfigurationItem.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'items': items.map((e) => e.toJson()).toList()};
-  }
+  factory ConfigurationParams.fromJson(Map<String, dynamic> json) =>
+      _$ConfigurationParamsFromJson(json);
 }
 
 /// Parameters for a {@link DocumentColorRequest}.
@@ -1325,31 +1216,13 @@ abstract class DocumentColorParams with _$DocumentColorParams {
   const DocumentColorParams._();
 
   const factory DocumentColorParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
   }) = _DocumentColorParams;
 
-  static DocumentColorParams fromJson(Map<String, Object?> json) =>
-      DocumentColorParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-    };
-  }
+  factory DocumentColorParams.fromJson(Map<String, dynamic> json) =>
+      _$DocumentColorParamsFromJson(json);
 }
 
 /// Represents a color range from a document.
@@ -1360,15 +1233,8 @@ abstract class ColorInformation with _$ColorInformation {
   const factory ColorInformation({required Range range, required Color color}) =
       _ColorInformation;
 
-  static ColorInformation fromJson(Map<String, Object?> json) =>
-      ColorInformation(
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        color: Color.fromJson(json['color'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'range': range.toJson(), 'color': color.toJson()};
-  }
+  factory ColorInformation.fromJson(Map<String, dynamic> json) =>
+      _$ColorInformationFromJson(json);
 }
 
 @freezed
@@ -1382,20 +1248,9 @@ abstract class DocumentColorRegistrationOptions
     String? id,
   }) = _DocumentColorRegistrationOptions;
 
-  static DocumentColorRegistrationOptions fromJson(Map<String, Object?> json) =>
-      DocumentColorRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        id: json['id'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'id': id,
-    };
-  }
+  factory DocumentColorRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentColorRegistrationOptionsFromJson(json);
 }
 
 /// Parameters for a {@link ColorPresentationRequest}.
@@ -1404,37 +1259,15 @@ abstract class ColorPresentationParams with _$ColorPresentationParams {
   const ColorPresentationParams._();
 
   const factory ColorPresentationParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
     required Color color,
     required Range range,
   }) = _ColorPresentationParams;
 
-  static ColorPresentationParams fromJson(Map<String, Object?> json) =>
-      ColorPresentationParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        color: Color.fromJson(json['color'] as Map<String, Object?>),
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'color': color.toJson(),
-      'range': range.toJson(),
-    };
-  }
+  factory ColorPresentationParams.fromJson(Map<String, dynamic> json) =>
+      _$ColorPresentationParamsFromJson(json);
 }
 
 @freezed
@@ -1447,26 +1280,8 @@ abstract class ColorPresentation with _$ColorPresentation {
     List<TextEdit>? additionalTextEdits,
   }) = _ColorPresentation;
 
-  static ColorPresentation fromJson(Map<String, Object?> json) =>
-      ColorPresentation(
-        label: json['label'] as String,
-        textEdit: json['textEdit'] == null
-            ? null
-            : TextEdit.fromJson(json['textEdit'] as Map<String, Object?>),
-        additionalTextEdits: (json['additionalTextEdits'] as List<Object?>?)
-            ?.map((e) => TextEdit.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'label': label,
-      'textEdit': textEdit?.toJson(),
-      'additionalTextEdits': additionalTextEdits
-          ?.map((e) => e.toJson())
-          .toList(),
-    };
-  }
+  factory ColorPresentation.fromJson(Map<String, dynamic> json) =>
+      _$ColorPresentationFromJson(json);
 }
 
 @freezed
@@ -1476,14 +1291,8 @@ abstract class WorkDoneProgressOptions with _$WorkDoneProgressOptions {
   const factory WorkDoneProgressOptions({bool? workDoneProgress}) =
       _WorkDoneProgressOptions;
 
-  static WorkDoneProgressOptions fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory WorkDoneProgressOptions.fromJson(Map<String, dynamic> json) =>
+      _$WorkDoneProgressOptionsFromJson(json);
 }
 
 /// General text document registration options.
@@ -1496,14 +1305,8 @@ abstract class TextDocumentRegistrationOptions
     required DocumentSelector? documentSelector,
   }) = _TextDocumentRegistrationOptions;
 
-  static TextDocumentRegistrationOptions fromJson(Map<String, Object?> json) =>
-      TextDocumentRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'documentSelector': documentSelector};
-  }
+  factory TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentRegistrationOptionsFromJson(json);
 }
 
 /// Parameters for a {@link FoldingRangeRequest}.
@@ -1512,31 +1315,13 @@ abstract class FoldingRangeParams with _$FoldingRangeParams {
   const FoldingRangeParams._();
 
   const factory FoldingRangeParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
   }) = _FoldingRangeParams;
 
-  static FoldingRangeParams fromJson(Map<String, Object?> json) =>
-      FoldingRangeParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-    };
-  }
+  factory FoldingRangeParams.fromJson(Map<String, dynamic> json) =>
+      _$FoldingRangeParamsFromJson(json);
 }
 
 /// Represents a folding range. To be valid, start and end line must be bigger than zero and smaller
@@ -1550,31 +1335,12 @@ abstract class FoldingRange with _$FoldingRange {
     int? startCharacter,
     required int endLine,
     int? endCharacter,
-    FoldingRangeKind? kind,
+    @_FoldingRangeKindConverter() FoldingRangeKind? kind,
     String? collapsedText,
   }) = _FoldingRange;
 
-  static FoldingRange fromJson(Map<String, Object?> json) => FoldingRange(
-    startLine: json['startLine'] as int,
-    startCharacter: json['startCharacter'] as int?,
-    endLine: json['endLine'] as int,
-    endCharacter: json['endCharacter'] as int?,
-    kind: json['kind'] == null
-        ? null
-        : FoldingRangeKind(json['kind'] as String),
-    collapsedText: json['collapsedText'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'startLine': startLine,
-      'startCharacter': startCharacter,
-      'endLine': endLine,
-      'endCharacter': endCharacter,
-      'kind': kind?.value,
-      'collapsedText': collapsedText,
-    };
-  }
+  factory FoldingRange.fromJson(Map<String, dynamic> json) =>
+      _$FoldingRangeFromJson(json);
 }
 
 @freezed
@@ -1588,20 +1354,8 @@ abstract class FoldingRangeRegistrationOptions
     String? id,
   }) = _FoldingRangeRegistrationOptions;
 
-  static FoldingRangeRegistrationOptions fromJson(Map<String, Object?> json) =>
-      FoldingRangeRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        id: json['id'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'id': id,
-    };
-  }
+  factory FoldingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$FoldingRangeRegistrationOptionsFromJson(json);
 }
 
 @freezed
@@ -1611,32 +1365,12 @@ abstract class DeclarationParams with _$DeclarationParams {
   const factory DeclarationParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _DeclarationParams;
 
-  static DeclarationParams fromJson(Map<String, Object?> json) =>
-      DeclarationParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-    };
-  }
+  factory DeclarationParams.fromJson(Map<String, dynamic> json) =>
+      _$DeclarationParamsFromJson(json);
 }
 
 @freezed
@@ -1650,20 +1384,8 @@ abstract class DeclarationRegistrationOptions
     String? id,
   }) = _DeclarationRegistrationOptions;
 
-  static DeclarationRegistrationOptions fromJson(Map<String, Object?> json) =>
-      DeclarationRegistrationOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        id: json['id'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'documentSelector': documentSelector,
-      'id': id,
-    };
-  }
+  factory DeclarationRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$DeclarationRegistrationOptionsFromJson(json);
 }
 
 /// A parameter literal used in selection range requests.
@@ -1672,36 +1394,14 @@ abstract class SelectionRangeParams with _$SelectionRangeParams {
   const SelectionRangeParams._();
 
   const factory SelectionRangeParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
     required List<Position> positions,
   }) = _SelectionRangeParams;
 
-  static SelectionRangeParams fromJson(Map<String, Object?> json) =>
-      SelectionRangeParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        positions: (json['positions'] as List<Object?>)
-            .map((e) => Position.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'positions': positions.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory SelectionRangeParams.fromJson(Map<String, dynamic> json) =>
+      _$SelectionRangeParamsFromJson(json);
 }
 
 /// A selection range represents a part of a selection hierarchy. A selection range
@@ -1713,19 +1413,8 @@ abstract class SelectionRange with _$SelectionRange {
   const factory SelectionRange({required Range range, SelectionRange? parent}) =
       _SelectionRange;
 
-  static SelectionRange fromJson(Map<String, Object?> json) => SelectionRange(
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    parent: json['parent'] == null
-        ? null
-        : SelectionRange.fromJson(json['parent'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'range': range.toJson(),
-      'parent': parent?.toJson(),
-    };
-  }
+  factory SelectionRange.fromJson(Map<String, dynamic> json) =>
+      _$SelectionRangeFromJson(json);
 }
 
 @freezed
@@ -1739,21 +1428,9 @@ abstract class SelectionRangeRegistrationOptions
     String? id,
   }) = _SelectionRangeRegistrationOptions;
 
-  static SelectionRangeRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => SelectionRangeRegistrationOptions(
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    id: json['id'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'documentSelector': documentSelector,
-      'id': id,
-    };
-  }
+  factory SelectionRangeRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SelectionRangeRegistrationOptionsFromJson(json);
 }
 
 @freezed
@@ -1761,17 +1438,12 @@ abstract class WorkDoneProgressCreateParams
     with _$WorkDoneProgressCreateParams {
   const WorkDoneProgressCreateParams._();
 
-  const factory WorkDoneProgressCreateParams({required ProgressToken token}) =
-      _WorkDoneProgressCreateParams;
+  const factory WorkDoneProgressCreateParams({
+    @_ProgressTokenConverter() required ProgressToken token,
+  }) = _WorkDoneProgressCreateParams;
 
-  static WorkDoneProgressCreateParams fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressCreateParams(
-        token: ProgressToken.fromJson(json['token']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'token': token.toJson()};
-  }
+  factory WorkDoneProgressCreateParams.fromJson(Map<String, dynamic> json) =>
+      _$WorkDoneProgressCreateParamsFromJson(json);
 }
 
 @freezed
@@ -1779,17 +1451,12 @@ abstract class WorkDoneProgressCancelParams
     with _$WorkDoneProgressCancelParams {
   const WorkDoneProgressCancelParams._();
 
-  const factory WorkDoneProgressCancelParams({required ProgressToken token}) =
-      _WorkDoneProgressCancelParams;
+  const factory WorkDoneProgressCancelParams({
+    @_ProgressTokenConverter() required ProgressToken token,
+  }) = _WorkDoneProgressCancelParams;
 
-  static WorkDoneProgressCancelParams fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressCancelParams(
-        token: ProgressToken.fromJson(json['token']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'token': token.toJson()};
-  }
+  factory WorkDoneProgressCancelParams.fromJson(Map<String, dynamic> json) =>
+      _$WorkDoneProgressCancelParamsFromJson(json);
 }
 
 /// The parameter of a `textDocument/prepareCallHierarchy` request.
@@ -1802,27 +1469,11 @@ abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
   const factory CallHierarchyPrepareParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _CallHierarchyPrepareParams;
 
-  static CallHierarchyPrepareParams fromJson(Map<String, Object?> json) =>
-      CallHierarchyPrepareParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-    };
-  }
+  factory CallHierarchyPrepareParams.fromJson(Map<String, dynamic> json) =>
+      _$CallHierarchyPrepareParamsFromJson(json);
 }
 
 /// Represents programming constructs like functions or constructors in the context
@@ -1835,8 +1486,8 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
 
   const factory CallHierarchyItem({
     required String name,
-    required SymbolKind kind,
-    List<SymbolTag>? tags,
+    @_SymbolKindConverter() required SymbolKind kind,
+    @_SymbolTagListConverter() List<SymbolTag>? tags,
     String? detail,
     required String uri,
     required Range range,
@@ -1844,33 +1495,8 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
     LSPAny? data,
   }) = _CallHierarchyItem;
 
-  static CallHierarchyItem fromJson(
-    Map<String, Object?> json,
-  ) => CallHierarchyItem(
-    name: json['name'] as String,
-    kind: SymbolKind.values.firstWhere((e) => e.value == json['kind'] as int),
-    tags: (json['tags'] as List<Object?>?)?.map((e) => e as SymbolTag).toList(),
-    detail: json['detail'] as String?,
-    uri: json['uri'] as String,
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    selectionRange: Range.fromJson(
-      json['selectionRange'] as Map<String, Object?>,
-    ),
-    data: json['data'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'name': name,
-      'kind': kind.value,
-      'tags': tags,
-      'detail': detail,
-      'uri': uri,
-      'range': range.toJson(),
-      'selectionRange': selectionRange.toJson(),
-      'data': data,
-    };
-  }
+  factory CallHierarchyItem.fromJson(Map<String, dynamic> json) =>
+      _$CallHierarchyItemFromJson(json);
 }
 
 /// Call hierarchy options used during static or dynamic registration.
@@ -1887,20 +1513,9 @@ abstract class CallHierarchyRegistrationOptions
     String? id,
   }) = _CallHierarchyRegistrationOptions;
 
-  static CallHierarchyRegistrationOptions fromJson(Map<String, Object?> json) =>
-      CallHierarchyRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        id: json['id'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'id': id,
-    };
-  }
+  factory CallHierarchyRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CallHierarchyRegistrationOptionsFromJson(json);
 }
 
 /// The parameter of a `callHierarchy/incomingCalls` request.
@@ -1912,29 +1527,14 @@ abstract class CallHierarchyIncomingCallsParams
   const CallHierarchyIncomingCallsParams._();
 
   const factory CallHierarchyIncomingCallsParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required CallHierarchyItem item,
   }) = _CallHierarchyIncomingCallsParams;
 
-  static CallHierarchyIncomingCallsParams fromJson(Map<String, Object?> json) =>
-      CallHierarchyIncomingCallsParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'item': item.toJson(),
-    };
-  }
+  factory CallHierarchyIncomingCallsParams.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CallHierarchyIncomingCallsParamsFromJson(json);
 }
 
 /// Represents an incoming call, e.g. a caller of a method or constructor.
@@ -1949,20 +1549,8 @@ abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
     required List<Range> fromRanges,
   }) = _CallHierarchyIncomingCall;
 
-  static CallHierarchyIncomingCall fromJson(Map<String, Object?> json) =>
-      CallHierarchyIncomingCall(
-        from: CallHierarchyItem.fromJson(json['from'] as Map<String, Object?>),
-        fromRanges: (json['fromRanges'] as List<Object?>)
-            .map((e) => Range.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'from': from.toJson(),
-      'fromRanges': fromRanges.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory CallHierarchyIncomingCall.fromJson(Map<String, dynamic> json) =>
+      _$CallHierarchyIncomingCallFromJson(json);
 }
 
 /// The parameter of a `callHierarchy/outgoingCalls` request.
@@ -1974,29 +1562,14 @@ abstract class CallHierarchyOutgoingCallsParams
   const CallHierarchyOutgoingCallsParams._();
 
   const factory CallHierarchyOutgoingCallsParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required CallHierarchyItem item,
   }) = _CallHierarchyOutgoingCallsParams;
 
-  static CallHierarchyOutgoingCallsParams fromJson(Map<String, Object?> json) =>
-      CallHierarchyOutgoingCallsParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        item: CallHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'item': item.toJson(),
-    };
-  }
+  factory CallHierarchyOutgoingCallsParams.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CallHierarchyOutgoingCallsParamsFromJson(json);
 }
 
 /// Represents an outgoing call, e.g. calling a getter from a method or a method from a constructor etc.
@@ -2011,20 +1584,8 @@ abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
     required List<Range> fromRanges,
   }) = _CallHierarchyOutgoingCall;
 
-  static CallHierarchyOutgoingCall fromJson(Map<String, Object?> json) =>
-      CallHierarchyOutgoingCall(
-        to: CallHierarchyItem.fromJson(json['to'] as Map<String, Object?>),
-        fromRanges: (json['fromRanges'] as List<Object?>)
-            .map((e) => Range.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'to': to.toJson(),
-      'fromRanges': fromRanges.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory CallHierarchyOutgoingCall.fromJson(Map<String, dynamic> json) =>
+      _$CallHierarchyOutgoingCallFromJson(json);
 }
 
 /// @since 3.16.0
@@ -2033,31 +1594,13 @@ abstract class SemanticTokensParams with _$SemanticTokensParams {
   const SemanticTokensParams._();
 
   const factory SemanticTokensParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
   }) = _SemanticTokensParams;
 
-  static SemanticTokensParams fromJson(Map<String, Object?> json) =>
-      SemanticTokensParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-    };
-  }
+  factory SemanticTokensParams.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensParamsFromJson(json);
 }
 
 /// @since 3.16.0
@@ -2068,14 +1611,8 @@ abstract class SemanticTokens with _$SemanticTokens {
   const factory SemanticTokens({String? resultId, required List<int> data}) =
       _SemanticTokens;
 
-  static SemanticTokens fromJson(Map<String, Object?> json) => SemanticTokens(
-    resultId: json['resultId'] as String?,
-    data: (json['data'] as List<Object?>).map((e) => e as int).toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'resultId': resultId, 'data': data};
-  }
+  factory SemanticTokens.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensFromJson(json);
 }
 
 /// @since 3.16.0
@@ -2086,14 +1623,8 @@ abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
   const factory SemanticTokensPartialResult({required List<int> data}) =
       _SemanticTokensPartialResult;
 
-  static SemanticTokensPartialResult fromJson(Map<String, Object?> json) =>
-      SemanticTokensPartialResult(
-        data: (json['data'] as List<Object?>).map((e) => e as int).toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'data': data};
-  }
+  factory SemanticTokensPartialResult.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensPartialResultFromJson(json);
 }
 
 /// @since 3.16.0
@@ -2111,29 +1642,9 @@ abstract class SemanticTokensRegistrationOptions
     String? id,
   }) = _SemanticTokensRegistrationOptions;
 
-  static SemanticTokensRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => SemanticTokensRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    legend: SemanticTokensLegend.fromJson(
-      json['legend'] as Map<String, Object?>,
-    ),
-    range: json['range'],
-    full: json['full'],
-    id: json['id'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'legend': legend.toJson(),
-      'range': range,
-      'full': full,
-      'id': id,
-    };
-  }
+  factory SemanticTokensRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SemanticTokensRegistrationOptionsFromJson(json);
 }
 
 /// @since 3.16.0
@@ -2142,34 +1653,14 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
   const SemanticTokensDeltaParams._();
 
   const factory SemanticTokensDeltaParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
     required String previousResultId,
   }) = _SemanticTokensDeltaParams;
 
-  static SemanticTokensDeltaParams fromJson(Map<String, Object?> json) =>
-      SemanticTokensDeltaParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        previousResultId: json['previousResultId'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'previousResultId': previousResultId,
-    };
-  }
+  factory SemanticTokensDeltaParams.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensDeltaParamsFromJson(json);
 }
 
 /// @since 3.16.0
@@ -2182,20 +1673,8 @@ abstract class SemanticTokensDelta with _$SemanticTokensDelta {
     required List<SemanticTokensEdit> edits,
   }) = _SemanticTokensDelta;
 
-  static SemanticTokensDelta fromJson(Map<String, Object?> json) =>
-      SemanticTokensDelta(
-        resultId: json['resultId'] as String?,
-        edits: (json['edits'] as List<Object?>)
-            .map((e) => SemanticTokensEdit.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'resultId': resultId,
-      'edits': edits.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory SemanticTokensDelta.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensDeltaFromJson(json);
 }
 
 /// @since 3.16.0
@@ -2208,16 +1687,9 @@ abstract class SemanticTokensDeltaPartialResult
     required List<SemanticTokensEdit> edits,
   }) = _SemanticTokensDeltaPartialResult;
 
-  static SemanticTokensDeltaPartialResult fromJson(Map<String, Object?> json) =>
-      SemanticTokensDeltaPartialResult(
-        edits: (json['edits'] as List<Object?>)
-            .map((e) => SemanticTokensEdit.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'edits': edits.map((e) => e.toJson()).toList()};
-  }
+  factory SemanticTokensDeltaPartialResult.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SemanticTokensDeltaPartialResultFromJson(json);
 }
 
 /// @since 3.16.0
@@ -2226,34 +1698,14 @@ abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
   const SemanticTokensRangeParams._();
 
   const factory SemanticTokensRangeParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
     required Range range,
   }) = _SemanticTokensRangeParams;
 
-  static SemanticTokensRangeParams fromJson(Map<String, Object?> json) =>
-      SemanticTokensRangeParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'range': range.toJson(),
-    };
-  }
+  factory SemanticTokensRangeParams.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensRangeParamsFromJson(json);
 }
 
 /// Params to show a resource in the UI.
@@ -2270,24 +1722,8 @@ abstract class ShowDocumentParams with _$ShowDocumentParams {
     Range? selection,
   }) = _ShowDocumentParams;
 
-  static ShowDocumentParams fromJson(Map<String, Object?> json) =>
-      ShowDocumentParams(
-        uri: json['uri'] as String,
-        external: json['external'] as bool?,
-        takeFocus: json['takeFocus'] as bool?,
-        selection: json['selection'] == null
-            ? null
-            : Range.fromJson(json['selection'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'uri': uri,
-      'external': external,
-      'takeFocus': takeFocus,
-      'selection': selection?.toJson(),
-    };
-  }
+  factory ShowDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$ShowDocumentParamsFromJson(json);
 }
 
 /// The result of a showDocument request.
@@ -2300,12 +1736,8 @@ abstract class ShowDocumentResult with _$ShowDocumentResult {
   const factory ShowDocumentResult({required bool success}) =
       _ShowDocumentResult;
 
-  static ShowDocumentResult fromJson(Map<String, Object?> json) =>
-      ShowDocumentResult(success: json['success'] as bool);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'success': success};
-  }
+  factory ShowDocumentResult.fromJson(Map<String, dynamic> json) =>
+      _$ShowDocumentResultFromJson(json);
 }
 
 @freezed
@@ -2315,27 +1747,11 @@ abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
   const factory LinkedEditingRangeParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _LinkedEditingRangeParams;
 
-  static LinkedEditingRangeParams fromJson(Map<String, Object?> json) =>
-      LinkedEditingRangeParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-    };
-  }
+  factory LinkedEditingRangeParams.fromJson(Map<String, dynamic> json) =>
+      _$LinkedEditingRangeParamsFromJson(json);
 }
 
 /// The result of a linked editing range request.
@@ -2350,20 +1766,8 @@ abstract class LinkedEditingRanges with _$LinkedEditingRanges {
     String? wordPattern,
   }) = _LinkedEditingRanges;
 
-  static LinkedEditingRanges fromJson(Map<String, Object?> json) =>
-      LinkedEditingRanges(
-        ranges: (json['ranges'] as List<Object?>)
-            .map((e) => Range.fromJson(e as Map<String, Object?>))
-            .toList(),
-        wordPattern: json['wordPattern'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'ranges': ranges.map((e) => e.toJson()).toList(),
-      'wordPattern': wordPattern,
-    };
-  }
+  factory LinkedEditingRanges.fromJson(Map<String, dynamic> json) =>
+      _$LinkedEditingRangesFromJson(json);
 }
 
 @freezed
@@ -2377,21 +1781,9 @@ abstract class LinkedEditingRangeRegistrationOptions
     String? id,
   }) = _LinkedEditingRangeRegistrationOptions;
 
-  static LinkedEditingRangeRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => LinkedEditingRangeRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    id: json['id'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'id': id,
-    };
-  }
+  factory LinkedEditingRangeRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$LinkedEditingRangeRegistrationOptionsFromJson(json);
 }
 
 /// The parameters sent in notifications/requests for user-initiated creation of
@@ -2405,16 +1797,8 @@ abstract class CreateFilesParams with _$CreateFilesParams {
   const factory CreateFilesParams({required List<FileCreate> files}) =
       _CreateFilesParams;
 
-  static CreateFilesParams fromJson(Map<String, Object?> json) =>
-      CreateFilesParams(
-        files: (json['files'] as List<Object?>)
-            .map((e) => FileCreate.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'files': files.map((e) => e.toJson()).toList()};
-  }
+  factory CreateFilesParams.fromJson(Map<String, dynamic> json) =>
+      _$CreateFilesParamsFromJson(json);
 }
 
 /// A workspace edit represents changes to many resources managed in the workspace. The edit
@@ -2439,27 +1823,8 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
     Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations,
   }) = _WorkspaceEdit;
 
-  static WorkspaceEdit fromJson(Map<String, Object?> json) => WorkspaceEdit(
-    changes: (json['changes'] as Map<String, Object?>?)?.map(
-      (k, v) => MapEntry(k, v as List<TextEdit>),
-    ),
-    documentChanges: (json['documentChanges'] as List<Object?>?)
-        ?.map((e) => e as Object)
-        .toList(),
-    changeAnnotations: (json['changeAnnotations'] as Map<String, Object?>?)
-        ?.map(
-          (k, v) =>
-              MapEntry(k, ChangeAnnotation.fromJson(v as Map<String, Object?>)),
-        ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'changes': changes,
-      'documentChanges': documentChanges,
-      'changeAnnotations': changeAnnotations,
-    };
-  }
+  factory WorkspaceEdit.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceEditFromJson(json);
 }
 
 /// The options to register for file operations.
@@ -2474,18 +1839,9 @@ abstract class FileOperationRegistrationOptions
     required List<FileOperationFilter> filters,
   }) = _FileOperationRegistrationOptions;
 
-  static FileOperationRegistrationOptions fromJson(Map<String, Object?> json) =>
-      FileOperationRegistrationOptions(
-        filters: (json['filters'] as List<Object?>)
-            .map((e) => FileOperationFilter.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'filters': filters.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory FileOperationRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$FileOperationRegistrationOptionsFromJson(json);
 }
 
 /// The parameters sent in notifications/requests for user-initiated renames of
@@ -2499,16 +1855,8 @@ abstract class RenameFilesParams with _$RenameFilesParams {
   const factory RenameFilesParams({required List<FileRename> files}) =
       _RenameFilesParams;
 
-  static RenameFilesParams fromJson(Map<String, Object?> json) =>
-      RenameFilesParams(
-        files: (json['files'] as List<Object?>)
-            .map((e) => FileRename.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'files': files.map((e) => e.toJson()).toList()};
-  }
+  factory RenameFilesParams.fromJson(Map<String, dynamic> json) =>
+      _$RenameFilesParamsFromJson(json);
 }
 
 /// The parameters sent in notifications/requests for user-initiated deletes of
@@ -2522,16 +1870,8 @@ abstract class DeleteFilesParams with _$DeleteFilesParams {
   const factory DeleteFilesParams({required List<FileDelete> files}) =
       _DeleteFilesParams;
 
-  static DeleteFilesParams fromJson(Map<String, Object?> json) =>
-      DeleteFilesParams(
-        files: (json['files'] as List<Object?>)
-            .map((e) => FileDelete.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'files': files.map((e) => e.toJson()).toList()};
-  }
+  factory DeleteFilesParams.fromJson(Map<String, dynamic> json) =>
+      _$DeleteFilesParamsFromJson(json);
 }
 
 @freezed
@@ -2541,31 +1881,12 @@ abstract class MonikerParams with _$MonikerParams {
   const factory MonikerParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _MonikerParams;
 
-  static MonikerParams fromJson(Map<String, Object?> json) => MonikerParams(
-    textDocument: TextDocumentIdentifier.fromJson(
-      json['textDocument'] as Map<String, Object?>,
-    ),
-    position: Position.fromJson(json['position'] as Map<String, Object?>),
-    workDoneToken: json['workDoneToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['workDoneToken']),
-    partialResultToken: json['partialResultToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['partialResultToken']),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-    };
-  }
+  factory MonikerParams.fromJson(Map<String, dynamic> json) =>
+      _$MonikerParamsFromJson(json);
 }
 
 /// Moniker definition to match LSIF 0.5 moniker definition.
@@ -2578,31 +1899,12 @@ abstract class Moniker with _$Moniker {
   const factory Moniker({
     required String scheme,
     required String identifier,
-    required UniquenessLevel unique,
-    MonikerKind? kind,
+    @_UniquenessLevelConverter() required UniquenessLevel unique,
+    @_MonikerKindConverter() MonikerKind? kind,
   }) = _Moniker;
 
-  static Moniker fromJson(Map<String, Object?> json) => Moniker(
-    scheme: json['scheme'] as String,
-    identifier: json['identifier'] as String,
-    unique: UniquenessLevel.values.firstWhere(
-      (e) => e.value == json['unique'] as String,
-    ),
-    kind: json['kind'] == null
-        ? null
-        : MonikerKind.values.firstWhere(
-            (e) => e.value == json['kind'] as String,
-          ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'scheme': scheme,
-      'identifier': identifier,
-      'unique': unique.value,
-      'kind': kind?.value,
-    };
-  }
+  factory Moniker.fromJson(Map<String, dynamic> json) =>
+      _$MonikerFromJson(json);
 }
 
 @freezed
@@ -2614,18 +1916,8 @@ abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
     bool? workDoneProgress,
   }) = _MonikerRegistrationOptions;
 
-  static MonikerRegistrationOptions fromJson(Map<String, Object?> json) =>
-      MonikerRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-    };
-  }
+  factory MonikerRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$MonikerRegistrationOptionsFromJson(json);
 }
 
 /// The parameter of a `textDocument/prepareTypeHierarchy` request.
@@ -2638,27 +1930,11 @@ abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
   const factory TypeHierarchyPrepareParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _TypeHierarchyPrepareParams;
 
-  static TypeHierarchyPrepareParams fromJson(Map<String, Object?> json) =>
-      TypeHierarchyPrepareParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-    };
-  }
+  factory TypeHierarchyPrepareParams.fromJson(Map<String, dynamic> json) =>
+      _$TypeHierarchyPrepareParamsFromJson(json);
 }
 
 /// @since 3.17.0
@@ -2668,8 +1944,8 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
 
   const factory TypeHierarchyItem({
     required String name,
-    required SymbolKind kind,
-    List<SymbolTag>? tags,
+    @_SymbolKindConverter() required SymbolKind kind,
+    @_SymbolTagListConverter() List<SymbolTag>? tags,
     String? detail,
     required String uri,
     required Range range,
@@ -2677,33 +1953,8 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
     LSPAny? data,
   }) = _TypeHierarchyItem;
 
-  static TypeHierarchyItem fromJson(
-    Map<String, Object?> json,
-  ) => TypeHierarchyItem(
-    name: json['name'] as String,
-    kind: SymbolKind.values.firstWhere((e) => e.value == json['kind'] as int),
-    tags: (json['tags'] as List<Object?>?)?.map((e) => e as SymbolTag).toList(),
-    detail: json['detail'] as String?,
-    uri: json['uri'] as String,
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    selectionRange: Range.fromJson(
-      json['selectionRange'] as Map<String, Object?>,
-    ),
-    data: json['data'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'name': name,
-      'kind': kind.value,
-      'tags': tags,
-      'detail': detail,
-      'uri': uri,
-      'range': range.toJson(),
-      'selectionRange': selectionRange.toJson(),
-      'data': data,
-    };
-  }
+  factory TypeHierarchyItem.fromJson(Map<String, dynamic> json) =>
+      _$TypeHierarchyItemFromJson(json);
 }
 
 /// Type hierarchy options used during static or dynamic registration.
@@ -2720,20 +1971,9 @@ abstract class TypeHierarchyRegistrationOptions
     String? id,
   }) = _TypeHierarchyRegistrationOptions;
 
-  static TypeHierarchyRegistrationOptions fromJson(Map<String, Object?> json) =>
-      TypeHierarchyRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        id: json['id'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'id': id,
-    };
-  }
+  factory TypeHierarchyRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TypeHierarchyRegistrationOptionsFromJson(json);
 }
 
 /// The parameter of a `typeHierarchy/supertypes` request.
@@ -2745,29 +1985,13 @@ abstract class TypeHierarchySupertypesParams
   const TypeHierarchySupertypesParams._();
 
   const factory TypeHierarchySupertypesParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TypeHierarchyItem item,
   }) = _TypeHierarchySupertypesParams;
 
-  static TypeHierarchySupertypesParams fromJson(Map<String, Object?> json) =>
-      TypeHierarchySupertypesParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        item: TypeHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'item': item.toJson(),
-    };
-  }
+  factory TypeHierarchySupertypesParams.fromJson(Map<String, dynamic> json) =>
+      _$TypeHierarchySupertypesParamsFromJson(json);
 }
 
 /// The parameter of a `typeHierarchy/subtypes` request.
@@ -2778,29 +2002,13 @@ abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
   const TypeHierarchySubtypesParams._();
 
   const factory TypeHierarchySubtypesParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TypeHierarchyItem item,
   }) = _TypeHierarchySubtypesParams;
 
-  static TypeHierarchySubtypesParams fromJson(Map<String, Object?> json) =>
-      TypeHierarchySubtypesParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        item: TypeHierarchyItem.fromJson(json['item'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'item': item.toJson(),
-    };
-  }
+  factory TypeHierarchySubtypesParams.fromJson(Map<String, dynamic> json) =>
+      _$TypeHierarchySubtypesParamsFromJson(json);
 }
 
 /// A parameter literal used in inline value requests.
@@ -2811,34 +2019,14 @@ abstract class InlineValueParams with _$InlineValueParams {
   const InlineValueParams._();
 
   const factory InlineValueParams({
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
     required Range range,
     required InlineValueContext context,
   }) = _InlineValueParams;
 
-  static InlineValueParams fromJson(Map<String, Object?> json) =>
-      InlineValueParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        context: InlineValueContext.fromJson(
-          json['context'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'range': range.toJson(),
-      'context': context.toJson(),
-    };
-  }
+  factory InlineValueParams.fromJson(Map<String, dynamic> json) =>
+      _$InlineValueParamsFromJson(json);
 }
 
 /// Inline value options used during static or dynamic registration.
@@ -2855,20 +2043,8 @@ abstract class InlineValueRegistrationOptions
     String? id,
   }) = _InlineValueRegistrationOptions;
 
-  static InlineValueRegistrationOptions fromJson(Map<String, Object?> json) =>
-      InlineValueRegistrationOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        id: json['id'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'documentSelector': documentSelector,
-      'id': id,
-    };
-  }
+  factory InlineValueRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$InlineValueRegistrationOptionsFromJson(json);
 }
 
 /// A parameter literal used in inlay hint requests.
@@ -2879,28 +2055,13 @@ abstract class InlayHintParams with _$InlayHintParams {
   const InlayHintParams._();
 
   const factory InlayHintParams({
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
     required Range range,
   }) = _InlayHintParams;
 
-  static InlayHintParams fromJson(Map<String, Object?> json) => InlayHintParams(
-    workDoneToken: json['workDoneToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['workDoneToken']),
-    textDocument: TextDocumentIdentifier.fromJson(
-      json['textDocument'] as Map<String, Object?>,
-    ),
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'range': range.toJson(),
-    };
-  }
+  factory InlayHintParams.fromJson(Map<String, dynamic> json) =>
+      _$InlayHintParamsFromJson(json);
 }
 
 /// Inlay hint information.
@@ -2913,7 +2074,7 @@ abstract class InlayHint with _$InlayHint {
   const factory InlayHint({
     required Position position,
     required Object label,
-    InlayHintKind? kind,
+    @_InlayHintKindConverter() InlayHintKind? kind,
     List<TextEdit>? textEdits,
     Object? tooltip,
     bool? paddingLeft,
@@ -2921,35 +2082,8 @@ abstract class InlayHint with _$InlayHint {
     LSPAny? data,
   }) = _InlayHint;
 
-  static InlayHint fromJson(Map<String, Object?> json) => InlayHint(
-    position: Position.fromJson(json['position'] as Map<String, Object?>),
-    label: json['label'] as Object,
-    kind: json['kind'] == null
-        ? null
-        : InlayHintKind.values.firstWhere(
-            (e) => e.value == json['kind'] as int,
-          ),
-    textEdits: (json['textEdits'] as List<Object?>?)
-        ?.map((e) => TextEdit.fromJson(e as Map<String, Object?>))
-        .toList(),
-    tooltip: json['tooltip'],
-    paddingLeft: json['paddingLeft'] as bool?,
-    paddingRight: json['paddingRight'] as bool?,
-    data: json['data'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'position': position.toJson(),
-      'label': label,
-      'kind': kind?.value,
-      'textEdits': textEdits?.map((e) => e.toJson()).toList(),
-      'tooltip': tooltip,
-      'paddingLeft': paddingLeft,
-      'paddingRight': paddingRight,
-      'data': data,
-    };
-  }
+  factory InlayHint.fromJson(Map<String, dynamic> json) =>
+      _$InlayHintFromJson(json);
 }
 
 /// Inlay hint options used during static or dynamic registration.
@@ -2967,22 +2101,8 @@ abstract class InlayHintRegistrationOptions
     String? id,
   }) = _InlayHintRegistrationOptions;
 
-  static InlayHintRegistrationOptions fromJson(Map<String, Object?> json) =>
-      InlayHintRegistrationOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        resolveProvider: json['resolveProvider'] as bool?,
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        id: json['id'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'resolveProvider': resolveProvider,
-      'documentSelector': documentSelector,
-      'id': id,
-    };
-  }
+  factory InlayHintRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$InlayHintRegistrationOptionsFromJson(json);
 }
 
 /// Parameters of the document diagnostic request.
@@ -2993,37 +2113,15 @@ abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
   const DocumentDiagnosticParams._();
 
   const factory DocumentDiagnosticParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
     String? identifier,
     String? previousResultId,
   }) = _DocumentDiagnosticParams;
 
-  static DocumentDiagnosticParams fromJson(Map<String, Object?> json) =>
-      DocumentDiagnosticParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        identifier: json['identifier'] as String?,
-        previousResultId: json['previousResultId'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'identifier': identifier,
-      'previousResultId': previousResultId,
-    };
-  }
+  factory DocumentDiagnosticParams.fromJson(Map<String, dynamic> json) =>
+      _$DocumentDiagnosticParamsFromJson(json);
 }
 
 /// A partial result for a document diagnostic report.
@@ -3038,17 +2136,9 @@ abstract class DocumentDiagnosticReportPartialResult
     required Map<String, Object> relatedDocuments,
   }) = _DocumentDiagnosticReportPartialResult;
 
-  static DocumentDiagnosticReportPartialResult fromJson(
-    Map<String, Object?> json,
-  ) => DocumentDiagnosticReportPartialResult(
-    relatedDocuments: (json['relatedDocuments'] as Map<String, Object?>).map(
-      (k, v) => MapEntry(k, v as Object),
-    ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'relatedDocuments': relatedDocuments};
-  }
+  factory DocumentDiagnosticReportPartialResult.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentDiagnosticReportPartialResultFromJson(json);
 }
 
 /// Cancellation data returned from a diagnostic request.
@@ -3063,14 +2153,9 @@ abstract class DiagnosticServerCancellationData
     required bool retriggerRequest,
   }) = _DiagnosticServerCancellationData;
 
-  static DiagnosticServerCancellationData fromJson(Map<String, Object?> json) =>
-      DiagnosticServerCancellationData(
-        retriggerRequest: json['retriggerRequest'] as bool,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'retriggerRequest': retriggerRequest};
-  }
+  factory DiagnosticServerCancellationData.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DiagnosticServerCancellationDataFromJson(json);
 }
 
 /// Diagnostic registration options.
@@ -3090,26 +2175,8 @@ abstract class DiagnosticRegistrationOptions
     String? id,
   }) = _DiagnosticRegistrationOptions;
 
-  static DiagnosticRegistrationOptions fromJson(Map<String, Object?> json) =>
-      DiagnosticRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        identifier: json['identifier'] as String?,
-        interFileDependencies: json['interFileDependencies'] as bool,
-        workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
-        id: json['id'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'identifier': identifier,
-      'interFileDependencies': interFileDependencies,
-      'workspaceDiagnostics': workspaceDiagnostics,
-      'id': id,
-    };
-  }
+  factory DiagnosticRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$DiagnosticRegistrationOptionsFromJson(json);
 }
 
 /// Parameters of the workspace diagnostic request.
@@ -3120,34 +2187,14 @@ abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
   const WorkspaceDiagnosticParams._();
 
   const factory WorkspaceDiagnosticParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     String? identifier,
     required List<PreviousResultId> previousResultIds,
   }) = _WorkspaceDiagnosticParams;
 
-  static WorkspaceDiagnosticParams fromJson(Map<String, Object?> json) =>
-      WorkspaceDiagnosticParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        identifier: json['identifier'] as String?,
-        previousResultIds: (json['previousResultIds'] as List<Object?>)
-            .map((e) => PreviousResultId.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'identifier': identifier,
-      'previousResultIds': previousResultIds.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory WorkspaceDiagnosticParams.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceDiagnosticParamsFromJson(json);
 }
 
 /// A workspace diagnostic report.
@@ -3158,19 +2205,12 @@ abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
   const WorkspaceDiagnosticReport._();
 
   const factory WorkspaceDiagnosticReport({
+    @_WorkspaceDocumentDiagnosticReportListConverter()
     required List<WorkspaceDocumentDiagnosticReport> items,
   }) = _WorkspaceDiagnosticReport;
 
-  static WorkspaceDiagnosticReport fromJson(Map<String, Object?> json) =>
-      WorkspaceDiagnosticReport(
-        items: (json['items'] as List<Object?>)
-            .map((e) => e as WorkspaceDocumentDiagnosticReport)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'items': items};
-  }
+  factory WorkspaceDiagnosticReport.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceDiagnosticReportFromJson(json);
 }
 
 /// A partial result for a workspace diagnostic report.
@@ -3182,20 +2222,13 @@ abstract class WorkspaceDiagnosticReportPartialResult
   const WorkspaceDiagnosticReportPartialResult._();
 
   const factory WorkspaceDiagnosticReportPartialResult({
+    @_WorkspaceDocumentDiagnosticReportListConverter()
     required List<WorkspaceDocumentDiagnosticReport> items,
   }) = _WorkspaceDiagnosticReportPartialResult;
 
-  static WorkspaceDiagnosticReportPartialResult fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceDiagnosticReportPartialResult(
-    items: (json['items'] as List<Object?>)
-        .map((e) => e as WorkspaceDocumentDiagnosticReport)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'items': items};
-  }
+  factory WorkspaceDiagnosticReportPartialResult.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceDiagnosticReportPartialResultFromJson(json);
 }
 
 /// The params sent in an open notebook document notification.
@@ -3211,22 +2244,8 @@ abstract class DidOpenNotebookDocumentParams
     required List<TextDocumentItem> cellTextDocuments,
   }) = _DidOpenNotebookDocumentParams;
 
-  static DidOpenNotebookDocumentParams fromJson(Map<String, Object?> json) =>
-      DidOpenNotebookDocumentParams(
-        notebookDocument: NotebookDocument.fromJson(
-          json['notebookDocument'] as Map<String, Object?>,
-        ),
-        cellTextDocuments: (json['cellTextDocuments'] as List<Object?>)
-            .map((e) => TextDocumentItem.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'notebookDocument': notebookDocument.toJson(),
-      'cellTextDocuments': cellTextDocuments.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory DidOpenNotebookDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$DidOpenNotebookDocumentParamsFromJson(json);
 }
 
 /// The params sent in a change notebook document notification.
@@ -3242,22 +2261,8 @@ abstract class DidChangeNotebookDocumentParams
     required NotebookDocumentChangeEvent change,
   }) = _DidChangeNotebookDocumentParams;
 
-  static DidChangeNotebookDocumentParams fromJson(Map<String, Object?> json) =>
-      DidChangeNotebookDocumentParams(
-        notebookDocument: VersionedNotebookDocumentIdentifier.fromJson(
-          json['notebookDocument'] as Map<String, Object?>,
-        ),
-        change: NotebookDocumentChangeEvent.fromJson(
-          json['change'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'notebookDocument': notebookDocument.toJson(),
-      'change': change.toJson(),
-    };
-  }
+  factory DidChangeNotebookDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$DidChangeNotebookDocumentParamsFromJson(json);
 }
 
 /// The params sent in a save notebook document notification.
@@ -3272,16 +2277,8 @@ abstract class DidSaveNotebookDocumentParams
     required NotebookDocumentIdentifier notebookDocument,
   }) = _DidSaveNotebookDocumentParams;
 
-  static DidSaveNotebookDocumentParams fromJson(Map<String, Object?> json) =>
-      DidSaveNotebookDocumentParams(
-        notebookDocument: NotebookDocumentIdentifier.fromJson(
-          json['notebookDocument'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'notebookDocument': notebookDocument.toJson()};
-  }
+  factory DidSaveNotebookDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$DidSaveNotebookDocumentParamsFromJson(json);
 }
 
 /// The params sent in a close notebook document notification.
@@ -3297,24 +2294,8 @@ abstract class DidCloseNotebookDocumentParams
     required List<TextDocumentIdentifier> cellTextDocuments,
   }) = _DidCloseNotebookDocumentParams;
 
-  static DidCloseNotebookDocumentParams fromJson(Map<String, Object?> json) =>
-      DidCloseNotebookDocumentParams(
-        notebookDocument: NotebookDocumentIdentifier.fromJson(
-          json['notebookDocument'] as Map<String, Object?>,
-        ),
-        cellTextDocuments: (json['cellTextDocuments'] as List<Object?>)
-            .map(
-              (e) => TextDocumentIdentifier.fromJson(e as Map<String, Object?>),
-            )
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'notebookDocument': notebookDocument.toJson(),
-      'cellTextDocuments': cellTextDocuments.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory DidCloseNotebookDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$DidCloseNotebookDocumentParamsFromJson(json);
 }
 
 /// A parameter literal used in inline completion requests.
@@ -3328,32 +2309,12 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
   const factory InlineCompletionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required InlineCompletionContext context,
   }) = _InlineCompletionParams;
 
-  static InlineCompletionParams fromJson(Map<String, Object?> json) =>
-      InlineCompletionParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        context: InlineCompletionContext.fromJson(
-          json['context'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'context': context.toJson(),
-    };
-  }
+  factory InlineCompletionParams.fromJson(Map<String, dynamic> json) =>
+      _$InlineCompletionParamsFromJson(json);
 }
 
 /// Represents a collection of {@link InlineCompletionItem inline completion items} to be presented in the editor.
@@ -3368,18 +2329,8 @@ abstract class InlineCompletionList with _$InlineCompletionList {
     required List<InlineCompletionItem> items,
   }) = _InlineCompletionList;
 
-  static InlineCompletionList fromJson(Map<String, Object?> json) =>
-      InlineCompletionList(
-        items: (json['items'] as List<Object?>)
-            .map(
-              (e) => InlineCompletionItem.fromJson(e as Map<String, Object?>),
-            )
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'items': items.map((e) => e.toJson()).toList()};
-  }
+  factory InlineCompletionList.fromJson(Map<String, dynamic> json) =>
+      _$InlineCompletionListFromJson(json);
 }
 
 /// An inline completion item represents a text snippet that is proposed inline to complete text that is being typed.
@@ -3397,26 +2348,8 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
     Command? command,
   }) = _InlineCompletionItem;
 
-  static InlineCompletionItem fromJson(Map<String, Object?> json) =>
-      InlineCompletionItem(
-        insertText: json['insertText'] as Object,
-        filterText: json['filterText'] as String?,
-        range: json['range'] == null
-            ? null
-            : Range.fromJson(json['range'] as Map<String, Object?>),
-        command: json['command'] == null
-            ? null
-            : Command.fromJson(json['command'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'insertText': insertText,
-      'filterText': filterText,
-      'range': range?.toJson(),
-      'command': command?.toJson(),
-    };
-  }
+  factory InlineCompletionItem.fromJson(Map<String, dynamic> json) =>
+      _$InlineCompletionItemFromJson(json);
 }
 
 /// Inline completion options used during static or dynamic registration.
@@ -3434,21 +2367,9 @@ abstract class InlineCompletionRegistrationOptions
     String? id,
   }) = _InlineCompletionRegistrationOptions;
 
-  static InlineCompletionRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => InlineCompletionRegistrationOptions(
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    id: json['id'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'documentSelector': documentSelector,
-      'id': id,
-    };
-  }
+  factory InlineCompletionRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$InlineCompletionRegistrationOptionsFromJson(json);
 }
 
 @freezed
@@ -3459,18 +2380,8 @@ abstract class RegistrationParams with _$RegistrationParams {
     required List<Registration> registrations,
   }) = _RegistrationParams;
 
-  static RegistrationParams fromJson(Map<String, Object?> json) =>
-      RegistrationParams(
-        registrations: (json['registrations'] as List<Object?>)
-            .map((e) => Registration.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'registrations': registrations.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory RegistrationParams.fromJson(Map<String, dynamic> json) =>
+      _$RegistrationParamsFromJson(json);
 }
 
 @freezed
@@ -3481,18 +2392,8 @@ abstract class UnregistrationParams with _$UnregistrationParams {
     required List<Unregistration> unregisterations,
   }) = _UnregistrationParams;
 
-  static UnregistrationParams fromJson(Map<String, Object?> json) =>
-      UnregistrationParams(
-        unregisterations: (json['unregisterations'] as List<Object?>)
-            .map((e) => Unregistration.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'unregisterations': unregisterations.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory UnregistrationParams.fromJson(Map<String, dynamic> json) =>
+      _$UnregistrationParamsFromJson(json);
 }
 
 @freezed
@@ -3500,7 +2401,7 @@ abstract class InitializeParams with _$InitializeParams {
   const InitializeParams._();
 
   const factory InitializeParams({
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required int? processId,
     _InitializeParamsClientInfo? clientInfo,
     String? locale,
@@ -3508,52 +2409,12 @@ abstract class InitializeParams with _$InitializeParams {
     required String? rootUri,
     required ClientCapabilities capabilities,
     LSPAny? initializationOptions,
-    TraceValues? trace,
+    @_TraceValuesConverter() TraceValues? trace,
     List<WorkspaceFolder>? workspaceFolders,
   }) = _InitializeParams;
 
-  static InitializeParams fromJson(Map<String, Object?> json) =>
-      InitializeParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        processId: json['processId'] as int?,
-        clientInfo: json['clientInfo'] == null
-            ? null
-            : _InitializeParamsClientInfo.fromJson(
-                json['clientInfo'] as Map<String, Object?>,
-              ),
-        locale: json['locale'] as String?,
-        rootPath: json['rootPath'] as String?,
-        rootUri: json['rootUri'] as String?,
-        capabilities: ClientCapabilities.fromJson(
-          json['capabilities'] as Map<String, Object?>,
-        ),
-        initializationOptions: json['initializationOptions'],
-        trace: json['trace'] == null
-            ? null
-            : TraceValues.values.firstWhere(
-                (e) => e.value == json['trace'] as String,
-              ),
-        workspaceFolders: (json['workspaceFolders'] as List<Object?>?)
-            ?.map((e) => WorkspaceFolder.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'processId': processId,
-      'clientInfo': clientInfo?.toJson(),
-      'locale': locale,
-      'rootPath': rootPath,
-      'rootUri': rootUri,
-      'capabilities': capabilities.toJson(),
-      'initializationOptions': initializationOptions,
-      'trace': trace?.value,
-      'workspaceFolders': workspaceFolders?.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory InitializeParams.fromJson(Map<String, dynamic> json) =>
+      _$InitializeParamsFromJson(json);
 }
 
 /// The result returned from an initialize request.
@@ -3566,24 +2427,8 @@ abstract class InitializeResult with _$InitializeResult {
     InitializeResultServerInfo? serverInfo,
   }) = _InitializeResult;
 
-  static InitializeResult fromJson(Map<String, Object?> json) =>
-      InitializeResult(
-        capabilities: ServerCapabilities.fromJson(
-          json['capabilities'] as Map<String, Object?>,
-        ),
-        serverInfo: json['serverInfo'] == null
-            ? null
-            : InitializeResultServerInfo.fromJson(
-                json['serverInfo'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'capabilities': capabilities.toJson(),
-      'serverInfo': serverInfo?.toJson(),
-    };
-  }
+  factory InitializeResult.fromJson(Map<String, dynamic> json) =>
+      _$InitializeResultFromJson(json);
 }
 
 /// The data type of the ResponseError if the
@@ -3594,12 +2439,8 @@ abstract class InitializeError with _$InitializeError {
 
   const factory InitializeError({required bool retry}) = _InitializeError;
 
-  static InitializeError fromJson(Map<String, Object?> json) =>
-      InitializeError(retry: json['retry'] as bool);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'retry': retry};
-  }
+  factory InitializeError.fromJson(Map<String, dynamic> json) =>
+      _$InitializeErrorFromJson(json);
 }
 
 @freezed
@@ -3608,12 +2449,8 @@ abstract class InitializedParams with _$InitializedParams {
 
   const factory InitializedParams() = _InitializedParams;
 
-  static InitializedParams fromJson(Map<String, Object?> json) =>
-      InitializedParams();
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{};
-  }
+  factory InitializedParams.fromJson(Map<String, dynamic> json) =>
+      _$InitializedParamsFromJson(json);
 }
 
 /// The parameters of a change configuration notification.
@@ -3625,12 +2462,8 @@ abstract class DidChangeConfigurationParams
   const factory DidChangeConfigurationParams({required LSPAny settings}) =
       _DidChangeConfigurationParams;
 
-  static DidChangeConfigurationParams fromJson(Map<String, Object?> json) =>
-      DidChangeConfigurationParams(settings: json['settings'] as LSPAny);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'settings': settings};
-  }
+  factory DidChangeConfigurationParams.fromJson(Map<String, dynamic> json) =>
+      _$DidChangeConfigurationParamsFromJson(json);
 }
 
 @freezed
@@ -3641,13 +2474,9 @@ abstract class DidChangeConfigurationRegistrationOptions
   const factory DidChangeConfigurationRegistrationOptions({Object? section}) =
       _DidChangeConfigurationRegistrationOptions;
 
-  static DidChangeConfigurationRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => DidChangeConfigurationRegistrationOptions(section: json['section']);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'section': section};
-  }
+  factory DidChangeConfigurationRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DidChangeConfigurationRegistrationOptionsFromJson(json);
 }
 
 /// The parameters of a notification message.
@@ -3656,21 +2485,12 @@ abstract class ShowMessageParams with _$ShowMessageParams {
   const ShowMessageParams._();
 
   const factory ShowMessageParams({
-    required MessageType type,
+    @_MessageTypeConverter() required MessageType type,
     required String message,
   }) = _ShowMessageParams;
 
-  static ShowMessageParams fromJson(Map<String, Object?> json) =>
-      ShowMessageParams(
-        type: MessageType.values.firstWhere(
-          (e) => e.value == json['type'] as int,
-        ),
-        message: json['message'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'type': type.value, 'message': message};
-  }
+  factory ShowMessageParams.fromJson(Map<String, dynamic> json) =>
+      _$ShowMessageParamsFromJson(json);
 }
 
 @freezed
@@ -3678,29 +2498,13 @@ abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
   const ShowMessageRequestParams._();
 
   const factory ShowMessageRequestParams({
-    required MessageType type,
+    @_MessageTypeConverter() required MessageType type,
     required String message,
     List<MessageActionItem>? actions,
   }) = _ShowMessageRequestParams;
 
-  static ShowMessageRequestParams fromJson(Map<String, Object?> json) =>
-      ShowMessageRequestParams(
-        type: MessageType.values.firstWhere(
-          (e) => e.value == json['type'] as int,
-        ),
-        message: json['message'] as String,
-        actions: (json['actions'] as List<Object?>?)
-            ?.map((e) => MessageActionItem.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'type': type.value,
-      'message': message,
-      'actions': actions?.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory ShowMessageRequestParams.fromJson(Map<String, dynamic> json) =>
+      _$ShowMessageRequestParamsFromJson(json);
 }
 
 @freezed
@@ -3709,12 +2513,8 @@ abstract class MessageActionItem with _$MessageActionItem {
 
   const factory MessageActionItem({required String title}) = _MessageActionItem;
 
-  static MessageActionItem fromJson(Map<String, Object?> json) =>
-      MessageActionItem(title: json['title'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'title': title};
-  }
+  factory MessageActionItem.fromJson(Map<String, dynamic> json) =>
+      _$MessageActionItemFromJson(json);
 }
 
 /// The log message parameters.
@@ -3723,21 +2523,12 @@ abstract class LogMessageParams with _$LogMessageParams {
   const LogMessageParams._();
 
   const factory LogMessageParams({
-    required MessageType type,
+    @_MessageTypeConverter() required MessageType type,
     required String message,
   }) = _LogMessageParams;
 
-  static LogMessageParams fromJson(Map<String, Object?> json) =>
-      LogMessageParams(
-        type: MessageType.values.firstWhere(
-          (e) => e.value == json['type'] as int,
-        ),
-        message: json['message'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'type': type.value, 'message': message};
-  }
+  factory LogMessageParams.fromJson(Map<String, dynamic> json) =>
+      _$LogMessageParamsFromJson(json);
 }
 
 /// The parameters sent in an open text document notification
@@ -3749,16 +2540,8 @@ abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
     required TextDocumentItem textDocument,
   }) = _DidOpenTextDocumentParams;
 
-  static DidOpenTextDocumentParams fromJson(Map<String, Object?> json) =>
-      DidOpenTextDocumentParams(
-        textDocument: TextDocumentItem.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'textDocument': textDocument.toJson()};
-  }
+  factory DidOpenTextDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$DidOpenTextDocumentParamsFromJson(json);
 }
 
 /// The change text document notification's parameters.
@@ -3771,22 +2554,8 @@ abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
     required List<TextDocumentContentChangeEvent> contentChanges,
   }) = _DidChangeTextDocumentParams;
 
-  static DidChangeTextDocumentParams fromJson(Map<String, Object?> json) =>
-      DidChangeTextDocumentParams(
-        textDocument: VersionedTextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        contentChanges: (json['contentChanges'] as List<Object?>)
-            .map((e) => e as TextDocumentContentChangeEvent)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'contentChanges': contentChanges,
-    };
-  }
+  factory DidChangeTextDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$DidChangeTextDocumentParamsFromJson(json);
 }
 
 /// Describe options to be used when registered for text document change events.
@@ -3797,24 +2566,12 @@ abstract class TextDocumentChangeRegistrationOptions
 
   const factory TextDocumentChangeRegistrationOptions({
     required DocumentSelector? documentSelector,
-    required TextDocumentSyncKind syncKind,
+    @_TextDocumentSyncKindConverter() required TextDocumentSyncKind syncKind,
   }) = _TextDocumentChangeRegistrationOptions;
 
-  static TextDocumentChangeRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => TextDocumentChangeRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    syncKind: TextDocumentSyncKind.values.firstWhere(
-      (e) => e.value == json['syncKind'] as int,
-    ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'syncKind': syncKind.value,
-    };
-  }
+  factory TextDocumentChangeRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TextDocumentChangeRegistrationOptionsFromJson(json);
 }
 
 /// The parameters sent in a close text document notification
@@ -3826,16 +2583,8 @@ abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
     required TextDocumentIdentifier textDocument,
   }) = _DidCloseTextDocumentParams;
 
-  static DidCloseTextDocumentParams fromJson(Map<String, Object?> json) =>
-      DidCloseTextDocumentParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'textDocument': textDocument.toJson()};
-  }
+  factory DidCloseTextDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$DidCloseTextDocumentParamsFromJson(json);
 }
 
 /// The parameters sent in a save text document notification
@@ -3848,20 +2597,8 @@ abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
     String? text,
   }) = _DidSaveTextDocumentParams;
 
-  static DidSaveTextDocumentParams fromJson(Map<String, Object?> json) =>
-      DidSaveTextDocumentParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        text: json['text'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'text': text,
-    };
-  }
+  factory DidSaveTextDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$DidSaveTextDocumentParamsFromJson(json);
 }
 
 /// Save registration options.
@@ -3875,19 +2612,9 @@ abstract class TextDocumentSaveRegistrationOptions
     bool? includeText,
   }) = _TextDocumentSaveRegistrationOptions;
 
-  static TextDocumentSaveRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => TextDocumentSaveRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    includeText: json['includeText'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'includeText': includeText,
-    };
-  }
+  factory TextDocumentSaveRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TextDocumentSaveRegistrationOptionsFromJson(json);
 }
 
 /// The parameters sent in a will save text document notification.
@@ -3897,25 +2624,11 @@ abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
 
   const factory WillSaveTextDocumentParams({
     required TextDocumentIdentifier textDocument,
-    required TextDocumentSaveReason reason,
+    @_TextDocumentSaveReasonConverter() required TextDocumentSaveReason reason,
   }) = _WillSaveTextDocumentParams;
 
-  static WillSaveTextDocumentParams fromJson(Map<String, Object?> json) =>
-      WillSaveTextDocumentParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        reason: TextDocumentSaveReason.values.firstWhere(
-          (e) => e.value == json['reason'] as int,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'reason': reason.value,
-    };
-  }
+  factory WillSaveTextDocumentParams.fromJson(Map<String, dynamic> json) =>
+      _$WillSaveTextDocumentParamsFromJson(json);
 }
 
 /// A text edit applicable to a text document.
@@ -3926,14 +2639,8 @@ abstract class TextEdit with _$TextEdit {
   const factory TextEdit({required Range range, required String newText}) =
       _TextEdit;
 
-  static TextEdit fromJson(Map<String, Object?> json) => TextEdit(
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    newText: json['newText'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'range': range.toJson(), 'newText': newText};
-  }
+  factory TextEdit.fromJson(Map<String, dynamic> json) =>
+      _$TextEditFromJson(json);
 }
 
 /// The watched files change notification's parameters.
@@ -3945,18 +2652,8 @@ abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
     required List<FileEvent> changes,
   }) = _DidChangeWatchedFilesParams;
 
-  static DidChangeWatchedFilesParams fromJson(Map<String, Object?> json) =>
-      DidChangeWatchedFilesParams(
-        changes: (json['changes'] as List<Object?>)
-            .map((e) => FileEvent.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'changes': changes.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory DidChangeWatchedFilesParams.fromJson(Map<String, dynamic> json) =>
+      _$DidChangeWatchedFilesParamsFromJson(json);
 }
 
 /// Describe options to be used when registered for text document change events.
@@ -3969,19 +2666,9 @@ abstract class DidChangeWatchedFilesRegistrationOptions
     required List<FileSystemWatcher> watchers,
   }) = _DidChangeWatchedFilesRegistrationOptions;
 
-  static DidChangeWatchedFilesRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => DidChangeWatchedFilesRegistrationOptions(
-    watchers: (json['watchers'] as List<Object?>)
-        .map((e) => FileSystemWatcher.fromJson(e as Map<String, Object?>))
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'watchers': watchers.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory DidChangeWatchedFilesRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DidChangeWatchedFilesRegistrationOptionsFromJson(json);
 }
 
 /// The publish diagnostic notification's parameters.
@@ -3995,22 +2682,8 @@ abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
     required List<Diagnostic> diagnostics,
   }) = _PublishDiagnosticsParams;
 
-  static PublishDiagnosticsParams fromJson(Map<String, Object?> json) =>
-      PublishDiagnosticsParams(
-        uri: json['uri'] as String,
-        version: json['version'] as int?,
-        diagnostics: (json['diagnostics'] as List<Object?>)
-            .map((e) => Diagnostic.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'uri': uri,
-      'version': version,
-      'diagnostics': diagnostics.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory PublishDiagnosticsParams.fromJson(Map<String, dynamic> json) =>
+      _$PublishDiagnosticsParamsFromJson(json);
 }
 
 /// Completion parameters
@@ -4021,39 +2694,13 @@ abstract class CompletionParams with _$CompletionParams {
   const factory CompletionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     CompletionContext? context,
   }) = _CompletionParams;
 
-  static CompletionParams fromJson(Map<String, Object?> json) =>
-      CompletionParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        context: json['context'] == null
-            ? null
-            : CompletionContext.fromJson(
-                json['context'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'context': context?.toJson(),
-    };
-  }
+  factory CompletionParams.fromJson(Map<String, dynamic> json) =>
+      _$CompletionParamsFromJson(json);
 }
 
 /// A completion item represents a text snippet that is
@@ -4065,8 +2712,8 @@ abstract class CompletionItem with _$CompletionItem {
   const factory CompletionItem({
     required String label,
     CompletionItemLabelDetails? labelDetails,
-    CompletionItemKind? kind,
-    List<CompletionItemTag>? tags,
+    @_CompletionItemKindConverter() CompletionItemKind? kind,
+    @_CompletionItemTagListConverter() List<CompletionItemTag>? tags,
     String? detail,
     Object? documentation,
     bool? deprecated,
@@ -4074,8 +2721,8 @@ abstract class CompletionItem with _$CompletionItem {
     String? sortText,
     String? filterText,
     String? insertText,
-    InsertTextFormat? insertTextFormat,
-    InsertTextMode? insertTextMode,
+    @_InsertTextFormatConverter() InsertTextFormat? insertTextFormat,
+    @_InsertTextModeConverter() InsertTextMode? insertTextMode,
     Object? textEdit,
     String? textEditText,
     List<TextEdit>? additionalTextEdits,
@@ -4084,77 +2731,8 @@ abstract class CompletionItem with _$CompletionItem {
     LSPAny? data,
   }) = _CompletionItem;
 
-  static CompletionItem fromJson(Map<String, Object?> json) => CompletionItem(
-    label: json['label'] as String,
-    labelDetails: json['labelDetails'] == null
-        ? null
-        : CompletionItemLabelDetails.fromJson(
-            json['labelDetails'] as Map<String, Object?>,
-          ),
-    kind: json['kind'] == null
-        ? null
-        : CompletionItemKind.values.firstWhere(
-            (e) => e.value == json['kind'] as int,
-          ),
-    tags: (json['tags'] as List<Object?>?)
-        ?.map((e) => e as CompletionItemTag)
-        .toList(),
-    detail: json['detail'] as String?,
-    documentation: json['documentation'],
-    deprecated: json['deprecated'] as bool?,
-    preselect: json['preselect'] as bool?,
-    sortText: json['sortText'] as String?,
-    filterText: json['filterText'] as String?,
-    insertText: json['insertText'] as String?,
-    insertTextFormat: json['insertTextFormat'] == null
-        ? null
-        : InsertTextFormat.values.firstWhere(
-            (e) => e.value == json['insertTextFormat'] as int,
-          ),
-    insertTextMode: json['insertTextMode'] == null
-        ? null
-        : InsertTextMode.values.firstWhere(
-            (e) => e.value == json['insertTextMode'] as int,
-          ),
-    textEdit: json['textEdit'],
-    textEditText: json['textEditText'] as String?,
-    additionalTextEdits: (json['additionalTextEdits'] as List<Object?>?)
-        ?.map((e) => TextEdit.fromJson(e as Map<String, Object?>))
-        .toList(),
-    commitCharacters: (json['commitCharacters'] as List<Object?>?)
-        ?.map((e) => e as String)
-        .toList(),
-    command: json['command'] == null
-        ? null
-        : Command.fromJson(json['command'] as Map<String, Object?>),
-    data: json['data'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'label': label,
-      'labelDetails': labelDetails?.toJson(),
-      'kind': kind?.value,
-      'tags': tags,
-      'detail': detail,
-      'documentation': documentation,
-      'deprecated': deprecated,
-      'preselect': preselect,
-      'sortText': sortText,
-      'filterText': filterText,
-      'insertText': insertText,
-      'insertTextFormat': insertTextFormat?.value,
-      'insertTextMode': insertTextMode?.value,
-      'textEdit': textEdit,
-      'textEditText': textEditText,
-      'additionalTextEdits': additionalTextEdits
-          ?.map((e) => e.toJson())
-          .toList(),
-      'commitCharacters': commitCharacters,
-      'command': command?.toJson(),
-      'data': data,
-    };
-  }
+  factory CompletionItem.fromJson(Map<String, dynamic> json) =>
+      _$CompletionItemFromJson(json);
 }
 
 /// Represents a collection of {@link CompletionItem completion items} to be presented
@@ -4169,25 +2747,8 @@ abstract class CompletionList with _$CompletionList {
     required List<CompletionItem> items,
   }) = _CompletionList;
 
-  static CompletionList fromJson(Map<String, Object?> json) => CompletionList(
-    isIncomplete: json['isIncomplete'] as bool,
-    itemDefaults: json['itemDefaults'] == null
-        ? null
-        : CompletionListItemDefaults.fromJson(
-            json['itemDefaults'] as Map<String, Object?>,
-          ),
-    items: (json['items'] as List<Object?>)
-        .map((e) => CompletionItem.fromJson(e as Map<String, Object?>))
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'isIncomplete': isIncomplete,
-      'itemDefaults': itemDefaults?.toJson(),
-      'items': items.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory CompletionList.fromJson(Map<String, dynamic> json) =>
+      _$CompletionListFromJson(json);
 }
 
 /// Registration options for a {@link CompletionRequest}.
@@ -4205,34 +2766,8 @@ abstract class CompletionRegistrationOptions
     CompletionOptionsCompletionItem? completionItem,
   }) = _CompletionRegistrationOptions;
 
-  static CompletionRegistrationOptions fromJson(Map<String, Object?> json) =>
-      CompletionRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        triggerCharacters: (json['triggerCharacters'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-        allCommitCharacters: (json['allCommitCharacters'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-        resolveProvider: json['resolveProvider'] as bool?,
-        completionItem: json['completionItem'] == null
-            ? null
-            : CompletionOptionsCompletionItem.fromJson(
-                json['completionItem'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'triggerCharacters': triggerCharacters,
-      'allCommitCharacters': allCommitCharacters,
-      'resolveProvider': resolveProvider,
-      'completionItem': completionItem?.toJson(),
-    };
-  }
+  factory CompletionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$CompletionRegistrationOptionsFromJson(json);
 }
 
 /// Parameters for a {@link HoverRequest}.
@@ -4243,26 +2778,11 @@ abstract class HoverParams with _$HoverParams {
   const factory HoverParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _HoverParams;
 
-  static HoverParams fromJson(Map<String, Object?> json) => HoverParams(
-    textDocument: TextDocumentIdentifier.fromJson(
-      json['textDocument'] as Map<String, Object?>,
-    ),
-    position: Position.fromJson(json['position'] as Map<String, Object?>),
-    workDoneToken: json['workDoneToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['workDoneToken']),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-    };
-  }
+  factory HoverParams.fromJson(Map<String, dynamic> json) =>
+      _$HoverParamsFromJson(json);
 }
 
 /// The result of a hover request.
@@ -4272,16 +2792,7 @@ abstract class Hover with _$Hover {
 
   const factory Hover({required Object contents, Range? range}) = _Hover;
 
-  static Hover fromJson(Map<String, Object?> json) => Hover(
-    contents: json['contents'] as Object,
-    range: json['range'] == null
-        ? null
-        : Range.fromJson(json['range'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'contents': contents, 'range': range?.toJson()};
-  }
+  factory Hover.fromJson(Map<String, dynamic> json) => _$HoverFromJson(json);
 }
 
 /// Registration options for a {@link HoverRequest}.
@@ -4294,18 +2805,8 @@ abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
     bool? workDoneProgress,
   }) = _HoverRegistrationOptions;
 
-  static HoverRegistrationOptions fromJson(Map<String, Object?> json) =>
-      HoverRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-    };
-  }
+  factory HoverRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$HoverRegistrationOptionsFromJson(json);
 }
 
 /// Parameters for a {@link SignatureHelpRequest}.
@@ -4316,34 +2817,12 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
   const factory SignatureHelpParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     SignatureHelpContext? context,
   }) = _SignatureHelpParams;
 
-  static SignatureHelpParams fromJson(Map<String, Object?> json) =>
-      SignatureHelpParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        context: json['context'] == null
-            ? null
-            : SignatureHelpContext.fromJson(
-                json['context'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'context': context?.toJson(),
-    };
-  }
+  factory SignatureHelpParams.fromJson(Map<String, dynamic> json) =>
+      _$SignatureHelpParamsFromJson(json);
 }
 
 /// Signature help represents the signature of something
@@ -4359,21 +2838,8 @@ abstract class SignatureHelp with _$SignatureHelp {
     int? activeParameter,
   }) = _SignatureHelp;
 
-  static SignatureHelp fromJson(Map<String, Object?> json) => SignatureHelp(
-    signatures: (json['signatures'] as List<Object?>)
-        .map((e) => SignatureInformation.fromJson(e as Map<String, Object?>))
-        .toList(),
-    activeSignature: json['activeSignature'] as int?,
-    activeParameter: json['activeParameter'] as int?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'signatures': signatures.map((e) => e.toJson()).toList(),
-      'activeSignature': activeSignature,
-      'activeParameter': activeParameter,
-    };
-  }
+  factory SignatureHelp.fromJson(Map<String, dynamic> json) =>
+      _$SignatureHelpFromJson(json);
 }
 
 /// Registration options for a {@link SignatureHelpRequest}.
@@ -4389,26 +2855,9 @@ abstract class SignatureHelpRegistrationOptions
     List<String>? retriggerCharacters,
   }) = _SignatureHelpRegistrationOptions;
 
-  static SignatureHelpRegistrationOptions fromJson(Map<String, Object?> json) =>
-      SignatureHelpRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        triggerCharacters: (json['triggerCharacters'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-        retriggerCharacters: (json['retriggerCharacters'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'triggerCharacters': triggerCharacters,
-      'retriggerCharacters': retriggerCharacters,
-    };
-  }
+  factory SignatureHelpRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SignatureHelpRegistrationOptionsFromJson(json);
 }
 
 /// Parameters for a {@link DefinitionRequest}.
@@ -4419,32 +2868,12 @@ abstract class DefinitionParams with _$DefinitionParams {
   const factory DefinitionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _DefinitionParams;
 
-  static DefinitionParams fromJson(Map<String, Object?> json) =>
-      DefinitionParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-    };
-  }
+  factory DefinitionParams.fromJson(Map<String, dynamic> json) =>
+      _$DefinitionParamsFromJson(json);
 }
 
 /// Registration options for a {@link DefinitionRequest}.
@@ -4458,18 +2887,8 @@ abstract class DefinitionRegistrationOptions
     bool? workDoneProgress,
   }) = _DefinitionRegistrationOptions;
 
-  static DefinitionRegistrationOptions fromJson(Map<String, Object?> json) =>
-      DefinitionRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-    };
-  }
+  factory DefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$DefinitionRegistrationOptionsFromJson(json);
 }
 
 /// Parameters for a {@link ReferencesRequest}.
@@ -4480,34 +2899,13 @@ abstract class ReferenceParams with _$ReferenceParams {
   const factory ReferenceParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required ReferenceContext context,
   }) = _ReferenceParams;
 
-  static ReferenceParams fromJson(Map<String, Object?> json) => ReferenceParams(
-    textDocument: TextDocumentIdentifier.fromJson(
-      json['textDocument'] as Map<String, Object?>,
-    ),
-    position: Position.fromJson(json['position'] as Map<String, Object?>),
-    workDoneToken: json['workDoneToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['workDoneToken']),
-    partialResultToken: json['partialResultToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['partialResultToken']),
-    context: ReferenceContext.fromJson(json['context'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'context': context.toJson(),
-    };
-  }
+  factory ReferenceParams.fromJson(Map<String, dynamic> json) =>
+      _$ReferenceParamsFromJson(json);
 }
 
 /// Registration options for a {@link ReferencesRequest}.
@@ -4521,18 +2919,8 @@ abstract class ReferenceRegistrationOptions
     bool? workDoneProgress,
   }) = _ReferenceRegistrationOptions;
 
-  static ReferenceRegistrationOptions fromJson(Map<String, Object?> json) =>
-      ReferenceRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-    };
-  }
+  factory ReferenceRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$ReferenceRegistrationOptionsFromJson(json);
 }
 
 /// Parameters for a {@link DocumentHighlightRequest}.
@@ -4543,32 +2931,12 @@ abstract class DocumentHighlightParams with _$DocumentHighlightParams {
   const factory DocumentHighlightParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _DocumentHighlightParams;
 
-  static DocumentHighlightParams fromJson(Map<String, Object?> json) =>
-      DocumentHighlightParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-    };
-  }
+  factory DocumentHighlightParams.fromJson(Map<String, dynamic> json) =>
+      _$DocumentHighlightParamsFromJson(json);
 }
 
 /// A document highlight is a range inside a text document which deserves
@@ -4580,22 +2948,11 @@ abstract class DocumentHighlight with _$DocumentHighlight {
 
   const factory DocumentHighlight({
     required Range range,
-    DocumentHighlightKind? kind,
+    @_DocumentHighlightKindConverter() DocumentHighlightKind? kind,
   }) = _DocumentHighlight;
 
-  static DocumentHighlight fromJson(Map<String, Object?> json) =>
-      DocumentHighlight(
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        kind: json['kind'] == null
-            ? null
-            : DocumentHighlightKind.values.firstWhere(
-                (e) => e.value == json['kind'] as int,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'range': range.toJson(), 'kind': kind?.value};
-  }
+  factory DocumentHighlight.fromJson(Map<String, dynamic> json) =>
+      _$DocumentHighlightFromJson(json);
 }
 
 /// Registration options for a {@link DocumentHighlightRequest}.
@@ -4609,19 +2966,9 @@ abstract class DocumentHighlightRegistrationOptions
     bool? workDoneProgress,
   }) = _DocumentHighlightRegistrationOptions;
 
-  static DocumentHighlightRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => DocumentHighlightRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-    };
-  }
+  factory DocumentHighlightRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentHighlightRegistrationOptionsFromJson(json);
 }
 
 /// Parameters for a {@link DocumentSymbolRequest}.
@@ -4630,31 +2977,13 @@ abstract class DocumentSymbolParams with _$DocumentSymbolParams {
   const DocumentSymbolParams._();
 
   const factory DocumentSymbolParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
   }) = _DocumentSymbolParams;
 
-  static DocumentSymbolParams fromJson(Map<String, Object?> json) =>
-      DocumentSymbolParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-    };
-  }
+  factory DocumentSymbolParams.fromJson(Map<String, dynamic> json) =>
+      _$DocumentSymbolParamsFromJson(json);
 }
 
 /// Represents information about programming constructs like variables, classes,
@@ -4665,34 +2994,15 @@ abstract class SymbolInformation with _$SymbolInformation {
 
   const factory SymbolInformation({
     required String name,
-    required SymbolKind kind,
-    List<SymbolTag>? tags,
+    @_SymbolKindConverter() required SymbolKind kind,
+    @_SymbolTagListConverter() List<SymbolTag>? tags,
     String? containerName,
     bool? deprecated,
     required Location location,
   }) = _SymbolInformation;
 
-  static SymbolInformation fromJson(
-    Map<String, Object?> json,
-  ) => SymbolInformation(
-    name: json['name'] as String,
-    kind: SymbolKind.values.firstWhere((e) => e.value == json['kind'] as int),
-    tags: (json['tags'] as List<Object?>?)?.map((e) => e as SymbolTag).toList(),
-    containerName: json['containerName'] as String?,
-    deprecated: json['deprecated'] as bool?,
-    location: Location.fromJson(json['location'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'name': name,
-      'kind': kind.value,
-      'tags': tags,
-      'containerName': containerName,
-      'deprecated': deprecated,
-      'location': location.toJson(),
-    };
-  }
+  factory SymbolInformation.fromJson(Map<String, dynamic> json) =>
+      _$SymbolInformationFromJson(json);
 }
 
 /// Represents programming constructs like variables, classes, interfaces etc.
@@ -4706,41 +3016,16 @@ abstract class DocumentSymbol with _$DocumentSymbol {
   const factory DocumentSymbol({
     required String name,
     String? detail,
-    required SymbolKind kind,
-    List<SymbolTag>? tags,
+    @_SymbolKindConverter() required SymbolKind kind,
+    @_SymbolTagListConverter() List<SymbolTag>? tags,
     bool? deprecated,
     required Range range,
     required Range selectionRange,
     List<DocumentSymbol>? children,
   }) = _DocumentSymbol;
 
-  static DocumentSymbol fromJson(Map<String, Object?> json) => DocumentSymbol(
-    name: json['name'] as String,
-    detail: json['detail'] as String?,
-    kind: SymbolKind.values.firstWhere((e) => e.value == json['kind'] as int),
-    tags: (json['tags'] as List<Object?>?)?.map((e) => e as SymbolTag).toList(),
-    deprecated: json['deprecated'] as bool?,
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    selectionRange: Range.fromJson(
-      json['selectionRange'] as Map<String, Object?>,
-    ),
-    children: (json['children'] as List<Object?>?)
-        ?.map((e) => DocumentSymbol.fromJson(e as Map<String, Object?>))
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'name': name,
-      'detail': detail,
-      'kind': kind.value,
-      'tags': tags,
-      'deprecated': deprecated,
-      'range': range.toJson(),
-      'selectionRange': selectionRange.toJson(),
-      'children': children?.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory DocumentSymbol.fromJson(Map<String, dynamic> json) =>
+      _$DocumentSymbolFromJson(json);
 }
 
 /// Registration options for a {@link DocumentSymbolRequest}.
@@ -4755,21 +3040,9 @@ abstract class DocumentSymbolRegistrationOptions
     String? label,
   }) = _DocumentSymbolRegistrationOptions;
 
-  static DocumentSymbolRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => DocumentSymbolRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    label: json['label'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'label': label,
-    };
-  }
+  factory DocumentSymbolRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentSymbolRegistrationOptionsFromJson(json);
 }
 
 /// The parameters of a {@link CodeActionRequest}.
@@ -4778,39 +3051,15 @@ abstract class CodeActionParams with _$CodeActionParams {
   const CodeActionParams._();
 
   const factory CodeActionParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
     required Range range,
     required CodeActionContext context,
   }) = _CodeActionParams;
 
-  static CodeActionParams fromJson(Map<String, Object?> json) =>
-      CodeActionParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        context: CodeActionContext.fromJson(
-          json['context'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'range': range.toJson(),
-      'context': context.toJson(),
-    };
-  }
+  factory CodeActionParams.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionParamsFromJson(json);
 }
 
 /// Represents a reference to a command. Provides a title which
@@ -4827,21 +3076,8 @@ abstract class Command with _$Command {
     List<LSPAny>? arguments,
   }) = _Command;
 
-  static Command fromJson(Map<String, Object?> json) => Command(
-    title: json['title'] as String,
-    command: json['command'] as String,
-    arguments: (json['arguments'] as List<Object?>?)
-        ?.map((e) => e as LSPAny)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'title': title,
-      'command': command,
-      'arguments': arguments,
-    };
-  }
+  factory Command.fromJson(Map<String, dynamic> json) =>
+      _$CommandFromJson(json);
 }
 
 /// A code action represents a change that can be performed in code, e.g. to fix a problem or
@@ -4854,7 +3090,7 @@ abstract class CodeAction with _$CodeAction {
 
   const factory CodeAction({
     required String title,
-    CodeActionKind? kind,
+    @_CodeActionKindConverter() CodeActionKind? kind,
     List<Diagnostic>? diagnostics,
     bool? isPreferred,
     CodeActionDisabled? disabled,
@@ -4863,37 +3099,8 @@ abstract class CodeAction with _$CodeAction {
     LSPAny? data,
   }) = _CodeAction;
 
-  static CodeAction fromJson(Map<String, Object?> json) => CodeAction(
-    title: json['title'] as String,
-    kind: json['kind'] == null ? null : CodeActionKind(json['kind'] as String),
-    diagnostics: (json['diagnostics'] as List<Object?>?)
-        ?.map((e) => Diagnostic.fromJson(e as Map<String, Object?>))
-        .toList(),
-    isPreferred: json['isPreferred'] as bool?,
-    disabled: json['disabled'] == null
-        ? null
-        : CodeActionDisabled.fromJson(json['disabled'] as Map<String, Object?>),
-    edit: json['edit'] == null
-        ? null
-        : WorkspaceEdit.fromJson(json['edit'] as Map<String, Object?>),
-    command: json['command'] == null
-        ? null
-        : Command.fromJson(json['command'] as Map<String, Object?>),
-    data: json['data'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'title': title,
-      'kind': kind?.value,
-      'diagnostics': diagnostics?.map((e) => e.toJson()).toList(),
-      'isPreferred': isPreferred,
-      'disabled': disabled?.toJson(),
-      'edit': edit?.toJson(),
-      'command': command?.toJson(),
-      'data': data,
-    };
-  }
+  factory CodeAction.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionFromJson(json);
 }
 
 /// Registration options for a {@link CodeActionRequest}.
@@ -4905,28 +3112,12 @@ abstract class CodeActionRegistrationOptions
   const factory CodeActionRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
-    List<CodeActionKind>? codeActionKinds,
+    @_CodeActionKindListConverter() List<CodeActionKind>? codeActionKinds,
     bool? resolveProvider,
   }) = _CodeActionRegistrationOptions;
 
-  static CodeActionRegistrationOptions fromJson(Map<String, Object?> json) =>
-      CodeActionRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        codeActionKinds: (json['codeActionKinds'] as List<Object?>?)
-            ?.map((e) => e as CodeActionKind)
-            .toList(),
-        resolveProvider: json['resolveProvider'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'codeActionKinds': codeActionKinds,
-      'resolveProvider': resolveProvider,
-    };
-  }
+  factory CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionRegistrationOptionsFromJson(json);
 }
 
 /// The parameters of a {@link WorkspaceSymbolRequest}.
@@ -4935,29 +3126,13 @@ abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
   const WorkspaceSymbolParams._();
 
   const factory WorkspaceSymbolParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required String query,
   }) = _WorkspaceSymbolParams;
 
-  static WorkspaceSymbolParams fromJson(Map<String, Object?> json) =>
-      WorkspaceSymbolParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        query: json['query'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'query': query,
-    };
-  }
+  factory WorkspaceSymbolParams.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceSymbolParamsFromJson(json);
 }
 
 /// A special workspace symbol that supports locations without a range.
@@ -4971,32 +3146,15 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
 
   const factory WorkspaceSymbol({
     required String name,
-    required SymbolKind kind,
-    List<SymbolTag>? tags,
+    @_SymbolKindConverter() required SymbolKind kind,
+    @_SymbolTagListConverter() List<SymbolTag>? tags,
     String? containerName,
     required Object location,
     LSPAny? data,
   }) = _WorkspaceSymbol;
 
-  static WorkspaceSymbol fromJson(Map<String, Object?> json) => WorkspaceSymbol(
-    name: json['name'] as String,
-    kind: SymbolKind.values.firstWhere((e) => e.value == json['kind'] as int),
-    tags: (json['tags'] as List<Object?>?)?.map((e) => e as SymbolTag).toList(),
-    containerName: json['containerName'] as String?,
-    location: json['location'] as Object,
-    data: json['data'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'name': name,
-      'kind': kind.value,
-      'tags': tags,
-      'containerName': containerName,
-      'location': location,
-      'data': data,
-    };
-  }
+  factory WorkspaceSymbol.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceSymbolFromJson(json);
 }
 
 /// Registration options for a {@link WorkspaceSymbolRequest}.
@@ -5010,19 +3168,9 @@ abstract class WorkspaceSymbolRegistrationOptions
     bool? resolveProvider,
   }) = _WorkspaceSymbolRegistrationOptions;
 
-  static WorkspaceSymbolRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceSymbolRegistrationOptions(
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    resolveProvider: json['resolveProvider'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'resolveProvider': resolveProvider,
-    };
-  }
+  factory WorkspaceSymbolRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceSymbolRegistrationOptionsFromJson(json);
 }
 
 /// The parameters of a {@link CodeLensRequest}.
@@ -5031,30 +3179,13 @@ abstract class CodeLensParams with _$CodeLensParams {
   const CodeLensParams._();
 
   const factory CodeLensParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
   }) = _CodeLensParams;
 
-  static CodeLensParams fromJson(Map<String, Object?> json) => CodeLensParams(
-    workDoneToken: json['workDoneToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['workDoneToken']),
-    partialResultToken: json['partialResultToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['partialResultToken']),
-    textDocument: TextDocumentIdentifier.fromJson(
-      json['textDocument'] as Map<String, Object?>,
-    ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-    };
-  }
+  factory CodeLensParams.fromJson(Map<String, dynamic> json) =>
+      _$CodeLensParamsFromJson(json);
 }
 
 /// A code lens represents a {@link Command command} that should be shown along with
@@ -5072,21 +3203,8 @@ abstract class CodeLens with _$CodeLens {
     LSPAny? data,
   }) = _CodeLens;
 
-  static CodeLens fromJson(Map<String, Object?> json) => CodeLens(
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    command: json['command'] == null
-        ? null
-        : Command.fromJson(json['command'] as Map<String, Object?>),
-    data: json['data'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'range': range.toJson(),
-      'command': command?.toJson(),
-      'data': data,
-    };
-  }
+  factory CodeLens.fromJson(Map<String, dynamic> json) =>
+      _$CodeLensFromJson(json);
 }
 
 /// Registration options for a {@link CodeLensRequest}.
@@ -5100,20 +3218,8 @@ abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
     bool? resolveProvider,
   }) = _CodeLensRegistrationOptions;
 
-  static CodeLensRegistrationOptions fromJson(Map<String, Object?> json) =>
-      CodeLensRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        resolveProvider: json['resolveProvider'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'resolveProvider': resolveProvider,
-    };
-  }
+  factory CodeLensRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$CodeLensRegistrationOptionsFromJson(json);
 }
 
 /// The parameters of a {@link DocumentLinkRequest}.
@@ -5122,31 +3228,13 @@ abstract class DocumentLinkParams with _$DocumentLinkParams {
   const DocumentLinkParams._();
 
   const factory DocumentLinkParams({
-    ProgressToken? workDoneToken,
-    ProgressToken? partialResultToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
     required TextDocumentIdentifier textDocument,
   }) = _DocumentLinkParams;
 
-  static DocumentLinkParams fromJson(Map<String, Object?> json) =>
-      DocumentLinkParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'partialResultToken': partialResultToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-    };
-  }
+  factory DocumentLinkParams.fromJson(Map<String, dynamic> json) =>
+      _$DocumentLinkParamsFromJson(json);
 }
 
 /// A document link is a range in a text document that links to an internal or external resource, like another
@@ -5162,21 +3250,8 @@ abstract class DocumentLink with _$DocumentLink {
     LSPAny? data,
   }) = _DocumentLink;
 
-  static DocumentLink fromJson(Map<String, Object?> json) => DocumentLink(
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    target: json['target'] as String?,
-    tooltip: json['tooltip'] as String?,
-    data: json['data'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'range': range.toJson(),
-      'target': target,
-      'tooltip': tooltip,
-      'data': data,
-    };
-  }
+  factory DocumentLink.fromJson(Map<String, dynamic> json) =>
+      _$DocumentLinkFromJson(json);
 }
 
 /// Registration options for a {@link DocumentLinkRequest}.
@@ -5191,20 +3266,8 @@ abstract class DocumentLinkRegistrationOptions
     bool? resolveProvider,
   }) = _DocumentLinkRegistrationOptions;
 
-  static DocumentLinkRegistrationOptions fromJson(Map<String, Object?> json) =>
-      DocumentLinkRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        resolveProvider: json['resolveProvider'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'resolveProvider': resolveProvider,
-    };
-  }
+  factory DocumentLinkRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$DocumentLinkRegistrationOptionsFromJson(json);
 }
 
 /// The parameters of a {@link DocumentFormattingRequest}.
@@ -5213,31 +3276,13 @@ abstract class DocumentFormattingParams with _$DocumentFormattingParams {
   const DocumentFormattingParams._();
 
   const factory DocumentFormattingParams({
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
     required FormattingOptions options,
   }) = _DocumentFormattingParams;
 
-  static DocumentFormattingParams fromJson(Map<String, Object?> json) =>
-      DocumentFormattingParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        options: FormattingOptions.fromJson(
-          json['options'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'options': options.toJson(),
-    };
-  }
+  factory DocumentFormattingParams.fromJson(Map<String, dynamic> json) =>
+      _$DocumentFormattingParamsFromJson(json);
 }
 
 /// Registration options for a {@link DocumentFormattingRequest}.
@@ -5251,19 +3296,9 @@ abstract class DocumentFormattingRegistrationOptions
     bool? workDoneProgress,
   }) = _DocumentFormattingRegistrationOptions;
 
-  static DocumentFormattingRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => DocumentFormattingRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-    };
-  }
+  factory DocumentFormattingRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentFormattingRegistrationOptionsFromJson(json);
 }
 
 /// The parameters of a {@link DocumentRangeFormattingRequest}.
@@ -5273,34 +3308,14 @@ abstract class DocumentRangeFormattingParams
   const DocumentRangeFormattingParams._();
 
   const factory DocumentRangeFormattingParams({
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
     required Range range,
     required FormattingOptions options,
   }) = _DocumentRangeFormattingParams;
 
-  static DocumentRangeFormattingParams fromJson(Map<String, Object?> json) =>
-      DocumentRangeFormattingParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        options: FormattingOptions.fromJson(
-          json['options'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'range': range.toJson(),
-      'options': options.toJson(),
-    };
-  }
+  factory DocumentRangeFormattingParams.fromJson(Map<String, dynamic> json) =>
+      _$DocumentRangeFormattingParamsFromJson(json);
 }
 
 /// Registration options for a {@link DocumentRangeFormattingRequest}.
@@ -5315,21 +3330,9 @@ abstract class DocumentRangeFormattingRegistrationOptions
     bool? rangesSupport,
   }) = _DocumentRangeFormattingRegistrationOptions;
 
-  static DocumentRangeFormattingRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => DocumentRangeFormattingRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    rangesSupport: json['rangesSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'rangesSupport': rangesSupport,
-    };
-  }
+  factory DocumentRangeFormattingRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentRangeFormattingRegistrationOptionsFromJson(json);
 }
 
 /// The parameters of a {@link DocumentRangesFormattingRequest}.
@@ -5342,36 +3345,14 @@ abstract class DocumentRangesFormattingParams
   const DocumentRangesFormattingParams._();
 
   const factory DocumentRangesFormattingParams({
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
     required List<Range> ranges,
     required FormattingOptions options,
   }) = _DocumentRangesFormattingParams;
 
-  static DocumentRangesFormattingParams fromJson(Map<String, Object?> json) =>
-      DocumentRangesFormattingParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        ranges: (json['ranges'] as List<Object?>)
-            .map((e) => Range.fromJson(e as Map<String, Object?>))
-            .toList(),
-        options: FormattingOptions.fromJson(
-          json['options'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'ranges': ranges.map((e) => e.toJson()).toList(),
-      'options': options.toJson(),
-    };
-  }
+  factory DocumentRangesFormattingParams.fromJson(Map<String, dynamic> json) =>
+      _$DocumentRangesFormattingParamsFromJson(json);
 }
 
 /// The parameters of a {@link DocumentOnTypeFormattingRequest}.
@@ -5387,26 +3368,8 @@ abstract class DocumentOnTypeFormattingParams
     required FormattingOptions options,
   }) = _DocumentOnTypeFormattingParams;
 
-  static DocumentOnTypeFormattingParams fromJson(Map<String, Object?> json) =>
-      DocumentOnTypeFormattingParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        ch: json['ch'] as String,
-        options: FormattingOptions.fromJson(
-          json['options'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'ch': ch,
-      'options': options.toJson(),
-    };
-  }
+  factory DocumentOnTypeFormattingParams.fromJson(Map<String, dynamic> json) =>
+      _$DocumentOnTypeFormattingParamsFromJson(json);
 }
 
 /// Registration options for a {@link DocumentOnTypeFormattingRequest}.
@@ -5421,23 +3384,9 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
     List<String>? moreTriggerCharacter,
   }) = _DocumentOnTypeFormattingRegistrationOptions;
 
-  static DocumentOnTypeFormattingRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => DocumentOnTypeFormattingRegistrationOptions(
-    documentSelector: json['documentSelector'] as DocumentSelector?,
-    firstTriggerCharacter: json['firstTriggerCharacter'] as String,
-    moreTriggerCharacter: (json['moreTriggerCharacter'] as List<Object?>?)
-        ?.map((e) => e as String)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'firstTriggerCharacter': firstTriggerCharacter,
-      'moreTriggerCharacter': moreTriggerCharacter,
-    };
-  }
+  factory DocumentOnTypeFormattingRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentOnTypeFormattingRegistrationOptionsFromJson(json);
 }
 
 /// The parameters of a {@link RenameRequest}.
@@ -5446,31 +3395,14 @@ abstract class RenameParams with _$RenameParams {
   const RenameParams._();
 
   const factory RenameParams({
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
     required Position position,
     required String newName,
   }) = _RenameParams;
 
-  static RenameParams fromJson(Map<String, Object?> json) => RenameParams(
-    workDoneToken: json['workDoneToken'] == null
-        ? null
-        : ProgressToken.fromJson(json['workDoneToken']),
-    textDocument: TextDocumentIdentifier.fromJson(
-      json['textDocument'] as Map<String, Object?>,
-    ),
-    position: Position.fromJson(json['position'] as Map<String, Object?>),
-    newName: json['newName'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'newName': newName,
-    };
-  }
+  factory RenameParams.fromJson(Map<String, dynamic> json) =>
+      _$RenameParamsFromJson(json);
 }
 
 /// Registration options for a {@link RenameRequest}.
@@ -5484,20 +3416,8 @@ abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
     bool? prepareProvider,
   }) = _RenameRegistrationOptions;
 
-  static RenameRegistrationOptions fromJson(Map<String, Object?> json) =>
-      RenameRegistrationOptions(
-        documentSelector: json['documentSelector'] as DocumentSelector?,
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        prepareProvider: json['prepareProvider'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentSelector': documentSelector,
-      'workDoneProgress': workDoneProgress,
-      'prepareProvider': prepareProvider,
-    };
-  }
+  factory RenameRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$RenameRegistrationOptionsFromJson(json);
 }
 
 @freezed
@@ -5507,27 +3427,11 @@ abstract class PrepareRenameParams with _$PrepareRenameParams {
   const factory PrepareRenameParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _PrepareRenameParams;
 
-  static PrepareRenameParams fromJson(Map<String, Object?> json) =>
-      PrepareRenameParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-      'workDoneToken': workDoneToken?.toJson(),
-    };
-  }
+  factory PrepareRenameParams.fromJson(Map<String, dynamic> json) =>
+      _$PrepareRenameParamsFromJson(json);
 }
 
 /// The parameters of a {@link ExecuteCommandRequest}.
@@ -5536,29 +3440,13 @@ abstract class ExecuteCommandParams with _$ExecuteCommandParams {
   const ExecuteCommandParams._();
 
   const factory ExecuteCommandParams({
-    ProgressToken? workDoneToken,
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required String command,
     List<LSPAny>? arguments,
   }) = _ExecuteCommandParams;
 
-  static ExecuteCommandParams fromJson(Map<String, Object?> json) =>
-      ExecuteCommandParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-        command: json['command'] as String,
-        arguments: (json['arguments'] as List<Object?>?)
-            ?.map((e) => e as LSPAny)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneToken': workDoneToken?.toJson(),
-      'command': command,
-      'arguments': arguments,
-    };
-  }
+  factory ExecuteCommandParams.fromJson(Map<String, dynamic> json) =>
+      _$ExecuteCommandParamsFromJson(json);
 }
 
 /// Registration options for a {@link ExecuteCommandRequest}.
@@ -5572,21 +3460,9 @@ abstract class ExecuteCommandRegistrationOptions
     required List<String> commands,
   }) = _ExecuteCommandRegistrationOptions;
 
-  static ExecuteCommandRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => ExecuteCommandRegistrationOptions(
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    commands: (json['commands'] as List<Object?>)
-        .map((e) => e as String)
-        .toList(),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'commands': commands,
-    };
-  }
+  factory ExecuteCommandRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ExecuteCommandRegistrationOptionsFromJson(json);
 }
 
 /// The parameters passed via an apply workspace edit request.
@@ -5599,15 +3475,8 @@ abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
     required WorkspaceEdit edit,
   }) = _ApplyWorkspaceEditParams;
 
-  static ApplyWorkspaceEditParams fromJson(Map<String, Object?> json) =>
-      ApplyWorkspaceEditParams(
-        label: json['label'] as String?,
-        edit: WorkspaceEdit.fromJson(json['edit'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'label': label, 'edit': edit.toJson()};
-  }
+  factory ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) =>
+      _$ApplyWorkspaceEditParamsFromJson(json);
 }
 
 /// The result returned from the apply workspace edit request.
@@ -5623,20 +3492,8 @@ abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
     int? failedChange,
   }) = _ApplyWorkspaceEditResult;
 
-  static ApplyWorkspaceEditResult fromJson(Map<String, Object?> json) =>
-      ApplyWorkspaceEditResult(
-        applied: json['applied'] as bool,
-        failureReason: json['failureReason'] as String?,
-        failedChange: json['failedChange'] as int?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'applied': applied,
-      'failureReason': failureReason,
-      'failedChange': failedChange,
-    };
-  }
+  factory ApplyWorkspaceEditResult.fromJson(Map<String, dynamic> json) =>
+      _$ApplyWorkspaceEditResultFromJson(json);
 }
 
 @freezed
@@ -5651,24 +3508,8 @@ abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
     int? percentage,
   }) = _WorkDoneProgressBegin;
 
-  static WorkDoneProgressBegin fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressBegin(
-        kind: json['kind'] as String,
-        title: json['title'] as String,
-        cancellable: json['cancellable'] as bool?,
-        message: json['message'] as String?,
-        percentage: json['percentage'] as int?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'kind': kind,
-      'title': title,
-      'cancellable': cancellable,
-      'message': message,
-      'percentage': percentage,
-    };
-  }
+  factory WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) =>
+      _$WorkDoneProgressBeginFromJson(json);
 }
 
 @freezed
@@ -5682,22 +3523,8 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
     int? percentage,
   }) = _WorkDoneProgressReport;
 
-  static WorkDoneProgressReport fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressReport(
-        kind: json['kind'] as String,
-        cancellable: json['cancellable'] as bool?,
-        message: json['message'] as String?,
-        percentage: json['percentage'] as int?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'kind': kind,
-      'cancellable': cancellable,
-      'message': message,
-      'percentage': percentage,
-    };
-  }
+  factory WorkDoneProgressReport.fromJson(Map<String, dynamic> json) =>
+      _$WorkDoneProgressReportFromJson(json);
 }
 
 @freezed
@@ -5707,32 +3534,20 @@ abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
   const factory WorkDoneProgressEnd({required String kind, String? message}) =
       _WorkDoneProgressEnd;
 
-  static WorkDoneProgressEnd fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressEnd(
-        kind: json['kind'] as String,
-        message: json['message'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'kind': kind, 'message': message};
-  }
+  factory WorkDoneProgressEnd.fromJson(Map<String, dynamic> json) =>
+      _$WorkDoneProgressEndFromJson(json);
 }
 
 @freezed
 abstract class SetTraceParams with _$SetTraceParams {
   const SetTraceParams._();
 
-  const factory SetTraceParams({required TraceValues value}) = _SetTraceParams;
+  const factory SetTraceParams({
+    @_TraceValuesConverter() required TraceValues value,
+  }) = _SetTraceParams;
 
-  static SetTraceParams fromJson(Map<String, Object?> json) => SetTraceParams(
-    value: TraceValues.values.firstWhere(
-      (e) => e.value == json['value'] as String,
-    ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'value': value.value};
-  }
+  factory SetTraceParams.fromJson(Map<String, dynamic> json) =>
+      _$SetTraceParamsFromJson(json);
 }
 
 @freezed
@@ -5742,14 +3557,8 @@ abstract class LogTraceParams with _$LogTraceParams {
   const factory LogTraceParams({required String message, String? verbose}) =
       _LogTraceParams;
 
-  static LogTraceParams fromJson(Map<String, Object?> json) => LogTraceParams(
-    message: json['message'] as String,
-    verbose: json['verbose'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'message': message, 'verbose': verbose};
-  }
+  factory LogTraceParams.fromJson(Map<String, dynamic> json) =>
+      _$LogTraceParamsFromJson(json);
 }
 
 @freezed
@@ -5758,12 +3567,8 @@ abstract class CancelParams with _$CancelParams {
 
   const factory CancelParams({required Object id}) = _CancelParams;
 
-  static CancelParams fromJson(Map<String, Object?> json) =>
-      CancelParams(id: json['id'] as Object);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'id': id};
-  }
+  factory CancelParams.fromJson(Map<String, dynamic> json) =>
+      _$CancelParamsFromJson(json);
 }
 
 @freezed
@@ -5771,18 +3576,12 @@ abstract class ProgressParams with _$ProgressParams {
   const ProgressParams._();
 
   const factory ProgressParams({
-    required ProgressToken token,
+    @_ProgressTokenConverter() required ProgressToken token,
     required LSPAny value,
   }) = _ProgressParams;
 
-  static ProgressParams fromJson(Map<String, Object?> json) => ProgressParams(
-    token: ProgressToken.fromJson(json['token']),
-    value: json['value'] as LSPAny,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'token': token.toJson(), 'value': value};
-  }
+  factory ProgressParams.fromJson(Map<String, dynamic> json) =>
+      _$ProgressParamsFromJson(json);
 }
 
 /// A parameter literal used in requests to pass a text document and a position inside that
@@ -5796,60 +3595,32 @@ abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
     required Position position,
   }) = _TextDocumentPositionParams;
 
-  static TextDocumentPositionParams fromJson(Map<String, Object?> json) =>
-      TextDocumentPositionParams(
-        textDocument: TextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        position: Position.fromJson(json['position'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'position': position.toJson(),
-    };
-  }
+  factory TextDocumentPositionParams.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentPositionParamsFromJson(json);
 }
 
 @freezed
 abstract class WorkDoneProgressParams with _$WorkDoneProgressParams {
   const WorkDoneProgressParams._();
 
-  const factory WorkDoneProgressParams({ProgressToken? workDoneToken}) =
-      _WorkDoneProgressParams;
+  const factory WorkDoneProgressParams({
+    @_ProgressTokenConverter() ProgressToken? workDoneToken,
+  }) = _WorkDoneProgressParams;
 
-  static WorkDoneProgressParams fromJson(Map<String, Object?> json) =>
-      WorkDoneProgressParams(
-        workDoneToken: json['workDoneToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['workDoneToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneToken': workDoneToken?.toJson()};
-  }
+  factory WorkDoneProgressParams.fromJson(Map<String, dynamic> json) =>
+      _$WorkDoneProgressParamsFromJson(json);
 }
 
 @freezed
 abstract class PartialResultParams with _$PartialResultParams {
   const PartialResultParams._();
 
-  const factory PartialResultParams({ProgressToken? partialResultToken}) =
-      _PartialResultParams;
+  const factory PartialResultParams({
+    @_ProgressTokenConverter() ProgressToken? partialResultToken,
+  }) = _PartialResultParams;
 
-  static PartialResultParams fromJson(Map<String, Object?> json) =>
-      PartialResultParams(
-        partialResultToken: json['partialResultToken'] == null
-            ? null
-            : ProgressToken.fromJson(json['partialResultToken']),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'partialResultToken': partialResultToken?.toJson(),
-    };
-  }
+  factory PartialResultParams.fromJson(Map<String, dynamic> json) =>
+      _$PartialResultParamsFromJson(json);
 }
 
 /// Represents the connection of two locations. Provides additional metadata over normal {@link Location locations},
@@ -5865,25 +3636,8 @@ abstract class LocationLink with _$LocationLink {
     required Range targetSelectionRange,
   }) = _LocationLink;
 
-  static LocationLink fromJson(Map<String, Object?> json) => LocationLink(
-    originSelectionRange: json['originSelectionRange'] == null
-        ? null
-        : Range.fromJson(json['originSelectionRange'] as Map<String, Object?>),
-    targetUri: json['targetUri'] as String,
-    targetRange: Range.fromJson(json['targetRange'] as Map<String, Object?>),
-    targetSelectionRange: Range.fromJson(
-      json['targetSelectionRange'] as Map<String, Object?>,
-    ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'originSelectionRange': originSelectionRange?.toJson(),
-      'targetUri': targetUri,
-      'targetRange': targetRange.toJson(),
-      'targetSelectionRange': targetSelectionRange.toJson(),
-    };
-  }
+  factory LocationLink.fromJson(Map<String, dynamic> json) =>
+      _$LocationLinkFromJson(json);
 }
 
 /// A range in a text document expressed as (zero-based) start and end positions.
@@ -5904,14 +3658,7 @@ abstract class Range with _$Range {
   const factory Range({required Position start, required Position end}) =
       _Range;
 
-  static Range fromJson(Map<String, Object?> json) => Range(
-    start: Position.fromJson(json['start'] as Map<String, Object?>),
-    end: Position.fromJson(json['end'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'start': start.toJson(), 'end': end.toJson()};
-  }
+  factory Range.fromJson(Map<String, dynamic> json) => _$RangeFromJson(json);
 }
 
 @freezed
@@ -5921,14 +3668,8 @@ abstract class ImplementationOptions with _$ImplementationOptions {
   const factory ImplementationOptions({bool? workDoneProgress}) =
       _ImplementationOptions;
 
-  static ImplementationOptions fromJson(Map<String, Object?> json) =>
-      ImplementationOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory ImplementationOptions.fromJson(Map<String, dynamic> json) =>
+      _$ImplementationOptionsFromJson(json);
 }
 
 /// Static registration options to be returned in the initialize
@@ -5940,12 +3681,8 @@ abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
   const factory StaticRegistrationOptions({String? id}) =
       _StaticRegistrationOptions;
 
-  static StaticRegistrationOptions fromJson(Map<String, Object?> json) =>
-      StaticRegistrationOptions(id: json['id'] as String?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'id': id};
-  }
+  factory StaticRegistrationOptions.fromJson(Map<String, dynamic> json) =>
+      _$StaticRegistrationOptionsFromJson(json);
 }
 
 @freezed
@@ -5955,14 +3692,8 @@ abstract class TypeDefinitionOptions with _$TypeDefinitionOptions {
   const factory TypeDefinitionOptions({bool? workDoneProgress}) =
       _TypeDefinitionOptions;
 
-  static TypeDefinitionOptions fromJson(Map<String, Object?> json) =>
-      TypeDefinitionOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory TypeDefinitionOptions.fromJson(Map<String, dynamic> json) =>
+      _$TypeDefinitionOptionsFromJson(json);
 }
 
 /// The workspace folder change event.
@@ -5975,22 +3706,8 @@ abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
     required List<WorkspaceFolder> removed,
   }) = _WorkspaceFoldersChangeEvent;
 
-  static WorkspaceFoldersChangeEvent fromJson(Map<String, Object?> json) =>
-      WorkspaceFoldersChangeEvent(
-        added: (json['added'] as List<Object?>)
-            .map((e) => WorkspaceFolder.fromJson(e as Map<String, Object?>))
-            .toList(),
-        removed: (json['removed'] as List<Object?>)
-            .map((e) => WorkspaceFolder.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'added': added.map((e) => e.toJson()).toList(),
-      'removed': removed.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory WorkspaceFoldersChangeEvent.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceFoldersChangeEventFromJson(json);
 }
 
 @freezed
@@ -6000,15 +3717,8 @@ abstract class ConfigurationItem with _$ConfigurationItem {
   const factory ConfigurationItem({String? scopeUri, String? section}) =
       _ConfigurationItem;
 
-  static ConfigurationItem fromJson(Map<String, Object?> json) =>
-      ConfigurationItem(
-        scopeUri: json['scopeUri'] as String?,
-        section: json['section'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'scopeUri': scopeUri, 'section': section};
-  }
+  factory ConfigurationItem.fromJson(Map<String, dynamic> json) =>
+      _$ConfigurationItemFromJson(json);
 }
 
 /// A literal to identify a text document in the client.
@@ -6019,12 +3729,8 @@ abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
   const factory TextDocumentIdentifier({required String uri}) =
       _TextDocumentIdentifier;
 
-  static TextDocumentIdentifier fromJson(Map<String, Object?> json) =>
-      TextDocumentIdentifier(uri: json['uri'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri};
-  }
+  factory TextDocumentIdentifier.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentIdentifierFromJson(json);
 }
 
 /// Represents a color in RGBA space.
@@ -6039,21 +3745,7 @@ abstract class Color with _$Color {
     required double alpha,
   }) = _Color;
 
-  static Color fromJson(Map<String, Object?> json) => Color(
-    red: json['red'] as double,
-    green: json['green'] as double,
-    blue: json['blue'] as double,
-    alpha: json['alpha'] as double,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'red': red,
-      'green': green,
-      'blue': blue,
-      'alpha': alpha,
-    };
-  }
+  factory Color.fromJson(Map<String, dynamic> json) => _$ColorFromJson(json);
 }
 
 @freezed
@@ -6063,12 +3755,8 @@ abstract class DocumentColorOptions with _$DocumentColorOptions {
   const factory DocumentColorOptions({bool? workDoneProgress}) =
       _DocumentColorOptions;
 
-  static DocumentColorOptions fromJson(Map<String, Object?> json) =>
-      DocumentColorOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory DocumentColorOptions.fromJson(Map<String, dynamic> json) =>
+      _$DocumentColorOptionsFromJson(json);
 }
 
 @freezed
@@ -6078,12 +3766,8 @@ abstract class FoldingRangeOptions with _$FoldingRangeOptions {
   const factory FoldingRangeOptions({bool? workDoneProgress}) =
       _FoldingRangeOptions;
 
-  static FoldingRangeOptions fromJson(Map<String, Object?> json) =>
-      FoldingRangeOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory FoldingRangeOptions.fromJson(Map<String, dynamic> json) =>
+      _$FoldingRangeOptionsFromJson(json);
 }
 
 @freezed
@@ -6093,12 +3777,8 @@ abstract class DeclarationOptions with _$DeclarationOptions {
   const factory DeclarationOptions({bool? workDoneProgress}) =
       _DeclarationOptions;
 
-  static DeclarationOptions fromJson(Map<String, Object?> json) =>
-      DeclarationOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory DeclarationOptions.fromJson(Map<String, dynamic> json) =>
+      _$DeclarationOptionsFromJson(json);
 }
 
 /// Position in a text document expressed as zero-based line and character
@@ -6135,12 +3815,8 @@ abstract class Position with _$Position {
   const factory Position({required int line, required int character}) =
       _Position;
 
-  static Position fromJson(Map<String, Object?> json) =>
-      Position(line: json['line'] as int, character: json['character'] as int);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'line': line, 'character': character};
-  }
+  factory Position.fromJson(Map<String, dynamic> json) =>
+      _$PositionFromJson(json);
 }
 
 @freezed
@@ -6150,14 +3826,8 @@ abstract class SelectionRangeOptions with _$SelectionRangeOptions {
   const factory SelectionRangeOptions({bool? workDoneProgress}) =
       _SelectionRangeOptions;
 
-  static SelectionRangeOptions fromJson(Map<String, Object?> json) =>
-      SelectionRangeOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory SelectionRangeOptions.fromJson(Map<String, dynamic> json) =>
+      _$SelectionRangeOptionsFromJson(json);
 }
 
 /// Call hierarchy options used during static registration.
@@ -6170,12 +3840,8 @@ abstract class CallHierarchyOptions with _$CallHierarchyOptions {
   const factory CallHierarchyOptions({bool? workDoneProgress}) =
       _CallHierarchyOptions;
 
-  static CallHierarchyOptions fromJson(Map<String, Object?> json) =>
-      CallHierarchyOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory CallHierarchyOptions.fromJson(Map<String, dynamic> json) =>
+      _$CallHierarchyOptionsFromJson(json);
 }
 
 /// @since 3.16.0
@@ -6190,24 +3856,8 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
     Object? full,
   }) = _SemanticTokensOptions;
 
-  static SemanticTokensOptions fromJson(Map<String, Object?> json) =>
-      SemanticTokensOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        legend: SemanticTokensLegend.fromJson(
-          json['legend'] as Map<String, Object?>,
-        ),
-        range: json['range'],
-        full: json['full'],
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'legend': legend.toJson(),
-      'range': range,
-      'full': full,
-    };
-  }
+  factory SemanticTokensOptions.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensOptionsFromJson(json);
 }
 
 /// @since 3.16.0
@@ -6221,20 +3871,8 @@ abstract class SemanticTokensEdit with _$SemanticTokensEdit {
     List<int>? data,
   }) = _SemanticTokensEdit;
 
-  static SemanticTokensEdit fromJson(Map<String, Object?> json) =>
-      SemanticTokensEdit(
-        start: json['start'] as int,
-        deleteCount: json['deleteCount'] as int,
-        data: (json['data'] as List<Object?>?)?.map((e) => e as int).toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'start': start,
-      'deleteCount': deleteCount,
-      'data': data,
-    };
-  }
+  factory SemanticTokensEdit.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensEditFromJson(json);
 }
 
 @freezed
@@ -6244,14 +3882,8 @@ abstract class LinkedEditingRangeOptions with _$LinkedEditingRangeOptions {
   const factory LinkedEditingRangeOptions({bool? workDoneProgress}) =
       _LinkedEditingRangeOptions;
 
-  static LinkedEditingRangeOptions fromJson(Map<String, Object?> json) =>
-      LinkedEditingRangeOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory LinkedEditingRangeOptions.fromJson(Map<String, dynamic> json) =>
+      _$LinkedEditingRangeOptionsFromJson(json);
 }
 
 /// Represents information on a file/folder create.
@@ -6263,12 +3895,8 @@ abstract class FileCreate with _$FileCreate {
 
   const factory FileCreate({required String uri}) = _FileCreate;
 
-  static FileCreate fromJson(Map<String, Object?> json) =>
-      FileCreate(uri: json['uri'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri};
-  }
+  factory FileCreate.fromJson(Map<String, dynamic> json) =>
+      _$FileCreateFromJson(json);
 }
 
 /// Describes textual changes on a text document. A TextDocumentEdit describes all changes
@@ -6284,22 +3912,8 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
     required List<Object> edits,
   }) = _TextDocumentEdit;
 
-  static TextDocumentEdit fromJson(Map<String, Object?> json) =>
-      TextDocumentEdit(
-        textDocument: OptionalVersionedTextDocumentIdentifier.fromJson(
-          json['textDocument'] as Map<String, Object?>,
-        ),
-        edits: (json['edits'] as List<Object?>)
-            .map((e) => e as Object)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'textDocument': textDocument.toJson(),
-      'edits': edits,
-    };
-  }
+  factory TextDocumentEdit.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentEditFromJson(json);
 }
 
 /// Create file operation.
@@ -6314,23 +3928,8 @@ abstract class CreateFile with _$CreateFile {
     CreateFileOptions? options,
   }) = _CreateFile;
 
-  static CreateFile fromJson(Map<String, Object?> json) => CreateFile(
-    annotationId: json['annotationId'] as ChangeAnnotationIdentifier?,
-    kind: json['kind'] as String,
-    uri: json['uri'] as String,
-    options: json['options'] == null
-        ? null
-        : CreateFileOptions.fromJson(json['options'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'annotationId': annotationId,
-      'kind': kind,
-      'uri': uri,
-      'options': options?.toJson(),
-    };
-  }
+  factory CreateFile.fromJson(Map<String, dynamic> json) =>
+      _$CreateFileFromJson(json);
 }
 
 /// Rename file operation
@@ -6346,25 +3945,8 @@ abstract class RenameFile with _$RenameFile {
     RenameFileOptions? options,
   }) = _RenameFile;
 
-  static RenameFile fromJson(Map<String, Object?> json) => RenameFile(
-    annotationId: json['annotationId'] as ChangeAnnotationIdentifier?,
-    kind: json['kind'] as String,
-    oldUri: json['oldUri'] as String,
-    newUri: json['newUri'] as String,
-    options: json['options'] == null
-        ? null
-        : RenameFileOptions.fromJson(json['options'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'annotationId': annotationId,
-      'kind': kind,
-      'oldUri': oldUri,
-      'newUri': newUri,
-      'options': options?.toJson(),
-    };
-  }
+  factory RenameFile.fromJson(Map<String, dynamic> json) =>
+      _$RenameFileFromJson(json);
 }
 
 /// Delete file operation
@@ -6379,23 +3961,8 @@ abstract class DeleteFile with _$DeleteFile {
     DeleteFileOptions? options,
   }) = _DeleteFile;
 
-  static DeleteFile fromJson(Map<String, Object?> json) => DeleteFile(
-    annotationId: json['annotationId'] as ChangeAnnotationIdentifier?,
-    kind: json['kind'] as String,
-    uri: json['uri'] as String,
-    options: json['options'] == null
-        ? null
-        : DeleteFileOptions.fromJson(json['options'] as Map<String, Object?>),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'annotationId': annotationId,
-      'kind': kind,
-      'uri': uri,
-      'options': options?.toJson(),
-    };
-  }
+  factory DeleteFile.fromJson(Map<String, dynamic> json) =>
+      _$DeleteFileFromJson(json);
 }
 
 /// Additional information that describes document changes.
@@ -6411,20 +3978,8 @@ abstract class ChangeAnnotation with _$ChangeAnnotation {
     String? description,
   }) = _ChangeAnnotation;
 
-  static ChangeAnnotation fromJson(Map<String, Object?> json) =>
-      ChangeAnnotation(
-        label: json['label'] as String,
-        needsConfirmation: json['needsConfirmation'] as bool?,
-        description: json['description'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'label': label,
-      'needsConfirmation': needsConfirmation,
-      'description': description,
-    };
-  }
+  factory ChangeAnnotation.fromJson(Map<String, dynamic> json) =>
+      _$ChangeAnnotationFromJson(json);
 }
 
 /// A filter to describe in which file operation requests or notifications
@@ -6440,17 +3995,8 @@ abstract class FileOperationFilter with _$FileOperationFilter {
     required FileOperationPattern pattern,
   }) = _FileOperationFilter;
 
-  static FileOperationFilter fromJson(Map<String, Object?> json) =>
-      FileOperationFilter(
-        scheme: json['scheme'] as String?,
-        pattern: FileOperationPattern.fromJson(
-          json['pattern'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'scheme': scheme, 'pattern': pattern.toJson()};
-  }
+  factory FileOperationFilter.fromJson(Map<String, dynamic> json) =>
+      _$FileOperationFilterFromJson(json);
 }
 
 /// Represents information on a file/folder rename.
@@ -6463,14 +4009,8 @@ abstract class FileRename with _$FileRename {
   const factory FileRename({required String oldUri, required String newUri}) =
       _FileRename;
 
-  static FileRename fromJson(Map<String, Object?> json) => FileRename(
-    oldUri: json['oldUri'] as String,
-    newUri: json['newUri'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'oldUri': oldUri, 'newUri': newUri};
-  }
+  factory FileRename.fromJson(Map<String, dynamic> json) =>
+      _$FileRenameFromJson(json);
 }
 
 /// Represents information on a file/folder delete.
@@ -6482,12 +4022,8 @@ abstract class FileDelete with _$FileDelete {
 
   const factory FileDelete({required String uri}) = _FileDelete;
 
-  static FileDelete fromJson(Map<String, Object?> json) =>
-      FileDelete(uri: json['uri'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri};
-  }
+  factory FileDelete.fromJson(Map<String, dynamic> json) =>
+      _$FileDeleteFromJson(json);
 }
 
 @freezed
@@ -6496,12 +4032,8 @@ abstract class MonikerOptions with _$MonikerOptions {
 
   const factory MonikerOptions({bool? workDoneProgress}) = _MonikerOptions;
 
-  static MonikerOptions fromJson(Map<String, Object?> json) =>
-      MonikerOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory MonikerOptions.fromJson(Map<String, dynamic> json) =>
+      _$MonikerOptionsFromJson(json);
 }
 
 /// Type hierarchy options used during static registration.
@@ -6514,12 +4046,8 @@ abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
   const factory TypeHierarchyOptions({bool? workDoneProgress}) =
       _TypeHierarchyOptions;
 
-  static TypeHierarchyOptions fromJson(Map<String, Object?> json) =>
-      TypeHierarchyOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory TypeHierarchyOptions.fromJson(Map<String, dynamic> json) =>
+      _$TypeHierarchyOptionsFromJson(json);
 }
 
 /// @since 3.17.0
@@ -6532,20 +4060,8 @@ abstract class InlineValueContext with _$InlineValueContext {
     required Range stoppedLocation,
   }) = _InlineValueContext;
 
-  static InlineValueContext fromJson(Map<String, Object?> json) =>
-      InlineValueContext(
-        frameId: json['frameId'] as int,
-        stoppedLocation: Range.fromJson(
-          json['stoppedLocation'] as Map<String, Object?>,
-        ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'frameId': frameId,
-      'stoppedLocation': stoppedLocation.toJson(),
-    };
-  }
+  factory InlineValueContext.fromJson(Map<String, dynamic> json) =>
+      _$InlineValueContextFromJson(json);
 }
 
 /// Provide inline value as text.
@@ -6558,14 +4074,8 @@ abstract class InlineValueText with _$InlineValueText {
   const factory InlineValueText({required Range range, required String text}) =
       _InlineValueText;
 
-  static InlineValueText fromJson(Map<String, Object?> json) => InlineValueText(
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    text: json['text'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'range': range.toJson(), 'text': text};
-  }
+  factory InlineValueText.fromJson(Map<String, dynamic> json) =>
+      _$InlineValueTextFromJson(json);
 }
 
 /// Provide inline value through a variable lookup.
@@ -6583,20 +4093,8 @@ abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
     required bool caseSensitiveLookup,
   }) = _InlineValueVariableLookup;
 
-  static InlineValueVariableLookup fromJson(Map<String, Object?> json) =>
-      InlineValueVariableLookup(
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        variableName: json['variableName'] as String?,
-        caseSensitiveLookup: json['caseSensitiveLookup'] as bool,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'range': range.toJson(),
-      'variableName': variableName,
-      'caseSensitiveLookup': caseSensitiveLookup,
-    };
-  }
+  factory InlineValueVariableLookup.fromJson(Map<String, dynamic> json) =>
+      _$InlineValueVariableLookupFromJson(json);
 }
 
 /// Provide an inline value through an expression evaluation.
@@ -6614,15 +4112,9 @@ abstract class InlineValueEvaluatableExpression
     String? expression,
   }) = _InlineValueEvaluatableExpression;
 
-  static InlineValueEvaluatableExpression fromJson(Map<String, Object?> json) =>
-      InlineValueEvaluatableExpression(
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        expression: json['expression'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'range': range.toJson(), 'expression': expression};
-  }
+  factory InlineValueEvaluatableExpression.fromJson(
+    Map<String, dynamic> json,
+  ) => _$InlineValueEvaluatableExpressionFromJson(json);
 }
 
 /// Inline value options used during static registration.
@@ -6635,12 +4127,8 @@ abstract class InlineValueOptions with _$InlineValueOptions {
   const factory InlineValueOptions({bool? workDoneProgress}) =
       _InlineValueOptions;
 
-  static InlineValueOptions fromJson(Map<String, Object?> json) =>
-      InlineValueOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory InlineValueOptions.fromJson(Map<String, dynamic> json) =>
+      _$InlineValueOptionsFromJson(json);
 }
 
 /// An inlay hint label part allows for interactive and composite labels
@@ -6658,26 +4146,8 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
     Command? command,
   }) = _InlayHintLabelPart;
 
-  static InlayHintLabelPart fromJson(Map<String, Object?> json) =>
-      InlayHintLabelPart(
-        value: json['value'] as String,
-        tooltip: json['tooltip'],
-        location: json['location'] == null
-            ? null
-            : Location.fromJson(json['location'] as Map<String, Object?>),
-        command: json['command'] == null
-            ? null
-            : Command.fromJson(json['command'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'value': value,
-      'tooltip': tooltip,
-      'location': location?.toJson(),
-      'command': command?.toJson(),
-    };
-  }
+  factory InlayHintLabelPart.fromJson(Map<String, dynamic> json) =>
+      _$InlayHintLabelPartFromJson(json);
 }
 
 /// A `MarkupContent` literal represents a string value which content is interpreted base on its
@@ -6707,20 +4177,12 @@ abstract class MarkupContent with _$MarkupContent {
   const MarkupContent._();
 
   const factory MarkupContent({
-    required MarkupKind kind,
+    @_MarkupKindConverter() required MarkupKind kind,
     required String value,
   }) = _MarkupContent;
 
-  static MarkupContent fromJson(Map<String, Object?> json) => MarkupContent(
-    kind: MarkupKind.values.firstWhere(
-      (e) => e.value == json['kind'] as String,
-    ),
-    value: json['value'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'kind': kind.value, 'value': value};
-  }
+  factory MarkupContent.fromJson(Map<String, dynamic> json) =>
+      _$MarkupContentFromJson(json);
 }
 
 /// Inlay hint options used during static registration.
@@ -6735,18 +4197,8 @@ abstract class InlayHintOptions with _$InlayHintOptions {
     bool? resolveProvider,
   }) = _InlayHintOptions;
 
-  static InlayHintOptions fromJson(Map<String, Object?> json) =>
-      InlayHintOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        resolveProvider: json['resolveProvider'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'resolveProvider': resolveProvider,
-    };
-  }
+  factory InlayHintOptions.fromJson(Map<String, dynamic> json) =>
+      _$InlayHintOptionsFromJson(json);
 }
 
 /// A full diagnostic report with a set of related documents.
@@ -6764,27 +4216,9 @@ abstract class RelatedFullDocumentDiagnosticReport
     Map<String, Object>? relatedDocuments,
   }) = _RelatedFullDocumentDiagnosticReport;
 
-  static RelatedFullDocumentDiagnosticReport fromJson(
-    Map<String, Object?> json,
-  ) => RelatedFullDocumentDiagnosticReport(
-    kind: json['kind'] as String,
-    resultId: json['resultId'] as String?,
-    items: (json['items'] as List<Object?>)
-        .map((e) => Diagnostic.fromJson(e as Map<String, Object?>))
-        .toList(),
-    relatedDocuments: (json['relatedDocuments'] as Map<String, Object?>?)?.map(
-      (k, v) => MapEntry(k, v as Object),
-    ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'kind': kind,
-      'resultId': resultId,
-      'items': items.map((e) => e.toJson()).toList(),
-      'relatedDocuments': relatedDocuments,
-    };
-  }
+  factory RelatedFullDocumentDiagnosticReport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$RelatedFullDocumentDiagnosticReportFromJson(json);
 }
 
 /// An unchanged diagnostic report with a set of related documents.
@@ -6801,23 +4235,9 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
     Map<String, Object>? relatedDocuments,
   }) = _RelatedUnchangedDocumentDiagnosticReport;
 
-  static RelatedUnchangedDocumentDiagnosticReport fromJson(
-    Map<String, Object?> json,
-  ) => RelatedUnchangedDocumentDiagnosticReport(
-    kind: json['kind'] as String,
-    resultId: json['resultId'] as String,
-    relatedDocuments: (json['relatedDocuments'] as Map<String, Object?>?)?.map(
-      (k, v) => MapEntry(k, v as Object),
-    ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'kind': kind,
-      'resultId': resultId,
-      'relatedDocuments': relatedDocuments,
-    };
-  }
+  factory RelatedUnchangedDocumentDiagnosticReport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
 }
 
 /// A diagnostic report with a full set of problems.
@@ -6834,22 +4254,8 @@ abstract class FullDocumentDiagnosticReport
     required List<Diagnostic> items,
   }) = _FullDocumentDiagnosticReport;
 
-  static FullDocumentDiagnosticReport fromJson(Map<String, Object?> json) =>
-      FullDocumentDiagnosticReport(
-        kind: json['kind'] as String,
-        resultId: json['resultId'] as String?,
-        items: (json['items'] as List<Object?>)
-            .map((e) => Diagnostic.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'kind': kind,
-      'resultId': resultId,
-      'items': items.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) =>
+      _$FullDocumentDiagnosticReportFromJson(json);
 }
 
 /// A diagnostic report indicating that the last returned
@@ -6866,16 +4272,9 @@ abstract class UnchangedDocumentDiagnosticReport
     required String resultId,
   }) = _UnchangedDocumentDiagnosticReport;
 
-  static UnchangedDocumentDiagnosticReport fromJson(
-    Map<String, Object?> json,
-  ) => UnchangedDocumentDiagnosticReport(
-    kind: json['kind'] as String,
-    resultId: json['resultId'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'kind': kind, 'resultId': resultId};
-  }
+  factory UnchangedDocumentDiagnosticReport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$UnchangedDocumentDiagnosticReportFromJson(json);
 }
 
 /// Diagnostic options.
@@ -6892,22 +4291,8 @@ abstract class DiagnosticOptions with _$DiagnosticOptions {
     required bool workspaceDiagnostics,
   }) = _DiagnosticOptions;
 
-  static DiagnosticOptions fromJson(Map<String, Object?> json) =>
-      DiagnosticOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        identifier: json['identifier'] as String?,
-        interFileDependencies: json['interFileDependencies'] as bool,
-        workspaceDiagnostics: json['workspaceDiagnostics'] as bool,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'identifier': identifier,
-      'interFileDependencies': interFileDependencies,
-      'workspaceDiagnostics': workspaceDiagnostics,
-    };
-  }
+  factory DiagnosticOptions.fromJson(Map<String, dynamic> json) =>
+      _$DiagnosticOptionsFromJson(json);
 }
 
 /// A previous result id in a workspace pull request.
@@ -6920,15 +4305,8 @@ abstract class PreviousResultId with _$PreviousResultId {
   const factory PreviousResultId({required String uri, required String value}) =
       _PreviousResultId;
 
-  static PreviousResultId fromJson(Map<String, Object?> json) =>
-      PreviousResultId(
-        uri: json['uri'] as String,
-        value: json['value'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri, 'value': value};
-  }
+  factory PreviousResultId.fromJson(Map<String, dynamic> json) =>
+      _$PreviousResultIdFromJson(json);
 }
 
 /// A notebook document.
@@ -6946,26 +4324,8 @@ abstract class NotebookDocument with _$NotebookDocument {
     required List<NotebookCell> cells,
   }) = _NotebookDocument;
 
-  static NotebookDocument fromJson(Map<String, Object?> json) =>
-      NotebookDocument(
-        uri: json['uri'] as String,
-        notebookType: json['notebookType'] as String,
-        version: json['version'] as int,
-        metadata: json['metadata'] as LSPObject?,
-        cells: (json['cells'] as List<Object?>)
-            .map((e) => NotebookCell.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'uri': uri,
-      'notebookType': notebookType,
-      'version': version,
-      'metadata': metadata,
-      'cells': cells.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory NotebookDocument.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentFromJson(json);
 }
 
 /// An item to transfer a text document from the client to the
@@ -6981,22 +4341,8 @@ abstract class TextDocumentItem with _$TextDocumentItem {
     required String text,
   }) = _TextDocumentItem;
 
-  static TextDocumentItem fromJson(Map<String, Object?> json) =>
-      TextDocumentItem(
-        uri: json['uri'] as String,
-        languageId: json['languageId'] as String,
-        version: json['version'] as int,
-        text: json['text'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'uri': uri,
-      'languageId': languageId,
-      'version': version,
-      'text': text,
-    };
-  }
+  factory TextDocumentItem.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentItemFromJson(json);
 }
 
 /// A versioned notebook document identifier.
@@ -7012,16 +4358,9 @@ abstract class VersionedNotebookDocumentIdentifier
     required String uri,
   }) = _VersionedNotebookDocumentIdentifier;
 
-  static VersionedNotebookDocumentIdentifier fromJson(
-    Map<String, Object?> json,
-  ) => VersionedNotebookDocumentIdentifier(
-    version: json['version'] as int,
-    uri: json['uri'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'version': version, 'uri': uri};
-  }
+  factory VersionedNotebookDocumentIdentifier.fromJson(
+    Map<String, dynamic> json,
+  ) => _$VersionedNotebookDocumentIdentifierFromJson(json);
 }
 
 /// A change event for a notebook document.
@@ -7036,19 +4375,8 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
     NotebookDocumentChangeEventCells? cells,
   }) = _NotebookDocumentChangeEvent;
 
-  static NotebookDocumentChangeEvent fromJson(Map<String, Object?> json) =>
-      NotebookDocumentChangeEvent(
-        metadata: json['metadata'] as LSPObject?,
-        cells: json['cells'] == null
-            ? null
-            : NotebookDocumentChangeEventCells.fromJson(
-                json['cells'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'metadata': metadata, 'cells': cells?.toJson()};
-  }
+  factory NotebookDocumentChangeEvent.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentChangeEventFromJson(json);
 }
 
 /// A literal to identify a notebook document in the client.
@@ -7061,12 +4389,8 @@ abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
   const factory NotebookDocumentIdentifier({required String uri}) =
       _NotebookDocumentIdentifier;
 
-  static NotebookDocumentIdentifier fromJson(Map<String, Object?> json) =>
-      NotebookDocumentIdentifier(uri: json['uri'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri};
-  }
+  factory NotebookDocumentIdentifier.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentIdentifierFromJson(json);
 }
 
 /// Provides information about the context in which an inline completion was requested.
@@ -7078,28 +4402,13 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
   const InlineCompletionContext._();
 
   const factory InlineCompletionContext({
+    @_InlineCompletionTriggerKindConverter()
     required InlineCompletionTriggerKind triggerKind,
     SelectedCompletionInfo? selectedCompletionInfo,
   }) = _InlineCompletionContext;
 
-  static InlineCompletionContext fromJson(Map<String, Object?> json) =>
-      InlineCompletionContext(
-        triggerKind: InlineCompletionTriggerKind.values.firstWhere(
-          (e) => e.value == json['triggerKind'] as int,
-        ),
-        selectedCompletionInfo: json['selectedCompletionInfo'] == null
-            ? null
-            : SelectedCompletionInfo.fromJson(
-                json['selectedCompletionInfo'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'triggerKind': triggerKind.value,
-      'selectedCompletionInfo': selectedCompletionInfo?.toJson(),
-    };
-  }
+  factory InlineCompletionContext.fromJson(Map<String, dynamic> json) =>
+      _$InlineCompletionContextFromJson(json);
 }
 
 /// A string value used as a snippet is a template which allows to insert text
@@ -7119,12 +4428,8 @@ abstract class StringValue with _$StringValue {
   const factory StringValue({required String kind, required String value}) =
       _StringValue;
 
-  static StringValue fromJson(Map<String, Object?> json) =>
-      StringValue(kind: json['kind'] as String, value: json['value'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'kind': kind, 'value': value};
-  }
+  factory StringValue.fromJson(Map<String, dynamic> json) =>
+      _$StringValueFromJson(json);
 }
 
 /// Inline completion options used during static registration.
@@ -7138,14 +4443,8 @@ abstract class InlineCompletionOptions with _$InlineCompletionOptions {
   const factory InlineCompletionOptions({bool? workDoneProgress}) =
       _InlineCompletionOptions;
 
-  static InlineCompletionOptions fromJson(Map<String, Object?> json) =>
-      InlineCompletionOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory InlineCompletionOptions.fromJson(Map<String, dynamic> json) =>
+      _$InlineCompletionOptionsFromJson(json);
 }
 
 /// General parameters to register for a notification or to register a provider.
@@ -7159,19 +4458,8 @@ abstract class Registration with _$Registration {
     LSPAny? registerOptions,
   }) = _Registration;
 
-  static Registration fromJson(Map<String, Object?> json) => Registration(
-    id: json['id'] as String,
-    method: json['method'] as String,
-    registerOptions: json['registerOptions'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'id': id,
-      'method': method,
-      'registerOptions': registerOptions,
-    };
-  }
+  factory Registration.fromJson(Map<String, dynamic> json) =>
+      _$RegistrationFromJson(json);
 }
 
 /// General parameters to unregister a request or notification.
@@ -7182,14 +4470,8 @@ abstract class Unregistration with _$Unregistration {
   const factory Unregistration({required String id, required String method}) =
       _Unregistration;
 
-  static Unregistration fromJson(Map<String, Object?> json) => Unregistration(
-    id: json['id'] as String,
-    method: json['method'] as String,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'id': id, 'method': method};
-  }
+  factory Unregistration.fromJson(Map<String, dynamic> json) =>
+      _$UnregistrationFromJson(json);
 }
 
 @freezed
@@ -7201,18 +4483,9 @@ abstract class WorkspaceFoldersInitializeParams
     List<WorkspaceFolder>? workspaceFolders,
   }) = _WorkspaceFoldersInitializeParams;
 
-  static WorkspaceFoldersInitializeParams fromJson(Map<String, Object?> json) =>
-      WorkspaceFoldersInitializeParams(
-        workspaceFolders: (json['workspaceFolders'] as List<Object?>?)
-            ?.map((e) => WorkspaceFolder.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workspaceFolders': workspaceFolders?.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory WorkspaceFoldersInitializeParams.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceFoldersInitializeParamsFromJson(json);
 }
 
 /// Defines the capabilities provided by a language
@@ -7222,7 +4495,7 @@ abstract class ServerCapabilities with _$ServerCapabilities {
   const ServerCapabilities._();
 
   const factory ServerCapabilities({
-    PositionEncodingKind? positionEncoding,
+    @_PositionEncodingKindConverter() PositionEncodingKind? positionEncoding,
     Object? textDocumentSync,
     Object? notebookDocumentSync,
     CompletionOptions? completionProvider,
@@ -7260,119 +4533,8 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     LSPAny? experimental,
   }) = _ServerCapabilities;
 
-  static ServerCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => ServerCapabilities(
-    positionEncoding: json['positionEncoding'] == null
-        ? null
-        : PositionEncodingKind(json['positionEncoding'] as String),
-    textDocumentSync: json['textDocumentSync'],
-    notebookDocumentSync: json['notebookDocumentSync'],
-    completionProvider: json['completionProvider'] == null
-        ? null
-        : CompletionOptions.fromJson(
-            json['completionProvider'] as Map<String, Object?>,
-          ),
-    hoverProvider: json['hoverProvider'],
-    signatureHelpProvider: json['signatureHelpProvider'] == null
-        ? null
-        : SignatureHelpOptions.fromJson(
-            json['signatureHelpProvider'] as Map<String, Object?>,
-          ),
-    declarationProvider: json['declarationProvider'],
-    definitionProvider: json['definitionProvider'],
-    typeDefinitionProvider: json['typeDefinitionProvider'],
-    implementationProvider: json['implementationProvider'],
-    referencesProvider: json['referencesProvider'],
-    documentHighlightProvider: json['documentHighlightProvider'],
-    documentSymbolProvider: json['documentSymbolProvider'],
-    codeActionProvider: json['codeActionProvider'],
-    codeLensProvider: json['codeLensProvider'] == null
-        ? null
-        : CodeLensOptions.fromJson(
-            json['codeLensProvider'] as Map<String, Object?>,
-          ),
-    documentLinkProvider: json['documentLinkProvider'] == null
-        ? null
-        : DocumentLinkOptions.fromJson(
-            json['documentLinkProvider'] as Map<String, Object?>,
-          ),
-    colorProvider: json['colorProvider'],
-    workspaceSymbolProvider: json['workspaceSymbolProvider'],
-    documentFormattingProvider: json['documentFormattingProvider'],
-    documentRangeFormattingProvider: json['documentRangeFormattingProvider'],
-    documentOnTypeFormattingProvider:
-        json['documentOnTypeFormattingProvider'] == null
-        ? null
-        : DocumentOnTypeFormattingOptions.fromJson(
-            json['documentOnTypeFormattingProvider'] as Map<String, Object?>,
-          ),
-    renameProvider: json['renameProvider'],
-    foldingRangeProvider: json['foldingRangeProvider'],
-    selectionRangeProvider: json['selectionRangeProvider'],
-    executeCommandProvider: json['executeCommandProvider'] == null
-        ? null
-        : ExecuteCommandOptions.fromJson(
-            json['executeCommandProvider'] as Map<String, Object?>,
-          ),
-    callHierarchyProvider: json['callHierarchyProvider'],
-    linkedEditingRangeProvider: json['linkedEditingRangeProvider'],
-    semanticTokensProvider: json['semanticTokensProvider'],
-    monikerProvider: json['monikerProvider'],
-    typeHierarchyProvider: json['typeHierarchyProvider'],
-    inlineValueProvider: json['inlineValueProvider'],
-    inlayHintProvider: json['inlayHintProvider'],
-    diagnosticProvider: json['diagnosticProvider'],
-    inlineCompletionProvider: json['inlineCompletionProvider'],
-    workspace: json['workspace'] == null
-        ? null
-        : ServerCapabilitiesWorkspace.fromJson(
-            json['workspace'] as Map<String, Object?>,
-          ),
-    experimental: json['experimental'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'positionEncoding': positionEncoding?.value,
-      'textDocumentSync': textDocumentSync,
-      'notebookDocumentSync': notebookDocumentSync,
-      'completionProvider': completionProvider?.toJson(),
-      'hoverProvider': hoverProvider,
-      'signatureHelpProvider': signatureHelpProvider?.toJson(),
-      'declarationProvider': declarationProvider,
-      'definitionProvider': definitionProvider,
-      'typeDefinitionProvider': typeDefinitionProvider,
-      'implementationProvider': implementationProvider,
-      'referencesProvider': referencesProvider,
-      'documentHighlightProvider': documentHighlightProvider,
-      'documentSymbolProvider': documentSymbolProvider,
-      'codeActionProvider': codeActionProvider,
-      'codeLensProvider': codeLensProvider?.toJson(),
-      'documentLinkProvider': documentLinkProvider?.toJson(),
-      'colorProvider': colorProvider,
-      'workspaceSymbolProvider': workspaceSymbolProvider,
-      'documentFormattingProvider': documentFormattingProvider,
-      'documentRangeFormattingProvider': documentRangeFormattingProvider,
-      'documentOnTypeFormattingProvider': documentOnTypeFormattingProvider
-          ?.toJson(),
-      'renameProvider': renameProvider,
-      'foldingRangeProvider': foldingRangeProvider,
-      'selectionRangeProvider': selectionRangeProvider,
-      'executeCommandProvider': executeCommandProvider?.toJson(),
-      'callHierarchyProvider': callHierarchyProvider,
-      'linkedEditingRangeProvider': linkedEditingRangeProvider,
-      'semanticTokensProvider': semanticTokensProvider,
-      'monikerProvider': monikerProvider,
-      'typeHierarchyProvider': typeHierarchyProvider,
-      'inlineValueProvider': inlineValueProvider,
-      'inlayHintProvider': inlayHintProvider,
-      'diagnosticProvider': diagnosticProvider,
-      'inlineCompletionProvider': inlineCompletionProvider,
-      'workspace': workspace?.toJson(),
-      'experimental': experimental,
-    };
-  }
+  factory ServerCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$ServerCapabilitiesFromJson(json);
 }
 
 /// A text document identifier to denote a specific version of a text document.
@@ -7386,15 +4548,8 @@ abstract class VersionedTextDocumentIdentifier
     required int version,
   }) = _VersionedTextDocumentIdentifier;
 
-  static VersionedTextDocumentIdentifier fromJson(Map<String, Object?> json) =>
-      VersionedTextDocumentIdentifier(
-        uri: json['uri'] as String,
-        version: json['version'] as int,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri, 'version': version};
-  }
+  factory VersionedTextDocumentIdentifier.fromJson(Map<String, dynamic> json) =>
+      _$VersionedTextDocumentIdentifierFromJson(json);
 }
 
 /// Save options.
@@ -7404,12 +4559,8 @@ abstract class SaveOptions with _$SaveOptions {
 
   const factory SaveOptions({bool? includeText}) = _SaveOptions;
 
-  static SaveOptions fromJson(Map<String, Object?> json) =>
-      SaveOptions(includeText: json['includeText'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'includeText': includeText};
-  }
+  factory SaveOptions.fromJson(Map<String, dynamic> json) =>
+      _$SaveOptionsFromJson(json);
 }
 
 /// An event describing a file change.
@@ -7417,19 +4568,13 @@ abstract class SaveOptions with _$SaveOptions {
 abstract class FileEvent with _$FileEvent {
   const FileEvent._();
 
-  const factory FileEvent({required String uri, required FileChangeType type}) =
-      _FileEvent;
+  const factory FileEvent({
+    required String uri,
+    @_FileChangeTypeConverter() required FileChangeType type,
+  }) = _FileEvent;
 
-  static FileEvent fromJson(Map<String, Object?> json) => FileEvent(
-    uri: json['uri'] as String,
-    type: FileChangeType.values.firstWhere(
-      (e) => e.value == json['type'] as int,
-    ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri, 'type': type.value};
-  }
+  factory FileEvent.fromJson(Map<String, dynamic> json) =>
+      _$FileEventFromJson(json);
 }
 
 @freezed
@@ -7438,18 +4583,11 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
 
   const factory FileSystemWatcher({
     required GlobPattern globPattern,
-    WatchKind? kind,
+    @_WatchKindConverter() WatchKind? kind,
   }) = _FileSystemWatcher;
 
-  static FileSystemWatcher fromJson(Map<String, Object?> json) =>
-      FileSystemWatcher(
-        globPattern: json['globPattern'] as GlobPattern,
-        kind: json['kind'] == null ? null : WatchKind(json['kind'] as int),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'globPattern': globPattern, 'kind': kind?.value};
-  }
+  factory FileSystemWatcher.fromJson(Map<String, dynamic> json) =>
+      _$FileSystemWatcherFromJson(json);
 }
 
 /// Represents a diagnostic, such as a compiler error or warning. Diagnostic objects
@@ -7460,56 +4598,18 @@ abstract class Diagnostic with _$Diagnostic {
 
   const factory Diagnostic({
     required Range range,
-    DiagnosticSeverity? severity,
+    @_DiagnosticSeverityConverter() DiagnosticSeverity? severity,
     Object? code,
     CodeDescription? codeDescription,
     String? source,
     required String message,
-    List<DiagnosticTag>? tags,
+    @_DiagnosticTagListConverter() List<DiagnosticTag>? tags,
     List<DiagnosticRelatedInformation>? relatedInformation,
     LSPAny? data,
   }) = _Diagnostic;
 
-  static Diagnostic fromJson(Map<String, Object?> json) => Diagnostic(
-    range: Range.fromJson(json['range'] as Map<String, Object?>),
-    severity: json['severity'] == null
-        ? null
-        : DiagnosticSeverity.values.firstWhere(
-            (e) => e.value == json['severity'] as int,
-          ),
-    code: json['code'],
-    codeDescription: json['codeDescription'] == null
-        ? null
-        : CodeDescription.fromJson(
-            json['codeDescription'] as Map<String, Object?>,
-          ),
-    source: json['source'] as String?,
-    message: json['message'] as String,
-    tags: (json['tags'] as List<Object?>?)
-        ?.map((e) => e as DiagnosticTag)
-        .toList(),
-    relatedInformation: (json['relatedInformation'] as List<Object?>?)
-        ?.map(
-          (e) =>
-              DiagnosticRelatedInformation.fromJson(e as Map<String, Object?>),
-        )
-        .toList(),
-    data: json['data'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'range': range.toJson(),
-      'severity': severity?.value,
-      'code': code,
-      'codeDescription': codeDescription?.toJson(),
-      'source': source,
-      'message': message,
-      'tags': tags,
-      'relatedInformation': relatedInformation?.map((e) => e.toJson()).toList(),
-      'data': data,
-    };
-  }
+  factory Diagnostic.fromJson(Map<String, dynamic> json) =>
+      _$DiagnosticFromJson(json);
 }
 
 /// Contains additional information about the context in which a completion request is triggered.
@@ -7518,24 +4618,13 @@ abstract class CompletionContext with _$CompletionContext {
   const CompletionContext._();
 
   const factory CompletionContext({
+    @_CompletionTriggerKindConverter()
     required CompletionTriggerKind triggerKind,
     String? triggerCharacter,
   }) = _CompletionContext;
 
-  static CompletionContext fromJson(Map<String, Object?> json) =>
-      CompletionContext(
-        triggerKind: CompletionTriggerKind.values.firstWhere(
-          (e) => e.value == json['triggerKind'] as int,
-        ),
-        triggerCharacter: json['triggerCharacter'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'triggerKind': triggerKind.value,
-      'triggerCharacter': triggerCharacter,
-    };
-  }
+  factory CompletionContext.fromJson(Map<String, dynamic> json) =>
+      _$CompletionContextFromJson(json);
 }
 
 /// Additional details for a completion item label.
@@ -7550,15 +4639,8 @@ abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
     String? description,
   }) = _CompletionItemLabelDetails;
 
-  static CompletionItemLabelDetails fromJson(Map<String, Object?> json) =>
-      CompletionItemLabelDetails(
-        detail: json['detail'] as String?,
-        description: json['description'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'detail': detail, 'description': description};
-  }
+  factory CompletionItemLabelDetails.fromJson(Map<String, dynamic> json) =>
+      _$CompletionItemLabelDetailsFromJson(json);
 }
 
 /// A special text edit to provide an insert and a replace operation.
@@ -7574,20 +4656,8 @@ abstract class InsertReplaceEdit with _$InsertReplaceEdit {
     required Range replace,
   }) = _InsertReplaceEdit;
 
-  static InsertReplaceEdit fromJson(Map<String, Object?> json) =>
-      InsertReplaceEdit(
-        newText: json['newText'] as String,
-        insert: Range.fromJson(json['insert'] as Map<String, Object?>),
-        replace: Range.fromJson(json['replace'] as Map<String, Object?>),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'newText': newText,
-      'insert': insert.toJson(),
-      'replace': replace.toJson(),
-    };
-  }
+  factory InsertReplaceEdit.fromJson(Map<String, dynamic> json) =>
+      _$InsertReplaceEditFromJson(json);
 }
 
 /// Completion options.
@@ -7603,32 +4673,8 @@ abstract class CompletionOptions with _$CompletionOptions {
     CompletionOptionsCompletionItem? completionItem,
   }) = _CompletionOptions;
 
-  static CompletionOptions fromJson(Map<String, Object?> json) =>
-      CompletionOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        triggerCharacters: (json['triggerCharacters'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-        allCommitCharacters: (json['allCommitCharacters'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-        resolveProvider: json['resolveProvider'] as bool?,
-        completionItem: json['completionItem'] == null
-            ? null
-            : CompletionOptionsCompletionItem.fromJson(
-                json['completionItem'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'triggerCharacters': triggerCharacters,
-      'allCommitCharacters': allCommitCharacters,
-      'resolveProvider': resolveProvider,
-      'completionItem': completionItem?.toJson(),
-    };
-  }
+  factory CompletionOptions.fromJson(Map<String, dynamic> json) =>
+      _$CompletionOptionsFromJson(json);
 }
 
 /// Hover options.
@@ -7638,12 +4684,8 @@ abstract class HoverOptions with _$HoverOptions {
 
   const factory HoverOptions({bool? workDoneProgress}) = _HoverOptions;
 
-  static HoverOptions fromJson(Map<String, Object?> json) =>
-      HoverOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory HoverOptions.fromJson(Map<String, dynamic> json) =>
+      _$HoverOptionsFromJson(json);
 }
 
 /// Additional information about the context in which a signature help request was triggered.
@@ -7654,34 +4696,15 @@ abstract class SignatureHelpContext with _$SignatureHelpContext {
   const SignatureHelpContext._();
 
   const factory SignatureHelpContext({
+    @_SignatureHelpTriggerKindConverter()
     required SignatureHelpTriggerKind triggerKind,
     String? triggerCharacter,
     required bool isRetrigger,
     SignatureHelp? activeSignatureHelp,
   }) = _SignatureHelpContext;
 
-  static SignatureHelpContext fromJson(Map<String, Object?> json) =>
-      SignatureHelpContext(
-        triggerKind: SignatureHelpTriggerKind.values.firstWhere(
-          (e) => e.value == json['triggerKind'] as int,
-        ),
-        triggerCharacter: json['triggerCharacter'] as String?,
-        isRetrigger: json['isRetrigger'] as bool,
-        activeSignatureHelp: json['activeSignatureHelp'] == null
-            ? null
-            : SignatureHelp.fromJson(
-                json['activeSignatureHelp'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'triggerKind': triggerKind.value,
-      'triggerCharacter': triggerCharacter,
-      'isRetrigger': isRetrigger,
-      'activeSignatureHelp': activeSignatureHelp?.toJson(),
-    };
-  }
+  factory SignatureHelpContext.fromJson(Map<String, dynamic> json) =>
+      _$SignatureHelpContextFromJson(json);
 }
 
 /// Represents the signature of something callable. A signature
@@ -7698,26 +4721,8 @@ abstract class SignatureInformation with _$SignatureInformation {
     int? activeParameter,
   }) = _SignatureInformation;
 
-  static SignatureInformation fromJson(Map<String, Object?> json) =>
-      SignatureInformation(
-        label: json['label'] as String,
-        documentation: json['documentation'],
-        parameters: (json['parameters'] as List<Object?>?)
-            ?.map(
-              (e) => ParameterInformation.fromJson(e as Map<String, Object?>),
-            )
-            .toList(),
-        activeParameter: json['activeParameter'] as int?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'label': label,
-      'documentation': documentation,
-      'parameters': parameters?.map((e) => e.toJson()).toList(),
-      'activeParameter': activeParameter,
-    };
-  }
+  factory SignatureInformation.fromJson(Map<String, dynamic> json) =>
+      _$SignatureInformationFromJson(json);
 }
 
 /// Server Capabilities for a {@link SignatureHelpRequest}.
@@ -7731,24 +4736,8 @@ abstract class SignatureHelpOptions with _$SignatureHelpOptions {
     List<String>? retriggerCharacters,
   }) = _SignatureHelpOptions;
 
-  static SignatureHelpOptions fromJson(Map<String, Object?> json) =>
-      SignatureHelpOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        triggerCharacters: (json['triggerCharacters'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-        retriggerCharacters: (json['retriggerCharacters'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'triggerCharacters': triggerCharacters,
-      'retriggerCharacters': retriggerCharacters,
-    };
-  }
+  factory SignatureHelpOptions.fromJson(Map<String, dynamic> json) =>
+      _$SignatureHelpOptionsFromJson(json);
 }
 
 /// Server Capabilities for a {@link DefinitionRequest}.
@@ -7759,12 +4748,8 @@ abstract class DefinitionOptions with _$DefinitionOptions {
   const factory DefinitionOptions({bool? workDoneProgress}) =
       _DefinitionOptions;
 
-  static DefinitionOptions fromJson(Map<String, Object?> json) =>
-      DefinitionOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory DefinitionOptions.fromJson(Map<String, dynamic> json) =>
+      _$DefinitionOptionsFromJson(json);
 }
 
 /// Value-object that contains additional information when
@@ -7776,12 +4761,8 @@ abstract class ReferenceContext with _$ReferenceContext {
   const factory ReferenceContext({required bool includeDeclaration}) =
       _ReferenceContext;
 
-  static ReferenceContext fromJson(Map<String, Object?> json) =>
-      ReferenceContext(includeDeclaration: json['includeDeclaration'] as bool);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'includeDeclaration': includeDeclaration};
-  }
+  factory ReferenceContext.fromJson(Map<String, dynamic> json) =>
+      _$ReferenceContextFromJson(json);
 }
 
 /// Reference options.
@@ -7791,12 +4772,8 @@ abstract class ReferenceOptions with _$ReferenceOptions {
 
   const factory ReferenceOptions({bool? workDoneProgress}) = _ReferenceOptions;
 
-  static ReferenceOptions fromJson(Map<String, Object?> json) =>
-      ReferenceOptions(workDoneProgress: json['workDoneProgress'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory ReferenceOptions.fromJson(Map<String, dynamic> json) =>
+      _$ReferenceOptionsFromJson(json);
 }
 
 /// Provider options for a {@link DocumentHighlightRequest}.
@@ -7807,14 +4784,8 @@ abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
   const factory DocumentHighlightOptions({bool? workDoneProgress}) =
       _DocumentHighlightOptions;
 
-  static DocumentHighlightOptions fromJson(Map<String, Object?> json) =>
-      DocumentHighlightOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory DocumentHighlightOptions.fromJson(Map<String, dynamic> json) =>
+      _$DocumentHighlightOptionsFromJson(json);
 }
 
 /// A base for all symbol information.
@@ -7824,28 +4795,13 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
 
   const factory BaseSymbolInformation({
     required String name,
-    required SymbolKind kind,
-    List<SymbolTag>? tags,
+    @_SymbolKindConverter() required SymbolKind kind,
+    @_SymbolTagListConverter() List<SymbolTag>? tags,
     String? containerName,
   }) = _BaseSymbolInformation;
 
-  static BaseSymbolInformation fromJson(
-    Map<String, Object?> json,
-  ) => BaseSymbolInformation(
-    name: json['name'] as String,
-    kind: SymbolKind.values.firstWhere((e) => e.value == json['kind'] as int),
-    tags: (json['tags'] as List<Object?>?)?.map((e) => e as SymbolTag).toList(),
-    containerName: json['containerName'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'name': name,
-      'kind': kind.value,
-      'tags': tags,
-      'containerName': containerName,
-    };
-  }
+  factory BaseSymbolInformation.fromJson(Map<String, dynamic> json) =>
+      _$BaseSymbolInformationFromJson(json);
 }
 
 /// Provider options for a {@link DocumentSymbolRequest}.
@@ -7856,18 +4812,8 @@ abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
   const factory DocumentSymbolOptions({bool? workDoneProgress, String? label}) =
       _DocumentSymbolOptions;
 
-  static DocumentSymbolOptions fromJson(Map<String, Object?> json) =>
-      DocumentSymbolOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        label: json['label'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'label': label,
-    };
-  }
+  factory DocumentSymbolOptions.fromJson(Map<String, dynamic> json) =>
+      _$DocumentSymbolOptionsFromJson(json);
 }
 
 /// Contains additional diagnostic information about the context in which
@@ -7878,32 +4824,12 @@ abstract class CodeActionContext with _$CodeActionContext {
 
   const factory CodeActionContext({
     required List<Diagnostic> diagnostics,
-    List<CodeActionKind>? only,
-    CodeActionTriggerKind? triggerKind,
+    @_CodeActionKindListConverter() List<CodeActionKind>? only,
+    @_CodeActionTriggerKindConverter() CodeActionTriggerKind? triggerKind,
   }) = _CodeActionContext;
 
-  static CodeActionContext fromJson(Map<String, Object?> json) =>
-      CodeActionContext(
-        diagnostics: (json['diagnostics'] as List<Object?>)
-            .map((e) => Diagnostic.fromJson(e as Map<String, Object?>))
-            .toList(),
-        only: (json['only'] as List<Object?>?)
-            ?.map((e) => e as CodeActionKind)
-            .toList(),
-        triggerKind: json['triggerKind'] == null
-            ? null
-            : CodeActionTriggerKind.values.firstWhere(
-                (e) => e.value == json['triggerKind'] as int,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'diagnostics': diagnostics.map((e) => e.toJson()).toList(),
-      'only': only,
-      'triggerKind': triggerKind?.value,
-    };
-  }
+  factory CodeActionContext.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionContextFromJson(json);
 }
 
 /// Provider options for a {@link CodeActionRequest}.
@@ -7913,26 +4839,12 @@ abstract class CodeActionOptions with _$CodeActionOptions {
 
   const factory CodeActionOptions({
     bool? workDoneProgress,
-    List<CodeActionKind>? codeActionKinds,
+    @_CodeActionKindListConverter() List<CodeActionKind>? codeActionKinds,
     bool? resolveProvider,
   }) = _CodeActionOptions;
 
-  static CodeActionOptions fromJson(Map<String, Object?> json) =>
-      CodeActionOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        codeActionKinds: (json['codeActionKinds'] as List<Object?>?)
-            ?.map((e) => e as CodeActionKind)
-            .toList(),
-        resolveProvider: json['resolveProvider'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'codeActionKinds': codeActionKinds,
-      'resolveProvider': resolveProvider,
-    };
-  }
+  factory CodeActionOptions.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionOptionsFromJson(json);
 }
 
 /// Server capabilities for a {@link WorkspaceSymbolRequest}.
@@ -7945,18 +4857,8 @@ abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
     bool? resolveProvider,
   }) = _WorkspaceSymbolOptions;
 
-  static WorkspaceSymbolOptions fromJson(Map<String, Object?> json) =>
-      WorkspaceSymbolOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        resolveProvider: json['resolveProvider'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'resolveProvider': resolveProvider,
-    };
-  }
+  factory WorkspaceSymbolOptions.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceSymbolOptionsFromJson(json);
 }
 
 /// Code Lens provider options of a {@link CodeLensRequest}.
@@ -7969,17 +4871,8 @@ abstract class CodeLensOptions with _$CodeLensOptions {
     bool? resolveProvider,
   }) = _CodeLensOptions;
 
-  static CodeLensOptions fromJson(Map<String, Object?> json) => CodeLensOptions(
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    resolveProvider: json['resolveProvider'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'resolveProvider': resolveProvider,
-    };
-  }
+  factory CodeLensOptions.fromJson(Map<String, dynamic> json) =>
+      _$CodeLensOptionsFromJson(json);
 }
 
 /// Provider options for a {@link DocumentLinkRequest}.
@@ -7992,18 +4885,8 @@ abstract class DocumentLinkOptions with _$DocumentLinkOptions {
     bool? resolveProvider,
   }) = _DocumentLinkOptions;
 
-  static DocumentLinkOptions fromJson(Map<String, Object?> json) =>
-      DocumentLinkOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        resolveProvider: json['resolveProvider'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'resolveProvider': resolveProvider,
-    };
-  }
+  factory DocumentLinkOptions.fromJson(Map<String, dynamic> json) =>
+      _$DocumentLinkOptionsFromJson(json);
 }
 
 /// Value-object describing what options formatting should use.
@@ -8019,24 +4902,8 @@ abstract class FormattingOptions with _$FormattingOptions {
     bool? trimFinalNewlines,
   }) = _FormattingOptions;
 
-  static FormattingOptions fromJson(Map<String, Object?> json) =>
-      FormattingOptions(
-        tabSize: json['tabSize'] as int,
-        insertSpaces: json['insertSpaces'] as bool,
-        trimTrailingWhitespace: json['trimTrailingWhitespace'] as bool?,
-        insertFinalNewline: json['insertFinalNewline'] as bool?,
-        trimFinalNewlines: json['trimFinalNewlines'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'tabSize': tabSize,
-      'insertSpaces': insertSpaces,
-      'trimTrailingWhitespace': trimTrailingWhitespace,
-      'insertFinalNewline': insertFinalNewline,
-      'trimFinalNewlines': trimFinalNewlines,
-    };
-  }
+  factory FormattingOptions.fromJson(Map<String, dynamic> json) =>
+      _$FormattingOptionsFromJson(json);
 }
 
 /// Provider options for a {@link DocumentFormattingRequest}.
@@ -8047,14 +4914,8 @@ abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
   const factory DocumentFormattingOptions({bool? workDoneProgress}) =
       _DocumentFormattingOptions;
 
-  static DocumentFormattingOptions fromJson(Map<String, Object?> json) =>
-      DocumentFormattingOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'workDoneProgress': workDoneProgress};
-  }
+  factory DocumentFormattingOptions.fromJson(Map<String, dynamic> json) =>
+      _$DocumentFormattingOptionsFromJson(json);
 }
 
 /// Provider options for a {@link DocumentRangeFormattingRequest}.
@@ -8068,18 +4929,8 @@ abstract class DocumentRangeFormattingOptions
     bool? rangesSupport,
   }) = _DocumentRangeFormattingOptions;
 
-  static DocumentRangeFormattingOptions fromJson(Map<String, Object?> json) =>
-      DocumentRangeFormattingOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        rangesSupport: json['rangesSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'rangesSupport': rangesSupport,
-    };
-  }
+  factory DocumentRangeFormattingOptions.fromJson(Map<String, dynamic> json) =>
+      _$DocumentRangeFormattingOptionsFromJson(json);
 }
 
 /// Provider options for a {@link DocumentOnTypeFormattingRequest}.
@@ -8093,20 +4944,8 @@ abstract class DocumentOnTypeFormattingOptions
     List<String>? moreTriggerCharacter,
   }) = _DocumentOnTypeFormattingOptions;
 
-  static DocumentOnTypeFormattingOptions fromJson(Map<String, Object?> json) =>
-      DocumentOnTypeFormattingOptions(
-        firstTriggerCharacter: json['firstTriggerCharacter'] as String,
-        moreTriggerCharacter: (json['moreTriggerCharacter'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'firstTriggerCharacter': firstTriggerCharacter,
-      'moreTriggerCharacter': moreTriggerCharacter,
-    };
-  }
+  factory DocumentOnTypeFormattingOptions.fromJson(Map<String, dynamic> json) =>
+      _$DocumentOnTypeFormattingOptionsFromJson(json);
 }
 
 /// Provider options for a {@link RenameRequest}.
@@ -8117,17 +4956,8 @@ abstract class RenameOptions with _$RenameOptions {
   const factory RenameOptions({bool? workDoneProgress, bool? prepareProvider}) =
       _RenameOptions;
 
-  static RenameOptions fromJson(Map<String, Object?> json) => RenameOptions(
-    workDoneProgress: json['workDoneProgress'] as bool?,
-    prepareProvider: json['prepareProvider'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'prepareProvider': prepareProvider,
-    };
-  }
+  factory RenameOptions.fromJson(Map<String, dynamic> json) =>
+      _$RenameOptionsFromJson(json);
 }
 
 /// The server capabilities of a {@link ExecuteCommandRequest}.
@@ -8140,20 +4970,8 @@ abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
     required List<String> commands,
   }) = _ExecuteCommandOptions;
 
-  static ExecuteCommandOptions fromJson(Map<String, Object?> json) =>
-      ExecuteCommandOptions(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        commands: (json['commands'] as List<Object?>)
-            .map((e) => e as String)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'commands': commands,
-    };
-  }
+  factory ExecuteCommandOptions.fromJson(Map<String, dynamic> json) =>
+      _$ExecuteCommandOptionsFromJson(json);
 }
 
 /// @since 3.16.0
@@ -8166,22 +4984,8 @@ abstract class SemanticTokensLegend with _$SemanticTokensLegend {
     required List<String> tokenModifiers,
   }) = _SemanticTokensLegend;
 
-  static SemanticTokensLegend fromJson(Map<String, Object?> json) =>
-      SemanticTokensLegend(
-        tokenTypes: (json['tokenTypes'] as List<Object?>)
-            .map((e) => e as String)
-            .toList(),
-        tokenModifiers: (json['tokenModifiers'] as List<Object?>)
-            .map((e) => e as String)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'tokenTypes': tokenTypes,
-      'tokenModifiers': tokenModifiers,
-    };
-  }
+  factory SemanticTokensLegend.fromJson(Map<String, dynamic> json) =>
+      _$SemanticTokensLegendFromJson(json);
 }
 
 /// A text document identifier to optionally denote a specific version of a text document.
@@ -8195,16 +4999,9 @@ abstract class OptionalVersionedTextDocumentIdentifier
     required int? version,
   }) = _OptionalVersionedTextDocumentIdentifier;
 
-  static OptionalVersionedTextDocumentIdentifier fromJson(
-    Map<String, Object?> json,
-  ) => OptionalVersionedTextDocumentIdentifier(
-    uri: json['uri'] as String,
-    version: json['version'] as int?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'uri': uri, 'version': version};
-  }
+  factory OptionalVersionedTextDocumentIdentifier.fromJson(
+    Map<String, dynamic> json,
+  ) => _$OptionalVersionedTextDocumentIdentifierFromJson(json);
 }
 
 /// A special text edit with an additional change annotation.
@@ -8220,20 +5017,8 @@ abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
     required ChangeAnnotationIdentifier annotationId,
   }) = _AnnotatedTextEdit;
 
-  static AnnotatedTextEdit fromJson(Map<String, Object?> json) =>
-      AnnotatedTextEdit(
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        newText: json['newText'] as String,
-        annotationId: json['annotationId'] as ChangeAnnotationIdentifier,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'range': range.toJson(),
-      'newText': newText,
-      'annotationId': annotationId,
-    };
-  }
+  factory AnnotatedTextEdit.fromJson(Map<String, dynamic> json) =>
+      _$AnnotatedTextEditFromJson(json);
 }
 
 /// A generic resource operation.
@@ -8246,15 +5031,8 @@ abstract class ResourceOperation with _$ResourceOperation {
     ChangeAnnotationIdentifier? annotationId,
   }) = _ResourceOperation;
 
-  static ResourceOperation fromJson(Map<String, Object?> json) =>
-      ResourceOperation(
-        kind: json['kind'] as String,
-        annotationId: json['annotationId'] as ChangeAnnotationIdentifier?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'kind': kind, 'annotationId': annotationId};
-  }
+  factory ResourceOperation.fromJson(Map<String, dynamic> json) =>
+      _$ResourceOperationFromJson(json);
 }
 
 /// Options to create a file.
@@ -8265,18 +5043,8 @@ abstract class CreateFileOptions with _$CreateFileOptions {
   const factory CreateFileOptions({bool? overwrite, bool? ignoreIfExists}) =
       _CreateFileOptions;
 
-  static CreateFileOptions fromJson(Map<String, Object?> json) =>
-      CreateFileOptions(
-        overwrite: json['overwrite'] as bool?,
-        ignoreIfExists: json['ignoreIfExists'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'overwrite': overwrite,
-      'ignoreIfExists': ignoreIfExists,
-    };
-  }
+  factory CreateFileOptions.fromJson(Map<String, dynamic> json) =>
+      _$CreateFileOptionsFromJson(json);
 }
 
 /// Rename file options
@@ -8287,18 +5055,8 @@ abstract class RenameFileOptions with _$RenameFileOptions {
   const factory RenameFileOptions({bool? overwrite, bool? ignoreIfExists}) =
       _RenameFileOptions;
 
-  static RenameFileOptions fromJson(Map<String, Object?> json) =>
-      RenameFileOptions(
-        overwrite: json['overwrite'] as bool?,
-        ignoreIfExists: json['ignoreIfExists'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'overwrite': overwrite,
-      'ignoreIfExists': ignoreIfExists,
-    };
-  }
+  factory RenameFileOptions.fromJson(Map<String, dynamic> json) =>
+      _$RenameFileOptionsFromJson(json);
 }
 
 /// Delete file options
@@ -8309,18 +5067,8 @@ abstract class DeleteFileOptions with _$DeleteFileOptions {
   const factory DeleteFileOptions({bool? recursive, bool? ignoreIfNotExists}) =
       _DeleteFileOptions;
 
-  static DeleteFileOptions fromJson(Map<String, Object?> json) =>
-      DeleteFileOptions(
-        recursive: json['recursive'] as bool?,
-        ignoreIfNotExists: json['ignoreIfNotExists'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'recursive': recursive,
-      'ignoreIfNotExists': ignoreIfNotExists,
-    };
-  }
+  factory DeleteFileOptions.fromJson(Map<String, dynamic> json) =>
+      _$DeleteFileOptionsFromJson(json);
 }
 
 /// A pattern to describe in which file operation requests or notifications
@@ -8333,32 +5081,12 @@ abstract class FileOperationPattern with _$FileOperationPattern {
 
   const factory FileOperationPattern({
     required String glob,
-    FileOperationPatternKind? matches,
+    @_FileOperationPatternKindConverter() FileOperationPatternKind? matches,
     FileOperationPatternOptions? options,
   }) = _FileOperationPattern;
 
-  static FileOperationPattern fromJson(Map<String, Object?> json) =>
-      FileOperationPattern(
-        glob: json['glob'] as String,
-        matches: json['matches'] == null
-            ? null
-            : FileOperationPatternKind.values.firstWhere(
-                (e) => e.value == json['matches'] as String,
-              ),
-        options: json['options'] == null
-            ? null
-            : FileOperationPatternOptions.fromJson(
-                json['options'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'glob': glob,
-      'matches': matches?.value,
-      'options': options?.toJson(),
-    };
-  }
+  factory FileOperationPattern.fromJson(Map<String, dynamic> json) =>
+      _$FileOperationPatternFromJson(json);
 }
 
 /// A full document diagnostic report for a workspace diagnostic result.
@@ -8377,27 +5105,9 @@ abstract class WorkspaceFullDocumentDiagnosticReport
     required int? version,
   }) = _WorkspaceFullDocumentDiagnosticReport;
 
-  static WorkspaceFullDocumentDiagnosticReport fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceFullDocumentDiagnosticReport(
-    kind: json['kind'] as String,
-    resultId: json['resultId'] as String?,
-    items: (json['items'] as List<Object?>)
-        .map((e) => Diagnostic.fromJson(e as Map<String, Object?>))
-        .toList(),
-    uri: json['uri'] as String,
-    version: json['version'] as int?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'kind': kind,
-      'resultId': resultId,
-      'items': items.map((e) => e.toJson()).toList(),
-      'uri': uri,
-      'version': version,
-    };
-  }
+  factory WorkspaceFullDocumentDiagnosticReport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceFullDocumentDiagnosticReportFromJson(json);
 }
 
 /// An unchanged document diagnostic report for a workspace diagnostic result.
@@ -8415,23 +5125,9 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
     required int? version,
   }) = _WorkspaceUnchangedDocumentDiagnosticReport;
 
-  static WorkspaceUnchangedDocumentDiagnosticReport fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceUnchangedDocumentDiagnosticReport(
-    kind: json['kind'] as String,
-    resultId: json['resultId'] as String,
-    uri: json['uri'] as String,
-    version: json['version'] as int?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'kind': kind,
-      'resultId': resultId,
-      'uri': uri,
-      'version': version,
-    };
-  }
+  factory WorkspaceUnchangedDocumentDiagnosticReport.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(json);
 }
 
 /// A notebook cell.
@@ -8446,33 +5142,14 @@ abstract class NotebookCell with _$NotebookCell {
   const NotebookCell._();
 
   const factory NotebookCell({
-    required NotebookCellKind kind,
+    @_NotebookCellKindConverter() required NotebookCellKind kind,
     required String document,
     LSPObject? metadata,
     ExecutionSummary? executionSummary,
   }) = _NotebookCell;
 
-  static NotebookCell fromJson(Map<String, Object?> json) => NotebookCell(
-    kind: NotebookCellKind.values.firstWhere(
-      (e) => e.value == json['kind'] as int,
-    ),
-    document: json['document'] as String,
-    metadata: json['metadata'] as LSPObject?,
-    executionSummary: json['executionSummary'] == null
-        ? null
-        : ExecutionSummary.fromJson(
-            json['executionSummary'] as Map<String, Object?>,
-          ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'kind': kind.value,
-      'document': document,
-      'metadata': metadata,
-      'executionSummary': executionSummary?.toJson(),
-    };
-  }
+  factory NotebookCell.fromJson(Map<String, dynamic> json) =>
+      _$NotebookCellFromJson(json);
 }
 
 /// A change describing how to move a `NotebookCell`
@@ -8489,22 +5166,8 @@ abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
     List<NotebookCell>? cells,
   }) = _NotebookCellArrayChange;
 
-  static NotebookCellArrayChange fromJson(Map<String, Object?> json) =>
-      NotebookCellArrayChange(
-        start: json['start'] as int,
-        deleteCount: json['deleteCount'] as int,
-        cells: (json['cells'] as List<Object?>?)
-            ?.map((e) => NotebookCell.fromJson(e as Map<String, Object?>))
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'start': start,
-      'deleteCount': deleteCount,
-      'cells': cells?.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory NotebookCellArrayChange.fromJson(Map<String, dynamic> json) =>
+      _$NotebookCellArrayChangeFromJson(json);
 }
 
 /// Describes the currently selected completion item.
@@ -8520,15 +5183,8 @@ abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
     required String text,
   }) = _SelectedCompletionInfo;
 
-  static SelectedCompletionInfo fromJson(Map<String, Object?> json) =>
-      SelectedCompletionInfo(
-        range: Range.fromJson(json['range'] as Map<String, Object?>),
-        text: json['text'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'range': range.toJson(), 'text': text};
-  }
+  factory SelectedCompletionInfo.fromJson(Map<String, dynamic> json) =>
+      _$SelectedCompletionInfoFromJson(json);
 }
 
 /// Defines the capabilities provided by the client.
@@ -8545,46 +5201,8 @@ abstract class ClientCapabilities with _$ClientCapabilities {
     LSPAny? experimental,
   }) = _ClientCapabilities;
 
-  static ClientCapabilities fromJson(Map<String, Object?> json) =>
-      ClientCapabilities(
-        workspace: json['workspace'] == null
-            ? null
-            : WorkspaceClientCapabilities.fromJson(
-                json['workspace'] as Map<String, Object?>,
-              ),
-        textDocument: json['textDocument'] == null
-            ? null
-            : TextDocumentClientCapabilities.fromJson(
-                json['textDocument'] as Map<String, Object?>,
-              ),
-        notebookDocument: json['notebookDocument'] == null
-            ? null
-            : NotebookDocumentClientCapabilities.fromJson(
-                json['notebookDocument'] as Map<String, Object?>,
-              ),
-        window: json['window'] == null
-            ? null
-            : WindowClientCapabilities.fromJson(
-                json['window'] as Map<String, Object?>,
-              ),
-        general: json['general'] == null
-            ? null
-            : GeneralClientCapabilities.fromJson(
-                json['general'] as Map<String, Object?>,
-              ),
-        experimental: json['experimental'],
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workspace': workspace?.toJson(),
-      'textDocument': textDocument?.toJson(),
-      'notebookDocument': notebookDocument?.toJson(),
-      'window': window?.toJson(),
-      'general': general?.toJson(),
-      'experimental': experimental,
-    };
-  }
+  factory ClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$ClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -8593,34 +5211,14 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
 
   const factory TextDocumentSyncOptions({
     bool? openClose,
-    TextDocumentSyncKind? change,
+    @_TextDocumentSyncKindConverter() TextDocumentSyncKind? change,
     bool? willSave,
     bool? willSaveWaitUntil,
     Object? save,
   }) = _TextDocumentSyncOptions;
 
-  static TextDocumentSyncOptions fromJson(Map<String, Object?> json) =>
-      TextDocumentSyncOptions(
-        openClose: json['openClose'] as bool?,
-        change: json['change'] == null
-            ? null
-            : TextDocumentSyncKind.values.firstWhere(
-                (e) => e.value == json['change'] as int,
-              ),
-        willSave: json['willSave'] as bool?,
-        willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
-        save: json['save'],
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'openClose': openClose,
-      'change': change?.value,
-      'willSave': willSave,
-      'willSaveWaitUntil': willSaveWaitUntil,
-      'save': save,
-    };
-  }
+  factory TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentSyncOptionsFromJson(json);
 }
 
 /// Options specific to a notebook plus its cells
@@ -8645,20 +5243,8 @@ abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
     bool? save,
   }) = _NotebookDocumentSyncOptions;
 
-  static NotebookDocumentSyncOptions fromJson(Map<String, Object?> json) =>
-      NotebookDocumentSyncOptions(
-        notebookSelector: (json['notebookSelector'] as List<Object?>)
-            .map((e) => e as Object)
-            .toList(),
-        save: json['save'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'notebookSelector': notebookSelector,
-      'save': save,
-    };
-  }
+  factory NotebookDocumentSyncOptions.fromJson(Map<String, dynamic> json) =>
+      _$NotebookDocumentSyncOptionsFromJson(json);
 }
 
 /// Registration options specific to a notebook.
@@ -8675,23 +5261,9 @@ abstract class NotebookDocumentSyncRegistrationOptions
     String? id,
   }) = _NotebookDocumentSyncRegistrationOptions;
 
-  static NotebookDocumentSyncRegistrationOptions fromJson(
-    Map<String, Object?> json,
-  ) => NotebookDocumentSyncRegistrationOptions(
-    notebookSelector: (json['notebookSelector'] as List<Object?>)
-        .map((e) => e as Object)
-        .toList(),
-    save: json['save'] as bool?,
-    id: json['id'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'notebookSelector': notebookSelector,
-      'save': save,
-      'id': id,
-    };
-  }
+  factory NotebookDocumentSyncRegistrationOptions.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentSyncRegistrationOptionsFromJson(json);
 }
 
 @freezed
@@ -8704,19 +5276,9 @@ abstract class WorkspaceFoldersServerCapabilities
     Object? changeNotifications,
   }) = _WorkspaceFoldersServerCapabilities;
 
-  static WorkspaceFoldersServerCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceFoldersServerCapabilities(
-    supported: json['supported'] as bool?,
-    changeNotifications: json['changeNotifications'],
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'supported': supported,
-      'changeNotifications': changeNotifications,
-    };
-  }
+  factory WorkspaceFoldersServerCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
 }
 
 /// Options for notifications/requests for user operations on files.
@@ -8735,50 +5297,8 @@ abstract class FileOperationOptions with _$FileOperationOptions {
     FileOperationRegistrationOptions? willDelete,
   }) = _FileOperationOptions;
 
-  static FileOperationOptions fromJson(Map<String, Object?> json) =>
-      FileOperationOptions(
-        didCreate: json['didCreate'] == null
-            ? null
-            : FileOperationRegistrationOptions.fromJson(
-                json['didCreate'] as Map<String, Object?>,
-              ),
-        willCreate: json['willCreate'] == null
-            ? null
-            : FileOperationRegistrationOptions.fromJson(
-                json['willCreate'] as Map<String, Object?>,
-              ),
-        didRename: json['didRename'] == null
-            ? null
-            : FileOperationRegistrationOptions.fromJson(
-                json['didRename'] as Map<String, Object?>,
-              ),
-        willRename: json['willRename'] == null
-            ? null
-            : FileOperationRegistrationOptions.fromJson(
-                json['willRename'] as Map<String, Object?>,
-              ),
-        didDelete: json['didDelete'] == null
-            ? null
-            : FileOperationRegistrationOptions.fromJson(
-                json['didDelete'] as Map<String, Object?>,
-              ),
-        willDelete: json['willDelete'] == null
-            ? null
-            : FileOperationRegistrationOptions.fromJson(
-                json['willDelete'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'didCreate': didCreate?.toJson(),
-      'willCreate': willCreate?.toJson(),
-      'didRename': didRename?.toJson(),
-      'willRename': willRename?.toJson(),
-      'didDelete': didDelete?.toJson(),
-      'willDelete': willDelete?.toJson(),
-    };
-  }
+  factory FileOperationOptions.fromJson(Map<String, dynamic> json) =>
+      _$FileOperationOptionsFromJson(json);
 }
 
 /// Structure to capture a description for an error code.
@@ -8790,12 +5310,8 @@ abstract class CodeDescription with _$CodeDescription {
 
   const factory CodeDescription({required String href}) = _CodeDescription;
 
-  static CodeDescription fromJson(Map<String, Object?> json) =>
-      CodeDescription(href: json['href'] as String);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'href': href};
-  }
+  factory CodeDescription.fromJson(Map<String, dynamic> json) =>
+      _$CodeDescriptionFromJson(json);
 }
 
 /// Represents a related message and source code location for a diagnostic. This should be
@@ -8811,15 +5327,8 @@ abstract class DiagnosticRelatedInformation
     required String message,
   }) = _DiagnosticRelatedInformation;
 
-  static DiagnosticRelatedInformation fromJson(Map<String, Object?> json) =>
-      DiagnosticRelatedInformation(
-        location: Location.fromJson(json['location'] as Map<String, Object?>),
-        message: json['message'] as String,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'location': location.toJson(), 'message': message};
-  }
+  factory DiagnosticRelatedInformation.fromJson(Map<String, dynamic> json) =>
+      _$DiagnosticRelatedInformationFromJson(json);
 }
 
 /// Represents a parameter of a callable-signature. A parameter can
@@ -8833,15 +5342,8 @@ abstract class ParameterInformation with _$ParameterInformation {
     Object? documentation,
   }) = _ParameterInformation;
 
-  static ParameterInformation fromJson(Map<String, Object?> json) =>
-      ParameterInformation(
-        label: json['label'] as Object,
-        documentation: json['documentation'],
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'label': label, 'documentation': documentation};
-  }
+  factory ParameterInformation.fromJson(Map<String, dynamic> json) =>
+      _$ParameterInformationFromJson(json);
 }
 
 /// A notebook cell text document filter denotes a cell text
@@ -8858,15 +5360,8 @@ abstract class NotebookCellTextDocumentFilter
     String? language,
   }) = _NotebookCellTextDocumentFilter;
 
-  static NotebookCellTextDocumentFilter fromJson(Map<String, Object?> json) =>
-      NotebookCellTextDocumentFilter(
-        notebook: json['notebook'] as Object,
-        language: json['language'] as String?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'notebook': notebook, 'language': language};
-  }
+  factory NotebookCellTextDocumentFilter.fromJson(Map<String, dynamic> json) =>
+      _$NotebookCellTextDocumentFilterFromJson(json);
 }
 
 /// Matching options for the file operation pattern.
@@ -8879,12 +5374,8 @@ abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
   const factory FileOperationPatternOptions({bool? ignoreCase}) =
       _FileOperationPatternOptions;
 
-  static FileOperationPatternOptions fromJson(Map<String, Object?> json) =>
-      FileOperationPatternOptions(ignoreCase: json['ignoreCase'] as bool?);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'ignoreCase': ignoreCase};
-  }
+  factory FileOperationPatternOptions.fromJson(Map<String, dynamic> json) =>
+      _$FileOperationPatternOptionsFromJson(json);
 }
 
 @freezed
@@ -8894,18 +5385,8 @@ abstract class ExecutionSummary with _$ExecutionSummary {
   const factory ExecutionSummary({required int executionOrder, bool? success}) =
       _ExecutionSummary;
 
-  static ExecutionSummary fromJson(Map<String, Object?> json) =>
-      ExecutionSummary(
-        executionOrder: json['executionOrder'] as int,
-        success: json['success'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'executionOrder': executionOrder,
-      'success': success,
-    };
-  }
+  factory ExecutionSummary.fromJson(Map<String, dynamic> json) =>
+      _$ExecutionSummaryFromJson(json);
 }
 
 /// Workspace specific client capabilities.
@@ -8931,92 +5412,8 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
     FoldingRangeWorkspaceClientCapabilities? foldingRange,
   }) = _WorkspaceClientCapabilities;
 
-  static WorkspaceClientCapabilities fromJson(Map<String, Object?> json) =>
-      WorkspaceClientCapabilities(
-        applyEdit: json['applyEdit'] as bool?,
-        workspaceEdit: json['workspaceEdit'] == null
-            ? null
-            : WorkspaceEditClientCapabilities.fromJson(
-                json['workspaceEdit'] as Map<String, Object?>,
-              ),
-        didChangeConfiguration: json['didChangeConfiguration'] == null
-            ? null
-            : DidChangeConfigurationClientCapabilities.fromJson(
-                json['didChangeConfiguration'] as Map<String, Object?>,
-              ),
-        didChangeWatchedFiles: json['didChangeWatchedFiles'] == null
-            ? null
-            : DidChangeWatchedFilesClientCapabilities.fromJson(
-                json['didChangeWatchedFiles'] as Map<String, Object?>,
-              ),
-        symbol: json['symbol'] == null
-            ? null
-            : WorkspaceSymbolClientCapabilities.fromJson(
-                json['symbol'] as Map<String, Object?>,
-              ),
-        executeCommand: json['executeCommand'] == null
-            ? null
-            : ExecuteCommandClientCapabilities.fromJson(
-                json['executeCommand'] as Map<String, Object?>,
-              ),
-        workspaceFolders: json['workspaceFolders'] as bool?,
-        configuration: json['configuration'] as bool?,
-        semanticTokens: json['semanticTokens'] == null
-            ? null
-            : SemanticTokensWorkspaceClientCapabilities.fromJson(
-                json['semanticTokens'] as Map<String, Object?>,
-              ),
-        codeLens: json['codeLens'] == null
-            ? null
-            : CodeLensWorkspaceClientCapabilities.fromJson(
-                json['codeLens'] as Map<String, Object?>,
-              ),
-        fileOperations: json['fileOperations'] == null
-            ? null
-            : FileOperationClientCapabilities.fromJson(
-                json['fileOperations'] as Map<String, Object?>,
-              ),
-        inlineValue: json['inlineValue'] == null
-            ? null
-            : InlineValueWorkspaceClientCapabilities.fromJson(
-                json['inlineValue'] as Map<String, Object?>,
-              ),
-        inlayHint: json['inlayHint'] == null
-            ? null
-            : InlayHintWorkspaceClientCapabilities.fromJson(
-                json['inlayHint'] as Map<String, Object?>,
-              ),
-        diagnostics: json['diagnostics'] == null
-            ? null
-            : DiagnosticWorkspaceClientCapabilities.fromJson(
-                json['diagnostics'] as Map<String, Object?>,
-              ),
-        foldingRange: json['foldingRange'] == null
-            ? null
-            : FoldingRangeWorkspaceClientCapabilities.fromJson(
-                json['foldingRange'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'applyEdit': applyEdit,
-      'workspaceEdit': workspaceEdit?.toJson(),
-      'didChangeConfiguration': didChangeConfiguration?.toJson(),
-      'didChangeWatchedFiles': didChangeWatchedFiles?.toJson(),
-      'symbol': symbol?.toJson(),
-      'executeCommand': executeCommand?.toJson(),
-      'workspaceFolders': workspaceFolders,
-      'configuration': configuration,
-      'semanticTokens': semanticTokens?.toJson(),
-      'codeLens': codeLens?.toJson(),
-      'fileOperations': fileOperations?.toJson(),
-      'inlineValue': inlineValue?.toJson(),
-      'inlayHint': inlayHint?.toJson(),
-      'diagnostics': diagnostics?.toJson(),
-      'foldingRange': foldingRange?.toJson(),
-    };
-  }
+  factory WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceClientCapabilitiesFromJson(json);
 }
 
 /// Text document specific client capabilities.
@@ -9059,200 +5456,8 @@ abstract class TextDocumentClientCapabilities
     InlineCompletionClientCapabilities? inlineCompletion,
   }) = _TextDocumentClientCapabilities;
 
-  static TextDocumentClientCapabilities fromJson(Map<String, Object?> json) =>
-      TextDocumentClientCapabilities(
-        synchronization: json['synchronization'] == null
-            ? null
-            : TextDocumentSyncClientCapabilities.fromJson(
-                json['synchronization'] as Map<String, Object?>,
-              ),
-        completion: json['completion'] == null
-            ? null
-            : CompletionClientCapabilities.fromJson(
-                json['completion'] as Map<String, Object?>,
-              ),
-        hover: json['hover'] == null
-            ? null
-            : HoverClientCapabilities.fromJson(
-                json['hover'] as Map<String, Object?>,
-              ),
-        signatureHelp: json['signatureHelp'] == null
-            ? null
-            : SignatureHelpClientCapabilities.fromJson(
-                json['signatureHelp'] as Map<String, Object?>,
-              ),
-        declaration: json['declaration'] == null
-            ? null
-            : DeclarationClientCapabilities.fromJson(
-                json['declaration'] as Map<String, Object?>,
-              ),
-        definition: json['definition'] == null
-            ? null
-            : DefinitionClientCapabilities.fromJson(
-                json['definition'] as Map<String, Object?>,
-              ),
-        typeDefinition: json['typeDefinition'] == null
-            ? null
-            : TypeDefinitionClientCapabilities.fromJson(
-                json['typeDefinition'] as Map<String, Object?>,
-              ),
-        implementation: json['implementation'] == null
-            ? null
-            : ImplementationClientCapabilities.fromJson(
-                json['implementation'] as Map<String, Object?>,
-              ),
-        references: json['references'] == null
-            ? null
-            : ReferenceClientCapabilities.fromJson(
-                json['references'] as Map<String, Object?>,
-              ),
-        documentHighlight: json['documentHighlight'] == null
-            ? null
-            : DocumentHighlightClientCapabilities.fromJson(
-                json['documentHighlight'] as Map<String, Object?>,
-              ),
-        documentSymbol: json['documentSymbol'] == null
-            ? null
-            : DocumentSymbolClientCapabilities.fromJson(
-                json['documentSymbol'] as Map<String, Object?>,
-              ),
-        codeAction: json['codeAction'] == null
-            ? null
-            : CodeActionClientCapabilities.fromJson(
-                json['codeAction'] as Map<String, Object?>,
-              ),
-        codeLens: json['codeLens'] == null
-            ? null
-            : CodeLensClientCapabilities.fromJson(
-                json['codeLens'] as Map<String, Object?>,
-              ),
-        documentLink: json['documentLink'] == null
-            ? null
-            : DocumentLinkClientCapabilities.fromJson(
-                json['documentLink'] as Map<String, Object?>,
-              ),
-        colorProvider: json['colorProvider'] == null
-            ? null
-            : DocumentColorClientCapabilities.fromJson(
-                json['colorProvider'] as Map<String, Object?>,
-              ),
-        formatting: json['formatting'] == null
-            ? null
-            : DocumentFormattingClientCapabilities.fromJson(
-                json['formatting'] as Map<String, Object?>,
-              ),
-        rangeFormatting: json['rangeFormatting'] == null
-            ? null
-            : DocumentRangeFormattingClientCapabilities.fromJson(
-                json['rangeFormatting'] as Map<String, Object?>,
-              ),
-        onTypeFormatting: json['onTypeFormatting'] == null
-            ? null
-            : DocumentOnTypeFormattingClientCapabilities.fromJson(
-                json['onTypeFormatting'] as Map<String, Object?>,
-              ),
-        rename: json['rename'] == null
-            ? null
-            : RenameClientCapabilities.fromJson(
-                json['rename'] as Map<String, Object?>,
-              ),
-        foldingRange: json['foldingRange'] == null
-            ? null
-            : FoldingRangeClientCapabilities.fromJson(
-                json['foldingRange'] as Map<String, Object?>,
-              ),
-        selectionRange: json['selectionRange'] == null
-            ? null
-            : SelectionRangeClientCapabilities.fromJson(
-                json['selectionRange'] as Map<String, Object?>,
-              ),
-        publishDiagnostics: json['publishDiagnostics'] == null
-            ? null
-            : PublishDiagnosticsClientCapabilities.fromJson(
-                json['publishDiagnostics'] as Map<String, Object?>,
-              ),
-        callHierarchy: json['callHierarchy'] == null
-            ? null
-            : CallHierarchyClientCapabilities.fromJson(
-                json['callHierarchy'] as Map<String, Object?>,
-              ),
-        semanticTokens: json['semanticTokens'] == null
-            ? null
-            : SemanticTokensClientCapabilities.fromJson(
-                json['semanticTokens'] as Map<String, Object?>,
-              ),
-        linkedEditingRange: json['linkedEditingRange'] == null
-            ? null
-            : LinkedEditingRangeClientCapabilities.fromJson(
-                json['linkedEditingRange'] as Map<String, Object?>,
-              ),
-        moniker: json['moniker'] == null
-            ? null
-            : MonikerClientCapabilities.fromJson(
-                json['moniker'] as Map<String, Object?>,
-              ),
-        typeHierarchy: json['typeHierarchy'] == null
-            ? null
-            : TypeHierarchyClientCapabilities.fromJson(
-                json['typeHierarchy'] as Map<String, Object?>,
-              ),
-        inlineValue: json['inlineValue'] == null
-            ? null
-            : InlineValueClientCapabilities.fromJson(
-                json['inlineValue'] as Map<String, Object?>,
-              ),
-        inlayHint: json['inlayHint'] == null
-            ? null
-            : InlayHintClientCapabilities.fromJson(
-                json['inlayHint'] as Map<String, Object?>,
-              ),
-        diagnostic: json['diagnostic'] == null
-            ? null
-            : DiagnosticClientCapabilities.fromJson(
-                json['diagnostic'] as Map<String, Object?>,
-              ),
-        inlineCompletion: json['inlineCompletion'] == null
-            ? null
-            : InlineCompletionClientCapabilities.fromJson(
-                json['inlineCompletion'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'synchronization': synchronization?.toJson(),
-      'completion': completion?.toJson(),
-      'hover': hover?.toJson(),
-      'signatureHelp': signatureHelp?.toJson(),
-      'declaration': declaration?.toJson(),
-      'definition': definition?.toJson(),
-      'typeDefinition': typeDefinition?.toJson(),
-      'implementation': implementation?.toJson(),
-      'references': references?.toJson(),
-      'documentHighlight': documentHighlight?.toJson(),
-      'documentSymbol': documentSymbol?.toJson(),
-      'codeAction': codeAction?.toJson(),
-      'codeLens': codeLens?.toJson(),
-      'documentLink': documentLink?.toJson(),
-      'colorProvider': colorProvider?.toJson(),
-      'formatting': formatting?.toJson(),
-      'rangeFormatting': rangeFormatting?.toJson(),
-      'onTypeFormatting': onTypeFormatting?.toJson(),
-      'rename': rename?.toJson(),
-      'foldingRange': foldingRange?.toJson(),
-      'selectionRange': selectionRange?.toJson(),
-      'publishDiagnostics': publishDiagnostics?.toJson(),
-      'callHierarchy': callHierarchy?.toJson(),
-      'semanticTokens': semanticTokens?.toJson(),
-      'linkedEditingRange': linkedEditingRange?.toJson(),
-      'moniker': moniker?.toJson(),
-      'typeHierarchy': typeHierarchy?.toJson(),
-      'inlineValue': inlineValue?.toJson(),
-      'inlayHint': inlayHint?.toJson(),
-      'diagnostic': diagnostic?.toJson(),
-      'inlineCompletion': inlineCompletion?.toJson(),
-    };
-  }
+  factory TextDocumentClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$TextDocumentClientCapabilitiesFromJson(json);
 }
 
 /// Capabilities specific to the notebook document support.
@@ -9267,17 +5472,9 @@ abstract class NotebookDocumentClientCapabilities
     required NotebookDocumentSyncClientCapabilities synchronization,
   }) = _NotebookDocumentClientCapabilities;
 
-  static NotebookDocumentClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => NotebookDocumentClientCapabilities(
-    synchronization: NotebookDocumentSyncClientCapabilities.fromJson(
-      json['synchronization'] as Map<String, Object?>,
-    ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'synchronization': synchronization.toJson()};
-  }
+  factory NotebookDocumentClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -9290,28 +5487,8 @@ abstract class WindowClientCapabilities with _$WindowClientCapabilities {
     ShowDocumentClientCapabilities? showDocument,
   }) = _WindowClientCapabilities;
 
-  static WindowClientCapabilities fromJson(Map<String, Object?> json) =>
-      WindowClientCapabilities(
-        workDoneProgress: json['workDoneProgress'] as bool?,
-        showMessage: json['showMessage'] == null
-            ? null
-            : ShowMessageRequestClientCapabilities.fromJson(
-                json['showMessage'] as Map<String, Object?>,
-              ),
-        showDocument: json['showDocument'] == null
-            ? null
-            : ShowDocumentClientCapabilities.fromJson(
-                json['showDocument'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'workDoneProgress': workDoneProgress,
-      'showMessage': showMessage?.toJson(),
-      'showDocument': showDocument?.toJson(),
-    };
-  }
+  factory WindowClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$WindowClientCapabilitiesFromJson(json);
 }
 
 /// General client capabilities.
@@ -9325,39 +5502,12 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
     GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport,
     RegularExpressionsClientCapabilities? regularExpressions,
     MarkdownClientCapabilities? markdown,
+    @_PositionEncodingKindListConverter()
     List<PositionEncodingKind>? positionEncodings,
   }) = _GeneralClientCapabilities;
 
-  static GeneralClientCapabilities fromJson(Map<String, Object?> json) =>
-      GeneralClientCapabilities(
-        staleRequestSupport: json['staleRequestSupport'] == null
-            ? null
-            : GeneralClientCapabilitiesStaleRequestSupport.fromJson(
-                json['staleRequestSupport'] as Map<String, Object?>,
-              ),
-        regularExpressions: json['regularExpressions'] == null
-            ? null
-            : RegularExpressionsClientCapabilities.fromJson(
-                json['regularExpressions'] as Map<String, Object?>,
-              ),
-        markdown: json['markdown'] == null
-            ? null
-            : MarkdownClientCapabilities.fromJson(
-                json['markdown'] as Map<String, Object?>,
-              ),
-        positionEncodings: (json['positionEncodings'] as List<Object?>?)
-            ?.map((e) => e as PositionEncodingKind)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'staleRequestSupport': staleRequestSupport?.toJson(),
-      'regularExpressions': regularExpressions?.toJson(),
-      'markdown': markdown?.toJson(),
-      'positionEncodings': positionEncodings,
-    };
-  }
+  factory GeneralClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$GeneralClientCapabilitiesFromJson(json);
 }
 
 /// A relative pattern is a helper to construct glob patterns that are matched
@@ -9374,14 +5524,8 @@ abstract class RelativePattern with _$RelativePattern {
     required Pattern pattern,
   }) = _RelativePattern;
 
-  static RelativePattern fromJson(Map<String, Object?> json) => RelativePattern(
-    baseUri: json['baseUri'] as Object,
-    pattern: json['pattern'] as Pattern,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'baseUri': baseUri, 'pattern': pattern};
-  }
+  factory RelativePattern.fromJson(Map<String, dynamic> json) =>
+      _$RelativePatternFromJson(json);
 }
 
 @freezed
@@ -9391,41 +5535,16 @@ abstract class WorkspaceEditClientCapabilities
 
   const factory WorkspaceEditClientCapabilities({
     bool? documentChanges,
+    @_ResourceOperationKindListConverter()
     List<ResourceOperationKind>? resourceOperations,
-    FailureHandlingKind? failureHandling,
+    @_FailureHandlingKindConverter() FailureHandlingKind? failureHandling,
     bool? normalizesLineEndings,
     WorkspaceEditClientCapabilitiesChangeAnnotationSupport?
     changeAnnotationSupport,
   }) = _WorkspaceEditClientCapabilities;
 
-  static WorkspaceEditClientCapabilities fromJson(Map<String, Object?> json) =>
-      WorkspaceEditClientCapabilities(
-        documentChanges: json['documentChanges'] as bool?,
-        resourceOperations: (json['resourceOperations'] as List<Object?>?)
-            ?.map((e) => e as ResourceOperationKind)
-            .toList(),
-        failureHandling: json['failureHandling'] == null
-            ? null
-            : FailureHandlingKind.values.firstWhere(
-                (e) => e.value == json['failureHandling'] as String,
-              ),
-        normalizesLineEndings: json['normalizesLineEndings'] as bool?,
-        changeAnnotationSupport: json['changeAnnotationSupport'] == null
-            ? null
-            : WorkspaceEditClientCapabilitiesChangeAnnotationSupport.fromJson(
-                json['changeAnnotationSupport'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'documentChanges': documentChanges,
-      'resourceOperations': resourceOperations,
-      'failureHandling': failureHandling?.value,
-      'normalizesLineEndings': normalizesLineEndings,
-      'changeAnnotationSupport': changeAnnotationSupport?.toJson(),
-    };
-  }
+  factory WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceEditClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -9437,15 +5556,9 @@ abstract class DidChangeConfigurationClientCapabilities
     bool? dynamicRegistration,
   }) = _DidChangeConfigurationClientCapabilities;
 
-  static DidChangeConfigurationClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => DidChangeConfigurationClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory DidChangeConfigurationClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DidChangeConfigurationClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -9458,19 +5571,9 @@ abstract class DidChangeWatchedFilesClientCapabilities
     bool? relativePatternSupport,
   }) = _DidChangeWatchedFilesClientCapabilities;
 
-  static DidChangeWatchedFilesClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => DidChangeWatchedFilesClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-    relativePatternSupport: json['relativePatternSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'relativePatternSupport': relativePatternSupport,
-    };
-  }
+  factory DidChangeWatchedFilesClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DidChangeWatchedFilesClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities for a {@link WorkspaceSymbolRequest}.
@@ -9486,35 +5589,9 @@ abstract class WorkspaceSymbolClientCapabilities
     WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport,
   }) = _WorkspaceSymbolClientCapabilities;
 
-  static WorkspaceSymbolClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => WorkspaceSymbolClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-    symbolKind: json['symbolKind'] == null
-        ? null
-        : WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(
-            json['symbolKind'] as Map<String, Object?>,
-          ),
-    tagSupport: json['tagSupport'] == null
-        ? null
-        : WorkspaceSymbolClientCapabilitiesTagSupport.fromJson(
-            json['tagSupport'] as Map<String, Object?>,
-          ),
-    resolveSupport: json['resolveSupport'] == null
-        ? null
-        : WorkspaceSymbolClientCapabilitiesResolveSupport.fromJson(
-            json['resolveSupport'] as Map<String, Object?>,
-          ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'symbolKind': symbolKind?.toJson(),
-      'tagSupport': tagSupport?.toJson(),
-      'resolveSupport': resolveSupport?.toJson(),
-    };
-  }
+  factory WorkspaceSymbolClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WorkspaceSymbolClientCapabilitiesFromJson(json);
 }
 
 /// The client capabilities of a {@link ExecuteCommandRequest}.
@@ -9526,14 +5603,9 @@ abstract class ExecuteCommandClientCapabilities
   const factory ExecuteCommandClientCapabilities({bool? dynamicRegistration}) =
       _ExecuteCommandClientCapabilities;
 
-  static ExecuteCommandClientCapabilities fromJson(Map<String, Object?> json) =>
-      ExecuteCommandClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory ExecuteCommandClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ExecuteCommandClientCapabilitiesFromJson(json);
 }
 
 /// @since 3.16.0
@@ -9546,15 +5618,9 @@ abstract class SemanticTokensWorkspaceClientCapabilities
     bool? refreshSupport,
   }) = _SemanticTokensWorkspaceClientCapabilities;
 
-  static SemanticTokensWorkspaceClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => SemanticTokensWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'refreshSupport': refreshSupport};
-  }
+  factory SemanticTokensWorkspaceClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SemanticTokensWorkspaceClientCapabilitiesFromJson(json);
 }
 
 /// @since 3.16.0
@@ -9566,15 +5632,9 @@ abstract class CodeLensWorkspaceClientCapabilities
   const factory CodeLensWorkspaceClientCapabilities({bool? refreshSupport}) =
       _CodeLensWorkspaceClientCapabilities;
 
-  static CodeLensWorkspaceClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => CodeLensWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'refreshSupport': refreshSupport};
-  }
+  factory CodeLensWorkspaceClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CodeLensWorkspaceClientCapabilitiesFromJson(json);
 }
 
 /// Capabilities relating to events from file operations by the user in the client.
@@ -9598,28 +5658,8 @@ abstract class FileOperationClientCapabilities
     bool? willDelete,
   }) = _FileOperationClientCapabilities;
 
-  static FileOperationClientCapabilities fromJson(Map<String, Object?> json) =>
-      FileOperationClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        didCreate: json['didCreate'] as bool?,
-        willCreate: json['willCreate'] as bool?,
-        didRename: json['didRename'] as bool?,
-        willRename: json['willRename'] as bool?,
-        didDelete: json['didDelete'] as bool?,
-        willDelete: json['willDelete'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'didCreate': didCreate,
-      'willCreate': willCreate,
-      'didRename': didRename,
-      'willRename': willRename,
-      'didDelete': didDelete,
-      'willDelete': willDelete,
-    };
-  }
+  factory FileOperationClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$FileOperationClientCapabilitiesFromJson(json);
 }
 
 /// Client workspace capabilities specific to inline values.
@@ -9633,15 +5673,9 @@ abstract class InlineValueWorkspaceClientCapabilities
   const factory InlineValueWorkspaceClientCapabilities({bool? refreshSupport}) =
       _InlineValueWorkspaceClientCapabilities;
 
-  static InlineValueWorkspaceClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => InlineValueWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'refreshSupport': refreshSupport};
-  }
+  factory InlineValueWorkspaceClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$InlineValueWorkspaceClientCapabilitiesFromJson(json);
 }
 
 /// Client workspace capabilities specific to inlay hints.
@@ -9655,15 +5689,9 @@ abstract class InlayHintWorkspaceClientCapabilities
   const factory InlayHintWorkspaceClientCapabilities({bool? refreshSupport}) =
       _InlayHintWorkspaceClientCapabilities;
 
-  static InlayHintWorkspaceClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => InlayHintWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'refreshSupport': refreshSupport};
-  }
+  factory InlayHintWorkspaceClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$InlayHintWorkspaceClientCapabilitiesFromJson(json);
 }
 
 /// Workspace client capabilities specific to diagnostic pull requests.
@@ -9677,15 +5705,9 @@ abstract class DiagnosticWorkspaceClientCapabilities
   const factory DiagnosticWorkspaceClientCapabilities({bool? refreshSupport}) =
       _DiagnosticWorkspaceClientCapabilities;
 
-  static DiagnosticWorkspaceClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => DiagnosticWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'refreshSupport': refreshSupport};
-  }
+  factory DiagnosticWorkspaceClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DiagnosticWorkspaceClientCapabilitiesFromJson(json);
 }
 
 /// Client workspace capabilities specific to folding ranges
@@ -9701,15 +5723,9 @@ abstract class FoldingRangeWorkspaceClientCapabilities
     bool? refreshSupport,
   }) = _FoldingRangeWorkspaceClientCapabilities;
 
-  static FoldingRangeWorkspaceClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => FoldingRangeWorkspaceClientCapabilities(
-    refreshSupport: json['refreshSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'refreshSupport': refreshSupport};
-  }
+  factory FoldingRangeWorkspaceClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$FoldingRangeWorkspaceClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -9724,23 +5740,9 @@ abstract class TextDocumentSyncClientCapabilities
     bool? didSave,
   }) = _TextDocumentSyncClientCapabilities;
 
-  static TextDocumentSyncClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => TextDocumentSyncClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-    willSave: json['willSave'] as bool?,
-    willSaveWaitUntil: json['willSaveWaitUntil'] as bool?,
-    didSave: json['didSave'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'willSave': willSave,
-      'willSaveWaitUntil': willSaveWaitUntil,
-      'didSave': didSave,
-    };
-  }
+  factory TextDocumentSyncClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TextDocumentSyncClientCapabilitiesFromJson(json);
 }
 
 /// Completion client capabilities
@@ -9753,47 +5755,13 @@ abstract class CompletionClientCapabilities
     bool? dynamicRegistration,
     CompletionClientCapabilitiesCompletionItem? completionItem,
     CompletionClientCapabilitiesCompletionItemKind? completionItemKind,
-    InsertTextMode? insertTextMode,
+    @_InsertTextModeConverter() InsertTextMode? insertTextMode,
     bool? contextSupport,
     CompletionClientCapabilitiesCompletionList? completionList,
   }) = _CompletionClientCapabilities;
 
-  static CompletionClientCapabilities fromJson(Map<String, Object?> json) =>
-      CompletionClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        completionItem: json['completionItem'] == null
-            ? null
-            : CompletionClientCapabilitiesCompletionItem.fromJson(
-                json['completionItem'] as Map<String, Object?>,
-              ),
-        completionItemKind: json['completionItemKind'] == null
-            ? null
-            : CompletionClientCapabilitiesCompletionItemKind.fromJson(
-                json['completionItemKind'] as Map<String, Object?>,
-              ),
-        insertTextMode: json['insertTextMode'] == null
-            ? null
-            : InsertTextMode.values.firstWhere(
-                (e) => e.value == json['insertTextMode'] as int,
-              ),
-        contextSupport: json['contextSupport'] as bool?,
-        completionList: json['completionList'] == null
-            ? null
-            : CompletionClientCapabilitiesCompletionList.fromJson(
-                json['completionList'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'completionItem': completionItem?.toJson(),
-      'completionItemKind': completionItemKind?.toJson(),
-      'insertTextMode': insertTextMode?.value,
-      'contextSupport': contextSupport,
-      'completionList': completionList?.toJson(),
-    };
-  }
+  factory CompletionClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$CompletionClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -9802,23 +5770,11 @@ abstract class HoverClientCapabilities with _$HoverClientCapabilities {
 
   const factory HoverClientCapabilities({
     bool? dynamicRegistration,
-    List<MarkupKind>? contentFormat,
+    @_MarkupKindListConverter() List<MarkupKind>? contentFormat,
   }) = _HoverClientCapabilities;
 
-  static HoverClientCapabilities fromJson(Map<String, Object?> json) =>
-      HoverClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        contentFormat: (json['contentFormat'] as List<Object?>?)
-            ?.map((e) => e as MarkupKind)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'contentFormat': contentFormat,
-    };
-  }
+  factory HoverClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$HoverClientCapabilitiesFromJson(json);
 }
 
 /// Client Capabilities for a {@link SignatureHelpRequest}.
@@ -9833,24 +5789,8 @@ abstract class SignatureHelpClientCapabilities
     bool? contextSupport,
   }) = _SignatureHelpClientCapabilities;
 
-  static SignatureHelpClientCapabilities fromJson(Map<String, Object?> json) =>
-      SignatureHelpClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        signatureInformation: json['signatureInformation'] == null
-            ? null
-            : SignatureHelpClientCapabilitiesSignatureInformation.fromJson(
-                json['signatureInformation'] as Map<String, Object?>,
-              ),
-        contextSupport: json['contextSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'signatureInformation': signatureInformation?.toJson(),
-      'contextSupport': contextSupport,
-    };
-  }
+  factory SignatureHelpClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$SignatureHelpClientCapabilitiesFromJson(json);
 }
 
 /// @since 3.14.0
@@ -9864,18 +5804,8 @@ abstract class DeclarationClientCapabilities
     bool? linkSupport,
   }) = _DeclarationClientCapabilities;
 
-  static DeclarationClientCapabilities fromJson(Map<String, Object?> json) =>
-      DeclarationClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        linkSupport: json['linkSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'linkSupport': linkSupport,
-    };
-  }
+  factory DeclarationClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$DeclarationClientCapabilitiesFromJson(json);
 }
 
 /// Client Capabilities for a {@link DefinitionRequest}.
@@ -9889,18 +5819,8 @@ abstract class DefinitionClientCapabilities
     bool? linkSupport,
   }) = _DefinitionClientCapabilities;
 
-  static DefinitionClientCapabilities fromJson(Map<String, Object?> json) =>
-      DefinitionClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        linkSupport: json['linkSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'linkSupport': linkSupport,
-    };
-  }
+  factory DefinitionClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$DefinitionClientCapabilitiesFromJson(json);
 }
 
 /// Since 3.6.0
@@ -9914,18 +5834,9 @@ abstract class TypeDefinitionClientCapabilities
     bool? linkSupport,
   }) = _TypeDefinitionClientCapabilities;
 
-  static TypeDefinitionClientCapabilities fromJson(Map<String, Object?> json) =>
-      TypeDefinitionClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        linkSupport: json['linkSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'linkSupport': linkSupport,
-    };
-  }
+  factory TypeDefinitionClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$TypeDefinitionClientCapabilitiesFromJson(json);
 }
 
 /// @since 3.6.0
@@ -9939,18 +5850,9 @@ abstract class ImplementationClientCapabilities
     bool? linkSupport,
   }) = _ImplementationClientCapabilities;
 
-  static ImplementationClientCapabilities fromJson(Map<String, Object?> json) =>
-      ImplementationClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        linkSupport: json['linkSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'linkSupport': linkSupport,
-    };
-  }
+  factory ImplementationClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ImplementationClientCapabilitiesFromJson(json);
 }
 
 /// Client Capabilities for a {@link ReferencesRequest}.
@@ -9961,14 +5863,8 @@ abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
   const factory ReferenceClientCapabilities({bool? dynamicRegistration}) =
       _ReferenceClientCapabilities;
 
-  static ReferenceClientCapabilities fromJson(Map<String, Object?> json) =>
-      ReferenceClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory ReferenceClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$ReferenceClientCapabilitiesFromJson(json);
 }
 
 /// Client Capabilities for a {@link DocumentHighlightRequest}.
@@ -9981,15 +5877,9 @@ abstract class DocumentHighlightClientCapabilities
     bool? dynamicRegistration,
   }) = _DocumentHighlightClientCapabilities;
 
-  static DocumentHighlightClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => DocumentHighlightClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory DocumentHighlightClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentHighlightClientCapabilitiesFromJson(json);
 }
 
 /// Client Capabilities for a {@link DocumentSymbolRequest}.
@@ -10006,33 +5896,9 @@ abstract class DocumentSymbolClientCapabilities
     bool? labelSupport,
   }) = _DocumentSymbolClientCapabilities;
 
-  static DocumentSymbolClientCapabilities fromJson(Map<String, Object?> json) =>
-      DocumentSymbolClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        symbolKind: json['symbolKind'] == null
-            ? null
-            : DocumentSymbolClientCapabilitiesSymbolKind.fromJson(
-                json['symbolKind'] as Map<String, Object?>,
-              ),
-        hierarchicalDocumentSymbolSupport:
-            json['hierarchicalDocumentSymbolSupport'] as bool?,
-        tagSupport: json['tagSupport'] == null
-            ? null
-            : DocumentSymbolClientCapabilitiesTagSupport.fromJson(
-                json['tagSupport'] as Map<String, Object?>,
-              ),
-        labelSupport: json['labelSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'symbolKind': symbolKind?.toJson(),
-      'hierarchicalDocumentSymbolSupport': hierarchicalDocumentSymbolSupport,
-      'tagSupport': tagSupport?.toJson(),
-      'labelSupport': labelSupport,
-    };
-  }
+  factory DocumentSymbolClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentSymbolClientCapabilitiesFromJson(json);
 }
 
 /// The Client Capabilities of a {@link CodeActionRequest}.
@@ -10052,36 +5918,8 @@ abstract class CodeActionClientCapabilities
     bool? honorsChangeAnnotations,
   }) = _CodeActionClientCapabilities;
 
-  static CodeActionClientCapabilities fromJson(Map<String, Object?> json) =>
-      CodeActionClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        codeActionLiteralSupport: json['codeActionLiteralSupport'] == null
-            ? null
-            : CodeActionClientCapabilitiesCodeActionLiteralSupport.fromJson(
-                json['codeActionLiteralSupport'] as Map<String, Object?>,
-              ),
-        isPreferredSupport: json['isPreferredSupport'] as bool?,
-        disabledSupport: json['disabledSupport'] as bool?,
-        dataSupport: json['dataSupport'] as bool?,
-        resolveSupport: json['resolveSupport'] == null
-            ? null
-            : CodeActionClientCapabilitiesResolveSupport.fromJson(
-                json['resolveSupport'] as Map<String, Object?>,
-              ),
-        honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'codeActionLiteralSupport': codeActionLiteralSupport?.toJson(),
-      'isPreferredSupport': isPreferredSupport,
-      'disabledSupport': disabledSupport,
-      'dataSupport': dataSupport,
-      'resolveSupport': resolveSupport?.toJson(),
-      'honorsChangeAnnotations': honorsChangeAnnotations,
-    };
-  }
+  factory CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$CodeActionClientCapabilitiesFromJson(json);
 }
 
 /// The client capabilities  of a {@link CodeLensRequest}.
@@ -10092,14 +5930,8 @@ abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
   const factory CodeLensClientCapabilities({bool? dynamicRegistration}) =
       _CodeLensClientCapabilities;
 
-  static CodeLensClientCapabilities fromJson(Map<String, Object?> json) =>
-      CodeLensClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory CodeLensClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$CodeLensClientCapabilitiesFromJson(json);
 }
 
 /// The client capabilities of a {@link DocumentLinkRequest}.
@@ -10113,18 +5945,8 @@ abstract class DocumentLinkClientCapabilities
     bool? tooltipSupport,
   }) = _DocumentLinkClientCapabilities;
 
-  static DocumentLinkClientCapabilities fromJson(Map<String, Object?> json) =>
-      DocumentLinkClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        tooltipSupport: json['tooltipSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'tooltipSupport': tooltipSupport,
-    };
-  }
+  factory DocumentLinkClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$DocumentLinkClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -10135,14 +5957,8 @@ abstract class DocumentColorClientCapabilities
   const factory DocumentColorClientCapabilities({bool? dynamicRegistration}) =
       _DocumentColorClientCapabilities;
 
-  static DocumentColorClientCapabilities fromJson(Map<String, Object?> json) =>
-      DocumentColorClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory DocumentColorClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$DocumentColorClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities of a {@link DocumentFormattingRequest}.
@@ -10155,15 +5971,9 @@ abstract class DocumentFormattingClientCapabilities
     bool? dynamicRegistration,
   }) = _DocumentFormattingClientCapabilities;
 
-  static DocumentFormattingClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => DocumentFormattingClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory DocumentFormattingClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentFormattingClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities of a {@link DocumentRangeFormattingRequest}.
@@ -10177,19 +5987,9 @@ abstract class DocumentRangeFormattingClientCapabilities
     bool? rangesSupport,
   }) = _DocumentRangeFormattingClientCapabilities;
 
-  static DocumentRangeFormattingClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => DocumentRangeFormattingClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-    rangesSupport: json['rangesSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'rangesSupport': rangesSupport,
-    };
-  }
+  factory DocumentRangeFormattingClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentRangeFormattingClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities of a {@link DocumentOnTypeFormattingRequest}.
@@ -10202,15 +6002,9 @@ abstract class DocumentOnTypeFormattingClientCapabilities
     bool? dynamicRegistration,
   }) = _DocumentOnTypeFormattingClientCapabilities;
 
-  static DocumentOnTypeFormattingClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => DocumentOnTypeFormattingClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory DocumentOnTypeFormattingClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$DocumentOnTypeFormattingClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -10220,31 +6014,13 @@ abstract class RenameClientCapabilities with _$RenameClientCapabilities {
   const factory RenameClientCapabilities({
     bool? dynamicRegistration,
     bool? prepareSupport,
+    @_PrepareSupportDefaultBehaviorConverter()
     PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,
     bool? honorsChangeAnnotations,
   }) = _RenameClientCapabilities;
 
-  static RenameClientCapabilities fromJson(Map<String, Object?> json) =>
-      RenameClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        prepareSupport: json['prepareSupport'] as bool?,
-        prepareSupportDefaultBehavior:
-            json['prepareSupportDefaultBehavior'] == null
-            ? null
-            : PrepareSupportDefaultBehavior.values.firstWhere(
-                (e) => e.value == json['prepareSupportDefaultBehavior'] as int,
-              ),
-        honorsChangeAnnotations: json['honorsChangeAnnotations'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'prepareSupport': prepareSupport,
-      'prepareSupportDefaultBehavior': prepareSupportDefaultBehavior?.value,
-      'honorsChangeAnnotations': honorsChangeAnnotations,
-    };
-  }
+  factory RenameClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$RenameClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -10260,32 +6036,8 @@ abstract class FoldingRangeClientCapabilities
     FoldingRangeClientCapabilitiesFoldingRange? foldingRange,
   }) = _FoldingRangeClientCapabilities;
 
-  static FoldingRangeClientCapabilities fromJson(Map<String, Object?> json) =>
-      FoldingRangeClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        rangeLimit: json['rangeLimit'] as int?,
-        lineFoldingOnly: json['lineFoldingOnly'] as bool?,
-        foldingRangeKind: json['foldingRangeKind'] == null
-            ? null
-            : FoldingRangeClientCapabilitiesFoldingRangeKind.fromJson(
-                json['foldingRangeKind'] as Map<String, Object?>,
-              ),
-        foldingRange: json['foldingRange'] == null
-            ? null
-            : FoldingRangeClientCapabilitiesFoldingRange.fromJson(
-                json['foldingRange'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'rangeLimit': rangeLimit,
-      'lineFoldingOnly': lineFoldingOnly,
-      'foldingRangeKind': foldingRangeKind?.toJson(),
-      'foldingRange': foldingRange?.toJson(),
-    };
-  }
+  factory FoldingRangeClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$FoldingRangeClientCapabilitiesFromJson(json);
 }
 
 @freezed
@@ -10296,14 +6048,9 @@ abstract class SelectionRangeClientCapabilities
   const factory SelectionRangeClientCapabilities({bool? dynamicRegistration}) =
       _SelectionRangeClientCapabilities;
 
-  static SelectionRangeClientCapabilities fromJson(Map<String, Object?> json) =>
-      SelectionRangeClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory SelectionRangeClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SelectionRangeClientCapabilitiesFromJson(json);
 }
 
 /// The publish diagnostic client capabilities.
@@ -10320,29 +6067,9 @@ abstract class PublishDiagnosticsClientCapabilities
     bool? dataSupport,
   }) = _PublishDiagnosticsClientCapabilities;
 
-  static PublishDiagnosticsClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => PublishDiagnosticsClientCapabilities(
-    relatedInformation: json['relatedInformation'] as bool?,
-    tagSupport: json['tagSupport'] == null
-        ? null
-        : PublishDiagnosticsClientCapabilitiesTagSupport.fromJson(
-            json['tagSupport'] as Map<String, Object?>,
-          ),
-    versionSupport: json['versionSupport'] as bool?,
-    codeDescriptionSupport: json['codeDescriptionSupport'] as bool?,
-    dataSupport: json['dataSupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'relatedInformation': relatedInformation,
-      'tagSupport': tagSupport?.toJson(),
-      'versionSupport': versionSupport,
-      'codeDescriptionSupport': codeDescriptionSupport,
-      'dataSupport': dataSupport,
-    };
-  }
+  factory PublishDiagnosticsClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$PublishDiagnosticsClientCapabilitiesFromJson(json);
 }
 
 /// @since 3.16.0
@@ -10354,14 +6081,8 @@ abstract class CallHierarchyClientCapabilities
   const factory CallHierarchyClientCapabilities({bool? dynamicRegistration}) =
       _CallHierarchyClientCapabilities;
 
-  static CallHierarchyClientCapabilities fromJson(Map<String, Object?> json) =>
-      CallHierarchyClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory CallHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$CallHierarchyClientCapabilitiesFromJson(json);
 }
 
 /// @since 3.16.0
@@ -10375,47 +6096,16 @@ abstract class SemanticTokensClientCapabilities
     required SemanticTokensClientCapabilitiesRequests requests,
     required List<String> tokenTypes,
     required List<String> tokenModifiers,
-    required List<TokenFormat> formats,
+    @_TokenFormatListConverter() required List<TokenFormat> formats,
     bool? overlappingTokenSupport,
     bool? multilineTokenSupport,
     bool? serverCancelSupport,
     bool? augmentsSyntaxTokens,
   }) = _SemanticTokensClientCapabilities;
 
-  static SemanticTokensClientCapabilities fromJson(Map<String, Object?> json) =>
-      SemanticTokensClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        requests: SemanticTokensClientCapabilitiesRequests.fromJson(
-          json['requests'] as Map<String, Object?>,
-        ),
-        tokenTypes: (json['tokenTypes'] as List<Object?>)
-            .map((e) => e as String)
-            .toList(),
-        tokenModifiers: (json['tokenModifiers'] as List<Object?>)
-            .map((e) => e as String)
-            .toList(),
-        formats: (json['formats'] as List<Object?>)
-            .map((e) => e as TokenFormat)
-            .toList(),
-        overlappingTokenSupport: json['overlappingTokenSupport'] as bool?,
-        multilineTokenSupport: json['multilineTokenSupport'] as bool?,
-        serverCancelSupport: json['serverCancelSupport'] as bool?,
-        augmentsSyntaxTokens: json['augmentsSyntaxTokens'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'requests': requests.toJson(),
-      'tokenTypes': tokenTypes,
-      'tokenModifiers': tokenModifiers,
-      'formats': formats,
-      'overlappingTokenSupport': overlappingTokenSupport,
-      'multilineTokenSupport': multilineTokenSupport,
-      'serverCancelSupport': serverCancelSupport,
-      'augmentsSyntaxTokens': augmentsSyntaxTokens,
-    };
-  }
+  factory SemanticTokensClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SemanticTokensClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities for the linked editing range request.
@@ -10430,15 +6120,9 @@ abstract class LinkedEditingRangeClientCapabilities
     bool? dynamicRegistration,
   }) = _LinkedEditingRangeClientCapabilities;
 
-  static LinkedEditingRangeClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => LinkedEditingRangeClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory LinkedEditingRangeClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$LinkedEditingRangeClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities specific to the moniker request.
@@ -10451,14 +6135,8 @@ abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
   const factory MonikerClientCapabilities({bool? dynamicRegistration}) =
       _MonikerClientCapabilities;
 
-  static MonikerClientCapabilities fromJson(Map<String, Object?> json) =>
-      MonikerClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory MonikerClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$MonikerClientCapabilitiesFromJson(json);
 }
 
 /// @since 3.17.0
@@ -10470,14 +6148,8 @@ abstract class TypeHierarchyClientCapabilities
   const factory TypeHierarchyClientCapabilities({bool? dynamicRegistration}) =
       _TypeHierarchyClientCapabilities;
 
-  static TypeHierarchyClientCapabilities fromJson(Map<String, Object?> json) =>
-      TypeHierarchyClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory TypeHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$TypeHierarchyClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities specific to inline values.
@@ -10491,14 +6163,8 @@ abstract class InlineValueClientCapabilities
   const factory InlineValueClientCapabilities({bool? dynamicRegistration}) =
       _InlineValueClientCapabilities;
 
-  static InlineValueClientCapabilities fromJson(Map<String, Object?> json) =>
-      InlineValueClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory InlineValueClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$InlineValueClientCapabilitiesFromJson(json);
 }
 
 /// Inlay hint client capabilities.
@@ -10513,22 +6179,8 @@ abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
     InlayHintClientCapabilitiesResolveSupport? resolveSupport,
   }) = _InlayHintClientCapabilities;
 
-  static InlayHintClientCapabilities fromJson(Map<String, Object?> json) =>
-      InlayHintClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        resolveSupport: json['resolveSupport'] == null
-            ? null
-            : InlayHintClientCapabilitiesResolveSupport.fromJson(
-                json['resolveSupport'] as Map<String, Object?>,
-              ),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'resolveSupport': resolveSupport?.toJson(),
-    };
-  }
+  factory InlayHintClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$InlayHintClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities specific to diagnostic pull requests.
@@ -10544,18 +6196,8 @@ abstract class DiagnosticClientCapabilities
     bool? relatedDocumentSupport,
   }) = _DiagnosticClientCapabilities;
 
-  static DiagnosticClientCapabilities fromJson(Map<String, Object?> json) =>
-      DiagnosticClientCapabilities(
-        dynamicRegistration: json['dynamicRegistration'] as bool?,
-        relatedDocumentSupport: json['relatedDocumentSupport'] as bool?,
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'relatedDocumentSupport': relatedDocumentSupport,
-    };
-  }
+  factory DiagnosticClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$DiagnosticClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities specific to inline completions.
@@ -10571,15 +6213,9 @@ abstract class InlineCompletionClientCapabilities
     bool? dynamicRegistration,
   }) = _InlineCompletionClientCapabilities;
 
-  static InlineCompletionClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => InlineCompletionClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'dynamicRegistration': dynamicRegistration};
-  }
+  factory InlineCompletionClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$InlineCompletionClientCapabilitiesFromJson(json);
 }
 
 /// Notebook specific client capabilities.
@@ -10595,19 +6231,9 @@ abstract class NotebookDocumentSyncClientCapabilities
     bool? executionSummarySupport,
   }) = _NotebookDocumentSyncClientCapabilities;
 
-  static NotebookDocumentSyncClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => NotebookDocumentSyncClientCapabilities(
-    dynamicRegistration: json['dynamicRegistration'] as bool?,
-    executionSummarySupport: json['executionSummarySupport'] as bool?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'dynamicRegistration': dynamicRegistration,
-      'executionSummarySupport': executionSummarySupport,
-    };
-  }
+  factory NotebookDocumentSyncClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$NotebookDocumentSyncClientCapabilitiesFromJson(json);
 }
 
 /// Show message request client capabilities
@@ -10620,19 +6246,9 @@ abstract class ShowMessageRequestClientCapabilities
     ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem,
   }) = _ShowMessageRequestClientCapabilities;
 
-  static ShowMessageRequestClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => ShowMessageRequestClientCapabilities(
-    messageActionItem: json['messageActionItem'] == null
-        ? null
-        : ShowMessageRequestClientCapabilitiesMessageActionItem.fromJson(
-            json['messageActionItem'] as Map<String, Object?>,
-          ),
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'messageActionItem': messageActionItem?.toJson()};
-  }
+  factory ShowMessageRequestClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ShowMessageRequestClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities for the showDocument request.
@@ -10646,12 +6262,8 @@ abstract class ShowDocumentClientCapabilities
   const factory ShowDocumentClientCapabilities({required bool support}) =
       _ShowDocumentClientCapabilities;
 
-  static ShowDocumentClientCapabilities fromJson(Map<String, Object?> json) =>
-      ShowDocumentClientCapabilities(support: json['support'] as bool);
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'support': support};
-  }
+  factory ShowDocumentClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$ShowDocumentClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities specific to regular expressions.
@@ -10667,16 +6279,9 @@ abstract class RegularExpressionsClientCapabilities
     String? version,
   }) = _RegularExpressionsClientCapabilities;
 
-  static RegularExpressionsClientCapabilities fromJson(
-    Map<String, Object?> json,
-  ) => RegularExpressionsClientCapabilities(
-    engine: json['engine'] as String,
-    version: json['version'] as String?,
-  );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{'engine': engine, 'version': version};
-  }
+  factory RegularExpressionsClientCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) => _$RegularExpressionsClientCapabilitiesFromJson(json);
 }
 
 /// Client capabilities specific to the used markdown parser.
@@ -10692,20 +6297,6 @@ abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
     List<String>? allowedTags,
   }) = _MarkdownClientCapabilities;
 
-  static MarkdownClientCapabilities fromJson(Map<String, Object?> json) =>
-      MarkdownClientCapabilities(
-        parser: json['parser'] as String,
-        version: json['version'] as String?,
-        allowedTags: (json['allowedTags'] as List<Object?>?)
-            ?.map((e) => e as String)
-            .toList(),
-      );
-
-  Map<String, Object?> toJson() {
-    return <String, Object?>{
-      'parser': parser,
-      'version': version,
-      'allowedTags': allowedTags,
-    };
-  }
+  factory MarkdownClientCapabilities.fromJson(Map<String, dynamic> json) =>
+      _$MarkdownClientCapabilitiesFromJson(json);
 }
