@@ -136,6 +136,55 @@ sealed class DocumentDiagnosticReport with _$DocumentDiagnosticReport {
 }
 
 @freezed
+sealed class PrepareRenameResult with _$PrepareRenameResult {
+  const PrepareRenameResult._();
+
+  const factory PrepareRenameResult.range({required Range value}) =
+      PrepareRenameResult$Range;
+
+  const factory PrepareRenameResult.rangePlaceholder({
+    required ({Range range, String placeholder}) value,
+  }) = PrepareRenameResult$RangePlaceholder;
+
+  const factory PrepareRenameResult.defaultBehavior({
+    required ({bool defaultBehavior}) value,
+  }) = PrepareRenameResult$DefaultBehavior;
+
+  static PrepareRenameResult fromJson(Map<String, Object?> json) {
+    if (json.containsKey('start')) {
+      return PrepareRenameResult.range(value: Range.fromJson(json));
+    }
+    if (json.containsKey('range')) {
+      return PrepareRenameResult.rangePlaceholder(
+        value: (
+          range: Range.fromJson(json['range'] as Map<String, Object?>),
+          placeholder: json['placeholder'] as String,
+        ),
+      );
+    }
+    if (json.containsKey('defaultBehavior')) {
+      return PrepareRenameResult.defaultBehavior(
+        value: (defaultBehavior: json['defaultBehavior'] as bool),
+      );
+    }
+    return PrepareRenameResult.defaultBehavior(
+      value: (defaultBehavior: json['defaultBehavior'] as bool),
+    );
+  }
+
+  Object toJson() => switch (this) {
+    PrepareRenameResult$Range(:final value) => value.toJson(),
+    PrepareRenameResult$RangePlaceholder(:final value) => {
+      'range': value.range.toJson(),
+      'placeholder': value.placeholder,
+    },
+    PrepareRenameResult$DefaultBehavior(:final value) => {
+      'defaultBehavior': value.defaultBehavior,
+    },
+  };
+}
+
+@freezed
 sealed class WorkspaceDocumentDiagnosticReport
     with _$WorkspaceDocumentDiagnosticReport {
   const WorkspaceDocumentDiagnosticReport._();
@@ -169,5 +218,75 @@ sealed class WorkspaceDocumentDiagnosticReport
       :final value,
     ) =>
       value.toJson(),
+  };
+}
+
+@freezed
+sealed class TextDocumentContentChangeEvent
+    with _$TextDocumentContentChangeEvent {
+  const TextDocumentContentChangeEvent._();
+
+  const factory TextDocumentContentChangeEvent.rangeRangeLengthText({
+    required ({Range range, int? rangeLength, String text}) value,
+  }) = TextDocumentContentChangeEvent$RangeRangeLengthText;
+
+  const factory TextDocumentContentChangeEvent.text({
+    required ({String text}) value,
+  }) = TextDocumentContentChangeEvent$Text;
+
+  static TextDocumentContentChangeEvent fromJson(Map<String, Object?> json) {
+    if (json.containsKey('range')) {
+      return TextDocumentContentChangeEvent.rangeRangeLengthText(
+        value: (
+          range: Range.fromJson(json['range'] as Map<String, Object?>),
+          rangeLength: json['rangeLength'] as int?,
+          text: json['text'] as String,
+        ),
+      );
+    }
+    return TextDocumentContentChangeEvent.text(
+      value: (text: json['text'] as String),
+    );
+  }
+
+  Object toJson() => switch (this) {
+    TextDocumentContentChangeEvent$RangeRangeLengthText(:final value) => {
+      'range': value.range.toJson(),
+      if (value.rangeLength != null) 'rangeLength': value.rangeLength,
+      'text': value.text,
+    },
+    TextDocumentContentChangeEvent$Text(:final value) => {'text': value.text},
+  };
+}
+
+@freezed
+sealed class MarkedString with _$MarkedString {
+  const MarkedString._();
+
+  const factory MarkedString.languageValue({
+    required ({String language, String value}) value,
+  }) = MarkedString$LanguageValue;
+
+  const factory MarkedString.string({required String value}) =
+      MarkedString$String;
+
+  static MarkedString fromJson(Object? json) {
+    if (json is Map<String, Object?>) {
+      return MarkedString.languageValue(
+        value: (
+          language: json['language'] as String,
+          value: json['value'] as String,
+        ),
+      );
+    }
+    return MarkedString.string(value: (json as String));
+  }
+
+  Object toJson() => switch (this) {
+    MarkedString$LanguageValue(:final value) => {
+      'language': value.language,
+      'value': value.value,
+    },
+    MarkedString$String(:final value) => value,
   };
 }

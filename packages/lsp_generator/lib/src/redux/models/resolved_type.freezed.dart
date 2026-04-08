@@ -55,7 +55,7 @@ extension ResolvedTypePatterns on ResolvedType {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( DartCoreType value)?  dartCore,TResult Function( ClassType value)?  classType,TResult Function( EnumType value)?  enumType,TResult Function( AliasType value)?  aliasType,TResult Function( ListType value)?  listType,TResult Function( MapType value)?  mapType,TResult Function( NullableType value)?  nullableType,TResult Function( UnionType value)?  unionType,TResult Function( TupleType value)?  tupleType,TResult Function( StringLiteralType value)?  stringLiteralType,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( DartCoreType value)?  dartCore,TResult Function( ClassType value)?  classType,TResult Function( EnumType value)?  enumType,TResult Function( AliasType value)?  aliasType,TResult Function( ListType value)?  listType,TResult Function( MapType value)?  mapType,TResult Function( NullableType value)?  nullableType,TResult Function( UnionType value)?  unionType,TResult Function( TupleType value)?  tupleType,TResult Function( StringLiteralType value)?  stringLiteralType,TResult Function( InlineRecord value)?  inlineRecord,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case DartCoreType() when dartCore != null:
@@ -68,7 +68,8 @@ return mapType(_that);case NullableType() when nullableType != null:
 return nullableType(_that);case UnionType() when unionType != null:
 return unionType(_that);case TupleType() when tupleType != null:
 return tupleType(_that);case StringLiteralType() when stringLiteralType != null:
-return stringLiteralType(_that);case _:
+return stringLiteralType(_that);case InlineRecord() when inlineRecord != null:
+return inlineRecord(_that);case _:
   return orElse();
 
 }
@@ -86,7 +87,7 @@ return stringLiteralType(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( DartCoreType value)  dartCore,required TResult Function( ClassType value)  classType,required TResult Function( EnumType value)  enumType,required TResult Function( AliasType value)  aliasType,required TResult Function( ListType value)  listType,required TResult Function( MapType value)  mapType,required TResult Function( NullableType value)  nullableType,required TResult Function( UnionType value)  unionType,required TResult Function( TupleType value)  tupleType,required TResult Function( StringLiteralType value)  stringLiteralType,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( DartCoreType value)  dartCore,required TResult Function( ClassType value)  classType,required TResult Function( EnumType value)  enumType,required TResult Function( AliasType value)  aliasType,required TResult Function( ListType value)  listType,required TResult Function( MapType value)  mapType,required TResult Function( NullableType value)  nullableType,required TResult Function( UnionType value)  unionType,required TResult Function( TupleType value)  tupleType,required TResult Function( StringLiteralType value)  stringLiteralType,required TResult Function( InlineRecord value)  inlineRecord,}){
 final _that = this;
 switch (_that) {
 case DartCoreType():
@@ -99,7 +100,8 @@ return mapType(_that);case NullableType():
 return nullableType(_that);case UnionType():
 return unionType(_that);case TupleType():
 return tupleType(_that);case StringLiteralType():
-return stringLiteralType(_that);}
+return stringLiteralType(_that);case InlineRecord():
+return inlineRecord(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -113,7 +115,7 @@ return stringLiteralType(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( DartCoreType value)?  dartCore,TResult? Function( ClassType value)?  classType,TResult? Function( EnumType value)?  enumType,TResult? Function( AliasType value)?  aliasType,TResult? Function( ListType value)?  listType,TResult? Function( MapType value)?  mapType,TResult? Function( NullableType value)?  nullableType,TResult? Function( UnionType value)?  unionType,TResult? Function( TupleType value)?  tupleType,TResult? Function( StringLiteralType value)?  stringLiteralType,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( DartCoreType value)?  dartCore,TResult? Function( ClassType value)?  classType,TResult? Function( EnumType value)?  enumType,TResult? Function( AliasType value)?  aliasType,TResult? Function( ListType value)?  listType,TResult? Function( MapType value)?  mapType,TResult? Function( NullableType value)?  nullableType,TResult? Function( UnionType value)?  unionType,TResult? Function( TupleType value)?  tupleType,TResult? Function( StringLiteralType value)?  stringLiteralType,TResult? Function( InlineRecord value)?  inlineRecord,}){
 final _that = this;
 switch (_that) {
 case DartCoreType() when dartCore != null:
@@ -126,7 +128,8 @@ return mapType(_that);case NullableType() when nullableType != null:
 return nullableType(_that);case UnionType() when unionType != null:
 return unionType(_that);case TupleType() when tupleType != null:
 return tupleType(_that);case StringLiteralType() when stringLiteralType != null:
-return stringLiteralType(_that);case _:
+return stringLiteralType(_that);case InlineRecord() when inlineRecord != null:
+return inlineRecord(_that);case _:
   return null;
 
 }
@@ -143,7 +146,7 @@ return stringLiteralType(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String dartName)?  dartCore,TResult Function( ResolvedClass ref)?  classType,TResult Function( ResolvedEnum ref)?  enumType,TResult Function( ResolvedAlias ref)?  aliasType,TResult Function( ResolvedType element)?  listType,TResult Function( ResolvedType key,  ResolvedType value)?  mapType,TResult Function( ResolvedType inner)?  nullableType,TResult Function( List<ResolvedType> items)?  unionType,TResult Function( List<ResolvedType> items)?  tupleType,TResult Function( String value)?  stringLiteralType,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String dartName)?  dartCore,TResult Function( ResolvedClass ref)?  classType,TResult Function( ResolvedEnum ref)?  enumType,TResult Function( ResolvedAlias ref)?  aliasType,TResult Function( ResolvedType element)?  listType,TResult Function( ResolvedType key,  ResolvedType value)?  mapType,TResult Function( ResolvedType inner)?  nullableType,TResult Function( List<ResolvedType> items)?  unionType,TResult Function( List<ResolvedType> items)?  tupleType,TResult Function( String value)?  stringLiteralType,TResult Function( List<ResolvedProperty> fields)?  inlineRecord,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case DartCoreType() when dartCore != null:
 return dartCore(_that.dartName);case ClassType() when classType != null:
@@ -155,7 +158,8 @@ return mapType(_that.key,_that.value);case NullableType() when nullableType != n
 return nullableType(_that.inner);case UnionType() when unionType != null:
 return unionType(_that.items);case TupleType() when tupleType != null:
 return tupleType(_that.items);case StringLiteralType() when stringLiteralType != null:
-return stringLiteralType(_that.value);case _:
+return stringLiteralType(_that.value);case InlineRecord() when inlineRecord != null:
+return inlineRecord(_that.fields);case _:
   return orElse();
 
 }
@@ -173,7 +177,7 @@ return stringLiteralType(_that.value);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String dartName)  dartCore,required TResult Function( ResolvedClass ref)  classType,required TResult Function( ResolvedEnum ref)  enumType,required TResult Function( ResolvedAlias ref)  aliasType,required TResult Function( ResolvedType element)  listType,required TResult Function( ResolvedType key,  ResolvedType value)  mapType,required TResult Function( ResolvedType inner)  nullableType,required TResult Function( List<ResolvedType> items)  unionType,required TResult Function( List<ResolvedType> items)  tupleType,required TResult Function( String value)  stringLiteralType,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String dartName)  dartCore,required TResult Function( ResolvedClass ref)  classType,required TResult Function( ResolvedEnum ref)  enumType,required TResult Function( ResolvedAlias ref)  aliasType,required TResult Function( ResolvedType element)  listType,required TResult Function( ResolvedType key,  ResolvedType value)  mapType,required TResult Function( ResolvedType inner)  nullableType,required TResult Function( List<ResolvedType> items)  unionType,required TResult Function( List<ResolvedType> items)  tupleType,required TResult Function( String value)  stringLiteralType,required TResult Function( List<ResolvedProperty> fields)  inlineRecord,}) {final _that = this;
 switch (_that) {
 case DartCoreType():
 return dartCore(_that.dartName);case ClassType():
@@ -185,7 +189,8 @@ return mapType(_that.key,_that.value);case NullableType():
 return nullableType(_that.inner);case UnionType():
 return unionType(_that.items);case TupleType():
 return tupleType(_that.items);case StringLiteralType():
-return stringLiteralType(_that.value);}
+return stringLiteralType(_that.value);case InlineRecord():
+return inlineRecord(_that.fields);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -199,7 +204,7 @@ return stringLiteralType(_that.value);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String dartName)?  dartCore,TResult? Function( ResolvedClass ref)?  classType,TResult? Function( ResolvedEnum ref)?  enumType,TResult? Function( ResolvedAlias ref)?  aliasType,TResult? Function( ResolvedType element)?  listType,TResult? Function( ResolvedType key,  ResolvedType value)?  mapType,TResult? Function( ResolvedType inner)?  nullableType,TResult? Function( List<ResolvedType> items)?  unionType,TResult? Function( List<ResolvedType> items)?  tupleType,TResult? Function( String value)?  stringLiteralType,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String dartName)?  dartCore,TResult? Function( ResolvedClass ref)?  classType,TResult? Function( ResolvedEnum ref)?  enumType,TResult? Function( ResolvedAlias ref)?  aliasType,TResult? Function( ResolvedType element)?  listType,TResult? Function( ResolvedType key,  ResolvedType value)?  mapType,TResult? Function( ResolvedType inner)?  nullableType,TResult? Function( List<ResolvedType> items)?  unionType,TResult? Function( List<ResolvedType> items)?  tupleType,TResult? Function( String value)?  stringLiteralType,TResult? Function( List<ResolvedProperty> fields)?  inlineRecord,}) {final _that = this;
 switch (_that) {
 case DartCoreType() when dartCore != null:
 return dartCore(_that.dartName);case ClassType() when classType != null:
@@ -211,7 +216,8 @@ return mapType(_that.key,_that.value);case NullableType() when nullableType != n
 return nullableType(_that.inner);case UnionType() when unionType != null:
 return unionType(_that.items);case TupleType() when tupleType != null:
 return tupleType(_that.items);case StringLiteralType() when stringLiteralType != null:
-return stringLiteralType(_that.value);case _:
+return stringLiteralType(_that.value);case InlineRecord() when inlineRecord != null:
+return inlineRecord(_that.fields);case _:
   return null;
 
 }
@@ -950,6 +956,78 @@ class _$StringLiteralTypeCopyWithImpl<$Res>
   return _then(StringLiteralType(
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class InlineRecord implements ResolvedType {
+  const InlineRecord({required final  List<ResolvedProperty> fields}): _fields = fields;
+  
+
+ final  List<ResolvedProperty> _fields;
+ List<ResolvedProperty> get fields {
+  if (_fields is EqualUnmodifiableListView) return _fields;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_fields);
+}
+
+
+/// Create a copy of ResolvedType
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$InlineRecordCopyWith<InlineRecord> get copyWith => _$InlineRecordCopyWithImpl<InlineRecord>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlineRecord&&const DeepCollectionEquality().equals(other._fields, _fields));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_fields));
+
+@override
+String toString() {
+  return 'ResolvedType.inlineRecord(fields: $fields)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $InlineRecordCopyWith<$Res> implements $ResolvedTypeCopyWith<$Res> {
+  factory $InlineRecordCopyWith(InlineRecord value, $Res Function(InlineRecord) _then) = _$InlineRecordCopyWithImpl;
+@useResult
+$Res call({
+ List<ResolvedProperty> fields
+});
+
+
+
+
+}
+/// @nodoc
+class _$InlineRecordCopyWithImpl<$Res>
+    implements $InlineRecordCopyWith<$Res> {
+  _$InlineRecordCopyWithImpl(this._self, this._then);
+
+  final InlineRecord _self;
+  final $Res Function(InlineRecord) _then;
+
+/// Create a copy of ResolvedType
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? fields = null,}) {
+  return _then(InlineRecord(
+fields: null == fields ? _self._fields : fields // ignore: cast_nullable_to_non_nullable
+as List<ResolvedProperty>,
   ));
 }
 

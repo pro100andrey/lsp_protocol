@@ -13,12273 +13,6 @@ part of 'structures.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$InitializeResultServerInfo {
-
- String get name; String? get version;
-/// Create a copy of InitializeResultServerInfo
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$InitializeResultServerInfoCopyWith<InitializeResultServerInfo> get copyWith => _$InitializeResultServerInfoCopyWithImpl<InitializeResultServerInfo>(this as InitializeResultServerInfo, _$identity);
-
-  /// Serializes this InitializeResultServerInfo to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InitializeResultServerInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.version, version) || other.version == version));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,name,version);
-
-@override
-String toString() {
-  return 'InitializeResultServerInfo(name: $name, version: $version)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $InitializeResultServerInfoCopyWith<$Res>  {
-  factory $InitializeResultServerInfoCopyWith(InitializeResultServerInfo value, $Res Function(InitializeResultServerInfo) _then) = _$InitializeResultServerInfoCopyWithImpl;
-@useResult
-$Res call({
- String name, String? version
-});
-
-
-
-
-}
-/// @nodoc
-class _$InitializeResultServerInfoCopyWithImpl<$Res>
-    implements $InitializeResultServerInfoCopyWith<$Res> {
-  _$InitializeResultServerInfoCopyWithImpl(this._self, this._then);
-
-  final InitializeResultServerInfo _self;
-  final $Res Function(InitializeResultServerInfo) _then;
-
-/// Create a copy of InitializeResultServerInfo
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? version = freezed,}) {
-  return _then(_self.copyWith(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [InitializeResultServerInfo].
-extension InitializeResultServerInfoPatterns on InitializeResultServerInfo {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _InitializeResultServerInfo value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _InitializeResultServerInfo() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _InitializeResultServerInfo value)  $default,){
-final _that = this;
-switch (_that) {
-case _InitializeResultServerInfo():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _InitializeResultServerInfo value)?  $default,){
-final _that = this;
-switch (_that) {
-case _InitializeResultServerInfo() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String? version)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _InitializeResultServerInfo() when $default != null:
-return $default(_that.name,_that.version);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String? version)  $default,) {final _that = this;
-switch (_that) {
-case _InitializeResultServerInfo():
-return $default(_that.name,_that.version);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String? version)?  $default,) {final _that = this;
-switch (_that) {
-case _InitializeResultServerInfo() when $default != null:
-return $default(_that.name,_that.version);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _InitializeResultServerInfo extends InitializeResultServerInfo {
-  const _InitializeResultServerInfo({required this.name, this.version}): super._();
-  factory _InitializeResultServerInfo.fromJson(Map<String, dynamic> json) => _$InitializeResultServerInfoFromJson(json);
-
-@override final  String name;
-@override final  String? version;
-
-/// Create a copy of InitializeResultServerInfo
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$InitializeResultServerInfoCopyWith<_InitializeResultServerInfo> get copyWith => __$InitializeResultServerInfoCopyWithImpl<_InitializeResultServerInfo>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$InitializeResultServerInfoToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InitializeResultServerInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.version, version) || other.version == version));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,name,version);
-
-@override
-String toString() {
-  return 'InitializeResultServerInfo(name: $name, version: $version)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$InitializeResultServerInfoCopyWith<$Res> implements $InitializeResultServerInfoCopyWith<$Res> {
-  factory _$InitializeResultServerInfoCopyWith(_InitializeResultServerInfo value, $Res Function(_InitializeResultServerInfo) _then) = __$InitializeResultServerInfoCopyWithImpl;
-@override @useResult
-$Res call({
- String name, String? version
-});
-
-
-
-
-}
-/// @nodoc
-class __$InitializeResultServerInfoCopyWithImpl<$Res>
-    implements _$InitializeResultServerInfoCopyWith<$Res> {
-  __$InitializeResultServerInfoCopyWithImpl(this._self, this._then);
-
-  final _InitializeResultServerInfo _self;
-  final $Res Function(_InitializeResultServerInfo) _then;
-
-/// Create a copy of InitializeResultServerInfo
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? version = freezed,}) {
-  return _then(_InitializeResultServerInfo(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$CompletionListItemDefaults {
-
- List<String>? get commitCharacters; Object? get editRange; InsertTextFormat? get insertTextFormat; InsertTextMode? get insertTextMode; LSPAny? get data;
-/// Create a copy of CompletionListItemDefaults
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CompletionListItemDefaultsCopyWith<CompletionListItemDefaults> get copyWith => _$CompletionListItemDefaultsCopyWithImpl<CompletionListItemDefaults>(this as CompletionListItemDefaults, _$identity);
-
-  /// Serializes this CompletionListItemDefaults to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionListItemDefaults&&const DeepCollectionEquality().equals(other.commitCharacters, commitCharacters)&&const DeepCollectionEquality().equals(other.editRange, editRange)&&(identical(other.insertTextFormat, insertTextFormat) || other.insertTextFormat == insertTextFormat)&&(identical(other.insertTextMode, insertTextMode) || other.insertTextMode == insertTextMode)&&const DeepCollectionEquality().equals(other.data, data));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(commitCharacters),const DeepCollectionEquality().hash(editRange),insertTextFormat,insertTextMode,const DeepCollectionEquality().hash(data));
-
-@override
-String toString() {
-  return 'CompletionListItemDefaults(commitCharacters: $commitCharacters, editRange: $editRange, insertTextFormat: $insertTextFormat, insertTextMode: $insertTextMode, data: $data)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CompletionListItemDefaultsCopyWith<$Res>  {
-  factory $CompletionListItemDefaultsCopyWith(CompletionListItemDefaults value, $Res Function(CompletionListItemDefaults) _then) = _$CompletionListItemDefaultsCopyWithImpl;
-@useResult
-$Res call({
- List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data
-});
-
-
-
-
-}
-/// @nodoc
-class _$CompletionListItemDefaultsCopyWithImpl<$Res>
-    implements $CompletionListItemDefaultsCopyWith<$Res> {
-  _$CompletionListItemDefaultsCopyWithImpl(this._self, this._then);
-
-  final CompletionListItemDefaults _self;
-  final $Res Function(CompletionListItemDefaults) _then;
-
-/// Create a copy of CompletionListItemDefaults
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? commitCharacters = freezed,Object? editRange = freezed,Object? insertTextFormat = freezed,Object? insertTextMode = freezed,Object? data = freezed,}) {
-  return _then(_self.copyWith(
-commitCharacters: freezed == commitCharacters ? _self.commitCharacters : commitCharacters // ignore: cast_nullable_to_non_nullable
-as List<String>?,editRange: freezed == editRange ? _self.editRange : editRange ,insertTextFormat: freezed == insertTextFormat ? _self.insertTextFormat : insertTextFormat // ignore: cast_nullable_to_non_nullable
-as InsertTextFormat?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
-as InsertTextMode?,data: freezed == data ? _self.data : data ,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CompletionListItemDefaults].
-extension CompletionListItemDefaultsPatterns on CompletionListItemDefaults {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletionListItemDefaults value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CompletionListItemDefaults() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletionListItemDefaults value)  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionListItemDefaults():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletionListItemDefaults value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionListItemDefaults() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String>? commitCharacters,  Object? editRange,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CompletionListItemDefaults() when $default != null:
-return $default(_that.commitCharacters,_that.editRange,_that.insertTextFormat,_that.insertTextMode,_that.data);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String>? commitCharacters,  Object? editRange,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  LSPAny? data)  $default,) {final _that = this;
-switch (_that) {
-case _CompletionListItemDefaults():
-return $default(_that.commitCharacters,_that.editRange,_that.insertTextFormat,_that.insertTextMode,_that.data);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String>? commitCharacters,  Object? editRange,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  LSPAny? data)?  $default,) {final _that = this;
-switch (_that) {
-case _CompletionListItemDefaults() when $default != null:
-return $default(_that.commitCharacters,_that.editRange,_that.insertTextFormat,_that.insertTextMode,_that.data);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CompletionListItemDefaults extends CompletionListItemDefaults {
-  const _CompletionListItemDefaults({final  List<String>? commitCharacters, this.editRange, this.insertTextFormat, this.insertTextMode, this.data}): _commitCharacters = commitCharacters,super._();
-  factory _CompletionListItemDefaults.fromJson(Map<String, dynamic> json) => _$CompletionListItemDefaultsFromJson(json);
-
- final  List<String>? _commitCharacters;
-@override List<String>? get commitCharacters {
-  final value = _commitCharacters;
-  if (value == null) return null;
-  if (_commitCharacters is EqualUnmodifiableListView) return _commitCharacters;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-@override final  Object? editRange;
-@override final  InsertTextFormat? insertTextFormat;
-@override final  InsertTextMode? insertTextMode;
-@override final  LSPAny? data;
-
-/// Create a copy of CompletionListItemDefaults
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CompletionListItemDefaultsCopyWith<_CompletionListItemDefaults> get copyWith => __$CompletionListItemDefaultsCopyWithImpl<_CompletionListItemDefaults>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CompletionListItemDefaultsToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionListItemDefaults&&const DeepCollectionEquality().equals(other._commitCharacters, _commitCharacters)&&const DeepCollectionEquality().equals(other.editRange, editRange)&&(identical(other.insertTextFormat, insertTextFormat) || other.insertTextFormat == insertTextFormat)&&(identical(other.insertTextMode, insertTextMode) || other.insertTextMode == insertTextMode)&&const DeepCollectionEquality().equals(other.data, data));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_commitCharacters),const DeepCollectionEquality().hash(editRange),insertTextFormat,insertTextMode,const DeepCollectionEquality().hash(data));
-
-@override
-String toString() {
-  return 'CompletionListItemDefaults(commitCharacters: $commitCharacters, editRange: $editRange, insertTextFormat: $insertTextFormat, insertTextMode: $insertTextMode, data: $data)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CompletionListItemDefaultsCopyWith<$Res> implements $CompletionListItemDefaultsCopyWith<$Res> {
-  factory _$CompletionListItemDefaultsCopyWith(_CompletionListItemDefaults value, $Res Function(_CompletionListItemDefaults) _then) = __$CompletionListItemDefaultsCopyWithImpl;
-@override @useResult
-$Res call({
- List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data
-});
-
-
-
-
-}
-/// @nodoc
-class __$CompletionListItemDefaultsCopyWithImpl<$Res>
-    implements _$CompletionListItemDefaultsCopyWith<$Res> {
-  __$CompletionListItemDefaultsCopyWithImpl(this._self, this._then);
-
-  final _CompletionListItemDefaults _self;
-  final $Res Function(_CompletionListItemDefaults) _then;
-
-/// Create a copy of CompletionListItemDefaults
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? commitCharacters = freezed,Object? editRange = freezed,Object? insertTextFormat = freezed,Object? insertTextMode = freezed,Object? data = freezed,}) {
-  return _then(_CompletionListItemDefaults(
-commitCharacters: freezed == commitCharacters ? _self._commitCharacters : commitCharacters // ignore: cast_nullable_to_non_nullable
-as List<String>?,editRange: freezed == editRange ? _self.editRange : editRange ,insertTextFormat: freezed == insertTextFormat ? _self.insertTextFormat : insertTextFormat // ignore: cast_nullable_to_non_nullable
-as InsertTextFormat?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
-as InsertTextMode?,data: freezed == data ? _self.data : data ,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$CompletionListItemDefaultsEditRange {
-
- Range get insert; Range get replace;
-/// Create a copy of CompletionListItemDefaultsEditRange
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CompletionListItemDefaultsEditRangeCopyWith<CompletionListItemDefaultsEditRange> get copyWith => _$CompletionListItemDefaultsEditRangeCopyWithImpl<CompletionListItemDefaultsEditRange>(this as CompletionListItemDefaultsEditRange, _$identity);
-
-  /// Serializes this CompletionListItemDefaultsEditRange to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionListItemDefaultsEditRange&&(identical(other.insert, insert) || other.insert == insert)&&(identical(other.replace, replace) || other.replace == replace));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,insert,replace);
-
-@override
-String toString() {
-  return 'CompletionListItemDefaultsEditRange(insert: $insert, replace: $replace)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CompletionListItemDefaultsEditRangeCopyWith<$Res>  {
-  factory $CompletionListItemDefaultsEditRangeCopyWith(CompletionListItemDefaultsEditRange value, $Res Function(CompletionListItemDefaultsEditRange) _then) = _$CompletionListItemDefaultsEditRangeCopyWithImpl;
-@useResult
-$Res call({
- Range insert, Range replace
-});
-
-
-$RangeCopyWith<$Res> get insert;$RangeCopyWith<$Res> get replace;
-
-}
-/// @nodoc
-class _$CompletionListItemDefaultsEditRangeCopyWithImpl<$Res>
-    implements $CompletionListItemDefaultsEditRangeCopyWith<$Res> {
-  _$CompletionListItemDefaultsEditRangeCopyWithImpl(this._self, this._then);
-
-  final CompletionListItemDefaultsEditRange _self;
-  final $Res Function(CompletionListItemDefaultsEditRange) _then;
-
-/// Create a copy of CompletionListItemDefaultsEditRange
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? insert = null,Object? replace = null,}) {
-  return _then(_self.copyWith(
-insert: null == insert ? _self.insert : insert // ignore: cast_nullable_to_non_nullable
-as Range,replace: null == replace ? _self.replace : replace // ignore: cast_nullable_to_non_nullable
-as Range,
-  ));
-}
-/// Create a copy of CompletionListItemDefaultsEditRange
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res> get insert {
-  
-  return $RangeCopyWith<$Res>(_self.insert, (value) {
-    return _then(_self.copyWith(insert: value));
-  });
-}/// Create a copy of CompletionListItemDefaultsEditRange
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res> get replace {
-  
-  return $RangeCopyWith<$Res>(_self.replace, (value) {
-    return _then(_self.copyWith(replace: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [CompletionListItemDefaultsEditRange].
-extension CompletionListItemDefaultsEditRangePatterns on CompletionListItemDefaultsEditRange {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletionListItemDefaultsEditRange value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CompletionListItemDefaultsEditRange() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletionListItemDefaultsEditRange value)  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionListItemDefaultsEditRange():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletionListItemDefaultsEditRange value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionListItemDefaultsEditRange() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Range insert,  Range replace)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CompletionListItemDefaultsEditRange() when $default != null:
-return $default(_that.insert,_that.replace);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Range insert,  Range replace)  $default,) {final _that = this;
-switch (_that) {
-case _CompletionListItemDefaultsEditRange():
-return $default(_that.insert,_that.replace);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Range insert,  Range replace)?  $default,) {final _that = this;
-switch (_that) {
-case _CompletionListItemDefaultsEditRange() when $default != null:
-return $default(_that.insert,_that.replace);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CompletionListItemDefaultsEditRange extends CompletionListItemDefaultsEditRange {
-  const _CompletionListItemDefaultsEditRange({required this.insert, required this.replace}): super._();
-  factory _CompletionListItemDefaultsEditRange.fromJson(Map<String, dynamic> json) => _$CompletionListItemDefaultsEditRangeFromJson(json);
-
-@override final  Range insert;
-@override final  Range replace;
-
-/// Create a copy of CompletionListItemDefaultsEditRange
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CompletionListItemDefaultsEditRangeCopyWith<_CompletionListItemDefaultsEditRange> get copyWith => __$CompletionListItemDefaultsEditRangeCopyWithImpl<_CompletionListItemDefaultsEditRange>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CompletionListItemDefaultsEditRangeToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionListItemDefaultsEditRange&&(identical(other.insert, insert) || other.insert == insert)&&(identical(other.replace, replace) || other.replace == replace));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,insert,replace);
-
-@override
-String toString() {
-  return 'CompletionListItemDefaultsEditRange(insert: $insert, replace: $replace)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CompletionListItemDefaultsEditRangeCopyWith<$Res> implements $CompletionListItemDefaultsEditRangeCopyWith<$Res> {
-  factory _$CompletionListItemDefaultsEditRangeCopyWith(_CompletionListItemDefaultsEditRange value, $Res Function(_CompletionListItemDefaultsEditRange) _then) = __$CompletionListItemDefaultsEditRangeCopyWithImpl;
-@override @useResult
-$Res call({
- Range insert, Range replace
-});
-
-
-@override $RangeCopyWith<$Res> get insert;@override $RangeCopyWith<$Res> get replace;
-
-}
-/// @nodoc
-class __$CompletionListItemDefaultsEditRangeCopyWithImpl<$Res>
-    implements _$CompletionListItemDefaultsEditRangeCopyWith<$Res> {
-  __$CompletionListItemDefaultsEditRangeCopyWithImpl(this._self, this._then);
-
-  final _CompletionListItemDefaultsEditRange _self;
-  final $Res Function(_CompletionListItemDefaultsEditRange) _then;
-
-/// Create a copy of CompletionListItemDefaultsEditRange
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? insert = null,Object? replace = null,}) {
-  return _then(_CompletionListItemDefaultsEditRange(
-insert: null == insert ? _self.insert : insert // ignore: cast_nullable_to_non_nullable
-as Range,replace: null == replace ? _self.replace : replace // ignore: cast_nullable_to_non_nullable
-as Range,
-  ));
-}
-
-/// Create a copy of CompletionListItemDefaultsEditRange
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res> get insert {
-  
-  return $RangeCopyWith<$Res>(_self.insert, (value) {
-    return _then(_self.copyWith(insert: value));
-  });
-}/// Create a copy of CompletionListItemDefaultsEditRange
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res> get replace {
-  
-  return $RangeCopyWith<$Res>(_self.replace, (value) {
-    return _then(_self.copyWith(replace: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$CodeActionDisabled {
-
- String get reason;
-/// Create a copy of CodeActionDisabled
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CodeActionDisabledCopyWith<CodeActionDisabled> get copyWith => _$CodeActionDisabledCopyWithImpl<CodeActionDisabled>(this as CodeActionDisabled, _$identity);
-
-  /// Serializes this CodeActionDisabled to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionDisabled&&(identical(other.reason, reason) || other.reason == reason));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,reason);
-
-@override
-String toString() {
-  return 'CodeActionDisabled(reason: $reason)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CodeActionDisabledCopyWith<$Res>  {
-  factory $CodeActionDisabledCopyWith(CodeActionDisabled value, $Res Function(CodeActionDisabled) _then) = _$CodeActionDisabledCopyWithImpl;
-@useResult
-$Res call({
- String reason
-});
-
-
-
-
-}
-/// @nodoc
-class _$CodeActionDisabledCopyWithImpl<$Res>
-    implements $CodeActionDisabledCopyWith<$Res> {
-  _$CodeActionDisabledCopyWithImpl(this._self, this._then);
-
-  final CodeActionDisabled _self;
-  final $Res Function(CodeActionDisabled) _then;
-
-/// Create a copy of CodeActionDisabled
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? reason = null,}) {
-  return _then(_self.copyWith(
-reason: null == reason ? _self.reason : reason // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CodeActionDisabled].
-extension CodeActionDisabledPatterns on CodeActionDisabled {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CodeActionDisabled value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CodeActionDisabled() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CodeActionDisabled value)  $default,){
-final _that = this;
-switch (_that) {
-case _CodeActionDisabled():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CodeActionDisabled value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CodeActionDisabled() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String reason)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CodeActionDisabled() when $default != null:
-return $default(_that.reason);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String reason)  $default,) {final _that = this;
-switch (_that) {
-case _CodeActionDisabled():
-return $default(_that.reason);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String reason)?  $default,) {final _that = this;
-switch (_that) {
-case _CodeActionDisabled() when $default != null:
-return $default(_that.reason);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CodeActionDisabled extends CodeActionDisabled {
-  const _CodeActionDisabled({required this.reason}): super._();
-  factory _CodeActionDisabled.fromJson(Map<String, dynamic> json) => _$CodeActionDisabledFromJson(json);
-
-@override final  String reason;
-
-/// Create a copy of CodeActionDisabled
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CodeActionDisabledCopyWith<_CodeActionDisabled> get copyWith => __$CodeActionDisabledCopyWithImpl<_CodeActionDisabled>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CodeActionDisabledToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionDisabled&&(identical(other.reason, reason) || other.reason == reason));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,reason);
-
-@override
-String toString() {
-  return 'CodeActionDisabled(reason: $reason)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CodeActionDisabledCopyWith<$Res> implements $CodeActionDisabledCopyWith<$Res> {
-  factory _$CodeActionDisabledCopyWith(_CodeActionDisabled value, $Res Function(_CodeActionDisabled) _then) = __$CodeActionDisabledCopyWithImpl;
-@override @useResult
-$Res call({
- String reason
-});
-
-
-
-
-}
-/// @nodoc
-class __$CodeActionDisabledCopyWithImpl<$Res>
-    implements _$CodeActionDisabledCopyWith<$Res> {
-  __$CodeActionDisabledCopyWithImpl(this._self, this._then);
-
-  final _CodeActionDisabled _self;
-  final $Res Function(_CodeActionDisabled) _then;
-
-/// Create a copy of CodeActionDisabled
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? reason = null,}) {
-  return _then(_CodeActionDisabled(
-reason: null == reason ? _self.reason : reason // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$WorkspaceSymbolLocation {
-
- String get uri;
-/// Create a copy of WorkspaceSymbolLocation
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolLocationCopyWith<WorkspaceSymbolLocation> get copyWith => _$WorkspaceSymbolLocationCopyWithImpl<WorkspaceSymbolLocation>(this as WorkspaceSymbolLocation, _$identity);
-
-  /// Serializes this WorkspaceSymbolLocation to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceSymbolLocation&&(identical(other.uri, uri) || other.uri == uri));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,uri);
-
-@override
-String toString() {
-  return 'WorkspaceSymbolLocation(uri: $uri)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $WorkspaceSymbolLocationCopyWith<$Res>  {
-  factory $WorkspaceSymbolLocationCopyWith(WorkspaceSymbolLocation value, $Res Function(WorkspaceSymbolLocation) _then) = _$WorkspaceSymbolLocationCopyWithImpl;
-@useResult
-$Res call({
- String uri
-});
-
-
-
-
-}
-/// @nodoc
-class _$WorkspaceSymbolLocationCopyWithImpl<$Res>
-    implements $WorkspaceSymbolLocationCopyWith<$Res> {
-  _$WorkspaceSymbolLocationCopyWithImpl(this._self, this._then);
-
-  final WorkspaceSymbolLocation _self;
-  final $Res Function(WorkspaceSymbolLocation) _then;
-
-/// Create a copy of WorkspaceSymbolLocation
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uri = null,}) {
-  return _then(_self.copyWith(
-uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [WorkspaceSymbolLocation].
-extension WorkspaceSymbolLocationPatterns on WorkspaceSymbolLocation {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WorkspaceSymbolLocation value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolLocation() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WorkspaceSymbolLocation value)  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolLocation():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WorkspaceSymbolLocation value)?  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolLocation() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String uri)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolLocation() when $default != null:
-return $default(_that.uri);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String uri)  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolLocation():
-return $default(_that.uri);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String uri)?  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolLocation() when $default != null:
-return $default(_that.uri);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _WorkspaceSymbolLocation extends WorkspaceSymbolLocation {
-  const _WorkspaceSymbolLocation({required this.uri}): super._();
-  factory _WorkspaceSymbolLocation.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolLocationFromJson(json);
-
-@override final  String uri;
-
-/// Create a copy of WorkspaceSymbolLocation
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$WorkspaceSymbolLocationCopyWith<_WorkspaceSymbolLocation> get copyWith => __$WorkspaceSymbolLocationCopyWithImpl<_WorkspaceSymbolLocation>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$WorkspaceSymbolLocationToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceSymbolLocation&&(identical(other.uri, uri) || other.uri == uri));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,uri);
-
-@override
-String toString() {
-  return 'WorkspaceSymbolLocation(uri: $uri)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$WorkspaceSymbolLocationCopyWith<$Res> implements $WorkspaceSymbolLocationCopyWith<$Res> {
-  factory _$WorkspaceSymbolLocationCopyWith(_WorkspaceSymbolLocation value, $Res Function(_WorkspaceSymbolLocation) _then) = __$WorkspaceSymbolLocationCopyWithImpl;
-@override @useResult
-$Res call({
- String uri
-});
-
-
-
-
-}
-/// @nodoc
-class __$WorkspaceSymbolLocationCopyWithImpl<$Res>
-    implements _$WorkspaceSymbolLocationCopyWith<$Res> {
-  __$WorkspaceSymbolLocationCopyWithImpl(this._self, this._then);
-
-  final _WorkspaceSymbolLocation _self;
-  final $Res Function(_WorkspaceSymbolLocation) _then;
-
-/// Create a copy of WorkspaceSymbolLocation
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? uri = null,}) {
-  return _then(_WorkspaceSymbolLocation(
-uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$SemanticTokensOptionsRange {
-
-
-
-  /// Serializes this SemanticTokensOptionsRange to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensOptionsRange);
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'SemanticTokensOptionsRange()';
-}
-
-
-}
-
-/// @nodoc
-class $SemanticTokensOptionsRangeCopyWith<$Res>  {
-$SemanticTokensOptionsRangeCopyWith(SemanticTokensOptionsRange _, $Res Function(SemanticTokensOptionsRange) __);
-}
-
-
-/// Adds pattern-matching-related methods to [SemanticTokensOptionsRange].
-extension SemanticTokensOptionsRangePatterns on SemanticTokensOptionsRange {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SemanticTokensOptionsRange value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsRange() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SemanticTokensOptionsRange value)  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsRange():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SemanticTokensOptionsRange value)?  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsRange() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsRange() when $default != null:
-return $default();case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsRange():
-return $default();case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsRange() when $default != null:
-return $default();case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _SemanticTokensOptionsRange extends SemanticTokensOptionsRange {
-  const _SemanticTokensOptionsRange(): super._();
-  factory _SemanticTokensOptionsRange.fromJson(Map<String, dynamic> json) => _$SemanticTokensOptionsRangeFromJson(json);
-
-
-
-
-@override
-Map<String, dynamic> toJson() {
-  return _$SemanticTokensOptionsRangeToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensOptionsRange);
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'SemanticTokensOptionsRange()';
-}
-
-
-}
-
-
-
-
-
-/// @nodoc
-mixin _$SemanticTokensOptionsFull {
-
- bool? get delta;
-/// Create a copy of SemanticTokensOptionsFull
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SemanticTokensOptionsFullCopyWith<SemanticTokensOptionsFull> get copyWith => _$SemanticTokensOptionsFullCopyWithImpl<SemanticTokensOptionsFull>(this as SemanticTokensOptionsFull, _$identity);
-
-  /// Serializes this SemanticTokensOptionsFull to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensOptionsFull&&(identical(other.delta, delta) || other.delta == delta));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,delta);
-
-@override
-String toString() {
-  return 'SemanticTokensOptionsFull(delta: $delta)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $SemanticTokensOptionsFullCopyWith<$Res>  {
-  factory $SemanticTokensOptionsFullCopyWith(SemanticTokensOptionsFull value, $Res Function(SemanticTokensOptionsFull) _then) = _$SemanticTokensOptionsFullCopyWithImpl;
-@useResult
-$Res call({
- bool? delta
-});
-
-
-
-
-}
-/// @nodoc
-class _$SemanticTokensOptionsFullCopyWithImpl<$Res>
-    implements $SemanticTokensOptionsFullCopyWith<$Res> {
-  _$SemanticTokensOptionsFullCopyWithImpl(this._self, this._then);
-
-  final SemanticTokensOptionsFull _self;
-  final $Res Function(SemanticTokensOptionsFull) _then;
-
-/// Create a copy of SemanticTokensOptionsFull
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? delta = freezed,}) {
-  return _then(_self.copyWith(
-delta: freezed == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [SemanticTokensOptionsFull].
-extension SemanticTokensOptionsFullPatterns on SemanticTokensOptionsFull {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SemanticTokensOptionsFull value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsFull() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SemanticTokensOptionsFull value)  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsFull():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SemanticTokensOptionsFull value)?  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsFull() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? delta)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsFull() when $default != null:
-return $default(_that.delta);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? delta)  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsFull():
-return $default(_that.delta);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? delta)?  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensOptionsFull() when $default != null:
-return $default(_that.delta);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _SemanticTokensOptionsFull extends SemanticTokensOptionsFull {
-  const _SemanticTokensOptionsFull({this.delta}): super._();
-  factory _SemanticTokensOptionsFull.fromJson(Map<String, dynamic> json) => _$SemanticTokensOptionsFullFromJson(json);
-
-@override final  bool? delta;
-
-/// Create a copy of SemanticTokensOptionsFull
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SemanticTokensOptionsFullCopyWith<_SemanticTokensOptionsFull> get copyWith => __$SemanticTokensOptionsFullCopyWithImpl<_SemanticTokensOptionsFull>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$SemanticTokensOptionsFullToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensOptionsFull&&(identical(other.delta, delta) || other.delta == delta));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,delta);
-
-@override
-String toString() {
-  return 'SemanticTokensOptionsFull(delta: $delta)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SemanticTokensOptionsFullCopyWith<$Res> implements $SemanticTokensOptionsFullCopyWith<$Res> {
-  factory _$SemanticTokensOptionsFullCopyWith(_SemanticTokensOptionsFull value, $Res Function(_SemanticTokensOptionsFull) _then) = __$SemanticTokensOptionsFullCopyWithImpl;
-@override @useResult
-$Res call({
- bool? delta
-});
-
-
-
-
-}
-/// @nodoc
-class __$SemanticTokensOptionsFullCopyWithImpl<$Res>
-    implements _$SemanticTokensOptionsFullCopyWith<$Res> {
-  __$SemanticTokensOptionsFullCopyWithImpl(this._self, this._then);
-
-  final _SemanticTokensOptionsFull _self;
-  final $Res Function(_SemanticTokensOptionsFull) _then;
-
-/// Create a copy of SemanticTokensOptionsFull
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? delta = freezed,}) {
-  return _then(_SemanticTokensOptionsFull(
-delta: freezed == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$NotebookDocumentChangeEventCells {
-
- NotebookDocumentChangeEventCellsStructure? get structure; List<NotebookCell>? get data; List<NotebookDocumentChangeEventCellsTextContent>? get textContent;
-/// Create a copy of NotebookDocumentChangeEventCells
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$NotebookDocumentChangeEventCellsCopyWith<NotebookDocumentChangeEventCells> get copyWith => _$NotebookDocumentChangeEventCellsCopyWithImpl<NotebookDocumentChangeEventCells>(this as NotebookDocumentChangeEventCells, _$identity);
-
-  /// Serializes this NotebookDocumentChangeEventCells to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentChangeEventCells&&(identical(other.structure, structure) || other.structure == structure)&&const DeepCollectionEquality().equals(other.data, data)&&const DeepCollectionEquality().equals(other.textContent, textContent));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,structure,const DeepCollectionEquality().hash(data),const DeepCollectionEquality().hash(textContent));
-
-@override
-String toString() {
-  return 'NotebookDocumentChangeEventCells(structure: $structure, data: $data, textContent: $textContent)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $NotebookDocumentChangeEventCellsCopyWith<$Res>  {
-  factory $NotebookDocumentChangeEventCellsCopyWith(NotebookDocumentChangeEventCells value, $Res Function(NotebookDocumentChangeEventCells) _then) = _$NotebookDocumentChangeEventCellsCopyWithImpl;
-@useResult
-$Res call({
- NotebookDocumentChangeEventCellsStructure? structure, List<NotebookCell>? data, List<NotebookDocumentChangeEventCellsTextContent>? textContent
-});
-
-
-$NotebookDocumentChangeEventCellsStructureCopyWith<$Res>? get structure;
-
-}
-/// @nodoc
-class _$NotebookDocumentChangeEventCellsCopyWithImpl<$Res>
-    implements $NotebookDocumentChangeEventCellsCopyWith<$Res> {
-  _$NotebookDocumentChangeEventCellsCopyWithImpl(this._self, this._then);
-
-  final NotebookDocumentChangeEventCells _self;
-  final $Res Function(NotebookDocumentChangeEventCells) _then;
-
-/// Create a copy of NotebookDocumentChangeEventCells
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? structure = freezed,Object? data = freezed,Object? textContent = freezed,}) {
-  return _then(_self.copyWith(
-structure: freezed == structure ? _self.structure : structure // ignore: cast_nullable_to_non_nullable
-as NotebookDocumentChangeEventCellsStructure?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<NotebookCell>?,textContent: freezed == textContent ? _self.textContent : textContent // ignore: cast_nullable_to_non_nullable
-as List<NotebookDocumentChangeEventCellsTextContent>?,
-  ));
-}
-/// Create a copy of NotebookDocumentChangeEventCells
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$NotebookDocumentChangeEventCellsStructureCopyWith<$Res>? get structure {
-    if (_self.structure == null) {
-    return null;
-  }
-
-  return $NotebookDocumentChangeEventCellsStructureCopyWith<$Res>(_self.structure!, (value) {
-    return _then(_self.copyWith(structure: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [NotebookDocumentChangeEventCells].
-extension NotebookDocumentChangeEventCellsPatterns on NotebookDocumentChangeEventCells {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NotebookDocumentChangeEventCells value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCells() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NotebookDocumentChangeEventCells value)  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCells():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NotebookDocumentChangeEventCells value)?  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCells() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( NotebookDocumentChangeEventCellsStructure? structure,  List<NotebookCell>? data,  List<NotebookDocumentChangeEventCellsTextContent>? textContent)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCells() when $default != null:
-return $default(_that.structure,_that.data,_that.textContent);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( NotebookDocumentChangeEventCellsStructure? structure,  List<NotebookCell>? data,  List<NotebookDocumentChangeEventCellsTextContent>? textContent)  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCells():
-return $default(_that.structure,_that.data,_that.textContent);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( NotebookDocumentChangeEventCellsStructure? structure,  List<NotebookCell>? data,  List<NotebookDocumentChangeEventCellsTextContent>? textContent)?  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCells() when $default != null:
-return $default(_that.structure,_that.data,_that.textContent);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _NotebookDocumentChangeEventCells extends NotebookDocumentChangeEventCells {
-  const _NotebookDocumentChangeEventCells({this.structure, final  List<NotebookCell>? data, final  List<NotebookDocumentChangeEventCellsTextContent>? textContent}): _data = data,_textContent = textContent,super._();
-  factory _NotebookDocumentChangeEventCells.fromJson(Map<String, dynamic> json) => _$NotebookDocumentChangeEventCellsFromJson(json);
-
-@override final  NotebookDocumentChangeEventCellsStructure? structure;
- final  List<NotebookCell>? _data;
-@override List<NotebookCell>? get data {
-  final value = _data;
-  if (value == null) return null;
-  if (_data is EqualUnmodifiableListView) return _data;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
- final  List<NotebookDocumentChangeEventCellsTextContent>? _textContent;
-@override List<NotebookDocumentChangeEventCellsTextContent>? get textContent {
-  final value = _textContent;
-  if (value == null) return null;
-  if (_textContent is EqualUnmodifiableListView) return _textContent;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-
-/// Create a copy of NotebookDocumentChangeEventCells
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$NotebookDocumentChangeEventCellsCopyWith<_NotebookDocumentChangeEventCells> get copyWith => __$NotebookDocumentChangeEventCellsCopyWithImpl<_NotebookDocumentChangeEventCells>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$NotebookDocumentChangeEventCellsToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentChangeEventCells&&(identical(other.structure, structure) || other.structure == structure)&&const DeepCollectionEquality().equals(other._data, _data)&&const DeepCollectionEquality().equals(other._textContent, _textContent));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,structure,const DeepCollectionEquality().hash(_data),const DeepCollectionEquality().hash(_textContent));
-
-@override
-String toString() {
-  return 'NotebookDocumentChangeEventCells(structure: $structure, data: $data, textContent: $textContent)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$NotebookDocumentChangeEventCellsCopyWith<$Res> implements $NotebookDocumentChangeEventCellsCopyWith<$Res> {
-  factory _$NotebookDocumentChangeEventCellsCopyWith(_NotebookDocumentChangeEventCells value, $Res Function(_NotebookDocumentChangeEventCells) _then) = __$NotebookDocumentChangeEventCellsCopyWithImpl;
-@override @useResult
-$Res call({
- NotebookDocumentChangeEventCellsStructure? structure, List<NotebookCell>? data, List<NotebookDocumentChangeEventCellsTextContent>? textContent
-});
-
-
-@override $NotebookDocumentChangeEventCellsStructureCopyWith<$Res>? get structure;
-
-}
-/// @nodoc
-class __$NotebookDocumentChangeEventCellsCopyWithImpl<$Res>
-    implements _$NotebookDocumentChangeEventCellsCopyWith<$Res> {
-  __$NotebookDocumentChangeEventCellsCopyWithImpl(this._self, this._then);
-
-  final _NotebookDocumentChangeEventCells _self;
-  final $Res Function(_NotebookDocumentChangeEventCells) _then;
-
-/// Create a copy of NotebookDocumentChangeEventCells
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? structure = freezed,Object? data = freezed,Object? textContent = freezed,}) {
-  return _then(_NotebookDocumentChangeEventCells(
-structure: freezed == structure ? _self.structure : structure // ignore: cast_nullable_to_non_nullable
-as NotebookDocumentChangeEventCellsStructure?,data: freezed == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<NotebookCell>?,textContent: freezed == textContent ? _self._textContent : textContent // ignore: cast_nullable_to_non_nullable
-as List<NotebookDocumentChangeEventCellsTextContent>?,
-  ));
-}
-
-/// Create a copy of NotebookDocumentChangeEventCells
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$NotebookDocumentChangeEventCellsStructureCopyWith<$Res>? get structure {
-    if (_self.structure == null) {
-    return null;
-  }
-
-  return $NotebookDocumentChangeEventCellsStructureCopyWith<$Res>(_self.structure!, (value) {
-    return _then(_self.copyWith(structure: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$NotebookDocumentChangeEventCellsStructure {
-
- NotebookCellArrayChange get array; List<TextDocumentItem>? get didOpen; List<TextDocumentIdentifier>? get didClose;
-/// Create a copy of NotebookDocumentChangeEventCellsStructure
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$NotebookDocumentChangeEventCellsStructureCopyWith<NotebookDocumentChangeEventCellsStructure> get copyWith => _$NotebookDocumentChangeEventCellsStructureCopyWithImpl<NotebookDocumentChangeEventCellsStructure>(this as NotebookDocumentChangeEventCellsStructure, _$identity);
-
-  /// Serializes this NotebookDocumentChangeEventCellsStructure to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentChangeEventCellsStructure&&(identical(other.array, array) || other.array == array)&&const DeepCollectionEquality().equals(other.didOpen, didOpen)&&const DeepCollectionEquality().equals(other.didClose, didClose));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,array,const DeepCollectionEquality().hash(didOpen),const DeepCollectionEquality().hash(didClose));
-
-@override
-String toString() {
-  return 'NotebookDocumentChangeEventCellsStructure(array: $array, didOpen: $didOpen, didClose: $didClose)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $NotebookDocumentChangeEventCellsStructureCopyWith<$Res>  {
-  factory $NotebookDocumentChangeEventCellsStructureCopyWith(NotebookDocumentChangeEventCellsStructure value, $Res Function(NotebookDocumentChangeEventCellsStructure) _then) = _$NotebookDocumentChangeEventCellsStructureCopyWithImpl;
-@useResult
-$Res call({
- NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose
-});
-
-
-$NotebookCellArrayChangeCopyWith<$Res> get array;
-
-}
-/// @nodoc
-class _$NotebookDocumentChangeEventCellsStructureCopyWithImpl<$Res>
-    implements $NotebookDocumentChangeEventCellsStructureCopyWith<$Res> {
-  _$NotebookDocumentChangeEventCellsStructureCopyWithImpl(this._self, this._then);
-
-  final NotebookDocumentChangeEventCellsStructure _self;
-  final $Res Function(NotebookDocumentChangeEventCellsStructure) _then;
-
-/// Create a copy of NotebookDocumentChangeEventCellsStructure
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? array = null,Object? didOpen = freezed,Object? didClose = freezed,}) {
-  return _then(_self.copyWith(
-array: null == array ? _self.array : array // ignore: cast_nullable_to_non_nullable
-as NotebookCellArrayChange,didOpen: freezed == didOpen ? _self.didOpen : didOpen // ignore: cast_nullable_to_non_nullable
-as List<TextDocumentItem>?,didClose: freezed == didClose ? _self.didClose : didClose // ignore: cast_nullable_to_non_nullable
-as List<TextDocumentIdentifier>?,
-  ));
-}
-/// Create a copy of NotebookDocumentChangeEventCellsStructure
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$NotebookCellArrayChangeCopyWith<$Res> get array {
-  
-  return $NotebookCellArrayChangeCopyWith<$Res>(_self.array, (value) {
-    return _then(_self.copyWith(array: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [NotebookDocumentChangeEventCellsStructure].
-extension NotebookDocumentChangeEventCellsStructurePatterns on NotebookDocumentChangeEventCellsStructure {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NotebookDocumentChangeEventCellsStructure value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsStructure() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NotebookDocumentChangeEventCellsStructure value)  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsStructure():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NotebookDocumentChangeEventCellsStructure value)?  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsStructure() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( NotebookCellArrayChange array,  List<TextDocumentItem>? didOpen,  List<TextDocumentIdentifier>? didClose)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsStructure() when $default != null:
-return $default(_that.array,_that.didOpen,_that.didClose);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( NotebookCellArrayChange array,  List<TextDocumentItem>? didOpen,  List<TextDocumentIdentifier>? didClose)  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsStructure():
-return $default(_that.array,_that.didOpen,_that.didClose);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( NotebookCellArrayChange array,  List<TextDocumentItem>? didOpen,  List<TextDocumentIdentifier>? didClose)?  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsStructure() when $default != null:
-return $default(_that.array,_that.didOpen,_that.didClose);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _NotebookDocumentChangeEventCellsStructure extends NotebookDocumentChangeEventCellsStructure {
-  const _NotebookDocumentChangeEventCellsStructure({required this.array, final  List<TextDocumentItem>? didOpen, final  List<TextDocumentIdentifier>? didClose}): _didOpen = didOpen,_didClose = didClose,super._();
-  factory _NotebookDocumentChangeEventCellsStructure.fromJson(Map<String, dynamic> json) => _$NotebookDocumentChangeEventCellsStructureFromJson(json);
-
-@override final  NotebookCellArrayChange array;
- final  List<TextDocumentItem>? _didOpen;
-@override List<TextDocumentItem>? get didOpen {
-  final value = _didOpen;
-  if (value == null) return null;
-  if (_didOpen is EqualUnmodifiableListView) return _didOpen;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
- final  List<TextDocumentIdentifier>? _didClose;
-@override List<TextDocumentIdentifier>? get didClose {
-  final value = _didClose;
-  if (value == null) return null;
-  if (_didClose is EqualUnmodifiableListView) return _didClose;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-
-/// Create a copy of NotebookDocumentChangeEventCellsStructure
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$NotebookDocumentChangeEventCellsStructureCopyWith<_NotebookDocumentChangeEventCellsStructure> get copyWith => __$NotebookDocumentChangeEventCellsStructureCopyWithImpl<_NotebookDocumentChangeEventCellsStructure>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$NotebookDocumentChangeEventCellsStructureToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentChangeEventCellsStructure&&(identical(other.array, array) || other.array == array)&&const DeepCollectionEquality().equals(other._didOpen, _didOpen)&&const DeepCollectionEquality().equals(other._didClose, _didClose));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,array,const DeepCollectionEquality().hash(_didOpen),const DeepCollectionEquality().hash(_didClose));
-
-@override
-String toString() {
-  return 'NotebookDocumentChangeEventCellsStructure(array: $array, didOpen: $didOpen, didClose: $didClose)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$NotebookDocumentChangeEventCellsStructureCopyWith<$Res> implements $NotebookDocumentChangeEventCellsStructureCopyWith<$Res> {
-  factory _$NotebookDocumentChangeEventCellsStructureCopyWith(_NotebookDocumentChangeEventCellsStructure value, $Res Function(_NotebookDocumentChangeEventCellsStructure) _then) = __$NotebookDocumentChangeEventCellsStructureCopyWithImpl;
-@override @useResult
-$Res call({
- NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose
-});
-
-
-@override $NotebookCellArrayChangeCopyWith<$Res> get array;
-
-}
-/// @nodoc
-class __$NotebookDocumentChangeEventCellsStructureCopyWithImpl<$Res>
-    implements _$NotebookDocumentChangeEventCellsStructureCopyWith<$Res> {
-  __$NotebookDocumentChangeEventCellsStructureCopyWithImpl(this._self, this._then);
-
-  final _NotebookDocumentChangeEventCellsStructure _self;
-  final $Res Function(_NotebookDocumentChangeEventCellsStructure) _then;
-
-/// Create a copy of NotebookDocumentChangeEventCellsStructure
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? array = null,Object? didOpen = freezed,Object? didClose = freezed,}) {
-  return _then(_NotebookDocumentChangeEventCellsStructure(
-array: null == array ? _self.array : array // ignore: cast_nullable_to_non_nullable
-as NotebookCellArrayChange,didOpen: freezed == didOpen ? _self._didOpen : didOpen // ignore: cast_nullable_to_non_nullable
-as List<TextDocumentItem>?,didClose: freezed == didClose ? _self._didClose : didClose // ignore: cast_nullable_to_non_nullable
-as List<TextDocumentIdentifier>?,
-  ));
-}
-
-/// Create a copy of NotebookDocumentChangeEventCellsStructure
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$NotebookCellArrayChangeCopyWith<$Res> get array {
-  
-  return $NotebookCellArrayChangeCopyWith<$Res>(_self.array, (value) {
-    return _then(_self.copyWith(array: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$NotebookDocumentChangeEventCellsTextContent {
-
- VersionedTextDocumentIdentifier get document; List<TextDocumentContentChangeEvent> get changes;
-/// Create a copy of NotebookDocumentChangeEventCellsTextContent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$NotebookDocumentChangeEventCellsTextContentCopyWith<NotebookDocumentChangeEventCellsTextContent> get copyWith => _$NotebookDocumentChangeEventCellsTextContentCopyWithImpl<NotebookDocumentChangeEventCellsTextContent>(this as NotebookDocumentChangeEventCellsTextContent, _$identity);
-
-  /// Serializes this NotebookDocumentChangeEventCellsTextContent to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentChangeEventCellsTextContent&&(identical(other.document, document) || other.document == document)&&const DeepCollectionEquality().equals(other.changes, changes));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,document,const DeepCollectionEquality().hash(changes));
-
-@override
-String toString() {
-  return 'NotebookDocumentChangeEventCellsTextContent(document: $document, changes: $changes)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $NotebookDocumentChangeEventCellsTextContentCopyWith<$Res>  {
-  factory $NotebookDocumentChangeEventCellsTextContentCopyWith(NotebookDocumentChangeEventCellsTextContent value, $Res Function(NotebookDocumentChangeEventCellsTextContent) _then) = _$NotebookDocumentChangeEventCellsTextContentCopyWithImpl;
-@useResult
-$Res call({
- VersionedTextDocumentIdentifier document, List<TextDocumentContentChangeEvent> changes
-});
-
-
-$VersionedTextDocumentIdentifierCopyWith<$Res> get document;
-
-}
-/// @nodoc
-class _$NotebookDocumentChangeEventCellsTextContentCopyWithImpl<$Res>
-    implements $NotebookDocumentChangeEventCellsTextContentCopyWith<$Res> {
-  _$NotebookDocumentChangeEventCellsTextContentCopyWithImpl(this._self, this._then);
-
-  final NotebookDocumentChangeEventCellsTextContent _self;
-  final $Res Function(NotebookDocumentChangeEventCellsTextContent) _then;
-
-/// Create a copy of NotebookDocumentChangeEventCellsTextContent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? document = null,Object? changes = null,}) {
-  return _then(_self.copyWith(
-document: null == document ? _self.document : document // ignore: cast_nullable_to_non_nullable
-as VersionedTextDocumentIdentifier,changes: null == changes ? _self.changes : changes // ignore: cast_nullable_to_non_nullable
-as List<TextDocumentContentChangeEvent>,
-  ));
-}
-/// Create a copy of NotebookDocumentChangeEventCellsTextContent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$VersionedTextDocumentIdentifierCopyWith<$Res> get document {
-  
-  return $VersionedTextDocumentIdentifierCopyWith<$Res>(_self.document, (value) {
-    return _then(_self.copyWith(document: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [NotebookDocumentChangeEventCellsTextContent].
-extension NotebookDocumentChangeEventCellsTextContentPatterns on NotebookDocumentChangeEventCellsTextContent {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NotebookDocumentChangeEventCellsTextContent value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsTextContent() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NotebookDocumentChangeEventCellsTextContent value)  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsTextContent():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NotebookDocumentChangeEventCellsTextContent value)?  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsTextContent() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VersionedTextDocumentIdentifier document,  List<TextDocumentContentChangeEvent> changes)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsTextContent() when $default != null:
-return $default(_that.document,_that.changes);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VersionedTextDocumentIdentifier document,  List<TextDocumentContentChangeEvent> changes)  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsTextContent():
-return $default(_that.document,_that.changes);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VersionedTextDocumentIdentifier document,  List<TextDocumentContentChangeEvent> changes)?  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentChangeEventCellsTextContent() when $default != null:
-return $default(_that.document,_that.changes);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _NotebookDocumentChangeEventCellsTextContent extends NotebookDocumentChangeEventCellsTextContent {
-  const _NotebookDocumentChangeEventCellsTextContent({required this.document, required final  List<TextDocumentContentChangeEvent> changes}): _changes = changes,super._();
-  factory _NotebookDocumentChangeEventCellsTextContent.fromJson(Map<String, dynamic> json) => _$NotebookDocumentChangeEventCellsTextContentFromJson(json);
-
-@override final  VersionedTextDocumentIdentifier document;
- final  List<TextDocumentContentChangeEvent> _changes;
-@override List<TextDocumentContentChangeEvent> get changes {
-  if (_changes is EqualUnmodifiableListView) return _changes;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_changes);
-}
-
-
-/// Create a copy of NotebookDocumentChangeEventCellsTextContent
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$NotebookDocumentChangeEventCellsTextContentCopyWith<_NotebookDocumentChangeEventCellsTextContent> get copyWith => __$NotebookDocumentChangeEventCellsTextContentCopyWithImpl<_NotebookDocumentChangeEventCellsTextContent>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$NotebookDocumentChangeEventCellsTextContentToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentChangeEventCellsTextContent&&(identical(other.document, document) || other.document == document)&&const DeepCollectionEquality().equals(other._changes, _changes));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,document,const DeepCollectionEquality().hash(_changes));
-
-@override
-String toString() {
-  return 'NotebookDocumentChangeEventCellsTextContent(document: $document, changes: $changes)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$NotebookDocumentChangeEventCellsTextContentCopyWith<$Res> implements $NotebookDocumentChangeEventCellsTextContentCopyWith<$Res> {
-  factory _$NotebookDocumentChangeEventCellsTextContentCopyWith(_NotebookDocumentChangeEventCellsTextContent value, $Res Function(_NotebookDocumentChangeEventCellsTextContent) _then) = __$NotebookDocumentChangeEventCellsTextContentCopyWithImpl;
-@override @useResult
-$Res call({
- VersionedTextDocumentIdentifier document, List<TextDocumentContentChangeEvent> changes
-});
-
-
-@override $VersionedTextDocumentIdentifierCopyWith<$Res> get document;
-
-}
-/// @nodoc
-class __$NotebookDocumentChangeEventCellsTextContentCopyWithImpl<$Res>
-    implements _$NotebookDocumentChangeEventCellsTextContentCopyWith<$Res> {
-  __$NotebookDocumentChangeEventCellsTextContentCopyWithImpl(this._self, this._then);
-
-  final _NotebookDocumentChangeEventCellsTextContent _self;
-  final $Res Function(_NotebookDocumentChangeEventCellsTextContent) _then;
-
-/// Create a copy of NotebookDocumentChangeEventCellsTextContent
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? document = null,Object? changes = null,}) {
-  return _then(_NotebookDocumentChangeEventCellsTextContent(
-document: null == document ? _self.document : document // ignore: cast_nullable_to_non_nullable
-as VersionedTextDocumentIdentifier,changes: null == changes ? _self._changes : changes // ignore: cast_nullable_to_non_nullable
-as List<TextDocumentContentChangeEvent>,
-  ));
-}
-
-/// Create a copy of NotebookDocumentChangeEventCellsTextContent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$VersionedTextDocumentIdentifierCopyWith<$Res> get document {
-  
-  return $VersionedTextDocumentIdentifierCopyWith<$Res>(_self.document, (value) {
-    return _then(_self.copyWith(document: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$ServerCapabilitiesWorkspace {
-
- WorkspaceFoldersServerCapabilities? get workspaceFolders; FileOperationOptions? get fileOperations;
-/// Create a copy of ServerCapabilitiesWorkspace
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$ServerCapabilitiesWorkspaceCopyWith<ServerCapabilitiesWorkspace> get copyWith => _$ServerCapabilitiesWorkspaceCopyWithImpl<ServerCapabilitiesWorkspace>(this as ServerCapabilitiesWorkspace, _$identity);
-
-  /// Serializes this ServerCapabilitiesWorkspace to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServerCapabilitiesWorkspace&&(identical(other.workspaceFolders, workspaceFolders) || other.workspaceFolders == workspaceFolders)&&(identical(other.fileOperations, fileOperations) || other.fileOperations == fileOperations));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,workspaceFolders,fileOperations);
-
-@override
-String toString() {
-  return 'ServerCapabilitiesWorkspace(workspaceFolders: $workspaceFolders, fileOperations: $fileOperations)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $ServerCapabilitiesWorkspaceCopyWith<$Res>  {
-  factory $ServerCapabilitiesWorkspaceCopyWith(ServerCapabilitiesWorkspace value, $Res Function(ServerCapabilitiesWorkspace) _then) = _$ServerCapabilitiesWorkspaceCopyWithImpl;
-@useResult
-$Res call({
- WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations
-});
-
-
-$WorkspaceFoldersServerCapabilitiesCopyWith<$Res>? get workspaceFolders;$FileOperationOptionsCopyWith<$Res>? get fileOperations;
-
-}
-/// @nodoc
-class _$ServerCapabilitiesWorkspaceCopyWithImpl<$Res>
-    implements $ServerCapabilitiesWorkspaceCopyWith<$Res> {
-  _$ServerCapabilitiesWorkspaceCopyWithImpl(this._self, this._then);
-
-  final ServerCapabilitiesWorkspace _self;
-  final $Res Function(ServerCapabilitiesWorkspace) _then;
-
-/// Create a copy of ServerCapabilitiesWorkspace
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? workspaceFolders = freezed,Object? fileOperations = freezed,}) {
-  return _then(_self.copyWith(
-workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
-as WorkspaceFoldersServerCapabilities?,fileOperations: freezed == fileOperations ? _self.fileOperations : fileOperations // ignore: cast_nullable_to_non_nullable
-as FileOperationOptions?,
-  ));
-}
-/// Create a copy of ServerCapabilitiesWorkspace
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceFoldersServerCapabilitiesCopyWith<$Res>? get workspaceFolders {
-    if (_self.workspaceFolders == null) {
-    return null;
-  }
-
-  return $WorkspaceFoldersServerCapabilitiesCopyWith<$Res>(_self.workspaceFolders!, (value) {
-    return _then(_self.copyWith(workspaceFolders: value));
-  });
-}/// Create a copy of ServerCapabilitiesWorkspace
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$FileOperationOptionsCopyWith<$Res>? get fileOperations {
-    if (_self.fileOperations == null) {
-    return null;
-  }
-
-  return $FileOperationOptionsCopyWith<$Res>(_self.fileOperations!, (value) {
-    return _then(_self.copyWith(fileOperations: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [ServerCapabilitiesWorkspace].
-extension ServerCapabilitiesWorkspacePatterns on ServerCapabilitiesWorkspace {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ServerCapabilitiesWorkspace value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _ServerCapabilitiesWorkspace() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ServerCapabilitiesWorkspace value)  $default,){
-final _that = this;
-switch (_that) {
-case _ServerCapabilitiesWorkspace():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ServerCapabilitiesWorkspace value)?  $default,){
-final _that = this;
-switch (_that) {
-case _ServerCapabilitiesWorkspace() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( WorkspaceFoldersServerCapabilities? workspaceFolders,  FileOperationOptions? fileOperations)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _ServerCapabilitiesWorkspace() when $default != null:
-return $default(_that.workspaceFolders,_that.fileOperations);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( WorkspaceFoldersServerCapabilities? workspaceFolders,  FileOperationOptions? fileOperations)  $default,) {final _that = this;
-switch (_that) {
-case _ServerCapabilitiesWorkspace():
-return $default(_that.workspaceFolders,_that.fileOperations);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( WorkspaceFoldersServerCapabilities? workspaceFolders,  FileOperationOptions? fileOperations)?  $default,) {final _that = this;
-switch (_that) {
-case _ServerCapabilitiesWorkspace() when $default != null:
-return $default(_that.workspaceFolders,_that.fileOperations);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _ServerCapabilitiesWorkspace extends ServerCapabilitiesWorkspace {
-  const _ServerCapabilitiesWorkspace({this.workspaceFolders, this.fileOperations}): super._();
-  factory _ServerCapabilitiesWorkspace.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesWorkspaceFromJson(json);
-
-@override final  WorkspaceFoldersServerCapabilities? workspaceFolders;
-@override final  FileOperationOptions? fileOperations;
-
-/// Create a copy of ServerCapabilitiesWorkspace
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ServerCapabilitiesWorkspaceCopyWith<_ServerCapabilitiesWorkspace> get copyWith => __$ServerCapabilitiesWorkspaceCopyWithImpl<_ServerCapabilitiesWorkspace>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$ServerCapabilitiesWorkspaceToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerCapabilitiesWorkspace&&(identical(other.workspaceFolders, workspaceFolders) || other.workspaceFolders == workspaceFolders)&&(identical(other.fileOperations, fileOperations) || other.fileOperations == fileOperations));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,workspaceFolders,fileOperations);
-
-@override
-String toString() {
-  return 'ServerCapabilitiesWorkspace(workspaceFolders: $workspaceFolders, fileOperations: $fileOperations)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$ServerCapabilitiesWorkspaceCopyWith<$Res> implements $ServerCapabilitiesWorkspaceCopyWith<$Res> {
-  factory _$ServerCapabilitiesWorkspaceCopyWith(_ServerCapabilitiesWorkspace value, $Res Function(_ServerCapabilitiesWorkspace) _then) = __$ServerCapabilitiesWorkspaceCopyWithImpl;
-@override @useResult
-$Res call({
- WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations
-});
-
-
-@override $WorkspaceFoldersServerCapabilitiesCopyWith<$Res>? get workspaceFolders;@override $FileOperationOptionsCopyWith<$Res>? get fileOperations;
-
-}
-/// @nodoc
-class __$ServerCapabilitiesWorkspaceCopyWithImpl<$Res>
-    implements _$ServerCapabilitiesWorkspaceCopyWith<$Res> {
-  __$ServerCapabilitiesWorkspaceCopyWithImpl(this._self, this._then);
-
-  final _ServerCapabilitiesWorkspace _self;
-  final $Res Function(_ServerCapabilitiesWorkspace) _then;
-
-/// Create a copy of ServerCapabilitiesWorkspace
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? workspaceFolders = freezed,Object? fileOperations = freezed,}) {
-  return _then(_ServerCapabilitiesWorkspace(
-workspaceFolders: freezed == workspaceFolders ? _self.workspaceFolders : workspaceFolders // ignore: cast_nullable_to_non_nullable
-as WorkspaceFoldersServerCapabilities?,fileOperations: freezed == fileOperations ? _self.fileOperations : fileOperations // ignore: cast_nullable_to_non_nullable
-as FileOperationOptions?,
-  ));
-}
-
-/// Create a copy of ServerCapabilitiesWorkspace
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceFoldersServerCapabilitiesCopyWith<$Res>? get workspaceFolders {
-    if (_self.workspaceFolders == null) {
-    return null;
-  }
-
-  return $WorkspaceFoldersServerCapabilitiesCopyWith<$Res>(_self.workspaceFolders!, (value) {
-    return _then(_self.copyWith(workspaceFolders: value));
-  });
-}/// Create a copy of ServerCapabilitiesWorkspace
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$FileOperationOptionsCopyWith<$Res>? get fileOperations {
-    if (_self.fileOperations == null) {
-    return null;
-  }
-
-  return $FileOperationOptionsCopyWith<$Res>(_self.fileOperations!, (value) {
-    return _then(_self.copyWith(fileOperations: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$CompletionOptionsCompletionItem {
-
- bool? get labelDetailsSupport;
-/// Create a copy of CompletionOptionsCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CompletionOptionsCompletionItemCopyWith<CompletionOptionsCompletionItem> get copyWith => _$CompletionOptionsCompletionItemCopyWithImpl<CompletionOptionsCompletionItem>(this as CompletionOptionsCompletionItem, _$identity);
-
-  /// Serializes this CompletionOptionsCompletionItem to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionOptionsCompletionItem&&(identical(other.labelDetailsSupport, labelDetailsSupport) || other.labelDetailsSupport == labelDetailsSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,labelDetailsSupport);
-
-@override
-String toString() {
-  return 'CompletionOptionsCompletionItem(labelDetailsSupport: $labelDetailsSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CompletionOptionsCompletionItemCopyWith<$Res>  {
-  factory $CompletionOptionsCompletionItemCopyWith(CompletionOptionsCompletionItem value, $Res Function(CompletionOptionsCompletionItem) _then) = _$CompletionOptionsCompletionItemCopyWithImpl;
-@useResult
-$Res call({
- bool? labelDetailsSupport
-});
-
-
-
-
-}
-/// @nodoc
-class _$CompletionOptionsCompletionItemCopyWithImpl<$Res>
-    implements $CompletionOptionsCompletionItemCopyWith<$Res> {
-  _$CompletionOptionsCompletionItemCopyWithImpl(this._self, this._then);
-
-  final CompletionOptionsCompletionItem _self;
-  final $Res Function(CompletionOptionsCompletionItem) _then;
-
-/// Create a copy of CompletionOptionsCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? labelDetailsSupport = freezed,}) {
-  return _then(_self.copyWith(
-labelDetailsSupport: freezed == labelDetailsSupport ? _self.labelDetailsSupport : labelDetailsSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CompletionOptionsCompletionItem].
-extension CompletionOptionsCompletionItemPatterns on CompletionOptionsCompletionItem {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletionOptionsCompletionItem value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CompletionOptionsCompletionItem() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletionOptionsCompletionItem value)  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionOptionsCompletionItem():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletionOptionsCompletionItem value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionOptionsCompletionItem() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? labelDetailsSupport)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CompletionOptionsCompletionItem() when $default != null:
-return $default(_that.labelDetailsSupport);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? labelDetailsSupport)  $default,) {final _that = this;
-switch (_that) {
-case _CompletionOptionsCompletionItem():
-return $default(_that.labelDetailsSupport);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? labelDetailsSupport)?  $default,) {final _that = this;
-switch (_that) {
-case _CompletionOptionsCompletionItem() when $default != null:
-return $default(_that.labelDetailsSupport);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CompletionOptionsCompletionItem extends CompletionOptionsCompletionItem {
-  const _CompletionOptionsCompletionItem({this.labelDetailsSupport}): super._();
-  factory _CompletionOptionsCompletionItem.fromJson(Map<String, dynamic> json) => _$CompletionOptionsCompletionItemFromJson(json);
-
-@override final  bool? labelDetailsSupport;
-
-/// Create a copy of CompletionOptionsCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CompletionOptionsCompletionItemCopyWith<_CompletionOptionsCompletionItem> get copyWith => __$CompletionOptionsCompletionItemCopyWithImpl<_CompletionOptionsCompletionItem>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CompletionOptionsCompletionItemToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionOptionsCompletionItem&&(identical(other.labelDetailsSupport, labelDetailsSupport) || other.labelDetailsSupport == labelDetailsSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,labelDetailsSupport);
-
-@override
-String toString() {
-  return 'CompletionOptionsCompletionItem(labelDetailsSupport: $labelDetailsSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CompletionOptionsCompletionItemCopyWith<$Res> implements $CompletionOptionsCompletionItemCopyWith<$Res> {
-  factory _$CompletionOptionsCompletionItemCopyWith(_CompletionOptionsCompletionItem value, $Res Function(_CompletionOptionsCompletionItem) _then) = __$CompletionOptionsCompletionItemCopyWithImpl;
-@override @useResult
-$Res call({
- bool? labelDetailsSupport
-});
-
-
-
-
-}
-/// @nodoc
-class __$CompletionOptionsCompletionItemCopyWithImpl<$Res>
-    implements _$CompletionOptionsCompletionItemCopyWith<$Res> {
-  __$CompletionOptionsCompletionItemCopyWithImpl(this._self, this._then);
-
-  final _CompletionOptionsCompletionItem _self;
-  final $Res Function(_CompletionOptionsCompletionItem) _then;
-
-/// Create a copy of CompletionOptionsCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? labelDetailsSupport = freezed,}) {
-  return _then(_CompletionOptionsCompletionItem(
-labelDetailsSupport: freezed == labelDetailsSupport ? _self.labelDetailsSupport : labelDetailsSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$NotebookDocumentSyncOptionsNotebookSelector {
-
- Object get notebook; List<NotebookDocumentSyncOptionsNotebookSelectorCells>? get cells;
-/// Create a copy of NotebookDocumentSyncOptionsNotebookSelector
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$NotebookDocumentSyncOptionsNotebookSelectorCopyWith<NotebookDocumentSyncOptionsNotebookSelector> get copyWith => _$NotebookDocumentSyncOptionsNotebookSelectorCopyWithImpl<NotebookDocumentSyncOptionsNotebookSelector>(this as NotebookDocumentSyncOptionsNotebookSelector, _$identity);
-
-  /// Serializes this NotebookDocumentSyncOptionsNotebookSelector to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentSyncOptionsNotebookSelector&&const DeepCollectionEquality().equals(other.notebook, notebook)&&const DeepCollectionEquality().equals(other.cells, cells));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(notebook),const DeepCollectionEquality().hash(cells));
-
-@override
-String toString() {
-  return 'NotebookDocumentSyncOptionsNotebookSelector(notebook: $notebook, cells: $cells)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $NotebookDocumentSyncOptionsNotebookSelectorCopyWith<$Res>  {
-  factory $NotebookDocumentSyncOptionsNotebookSelectorCopyWith(NotebookDocumentSyncOptionsNotebookSelector value, $Res Function(NotebookDocumentSyncOptionsNotebookSelector) _then) = _$NotebookDocumentSyncOptionsNotebookSelectorCopyWithImpl;
-@useResult
-$Res call({
- Object notebook, List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells
-});
-
-
-
-
-}
-/// @nodoc
-class _$NotebookDocumentSyncOptionsNotebookSelectorCopyWithImpl<$Res>
-    implements $NotebookDocumentSyncOptionsNotebookSelectorCopyWith<$Res> {
-  _$NotebookDocumentSyncOptionsNotebookSelectorCopyWithImpl(this._self, this._then);
-
-  final NotebookDocumentSyncOptionsNotebookSelector _self;
-  final $Res Function(NotebookDocumentSyncOptionsNotebookSelector) _then;
-
-/// Create a copy of NotebookDocumentSyncOptionsNotebookSelector
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? notebook = null,Object? cells = freezed,}) {
-  return _then(_self.copyWith(
-notebook: null == notebook ? _self.notebook : notebook ,cells: freezed == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
-as List<NotebookDocumentSyncOptionsNotebookSelectorCells>?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [NotebookDocumentSyncOptionsNotebookSelector].
-extension NotebookDocumentSyncOptionsNotebookSelectorPatterns on NotebookDocumentSyncOptionsNotebookSelector {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NotebookDocumentSyncOptionsNotebookSelector value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelector() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NotebookDocumentSyncOptionsNotebookSelector value)  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelector():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NotebookDocumentSyncOptionsNotebookSelector value)?  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelector() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Object notebook,  List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelector() when $default != null:
-return $default(_that.notebook,_that.cells);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Object notebook,  List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells)  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelector():
-return $default(_that.notebook,_that.cells);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Object notebook,  List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells)?  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelector() when $default != null:
-return $default(_that.notebook,_that.cells);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _NotebookDocumentSyncOptionsNotebookSelector extends NotebookDocumentSyncOptionsNotebookSelector {
-  const _NotebookDocumentSyncOptionsNotebookSelector({required this.notebook, final  List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells}): _cells = cells,super._();
-  factory _NotebookDocumentSyncOptionsNotebookSelector.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsNotebookSelectorFromJson(json);
-
-@override final  Object notebook;
- final  List<NotebookDocumentSyncOptionsNotebookSelectorCells>? _cells;
-@override List<NotebookDocumentSyncOptionsNotebookSelectorCells>? get cells {
-  final value = _cells;
-  if (value == null) return null;
-  if (_cells is EqualUnmodifiableListView) return _cells;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-
-/// Create a copy of NotebookDocumentSyncOptionsNotebookSelector
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$NotebookDocumentSyncOptionsNotebookSelectorCopyWith<_NotebookDocumentSyncOptionsNotebookSelector> get copyWith => __$NotebookDocumentSyncOptionsNotebookSelectorCopyWithImpl<_NotebookDocumentSyncOptionsNotebookSelector>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$NotebookDocumentSyncOptionsNotebookSelectorToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentSyncOptionsNotebookSelector&&const DeepCollectionEquality().equals(other.notebook, notebook)&&const DeepCollectionEquality().equals(other._cells, _cells));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(notebook),const DeepCollectionEquality().hash(_cells));
-
-@override
-String toString() {
-  return 'NotebookDocumentSyncOptionsNotebookSelector(notebook: $notebook, cells: $cells)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$NotebookDocumentSyncOptionsNotebookSelectorCopyWith<$Res> implements $NotebookDocumentSyncOptionsNotebookSelectorCopyWith<$Res> {
-  factory _$NotebookDocumentSyncOptionsNotebookSelectorCopyWith(_NotebookDocumentSyncOptionsNotebookSelector value, $Res Function(_NotebookDocumentSyncOptionsNotebookSelector) _then) = __$NotebookDocumentSyncOptionsNotebookSelectorCopyWithImpl;
-@override @useResult
-$Res call({
- Object notebook, List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells
-});
-
-
-
-
-}
-/// @nodoc
-class __$NotebookDocumentSyncOptionsNotebookSelectorCopyWithImpl<$Res>
-    implements _$NotebookDocumentSyncOptionsNotebookSelectorCopyWith<$Res> {
-  __$NotebookDocumentSyncOptionsNotebookSelectorCopyWithImpl(this._self, this._then);
-
-  final _NotebookDocumentSyncOptionsNotebookSelector _self;
-  final $Res Function(_NotebookDocumentSyncOptionsNotebookSelector) _then;
-
-/// Create a copy of NotebookDocumentSyncOptionsNotebookSelector
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? notebook = null,Object? cells = freezed,}) {
-  return _then(_NotebookDocumentSyncOptionsNotebookSelector(
-notebook: null == notebook ? _self.notebook : notebook ,cells: freezed == cells ? _self._cells : cells // ignore: cast_nullable_to_non_nullable
-as List<NotebookDocumentSyncOptionsNotebookSelectorCells>?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$NotebookDocumentSyncOptionsNotebookSelectorCells {
-
- String get language;
-/// Create a copy of NotebookDocumentSyncOptionsNotebookSelectorCells
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWith<NotebookDocumentSyncOptionsNotebookSelectorCells> get copyWith => _$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWithImpl<NotebookDocumentSyncOptionsNotebookSelectorCells>(this as NotebookDocumentSyncOptionsNotebookSelectorCells, _$identity);
-
-  /// Serializes this NotebookDocumentSyncOptionsNotebookSelectorCells to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentSyncOptionsNotebookSelectorCells&&(identical(other.language, language) || other.language == language));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,language);
-
-@override
-String toString() {
-  return 'NotebookDocumentSyncOptionsNotebookSelectorCells(language: $language)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWith<$Res>  {
-  factory $NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWith(NotebookDocumentSyncOptionsNotebookSelectorCells value, $Res Function(NotebookDocumentSyncOptionsNotebookSelectorCells) _then) = _$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWithImpl;
-@useResult
-$Res call({
- String language
-});
-
-
-
-
-}
-/// @nodoc
-class _$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWithImpl<$Res>
-    implements $NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWith<$Res> {
-  _$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWithImpl(this._self, this._then);
-
-  final NotebookDocumentSyncOptionsNotebookSelectorCells _self;
-  final $Res Function(NotebookDocumentSyncOptionsNotebookSelectorCells) _then;
-
-/// Create a copy of NotebookDocumentSyncOptionsNotebookSelectorCells
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? language = null,}) {
-  return _then(_self.copyWith(
-language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [NotebookDocumentSyncOptionsNotebookSelectorCells].
-extension NotebookDocumentSyncOptionsNotebookSelectorCellsPatterns on NotebookDocumentSyncOptionsNotebookSelectorCells {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NotebookDocumentSyncOptionsNotebookSelectorCells value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelectorCells() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NotebookDocumentSyncOptionsNotebookSelectorCells value)  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelectorCells():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NotebookDocumentSyncOptionsNotebookSelectorCells value)?  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelectorCells() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String language)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelectorCells() when $default != null:
-return $default(_that.language);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String language)  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelectorCells():
-return $default(_that.language);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String language)?  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentSyncOptionsNotebookSelectorCells() when $default != null:
-return $default(_that.language);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _NotebookDocumentSyncOptionsNotebookSelectorCells extends NotebookDocumentSyncOptionsNotebookSelectorCells {
-  const _NotebookDocumentSyncOptionsNotebookSelectorCells({required this.language}): super._();
-  factory _NotebookDocumentSyncOptionsNotebookSelectorCells.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsNotebookSelectorCellsFromJson(json);
-
-@override final  String language;
-
-/// Create a copy of NotebookDocumentSyncOptionsNotebookSelectorCells
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWith<_NotebookDocumentSyncOptionsNotebookSelectorCells> get copyWith => __$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWithImpl<_NotebookDocumentSyncOptionsNotebookSelectorCells>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$NotebookDocumentSyncOptionsNotebookSelectorCellsToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentSyncOptionsNotebookSelectorCells&&(identical(other.language, language) || other.language == language));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,language);
-
-@override
-String toString() {
-  return 'NotebookDocumentSyncOptionsNotebookSelectorCells(language: $language)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWith<$Res> implements $NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWith<$Res> {
-  factory _$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWith(_NotebookDocumentSyncOptionsNotebookSelectorCells value, $Res Function(_NotebookDocumentSyncOptionsNotebookSelectorCells) _then) = __$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWithImpl;
-@override @useResult
-$Res call({
- String language
-});
-
-
-
-
-}
-/// @nodoc
-class __$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWithImpl<$Res>
-    implements _$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWith<$Res> {
-  __$NotebookDocumentSyncOptionsNotebookSelectorCellsCopyWithImpl(this._self, this._then);
-
-  final _NotebookDocumentSyncOptionsNotebookSelectorCells _self;
-  final $Res Function(_NotebookDocumentSyncOptionsNotebookSelectorCells) _then;
-
-/// Create a copy of NotebookDocumentSyncOptionsNotebookSelectorCells
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? language = null,}) {
-  return _then(_NotebookDocumentSyncOptionsNotebookSelectorCells(
-language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$GeneralClientCapabilitiesStaleRequestSupport {
-
- bool get cancel; List<String> get retryOnContentModified;
-/// Create a copy of GeneralClientCapabilitiesStaleRequestSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$GeneralClientCapabilitiesStaleRequestSupportCopyWith<GeneralClientCapabilitiesStaleRequestSupport> get copyWith => _$GeneralClientCapabilitiesStaleRequestSupportCopyWithImpl<GeneralClientCapabilitiesStaleRequestSupport>(this as GeneralClientCapabilitiesStaleRequestSupport, _$identity);
-
-  /// Serializes this GeneralClientCapabilitiesStaleRequestSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GeneralClientCapabilitiesStaleRequestSupport&&(identical(other.cancel, cancel) || other.cancel == cancel)&&const DeepCollectionEquality().equals(other.retryOnContentModified, retryOnContentModified));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,cancel,const DeepCollectionEquality().hash(retryOnContentModified));
-
-@override
-String toString() {
-  return 'GeneralClientCapabilitiesStaleRequestSupport(cancel: $cancel, retryOnContentModified: $retryOnContentModified)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res>  {
-  factory $GeneralClientCapabilitiesStaleRequestSupportCopyWith(GeneralClientCapabilitiesStaleRequestSupport value, $Res Function(GeneralClientCapabilitiesStaleRequestSupport) _then) = _$GeneralClientCapabilitiesStaleRequestSupportCopyWithImpl;
-@useResult
-$Res call({
- bool cancel, List<String> retryOnContentModified
-});
-
-
-
-
-}
-/// @nodoc
-class _$GeneralClientCapabilitiesStaleRequestSupportCopyWithImpl<$Res>
-    implements $GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res> {
-  _$GeneralClientCapabilitiesStaleRequestSupportCopyWithImpl(this._self, this._then);
-
-  final GeneralClientCapabilitiesStaleRequestSupport _self;
-  final $Res Function(GeneralClientCapabilitiesStaleRequestSupport) _then;
-
-/// Create a copy of GeneralClientCapabilitiesStaleRequestSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cancel = null,Object? retryOnContentModified = null,}) {
-  return _then(_self.copyWith(
-cancel: null == cancel ? _self.cancel : cancel // ignore: cast_nullable_to_non_nullable
-as bool,retryOnContentModified: null == retryOnContentModified ? _self.retryOnContentModified : retryOnContentModified // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [GeneralClientCapabilitiesStaleRequestSupport].
-extension GeneralClientCapabilitiesStaleRequestSupportPatterns on GeneralClientCapabilitiesStaleRequestSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GeneralClientCapabilitiesStaleRequestSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _GeneralClientCapabilitiesStaleRequestSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GeneralClientCapabilitiesStaleRequestSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _GeneralClientCapabilitiesStaleRequestSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GeneralClientCapabilitiesStaleRequestSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _GeneralClientCapabilitiesStaleRequestSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool cancel,  List<String> retryOnContentModified)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _GeneralClientCapabilitiesStaleRequestSupport() when $default != null:
-return $default(_that.cancel,_that.retryOnContentModified);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool cancel,  List<String> retryOnContentModified)  $default,) {final _that = this;
-switch (_that) {
-case _GeneralClientCapabilitiesStaleRequestSupport():
-return $default(_that.cancel,_that.retryOnContentModified);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool cancel,  List<String> retryOnContentModified)?  $default,) {final _that = this;
-switch (_that) {
-case _GeneralClientCapabilitiesStaleRequestSupport() when $default != null:
-return $default(_that.cancel,_that.retryOnContentModified);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _GeneralClientCapabilitiesStaleRequestSupport extends GeneralClientCapabilitiesStaleRequestSupport {
-  const _GeneralClientCapabilitiesStaleRequestSupport({required this.cancel, required final  List<String> retryOnContentModified}): _retryOnContentModified = retryOnContentModified,super._();
-  factory _GeneralClientCapabilitiesStaleRequestSupport.fromJson(Map<String, dynamic> json) => _$GeneralClientCapabilitiesStaleRequestSupportFromJson(json);
-
-@override final  bool cancel;
- final  List<String> _retryOnContentModified;
-@override List<String> get retryOnContentModified {
-  if (_retryOnContentModified is EqualUnmodifiableListView) return _retryOnContentModified;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_retryOnContentModified);
-}
-
-
-/// Create a copy of GeneralClientCapabilitiesStaleRequestSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$GeneralClientCapabilitiesStaleRequestSupportCopyWith<_GeneralClientCapabilitiesStaleRequestSupport> get copyWith => __$GeneralClientCapabilitiesStaleRequestSupportCopyWithImpl<_GeneralClientCapabilitiesStaleRequestSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$GeneralClientCapabilitiesStaleRequestSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GeneralClientCapabilitiesStaleRequestSupport&&(identical(other.cancel, cancel) || other.cancel == cancel)&&const DeepCollectionEquality().equals(other._retryOnContentModified, _retryOnContentModified));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,cancel,const DeepCollectionEquality().hash(_retryOnContentModified));
-
-@override
-String toString() {
-  return 'GeneralClientCapabilitiesStaleRequestSupport(cancel: $cancel, retryOnContentModified: $retryOnContentModified)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res> implements $GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res> {
-  factory _$GeneralClientCapabilitiesStaleRequestSupportCopyWith(_GeneralClientCapabilitiesStaleRequestSupport value, $Res Function(_GeneralClientCapabilitiesStaleRequestSupport) _then) = __$GeneralClientCapabilitiesStaleRequestSupportCopyWithImpl;
-@override @useResult
-$Res call({
- bool cancel, List<String> retryOnContentModified
-});
-
-
-
-
-}
-/// @nodoc
-class __$GeneralClientCapabilitiesStaleRequestSupportCopyWithImpl<$Res>
-    implements _$GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res> {
-  __$GeneralClientCapabilitiesStaleRequestSupportCopyWithImpl(this._self, this._then);
-
-  final _GeneralClientCapabilitiesStaleRequestSupport _self;
-  final $Res Function(_GeneralClientCapabilitiesStaleRequestSupport) _then;
-
-/// Create a copy of GeneralClientCapabilitiesStaleRequestSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cancel = null,Object? retryOnContentModified = null,}) {
-  return _then(_GeneralClientCapabilitiesStaleRequestSupport(
-cancel: null == cancel ? _self.cancel : cancel // ignore: cast_nullable_to_non_nullable
-as bool,retryOnContentModified: null == retryOnContentModified ? _self._retryOnContentModified : retryOnContentModified // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
-
- bool? get groupsOnLabel;
-/// Create a copy of WorkspaceEditClientCapabilitiesChangeAnnotationSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<WorkspaceEditClientCapabilitiesChangeAnnotationSupport> get copyWith => _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWithImpl<WorkspaceEditClientCapabilitiesChangeAnnotationSupport>(this as WorkspaceEditClientCapabilitiesChangeAnnotationSupport, _$identity);
-
-  /// Serializes this WorkspaceEditClientCapabilitiesChangeAnnotationSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceEditClientCapabilitiesChangeAnnotationSupport&&(identical(other.groupsOnLabel, groupsOnLabel) || other.groupsOnLabel == groupsOnLabel));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,groupsOnLabel);
-
-@override
-String toString() {
-  return 'WorkspaceEditClientCapabilitiesChangeAnnotationSupport(groupsOnLabel: $groupsOnLabel)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res>  {
-  factory $WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith(WorkspaceEditClientCapabilitiesChangeAnnotationSupport value, $Res Function(WorkspaceEditClientCapabilitiesChangeAnnotationSupport) _then) = _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWithImpl;
-@useResult
-$Res call({
- bool? groupsOnLabel
-});
-
-
-
-
-}
-/// @nodoc
-class _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWithImpl<$Res>
-    implements $WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res> {
-  _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWithImpl(this._self, this._then);
-
-  final WorkspaceEditClientCapabilitiesChangeAnnotationSupport _self;
-  final $Res Function(WorkspaceEditClientCapabilitiesChangeAnnotationSupport) _then;
-
-/// Create a copy of WorkspaceEditClientCapabilitiesChangeAnnotationSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? groupsOnLabel = freezed,}) {
-  return _then(_self.copyWith(
-groupsOnLabel: freezed == groupsOnLabel ? _self.groupsOnLabel : groupsOnLabel // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [WorkspaceEditClientCapabilitiesChangeAnnotationSupport].
-extension WorkspaceEditClientCapabilitiesChangeAnnotationSupportPatterns on WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WorkspaceEditClientCapabilitiesChangeAnnotationSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _WorkspaceEditClientCapabilitiesChangeAnnotationSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WorkspaceEditClientCapabilitiesChangeAnnotationSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceEditClientCapabilitiesChangeAnnotationSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WorkspaceEditClientCapabilitiesChangeAnnotationSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceEditClientCapabilitiesChangeAnnotationSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? groupsOnLabel)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _WorkspaceEditClientCapabilitiesChangeAnnotationSupport() when $default != null:
-return $default(_that.groupsOnLabel);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? groupsOnLabel)  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceEditClientCapabilitiesChangeAnnotationSupport():
-return $default(_that.groupsOnLabel);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? groupsOnLabel)?  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceEditClientCapabilitiesChangeAnnotationSupport() when $default != null:
-return $default(_that.groupsOnLabel);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _WorkspaceEditClientCapabilitiesChangeAnnotationSupport extends WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
-  const _WorkspaceEditClientCapabilitiesChangeAnnotationSupport({this.groupsOnLabel}): super._();
-  factory _WorkspaceEditClientCapabilitiesChangeAnnotationSupport.fromJson(Map<String, dynamic> json) => _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportFromJson(json);
-
-@override final  bool? groupsOnLabel;
-
-/// Create a copy of WorkspaceEditClientCapabilitiesChangeAnnotationSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<_WorkspaceEditClientCapabilitiesChangeAnnotationSupport> get copyWith => __$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWithImpl<_WorkspaceEditClientCapabilitiesChangeAnnotationSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceEditClientCapabilitiesChangeAnnotationSupport&&(identical(other.groupsOnLabel, groupsOnLabel) || other.groupsOnLabel == groupsOnLabel));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,groupsOnLabel);
-
-@override
-String toString() {
-  return 'WorkspaceEditClientCapabilitiesChangeAnnotationSupport(groupsOnLabel: $groupsOnLabel)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res> implements $WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res> {
-  factory _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith(_WorkspaceEditClientCapabilitiesChangeAnnotationSupport value, $Res Function(_WorkspaceEditClientCapabilitiesChangeAnnotationSupport) _then) = __$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWithImpl;
-@override @useResult
-$Res call({
- bool? groupsOnLabel
-});
-
-
-
-
-}
-/// @nodoc
-class __$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWithImpl<$Res>
-    implements _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res> {
-  __$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWithImpl(this._self, this._then);
-
-  final _WorkspaceEditClientCapabilitiesChangeAnnotationSupport _self;
-  final $Res Function(_WorkspaceEditClientCapabilitiesChangeAnnotationSupport) _then;
-
-/// Create a copy of WorkspaceEditClientCapabilitiesChangeAnnotationSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? groupsOnLabel = freezed,}) {
-  return _then(_WorkspaceEditClientCapabilitiesChangeAnnotationSupport(
-groupsOnLabel: freezed == groupsOnLabel ? _self.groupsOnLabel : groupsOnLabel // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$WorkspaceSymbolClientCapabilitiesSymbolKind {
-
- List<SymbolKind>? get valueSet;
-/// Create a copy of WorkspaceSymbolClientCapabilitiesSymbolKind
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<WorkspaceSymbolClientCapabilitiesSymbolKind> get copyWith => _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl<WorkspaceSymbolClientCapabilitiesSymbolKind>(this as WorkspaceSymbolClientCapabilitiesSymbolKind, _$identity);
-
-  /// Serializes this WorkspaceSymbolClientCapabilitiesSymbolKind to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceSymbolClientCapabilitiesSymbolKind&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'WorkspaceSymbolClientCapabilitiesSymbolKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res>  {
-  factory $WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith(WorkspaceSymbolClientCapabilitiesSymbolKind value, $Res Function(WorkspaceSymbolClientCapabilitiesSymbolKind) _then) = _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl;
-@useResult
-$Res call({
- List<SymbolKind>? valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl<$Res>
-    implements $WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res> {
-  _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl(this._self, this._then);
-
-  final WorkspaceSymbolClientCapabilitiesSymbolKind _self;
-  final $Res Function(WorkspaceSymbolClientCapabilitiesSymbolKind) _then;
-
-/// Create a copy of WorkspaceSymbolClientCapabilitiesSymbolKind
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = freezed,}) {
-  return _then(_self.copyWith(
-valueSet: freezed == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<SymbolKind>?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [WorkspaceSymbolClientCapabilitiesSymbolKind].
-extension WorkspaceSymbolClientCapabilitiesSymbolKindPatterns on WorkspaceSymbolClientCapabilitiesSymbolKind {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WorkspaceSymbolClientCapabilitiesSymbolKind value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesSymbolKind() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WorkspaceSymbolClientCapabilitiesSymbolKind value)  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesSymbolKind():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WorkspaceSymbolClientCapabilitiesSymbolKind value)?  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesSymbolKind() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SymbolKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesSymbolKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SymbolKind>? valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesSymbolKind():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SymbolKind>? valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesSymbolKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _WorkspaceSymbolClientCapabilitiesSymbolKind extends WorkspaceSymbolClientCapabilitiesSymbolKind {
-  const _WorkspaceSymbolClientCapabilitiesSymbolKind({final  List<SymbolKind>? valueSet}): _valueSet = valueSet,super._();
-  factory _WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolClientCapabilitiesSymbolKindFromJson(json);
-
- final  List<SymbolKind>? _valueSet;
-@override List<SymbolKind>? get valueSet {
-  final value = _valueSet;
-  if (value == null) return null;
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-
-/// Create a copy of WorkspaceSymbolClientCapabilitiesSymbolKind
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<_WorkspaceSymbolClientCapabilitiesSymbolKind> get copyWith => __$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl<_WorkspaceSymbolClientCapabilitiesSymbolKind>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$WorkspaceSymbolClientCapabilitiesSymbolKindToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceSymbolClientCapabilitiesSymbolKind&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'WorkspaceSymbolClientCapabilitiesSymbolKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res> implements $WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res> {
-  factory _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith(_WorkspaceSymbolClientCapabilitiesSymbolKind value, $Res Function(_WorkspaceSymbolClientCapabilitiesSymbolKind) _then) = __$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl;
-@override @useResult
-$Res call({
- List<SymbolKind>? valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl<$Res>
-    implements _$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res> {
-  __$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWithImpl(this._self, this._then);
-
-  final _WorkspaceSymbolClientCapabilitiesSymbolKind _self;
-  final $Res Function(_WorkspaceSymbolClientCapabilitiesSymbolKind) _then;
-
-/// Create a copy of WorkspaceSymbolClientCapabilitiesSymbolKind
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = freezed,}) {
-  return _then(_WorkspaceSymbolClientCapabilitiesSymbolKind(
-valueSet: freezed == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<SymbolKind>?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$WorkspaceSymbolClientCapabilitiesTagSupport {
-
- List<SymbolTag> get valueSet;
-/// Create a copy of WorkspaceSymbolClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<WorkspaceSymbolClientCapabilitiesTagSupport> get copyWith => _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl<WorkspaceSymbolClientCapabilitiesTagSupport>(this as WorkspaceSymbolClientCapabilitiesTagSupport, _$identity);
-
-  /// Serializes this WorkspaceSymbolClientCapabilitiesTagSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceSymbolClientCapabilitiesTagSupport&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'WorkspaceSymbolClientCapabilitiesTagSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res>  {
-  factory $WorkspaceSymbolClientCapabilitiesTagSupportCopyWith(WorkspaceSymbolClientCapabilitiesTagSupport value, $Res Function(WorkspaceSymbolClientCapabilitiesTagSupport) _then) = _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl;
-@useResult
-$Res call({
- List<SymbolTag> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl<$Res>
-    implements $WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res> {
-  _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl(this._self, this._then);
-
-  final WorkspaceSymbolClientCapabilitiesTagSupport _self;
-  final $Res Function(WorkspaceSymbolClientCapabilitiesTagSupport) _then;
-
-/// Create a copy of WorkspaceSymbolClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
-  return _then(_self.copyWith(
-valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [WorkspaceSymbolClientCapabilitiesTagSupport].
-extension WorkspaceSymbolClientCapabilitiesTagSupportPatterns on WorkspaceSymbolClientCapabilitiesTagSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WorkspaceSymbolClientCapabilitiesTagSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesTagSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WorkspaceSymbolClientCapabilitiesTagSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesTagSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WorkspaceSymbolClientCapabilitiesTagSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesTagSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SymbolTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesTagSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SymbolTag> valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesTagSupport():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SymbolTag> valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesTagSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _WorkspaceSymbolClientCapabilitiesTagSupport extends WorkspaceSymbolClientCapabilitiesTagSupport {
-  const _WorkspaceSymbolClientCapabilitiesTagSupport({required final  List<SymbolTag> valueSet}): _valueSet = valueSet,super._();
-  factory _WorkspaceSymbolClientCapabilitiesTagSupport.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolClientCapabilitiesTagSupportFromJson(json);
-
- final  List<SymbolTag> _valueSet;
-@override List<SymbolTag> get valueSet {
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_valueSet);
-}
-
-
-/// Create a copy of WorkspaceSymbolClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<_WorkspaceSymbolClientCapabilitiesTagSupport> get copyWith => __$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl<_WorkspaceSymbolClientCapabilitiesTagSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$WorkspaceSymbolClientCapabilitiesTagSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceSymbolClientCapabilitiesTagSupport&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'WorkspaceSymbolClientCapabilitiesTagSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res> implements $WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res> {
-  factory _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith(_WorkspaceSymbolClientCapabilitiesTagSupport value, $Res Function(_WorkspaceSymbolClientCapabilitiesTagSupport) _then) = __$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl;
-@override @useResult
-$Res call({
- List<SymbolTag> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl<$Res>
-    implements _$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res> {
-  __$WorkspaceSymbolClientCapabilitiesTagSupportCopyWithImpl(this._self, this._then);
-
-  final _WorkspaceSymbolClientCapabilitiesTagSupport _self;
-  final $Res Function(_WorkspaceSymbolClientCapabilitiesTagSupport) _then;
-
-/// Create a copy of WorkspaceSymbolClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
-  return _then(_WorkspaceSymbolClientCapabilitiesTagSupport(
-valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$WorkspaceSymbolClientCapabilitiesResolveSupport {
-
- List<String> get properties;
-/// Create a copy of WorkspaceSymbolClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<WorkspaceSymbolClientCapabilitiesResolveSupport> get copyWith => _$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWithImpl<WorkspaceSymbolClientCapabilitiesResolveSupport>(this as WorkspaceSymbolClientCapabilitiesResolveSupport, _$identity);
-
-  /// Serializes this WorkspaceSymbolClientCapabilitiesResolveSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkspaceSymbolClientCapabilitiesResolveSupport&&const DeepCollectionEquality().equals(other.properties, properties));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(properties));
-
-@override
-String toString() {
-  return 'WorkspaceSymbolClientCapabilitiesResolveSupport(properties: $properties)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res>  {
-  factory $WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith(WorkspaceSymbolClientCapabilitiesResolveSupport value, $Res Function(WorkspaceSymbolClientCapabilitiesResolveSupport) _then) = _$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWithImpl;
-@useResult
-$Res call({
- List<String> properties
-});
-
-
-
-
-}
-/// @nodoc
-class _$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWithImpl<$Res>
-    implements $WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res> {
-  _$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWithImpl(this._self, this._then);
-
-  final WorkspaceSymbolClientCapabilitiesResolveSupport _self;
-  final $Res Function(WorkspaceSymbolClientCapabilitiesResolveSupport) _then;
-
-/// Create a copy of WorkspaceSymbolClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? properties = null,}) {
-  return _then(_self.copyWith(
-properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [WorkspaceSymbolClientCapabilitiesResolveSupport].
-extension WorkspaceSymbolClientCapabilitiesResolveSupportPatterns on WorkspaceSymbolClientCapabilitiesResolveSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WorkspaceSymbolClientCapabilitiesResolveSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WorkspaceSymbolClientCapabilitiesResolveSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesResolveSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WorkspaceSymbolClientCapabilitiesResolveSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> properties)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that.properties);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> properties)  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesResolveSupport():
-return $default(_that.properties);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> properties)?  $default,) {final _that = this;
-switch (_that) {
-case _WorkspaceSymbolClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that.properties);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _WorkspaceSymbolClientCapabilitiesResolveSupport extends WorkspaceSymbolClientCapabilitiesResolveSupport {
-  const _WorkspaceSymbolClientCapabilitiesResolveSupport({required final  List<String> properties}): _properties = properties,super._();
-  factory _WorkspaceSymbolClientCapabilitiesResolveSupport.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolClientCapabilitiesResolveSupportFromJson(json);
-
- final  List<String> _properties;
-@override List<String> get properties {
-  if (_properties is EqualUnmodifiableListView) return _properties;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_properties);
-}
-
-
-/// Create a copy of WorkspaceSymbolClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<_WorkspaceSymbolClientCapabilitiesResolveSupport> get copyWith => __$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWithImpl<_WorkspaceSymbolClientCapabilitiesResolveSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$WorkspaceSymbolClientCapabilitiesResolveSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkspaceSymbolClientCapabilitiesResolveSupport&&const DeepCollectionEquality().equals(other._properties, _properties));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_properties));
-
-@override
-String toString() {
-  return 'WorkspaceSymbolClientCapabilitiesResolveSupport(properties: $properties)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res> implements $WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res> {
-  factory _$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith(_WorkspaceSymbolClientCapabilitiesResolveSupport value, $Res Function(_WorkspaceSymbolClientCapabilitiesResolveSupport) _then) = __$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWithImpl;
-@override @useResult
-$Res call({
- List<String> properties
-});
-
-
-
-
-}
-/// @nodoc
-class __$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWithImpl<$Res>
-    implements _$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res> {
-  __$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWithImpl(this._self, this._then);
-
-  final _WorkspaceSymbolClientCapabilitiesResolveSupport _self;
-  final $Res Function(_WorkspaceSymbolClientCapabilitiesResolveSupport) _then;
-
-/// Create a copy of WorkspaceSymbolClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? properties = null,}) {
-  return _then(_WorkspaceSymbolClientCapabilitiesResolveSupport(
-properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$CompletionClientCapabilitiesCompletionItem {
-
- bool? get snippetSupport; bool? get commitCharactersSupport; List<MarkupKind>? get documentationFormat; bool? get deprecatedSupport; bool? get preselectSupport; CompletionClientCapabilitiesCompletionItemTagSupport? get tagSupport; bool? get insertReplaceSupport; CompletionClientCapabilitiesCompletionItemResolveSupport? get resolveSupport; CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? get insertTextModeSupport; bool? get labelDetailsSupport;
-/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemCopyWith<CompletionClientCapabilitiesCompletionItem> get copyWith => _$CompletionClientCapabilitiesCompletionItemCopyWithImpl<CompletionClientCapabilitiesCompletionItem>(this as CompletionClientCapabilitiesCompletionItem, _$identity);
-
-  /// Serializes this CompletionClientCapabilitiesCompletionItem to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionClientCapabilitiesCompletionItem&&(identical(other.snippetSupport, snippetSupport) || other.snippetSupport == snippetSupport)&&(identical(other.commitCharactersSupport, commitCharactersSupport) || other.commitCharactersSupport == commitCharactersSupport)&&const DeepCollectionEquality().equals(other.documentationFormat, documentationFormat)&&(identical(other.deprecatedSupport, deprecatedSupport) || other.deprecatedSupport == deprecatedSupport)&&(identical(other.preselectSupport, preselectSupport) || other.preselectSupport == preselectSupport)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.insertReplaceSupport, insertReplaceSupport) || other.insertReplaceSupport == insertReplaceSupport)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport)&&(identical(other.insertTextModeSupport, insertTextModeSupport) || other.insertTextModeSupport == insertTextModeSupport)&&(identical(other.labelDetailsSupport, labelDetailsSupport) || other.labelDetailsSupport == labelDetailsSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,snippetSupport,commitCharactersSupport,const DeepCollectionEquality().hash(documentationFormat),deprecatedSupport,preselectSupport,tagSupport,insertReplaceSupport,resolveSupport,insertTextModeSupport,labelDetailsSupport);
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItem(snippetSupport: $snippetSupport, commitCharactersSupport: $commitCharactersSupport, documentationFormat: $documentationFormat, deprecatedSupport: $deprecatedSupport, preselectSupport: $preselectSupport, tagSupport: $tagSupport, insertReplaceSupport: $insertReplaceSupport, resolveSupport: $resolveSupport, insertTextModeSupport: $insertTextModeSupport, labelDetailsSupport: $labelDetailsSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CompletionClientCapabilitiesCompletionItemCopyWith<$Res>  {
-  factory $CompletionClientCapabilitiesCompletionItemCopyWith(CompletionClientCapabilitiesCompletionItem value, $Res Function(CompletionClientCapabilitiesCompletionItem) _then) = _$CompletionClientCapabilitiesCompletionItemCopyWithImpl;
-@useResult
-$Res call({
- bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport, bool? insertReplaceSupport, CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport, CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport, bool? labelDetailsSupport
-});
-
-
-$CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res>? get tagSupport;$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res>? get resolveSupport;$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res>? get insertTextModeSupport;
-
-}
-/// @nodoc
-class _$CompletionClientCapabilitiesCompletionItemCopyWithImpl<$Res>
-    implements $CompletionClientCapabilitiesCompletionItemCopyWith<$Res> {
-  _$CompletionClientCapabilitiesCompletionItemCopyWithImpl(this._self, this._then);
-
-  final CompletionClientCapabilitiesCompletionItem _self;
-  final $Res Function(CompletionClientCapabilitiesCompletionItem) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? snippetSupport = freezed,Object? commitCharactersSupport = freezed,Object? documentationFormat = freezed,Object? deprecatedSupport = freezed,Object? preselectSupport = freezed,Object? tagSupport = freezed,Object? insertReplaceSupport = freezed,Object? resolveSupport = freezed,Object? insertTextModeSupport = freezed,Object? labelDetailsSupport = freezed,}) {
-  return _then(_self.copyWith(
-snippetSupport: freezed == snippetSupport ? _self.snippetSupport : snippetSupport // ignore: cast_nullable_to_non_nullable
-as bool?,commitCharactersSupport: freezed == commitCharactersSupport ? _self.commitCharactersSupport : commitCharactersSupport // ignore: cast_nullable_to_non_nullable
-as bool?,documentationFormat: freezed == documentationFormat ? _self.documentationFormat : documentationFormat // ignore: cast_nullable_to_non_nullable
-as List<MarkupKind>?,deprecatedSupport: freezed == deprecatedSupport ? _self.deprecatedSupport : deprecatedSupport // ignore: cast_nullable_to_non_nullable
-as bool?,preselectSupport: freezed == preselectSupport ? _self.preselectSupport : preselectSupport // ignore: cast_nullable_to_non_nullable
-as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItemTagSupport?,insertReplaceSupport: freezed == insertReplaceSupport ? _self.insertReplaceSupport : insertReplaceSupport // ignore: cast_nullable_to_non_nullable
-as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItemResolveSupport?,insertTextModeSupport: freezed == insertTextModeSupport ? _self.insertTextModeSupport : insertTextModeSupport // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItemInsertTextModeSupport?,labelDetailsSupport: freezed == labelDetailsSupport ? _self.labelDetailsSupport : labelDetailsSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res>? get tagSupport {
-    if (_self.tagSupport == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res>(_self.tagSupport!, (value) {
-    return _then(_self.copyWith(tagSupport: value));
-  });
-}/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res>? get resolveSupport {
-    if (_self.resolveSupport == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res>(_self.resolveSupport!, (value) {
-    return _then(_self.copyWith(resolveSupport: value));
-  });
-}/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res>? get insertTextModeSupport {
-    if (_self.insertTextModeSupport == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res>(_self.insertTextModeSupport!, (value) {
-    return _then(_self.copyWith(insertTextModeSupport: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [CompletionClientCapabilitiesCompletionItem].
-extension CompletionClientCapabilitiesCompletionItemPatterns on CompletionClientCapabilitiesCompletionItem {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItem value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItem() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItem value)  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItem():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletionClientCapabilitiesCompletionItem value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItem() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? snippetSupport,  bool? commitCharactersSupport,  List<MarkupKind>? documentationFormat,  bool? deprecatedSupport,  bool? preselectSupport,  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,  bool? insertReplaceSupport,  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport,  bool? labelDetailsSupport)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItem() when $default != null:
-return $default(_that.snippetSupport,_that.commitCharactersSupport,_that.documentationFormat,_that.deprecatedSupport,_that.preselectSupport,_that.tagSupport,_that.insertReplaceSupport,_that.resolveSupport,_that.insertTextModeSupport,_that.labelDetailsSupport);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? snippetSupport,  bool? commitCharactersSupport,  List<MarkupKind>? documentationFormat,  bool? deprecatedSupport,  bool? preselectSupport,  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,  bool? insertReplaceSupport,  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport,  bool? labelDetailsSupport)  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItem():
-return $default(_that.snippetSupport,_that.commitCharactersSupport,_that.documentationFormat,_that.deprecatedSupport,_that.preselectSupport,_that.tagSupport,_that.insertReplaceSupport,_that.resolveSupport,_that.insertTextModeSupport,_that.labelDetailsSupport);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? snippetSupport,  bool? commitCharactersSupport,  List<MarkupKind>? documentationFormat,  bool? deprecatedSupport,  bool? preselectSupport,  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,  bool? insertReplaceSupport,  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport,  bool? labelDetailsSupport)?  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItem() when $default != null:
-return $default(_that.snippetSupport,_that.commitCharactersSupport,_that.documentationFormat,_that.deprecatedSupport,_that.preselectSupport,_that.tagSupport,_that.insertReplaceSupport,_that.resolveSupport,_that.insertTextModeSupport,_that.labelDetailsSupport);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CompletionClientCapabilitiesCompletionItem extends CompletionClientCapabilitiesCompletionItem {
-  const _CompletionClientCapabilitiesCompletionItem({this.snippetSupport, this.commitCharactersSupport, final  List<MarkupKind>? documentationFormat, this.deprecatedSupport, this.preselectSupport, this.tagSupport, this.insertReplaceSupport, this.resolveSupport, this.insertTextModeSupport, this.labelDetailsSupport}): _documentationFormat = documentationFormat,super._();
-  factory _CompletionClientCapabilitiesCompletionItem.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionItemFromJson(json);
-
-@override final  bool? snippetSupport;
-@override final  bool? commitCharactersSupport;
- final  List<MarkupKind>? _documentationFormat;
-@override List<MarkupKind>? get documentationFormat {
-  final value = _documentationFormat;
-  if (value == null) return null;
-  if (_documentationFormat is EqualUnmodifiableListView) return _documentationFormat;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-@override final  bool? deprecatedSupport;
-@override final  bool? preselectSupport;
-@override final  CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport;
-@override final  bool? insertReplaceSupport;
-@override final  CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport;
-@override final  CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport;
-@override final  bool? labelDetailsSupport;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CompletionClientCapabilitiesCompletionItemCopyWith<_CompletionClientCapabilitiesCompletionItem> get copyWith => __$CompletionClientCapabilitiesCompletionItemCopyWithImpl<_CompletionClientCapabilitiesCompletionItem>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CompletionClientCapabilitiesCompletionItemToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionClientCapabilitiesCompletionItem&&(identical(other.snippetSupport, snippetSupport) || other.snippetSupport == snippetSupport)&&(identical(other.commitCharactersSupport, commitCharactersSupport) || other.commitCharactersSupport == commitCharactersSupport)&&const DeepCollectionEquality().equals(other._documentationFormat, _documentationFormat)&&(identical(other.deprecatedSupport, deprecatedSupport) || other.deprecatedSupport == deprecatedSupport)&&(identical(other.preselectSupport, preselectSupport) || other.preselectSupport == preselectSupport)&&(identical(other.tagSupport, tagSupport) || other.tagSupport == tagSupport)&&(identical(other.insertReplaceSupport, insertReplaceSupport) || other.insertReplaceSupport == insertReplaceSupport)&&(identical(other.resolveSupport, resolveSupport) || other.resolveSupport == resolveSupport)&&(identical(other.insertTextModeSupport, insertTextModeSupport) || other.insertTextModeSupport == insertTextModeSupport)&&(identical(other.labelDetailsSupport, labelDetailsSupport) || other.labelDetailsSupport == labelDetailsSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,snippetSupport,commitCharactersSupport,const DeepCollectionEquality().hash(_documentationFormat),deprecatedSupport,preselectSupport,tagSupport,insertReplaceSupport,resolveSupport,insertTextModeSupport,labelDetailsSupport);
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItem(snippetSupport: $snippetSupport, commitCharactersSupport: $commitCharactersSupport, documentationFormat: $documentationFormat, deprecatedSupport: $deprecatedSupport, preselectSupport: $preselectSupport, tagSupport: $tagSupport, insertReplaceSupport: $insertReplaceSupport, resolveSupport: $resolveSupport, insertTextModeSupport: $insertTextModeSupport, labelDetailsSupport: $labelDetailsSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CompletionClientCapabilitiesCompletionItemCopyWith<$Res> implements $CompletionClientCapabilitiesCompletionItemCopyWith<$Res> {
-  factory _$CompletionClientCapabilitiesCompletionItemCopyWith(_CompletionClientCapabilitiesCompletionItem value, $Res Function(_CompletionClientCapabilitiesCompletionItem) _then) = __$CompletionClientCapabilitiesCompletionItemCopyWithImpl;
-@override @useResult
-$Res call({
- bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport, bool? insertReplaceSupport, CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport, CompletionClientCapabilitiesCompletionItemInsertTextModeSupport? insertTextModeSupport, bool? labelDetailsSupport
-});
-
-
-@override $CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res>? get tagSupport;@override $CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res>? get resolveSupport;@override $CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res>? get insertTextModeSupport;
-
-}
-/// @nodoc
-class __$CompletionClientCapabilitiesCompletionItemCopyWithImpl<$Res>
-    implements _$CompletionClientCapabilitiesCompletionItemCopyWith<$Res> {
-  __$CompletionClientCapabilitiesCompletionItemCopyWithImpl(this._self, this._then);
-
-  final _CompletionClientCapabilitiesCompletionItem _self;
-  final $Res Function(_CompletionClientCapabilitiesCompletionItem) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? snippetSupport = freezed,Object? commitCharactersSupport = freezed,Object? documentationFormat = freezed,Object? deprecatedSupport = freezed,Object? preselectSupport = freezed,Object? tagSupport = freezed,Object? insertReplaceSupport = freezed,Object? resolveSupport = freezed,Object? insertTextModeSupport = freezed,Object? labelDetailsSupport = freezed,}) {
-  return _then(_CompletionClientCapabilitiesCompletionItem(
-snippetSupport: freezed == snippetSupport ? _self.snippetSupport : snippetSupport // ignore: cast_nullable_to_non_nullable
-as bool?,commitCharactersSupport: freezed == commitCharactersSupport ? _self.commitCharactersSupport : commitCharactersSupport // ignore: cast_nullable_to_non_nullable
-as bool?,documentationFormat: freezed == documentationFormat ? _self._documentationFormat : documentationFormat // ignore: cast_nullable_to_non_nullable
-as List<MarkupKind>?,deprecatedSupport: freezed == deprecatedSupport ? _self.deprecatedSupport : deprecatedSupport // ignore: cast_nullable_to_non_nullable
-as bool?,preselectSupport: freezed == preselectSupport ? _self.preselectSupport : preselectSupport // ignore: cast_nullable_to_non_nullable
-as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItemTagSupport?,insertReplaceSupport: freezed == insertReplaceSupport ? _self.insertReplaceSupport : insertReplaceSupport // ignore: cast_nullable_to_non_nullable
-as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItemResolveSupport?,insertTextModeSupport: freezed == insertTextModeSupport ? _self.insertTextModeSupport : insertTextModeSupport // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItemInsertTextModeSupport?,labelDetailsSupport: freezed == labelDetailsSupport ? _self.labelDetailsSupport : labelDetailsSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res>? get tagSupport {
-    if (_self.tagSupport == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res>(_self.tagSupport!, (value) {
-    return _then(_self.copyWith(tagSupport: value));
-  });
-}/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res>? get resolveSupport {
-    if (_self.resolveSupport == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res>(_self.resolveSupport!, (value) {
-    return _then(_self.copyWith(resolveSupport: value));
-  });
-}/// Create a copy of CompletionClientCapabilitiesCompletionItem
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res>? get insertTextModeSupport {
-    if (_self.insertTextModeSupport == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res>(_self.insertTextModeSupport!, (value) {
-    return _then(_self.copyWith(insertTextModeSupport: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$CompletionClientCapabilitiesCompletionItemTagSupport {
-
- List<CompletionItemTag> get valueSet;
-/// Create a copy of CompletionClientCapabilitiesCompletionItemTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<CompletionClientCapabilitiesCompletionItemTagSupport> get copyWith => _$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl<CompletionClientCapabilitiesCompletionItemTagSupport>(this as CompletionClientCapabilitiesCompletionItemTagSupport, _$identity);
-
-  /// Serializes this CompletionClientCapabilitiesCompletionItemTagSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionClientCapabilitiesCompletionItemTagSupport&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItemTagSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res>  {
-  factory $CompletionClientCapabilitiesCompletionItemTagSupportCopyWith(CompletionClientCapabilitiesCompletionItemTagSupport value, $Res Function(CompletionClientCapabilitiesCompletionItemTagSupport) _then) = _$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl;
-@useResult
-$Res call({
- List<CompletionItemTag> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl<$Res>
-    implements $CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res> {
-  _$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl(this._self, this._then);
-
-  final CompletionClientCapabilitiesCompletionItemTagSupport _self;
-  final $Res Function(CompletionClientCapabilitiesCompletionItemTagSupport) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
-  return _then(_self.copyWith(
-valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<CompletionItemTag>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CompletionClientCapabilitiesCompletionItemTagSupport].
-extension CompletionClientCapabilitiesCompletionItemTagSupportPatterns on CompletionClientCapabilitiesCompletionItemTagSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItemTagSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemTagSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItemTagSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemTagSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletionClientCapabilitiesCompletionItemTagSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemTagSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<CompletionItemTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemTagSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<CompletionItemTag> valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemTagSupport():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<CompletionItemTag> valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemTagSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CompletionClientCapabilitiesCompletionItemTagSupport extends CompletionClientCapabilitiesCompletionItemTagSupport {
-  const _CompletionClientCapabilitiesCompletionItemTagSupport({required final  List<CompletionItemTag> valueSet}): _valueSet = valueSet,super._();
-  factory _CompletionClientCapabilitiesCompletionItemTagSupport.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionItemTagSupportFromJson(json);
-
- final  List<CompletionItemTag> _valueSet;
-@override List<CompletionItemTag> get valueSet {
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_valueSet);
-}
-
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<_CompletionClientCapabilitiesCompletionItemTagSupport> get copyWith => __$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl<_CompletionClientCapabilitiesCompletionItemTagSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CompletionClientCapabilitiesCompletionItemTagSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionClientCapabilitiesCompletionItemTagSupport&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItemTagSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res> implements $CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res> {
-  factory _$CompletionClientCapabilitiesCompletionItemTagSupportCopyWith(_CompletionClientCapabilitiesCompletionItemTagSupport value, $Res Function(_CompletionClientCapabilitiesCompletionItemTagSupport) _then) = __$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl;
-@override @useResult
-$Res call({
- List<CompletionItemTag> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl<$Res>
-    implements _$CompletionClientCapabilitiesCompletionItemTagSupportCopyWith<$Res> {
-  __$CompletionClientCapabilitiesCompletionItemTagSupportCopyWithImpl(this._self, this._then);
-
-  final _CompletionClientCapabilitiesCompletionItemTagSupport _self;
-  final $Res Function(_CompletionClientCapabilitiesCompletionItemTagSupport) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
-  return _then(_CompletionClientCapabilitiesCompletionItemTagSupport(
-valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<CompletionItemTag>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$CompletionClientCapabilitiesCompletionItemResolveSupport {
-
- List<String> get properties;
-/// Create a copy of CompletionClientCapabilitiesCompletionItemResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<CompletionClientCapabilitiesCompletionItemResolveSupport> get copyWith => _$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWithImpl<CompletionClientCapabilitiesCompletionItemResolveSupport>(this as CompletionClientCapabilitiesCompletionItemResolveSupport, _$identity);
-
-  /// Serializes this CompletionClientCapabilitiesCompletionItemResolveSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionClientCapabilitiesCompletionItemResolveSupport&&const DeepCollectionEquality().equals(other.properties, properties));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(properties));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItemResolveSupport(properties: $properties)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res>  {
-  factory $CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith(CompletionClientCapabilitiesCompletionItemResolveSupport value, $Res Function(CompletionClientCapabilitiesCompletionItemResolveSupport) _then) = _$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWithImpl;
-@useResult
-$Res call({
- List<String> properties
-});
-
-
-
-
-}
-/// @nodoc
-class _$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWithImpl<$Res>
-    implements $CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res> {
-  _$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWithImpl(this._self, this._then);
-
-  final CompletionClientCapabilitiesCompletionItemResolveSupport _self;
-  final $Res Function(CompletionClientCapabilitiesCompletionItemResolveSupport) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? properties = null,}) {
-  return _then(_self.copyWith(
-properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CompletionClientCapabilitiesCompletionItemResolveSupport].
-extension CompletionClientCapabilitiesCompletionItemResolveSupportPatterns on CompletionClientCapabilitiesCompletionItemResolveSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItemResolveSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemResolveSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItemResolveSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemResolveSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletionClientCapabilitiesCompletionItemResolveSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemResolveSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> properties)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemResolveSupport() when $default != null:
-return $default(_that.properties);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> properties)  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemResolveSupport():
-return $default(_that.properties);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> properties)?  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemResolveSupport() when $default != null:
-return $default(_that.properties);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CompletionClientCapabilitiesCompletionItemResolveSupport extends CompletionClientCapabilitiesCompletionItemResolveSupport {
-  const _CompletionClientCapabilitiesCompletionItemResolveSupport({required final  List<String> properties}): _properties = properties,super._();
-  factory _CompletionClientCapabilitiesCompletionItemResolveSupport.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionItemResolveSupportFromJson(json);
-
- final  List<String> _properties;
-@override List<String> get properties {
-  if (_properties is EqualUnmodifiableListView) return _properties;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_properties);
-}
-
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<_CompletionClientCapabilitiesCompletionItemResolveSupport> get copyWith => __$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWithImpl<_CompletionClientCapabilitiesCompletionItemResolveSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CompletionClientCapabilitiesCompletionItemResolveSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionClientCapabilitiesCompletionItemResolveSupport&&const DeepCollectionEquality().equals(other._properties, _properties));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_properties));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItemResolveSupport(properties: $properties)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res> implements $CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res> {
-  factory _$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith(_CompletionClientCapabilitiesCompletionItemResolveSupport value, $Res Function(_CompletionClientCapabilitiesCompletionItemResolveSupport) _then) = __$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWithImpl;
-@override @useResult
-$Res call({
- List<String> properties
-});
-
-
-
-
-}
-/// @nodoc
-class __$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWithImpl<$Res>
-    implements _$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWith<$Res> {
-  __$CompletionClientCapabilitiesCompletionItemResolveSupportCopyWithImpl(this._self, this._then);
-
-  final _CompletionClientCapabilitiesCompletionItemResolveSupport _self;
-  final $Res Function(_CompletionClientCapabilitiesCompletionItemResolveSupport) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? properties = null,}) {
-  return _then(_CompletionClientCapabilitiesCompletionItemResolveSupport(
-properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
-
- List<InsertTextMode> get valueSet;
-/// Create a copy of CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<CompletionClientCapabilitiesCompletionItemInsertTextModeSupport> get copyWith => _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl<CompletionClientCapabilitiesCompletionItemInsertTextModeSupport>(this as CompletionClientCapabilitiesCompletionItemInsertTextModeSupport, _$identity);
-
-  /// Serializes this CompletionClientCapabilitiesCompletionItemInsertTextModeSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionClientCapabilitiesCompletionItemInsertTextModeSupport&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItemInsertTextModeSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res>  {
-  factory $CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith(CompletionClientCapabilitiesCompletionItemInsertTextModeSupport value, $Res Function(CompletionClientCapabilitiesCompletionItemInsertTextModeSupport) _then) = _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl;
-@useResult
-$Res call({
- List<InsertTextMode> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl<$Res>
-    implements $CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res> {
-  _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl(this._self, this._then);
-
-  final CompletionClientCapabilitiesCompletionItemInsertTextModeSupport _self;
-  final $Res Function(CompletionClientCapabilitiesCompletionItemInsertTextModeSupport) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
-  return _then(_self.copyWith(
-valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<InsertTextMode>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CompletionClientCapabilitiesCompletionItemInsertTextModeSupport].
-extension CompletionClientCapabilitiesCompletionItemInsertTextModeSupportPatterns on CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<InsertTextMode> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<InsertTextMode> valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<InsertTextMode> valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport extends CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
-  const _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({required final  List<InsertTextMode> valueSet}): _valueSet = valueSet,super._();
-  factory _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportFromJson(json);
-
- final  List<InsertTextMode> _valueSet;
-@override List<InsertTextMode> get valueSet {
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_valueSet);
-}
-
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<_CompletionClientCapabilitiesCompletionItemInsertTextModeSupport> get copyWith => __$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl<_CompletionClientCapabilitiesCompletionItemInsertTextModeSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItemInsertTextModeSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res> implements $CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res> {
-  factory _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith(_CompletionClientCapabilitiesCompletionItemInsertTextModeSupport value, $Res Function(_CompletionClientCapabilitiesCompletionItemInsertTextModeSupport) _then) = __$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl;
-@override @useResult
-$Res call({
- List<InsertTextMode> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl<$Res>
-    implements _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWith<$Res> {
-  __$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportCopyWithImpl(this._self, this._then);
-
-  final _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport _self;
-  final $Res Function(_CompletionClientCapabilitiesCompletionItemInsertTextModeSupport) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
-  return _then(_CompletionClientCapabilitiesCompletionItemInsertTextModeSupport(
-valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<InsertTextMode>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$CompletionClientCapabilitiesCompletionItemKind {
-
- List<CompletionItemKind>? get valueSet;
-/// Create a copy of CompletionClientCapabilitiesCompletionItemKind
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemKindCopyWith<CompletionClientCapabilitiesCompletionItemKind> get copyWith => _$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl<CompletionClientCapabilitiesCompletionItemKind>(this as CompletionClientCapabilitiesCompletionItemKind, _$identity);
-
-  /// Serializes this CompletionClientCapabilitiesCompletionItemKind to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionClientCapabilitiesCompletionItemKind&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItemKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res>  {
-  factory $CompletionClientCapabilitiesCompletionItemKindCopyWith(CompletionClientCapabilitiesCompletionItemKind value, $Res Function(CompletionClientCapabilitiesCompletionItemKind) _then) = _$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl;
-@useResult
-$Res call({
- List<CompletionItemKind>? valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl<$Res>
-    implements $CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res> {
-  _$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl(this._self, this._then);
-
-  final CompletionClientCapabilitiesCompletionItemKind _self;
-  final $Res Function(CompletionClientCapabilitiesCompletionItemKind) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemKind
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = freezed,}) {
-  return _then(_self.copyWith(
-valueSet: freezed == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<CompletionItemKind>?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CompletionClientCapabilitiesCompletionItemKind].
-extension CompletionClientCapabilitiesCompletionItemKindPatterns on CompletionClientCapabilitiesCompletionItemKind {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItemKind value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemKind() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionItemKind value)  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemKind():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletionClientCapabilitiesCompletionItemKind value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemKind() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<CompletionItemKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<CompletionItemKind>? valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemKind():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<CompletionItemKind>? valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionItemKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CompletionClientCapabilitiesCompletionItemKind extends CompletionClientCapabilitiesCompletionItemKind {
-  const _CompletionClientCapabilitiesCompletionItemKind({final  List<CompletionItemKind>? valueSet}): _valueSet = valueSet,super._();
-  factory _CompletionClientCapabilitiesCompletionItemKind.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionItemKindFromJson(json);
-
- final  List<CompletionItemKind>? _valueSet;
-@override List<CompletionItemKind>? get valueSet {
-  final value = _valueSet;
-  if (value == null) return null;
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemKind
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CompletionClientCapabilitiesCompletionItemKindCopyWith<_CompletionClientCapabilitiesCompletionItemKind> get copyWith => __$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl<_CompletionClientCapabilitiesCompletionItemKind>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CompletionClientCapabilitiesCompletionItemKindToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionClientCapabilitiesCompletionItemKind&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionItemKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res> implements $CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res> {
-  factory _$CompletionClientCapabilitiesCompletionItemKindCopyWith(_CompletionClientCapabilitiesCompletionItemKind value, $Res Function(_CompletionClientCapabilitiesCompletionItemKind) _then) = __$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl;
-@override @useResult
-$Res call({
- List<CompletionItemKind>? valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl<$Res>
-    implements _$CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res> {
-  __$CompletionClientCapabilitiesCompletionItemKindCopyWithImpl(this._self, this._then);
-
-  final _CompletionClientCapabilitiesCompletionItemKind _self;
-  final $Res Function(_CompletionClientCapabilitiesCompletionItemKind) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionItemKind
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = freezed,}) {
-  return _then(_CompletionClientCapabilitiesCompletionItemKind(
-valueSet: freezed == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<CompletionItemKind>?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$CompletionClientCapabilitiesCompletionList {
-
- List<String>? get itemDefaults;
-/// Create a copy of CompletionClientCapabilitiesCompletionList
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionListCopyWith<CompletionClientCapabilitiesCompletionList> get copyWith => _$CompletionClientCapabilitiesCompletionListCopyWithImpl<CompletionClientCapabilitiesCompletionList>(this as CompletionClientCapabilitiesCompletionList, _$identity);
-
-  /// Serializes this CompletionClientCapabilitiesCompletionList to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompletionClientCapabilitiesCompletionList&&const DeepCollectionEquality().equals(other.itemDefaults, itemDefaults));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(itemDefaults));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionList(itemDefaults: $itemDefaults)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CompletionClientCapabilitiesCompletionListCopyWith<$Res>  {
-  factory $CompletionClientCapabilitiesCompletionListCopyWith(CompletionClientCapabilitiesCompletionList value, $Res Function(CompletionClientCapabilitiesCompletionList) _then) = _$CompletionClientCapabilitiesCompletionListCopyWithImpl;
-@useResult
-$Res call({
- List<String>? itemDefaults
-});
-
-
-
-
-}
-/// @nodoc
-class _$CompletionClientCapabilitiesCompletionListCopyWithImpl<$Res>
-    implements $CompletionClientCapabilitiesCompletionListCopyWith<$Res> {
-  _$CompletionClientCapabilitiesCompletionListCopyWithImpl(this._self, this._then);
-
-  final CompletionClientCapabilitiesCompletionList _self;
-  final $Res Function(CompletionClientCapabilitiesCompletionList) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionList
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? itemDefaults = freezed,}) {
-  return _then(_self.copyWith(
-itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as List<String>?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CompletionClientCapabilitiesCompletionList].
-extension CompletionClientCapabilitiesCompletionListPatterns on CompletionClientCapabilitiesCompletionList {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionList value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionList() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompletionClientCapabilitiesCompletionList value)  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionList():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompletionClientCapabilitiesCompletionList value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionList() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String>? itemDefaults)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionList() when $default != null:
-return $default(_that.itemDefaults);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String>? itemDefaults)  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionList():
-return $default(_that.itemDefaults);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String>? itemDefaults)?  $default,) {final _that = this;
-switch (_that) {
-case _CompletionClientCapabilitiesCompletionList() when $default != null:
-return $default(_that.itemDefaults);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CompletionClientCapabilitiesCompletionList extends CompletionClientCapabilitiesCompletionList {
-  const _CompletionClientCapabilitiesCompletionList({final  List<String>? itemDefaults}): _itemDefaults = itemDefaults,super._();
-  factory _CompletionClientCapabilitiesCompletionList.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesCompletionListFromJson(json);
-
- final  List<String>? _itemDefaults;
-@override List<String>? get itemDefaults {
-  final value = _itemDefaults;
-  if (value == null) return null;
-  if (_itemDefaults is EqualUnmodifiableListView) return _itemDefaults;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-
-/// Create a copy of CompletionClientCapabilitiesCompletionList
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CompletionClientCapabilitiesCompletionListCopyWith<_CompletionClientCapabilitiesCompletionList> get copyWith => __$CompletionClientCapabilitiesCompletionListCopyWithImpl<_CompletionClientCapabilitiesCompletionList>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CompletionClientCapabilitiesCompletionListToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompletionClientCapabilitiesCompletionList&&const DeepCollectionEquality().equals(other._itemDefaults, _itemDefaults));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_itemDefaults));
-
-@override
-String toString() {
-  return 'CompletionClientCapabilitiesCompletionList(itemDefaults: $itemDefaults)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CompletionClientCapabilitiesCompletionListCopyWith<$Res> implements $CompletionClientCapabilitiesCompletionListCopyWith<$Res> {
-  factory _$CompletionClientCapabilitiesCompletionListCopyWith(_CompletionClientCapabilitiesCompletionList value, $Res Function(_CompletionClientCapabilitiesCompletionList) _then) = __$CompletionClientCapabilitiesCompletionListCopyWithImpl;
-@override @useResult
-$Res call({
- List<String>? itemDefaults
-});
-
-
-
-
-}
-/// @nodoc
-class __$CompletionClientCapabilitiesCompletionListCopyWithImpl<$Res>
-    implements _$CompletionClientCapabilitiesCompletionListCopyWith<$Res> {
-  __$CompletionClientCapabilitiesCompletionListCopyWithImpl(this._self, this._then);
-
-  final _CompletionClientCapabilitiesCompletionList _self;
-  final $Res Function(_CompletionClientCapabilitiesCompletionList) _then;
-
-/// Create a copy of CompletionClientCapabilitiesCompletionList
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? itemDefaults = freezed,}) {
-  return _then(_CompletionClientCapabilitiesCompletionList(
-itemDefaults: freezed == itemDefaults ? _self._itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as List<String>?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$SignatureHelpClientCapabilitiesSignatureInformation {
-
- List<MarkupKind>? get documentationFormat; SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? get parameterInformation; bool? get activeParameterSupport;
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformation
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SignatureHelpClientCapabilitiesSignatureInformationCopyWith<SignatureHelpClientCapabilitiesSignatureInformation> get copyWith => _$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl<SignatureHelpClientCapabilitiesSignatureInformation>(this as SignatureHelpClientCapabilitiesSignatureInformation, _$identity);
-
-  /// Serializes this SignatureHelpClientCapabilitiesSignatureInformation to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignatureHelpClientCapabilitiesSignatureInformation&&const DeepCollectionEquality().equals(other.documentationFormat, documentationFormat)&&(identical(other.parameterInformation, parameterInformation) || other.parameterInformation == parameterInformation)&&(identical(other.activeParameterSupport, activeParameterSupport) || other.activeParameterSupport == activeParameterSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documentationFormat),parameterInformation,activeParameterSupport);
-
-@override
-String toString() {
-  return 'SignatureHelpClientCapabilitiesSignatureInformation(documentationFormat: $documentationFormat, parameterInformation: $parameterInformation, activeParameterSupport: $activeParameterSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res>  {
-  factory $SignatureHelpClientCapabilitiesSignatureInformationCopyWith(SignatureHelpClientCapabilitiesSignatureInformation value, $Res Function(SignatureHelpClientCapabilitiesSignatureInformation) _then) = _$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl;
-@useResult
-$Res call({
- List<MarkupKind>? documentationFormat, SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation, bool? activeParameterSupport
-});
-
-
-$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res>? get parameterInformation;
-
-}
-/// @nodoc
-class _$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl<$Res>
-    implements $SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res> {
-  _$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl(this._self, this._then);
-
-  final SignatureHelpClientCapabilitiesSignatureInformation _self;
-  final $Res Function(SignatureHelpClientCapabilitiesSignatureInformation) _then;
-
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformation
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documentationFormat = freezed,Object? parameterInformation = freezed,Object? activeParameterSupport = freezed,}) {
-  return _then(_self.copyWith(
-documentationFormat: freezed == documentationFormat ? _self.documentationFormat : documentationFormat // ignore: cast_nullable_to_non_nullable
-as List<MarkupKind>?,parameterInformation: freezed == parameterInformation ? _self.parameterInformation : parameterInformation // ignore: cast_nullable_to_non_nullable
-as SignatureHelpClientCapabilitiesSignatureInformationParameterInformation?,activeParameterSupport: freezed == activeParameterSupport ? _self.activeParameterSupport : activeParameterSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformation
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res>? get parameterInformation {
-    if (_self.parameterInformation == null) {
-    return null;
-  }
-
-  return $SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res>(_self.parameterInformation!, (value) {
-    return _then(_self.copyWith(parameterInformation: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [SignatureHelpClientCapabilitiesSignatureInformation].
-extension SignatureHelpClientCapabilitiesSignatureInformationPatterns on SignatureHelpClientCapabilitiesSignatureInformation {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SignatureHelpClientCapabilitiesSignatureInformation value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformation() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SignatureHelpClientCapabilitiesSignatureInformation value)  $default,){
-final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformation():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SignatureHelpClientCapabilitiesSignatureInformation value)?  $default,){
-final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformation() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MarkupKind>? documentationFormat,  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation,  bool? activeParameterSupport)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformation() when $default != null:
-return $default(_that.documentationFormat,_that.parameterInformation,_that.activeParameterSupport);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MarkupKind>? documentationFormat,  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation,  bool? activeParameterSupport)  $default,) {final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformation():
-return $default(_that.documentationFormat,_that.parameterInformation,_that.activeParameterSupport);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MarkupKind>? documentationFormat,  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation,  bool? activeParameterSupport)?  $default,) {final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformation() when $default != null:
-return $default(_that.documentationFormat,_that.parameterInformation,_that.activeParameterSupport);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _SignatureHelpClientCapabilitiesSignatureInformation extends SignatureHelpClientCapabilitiesSignatureInformation {
-  const _SignatureHelpClientCapabilitiesSignatureInformation({final  List<MarkupKind>? documentationFormat, this.parameterInformation, this.activeParameterSupport}): _documentationFormat = documentationFormat,super._();
-  factory _SignatureHelpClientCapabilitiesSignatureInformation.fromJson(Map<String, dynamic> json) => _$SignatureHelpClientCapabilitiesSignatureInformationFromJson(json);
-
- final  List<MarkupKind>? _documentationFormat;
-@override List<MarkupKind>? get documentationFormat {
-  final value = _documentationFormat;
-  if (value == null) return null;
-  if (_documentationFormat is EqualUnmodifiableListView) return _documentationFormat;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-@override final  SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation;
-@override final  bool? activeParameterSupport;
-
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformation
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SignatureHelpClientCapabilitiesSignatureInformationCopyWith<_SignatureHelpClientCapabilitiesSignatureInformation> get copyWith => __$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl<_SignatureHelpClientCapabilitiesSignatureInformation>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$SignatureHelpClientCapabilitiesSignatureInformationToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignatureHelpClientCapabilitiesSignatureInformation&&const DeepCollectionEquality().equals(other._documentationFormat, _documentationFormat)&&(identical(other.parameterInformation, parameterInformation) || other.parameterInformation == parameterInformation)&&(identical(other.activeParameterSupport, activeParameterSupport) || other.activeParameterSupport == activeParameterSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documentationFormat),parameterInformation,activeParameterSupport);
-
-@override
-String toString() {
-  return 'SignatureHelpClientCapabilitiesSignatureInformation(documentationFormat: $documentationFormat, parameterInformation: $parameterInformation, activeParameterSupport: $activeParameterSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res> implements $SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res> {
-  factory _$SignatureHelpClientCapabilitiesSignatureInformationCopyWith(_SignatureHelpClientCapabilitiesSignatureInformation value, $Res Function(_SignatureHelpClientCapabilitiesSignatureInformation) _then) = __$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl;
-@override @useResult
-$Res call({
- List<MarkupKind>? documentationFormat, SignatureHelpClientCapabilitiesSignatureInformationParameterInformation? parameterInformation, bool? activeParameterSupport
-});
-
-
-@override $SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res>? get parameterInformation;
-
-}
-/// @nodoc
-class __$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl<$Res>
-    implements _$SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res> {
-  __$SignatureHelpClientCapabilitiesSignatureInformationCopyWithImpl(this._self, this._then);
-
-  final _SignatureHelpClientCapabilitiesSignatureInformation _self;
-  final $Res Function(_SignatureHelpClientCapabilitiesSignatureInformation) _then;
-
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformation
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documentationFormat = freezed,Object? parameterInformation = freezed,Object? activeParameterSupport = freezed,}) {
-  return _then(_SignatureHelpClientCapabilitiesSignatureInformation(
-documentationFormat: freezed == documentationFormat ? _self._documentationFormat : documentationFormat // ignore: cast_nullable_to_non_nullable
-as List<MarkupKind>?,parameterInformation: freezed == parameterInformation ? _self.parameterInformation : parameterInformation // ignore: cast_nullable_to_non_nullable
-as SignatureHelpClientCapabilitiesSignatureInformationParameterInformation?,activeParameterSupport: freezed == activeParameterSupport ? _self.activeParameterSupport : activeParameterSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformation
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res>? get parameterInformation {
-    if (_self.parameterInformation == null) {
-    return null;
-  }
-
-  return $SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res>(_self.parameterInformation!, (value) {
-    return _then(_self.copyWith(parameterInformation: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
-
- bool? get labelOffsetSupport;
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<SignatureHelpClientCapabilitiesSignatureInformationParameterInformation> get copyWith => _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWithImpl<SignatureHelpClientCapabilitiesSignatureInformationParameterInformation>(this as SignatureHelpClientCapabilitiesSignatureInformationParameterInformation, _$identity);
-
-  /// Serializes this SignatureHelpClientCapabilitiesSignatureInformationParameterInformation to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignatureHelpClientCapabilitiesSignatureInformationParameterInformation&&(identical(other.labelOffsetSupport, labelOffsetSupport) || other.labelOffsetSupport == labelOffsetSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,labelOffsetSupport);
-
-@override
-String toString() {
-  return 'SignatureHelpClientCapabilitiesSignatureInformationParameterInformation(labelOffsetSupport: $labelOffsetSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res>  {
-  factory $SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith(SignatureHelpClientCapabilitiesSignatureInformationParameterInformation value, $Res Function(SignatureHelpClientCapabilitiesSignatureInformationParameterInformation) _then) = _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWithImpl;
-@useResult
-$Res call({
- bool? labelOffsetSupport
-});
-
-
-
-
-}
-/// @nodoc
-class _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWithImpl<$Res>
-    implements $SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res> {
-  _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWithImpl(this._self, this._then);
-
-  final SignatureHelpClientCapabilitiesSignatureInformationParameterInformation _self;
-  final $Res Function(SignatureHelpClientCapabilitiesSignatureInformationParameterInformation) _then;
-
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? labelOffsetSupport = freezed,}) {
-  return _then(_self.copyWith(
-labelOffsetSupport: freezed == labelOffsetSupport ? _self.labelOffsetSupport : labelOffsetSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [SignatureHelpClientCapabilitiesSignatureInformationParameterInformation].
-extension SignatureHelpClientCapabilitiesSignatureInformationParameterInformationPatterns on SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation value)  $default,){
-final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation value)?  $default,){
-final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? labelOffsetSupport)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation() when $default != null:
-return $default(_that.labelOffsetSupport);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? labelOffsetSupport)  $default,) {final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation():
-return $default(_that.labelOffsetSupport);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? labelOffsetSupport)?  $default,) {final _that = this;
-switch (_that) {
-case _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation() when $default != null:
-return $default(_that.labelOffsetSupport);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation extends SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
-  const _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation({this.labelOffsetSupport}): super._();
-  factory _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation.fromJson(Map<String, dynamic> json) => _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationFromJson(json);
-
-@override final  bool? labelOffsetSupport;
-
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<_SignatureHelpClientCapabilitiesSignatureInformationParameterInformation> get copyWith => __$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWithImpl<_SignatureHelpClientCapabilitiesSignatureInformationParameterInformation>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation&&(identical(other.labelOffsetSupport, labelOffsetSupport) || other.labelOffsetSupport == labelOffsetSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,labelOffsetSupport);
-
-@override
-String toString() {
-  return 'SignatureHelpClientCapabilitiesSignatureInformationParameterInformation(labelOffsetSupport: $labelOffsetSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res> implements $SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res> {
-  factory _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith(_SignatureHelpClientCapabilitiesSignatureInformationParameterInformation value, $Res Function(_SignatureHelpClientCapabilitiesSignatureInformationParameterInformation) _then) = __$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWithImpl;
-@override @useResult
-$Res call({
- bool? labelOffsetSupport
-});
-
-
-
-
-}
-/// @nodoc
-class __$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWithImpl<$Res>
-    implements _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWith<$Res> {
-  __$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationCopyWithImpl(this._self, this._then);
-
-  final _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation _self;
-  final $Res Function(_SignatureHelpClientCapabilitiesSignatureInformationParameterInformation) _then;
-
-/// Create a copy of SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? labelOffsetSupport = freezed,}) {
-  return _then(_SignatureHelpClientCapabilitiesSignatureInformationParameterInformation(
-labelOffsetSupport: freezed == labelOffsetSupport ? _self.labelOffsetSupport : labelOffsetSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$DocumentSymbolClientCapabilitiesSymbolKind {
-
- List<SymbolKind>? get valueSet;
-/// Create a copy of DocumentSymbolClientCapabilitiesSymbolKind
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$DocumentSymbolClientCapabilitiesSymbolKindCopyWith<DocumentSymbolClientCapabilitiesSymbolKind> get copyWith => _$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl<DocumentSymbolClientCapabilitiesSymbolKind>(this as DocumentSymbolClientCapabilitiesSymbolKind, _$identity);
-
-  /// Serializes this DocumentSymbolClientCapabilitiesSymbolKind to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentSymbolClientCapabilitiesSymbolKind&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'DocumentSymbolClientCapabilitiesSymbolKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res>  {
-  factory $DocumentSymbolClientCapabilitiesSymbolKindCopyWith(DocumentSymbolClientCapabilitiesSymbolKind value, $Res Function(DocumentSymbolClientCapabilitiesSymbolKind) _then) = _$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl;
-@useResult
-$Res call({
- List<SymbolKind>? valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl<$Res>
-    implements $DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res> {
-  _$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl(this._self, this._then);
-
-  final DocumentSymbolClientCapabilitiesSymbolKind _self;
-  final $Res Function(DocumentSymbolClientCapabilitiesSymbolKind) _then;
-
-/// Create a copy of DocumentSymbolClientCapabilitiesSymbolKind
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = freezed,}) {
-  return _then(_self.copyWith(
-valueSet: freezed == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<SymbolKind>?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [DocumentSymbolClientCapabilitiesSymbolKind].
-extension DocumentSymbolClientCapabilitiesSymbolKindPatterns on DocumentSymbolClientCapabilitiesSymbolKind {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _DocumentSymbolClientCapabilitiesSymbolKind value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesSymbolKind() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _DocumentSymbolClientCapabilitiesSymbolKind value)  $default,){
-final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesSymbolKind():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _DocumentSymbolClientCapabilitiesSymbolKind value)?  $default,){
-final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesSymbolKind() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SymbolKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesSymbolKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SymbolKind>? valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesSymbolKind():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SymbolKind>? valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesSymbolKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _DocumentSymbolClientCapabilitiesSymbolKind extends DocumentSymbolClientCapabilitiesSymbolKind {
-  const _DocumentSymbolClientCapabilitiesSymbolKind({final  List<SymbolKind>? valueSet}): _valueSet = valueSet,super._();
-  factory _DocumentSymbolClientCapabilitiesSymbolKind.fromJson(Map<String, dynamic> json) => _$DocumentSymbolClientCapabilitiesSymbolKindFromJson(json);
-
- final  List<SymbolKind>? _valueSet;
-@override List<SymbolKind>? get valueSet {
-  final value = _valueSet;
-  if (value == null) return null;
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-
-/// Create a copy of DocumentSymbolClientCapabilitiesSymbolKind
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$DocumentSymbolClientCapabilitiesSymbolKindCopyWith<_DocumentSymbolClientCapabilitiesSymbolKind> get copyWith => __$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl<_DocumentSymbolClientCapabilitiesSymbolKind>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$DocumentSymbolClientCapabilitiesSymbolKindToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentSymbolClientCapabilitiesSymbolKind&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'DocumentSymbolClientCapabilitiesSymbolKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res> implements $DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res> {
-  factory _$DocumentSymbolClientCapabilitiesSymbolKindCopyWith(_DocumentSymbolClientCapabilitiesSymbolKind value, $Res Function(_DocumentSymbolClientCapabilitiesSymbolKind) _then) = __$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl;
-@override @useResult
-$Res call({
- List<SymbolKind>? valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl<$Res>
-    implements _$DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res> {
-  __$DocumentSymbolClientCapabilitiesSymbolKindCopyWithImpl(this._self, this._then);
-
-  final _DocumentSymbolClientCapabilitiesSymbolKind _self;
-  final $Res Function(_DocumentSymbolClientCapabilitiesSymbolKind) _then;
-
-/// Create a copy of DocumentSymbolClientCapabilitiesSymbolKind
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = freezed,}) {
-  return _then(_DocumentSymbolClientCapabilitiesSymbolKind(
-valueSet: freezed == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<SymbolKind>?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$DocumentSymbolClientCapabilitiesTagSupport {
-
- List<SymbolTag> get valueSet;
-/// Create a copy of DocumentSymbolClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$DocumentSymbolClientCapabilitiesTagSupportCopyWith<DocumentSymbolClientCapabilitiesTagSupport> get copyWith => _$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl<DocumentSymbolClientCapabilitiesTagSupport>(this as DocumentSymbolClientCapabilitiesTagSupport, _$identity);
-
-  /// Serializes this DocumentSymbolClientCapabilitiesTagSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentSymbolClientCapabilitiesTagSupport&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'DocumentSymbolClientCapabilitiesTagSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res>  {
-  factory $DocumentSymbolClientCapabilitiesTagSupportCopyWith(DocumentSymbolClientCapabilitiesTagSupport value, $Res Function(DocumentSymbolClientCapabilitiesTagSupport) _then) = _$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl;
-@useResult
-$Res call({
- List<SymbolTag> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl<$Res>
-    implements $DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res> {
-  _$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl(this._self, this._then);
-
-  final DocumentSymbolClientCapabilitiesTagSupport _self;
-  final $Res Function(DocumentSymbolClientCapabilitiesTagSupport) _then;
-
-/// Create a copy of DocumentSymbolClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
-  return _then(_self.copyWith(
-valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [DocumentSymbolClientCapabilitiesTagSupport].
-extension DocumentSymbolClientCapabilitiesTagSupportPatterns on DocumentSymbolClientCapabilitiesTagSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _DocumentSymbolClientCapabilitiesTagSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesTagSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _DocumentSymbolClientCapabilitiesTagSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesTagSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _DocumentSymbolClientCapabilitiesTagSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesTagSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SymbolTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesTagSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SymbolTag> valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesTagSupport():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SymbolTag> valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _DocumentSymbolClientCapabilitiesTagSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _DocumentSymbolClientCapabilitiesTagSupport extends DocumentSymbolClientCapabilitiesTagSupport {
-  const _DocumentSymbolClientCapabilitiesTagSupport({required final  List<SymbolTag> valueSet}): _valueSet = valueSet,super._();
-  factory _DocumentSymbolClientCapabilitiesTagSupport.fromJson(Map<String, dynamic> json) => _$DocumentSymbolClientCapabilitiesTagSupportFromJson(json);
-
- final  List<SymbolTag> _valueSet;
-@override List<SymbolTag> get valueSet {
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_valueSet);
-}
-
-
-/// Create a copy of DocumentSymbolClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$DocumentSymbolClientCapabilitiesTagSupportCopyWith<_DocumentSymbolClientCapabilitiesTagSupport> get copyWith => __$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl<_DocumentSymbolClientCapabilitiesTagSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$DocumentSymbolClientCapabilitiesTagSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentSymbolClientCapabilitiesTagSupport&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'DocumentSymbolClientCapabilitiesTagSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res> implements $DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res> {
-  factory _$DocumentSymbolClientCapabilitiesTagSupportCopyWith(_DocumentSymbolClientCapabilitiesTagSupport value, $Res Function(_DocumentSymbolClientCapabilitiesTagSupport) _then) = __$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl;
-@override @useResult
-$Res call({
- List<SymbolTag> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl<$Res>
-    implements _$DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res> {
-  __$DocumentSymbolClientCapabilitiesTagSupportCopyWithImpl(this._self, this._then);
-
-  final _DocumentSymbolClientCapabilitiesTagSupport _self;
-  final $Res Function(_DocumentSymbolClientCapabilitiesTagSupport) _then;
-
-/// Create a copy of DocumentSymbolClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
-  return _then(_DocumentSymbolClientCapabilitiesTagSupport(
-valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<SymbolTag>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$CodeActionClientCapabilitiesCodeActionLiteralSupport {
-
- CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind get codeActionKind;
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<CodeActionClientCapabilitiesCodeActionLiteralSupport> get copyWith => _$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWithImpl<CodeActionClientCapabilitiesCodeActionLiteralSupport>(this as CodeActionClientCapabilitiesCodeActionLiteralSupport, _$identity);
-
-  /// Serializes this CodeActionClientCapabilitiesCodeActionLiteralSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionClientCapabilitiesCodeActionLiteralSupport&&(identical(other.codeActionKind, codeActionKind) || other.codeActionKind == codeActionKind));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,codeActionKind);
-
-@override
-String toString() {
-  return 'CodeActionClientCapabilitiesCodeActionLiteralSupport(codeActionKind: $codeActionKind)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res>  {
-  factory $CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith(CodeActionClientCapabilitiesCodeActionLiteralSupport value, $Res Function(CodeActionClientCapabilitiesCodeActionLiteralSupport) _then) = _$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWithImpl;
-@useResult
-$Res call({
- CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind codeActionKind
-});
-
-
-$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res> get codeActionKind;
-
-}
-/// @nodoc
-class _$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWithImpl<$Res>
-    implements $CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res> {
-  _$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWithImpl(this._self, this._then);
-
-  final CodeActionClientCapabilitiesCodeActionLiteralSupport _self;
-  final $Res Function(CodeActionClientCapabilitiesCodeActionLiteralSupport) _then;
-
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? codeActionKind = null,}) {
-  return _then(_self.copyWith(
-codeActionKind: null == codeActionKind ? _self.codeActionKind : codeActionKind // ignore: cast_nullable_to_non_nullable
-as CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind,
-  ));
-}
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupport
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res> get codeActionKind {
-  
-  return $CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res>(_self.codeActionKind, (value) {
-    return _then(_self.copyWith(codeActionKind: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [CodeActionClientCapabilitiesCodeActionLiteralSupport].
-extension CodeActionClientCapabilitiesCodeActionLiteralSupportPatterns on CodeActionClientCapabilitiesCodeActionLiteralSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CodeActionClientCapabilitiesCodeActionLiteralSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CodeActionClientCapabilitiesCodeActionLiteralSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CodeActionClientCapabilitiesCodeActionLiteralSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind codeActionKind)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupport() when $default != null:
-return $default(_that.codeActionKind);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind codeActionKind)  $default,) {final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupport():
-return $default(_that.codeActionKind);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind codeActionKind)?  $default,) {final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupport() when $default != null:
-return $default(_that.codeActionKind);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CodeActionClientCapabilitiesCodeActionLiteralSupport extends CodeActionClientCapabilitiesCodeActionLiteralSupport {
-  const _CodeActionClientCapabilitiesCodeActionLiteralSupport({required this.codeActionKind}): super._();
-  factory _CodeActionClientCapabilitiesCodeActionLiteralSupport.fromJson(Map<String, dynamic> json) => _$CodeActionClientCapabilitiesCodeActionLiteralSupportFromJson(json);
-
-@override final  CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind codeActionKind;
-
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<_CodeActionClientCapabilitiesCodeActionLiteralSupport> get copyWith => __$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWithImpl<_CodeActionClientCapabilitiesCodeActionLiteralSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CodeActionClientCapabilitiesCodeActionLiteralSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionClientCapabilitiesCodeActionLiteralSupport&&(identical(other.codeActionKind, codeActionKind) || other.codeActionKind == codeActionKind));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,codeActionKind);
-
-@override
-String toString() {
-  return 'CodeActionClientCapabilitiesCodeActionLiteralSupport(codeActionKind: $codeActionKind)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res> implements $CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res> {
-  factory _$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith(_CodeActionClientCapabilitiesCodeActionLiteralSupport value, $Res Function(_CodeActionClientCapabilitiesCodeActionLiteralSupport) _then) = __$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWithImpl;
-@override @useResult
-$Res call({
- CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind codeActionKind
-});
-
-
-@override $CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res> get codeActionKind;
-
-}
-/// @nodoc
-class __$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWithImpl<$Res>
-    implements _$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res> {
-  __$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWithImpl(this._self, this._then);
-
-  final _CodeActionClientCapabilitiesCodeActionLiteralSupport _self;
-  final $Res Function(_CodeActionClientCapabilitiesCodeActionLiteralSupport) _then;
-
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? codeActionKind = null,}) {
-  return _then(_CodeActionClientCapabilitiesCodeActionLiteralSupport(
-codeActionKind: null == codeActionKind ? _self.codeActionKind : codeActionKind // ignore: cast_nullable_to_non_nullable
-as CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind,
-  ));
-}
-
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupport
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res> get codeActionKind {
-  
-  return $CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res>(_self.codeActionKind, (value) {
-    return _then(_self.copyWith(codeActionKind: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind {
-
-@_CodeActionKindListConverter() List<CodeActionKind> get valueSet;
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind> get copyWith => _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWithImpl<CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind>(this as CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind, _$identity);
-
-  /// Serializes this CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res>  {
-  factory $CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith(CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind value, $Res Function(CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind) _then) = _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWithImpl;
-@useResult
-$Res call({
-@_CodeActionKindListConverter() List<CodeActionKind> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWithImpl<$Res>
-    implements $CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res> {
-  _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWithImpl(this._self, this._then);
-
-  final CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind _self;
-  final $Res Function(CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind) _then;
-
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
-  return _then(_self.copyWith(
-valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<CodeActionKind>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind].
-extension CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindPatterns on CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind value)  $default,){
-final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_CodeActionKindListConverter()  List<CodeActionKind> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_CodeActionKindListConverter()  List<CodeActionKind> valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_CodeActionKindListConverter()  List<CodeActionKind> valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind extends CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind {
-  const _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind({@_CodeActionKindListConverter() required final  List<CodeActionKind> valueSet}): _valueSet = valueSet,super._();
-  factory _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind.fromJson(Map<String, dynamic> json) => _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindFromJson(json);
-
- final  List<CodeActionKind> _valueSet;
-@override@_CodeActionKindListConverter() List<CodeActionKind> get valueSet {
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_valueSet);
-}
-
-
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<_CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind> get copyWith => __$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWithImpl<_CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res> implements $CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res> {
-  factory _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith(_CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind value, $Res Function(_CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind) _then) = __$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWithImpl;
-@override @useResult
-$Res call({
-@_CodeActionKindListConverter() List<CodeActionKind> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWithImpl<$Res>
-    implements _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWith<$Res> {
-  __$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindCopyWithImpl(this._self, this._then);
-
-  final _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind _self;
-  final $Res Function(_CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind) _then;
-
-/// Create a copy of CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
-  return _then(_CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind(
-valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<CodeActionKind>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$CodeActionClientCapabilitiesResolveSupport {
-
- List<String> get properties;
-/// Create a copy of CodeActionClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CodeActionClientCapabilitiesResolveSupportCopyWith<CodeActionClientCapabilitiesResolveSupport> get copyWith => _$CodeActionClientCapabilitiesResolveSupportCopyWithImpl<CodeActionClientCapabilitiesResolveSupport>(this as CodeActionClientCapabilitiesResolveSupport, _$identity);
-
-  /// Serializes this CodeActionClientCapabilitiesResolveSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CodeActionClientCapabilitiesResolveSupport&&const DeepCollectionEquality().equals(other.properties, properties));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(properties));
-
-@override
-String toString() {
-  return 'CodeActionClientCapabilitiesResolveSupport(properties: $properties)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CodeActionClientCapabilitiesResolveSupportCopyWith<$Res>  {
-  factory $CodeActionClientCapabilitiesResolveSupportCopyWith(CodeActionClientCapabilitiesResolveSupport value, $Res Function(CodeActionClientCapabilitiesResolveSupport) _then) = _$CodeActionClientCapabilitiesResolveSupportCopyWithImpl;
-@useResult
-$Res call({
- List<String> properties
-});
-
-
-
-
-}
-/// @nodoc
-class _$CodeActionClientCapabilitiesResolveSupportCopyWithImpl<$Res>
-    implements $CodeActionClientCapabilitiesResolveSupportCopyWith<$Res> {
-  _$CodeActionClientCapabilitiesResolveSupportCopyWithImpl(this._self, this._then);
-
-  final CodeActionClientCapabilitiesResolveSupport _self;
-  final $Res Function(CodeActionClientCapabilitiesResolveSupport) _then;
-
-/// Create a copy of CodeActionClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? properties = null,}) {
-  return _then(_self.copyWith(
-properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CodeActionClientCapabilitiesResolveSupport].
-extension CodeActionClientCapabilitiesResolveSupportPatterns on CodeActionClientCapabilitiesResolveSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CodeActionClientCapabilitiesResolveSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CodeActionClientCapabilitiesResolveSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesResolveSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CodeActionClientCapabilitiesResolveSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> properties)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that.properties);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> properties)  $default,) {final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesResolveSupport():
-return $default(_that.properties);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> properties)?  $default,) {final _that = this;
-switch (_that) {
-case _CodeActionClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that.properties);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CodeActionClientCapabilitiesResolveSupport extends CodeActionClientCapabilitiesResolveSupport {
-  const _CodeActionClientCapabilitiesResolveSupport({required final  List<String> properties}): _properties = properties,super._();
-  factory _CodeActionClientCapabilitiesResolveSupport.fromJson(Map<String, dynamic> json) => _$CodeActionClientCapabilitiesResolveSupportFromJson(json);
-
- final  List<String> _properties;
-@override List<String> get properties {
-  if (_properties is EqualUnmodifiableListView) return _properties;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_properties);
-}
-
-
-/// Create a copy of CodeActionClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CodeActionClientCapabilitiesResolveSupportCopyWith<_CodeActionClientCapabilitiesResolveSupport> get copyWith => __$CodeActionClientCapabilitiesResolveSupportCopyWithImpl<_CodeActionClientCapabilitiesResolveSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CodeActionClientCapabilitiesResolveSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CodeActionClientCapabilitiesResolveSupport&&const DeepCollectionEquality().equals(other._properties, _properties));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_properties));
-
-@override
-String toString() {
-  return 'CodeActionClientCapabilitiesResolveSupport(properties: $properties)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CodeActionClientCapabilitiesResolveSupportCopyWith<$Res> implements $CodeActionClientCapabilitiesResolveSupportCopyWith<$Res> {
-  factory _$CodeActionClientCapabilitiesResolveSupportCopyWith(_CodeActionClientCapabilitiesResolveSupport value, $Res Function(_CodeActionClientCapabilitiesResolveSupport) _then) = __$CodeActionClientCapabilitiesResolveSupportCopyWithImpl;
-@override @useResult
-$Res call({
- List<String> properties
-});
-
-
-
-
-}
-/// @nodoc
-class __$CodeActionClientCapabilitiesResolveSupportCopyWithImpl<$Res>
-    implements _$CodeActionClientCapabilitiesResolveSupportCopyWith<$Res> {
-  __$CodeActionClientCapabilitiesResolveSupportCopyWithImpl(this._self, this._then);
-
-  final _CodeActionClientCapabilitiesResolveSupport _self;
-  final $Res Function(_CodeActionClientCapabilitiesResolveSupport) _then;
-
-/// Create a copy of CodeActionClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? properties = null,}) {
-  return _then(_CodeActionClientCapabilitiesResolveSupport(
-properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$FoldingRangeClientCapabilitiesFoldingRangeKind {
-
-@_FoldingRangeKindListConverter() List<FoldingRangeKind>? get valueSet;
-/// Create a copy of FoldingRangeClientCapabilitiesFoldingRangeKind
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<FoldingRangeClientCapabilitiesFoldingRangeKind> get copyWith => _$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWithImpl<FoldingRangeClientCapabilitiesFoldingRangeKind>(this as FoldingRangeClientCapabilitiesFoldingRangeKind, _$identity);
-
-  /// Serializes this FoldingRangeClientCapabilitiesFoldingRangeKind to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FoldingRangeClientCapabilitiesFoldingRangeKind&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'FoldingRangeClientCapabilitiesFoldingRangeKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res>  {
-  factory $FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith(FoldingRangeClientCapabilitiesFoldingRangeKind value, $Res Function(FoldingRangeClientCapabilitiesFoldingRangeKind) _then) = _$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWithImpl;
-@useResult
-$Res call({
-@_FoldingRangeKindListConverter() List<FoldingRangeKind>? valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWithImpl<$Res>
-    implements $FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res> {
-  _$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWithImpl(this._self, this._then);
-
-  final FoldingRangeClientCapabilitiesFoldingRangeKind _self;
-  final $Res Function(FoldingRangeClientCapabilitiesFoldingRangeKind) _then;
-
-/// Create a copy of FoldingRangeClientCapabilitiesFoldingRangeKind
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = freezed,}) {
-  return _then(_self.copyWith(
-valueSet: freezed == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<FoldingRangeKind>?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [FoldingRangeClientCapabilitiesFoldingRangeKind].
-extension FoldingRangeClientCapabilitiesFoldingRangeKindPatterns on FoldingRangeClientCapabilitiesFoldingRangeKind {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _FoldingRangeClientCapabilitiesFoldingRangeKind value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRangeKind() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _FoldingRangeClientCapabilitiesFoldingRangeKind value)  $default,){
-final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRangeKind():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _FoldingRangeClientCapabilitiesFoldingRangeKind value)?  $default,){
-final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRangeKind() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_FoldingRangeKindListConverter()  List<FoldingRangeKind>? valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRangeKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_FoldingRangeKindListConverter()  List<FoldingRangeKind>? valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRangeKind():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_FoldingRangeKindListConverter()  List<FoldingRangeKind>? valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRangeKind() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _FoldingRangeClientCapabilitiesFoldingRangeKind extends FoldingRangeClientCapabilitiesFoldingRangeKind {
-  const _FoldingRangeClientCapabilitiesFoldingRangeKind({@_FoldingRangeKindListConverter() final  List<FoldingRangeKind>? valueSet}): _valueSet = valueSet,super._();
-  factory _FoldingRangeClientCapabilitiesFoldingRangeKind.fromJson(Map<String, dynamic> json) => _$FoldingRangeClientCapabilitiesFoldingRangeKindFromJson(json);
-
- final  List<FoldingRangeKind>? _valueSet;
-@override@_FoldingRangeKindListConverter() List<FoldingRangeKind>? get valueSet {
-  final value = _valueSet;
-  if (value == null) return null;
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-
-/// Create a copy of FoldingRangeClientCapabilitiesFoldingRangeKind
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<_FoldingRangeClientCapabilitiesFoldingRangeKind> get copyWith => __$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWithImpl<_FoldingRangeClientCapabilitiesFoldingRangeKind>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$FoldingRangeClientCapabilitiesFoldingRangeKindToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FoldingRangeClientCapabilitiesFoldingRangeKind&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'FoldingRangeClientCapabilitiesFoldingRangeKind(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res> implements $FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res> {
-  factory _$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith(_FoldingRangeClientCapabilitiesFoldingRangeKind value, $Res Function(_FoldingRangeClientCapabilitiesFoldingRangeKind) _then) = __$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWithImpl;
-@override @useResult
-$Res call({
-@_FoldingRangeKindListConverter() List<FoldingRangeKind>? valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWithImpl<$Res>
-    implements _$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res> {
-  __$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWithImpl(this._self, this._then);
-
-  final _FoldingRangeClientCapabilitiesFoldingRangeKind _self;
-  final $Res Function(_FoldingRangeClientCapabilitiesFoldingRangeKind) _then;
-
-/// Create a copy of FoldingRangeClientCapabilitiesFoldingRangeKind
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = freezed,}) {
-  return _then(_FoldingRangeClientCapabilitiesFoldingRangeKind(
-valueSet: freezed == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<FoldingRangeKind>?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$FoldingRangeClientCapabilitiesFoldingRange {
-
- bool? get collapsedText;
-/// Create a copy of FoldingRangeClientCapabilitiesFoldingRange
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$FoldingRangeClientCapabilitiesFoldingRangeCopyWith<FoldingRangeClientCapabilitiesFoldingRange> get copyWith => _$FoldingRangeClientCapabilitiesFoldingRangeCopyWithImpl<FoldingRangeClientCapabilitiesFoldingRange>(this as FoldingRangeClientCapabilitiesFoldingRange, _$identity);
-
-  /// Serializes this FoldingRangeClientCapabilitiesFoldingRange to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FoldingRangeClientCapabilitiesFoldingRange&&(identical(other.collapsedText, collapsedText) || other.collapsedText == collapsedText));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,collapsedText);
-
-@override
-String toString() {
-  return 'FoldingRangeClientCapabilitiesFoldingRange(collapsedText: $collapsedText)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res>  {
-  factory $FoldingRangeClientCapabilitiesFoldingRangeCopyWith(FoldingRangeClientCapabilitiesFoldingRange value, $Res Function(FoldingRangeClientCapabilitiesFoldingRange) _then) = _$FoldingRangeClientCapabilitiesFoldingRangeCopyWithImpl;
-@useResult
-$Res call({
- bool? collapsedText
-});
-
-
-
-
-}
-/// @nodoc
-class _$FoldingRangeClientCapabilitiesFoldingRangeCopyWithImpl<$Res>
-    implements $FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res> {
-  _$FoldingRangeClientCapabilitiesFoldingRangeCopyWithImpl(this._self, this._then);
-
-  final FoldingRangeClientCapabilitiesFoldingRange _self;
-  final $Res Function(FoldingRangeClientCapabilitiesFoldingRange) _then;
-
-/// Create a copy of FoldingRangeClientCapabilitiesFoldingRange
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? collapsedText = freezed,}) {
-  return _then(_self.copyWith(
-collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [FoldingRangeClientCapabilitiesFoldingRange].
-extension FoldingRangeClientCapabilitiesFoldingRangePatterns on FoldingRangeClientCapabilitiesFoldingRange {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _FoldingRangeClientCapabilitiesFoldingRange value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRange() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _FoldingRangeClientCapabilitiesFoldingRange value)  $default,){
-final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRange():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _FoldingRangeClientCapabilitiesFoldingRange value)?  $default,){
-final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRange() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? collapsedText)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRange() when $default != null:
-return $default(_that.collapsedText);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? collapsedText)  $default,) {final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRange():
-return $default(_that.collapsedText);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? collapsedText)?  $default,) {final _that = this;
-switch (_that) {
-case _FoldingRangeClientCapabilitiesFoldingRange() when $default != null:
-return $default(_that.collapsedText);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _FoldingRangeClientCapabilitiesFoldingRange extends FoldingRangeClientCapabilitiesFoldingRange {
-  const _FoldingRangeClientCapabilitiesFoldingRange({this.collapsedText}): super._();
-  factory _FoldingRangeClientCapabilitiesFoldingRange.fromJson(Map<String, dynamic> json) => _$FoldingRangeClientCapabilitiesFoldingRangeFromJson(json);
-
-@override final  bool? collapsedText;
-
-/// Create a copy of FoldingRangeClientCapabilitiesFoldingRange
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$FoldingRangeClientCapabilitiesFoldingRangeCopyWith<_FoldingRangeClientCapabilitiesFoldingRange> get copyWith => __$FoldingRangeClientCapabilitiesFoldingRangeCopyWithImpl<_FoldingRangeClientCapabilitiesFoldingRange>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$FoldingRangeClientCapabilitiesFoldingRangeToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FoldingRangeClientCapabilitiesFoldingRange&&(identical(other.collapsedText, collapsedText) || other.collapsedText == collapsedText));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,collapsedText);
-
-@override
-String toString() {
-  return 'FoldingRangeClientCapabilitiesFoldingRange(collapsedText: $collapsedText)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res> implements $FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res> {
-  factory _$FoldingRangeClientCapabilitiesFoldingRangeCopyWith(_FoldingRangeClientCapabilitiesFoldingRange value, $Res Function(_FoldingRangeClientCapabilitiesFoldingRange) _then) = __$FoldingRangeClientCapabilitiesFoldingRangeCopyWithImpl;
-@override @useResult
-$Res call({
- bool? collapsedText
-});
-
-
-
-
-}
-/// @nodoc
-class __$FoldingRangeClientCapabilitiesFoldingRangeCopyWithImpl<$Res>
-    implements _$FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res> {
-  __$FoldingRangeClientCapabilitiesFoldingRangeCopyWithImpl(this._self, this._then);
-
-  final _FoldingRangeClientCapabilitiesFoldingRange _self;
-  final $Res Function(_FoldingRangeClientCapabilitiesFoldingRange) _then;
-
-/// Create a copy of FoldingRangeClientCapabilitiesFoldingRange
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? collapsedText = freezed,}) {
-  return _then(_FoldingRangeClientCapabilitiesFoldingRange(
-collapsedText: freezed == collapsedText ? _self.collapsedText : collapsedText // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$PublishDiagnosticsClientCapabilitiesTagSupport {
-
- List<DiagnosticTag> get valueSet;
-/// Create a copy of PublishDiagnosticsClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<PublishDiagnosticsClientCapabilitiesTagSupport> get copyWith => _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl<PublishDiagnosticsClientCapabilitiesTagSupport>(this as PublishDiagnosticsClientCapabilitiesTagSupport, _$identity);
-
-  /// Serializes this PublishDiagnosticsClientCapabilitiesTagSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PublishDiagnosticsClientCapabilitiesTagSupport&&const DeepCollectionEquality().equals(other.valueSet, valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(valueSet));
-
-@override
-String toString() {
-  return 'PublishDiagnosticsClientCapabilitiesTagSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res>  {
-  factory $PublishDiagnosticsClientCapabilitiesTagSupportCopyWith(PublishDiagnosticsClientCapabilitiesTagSupport value, $Res Function(PublishDiagnosticsClientCapabilitiesTagSupport) _then) = _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl;
-@useResult
-$Res call({
- List<DiagnosticTag> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl<$Res>
-    implements $PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res> {
-  _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl(this._self, this._then);
-
-  final PublishDiagnosticsClientCapabilitiesTagSupport _self;
-  final $Res Function(PublishDiagnosticsClientCapabilitiesTagSupport) _then;
-
-/// Create a copy of PublishDiagnosticsClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? valueSet = null,}) {
-  return _then(_self.copyWith(
-valueSet: null == valueSet ? _self.valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<DiagnosticTag>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [PublishDiagnosticsClientCapabilitiesTagSupport].
-extension PublishDiagnosticsClientCapabilitiesTagSupportPatterns on PublishDiagnosticsClientCapabilitiesTagSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PublishDiagnosticsClientCapabilitiesTagSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _PublishDiagnosticsClientCapabilitiesTagSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PublishDiagnosticsClientCapabilitiesTagSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _PublishDiagnosticsClientCapabilitiesTagSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PublishDiagnosticsClientCapabilitiesTagSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _PublishDiagnosticsClientCapabilitiesTagSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<DiagnosticTag> valueSet)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _PublishDiagnosticsClientCapabilitiesTagSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<DiagnosticTag> valueSet)  $default,) {final _that = this;
-switch (_that) {
-case _PublishDiagnosticsClientCapabilitiesTagSupport():
-return $default(_that.valueSet);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<DiagnosticTag> valueSet)?  $default,) {final _that = this;
-switch (_that) {
-case _PublishDiagnosticsClientCapabilitiesTagSupport() when $default != null:
-return $default(_that.valueSet);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _PublishDiagnosticsClientCapabilitiesTagSupport extends PublishDiagnosticsClientCapabilitiesTagSupport {
-  const _PublishDiagnosticsClientCapabilitiesTagSupport({required final  List<DiagnosticTag> valueSet}): _valueSet = valueSet,super._();
-  factory _PublishDiagnosticsClientCapabilitiesTagSupport.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsClientCapabilitiesTagSupportFromJson(json);
-
- final  List<DiagnosticTag> _valueSet;
-@override List<DiagnosticTag> get valueSet {
-  if (_valueSet is EqualUnmodifiableListView) return _valueSet;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_valueSet);
-}
-
-
-/// Create a copy of PublishDiagnosticsClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<_PublishDiagnosticsClientCapabilitiesTagSupport> get copyWith => __$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl<_PublishDiagnosticsClientCapabilitiesTagSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$PublishDiagnosticsClientCapabilitiesTagSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PublishDiagnosticsClientCapabilitiesTagSupport&&const DeepCollectionEquality().equals(other._valueSet, _valueSet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_valueSet));
-
-@override
-String toString() {
-  return 'PublishDiagnosticsClientCapabilitiesTagSupport(valueSet: $valueSet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res> implements $PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res> {
-  factory _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith(_PublishDiagnosticsClientCapabilitiesTagSupport value, $Res Function(_PublishDiagnosticsClientCapabilitiesTagSupport) _then) = __$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl;
-@override @useResult
-$Res call({
- List<DiagnosticTag> valueSet
-});
-
-
-
-
-}
-/// @nodoc
-class __$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl<$Res>
-    implements _$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res> {
-  __$PublishDiagnosticsClientCapabilitiesTagSupportCopyWithImpl(this._self, this._then);
-
-  final _PublishDiagnosticsClientCapabilitiesTagSupport _self;
-  final $Res Function(_PublishDiagnosticsClientCapabilitiesTagSupport) _then;
-
-/// Create a copy of PublishDiagnosticsClientCapabilitiesTagSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? valueSet = null,}) {
-  return _then(_PublishDiagnosticsClientCapabilitiesTagSupport(
-valueSet: null == valueSet ? _self._valueSet : valueSet // ignore: cast_nullable_to_non_nullable
-as List<DiagnosticTag>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$SemanticTokensClientCapabilitiesRequests {
-
- Object? get range; Object? get full;
-/// Create a copy of SemanticTokensClientCapabilitiesRequests
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SemanticTokensClientCapabilitiesRequestsCopyWith<SemanticTokensClientCapabilitiesRequests> get copyWith => _$SemanticTokensClientCapabilitiesRequestsCopyWithImpl<SemanticTokensClientCapabilitiesRequests>(this as SemanticTokensClientCapabilitiesRequests, _$identity);
-
-  /// Serializes this SemanticTokensClientCapabilitiesRequests to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensClientCapabilitiesRequests&&const DeepCollectionEquality().equals(other.range, range)&&const DeepCollectionEquality().equals(other.full, full));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(range),const DeepCollectionEquality().hash(full));
-
-@override
-String toString() {
-  return 'SemanticTokensClientCapabilitiesRequests(range: $range, full: $full)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $SemanticTokensClientCapabilitiesRequestsCopyWith<$Res>  {
-  factory $SemanticTokensClientCapabilitiesRequestsCopyWith(SemanticTokensClientCapabilitiesRequests value, $Res Function(SemanticTokensClientCapabilitiesRequests) _then) = _$SemanticTokensClientCapabilitiesRequestsCopyWithImpl;
-@useResult
-$Res call({
- Object? range, Object? full
-});
-
-
-
-
-}
-/// @nodoc
-class _$SemanticTokensClientCapabilitiesRequestsCopyWithImpl<$Res>
-    implements $SemanticTokensClientCapabilitiesRequestsCopyWith<$Res> {
-  _$SemanticTokensClientCapabilitiesRequestsCopyWithImpl(this._self, this._then);
-
-  final SemanticTokensClientCapabilitiesRequests _self;
-  final $Res Function(SemanticTokensClientCapabilitiesRequests) _then;
-
-/// Create a copy of SemanticTokensClientCapabilitiesRequests
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? range = freezed,Object? full = freezed,}) {
-  return _then(_self.copyWith(
-range: freezed == range ? _self.range : range ,full: freezed == full ? _self.full : full ,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [SemanticTokensClientCapabilitiesRequests].
-extension SemanticTokensClientCapabilitiesRequestsPatterns on SemanticTokensClientCapabilitiesRequests {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SemanticTokensClientCapabilitiesRequests value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequests() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SemanticTokensClientCapabilitiesRequests value)  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequests():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SemanticTokensClientCapabilitiesRequests value)?  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequests() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Object? range,  Object? full)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequests() when $default != null:
-return $default(_that.range,_that.full);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Object? range,  Object? full)  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequests():
-return $default(_that.range,_that.full);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Object? range,  Object? full)?  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequests() when $default != null:
-return $default(_that.range,_that.full);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _SemanticTokensClientCapabilitiesRequests extends SemanticTokensClientCapabilitiesRequests {
-  const _SemanticTokensClientCapabilitiesRequests({this.range, this.full}): super._();
-  factory _SemanticTokensClientCapabilitiesRequests.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesRequestsFromJson(json);
-
-@override final  Object? range;
-@override final  Object? full;
-
-/// Create a copy of SemanticTokensClientCapabilitiesRequests
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SemanticTokensClientCapabilitiesRequestsCopyWith<_SemanticTokensClientCapabilitiesRequests> get copyWith => __$SemanticTokensClientCapabilitiesRequestsCopyWithImpl<_SemanticTokensClientCapabilitiesRequests>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$SemanticTokensClientCapabilitiesRequestsToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensClientCapabilitiesRequests&&const DeepCollectionEquality().equals(other.range, range)&&const DeepCollectionEquality().equals(other.full, full));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(range),const DeepCollectionEquality().hash(full));
-
-@override
-String toString() {
-  return 'SemanticTokensClientCapabilitiesRequests(range: $range, full: $full)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SemanticTokensClientCapabilitiesRequestsCopyWith<$Res> implements $SemanticTokensClientCapabilitiesRequestsCopyWith<$Res> {
-  factory _$SemanticTokensClientCapabilitiesRequestsCopyWith(_SemanticTokensClientCapabilitiesRequests value, $Res Function(_SemanticTokensClientCapabilitiesRequests) _then) = __$SemanticTokensClientCapabilitiesRequestsCopyWithImpl;
-@override @useResult
-$Res call({
- Object? range, Object? full
-});
-
-
-
-
-}
-/// @nodoc
-class __$SemanticTokensClientCapabilitiesRequestsCopyWithImpl<$Res>
-    implements _$SemanticTokensClientCapabilitiesRequestsCopyWith<$Res> {
-  __$SemanticTokensClientCapabilitiesRequestsCopyWithImpl(this._self, this._then);
-
-  final _SemanticTokensClientCapabilitiesRequests _self;
-  final $Res Function(_SemanticTokensClientCapabilitiesRequests) _then;
-
-/// Create a copy of SemanticTokensClientCapabilitiesRequests
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? range = freezed,Object? full = freezed,}) {
-  return _then(_SemanticTokensClientCapabilitiesRequests(
-range: freezed == range ? _self.range : range ,full: freezed == full ? _self.full : full ,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$SemanticTokensClientCapabilitiesRequestsRange {
-
-
-
-  /// Serializes this SemanticTokensClientCapabilitiesRequestsRange to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensClientCapabilitiesRequestsRange);
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'SemanticTokensClientCapabilitiesRequestsRange()';
-}
-
-
-}
-
-/// @nodoc
-class $SemanticTokensClientCapabilitiesRequestsRangeCopyWith<$Res>  {
-$SemanticTokensClientCapabilitiesRequestsRangeCopyWith(SemanticTokensClientCapabilitiesRequestsRange _, $Res Function(SemanticTokensClientCapabilitiesRequestsRange) __);
-}
-
-
-/// Adds pattern-matching-related methods to [SemanticTokensClientCapabilitiesRequestsRange].
-extension SemanticTokensClientCapabilitiesRequestsRangePatterns on SemanticTokensClientCapabilitiesRequestsRange {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SemanticTokensClientCapabilitiesRequestsRange value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsRange() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SemanticTokensClientCapabilitiesRequestsRange value)  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsRange():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SemanticTokensClientCapabilitiesRequestsRange value)?  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsRange() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsRange() when $default != null:
-return $default();case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsRange():
-return $default();case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsRange() when $default != null:
-return $default();case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _SemanticTokensClientCapabilitiesRequestsRange extends SemanticTokensClientCapabilitiesRequestsRange {
-  const _SemanticTokensClientCapabilitiesRequestsRange(): super._();
-  factory _SemanticTokensClientCapabilitiesRequestsRange.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesRequestsRangeFromJson(json);
-
-
-
-
-@override
-Map<String, dynamic> toJson() {
-  return _$SemanticTokensClientCapabilitiesRequestsRangeToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensClientCapabilitiesRequestsRange);
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'SemanticTokensClientCapabilitiesRequestsRange()';
-}
-
-
-}
-
-
-
-
-
-/// @nodoc
-mixin _$SemanticTokensClientCapabilitiesRequestsFull {
-
- bool? get delta;
-/// Create a copy of SemanticTokensClientCapabilitiesRequestsFull
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SemanticTokensClientCapabilitiesRequestsFullCopyWith<SemanticTokensClientCapabilitiesRequestsFull> get copyWith => _$SemanticTokensClientCapabilitiesRequestsFullCopyWithImpl<SemanticTokensClientCapabilitiesRequestsFull>(this as SemanticTokensClientCapabilitiesRequestsFull, _$identity);
-
-  /// Serializes this SemanticTokensClientCapabilitiesRequestsFull to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SemanticTokensClientCapabilitiesRequestsFull&&(identical(other.delta, delta) || other.delta == delta));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,delta);
-
-@override
-String toString() {
-  return 'SemanticTokensClientCapabilitiesRequestsFull(delta: $delta)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $SemanticTokensClientCapabilitiesRequestsFullCopyWith<$Res>  {
-  factory $SemanticTokensClientCapabilitiesRequestsFullCopyWith(SemanticTokensClientCapabilitiesRequestsFull value, $Res Function(SemanticTokensClientCapabilitiesRequestsFull) _then) = _$SemanticTokensClientCapabilitiesRequestsFullCopyWithImpl;
-@useResult
-$Res call({
- bool? delta
-});
-
-
-
-
-}
-/// @nodoc
-class _$SemanticTokensClientCapabilitiesRequestsFullCopyWithImpl<$Res>
-    implements $SemanticTokensClientCapabilitiesRequestsFullCopyWith<$Res> {
-  _$SemanticTokensClientCapabilitiesRequestsFullCopyWithImpl(this._self, this._then);
-
-  final SemanticTokensClientCapabilitiesRequestsFull _self;
-  final $Res Function(SemanticTokensClientCapabilitiesRequestsFull) _then;
-
-/// Create a copy of SemanticTokensClientCapabilitiesRequestsFull
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? delta = freezed,}) {
-  return _then(_self.copyWith(
-delta: freezed == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [SemanticTokensClientCapabilitiesRequestsFull].
-extension SemanticTokensClientCapabilitiesRequestsFullPatterns on SemanticTokensClientCapabilitiesRequestsFull {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SemanticTokensClientCapabilitiesRequestsFull value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsFull() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SemanticTokensClientCapabilitiesRequestsFull value)  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsFull():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SemanticTokensClientCapabilitiesRequestsFull value)?  $default,){
-final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsFull() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? delta)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsFull() when $default != null:
-return $default(_that.delta);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? delta)  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsFull():
-return $default(_that.delta);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? delta)?  $default,) {final _that = this;
-switch (_that) {
-case _SemanticTokensClientCapabilitiesRequestsFull() when $default != null:
-return $default(_that.delta);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _SemanticTokensClientCapabilitiesRequestsFull extends SemanticTokensClientCapabilitiesRequestsFull {
-  const _SemanticTokensClientCapabilitiesRequestsFull({this.delta}): super._();
-  factory _SemanticTokensClientCapabilitiesRequestsFull.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesRequestsFullFromJson(json);
-
-@override final  bool? delta;
-
-/// Create a copy of SemanticTokensClientCapabilitiesRequestsFull
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SemanticTokensClientCapabilitiesRequestsFullCopyWith<_SemanticTokensClientCapabilitiesRequestsFull> get copyWith => __$SemanticTokensClientCapabilitiesRequestsFullCopyWithImpl<_SemanticTokensClientCapabilitiesRequestsFull>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$SemanticTokensClientCapabilitiesRequestsFullToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SemanticTokensClientCapabilitiesRequestsFull&&(identical(other.delta, delta) || other.delta == delta));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,delta);
-
-@override
-String toString() {
-  return 'SemanticTokensClientCapabilitiesRequestsFull(delta: $delta)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SemanticTokensClientCapabilitiesRequestsFullCopyWith<$Res> implements $SemanticTokensClientCapabilitiesRequestsFullCopyWith<$Res> {
-  factory _$SemanticTokensClientCapabilitiesRequestsFullCopyWith(_SemanticTokensClientCapabilitiesRequestsFull value, $Res Function(_SemanticTokensClientCapabilitiesRequestsFull) _then) = __$SemanticTokensClientCapabilitiesRequestsFullCopyWithImpl;
-@override @useResult
-$Res call({
- bool? delta
-});
-
-
-
-
-}
-/// @nodoc
-class __$SemanticTokensClientCapabilitiesRequestsFullCopyWithImpl<$Res>
-    implements _$SemanticTokensClientCapabilitiesRequestsFullCopyWith<$Res> {
-  __$SemanticTokensClientCapabilitiesRequestsFullCopyWithImpl(this._self, this._then);
-
-  final _SemanticTokensClientCapabilitiesRequestsFull _self;
-  final $Res Function(_SemanticTokensClientCapabilitiesRequestsFull) _then;
-
-/// Create a copy of SemanticTokensClientCapabilitiesRequestsFull
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? delta = freezed,}) {
-  return _then(_SemanticTokensClientCapabilitiesRequestsFull(
-delta: freezed == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$InlayHintClientCapabilitiesResolveSupport {
-
- List<String> get properties;
-/// Create a copy of InlayHintClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$InlayHintClientCapabilitiesResolveSupportCopyWith<InlayHintClientCapabilitiesResolveSupport> get copyWith => _$InlayHintClientCapabilitiesResolveSupportCopyWithImpl<InlayHintClientCapabilitiesResolveSupport>(this as InlayHintClientCapabilitiesResolveSupport, _$identity);
-
-  /// Serializes this InlayHintClientCapabilitiesResolveSupport to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InlayHintClientCapabilitiesResolveSupport&&const DeepCollectionEquality().equals(other.properties, properties));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(properties));
-
-@override
-String toString() {
-  return 'InlayHintClientCapabilitiesResolveSupport(properties: $properties)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $InlayHintClientCapabilitiesResolveSupportCopyWith<$Res>  {
-  factory $InlayHintClientCapabilitiesResolveSupportCopyWith(InlayHintClientCapabilitiesResolveSupport value, $Res Function(InlayHintClientCapabilitiesResolveSupport) _then) = _$InlayHintClientCapabilitiesResolveSupportCopyWithImpl;
-@useResult
-$Res call({
- List<String> properties
-});
-
-
-
-
-}
-/// @nodoc
-class _$InlayHintClientCapabilitiesResolveSupportCopyWithImpl<$Res>
-    implements $InlayHintClientCapabilitiesResolveSupportCopyWith<$Res> {
-  _$InlayHintClientCapabilitiesResolveSupportCopyWithImpl(this._self, this._then);
-
-  final InlayHintClientCapabilitiesResolveSupport _self;
-  final $Res Function(InlayHintClientCapabilitiesResolveSupport) _then;
-
-/// Create a copy of InlayHintClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? properties = null,}) {
-  return _then(_self.copyWith(
-properties: null == properties ? _self.properties : properties // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [InlayHintClientCapabilitiesResolveSupport].
-extension InlayHintClientCapabilitiesResolveSupportPatterns on InlayHintClientCapabilitiesResolveSupport {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _InlayHintClientCapabilitiesResolveSupport value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _InlayHintClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _InlayHintClientCapabilitiesResolveSupport value)  $default,){
-final _that = this;
-switch (_that) {
-case _InlayHintClientCapabilitiesResolveSupport():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _InlayHintClientCapabilitiesResolveSupport value)?  $default,){
-final _that = this;
-switch (_that) {
-case _InlayHintClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> properties)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _InlayHintClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that.properties);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> properties)  $default,) {final _that = this;
-switch (_that) {
-case _InlayHintClientCapabilitiesResolveSupport():
-return $default(_that.properties);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> properties)?  $default,) {final _that = this;
-switch (_that) {
-case _InlayHintClientCapabilitiesResolveSupport() when $default != null:
-return $default(_that.properties);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _InlayHintClientCapabilitiesResolveSupport extends InlayHintClientCapabilitiesResolveSupport {
-  const _InlayHintClientCapabilitiesResolveSupport({required final  List<String> properties}): _properties = properties,super._();
-  factory _InlayHintClientCapabilitiesResolveSupport.fromJson(Map<String, dynamic> json) => _$InlayHintClientCapabilitiesResolveSupportFromJson(json);
-
- final  List<String> _properties;
-@override List<String> get properties {
-  if (_properties is EqualUnmodifiableListView) return _properties;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_properties);
-}
-
-
-/// Create a copy of InlayHintClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$InlayHintClientCapabilitiesResolveSupportCopyWith<_InlayHintClientCapabilitiesResolveSupport> get copyWith => __$InlayHintClientCapabilitiesResolveSupportCopyWithImpl<_InlayHintClientCapabilitiesResolveSupport>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$InlayHintClientCapabilitiesResolveSupportToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InlayHintClientCapabilitiesResolveSupport&&const DeepCollectionEquality().equals(other._properties, _properties));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_properties));
-
-@override
-String toString() {
-  return 'InlayHintClientCapabilitiesResolveSupport(properties: $properties)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$InlayHintClientCapabilitiesResolveSupportCopyWith<$Res> implements $InlayHintClientCapabilitiesResolveSupportCopyWith<$Res> {
-  factory _$InlayHintClientCapabilitiesResolveSupportCopyWith(_InlayHintClientCapabilitiesResolveSupport value, $Res Function(_InlayHintClientCapabilitiesResolveSupport) _then) = __$InlayHintClientCapabilitiesResolveSupportCopyWithImpl;
-@override @useResult
-$Res call({
- List<String> properties
-});
-
-
-
-
-}
-/// @nodoc
-class __$InlayHintClientCapabilitiesResolveSupportCopyWithImpl<$Res>
-    implements _$InlayHintClientCapabilitiesResolveSupportCopyWith<$Res> {
-  __$InlayHintClientCapabilitiesResolveSupportCopyWithImpl(this._self, this._then);
-
-  final _InlayHintClientCapabilitiesResolveSupport _self;
-  final $Res Function(_InlayHintClientCapabilitiesResolveSupport) _then;
-
-/// Create a copy of InlayHintClientCapabilitiesResolveSupport
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? properties = null,}) {
-  return _then(_InlayHintClientCapabilitiesResolveSupport(
-properties: null == properties ? _self._properties : properties // ignore: cast_nullable_to_non_nullable
-as List<String>,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$ShowMessageRequestClientCapabilitiesMessageActionItem {
-
- bool? get additionalPropertiesSupport;
-/// Create a copy of ShowMessageRequestClientCapabilitiesMessageActionItem
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<ShowMessageRequestClientCapabilitiesMessageActionItem> get copyWith => _$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWithImpl<ShowMessageRequestClientCapabilitiesMessageActionItem>(this as ShowMessageRequestClientCapabilitiesMessageActionItem, _$identity);
-
-  /// Serializes this ShowMessageRequestClientCapabilitiesMessageActionItem to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShowMessageRequestClientCapabilitiesMessageActionItem&&(identical(other.additionalPropertiesSupport, additionalPropertiesSupport) || other.additionalPropertiesSupport == additionalPropertiesSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,additionalPropertiesSupport);
-
-@override
-String toString() {
-  return 'ShowMessageRequestClientCapabilitiesMessageActionItem(additionalPropertiesSupport: $additionalPropertiesSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res>  {
-  factory $ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith(ShowMessageRequestClientCapabilitiesMessageActionItem value, $Res Function(ShowMessageRequestClientCapabilitiesMessageActionItem) _then) = _$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWithImpl;
-@useResult
-$Res call({
- bool? additionalPropertiesSupport
-});
-
-
-
-
-}
-/// @nodoc
-class _$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWithImpl<$Res>
-    implements $ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res> {
-  _$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWithImpl(this._self, this._then);
-
-  final ShowMessageRequestClientCapabilitiesMessageActionItem _self;
-  final $Res Function(ShowMessageRequestClientCapabilitiesMessageActionItem) _then;
-
-/// Create a copy of ShowMessageRequestClientCapabilitiesMessageActionItem
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? additionalPropertiesSupport = freezed,}) {
-  return _then(_self.copyWith(
-additionalPropertiesSupport: freezed == additionalPropertiesSupport ? _self.additionalPropertiesSupport : additionalPropertiesSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [ShowMessageRequestClientCapabilitiesMessageActionItem].
-extension ShowMessageRequestClientCapabilitiesMessageActionItemPatterns on ShowMessageRequestClientCapabilitiesMessageActionItem {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ShowMessageRequestClientCapabilitiesMessageActionItem value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _ShowMessageRequestClientCapabilitiesMessageActionItem() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ShowMessageRequestClientCapabilitiesMessageActionItem value)  $default,){
-final _that = this;
-switch (_that) {
-case _ShowMessageRequestClientCapabilitiesMessageActionItem():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ShowMessageRequestClientCapabilitiesMessageActionItem value)?  $default,){
-final _that = this;
-switch (_that) {
-case _ShowMessageRequestClientCapabilitiesMessageActionItem() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? additionalPropertiesSupport)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _ShowMessageRequestClientCapabilitiesMessageActionItem() when $default != null:
-return $default(_that.additionalPropertiesSupport);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? additionalPropertiesSupport)  $default,) {final _that = this;
-switch (_that) {
-case _ShowMessageRequestClientCapabilitiesMessageActionItem():
-return $default(_that.additionalPropertiesSupport);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? additionalPropertiesSupport)?  $default,) {final _that = this;
-switch (_that) {
-case _ShowMessageRequestClientCapabilitiesMessageActionItem() when $default != null:
-return $default(_that.additionalPropertiesSupport);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _ShowMessageRequestClientCapabilitiesMessageActionItem extends ShowMessageRequestClientCapabilitiesMessageActionItem {
-  const _ShowMessageRequestClientCapabilitiesMessageActionItem({this.additionalPropertiesSupport}): super._();
-  factory _ShowMessageRequestClientCapabilitiesMessageActionItem.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestClientCapabilitiesMessageActionItemFromJson(json);
-
-@override final  bool? additionalPropertiesSupport;
-
-/// Create a copy of ShowMessageRequestClientCapabilitiesMessageActionItem
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<_ShowMessageRequestClientCapabilitiesMessageActionItem> get copyWith => __$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWithImpl<_ShowMessageRequestClientCapabilitiesMessageActionItem>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$ShowMessageRequestClientCapabilitiesMessageActionItemToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShowMessageRequestClientCapabilitiesMessageActionItem&&(identical(other.additionalPropertiesSupport, additionalPropertiesSupport) || other.additionalPropertiesSupport == additionalPropertiesSupport));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,additionalPropertiesSupport);
-
-@override
-String toString() {
-  return 'ShowMessageRequestClientCapabilitiesMessageActionItem(additionalPropertiesSupport: $additionalPropertiesSupport)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res> implements $ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res> {
-  factory _$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith(_ShowMessageRequestClientCapabilitiesMessageActionItem value, $Res Function(_ShowMessageRequestClientCapabilitiesMessageActionItem) _then) = __$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWithImpl;
-@override @useResult
-$Res call({
- bool? additionalPropertiesSupport
-});
-
-
-
-
-}
-/// @nodoc
-class __$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWithImpl<$Res>
-    implements _$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res> {
-  __$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWithImpl(this._self, this._then);
-
-  final _ShowMessageRequestClientCapabilitiesMessageActionItem _self;
-  final $Res Function(_ShowMessageRequestClientCapabilitiesMessageActionItem) _then;
-
-/// Create a copy of ShowMessageRequestClientCapabilitiesMessageActionItem
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? additionalPropertiesSupport = freezed,}) {
-  return _then(_ShowMessageRequestClientCapabilitiesMessageActionItem(
-additionalPropertiesSupport: freezed == additionalPropertiesSupport ? _self.additionalPropertiesSupport : additionalPropertiesSupport // ignore: cast_nullable_to_non_nullable
-as bool?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$PrepareRenameResult {
-
- Range get range; String get placeholder;
-/// Create a copy of PrepareRenameResult
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$PrepareRenameResultCopyWith<PrepareRenameResult> get copyWith => _$PrepareRenameResultCopyWithImpl<PrepareRenameResult>(this as PrepareRenameResult, _$identity);
-
-  /// Serializes this PrepareRenameResult to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrepareRenameResult&&(identical(other.range, range) || other.range == range)&&(identical(other.placeholder, placeholder) || other.placeholder == placeholder));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,range,placeholder);
-
-@override
-String toString() {
-  return 'PrepareRenameResult(range: $range, placeholder: $placeholder)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $PrepareRenameResultCopyWith<$Res>  {
-  factory $PrepareRenameResultCopyWith(PrepareRenameResult value, $Res Function(PrepareRenameResult) _then) = _$PrepareRenameResultCopyWithImpl;
-@useResult
-$Res call({
- Range range, String placeholder
-});
-
-
-$RangeCopyWith<$Res> get range;
-
-}
-/// @nodoc
-class _$PrepareRenameResultCopyWithImpl<$Res>
-    implements $PrepareRenameResultCopyWith<$Res> {
-  _$PrepareRenameResultCopyWithImpl(this._self, this._then);
-
-  final PrepareRenameResult _self;
-  final $Res Function(PrepareRenameResult) _then;
-
-/// Create a copy of PrepareRenameResult
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? placeholder = null,}) {
-  return _then(_self.copyWith(
-range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,placeholder: null == placeholder ? _self.placeholder : placeholder // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-/// Create a copy of PrepareRenameResult
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res> get range {
-  
-  return $RangeCopyWith<$Res>(_self.range, (value) {
-    return _then(_self.copyWith(range: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [PrepareRenameResult].
-extension PrepareRenameResultPatterns on PrepareRenameResult {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PrepareRenameResult value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _PrepareRenameResult() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PrepareRenameResult value)  $default,){
-final _that = this;
-switch (_that) {
-case _PrepareRenameResult():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PrepareRenameResult value)?  $default,){
-final _that = this;
-switch (_that) {
-case _PrepareRenameResult() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Range range,  String placeholder)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _PrepareRenameResult() when $default != null:
-return $default(_that.range,_that.placeholder);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Range range,  String placeholder)  $default,) {final _that = this;
-switch (_that) {
-case _PrepareRenameResult():
-return $default(_that.range,_that.placeholder);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Range range,  String placeholder)?  $default,) {final _that = this;
-switch (_that) {
-case _PrepareRenameResult() when $default != null:
-return $default(_that.range,_that.placeholder);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _PrepareRenameResult extends PrepareRenameResult {
-  const _PrepareRenameResult({required this.range, required this.placeholder}): super._();
-  factory _PrepareRenameResult.fromJson(Map<String, dynamic> json) => _$PrepareRenameResultFromJson(json);
-
-@override final  Range range;
-@override final  String placeholder;
-
-/// Create a copy of PrepareRenameResult
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$PrepareRenameResultCopyWith<_PrepareRenameResult> get copyWith => __$PrepareRenameResultCopyWithImpl<_PrepareRenameResult>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$PrepareRenameResultToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrepareRenameResult&&(identical(other.range, range) || other.range == range)&&(identical(other.placeholder, placeholder) || other.placeholder == placeholder));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,range,placeholder);
-
-@override
-String toString() {
-  return 'PrepareRenameResult(range: $range, placeholder: $placeholder)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$PrepareRenameResultCopyWith<$Res> implements $PrepareRenameResultCopyWith<$Res> {
-  factory _$PrepareRenameResultCopyWith(_PrepareRenameResult value, $Res Function(_PrepareRenameResult) _then) = __$PrepareRenameResultCopyWithImpl;
-@override @useResult
-$Res call({
- Range range, String placeholder
-});
-
-
-@override $RangeCopyWith<$Res> get range;
-
-}
-/// @nodoc
-class __$PrepareRenameResultCopyWithImpl<$Res>
-    implements _$PrepareRenameResultCopyWith<$Res> {
-  __$PrepareRenameResultCopyWithImpl(this._self, this._then);
-
-  final _PrepareRenameResult _self;
-  final $Res Function(_PrepareRenameResult) _then;
-
-/// Create a copy of PrepareRenameResult
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? placeholder = null,}) {
-  return _then(_PrepareRenameResult(
-range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,placeholder: null == placeholder ? _self.placeholder : placeholder // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-/// Create a copy of PrepareRenameResult
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res> get range {
-  
-  return $RangeCopyWith<$Res>(_self.range, (value) {
-    return _then(_self.copyWith(range: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$TextDocumentContentChangeEvent {
-
- Range get range; int? get rangeLength; String get text;
-/// Create a copy of TextDocumentContentChangeEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$TextDocumentContentChangeEventCopyWith<TextDocumentContentChangeEvent> get copyWith => _$TextDocumentContentChangeEventCopyWithImpl<TextDocumentContentChangeEvent>(this as TextDocumentContentChangeEvent, _$identity);
-
-  /// Serializes this TextDocumentContentChangeEvent to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentChangeEvent&&(identical(other.range, range) || other.range == range)&&(identical(other.rangeLength, rangeLength) || other.rangeLength == rangeLength)&&(identical(other.text, text) || other.text == text));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,range,rangeLength,text);
-
-@override
-String toString() {
-  return 'TextDocumentContentChangeEvent(range: $range, rangeLength: $rangeLength, text: $text)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $TextDocumentContentChangeEventCopyWith<$Res>  {
-  factory $TextDocumentContentChangeEventCopyWith(TextDocumentContentChangeEvent value, $Res Function(TextDocumentContentChangeEvent) _then) = _$TextDocumentContentChangeEventCopyWithImpl;
-@useResult
-$Res call({
- Range range, int? rangeLength, String text
-});
-
-
-$RangeCopyWith<$Res> get range;
-
-}
-/// @nodoc
-class _$TextDocumentContentChangeEventCopyWithImpl<$Res>
-    implements $TextDocumentContentChangeEventCopyWith<$Res> {
-  _$TextDocumentContentChangeEventCopyWithImpl(this._self, this._then);
-
-  final TextDocumentContentChangeEvent _self;
-  final $Res Function(TextDocumentContentChangeEvent) _then;
-
-/// Create a copy of TextDocumentContentChangeEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? range = null,Object? rangeLength = freezed,Object? text = null,}) {
-  return _then(_self.copyWith(
-range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,rangeLength: freezed == rangeLength ? _self.rangeLength : rangeLength // ignore: cast_nullable_to_non_nullable
-as int?,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-/// Create a copy of TextDocumentContentChangeEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res> get range {
-  
-  return $RangeCopyWith<$Res>(_self.range, (value) {
-    return _then(_self.copyWith(range: value));
-  });
-}
-}
-
-
-/// Adds pattern-matching-related methods to [TextDocumentContentChangeEvent].
-extension TextDocumentContentChangeEventPatterns on TextDocumentContentChangeEvent {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TextDocumentContentChangeEvent value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _TextDocumentContentChangeEvent() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TextDocumentContentChangeEvent value)  $default,){
-final _that = this;
-switch (_that) {
-case _TextDocumentContentChangeEvent():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TextDocumentContentChangeEvent value)?  $default,){
-final _that = this;
-switch (_that) {
-case _TextDocumentContentChangeEvent() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Range range,  int? rangeLength,  String text)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _TextDocumentContentChangeEvent() when $default != null:
-return $default(_that.range,_that.rangeLength,_that.text);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Range range,  int? rangeLength,  String text)  $default,) {final _that = this;
-switch (_that) {
-case _TextDocumentContentChangeEvent():
-return $default(_that.range,_that.rangeLength,_that.text);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Range range,  int? rangeLength,  String text)?  $default,) {final _that = this;
-switch (_that) {
-case _TextDocumentContentChangeEvent() when $default != null:
-return $default(_that.range,_that.rangeLength,_that.text);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _TextDocumentContentChangeEvent extends TextDocumentContentChangeEvent {
-  const _TextDocumentContentChangeEvent({required this.range, this.rangeLength, required this.text}): super._();
-  factory _TextDocumentContentChangeEvent.fromJson(Map<String, dynamic> json) => _$TextDocumentContentChangeEventFromJson(json);
-
-@override final  Range range;
-@override final  int? rangeLength;
-@override final  String text;
-
-/// Create a copy of TextDocumentContentChangeEvent
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$TextDocumentContentChangeEventCopyWith<_TextDocumentContentChangeEvent> get copyWith => __$TextDocumentContentChangeEventCopyWithImpl<_TextDocumentContentChangeEvent>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$TextDocumentContentChangeEventToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentContentChangeEvent&&(identical(other.range, range) || other.range == range)&&(identical(other.rangeLength, rangeLength) || other.rangeLength == rangeLength)&&(identical(other.text, text) || other.text == text));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,range,rangeLength,text);
-
-@override
-String toString() {
-  return 'TextDocumentContentChangeEvent(range: $range, rangeLength: $rangeLength, text: $text)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$TextDocumentContentChangeEventCopyWith<$Res> implements $TextDocumentContentChangeEventCopyWith<$Res> {
-  factory _$TextDocumentContentChangeEventCopyWith(_TextDocumentContentChangeEvent value, $Res Function(_TextDocumentContentChangeEvent) _then) = __$TextDocumentContentChangeEventCopyWithImpl;
-@override @useResult
-$Res call({
- Range range, int? rangeLength, String text
-});
-
-
-@override $RangeCopyWith<$Res> get range;
-
-}
-/// @nodoc
-class __$TextDocumentContentChangeEventCopyWithImpl<$Res>
-    implements _$TextDocumentContentChangeEventCopyWith<$Res> {
-  __$TextDocumentContentChangeEventCopyWithImpl(this._self, this._then);
-
-  final _TextDocumentContentChangeEvent _self;
-  final $Res Function(_TextDocumentContentChangeEvent) _then;
-
-/// Create a copy of TextDocumentContentChangeEvent
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? range = null,Object? rangeLength = freezed,Object? text = null,}) {
-  return _then(_TextDocumentContentChangeEvent(
-range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
-as Range,rangeLength: freezed == rangeLength ? _self.rangeLength : rangeLength // ignore: cast_nullable_to_non_nullable
-as int?,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-/// Create a copy of TextDocumentContentChangeEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$RangeCopyWith<$Res> get range {
-  
-  return $RangeCopyWith<$Res>(_self.range, (value) {
-    return _then(_self.copyWith(range: value));
-  });
-}
-}
-
-
-/// @nodoc
-mixin _$MarkedString {
-
- String get language; String get value;
-/// Create a copy of MarkedString
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$MarkedStringCopyWith<MarkedString> get copyWith => _$MarkedStringCopyWithImpl<MarkedString>(this as MarkedString, _$identity);
-
-  /// Serializes this MarkedString to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MarkedString&&(identical(other.language, language) || other.language == language)&&(identical(other.value, value) || other.value == value));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,language,value);
-
-@override
-String toString() {
-  return 'MarkedString(language: $language, value: $value)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $MarkedStringCopyWith<$Res>  {
-  factory $MarkedStringCopyWith(MarkedString value, $Res Function(MarkedString) _then) = _$MarkedStringCopyWithImpl;
-@useResult
-$Res call({
- String language, String value
-});
-
-
-
-
-}
-/// @nodoc
-class _$MarkedStringCopyWithImpl<$Res>
-    implements $MarkedStringCopyWith<$Res> {
-  _$MarkedStringCopyWithImpl(this._self, this._then);
-
-  final MarkedString _self;
-  final $Res Function(MarkedString) _then;
-
-/// Create a copy of MarkedString
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? language = null,Object? value = null,}) {
-  return _then(_self.copyWith(
-language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [MarkedString].
-extension MarkedStringPatterns on MarkedString {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MarkedString value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _MarkedString() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MarkedString value)  $default,){
-final _that = this;
-switch (_that) {
-case _MarkedString():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MarkedString value)?  $default,){
-final _that = this;
-switch (_that) {
-case _MarkedString() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String language,  String value)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _MarkedString() when $default != null:
-return $default(_that.language,_that.value);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String language,  String value)  $default,) {final _that = this;
-switch (_that) {
-case _MarkedString():
-return $default(_that.language,_that.value);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String language,  String value)?  $default,) {final _that = this;
-switch (_that) {
-case _MarkedString() when $default != null:
-return $default(_that.language,_that.value);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _MarkedString extends MarkedString {
-  const _MarkedString({required this.language, required this.value}): super._();
-  factory _MarkedString.fromJson(Map<String, dynamic> json) => _$MarkedStringFromJson(json);
-
-@override final  String language;
-@override final  String value;
-
-/// Create a copy of MarkedString
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$MarkedStringCopyWith<_MarkedString> get copyWith => __$MarkedStringCopyWithImpl<_MarkedString>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$MarkedStringToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MarkedString&&(identical(other.language, language) || other.language == language)&&(identical(other.value, value) || other.value == value));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,language,value);
-
-@override
-String toString() {
-  return 'MarkedString(language: $language, value: $value)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$MarkedStringCopyWith<$Res> implements $MarkedStringCopyWith<$Res> {
-  factory _$MarkedStringCopyWith(_MarkedString value, $Res Function(_MarkedString) _then) = __$MarkedStringCopyWithImpl;
-@override @useResult
-$Res call({
- String language, String value
-});
-
-
-
-
-}
-/// @nodoc
-class __$MarkedStringCopyWithImpl<$Res>
-    implements _$MarkedStringCopyWith<$Res> {
-  __$MarkedStringCopyWithImpl(this._self, this._then);
-
-  final _MarkedString _self;
-  final $Res Function(_MarkedString) _then;
-
-/// Create a copy of MarkedString
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? language = null,Object? value = null,}) {
-  return _then(_MarkedString(
-language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$TextDocumentFilter {
-
- String get language; String? get scheme; String? get pattern;
-/// Create a copy of TextDocumentFilter
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$TextDocumentFilterCopyWith<TextDocumentFilter> get copyWith => _$TextDocumentFilterCopyWithImpl<TextDocumentFilter>(this as TextDocumentFilter, _$identity);
-
-  /// Serializes this TextDocumentFilter to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentFilter&&(identical(other.language, language) || other.language == language)&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,language,scheme,pattern);
-
-@override
-String toString() {
-  return 'TextDocumentFilter(language: $language, scheme: $scheme, pattern: $pattern)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $TextDocumentFilterCopyWith<$Res>  {
-  factory $TextDocumentFilterCopyWith(TextDocumentFilter value, $Res Function(TextDocumentFilter) _then) = _$TextDocumentFilterCopyWithImpl;
-@useResult
-$Res call({
- String language, String? scheme, String? pattern
-});
-
-
-
-
-}
-/// @nodoc
-class _$TextDocumentFilterCopyWithImpl<$Res>
-    implements $TextDocumentFilterCopyWith<$Res> {
-  _$TextDocumentFilterCopyWithImpl(this._self, this._then);
-
-  final TextDocumentFilter _self;
-  final $Res Function(TextDocumentFilter) _then;
-
-/// Create a copy of TextDocumentFilter
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? language = null,Object? scheme = freezed,Object? pattern = freezed,}) {
-  return _then(_self.copyWith(
-language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
-as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [TextDocumentFilter].
-extension TextDocumentFilterPatterns on TextDocumentFilter {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TextDocumentFilter value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _TextDocumentFilter() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TextDocumentFilter value)  $default,){
-final _that = this;
-switch (_that) {
-case _TextDocumentFilter():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TextDocumentFilter value)?  $default,){
-final _that = this;
-switch (_that) {
-case _TextDocumentFilter() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String language,  String? scheme,  String? pattern)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _TextDocumentFilter() when $default != null:
-return $default(_that.language,_that.scheme,_that.pattern);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String language,  String? scheme,  String? pattern)  $default,) {final _that = this;
-switch (_that) {
-case _TextDocumentFilter():
-return $default(_that.language,_that.scheme,_that.pattern);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String language,  String? scheme,  String? pattern)?  $default,) {final _that = this;
-switch (_that) {
-case _TextDocumentFilter() when $default != null:
-return $default(_that.language,_that.scheme,_that.pattern);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _TextDocumentFilter extends TextDocumentFilter {
-  const _TextDocumentFilter({required this.language, this.scheme, this.pattern}): super._();
-  factory _TextDocumentFilter.fromJson(Map<String, dynamic> json) => _$TextDocumentFilterFromJson(json);
-
-@override final  String language;
-@override final  String? scheme;
-@override final  String? pattern;
-
-/// Create a copy of TextDocumentFilter
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$TextDocumentFilterCopyWith<_TextDocumentFilter> get copyWith => __$TextDocumentFilterCopyWithImpl<_TextDocumentFilter>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$TextDocumentFilterToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TextDocumentFilter&&(identical(other.language, language) || other.language == language)&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,language,scheme,pattern);
-
-@override
-String toString() {
-  return 'TextDocumentFilter(language: $language, scheme: $scheme, pattern: $pattern)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$TextDocumentFilterCopyWith<$Res> implements $TextDocumentFilterCopyWith<$Res> {
-  factory _$TextDocumentFilterCopyWith(_TextDocumentFilter value, $Res Function(_TextDocumentFilter) _then) = __$TextDocumentFilterCopyWithImpl;
-@override @useResult
-$Res call({
- String language, String? scheme, String? pattern
-});
-
-
-
-
-}
-/// @nodoc
-class __$TextDocumentFilterCopyWithImpl<$Res>
-    implements _$TextDocumentFilterCopyWith<$Res> {
-  __$TextDocumentFilterCopyWithImpl(this._self, this._then);
-
-  final _TextDocumentFilter _self;
-  final $Res Function(_TextDocumentFilter) _then;
-
-/// Create a copy of TextDocumentFilter
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? language = null,Object? scheme = freezed,Object? pattern = freezed,}) {
-  return _then(_TextDocumentFilter(
-language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
-as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$NotebookDocumentFilter {
-
- String get notebookType; String? get scheme; String? get pattern;
-/// Create a copy of NotebookDocumentFilter
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$NotebookDocumentFilterCopyWith<NotebookDocumentFilter> get copyWith => _$NotebookDocumentFilterCopyWithImpl<NotebookDocumentFilter>(this as NotebookDocumentFilter, _$identity);
-
-  /// Serializes this NotebookDocumentFilter to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotebookDocumentFilter&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,notebookType,scheme,pattern);
-
-@override
-String toString() {
-  return 'NotebookDocumentFilter(notebookType: $notebookType, scheme: $scheme, pattern: $pattern)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $NotebookDocumentFilterCopyWith<$Res>  {
-  factory $NotebookDocumentFilterCopyWith(NotebookDocumentFilter value, $Res Function(NotebookDocumentFilter) _then) = _$NotebookDocumentFilterCopyWithImpl;
-@useResult
-$Res call({
- String notebookType, String? scheme, String? pattern
-});
-
-
-
-
-}
-/// @nodoc
-class _$NotebookDocumentFilterCopyWithImpl<$Res>
-    implements $NotebookDocumentFilterCopyWith<$Res> {
-  _$NotebookDocumentFilterCopyWithImpl(this._self, this._then);
-
-  final NotebookDocumentFilter _self;
-  final $Res Function(NotebookDocumentFilter) _then;
-
-/// Create a copy of NotebookDocumentFilter
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? notebookType = null,Object? scheme = freezed,Object? pattern = freezed,}) {
-  return _then(_self.copyWith(
-notebookType: null == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
-as String,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
-as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [NotebookDocumentFilter].
-extension NotebookDocumentFilterPatterns on NotebookDocumentFilter {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NotebookDocumentFilter value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentFilter() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NotebookDocumentFilter value)  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentFilter():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NotebookDocumentFilter value)?  $default,){
-final _that = this;
-switch (_that) {
-case _NotebookDocumentFilter() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String notebookType,  String? scheme,  String? pattern)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _NotebookDocumentFilter() when $default != null:
-return $default(_that.notebookType,_that.scheme,_that.pattern);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String notebookType,  String? scheme,  String? pattern)  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentFilter():
-return $default(_that.notebookType,_that.scheme,_that.pattern);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String notebookType,  String? scheme,  String? pattern)?  $default,) {final _that = this;
-switch (_that) {
-case _NotebookDocumentFilter() when $default != null:
-return $default(_that.notebookType,_that.scheme,_that.pattern);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _NotebookDocumentFilter extends NotebookDocumentFilter {
-  const _NotebookDocumentFilter({required this.notebookType, this.scheme, this.pattern}): super._();
-  factory _NotebookDocumentFilter.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFilterFromJson(json);
-
-@override final  String notebookType;
-@override final  String? scheme;
-@override final  String? pattern;
-
-/// Create a copy of NotebookDocumentFilter
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$NotebookDocumentFilterCopyWith<_NotebookDocumentFilter> get copyWith => __$NotebookDocumentFilterCopyWithImpl<_NotebookDocumentFilter>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$NotebookDocumentFilterToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotebookDocumentFilter&&(identical(other.notebookType, notebookType) || other.notebookType == notebookType)&&(identical(other.scheme, scheme) || other.scheme == scheme)&&(identical(other.pattern, pattern) || other.pattern == pattern));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,notebookType,scheme,pattern);
-
-@override
-String toString() {
-  return 'NotebookDocumentFilter(notebookType: $notebookType, scheme: $scheme, pattern: $pattern)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$NotebookDocumentFilterCopyWith<$Res> implements $NotebookDocumentFilterCopyWith<$Res> {
-  factory _$NotebookDocumentFilterCopyWith(_NotebookDocumentFilter value, $Res Function(_NotebookDocumentFilter) _then) = __$NotebookDocumentFilterCopyWithImpl;
-@override @useResult
-$Res call({
- String notebookType, String? scheme, String? pattern
-});
-
-
-
-
-}
-/// @nodoc
-class __$NotebookDocumentFilterCopyWithImpl<$Res>
-    implements _$NotebookDocumentFilterCopyWith<$Res> {
-  __$NotebookDocumentFilterCopyWithImpl(this._self, this._then);
-
-  final _NotebookDocumentFilter _self;
-  final $Res Function(_NotebookDocumentFilter) _then;
-
-/// Create a copy of NotebookDocumentFilter
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? notebookType = null,Object? scheme = freezed,Object? pattern = freezed,}) {
-  return _then(_NotebookDocumentFilter(
-notebookType: null == notebookType ? _self.notebookType : notebookType // ignore: cast_nullable_to_non_nullable
-as String,scheme: freezed == scheme ? _self.scheme : scheme // ignore: cast_nullable_to_non_nullable
-as String?,pattern: freezed == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
 mixin _$ImplementationParams {
 
  TextDocumentIdentifier get textDocument; Position get position;@_ProgressTokenConverter() ProgressToken? get workDoneToken;@_ProgressTokenConverter() ProgressToken? get partialResultToken;
@@ -17109,7 +4842,7 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$FoldingRange {
 
- int get startLine; int? get startCharacter; int get endLine; int? get endCharacter;@_FoldingRangeKindConverter() FoldingRangeKind? get kind; String? get collapsedText;
+ int get startLine; int? get startCharacter; int get endLine; int? get endCharacter; FoldingRangeKind? get kind; String? get collapsedText;
 /// Create a copy of FoldingRange
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -17142,7 +4875,7 @@ abstract mixin class $FoldingRangeCopyWith<$Res>  {
   factory $FoldingRangeCopyWith(FoldingRange value, $Res Function(FoldingRange) _then) = _$FoldingRangeCopyWithImpl;
 @useResult
 $Res call({
- int startLine, int? startCharacter, int endLine, int? endCharacter,@_FoldingRangeKindConverter() FoldingRangeKind? kind, String? collapsedText
+ int startLine, int? startCharacter, int endLine, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
 });
 
 
@@ -17252,7 +4985,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter, @_FoldingRangeKindConverter()  FoldingRangeKind? kind,  String? collapsedText)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter,  FoldingRangeKind? kind,  String? collapsedText)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FoldingRange() when $default != null:
 return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endCharacter,_that.kind,_that.collapsedText);case _:
@@ -17273,7 +5006,7 @@ return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endChar
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter, @_FoldingRangeKindConverter()  FoldingRangeKind? kind,  String? collapsedText)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter,  FoldingRangeKind? kind,  String? collapsedText)  $default,) {final _that = this;
 switch (_that) {
 case _FoldingRange():
 return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endCharacter,_that.kind,_that.collapsedText);case _:
@@ -17293,7 +5026,7 @@ return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endChar
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter, @_FoldingRangeKindConverter()  FoldingRangeKind? kind,  String? collapsedText)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter,  FoldingRangeKind? kind,  String? collapsedText)?  $default,) {final _that = this;
 switch (_that) {
 case _FoldingRange() when $default != null:
 return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endCharacter,_that.kind,_that.collapsedText);case _:
@@ -17308,14 +5041,14 @@ return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endChar
 @JsonSerializable()
 
 class _FoldingRange extends FoldingRange {
-  const _FoldingRange({required this.startLine, this.startCharacter, required this.endLine, this.endCharacter, @_FoldingRangeKindConverter() this.kind, this.collapsedText}): super._();
+  const _FoldingRange({required this.startLine, this.startCharacter, required this.endLine, this.endCharacter, this.kind, this.collapsedText}): super._();
   factory _FoldingRange.fromJson(Map<String, dynamic> json) => _$FoldingRangeFromJson(json);
 
 @override final  int startLine;
 @override final  int? startCharacter;
 @override final  int endLine;
 @override final  int? endCharacter;
-@override@_FoldingRangeKindConverter() final  FoldingRangeKind? kind;
+@override final  FoldingRangeKind? kind;
 @override final  String? collapsedText;
 
 /// Create a copy of FoldingRange
@@ -17351,7 +5084,7 @@ abstract mixin class _$FoldingRangeCopyWith<$Res> implements $FoldingRangeCopyWi
   factory _$FoldingRangeCopyWith(_FoldingRange value, $Res Function(_FoldingRange) _then) = __$FoldingRangeCopyWithImpl;
 @override @useResult
 $Res call({
- int startLine, int? startCharacter, int endLine, int? endCharacter,@_FoldingRangeKindConverter() FoldingRangeKind? kind, String? collapsedText
+ int startLine, int? startCharacter, int endLine, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
 });
 
 
@@ -36169,7 +23902,7 @@ as List<Unregistration>,
 /// @nodoc
 mixin _$InitializeParams {
 
-@_ProgressTokenConverter() ProgressToken? get workDoneToken; int? get processId; _InitializeParamsClientInfo? get clientInfo; String? get locale; String? get rootPath; String? get rootUri; ClientCapabilities get capabilities; LSPAny? get initializationOptions; TraceValues? get trace; List<WorkspaceFolder>? get workspaceFolders;
+@_ProgressTokenConverter() ProgressToken? get workDoneToken; int? get processId; ({String name, String? version})? get clientInfo; String? get locale; String? get rootPath; String? get rootUri; ClientCapabilities get capabilities; LSPAny? get initializationOptions; TraceValues? get trace; List<WorkspaceFolder>? get workspaceFolders;
 /// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -36202,7 +23935,7 @@ abstract mixin class $InitializeParamsCopyWith<$Res>  {
   factory $InitializeParamsCopyWith(InitializeParams value, $Res Function(InitializeParams) _then) = _$InitializeParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, _InitializeParamsClientInfo? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, ({String name, String? version})? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
@@ -36224,7 +23957,7 @@ class _$InitializeParamsCopyWithImpl<$Res>
 workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
 as int?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
-as _InitializeParamsClientInfo?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as ({String name, String? version})?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
 as String?,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
 as String?,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
@@ -36336,7 +24069,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  _InitializeParamsClientInfo? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  ({String name, String? version})? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InitializeParams() when $default != null:
 return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.locale,_that.rootPath,_that.rootUri,_that.capabilities,_that.initializationOptions,_that.trace,_that.workspaceFolders);case _:
@@ -36357,7 +24090,7 @@ return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.local
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  _InitializeParamsClientInfo? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  ({String name, String? version})? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)  $default,) {final _that = this;
 switch (_that) {
 case _InitializeParams():
 return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.locale,_that.rootPath,_that.rootUri,_that.capabilities,_that.initializationOptions,_that.trace,_that.workspaceFolders);case _:
@@ -36377,7 +24110,7 @@ return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.local
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  _InitializeParamsClientInfo? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  ({String name, String? version})? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,) {final _that = this;
 switch (_that) {
 case _InitializeParams() when $default != null:
 return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.locale,_that.rootPath,_that.rootUri,_that.capabilities,_that.initializationOptions,_that.trace,_that.workspaceFolders);case _:
@@ -36397,7 +24130,7 @@ class _InitializeParams extends InitializeParams {
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 @override final  int? processId;
-@override final  _InitializeParamsClientInfo? clientInfo;
+@override final  ({String name, String? version})? clientInfo;
 @override final  String? locale;
 @override final  String? rootPath;
 @override final  String? rootUri;
@@ -36447,7 +24180,7 @@ abstract mixin class _$InitializeParamsCopyWith<$Res> implements $InitializePara
   factory _$InitializeParamsCopyWith(_InitializeParams value, $Res Function(_InitializeParams) _then) = __$InitializeParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, _InitializeParamsClientInfo? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, ({String name, String? version})? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
@@ -36469,7 +24202,7 @@ class __$InitializeParamsCopyWithImpl<$Res>
 workDoneToken: freezed == workDoneToken ? _self.workDoneToken : workDoneToken // ignore: cast_nullable_to_non_nullable
 as ProgressToken?,processId: freezed == processId ? _self.processId : processId // ignore: cast_nullable_to_non_nullable
 as int?,clientInfo: freezed == clientInfo ? _self.clientInfo : clientInfo // ignore: cast_nullable_to_non_nullable
-as _InitializeParamsClientInfo?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as ({String name, String? version})?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as String?,rootPath: freezed == rootPath ? _self.rootPath : rootPath // ignore: cast_nullable_to_non_nullable
 as String?,rootUri: freezed == rootUri ? _self.rootUri : rootUri // ignore: cast_nullable_to_non_nullable
 as String?,capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
@@ -36507,7 +24240,7 @@ $ClientCapabilitiesCopyWith<$Res> get capabilities {
 /// @nodoc
 mixin _$InitializeResult {
 
- ServerCapabilities get capabilities; InitializeResultServerInfo? get serverInfo;
+ ServerCapabilities get capabilities; ({String name, String? version})? get serverInfo;
 /// Create a copy of InitializeResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -36540,11 +24273,11 @@ abstract mixin class $InitializeResultCopyWith<$Res>  {
   factory $InitializeResultCopyWith(InitializeResult value, $Res Function(InitializeResult) _then) = _$InitializeResultCopyWithImpl;
 @useResult
 $Res call({
- ServerCapabilities capabilities, InitializeResultServerInfo? serverInfo
+ ServerCapabilities capabilities, ({String name, String? version})? serverInfo
 });
 
 
-$ServerCapabilitiesCopyWith<$Res> get capabilities;$InitializeResultServerInfoCopyWith<$Res>? get serverInfo;
+$ServerCapabilitiesCopyWith<$Res> get capabilities;
 
 }
 /// @nodoc
@@ -36561,7 +24294,7 @@ class _$InitializeResultCopyWithImpl<$Res>
   return _then(_self.copyWith(
 capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
 as ServerCapabilities,serverInfo: freezed == serverInfo ? _self.serverInfo : serverInfo // ignore: cast_nullable_to_non_nullable
-as InitializeResultServerInfo?,
+as ({String name, String? version})?,
   ));
 }
 /// Create a copy of InitializeResult
@@ -36572,18 +24305,6 @@ $ServerCapabilitiesCopyWith<$Res> get capabilities {
   
   return $ServerCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
     return _then(_self.copyWith(capabilities: value));
-  });
-}/// Create a copy of InitializeResult
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$InitializeResultServerInfoCopyWith<$Res>? get serverInfo {
-    if (_self.serverInfo == null) {
-    return null;
-  }
-
-  return $InitializeResultServerInfoCopyWith<$Res>(_self.serverInfo!, (value) {
-    return _then(_self.copyWith(serverInfo: value));
   });
 }
 }
@@ -36667,7 +24388,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ServerCapabilities capabilities,  InitializeResultServerInfo? serverInfo)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ServerCapabilities capabilities,  ({String name, String? version})? serverInfo)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InitializeResult() when $default != null:
 return $default(_that.capabilities,_that.serverInfo);case _:
@@ -36688,7 +24409,7 @@ return $default(_that.capabilities,_that.serverInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ServerCapabilities capabilities,  InitializeResultServerInfo? serverInfo)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ServerCapabilities capabilities,  ({String name, String? version})? serverInfo)  $default,) {final _that = this;
 switch (_that) {
 case _InitializeResult():
 return $default(_that.capabilities,_that.serverInfo);case _:
@@ -36708,7 +24429,7 @@ return $default(_that.capabilities,_that.serverInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ServerCapabilities capabilities,  InitializeResultServerInfo? serverInfo)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ServerCapabilities capabilities,  ({String name, String? version})? serverInfo)?  $default,) {final _that = this;
 switch (_that) {
 case _InitializeResult() when $default != null:
 return $default(_that.capabilities,_that.serverInfo);case _:
@@ -36727,7 +24448,7 @@ class _InitializeResult extends InitializeResult {
   factory _InitializeResult.fromJson(Map<String, dynamic> json) => _$InitializeResultFromJson(json);
 
 @override final  ServerCapabilities capabilities;
-@override final  InitializeResultServerInfo? serverInfo;
+@override final  ({String name, String? version})? serverInfo;
 
 /// Create a copy of InitializeResult
 /// with the given fields replaced by the non-null parameter values.
@@ -36762,11 +24483,11 @@ abstract mixin class _$InitializeResultCopyWith<$Res> implements $InitializeResu
   factory _$InitializeResultCopyWith(_InitializeResult value, $Res Function(_InitializeResult) _then) = __$InitializeResultCopyWithImpl;
 @override @useResult
 $Res call({
- ServerCapabilities capabilities, InitializeResultServerInfo? serverInfo
+ ServerCapabilities capabilities, ({String name, String? version})? serverInfo
 });
 
 
-@override $ServerCapabilitiesCopyWith<$Res> get capabilities;@override $InitializeResultServerInfoCopyWith<$Res>? get serverInfo;
+@override $ServerCapabilitiesCopyWith<$Res> get capabilities;
 
 }
 /// @nodoc
@@ -36783,7 +24504,7 @@ class __$InitializeResultCopyWithImpl<$Res>
   return _then(_InitializeResult(
 capabilities: null == capabilities ? _self.capabilities : capabilities // ignore: cast_nullable_to_non_nullable
 as ServerCapabilities,serverInfo: freezed == serverInfo ? _self.serverInfo : serverInfo // ignore: cast_nullable_to_non_nullable
-as InitializeResultServerInfo?,
+as ({String name, String? version})?,
   ));
 }
 
@@ -36795,18 +24516,6 @@ $ServerCapabilitiesCopyWith<$Res> get capabilities {
   
   return $ServerCapabilitiesCopyWith<$Res>(_self.capabilities, (value) {
     return _then(_self.copyWith(capabilities: value));
-  });
-}/// Create a copy of InitializeResult
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$InitializeResultServerInfoCopyWith<$Res>? get serverInfo {
-    if (_self.serverInfo == null) {
-    return null;
-  }
-
-  return $InitializeResultServerInfoCopyWith<$Res>(_self.serverInfo!, (value) {
-    return _then(_self.copyWith(serverInfo: value));
   });
 }
 }
@@ -39151,7 +26860,7 @@ $TextDocumentItemCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$DidChangeTextDocumentParams {
 
- VersionedTextDocumentIdentifier get textDocument; List<TextDocumentContentChangeEvent> get contentChanges;
+ VersionedTextDocumentIdentifier get textDocument;@_TextDocumentContentChangeEventListConverter() List<TextDocumentContentChangeEvent> get contentChanges;
 /// Create a copy of DidChangeTextDocumentParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -39184,7 +26893,7 @@ abstract mixin class $DidChangeTextDocumentParamsCopyWith<$Res>  {
   factory $DidChangeTextDocumentParamsCopyWith(DidChangeTextDocumentParams value, $Res Function(DidChangeTextDocumentParams) _then) = _$DidChangeTextDocumentParamsCopyWithImpl;
 @useResult
 $Res call({
- VersionedTextDocumentIdentifier textDocument, List<TextDocumentContentChangeEvent> contentChanges
+ VersionedTextDocumentIdentifier textDocument,@_TextDocumentContentChangeEventListConverter() List<TextDocumentContentChangeEvent> contentChanges
 });
 
 
@@ -39299,7 +27008,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VersionedTextDocumentIdentifier textDocument,  List<TextDocumentContentChangeEvent> contentChanges)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( VersionedTextDocumentIdentifier textDocument, @_TextDocumentContentChangeEventListConverter()  List<TextDocumentContentChangeEvent> contentChanges)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DidChangeTextDocumentParams() when $default != null:
 return $default(_that.textDocument,_that.contentChanges);case _:
@@ -39320,7 +27029,7 @@ return $default(_that.textDocument,_that.contentChanges);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VersionedTextDocumentIdentifier textDocument,  List<TextDocumentContentChangeEvent> contentChanges)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( VersionedTextDocumentIdentifier textDocument, @_TextDocumentContentChangeEventListConverter()  List<TextDocumentContentChangeEvent> contentChanges)  $default,) {final _that = this;
 switch (_that) {
 case _DidChangeTextDocumentParams():
 return $default(_that.textDocument,_that.contentChanges);case _:
@@ -39340,7 +27049,7 @@ return $default(_that.textDocument,_that.contentChanges);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VersionedTextDocumentIdentifier textDocument,  List<TextDocumentContentChangeEvent> contentChanges)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( VersionedTextDocumentIdentifier textDocument, @_TextDocumentContentChangeEventListConverter()  List<TextDocumentContentChangeEvent> contentChanges)?  $default,) {final _that = this;
 switch (_that) {
 case _DidChangeTextDocumentParams() when $default != null:
 return $default(_that.textDocument,_that.contentChanges);case _:
@@ -39355,12 +27064,12 @@ return $default(_that.textDocument,_that.contentChanges);case _:
 @JsonSerializable()
 
 class _DidChangeTextDocumentParams extends DidChangeTextDocumentParams {
-  const _DidChangeTextDocumentParams({required this.textDocument, required final  List<TextDocumentContentChangeEvent> contentChanges}): _contentChanges = contentChanges,super._();
+  const _DidChangeTextDocumentParams({required this.textDocument, @_TextDocumentContentChangeEventListConverter() required final  List<TextDocumentContentChangeEvent> contentChanges}): _contentChanges = contentChanges,super._();
   factory _DidChangeTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidChangeTextDocumentParamsFromJson(json);
 
 @override final  VersionedTextDocumentIdentifier textDocument;
  final  List<TextDocumentContentChangeEvent> _contentChanges;
-@override List<TextDocumentContentChangeEvent> get contentChanges {
+@override@_TextDocumentContentChangeEventListConverter() List<TextDocumentContentChangeEvent> get contentChanges {
   if (_contentChanges is EqualUnmodifiableListView) return _contentChanges;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_contentChanges);
@@ -39400,7 +27109,7 @@ abstract mixin class _$DidChangeTextDocumentParamsCopyWith<$Res> implements $Did
   factory _$DidChangeTextDocumentParamsCopyWith(_DidChangeTextDocumentParams value, $Res Function(_DidChangeTextDocumentParams) _then) = __$DidChangeTextDocumentParamsCopyWithImpl;
 @override @useResult
 $Res call({
- VersionedTextDocumentIdentifier textDocument, List<TextDocumentContentChangeEvent> contentChanges
+ VersionedTextDocumentIdentifier textDocument,@_TextDocumentContentChangeEventListConverter() List<TextDocumentContentChangeEvent> contentChanges
 });
 
 
@@ -42701,7 +30410,7 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 mixin _$CompletionList {
 
- bool get isIncomplete; CompletionListItemDefaults? get itemDefaults; List<CompletionItem> get items;
+ bool get isIncomplete; ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? get itemDefaults; List<CompletionItem> get items;
 /// Create a copy of CompletionList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -42734,11 +30443,11 @@ abstract mixin class $CompletionListCopyWith<$Res>  {
   factory $CompletionListCopyWith(CompletionList value, $Res Function(CompletionList) _then) = _$CompletionListCopyWithImpl;
 @useResult
 $Res call({
- bool isIncomplete, CompletionListItemDefaults? itemDefaults, List<CompletionItem> items
+ bool isIncomplete, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults, List<CompletionItem> items
 });
 
 
-$CompletionListItemDefaultsCopyWith<$Res>? get itemDefaults;
+
 
 }
 /// @nodoc
@@ -42755,23 +30464,11 @@ class _$CompletionListCopyWithImpl<$Res>
   return _then(_self.copyWith(
 isIncomplete: null == isIncomplete ? _self.isIncomplete : isIncomplete // ignore: cast_nullable_to_non_nullable
 as bool,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as CompletionListItemDefaults?,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<CompletionItem>,
   ));
 }
-/// Create a copy of CompletionList
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionListItemDefaultsCopyWith<$Res>? get itemDefaults {
-    if (_self.itemDefaults == null) {
-    return null;
-  }
 
-  return $CompletionListItemDefaultsCopyWith<$Res>(_self.itemDefaults!, (value) {
-    return _then(_self.copyWith(itemDefaults: value));
-  });
-}
 }
 
 
@@ -42853,7 +30550,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isIncomplete,  CompletionListItemDefaults? itemDefaults,  List<CompletionItem> items)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isIncomplete,  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults,  List<CompletionItem> items)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionList() when $default != null:
 return $default(_that.isIncomplete,_that.itemDefaults,_that.items);case _:
@@ -42874,7 +30571,7 @@ return $default(_that.isIncomplete,_that.itemDefaults,_that.items);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isIncomplete,  CompletionListItemDefaults? itemDefaults,  List<CompletionItem> items)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isIncomplete,  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults,  List<CompletionItem> items)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionList():
 return $default(_that.isIncomplete,_that.itemDefaults,_that.items);case _:
@@ -42894,7 +30591,7 @@ return $default(_that.isIncomplete,_that.itemDefaults,_that.items);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isIncomplete,  CompletionListItemDefaults? itemDefaults,  List<CompletionItem> items)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isIncomplete,  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults,  List<CompletionItem> items)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionList() when $default != null:
 return $default(_that.isIncomplete,_that.itemDefaults,_that.items);case _:
@@ -42913,7 +30610,7 @@ class _CompletionList extends CompletionList {
   factory _CompletionList.fromJson(Map<String, dynamic> json) => _$CompletionListFromJson(json);
 
 @override final  bool isIncomplete;
-@override final  CompletionListItemDefaults? itemDefaults;
+@override final  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults;
  final  List<CompletionItem> _items;
 @override List<CompletionItem> get items {
   if (_items is EqualUnmodifiableListView) return _items;
@@ -42955,11 +30652,11 @@ abstract mixin class _$CompletionListCopyWith<$Res> implements $CompletionListCo
   factory _$CompletionListCopyWith(_CompletionList value, $Res Function(_CompletionList) _then) = __$CompletionListCopyWithImpl;
 @override @useResult
 $Res call({
- bool isIncomplete, CompletionListItemDefaults? itemDefaults, List<CompletionItem> items
+ bool isIncomplete, ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults, List<CompletionItem> items
 });
 
 
-@override $CompletionListItemDefaultsCopyWith<$Res>? get itemDefaults;
+
 
 }
 /// @nodoc
@@ -42976,31 +30673,19 @@ class __$CompletionListCopyWithImpl<$Res>
   return _then(_CompletionList(
 isIncomplete: null == isIncomplete ? _self.isIncomplete : isIncomplete // ignore: cast_nullable_to_non_nullable
 as bool,itemDefaults: freezed == itemDefaults ? _self.itemDefaults : itemDefaults // ignore: cast_nullable_to_non_nullable
-as CompletionListItemDefaults?,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})?,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<CompletionItem>,
   ));
 }
 
-/// Create a copy of CompletionList
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionListItemDefaultsCopyWith<$Res>? get itemDefaults {
-    if (_self.itemDefaults == null) {
-    return null;
-  }
 
-  return $CompletionListItemDefaultsCopyWith<$Res>(_self.itemDefaults!, (value) {
-    return _then(_self.copyWith(itemDefaults: value));
-  });
-}
 }
 
 
 /// @nodoc
 mixin _$CompletionRegistrationOptions {
 
- DocumentSelector? get documentSelector; bool? get workDoneProgress; List<String>? get triggerCharacters; List<String>? get allCommitCharacters; bool? get resolveProvider; CompletionOptionsCompletionItem? get completionItem;
+ DocumentSelector? get documentSelector; bool? get workDoneProgress; List<String>? get triggerCharacters; List<String>? get allCommitCharacters; bool? get resolveProvider; ({bool? labelDetailsSupport})? get completionItem;
 /// Create a copy of CompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -43033,11 +30718,11 @@ abstract mixin class $CompletionRegistrationOptionsCopyWith<$Res>  {
   factory $CompletionRegistrationOptionsCopyWith(CompletionRegistrationOptions value, $Res Function(CompletionRegistrationOptions) _then) = _$CompletionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, CompletionOptionsCompletionItem? completionItem
+ DocumentSelector? documentSelector, bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ({bool? labelDetailsSupport})? completionItem
 });
 
 
-$CompletionOptionsCompletionItemCopyWith<$Res>? get completionItem;
+
 
 }
 /// @nodoc
@@ -43058,22 +30743,10 @@ as bool?,triggerCharacters: freezed == triggerCharacters ? _self.triggerCharacte
 as List<String>?,allCommitCharacters: freezed == allCommitCharacters ? _self.allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as CompletionOptionsCompletionItem?,
+as ({bool? labelDetailsSupport})?,
   ));
 }
-/// Create a copy of CompletionRegistrationOptions
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionOptionsCompletionItemCopyWith<$Res>? get completionItem {
-    if (_self.completionItem == null) {
-    return null;
-  }
 
-  return $CompletionOptionsCompletionItemCopyWith<$Res>(_self.completionItem!, (value) {
-    return _then(_self.copyWith(completionItem: value));
-  });
-}
 }
 
 
@@ -43155,7 +30828,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  CompletionOptionsCompletionItem? completionItem)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  ({bool? labelDetailsSupport})? completionItem)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionRegistrationOptions() when $default != null:
 return $default(_that.documentSelector,_that.workDoneProgress,_that.triggerCharacters,_that.allCommitCharacters,_that.resolveProvider,_that.completionItem);case _:
@@ -43176,7 +30849,7 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.triggerChara
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  CompletionOptionsCompletionItem? completionItem)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  ({bool? labelDetailsSupport})? completionItem)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionRegistrationOptions():
 return $default(_that.documentSelector,_that.workDoneProgress,_that.triggerCharacters,_that.allCommitCharacters,_that.resolveProvider,_that.completionItem);case _:
@@ -43196,7 +30869,7 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.triggerChara
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  CompletionOptionsCompletionItem? completionItem)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  ({bool? labelDetailsSupport})? completionItem)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionRegistrationOptions() when $default != null:
 return $default(_that.documentSelector,_that.workDoneProgress,_that.triggerCharacters,_that.allCommitCharacters,_that.resolveProvider,_that.completionItem);case _:
@@ -43243,7 +30916,7 @@ class _CompletionRegistrationOptions extends CompletionRegistrationOptions {
 }
 
 @override final  bool? resolveProvider;
-@override final  CompletionOptionsCompletionItem? completionItem;
+@override final  ({bool? labelDetailsSupport})? completionItem;
 
 /// Create a copy of CompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -43278,11 +30951,11 @@ abstract mixin class _$CompletionRegistrationOptionsCopyWith<$Res> implements $C
   factory _$CompletionRegistrationOptionsCopyWith(_CompletionRegistrationOptions value, $Res Function(_CompletionRegistrationOptions) _then) = __$CompletionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, CompletionOptionsCompletionItem? completionItem
+ DocumentSelector? documentSelector, bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ({bool? labelDetailsSupport})? completionItem
 });
 
 
-@override $CompletionOptionsCompletionItemCopyWith<$Res>? get completionItem;
+
 
 }
 /// @nodoc
@@ -43303,23 +30976,11 @@ as bool?,triggerCharacters: freezed == triggerCharacters ? _self._triggerCharact
 as List<String>?,allCommitCharacters: freezed == allCommitCharacters ? _self._allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as CompletionOptionsCompletionItem?,
+as ({bool? labelDetailsSupport})?,
   ));
 }
 
-/// Create a copy of CompletionRegistrationOptions
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionOptionsCompletionItemCopyWith<$Res>? get completionItem {
-    if (_self.completionItem == null) {
-    return null;
-  }
 
-  return $CompletionOptionsCompletionItemCopyWith<$Res>(_self.completionItem!, (value) {
-    return _then(_self.copyWith(completionItem: value));
-  });
-}
 }
 
 
@@ -49245,7 +36906,7 @@ as List<LSPAny>?,
 /// @nodoc
 mixin _$CodeAction {
 
- String get title;@_CodeActionKindConverter() CodeActionKind? get kind; List<Diagnostic>? get diagnostics; bool? get isPreferred; CodeActionDisabled? get disabled; WorkspaceEdit? get edit; Command? get command; LSPAny? get data;
+ String get title; CodeActionKind? get kind; List<Diagnostic>? get diagnostics; bool? get isPreferred; ({String reason})? get disabled; WorkspaceEdit? get edit; Command? get command; LSPAny? get data;
 /// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49278,11 +36939,11 @@ abstract mixin class $CodeActionCopyWith<$Res>  {
   factory $CodeActionCopyWith(CodeAction value, $Res Function(CodeAction) _then) = _$CodeActionCopyWithImpl;
 @useResult
 $Res call({
- String title,@_CodeActionKindConverter() CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, CodeActionDisabled? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
+ String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
 });
 
 
-$CodeActionDisabledCopyWith<$Res>? get disabled;$WorkspaceEditCopyWith<$Res>? get edit;$CommandCopyWith<$Res>? get command;
+$WorkspaceEditCopyWith<$Res>? get edit;$CommandCopyWith<$Res>? get command;
 
 }
 /// @nodoc
@@ -49302,24 +36963,12 @@ as String,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_
 as CodeActionKind?,diagnostics: freezed == diagnostics ? _self.diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>?,isPreferred: freezed == isPreferred ? _self.isPreferred : isPreferred // ignore: cast_nullable_to_non_nullable
 as bool?,disabled: freezed == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
-as CodeActionDisabled?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
+as ({String reason})?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
 as WorkspaceEdit?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,data: freezed == data ? _self.data : data ,
   ));
 }
 /// Create a copy of CodeAction
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CodeActionDisabledCopyWith<$Res>? get disabled {
-    if (_self.disabled == null) {
-    return null;
-  }
-
-  return $CodeActionDisabledCopyWith<$Res>(_self.disabled!, (value) {
-    return _then(_self.copyWith(disabled: value));
-  });
-}/// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -49425,7 +37074,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title, @_CodeActionKindConverter()  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  CodeActionDisabled? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  ({String reason})? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeAction() when $default != null:
 return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that.disabled,_that.edit,_that.command,_that.data);case _:
@@ -49446,7 +37095,7 @@ return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title, @_CodeActionKindConverter()  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  CodeActionDisabled? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  ({String reason})? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _CodeAction():
 return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that.disabled,_that.edit,_that.command,_that.data);case _:
@@ -49466,7 +37115,7 @@ return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title, @_CodeActionKindConverter()  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  CodeActionDisabled? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  ({String reason})? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeAction() when $default != null:
 return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that.disabled,_that.edit,_that.command,_that.data);case _:
@@ -49481,11 +37130,11 @@ return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that
 @JsonSerializable()
 
 class _CodeAction extends CodeAction {
-  const _CodeAction({required this.title, @_CodeActionKindConverter() this.kind, final  List<Diagnostic>? diagnostics, this.isPreferred, this.disabled, this.edit, this.command, this.data}): _diagnostics = diagnostics,super._();
+  const _CodeAction({required this.title, this.kind, final  List<Diagnostic>? diagnostics, this.isPreferred, this.disabled, this.edit, this.command, this.data}): _diagnostics = diagnostics,super._();
   factory _CodeAction.fromJson(Map<String, dynamic> json) => _$CodeActionFromJson(json);
 
 @override final  String title;
-@override@_CodeActionKindConverter() final  CodeActionKind? kind;
+@override final  CodeActionKind? kind;
  final  List<Diagnostic>? _diagnostics;
 @override List<Diagnostic>? get diagnostics {
   final value = _diagnostics;
@@ -49496,7 +37145,7 @@ class _CodeAction extends CodeAction {
 }
 
 @override final  bool? isPreferred;
-@override final  CodeActionDisabled? disabled;
+@override final  ({String reason})? disabled;
 @override final  WorkspaceEdit? edit;
 @override final  Command? command;
 @override final  LSPAny? data;
@@ -49534,11 +37183,11 @@ abstract mixin class _$CodeActionCopyWith<$Res> implements $CodeActionCopyWith<$
   factory _$CodeActionCopyWith(_CodeAction value, $Res Function(_CodeAction) _then) = __$CodeActionCopyWithImpl;
 @override @useResult
 $Res call({
- String title,@_CodeActionKindConverter() CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, CodeActionDisabled? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
+ String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
 });
 
 
-@override $CodeActionDisabledCopyWith<$Res>? get disabled;@override $WorkspaceEditCopyWith<$Res>? get edit;@override $CommandCopyWith<$Res>? get command;
+@override $WorkspaceEditCopyWith<$Res>? get edit;@override $CommandCopyWith<$Res>? get command;
 
 }
 /// @nodoc
@@ -49558,25 +37207,13 @@ as String,kind: freezed == kind ? _self.kind : kind // ignore: cast_nullable_to_
 as CodeActionKind?,diagnostics: freezed == diagnostics ? _self._diagnostics : diagnostics // ignore: cast_nullable_to_non_nullable
 as List<Diagnostic>?,isPreferred: freezed == isPreferred ? _self.isPreferred : isPreferred // ignore: cast_nullable_to_non_nullable
 as bool?,disabled: freezed == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
-as CodeActionDisabled?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
+as ({String reason})?,edit: freezed == edit ? _self.edit : edit // ignore: cast_nullable_to_non_nullable
 as WorkspaceEdit?,command: freezed == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as Command?,data: freezed == data ? _self.data : data ,
   ));
 }
 
 /// Create a copy of CodeAction
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CodeActionDisabledCopyWith<$Res>? get disabled {
-    if (_self.disabled == null) {
-    return null;
-  }
-
-  return $CodeActionDisabledCopyWith<$Res>(_self.disabled!, (value) {
-    return _then(_self.copyWith(disabled: value));
-  });
-}/// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -49607,7 +37244,7 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 mixin _$CodeActionRegistrationOptions {
 
- DocumentSelector? get documentSelector; bool? get workDoneProgress;@_CodeActionKindListConverter() List<CodeActionKind>? get codeActionKinds; bool? get resolveProvider;
+ DocumentSelector? get documentSelector; bool? get workDoneProgress; List<CodeActionKind>? get codeActionKinds; bool? get resolveProvider;
 /// Create a copy of CodeActionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49640,7 +37277,7 @@ abstract mixin class $CodeActionRegistrationOptionsCopyWith<$Res>  {
   factory $CodeActionRegistrationOptionsCopyWith(CodeActionRegistrationOptions value, $Res Function(CodeActionRegistrationOptions) _then) = _$CodeActionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress,@_CodeActionKindListConverter() List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ DocumentSelector? documentSelector, bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
 });
 
 
@@ -49748,7 +37385,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress, @_CodeActionKindListConverter()  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeActionRegistrationOptions() when $default != null:
 return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -49769,7 +37406,7 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKi
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress, @_CodeActionKindListConverter()  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionRegistrationOptions():
 return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -49789,7 +37426,7 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKi
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DocumentSelector? documentSelector,  bool? workDoneProgress, @_CodeActionKindListConverter()  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionRegistrationOptions() when $default != null:
 return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -49804,7 +37441,7 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKi
 @JsonSerializable()
 
 class _CodeActionRegistrationOptions extends CodeActionRegistrationOptions {
-  const _CodeActionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, @_CodeActionKindListConverter() final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _documentSelector = documentSelector,_codeActionKinds = codeActionKinds,super._();
+  const _CodeActionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _documentSelector = documentSelector,_codeActionKinds = codeActionKinds,super._();
   factory _CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeActionRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -49818,7 +37455,7 @@ class _CodeActionRegistrationOptions extends CodeActionRegistrationOptions {
 
 @override final  bool? workDoneProgress;
  final  List<CodeActionKind>? _codeActionKinds;
-@override@_CodeActionKindListConverter() List<CodeActionKind>? get codeActionKinds {
+@override List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
   if (_codeActionKinds is EqualUnmodifiableListView) return _codeActionKinds;
@@ -49861,7 +37498,7 @@ abstract mixin class _$CodeActionRegistrationOptionsCopyWith<$Res> implements $C
   factory _$CodeActionRegistrationOptionsCopyWith(_CodeActionRegistrationOptions value, $Res Function(_CodeActionRegistrationOptions) _then) = __$CodeActionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress,@_CodeActionKindListConverter() List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ DocumentSelector? documentSelector, bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
 });
 
 
@@ -72267,7 +59904,7 @@ as String,
 /// @nodoc
 mixin _$NotebookDocumentChangeEvent {
 
- LSPObject? get metadata; NotebookDocumentChangeEventCells? get cells;
+ LSPObject? get metadata; ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? get cells;
 /// Create a copy of NotebookDocumentChangeEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -72300,11 +59937,11 @@ abstract mixin class $NotebookDocumentChangeEventCopyWith<$Res>  {
   factory $NotebookDocumentChangeEventCopyWith(NotebookDocumentChangeEvent value, $Res Function(NotebookDocumentChangeEvent) _then) = _$NotebookDocumentChangeEventCopyWithImpl;
 @useResult
 $Res call({
- LSPObject? metadata, NotebookDocumentChangeEventCells? cells
+ LSPObject? metadata, ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? cells
 });
 
 
-$NotebookDocumentChangeEventCellsCopyWith<$Res>? get cells;
+
 
 }
 /// @nodoc
@@ -72321,22 +59958,10 @@ class _$NotebookDocumentChangeEventCopyWithImpl<$Res>
   return _then(_self.copyWith(
 metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as LSPObject?,cells: freezed == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
-as NotebookDocumentChangeEventCells?,
+as ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})?,
   ));
 }
-/// Create a copy of NotebookDocumentChangeEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$NotebookDocumentChangeEventCellsCopyWith<$Res>? get cells {
-    if (_self.cells == null) {
-    return null;
-  }
 
-  return $NotebookDocumentChangeEventCellsCopyWith<$Res>(_self.cells!, (value) {
-    return _then(_self.copyWith(cells: value));
-  });
-}
 }
 
 
@@ -72418,7 +60043,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( LSPObject? metadata,  NotebookDocumentChangeEventCells? cells)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( LSPObject? metadata,  ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? cells)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NotebookDocumentChangeEvent() when $default != null:
 return $default(_that.metadata,_that.cells);case _:
@@ -72439,7 +60064,7 @@ return $default(_that.metadata,_that.cells);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( LSPObject? metadata,  NotebookDocumentChangeEventCells? cells)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( LSPObject? metadata,  ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? cells)  $default,) {final _that = this;
 switch (_that) {
 case _NotebookDocumentChangeEvent():
 return $default(_that.metadata,_that.cells);case _:
@@ -72459,7 +60084,7 @@ return $default(_that.metadata,_that.cells);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( LSPObject? metadata,  NotebookDocumentChangeEventCells? cells)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( LSPObject? metadata,  ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? cells)?  $default,) {final _that = this;
 switch (_that) {
 case _NotebookDocumentChangeEvent() when $default != null:
 return $default(_that.metadata,_that.cells);case _:
@@ -72486,7 +60111,7 @@ class _NotebookDocumentChangeEvent extends NotebookDocumentChangeEvent {
   return EqualUnmodifiableMapView(value);
 }
 
-@override final  NotebookDocumentChangeEventCells? cells;
+@override final  ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? cells;
 
 /// Create a copy of NotebookDocumentChangeEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -72521,11 +60146,11 @@ abstract mixin class _$NotebookDocumentChangeEventCopyWith<$Res> implements $Not
   factory _$NotebookDocumentChangeEventCopyWith(_NotebookDocumentChangeEvent value, $Res Function(_NotebookDocumentChangeEvent) _then) = __$NotebookDocumentChangeEventCopyWithImpl;
 @override @useResult
 $Res call({
- LSPObject? metadata, NotebookDocumentChangeEventCells? cells
+ LSPObject? metadata, ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})? cells
 });
 
 
-@override $NotebookDocumentChangeEventCellsCopyWith<$Res>? get cells;
+
 
 }
 /// @nodoc
@@ -72542,23 +60167,11 @@ class __$NotebookDocumentChangeEventCopyWithImpl<$Res>
   return _then(_NotebookDocumentChangeEvent(
 metadata: freezed == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
 as LSPObject?,cells: freezed == cells ? _self.cells : cells // ignore: cast_nullable_to_non_nullable
-as NotebookDocumentChangeEventCells?,
+as ({({NotebookCellArrayChange array, List<TextDocumentItem>? didOpen, List<TextDocumentIdentifier>? didClose})? structure, List<NotebookCell>? data, List<Object>? textContent})?,
   ));
 }
 
-/// Create a copy of NotebookDocumentChangeEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$NotebookDocumentChangeEventCellsCopyWith<$Res>? get cells {
-    if (_self.cells == null) {
-    return null;
-  }
 
-  return $NotebookDocumentChangeEventCellsCopyWith<$Res>(_self.cells!, (value) {
-    return _then(_self.copyWith(cells: value));
-  });
-}
 }
 
 
@@ -74451,7 +62064,7 @@ as List<WorkspaceFolder>?,
 /// @nodoc
 mixin _$ServerCapabilities {
 
-@_PositionEncodingKindConverter() PositionEncodingKind? get positionEncoding; Object? get textDocumentSync; Object? get notebookDocumentSync; CompletionOptions? get completionProvider; Object? get hoverProvider; SignatureHelpOptions? get signatureHelpProvider; Object? get declarationProvider; Object? get definitionProvider; Object? get typeDefinitionProvider; Object? get implementationProvider; Object? get referencesProvider; Object? get documentHighlightProvider; Object? get documentSymbolProvider; Object? get codeActionProvider; CodeLensOptions? get codeLensProvider; DocumentLinkOptions? get documentLinkProvider; Object? get colorProvider; Object? get workspaceSymbolProvider; Object? get documentFormattingProvider; Object? get documentRangeFormattingProvider; DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider; Object? get renameProvider; Object? get foldingRangeProvider; Object? get selectionRangeProvider; ExecuteCommandOptions? get executeCommandProvider; Object? get callHierarchyProvider; Object? get linkedEditingRangeProvider; Object? get semanticTokensProvider; Object? get monikerProvider; Object? get typeHierarchyProvider; Object? get inlineValueProvider; Object? get inlayHintProvider; Object? get diagnosticProvider; Object? get inlineCompletionProvider; ServerCapabilitiesWorkspace? get workspace; LSPAny? get experimental;
+ PositionEncodingKind? get positionEncoding; Object? get textDocumentSync; Object? get notebookDocumentSync; CompletionOptions? get completionProvider; Object? get hoverProvider; SignatureHelpOptions? get signatureHelpProvider; Object? get declarationProvider; Object? get definitionProvider; Object? get typeDefinitionProvider; Object? get implementationProvider; Object? get referencesProvider; Object? get documentHighlightProvider; Object? get documentSymbolProvider; Object? get codeActionProvider; CodeLensOptions? get codeLensProvider; DocumentLinkOptions? get documentLinkProvider; Object? get colorProvider; Object? get workspaceSymbolProvider; Object? get documentFormattingProvider; Object? get documentRangeFormattingProvider; DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider; Object? get renameProvider; Object? get foldingRangeProvider; Object? get selectionRangeProvider; ExecuteCommandOptions? get executeCommandProvider; Object? get callHierarchyProvider; Object? get linkedEditingRangeProvider; Object? get semanticTokensProvider; Object? get monikerProvider; Object? get typeHierarchyProvider; Object? get inlineValueProvider; Object? get inlayHintProvider; Object? get diagnosticProvider; Object? get inlineCompletionProvider; ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? get workspace; LSPAny? get experimental;
 /// Create a copy of ServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -74484,11 +62097,11 @@ abstract mixin class $ServerCapabilitiesCopyWith<$Res>  {
   factory $ServerCapabilitiesCopyWith(ServerCapabilities value, $Res Function(ServerCapabilities) _then) = _$ServerCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
-@_PositionEncodingKindConverter() PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ServerCapabilitiesWorkspace? workspace, LSPAny? experimental
+ PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
 });
 
 
-$CompletionOptionsCopyWith<$Res>? get completionProvider;$SignatureHelpOptionsCopyWith<$Res>? get signatureHelpProvider;$CodeLensOptionsCopyWith<$Res>? get codeLensProvider;$DocumentLinkOptionsCopyWith<$Res>? get documentLinkProvider;$DocumentOnTypeFormattingOptionsCopyWith<$Res>? get documentOnTypeFormattingProvider;$ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider;$ServerCapabilitiesWorkspaceCopyWith<$Res>? get workspace;
+$CompletionOptionsCopyWith<$Res>? get completionProvider;$SignatureHelpOptionsCopyWith<$Res>? get signatureHelpProvider;$CodeLensOptionsCopyWith<$Res>? get codeLensProvider;$DocumentLinkOptionsCopyWith<$Res>? get documentLinkProvider;$DocumentOnTypeFormattingOptionsCopyWith<$Res>? get documentOnTypeFormattingProvider;$ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider;
 
 }
 /// @nodoc
@@ -74511,7 +62124,7 @@ as CodeLensOptions?,documentLinkProvider: freezed == documentLinkProvider ? _sel
 as DocumentLinkOptions?,colorProvider: freezed == colorProvider ? _self.colorProvider : colorProvider ,workspaceSymbolProvider: freezed == workspaceSymbolProvider ? _self.workspaceSymbolProvider : workspaceSymbolProvider ,documentFormattingProvider: freezed == documentFormattingProvider ? _self.documentFormattingProvider : documentFormattingProvider ,documentRangeFormattingProvider: freezed == documentRangeFormattingProvider ? _self.documentRangeFormattingProvider : documentRangeFormattingProvider ,documentOnTypeFormattingProvider: freezed == documentOnTypeFormattingProvider ? _self.documentOnTypeFormattingProvider : documentOnTypeFormattingProvider // ignore: cast_nullable_to_non_nullable
 as DocumentOnTypeFormattingOptions?,renameProvider: freezed == renameProvider ? _self.renameProvider : renameProvider ,foldingRangeProvider: freezed == foldingRangeProvider ? _self.foldingRangeProvider : foldingRangeProvider ,selectionRangeProvider: freezed == selectionRangeProvider ? _self.selectionRangeProvider : selectionRangeProvider ,executeCommandProvider: freezed == executeCommandProvider ? _self.executeCommandProvider : executeCommandProvider // ignore: cast_nullable_to_non_nullable
 as ExecuteCommandOptions?,callHierarchyProvider: freezed == callHierarchyProvider ? _self.callHierarchyProvider : callHierarchyProvider ,linkedEditingRangeProvider: freezed == linkedEditingRangeProvider ? _self.linkedEditingRangeProvider : linkedEditingRangeProvider ,semanticTokensProvider: freezed == semanticTokensProvider ? _self.semanticTokensProvider : semanticTokensProvider ,monikerProvider: freezed == monikerProvider ? _self.monikerProvider : monikerProvider ,typeHierarchyProvider: freezed == typeHierarchyProvider ? _self.typeHierarchyProvider : typeHierarchyProvider ,inlineValueProvider: freezed == inlineValueProvider ? _self.inlineValueProvider : inlineValueProvider ,inlayHintProvider: freezed == inlayHintProvider ? _self.inlayHintProvider : inlayHintProvider ,diagnosticProvider: freezed == diagnosticProvider ? _self.diagnosticProvider : diagnosticProvider ,inlineCompletionProvider: freezed == inlineCompletionProvider ? _self.inlineCompletionProvider : inlineCompletionProvider ,workspace: freezed == workspace ? _self.workspace : workspace // ignore: cast_nullable_to_non_nullable
-as ServerCapabilitiesWorkspace?,experimental: freezed == experimental ? _self.experimental : experimental ,
+as ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})?,experimental: freezed == experimental ? _self.experimental : experimental ,
   ));
 }
 /// Create a copy of ServerCapabilities
@@ -74585,18 +62198,6 @@ $ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider {
 
   return $ExecuteCommandOptionsCopyWith<$Res>(_self.executeCommandProvider!, (value) {
     return _then(_self.copyWith(executeCommandProvider: value));
-  });
-}/// Create a copy of ServerCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ServerCapabilitiesWorkspaceCopyWith<$Res>? get workspace {
-    if (_self.workspace == null) {
-    return null;
-  }
-
-  return $ServerCapabilitiesWorkspaceCopyWith<$Res>(_self.workspace!, (value) {
-    return _then(_self.copyWith(workspace: value));
   });
 }
 }
@@ -74680,7 +62281,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_PositionEncodingKindConverter()  PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ServerCapabilitiesWorkspace? workspace,  LSPAny? experimental)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace,  LSPAny? experimental)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServerCapabilities() when $default != null:
 return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocumentSync,_that.completionProvider,_that.hoverProvider,_that.signatureHelpProvider,_that.declarationProvider,_that.definitionProvider,_that.typeDefinitionProvider,_that.implementationProvider,_that.referencesProvider,_that.documentHighlightProvider,_that.documentSymbolProvider,_that.codeActionProvider,_that.codeLensProvider,_that.documentLinkProvider,_that.colorProvider,_that.workspaceSymbolProvider,_that.documentFormattingProvider,_that.documentRangeFormattingProvider,_that.documentOnTypeFormattingProvider,_that.renameProvider,_that.foldingRangeProvider,_that.selectionRangeProvider,_that.executeCommandProvider,_that.callHierarchyProvider,_that.linkedEditingRangeProvider,_that.semanticTokensProvider,_that.monikerProvider,_that.typeHierarchyProvider,_that.inlineValueProvider,_that.inlayHintProvider,_that.diagnosticProvider,_that.inlineCompletionProvider,_that.workspace,_that.experimental);case _:
@@ -74701,7 +62302,7 @@ return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocu
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_PositionEncodingKindConverter()  PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ServerCapabilitiesWorkspace? workspace,  LSPAny? experimental)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace,  LSPAny? experimental)  $default,) {final _that = this;
 switch (_that) {
 case _ServerCapabilities():
 return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocumentSync,_that.completionProvider,_that.hoverProvider,_that.signatureHelpProvider,_that.declarationProvider,_that.definitionProvider,_that.typeDefinitionProvider,_that.implementationProvider,_that.referencesProvider,_that.documentHighlightProvider,_that.documentSymbolProvider,_that.codeActionProvider,_that.codeLensProvider,_that.documentLinkProvider,_that.colorProvider,_that.workspaceSymbolProvider,_that.documentFormattingProvider,_that.documentRangeFormattingProvider,_that.documentOnTypeFormattingProvider,_that.renameProvider,_that.foldingRangeProvider,_that.selectionRangeProvider,_that.executeCommandProvider,_that.callHierarchyProvider,_that.linkedEditingRangeProvider,_that.semanticTokensProvider,_that.monikerProvider,_that.typeHierarchyProvider,_that.inlineValueProvider,_that.inlayHintProvider,_that.diagnosticProvider,_that.inlineCompletionProvider,_that.workspace,_that.experimental);case _:
@@ -74721,7 +62322,7 @@ return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocu
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_PositionEncodingKindConverter()  PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ServerCapabilitiesWorkspace? workspace,  LSPAny? experimental)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace,  LSPAny? experimental)?  $default,) {final _that = this;
 switch (_that) {
 case _ServerCapabilities() when $default != null:
 return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocumentSync,_that.completionProvider,_that.hoverProvider,_that.signatureHelpProvider,_that.declarationProvider,_that.definitionProvider,_that.typeDefinitionProvider,_that.implementationProvider,_that.referencesProvider,_that.documentHighlightProvider,_that.documentSymbolProvider,_that.codeActionProvider,_that.codeLensProvider,_that.documentLinkProvider,_that.colorProvider,_that.workspaceSymbolProvider,_that.documentFormattingProvider,_that.documentRangeFormattingProvider,_that.documentOnTypeFormattingProvider,_that.renameProvider,_that.foldingRangeProvider,_that.selectionRangeProvider,_that.executeCommandProvider,_that.callHierarchyProvider,_that.linkedEditingRangeProvider,_that.semanticTokensProvider,_that.monikerProvider,_that.typeHierarchyProvider,_that.inlineValueProvider,_that.inlayHintProvider,_that.diagnosticProvider,_that.inlineCompletionProvider,_that.workspace,_that.experimental);case _:
@@ -74736,10 +62337,10 @@ return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocu
 @JsonSerializable()
 
 class _ServerCapabilities extends ServerCapabilities {
-  const _ServerCapabilities({@_PositionEncodingKindConverter() this.positionEncoding, this.textDocumentSync, this.notebookDocumentSync, this.completionProvider, this.hoverProvider, this.signatureHelpProvider, this.declarationProvider, this.definitionProvider, this.typeDefinitionProvider, this.implementationProvider, this.referencesProvider, this.documentHighlightProvider, this.documentSymbolProvider, this.codeActionProvider, this.codeLensProvider, this.documentLinkProvider, this.colorProvider, this.workspaceSymbolProvider, this.documentFormattingProvider, this.documentRangeFormattingProvider, this.documentOnTypeFormattingProvider, this.renameProvider, this.foldingRangeProvider, this.selectionRangeProvider, this.executeCommandProvider, this.callHierarchyProvider, this.linkedEditingRangeProvider, this.semanticTokensProvider, this.monikerProvider, this.typeHierarchyProvider, this.inlineValueProvider, this.inlayHintProvider, this.diagnosticProvider, this.inlineCompletionProvider, this.workspace, this.experimental}): super._();
+  const _ServerCapabilities({this.positionEncoding, this.textDocumentSync, this.notebookDocumentSync, this.completionProvider, this.hoverProvider, this.signatureHelpProvider, this.declarationProvider, this.definitionProvider, this.typeDefinitionProvider, this.implementationProvider, this.referencesProvider, this.documentHighlightProvider, this.documentSymbolProvider, this.codeActionProvider, this.codeLensProvider, this.documentLinkProvider, this.colorProvider, this.workspaceSymbolProvider, this.documentFormattingProvider, this.documentRangeFormattingProvider, this.documentOnTypeFormattingProvider, this.renameProvider, this.foldingRangeProvider, this.selectionRangeProvider, this.executeCommandProvider, this.callHierarchyProvider, this.linkedEditingRangeProvider, this.semanticTokensProvider, this.monikerProvider, this.typeHierarchyProvider, this.inlineValueProvider, this.inlayHintProvider, this.diagnosticProvider, this.inlineCompletionProvider, this.workspace, this.experimental}): super._();
   factory _ServerCapabilities.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFromJson(json);
 
-@override@_PositionEncodingKindConverter() final  PositionEncodingKind? positionEncoding;
+@override final  PositionEncodingKind? positionEncoding;
 @override final  Object? textDocumentSync;
 @override final  Object? notebookDocumentSync;
 @override final  CompletionOptions? completionProvider;
@@ -74773,7 +62374,7 @@ class _ServerCapabilities extends ServerCapabilities {
 @override final  Object? inlayHintProvider;
 @override final  Object? diagnosticProvider;
 @override final  Object? inlineCompletionProvider;
-@override final  ServerCapabilitiesWorkspace? workspace;
+@override final  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace;
 @override final  LSPAny? experimental;
 
 /// Create a copy of ServerCapabilities
@@ -74809,11 +62410,11 @@ abstract mixin class _$ServerCapabilitiesCopyWith<$Res> implements $ServerCapabi
   factory _$ServerCapabilitiesCopyWith(_ServerCapabilities value, $Res Function(_ServerCapabilities) _then) = __$ServerCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
-@_PositionEncodingKindConverter() PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ServerCapabilitiesWorkspace? workspace, LSPAny? experimental
+ PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
 });
 
 
-@override $CompletionOptionsCopyWith<$Res>? get completionProvider;@override $SignatureHelpOptionsCopyWith<$Res>? get signatureHelpProvider;@override $CodeLensOptionsCopyWith<$Res>? get codeLensProvider;@override $DocumentLinkOptionsCopyWith<$Res>? get documentLinkProvider;@override $DocumentOnTypeFormattingOptionsCopyWith<$Res>? get documentOnTypeFormattingProvider;@override $ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider;@override $ServerCapabilitiesWorkspaceCopyWith<$Res>? get workspace;
+@override $CompletionOptionsCopyWith<$Res>? get completionProvider;@override $SignatureHelpOptionsCopyWith<$Res>? get signatureHelpProvider;@override $CodeLensOptionsCopyWith<$Res>? get codeLensProvider;@override $DocumentLinkOptionsCopyWith<$Res>? get documentLinkProvider;@override $DocumentOnTypeFormattingOptionsCopyWith<$Res>? get documentOnTypeFormattingProvider;@override $ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider;
 
 }
 /// @nodoc
@@ -74836,7 +62437,7 @@ as CodeLensOptions?,documentLinkProvider: freezed == documentLinkProvider ? _sel
 as DocumentLinkOptions?,colorProvider: freezed == colorProvider ? _self.colorProvider : colorProvider ,workspaceSymbolProvider: freezed == workspaceSymbolProvider ? _self.workspaceSymbolProvider : workspaceSymbolProvider ,documentFormattingProvider: freezed == documentFormattingProvider ? _self.documentFormattingProvider : documentFormattingProvider ,documentRangeFormattingProvider: freezed == documentRangeFormattingProvider ? _self.documentRangeFormattingProvider : documentRangeFormattingProvider ,documentOnTypeFormattingProvider: freezed == documentOnTypeFormattingProvider ? _self.documentOnTypeFormattingProvider : documentOnTypeFormattingProvider // ignore: cast_nullable_to_non_nullable
 as DocumentOnTypeFormattingOptions?,renameProvider: freezed == renameProvider ? _self.renameProvider : renameProvider ,foldingRangeProvider: freezed == foldingRangeProvider ? _self.foldingRangeProvider : foldingRangeProvider ,selectionRangeProvider: freezed == selectionRangeProvider ? _self.selectionRangeProvider : selectionRangeProvider ,executeCommandProvider: freezed == executeCommandProvider ? _self.executeCommandProvider : executeCommandProvider // ignore: cast_nullable_to_non_nullable
 as ExecuteCommandOptions?,callHierarchyProvider: freezed == callHierarchyProvider ? _self.callHierarchyProvider : callHierarchyProvider ,linkedEditingRangeProvider: freezed == linkedEditingRangeProvider ? _self.linkedEditingRangeProvider : linkedEditingRangeProvider ,semanticTokensProvider: freezed == semanticTokensProvider ? _self.semanticTokensProvider : semanticTokensProvider ,monikerProvider: freezed == monikerProvider ? _self.monikerProvider : monikerProvider ,typeHierarchyProvider: freezed == typeHierarchyProvider ? _self.typeHierarchyProvider : typeHierarchyProvider ,inlineValueProvider: freezed == inlineValueProvider ? _self.inlineValueProvider : inlineValueProvider ,inlayHintProvider: freezed == inlayHintProvider ? _self.inlayHintProvider : inlayHintProvider ,diagnosticProvider: freezed == diagnosticProvider ? _self.diagnosticProvider : diagnosticProvider ,inlineCompletionProvider: freezed == inlineCompletionProvider ? _self.inlineCompletionProvider : inlineCompletionProvider ,workspace: freezed == workspace ? _self.workspace : workspace // ignore: cast_nullable_to_non_nullable
-as ServerCapabilitiesWorkspace?,experimental: freezed == experimental ? _self.experimental : experimental ,
+as ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})?,experimental: freezed == experimental ? _self.experimental : experimental ,
   ));
 }
 
@@ -74911,18 +62512,6 @@ $ExecuteCommandOptionsCopyWith<$Res>? get executeCommandProvider {
 
   return $ExecuteCommandOptionsCopyWith<$Res>(_self.executeCommandProvider!, (value) {
     return _then(_self.copyWith(executeCommandProvider: value));
-  });
-}/// Create a copy of ServerCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ServerCapabilitiesWorkspaceCopyWith<$Res>? get workspace {
-    if (_self.workspace == null) {
-    return null;
-  }
-
-  return $ServerCapabilitiesWorkspaceCopyWith<$Res>(_self.workspace!, (value) {
-    return _then(_self.copyWith(workspace: value));
   });
 }
 }
@@ -75726,7 +63315,7 @@ as FileChangeType,
 /// @nodoc
 mixin _$FileSystemWatcher {
 
- GlobPattern get globPattern;@_WatchKindConverter() WatchKind? get kind;
+ GlobPattern get globPattern; WatchKind? get kind;
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -75759,7 +63348,7 @@ abstract mixin class $FileSystemWatcherCopyWith<$Res>  {
   factory $FileSystemWatcherCopyWith(FileSystemWatcher value, $Res Function(FileSystemWatcher) _then) = _$FileSystemWatcherCopyWithImpl;
 @useResult
 $Res call({
- GlobPattern globPattern,@_WatchKindConverter() WatchKind? kind
+ GlobPattern globPattern, WatchKind? kind
 });
 
 
@@ -75864,7 +63453,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GlobPattern globPattern, @_WatchKindConverter()  WatchKind? kind)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GlobPattern globPattern,  WatchKind? kind)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FileSystemWatcher() when $default != null:
 return $default(_that.globPattern,_that.kind);case _:
@@ -75885,7 +63474,7 @@ return $default(_that.globPattern,_that.kind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GlobPattern globPattern, @_WatchKindConverter()  WatchKind? kind)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GlobPattern globPattern,  WatchKind? kind)  $default,) {final _that = this;
 switch (_that) {
 case _FileSystemWatcher():
 return $default(_that.globPattern,_that.kind);case _:
@@ -75905,7 +63494,7 @@ return $default(_that.globPattern,_that.kind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GlobPattern globPattern, @_WatchKindConverter()  WatchKind? kind)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GlobPattern globPattern,  WatchKind? kind)?  $default,) {final _that = this;
 switch (_that) {
 case _FileSystemWatcher() when $default != null:
 return $default(_that.globPattern,_that.kind);case _:
@@ -75920,11 +63509,11 @@ return $default(_that.globPattern,_that.kind);case _:
 @JsonSerializable()
 
 class _FileSystemWatcher extends FileSystemWatcher {
-  const _FileSystemWatcher({required this.globPattern, @_WatchKindConverter() this.kind}): super._();
+  const _FileSystemWatcher({required this.globPattern, this.kind}): super._();
   factory _FileSystemWatcher.fromJson(Map<String, dynamic> json) => _$FileSystemWatcherFromJson(json);
 
 @override final  GlobPattern globPattern;
-@override@_WatchKindConverter() final  WatchKind? kind;
+@override final  WatchKind? kind;
 
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
@@ -75959,7 +63548,7 @@ abstract mixin class _$FileSystemWatcherCopyWith<$Res> implements $FileSystemWat
   factory _$FileSystemWatcherCopyWith(_FileSystemWatcher value, $Res Function(_FileSystemWatcher) _then) = __$FileSystemWatcherCopyWithImpl;
 @override @useResult
 $Res call({
- GlobPattern globPattern,@_WatchKindConverter() WatchKind? kind
+ GlobPattern globPattern, WatchKind? kind
 });
 
 
@@ -77168,7 +64757,7 @@ $RangeCopyWith<$Res> get replace {
 /// @nodoc
 mixin _$CompletionOptions {
 
- bool? get workDoneProgress; List<String>? get triggerCharacters; List<String>? get allCommitCharacters; bool? get resolveProvider; CompletionOptionsCompletionItem? get completionItem;
+ bool? get workDoneProgress; List<String>? get triggerCharacters; List<String>? get allCommitCharacters; bool? get resolveProvider; ({bool? labelDetailsSupport})? get completionItem;
 /// Create a copy of CompletionOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -77201,11 +64790,11 @@ abstract mixin class $CompletionOptionsCopyWith<$Res>  {
   factory $CompletionOptionsCopyWith(CompletionOptions value, $Res Function(CompletionOptions) _then) = _$CompletionOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, CompletionOptionsCompletionItem? completionItem
+ bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ({bool? labelDetailsSupport})? completionItem
 });
 
 
-$CompletionOptionsCompletionItemCopyWith<$Res>? get completionItem;
+
 
 }
 /// @nodoc
@@ -77225,22 +64814,10 @@ as bool?,triggerCharacters: freezed == triggerCharacters ? _self.triggerCharacte
 as List<String>?,allCommitCharacters: freezed == allCommitCharacters ? _self.allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as CompletionOptionsCompletionItem?,
+as ({bool? labelDetailsSupport})?,
   ));
 }
-/// Create a copy of CompletionOptions
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionOptionsCompletionItemCopyWith<$Res>? get completionItem {
-    if (_self.completionItem == null) {
-    return null;
-  }
 
-  return $CompletionOptionsCompletionItemCopyWith<$Res>(_self.completionItem!, (value) {
-    return _then(_self.copyWith(completionItem: value));
-  });
-}
 }
 
 
@@ -77322,7 +64899,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  CompletionOptionsCompletionItem? completionItem)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  ({bool? labelDetailsSupport})? completionItem)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionOptions() when $default != null:
 return $default(_that.workDoneProgress,_that.triggerCharacters,_that.allCommitCharacters,_that.resolveProvider,_that.completionItem);case _:
@@ -77343,7 +64920,7 @@ return $default(_that.workDoneProgress,_that.triggerCharacters,_that.allCommitCh
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  CompletionOptionsCompletionItem? completionItem)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  ({bool? labelDetailsSupport})? completionItem)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionOptions():
 return $default(_that.workDoneProgress,_that.triggerCharacters,_that.allCommitCharacters,_that.resolveProvider,_that.completionItem);case _:
@@ -77363,7 +64940,7 @@ return $default(_that.workDoneProgress,_that.triggerCharacters,_that.allCommitCh
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  CompletionOptionsCompletionItem? completionItem)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? workDoneProgress,  List<String>? triggerCharacters,  List<String>? allCommitCharacters,  bool? resolveProvider,  ({bool? labelDetailsSupport})? completionItem)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionOptions() when $default != null:
 return $default(_that.workDoneProgress,_that.triggerCharacters,_that.allCommitCharacters,_that.resolveProvider,_that.completionItem);case _:
@@ -77401,7 +64978,7 @@ class _CompletionOptions extends CompletionOptions {
 }
 
 @override final  bool? resolveProvider;
-@override final  CompletionOptionsCompletionItem? completionItem;
+@override final  ({bool? labelDetailsSupport})? completionItem;
 
 /// Create a copy of CompletionOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -77436,11 +65013,11 @@ abstract mixin class _$CompletionOptionsCopyWith<$Res> implements $CompletionOpt
   factory _$CompletionOptionsCopyWith(_CompletionOptions value, $Res Function(_CompletionOptions) _then) = __$CompletionOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, CompletionOptionsCompletionItem? completionItem
+ bool? workDoneProgress, List<String>? triggerCharacters, List<String>? allCommitCharacters, bool? resolveProvider, ({bool? labelDetailsSupport})? completionItem
 });
 
 
-@override $CompletionOptionsCompletionItemCopyWith<$Res>? get completionItem;
+
 
 }
 /// @nodoc
@@ -77460,23 +65037,11 @@ as bool?,triggerCharacters: freezed == triggerCharacters ? _self._triggerCharact
 as List<String>?,allCommitCharacters: freezed == allCommitCharacters ? _self._allCommitCharacters : allCommitCharacters // ignore: cast_nullable_to_non_nullable
 as List<String>?,resolveProvider: freezed == resolveProvider ? _self.resolveProvider : resolveProvider // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as CompletionOptionsCompletionItem?,
+as ({bool? labelDetailsSupport})?,
   ));
 }
 
-/// Create a copy of CompletionOptions
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionOptionsCompletionItemCopyWith<$Res>? get completionItem {
-    if (_self.completionItem == null) {
-    return null;
-  }
 
-  return $CompletionOptionsCompletionItemCopyWith<$Res>(_self.completionItem!, (value) {
-    return _then(_self.copyWith(completionItem: value));
-  });
-}
 }
 
 
@@ -80203,7 +67768,7 @@ as String?,
 /// @nodoc
 mixin _$CodeActionContext {
 
- List<Diagnostic> get diagnostics;@_CodeActionKindListConverter() List<CodeActionKind>? get only; CodeActionTriggerKind? get triggerKind;
+ List<Diagnostic> get diagnostics; List<CodeActionKind>? get only; CodeActionTriggerKind? get triggerKind;
 /// Create a copy of CodeActionContext
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -80236,7 +67801,7 @@ abstract mixin class $CodeActionContextCopyWith<$Res>  {
   factory $CodeActionContextCopyWith(CodeActionContext value, $Res Function(CodeActionContext) _then) = _$CodeActionContextCopyWithImpl;
 @useResult
 $Res call({
- List<Diagnostic> diagnostics,@_CodeActionKindListConverter() List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
+ List<Diagnostic> diagnostics, List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
 });
 
 
@@ -80343,7 +67908,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics, @_CodeActionKindListConverter()  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics,  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeActionContext() when $default != null:
 return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
@@ -80364,7 +67929,7 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics, @_CodeActionKindListConverter()  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics,  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionContext():
 return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
@@ -80384,7 +67949,7 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Diagnostic> diagnostics, @_CodeActionKindListConverter()  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Diagnostic> diagnostics,  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionContext() when $default != null:
 return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
@@ -80399,7 +67964,7 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 @JsonSerializable()
 
 class _CodeActionContext extends CodeActionContext {
-  const _CodeActionContext({required final  List<Diagnostic> diagnostics, @_CodeActionKindListConverter() final  List<CodeActionKind>? only, this.triggerKind}): _diagnostics = diagnostics,_only = only,super._();
+  const _CodeActionContext({required final  List<Diagnostic> diagnostics, final  List<CodeActionKind>? only, this.triggerKind}): _diagnostics = diagnostics,_only = only,super._();
   factory _CodeActionContext.fromJson(Map<String, dynamic> json) => _$CodeActionContextFromJson(json);
 
  final  List<Diagnostic> _diagnostics;
@@ -80410,7 +67975,7 @@ class _CodeActionContext extends CodeActionContext {
 }
 
  final  List<CodeActionKind>? _only;
-@override@_CodeActionKindListConverter() List<CodeActionKind>? get only {
+@override List<CodeActionKind>? get only {
   final value = _only;
   if (value == null) return null;
   if (_only is EqualUnmodifiableListView) return _only;
@@ -80453,7 +68018,7 @@ abstract mixin class _$CodeActionContextCopyWith<$Res> implements $CodeActionCon
   factory _$CodeActionContextCopyWith(_CodeActionContext value, $Res Function(_CodeActionContext) _then) = __$CodeActionContextCopyWithImpl;
 @override @useResult
 $Res call({
- List<Diagnostic> diagnostics,@_CodeActionKindListConverter() List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
+ List<Diagnostic> diagnostics, List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
 });
 
 
@@ -80486,7 +68051,7 @@ as CodeActionTriggerKind?,
 /// @nodoc
 mixin _$CodeActionOptions {
 
- bool? get workDoneProgress;@_CodeActionKindListConverter() List<CodeActionKind>? get codeActionKinds; bool? get resolveProvider;
+ bool? get workDoneProgress; List<CodeActionKind>? get codeActionKinds; bool? get resolveProvider;
 /// Create a copy of CodeActionOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -80519,7 +68084,7 @@ abstract mixin class $CodeActionOptionsCopyWith<$Res>  {
   factory $CodeActionOptionsCopyWith(CodeActionOptions value, $Res Function(CodeActionOptions) _then) = _$CodeActionOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress,@_CodeActionKindListConverter() List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
 });
 
 
@@ -80626,7 +68191,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? workDoneProgress, @_CodeActionKindListConverter()  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeActionOptions() when $default != null:
 return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -80647,7 +68212,7 @@ return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvid
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? workDoneProgress, @_CodeActionKindListConverter()  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionOptions():
 return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -80667,7 +68232,7 @@ return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvid
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? workDoneProgress, @_CodeActionKindListConverter()  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionOptions() when $default != null:
 return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -80682,12 +68247,12 @@ return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvid
 @JsonSerializable()
 
 class _CodeActionOptions extends CodeActionOptions {
-  const _CodeActionOptions({this.workDoneProgress, @_CodeActionKindListConverter() final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _codeActionKinds = codeActionKinds,super._();
+  const _CodeActionOptions({this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _codeActionKinds = codeActionKinds,super._();
   factory _CodeActionOptions.fromJson(Map<String, dynamic> json) => _$CodeActionOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
  final  List<CodeActionKind>? _codeActionKinds;
-@override@_CodeActionKindListConverter() List<CodeActionKind>? get codeActionKinds {
+@override List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
   if (_codeActionKinds is EqualUnmodifiableListView) return _codeActionKinds;
@@ -80730,7 +68295,7 @@ abstract mixin class _$CodeActionOptionsCopyWith<$Res> implements $CodeActionOpt
   factory _$CodeActionOptionsCopyWith(_CodeActionOptions value, $Res Function(_CodeActionOptions) _then) = __$CodeActionOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress,@_CodeActionKindListConverter() List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
 });
 
 
@@ -92575,7 +80140,7 @@ $ShowDocumentClientCapabilitiesCopyWith<$Res>? get showDocument {
 /// @nodoc
 mixin _$GeneralClientCapabilities {
 
- GeneralClientCapabilitiesStaleRequestSupport? get staleRequestSupport; RegularExpressionsClientCapabilities? get regularExpressions; MarkdownClientCapabilities? get markdown;@_PositionEncodingKindListConverter() List<PositionEncodingKind>? get positionEncodings;
+ ({bool cancel, List<String> retryOnContentModified})? get staleRequestSupport; RegularExpressionsClientCapabilities? get regularExpressions; MarkdownClientCapabilities? get markdown; List<PositionEncodingKind>? get positionEncodings;
 /// Create a copy of GeneralClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -92608,11 +80173,11 @@ abstract mixin class $GeneralClientCapabilitiesCopyWith<$Res>  {
   factory $GeneralClientCapabilitiesCopyWith(GeneralClientCapabilities value, $Res Function(GeneralClientCapabilities) _then) = _$GeneralClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown,@_PositionEncodingKindListConverter() List<PositionEncodingKind>? positionEncodings
+ ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown, List<PositionEncodingKind>? positionEncodings
 });
 
 
-$GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res>? get staleRequestSupport;$RegularExpressionsClientCapabilitiesCopyWith<$Res>? get regularExpressions;$MarkdownClientCapabilitiesCopyWith<$Res>? get markdown;
+$RegularExpressionsClientCapabilitiesCopyWith<$Res>? get regularExpressions;$MarkdownClientCapabilitiesCopyWith<$Res>? get markdown;
 
 }
 /// @nodoc
@@ -92628,25 +80193,13 @@ class _$GeneralClientCapabilitiesCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? staleRequestSupport = freezed,Object? regularExpressions = freezed,Object? markdown = freezed,Object? positionEncodings = freezed,}) {
   return _then(_self.copyWith(
 staleRequestSupport: freezed == staleRequestSupport ? _self.staleRequestSupport : staleRequestSupport // ignore: cast_nullable_to_non_nullable
-as GeneralClientCapabilitiesStaleRequestSupport?,regularExpressions: freezed == regularExpressions ? _self.regularExpressions : regularExpressions // ignore: cast_nullable_to_non_nullable
+as ({bool cancel, List<String> retryOnContentModified})?,regularExpressions: freezed == regularExpressions ? _self.regularExpressions : regularExpressions // ignore: cast_nullable_to_non_nullable
 as RegularExpressionsClientCapabilities?,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
 as MarkdownClientCapabilities?,positionEncodings: freezed == positionEncodings ? _self.positionEncodings : positionEncodings // ignore: cast_nullable_to_non_nullable
 as List<PositionEncodingKind>?,
   ));
 }
 /// Create a copy of GeneralClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res>? get staleRequestSupport {
-    if (_self.staleRequestSupport == null) {
-    return null;
-  }
-
-  return $GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res>(_self.staleRequestSupport!, (value) {
-    return _then(_self.copyWith(staleRequestSupport: value));
-  });
-}/// Create a copy of GeneralClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -92752,7 +80305,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown, @_PositionEncodingKindListConverter()  List<PositionEncodingKind>? positionEncodings)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown,  List<PositionEncodingKind>? positionEncodings)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GeneralClientCapabilities() when $default != null:
 return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdown,_that.positionEncodings);case _:
@@ -92773,7 +80326,7 @@ return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdow
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown, @_PositionEncodingKindListConverter()  List<PositionEncodingKind>? positionEncodings)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown,  List<PositionEncodingKind>? positionEncodings)  $default,) {final _that = this;
 switch (_that) {
 case _GeneralClientCapabilities():
 return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdown,_that.positionEncodings);case _:
@@ -92793,7 +80346,7 @@ return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdow
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown, @_PositionEncodingKindListConverter()  List<PositionEncodingKind>? positionEncodings)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown,  List<PositionEncodingKind>? positionEncodings)?  $default,) {final _that = this;
 switch (_that) {
 case _GeneralClientCapabilities() when $default != null:
 return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdown,_that.positionEncodings);case _:
@@ -92808,14 +80361,14 @@ return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdow
 @JsonSerializable()
 
 class _GeneralClientCapabilities extends GeneralClientCapabilities {
-  const _GeneralClientCapabilities({this.staleRequestSupport, this.regularExpressions, this.markdown, @_PositionEncodingKindListConverter() final  List<PositionEncodingKind>? positionEncodings}): _positionEncodings = positionEncodings,super._();
+  const _GeneralClientCapabilities({this.staleRequestSupport, this.regularExpressions, this.markdown, final  List<PositionEncodingKind>? positionEncodings}): _positionEncodings = positionEncodings,super._();
   factory _GeneralClientCapabilities.fromJson(Map<String, dynamic> json) => _$GeneralClientCapabilitiesFromJson(json);
 
-@override final  GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport;
+@override final  ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport;
 @override final  RegularExpressionsClientCapabilities? regularExpressions;
 @override final  MarkdownClientCapabilities? markdown;
  final  List<PositionEncodingKind>? _positionEncodings;
-@override@_PositionEncodingKindListConverter() List<PositionEncodingKind>? get positionEncodings {
+@override List<PositionEncodingKind>? get positionEncodings {
   final value = _positionEncodings;
   if (value == null) return null;
   if (_positionEncodings is EqualUnmodifiableListView) return _positionEncodings;
@@ -92857,11 +80410,11 @@ abstract mixin class _$GeneralClientCapabilitiesCopyWith<$Res> implements $Gener
   factory _$GeneralClientCapabilitiesCopyWith(_GeneralClientCapabilities value, $Res Function(_GeneralClientCapabilities) _then) = __$GeneralClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown,@_PositionEncodingKindListConverter() List<PositionEncodingKind>? positionEncodings
+ ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown, List<PositionEncodingKind>? positionEncodings
 });
 
 
-@override $GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res>? get staleRequestSupport;@override $RegularExpressionsClientCapabilitiesCopyWith<$Res>? get regularExpressions;@override $MarkdownClientCapabilitiesCopyWith<$Res>? get markdown;
+@override $RegularExpressionsClientCapabilitiesCopyWith<$Res>? get regularExpressions;@override $MarkdownClientCapabilitiesCopyWith<$Res>? get markdown;
 
 }
 /// @nodoc
@@ -92877,7 +80430,7 @@ class __$GeneralClientCapabilitiesCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? staleRequestSupport = freezed,Object? regularExpressions = freezed,Object? markdown = freezed,Object? positionEncodings = freezed,}) {
   return _then(_GeneralClientCapabilities(
 staleRequestSupport: freezed == staleRequestSupport ? _self.staleRequestSupport : staleRequestSupport // ignore: cast_nullable_to_non_nullable
-as GeneralClientCapabilitiesStaleRequestSupport?,regularExpressions: freezed == regularExpressions ? _self.regularExpressions : regularExpressions // ignore: cast_nullable_to_non_nullable
+as ({bool cancel, List<String> retryOnContentModified})?,regularExpressions: freezed == regularExpressions ? _self.regularExpressions : regularExpressions // ignore: cast_nullable_to_non_nullable
 as RegularExpressionsClientCapabilities?,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
 as MarkdownClientCapabilities?,positionEncodings: freezed == positionEncodings ? _self._positionEncodings : positionEncodings // ignore: cast_nullable_to_non_nullable
 as List<PositionEncodingKind>?,
@@ -92885,18 +80438,6 @@ as List<PositionEncodingKind>?,
 }
 
 /// Create a copy of GeneralClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res>? get staleRequestSupport {
-    if (_self.staleRequestSupport == null) {
-    return null;
-  }
-
-  return $GeneralClientCapabilitiesStaleRequestSupportCopyWith<$Res>(_self.staleRequestSupport!, (value) {
-    return _then(_self.copyWith(staleRequestSupport: value));
-  });
-}/// Create a copy of GeneralClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -93191,7 +80732,7 @@ as Pattern,
 /// @nodoc
 mixin _$WorkspaceEditClientCapabilities {
 
- bool? get documentChanges; List<ResourceOperationKind>? get resourceOperations; FailureHandlingKind? get failureHandling; bool? get normalizesLineEndings; WorkspaceEditClientCapabilitiesChangeAnnotationSupport? get changeAnnotationSupport;
+ bool? get documentChanges; List<ResourceOperationKind>? get resourceOperations; FailureHandlingKind? get failureHandling; bool? get normalizesLineEndings; ({bool? groupsOnLabel})? get changeAnnotationSupport;
 /// Create a copy of WorkspaceEditClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -93224,11 +80765,11 @@ abstract mixin class $WorkspaceEditClientCapabilitiesCopyWith<$Res>  {
   factory $WorkspaceEditClientCapabilitiesCopyWith(WorkspaceEditClientCapabilities value, $Res Function(WorkspaceEditClientCapabilities) _then) = _$WorkspaceEditClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport
+ bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, ({bool? groupsOnLabel})? changeAnnotationSupport
 });
 
 
-$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res>? get changeAnnotationSupport;
+
 
 }
 /// @nodoc
@@ -93248,22 +80789,10 @@ as bool?,resourceOperations: freezed == resourceOperations ? _self.resourceOpera
 as List<ResourceOperationKind>?,failureHandling: freezed == failureHandling ? _self.failureHandling : failureHandling // ignore: cast_nullable_to_non_nullable
 as FailureHandlingKind?,normalizesLineEndings: freezed == normalizesLineEndings ? _self.normalizesLineEndings : normalizesLineEndings // ignore: cast_nullable_to_non_nullable
 as bool?,changeAnnotationSupport: freezed == changeAnnotationSupport ? _self.changeAnnotationSupport : changeAnnotationSupport // ignore: cast_nullable_to_non_nullable
-as WorkspaceEditClientCapabilitiesChangeAnnotationSupport?,
+as ({bool? groupsOnLabel})?,
   ));
 }
-/// Create a copy of WorkspaceEditClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res>? get changeAnnotationSupport {
-    if (_self.changeAnnotationSupport == null) {
-    return null;
-  }
 
-  return $WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res>(_self.changeAnnotationSupport!, (value) {
-    return _then(_self.copyWith(changeAnnotationSupport: value));
-  });
-}
 }
 
 
@@ -93345,7 +80874,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? documentChanges,  List<ResourceOperationKind>? resourceOperations,  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? documentChanges,  List<ResourceOperationKind>? resourceOperations,  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  ({bool? groupsOnLabel})? changeAnnotationSupport)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WorkspaceEditClientCapabilities() when $default != null:
 return $default(_that.documentChanges,_that.resourceOperations,_that.failureHandling,_that.normalizesLineEndings,_that.changeAnnotationSupport);case _:
@@ -93366,7 +80895,7 @@ return $default(_that.documentChanges,_that.resourceOperations,_that.failureHand
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? documentChanges,  List<ResourceOperationKind>? resourceOperations,  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? documentChanges,  List<ResourceOperationKind>? resourceOperations,  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  ({bool? groupsOnLabel})? changeAnnotationSupport)  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceEditClientCapabilities():
 return $default(_that.documentChanges,_that.resourceOperations,_that.failureHandling,_that.normalizesLineEndings,_that.changeAnnotationSupport);case _:
@@ -93386,7 +80915,7 @@ return $default(_that.documentChanges,_that.resourceOperations,_that.failureHand
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? documentChanges,  List<ResourceOperationKind>? resourceOperations,  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? documentChanges,  List<ResourceOperationKind>? resourceOperations,  FailureHandlingKind? failureHandling,  bool? normalizesLineEndings,  ({bool? groupsOnLabel})? changeAnnotationSupport)?  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceEditClientCapabilities() when $default != null:
 return $default(_that.documentChanges,_that.resourceOperations,_that.failureHandling,_that.normalizesLineEndings,_that.changeAnnotationSupport);case _:
@@ -93416,7 +80945,7 @@ class _WorkspaceEditClientCapabilities extends WorkspaceEditClientCapabilities {
 
 @override final  FailureHandlingKind? failureHandling;
 @override final  bool? normalizesLineEndings;
-@override final  WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport;
+@override final  ({bool? groupsOnLabel})? changeAnnotationSupport;
 
 /// Create a copy of WorkspaceEditClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -93451,11 +80980,11 @@ abstract mixin class _$WorkspaceEditClientCapabilitiesCopyWith<$Res> implements 
   factory _$WorkspaceEditClientCapabilitiesCopyWith(_WorkspaceEditClientCapabilities value, $Res Function(_WorkspaceEditClientCapabilities) _then) = __$WorkspaceEditClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, WorkspaceEditClientCapabilitiesChangeAnnotationSupport? changeAnnotationSupport
+ bool? documentChanges, List<ResourceOperationKind>? resourceOperations, FailureHandlingKind? failureHandling, bool? normalizesLineEndings, ({bool? groupsOnLabel})? changeAnnotationSupport
 });
 
 
-@override $WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res>? get changeAnnotationSupport;
+
 
 }
 /// @nodoc
@@ -93475,23 +81004,11 @@ as bool?,resourceOperations: freezed == resourceOperations ? _self._resourceOper
 as List<ResourceOperationKind>?,failureHandling: freezed == failureHandling ? _self.failureHandling : failureHandling // ignore: cast_nullable_to_non_nullable
 as FailureHandlingKind?,normalizesLineEndings: freezed == normalizesLineEndings ? _self.normalizesLineEndings : normalizesLineEndings // ignore: cast_nullable_to_non_nullable
 as bool?,changeAnnotationSupport: freezed == changeAnnotationSupport ? _self.changeAnnotationSupport : changeAnnotationSupport // ignore: cast_nullable_to_non_nullable
-as WorkspaceEditClientCapabilitiesChangeAnnotationSupport?,
+as ({bool? groupsOnLabel})?,
   ));
 }
 
-/// Create a copy of WorkspaceEditClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res>? get changeAnnotationSupport {
-    if (_self.changeAnnotationSupport == null) {
-    return null;
-  }
 
-  return $WorkspaceEditClientCapabilitiesChangeAnnotationSupportCopyWith<$Res>(_self.changeAnnotationSupport!, (value) {
-    return _then(_self.copyWith(changeAnnotationSupport: value));
-  });
-}
 }
 
 
@@ -94027,7 +81544,7 @@ as bool?,
 /// @nodoc
 mixin _$WorkspaceSymbolClientCapabilities {
 
- bool? get dynamicRegistration; WorkspaceSymbolClientCapabilitiesSymbolKind? get symbolKind; WorkspaceSymbolClientCapabilitiesTagSupport? get tagSupport; WorkspaceSymbolClientCapabilitiesResolveSupport? get resolveSupport;
+ bool? get dynamicRegistration; ({List<SymbolKind>? valueSet})? get symbolKind; ({List<SymbolTag> valueSet})? get tagSupport; ({List<String> properties})? get resolveSupport;
 /// Create a copy of WorkspaceSymbolClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -94060,11 +81577,11 @@ abstract mixin class $WorkspaceSymbolClientCapabilitiesCopyWith<$Res>  {
   factory $WorkspaceSymbolClientCapabilitiesCopyWith(WorkspaceSymbolClientCapabilities value, $Res Function(WorkspaceSymbolClientCapabilities) _then) = _$WorkspaceSymbolClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind, WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport, WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport
+ bool? dynamicRegistration, ({List<SymbolKind>? valueSet})? symbolKind, ({List<SymbolTag> valueSet})? tagSupport, ({List<String> properties})? resolveSupport
 });
 
 
-$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res>? get symbolKind;$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport;$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport;
+
 
 }
 /// @nodoc
@@ -94081,48 +81598,12 @@ class _$WorkspaceSymbolClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,symbolKind: freezed == symbolKind ? _self.symbolKind : symbolKind // ignore: cast_nullable_to_non_nullable
-as WorkspaceSymbolClientCapabilitiesSymbolKind?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as WorkspaceSymbolClientCapabilitiesTagSupport?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as WorkspaceSymbolClientCapabilitiesResolveSupport?,
+as ({List<SymbolKind>? valueSet})?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as ({List<SymbolTag> valueSet})?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
+as ({List<String> properties})?,
   ));
 }
-/// Create a copy of WorkspaceSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res>? get symbolKind {
-    if (_self.symbolKind == null) {
-    return null;
-  }
 
-  return $WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res>(_self.symbolKind!, (value) {
-    return _then(_self.copyWith(symbolKind: value));
-  });
-}/// Create a copy of WorkspaceSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport {
-    if (_self.tagSupport == null) {
-    return null;
-  }
-
-  return $WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res>(_self.tagSupport!, (value) {
-    return _then(_self.copyWith(tagSupport: value));
-  });
-}/// Create a copy of WorkspaceSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport {
-    if (_self.resolveSupport == null) {
-    return null;
-  }
-
-  return $WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res>(_self.resolveSupport!, (value) {
-    return _then(_self.copyWith(resolveSupport: value));
-  });
-}
 }
 
 
@@ -94204,7 +81685,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind,  WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport,  WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({List<SymbolKind>? valueSet})? symbolKind,  ({List<SymbolTag> valueSet})? tagSupport,  ({List<String> properties})? resolveSupport)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbolClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.symbolKind,_that.tagSupport,_that.resolveSupport);case _:
@@ -94225,7 +81706,7 @@ return $default(_that.dynamicRegistration,_that.symbolKind,_that.tagSupport,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind,  WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport,  WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({List<SymbolKind>? valueSet})? symbolKind,  ({List<SymbolTag> valueSet})? tagSupport,  ({List<String> properties})? resolveSupport)  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbolClientCapabilities():
 return $default(_that.dynamicRegistration,_that.symbolKind,_that.tagSupport,_that.resolveSupport);case _:
@@ -94245,7 +81726,7 @@ return $default(_that.dynamicRegistration,_that.symbolKind,_that.tagSupport,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind,  WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport,  WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  ({List<SymbolKind>? valueSet})? symbolKind,  ({List<SymbolTag> valueSet})? tagSupport,  ({List<String> properties})? resolveSupport)?  $default,) {final _that = this;
 switch (_that) {
 case _WorkspaceSymbolClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.symbolKind,_that.tagSupport,_that.resolveSupport);case _:
@@ -94264,9 +81745,9 @@ class _WorkspaceSymbolClientCapabilities extends WorkspaceSymbolClientCapabiliti
   factory _WorkspaceSymbolClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
-@override final  WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind;
-@override final  WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport;
-@override final  WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport;
+@override final  ({List<SymbolKind>? valueSet})? symbolKind;
+@override final  ({List<SymbolTag> valueSet})? tagSupport;
+@override final  ({List<String> properties})? resolveSupport;
 
 /// Create a copy of WorkspaceSymbolClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -94301,11 +81782,11 @@ abstract mixin class _$WorkspaceSymbolClientCapabilitiesCopyWith<$Res> implement
   factory _$WorkspaceSymbolClientCapabilitiesCopyWith(_WorkspaceSymbolClientCapabilities value, $Res Function(_WorkspaceSymbolClientCapabilities) _then) = __$WorkspaceSymbolClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind, WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport, WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport
+ bool? dynamicRegistration, ({List<SymbolKind>? valueSet})? symbolKind, ({List<SymbolTag> valueSet})? tagSupport, ({List<String> properties})? resolveSupport
 });
 
 
-@override $WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res>? get symbolKind;@override $WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport;@override $WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport;
+
 
 }
 /// @nodoc
@@ -94322,49 +81803,13 @@ class __$WorkspaceSymbolClientCapabilitiesCopyWithImpl<$Res>
   return _then(_WorkspaceSymbolClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,symbolKind: freezed == symbolKind ? _self.symbolKind : symbolKind // ignore: cast_nullable_to_non_nullable
-as WorkspaceSymbolClientCapabilitiesSymbolKind?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as WorkspaceSymbolClientCapabilitiesTagSupport?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as WorkspaceSymbolClientCapabilitiesResolveSupport?,
+as ({List<SymbolKind>? valueSet})?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
+as ({List<SymbolTag> valueSet})?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
+as ({List<String> properties})?,
   ));
 }
 
-/// Create a copy of WorkspaceSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res>? get symbolKind {
-    if (_self.symbolKind == null) {
-    return null;
-  }
 
-  return $WorkspaceSymbolClientCapabilitiesSymbolKindCopyWith<$Res>(_self.symbolKind!, (value) {
-    return _then(_self.copyWith(symbolKind: value));
-  });
-}/// Create a copy of WorkspaceSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport {
-    if (_self.tagSupport == null) {
-    return null;
-  }
-
-  return $WorkspaceSymbolClientCapabilitiesTagSupportCopyWith<$Res>(_self.tagSupport!, (value) {
-    return _then(_self.copyWith(tagSupport: value));
-  });
-}/// Create a copy of WorkspaceSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport {
-    if (_self.resolveSupport == null) {
-    return null;
-  }
-
-  return $WorkspaceSymbolClientCapabilitiesResolveSupportCopyWith<$Res>(_self.resolveSupport!, (value) {
-    return _then(_self.copyWith(resolveSupport: value));
-  });
-}
 }
 
 
@@ -96765,7 +84210,7 @@ as bool?,
 /// @nodoc
 mixin _$CompletionClientCapabilities {
 
- bool? get dynamicRegistration; CompletionClientCapabilitiesCompletionItem? get completionItem; CompletionClientCapabilitiesCompletionItemKind? get completionItemKind; InsertTextMode? get insertTextMode; bool? get contextSupport; CompletionClientCapabilitiesCompletionList? get completionList;
+ bool? get dynamicRegistration; ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? get completionItem; ({List<CompletionItemKind>? valueSet})? get completionItemKind; InsertTextMode? get insertTextMode; bool? get contextSupport; ({List<String>? itemDefaults})? get completionList;
 /// Create a copy of CompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -96798,11 +84243,11 @@ abstract mixin class $CompletionClientCapabilitiesCopyWith<$Res>  {
   factory $CompletionClientCapabilitiesCopyWith(CompletionClientCapabilities value, $Res Function(CompletionClientCapabilities) _then) = _$CompletionClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, CompletionClientCapabilitiesCompletionItem? completionItem, CompletionClientCapabilitiesCompletionItemKind? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, CompletionClientCapabilitiesCompletionList? completionList
+ bool? dynamicRegistration, ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem, ({List<CompletionItemKind>? valueSet})? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, ({List<String>? itemDefaults})? completionList
 });
 
 
-$CompletionClientCapabilitiesCompletionItemCopyWith<$Res>? get completionItem;$CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res>? get completionItemKind;$CompletionClientCapabilitiesCompletionListCopyWith<$Res>? get completionList;
+
 
 }
 /// @nodoc
@@ -96819,50 +84264,14 @@ class _$CompletionClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItem?,completionItemKind: freezed == completionItemKind ? _self.completionItemKind : completionItemKind // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItemKind?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
+as ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})?,completionItemKind: freezed == completionItemKind ? _self.completionItemKind : completionItemKind // ignore: cast_nullable_to_non_nullable
+as ({List<CompletionItemKind>? valueSet})?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
 as InsertTextMode?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
 as bool?,completionList: freezed == completionList ? _self.completionList : completionList // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionList?,
+as ({List<String>? itemDefaults})?,
   ));
 }
-/// Create a copy of CompletionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemCopyWith<$Res>? get completionItem {
-    if (_self.completionItem == null) {
-    return null;
-  }
 
-  return $CompletionClientCapabilitiesCompletionItemCopyWith<$Res>(_self.completionItem!, (value) {
-    return _then(_self.copyWith(completionItem: value));
-  });
-}/// Create a copy of CompletionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res>? get completionItemKind {
-    if (_self.completionItemKind == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res>(_self.completionItemKind!, (value) {
-    return _then(_self.copyWith(completionItemKind: value));
-  });
-}/// Create a copy of CompletionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionListCopyWith<$Res>? get completionList {
-    if (_self.completionList == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionListCopyWith<$Res>(_self.completionList!, (value) {
-    return _then(_self.copyWith(completionList: value));
-  });
-}
 }
 
 
@@ -96944,7 +84353,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  CompletionClientCapabilitiesCompletionItem? completionItem,  CompletionClientCapabilitiesCompletionItemKind? completionItemKind,  InsertTextMode? insertTextMode,  bool? contextSupport,  CompletionClientCapabilitiesCompletionList? completionList)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem,  ({List<CompletionItemKind>? valueSet})? completionItemKind,  InsertTextMode? insertTextMode,  bool? contextSupport,  ({List<String>? itemDefaults})? completionList)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.completionItem,_that.completionItemKind,_that.insertTextMode,_that.contextSupport,_that.completionList);case _:
@@ -96965,7 +84374,7 @@ return $default(_that.dynamicRegistration,_that.completionItem,_that.completionI
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  CompletionClientCapabilitiesCompletionItem? completionItem,  CompletionClientCapabilitiesCompletionItemKind? completionItemKind,  InsertTextMode? insertTextMode,  bool? contextSupport,  CompletionClientCapabilitiesCompletionList? completionList)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem,  ({List<CompletionItemKind>? valueSet})? completionItemKind,  InsertTextMode? insertTextMode,  bool? contextSupport,  ({List<String>? itemDefaults})? completionList)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilities():
 return $default(_that.dynamicRegistration,_that.completionItem,_that.completionItemKind,_that.insertTextMode,_that.contextSupport,_that.completionList);case _:
@@ -96985,7 +84394,7 @@ return $default(_that.dynamicRegistration,_that.completionItem,_that.completionI
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  CompletionClientCapabilitiesCompletionItem? completionItem,  CompletionClientCapabilitiesCompletionItemKind? completionItemKind,  InsertTextMode? insertTextMode,  bool? contextSupport,  CompletionClientCapabilitiesCompletionList? completionList)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem,  ({List<CompletionItemKind>? valueSet})? completionItemKind,  InsertTextMode? insertTextMode,  bool? contextSupport,  ({List<String>? itemDefaults})? completionList)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.completionItem,_that.completionItemKind,_that.insertTextMode,_that.contextSupport,_that.completionList);case _:
@@ -97004,11 +84413,11 @@ class _CompletionClientCapabilities extends CompletionClientCapabilities {
   factory _CompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
-@override final  CompletionClientCapabilitiesCompletionItem? completionItem;
-@override final  CompletionClientCapabilitiesCompletionItemKind? completionItemKind;
+@override final  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem;
+@override final  ({List<CompletionItemKind>? valueSet})? completionItemKind;
 @override final  InsertTextMode? insertTextMode;
 @override final  bool? contextSupport;
-@override final  CompletionClientCapabilitiesCompletionList? completionList;
+@override final  ({List<String>? itemDefaults})? completionList;
 
 /// Create a copy of CompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -97043,11 +84452,11 @@ abstract mixin class _$CompletionClientCapabilitiesCopyWith<$Res> implements $Co
   factory _$CompletionClientCapabilitiesCopyWith(_CompletionClientCapabilities value, $Res Function(_CompletionClientCapabilities) _then) = __$CompletionClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, CompletionClientCapabilitiesCompletionItem? completionItem, CompletionClientCapabilitiesCompletionItemKind? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, CompletionClientCapabilitiesCompletionList? completionList
+ bool? dynamicRegistration, ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem, ({List<CompletionItemKind>? valueSet})? completionItemKind, InsertTextMode? insertTextMode, bool? contextSupport, ({List<String>? itemDefaults})? completionList
 });
 
 
-@override $CompletionClientCapabilitiesCompletionItemCopyWith<$Res>? get completionItem;@override $CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res>? get completionItemKind;@override $CompletionClientCapabilitiesCompletionListCopyWith<$Res>? get completionList;
+
 
 }
 /// @nodoc
@@ -97064,51 +84473,15 @@ class __$CompletionClientCapabilitiesCopyWithImpl<$Res>
   return _then(_CompletionClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,completionItem: freezed == completionItem ? _self.completionItem : completionItem // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItem?,completionItemKind: freezed == completionItemKind ? _self.completionItemKind : completionItemKind // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionItemKind?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
+as ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})?,completionItemKind: freezed == completionItemKind ? _self.completionItemKind : completionItemKind // ignore: cast_nullable_to_non_nullable
+as ({List<CompletionItemKind>? valueSet})?,insertTextMode: freezed == insertTextMode ? _self.insertTextMode : insertTextMode // ignore: cast_nullable_to_non_nullable
 as InsertTextMode?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
 as bool?,completionList: freezed == completionList ? _self.completionList : completionList // ignore: cast_nullable_to_non_nullable
-as CompletionClientCapabilitiesCompletionList?,
+as ({List<String>? itemDefaults})?,
   ));
 }
 
-/// Create a copy of CompletionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemCopyWith<$Res>? get completionItem {
-    if (_self.completionItem == null) {
-    return null;
-  }
 
-  return $CompletionClientCapabilitiesCompletionItemCopyWith<$Res>(_self.completionItem!, (value) {
-    return _then(_self.copyWith(completionItem: value));
-  });
-}/// Create a copy of CompletionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res>? get completionItemKind {
-    if (_self.completionItemKind == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionItemKindCopyWith<$Res>(_self.completionItemKind!, (value) {
-    return _then(_self.copyWith(completionItemKind: value));
-  });
-}/// Create a copy of CompletionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CompletionClientCapabilitiesCompletionListCopyWith<$Res>? get completionList {
-    if (_self.completionList == null) {
-    return null;
-  }
-
-  return $CompletionClientCapabilitiesCompletionListCopyWith<$Res>(_self.completionList!, (value) {
-    return _then(_self.copyWith(completionList: value));
-  });
-}
 }
 
 
@@ -97389,7 +84762,7 @@ as List<MarkupKind>?,
 /// @nodoc
 mixin _$SignatureHelpClientCapabilities {
 
- bool? get dynamicRegistration; SignatureHelpClientCapabilitiesSignatureInformation? get signatureInformation; bool? get contextSupport;
+ bool? get dynamicRegistration; ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? get signatureInformation; bool? get contextSupport;
 /// Create a copy of SignatureHelpClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -97422,11 +84795,11 @@ abstract mixin class $SignatureHelpClientCapabilitiesCopyWith<$Res>  {
   factory $SignatureHelpClientCapabilitiesCopyWith(SignatureHelpClientCapabilities value, $Res Function(SignatureHelpClientCapabilities) _then) = _$SignatureHelpClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, SignatureHelpClientCapabilitiesSignatureInformation? signatureInformation, bool? contextSupport
+ bool? dynamicRegistration, ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation, bool? contextSupport
 });
 
 
-$SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res>? get signatureInformation;
+
 
 }
 /// @nodoc
@@ -97443,23 +84816,11 @@ class _$SignatureHelpClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,signatureInformation: freezed == signatureInformation ? _self.signatureInformation : signatureInformation // ignore: cast_nullable_to_non_nullable
-as SignatureHelpClientCapabilitiesSignatureInformation?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
+as ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
-/// Create a copy of SignatureHelpClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res>? get signatureInformation {
-    if (_self.signatureInformation == null) {
-    return null;
-  }
 
-  return $SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res>(_self.signatureInformation!, (value) {
-    return _then(_self.copyWith(signatureInformation: value));
-  });
-}
 }
 
 
@@ -97541,7 +84902,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  SignatureHelpClientCapabilitiesSignatureInformation? signatureInformation,  bool? contextSupport)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation,  bool? contextSupport)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignatureHelpClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.signatureInformation,_that.contextSupport);case _:
@@ -97562,7 +84923,7 @@ return $default(_that.dynamicRegistration,_that.signatureInformation,_that.conte
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  SignatureHelpClientCapabilitiesSignatureInformation? signatureInformation,  bool? contextSupport)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation,  bool? contextSupport)  $default,) {final _that = this;
 switch (_that) {
 case _SignatureHelpClientCapabilities():
 return $default(_that.dynamicRegistration,_that.signatureInformation,_that.contextSupport);case _:
@@ -97582,7 +84943,7 @@ return $default(_that.dynamicRegistration,_that.signatureInformation,_that.conte
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  SignatureHelpClientCapabilitiesSignatureInformation? signatureInformation,  bool? contextSupport)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation,  bool? contextSupport)?  $default,) {final _that = this;
 switch (_that) {
 case _SignatureHelpClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.signatureInformation,_that.contextSupport);case _:
@@ -97601,7 +84962,7 @@ class _SignatureHelpClientCapabilities extends SignatureHelpClientCapabilities {
   factory _SignatureHelpClientCapabilities.fromJson(Map<String, dynamic> json) => _$SignatureHelpClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
-@override final  SignatureHelpClientCapabilitiesSignatureInformation? signatureInformation;
+@override final  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation;
 @override final  bool? contextSupport;
 
 /// Create a copy of SignatureHelpClientCapabilities
@@ -97637,11 +84998,11 @@ abstract mixin class _$SignatureHelpClientCapabilitiesCopyWith<$Res> implements 
   factory _$SignatureHelpClientCapabilitiesCopyWith(_SignatureHelpClientCapabilities value, $Res Function(_SignatureHelpClientCapabilities) _then) = __$SignatureHelpClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, SignatureHelpClientCapabilitiesSignatureInformation? signatureInformation, bool? contextSupport
+ bool? dynamicRegistration, ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation, bool? contextSupport
 });
 
 
-@override $SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res>? get signatureInformation;
+
 
 }
 /// @nodoc
@@ -97658,24 +85019,12 @@ class __$SignatureHelpClientCapabilitiesCopyWithImpl<$Res>
   return _then(_SignatureHelpClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,signatureInformation: freezed == signatureInformation ? _self.signatureInformation : signatureInformation // ignore: cast_nullable_to_non_nullable
-as SignatureHelpClientCapabilitiesSignatureInformation?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
+as ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})?,contextSupport: freezed == contextSupport ? _self.contextSupport : contextSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
 
-/// Create a copy of SignatureHelpClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res>? get signatureInformation {
-    if (_self.signatureInformation == null) {
-    return null;
-  }
 
-  return $SignatureHelpClientCapabilitiesSignatureInformationCopyWith<$Res>(_self.signatureInformation!, (value) {
-    return _then(_self.copyWith(signatureInformation: value));
-  });
-}
 }
 
 
@@ -99272,7 +86621,7 @@ as bool?,
 /// @nodoc
 mixin _$DocumentSymbolClientCapabilities {
 
- bool? get dynamicRegistration; DocumentSymbolClientCapabilitiesSymbolKind? get symbolKind; bool? get hierarchicalDocumentSymbolSupport; DocumentSymbolClientCapabilitiesTagSupport? get tagSupport; bool? get labelSupport;
+ bool? get dynamicRegistration; ({List<SymbolKind>? valueSet})? get symbolKind; bool? get hierarchicalDocumentSymbolSupport; ({List<SymbolTag> valueSet})? get tagSupport; bool? get labelSupport;
 /// Create a copy of DocumentSymbolClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -99305,11 +86654,11 @@ abstract mixin class $DocumentSymbolClientCapabilitiesCopyWith<$Res>  {
   factory $DocumentSymbolClientCapabilitiesCopyWith(DocumentSymbolClientCapabilities value, $Res Function(DocumentSymbolClientCapabilities) _then) = _$DocumentSymbolClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, DocumentSymbolClientCapabilitiesSymbolKind? symbolKind, bool? hierarchicalDocumentSymbolSupport, DocumentSymbolClientCapabilitiesTagSupport? tagSupport, bool? labelSupport
+ bool? dynamicRegistration, ({List<SymbolKind>? valueSet})? symbolKind, bool? hierarchicalDocumentSymbolSupport, ({List<SymbolTag> valueSet})? tagSupport, bool? labelSupport
 });
 
 
-$DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res>? get symbolKind;$DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport;
+
 
 }
 /// @nodoc
@@ -99326,37 +86675,13 @@ class _$DocumentSymbolClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,symbolKind: freezed == symbolKind ? _self.symbolKind : symbolKind // ignore: cast_nullable_to_non_nullable
-as DocumentSymbolClientCapabilitiesSymbolKind?,hierarchicalDocumentSymbolSupport: freezed == hierarchicalDocumentSymbolSupport ? _self.hierarchicalDocumentSymbolSupport : hierarchicalDocumentSymbolSupport // ignore: cast_nullable_to_non_nullable
+as ({List<SymbolKind>? valueSet})?,hierarchicalDocumentSymbolSupport: freezed == hierarchicalDocumentSymbolSupport ? _self.hierarchicalDocumentSymbolSupport : hierarchicalDocumentSymbolSupport // ignore: cast_nullable_to_non_nullable
 as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as DocumentSymbolClientCapabilitiesTagSupport?,labelSupport: freezed == labelSupport ? _self.labelSupport : labelSupport // ignore: cast_nullable_to_non_nullable
+as ({List<SymbolTag> valueSet})?,labelSupport: freezed == labelSupport ? _self.labelSupport : labelSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
-/// Create a copy of DocumentSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res>? get symbolKind {
-    if (_self.symbolKind == null) {
-    return null;
-  }
 
-  return $DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res>(_self.symbolKind!, (value) {
-    return _then(_self.copyWith(symbolKind: value));
-  });
-}/// Create a copy of DocumentSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport {
-    if (_self.tagSupport == null) {
-    return null;
-  }
-
-  return $DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res>(_self.tagSupport!, (value) {
-    return _then(_self.copyWith(tagSupport: value));
-  });
-}
 }
 
 
@@ -99438,7 +86763,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  DocumentSymbolClientCapabilitiesSymbolKind? symbolKind,  bool? hierarchicalDocumentSymbolSupport,  DocumentSymbolClientCapabilitiesTagSupport? tagSupport,  bool? labelSupport)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({List<SymbolKind>? valueSet})? symbolKind,  bool? hierarchicalDocumentSymbolSupport,  ({List<SymbolTag> valueSet})? tagSupport,  bool? labelSupport)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentSymbolClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.symbolKind,_that.hierarchicalDocumentSymbolSupport,_that.tagSupport,_that.labelSupport);case _:
@@ -99459,7 +86784,7 @@ return $default(_that.dynamicRegistration,_that.symbolKind,_that.hierarchicalDoc
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  DocumentSymbolClientCapabilitiesSymbolKind? symbolKind,  bool? hierarchicalDocumentSymbolSupport,  DocumentSymbolClientCapabilitiesTagSupport? tagSupport,  bool? labelSupport)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({List<SymbolKind>? valueSet})? symbolKind,  bool? hierarchicalDocumentSymbolSupport,  ({List<SymbolTag> valueSet})? tagSupport,  bool? labelSupport)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbolClientCapabilities():
 return $default(_that.dynamicRegistration,_that.symbolKind,_that.hierarchicalDocumentSymbolSupport,_that.tagSupport,_that.labelSupport);case _:
@@ -99479,7 +86804,7 @@ return $default(_that.dynamicRegistration,_that.symbolKind,_that.hierarchicalDoc
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  DocumentSymbolClientCapabilitiesSymbolKind? symbolKind,  bool? hierarchicalDocumentSymbolSupport,  DocumentSymbolClientCapabilitiesTagSupport? tagSupport,  bool? labelSupport)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  ({List<SymbolKind>? valueSet})? symbolKind,  bool? hierarchicalDocumentSymbolSupport,  ({List<SymbolTag> valueSet})? tagSupport,  bool? labelSupport)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbolClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.symbolKind,_that.hierarchicalDocumentSymbolSupport,_that.tagSupport,_that.labelSupport);case _:
@@ -99498,9 +86823,9 @@ class _DocumentSymbolClientCapabilities extends DocumentSymbolClientCapabilities
   factory _DocumentSymbolClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentSymbolClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
-@override final  DocumentSymbolClientCapabilitiesSymbolKind? symbolKind;
+@override final  ({List<SymbolKind>? valueSet})? symbolKind;
 @override final  bool? hierarchicalDocumentSymbolSupport;
-@override final  DocumentSymbolClientCapabilitiesTagSupport? tagSupport;
+@override final  ({List<SymbolTag> valueSet})? tagSupport;
 @override final  bool? labelSupport;
 
 /// Create a copy of DocumentSymbolClientCapabilities
@@ -99536,11 +86861,11 @@ abstract mixin class _$DocumentSymbolClientCapabilitiesCopyWith<$Res> implements
   factory _$DocumentSymbolClientCapabilitiesCopyWith(_DocumentSymbolClientCapabilities value, $Res Function(_DocumentSymbolClientCapabilities) _then) = __$DocumentSymbolClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, DocumentSymbolClientCapabilitiesSymbolKind? symbolKind, bool? hierarchicalDocumentSymbolSupport, DocumentSymbolClientCapabilitiesTagSupport? tagSupport, bool? labelSupport
+ bool? dynamicRegistration, ({List<SymbolKind>? valueSet})? symbolKind, bool? hierarchicalDocumentSymbolSupport, ({List<SymbolTag> valueSet})? tagSupport, bool? labelSupport
 });
 
 
-@override $DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res>? get symbolKind;@override $DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport;
+
 
 }
 /// @nodoc
@@ -99557,45 +86882,21 @@ class __$DocumentSymbolClientCapabilitiesCopyWithImpl<$Res>
   return _then(_DocumentSymbolClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,symbolKind: freezed == symbolKind ? _self.symbolKind : symbolKind // ignore: cast_nullable_to_non_nullable
-as DocumentSymbolClientCapabilitiesSymbolKind?,hierarchicalDocumentSymbolSupport: freezed == hierarchicalDocumentSymbolSupport ? _self.hierarchicalDocumentSymbolSupport : hierarchicalDocumentSymbolSupport // ignore: cast_nullable_to_non_nullable
+as ({List<SymbolKind>? valueSet})?,hierarchicalDocumentSymbolSupport: freezed == hierarchicalDocumentSymbolSupport ? _self.hierarchicalDocumentSymbolSupport : hierarchicalDocumentSymbolSupport // ignore: cast_nullable_to_non_nullable
 as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as DocumentSymbolClientCapabilitiesTagSupport?,labelSupport: freezed == labelSupport ? _self.labelSupport : labelSupport // ignore: cast_nullable_to_non_nullable
+as ({List<SymbolTag> valueSet})?,labelSupport: freezed == labelSupport ? _self.labelSupport : labelSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
 
-/// Create a copy of DocumentSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res>? get symbolKind {
-    if (_self.symbolKind == null) {
-    return null;
-  }
 
-  return $DocumentSymbolClientCapabilitiesSymbolKindCopyWith<$Res>(_self.symbolKind!, (value) {
-    return _then(_self.copyWith(symbolKind: value));
-  });
-}/// Create a copy of DocumentSymbolClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport {
-    if (_self.tagSupport == null) {
-    return null;
-  }
-
-  return $DocumentSymbolClientCapabilitiesTagSupportCopyWith<$Res>(_self.tagSupport!, (value) {
-    return _then(_self.copyWith(tagSupport: value));
-  });
-}
 }
 
 
 /// @nodoc
 mixin _$CodeActionClientCapabilities {
 
- bool? get dynamicRegistration; CodeActionClientCapabilitiesCodeActionLiteralSupport? get codeActionLiteralSupport; bool? get isPreferredSupport; bool? get disabledSupport; bool? get dataSupport; CodeActionClientCapabilitiesResolveSupport? get resolveSupport; bool? get honorsChangeAnnotations;
+ bool? get dynamicRegistration; ({({List<CodeActionKind> valueSet}) codeActionKind})? get codeActionLiteralSupport; bool? get isPreferredSupport; bool? get disabledSupport; bool? get dataSupport; ({List<String> properties})? get resolveSupport; bool? get honorsChangeAnnotations;
 /// Create a copy of CodeActionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -99628,11 +86929,11 @@ abstract mixin class $CodeActionClientCapabilitiesCopyWith<$Res>  {
   factory $CodeActionClientCapabilitiesCopyWith(CodeActionClientCapabilities value, $Res Function(CodeActionClientCapabilities) _then) = _$CodeActionClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, CodeActionClientCapabilitiesCodeActionLiteralSupport? codeActionLiteralSupport, bool? isPreferredSupport, bool? disabledSupport, bool? dataSupport, CodeActionClientCapabilitiesResolveSupport? resolveSupport, bool? honorsChangeAnnotations
+ bool? dynamicRegistration, ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport, bool? isPreferredSupport, bool? disabledSupport, bool? dataSupport, ({List<String> properties})? resolveSupport, bool? honorsChangeAnnotations
 });
 
 
-$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res>? get codeActionLiteralSupport;$CodeActionClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport;
+
 
 }
 /// @nodoc
@@ -99649,39 +86950,15 @@ class _$CodeActionClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionLiteralSupport: freezed == codeActionLiteralSupport ? _self.codeActionLiteralSupport : codeActionLiteralSupport // ignore: cast_nullable_to_non_nullable
-as CodeActionClientCapabilitiesCodeActionLiteralSupport?,isPreferredSupport: freezed == isPreferredSupport ? _self.isPreferredSupport : isPreferredSupport // ignore: cast_nullable_to_non_nullable
+as ({({List<CodeActionKind> valueSet}) codeActionKind})?,isPreferredSupport: freezed == isPreferredSupport ? _self.isPreferredSupport : isPreferredSupport // ignore: cast_nullable_to_non_nullable
 as bool?,disabledSupport: freezed == disabledSupport ? _self.disabledSupport : disabledSupport // ignore: cast_nullable_to_non_nullable
 as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
 as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as CodeActionClientCapabilitiesResolveSupport?,honorsChangeAnnotations: freezed == honorsChangeAnnotations ? _self.honorsChangeAnnotations : honorsChangeAnnotations // ignore: cast_nullable_to_non_nullable
+as ({List<String> properties})?,honorsChangeAnnotations: freezed == honorsChangeAnnotations ? _self.honorsChangeAnnotations : honorsChangeAnnotations // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
-/// Create a copy of CodeActionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res>? get codeActionLiteralSupport {
-    if (_self.codeActionLiteralSupport == null) {
-    return null;
-  }
 
-  return $CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res>(_self.codeActionLiteralSupport!, (value) {
-    return _then(_self.copyWith(codeActionLiteralSupport: value));
-  });
-}/// Create a copy of CodeActionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CodeActionClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport {
-    if (_self.resolveSupport == null) {
-    return null;
-  }
-
-  return $CodeActionClientCapabilitiesResolveSupportCopyWith<$Res>(_self.resolveSupport!, (value) {
-    return _then(_self.copyWith(resolveSupport: value));
-  });
-}
 }
 
 
@@ -99763,7 +87040,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  CodeActionClientCapabilitiesCodeActionLiteralSupport? codeActionLiteralSupport,  bool? isPreferredSupport,  bool? disabledSupport,  bool? dataSupport,  CodeActionClientCapabilitiesResolveSupport? resolveSupport,  bool? honorsChangeAnnotations)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport,  bool? isPreferredSupport,  bool? disabledSupport,  bool? dataSupport,  ({List<String> properties})? resolveSupport,  bool? honorsChangeAnnotations)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeActionClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.codeActionLiteralSupport,_that.isPreferredSupport,_that.disabledSupport,_that.dataSupport,_that.resolveSupport,_that.honorsChangeAnnotations);case _:
@@ -99784,7 +87061,7 @@ return $default(_that.dynamicRegistration,_that.codeActionLiteralSupport,_that.i
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  CodeActionClientCapabilitiesCodeActionLiteralSupport? codeActionLiteralSupport,  bool? isPreferredSupport,  bool? disabledSupport,  bool? dataSupport,  CodeActionClientCapabilitiesResolveSupport? resolveSupport,  bool? honorsChangeAnnotations)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport,  bool? isPreferredSupport,  bool? disabledSupport,  bool? dataSupport,  ({List<String> properties})? resolveSupport,  bool? honorsChangeAnnotations)  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionClientCapabilities():
 return $default(_that.dynamicRegistration,_that.codeActionLiteralSupport,_that.isPreferredSupport,_that.disabledSupport,_that.dataSupport,_that.resolveSupport,_that.honorsChangeAnnotations);case _:
@@ -99804,7 +87081,7 @@ return $default(_that.dynamicRegistration,_that.codeActionLiteralSupport,_that.i
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  CodeActionClientCapabilitiesCodeActionLiteralSupport? codeActionLiteralSupport,  bool? isPreferredSupport,  bool? disabledSupport,  bool? dataSupport,  CodeActionClientCapabilitiesResolveSupport? resolveSupport,  bool? honorsChangeAnnotations)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport,  bool? isPreferredSupport,  bool? disabledSupport,  bool? dataSupport,  ({List<String> properties})? resolveSupport,  bool? honorsChangeAnnotations)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.codeActionLiteralSupport,_that.isPreferredSupport,_that.disabledSupport,_that.dataSupport,_that.resolveSupport,_that.honorsChangeAnnotations);case _:
@@ -99823,11 +87100,11 @@ class _CodeActionClientCapabilities extends CodeActionClientCapabilities {
   factory _CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeActionClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
-@override final  CodeActionClientCapabilitiesCodeActionLiteralSupport? codeActionLiteralSupport;
+@override final  ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport;
 @override final  bool? isPreferredSupport;
 @override final  bool? disabledSupport;
 @override final  bool? dataSupport;
-@override final  CodeActionClientCapabilitiesResolveSupport? resolveSupport;
+@override final  ({List<String> properties})? resolveSupport;
 @override final  bool? honorsChangeAnnotations;
 
 /// Create a copy of CodeActionClientCapabilities
@@ -99863,11 +87140,11 @@ abstract mixin class _$CodeActionClientCapabilitiesCopyWith<$Res> implements $Co
   factory _$CodeActionClientCapabilitiesCopyWith(_CodeActionClientCapabilities value, $Res Function(_CodeActionClientCapabilities) _then) = __$CodeActionClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, CodeActionClientCapabilitiesCodeActionLiteralSupport? codeActionLiteralSupport, bool? isPreferredSupport, bool? disabledSupport, bool? dataSupport, CodeActionClientCapabilitiesResolveSupport? resolveSupport, bool? honorsChangeAnnotations
+ bool? dynamicRegistration, ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport, bool? isPreferredSupport, bool? disabledSupport, bool? dataSupport, ({List<String> properties})? resolveSupport, bool? honorsChangeAnnotations
 });
 
 
-@override $CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res>? get codeActionLiteralSupport;@override $CodeActionClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport;
+
 
 }
 /// @nodoc
@@ -99884,40 +87161,16 @@ class __$CodeActionClientCapabilitiesCopyWithImpl<$Res>
   return _then(_CodeActionClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,codeActionLiteralSupport: freezed == codeActionLiteralSupport ? _self.codeActionLiteralSupport : codeActionLiteralSupport // ignore: cast_nullable_to_non_nullable
-as CodeActionClientCapabilitiesCodeActionLiteralSupport?,isPreferredSupport: freezed == isPreferredSupport ? _self.isPreferredSupport : isPreferredSupport // ignore: cast_nullable_to_non_nullable
+as ({({List<CodeActionKind> valueSet}) codeActionKind})?,isPreferredSupport: freezed == isPreferredSupport ? _self.isPreferredSupport : isPreferredSupport // ignore: cast_nullable_to_non_nullable
 as bool?,disabledSupport: freezed == disabledSupport ? _self.disabledSupport : disabledSupport // ignore: cast_nullable_to_non_nullable
 as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
 as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as CodeActionClientCapabilitiesResolveSupport?,honorsChangeAnnotations: freezed == honorsChangeAnnotations ? _self.honorsChangeAnnotations : honorsChangeAnnotations // ignore: cast_nullable_to_non_nullable
+as ({List<String> properties})?,honorsChangeAnnotations: freezed == honorsChangeAnnotations ? _self.honorsChangeAnnotations : honorsChangeAnnotations // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
 
-/// Create a copy of CodeActionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res>? get codeActionLiteralSupport {
-    if (_self.codeActionLiteralSupport == null) {
-    return null;
-  }
 
-  return $CodeActionClientCapabilitiesCodeActionLiteralSupportCopyWith<$Res>(_self.codeActionLiteralSupport!, (value) {
-    return _then(_self.copyWith(codeActionLiteralSupport: value));
-  });
-}/// Create a copy of CodeActionClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CodeActionClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport {
-    if (_self.resolveSupport == null) {
-    return null;
-  }
-
-  return $CodeActionClientCapabilitiesResolveSupportCopyWith<$Res>(_self.resolveSupport!, (value) {
-    return _then(_self.copyWith(resolveSupport: value));
-  });
-}
 }
 
 
@@ -101780,7 +89033,7 @@ as bool?,
 /// @nodoc
 mixin _$FoldingRangeClientCapabilities {
 
- bool? get dynamicRegistration; int? get rangeLimit; bool? get lineFoldingOnly; FoldingRangeClientCapabilitiesFoldingRangeKind? get foldingRangeKind; FoldingRangeClientCapabilitiesFoldingRange? get foldingRange;
+ bool? get dynamicRegistration; int? get rangeLimit; bool? get lineFoldingOnly; ({List<FoldingRangeKind>? valueSet})? get foldingRangeKind; ({bool? collapsedText})? get foldingRange;
 /// Create a copy of FoldingRangeClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -101813,11 +89066,11 @@ abstract mixin class $FoldingRangeClientCapabilitiesCopyWith<$Res>  {
   factory $FoldingRangeClientCapabilitiesCopyWith(FoldingRangeClientCapabilities value, $Res Function(FoldingRangeClientCapabilities) _then) = _$FoldingRangeClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, int? rangeLimit, bool? lineFoldingOnly, FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind, FoldingRangeClientCapabilitiesFoldingRange? foldingRange
+ bool? dynamicRegistration, int? rangeLimit, bool? lineFoldingOnly, ({List<FoldingRangeKind>? valueSet})? foldingRangeKind, ({bool? collapsedText})? foldingRange
 });
 
 
-$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res>? get foldingRangeKind;$FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res>? get foldingRange;
+
 
 }
 /// @nodoc
@@ -101836,35 +89089,11 @@ dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration 
 as bool?,rangeLimit: freezed == rangeLimit ? _self.rangeLimit : rangeLimit // ignore: cast_nullable_to_non_nullable
 as int?,lineFoldingOnly: freezed == lineFoldingOnly ? _self.lineFoldingOnly : lineFoldingOnly // ignore: cast_nullable_to_non_nullable
 as bool?,foldingRangeKind: freezed == foldingRangeKind ? _self.foldingRangeKind : foldingRangeKind // ignore: cast_nullable_to_non_nullable
-as FoldingRangeClientCapabilitiesFoldingRangeKind?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
-as FoldingRangeClientCapabilitiesFoldingRange?,
+as ({List<FoldingRangeKind>? valueSet})?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
+as ({bool? collapsedText})?,
   ));
 }
-/// Create a copy of FoldingRangeClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res>? get foldingRangeKind {
-    if (_self.foldingRangeKind == null) {
-    return null;
-  }
 
-  return $FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res>(_self.foldingRangeKind!, (value) {
-    return _then(_self.copyWith(foldingRangeKind: value));
-  });
-}/// Create a copy of FoldingRangeClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res>? get foldingRange {
-    if (_self.foldingRange == null) {
-    return null;
-  }
-
-  return $FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res>(_self.foldingRange!, (value) {
-    return _then(_self.copyWith(foldingRange: value));
-  });
-}
 }
 
 
@@ -101946,7 +89175,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  int? rangeLimit,  bool? lineFoldingOnly,  FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind,  FoldingRangeClientCapabilitiesFoldingRange? foldingRange)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  int? rangeLimit,  bool? lineFoldingOnly,  ({List<FoldingRangeKind>? valueSet})? foldingRangeKind,  ({bool? collapsedText})? foldingRange)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FoldingRangeClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.rangeLimit,_that.lineFoldingOnly,_that.foldingRangeKind,_that.foldingRange);case _:
@@ -101967,7 +89196,7 @@ return $default(_that.dynamicRegistration,_that.rangeLimit,_that.lineFoldingOnly
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  int? rangeLimit,  bool? lineFoldingOnly,  FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind,  FoldingRangeClientCapabilitiesFoldingRange? foldingRange)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  int? rangeLimit,  bool? lineFoldingOnly,  ({List<FoldingRangeKind>? valueSet})? foldingRangeKind,  ({bool? collapsedText})? foldingRange)  $default,) {final _that = this;
 switch (_that) {
 case _FoldingRangeClientCapabilities():
 return $default(_that.dynamicRegistration,_that.rangeLimit,_that.lineFoldingOnly,_that.foldingRangeKind,_that.foldingRange);case _:
@@ -101987,7 +89216,7 @@ return $default(_that.dynamicRegistration,_that.rangeLimit,_that.lineFoldingOnly
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  int? rangeLimit,  bool? lineFoldingOnly,  FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind,  FoldingRangeClientCapabilitiesFoldingRange? foldingRange)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  int? rangeLimit,  bool? lineFoldingOnly,  ({List<FoldingRangeKind>? valueSet})? foldingRangeKind,  ({bool? collapsedText})? foldingRange)?  $default,) {final _that = this;
 switch (_that) {
 case _FoldingRangeClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.rangeLimit,_that.lineFoldingOnly,_that.foldingRangeKind,_that.foldingRange);case _:
@@ -102008,8 +89237,8 @@ class _FoldingRangeClientCapabilities extends FoldingRangeClientCapabilities {
 @override final  bool? dynamicRegistration;
 @override final  int? rangeLimit;
 @override final  bool? lineFoldingOnly;
-@override final  FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind;
-@override final  FoldingRangeClientCapabilitiesFoldingRange? foldingRange;
+@override final  ({List<FoldingRangeKind>? valueSet})? foldingRangeKind;
+@override final  ({bool? collapsedText})? foldingRange;
 
 /// Create a copy of FoldingRangeClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -102044,11 +89273,11 @@ abstract mixin class _$FoldingRangeClientCapabilitiesCopyWith<$Res> implements $
   factory _$FoldingRangeClientCapabilitiesCopyWith(_FoldingRangeClientCapabilities value, $Res Function(_FoldingRangeClientCapabilities) _then) = __$FoldingRangeClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, int? rangeLimit, bool? lineFoldingOnly, FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind, FoldingRangeClientCapabilitiesFoldingRange? foldingRange
+ bool? dynamicRegistration, int? rangeLimit, bool? lineFoldingOnly, ({List<FoldingRangeKind>? valueSet})? foldingRangeKind, ({bool? collapsedText})? foldingRange
 });
 
 
-@override $FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res>? get foldingRangeKind;@override $FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res>? get foldingRange;
+
 
 }
 /// @nodoc
@@ -102067,36 +89296,12 @@ dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration 
 as bool?,rangeLimit: freezed == rangeLimit ? _self.rangeLimit : rangeLimit // ignore: cast_nullable_to_non_nullable
 as int?,lineFoldingOnly: freezed == lineFoldingOnly ? _self.lineFoldingOnly : lineFoldingOnly // ignore: cast_nullable_to_non_nullable
 as bool?,foldingRangeKind: freezed == foldingRangeKind ? _self.foldingRangeKind : foldingRangeKind // ignore: cast_nullable_to_non_nullable
-as FoldingRangeClientCapabilitiesFoldingRangeKind?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
-as FoldingRangeClientCapabilitiesFoldingRange?,
+as ({List<FoldingRangeKind>? valueSet})?,foldingRange: freezed == foldingRange ? _self.foldingRange : foldingRange // ignore: cast_nullable_to_non_nullable
+as ({bool? collapsedText})?,
   ));
 }
 
-/// Create a copy of FoldingRangeClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res>? get foldingRangeKind {
-    if (_self.foldingRangeKind == null) {
-    return null;
-  }
 
-  return $FoldingRangeClientCapabilitiesFoldingRangeKindCopyWith<$Res>(_self.foldingRangeKind!, (value) {
-    return _then(_self.copyWith(foldingRangeKind: value));
-  });
-}/// Create a copy of FoldingRangeClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res>? get foldingRange {
-    if (_self.foldingRange == null) {
-    return null;
-  }
-
-  return $FoldingRangeClientCapabilitiesFoldingRangeCopyWith<$Res>(_self.foldingRange!, (value) {
-    return _then(_self.copyWith(foldingRange: value));
-  });
-}
 }
 
 
@@ -102366,7 +89571,7 @@ as bool?,
 /// @nodoc
 mixin _$PublishDiagnosticsClientCapabilities {
 
- bool? get relatedInformation; PublishDiagnosticsClientCapabilitiesTagSupport? get tagSupport; bool? get versionSupport; bool? get codeDescriptionSupport; bool? get dataSupport;
+ bool? get relatedInformation; ({List<DiagnosticTag> valueSet})? get tagSupport; bool? get versionSupport; bool? get codeDescriptionSupport; bool? get dataSupport;
 /// Create a copy of PublishDiagnosticsClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -102399,11 +89604,11 @@ abstract mixin class $PublishDiagnosticsClientCapabilitiesCopyWith<$Res>  {
   factory $PublishDiagnosticsClientCapabilitiesCopyWith(PublishDiagnosticsClientCapabilities value, $Res Function(PublishDiagnosticsClientCapabilities) _then) = _$PublishDiagnosticsClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? relatedInformation, PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport, bool? versionSupport, bool? codeDescriptionSupport, bool? dataSupport
+ bool? relatedInformation, ({List<DiagnosticTag> valueSet})? tagSupport, bool? versionSupport, bool? codeDescriptionSupport, bool? dataSupport
 });
 
 
-$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport;
+
 
 }
 /// @nodoc
@@ -102420,25 +89625,13 @@ class _$PublishDiagnosticsClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
 as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as PublishDiagnosticsClientCapabilitiesTagSupport?,versionSupport: freezed == versionSupport ? _self.versionSupport : versionSupport // ignore: cast_nullable_to_non_nullable
+as ({List<DiagnosticTag> valueSet})?,versionSupport: freezed == versionSupport ? _self.versionSupport : versionSupport // ignore: cast_nullable_to_non_nullable
 as bool?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
 as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
-/// Create a copy of PublishDiagnosticsClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport {
-    if (_self.tagSupport == null) {
-    return null;
-  }
 
-  return $PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res>(_self.tagSupport!, (value) {
-    return _then(_self.copyWith(tagSupport: value));
-  });
-}
 }
 
 
@@ -102520,7 +89713,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? relatedInformation,  PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport,  bool? versionSupport,  bool? codeDescriptionSupport,  bool? dataSupport)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? relatedInformation,  ({List<DiagnosticTag> valueSet})? tagSupport,  bool? versionSupport,  bool? codeDescriptionSupport,  bool? dataSupport)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PublishDiagnosticsClientCapabilities() when $default != null:
 return $default(_that.relatedInformation,_that.tagSupport,_that.versionSupport,_that.codeDescriptionSupport,_that.dataSupport);case _:
@@ -102541,7 +89734,7 @@ return $default(_that.relatedInformation,_that.tagSupport,_that.versionSupport,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? relatedInformation,  PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport,  bool? versionSupport,  bool? codeDescriptionSupport,  bool? dataSupport)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? relatedInformation,  ({List<DiagnosticTag> valueSet})? tagSupport,  bool? versionSupport,  bool? codeDescriptionSupport,  bool? dataSupport)  $default,) {final _that = this;
 switch (_that) {
 case _PublishDiagnosticsClientCapabilities():
 return $default(_that.relatedInformation,_that.tagSupport,_that.versionSupport,_that.codeDescriptionSupport,_that.dataSupport);case _:
@@ -102561,7 +89754,7 @@ return $default(_that.relatedInformation,_that.tagSupport,_that.versionSupport,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? relatedInformation,  PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport,  bool? versionSupport,  bool? codeDescriptionSupport,  bool? dataSupport)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? relatedInformation,  ({List<DiagnosticTag> valueSet})? tagSupport,  bool? versionSupport,  bool? codeDescriptionSupport,  bool? dataSupport)?  $default,) {final _that = this;
 switch (_that) {
 case _PublishDiagnosticsClientCapabilities() when $default != null:
 return $default(_that.relatedInformation,_that.tagSupport,_that.versionSupport,_that.codeDescriptionSupport,_that.dataSupport);case _:
@@ -102580,7 +89773,7 @@ class _PublishDiagnosticsClientCapabilities extends PublishDiagnosticsClientCapa
   factory _PublishDiagnosticsClientCapabilities.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsClientCapabilitiesFromJson(json);
 
 @override final  bool? relatedInformation;
-@override final  PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport;
+@override final  ({List<DiagnosticTag> valueSet})? tagSupport;
 @override final  bool? versionSupport;
 @override final  bool? codeDescriptionSupport;
 @override final  bool? dataSupport;
@@ -102618,11 +89811,11 @@ abstract mixin class _$PublishDiagnosticsClientCapabilitiesCopyWith<$Res> implem
   factory _$PublishDiagnosticsClientCapabilitiesCopyWith(_PublishDiagnosticsClientCapabilities value, $Res Function(_PublishDiagnosticsClientCapabilities) _then) = __$PublishDiagnosticsClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? relatedInformation, PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport, bool? versionSupport, bool? codeDescriptionSupport, bool? dataSupport
+ bool? relatedInformation, ({List<DiagnosticTag> valueSet})? tagSupport, bool? versionSupport, bool? codeDescriptionSupport, bool? dataSupport
 });
 
 
-@override $PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport;
+
 
 }
 /// @nodoc
@@ -102639,26 +89832,14 @@ class __$PublishDiagnosticsClientCapabilitiesCopyWithImpl<$Res>
   return _then(_PublishDiagnosticsClientCapabilities(
 relatedInformation: freezed == relatedInformation ? _self.relatedInformation : relatedInformation // ignore: cast_nullable_to_non_nullable
 as bool?,tagSupport: freezed == tagSupport ? _self.tagSupport : tagSupport // ignore: cast_nullable_to_non_nullable
-as PublishDiagnosticsClientCapabilitiesTagSupport?,versionSupport: freezed == versionSupport ? _self.versionSupport : versionSupport // ignore: cast_nullable_to_non_nullable
+as ({List<DiagnosticTag> valueSet})?,versionSupport: freezed == versionSupport ? _self.versionSupport : versionSupport // ignore: cast_nullable_to_non_nullable
 as bool?,codeDescriptionSupport: freezed == codeDescriptionSupport ? _self.codeDescriptionSupport : codeDescriptionSupport // ignore: cast_nullable_to_non_nullable
 as bool?,dataSupport: freezed == dataSupport ? _self.dataSupport : dataSupport // ignore: cast_nullable_to_non_nullable
 as bool?,
   ));
 }
 
-/// Create a copy of PublishDiagnosticsClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res>? get tagSupport {
-    if (_self.tagSupport == null) {
-    return null;
-  }
 
-  return $PublishDiagnosticsClientCapabilitiesTagSupportCopyWith<$Res>(_self.tagSupport!, (value) {
-    return _then(_self.copyWith(tagSupport: value));
-  });
-}
 }
 
 
@@ -102928,7 +90109,7 @@ as bool?,
 /// @nodoc
 mixin _$SemanticTokensClientCapabilities {
 
- bool? get dynamicRegistration; SemanticTokensClientCapabilitiesRequests get requests; List<String> get tokenTypes; List<String> get tokenModifiers; List<TokenFormat> get formats; bool? get overlappingTokenSupport; bool? get multilineTokenSupport; bool? get serverCancelSupport; bool? get augmentsSyntaxTokens;
+ bool? get dynamicRegistration; ({Object? range, Object? full}) get requests; List<String> get tokenTypes; List<String> get tokenModifiers; List<TokenFormat> get formats; bool? get overlappingTokenSupport; bool? get multilineTokenSupport; bool? get serverCancelSupport; bool? get augmentsSyntaxTokens;
 /// Create a copy of SemanticTokensClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -102961,11 +90142,11 @@ abstract mixin class $SemanticTokensClientCapabilitiesCopyWith<$Res>  {
   factory $SemanticTokensClientCapabilitiesCopyWith(SemanticTokensClientCapabilities value, $Res Function(SemanticTokensClientCapabilities) _then) = _$SemanticTokensClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, SemanticTokensClientCapabilitiesRequests requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
+ bool? dynamicRegistration, ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
 });
 
 
-$SemanticTokensClientCapabilitiesRequestsCopyWith<$Res> get requests;
+
 
 }
 /// @nodoc
@@ -102982,7 +90163,7 @@ class _$SemanticTokensClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
-as SemanticTokensClientCapabilitiesRequests,tokenTypes: null == tokenTypes ? _self.tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
+as ({Object? range, Object? full}),tokenTypes: null == tokenTypes ? _self.tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
 as List<String>,tokenModifiers: null == tokenModifiers ? _self.tokenModifiers : tokenModifiers // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self.formats : formats // ignore: cast_nullable_to_non_nullable
 as List<TokenFormat>,overlappingTokenSupport: freezed == overlappingTokenSupport ? _self.overlappingTokenSupport : overlappingTokenSupport // ignore: cast_nullable_to_non_nullable
@@ -102992,16 +90173,7 @@ as bool?,augmentsSyntaxTokens: freezed == augmentsSyntaxTokens ? _self.augmentsS
 as bool?,
   ));
 }
-/// Create a copy of SemanticTokensClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SemanticTokensClientCapabilitiesRequestsCopyWith<$Res> get requests {
-  
-  return $SemanticTokensClientCapabilitiesRequestsCopyWith<$Res>(_self.requests, (value) {
-    return _then(_self.copyWith(requests: value));
-  });
-}
+
 }
 
 
@@ -103083,7 +90255,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  SemanticTokensClientCapabilitiesRequests requests,  List<String> tokenTypes,  List<String> tokenModifiers,  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({Object? range, Object? full}) requests,  List<String> tokenTypes,  List<String> tokenModifiers,  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SemanticTokensClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.tokenModifiers,_that.formats,_that.overlappingTokenSupport,_that.multilineTokenSupport,_that.serverCancelSupport,_that.augmentsSyntaxTokens);case _:
@@ -103104,7 +90276,7 @@ return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  SemanticTokensClientCapabilitiesRequests requests,  List<String> tokenTypes,  List<String> tokenModifiers,  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({Object? range, Object? full}) requests,  List<String> tokenTypes,  List<String> tokenModifiers,  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)  $default,) {final _that = this;
 switch (_that) {
 case _SemanticTokensClientCapabilities():
 return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.tokenModifiers,_that.formats,_that.overlappingTokenSupport,_that.multilineTokenSupport,_that.serverCancelSupport,_that.augmentsSyntaxTokens);case _:
@@ -103124,7 +90296,7 @@ return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  SemanticTokensClientCapabilitiesRequests requests,  List<String> tokenTypes,  List<String> tokenModifiers,  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  ({Object? range, Object? full}) requests,  List<String> tokenTypes,  List<String> tokenModifiers,  List<TokenFormat> formats,  bool? overlappingTokenSupport,  bool? multilineTokenSupport,  bool? serverCancelSupport,  bool? augmentsSyntaxTokens)?  $default,) {final _that = this;
 switch (_that) {
 case _SemanticTokensClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.tokenModifiers,_that.formats,_that.overlappingTokenSupport,_that.multilineTokenSupport,_that.serverCancelSupport,_that.augmentsSyntaxTokens);case _:
@@ -103143,7 +90315,7 @@ class _SemanticTokensClientCapabilities extends SemanticTokensClientCapabilities
   factory _SemanticTokensClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
-@override final  SemanticTokensClientCapabilitiesRequests requests;
+@override final  ({Object? range, Object? full}) requests;
  final  List<String> _tokenTypes;
 @override List<String> get tokenTypes {
   if (_tokenTypes is EqualUnmodifiableListView) return _tokenTypes;
@@ -103203,11 +90375,11 @@ abstract mixin class _$SemanticTokensClientCapabilitiesCopyWith<$Res> implements
   factory _$SemanticTokensClientCapabilitiesCopyWith(_SemanticTokensClientCapabilities value, $Res Function(_SemanticTokensClientCapabilities) _then) = __$SemanticTokensClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, SemanticTokensClientCapabilitiesRequests requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
+ bool? dynamicRegistration, ({Object? range, Object? full}) requests, List<String> tokenTypes, List<String> tokenModifiers, List<TokenFormat> formats, bool? overlappingTokenSupport, bool? multilineTokenSupport, bool? serverCancelSupport, bool? augmentsSyntaxTokens
 });
 
 
-@override $SemanticTokensClientCapabilitiesRequestsCopyWith<$Res> get requests;
+
 
 }
 /// @nodoc
@@ -103224,7 +90396,7 @@ class __$SemanticTokensClientCapabilitiesCopyWithImpl<$Res>
   return _then(_SemanticTokensClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
-as SemanticTokensClientCapabilitiesRequests,tokenTypes: null == tokenTypes ? _self._tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
+as ({Object? range, Object? full}),tokenTypes: null == tokenTypes ? _self._tokenTypes : tokenTypes // ignore: cast_nullable_to_non_nullable
 as List<String>,tokenModifiers: null == tokenModifiers ? _self._tokenModifiers : tokenModifiers // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self._formats : formats // ignore: cast_nullable_to_non_nullable
 as List<TokenFormat>,overlappingTokenSupport: freezed == overlappingTokenSupport ? _self.overlappingTokenSupport : overlappingTokenSupport // ignore: cast_nullable_to_non_nullable
@@ -103235,16 +90407,7 @@ as bool?,
   ));
 }
 
-/// Create a copy of SemanticTokensClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SemanticTokensClientCapabilitiesRequestsCopyWith<$Res> get requests {
-  
-  return $SemanticTokensClientCapabilitiesRequestsCopyWith<$Res>(_self.requests, (value) {
-    return _then(_self.copyWith(requests: value));
-  });
-}
+
 }
 
 
@@ -104303,7 +91466,7 @@ as bool?,
 /// @nodoc
 mixin _$InlayHintClientCapabilities {
 
- bool? get dynamicRegistration; InlayHintClientCapabilitiesResolveSupport? get resolveSupport;
+ bool? get dynamicRegistration; ({List<String> properties})? get resolveSupport;
 /// Create a copy of InlayHintClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -104336,11 +91499,11 @@ abstract mixin class $InlayHintClientCapabilitiesCopyWith<$Res>  {
   factory $InlayHintClientCapabilitiesCopyWith(InlayHintClientCapabilities value, $Res Function(InlayHintClientCapabilities) _then) = _$InlayHintClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- bool? dynamicRegistration, InlayHintClientCapabilitiesResolveSupport? resolveSupport
+ bool? dynamicRegistration, ({List<String> properties})? resolveSupport
 });
 
 
-$InlayHintClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport;
+
 
 }
 /// @nodoc
@@ -104357,22 +91520,10 @@ class _$InlayHintClientCapabilitiesCopyWithImpl<$Res>
   return _then(_self.copyWith(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as InlayHintClientCapabilitiesResolveSupport?,
+as ({List<String> properties})?,
   ));
 }
-/// Create a copy of InlayHintClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$InlayHintClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport {
-    if (_self.resolveSupport == null) {
-    return null;
-  }
 
-  return $InlayHintClientCapabilitiesResolveSupportCopyWith<$Res>(_self.resolveSupport!, (value) {
-    return _then(_self.copyWith(resolveSupport: value));
-  });
-}
 }
 
 
@@ -104454,7 +91605,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  InlayHintClientCapabilitiesResolveSupport? resolveSupport)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({List<String> properties})? resolveSupport)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InlayHintClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.resolveSupport);case _:
@@ -104475,7 +91626,7 @@ return $default(_that.dynamicRegistration,_that.resolveSupport);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  InlayHintClientCapabilitiesResolveSupport? resolveSupport)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? dynamicRegistration,  ({List<String> properties})? resolveSupport)  $default,) {final _that = this;
 switch (_that) {
 case _InlayHintClientCapabilities():
 return $default(_that.dynamicRegistration,_that.resolveSupport);case _:
@@ -104495,7 +91646,7 @@ return $default(_that.dynamicRegistration,_that.resolveSupport);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  InlayHintClientCapabilitiesResolveSupport? resolveSupport)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? dynamicRegistration,  ({List<String> properties})? resolveSupport)?  $default,) {final _that = this;
 switch (_that) {
 case _InlayHintClientCapabilities() when $default != null:
 return $default(_that.dynamicRegistration,_that.resolveSupport);case _:
@@ -104514,7 +91665,7 @@ class _InlayHintClientCapabilities extends InlayHintClientCapabilities {
   factory _InlayHintClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlayHintClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
-@override final  InlayHintClientCapabilitiesResolveSupport? resolveSupport;
+@override final  ({List<String> properties})? resolveSupport;
 
 /// Create a copy of InlayHintClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -104549,11 +91700,11 @@ abstract mixin class _$InlayHintClientCapabilitiesCopyWith<$Res> implements $Inl
   factory _$InlayHintClientCapabilitiesCopyWith(_InlayHintClientCapabilities value, $Res Function(_InlayHintClientCapabilities) _then) = __$InlayHintClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- bool? dynamicRegistration, InlayHintClientCapabilitiesResolveSupport? resolveSupport
+ bool? dynamicRegistration, ({List<String> properties})? resolveSupport
 });
 
 
-@override $InlayHintClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport;
+
 
 }
 /// @nodoc
@@ -104570,23 +91721,11 @@ class __$InlayHintClientCapabilitiesCopyWithImpl<$Res>
   return _then(_InlayHintClientCapabilities(
 dynamicRegistration: freezed == dynamicRegistration ? _self.dynamicRegistration : dynamicRegistration // ignore: cast_nullable_to_non_nullable
 as bool?,resolveSupport: freezed == resolveSupport ? _self.resolveSupport : resolveSupport // ignore: cast_nullable_to_non_nullable
-as InlayHintClientCapabilitiesResolveSupport?,
+as ({List<String> properties})?,
   ));
 }
 
-/// Create a copy of InlayHintClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$InlayHintClientCapabilitiesResolveSupportCopyWith<$Res>? get resolveSupport {
-    if (_self.resolveSupport == null) {
-    return null;
-  }
 
-  return $InlayHintClientCapabilitiesResolveSupportCopyWith<$Res>(_self.resolveSupport!, (value) {
-    return _then(_self.copyWith(resolveSupport: value));
-  });
-}
 }
 
 
@@ -105388,7 +92527,7 @@ as bool?,
 /// @nodoc
 mixin _$ShowMessageRequestClientCapabilities {
 
- ShowMessageRequestClientCapabilitiesMessageActionItem? get messageActionItem;
+ ({bool? additionalPropertiesSupport})? get messageActionItem;
 /// Create a copy of ShowMessageRequestClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -105421,11 +92560,11 @@ abstract mixin class $ShowMessageRequestClientCapabilitiesCopyWith<$Res>  {
   factory $ShowMessageRequestClientCapabilitiesCopyWith(ShowMessageRequestClientCapabilities value, $Res Function(ShowMessageRequestClientCapabilities) _then) = _$ShowMessageRequestClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem
+ ({bool? additionalPropertiesSupport})? messageActionItem
 });
 
 
-$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res>? get messageActionItem;
+
 
 }
 /// @nodoc
@@ -105441,22 +92580,10 @@ class _$ShowMessageRequestClientCapabilitiesCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? messageActionItem = freezed,}) {
   return _then(_self.copyWith(
 messageActionItem: freezed == messageActionItem ? _self.messageActionItem : messageActionItem // ignore: cast_nullable_to_non_nullable
-as ShowMessageRequestClientCapabilitiesMessageActionItem?,
+as ({bool? additionalPropertiesSupport})?,
   ));
 }
-/// Create a copy of ShowMessageRequestClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res>? get messageActionItem {
-    if (_self.messageActionItem == null) {
-    return null;
-  }
 
-  return $ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res>(_self.messageActionItem!, (value) {
-    return _then(_self.copyWith(messageActionItem: value));
-  });
-}
 }
 
 
@@ -105538,7 +92665,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ({bool? additionalPropertiesSupport})? messageActionItem)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ShowMessageRequestClientCapabilities() when $default != null:
 return $default(_that.messageActionItem);case _:
@@ -105559,7 +92686,7 @@ return $default(_that.messageActionItem);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ({bool? additionalPropertiesSupport})? messageActionItem)  $default,) {final _that = this;
 switch (_that) {
 case _ShowMessageRequestClientCapabilities():
 return $default(_that.messageActionItem);case _:
@@ -105579,7 +92706,7 @@ return $default(_that.messageActionItem);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ({bool? additionalPropertiesSupport})? messageActionItem)?  $default,) {final _that = this;
 switch (_that) {
 case _ShowMessageRequestClientCapabilities() when $default != null:
 return $default(_that.messageActionItem);case _:
@@ -105597,7 +92724,7 @@ class _ShowMessageRequestClientCapabilities extends ShowMessageRequestClientCapa
   const _ShowMessageRequestClientCapabilities({this.messageActionItem}): super._();
   factory _ShowMessageRequestClientCapabilities.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestClientCapabilitiesFromJson(json);
 
-@override final  ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem;
+@override final  ({bool? additionalPropertiesSupport})? messageActionItem;
 
 /// Create a copy of ShowMessageRequestClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -105632,11 +92759,11 @@ abstract mixin class _$ShowMessageRequestClientCapabilitiesCopyWith<$Res> implem
   factory _$ShowMessageRequestClientCapabilitiesCopyWith(_ShowMessageRequestClientCapabilities value, $Res Function(_ShowMessageRequestClientCapabilities) _then) = __$ShowMessageRequestClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem
+ ({bool? additionalPropertiesSupport})? messageActionItem
 });
 
 
-@override $ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res>? get messageActionItem;
+
 
 }
 /// @nodoc
@@ -105652,23 +92779,11 @@ class __$ShowMessageRequestClientCapabilitiesCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? messageActionItem = freezed,}) {
   return _then(_ShowMessageRequestClientCapabilities(
 messageActionItem: freezed == messageActionItem ? _self.messageActionItem : messageActionItem // ignore: cast_nullable_to_non_nullable
-as ShowMessageRequestClientCapabilitiesMessageActionItem?,
+as ({bool? additionalPropertiesSupport})?,
   ));
 }
 
-/// Create a copy of ShowMessageRequestClientCapabilities
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res>? get messageActionItem {
-    if (_self.messageActionItem == null) {
-    return null;
-  }
 
-  return $ShowMessageRequestClientCapabilitiesMessageActionItemCopyWith<$Res>(_self.messageActionItem!, (value) {
-    return _then(_self.copyWith(messageActionItem: value));
-  });
-}
 }
 
 

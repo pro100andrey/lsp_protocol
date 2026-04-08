@@ -1327,6 +1327,379 @@ $RelatedUnchangedDocumentDiagnosticReportCopyWith<$Res> get value {
 }
 
 /// @nodoc
+mixin _$PrepareRenameResult {
+
+ Object get value;
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrepareRenameResult&&const DeepCollectionEquality().equals(other.value, value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(value));
+
+@override
+String toString() {
+  return 'PrepareRenameResult(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+class $PrepareRenameResultCopyWith<$Res>  {
+$PrepareRenameResultCopyWith(PrepareRenameResult _, $Res Function(PrepareRenameResult) __);
+}
+
+
+/// Adds pattern-matching-related methods to [PrepareRenameResult].
+extension PrepareRenameResultPatterns on PrepareRenameResult {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( PrepareRenameResult$Range value)?  range,TResult Function( PrepareRenameResult$RangePlaceholder value)?  rangePlaceholder,TResult Function( PrepareRenameResult$DefaultBehavior value)?  defaultBehavior,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case PrepareRenameResult$Range() when range != null:
+return range(_that);case PrepareRenameResult$RangePlaceholder() when rangePlaceholder != null:
+return rangePlaceholder(_that);case PrepareRenameResult$DefaultBehavior() when defaultBehavior != null:
+return defaultBehavior(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( PrepareRenameResult$Range value)  range,required TResult Function( PrepareRenameResult$RangePlaceholder value)  rangePlaceholder,required TResult Function( PrepareRenameResult$DefaultBehavior value)  defaultBehavior,}){
+final _that = this;
+switch (_that) {
+case PrepareRenameResult$Range():
+return range(_that);case PrepareRenameResult$RangePlaceholder():
+return rangePlaceholder(_that);case PrepareRenameResult$DefaultBehavior():
+return defaultBehavior(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( PrepareRenameResult$Range value)?  range,TResult? Function( PrepareRenameResult$RangePlaceholder value)?  rangePlaceholder,TResult? Function( PrepareRenameResult$DefaultBehavior value)?  defaultBehavior,}){
+final _that = this;
+switch (_that) {
+case PrepareRenameResult$Range() when range != null:
+return range(_that);case PrepareRenameResult$RangePlaceholder() when rangePlaceholder != null:
+return rangePlaceholder(_that);case PrepareRenameResult$DefaultBehavior() when defaultBehavior != null:
+return defaultBehavior(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( Range value)?  range,TResult Function( ({Range range, String placeholder}) value)?  rangePlaceholder,TResult Function( ({bool defaultBehavior}) value)?  defaultBehavior,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case PrepareRenameResult$Range() when range != null:
+return range(_that.value);case PrepareRenameResult$RangePlaceholder() when rangePlaceholder != null:
+return rangePlaceholder(_that.value);case PrepareRenameResult$DefaultBehavior() when defaultBehavior != null:
+return defaultBehavior(_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( Range value)  range,required TResult Function( ({Range range, String placeholder}) value)  rangePlaceholder,required TResult Function( ({bool defaultBehavior}) value)  defaultBehavior,}) {final _that = this;
+switch (_that) {
+case PrepareRenameResult$Range():
+return range(_that.value);case PrepareRenameResult$RangePlaceholder():
+return rangePlaceholder(_that.value);case PrepareRenameResult$DefaultBehavior():
+return defaultBehavior(_that.value);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( Range value)?  range,TResult? Function( ({Range range, String placeholder}) value)?  rangePlaceholder,TResult? Function( ({bool defaultBehavior}) value)?  defaultBehavior,}) {final _that = this;
+switch (_that) {
+case PrepareRenameResult$Range() when range != null:
+return range(_that.value);case PrepareRenameResult$RangePlaceholder() when rangePlaceholder != null:
+return rangePlaceholder(_that.value);case PrepareRenameResult$DefaultBehavior() when defaultBehavior != null:
+return defaultBehavior(_that.value);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class PrepareRenameResult$Range extends PrepareRenameResult {
+  const PrepareRenameResult$Range({required this.value}): super._();
+  
+
+@override final  Range value;
+
+/// Create a copy of PrepareRenameResult
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PrepareRenameResult$RangeCopyWith<PrepareRenameResult$Range> get copyWith => _$PrepareRenameResult$RangeCopyWithImpl<PrepareRenameResult$Range>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrepareRenameResult$Range&&(identical(other.value, value) || other.value == value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString() {
+  return 'PrepareRenameResult.range(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PrepareRenameResult$RangeCopyWith<$Res> implements $PrepareRenameResultCopyWith<$Res> {
+  factory $PrepareRenameResult$RangeCopyWith(PrepareRenameResult$Range value, $Res Function(PrepareRenameResult$Range) _then) = _$PrepareRenameResult$RangeCopyWithImpl;
+@useResult
+$Res call({
+ Range value
+});
+
+
+$RangeCopyWith<$Res> get value;
+
+}
+/// @nodoc
+class _$PrepareRenameResult$RangeCopyWithImpl<$Res>
+    implements $PrepareRenameResult$RangeCopyWith<$Res> {
+  _$PrepareRenameResult$RangeCopyWithImpl(this._self, this._then);
+
+  final PrepareRenameResult$Range _self;
+  final $Res Function(PrepareRenameResult$Range) _then;
+
+/// Create a copy of PrepareRenameResult
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+  return _then(PrepareRenameResult$Range(
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as Range,
+  ));
+}
+
+/// Create a copy of PrepareRenameResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RangeCopyWith<$Res> get value {
+  
+  return $RangeCopyWith<$Res>(_self.value, (value) {
+    return _then(_self.copyWith(value: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class PrepareRenameResult$RangePlaceholder extends PrepareRenameResult {
+  const PrepareRenameResult$RangePlaceholder({required this.value}): super._();
+  
+
+@override final  ({Range range, String placeholder}) value;
+
+/// Create a copy of PrepareRenameResult
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PrepareRenameResult$RangePlaceholderCopyWith<PrepareRenameResult$RangePlaceholder> get copyWith => _$PrepareRenameResult$RangePlaceholderCopyWithImpl<PrepareRenameResult$RangePlaceholder>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrepareRenameResult$RangePlaceholder&&(identical(other.value, value) || other.value == value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString() {
+  return 'PrepareRenameResult.rangePlaceholder(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PrepareRenameResult$RangePlaceholderCopyWith<$Res> implements $PrepareRenameResultCopyWith<$Res> {
+  factory $PrepareRenameResult$RangePlaceholderCopyWith(PrepareRenameResult$RangePlaceholder value, $Res Function(PrepareRenameResult$RangePlaceholder) _then) = _$PrepareRenameResult$RangePlaceholderCopyWithImpl;
+@useResult
+$Res call({
+ ({Range range, String placeholder}) value
+});
+
+
+
+
+}
+/// @nodoc
+class _$PrepareRenameResult$RangePlaceholderCopyWithImpl<$Res>
+    implements $PrepareRenameResult$RangePlaceholderCopyWith<$Res> {
+  _$PrepareRenameResult$RangePlaceholderCopyWithImpl(this._self, this._then);
+
+  final PrepareRenameResult$RangePlaceholder _self;
+  final $Res Function(PrepareRenameResult$RangePlaceholder) _then;
+
+/// Create a copy of PrepareRenameResult
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+  return _then(PrepareRenameResult$RangePlaceholder(
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as ({Range range, String placeholder}),
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class PrepareRenameResult$DefaultBehavior extends PrepareRenameResult {
+  const PrepareRenameResult$DefaultBehavior({required this.value}): super._();
+  
+
+@override final  ({bool defaultBehavior}) value;
+
+/// Create a copy of PrepareRenameResult
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PrepareRenameResult$DefaultBehaviorCopyWith<PrepareRenameResult$DefaultBehavior> get copyWith => _$PrepareRenameResult$DefaultBehaviorCopyWithImpl<PrepareRenameResult$DefaultBehavior>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrepareRenameResult$DefaultBehavior&&(identical(other.value, value) || other.value == value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString() {
+  return 'PrepareRenameResult.defaultBehavior(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PrepareRenameResult$DefaultBehaviorCopyWith<$Res> implements $PrepareRenameResultCopyWith<$Res> {
+  factory $PrepareRenameResult$DefaultBehaviorCopyWith(PrepareRenameResult$DefaultBehavior value, $Res Function(PrepareRenameResult$DefaultBehavior) _then) = _$PrepareRenameResult$DefaultBehaviorCopyWithImpl;
+@useResult
+$Res call({
+ ({bool defaultBehavior}) value
+});
+
+
+
+
+}
+/// @nodoc
+class _$PrepareRenameResult$DefaultBehaviorCopyWithImpl<$Res>
+    implements $PrepareRenameResult$DefaultBehaviorCopyWith<$Res> {
+  _$PrepareRenameResult$DefaultBehaviorCopyWithImpl(this._self, this._then);
+
+  final PrepareRenameResult$DefaultBehavior _self;
+  final $Res Function(PrepareRenameResult$DefaultBehavior) _then;
+
+/// Create a copy of PrepareRenameResult
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+  return _then(PrepareRenameResult$DefaultBehavior(
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as ({bool defaultBehavior}),
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$WorkspaceDocumentDiagnosticReport {
 
  Object get value;
@@ -1634,6 +2007,590 @@ $WorkspaceUnchangedDocumentDiagnosticReportCopyWith<$Res> get value {
     return _then(_self.copyWith(value: value));
   });
 }
+}
+
+/// @nodoc
+mixin _$TextDocumentContentChangeEvent {
+
+ Record get value;
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentChangeEvent&&(identical(other.value, value) || other.value == value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString() {
+  return 'TextDocumentContentChangeEvent(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+class $TextDocumentContentChangeEventCopyWith<$Res>  {
+$TextDocumentContentChangeEventCopyWith(TextDocumentContentChangeEvent _, $Res Function(TextDocumentContentChangeEvent) __);
+}
+
+
+/// Adds pattern-matching-related methods to [TextDocumentContentChangeEvent].
+extension TextDocumentContentChangeEventPatterns on TextDocumentContentChangeEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( TextDocumentContentChangeEvent$RangeRangeLengthText value)?  rangeRangeLengthText,TResult Function( TextDocumentContentChangeEvent$Text value)?  text,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case TextDocumentContentChangeEvent$RangeRangeLengthText() when rangeRangeLengthText != null:
+return rangeRangeLengthText(_that);case TextDocumentContentChangeEvent$Text() when text != null:
+return text(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( TextDocumentContentChangeEvent$RangeRangeLengthText value)  rangeRangeLengthText,required TResult Function( TextDocumentContentChangeEvent$Text value)  text,}){
+final _that = this;
+switch (_that) {
+case TextDocumentContentChangeEvent$RangeRangeLengthText():
+return rangeRangeLengthText(_that);case TextDocumentContentChangeEvent$Text():
+return text(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( TextDocumentContentChangeEvent$RangeRangeLengthText value)?  rangeRangeLengthText,TResult? Function( TextDocumentContentChangeEvent$Text value)?  text,}){
+final _that = this;
+switch (_that) {
+case TextDocumentContentChangeEvent$RangeRangeLengthText() when rangeRangeLengthText != null:
+return rangeRangeLengthText(_that);case TextDocumentContentChangeEvent$Text() when text != null:
+return text(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( ({Range range, int? rangeLength, String text}) value)?  rangeRangeLengthText,TResult Function( ({String text}) value)?  text,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case TextDocumentContentChangeEvent$RangeRangeLengthText() when rangeRangeLengthText != null:
+return rangeRangeLengthText(_that.value);case TextDocumentContentChangeEvent$Text() when text != null:
+return text(_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( ({Range range, int? rangeLength, String text}) value)  rangeRangeLengthText,required TResult Function( ({String text}) value)  text,}) {final _that = this;
+switch (_that) {
+case TextDocumentContentChangeEvent$RangeRangeLengthText():
+return rangeRangeLengthText(_that.value);case TextDocumentContentChangeEvent$Text():
+return text(_that.value);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( ({Range range, int? rangeLength, String text}) value)?  rangeRangeLengthText,TResult? Function( ({String text}) value)?  text,}) {final _that = this;
+switch (_that) {
+case TextDocumentContentChangeEvent$RangeRangeLengthText() when rangeRangeLengthText != null:
+return rangeRangeLengthText(_that.value);case TextDocumentContentChangeEvent$Text() when text != null:
+return text(_that.value);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class TextDocumentContentChangeEvent$RangeRangeLengthText extends TextDocumentContentChangeEvent {
+  const TextDocumentContentChangeEvent$RangeRangeLengthText({required this.value}): super._();
+  
+
+@override final  ({Range range, int? rangeLength, String text}) value;
+
+/// Create a copy of TextDocumentContentChangeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentChangeEvent$RangeRangeLengthTextCopyWith<TextDocumentContentChangeEvent$RangeRangeLengthText> get copyWith => _$TextDocumentContentChangeEvent$RangeRangeLengthTextCopyWithImpl<TextDocumentContentChangeEvent$RangeRangeLengthText>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentChangeEvent$RangeRangeLengthText&&(identical(other.value, value) || other.value == value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString() {
+  return 'TextDocumentContentChangeEvent.rangeRangeLengthText(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentChangeEvent$RangeRangeLengthTextCopyWith<$Res> implements $TextDocumentContentChangeEventCopyWith<$Res> {
+  factory $TextDocumentContentChangeEvent$RangeRangeLengthTextCopyWith(TextDocumentContentChangeEvent$RangeRangeLengthText value, $Res Function(TextDocumentContentChangeEvent$RangeRangeLengthText) _then) = _$TextDocumentContentChangeEvent$RangeRangeLengthTextCopyWithImpl;
+@useResult
+$Res call({
+ ({Range range, int? rangeLength, String text}) value
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentContentChangeEvent$RangeRangeLengthTextCopyWithImpl<$Res>
+    implements $TextDocumentContentChangeEvent$RangeRangeLengthTextCopyWith<$Res> {
+  _$TextDocumentContentChangeEvent$RangeRangeLengthTextCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentChangeEvent$RangeRangeLengthText _self;
+  final $Res Function(TextDocumentContentChangeEvent$RangeRangeLengthText) _then;
+
+/// Create a copy of TextDocumentContentChangeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+  return _then(TextDocumentContentChangeEvent$RangeRangeLengthText(
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as ({Range range, int? rangeLength, String text}),
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class TextDocumentContentChangeEvent$Text extends TextDocumentContentChangeEvent {
+  const TextDocumentContentChangeEvent$Text({required this.value}): super._();
+  
+
+@override final  ({String text}) value;
+
+/// Create a copy of TextDocumentContentChangeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TextDocumentContentChangeEvent$TextCopyWith<TextDocumentContentChangeEvent$Text> get copyWith => _$TextDocumentContentChangeEvent$TextCopyWithImpl<TextDocumentContentChangeEvent$Text>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextDocumentContentChangeEvent$Text&&(identical(other.value, value) || other.value == value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString() {
+  return 'TextDocumentContentChangeEvent.text(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TextDocumentContentChangeEvent$TextCopyWith<$Res> implements $TextDocumentContentChangeEventCopyWith<$Res> {
+  factory $TextDocumentContentChangeEvent$TextCopyWith(TextDocumentContentChangeEvent$Text value, $Res Function(TextDocumentContentChangeEvent$Text) _then) = _$TextDocumentContentChangeEvent$TextCopyWithImpl;
+@useResult
+$Res call({
+ ({String text}) value
+});
+
+
+
+
+}
+/// @nodoc
+class _$TextDocumentContentChangeEvent$TextCopyWithImpl<$Res>
+    implements $TextDocumentContentChangeEvent$TextCopyWith<$Res> {
+  _$TextDocumentContentChangeEvent$TextCopyWithImpl(this._self, this._then);
+
+  final TextDocumentContentChangeEvent$Text _self;
+  final $Res Function(TextDocumentContentChangeEvent$Text) _then;
+
+/// Create a copy of TextDocumentContentChangeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+  return _then(TextDocumentContentChangeEvent$Text(
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as ({String text}),
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$MarkedString {
+
+ Object get value;
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MarkedString&&const DeepCollectionEquality().equals(other.value, value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(value));
+
+@override
+String toString() {
+  return 'MarkedString(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+class $MarkedStringCopyWith<$Res>  {
+$MarkedStringCopyWith(MarkedString _, $Res Function(MarkedString) __);
+}
+
+
+/// Adds pattern-matching-related methods to [MarkedString].
+extension MarkedStringPatterns on MarkedString {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( MarkedString$LanguageValue value)?  languageValue,TResult Function( MarkedString$String value)?  string,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case MarkedString$LanguageValue() when languageValue != null:
+return languageValue(_that);case MarkedString$String() when string != null:
+return string(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( MarkedString$LanguageValue value)  languageValue,required TResult Function( MarkedString$String value)  string,}){
+final _that = this;
+switch (_that) {
+case MarkedString$LanguageValue():
+return languageValue(_that);case MarkedString$String():
+return string(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( MarkedString$LanguageValue value)?  languageValue,TResult? Function( MarkedString$String value)?  string,}){
+final _that = this;
+switch (_that) {
+case MarkedString$LanguageValue() when languageValue != null:
+return languageValue(_that);case MarkedString$String() when string != null:
+return string(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( ({String language, String value}) value)?  languageValue,TResult Function( String value)?  string,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case MarkedString$LanguageValue() when languageValue != null:
+return languageValue(_that.value);case MarkedString$String() when string != null:
+return string(_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( ({String language, String value}) value)  languageValue,required TResult Function( String value)  string,}) {final _that = this;
+switch (_that) {
+case MarkedString$LanguageValue():
+return languageValue(_that.value);case MarkedString$String():
+return string(_that.value);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( ({String language, String value}) value)?  languageValue,TResult? Function( String value)?  string,}) {final _that = this;
+switch (_that) {
+case MarkedString$LanguageValue() when languageValue != null:
+return languageValue(_that.value);case MarkedString$String() when string != null:
+return string(_that.value);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class MarkedString$LanguageValue extends MarkedString {
+  const MarkedString$LanguageValue({required this.value}): super._();
+  
+
+@override final  ({String language, String value}) value;
+
+/// Create a copy of MarkedString
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MarkedString$LanguageValueCopyWith<MarkedString$LanguageValue> get copyWith => _$MarkedString$LanguageValueCopyWithImpl<MarkedString$LanguageValue>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MarkedString$LanguageValue&&(identical(other.value, value) || other.value == value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString() {
+  return 'MarkedString.languageValue(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MarkedString$LanguageValueCopyWith<$Res> implements $MarkedStringCopyWith<$Res> {
+  factory $MarkedString$LanguageValueCopyWith(MarkedString$LanguageValue value, $Res Function(MarkedString$LanguageValue) _then) = _$MarkedString$LanguageValueCopyWithImpl;
+@useResult
+$Res call({
+ ({String language, String value}) value
+});
+
+
+
+
+}
+/// @nodoc
+class _$MarkedString$LanguageValueCopyWithImpl<$Res>
+    implements $MarkedString$LanguageValueCopyWith<$Res> {
+  _$MarkedString$LanguageValueCopyWithImpl(this._self, this._then);
+
+  final MarkedString$LanguageValue _self;
+  final $Res Function(MarkedString$LanguageValue) _then;
+
+/// Create a copy of MarkedString
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+  return _then(MarkedString$LanguageValue(
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as ({String language, String value}),
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class MarkedString$String extends MarkedString {
+  const MarkedString$String({required this.value}): super._();
+  
+
+@override final  String value;
+
+/// Create a copy of MarkedString
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MarkedString$StringCopyWith<MarkedString$String> get copyWith => _$MarkedString$StringCopyWithImpl<MarkedString$String>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MarkedString$String&&(identical(other.value, value) || other.value == value));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString() {
+  return 'MarkedString.string(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MarkedString$StringCopyWith<$Res> implements $MarkedStringCopyWith<$Res> {
+  factory $MarkedString$StringCopyWith(MarkedString$String value, $Res Function(MarkedString$String) _then) = _$MarkedString$StringCopyWithImpl;
+@useResult
+$Res call({
+ String value
+});
+
+
+
+
+}
+/// @nodoc
+class _$MarkedString$StringCopyWithImpl<$Res>
+    implements $MarkedString$StringCopyWith<$Res> {
+  _$MarkedString$StringCopyWithImpl(this._self, this._then);
+
+  final MarkedString$String _self;
+  final $Res Function(MarkedString$String) _then;
+
+/// Create a copy of MarkedString
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+  return _then(MarkedString$String(
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 // dart format on

@@ -10,775 +10,6 @@ import 'unions.dart';
 part 'structures.freezed.dart';
 part 'structures.g.dart';
 
-class _ProgressTokenConverter extends JsonConverter<ProgressToken, Object> {
-  const _ProgressTokenConverter();
-
-  @override
-  ProgressToken fromJson(Object json) => ProgressToken.fromJson(json);
-
-  @override
-  Object toJson(ProgressToken object) => object.toJson();
-}
-
-class _FoldingRangeKindConverter
-    extends JsonConverter<FoldingRangeKind, String> {
-  const _FoldingRangeKindConverter();
-
-  @override
-  FoldingRangeKind fromJson(String json) => FoldingRangeKind(json);
-
-  @override
-  String toJson(FoldingRangeKind object) => object.value;
-}
-
-class _CodeActionKindConverter extends JsonConverter<CodeActionKind, String> {
-  const _CodeActionKindConverter();
-
-  @override
-  CodeActionKind fromJson(String json) => CodeActionKind(json);
-
-  @override
-  String toJson(CodeActionKind object) => object.value;
-}
-
-class _PositionEncodingKindConverter
-    extends JsonConverter<PositionEncodingKind, String> {
-  const _PositionEncodingKindConverter();
-
-  @override
-  PositionEncodingKind fromJson(String json) => PositionEncodingKind(json);
-
-  @override
-  String toJson(PositionEncodingKind object) => object.value;
-}
-
-class _WatchKindConverter extends JsonConverter<WatchKind, int> {
-  const _WatchKindConverter();
-
-  @override
-  WatchKind fromJson(int json) => WatchKind(json);
-
-  @override
-  int toJson(WatchKind object) => object.value;
-}
-
-class _WorkspaceDocumentDiagnosticReportListConverter
-    extends
-        JsonConverter<List<WorkspaceDocumentDiagnosticReport>, List<dynamic>> {
-  const _WorkspaceDocumentDiagnosticReportListConverter();
-
-  @override
-  List<WorkspaceDocumentDiagnosticReport> fromJson(List<dynamic> json) => json
-      .map(
-        (e) => WorkspaceDocumentDiagnosticReport.fromJson(
-          (e as Map<String, Object?>),
-        ),
-      )
-      .toList();
-
-  @override
-  List<dynamic> toJson(List<WorkspaceDocumentDiagnosticReport> object) =>
-      object.map<Object>((e) => e.toJson()).toList();
-}
-
-class _CodeActionKindListConverter
-    extends JsonConverter<List<CodeActionKind>, List<dynamic>> {
-  const _CodeActionKindListConverter();
-
-  @override
-  List<CodeActionKind> fromJson(List<dynamic> json) =>
-      json.map((e) => CodeActionKind((e as String))).toList();
-
-  @override
-  List<dynamic> toJson(List<CodeActionKind> object) =>
-      object.map((e) => e.value).toList();
-}
-
-class _PositionEncodingKindListConverter
-    extends JsonConverter<List<PositionEncodingKind>, List<dynamic>> {
-  const _PositionEncodingKindListConverter();
-
-  @override
-  List<PositionEncodingKind> fromJson(List<dynamic> json) =>
-      json.map((e) => PositionEncodingKind((e as String))).toList();
-
-  @override
-  List<dynamic> toJson(List<PositionEncodingKind> object) =>
-      object.map((e) => e.value).toList();
-}
-
-class _FoldingRangeKindListConverter
-    extends JsonConverter<List<FoldingRangeKind>, List<dynamic>> {
-  const _FoldingRangeKindListConverter();
-
-  @override
-  List<FoldingRangeKind> fromJson(List<dynamic> json) =>
-      json.map((e) => FoldingRangeKind((e as String))).toList();
-
-  @override
-  List<dynamic> toJson(List<FoldingRangeKind> object) =>
-      object.map((e) => e.value).toList();
-}
-
-@freezed
-abstract class InitializeResultServerInfo with _$InitializeResultServerInfo {
-  const InitializeResultServerInfo._();
-
-  const factory InitializeResultServerInfo({
-    required String name,
-    String? version,
-  }) = _InitializeResultServerInfo;
-
-  factory InitializeResultServerInfo.fromJson(Map<String, dynamic> json) =>
-      _$InitializeResultServerInfoFromJson(json);
-}
-
-@freezed
-abstract class CompletionListItemDefaults with _$CompletionListItemDefaults {
-  const CompletionListItemDefaults._();
-
-  const factory CompletionListItemDefaults({
-    List<String>? commitCharacters,
-    Object? editRange,
-    InsertTextFormat? insertTextFormat,
-    InsertTextMode? insertTextMode,
-    LSPAny? data,
-  }) = _CompletionListItemDefaults;
-
-  factory CompletionListItemDefaults.fromJson(Map<String, dynamic> json) =>
-      _$CompletionListItemDefaultsFromJson(json);
-}
-
-@freezed
-abstract class CompletionListItemDefaultsEditRange
-    with _$CompletionListItemDefaultsEditRange {
-  const CompletionListItemDefaultsEditRange._();
-
-  const factory CompletionListItemDefaultsEditRange({
-    required Range insert,
-    required Range replace,
-  }) = _CompletionListItemDefaultsEditRange;
-
-  factory CompletionListItemDefaultsEditRange.fromJson(
-    Map<String, dynamic> json,
-  ) => _$CompletionListItemDefaultsEditRangeFromJson(json);
-}
-
-@freezed
-abstract class CodeActionDisabled with _$CodeActionDisabled {
-  const CodeActionDisabled._();
-
-  const factory CodeActionDisabled({required String reason}) =
-      _CodeActionDisabled;
-
-  factory CodeActionDisabled.fromJson(Map<String, dynamic> json) =>
-      _$CodeActionDisabledFromJson(json);
-}
-
-@freezed
-abstract class WorkspaceSymbolLocation with _$WorkspaceSymbolLocation {
-  const WorkspaceSymbolLocation._();
-
-  const factory WorkspaceSymbolLocation({required String uri}) =
-      _WorkspaceSymbolLocation;
-
-  factory WorkspaceSymbolLocation.fromJson(Map<String, dynamic> json) =>
-      _$WorkspaceSymbolLocationFromJson(json);
-}
-
-@freezed
-abstract class SemanticTokensOptionsRange with _$SemanticTokensOptionsRange {
-  const SemanticTokensOptionsRange._();
-
-  const factory SemanticTokensOptionsRange() = _SemanticTokensOptionsRange;
-
-  factory SemanticTokensOptionsRange.fromJson(Map<String, dynamic> json) =>
-      _$SemanticTokensOptionsRangeFromJson(json);
-}
-
-@freezed
-abstract class SemanticTokensOptionsFull with _$SemanticTokensOptionsFull {
-  const SemanticTokensOptionsFull._();
-
-  const factory SemanticTokensOptionsFull({bool? delta}) =
-      _SemanticTokensOptionsFull;
-
-  factory SemanticTokensOptionsFull.fromJson(Map<String, dynamic> json) =>
-      _$SemanticTokensOptionsFullFromJson(json);
-}
-
-@freezed
-abstract class NotebookDocumentChangeEventCells
-    with _$NotebookDocumentChangeEventCells {
-  const NotebookDocumentChangeEventCells._();
-
-  const factory NotebookDocumentChangeEventCells({
-    NotebookDocumentChangeEventCellsStructure? structure,
-    List<NotebookCell>? data,
-    List<NotebookDocumentChangeEventCellsTextContent>? textContent,
-  }) = _NotebookDocumentChangeEventCells;
-
-  factory NotebookDocumentChangeEventCells.fromJson(
-    Map<String, dynamic> json,
-  ) => _$NotebookDocumentChangeEventCellsFromJson(json);
-}
-
-@freezed
-abstract class NotebookDocumentChangeEventCellsStructure
-    with _$NotebookDocumentChangeEventCellsStructure {
-  const NotebookDocumentChangeEventCellsStructure._();
-
-  const factory NotebookDocumentChangeEventCellsStructure({
-    required NotebookCellArrayChange array,
-    List<TextDocumentItem>? didOpen,
-    List<TextDocumentIdentifier>? didClose,
-  }) = _NotebookDocumentChangeEventCellsStructure;
-
-  factory NotebookDocumentChangeEventCellsStructure.fromJson(
-    Map<String, dynamic> json,
-  ) => _$NotebookDocumentChangeEventCellsStructureFromJson(json);
-}
-
-@freezed
-abstract class NotebookDocumentChangeEventCellsTextContent
-    with _$NotebookDocumentChangeEventCellsTextContent {
-  const NotebookDocumentChangeEventCellsTextContent._();
-
-  const factory NotebookDocumentChangeEventCellsTextContent({
-    required VersionedTextDocumentIdentifier document,
-    required List<TextDocumentContentChangeEvent> changes,
-  }) = _NotebookDocumentChangeEventCellsTextContent;
-
-  factory NotebookDocumentChangeEventCellsTextContent.fromJson(
-    Map<String, dynamic> json,
-  ) => _$NotebookDocumentChangeEventCellsTextContentFromJson(json);
-}
-
-@JsonSerializable()
-class _InitializeParamsClientInfo {
-  const _InitializeParamsClientInfo({required this.name, this.version});
-
-  factory _InitializeParamsClientInfo.fromJson(Map<String, dynamic> json) =>
-      _$InitializeParamsClientInfoFromJson(json);
-
-  final String name;
-
-  final String? version;
-
-  Map<String, dynamic> toJson() => _$InitializeParamsClientInfoToJson(this);
-}
-
-@freezed
-abstract class ServerCapabilitiesWorkspace with _$ServerCapabilitiesWorkspace {
-  const ServerCapabilitiesWorkspace._();
-
-  const factory ServerCapabilitiesWorkspace({
-    WorkspaceFoldersServerCapabilities? workspaceFolders,
-    FileOperationOptions? fileOperations,
-  }) = _ServerCapabilitiesWorkspace;
-
-  factory ServerCapabilitiesWorkspace.fromJson(Map<String, dynamic> json) =>
-      _$ServerCapabilitiesWorkspaceFromJson(json);
-}
-
-@freezed
-abstract class CompletionOptionsCompletionItem
-    with _$CompletionOptionsCompletionItem {
-  const CompletionOptionsCompletionItem._();
-
-  const factory CompletionOptionsCompletionItem({bool? labelDetailsSupport}) =
-      _CompletionOptionsCompletionItem;
-
-  factory CompletionOptionsCompletionItem.fromJson(Map<String, dynamic> json) =>
-      _$CompletionOptionsCompletionItemFromJson(json);
-}
-
-@freezed
-abstract class NotebookDocumentSyncOptionsNotebookSelector
-    with _$NotebookDocumentSyncOptionsNotebookSelector {
-  const NotebookDocumentSyncOptionsNotebookSelector._();
-
-  const factory NotebookDocumentSyncOptionsNotebookSelector({
-    required Object notebook,
-    List<NotebookDocumentSyncOptionsNotebookSelectorCells>? cells,
-  }) = _NotebookDocumentSyncOptionsNotebookSelector;
-
-  factory NotebookDocumentSyncOptionsNotebookSelector.fromJson(
-    Map<String, dynamic> json,
-  ) => _$NotebookDocumentSyncOptionsNotebookSelectorFromJson(json);
-}
-
-@freezed
-abstract class NotebookDocumentSyncOptionsNotebookSelectorCells
-    with _$NotebookDocumentSyncOptionsNotebookSelectorCells {
-  const NotebookDocumentSyncOptionsNotebookSelectorCells._();
-
-  const factory NotebookDocumentSyncOptionsNotebookSelectorCells({
-    required String language,
-  }) = _NotebookDocumentSyncOptionsNotebookSelectorCells;
-
-  factory NotebookDocumentSyncOptionsNotebookSelectorCells.fromJson(
-    Map<String, dynamic> json,
-  ) => _$NotebookDocumentSyncOptionsNotebookSelectorCellsFromJson(json);
-}
-
-@freezed
-abstract class GeneralClientCapabilitiesStaleRequestSupport
-    with _$GeneralClientCapabilitiesStaleRequestSupport {
-  const GeneralClientCapabilitiesStaleRequestSupport._();
-
-  const factory GeneralClientCapabilitiesStaleRequestSupport({
-    required bool cancel,
-    required List<String> retryOnContentModified,
-  }) = _GeneralClientCapabilitiesStaleRequestSupport;
-
-  factory GeneralClientCapabilitiesStaleRequestSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$GeneralClientCapabilitiesStaleRequestSupportFromJson(json);
-}
-
-@freezed
-abstract class WorkspaceEditClientCapabilitiesChangeAnnotationSupport
-    with _$WorkspaceEditClientCapabilitiesChangeAnnotationSupport {
-  const WorkspaceEditClientCapabilitiesChangeAnnotationSupport._();
-
-  const factory WorkspaceEditClientCapabilitiesChangeAnnotationSupport({
-    bool? groupsOnLabel,
-  }) = _WorkspaceEditClientCapabilitiesChangeAnnotationSupport;
-
-  factory WorkspaceEditClientCapabilitiesChangeAnnotationSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$WorkspaceEditClientCapabilitiesChangeAnnotationSupportFromJson(json);
-}
-
-@freezed
-abstract class WorkspaceSymbolClientCapabilitiesSymbolKind
-    with _$WorkspaceSymbolClientCapabilitiesSymbolKind {
-  const WorkspaceSymbolClientCapabilitiesSymbolKind._();
-
-  const factory WorkspaceSymbolClientCapabilitiesSymbolKind({
-    List<SymbolKind>? valueSet,
-  }) = _WorkspaceSymbolClientCapabilitiesSymbolKind;
-
-  factory WorkspaceSymbolClientCapabilitiesSymbolKind.fromJson(
-    Map<String, dynamic> json,
-  ) => _$WorkspaceSymbolClientCapabilitiesSymbolKindFromJson(json);
-}
-
-@freezed
-abstract class WorkspaceSymbolClientCapabilitiesTagSupport
-    with _$WorkspaceSymbolClientCapabilitiesTagSupport {
-  const WorkspaceSymbolClientCapabilitiesTagSupport._();
-
-  const factory WorkspaceSymbolClientCapabilitiesTagSupport({
-    required List<SymbolTag> valueSet,
-  }) = _WorkspaceSymbolClientCapabilitiesTagSupport;
-
-  factory WorkspaceSymbolClientCapabilitiesTagSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$WorkspaceSymbolClientCapabilitiesTagSupportFromJson(json);
-}
-
-@freezed
-abstract class WorkspaceSymbolClientCapabilitiesResolveSupport
-    with _$WorkspaceSymbolClientCapabilitiesResolveSupport {
-  const WorkspaceSymbolClientCapabilitiesResolveSupport._();
-
-  const factory WorkspaceSymbolClientCapabilitiesResolveSupport({
-    required List<String> properties,
-  }) = _WorkspaceSymbolClientCapabilitiesResolveSupport;
-
-  factory WorkspaceSymbolClientCapabilitiesResolveSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$WorkspaceSymbolClientCapabilitiesResolveSupportFromJson(json);
-}
-
-@freezed
-abstract class CompletionClientCapabilitiesCompletionItem
-    with _$CompletionClientCapabilitiesCompletionItem {
-  const CompletionClientCapabilitiesCompletionItem._();
-
-  const factory CompletionClientCapabilitiesCompletionItem({
-    bool? snippetSupport,
-    bool? commitCharactersSupport,
-    List<MarkupKind>? documentationFormat,
-    bool? deprecatedSupport,
-    bool? preselectSupport,
-    CompletionClientCapabilitiesCompletionItemTagSupport? tagSupport,
-    bool? insertReplaceSupport,
-    CompletionClientCapabilitiesCompletionItemResolveSupport? resolveSupport,
-    CompletionClientCapabilitiesCompletionItemInsertTextModeSupport?
-    insertTextModeSupport,
-    bool? labelDetailsSupport,
-  }) = _CompletionClientCapabilitiesCompletionItem;
-
-  factory CompletionClientCapabilitiesCompletionItem.fromJson(
-    Map<String, dynamic> json,
-  ) => _$CompletionClientCapabilitiesCompletionItemFromJson(json);
-}
-
-@freezed
-abstract class CompletionClientCapabilitiesCompletionItemTagSupport
-    with _$CompletionClientCapabilitiesCompletionItemTagSupport {
-  const CompletionClientCapabilitiesCompletionItemTagSupport._();
-
-  const factory CompletionClientCapabilitiesCompletionItemTagSupport({
-    required List<CompletionItemTag> valueSet,
-  }) = _CompletionClientCapabilitiesCompletionItemTagSupport;
-
-  factory CompletionClientCapabilitiesCompletionItemTagSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$CompletionClientCapabilitiesCompletionItemTagSupportFromJson(json);
-}
-
-@freezed
-abstract class CompletionClientCapabilitiesCompletionItemResolveSupport
-    with _$CompletionClientCapabilitiesCompletionItemResolveSupport {
-  const CompletionClientCapabilitiesCompletionItemResolveSupport._();
-
-  const factory CompletionClientCapabilitiesCompletionItemResolveSupport({
-    required List<String> properties,
-  }) = _CompletionClientCapabilitiesCompletionItemResolveSupport;
-
-  factory CompletionClientCapabilitiesCompletionItemResolveSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$CompletionClientCapabilitiesCompletionItemResolveSupportFromJson(json);
-}
-
-@freezed
-abstract class CompletionClientCapabilitiesCompletionItemInsertTextModeSupport
-    with _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupport {
-  const CompletionClientCapabilitiesCompletionItemInsertTextModeSupport._();
-
-  const factory CompletionClientCapabilitiesCompletionItemInsertTextModeSupport({
-    required List<InsertTextMode> valueSet,
-  }) = _CompletionClientCapabilitiesCompletionItemInsertTextModeSupport;
-
-  factory CompletionClientCapabilitiesCompletionItemInsertTextModeSupport.fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      _$CompletionClientCapabilitiesCompletionItemInsertTextModeSupportFromJson(
-        json,
-      );
-}
-
-@freezed
-abstract class CompletionClientCapabilitiesCompletionItemKind
-    with _$CompletionClientCapabilitiesCompletionItemKind {
-  const CompletionClientCapabilitiesCompletionItemKind._();
-
-  const factory CompletionClientCapabilitiesCompletionItemKind({
-    List<CompletionItemKind>? valueSet,
-  }) = _CompletionClientCapabilitiesCompletionItemKind;
-
-  factory CompletionClientCapabilitiesCompletionItemKind.fromJson(
-    Map<String, dynamic> json,
-  ) => _$CompletionClientCapabilitiesCompletionItemKindFromJson(json);
-}
-
-@freezed
-abstract class CompletionClientCapabilitiesCompletionList
-    with _$CompletionClientCapabilitiesCompletionList {
-  const CompletionClientCapabilitiesCompletionList._();
-
-  const factory CompletionClientCapabilitiesCompletionList({
-    List<String>? itemDefaults,
-  }) = _CompletionClientCapabilitiesCompletionList;
-
-  factory CompletionClientCapabilitiesCompletionList.fromJson(
-    Map<String, dynamic> json,
-  ) => _$CompletionClientCapabilitiesCompletionListFromJson(json);
-}
-
-@freezed
-abstract class SignatureHelpClientCapabilitiesSignatureInformation
-    with _$SignatureHelpClientCapabilitiesSignatureInformation {
-  const SignatureHelpClientCapabilitiesSignatureInformation._();
-
-  const factory SignatureHelpClientCapabilitiesSignatureInformation({
-    List<MarkupKind>? documentationFormat,
-    SignatureHelpClientCapabilitiesSignatureInformationParameterInformation?
-    parameterInformation,
-    bool? activeParameterSupport,
-  }) = _SignatureHelpClientCapabilitiesSignatureInformation;
-
-  factory SignatureHelpClientCapabilitiesSignatureInformation.fromJson(
-    Map<String, dynamic> json,
-  ) => _$SignatureHelpClientCapabilitiesSignatureInformationFromJson(json);
-}
-
-@freezed
-abstract class SignatureHelpClientCapabilitiesSignatureInformationParameterInformation
-    with
-        _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformation {
-  const SignatureHelpClientCapabilitiesSignatureInformationParameterInformation._();
-
-  const factory SignatureHelpClientCapabilitiesSignatureInformationParameterInformation({
-    bool? labelOffsetSupport,
-  }) = _SignatureHelpClientCapabilitiesSignatureInformationParameterInformation;
-
-  factory SignatureHelpClientCapabilitiesSignatureInformationParameterInformation.fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      _$SignatureHelpClientCapabilitiesSignatureInformationParameterInformationFromJson(
-        json,
-      );
-}
-
-@freezed
-abstract class DocumentSymbolClientCapabilitiesSymbolKind
-    with _$DocumentSymbolClientCapabilitiesSymbolKind {
-  const DocumentSymbolClientCapabilitiesSymbolKind._();
-
-  const factory DocumentSymbolClientCapabilitiesSymbolKind({
-    List<SymbolKind>? valueSet,
-  }) = _DocumentSymbolClientCapabilitiesSymbolKind;
-
-  factory DocumentSymbolClientCapabilitiesSymbolKind.fromJson(
-    Map<String, dynamic> json,
-  ) => _$DocumentSymbolClientCapabilitiesSymbolKindFromJson(json);
-}
-
-@freezed
-abstract class DocumentSymbolClientCapabilitiesTagSupport
-    with _$DocumentSymbolClientCapabilitiesTagSupport {
-  const DocumentSymbolClientCapabilitiesTagSupport._();
-
-  const factory DocumentSymbolClientCapabilitiesTagSupport({
-    required List<SymbolTag> valueSet,
-  }) = _DocumentSymbolClientCapabilitiesTagSupport;
-
-  factory DocumentSymbolClientCapabilitiesTagSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$DocumentSymbolClientCapabilitiesTagSupportFromJson(json);
-}
-
-@freezed
-abstract class CodeActionClientCapabilitiesCodeActionLiteralSupport
-    with _$CodeActionClientCapabilitiesCodeActionLiteralSupport {
-  const CodeActionClientCapabilitiesCodeActionLiteralSupport._();
-
-  const factory CodeActionClientCapabilitiesCodeActionLiteralSupport({
-    required CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
-    codeActionKind,
-  }) = _CodeActionClientCapabilitiesCodeActionLiteralSupport;
-
-  factory CodeActionClientCapabilitiesCodeActionLiteralSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$CodeActionClientCapabilitiesCodeActionLiteralSupportFromJson(json);
-}
-
-@freezed
-abstract class CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind
-    with _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind {
-  const CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind._();
-
-  const factory CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind({
-    @_CodeActionKindListConverter() required List<CodeActionKind> valueSet,
-  }) = _CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind;
-
-  factory CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKind.fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      _$CodeActionClientCapabilitiesCodeActionLiteralSupportCodeActionKindFromJson(
-        json,
-      );
-}
-
-@freezed
-abstract class CodeActionClientCapabilitiesResolveSupport
-    with _$CodeActionClientCapabilitiesResolveSupport {
-  const CodeActionClientCapabilitiesResolveSupport._();
-
-  const factory CodeActionClientCapabilitiesResolveSupport({
-    required List<String> properties,
-  }) = _CodeActionClientCapabilitiesResolveSupport;
-
-  factory CodeActionClientCapabilitiesResolveSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$CodeActionClientCapabilitiesResolveSupportFromJson(json);
-}
-
-@freezed
-abstract class FoldingRangeClientCapabilitiesFoldingRangeKind
-    with _$FoldingRangeClientCapabilitiesFoldingRangeKind {
-  const FoldingRangeClientCapabilitiesFoldingRangeKind._();
-
-  const factory FoldingRangeClientCapabilitiesFoldingRangeKind({
-    @_FoldingRangeKindListConverter() List<FoldingRangeKind>? valueSet,
-  }) = _FoldingRangeClientCapabilitiesFoldingRangeKind;
-
-  factory FoldingRangeClientCapabilitiesFoldingRangeKind.fromJson(
-    Map<String, dynamic> json,
-  ) => _$FoldingRangeClientCapabilitiesFoldingRangeKindFromJson(json);
-}
-
-@freezed
-abstract class FoldingRangeClientCapabilitiesFoldingRange
-    with _$FoldingRangeClientCapabilitiesFoldingRange {
-  const FoldingRangeClientCapabilitiesFoldingRange._();
-
-  const factory FoldingRangeClientCapabilitiesFoldingRange({
-    bool? collapsedText,
-  }) = _FoldingRangeClientCapabilitiesFoldingRange;
-
-  factory FoldingRangeClientCapabilitiesFoldingRange.fromJson(
-    Map<String, dynamic> json,
-  ) => _$FoldingRangeClientCapabilitiesFoldingRangeFromJson(json);
-}
-
-@freezed
-abstract class PublishDiagnosticsClientCapabilitiesTagSupport
-    with _$PublishDiagnosticsClientCapabilitiesTagSupport {
-  const PublishDiagnosticsClientCapabilitiesTagSupport._();
-
-  const factory PublishDiagnosticsClientCapabilitiesTagSupport({
-    required List<DiagnosticTag> valueSet,
-  }) = _PublishDiagnosticsClientCapabilitiesTagSupport;
-
-  factory PublishDiagnosticsClientCapabilitiesTagSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$PublishDiagnosticsClientCapabilitiesTagSupportFromJson(json);
-}
-
-@freezed
-abstract class SemanticTokensClientCapabilitiesRequests
-    with _$SemanticTokensClientCapabilitiesRequests {
-  const SemanticTokensClientCapabilitiesRequests._();
-
-  const factory SemanticTokensClientCapabilitiesRequests({
-    Object? range,
-    Object? full,
-  }) = _SemanticTokensClientCapabilitiesRequests;
-
-  factory SemanticTokensClientCapabilitiesRequests.fromJson(
-    Map<String, dynamic> json,
-  ) => _$SemanticTokensClientCapabilitiesRequestsFromJson(json);
-}
-
-@freezed
-abstract class SemanticTokensClientCapabilitiesRequestsRange
-    with _$SemanticTokensClientCapabilitiesRequestsRange {
-  const SemanticTokensClientCapabilitiesRequestsRange._();
-
-  const factory SemanticTokensClientCapabilitiesRequestsRange() =
-      _SemanticTokensClientCapabilitiesRequestsRange;
-
-  factory SemanticTokensClientCapabilitiesRequestsRange.fromJson(
-    Map<String, dynamic> json,
-  ) => _$SemanticTokensClientCapabilitiesRequestsRangeFromJson(json);
-}
-
-@freezed
-abstract class SemanticTokensClientCapabilitiesRequestsFull
-    with _$SemanticTokensClientCapabilitiesRequestsFull {
-  const SemanticTokensClientCapabilitiesRequestsFull._();
-
-  const factory SemanticTokensClientCapabilitiesRequestsFull({bool? delta}) =
-      _SemanticTokensClientCapabilitiesRequestsFull;
-
-  factory SemanticTokensClientCapabilitiesRequestsFull.fromJson(
-    Map<String, dynamic> json,
-  ) => _$SemanticTokensClientCapabilitiesRequestsFullFromJson(json);
-}
-
-@freezed
-abstract class InlayHintClientCapabilitiesResolveSupport
-    with _$InlayHintClientCapabilitiesResolveSupport {
-  const InlayHintClientCapabilitiesResolveSupport._();
-
-  const factory InlayHintClientCapabilitiesResolveSupport({
-    required List<String> properties,
-  }) = _InlayHintClientCapabilitiesResolveSupport;
-
-  factory InlayHintClientCapabilitiesResolveSupport.fromJson(
-    Map<String, dynamic> json,
-  ) => _$InlayHintClientCapabilitiesResolveSupportFromJson(json);
-}
-
-@freezed
-abstract class ShowMessageRequestClientCapabilitiesMessageActionItem
-    with _$ShowMessageRequestClientCapabilitiesMessageActionItem {
-  const ShowMessageRequestClientCapabilitiesMessageActionItem._();
-
-  const factory ShowMessageRequestClientCapabilitiesMessageActionItem({
-    bool? additionalPropertiesSupport,
-  }) = _ShowMessageRequestClientCapabilitiesMessageActionItem;
-
-  factory ShowMessageRequestClientCapabilitiesMessageActionItem.fromJson(
-    Map<String, dynamic> json,
-  ) => _$ShowMessageRequestClientCapabilitiesMessageActionItemFromJson(json);
-}
-
-@freezed
-abstract class PrepareRenameResult with _$PrepareRenameResult {
-  const PrepareRenameResult._();
-
-  const factory PrepareRenameResult({
-    required Range range,
-    required String placeholder,
-  }) = _PrepareRenameResult;
-
-  factory PrepareRenameResult.fromJson(Map<String, dynamic> json) =>
-      _$PrepareRenameResultFromJson(json);
-}
-
-@freezed
-abstract class TextDocumentContentChangeEvent
-    with _$TextDocumentContentChangeEvent {
-  const TextDocumentContentChangeEvent._();
-
-  const factory TextDocumentContentChangeEvent({
-    required Range range,
-    int? rangeLength,
-    required String text,
-  }) = _TextDocumentContentChangeEvent;
-
-  factory TextDocumentContentChangeEvent.fromJson(Map<String, dynamic> json) =>
-      _$TextDocumentContentChangeEventFromJson(json);
-}
-
-@freezed
-abstract class MarkedString with _$MarkedString {
-  const MarkedString._();
-
-  const factory MarkedString({
-    required String language,
-    required String value,
-  }) = _MarkedString;
-
-  factory MarkedString.fromJson(Map<String, dynamic> json) =>
-      _$MarkedStringFromJson(json);
-}
-
-@freezed
-abstract class TextDocumentFilter with _$TextDocumentFilter {
-  const TextDocumentFilter._();
-
-  const factory TextDocumentFilter({
-    required String language,
-    String? scheme,
-    String? pattern,
-  }) = _TextDocumentFilter;
-
-  factory TextDocumentFilter.fromJson(Map<String, dynamic> json) =>
-      _$TextDocumentFilterFromJson(json);
-}
-
-@freezed
-abstract class NotebookDocumentFilter with _$NotebookDocumentFilter {
-  const NotebookDocumentFilter._();
-
-  const factory NotebookDocumentFilter({
-    required String notebookType,
-    String? scheme,
-    String? pattern,
-  }) = _NotebookDocumentFilter;
-
-  factory NotebookDocumentFilter.fromJson(Map<String, dynamic> json) =>
-      _$NotebookDocumentFilterFromJson(json);
-}
-
 @freezed
 abstract class ImplementationParams with _$ImplementationParams {
   const ImplementationParams._();
@@ -1017,7 +248,7 @@ abstract class FoldingRange with _$FoldingRange {
     int? startCharacter,
     required int endLine,
     int? endCharacter,
-    @_FoldingRangeKindConverter() FoldingRangeKind? kind,
+    FoldingRangeKind? kind,
     String? collapsedText,
   }) = _FoldingRange;
 
@@ -2085,7 +1316,7 @@ abstract class InitializeParams with _$InitializeParams {
   const factory InitializeParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required int? processId,
-    _InitializeParamsClientInfo? clientInfo,
+    ({String name, String? version})? clientInfo,
     String? locale,
     String? rootPath,
     required String? rootUri,
@@ -2106,7 +1337,7 @@ abstract class InitializeResult with _$InitializeResult {
 
   const factory InitializeResult({
     required ServerCapabilities capabilities,
-    InitializeResultServerInfo? serverInfo,
+    ({String name, String? version})? serverInfo,
   }) = _InitializeResult;
 
   factory InitializeResult.fromJson(Map<String, dynamic> json) =>
@@ -2233,6 +1464,7 @@ abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
 
   const factory DidChangeTextDocumentParams({
     required VersionedTextDocumentIdentifier textDocument,
+    @_TextDocumentContentChangeEventListConverter()
     required List<TextDocumentContentChangeEvent> contentChanges,
   }) = _DidChangeTextDocumentParams;
 
@@ -2425,7 +1657,14 @@ abstract class CompletionList with _$CompletionList {
 
   const factory CompletionList({
     required bool isIncomplete,
-    CompletionListItemDefaults? itemDefaults,
+    ({
+      List<String>? commitCharacters,
+      Object? editRange,
+      InsertTextFormat? insertTextFormat,
+      InsertTextMode? insertTextMode,
+      LSPAny? data,
+    })?
+    itemDefaults,
     required List<CompletionItem> items,
   }) = _CompletionList;
 
@@ -2445,7 +1684,7 @@ abstract class CompletionRegistrationOptions
     List<String>? triggerCharacters,
     List<String>? allCommitCharacters,
     bool? resolveProvider,
-    CompletionOptionsCompletionItem? completionItem,
+    ({bool? labelDetailsSupport})? completionItem,
   }) = _CompletionRegistrationOptions;
 
   factory CompletionRegistrationOptions.fromJson(Map<String, dynamic> json) =>
@@ -2772,10 +2011,10 @@ abstract class CodeAction with _$CodeAction {
 
   const factory CodeAction({
     required String title,
-    @_CodeActionKindConverter() CodeActionKind? kind,
+    CodeActionKind? kind,
     List<Diagnostic>? diagnostics,
     bool? isPreferred,
-    CodeActionDisabled? disabled,
+    ({String reason})? disabled,
     WorkspaceEdit? edit,
     Command? command,
     LSPAny? data,
@@ -2794,7 +2033,7 @@ abstract class CodeActionRegistrationOptions
   const factory CodeActionRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
-    @_CodeActionKindListConverter() List<CodeActionKind>? codeActionKinds,
+    List<CodeActionKind>? codeActionKinds,
     bool? resolveProvider,
   }) = _CodeActionRegistrationOptions;
 
@@ -4052,7 +3291,17 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
 
   const factory NotebookDocumentChangeEvent({
     LSPObject? metadata,
-    NotebookDocumentChangeEventCells? cells,
+    ({
+      ({
+        NotebookCellArrayChange array,
+        List<TextDocumentItem>? didOpen,
+        List<TextDocumentIdentifier>? didClose,
+      })?
+      structure,
+      List<NotebookCell>? data,
+      List<Object>? textContent,
+    })?
+    cells,
   }) = _NotebookDocumentChangeEvent;
 
   factory NotebookDocumentChangeEvent.fromJson(Map<String, dynamic> json) =>
@@ -4174,7 +3423,7 @@ abstract class ServerCapabilities with _$ServerCapabilities {
   const ServerCapabilities._();
 
   const factory ServerCapabilities({
-    @_PositionEncodingKindConverter() PositionEncodingKind? positionEncoding,
+    PositionEncodingKind? positionEncoding,
     Object? textDocumentSync,
     Object? notebookDocumentSync,
     CompletionOptions? completionProvider,
@@ -4208,7 +3457,11 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     Object? inlayHintProvider,
     Object? diagnosticProvider,
     Object? inlineCompletionProvider,
-    ServerCapabilitiesWorkspace? workspace,
+    ({
+      WorkspaceFoldersServerCapabilities? workspaceFolders,
+      FileOperationOptions? fileOperations,
+    })?
+    workspace,
     LSPAny? experimental,
   }) = _ServerCapabilities;
 
@@ -4260,7 +3513,7 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
 
   const factory FileSystemWatcher({
     required GlobPattern globPattern,
-    @_WatchKindConverter() WatchKind? kind,
+    WatchKind? kind,
   }) = _FileSystemWatcher;
 
   factory FileSystemWatcher.fromJson(Map<String, dynamic> json) =>
@@ -4346,7 +3599,7 @@ abstract class CompletionOptions with _$CompletionOptions {
     List<String>? triggerCharacters,
     List<String>? allCommitCharacters,
     bool? resolveProvider,
-    CompletionOptionsCompletionItem? completionItem,
+    ({bool? labelDetailsSupport})? completionItem,
   }) = _CompletionOptions;
 
   factory CompletionOptions.fromJson(Map<String, dynamic> json) =>
@@ -4499,7 +3752,7 @@ abstract class CodeActionContext with _$CodeActionContext {
 
   const factory CodeActionContext({
     required List<Diagnostic> diagnostics,
-    @_CodeActionKindListConverter() List<CodeActionKind>? only,
+    List<CodeActionKind>? only,
     CodeActionTriggerKind? triggerKind,
   }) = _CodeActionContext;
 
@@ -4514,7 +3767,7 @@ abstract class CodeActionOptions with _$CodeActionOptions {
 
   const factory CodeActionOptions({
     bool? workDoneProgress,
-    @_CodeActionKindListConverter() List<CodeActionKind>? codeActionKinds,
+    List<CodeActionKind>? codeActionKinds,
     bool? resolveProvider,
   }) = _CodeActionOptions;
 
@@ -5174,10 +4427,9 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
   const GeneralClientCapabilities._();
 
   const factory GeneralClientCapabilities({
-    GeneralClientCapabilitiesStaleRequestSupport? staleRequestSupport,
+    ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,
     RegularExpressionsClientCapabilities? regularExpressions,
     MarkdownClientCapabilities? markdown,
-    @_PositionEncodingKindListConverter()
     List<PositionEncodingKind>? positionEncodings,
   }) = _GeneralClientCapabilities;
 
@@ -5213,8 +4465,7 @@ abstract class WorkspaceEditClientCapabilities
     List<ResourceOperationKind>? resourceOperations,
     FailureHandlingKind? failureHandling,
     bool? normalizesLineEndings,
-    WorkspaceEditClientCapabilitiesChangeAnnotationSupport?
-    changeAnnotationSupport,
+    ({bool? groupsOnLabel})? changeAnnotationSupport,
   }) = _WorkspaceEditClientCapabilities;
 
   factory WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5258,9 +4509,9 @@ abstract class WorkspaceSymbolClientCapabilities
 
   const factory WorkspaceSymbolClientCapabilities({
     bool? dynamicRegistration,
-    WorkspaceSymbolClientCapabilitiesSymbolKind? symbolKind,
-    WorkspaceSymbolClientCapabilitiesTagSupport? tagSupport,
-    WorkspaceSymbolClientCapabilitiesResolveSupport? resolveSupport,
+    ({List<SymbolKind>? valueSet})? symbolKind,
+    ({List<SymbolTag> valueSet})? tagSupport,
+    ({List<String> properties})? resolveSupport,
   }) = _WorkspaceSymbolClientCapabilities;
 
   factory WorkspaceSymbolClientCapabilities.fromJson(
@@ -5427,11 +4678,23 @@ abstract class CompletionClientCapabilities
 
   const factory CompletionClientCapabilities({
     bool? dynamicRegistration,
-    CompletionClientCapabilitiesCompletionItem? completionItem,
-    CompletionClientCapabilitiesCompletionItemKind? completionItemKind,
+    ({
+      bool? snippetSupport,
+      bool? commitCharactersSupport,
+      List<MarkupKind>? documentationFormat,
+      bool? deprecatedSupport,
+      bool? preselectSupport,
+      ({List<CompletionItemTag> valueSet})? tagSupport,
+      bool? insertReplaceSupport,
+      ({List<String> properties})? resolveSupport,
+      ({List<InsertTextMode> valueSet})? insertTextModeSupport,
+      bool? labelDetailsSupport,
+    })?
+    completionItem,
+    ({List<CompletionItemKind>? valueSet})? completionItemKind,
     InsertTextMode? insertTextMode,
     bool? contextSupport,
-    CompletionClientCapabilitiesCompletionList? completionList,
+    ({List<String>? itemDefaults})? completionList,
   }) = _CompletionClientCapabilities;
 
   factory CompletionClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5459,7 +4722,12 @@ abstract class SignatureHelpClientCapabilities
 
   const factory SignatureHelpClientCapabilities({
     bool? dynamicRegistration,
-    SignatureHelpClientCapabilitiesSignatureInformation? signatureInformation,
+    ({
+      List<MarkupKind>? documentationFormat,
+      ({bool? labelOffsetSupport})? parameterInformation,
+      bool? activeParameterSupport,
+    })?
+    signatureInformation,
     bool? contextSupport,
   }) = _SignatureHelpClientCapabilities;
 
@@ -5564,9 +4832,9 @@ abstract class DocumentSymbolClientCapabilities
 
   const factory DocumentSymbolClientCapabilities({
     bool? dynamicRegistration,
-    DocumentSymbolClientCapabilitiesSymbolKind? symbolKind,
+    ({List<SymbolKind>? valueSet})? symbolKind,
     bool? hierarchicalDocumentSymbolSupport,
-    DocumentSymbolClientCapabilitiesTagSupport? tagSupport,
+    ({List<SymbolTag> valueSet})? tagSupport,
     bool? labelSupport,
   }) = _DocumentSymbolClientCapabilities;
 
@@ -5583,12 +4851,12 @@ abstract class CodeActionClientCapabilities
 
   const factory CodeActionClientCapabilities({
     bool? dynamicRegistration,
-    CodeActionClientCapabilitiesCodeActionLiteralSupport?
+    ({({List<CodeActionKind> valueSet}) codeActionKind})?
     codeActionLiteralSupport,
     bool? isPreferredSupport,
     bool? disabledSupport,
     bool? dataSupport,
-    CodeActionClientCapabilitiesResolveSupport? resolveSupport,
+    ({List<String> properties})? resolveSupport,
     bool? honorsChangeAnnotations,
   }) = _CodeActionClientCapabilities;
 
@@ -5705,8 +4973,8 @@ abstract class FoldingRangeClientCapabilities
     bool? dynamicRegistration,
     int? rangeLimit,
     bool? lineFoldingOnly,
-    FoldingRangeClientCapabilitiesFoldingRangeKind? foldingRangeKind,
-    FoldingRangeClientCapabilitiesFoldingRange? foldingRange,
+    ({List<FoldingRangeKind>? valueSet})? foldingRangeKind,
+    ({bool? collapsedText})? foldingRange,
   }) = _FoldingRangeClientCapabilities;
 
   factory FoldingRangeClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5734,7 +5002,7 @@ abstract class PublishDiagnosticsClientCapabilities
 
   const factory PublishDiagnosticsClientCapabilities({
     bool? relatedInformation,
-    PublishDiagnosticsClientCapabilitiesTagSupport? tagSupport,
+    ({List<DiagnosticTag> valueSet})? tagSupport,
     bool? versionSupport,
     bool? codeDescriptionSupport,
     bool? dataSupport,
@@ -5766,7 +5034,7 @@ abstract class SemanticTokensClientCapabilities
 
   const factory SemanticTokensClientCapabilities({
     bool? dynamicRegistration,
-    required SemanticTokensClientCapabilitiesRequests requests,
+    required ({Object? range, Object? full}) requests,
     required List<String> tokenTypes,
     required List<String> tokenModifiers,
     required List<TokenFormat> formats,
@@ -5849,7 +5117,7 @@ abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
 
   const factory InlayHintClientCapabilities({
     bool? dynamicRegistration,
-    InlayHintClientCapabilitiesResolveSupport? resolveSupport,
+    ({List<String> properties})? resolveSupport,
   }) = _InlayHintClientCapabilities;
 
   factory InlayHintClientCapabilities.fromJson(Map<String, dynamic> json) =>
@@ -5916,7 +5184,7 @@ abstract class ShowMessageRequestClientCapabilities
   const ShowMessageRequestClientCapabilities._();
 
   const factory ShowMessageRequestClientCapabilities({
-    ShowMessageRequestClientCapabilitiesMessageActionItem? messageActionItem,
+    ({bool? additionalPropertiesSupport})? messageActionItem,
   }) = _ShowMessageRequestClientCapabilities;
 
   factory ShowMessageRequestClientCapabilities.fromJson(
@@ -5972,4 +5240,51 @@ abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
 
   factory MarkdownClientCapabilities.fromJson(Map<String, dynamic> json) =>
       _$MarkdownClientCapabilitiesFromJson(json);
+}
+
+class _ProgressTokenConverter extends JsonConverter<ProgressToken, Object> {
+  const _ProgressTokenConverter();
+
+  @override
+  ProgressToken fromJson(Object json) => ProgressToken.fromJson(json);
+
+  @override
+  Object toJson(ProgressToken object) => object.toJson();
+}
+
+class _WorkspaceDocumentDiagnosticReportListConverter
+    extends
+        JsonConverter<List<WorkspaceDocumentDiagnosticReport>, List<dynamic>> {
+  const _WorkspaceDocumentDiagnosticReportListConverter();
+
+  @override
+  List<WorkspaceDocumentDiagnosticReport> fromJson(List<dynamic> json) => json
+      .map(
+        (e) => WorkspaceDocumentDiagnosticReport.fromJson(
+          (e as Map<String, Object?>),
+        ),
+      )
+      .toList();
+
+  @override
+  List<dynamic> toJson(List<WorkspaceDocumentDiagnosticReport> object) =>
+      object.map<Object>((e) => e.toJson()).toList();
+}
+
+class _TextDocumentContentChangeEventListConverter
+    extends JsonConverter<List<TextDocumentContentChangeEvent>, List<dynamic>> {
+  const _TextDocumentContentChangeEventListConverter();
+
+  @override
+  List<TextDocumentContentChangeEvent> fromJson(List<dynamic> json) => json
+      .map(
+        (e) => TextDocumentContentChangeEvent.fromJson(
+          (e as Map<String, Object?>),
+        ),
+      )
+      .toList();
+
+  @override
+  List<dynamic> toJson(List<TextDocumentContentChangeEvent> object) =>
+      object.map<Object>((e) => e.toJson()).toList();
 }

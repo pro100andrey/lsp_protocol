@@ -156,48 +156,31 @@ final class ResolverVisitor {
     );
   }
 
-  /// Extracts an inline [LiteralRef] as a named [ResolvedClass].
+  /// Returns an [InlineRecord] directly from a [LiteralRef] — no named class
+  /// is created.  json_serializable generates `_$recordConvert` for record
+  /// fields automatically.
   ResolvedType _resolveLiteral(
     LiteralRef ref, {
     required String parentName,
     required String fieldName,
   }) {
-    final syntheticName = _syntheticName(parentName, fieldName);
-
-    // Re-use if already extracted (same position visited twice)
-    final existing = _registry[syntheticName];
-    if (existing is ResolvedClass) {
-      return ClassType(ref: existing);
-    }
-
-    final cls = ResolvedClass(
-      name: syntheticName,
-      properties: [],
-      extends$: [],
-      mixins$: [],
-      isAnonymous: true,
-    );
-    _registry[syntheticName] = cls;
-    _classes.add(cls);
-
-    for (final prop in ref.value.properties) {
-      cls.properties.add(
-        ResolvedProperty(
-          name: prop.name,
-          type: resolveRef(
-            prop.type,
-            parentName: syntheticName,
-            fieldName: prop.name,
+    final fields = ref.value.properties
+        .map(
+          (prop) => ResolvedProperty(
+            name: prop.name,
+            type: resolveRef(
+              prop.type,
+              parentName: parentName,
+              fieldName: prop.name,
+            ),
+            optional: prop.optional,
+            documentation: prop.documentation,
+            since: prop.since,
+            deprecated: prop.deprecated,
           ),
-          optional: prop.optional,
-          documentation: prop.documentation,
-          since: prop.since,
-          deprecated: prop.deprecated,
-        ),
-      );
-    }
-
-    return ClassType(ref: cls);
+        )
+        .toList();
+    return InlineRecord(fields: fields);
   }
 
   static bool _isNull(MetaReference ref) =>
@@ -216,19 +199,6 @@ final class ResolverVisitor {
     'LSPArray' => 'List<Object?>',
     _ => name, // fallback: keep as-is
   };
-
-  /// Generates a PascalCase synthetic class name for an inline literal.
-  /// e.g. parent=`WorkspaceEdit`, field=`changeAnnotations`
-  ///   → `WorkspaceEditChangeAnnotations`
-  static String _syntheticName(String parent, String field) {
-    if (parent.isEmpty && field.isEmpty) {
-      return 'Anonymous';
-    }
-    final capitalizedField = field.isEmpty
-        ? ''
-        : field[0].toUpperCase() + field.substring(1);
-    return '$parent$capitalizedField';
-  }
 }
 
 // ---------------------------------------------------------------------------
@@ -295,7 +265,7 @@ final class _RegisterPass extends MetaVisitor {
     // Shell with placeholder type; resolved in pass 2
     final alias = ResolvedAlias(
       name: typeAlias.name,
-      type: DartCoreType(dartName: 'Object?'),
+      type: const DartCoreType(dartName: 'Object?'),
       documentation: typeAlias.documentation,
       since: typeAlias.since,
       proposed: typeAlias.proposed,

@@ -16,8 +16,8 @@ enum _UnionKind { scalar, scalarStruct, structList, structStruct, mixed }
 /// For the _last_ check in a list: 'fieldName' is empty and no condition is
 /// emitted (it is the unconditional else branch).
 typedef _UnionCheck = ({
-  /// The struct variant returned when the condition matches.
-  ClassType variant,
+  /// The variant — either [ClassType] or [InlineRecord].
+  ResolvedType variant,
 
   /// Field name used for the check.
   String fieldName,
@@ -31,17 +31,13 @@ typedef _UnionCheck = ({
 // ---------------------------------------------------------------------------
 
 /// Discriminates how a converter class is generated.
-/// Closed Dart enums use `@JsonEnum(valueField: 'value')` — no converter
-/// needed.
-enum _ConverterKind { openEnum, scalarUnion, structUnion }
+/// All Dart enums use `@JsonEnum()` + `@JsonValue` — no converter needed.
+enum _ConverterKind { scalarUnion, structUnion }
 
 /// Metadata about a single needed JsonConverter.
 typedef _ConverterEntry = ({
   String name,
   _ConverterKind kind,
-
-  /// `'int'` or `'String'` for enum-based converters, `''` otherwise.
-  String valueType,
 });
 
 // ---------------------------------------------------------------------------
@@ -129,9 +125,9 @@ final class EmitterVisitor {
         ..directives.add(Directive.part('structures.freezed.dart'))
         ..directives.add(Directive.part('structures.g.dart'))
         ..body.addAll([
-          ..._buildConverterSpecs(),
           ...anonymous.map(_buildClass),
           ...named.map(_buildClass),
+          ..._buildConverterSpecs(),
         ]),
     );
   }
@@ -271,6 +267,10 @@ final class EmitterVisitor {
           walk(value);
         case NullableType(:final inner):
           walk(inner);
+        case InlineRecord(:final fields):
+          for (final f in fields) {
+            walk(f.type);
+          }
         default:
       }
     }
@@ -424,17 +424,15 @@ final class EmitterVisitor {
       }
 
       // Final fields (plain class — no freezed mixin).
+      final ownerName = cls.name.replaceFirst(RegExp('^_+'), '');
       for (final p in allProps) {
         b.fields.add(
           Field((b) {
             b
               ..modifier = FieldModifier.final$
               ..name = p.name
-              ..type = p.optional
-                  ? toTypeRef(p.type).rebuild((b) => b.isNullable = true)
-                  : toTypeRef(p.type);
-            final ann = _converterAnnotationFor(p.type);
-            if (ann != null) {
+              ..type = toRef(p.type, nullable: p.optional);
+            for (final ann in _annotationsForParam(p, ownerName)) {
               b.annotations.add(ann);
             }
           }),
@@ -519,13 +517,10 @@ final class EmitterVisitor {
           (p) => Parameter((b) {
             b
               ..name = p.name
-              ..type = p.optional
-                  ? toTypeRef(p.type).rebuild((b) => b.isNullable = true)
-                  : toTypeRef(p.type)
+              ..type = toRef(p.type, nullable: p.optional)
               ..named = true
               ..required = !p.optional;
-            final ann = _converterAnnotationFor(p.type);
-            if (ann != null) {
+            for (final ann in _annotationsForParam(p, className)) {
               b.annotations.add(ann);
             }
           }),
@@ -546,14 +541,10 @@ final class EmitterVisitor {
     final inner = type is NullableType ? type.inner : type;
 
     switch (inner) {
-      // Closed Dart enums: @JsonEnum(valueField: 'value') handles them natively
-      // — no converter annotation needed.
-      case EnumType(:final ref) when !ref.supportsCustomValues:
+      // All Dart enums: @JsonEnum() + @JsonValue handles them natively —
+      // no converter annotation needed.
+      case EnumType():
         return null;
-
-      // Open enums (supportsCustomValues = final class): need a converter.
-      case EnumType(:final ref):
-        return refer('_${ref.name}Converter').call([]);
 
       case AliasType(:final ref)
           when _scalarUnionNames.contains(ref.name) ||
@@ -563,11 +554,9 @@ final class EmitterVisitor {
       case ListType(element: final el):
         final elemInner = el is NullableType ? el.inner : el;
         switch (elemInner) {
-          // Closed enums in lists: json_serializable handles via $enumDecode.
-          case EnumType(:final ref) when !ref.supportsCustomValues:
+          // All enums in lists: json_serializable handles via $enumDecode.
+          case EnumType():
             return null;
-          case EnumType(:final ref):
-            return refer('_${ref.name}ListConverter').call([]);
           case AliasType(:final ref)
               when _scalarUnionNames.contains(ref.name) ||
                   _sealedUnionNames.contains(ref.name):
@@ -581,6 +570,12 @@ final class EmitterVisitor {
     }
   }
 
+  /// Returns the list of annotations for factory/field parameter [p].
+  List<Expression> _annotationsForParam(ResolvedProperty p, String ownerName) {
+    final ann = _converterAnnotationFor(p.type);
+    return ann != null ? [ann] : [];
+  }
+
   /// Walks every property of every resolved class and collects the set of
   /// converter classes that need to be emitted into `structures.dart`.
   ({Map<String, _ConverterEntry> scalar, Map<String, _ConverterEntry> list})
@@ -588,43 +583,39 @@ final class EmitterVisitor {
     final scalar = <String, _ConverterEntry>{};
     final list = <String, _ConverterEntry>{};
 
-    void register(String name, _ConverterKind kind, String valueType) {
-      scalar[name] ??= (name: name, kind: kind, valueType: valueType);
+    void register(String name, _ConverterKind kind) {
+      scalar[name] ??= (name: name, kind: kind);
     }
 
-    void registerList(String name, _ConverterKind kind, String valueType) {
+    void registerList(String name, _ConverterKind kind) {
       // Add to list map only. If the type also appears as a direct (non-list)
       // field, register() will be called separately and will populate scalar.
-      list[name] ??= (name: name, kind: kind, valueType: valueType);
+      list[name] ??= (name: name, kind: kind);
     }
 
     void processType(ResolvedType type) {
       final inner = type is NullableType ? type.inner : type;
       switch (inner) {
-        // Closed Dart enums: @JsonEnum handles them — no converter to register.
-        case EnumType(:final ref) when !ref.supportsCustomValues:
+        // All Dart enums: @JsonEnum() handles them — no converter to register.
+        case EnumType():
           break;
-        case EnumType(:final ref):
-          register(ref.name, _ConverterKind.openEnum, ref.valueType);
         case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
-          register(ref.name, _ConverterKind.scalarUnion, '');
+          register(ref.name, _ConverterKind.scalarUnion);
         case AliasType(:final ref) when _sealedUnionNames.contains(ref.name):
-          register(ref.name, _ConverterKind.structUnion, '');
+          register(ref.name, _ConverterKind.structUnion);
 
         case ListType(element: final el):
           final elemInner = el is NullableType ? el.inner : el;
           switch (elemInner) {
-            // Closed enums in lists: no converter needed.
-            case EnumType(:final ref) when !ref.supportsCustomValues:
+            // All enums in lists: no converter needed.
+            case EnumType():
               break;
-            case EnumType(:final ref):
-              registerList(ref.name, _ConverterKind.openEnum, ref.valueType);
             case AliasType(:final ref)
                 when _scalarUnionNames.contains(ref.name):
-              registerList(ref.name, _ConverterKind.scalarUnion, '');
+              registerList(ref.name, _ConverterKind.scalarUnion);
             case AliasType(:final ref)
                 when _sealedUnionNames.contains(ref.name):
-              registerList(ref.name, _ConverterKind.structUnion, '');
+              registerList(ref.name, _ConverterKind.structUnion);
             default:
               break;
           }
@@ -676,10 +667,6 @@ final class EmitterVisitor {
     final Code toBody;
 
     switch (entry.kind) {
-      case _ConverterKind.openEnum:
-        rawType = refer(entry.valueType == 'int' ? 'int' : 'String');
-        fromBody = refer(n).call([refer('json')]).code;
-        toBody = refer('object').property('value').code;
       case _ConverterKind.scalarUnion:
         rawType = refer('Object');
         fromBody = refer(n).newInstanceNamed('fromJson', [refer('json')]).code;
@@ -745,22 +732,6 @@ final class EmitterVisitor {
     final Code toBody;
 
     switch (entry.kind) {
-      case _ConverterKind.openEnum:
-        final raw = refer(entry.valueType == 'int' ? 'int' : 'String');
-        fromBody = refer('json')
-            .property('map')
-            .call([
-              closure(refer(n).call([refer('e').asA(raw)]).code),
-            ])
-            .property('toList')
-            .call([])
-            .code;
-        toBody = refer('object')
-            .property('map')
-            .call([closure(refer('e').property('value').code)])
-            .property('toList')
-            .call([])
-            .code;
       case _ConverterKind.scalarUnion:
         fromBody = refer('json')
             .property('map')
@@ -873,128 +844,34 @@ final class EmitterVisitor {
   // Enum builder
   // ---------------------------------------------------------------------------
 
+  /// All enums — open or closed — are emitted as Dart native `enum` with
+  /// `@JsonEnum()` and per-member `@JsonValue(...)` annotations.
   Spec _buildEnum(ResolvedEnum en) {
-    if (en.supportsCustomValues) {
-      return _buildEnumAsClass(en);
-    }
-    return _buildDartEnum(en);
-  }
-
-  /// Dart native `enum` for enums without custom values.
-  Spec _buildDartEnum(ResolvedEnum en) {
-    final valueType = en.valueType == 'int' ? refer('int') : refer('String');
+    final isInt = en.valueType == 'int';
 
     return Enum((b) {
       b.name = en.name;
 
-      // @JsonEnum(valueField: 'value') lets json_serializable encode/decode
-      // using the `value` field instead of the enum name.
-      b.annotations.add(
-        refer('JsonEnum').call([], {'valueField': literalString('value')}),
-      );
+      // @JsonEnum() — json_serializable uses @JsonValue on each member.
+      b.annotations.add(refer('JsonEnum').call([]));
 
       if (en.documentation != null) {
         b.docs.add('/// ${en.documentation!.replaceAll('\n', '\n/// ')}');
       }
 
-      // Constructor with `value` param
-      b.constructors.add(
-        Constructor(
-          (b) => b
-            ..constant = true
-            ..requiredParameters.add(
-              Parameter(
-                (b) => b
-                  ..name = 'value'
-                  ..toThis = true,
-              ),
-            ),
-        ),
-      );
-
-      // `final Type value` field
-      b.fields.add(
-        Field(
-          (b) => b
-            ..name = 'value'
-            ..type = valueType
-            ..modifier = FieldModifier.final$,
-        ),
-      );
-
-      // Enum values
       for (final member in en.members) {
         b.values.add(
           EnumValue((b) {
             b.name = _safeIdentifier(member.name);
-            if (en.valueType == 'int') {
-              b.arguments.add(literalNum(int.parse(member.value)));
-            } else {
-              b.arguments.add(literalString(member.value));
-            }
-            if (member.documentation != null) {
-              b.docs.add(
-                '/// ${member.documentation!.replaceAll('\n', '\n/// ')}',
-              );
-            }
-          }),
-        );
-      }
-    });
-  }
-
-  /// `final class` for enums that support custom values (open-ended).
-  Spec _buildEnumAsClass(ResolvedEnum en) {
-    final valueType = en.valueType == 'int' ? refer('int') : refer('String');
-
-    return Class((b) {
-      b
-        ..name = en.name
-        ..modifier = ClassModifier.final$;
-
-      if (en.documentation != null) {
-        b.docs.add('/// ${en.documentation!.replaceAll('\n', '\n/// ')}');
-      }
-
-      // const constructor
-      b.constructors.add(
-        Constructor(
-          (b) => b
-            ..constant = true
-            ..requiredParameters.add(
-              Parameter(
-                (b) => b
-                  ..name = 'value'
-                  ..toThis = true,
-              ),
-            ),
-        ),
-      );
-
-      // final value field
-      b.fields.add(
-        Field(
-          (b) => b
-            ..name = 'value'
-            ..type = valueType
-            ..modifier = FieldModifier.final$,
-        ),
-      );
-
-      // static const members
-      for (final member in en.members) {
-        final init = en.valueType == 'int'
-            ? refer(en.name).call([literalNum(int.parse(member.value))])
-            : refer(en.name).call([literalString(member.value)]);
-
-        b.fields.add(
-          Field((b) {
-            b
-              ..name = _safeIdentifier(member.name)
-              ..type = refer(en.name)
-              ..static = true
-              ..modifier = FieldModifier.constant
-              ..assignment = init.code;
+            // @JsonValue annotation carries the wire value.
+            b.annotations.add(
+              refer('JsonValue').call([
+                if (isInt)
+                  literalNum(int.parse(member.value))
+                else
+                  literalString(member.value),
+              ]),
+            );
             if (member.documentation != null) {
               b.docs.add(
                 '/// ${member.documentation!.replaceAll('\n', '\n/// ')}',
@@ -1049,7 +926,9 @@ final class EmitterVisitor {
       }
 
       if (kind == _UnionKind.structStruct) {
-        final structs = ut.items.whereType<ClassType>().toList();
+        final structs = ut.items
+            .where((t) => t is ClassType || t is InlineRecord)
+            .toList();
         if (_findStructDiscriminator(structs) == null) {
           continue;
         }
@@ -1062,10 +941,16 @@ final class EmitterVisitor {
 
   _UnionKind _classifyUnion(UnionType u) {
     final scalars = u.items.whereType<DartCoreType>().toList(growable: false);
-    final structs = u.items.whereType<ClassType>().toList(growable: false);
+    final structs = u.items
+        .where((t) => t is ClassType || t is InlineRecord)
+        .toList(growable: false);
     final lists = u.items.whereType<ListType>().toList(growable: false);
     final others = u.items.where(
-      (t) => t is! DartCoreType && t is! ClassType && t is! ListType,
+      (t) =>
+          t is! DartCoreType &&
+          t is! ClassType &&
+          t is! InlineRecord &&
+          t is! ListType,
     );
 
     if (others.isNotEmpty) {
@@ -1077,7 +962,7 @@ final class EmitterVisitor {
     }
 
     if (lists.isEmpty && scalars.isNotEmpty && structs.isNotEmpty) {
-      final uniqueStructs = structs.map((t) => t.ref.name).toSet();
+      final uniqueStructs = _structKey(structs).toSet();
       return uniqueStructs.length == 1 ? .scalarStruct : .mixed;
     }
 
@@ -1086,24 +971,45 @@ final class EmitterVisitor {
     }
 
     if (scalars.isEmpty && lists.isEmpty && structs.length >= 2) {
-      final uniqueStructs = structs.map((t) => t.ref.name).toSet();
+      final uniqueStructs = _structKey(structs).toSet();
       return uniqueStructs.length >= 2 ? .structStruct : .mixed;
     }
 
     return .mixed;
   }
 
+  /// Deduplication key for a struct-like type item.
+  Iterable<String> _structKey(Iterable<ResolvedType> items) => items.map(
+    (t) => switch (t) {
+      ClassType(:final ref) => ref.name,
+      InlineRecord(:final fields) =>
+        'Record(${fields.map((f) => '${f.name}:${f.type.runtimeType}').join(',')})',
+      _ => t.toString(),
+    },
+  );
+
   /// Returns a list of discriminator checks (last entry = else branch) or
   /// `null` if no reliable discriminator can be found.
-  List<_UnionCheck>? _findStructDiscriminator(List<ClassType> variants) {
-    // Deduplicate by struct name.
+  ///
+  /// Accepts items that are either [ClassType] or [InlineRecord].
+  List<_UnionCheck>? _findStructDiscriminator(List<ResolvedType> variants) {
+    // Deduplicate by struct key.
     final seen = <String>{};
-    final unique = variants.where((t) => seen.add(t.ref.name)).toList();
+    final unique = variants.where((t) {
+      final key = switch (t) {
+        ClassType(:final ref) => ref.name,
+        InlineRecord(:final fields) =>
+          'Record(${fields.map((f) => f.name).join(',')})',
+        _ => t.toString(),
+      };
+      return seen.add(key);
+    }).toList();
+
     if (unique.length < 2) {
       return null;
     }
 
-    final propMaps = [for (final v in unique) _allPropertiesMap(v.ref)];
+    final propMaps = unique.map(_variantPropertiesMap).toList();
     final requiredSets = [
       for (final m in propMaps)
         {
@@ -1143,7 +1049,7 @@ final class EmitterVisitor {
     // Presence discriminator: each variant (except the last) has a required
     // field that no other variant requires.
     final checks = <_UnionCheck>[];
-    ClassType? elseVariant;
+    ResolvedType? elseVariant;
     for (var i = 0; i < unique.length; i++) {
       final otherRequired = <String>{};
       for (var j = 0; j < unique.length; j++) {
@@ -1174,6 +1080,15 @@ final class EmitterVisitor {
     return checks;
   }
 
+  /// Returns a name→property map for any struct-like union arm
+  /// ([ClassType] or [InlineRecord]).
+  Map<String, ResolvedProperty> _variantPropertiesMap(ResolvedType variant) =>
+      switch (variant) {
+        ClassType(:final ref) => _allPropertiesMap(ref),
+        InlineRecord(:final fields) => {for (final f in fields) f.name: f},
+        _ => {},
+      };
+
   Map<String, ResolvedProperty> _allPropertiesMap(ResolvedClass cls) => {
     for (final p in _allProperties(cls)) p.name: p,
   };
@@ -1182,28 +1097,32 @@ final class EmitterVisitor {
   // Union spec builders (code_builder Class / Constructor / Method)
   // ---------------------------------------------------------------------------
 
-  List<Spec> _buildUnionSpecs(String name, UnionType ut, _UnionKind kind) =>
-      switch (kind) {
-        _UnionKind.scalar => _buildScalarUnionSpecs(
-          name,
-          ut.items.whereType<DartCoreType>().toList(),
-        ),
-        _UnionKind.scalarStruct => _buildScalarStructUnionSpecs(
-          name,
-          ut.items.whereType<DartCoreType>().toList(),
-          ut.items.whereType<ClassType>().first,
-        ),
-        _UnionKind.structList => _buildStructListUnionSpecs(
-          name,
-          ut.items.whereType<ClassType>().first,
-          ut.items.whereType<ListType>().first,
-        ),
-        _UnionKind.structStruct => _buildStructStructUnionSpecs(
-          name,
-          _findStructDiscriminator(ut.items.whereType<ClassType>().toList())!,
-        ),
-        _UnionKind.mixed => [],
-      };
+  List<Spec> _buildUnionSpecs(String name, UnionType ut, _UnionKind kind) {
+    final structItems = ut.items
+        .where((t) => t is ClassType || t is InlineRecord)
+        .toList();
+    return switch (kind) {
+      _UnionKind.scalar => _buildScalarUnionSpecs(
+        name,
+        ut.items.whereType<DartCoreType>().toList(),
+      ),
+      _UnionKind.scalarStruct => _buildScalarStructUnionSpecs(
+        name,
+        ut.items.whereType<DartCoreType>().toList(),
+        structItems.first,
+      ),
+      _UnionKind.structList => _buildStructListUnionSpecs(
+        name,
+        ut.items.whereType<ClassType>().first,
+        ut.items.whereType<ListType>().first,
+      ),
+      _UnionKind.structStruct => _buildStructStructUnionSpecs(
+        name,
+        _findStructDiscriminator(structItems)!,
+      ),
+      _UnionKind.mixed => [],
+    };
+  }
 
   /// Variant suffix: strips the [aliasName] prefix from struct names so that
   /// e.g. `InlineValue` + `InlineValueText` → suffix `Text`.
@@ -1220,6 +1139,12 @@ final class EmitterVisitor {
           ? ref.name.substring(aliasName.length)
           : ref.name,
     ListType() => 'List',
+    InlineRecord(:final fields) =>
+      fields.isEmpty
+          ? 'Empty'
+          : fields
+                .map((f) => f.name[0].toUpperCase() + f.name.substring(1))
+                .join(),
     _ => 'Unknown',
   };
 
@@ -1335,7 +1260,7 @@ final class EmitterVisitor {
   List<Spec> _buildScalarStructUnionSpecs(
     String name,
     List<DartCoreType> scalars,
-    ClassType struct,
+    ResolvedType struct,
   ) {
     final structSuffix = _variantSuffix(struct, name);
     final structCls = '$name\$$structSuffix';
@@ -1345,12 +1270,35 @@ final class EmitterVisitor {
         .map((s) => (suffix: _variantSuffix(s, name), dartName: s.dartName))
         .toList();
 
+    final structToJson = switch (struct) {
+      InlineRecord(:final fields) => _inlineRecordToJson(fields, 'value'),
+      _ => 'value.toJson()',
+    };
+
     final switchCases = [
-      '    $structCls(:final value) => value.toJson(),',
+      '    $structCls(:final value) => $structToJson,',
       ...scalarVariants.map(
         (v) => '    $name\$${v.suffix}(:final value) => value,',
       ),
     ].join('\n');
+
+    // fromJson: value expression for the struct arm
+    final structFromJsonExpr = switch (struct) {
+      ClassType(:final ref) => refer(
+        ref.name,
+      ).newInstanceNamed('fromJson', [refer('json')]),
+      InlineRecord(:final fields) => CodeExpression(
+        Code(
+          _inlineRecordFromJson(
+            fields,
+            // Inside `if (json is Map<String, Object?>)` Dart narrows the
+            // type — no explicit cast needed.
+            'json',
+          ),
+        ),
+      ),
+      _ => refer('json'),
+    };
 
     return [
       Class(
@@ -1378,7 +1326,7 @@ final class EmitterVisitor {
                       ..name = 'value'
                       ..named = true
                       ..required = true
-                      ..type = refer(struct.ref.name),
+                      ..type = toRef(struct),
                   ),
                 )
                 ..redirect = refer(structCls),
@@ -1430,9 +1378,7 @@ final class EmitterVisitor {
                       Block(
                         (bb) => bb.addExpression(
                           refer(name).newInstanceNamed(structFn, [], {
-                            'value': refer(
-                              struct.ref.name,
-                            ).newInstanceNamed('fromJson', [refer('json')]),
+                            'value': structFromJsonExpr,
                           }).returned,
                         ),
                       ),
@@ -1655,7 +1601,7 @@ final class EmitterVisitor {
   ) {
     final seenSuffixes = <String>{};
     final variants =
-        <({String suffix, String cls, String fn, String structName})>[];
+        <({String suffix, String cls, String fn, ResolvedType variant})>[];
     for (final check in checks) {
       final suffix = _variantSuffix(check.variant, name);
       if (seenSuffixes.add(suffix)) {
@@ -1663,14 +1609,34 @@ final class EmitterVisitor {
           suffix: suffix,
           cls: '$name\$$suffix',
           fn: _safeIdentifier(_factoryName(suffix)),
-          structName: check.variant.ref.name,
+          variant: check.variant,
         ));
       }
     }
 
     final switchCases = variants
-        .map((v) => '    ${v.cls}(:final value) => value.toJson(),')
+        .map((v) {
+          final toJsonExpr = switch (v.variant) {
+            ClassType() => 'value.toJson()',
+            InlineRecord(:final fields) => _inlineRecordToJson(fields, 'value'),
+            _ => 'value.toJson()',
+          };
+          return '    ${v.cls}(:final value) => $toJsonExpr,';
+        })
         .join('\n');
+
+    final mapType = TypeReference(
+      (b) => b
+        ..symbol = 'Map'
+        ..types.addAll([
+          refer('String'),
+          TypeReference(
+            (b) => b
+              ..symbol = 'Object'
+              ..isNullable = true,
+          ),
+        ]),
+    );
 
     return [
       Class(
@@ -1699,7 +1665,7 @@ final class EmitterVisitor {
                         ..name = 'value'
                         ..named = true
                         ..required = true
-                        ..type = refer(v.structName),
+                        ..type = toRef(v.variant),
                     ),
                   )
                   ..redirect = refer(v.cls),
@@ -1716,18 +1682,7 @@ final class EmitterVisitor {
                   Parameter(
                     (b) => b
                       ..name = 'json'
-                      ..type = TypeReference(
-                        (b) => b
-                          ..symbol = 'Map'
-                          ..types.addAll([
-                            refer('String'),
-                            TypeReference(
-                              (b) => b
-                                ..symbol = 'Object'
-                                ..isNullable = true,
-                            ),
-                          ]),
-                      ),
+                      ..type = mapType,
                   ),
                 )
                 ..body = Block((b) {
@@ -1741,15 +1696,17 @@ final class EmitterVisitor {
                         : refer('json').property('containsKey').call([
                             literalString(check.fieldName),
                           ]);
+                    final valueExpr = _variantFromJsonExpr(
+                      check.variant,
+                      'json',
+                    );
                     b.statements.add(
                       ifStatement(
                         condExpr,
                         Block(
                           (bb) => bb.addExpression(
                             refer(name).newInstanceNamed(fn, [], {
-                              'value': refer(
-                                check.variant.ref.name,
-                              ).newInstanceNamed('fromJson', [refer('json')]),
+                              'value': valueExpr,
                             }).returned,
                           ),
                         ),
@@ -1757,18 +1714,13 @@ final class EmitterVisitor {
                     );
                   }
                   final last = checks.last;
+                  final lastFn = _safeIdentifier(
+                    _factoryName(_variantSuffix(last.variant, name)),
+                  );
                   b.addExpression(
-                    refer(name).newInstanceNamed(
-                      _safeIdentifier(
-                        _factoryName(_variantSuffix(last.variant, name)),
-                      ),
-                      [],
-                      {
-                        'value': refer(
-                          last.variant.ref.name,
-                        ).newInstanceNamed('fromJson', [refer('json')]),
-                      },
-                    ).returned,
+                    refer(name).newInstanceNamed(lastFn, [], {
+                      'value': _variantFromJsonExpr(last.variant, 'json'),
+                    }).returned,
                   );
                 }),
             ),
@@ -1800,7 +1752,129 @@ final class EmitterVisitor {
     UnionType() => 'Object',
     TupleType() => 'List<Object?>',
     StringLiteralType() => 'String',
+    InlineRecord() => 'Object',
   };
+
+  // ---------------------------------------------------------------------------
+  // InlineRecord serialization helpers
+  // ---------------------------------------------------------------------------
+
+  /// Returns a code_builder [Expression] that deserializes [variant] from a
+  /// JSON map variable named [jsonVar].
+  Expression _variantFromJsonExpr(ResolvedType variant, String jsonVar) =>
+      switch (variant) {
+        ClassType(:final ref) => refer(
+          ref.name,
+        ).newInstanceNamed('fromJson', [refer(jsonVar)]),
+        InlineRecord(:final fields) => CodeExpression(
+          Code(_inlineRecordFromJson(fields, jsonVar)),
+        ),
+        _ => refer(jsonVar),
+      };
+
+  /// Builds a Dart expression string that constructs an inline record from a
+  /// JSON map (e.g. `(delta: json['delta'] as bool?)`).
+  String _inlineRecordFromJson(
+    List<ResolvedProperty> fields,
+    String jsonVar,
+  ) {
+    if (fields.isEmpty) return '()';
+    final parts = fields
+        .map(
+          (f) =>
+              '${f.name}: ${_jsonFieldExtract(f.type, "$jsonVar['${f.name}']", optional: f.optional)}',
+        )
+        .join(', ');
+    return '($parts)';
+  }
+
+  /// Builds a Dart expression string that serializes an inline record to a
+  /// JSON map (e.g. `{'delta': value.delta}`).
+  String _inlineRecordToJson(List<ResolvedProperty> fields, String valueVar) {
+    if (fields.isEmpty) return '<String, Object?>{}';
+    final entries = fields.map((f) {
+      final fieldAccess = '$valueVar.${f.name}';
+      final jsonValue = _fieldToJsonExpr(f.type, fieldAccess);
+      if (f.optional) {
+        return "if ($fieldAccess != null) '${f.name}': $jsonValue";
+      }
+      return "'${f.name}': $jsonValue";
+    });
+    return '{${entries.join(', ')}}';
+  }
+
+  /// JSON→Dart cast/conversion for a single record field.
+  ///
+  /// [optional] treats the value as nullable whether or not [type] is already
+  /// wrapped in [NullableType].
+  String _jsonFieldExtract(
+    ResolvedType type,
+    String jsonExpr, {
+    bool optional = false,
+  }) {
+    // Normalise: a type already wrapped in NullableType, or flagged optional,
+    // is treated as nullable.
+    final (inner, nullable) = switch (type) {
+      NullableType(:final inner) => (inner, true),
+      _ => (type, optional),
+    };
+
+    // Wraps [nonNullExpr] with a null-guard if [nullable].
+    String orNull(String nonNullExpr) =>
+        nullable ? '$jsonExpr != null ? $nonNullExpr : null' : nonNullExpr;
+
+    return switch (inner) {
+      DartCoreType(:final dartName)
+          when dartName == 'String' ||
+              dartName == 'int' ||
+              dartName == 'bool' ||
+              dartName == 'double' =>
+        nullable ? '$jsonExpr as $dartName?' : '$jsonExpr as $dartName',
+      ClassType(:final ref) => orNull(
+        '${ref.name}.fromJson($jsonExpr as Map<String, Object?>)',
+      ),
+      EnumType(:final ref) when !ref.supportsCustomValues => orNull(
+        '\$enumDecode(_\$${ref.name}EnumMap, $jsonExpr)',
+      ),
+      EnumType(:final ref) => orNull('${ref.name}($jsonExpr as String)'),
+      ListType(element: final el) => orNull(
+        '($jsonExpr as List<dynamic>)'
+        '.map((e) => ${_jsonFieldExtract(el, 'e')})'
+        '.toList()',
+      ),
+      InlineRecord(:final fields) => orNull(
+        _inlineRecordFromJson(fields, '($jsonExpr as Map<String, Object?>)'),
+      ),
+      _ => jsonExpr,
+    };
+  }
+
+  /// Dart→JSON conversion for a single record field value.
+  String _fieldToJsonExpr(ResolvedType type, String fieldExpr) {
+    final (inner, nullable) = switch (type) {
+      NullableType(:final inner) => (inner, true),
+      _ => (type, false),
+    };
+
+    return switch (inner) {
+      DartCoreType() => fieldExpr,
+      ClassType() => nullable ? '$fieldExpr?.toJson()' : '$fieldExpr.toJson()',
+      EnumType(:final ref) when !ref.supportsCustomValues =>
+        nullable
+            ? '$fieldExpr != null ? _\$${ref.name}EnumMap[$fieldExpr]! : null'
+            : '_\$${ref.name}EnumMap[$fieldExpr]!',
+      EnumType() => nullable ? '$fieldExpr?.value' : '$fieldExpr.value',
+      ListType(element: final el) =>
+        nullable
+            ? '$fieldExpr?.map((e) => ${_fieldToJsonExpr(el, 'e')}).toList()'
+            : '$fieldExpr.map((e) => ${_fieldToJsonExpr(el, 'e')}).toList()',
+      InlineRecord(:final fields) =>
+        nullable
+            ? '$fieldExpr != null ? ${_inlineRecordToJson(fields, fieldExpr)} : null'
+            : _inlineRecordToJson(fields, fieldExpr),
+      _ => fieldExpr,
+    };
+  }
 
   String _listElementCast(ResolvedType element) => switch (element) {
     ClassType(:final ref) => '${ref.name}.fromJson(e as Map<String, Object?>)',

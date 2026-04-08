@@ -226,7 +226,7 @@ void main() {
     late ResolverVisitor v;
     setUp(() => v = ResolverVisitor());
 
-    test('produces anonymous ResolvedClass with synthetic name', () {
+    test('LiteralRef produces InlineRecord with resolved fields', () {
       const ref = MetaReference.literal(
         kind: TypeKind.literal,
         value: MetaLiteral(
@@ -238,16 +238,18 @@ void main() {
           ],
         ),
       );
-      final result =
-          v.resolveRef(ref, parentName: 'Parent', fieldName: 'field')
-              as ClassType;
-      expect(result.ref.name, 'ParentField');
-      expect(result.ref.isAnonymous, isTrue);
-      expect(result.ref.properties, hasLength(1));
-      expect(result.ref.properties.first.name, 'x');
+      final result = v.resolveRef(
+        ref,
+        parentName: 'Parent',
+        fieldName: 'field',
+      );
+      expect(result, isA<InlineRecord>());
+      final record = result as InlineRecord;
+      expect(record.fields, hasLength(1));
+      expect(record.fields.first.name, 'x');
     });
 
-    test('same parent+field resolved twice → identical object', () {
+    test('same parent+field resolved twice → same fields', () {
       const prop = MetaProperty(
         name: 'x',
         type: MetaReference.base(kind: TypeKind.base$, name: 'integer'),
@@ -256,9 +258,12 @@ void main() {
         kind: TypeKind.literal,
         value: MetaLiteral(properties: [prop]),
       );
-      final a = v.resolveRef(ref, parentName: 'P', fieldName: 'q') as ClassType;
-      final b = v.resolveRef(ref, parentName: 'P', fieldName: 'q') as ClassType;
-      expect(identical(a.ref, b.ref), isTrue);
+      final a =
+          v.resolveRef(ref, parentName: 'P', fieldName: 'q') as InlineRecord;
+      final b =
+          v.resolveRef(ref, parentName: 'P', fieldName: 'q') as InlineRecord;
+      expect(a.fields.length, b.fields.length);
+      expect(a.fields.first.name, b.fields.first.name);
     });
   });
 
@@ -279,10 +284,9 @@ void main() {
     // Counts
     // -----------------------------------------------------------------------
     test('named structures count', () {
-      expect(
-        visitor.classes.where((c) => !c.isAnonymous).length,
-        370 - visitor.classes.where((c) => c.isAnonymous).length,
-      );
+      // anonymous classes are no longer generated (LiteralRef → InlineRecord)
+      expect(visitor.classes.any((c) => c.isAnonymous), isFalse);
+      expect(visitor.classes.length, 324);
     });
 
     test('total classes (named + anonymous) count matches resolve output', () {
@@ -460,6 +464,7 @@ void main() {
           case EnumType():
           case DartCoreType():
           case StringLiteralType():
+          case InlineRecord():
         }
       }
 
@@ -475,11 +480,10 @@ void main() {
     // -----------------------------------------------------------------------
     // Anonymous class extraction
     // -----------------------------------------------------------------------
-    test('at least one anonymous class extracted from LiteralRef', () {
-      expect(
-        visitor.classes.any((c) => c.isAnonymous),
-        isTrue,
-      );
+    test('no anonymous classes — LiteralRef resolves to InlineRecord', () {
+      // Since LiteralRef is now emitted as an inline Dart record, the resolver
+      // no longer adds anonymous ResolvedClass entries to the registry.
+      expect(visitor.classes.any((c) => c.isAnonymous), isFalse);
     });
   });
 }

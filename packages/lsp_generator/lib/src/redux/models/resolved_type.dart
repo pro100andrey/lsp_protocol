@@ -53,4 +53,12 @@ sealed class ResolvedType with _$ResolvedType {
   /// A literal string constant value (from `StringLiteralRef`).
   const factory ResolvedType.stringLiteralType({required String value}) =
       StringLiteralType;
+
+  /// An inline anonymous record literal `({T1 field1, T2 field2})`.
+  ///
+  /// Produced by `LiteralRef` — no separate named class is generated.
+  /// The record is serialized inline by json_serializable's `_$recordConvert`.
+  const factory ResolvedType.inlineRecord({
+    required List<ResolvedProperty> fields,
+  }) = InlineRecord;
 }

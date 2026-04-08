@@ -1,9 +1,44 @@
 import 'package:code_builder/code_builder.dart';
 
+import '../redux/models/resolved_decl.dart' show ResolvedProperty;
 import '../redux/models/resolved_type.dart';
 
-/// Converts a [ResolvedType] from the IR into a code_builder [TypeReference]
-/// suitable for use in generated Dart code.
+/// Converts a [ResolvedType] from the IR into a code_builder [Reference].
+///
+/// For most types this returns a [TypeReference]. For [InlineRecord] types use
+/// [toRef] which returns the appropriate `RecordType` from code_builder.
+Reference toRef(ResolvedType type, {bool nullable = false}) {
+  if (type is InlineRecord) {
+    return _buildRecordRef(type.fields, nullable: nullable);
+  }
+  if (type is NullableType) {
+    final inner = type.inner;
+    if (inner is InlineRecord) {
+      return _buildRecordRef(inner.fields, nullable: true);
+    }
+    return toTypeRef(inner).rebuild((b) => b.isNullable = true);
+  }
+  final ref = toTypeRef(type);
+  return nullable ? ref.rebuild((b) => b.isNullable = true) : ref;
+}
+
+/// Builds a code_builder [RecordType] from a list of [ResolvedProperty] fields.
+RecordType _buildRecordRef(
+  List<ResolvedProperty> fields, {
+  bool nullable = false,
+}) => RecordType(
+  (b) {
+    b.isNullable = nullable;
+    for (final f in fields) {
+      b.namedFieldTypes[f.name] = toRef(f.type, nullable: f.optional);
+    }
+  },
+);
+
+/// Converts a [ResolvedType] to a [TypeReference].
+///
+/// [InlineRecord] maps to `Object` as a fallback — callers that actually need
+/// the record syntax should use [toRef] instead.
 TypeReference toTypeRef(ResolvedType type) => switch (type) {
   DartCoreType(:final dartName) => _dartCore(dartName),
   ClassType(:final ref) => TypeReference((b) => b..symbol = ref.name),
@@ -35,6 +70,8 @@ TypeReference toTypeRef(ResolvedType type) => switch (type) {
       ),
   ),
   StringLiteralType() => TypeReference((b) => b..symbol = 'String'),
+  // InlineRecord is handled by toRef(); toTypeRef() falls back to Object.
+  InlineRecord() => TypeReference((b) => b..symbol = 'Object'),
 };
 
 /// Parses a [DartCoreType.dartName] which may be a plain name or a generic

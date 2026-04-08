@@ -11,4 +11,6 @@ typedef ChangeAnnotationIdentifier = String;
 typedef DocumentFilter = Object;
 typedef LSPObject = Map<String, LSPAny>;
 typedef GlobPattern = Object;
+typedef TextDocumentFilter = Object;
+typedef NotebookDocumentFilter = Object;
 typedef Pattern = String;

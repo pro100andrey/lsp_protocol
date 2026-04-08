@@ -7,61 +7,59 @@ import 'package:json_annotation/json_annotation.dart';
 /// corresponding client capabilities.
 ///
 /// @since 3.16.0
-final class SemanticTokenTypes {
-  const SemanticTokenTypes(this.value);
-
-  final String value;
-
-  static const SemanticTokenTypes namespace = SemanticTokenTypes('namespace');
+@JsonEnum()
+enum SemanticTokenTypes {
+  @JsonValue('namespace')
+  namespace,
 
   /// Represents a generic type. Acts as a fallback for types which can't be mapped to
   /// a specific type like class or enum.
-  static const SemanticTokenTypes type_ = SemanticTokenTypes('type');
-
-  static const SemanticTokenTypes class_ = SemanticTokenTypes('class');
-
-  static const SemanticTokenTypes enum_ = SemanticTokenTypes('enum');
-
-  static const SemanticTokenTypes interface_ = SemanticTokenTypes('interface');
-
-  static const SemanticTokenTypes struct = SemanticTokenTypes('struct');
-
-  static const SemanticTokenTypes typeParameter = SemanticTokenTypes(
-    'typeParameter',
-  );
-
-  static const SemanticTokenTypes parameter = SemanticTokenTypes('parameter');
-
-  static const SemanticTokenTypes variable = SemanticTokenTypes('variable');
-
-  static const SemanticTokenTypes property = SemanticTokenTypes('property');
-
-  static const SemanticTokenTypes enumMember = SemanticTokenTypes('enumMember');
-
-  static const SemanticTokenTypes event = SemanticTokenTypes('event');
-
-  static const SemanticTokenTypes function = SemanticTokenTypes('function');
-
-  static const SemanticTokenTypes method = SemanticTokenTypes('method');
-
-  static const SemanticTokenTypes macro = SemanticTokenTypes('macro');
-
-  static const SemanticTokenTypes keyword = SemanticTokenTypes('keyword');
-
-  static const SemanticTokenTypes modifier = SemanticTokenTypes('modifier');
-
-  static const SemanticTokenTypes comment = SemanticTokenTypes('comment');
-
-  static const SemanticTokenTypes string = SemanticTokenTypes('string');
-
-  static const SemanticTokenTypes number = SemanticTokenTypes('number');
-
-  static const SemanticTokenTypes regexp = SemanticTokenTypes('regexp');
-
-  static const SemanticTokenTypes operator_ = SemanticTokenTypes('operator');
+  @JsonValue('type')
+  type_,
+  @JsonValue('class')
+  class_,
+  @JsonValue('enum')
+  enum_,
+  @JsonValue('interface')
+  interface_,
+  @JsonValue('struct')
+  struct,
+  @JsonValue('typeParameter')
+  typeParameter,
+  @JsonValue('parameter')
+  parameter,
+  @JsonValue('variable')
+  variable,
+  @JsonValue('property')
+  property,
+  @JsonValue('enumMember')
+  enumMember,
+  @JsonValue('event')
+  event,
+  @JsonValue('function')
+  function,
+  @JsonValue('method')
+  method,
+  @JsonValue('macro')
+  macro,
+  @JsonValue('keyword')
+  keyword,
+  @JsonValue('modifier')
+  modifier,
+  @JsonValue('comment')
+  comment,
+  @JsonValue('string')
+  string,
+  @JsonValue('number')
+  number,
+  @JsonValue('regexp')
+  regexp,
+  @JsonValue('operator')
+  operator_,
 
   /// @since 3.17.0
-  static const SemanticTokenTypes decorator = SemanticTokenTypes('decorator');
+  @JsonValue('decorator')
+  decorator,
 }
 
 /// A set of predefined token modifiers. This set is not fixed
@@ -69,110 +67,86 @@ final class SemanticTokenTypes {
 /// corresponding client capabilities.
 ///
 /// @since 3.16.0
-final class SemanticTokenModifiers {
-  const SemanticTokenModifiers(this.value);
-
-  final String value;
-
-  static const SemanticTokenModifiers declaration = SemanticTokenModifiers(
-    'declaration',
-  );
-
-  static const SemanticTokenModifiers definition = SemanticTokenModifiers(
-    'definition',
-  );
-
-  static const SemanticTokenModifiers readonly = SemanticTokenModifiers(
-    'readonly',
-  );
-
-  static const SemanticTokenModifiers static_ = SemanticTokenModifiers(
-    'static',
-  );
-
-  static const SemanticTokenModifiers deprecated = SemanticTokenModifiers(
-    'deprecated',
-  );
-
-  static const SemanticTokenModifiers abstract_ = SemanticTokenModifiers(
-    'abstract',
-  );
-
-  static const SemanticTokenModifiers async_ = SemanticTokenModifiers('async');
-
-  static const SemanticTokenModifiers modification = SemanticTokenModifiers(
-    'modification',
-  );
-
-  static const SemanticTokenModifiers documentation = SemanticTokenModifiers(
-    'documentation',
-  );
-
-  static const SemanticTokenModifiers defaultLibrary = SemanticTokenModifiers(
-    'defaultLibrary',
-  );
+@JsonEnum()
+enum SemanticTokenModifiers {
+  @JsonValue('declaration')
+  declaration,
+  @JsonValue('definition')
+  definition,
+  @JsonValue('readonly')
+  readonly,
+  @JsonValue('static')
+  static_,
+  @JsonValue('deprecated')
+  deprecated,
+  @JsonValue('abstract')
+  abstract_,
+  @JsonValue('async')
+  async_,
+  @JsonValue('modification')
+  modification,
+  @JsonValue('documentation')
+  documentation,
+  @JsonValue('defaultLibrary')
+  defaultLibrary,
 }
 
 /// The document diagnostic report kinds.
 ///
 /// @since 3.17.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum DocumentDiagnosticReportKind {
   /// A diagnostic report with a full
   /// set of problems.
-  Full('full'),
+  @JsonValue('full')
+  Full,
 
   /// A report indicating that the last
   /// returned report is still accurate.
-  Unchanged('unchanged');
-
-  const DocumentDiagnosticReportKind(this.value);
-
-  final String value;
+  @JsonValue('unchanged')
+  Unchanged,
 }
 
 /// Predefined error codes.
-final class ErrorCodes {
-  const ErrorCodes(this.value);
-
-  final int value;
-
-  static const ErrorCodes ParseError = ErrorCodes(-32700);
-
-  static const ErrorCodes InvalidRequest = ErrorCodes(-32600);
-
-  static const ErrorCodes MethodNotFound = ErrorCodes(-32601);
-
-  static const ErrorCodes InvalidParams = ErrorCodes(-32602);
-
-  static const ErrorCodes InternalError = ErrorCodes(-32603);
+@JsonEnum()
+enum ErrorCodes {
+  @JsonValue(-32700)
+  ParseError,
+  @JsonValue(-32600)
+  InvalidRequest,
+  @JsonValue(-32601)
+  MethodNotFound,
+  @JsonValue(-32602)
+  InvalidParams,
+  @JsonValue(-32603)
+  InternalError,
 
   /// Error code indicating that a server received a notification or
   /// request before the server has received the `initialize` request.
-  static const ErrorCodes ServerNotInitialized = ErrorCodes(-32002);
-
-  static const ErrorCodes UnknownErrorCode = ErrorCodes(-32001);
+  @JsonValue(-32002)
+  ServerNotInitialized,
+  @JsonValue(-32001)
+  UnknownErrorCode,
 }
 
-final class LSPErrorCodes {
-  const LSPErrorCodes(this.value);
-
-  final int value;
-
+@JsonEnum()
+enum LSPErrorCodes {
   /// A request failed but it was syntactically correct, e.g the
   /// method name was known and the parameters were valid. The error
   /// message should contain human readable information about why
   /// the request failed.
   ///
   /// @since 3.17.0
-  static const LSPErrorCodes RequestFailed = LSPErrorCodes(-32803);
+  @JsonValue(-32803)
+  RequestFailed,
 
   /// The server cancelled the request. This error code should
   /// only be used for requests that explicitly support being
   /// server cancellable.
   ///
   /// @since 3.17.0
-  static const LSPErrorCodes ServerCancelled = LSPErrorCodes(-32802);
+  @JsonValue(-32802)
+  ServerCancelled,
 
   /// The server detected that the content of a document got
   /// modified outside normal conditions. A server should
@@ -182,256 +156,293 @@ final class LSPErrorCodes {
   ///
   /// If a client decides that a result is not of any use anymore
   /// the client should cancel the request.
-  static const LSPErrorCodes ContentModified = LSPErrorCodes(-32801);
+  @JsonValue(-32801)
+  ContentModified,
 
   /// The client has canceled a request and a server has detected
   /// the cancel.
-  static const LSPErrorCodes RequestCancelled = LSPErrorCodes(-32800);
+  @JsonValue(-32800)
+  RequestCancelled,
 }
 
 /// A set of predefined range kinds.
-final class FoldingRangeKind {
-  const FoldingRangeKind(this.value);
-
-  final String value;
-
+@JsonEnum()
+enum FoldingRangeKind {
   /// Folding range for a comment
-  static const FoldingRangeKind Comment = FoldingRangeKind('comment');
+  @JsonValue('comment')
+  Comment,
 
   /// Folding range for an import or include
-  static const FoldingRangeKind Imports = FoldingRangeKind('imports');
+  @JsonValue('imports')
+  Imports,
 
   /// Folding range for a region (e.g. `#region`)
-  static const FoldingRangeKind Region = FoldingRangeKind('region');
+  @JsonValue('region')
+  Region,
 }
 
 /// A symbol kind.
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum SymbolKind {
-  File(1),
-  Module(2),
-  Namespace(3),
-  Package(4),
-  Class(5),
-  Method(6),
-  Property(7),
-  Field(8),
-  Constructor(9),
-  Enum(10),
-  Interface(11),
-  Function_(12),
-  Variable(13),
-  Constant(14),
-  String(15),
-  Number(16),
-  Boolean(17),
-  Array(18),
-  Object(19),
-  Key(20),
-  Null(21),
-  EnumMember(22),
-  Struct(23),
-  Event(24),
-  Operator(25),
-  TypeParameter(26);
-
-  const SymbolKind(this.value);
-
-  final int value;
+  @JsonValue(1)
+  File,
+  @JsonValue(2)
+  Module,
+  @JsonValue(3)
+  Namespace,
+  @JsonValue(4)
+  Package,
+  @JsonValue(5)
+  Class,
+  @JsonValue(6)
+  Method,
+  @JsonValue(7)
+  Property,
+  @JsonValue(8)
+  Field,
+  @JsonValue(9)
+  Constructor,
+  @JsonValue(10)
+  Enum,
+  @JsonValue(11)
+  Interface,
+  @JsonValue(12)
+  Function_,
+  @JsonValue(13)
+  Variable,
+  @JsonValue(14)
+  Constant,
+  @JsonValue(15)
+  String,
+  @JsonValue(16)
+  Number,
+  @JsonValue(17)
+  Boolean,
+  @JsonValue(18)
+  Array,
+  @JsonValue(19)
+  Object,
+  @JsonValue(20)
+  Key,
+  @JsonValue(21)
+  Null,
+  @JsonValue(22)
+  EnumMember,
+  @JsonValue(23)
+  Struct,
+  @JsonValue(24)
+  Event,
+  @JsonValue(25)
+  Operator,
+  @JsonValue(26)
+  TypeParameter,
 }
 
 /// Symbol tags are extra annotations that tweak the rendering of a symbol.
 ///
 /// @since 3.16
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum SymbolTag {
   /// Render a symbol as obsolete, usually using a strike-out.
-  Deprecated(1);
-
-  const SymbolTag(this.value);
-
-  final int value;
+  @JsonValue(1)
+  Deprecated,
 }
 
 /// Moniker uniqueness level to define scope of the moniker.
 ///
 /// @since 3.16.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum UniquenessLevel {
   /// The moniker is only unique inside a document
-  document('document'),
+  @JsonValue('document')
+  document,
 
   /// The moniker is unique inside a project for which a dump got created
-  project('project'),
+  @JsonValue('project')
+  project,
 
   /// The moniker is unique inside the group to which a project belongs
-  group('group'),
+  @JsonValue('group')
+  group,
 
   /// The moniker is unique inside the moniker scheme.
-  scheme('scheme'),
+  @JsonValue('scheme')
+  scheme,
 
   /// The moniker is globally unique
-  global('global');
-
-  const UniquenessLevel(this.value);
-
-  final String value;
+  @JsonValue('global')
+  global,
 }
 
 /// The moniker kind.
 ///
 /// @since 3.16.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum MonikerKind {
   /// The moniker represent a symbol that is imported into a project
-  import_('import'),
+  @JsonValue('import')
+  import_,
 
   /// The moniker represents a symbol that is exported from a project
-  export_('export'),
+  @JsonValue('export')
+  export_,
 
   /// The moniker represents a symbol that is local to a project (e.g. a local
   /// variable of a function, a class not visible outside the project, ...)
-  local('local');
-
-  const MonikerKind(this.value);
-
-  final String value;
+  @JsonValue('local')
+  local,
 }
 
 /// Inlay hint kinds.
 ///
 /// @since 3.17.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum InlayHintKind {
   /// An inlay hint that for a type annotation.
-  Type(1),
+  @JsonValue(1)
+  Type,
 
   /// An inlay hint that is for a parameter.
-  Parameter(2);
-
-  const InlayHintKind(this.value);
-
-  final int value;
+  @JsonValue(2)
+  Parameter,
 }
 
 /// The message type
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum MessageType {
   /// An error message.
-  Error(1),
+  @JsonValue(1)
+  Error,
 
   /// A warning message.
-  Warning(2),
+  @JsonValue(2)
+  Warning,
 
   /// An information message.
-  Info(3),
+  @JsonValue(3)
+  Info,
 
   /// A log message.
-  Log(4),
+  @JsonValue(4)
+  Log,
 
   /// A debug message.
   ///
   /// @since 3.18.0
-  Debug(5);
-
-  const MessageType(this.value);
-
-  final int value;
+  @JsonValue(5)
+  Debug,
 }
 
 /// Defines how the host (editor) should sync
 /// document changes to the language server.
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum TextDocumentSyncKind {
   /// Documents should not be synced at all.
-  None(0),
+  @JsonValue(0)
+  None,
 
   /// Documents are synced by always sending the full content
   /// of the document.
-  Full(1),
+  @JsonValue(1)
+  Full,
 
   /// Documents are synced by sending the full content on open.
   /// After that only incremental updates to the document are
   /// send.
-  Incremental(2);
-
-  const TextDocumentSyncKind(this.value);
-
-  final int value;
+  @JsonValue(2)
+  Incremental,
 }
 
 /// Represents reasons why a text document is saved.
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum TextDocumentSaveReason {
   /// Manually triggered, e.g. by the user pressing save, by starting debugging,
   /// or by an API call.
-  Manual(1),
+  @JsonValue(1)
+  Manual,
 
   /// Automatic after a delay.
-  AfterDelay(2),
+  @JsonValue(2)
+  AfterDelay,
 
   /// When the editor lost focus.
-  FocusOut(3);
-
-  const TextDocumentSaveReason(this.value);
-
-  final int value;
+  @JsonValue(3)
+  FocusOut,
 }
 
 /// The kind of a completion entry.
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum CompletionItemKind {
-  Text(1),
-  Method(2),
-  Function_(3),
-  Constructor(4),
-  Field(5),
-  Variable(6),
-  Class(7),
-  Interface(8),
-  Module(9),
-  Property(10),
-  Unit(11),
-  Value(12),
-  Enum(13),
-  Keyword(14),
-  Snippet(15),
-  Color(16),
-  File(17),
-  Reference(18),
-  Folder(19),
-  EnumMember(20),
-  Constant(21),
-  Struct(22),
-  Event(23),
-  Operator(24),
-  TypeParameter(25);
-
-  const CompletionItemKind(this.value);
-
-  final int value;
+  @JsonValue(1)
+  Text,
+  @JsonValue(2)
+  Method,
+  @JsonValue(3)
+  Function_,
+  @JsonValue(4)
+  Constructor,
+  @JsonValue(5)
+  Field,
+  @JsonValue(6)
+  Variable,
+  @JsonValue(7)
+  Class,
+  @JsonValue(8)
+  Interface,
+  @JsonValue(9)
+  Module,
+  @JsonValue(10)
+  Property,
+  @JsonValue(11)
+  Unit,
+  @JsonValue(12)
+  Value,
+  @JsonValue(13)
+  Enum,
+  @JsonValue(14)
+  Keyword,
+  @JsonValue(15)
+  Snippet,
+  @JsonValue(16)
+  Color,
+  @JsonValue(17)
+  File,
+  @JsonValue(18)
+  Reference,
+  @JsonValue(19)
+  Folder,
+  @JsonValue(20)
+  EnumMember,
+  @JsonValue(21)
+  Constant,
+  @JsonValue(22)
+  Struct,
+  @JsonValue(23)
+  Event,
+  @JsonValue(24)
+  Operator,
+  @JsonValue(25)
+  TypeParameter,
 }
 
 /// Completion item tags are extra annotations that tweak the rendering of a completion
 /// item.
 ///
 /// @since 3.15.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum CompletionItemTag {
   /// Render a completion as obsolete, usually using a strike-out.
-  Deprecated(1);
-
-  const CompletionItemTag(this.value);
-
-  final int value;
+  @JsonValue(1)
+  Deprecated,
 }
 
 /// Defines whether the insert text in a completion item should be interpreted as
 /// plain text or a snippet.
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum InsertTextFormat {
   /// The primary text to be inserted is treated as a plain string.
-  PlainText(1),
+  @JsonValue(1)
+  PlainText,
 
   /// The primary text to be inserted is treated as a snippet.
   ///
@@ -441,25 +452,23 @@ enum InsertTextFormat {
   /// that is typing in one will update others too.
   ///
   /// See also: https://microsoft.github.io/language-server-protocol/specifications/specification-current/#snippet_syntax
-  Snippet(2);
-
-  const InsertTextFormat(this.value);
-
-  final int value;
+  @JsonValue(2)
+  Snippet,
 }
 
 /// How whitespace and indentation is handled during completion
 /// item insertion.
 ///
 /// @since 3.16.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum InsertTextMode {
   /// The insertion or replace strings is taken as it is. If the
   /// value is multi line the lines below the cursor will be
   /// inserted using the indentation defined in the string value.
   /// The client will not apply any kind of adjustments to the
   /// string.
-  asIs(1),
+  @JsonValue(1)
+  asIs,
 
   /// The editor adjusts leading whitespace of new lines so that
   /// they match the indentation up to the cursor of the line for
@@ -468,44 +477,40 @@ enum InsertTextMode {
   /// Consider a line like this: <2tabs><cursor><3tabs>foo. Accepting a
   /// multi line completion item is indented using 2 tabs and all
   /// following lines inserted will be indented using 2 tabs as well.
-  adjustIndentation(2);
-
-  const InsertTextMode(this.value);
-
-  final int value;
+  @JsonValue(2)
+  adjustIndentation,
 }
 
 /// A document highlight kind.
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum DocumentHighlightKind {
   /// A textual occurrence.
-  Text(1),
+  @JsonValue(1)
+  Text,
 
   /// Read-access of a symbol, like reading a variable.
-  Read(2),
+  @JsonValue(2)
+  Read,
 
   /// Write-access of a symbol, like writing to a variable.
-  Write(3);
-
-  const DocumentHighlightKind(this.value);
-
-  final int value;
+  @JsonValue(3)
+  Write,
 }
 
 /// A set of predefined code action kinds
-final class CodeActionKind {
-  const CodeActionKind(this.value);
-
-  final String value;
-
+@JsonEnum()
+enum CodeActionKind {
   /// Empty kind.
-  static const CodeActionKind Empty = CodeActionKind('');
+  @JsonValue('')
+  Empty,
 
   /// Base kind for quickfix actions: 'quickfix'
-  static const CodeActionKind QuickFix = CodeActionKind('quickfix');
+  @JsonValue('quickfix')
+  QuickFix,
 
   /// Base kind for refactoring actions: 'refactor'
-  static const CodeActionKind Refactor = CodeActionKind('refactor');
+  @JsonValue('refactor')
+  Refactor,
 
   /// Base kind for refactoring extraction actions: 'refactor.extract'
   ///
@@ -516,9 +521,8 @@ final class CodeActionKind {
   /// - Extract variable
   /// - Extract interface from class
   /// - ...
-  static const CodeActionKind RefactorExtract = CodeActionKind(
-    'refactor.extract',
-  );
+  @JsonValue('refactor.extract')
+  RefactorExtract,
 
   /// Base kind for refactoring inline actions: 'refactor.inline'
   ///
@@ -528,9 +532,8 @@ final class CodeActionKind {
   /// - Inline variable
   /// - Inline constant
   /// - ...
-  static const CodeActionKind RefactorInline = CodeActionKind(
-    'refactor.inline',
-  );
+  @JsonValue('refactor.inline')
+  RefactorInline,
 
   /// Base kind for refactoring rewrite actions: 'refactor.rewrite'
   ///
@@ -542,19 +545,18 @@ final class CodeActionKind {
   /// - Make method static
   /// - Move method to base class
   /// - ...
-  static const CodeActionKind RefactorRewrite = CodeActionKind(
-    'refactor.rewrite',
-  );
+  @JsonValue('refactor.rewrite')
+  RefactorRewrite,
 
   /// Base kind for source actions: `source`
   ///
   /// Source code actions apply to the entire file.
-  static const CodeActionKind Source = CodeActionKind('source');
+  @JsonValue('source')
+  Source,
 
   /// Base kind for an organize imports source action: `source.organizeImports`
-  static const CodeActionKind SourceOrganizeImports = CodeActionKind(
-    'source.organizeImports',
-  );
+  @JsonValue('source.organizeImports')
+  SourceOrganizeImports,
 
   /// Base kind for auto-fix source actions: `source.fixAll`.
   ///
@@ -562,23 +564,23 @@ final class CodeActionKind {
   /// They should not suppress errors or perform unsafe fixes such as generating new types or classes.
   ///
   /// @since 3.15.0
-  static const CodeActionKind SourceFixAll = CodeActionKind('source.fixAll');
+  @JsonValue('source.fixAll')
+  SourceFixAll,
 }
 
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum TraceValues {
   /// Turn tracing off.
-  Off('off'),
+  @JsonValue('off')
+  Off,
 
   /// Trace messages only.
-  Messages('messages'),
+  @JsonValue('messages')
+  Messages,
 
   /// Verbose message tracing.
-  Verbose('verbose');
-
-  const TraceValues(this.value);
-
-  final String value;
+  @JsonValue('verbose')
+  Verbose,
 }
 
 /// Describes the content type that a client supports in various
@@ -586,280 +588,258 @@ enum TraceValues {
 ///
 /// Please note that `MarkupKinds` must not start with a `$`. This kinds
 /// are reserved for internal usage.
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum MarkupKind {
   /// Plain text is supported as a content format
-  PlainText('plaintext'),
+  @JsonValue('plaintext')
+  PlainText,
 
   /// Markdown is supported as a content format
-  Markdown('markdown');
-
-  const MarkupKind(this.value);
-
-  final String value;
+  @JsonValue('markdown')
+  Markdown,
 }
 
 /// Describes how an {@link InlineCompletionItemProvider inline completion provider} was triggered.
 ///
 /// @since 3.18.0
 /// @proposed
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum InlineCompletionTriggerKind {
   /// Completion was triggered explicitly by a user gesture.
-  Invoked(0),
+  @JsonValue(0)
+  Invoked,
 
   /// Completion was triggered automatically while editing.
-  Automatic(1);
-
-  const InlineCompletionTriggerKind(this.value);
-
-  final int value;
+  @JsonValue(1)
+  Automatic,
 }
 
 /// A set of predefined position encoding kinds.
 ///
 /// @since 3.17.0
-final class PositionEncodingKind {
-  const PositionEncodingKind(this.value);
-
-  final String value;
-
+@JsonEnum()
+enum PositionEncodingKind {
   /// Character offsets count UTF-8 code units (e.g. bytes).
-  static const PositionEncodingKind UTF8 = PositionEncodingKind('utf-8');
+  @JsonValue('utf-8')
+  UTF8,
 
   /// Character offsets count UTF-16 code units.
   ///
   /// This is the default and must always be supported
   /// by servers
-  static const PositionEncodingKind UTF16 = PositionEncodingKind('utf-16');
+  @JsonValue('utf-16')
+  UTF16,
 
   /// Character offsets count UTF-32 code units.
   ///
   /// Implementation note: these are the same as Unicode codepoints,
   /// so this `PositionEncodingKind` may also be used for an
   /// encoding-agnostic representation of character offsets.
-  static const PositionEncodingKind UTF32 = PositionEncodingKind('utf-32');
+  @JsonValue('utf-32')
+  UTF32,
 }
 
 /// The file event type
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum FileChangeType {
   /// The file got created.
-  Created(1),
+  @JsonValue(1)
+  Created,
 
   /// The file got changed.
-  Changed(2),
+  @JsonValue(2)
+  Changed,
 
   /// The file got deleted.
-  Deleted(3);
-
-  const FileChangeType(this.value);
-
-  final int value;
+  @JsonValue(3)
+  Deleted,
 }
 
-final class WatchKind {
-  const WatchKind(this.value);
-
-  final int value;
-
+@JsonEnum()
+enum WatchKind {
   /// Interested in create events.
-  static const WatchKind Create = WatchKind(1);
+  @JsonValue(1)
+  Create,
 
   /// Interested in change events
-  static const WatchKind Change = WatchKind(2);
+  @JsonValue(2)
+  Change,
 
   /// Interested in delete events
-  static const WatchKind Delete = WatchKind(4);
+  @JsonValue(4)
+  Delete,
 }
 
 /// The diagnostic's severity.
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum DiagnosticSeverity {
   /// Reports an error.
-  Error(1),
+  @JsonValue(1)
+  Error,
 
   /// Reports a warning.
-  Warning(2),
+  @JsonValue(2)
+  Warning,
 
   /// Reports an information.
-  Information(3),
+  @JsonValue(3)
+  Information,
 
   /// Reports a hint.
-  Hint(4);
-
-  const DiagnosticSeverity(this.value);
-
-  final int value;
+  @JsonValue(4)
+  Hint,
 }
 
 /// The diagnostic tags.
 ///
 /// @since 3.15.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum DiagnosticTag {
   /// Unused or unnecessary code.
   ///
   /// Clients are allowed to render diagnostics with this tag faded out instead of having
   /// an error squiggle.
-  Unnecessary(1),
+  @JsonValue(1)
+  Unnecessary,
 
   /// Deprecated or obsolete code.
   ///
   /// Clients are allowed to rendered diagnostics with this tag strike through.
-  Deprecated(2);
-
-  const DiagnosticTag(this.value);
-
-  final int value;
+  @JsonValue(2)
+  Deprecated,
 }
 
 /// How a completion was triggered
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum CompletionTriggerKind {
   /// Completion was triggered by typing an identifier (24x7 code
   /// complete), manual invocation (e.g Ctrl+Space) or via API.
-  Invoked(1),
+  @JsonValue(1)
+  Invoked,
 
   /// Completion was triggered by a trigger character specified by
   /// the `triggerCharacters` properties of the `CompletionRegistrationOptions`.
-  TriggerCharacter(2),
+  @JsonValue(2)
+  TriggerCharacter,
 
   /// Completion was re-triggered as current completion list is incomplete
-  TriggerForIncompleteCompletions(3);
-
-  const CompletionTriggerKind(this.value);
-
-  final int value;
+  @JsonValue(3)
+  TriggerForIncompleteCompletions,
 }
 
 /// How a signature help was triggered.
 ///
 /// @since 3.15.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum SignatureHelpTriggerKind {
   /// Signature help was invoked manually by the user or by a command.
-  Invoked(1),
+  @JsonValue(1)
+  Invoked,
 
   /// Signature help was triggered by a trigger character.
-  TriggerCharacter(2),
+  @JsonValue(2)
+  TriggerCharacter,
 
   /// Signature help was triggered by the cursor moving or by the document content changing.
-  ContentChange(3);
-
-  const SignatureHelpTriggerKind(this.value);
-
-  final int value;
+  @JsonValue(3)
+  ContentChange,
 }
 
 /// The reason why code actions were requested.
 ///
 /// @since 3.17.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum CodeActionTriggerKind {
   /// Code actions were explicitly requested by the user or by an extension.
-  Invoked(1),
+  @JsonValue(1)
+  Invoked,
 
   /// Code actions were requested automatically.
   ///
   /// This typically happens when current selection in a file changes, but can
   /// also be triggered when file content changes.
-  Automatic(2);
-
-  const CodeActionTriggerKind(this.value);
-
-  final int value;
+  @JsonValue(2)
+  Automatic,
 }
 
 /// A pattern kind describing if a glob pattern matches a file a folder or
 /// both.
 ///
 /// @since 3.16.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum FileOperationPatternKind {
   /// The pattern matches a file only.
-  file('file'),
+  @JsonValue('file')
+  file,
 
   /// The pattern matches a folder only.
-  folder('folder');
-
-  const FileOperationPatternKind(this.value);
-
-  final String value;
+  @JsonValue('folder')
+  folder,
 }
 
 /// A notebook cell kind.
 ///
 /// @since 3.17.0
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum NotebookCellKind {
   /// A markup-cell is formatted source that is used for display.
-  Markup(1),
+  @JsonValue(1)
+  Markup,
 
   /// A code-cell is source code.
-  Code(2);
-
-  const NotebookCellKind(this.value);
-
-  final int value;
+  @JsonValue(2)
+  Code,
 }
 
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum ResourceOperationKind {
   /// Supports creating new files and folders.
-  Create('create'),
+  @JsonValue('create')
+  Create,
 
   /// Supports renaming existing files and folders.
-  Rename('rename'),
+  @JsonValue('rename')
+  Rename,
 
   /// Supports deleting existing files and folders.
-  Delete('delete');
-
-  const ResourceOperationKind(this.value);
-
-  final String value;
+  @JsonValue('delete')
+  Delete,
 }
 
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum FailureHandlingKind {
   /// Applying the workspace change is simply aborted if one of the changes provided
   /// fails. All operations executed before the failing operation stay executed.
-  Abort('abort'),
+  @JsonValue('abort')
+  Abort,
 
   /// All operations are executed transactional. That means they either all
   /// succeed or no changes at all are applied to the workspace.
-  Transactional('transactional'),
+  @JsonValue('transactional')
+  Transactional,
 
   /// If the workspace edit contains only textual file changes they are executed transactional.
   /// If resource changes (create, rename or delete file) are part of the change the failure
   /// handling strategy is abort.
-  TextOnlyTransactional('textOnlyTransactional'),
+  @JsonValue('textOnlyTransactional')
+  TextOnlyTransactional,
 
   /// The client tries to undo the operations already executed. But there is no
   /// guarantee that this is succeeding.
-  Undo('undo');
-
-  const FailureHandlingKind(this.value);
-
-  final String value;
+  @JsonValue('undo')
+  Undo,
 }
 
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum PrepareSupportDefaultBehavior {
   /// The client's default behavior is to select the identifier
   /// according the to language's syntax rule.
-  Identifier(1);
-
-  const PrepareSupportDefaultBehavior(this.value);
-
-  final int value;
+  @JsonValue(1)
+  Identifier,
 }
 
-@JsonEnum(valueField: 'value')
+@JsonEnum()
 enum TokenFormat {
-  Relative('relative');
-
-  const TokenFormat(this.value);
-
-  final String value;
+  @JsonValue('relative')
+  Relative,
 }
