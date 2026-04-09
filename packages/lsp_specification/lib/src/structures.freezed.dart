@@ -4842,7 +4842,7 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$FoldingRange {
 
- int get startLine; int? get startCharacter; int get endLine; int? get endCharacter; FoldingRangeKind? get kind; String? get collapsedText;
+ int get startLine; int? get startCharacter; int get endLine; int? get endCharacter;@JsonKey(unknownEnumValue: FoldingRangeKind.$unknown) FoldingRangeKind? get kind; String? get collapsedText;
 /// Create a copy of FoldingRange
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4875,7 +4875,7 @@ abstract mixin class $FoldingRangeCopyWith<$Res>  {
   factory $FoldingRangeCopyWith(FoldingRange value, $Res Function(FoldingRange) _then) = _$FoldingRangeCopyWithImpl;
 @useResult
 $Res call({
- int startLine, int? startCharacter, int endLine, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
+ int startLine, int? startCharacter, int endLine, int? endCharacter,@JsonKey(unknownEnumValue: FoldingRangeKind.$unknown) FoldingRangeKind? kind, String? collapsedText
 });
 
 
@@ -4985,7 +4985,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter,  FoldingRangeKind? kind,  String? collapsedText)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter, @JsonKey(unknownEnumValue: FoldingRangeKind.$unknown)  FoldingRangeKind? kind,  String? collapsedText)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FoldingRange() when $default != null:
 return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endCharacter,_that.kind,_that.collapsedText);case _:
@@ -5006,7 +5006,7 @@ return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endChar
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter,  FoldingRangeKind? kind,  String? collapsedText)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter, @JsonKey(unknownEnumValue: FoldingRangeKind.$unknown)  FoldingRangeKind? kind,  String? collapsedText)  $default,) {final _that = this;
 switch (_that) {
 case _FoldingRange():
 return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endCharacter,_that.kind,_that.collapsedText);case _:
@@ -5026,7 +5026,7 @@ return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endChar
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter,  FoldingRangeKind? kind,  String? collapsedText)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int startLine,  int? startCharacter,  int endLine,  int? endCharacter, @JsonKey(unknownEnumValue: FoldingRangeKind.$unknown)  FoldingRangeKind? kind,  String? collapsedText)?  $default,) {final _that = this;
 switch (_that) {
 case _FoldingRange() when $default != null:
 return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endCharacter,_that.kind,_that.collapsedText);case _:
@@ -5041,14 +5041,14 @@ return $default(_that.startLine,_that.startCharacter,_that.endLine,_that.endChar
 @JsonSerializable()
 
 class _FoldingRange extends FoldingRange {
-  const _FoldingRange({required this.startLine, this.startCharacter, required this.endLine, this.endCharacter, this.kind, this.collapsedText}): super._();
+  const _FoldingRange({required this.startLine, this.startCharacter, required this.endLine, this.endCharacter, @JsonKey(unknownEnumValue: FoldingRangeKind.$unknown) this.kind, this.collapsedText}): super._();
   factory _FoldingRange.fromJson(Map<String, dynamic> json) => _$FoldingRangeFromJson(json);
 
 @override final  int startLine;
 @override final  int? startCharacter;
 @override final  int endLine;
 @override final  int? endCharacter;
-@override final  FoldingRangeKind? kind;
+@override@JsonKey(unknownEnumValue: FoldingRangeKind.$unknown) final  FoldingRangeKind? kind;
 @override final  String? collapsedText;
 
 /// Create a copy of FoldingRange
@@ -5084,7 +5084,7 @@ abstract mixin class _$FoldingRangeCopyWith<$Res> implements $FoldingRangeCopyWi
   factory _$FoldingRangeCopyWith(_FoldingRange value, $Res Function(_FoldingRange) _then) = __$FoldingRangeCopyWithImpl;
 @override @useResult
 $Res call({
- int startLine, int? startCharacter, int endLine, int? endCharacter, FoldingRangeKind? kind, String? collapsedText
+ int startLine, int? startCharacter, int endLine, int? endCharacter,@JsonKey(unknownEnumValue: FoldingRangeKind.$unknown) FoldingRangeKind? kind, String? collapsedText
 });
 
 
@@ -36906,7 +36906,7 @@ as List<LSPAny>?,
 /// @nodoc
 mixin _$CodeAction {
 
- String get title; CodeActionKind? get kind; List<Diagnostic>? get diagnostics; bool? get isPreferred; ({String reason})? get disabled; WorkspaceEdit? get edit; Command? get command; LSPAny? get data;
+ String get title;@JsonKey(unknownEnumValue: CodeActionKind.$unknown) CodeActionKind? get kind; List<Diagnostic>? get diagnostics; bool? get isPreferred; ({String reason})? get disabled; WorkspaceEdit? get edit; Command? get command; LSPAny? get data;
 /// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -36939,7 +36939,7 @@ abstract mixin class $CodeActionCopyWith<$Res>  {
   factory $CodeActionCopyWith(CodeAction value, $Res Function(CodeAction) _then) = _$CodeActionCopyWithImpl;
 @useResult
 $Res call({
- String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
+ String title,@JsonKey(unknownEnumValue: CodeActionKind.$unknown) CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
 });
 
 
@@ -37074,7 +37074,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  ({String reason})? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  ({String reason})? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeAction() when $default != null:
 return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that.disabled,_that.edit,_that.command,_that.data);case _:
@@ -37095,7 +37095,7 @@ return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  ({String reason})? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  ({String reason})? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _CodeAction():
 return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that.disabled,_that.edit,_that.command,_that.data);case _:
@@ -37115,7 +37115,7 @@ return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  ({String reason})? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  CodeActionKind? kind,  List<Diagnostic>? diagnostics,  bool? isPreferred,  ({String reason})? disabled,  WorkspaceEdit? edit,  Command? command,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeAction() when $default != null:
 return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that.disabled,_that.edit,_that.command,_that.data);case _:
@@ -37130,11 +37130,11 @@ return $default(_that.title,_that.kind,_that.diagnostics,_that.isPreferred,_that
 @JsonSerializable()
 
 class _CodeAction extends CodeAction {
-  const _CodeAction({required this.title, this.kind, final  List<Diagnostic>? diagnostics, this.isPreferred, this.disabled, this.edit, this.command, this.data}): _diagnostics = diagnostics,super._();
+  const _CodeAction({required this.title, @JsonKey(unknownEnumValue: CodeActionKind.$unknown) this.kind, final  List<Diagnostic>? diagnostics, this.isPreferred, this.disabled, this.edit, this.command, this.data}): _diagnostics = diagnostics,super._();
   factory _CodeAction.fromJson(Map<String, dynamic> json) => _$CodeActionFromJson(json);
 
 @override final  String title;
-@override final  CodeActionKind? kind;
+@override@JsonKey(unknownEnumValue: CodeActionKind.$unknown) final  CodeActionKind? kind;
  final  List<Diagnostic>? _diagnostics;
 @override List<Diagnostic>? get diagnostics {
   final value = _diagnostics;
@@ -37183,7 +37183,7 @@ abstract mixin class _$CodeActionCopyWith<$Res> implements $CodeActionCopyWith<$
   factory _$CodeActionCopyWith(_CodeAction value, $Res Function(_CodeAction) _then) = __$CodeActionCopyWithImpl;
 @override @useResult
 $Res call({
- String title, CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
+ String title,@JsonKey(unknownEnumValue: CodeActionKind.$unknown) CodeActionKind? kind, List<Diagnostic>? diagnostics, bool? isPreferred, ({String reason})? disabled, WorkspaceEdit? edit, Command? command, LSPAny? data
 });
 
 
@@ -37244,7 +37244,7 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 mixin _$CodeActionRegistrationOptions {
 
- DocumentSelector? get documentSelector; bool? get workDoneProgress; List<CodeActionKind>? get codeActionKinds; bool? get resolveProvider;
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? get codeActionKinds; bool? get resolveProvider;
 /// Create a copy of CodeActionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37277,7 +37277,7 @@ abstract mixin class $CodeActionRegistrationOptionsCopyWith<$Res>  {
   factory $CodeActionRegistrationOptionsCopyWith(CodeActionRegistrationOptions value, $Res Function(CodeActionRegistrationOptions) _then) = _$CodeActionRegistrationOptionsCopyWithImpl;
 @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ DocumentSelector? documentSelector, bool? workDoneProgress,@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? codeActionKinds, bool? resolveProvider
 });
 
 
@@ -37385,7 +37385,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeActionRegistrationOptions() when $default != null:
 return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -37406,7 +37406,7 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKi
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DocumentSelector? documentSelector,  bool? workDoneProgress, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionRegistrationOptions():
 return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -37426,7 +37426,7 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKi
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DocumentSelector? documentSelector,  bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DocumentSelector? documentSelector,  bool? workDoneProgress, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionRegistrationOptions() when $default != null:
 return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -37441,7 +37441,7 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKi
 @JsonSerializable()
 
 class _CodeActionRegistrationOptions extends CodeActionRegistrationOptions {
-  const _CodeActionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _documentSelector = documentSelector,_codeActionKinds = codeActionKinds,super._();
+  const _CodeActionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, @JsonKey(unknownEnumValue: CodeActionKind.$unknown) final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _documentSelector = documentSelector,_codeActionKinds = codeActionKinds,super._();
   factory _CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeActionRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -37455,7 +37455,7 @@ class _CodeActionRegistrationOptions extends CodeActionRegistrationOptions {
 
 @override final  bool? workDoneProgress;
  final  List<CodeActionKind>? _codeActionKinds;
-@override List<CodeActionKind>? get codeActionKinds {
+@override@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
   if (_codeActionKinds is EqualUnmodifiableListView) return _codeActionKinds;
@@ -37498,7 +37498,7 @@ abstract mixin class _$CodeActionRegistrationOptionsCopyWith<$Res> implements $C
   factory _$CodeActionRegistrationOptionsCopyWith(_CodeActionRegistrationOptions value, $Res Function(_CodeActionRegistrationOptions) _then) = __$CodeActionRegistrationOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- DocumentSelector? documentSelector, bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ DocumentSelector? documentSelector, bool? workDoneProgress,@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? codeActionKinds, bool? resolveProvider
 });
 
 
@@ -62064,7 +62064,7 @@ as List<WorkspaceFolder>?,
 /// @nodoc
 mixin _$ServerCapabilities {
 
- PositionEncodingKind? get positionEncoding; Object? get textDocumentSync; Object? get notebookDocumentSync; CompletionOptions? get completionProvider; Object? get hoverProvider; SignatureHelpOptions? get signatureHelpProvider; Object? get declarationProvider; Object? get definitionProvider; Object? get typeDefinitionProvider; Object? get implementationProvider; Object? get referencesProvider; Object? get documentHighlightProvider; Object? get documentSymbolProvider; Object? get codeActionProvider; CodeLensOptions? get codeLensProvider; DocumentLinkOptions? get documentLinkProvider; Object? get colorProvider; Object? get workspaceSymbolProvider; Object? get documentFormattingProvider; Object? get documentRangeFormattingProvider; DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider; Object? get renameProvider; Object? get foldingRangeProvider; Object? get selectionRangeProvider; ExecuteCommandOptions? get executeCommandProvider; Object? get callHierarchyProvider; Object? get linkedEditingRangeProvider; Object? get semanticTokensProvider; Object? get monikerProvider; Object? get typeHierarchyProvider; Object? get inlineValueProvider; Object? get inlayHintProvider; Object? get diagnosticProvider; Object? get inlineCompletionProvider; ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? get workspace; LSPAny? get experimental;
+@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) PositionEncodingKind? get positionEncoding; Object? get textDocumentSync; Object? get notebookDocumentSync; CompletionOptions? get completionProvider; Object? get hoverProvider; SignatureHelpOptions? get signatureHelpProvider; Object? get declarationProvider; Object? get definitionProvider; Object? get typeDefinitionProvider; Object? get implementationProvider; Object? get referencesProvider; Object? get documentHighlightProvider; Object? get documentSymbolProvider; Object? get codeActionProvider; CodeLensOptions? get codeLensProvider; DocumentLinkOptions? get documentLinkProvider; Object? get colorProvider; Object? get workspaceSymbolProvider; Object? get documentFormattingProvider; Object? get documentRangeFormattingProvider; DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider; Object? get renameProvider; Object? get foldingRangeProvider; Object? get selectionRangeProvider; ExecuteCommandOptions? get executeCommandProvider; Object? get callHierarchyProvider; Object? get linkedEditingRangeProvider; Object? get semanticTokensProvider; Object? get monikerProvider; Object? get typeHierarchyProvider; Object? get inlineValueProvider; Object? get inlayHintProvider; Object? get diagnosticProvider; Object? get inlineCompletionProvider; ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? get workspace; LSPAny? get experimental;
 /// Create a copy of ServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -62097,7 +62097,7 @@ abstract mixin class $ServerCapabilitiesCopyWith<$Res>  {
   factory $ServerCapabilitiesCopyWith(ServerCapabilities value, $Res Function(ServerCapabilities) _then) = _$ServerCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
+@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
 });
 
 
@@ -62281,7 +62281,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace,  LSPAny? experimental)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)  PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace,  LSPAny? experimental)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServerCapabilities() when $default != null:
 return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocumentSync,_that.completionProvider,_that.hoverProvider,_that.signatureHelpProvider,_that.declarationProvider,_that.definitionProvider,_that.typeDefinitionProvider,_that.implementationProvider,_that.referencesProvider,_that.documentHighlightProvider,_that.documentSymbolProvider,_that.codeActionProvider,_that.codeLensProvider,_that.documentLinkProvider,_that.colorProvider,_that.workspaceSymbolProvider,_that.documentFormattingProvider,_that.documentRangeFormattingProvider,_that.documentOnTypeFormattingProvider,_that.renameProvider,_that.foldingRangeProvider,_that.selectionRangeProvider,_that.executeCommandProvider,_that.callHierarchyProvider,_that.linkedEditingRangeProvider,_that.semanticTokensProvider,_that.monikerProvider,_that.typeHierarchyProvider,_that.inlineValueProvider,_that.inlayHintProvider,_that.diagnosticProvider,_that.inlineCompletionProvider,_that.workspace,_that.experimental);case _:
@@ -62302,7 +62302,7 @@ return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocu
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace,  LSPAny? experimental)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)  PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace,  LSPAny? experimental)  $default,) {final _that = this;
 switch (_that) {
 case _ServerCapabilities():
 return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocumentSync,_that.completionProvider,_that.hoverProvider,_that.signatureHelpProvider,_that.declarationProvider,_that.definitionProvider,_that.typeDefinitionProvider,_that.implementationProvider,_that.referencesProvider,_that.documentHighlightProvider,_that.documentSymbolProvider,_that.codeActionProvider,_that.codeLensProvider,_that.documentLinkProvider,_that.colorProvider,_that.workspaceSymbolProvider,_that.documentFormattingProvider,_that.documentRangeFormattingProvider,_that.documentOnTypeFormattingProvider,_that.renameProvider,_that.foldingRangeProvider,_that.selectionRangeProvider,_that.executeCommandProvider,_that.callHierarchyProvider,_that.linkedEditingRangeProvider,_that.semanticTokensProvider,_that.monikerProvider,_that.typeHierarchyProvider,_that.inlineValueProvider,_that.inlayHintProvider,_that.diagnosticProvider,_that.inlineCompletionProvider,_that.workspace,_that.experimental);case _:
@@ -62322,7 +62322,7 @@ return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocu
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace,  LSPAny? experimental)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)  PositionEncodingKind? positionEncoding,  Object? textDocumentSync,  Object? notebookDocumentSync,  CompletionOptions? completionProvider,  Object? hoverProvider,  SignatureHelpOptions? signatureHelpProvider,  Object? declarationProvider,  Object? definitionProvider,  Object? typeDefinitionProvider,  Object? implementationProvider,  Object? referencesProvider,  Object? documentHighlightProvider,  Object? documentSymbolProvider,  Object? codeActionProvider,  CodeLensOptions? codeLensProvider,  DocumentLinkOptions? documentLinkProvider,  Object? colorProvider,  Object? workspaceSymbolProvider,  Object? documentFormattingProvider,  Object? documentRangeFormattingProvider,  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider,  Object? renameProvider,  Object? foldingRangeProvider,  Object? selectionRangeProvider,  ExecuteCommandOptions? executeCommandProvider,  Object? callHierarchyProvider,  Object? linkedEditingRangeProvider,  Object? semanticTokensProvider,  Object? monikerProvider,  Object? typeHierarchyProvider,  Object? inlineValueProvider,  Object? inlayHintProvider,  Object? diagnosticProvider,  Object? inlineCompletionProvider,  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace,  LSPAny? experimental)?  $default,) {final _that = this;
 switch (_that) {
 case _ServerCapabilities() when $default != null:
 return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocumentSync,_that.completionProvider,_that.hoverProvider,_that.signatureHelpProvider,_that.declarationProvider,_that.definitionProvider,_that.typeDefinitionProvider,_that.implementationProvider,_that.referencesProvider,_that.documentHighlightProvider,_that.documentSymbolProvider,_that.codeActionProvider,_that.codeLensProvider,_that.documentLinkProvider,_that.colorProvider,_that.workspaceSymbolProvider,_that.documentFormattingProvider,_that.documentRangeFormattingProvider,_that.documentOnTypeFormattingProvider,_that.renameProvider,_that.foldingRangeProvider,_that.selectionRangeProvider,_that.executeCommandProvider,_that.callHierarchyProvider,_that.linkedEditingRangeProvider,_that.semanticTokensProvider,_that.monikerProvider,_that.typeHierarchyProvider,_that.inlineValueProvider,_that.inlayHintProvider,_that.diagnosticProvider,_that.inlineCompletionProvider,_that.workspace,_that.experimental);case _:
@@ -62337,10 +62337,10 @@ return $default(_that.positionEncoding,_that.textDocumentSync,_that.notebookDocu
 @JsonSerializable()
 
 class _ServerCapabilities extends ServerCapabilities {
-  const _ServerCapabilities({this.positionEncoding, this.textDocumentSync, this.notebookDocumentSync, this.completionProvider, this.hoverProvider, this.signatureHelpProvider, this.declarationProvider, this.definitionProvider, this.typeDefinitionProvider, this.implementationProvider, this.referencesProvider, this.documentHighlightProvider, this.documentSymbolProvider, this.codeActionProvider, this.codeLensProvider, this.documentLinkProvider, this.colorProvider, this.workspaceSymbolProvider, this.documentFormattingProvider, this.documentRangeFormattingProvider, this.documentOnTypeFormattingProvider, this.renameProvider, this.foldingRangeProvider, this.selectionRangeProvider, this.executeCommandProvider, this.callHierarchyProvider, this.linkedEditingRangeProvider, this.semanticTokensProvider, this.monikerProvider, this.typeHierarchyProvider, this.inlineValueProvider, this.inlayHintProvider, this.diagnosticProvider, this.inlineCompletionProvider, this.workspace, this.experimental}): super._();
+  const _ServerCapabilities({@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) this.positionEncoding, this.textDocumentSync, this.notebookDocumentSync, this.completionProvider, this.hoverProvider, this.signatureHelpProvider, this.declarationProvider, this.definitionProvider, this.typeDefinitionProvider, this.implementationProvider, this.referencesProvider, this.documentHighlightProvider, this.documentSymbolProvider, this.codeActionProvider, this.codeLensProvider, this.documentLinkProvider, this.colorProvider, this.workspaceSymbolProvider, this.documentFormattingProvider, this.documentRangeFormattingProvider, this.documentOnTypeFormattingProvider, this.renameProvider, this.foldingRangeProvider, this.selectionRangeProvider, this.executeCommandProvider, this.callHierarchyProvider, this.linkedEditingRangeProvider, this.semanticTokensProvider, this.monikerProvider, this.typeHierarchyProvider, this.inlineValueProvider, this.inlayHintProvider, this.diagnosticProvider, this.inlineCompletionProvider, this.workspace, this.experimental}): super._();
   factory _ServerCapabilities.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFromJson(json);
 
-@override final  PositionEncodingKind? positionEncoding;
+@override@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) final  PositionEncodingKind? positionEncoding;
 @override final  Object? textDocumentSync;
 @override final  Object? notebookDocumentSync;
 @override final  CompletionOptions? completionProvider;
@@ -62410,7 +62410,7 @@ abstract mixin class _$ServerCapabilitiesCopyWith<$Res> implements $ServerCapabi
   factory _$ServerCapabilitiesCopyWith(_ServerCapabilities value, $Res Function(_ServerCapabilities) _then) = __$ServerCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
+@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) PositionEncodingKind? positionEncoding, Object? textDocumentSync, Object? notebookDocumentSync, CompletionOptions? completionProvider, Object? hoverProvider, SignatureHelpOptions? signatureHelpProvider, Object? declarationProvider, Object? definitionProvider, Object? typeDefinitionProvider, Object? implementationProvider, Object? referencesProvider, Object? documentHighlightProvider, Object? documentSymbolProvider, Object? codeActionProvider, CodeLensOptions? codeLensProvider, DocumentLinkOptions? documentLinkProvider, Object? colorProvider, Object? workspaceSymbolProvider, Object? documentFormattingProvider, Object? documentRangeFormattingProvider, DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider, Object? renameProvider, Object? foldingRangeProvider, Object? selectionRangeProvider, ExecuteCommandOptions? executeCommandProvider, Object? callHierarchyProvider, Object? linkedEditingRangeProvider, Object? semanticTokensProvider, Object? monikerProvider, Object? typeHierarchyProvider, Object? inlineValueProvider, Object? inlayHintProvider, Object? diagnosticProvider, Object? inlineCompletionProvider, ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace, LSPAny? experimental
 });
 
 
@@ -63315,7 +63315,7 @@ as FileChangeType,
 /// @nodoc
 mixin _$FileSystemWatcher {
 
- GlobPattern get globPattern; WatchKind? get kind;
+ GlobPattern get globPattern;@JsonKey(unknownEnumValue: WatchKind.$unknown) WatchKind? get kind;
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -63348,7 +63348,7 @@ abstract mixin class $FileSystemWatcherCopyWith<$Res>  {
   factory $FileSystemWatcherCopyWith(FileSystemWatcher value, $Res Function(FileSystemWatcher) _then) = _$FileSystemWatcherCopyWithImpl;
 @useResult
 $Res call({
- GlobPattern globPattern, WatchKind? kind
+ GlobPattern globPattern,@JsonKey(unknownEnumValue: WatchKind.$unknown) WatchKind? kind
 });
 
 
@@ -63453,7 +63453,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GlobPattern globPattern,  WatchKind? kind)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GlobPattern globPattern, @JsonKey(unknownEnumValue: WatchKind.$unknown)  WatchKind? kind)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FileSystemWatcher() when $default != null:
 return $default(_that.globPattern,_that.kind);case _:
@@ -63474,7 +63474,7 @@ return $default(_that.globPattern,_that.kind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GlobPattern globPattern,  WatchKind? kind)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GlobPattern globPattern, @JsonKey(unknownEnumValue: WatchKind.$unknown)  WatchKind? kind)  $default,) {final _that = this;
 switch (_that) {
 case _FileSystemWatcher():
 return $default(_that.globPattern,_that.kind);case _:
@@ -63494,7 +63494,7 @@ return $default(_that.globPattern,_that.kind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GlobPattern globPattern,  WatchKind? kind)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GlobPattern globPattern, @JsonKey(unknownEnumValue: WatchKind.$unknown)  WatchKind? kind)?  $default,) {final _that = this;
 switch (_that) {
 case _FileSystemWatcher() when $default != null:
 return $default(_that.globPattern,_that.kind);case _:
@@ -63509,11 +63509,11 @@ return $default(_that.globPattern,_that.kind);case _:
 @JsonSerializable()
 
 class _FileSystemWatcher extends FileSystemWatcher {
-  const _FileSystemWatcher({required this.globPattern, this.kind}): super._();
+  const _FileSystemWatcher({required this.globPattern, @JsonKey(unknownEnumValue: WatchKind.$unknown) this.kind}): super._();
   factory _FileSystemWatcher.fromJson(Map<String, dynamic> json) => _$FileSystemWatcherFromJson(json);
 
 @override final  GlobPattern globPattern;
-@override final  WatchKind? kind;
+@override@JsonKey(unknownEnumValue: WatchKind.$unknown) final  WatchKind? kind;
 
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
@@ -63548,7 +63548,7 @@ abstract mixin class _$FileSystemWatcherCopyWith<$Res> implements $FileSystemWat
   factory _$FileSystemWatcherCopyWith(_FileSystemWatcher value, $Res Function(_FileSystemWatcher) _then) = __$FileSystemWatcherCopyWithImpl;
 @override @useResult
 $Res call({
- GlobPattern globPattern, WatchKind? kind
+ GlobPattern globPattern,@JsonKey(unknownEnumValue: WatchKind.$unknown) WatchKind? kind
 });
 
 
@@ -67768,7 +67768,7 @@ as String?,
 /// @nodoc
 mixin _$CodeActionContext {
 
- List<Diagnostic> get diagnostics; List<CodeActionKind>? get only; CodeActionTriggerKind? get triggerKind;
+ List<Diagnostic> get diagnostics;@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? get only; CodeActionTriggerKind? get triggerKind;
 /// Create a copy of CodeActionContext
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -67801,7 +67801,7 @@ abstract mixin class $CodeActionContextCopyWith<$Res>  {
   factory $CodeActionContextCopyWith(CodeActionContext value, $Res Function(CodeActionContext) _then) = _$CodeActionContextCopyWithImpl;
 @useResult
 $Res call({
- List<Diagnostic> diagnostics, List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
+ List<Diagnostic> diagnostics,@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
 });
 
 
@@ -67908,7 +67908,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics,  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeActionContext() when $default != null:
 return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
@@ -67929,7 +67929,7 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics,  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Diagnostic> diagnostics, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionContext():
 return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
@@ -67949,7 +67949,7 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Diagnostic> diagnostics,  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Diagnostic> diagnostics, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  List<CodeActionKind>? only,  CodeActionTriggerKind? triggerKind)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionContext() when $default != null:
 return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
@@ -67964,7 +67964,7 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 @JsonSerializable()
 
 class _CodeActionContext extends CodeActionContext {
-  const _CodeActionContext({required final  List<Diagnostic> diagnostics, final  List<CodeActionKind>? only, this.triggerKind}): _diagnostics = diagnostics,_only = only,super._();
+  const _CodeActionContext({required final  List<Diagnostic> diagnostics, @JsonKey(unknownEnumValue: CodeActionKind.$unknown) final  List<CodeActionKind>? only, this.triggerKind}): _diagnostics = diagnostics,_only = only,super._();
   factory _CodeActionContext.fromJson(Map<String, dynamic> json) => _$CodeActionContextFromJson(json);
 
  final  List<Diagnostic> _diagnostics;
@@ -67975,7 +67975,7 @@ class _CodeActionContext extends CodeActionContext {
 }
 
  final  List<CodeActionKind>? _only;
-@override List<CodeActionKind>? get only {
+@override@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? get only {
   final value = _only;
   if (value == null) return null;
   if (_only is EqualUnmodifiableListView) return _only;
@@ -68018,7 +68018,7 @@ abstract mixin class _$CodeActionContextCopyWith<$Res> implements $CodeActionCon
   factory _$CodeActionContextCopyWith(_CodeActionContext value, $Res Function(_CodeActionContext) _then) = __$CodeActionContextCopyWithImpl;
 @override @useResult
 $Res call({
- List<Diagnostic> diagnostics, List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
+ List<Diagnostic> diagnostics,@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? only, CodeActionTriggerKind? triggerKind
 });
 
 
@@ -68051,7 +68051,7 @@ as CodeActionTriggerKind?,
 /// @nodoc
 mixin _$CodeActionOptions {
 
- bool? get workDoneProgress; List<CodeActionKind>? get codeActionKinds; bool? get resolveProvider;
+ bool? get workDoneProgress;@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? get codeActionKinds; bool? get resolveProvider;
 /// Create a copy of CodeActionOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -68084,7 +68084,7 @@ abstract mixin class $CodeActionOptionsCopyWith<$Res>  {
   factory $CodeActionOptionsCopyWith(CodeActionOptions value, $Res Function(CodeActionOptions) _then) = _$CodeActionOptionsCopyWithImpl;
 @useResult
 $Res call({
- bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ bool? workDoneProgress,@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? codeActionKinds, bool? resolveProvider
 });
 
 
@@ -68191,7 +68191,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? workDoneProgress, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CodeActionOptions() when $default != null:
 return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -68212,7 +68212,7 @@ return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvid
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? workDoneProgress, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionOptions():
 return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -68232,7 +68232,7 @@ return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvid
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? workDoneProgress,  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? workDoneProgress, @JsonKey(unknownEnumValue: CodeActionKind.$unknown)  List<CodeActionKind>? codeActionKinds,  bool? resolveProvider)?  $default,) {final _that = this;
 switch (_that) {
 case _CodeActionOptions() when $default != null:
 return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvider);case _:
@@ -68247,12 +68247,12 @@ return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvid
 @JsonSerializable()
 
 class _CodeActionOptions extends CodeActionOptions {
-  const _CodeActionOptions({this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _codeActionKinds = codeActionKinds,super._();
+  const _CodeActionOptions({this.workDoneProgress, @JsonKey(unknownEnumValue: CodeActionKind.$unknown) final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _codeActionKinds = codeActionKinds,super._();
   factory _CodeActionOptions.fromJson(Map<String, dynamic> json) => _$CodeActionOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
  final  List<CodeActionKind>? _codeActionKinds;
-@override List<CodeActionKind>? get codeActionKinds {
+@override@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
   if (_codeActionKinds is EqualUnmodifiableListView) return _codeActionKinds;
@@ -68295,7 +68295,7 @@ abstract mixin class _$CodeActionOptionsCopyWith<$Res> implements $CodeActionOpt
   factory _$CodeActionOptionsCopyWith(_CodeActionOptions value, $Res Function(_CodeActionOptions) _then) = __$CodeActionOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- bool? workDoneProgress, List<CodeActionKind>? codeActionKinds, bool? resolveProvider
+ bool? workDoneProgress,@JsonKey(unknownEnumValue: CodeActionKind.$unknown) List<CodeActionKind>? codeActionKinds, bool? resolveProvider
 });
 
 
@@ -80140,7 +80140,7 @@ $ShowDocumentClientCapabilitiesCopyWith<$Res>? get showDocument {
 /// @nodoc
 mixin _$GeneralClientCapabilities {
 
- ({bool cancel, List<String> retryOnContentModified})? get staleRequestSupport; RegularExpressionsClientCapabilities? get regularExpressions; MarkdownClientCapabilities? get markdown; List<PositionEncodingKind>? get positionEncodings;
+ ({bool cancel, List<String> retryOnContentModified})? get staleRequestSupport; RegularExpressionsClientCapabilities? get regularExpressions; MarkdownClientCapabilities? get markdown;@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) List<PositionEncodingKind>? get positionEncodings;
 /// Create a copy of GeneralClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -80173,7 +80173,7 @@ abstract mixin class $GeneralClientCapabilitiesCopyWith<$Res>  {
   factory $GeneralClientCapabilitiesCopyWith(GeneralClientCapabilities value, $Res Function(GeneralClientCapabilities) _then) = _$GeneralClientCapabilitiesCopyWithImpl;
 @useResult
 $Res call({
- ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown, List<PositionEncodingKind>? positionEncodings
+ ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown,@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) List<PositionEncodingKind>? positionEncodings
 });
 
 
@@ -80305,7 +80305,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown,  List<PositionEncodingKind>? positionEncodings)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown, @JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)  List<PositionEncodingKind>? positionEncodings)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GeneralClientCapabilities() when $default != null:
 return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdown,_that.positionEncodings);case _:
@@ -80326,7 +80326,7 @@ return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdow
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown,  List<PositionEncodingKind>? positionEncodings)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown, @JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)  List<PositionEncodingKind>? positionEncodings)  $default,) {final _that = this;
 switch (_that) {
 case _GeneralClientCapabilities():
 return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdown,_that.positionEncodings);case _:
@@ -80346,7 +80346,7 @@ return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdow
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown,  List<PositionEncodingKind>? positionEncodings)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,  RegularExpressionsClientCapabilities? regularExpressions,  MarkdownClientCapabilities? markdown, @JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)  List<PositionEncodingKind>? positionEncodings)?  $default,) {final _that = this;
 switch (_that) {
 case _GeneralClientCapabilities() when $default != null:
 return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdown,_that.positionEncodings);case _:
@@ -80361,14 +80361,14 @@ return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdow
 @JsonSerializable()
 
 class _GeneralClientCapabilities extends GeneralClientCapabilities {
-  const _GeneralClientCapabilities({this.staleRequestSupport, this.regularExpressions, this.markdown, final  List<PositionEncodingKind>? positionEncodings}): _positionEncodings = positionEncodings,super._();
+  const _GeneralClientCapabilities({this.staleRequestSupport, this.regularExpressions, this.markdown, @JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) final  List<PositionEncodingKind>? positionEncodings}): _positionEncodings = positionEncodings,super._();
   factory _GeneralClientCapabilities.fromJson(Map<String, dynamic> json) => _$GeneralClientCapabilitiesFromJson(json);
 
 @override final  ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport;
 @override final  RegularExpressionsClientCapabilities? regularExpressions;
 @override final  MarkdownClientCapabilities? markdown;
  final  List<PositionEncodingKind>? _positionEncodings;
-@override List<PositionEncodingKind>? get positionEncodings {
+@override@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) List<PositionEncodingKind>? get positionEncodings {
   final value = _positionEncodings;
   if (value == null) return null;
   if (_positionEncodings is EqualUnmodifiableListView) return _positionEncodings;
@@ -80410,7 +80410,7 @@ abstract mixin class _$GeneralClientCapabilitiesCopyWith<$Res> implements $Gener
   factory _$GeneralClientCapabilitiesCopyWith(_GeneralClientCapabilities value, $Res Function(_GeneralClientCapabilities) _then) = __$GeneralClientCapabilitiesCopyWithImpl;
 @override @useResult
 $Res call({
- ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown, List<PositionEncodingKind>? positionEncodings
+ ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport, RegularExpressionsClientCapabilities? regularExpressions, MarkdownClientCapabilities? markdown,@JsonKey(unknownEnumValue: PositionEncodingKind.$unknown) List<PositionEncodingKind>? positionEncodings
 });
 
 

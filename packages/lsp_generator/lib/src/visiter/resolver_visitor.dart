@@ -220,6 +220,7 @@ final class _RegisterPass extends MetaVisitor {
       since: structure.since,
       proposed: structure.proposed,
     );
+
     _r._registry[structure.name] = cls;
     _r._classes.add(cls);
     // Do NOT walk children in pass 1
@@ -228,9 +229,7 @@ final class _RegisterPass extends MetaVisitor {
   @override
   void visitEnumeration(MetaEnumeration enumeration) {
     final valueType = enumeration.type is BaseRef
-        ? ResolverVisitor._baseRefToDart(
-            (enumeration.type as BaseRef).name,
-          )
+        ? ResolverVisitor._baseRefToDart((enumeration.type as BaseRef).name)
         : 'String';
 
     final members = enumeration.values
@@ -256,6 +255,7 @@ final class _RegisterPass extends MetaVisitor {
       since: enumeration.since,
       proposed: enumeration.proposed,
     );
+
     _r._registry[enumeration.name] = en;
     _r._enumerations.add(en);
   }
@@ -270,6 +270,7 @@ final class _RegisterPass extends MetaVisitor {
       since: typeAlias.since,
       proposed: typeAlias.proposed,
     );
+    
     _r._registry[typeAlias.name] = alias;
     _r._aliases.add(alias);
   }

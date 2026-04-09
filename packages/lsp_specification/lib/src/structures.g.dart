@@ -324,7 +324,11 @@ _FoldingRange _$FoldingRangeFromJson(Map<String, dynamic> json) =>
       startCharacter: (json['startCharacter'] as num?)?.toInt(),
       endLine: (json['endLine'] as num).toInt(),
       endCharacter: (json['endCharacter'] as num?)?.toInt(),
-      kind: $enumDecodeNullable(_$FoldingRangeKindEnumMap, json['kind']),
+      kind: $enumDecodeNullable(
+        _$FoldingRangeKindEnumMap,
+        json['kind'],
+        unknownValue: FoldingRangeKind.$unknown,
+      ),
       collapsedText: json['collapsedText'] as String?,
     );
 
@@ -342,6 +346,7 @@ const _$FoldingRangeKindEnumMap = {
   FoldingRangeKind.Comment: 'comment',
   FoldingRangeKind.Imports: 'imports',
   FoldingRangeKind.Region: 'region',
+  FoldingRangeKind.$unknown: r'$unknown',
 };
 
 _FoldingRangeRegistrationOptions _$FoldingRangeRegistrationOptionsFromJson(
@@ -2649,7 +2654,11 @@ Map<String, dynamic> _$CommandToJson(_Command instance) => <String, dynamic>{
 
 _CodeAction _$CodeActionFromJson(Map<String, dynamic> json) => _CodeAction(
   title: json['title'] as String,
-  kind: $enumDecodeNullable(_$CodeActionKindEnumMap, json['kind']),
+  kind: $enumDecodeNullable(
+    _$CodeActionKindEnumMap,
+    json['kind'],
+    unknownValue: CodeActionKind.$unknown,
+  ),
   diagnostics: (json['diagnostics'] as List<dynamic>?)
       ?.map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -2691,6 +2700,7 @@ const _$CodeActionKindEnumMap = {
   CodeActionKind.Source: 'source',
   CodeActionKind.SourceOrganizeImports: 'source.organizeImports',
   CodeActionKind.SourceFixAll: 'source.fixAll',
+  CodeActionKind.$unknown: r'$unknown',
 };
 
 _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
@@ -2701,7 +2711,13 @@ _CodeActionRegistrationOptions _$CodeActionRegistrationOptionsFromJson(
       .toList(),
   workDoneProgress: json['workDoneProgress'] as bool?,
   codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
-      ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+      ?.map(
+        (e) => $enumDecode(
+          _$CodeActionKindEnumMap,
+          e,
+          unknownValue: CodeActionKind.$unknown,
+        ),
+      )
       .toList(),
   resolveProvider: json['resolveProvider'] as bool?,
 );
@@ -4052,6 +4068,7 @@ _ServerCapabilities _$ServerCapabilitiesFromJson(Map<String, dynamic> json) =>
       positionEncoding: $enumDecodeNullable(
         _$PositionEncodingKindEnumMap,
         json['positionEncoding'],
+        unknownValue: PositionEncodingKind.$unknown,
       ),
       textDocumentSync: json['textDocumentSync'],
       notebookDocumentSync: json['notebookDocumentSync'],
@@ -4180,6 +4197,7 @@ const _$PositionEncodingKindEnumMap = {
   PositionEncodingKind.UTF8: 'utf-8',
   PositionEncodingKind.UTF16: 'utf-16',
   PositionEncodingKind.UTF32: 'utf-32',
+  PositionEncodingKind.$unknown: r'$unknown',
 };
 
 _VersionedTextDocumentIdentifier _$VersionedTextDocumentIdentifierFromJson(
@@ -4219,7 +4237,11 @@ const _$FileChangeTypeEnumMap = {
 _FileSystemWatcher _$FileSystemWatcherFromJson(Map<String, dynamic> json) =>
     _FileSystemWatcher(
       globPattern: json['globPattern'] as Object,
-      kind: $enumDecodeNullable(_$WatchKindEnumMap, json['kind']),
+      kind: $enumDecodeNullable(
+        _$WatchKindEnumMap,
+        json['kind'],
+        unknownValue: WatchKind.$unknown,
+      ),
     );
 
 Map<String, dynamic> _$FileSystemWatcherToJson(_FileSystemWatcher instance) =>
@@ -4232,6 +4254,7 @@ const _$WatchKindEnumMap = {
   WatchKind.Create: 1,
   WatchKind.Change: 2,
   WatchKind.Delete: 4,
+  WatchKind.$unknown: 0,
 };
 
 _Diagnostic _$DiagnosticFromJson(Map<String, dynamic> json) => _Diagnostic(
@@ -4508,7 +4531,13 @@ _CodeActionContext _$CodeActionContextFromJson(Map<String, dynamic> json) =>
           .map((e) => Diagnostic.fromJson(e as Map<String, dynamic>))
           .toList(),
       only: (json['only'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+          ?.map(
+            (e) => $enumDecode(
+              _$CodeActionKindEnumMap,
+              e,
+              unknownValue: CodeActionKind.$unknown,
+            ),
+          )
           .toList(),
       triggerKind: $enumDecodeNullable(
         _$CodeActionTriggerKindEnumMap,
@@ -4532,7 +4561,13 @@ _CodeActionOptions _$CodeActionOptionsFromJson(Map<String, dynamic> json) =>
     _CodeActionOptions(
       workDoneProgress: json['workDoneProgress'] as bool?,
       codeActionKinds: (json['codeActionKinds'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CodeActionKindEnumMap, e))
+          ?.map(
+            (e) => $enumDecode(
+              _$CodeActionKindEnumMap,
+              e,
+              unknownValue: CodeActionKind.$unknown,
+            ),
+          )
           .toList(),
       resolveProvider: json['resolveProvider'] as bool?,
     );
@@ -5451,7 +5486,13 @@ _GeneralClientCapabilities _$GeneralClientCapabilitiesFromJson(
           json['markdown'] as Map<String, dynamic>,
         ),
   positionEncodings: (json['positionEncodings'] as List<dynamic>?)
-      ?.map((e) => $enumDecode(_$PositionEncodingKindEnumMap, e))
+      ?.map(
+        (e) => $enumDecode(
+          _$PositionEncodingKindEnumMap,
+          e,
+          unknownValue: PositionEncodingKind.$unknown,
+        ),
+      )
       .toList(),
 );
 

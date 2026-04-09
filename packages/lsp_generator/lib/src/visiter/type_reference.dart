@@ -11,6 +11,7 @@ Reference toRef(ResolvedType type, {bool nullable = false}) {
   if (type is InlineRecord) {
     return _buildRecordRef(type.fields, nullable: nullable);
   }
+  
   if (type is NullableType) {
     final inner = type.inner;
     if (inner is InlineRecord) {
@@ -18,7 +19,9 @@ Reference toRef(ResolvedType type, {bool nullable = false}) {
     }
     return toTypeRef(inner).rebuild((b) => b.isNullable = true);
   }
+
   final ref = toTypeRef(type);
+
   return nullable ? ref.rebuild((b) => b.isNullable = true) : ref;
 }
 

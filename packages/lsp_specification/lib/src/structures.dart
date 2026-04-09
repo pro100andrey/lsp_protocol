@@ -248,6 +248,7 @@ abstract class FoldingRange with _$FoldingRange {
     int? startCharacter,
     required int endLine,
     int? endCharacter,
+    @JsonKey(unknownEnumValue: FoldingRangeKind.$unknown)
     FoldingRangeKind? kind,
     String? collapsedText,
   }) = _FoldingRange;
@@ -2011,7 +2012,7 @@ abstract class CodeAction with _$CodeAction {
 
   const factory CodeAction({
     required String title,
-    CodeActionKind? kind,
+    @JsonKey(unknownEnumValue: CodeActionKind.$unknown) CodeActionKind? kind,
     List<Diagnostic>? diagnostics,
     bool? isPreferred,
     ({String reason})? disabled,
@@ -2033,6 +2034,7 @@ abstract class CodeActionRegistrationOptions
   const factory CodeActionRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
+    @JsonKey(unknownEnumValue: CodeActionKind.$unknown)
     List<CodeActionKind>? codeActionKinds,
     bool? resolveProvider,
   }) = _CodeActionRegistrationOptions;
@@ -3423,6 +3425,7 @@ abstract class ServerCapabilities with _$ServerCapabilities {
   const ServerCapabilities._();
 
   const factory ServerCapabilities({
+    @JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)
     PositionEncodingKind? positionEncoding,
     Object? textDocumentSync,
     Object? notebookDocumentSync,
@@ -3513,7 +3516,7 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
 
   const factory FileSystemWatcher({
     required GlobPattern globPattern,
-    WatchKind? kind,
+    @JsonKey(unknownEnumValue: WatchKind.$unknown) WatchKind? kind,
   }) = _FileSystemWatcher;
 
   factory FileSystemWatcher.fromJson(Map<String, dynamic> json) =>
@@ -3752,6 +3755,7 @@ abstract class CodeActionContext with _$CodeActionContext {
 
   const factory CodeActionContext({
     required List<Diagnostic> diagnostics,
+    @JsonKey(unknownEnumValue: CodeActionKind.$unknown)
     List<CodeActionKind>? only,
     CodeActionTriggerKind? triggerKind,
   }) = _CodeActionContext;
@@ -3767,6 +3771,7 @@ abstract class CodeActionOptions with _$CodeActionOptions {
 
   const factory CodeActionOptions({
     bool? workDoneProgress,
+    @JsonKey(unknownEnumValue: CodeActionKind.$unknown)
     List<CodeActionKind>? codeActionKinds,
     bool? resolveProvider,
   }) = _CodeActionOptions;
@@ -4430,6 +4435,7 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
     ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,
     RegularExpressionsClientCapabilities? regularExpressions,
     MarkdownClientCapabilities? markdown,
+    @JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)
     List<PositionEncodingKind>? positionEncodings,
   }) = _GeneralClientCapabilities;
 

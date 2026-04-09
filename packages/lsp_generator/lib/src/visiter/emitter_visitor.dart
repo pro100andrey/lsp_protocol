@@ -31,14 +31,11 @@ typedef _UnionCheck = ({
 // ---------------------------------------------------------------------------
 
 /// Discriminates how a converter class is generated.
-/// All Dart enums use `@JsonEnum()` + `@JsonValue` — no converter needed.
+/// Closed and open Dart enums use `@JsonEnum()` + `@JsonKey(unknownEnumValue:)` — no converter needed.
 enum _ConverterKind { scalarUnion, structUnion }
 
 /// Metadata about a single needed JsonConverter.
-typedef _ConverterEntry = ({
-  String name,
-  _ConverterKind kind,
-});
+typedef _ConverterEntry = ({String name, _ConverterKind kind});
 
 // ---------------------------------------------------------------------------
 
@@ -139,8 +136,12 @@ final class EmitterVisitor {
       ..directives.add(
         Directive.import('package:json_annotation/json_annotation.dart'),
       )
-      ..body.addAll(_resolved.enumerations.map(_buildEnum)),
+      ..body.addAll([
+        ..._resolved.enumerations.map(_buildEnum),
+      ]),
   );
+
+
 
   /// Builds a [Library] containing all resolved type aliases.
   Library buildAliases() {
@@ -541,8 +542,8 @@ final class EmitterVisitor {
     final inner = type is NullableType ? type.inner : type;
 
     switch (inner) {
-      // All Dart enums: @JsonEnum() + @JsonValue handles them natively —
-      // no converter annotation needed.
+      // All Dart enums (open or closed) use @JsonEnum() + @JsonValue and
+      // @JsonKey(unknownEnumValue:) for open ones — no converter annotation.
       case EnumType():
         return null;
 
@@ -554,7 +555,7 @@ final class EmitterVisitor {
       case ListType(element: final el):
         final elemInner = el is NullableType ? el.inner : el;
         switch (elemInner) {
-          // All enums in lists: json_serializable handles via $enumDecode.
+          // Enums in lists: handled by @JsonKey(unknownEnumValue:) on the field.
           case EnumType():
             return null;
           case AliasType(:final ref)
@@ -570,10 +571,37 @@ final class EmitterVisitor {
     }
   }
 
+  /// Returns a `@JsonKey(unknownEnumValue: EnumName.$unknown)` expression when
+  /// [type] is (or contains) an open enum (`supportsCustomValues`), or `null`
+  /// otherwise.
+  Expression? _unknownEnumAnnotationFor(ResolvedType type) {
+    final inner = type is NullableType ? type.inner : type;
+    // Direct open enum field.
+    if (inner case EnumType(:final ref) when ref.supportsCustomValues) {
+      return refer('JsonKey').call(
+        [],
+        {'unknownEnumValue': refer('${ref.name}.\$unknown')},
+      );
+    }
+    // List<open enum> field — unknownEnumValue propagates to each element.
+    if (inner case ListType(element: final el)) {
+      final elInner = el is NullableType ? el.inner : el;
+      if (elInner case EnumType(:final ref) when ref.supportsCustomValues) {
+        return refer('JsonKey').call(
+          [],
+          {'unknownEnumValue': refer('${ref.name}.\$unknown')},
+        );
+      }
+    }
+    return null;
+  }
+
   /// Returns the list of annotations for factory/field parameter [p].
   List<Expression> _annotationsForParam(ResolvedProperty p, String ownerName) {
-    final ann = _converterAnnotationFor(p.type);
-    return ann != null ? [ann] : [];
+    final conv = _converterAnnotationFor(p.type);
+    if (conv != null) return [conv];
+    final unknownKey = _unknownEnumAnnotationFor(p.type);
+    return unknownKey != null ? [unknownKey] : [];
   }
 
   /// Walks every property of every resolved class and collects the set of
@@ -588,15 +616,14 @@ final class EmitterVisitor {
     }
 
     void registerList(String name, _ConverterKind kind) {
-      // Add to list map only. If the type also appears as a direct (non-list)
-      // field, register() will be called separately and will populate scalar.
       list[name] ??= (name: name, kind: kind);
     }
 
     void processType(ResolvedType type) {
       final inner = type is NullableType ? type.inner : type;
       switch (inner) {
-        // All Dart enums: @JsonEnum() handles them — no converter to register.
+        // All Dart enums use @JsonEnum() + @JsonKey(unknownEnumValue:) —
+        // no converter class needed.
         case EnumType():
           break;
         case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
@@ -607,7 +634,7 @@ final class EmitterVisitor {
         case ListType(element: final el):
           final elemInner = el is NullableType ? el.inner : el;
           switch (elemInner) {
-            // All enums in lists: no converter needed.
+            // Enum list elements: handled by @JsonKey(unknownEnumValue:).
             case EnumType():
               break;
             case AliasType(:final ref)
@@ -637,11 +664,9 @@ final class EmitterVisitor {
   /// Emits one [Spec] per needed converter (scalar + list variants).
   Iterable<Spec> _buildConverterSpecs() sync* {
     final needs = _converterNeeds;
-    // Emit scalar converters for types used directly as fields.
     for (final entry in needs.scalar.values) {
       yield _scalarConverterSpec(entry);
     }
-    // Emit list converters for types used as List<...> elements.
     for (final entry in needs.list.values) {
       yield _listConverterSpec(entry);
     }
@@ -846,13 +871,16 @@ final class EmitterVisitor {
 
   /// All enums — open or closed — are emitted as Dart native `enum` with
   /// `@JsonEnum()` and per-member `@JsonValue(...)` annotations.
+  ///
+  /// For open-ended enums (`supportsCustomValues = true`) an extra `$unknown`
+  /// sentinel member is appended, and callers that declare fields of this type
+  /// should use `@JsonKey(unknownEnumValue: Xxx.$unknown)` so that unrecognised
+  /// wire values are decoded as `$unknown` instead of throwing.
   Spec _buildEnum(ResolvedEnum en) {
     final isInt = en.valueType == 'int';
 
     return Enum((b) {
       b.name = en.name;
-
-      // @JsonEnum() — json_serializable uses @JsonValue on each member.
       b.annotations.add(refer('JsonEnum').call([]));
 
       if (en.documentation != null) {
@@ -863,7 +891,6 @@ final class EmitterVisitor {
         b.values.add(
           EnumValue((b) {
             b.name = _safeIdentifier(member.name);
-            // @JsonValue annotation carries the wire value.
             b.annotations.add(
               refer('JsonValue').call([
                 if (isInt)
@@ -877,6 +904,30 @@ final class EmitterVisitor {
                 '/// ${member.documentation!.replaceAll('\n', '\n/// ')}',
               );
             }
+          }),
+        );
+      }
+
+      // Sentinel for open-ended enums — returned when an unrecognised value
+      // arrives. The wire value is deliberately unusual so it never clashes
+      // with a real LSP value. Use 0 for int enums (no LSP error code is 0).
+      if (en.supportsCustomValues) {
+        b.values.add(
+          EnumValue((b) {
+            b.name = r'$unknown';
+            b.docs.add(
+              '/// Sentinel returned when an unrecognised value is received.',
+            );
+            b.annotations.add(
+              refer('JsonValue').call([
+                // Must use a raw string literal r'$unknown' in the generated
+                // code so Dart does not treat `$unknown` as an interpolation.
+                if (isInt)
+                  literalNum(0)
+                else
+                  const CodeExpression(Code(r"r'$unknown'")),
+              ]),
+            );
           }),
         );
       }
@@ -1833,10 +1884,7 @@ final class EmitterVisitor {
       ClassType(:final ref) => orNull(
         '${ref.name}.fromJson($jsonExpr as Map<String, Object?>)',
       ),
-      EnumType(:final ref) when !ref.supportsCustomValues => orNull(
-        '\$enumDecode(_\$${ref.name}EnumMap, $jsonExpr)',
-      ),
-      EnumType(:final ref) => orNull('${ref.name}($jsonExpr as String)'),
+
       ListType(element: final el) => orNull(
         '($jsonExpr as List<dynamic>)'
         '.map((e) => ${_jsonFieldExtract(el, 'e')})'
@@ -1863,7 +1911,10 @@ final class EmitterVisitor {
         nullable
             ? '$fieldExpr != null ? _\$${ref.name}EnumMap[$fieldExpr]! : null'
             : '_\$${ref.name}EnumMap[$fieldExpr]!',
-      EnumType() => nullable ? '$fieldExpr?.value' : '$fieldExpr.value',
+      EnumType(:final ref) =>
+        nullable
+            ? '$fieldExpr != null ? _\$${ref.name}EnumMap[$fieldExpr]! : null'
+            : '_\$${ref.name}EnumMap[$fieldExpr]!',
       ListType(element: final el) =>
         nullable
             ? '$fieldExpr?.map((e) => ${_fieldToJsonExpr(el, 'e')}).toList()'
@@ -1885,7 +1936,7 @@ final class EmitterVisitor {
 
   String _toJsonCallerFor(ResolvedType t, String v) => switch (t) {
     ClassType() => '$v.toJson()',
-    EnumType() => '$v.value',
+    EnumType(:final ref) => '_\$${ref.name}EnumMap[$v]!',
     _ => v,
   };
 

@@ -60,6 +60,10 @@ enum SemanticTokenTypes {
   /// @since 3.17.0
   @JsonValue('decorator')
   decorator,
+
+  /// Sentinel returned when an unrecognised value is received.
+  @JsonValue(r'$unknown')
+  $unknown,
 }
 
 /// A set of predefined token modifiers. This set is not fixed
@@ -89,6 +93,10 @@ enum SemanticTokenModifiers {
   documentation,
   @JsonValue('defaultLibrary')
   defaultLibrary,
+
+  /// Sentinel returned when an unrecognised value is received.
+  @JsonValue(r'$unknown')
+  $unknown,
 }
 
 /// The document diagnostic report kinds.
@@ -127,6 +135,10 @@ enum ErrorCodes {
   ServerNotInitialized,
   @JsonValue(-32001)
   UnknownErrorCode,
+
+  /// Sentinel returned when an unrecognised value is received.
+  @JsonValue(0)
+  $unknown,
 }
 
 @JsonEnum()
@@ -163,6 +175,10 @@ enum LSPErrorCodes {
   /// the cancel.
   @JsonValue(-32800)
   RequestCancelled,
+
+  /// Sentinel returned when an unrecognised value is received.
+  @JsonValue(0)
+  $unknown,
 }
 
 /// A set of predefined range kinds.
@@ -179,6 +195,10 @@ enum FoldingRangeKind {
   /// Folding range for a region (e.g. `#region`)
   @JsonValue('region')
   Region,
+
+  /// Sentinel returned when an unrecognised value is received.
+  @JsonValue(r'$unknown')
+  $unknown,
 }
 
 /// A symbol kind.
@@ -566,6 +586,10 @@ enum CodeActionKind {
   /// @since 3.15.0
   @JsonValue('source.fixAll')
   SourceFixAll,
+
+  /// Sentinel returned when an unrecognised value is received.
+  @JsonValue(r'$unknown')
+  $unknown,
 }
 
 @JsonEnum()
@@ -637,6 +661,10 @@ enum PositionEncodingKind {
   /// encoding-agnostic representation of character offsets.
   @JsonValue('utf-32')
   UTF32,
+
+  /// Sentinel returned when an unrecognised value is received.
+  @JsonValue(r'$unknown')
+  $unknown,
 }
 
 /// The file event type
@@ -668,6 +696,10 @@ enum WatchKind {
   /// Interested in delete events
   @JsonValue(4)
   Delete,
+
+  /// Sentinel returned when an unrecognised value is received.
+  @JsonValue(0)
+  $unknown,
 }
 
 /// The diagnostic's severity.
