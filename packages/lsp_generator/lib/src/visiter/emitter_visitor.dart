@@ -31,7 +31,8 @@ typedef _UnionCheck = ({
 // ---------------------------------------------------------------------------
 
 /// Discriminates how a converter class is generated.
-/// Enums use `@JsonEnum(valueField: 'value')` with a static `decode()` — no converter needed.
+/// Enums use `@JsonEnum(valueField: 'value')` with a static `decode()` — no
+/// converter needed.
 enum _ConverterKind { scalarUnion, structUnion }
 
 /// Metadata about a single needed JsonConverter.
@@ -359,10 +360,14 @@ final class EmitterVisitor {
         ),
       );
 
-      // Getters for open-enum properties (stored as raw primitives on the wire).
+      // Getters for open-enum properties (stored as raw primitives on the
+      // wire).
       for (final p in allProps) {
         final info = _openEnumInfo(p.type);
-        if (info == null) continue;
+        if (info == null) {
+          continue;
+        }
+
         final isNullableField = p.optional || p.type is NullableType;
         final bodyCode = isNullableField
             ? '${p.name} != null ? ${info.ref.name}.decode(${p.name}!) : null'
@@ -443,7 +448,6 @@ final class EmitterVisitor {
       }
 
       // Final fields (plain class — no freezed mixin).
-      final ownerName = baseName;
       for (final p in allProps) {
         b.fields.add(
           Field((b) {
@@ -460,7 +464,7 @@ final class EmitterVisitor {
                           )
                         : refer(openEnum.primitive))
                   : toRef(p.type, nullable: p.optional);
-            _annotationsForParam(p, ownerName).forEach(b.annotations.add);
+            _annotationsForParam(p).forEach(b.annotations.add);
           }),
         );
       }
@@ -556,9 +560,7 @@ final class EmitterVisitor {
               ..type = typeRef
               ..named = true
               ..required = !p.optional;
-            for (final ann in _annotationsForParam(p, className)) {
-              b.annotations.add(ann);
-            }
+            _annotationsForParam(p).forEach(b.annotations.add);
           });
         }),
       ),
@@ -575,38 +577,26 @@ final class EmitterVisitor {
     // Strip the outer NullableType — the converter itself is non-nullable;
     // json_serializable adds the null check around the converter call.
     final inner = type is NullableType ? type.inner : type;
-
-    switch (inner) {
-      // Enums need no converter annotation — handled by @JsonEnum(valueField:) + decode().
-      case EnumType():
-        return null;
-
-      case AliasType(:final ref)
+    return switch (inner) {
+      AliasType(:final ref)
           when _scalarUnionNames.contains(ref.name) ||
-              _sealedUnionNames.contains(ref.name):
-        return refer('_${ref.name}Converter').call([]);
-
-      case ListType(element: final el):
-        final elemInner = el is NullableType ? el.inner : el;
-        switch (elemInner) {
-          // Enums in lists need no converter annotation.
-          case EnumType():
-            return null;
-          case AliasType(:final ref)
-              when _scalarUnionNames.contains(ref.name) ||
-                  _sealedUnionNames.contains(ref.name):
-            return refer('_${ref.name}ListConverter').call([]);
-          default:
-            return null;
-        }
-
-      default:
-        return null;
-    }
+              _sealedUnionNames.contains(ref.name) =>
+        refer('_${ref.name}Converter').call([]),
+      ListType(element: final el) => switch (el is NullableType
+          ? el.inner
+          : el) {
+        AliasType(:final ref)
+            when _scalarUnionNames.contains(ref.name) ||
+                _sealedUnionNames.contains(ref.name) =>
+          refer('_${ref.name}ListConverter').call([]),
+        _ => null,
+      },
+      _ => null,
+    };
   }
 
   /// Returns the list of annotations for factory/field parameter [p].
-  List<Expression> _annotationsForParam(ResolvedProperty p, String ownerName) {
+  List<Expression> _annotationsForParam(ResolvedProperty p) {
     final conv = _converterAnnotationFor(p.type);
     return conv != null ? [conv] : [];
   }
@@ -629,20 +619,12 @@ final class EmitterVisitor {
     void processType(ResolvedType type) {
       final inner = type is NullableType ? type.inner : type;
       switch (inner) {
-        // Enums need no converter class.
-        case EnumType():
-          break;
         case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
           register(ref.name, _ConverterKind.scalarUnion);
         case AliasType(:final ref) when _sealedUnionNames.contains(ref.name):
           register(ref.name, _ConverterKind.structUnion);
-
         case ListType(element: final el):
-          final elemInner = el is NullableType ? el.inner : el;
-          switch (elemInner) {
-            // Enum list elements need no converter class.
-            case EnumType():
-              break;
+          switch (el is NullableType ? el.inner : el) {
             case AliasType(:final ref)
                 when _scalarUnionNames.contains(ref.name):
               registerList(ref.name, _ConverterKind.scalarUnion);
@@ -652,7 +634,6 @@ final class EmitterVisitor {
             default:
               break;
           }
-
         default:
           break;
       }
@@ -668,15 +649,10 @@ final class EmitterVisitor {
   }
 
   /// Emits one [Spec] per needed converter (scalar + list variants).
-  Iterable<Spec> _buildConverterSpecs() sync* {
-    final needs = _converterNeeds;
-    for (final entry in needs.scalar.values) {
-      yield _scalarConverterSpec(entry);
-    }
-    for (final entry in needs.list.values) {
-      yield _listConverterSpec(entry);
-    }
-  }
+  Iterable<Spec> _buildConverterSpecs() => [
+    ..._converterNeeds.scalar.values.map(_scalarConverterSpec),
+    ..._converterNeeds.list.values.map(_listConverterSpec),
+  ];
 
   Class _scalarConverterSpec(_ConverterEntry entry) {
     final n = entry.name;
@@ -1073,7 +1049,9 @@ final class EmitterVisitor {
     (t) => switch (t) {
       ClassType(:final ref) => ref.name,
       InlineRecord(:final fields) =>
-        'Record(${fields.map((f) => '${f.name}:${f.type.runtimeType}').join(',')})',
+        'Record(${fields.map(
+          (f) => '${f.name}:${f.type.runtimeType}',
+        ).join(',')})',
       _ => t.toString(),
     },
   );
@@ -1239,13 +1217,8 @@ final class EmitterVisitor {
   };
 
   /// Lowercase first character of [suffix] to form a factory constructor name.
-  String _factoryName(String suffix) {
-    if (suffix.isEmpty) {
-      return suffix;
-    }
-
-    return suffix[0].toLowerCase() + suffix.substring(1);
-  }
+  String _factoryName(String suffix) =>
+      suffix.isEmpty ? suffix : suffix[0].toLowerCase() + suffix.substring(1);
 
   List<Spec> _buildScalarUnionSpecs(String name, List<DartCoreType> scalars) {
     final variants = scalars
@@ -1555,7 +1528,8 @@ final class EmitterVisitor {
         ),
     );
 
-    // List variant fromJson: (json as List<Object?>).map((e) => $elemFromJson).toList()
+    // List variant fromJson:
+    // (json as List<Object?>).map((e) => $elemFromJson).toList()
     final listFromExpr = refer('json')
         .asA(listObjectNullable)
         .property('map')
@@ -1573,8 +1547,8 @@ final class EmitterVisitor {
         .call([]);
 
     final switchCases = [
-      '    $name\$$structSuffix(:final value) => value.toJson(),',
-      '    $name$listCls(:final value) => value.map((e) => $elemToJson).toList(),',
+      '$name\$$structSuffix(:final value) => value.toJson(),',
+      '$name$listCls(:final value) => value.map((e) => $elemToJson).toList(),',
     ].join('\n');
 
     return [
@@ -1867,11 +1841,18 @@ final class EmitterVisitor {
     List<ResolvedProperty> fields,
     String jsonVar,
   ) {
-    if (fields.isEmpty) return '()';
+    if (fields.isEmpty) {
+      return '()';
+    }
+
     final parts = fields
         .map(
           (f) =>
-              '${f.name}: ${_jsonFieldExtract(f.type, "$jsonVar['${f.name}']", optional: f.optional)}',
+              '${f.name}: ${_jsonFieldExtract(
+                f.type,
+                "$jsonVar['${f.name}']",
+                optional: f.optional,
+              )}',
         )
         .join(', ');
     return '($parts)';
@@ -1880,7 +1861,10 @@ final class EmitterVisitor {
   /// Builds a Dart expression string that serializes an inline record to a
   /// JSON map (e.g. `{'delta': value.delta}`).
   String _inlineRecordToJson(List<ResolvedProperty> fields, String valueVar) {
-    if (fields.isEmpty) return '<String, Object?>{}';
+    if (fields.isEmpty) {
+      return '<String, Object?>{}';
+    }
+
     final entries = fields.map((f) {
       final fieldAccess = '$valueVar.${f.name}';
       final jsonValue = _fieldToJsonExpr(f.type, fieldAccess);
@@ -1920,19 +1904,20 @@ final class EmitterVisitor {
         '${ref.name}.fromJson($jsonExpr as Map<String, Object?>)',
       ),
       ListType(element: final el) => orNull(
-        '($jsonExpr as List<dynamic>)'
-        '.map((e) => ${_jsonFieldExtract(el, 'e')})'
-        '.toList()',
+        '($jsonExpr as List<dynamic>).map((e) => ${_jsonFieldExtract(
+          el,
+          'e',
+        )}).toList()',
       ),
       InlineRecord(:final fields) => orNull(
         _inlineRecordFromJson(fields, '($jsonExpr as Map<String, Object?>)'),
       ),
       EnumType(:final ref) when ref.supportsCustomValues =>
         nullable
-            ? '$jsonExpr as ${ref.valueType == 'int' ? 'int' : 'String'}?'
-            : '$jsonExpr as ${ref.valueType == 'int' ? 'int' : 'String'}',
+            ? '$jsonExpr as ${_enumPrimitiveName(ref)}?'
+            : '$jsonExpr as ${_enumPrimitiveName(ref)}',
       EnumType(:final ref) => orNull(
-        '${ref.name}.decode($jsonExpr as ${ref.valueType == 'int' ? 'int' : 'String'})!',
+        '${ref.name}.decode($jsonExpr as ${_enumPrimitiveName(ref)})!',
       ),
       _ => jsonExpr,
     };
@@ -1960,7 +1945,10 @@ final class EmitterVisitor {
             : '$fieldExpr.map((e) => ${_fieldToJsonExpr(el, 'e')}).toList()',
       InlineRecord(:final fields) =>
         nullable
-            ? '$fieldExpr != null ? ${_inlineRecordToJson(fields, fieldExpr)} : null'
+            ? '$fieldExpr != null ? ${_inlineRecordToJson(
+                fields,
+                fieldExpr,
+              )} : null'
             : _inlineRecordToJson(fields, fieldExpr),
       _ => fieldExpr,
     };
@@ -1971,9 +1959,9 @@ final class EmitterVisitor {
     NullableType(inner: ClassType(:final ref)) =>
       'e == null ? null : ${ref.name}.fromJson(e as Map<String, Object?>)',
     EnumType(:final ref) when ref.supportsCustomValues =>
-      'e as ${ref.valueType == 'int' ? 'int' : 'String'}',
+      'e as ${_enumPrimitiveName(ref)}',
     EnumType(:final ref) =>
-      '${ref.name}.decode(e as ${ref.valueType == 'int' ? 'int' : 'String'})!',
+      '${ref.name}.decode(e as ${_enumPrimitiveName(ref)})!',
     _ => 'e as ${_dartTypeName(element)}',
   };
 
@@ -1988,13 +1976,18 @@ final class EmitterVisitor {
   // Helpers
   // ---------------------------------------------------------------------------
 
+  /// Returns the Dart primitive name for an enum's value type (`'int'` or
+  /// `'String'`).
+  static String _enumPrimitiveName(ResolvedEnum ref) =>
+      ref.valueType == 'int' ? 'int' : 'String';
+
   /// If [type] (unwrapping [NullableType]) is an open enum
   /// (`supportsCustomValues`), returns the Dart primitive name (`'String'` or
   /// `'int'`) and the enum ref. Otherwise returns `null`.
   ({String primitive, ResolvedEnum ref})? _openEnumInfo(ResolvedType type) {
     final inner = type is NullableType ? type.inner : type;
     if (inner case EnumType(:final ref) when ref.supportsCustomValues) {
-      return (primitive: ref.valueType == 'int' ? 'int' : 'String', ref: ref);
+      return (primitive: _enumPrimitiveName(ref), ref: ref);
     }
     return null;
   }

@@ -7,6 +7,9 @@
 // Optional flag:
 //   --flat    show only the or-items directly (skip wrapping List<> context)
 
+//
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -17,8 +20,9 @@ void main(List<String> args) async {
   const metaModelPath = 'packages/lsp_specification/metaModel.json';
   final file = File(metaModelPath);
   if (!file.existsSync()) {
-    stderr.writeln('Not found: $metaModelPath');
-    stderr.writeln('Run from workspace root.');
+    stderr
+      ..writeln('Not found: $metaModelPath')
+      ..writeln('Run from workspace root.');
     exit(1);
   }
 
@@ -72,7 +76,8 @@ class _Entry {
   const _Entry(this.location, this.typeStr, this.items);
   final String location;
 
-  /// Full rendered type that contains the or-union in context (e.g. List<A | B>).
+  /// Full rendered type that contains the or-union in context
+  /// (e.g. List<A | B>).
   final String typeStr;
 
   /// The direct union arms (A, B in the example above).
@@ -180,7 +185,9 @@ String _renderType(MetaReference ref) => switch (ref) {
   TypeRef(:final name) || BaseRef(:final name) => name,
   StringLiteralRef(:final value) => '"$value"',
   LiteralRef(:final value) =>
-    '{${value.properties.map((p) => '${p.name}: ${_renderType(p.type)}').join(', ')}}',
+    '{${value.properties.map(
+      (p) => '${p.name}: ${_renderType(p.type)}',
+    ).join(', ')}}',
 };
 
 void _printSection(String title, List<_Entry> entries) {

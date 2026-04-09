@@ -164,7 +164,8 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      // json_serializable pattern: factory constructor delegates to generated fn
+      // json_serializable pattern: factory constructor delegates to generated
+      // fn
       expect(
         src,
         contains('factory Position.fromJson(Map<String, dynamic> json)'),
@@ -238,7 +239,8 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildStructures());
-      // json_serializable handles the List<String> deserialization automatically
+      // json_serializable handles the List<String> deserialization
+      // automatically
       expect(src, contains(r'_$FooFromJson(json)'));
       expect(src, isNot(contains("json['items'] as List<Object?>")));
     });
@@ -325,7 +327,10 @@ void main() {
       expect(src, contains('error(1)'));
       expect(src, contains('warning(2)'));
       // json_serializable uses @JsonEnum(valueField:) for encode/decode
-      expect(src, contains("@JsonEnum(valueField: 'value')"));
+      expect(
+        src,
+        contains("@JsonEnum(valueField: 'value', alwaysCreate: true)"),
+      );
       expect(
         src,
         contains("import 'package:json_annotation/json_annotation.dart'"),
@@ -348,7 +353,7 @@ void main() {
       expect(src, contains("delete('delete')"));
     });
 
-    test('supportsCustomValues enum becomes final class', () {
+    test('supportsCustomValues open enum uses dart enum with decode()', () {
       final state = _stateWith(
         enumerations: [
           _enum('FoldingRangeKind', 'String', [
@@ -358,10 +363,10 @@ void main() {
         ],
       );
       final src = _format(EmitterVisitor(state).buildEnumerations());
-      expect(src, contains('final class FoldingRangeKind'));
+      expect(src, contains('enum FoldingRangeKind'));
       expect(src, contains('final String value'));
-      expect(src, contains('static const FoldingRangeKind comment'));
-      expect(src, contains("FoldingRangeKind('comment')"));
+      expect(src, contains("comment('comment')"));
+      expect(src, contains('static FoldingRangeKind? decode('));
     });
 
     test('supportsCustomValues class has const constructor', () {
@@ -584,7 +589,8 @@ void main() {
         enumerations: resolver.enumerations.toList(),
         aliases: resolver.aliases.toList(),
       );
-      // ProgressToken is scalar → lives in buildScalarUnions(), not buildUnions().
+      // ProgressToken is scalar → lives in buildScalarUnions(), not
+      // buildUnions().
       final scalarSrc = _format(EmitterVisitor(resolved).buildScalarUnions());
       expect(scalarSrc, contains('sealed class ProgressToken'));
       expect(scalarSrc, contains(r'ProgressToken$Int'));
@@ -648,10 +654,11 @@ void main() {
     });
 
     test(
-      'enumerations output contains FoldingRangeKind as class (supportsCustomValues)',
+      'enumerations output contains FoldingRangeKind as enum '
+      '(supportsCustomValues)',
       () {
         final src = _format(EmitterVisitor(resolved).buildEnumerations());
-        expect(src, contains('final class FoldingRangeKind'));
+        expect(src, contains('enum FoldingRangeKind'));
       },
     );
 
@@ -668,8 +675,9 @@ void main() {
 
     test('anonymous classes appear before named classes in structures', () {
       final src = _format(EmitterVisitor(resolved).buildStructures());
-      // All anonymous classes (isAnonymous == true) have \$ in their name by convention.
-      // Just verify Position (a named class) exists and the output is not empty.
+      // All anonymous classes (isAnonymous == true) have \$ in their name by
+      // convention.Just verify Position (a named class) exists and the output
+      // is not empty.
       expect(src, contains('abstract class'));
     });
   });
