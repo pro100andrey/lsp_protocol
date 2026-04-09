@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'methods.g.dart';
 
+/// LSP notification method identifiers, as sent over the wire.
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum NotificationMethod {
   /// The `workspace/didChangeWorkspaceFolders` notification is sent from the client to the server when the workspace

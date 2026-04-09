@@ -114,7 +114,9 @@ final class EmitterVisitor {
 
     return Library(
       (b) => b
-        ..comments.add(_header)
+        ..comments.addAll([
+          _header,
+        ])
         ..directives.add(
           Directive.import(
             'package:freezed_annotation/freezed_annotation.dart',
@@ -490,6 +492,11 @@ final class EmitterVisitor {
                         : refer(openEnum.primitive))
                   : toRef(p.type, nullable: p.optional);
             _annotationsForParam(p).forEach(b.annotations.add);
+            if (p.documentation != null) {
+              b.docs.add(
+                '/// ${p.documentation!.replaceAll('\n', '\n/// ')}',
+              );
+            }
           }),
         );
       }
@@ -586,6 +593,11 @@ final class EmitterVisitor {
               ..named = true
               ..required = !p.optional;
             _annotationsForParam(p).forEach(b.annotations.add);
+            if (p.documentation != null) {
+              b.docs.add(
+                '/// ${p.documentation!.replaceAll('\n', '\n/// ')}',
+              );
+            }
           });
         }),
       ),
@@ -934,6 +946,9 @@ final class EmitterVisitor {
     Map<MetaNotification, String> names,
   ) => Enum((b) {
     b.name = 'NotificationMethod';
+    b.docs.add(
+      '/// LSP notification method identifiers, as sent over the wire.',
+    );
     b.annotations.add(
       refer('JsonEnum').call([], {
         'valueField': literalString('value'),
@@ -1107,9 +1122,15 @@ final class EmitterVisitor {
   // ---------------------------------------------------------------------------
 
   Spec _buildAlias(ResolvedAlias alias) => TypeDef(
-    (b) => b
-      ..name = alias.name
-      ..definition = toTypeRef(alias.type),
+    (b) {
+      b.name = alias.name;
+      b.definition = toTypeRef(alias.type);
+      if (alias.documentation != null) {
+        b.docs.add(
+          '/// ${alias.documentation!.replaceAll('\n', '\n/// ')}',
+        );
+      }
+    },
   );
 
   // ---------------------------------------------------------------------------
