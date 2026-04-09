@@ -248,13 +248,15 @@ abstract class FoldingRange with _$FoldingRange {
     int? startCharacter,
     required int endLine,
     int? endCharacter,
-    @JsonKey(unknownEnumValue: FoldingRangeKind.$unknown)
-    FoldingRangeKind? kind,
+    String? kind,
     String? collapsedText,
   }) = _FoldingRange;
 
   factory FoldingRange.fromJson(Map<String, dynamic> json) =>
       _$FoldingRangeFromJson(json);
+
+  FoldingRangeKind? get kindEnum =>
+      kind != null ? FoldingRangeKind.decode(kind!) : null;
 }
 
 @freezed
@@ -2012,7 +2014,7 @@ abstract class CodeAction with _$CodeAction {
 
   const factory CodeAction({
     required String title,
-    @JsonKey(unknownEnumValue: CodeActionKind.$unknown) CodeActionKind? kind,
+    String? kind,
     List<Diagnostic>? diagnostics,
     bool? isPreferred,
     ({String reason})? disabled,
@@ -2023,6 +2025,9 @@ abstract class CodeAction with _$CodeAction {
 
   factory CodeAction.fromJson(Map<String, dynamic> json) =>
       _$CodeActionFromJson(json);
+
+  CodeActionKind? get kindEnum =>
+      kind != null ? CodeActionKind.decode(kind!) : null;
 }
 
 /// Registration options for a {@link CodeActionRequest}.
@@ -2034,7 +2039,6 @@ abstract class CodeActionRegistrationOptions
   const factory CodeActionRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
-    @JsonKey(unknownEnumValue: CodeActionKind.$unknown)
     List<CodeActionKind>? codeActionKinds,
     bool? resolveProvider,
   }) = _CodeActionRegistrationOptions;
@@ -3425,8 +3429,7 @@ abstract class ServerCapabilities with _$ServerCapabilities {
   const ServerCapabilities._();
 
   const factory ServerCapabilities({
-    @JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)
-    PositionEncodingKind? positionEncoding,
+    String? positionEncoding,
     Object? textDocumentSync,
     Object? notebookDocumentSync,
     CompletionOptions? completionProvider,
@@ -3470,6 +3473,10 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 
   factory ServerCapabilities.fromJson(Map<String, dynamic> json) =>
       _$ServerCapabilitiesFromJson(json);
+
+  PositionEncodingKind? get positionEncodingEnum => positionEncoding != null
+      ? PositionEncodingKind.decode(positionEncoding!)
+      : null;
 }
 
 /// A text document identifier to denote a specific version of a text document.
@@ -3516,11 +3523,13 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
 
   const factory FileSystemWatcher({
     required GlobPattern globPattern,
-    @JsonKey(unknownEnumValue: WatchKind.$unknown) WatchKind? kind,
+    int? kind,
   }) = _FileSystemWatcher;
 
   factory FileSystemWatcher.fromJson(Map<String, dynamic> json) =>
       _$FileSystemWatcherFromJson(json);
+
+  WatchKind? get kindEnum => kind != null ? WatchKind.decode(kind!) : null;
 }
 
 /// Represents a diagnostic, such as a compiler error or warning. Diagnostic objects
@@ -3755,7 +3764,6 @@ abstract class CodeActionContext with _$CodeActionContext {
 
   const factory CodeActionContext({
     required List<Diagnostic> diagnostics,
-    @JsonKey(unknownEnumValue: CodeActionKind.$unknown)
     List<CodeActionKind>? only,
     CodeActionTriggerKind? triggerKind,
   }) = _CodeActionContext;
@@ -3771,7 +3779,6 @@ abstract class CodeActionOptions with _$CodeActionOptions {
 
   const factory CodeActionOptions({
     bool? workDoneProgress,
-    @JsonKey(unknownEnumValue: CodeActionKind.$unknown)
     List<CodeActionKind>? codeActionKinds,
     bool? resolveProvider,
   }) = _CodeActionOptions;
@@ -4435,7 +4442,6 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
     ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,
     RegularExpressionsClientCapabilities? regularExpressions,
     MarkdownClientCapabilities? markdown,
-    @JsonKey(unknownEnumValue: PositionEncodingKind.$unknown)
     List<PositionEncodingKind>? positionEncodings,
   }) = _GeneralClientCapabilities;
 
