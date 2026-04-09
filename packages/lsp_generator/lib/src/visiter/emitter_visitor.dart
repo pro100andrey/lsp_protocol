@@ -31,7 +31,7 @@ typedef _UnionCheck = ({
 // ---------------------------------------------------------------------------
 
 /// Discriminates how a converter class is generated.
-/// Closed and open Dart enums use `@JsonEnum()` + `@JsonKey(unknownEnumValue:)` — no converter needed.
+/// Enums use `@JsonEnum(valueField: 'value')` with a static `decode()` — no converter needed.
 enum _ConverterKind { scalarUnion, structUnion }
 
 /// Metadata about a single needed JsonConverter.
@@ -577,8 +577,7 @@ final class EmitterVisitor {
     final inner = type is NullableType ? type.inner : type;
 
     switch (inner) {
-      // All Dart enums (open or closed) use @JsonEnum() + @JsonValue and
-      // @JsonKey(unknownEnumValue:) for open ones — no converter annotation.
+      // Enums need no converter annotation — handled by @JsonEnum(valueField:) + decode().
       case EnumType():
         return null;
 
@@ -590,7 +589,7 @@ final class EmitterVisitor {
       case ListType(element: final el):
         final elemInner = el is NullableType ? el.inner : el;
         switch (elemInner) {
-          // Enums in lists: handled by @JsonKey(unknownEnumValue:) on the field.
+          // Enums in lists need no converter annotation.
           case EnumType():
             return null;
           case AliasType(:final ref)
@@ -630,8 +629,7 @@ final class EmitterVisitor {
     void processType(ResolvedType type) {
       final inner = type is NullableType ? type.inner : type;
       switch (inner) {
-        // All Dart enums use @JsonEnum() + @JsonKey(unknownEnumValue:) —
-        // no converter class needed.
+        // Enums need no converter class.
         case EnumType():
           break;
         case AliasType(:final ref) when _scalarUnionNames.contains(ref.name):
@@ -642,7 +640,7 @@ final class EmitterVisitor {
         case ListType(element: final el):
           final elemInner = el is NullableType ? el.inner : el;
           switch (elemInner) {
-            // Enum list elements: handled by @JsonKey(unknownEnumValue:).
+            // Enum list elements need no converter class.
             case EnumType():
               break;
             case AliasType(:final ref)
