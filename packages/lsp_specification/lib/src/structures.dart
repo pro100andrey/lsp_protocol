@@ -12,8 +12,6 @@ part 'structures.g.dart';
 
 @freezed
 abstract class ImplementationParams with _$ImplementationParams {
-  const ImplementationParams._();
-
   const factory ImplementationParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -29,8 +27,6 @@ abstract class ImplementationParams with _$ImplementationParams {
 /// inside a text file.
 @freezed
 abstract class Location with _$Location {
-  const Location._();
-
   const factory Location({required String uri, required Range range}) =
       _Location;
 
@@ -41,8 +37,6 @@ abstract class Location with _$Location {
 @freezed
 abstract class ImplementationRegistrationOptions
     with _$ImplementationRegistrationOptions {
-  const ImplementationRegistrationOptions._();
-
   const factory ImplementationRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -56,8 +50,6 @@ abstract class ImplementationRegistrationOptions
 
 @freezed
 abstract class TypeDefinitionParams with _$TypeDefinitionParams {
-  const TypeDefinitionParams._();
-
   const factory TypeDefinitionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -72,8 +64,6 @@ abstract class TypeDefinitionParams with _$TypeDefinitionParams {
 @freezed
 abstract class TypeDefinitionRegistrationOptions
     with _$TypeDefinitionRegistrationOptions {
-  const TypeDefinitionRegistrationOptions._();
-
   const factory TypeDefinitionRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -88,8 +78,6 @@ abstract class TypeDefinitionRegistrationOptions
 /// A workspace folder inside a client.
 @freezed
 abstract class WorkspaceFolder with _$WorkspaceFolder {
-  const WorkspaceFolder._();
-
   const factory WorkspaceFolder({required String uri, required String name}) =
       _WorkspaceFolder;
 
@@ -101,8 +89,6 @@ abstract class WorkspaceFolder with _$WorkspaceFolder {
 @freezed
 abstract class DidChangeWorkspaceFoldersParams
     with _$DidChangeWorkspaceFoldersParams {
-  const DidChangeWorkspaceFoldersParams._();
-
   const factory DidChangeWorkspaceFoldersParams({
     required WorkspaceFoldersChangeEvent event,
   }) = _DidChangeWorkspaceFoldersParams;
@@ -114,8 +100,6 @@ abstract class DidChangeWorkspaceFoldersParams
 /// The parameters of a configuration request.
 @freezed
 abstract class ConfigurationParams with _$ConfigurationParams {
-  const ConfigurationParams._();
-
   const factory ConfigurationParams({required List<ConfigurationItem> items}) =
       _ConfigurationParams;
 
@@ -126,8 +110,6 @@ abstract class ConfigurationParams with _$ConfigurationParams {
 /// Parameters for a {@link DocumentColorRequest}.
 @freezed
 abstract class DocumentColorParams with _$DocumentColorParams {
-  const DocumentColorParams._();
-
   const factory DocumentColorParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -141,8 +123,6 @@ abstract class DocumentColorParams with _$DocumentColorParams {
 /// Represents a color range from a document.
 @freezed
 abstract class ColorInformation with _$ColorInformation {
-  const ColorInformation._();
-
   const factory ColorInformation({required Range range, required Color color}) =
       _ColorInformation;
 
@@ -153,8 +133,6 @@ abstract class ColorInformation with _$ColorInformation {
 @freezed
 abstract class DocumentColorRegistrationOptions
     with _$DocumentColorRegistrationOptions {
-  const DocumentColorRegistrationOptions._();
-
   const factory DocumentColorRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -169,8 +147,6 @@ abstract class DocumentColorRegistrationOptions
 /// Parameters for a {@link ColorPresentationRequest}.
 @freezed
 abstract class ColorPresentationParams with _$ColorPresentationParams {
-  const ColorPresentationParams._();
-
   const factory ColorPresentationParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -185,8 +161,6 @@ abstract class ColorPresentationParams with _$ColorPresentationParams {
 
 @freezed
 abstract class ColorPresentation with _$ColorPresentation {
-  const ColorPresentation._();
-
   const factory ColorPresentation({
     required String label,
     TextEdit? textEdit,
@@ -199,8 +173,6 @@ abstract class ColorPresentation with _$ColorPresentation {
 
 @freezed
 abstract class WorkDoneProgressOptions with _$WorkDoneProgressOptions {
-  const WorkDoneProgressOptions._();
-
   const factory WorkDoneProgressOptions({bool? workDoneProgress}) =
       _WorkDoneProgressOptions;
 
@@ -212,8 +184,6 @@ abstract class WorkDoneProgressOptions with _$WorkDoneProgressOptions {
 @freezed
 abstract class TextDocumentRegistrationOptions
     with _$TextDocumentRegistrationOptions {
-  const TextDocumentRegistrationOptions._();
-
   const factory TextDocumentRegistrationOptions({
     required DocumentSelector? documentSelector,
   }) = _TextDocumentRegistrationOptions;
@@ -225,8 +195,6 @@ abstract class TextDocumentRegistrationOptions
 /// Parameters for a {@link FoldingRangeRequest}.
 @freezed
 abstract class FoldingRangeParams with _$FoldingRangeParams {
-  const FoldingRangeParams._();
-
   const factory FoldingRangeParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -262,8 +230,6 @@ abstract class FoldingRange with _$FoldingRange {
 @freezed
 abstract class FoldingRangeRegistrationOptions
     with _$FoldingRangeRegistrationOptions {
-  const FoldingRangeRegistrationOptions._();
-
   const factory FoldingRangeRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -276,8 +242,6 @@ abstract class FoldingRangeRegistrationOptions
 
 @freezed
 abstract class DeclarationParams with _$DeclarationParams {
-  const DeclarationParams._();
-
   const factory DeclarationParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -292,8 +256,6 @@ abstract class DeclarationParams with _$DeclarationParams {
 @freezed
 abstract class DeclarationRegistrationOptions
     with _$DeclarationRegistrationOptions {
-  const DeclarationRegistrationOptions._();
-
   const factory DeclarationRegistrationOptions({
     bool? workDoneProgress,
     required DocumentSelector? documentSelector,
@@ -307,8 +269,6 @@ abstract class DeclarationRegistrationOptions
 /// A parameter literal used in selection range requests.
 @freezed
 abstract class SelectionRangeParams with _$SelectionRangeParams {
-  const SelectionRangeParams._();
-
   const factory SelectionRangeParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -324,8 +284,6 @@ abstract class SelectionRangeParams with _$SelectionRangeParams {
 /// may have a parent selection range that contains it.
 @freezed
 abstract class SelectionRange with _$SelectionRange {
-  const SelectionRange._();
-
   const factory SelectionRange({required Range range, SelectionRange? parent}) =
       _SelectionRange;
 
@@ -336,8 +294,6 @@ abstract class SelectionRange with _$SelectionRange {
 @freezed
 abstract class SelectionRangeRegistrationOptions
     with _$SelectionRangeRegistrationOptions {
-  const SelectionRangeRegistrationOptions._();
-
   const factory SelectionRangeRegistrationOptions({
     bool? workDoneProgress,
     required DocumentSelector? documentSelector,
@@ -352,8 +308,6 @@ abstract class SelectionRangeRegistrationOptions
 @freezed
 abstract class WorkDoneProgressCreateParams
     with _$WorkDoneProgressCreateParams {
-  const WorkDoneProgressCreateParams._();
-
   const factory WorkDoneProgressCreateParams({
     @_ProgressTokenConverter() required ProgressToken token,
   }) = _WorkDoneProgressCreateParams;
@@ -365,8 +319,6 @@ abstract class WorkDoneProgressCreateParams
 @freezed
 abstract class WorkDoneProgressCancelParams
     with _$WorkDoneProgressCancelParams {
-  const WorkDoneProgressCancelParams._();
-
   const factory WorkDoneProgressCancelParams({
     @_ProgressTokenConverter() required ProgressToken token,
   }) = _WorkDoneProgressCancelParams;
@@ -380,8 +332,6 @@ abstract class WorkDoneProgressCancelParams
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
-  const CallHierarchyPrepareParams._();
-
   const factory CallHierarchyPrepareParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -398,8 +348,6 @@ abstract class CallHierarchyPrepareParams with _$CallHierarchyPrepareParams {
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyItem with _$CallHierarchyItem {
-  const CallHierarchyItem._();
-
   const factory CallHierarchyItem({
     required String name,
     required SymbolKind kind,
@@ -421,8 +369,6 @@ abstract class CallHierarchyItem with _$CallHierarchyItem {
 @freezed
 abstract class CallHierarchyRegistrationOptions
     with _$CallHierarchyRegistrationOptions {
-  const CallHierarchyRegistrationOptions._();
-
   const factory CallHierarchyRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -440,8 +386,6 @@ abstract class CallHierarchyRegistrationOptions
 @freezed
 abstract class CallHierarchyIncomingCallsParams
     with _$CallHierarchyIncomingCallsParams {
-  const CallHierarchyIncomingCallsParams._();
-
   const factory CallHierarchyIncomingCallsParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -458,8 +402,6 @@ abstract class CallHierarchyIncomingCallsParams
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
-  const CallHierarchyIncomingCall._();
-
   const factory CallHierarchyIncomingCall({
     required CallHierarchyItem from,
     required List<Range> fromRanges,
@@ -475,8 +417,6 @@ abstract class CallHierarchyIncomingCall with _$CallHierarchyIncomingCall {
 @freezed
 abstract class CallHierarchyOutgoingCallsParams
     with _$CallHierarchyOutgoingCallsParams {
-  const CallHierarchyOutgoingCallsParams._();
-
   const factory CallHierarchyOutgoingCallsParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -493,8 +433,6 @@ abstract class CallHierarchyOutgoingCallsParams
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
-  const CallHierarchyOutgoingCall._();
-
   const factory CallHierarchyOutgoingCall({
     required CallHierarchyItem to,
     required List<Range> fromRanges,
@@ -507,8 +445,6 @@ abstract class CallHierarchyOutgoingCall with _$CallHierarchyOutgoingCall {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensParams with _$SemanticTokensParams {
-  const SemanticTokensParams._();
-
   const factory SemanticTokensParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -522,8 +458,6 @@ abstract class SemanticTokensParams with _$SemanticTokensParams {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokens with _$SemanticTokens {
-  const SemanticTokens._();
-
   const factory SemanticTokens({String? resultId, required List<int> data}) =
       _SemanticTokens;
 
@@ -534,8 +468,6 @@ abstract class SemanticTokens with _$SemanticTokens {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
-  const SemanticTokensPartialResult._();
-
   const factory SemanticTokensPartialResult({required List<int> data}) =
       _SemanticTokensPartialResult;
 
@@ -547,8 +479,6 @@ abstract class SemanticTokensPartialResult with _$SemanticTokensPartialResult {
 @freezed
 abstract class SemanticTokensRegistrationOptions
     with _$SemanticTokensRegistrationOptions {
-  const SemanticTokensRegistrationOptions._();
-
   const factory SemanticTokensRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -566,8 +496,6 @@ abstract class SemanticTokensRegistrationOptions
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
-  const SemanticTokensDeltaParams._();
-
   const factory SemanticTokensDeltaParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -582,8 +510,6 @@ abstract class SemanticTokensDeltaParams with _$SemanticTokensDeltaParams {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensDelta with _$SemanticTokensDelta {
-  const SemanticTokensDelta._();
-
   const factory SemanticTokensDelta({
     String? resultId,
     required List<SemanticTokensEdit> edits,
@@ -597,8 +523,6 @@ abstract class SemanticTokensDelta with _$SemanticTokensDelta {
 @freezed
 abstract class SemanticTokensDeltaPartialResult
     with _$SemanticTokensDeltaPartialResult {
-  const SemanticTokensDeltaPartialResult._();
-
   const factory SemanticTokensDeltaPartialResult({
     required List<SemanticTokensEdit> edits,
   }) = _SemanticTokensDeltaPartialResult;
@@ -611,8 +535,6 @@ abstract class SemanticTokensDeltaPartialResult
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
-  const SemanticTokensRangeParams._();
-
   const factory SemanticTokensRangeParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -629,8 +551,6 @@ abstract class SemanticTokensRangeParams with _$SemanticTokensRangeParams {
 /// @since 3.16.0
 @freezed
 abstract class ShowDocumentParams with _$ShowDocumentParams {
-  const ShowDocumentParams._();
-
   const factory ShowDocumentParams({
     required String uri,
     bool? external,
@@ -647,8 +567,6 @@ abstract class ShowDocumentParams with _$ShowDocumentParams {
 /// @since 3.16.0
 @freezed
 abstract class ShowDocumentResult with _$ShowDocumentResult {
-  const ShowDocumentResult._();
-
   const factory ShowDocumentResult({required bool success}) =
       _ShowDocumentResult;
 
@@ -658,8 +576,6 @@ abstract class ShowDocumentResult with _$ShowDocumentResult {
 
 @freezed
 abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
-  const LinkedEditingRangeParams._();
-
   const factory LinkedEditingRangeParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -675,8 +591,6 @@ abstract class LinkedEditingRangeParams with _$LinkedEditingRangeParams {
 /// @since 3.16.0
 @freezed
 abstract class LinkedEditingRanges with _$LinkedEditingRanges {
-  const LinkedEditingRanges._();
-
   const factory LinkedEditingRanges({
     required List<Range> ranges,
     String? wordPattern,
@@ -689,8 +603,6 @@ abstract class LinkedEditingRanges with _$LinkedEditingRanges {
 @freezed
 abstract class LinkedEditingRangeRegistrationOptions
     with _$LinkedEditingRangeRegistrationOptions {
-  const LinkedEditingRangeRegistrationOptions._();
-
   const factory LinkedEditingRangeRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -708,8 +620,6 @@ abstract class LinkedEditingRangeRegistrationOptions
 /// @since 3.16.0
 @freezed
 abstract class CreateFilesParams with _$CreateFilesParams {
-  const CreateFilesParams._();
-
   const factory CreateFilesParams({required List<FileCreate> files}) =
       _CreateFilesParams;
 
@@ -731,8 +641,6 @@ abstract class CreateFilesParams with _$CreateFilesParams {
 /// the client capability: `workspace.workspaceEdit.failureHandling`
 @freezed
 abstract class WorkspaceEdit with _$WorkspaceEdit {
-  const WorkspaceEdit._();
-
   const factory WorkspaceEdit({
     Map<String, List<TextEdit>>? changes,
     List<Object>? documentChanges,
@@ -749,8 +657,6 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
 @freezed
 abstract class FileOperationRegistrationOptions
     with _$FileOperationRegistrationOptions {
-  const FileOperationRegistrationOptions._();
-
   const factory FileOperationRegistrationOptions({
     required List<FileOperationFilter> filters,
   }) = _FileOperationRegistrationOptions;
@@ -766,8 +672,6 @@ abstract class FileOperationRegistrationOptions
 /// @since 3.16.0
 @freezed
 abstract class RenameFilesParams with _$RenameFilesParams {
-  const RenameFilesParams._();
-
   const factory RenameFilesParams({required List<FileRename> files}) =
       _RenameFilesParams;
 
@@ -781,8 +685,6 @@ abstract class RenameFilesParams with _$RenameFilesParams {
 /// @since 3.16.0
 @freezed
 abstract class DeleteFilesParams with _$DeleteFilesParams {
-  const DeleteFilesParams._();
-
   const factory DeleteFilesParams({required List<FileDelete> files}) =
       _DeleteFilesParams;
 
@@ -792,8 +694,6 @@ abstract class DeleteFilesParams with _$DeleteFilesParams {
 
 @freezed
 abstract class MonikerParams with _$MonikerParams {
-  const MonikerParams._();
-
   const factory MonikerParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -810,8 +710,6 @@ abstract class MonikerParams with _$MonikerParams {
 /// @since 3.16.0
 @freezed
 abstract class Moniker with _$Moniker {
-  const Moniker._();
-
   const factory Moniker({
     required String scheme,
     required String identifier,
@@ -825,8 +723,6 @@ abstract class Moniker with _$Moniker {
 
 @freezed
 abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
-  const MonikerRegistrationOptions._();
-
   const factory MonikerRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -841,8 +737,6 @@ abstract class MonikerRegistrationOptions with _$MonikerRegistrationOptions {
 /// @since 3.17.0
 @freezed
 abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
-  const TypeHierarchyPrepareParams._();
-
   const factory TypeHierarchyPrepareParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -856,8 +750,6 @@ abstract class TypeHierarchyPrepareParams with _$TypeHierarchyPrepareParams {
 /// @since 3.17.0
 @freezed
 abstract class TypeHierarchyItem with _$TypeHierarchyItem {
-  const TypeHierarchyItem._();
-
   const factory TypeHierarchyItem({
     required String name,
     required SymbolKind kind,
@@ -879,8 +771,6 @@ abstract class TypeHierarchyItem with _$TypeHierarchyItem {
 @freezed
 abstract class TypeHierarchyRegistrationOptions
     with _$TypeHierarchyRegistrationOptions {
-  const TypeHierarchyRegistrationOptions._();
-
   const factory TypeHierarchyRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -898,8 +788,6 @@ abstract class TypeHierarchyRegistrationOptions
 @freezed
 abstract class TypeHierarchySupertypesParams
     with _$TypeHierarchySupertypesParams {
-  const TypeHierarchySupertypesParams._();
-
   const factory TypeHierarchySupertypesParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -915,8 +803,6 @@ abstract class TypeHierarchySupertypesParams
 /// @since 3.17.0
 @freezed
 abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
-  const TypeHierarchySubtypesParams._();
-
   const factory TypeHierarchySubtypesParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -932,8 +818,6 @@ abstract class TypeHierarchySubtypesParams with _$TypeHierarchySubtypesParams {
 /// @since 3.17.0
 @freezed
 abstract class InlineValueParams with _$InlineValueParams {
-  const InlineValueParams._();
-
   const factory InlineValueParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
@@ -951,8 +835,6 @@ abstract class InlineValueParams with _$InlineValueParams {
 @freezed
 abstract class InlineValueRegistrationOptions
     with _$InlineValueRegistrationOptions {
-  const InlineValueRegistrationOptions._();
-
   const factory InlineValueRegistrationOptions({
     bool? workDoneProgress,
     required DocumentSelector? documentSelector,
@@ -968,8 +850,6 @@ abstract class InlineValueRegistrationOptions
 /// @since 3.17.0
 @freezed
 abstract class InlayHintParams with _$InlayHintParams {
-  const InlayHintParams._();
-
   const factory InlayHintParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
@@ -985,8 +865,6 @@ abstract class InlayHintParams with _$InlayHintParams {
 /// @since 3.17.0
 @freezed
 abstract class InlayHint with _$InlayHint {
-  const InlayHint._();
-
   const factory InlayHint({
     required Position position,
     required Object label,
@@ -1008,8 +886,6 @@ abstract class InlayHint with _$InlayHint {
 @freezed
 abstract class InlayHintRegistrationOptions
     with _$InlayHintRegistrationOptions {
-  const InlayHintRegistrationOptions._();
-
   const factory InlayHintRegistrationOptions({
     bool? workDoneProgress,
     bool? resolveProvider,
@@ -1026,8 +902,6 @@ abstract class InlayHintRegistrationOptions
 /// @since 3.17.0
 @freezed
 abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
-  const DocumentDiagnosticParams._();
-
   const factory DocumentDiagnosticParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -1046,8 +920,6 @@ abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
 @freezed
 abstract class DocumentDiagnosticReportPartialResult
     with _$DocumentDiagnosticReportPartialResult {
-  const DocumentDiagnosticReportPartialResult._();
-
   const factory DocumentDiagnosticReportPartialResult({
     required Map<String, Object> relatedDocuments,
   }) = _DocumentDiagnosticReportPartialResult;
@@ -1063,8 +935,6 @@ abstract class DocumentDiagnosticReportPartialResult
 @freezed
 abstract class DiagnosticServerCancellationData
     with _$DiagnosticServerCancellationData {
-  const DiagnosticServerCancellationData._();
-
   const factory DiagnosticServerCancellationData({
     required bool retriggerRequest,
   }) = _DiagnosticServerCancellationData;
@@ -1080,8 +950,6 @@ abstract class DiagnosticServerCancellationData
 @freezed
 abstract class DiagnosticRegistrationOptions
     with _$DiagnosticRegistrationOptions {
-  const DiagnosticRegistrationOptions._();
-
   const factory DiagnosticRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -1100,8 +968,6 @@ abstract class DiagnosticRegistrationOptions
 /// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
-  const WorkspaceDiagnosticParams._();
-
   const factory WorkspaceDiagnosticParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -1118,8 +984,6 @@ abstract class WorkspaceDiagnosticParams with _$WorkspaceDiagnosticParams {
 /// @since 3.17.0
 @freezed
 abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
-  const WorkspaceDiagnosticReport._();
-
   const factory WorkspaceDiagnosticReport({
     @_WorkspaceDocumentDiagnosticReportListConverter()
     required List<WorkspaceDocumentDiagnosticReport> items,
@@ -1135,8 +999,6 @@ abstract class WorkspaceDiagnosticReport with _$WorkspaceDiagnosticReport {
 @freezed
 abstract class WorkspaceDiagnosticReportPartialResult
     with _$WorkspaceDiagnosticReportPartialResult {
-  const WorkspaceDiagnosticReportPartialResult._();
-
   const factory WorkspaceDiagnosticReportPartialResult({
     @_WorkspaceDocumentDiagnosticReportListConverter()
     required List<WorkspaceDocumentDiagnosticReport> items,
@@ -1153,8 +1015,6 @@ abstract class WorkspaceDiagnosticReportPartialResult
 @freezed
 abstract class DidOpenNotebookDocumentParams
     with _$DidOpenNotebookDocumentParams {
-  const DidOpenNotebookDocumentParams._();
-
   const factory DidOpenNotebookDocumentParams({
     required NotebookDocument notebookDocument,
     required List<TextDocumentItem> cellTextDocuments,
@@ -1170,8 +1030,6 @@ abstract class DidOpenNotebookDocumentParams
 @freezed
 abstract class DidChangeNotebookDocumentParams
     with _$DidChangeNotebookDocumentParams {
-  const DidChangeNotebookDocumentParams._();
-
   const factory DidChangeNotebookDocumentParams({
     required VersionedNotebookDocumentIdentifier notebookDocument,
     required NotebookDocumentChangeEvent change,
@@ -1187,8 +1045,6 @@ abstract class DidChangeNotebookDocumentParams
 @freezed
 abstract class DidSaveNotebookDocumentParams
     with _$DidSaveNotebookDocumentParams {
-  const DidSaveNotebookDocumentParams._();
-
   const factory DidSaveNotebookDocumentParams({
     required NotebookDocumentIdentifier notebookDocument,
   }) = _DidSaveNotebookDocumentParams;
@@ -1203,8 +1059,6 @@ abstract class DidSaveNotebookDocumentParams
 @freezed
 abstract class DidCloseNotebookDocumentParams
     with _$DidCloseNotebookDocumentParams {
-  const DidCloseNotebookDocumentParams._();
-
   const factory DidCloseNotebookDocumentParams({
     required NotebookDocumentIdentifier notebookDocument,
     required List<TextDocumentIdentifier> cellTextDocuments,
@@ -1220,8 +1074,6 @@ abstract class DidCloseNotebookDocumentParams
 /// @proposed
 @freezed
 abstract class InlineCompletionParams with _$InlineCompletionParams {
-  const InlineCompletionParams._();
-
   const factory InlineCompletionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -1239,8 +1091,6 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
 /// @proposed
 @freezed
 abstract class InlineCompletionList with _$InlineCompletionList {
-  const InlineCompletionList._();
-
   const factory InlineCompletionList({
     required List<InlineCompletionItem> items,
   }) = _InlineCompletionList;
@@ -1255,8 +1105,6 @@ abstract class InlineCompletionList with _$InlineCompletionList {
 /// @proposed
 @freezed
 abstract class InlineCompletionItem with _$InlineCompletionItem {
-  const InlineCompletionItem._();
-
   const factory InlineCompletionItem({
     required Object insertText,
     String? filterText,
@@ -1275,8 +1123,6 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
 @freezed
 abstract class InlineCompletionRegistrationOptions
     with _$InlineCompletionRegistrationOptions {
-  const InlineCompletionRegistrationOptions._();
-
   const factory InlineCompletionRegistrationOptions({
     bool? workDoneProgress,
     required DocumentSelector? documentSelector,
@@ -1290,8 +1136,6 @@ abstract class InlineCompletionRegistrationOptions
 
 @freezed
 abstract class RegistrationParams with _$RegistrationParams {
-  const RegistrationParams._();
-
   const factory RegistrationParams({
     required List<Registration> registrations,
   }) = _RegistrationParams;
@@ -1302,8 +1146,6 @@ abstract class RegistrationParams with _$RegistrationParams {
 
 @freezed
 abstract class UnregistrationParams with _$UnregistrationParams {
-  const UnregistrationParams._();
-
   const factory UnregistrationParams({
     required List<Unregistration> unregisterations,
   }) = _UnregistrationParams;
@@ -1314,8 +1156,6 @@ abstract class UnregistrationParams with _$UnregistrationParams {
 
 @freezed
 abstract class InitializeParams with _$InitializeParams {
-  const InitializeParams._();
-
   const factory InitializeParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required int? processId,
@@ -1336,8 +1176,6 @@ abstract class InitializeParams with _$InitializeParams {
 /// The result returned from an initialize request.
 @freezed
 abstract class InitializeResult with _$InitializeResult {
-  const InitializeResult._();
-
   const factory InitializeResult({
     required ServerCapabilities capabilities,
     ({String name, String? version})? serverInfo,
@@ -1351,8 +1189,6 @@ abstract class InitializeResult with _$InitializeResult {
 /// initialize request fails.
 @freezed
 abstract class InitializeError with _$InitializeError {
-  const InitializeError._();
-
   const factory InitializeError({required bool retry}) = _InitializeError;
 
   factory InitializeError.fromJson(Map<String, dynamic> json) =>
@@ -1361,8 +1197,6 @@ abstract class InitializeError with _$InitializeError {
 
 @freezed
 abstract class InitializedParams with _$InitializedParams {
-  const InitializedParams._();
-
   const factory InitializedParams() = _InitializedParams;
 
   factory InitializedParams.fromJson(Map<String, dynamic> json) =>
@@ -1373,8 +1207,6 @@ abstract class InitializedParams with _$InitializedParams {
 @freezed
 abstract class DidChangeConfigurationParams
     with _$DidChangeConfigurationParams {
-  const DidChangeConfigurationParams._();
-
   const factory DidChangeConfigurationParams({required LSPAny settings}) =
       _DidChangeConfigurationParams;
 
@@ -1385,8 +1217,6 @@ abstract class DidChangeConfigurationParams
 @freezed
 abstract class DidChangeConfigurationRegistrationOptions
     with _$DidChangeConfigurationRegistrationOptions {
-  const DidChangeConfigurationRegistrationOptions._();
-
   const factory DidChangeConfigurationRegistrationOptions({Object? section}) =
       _DidChangeConfigurationRegistrationOptions;
 
@@ -1398,8 +1228,6 @@ abstract class DidChangeConfigurationRegistrationOptions
 /// The parameters of a notification message.
 @freezed
 abstract class ShowMessageParams with _$ShowMessageParams {
-  const ShowMessageParams._();
-
   const factory ShowMessageParams({
     required MessageType type,
     required String message,
@@ -1411,8 +1239,6 @@ abstract class ShowMessageParams with _$ShowMessageParams {
 
 @freezed
 abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
-  const ShowMessageRequestParams._();
-
   const factory ShowMessageRequestParams({
     required MessageType type,
     required String message,
@@ -1425,8 +1251,6 @@ abstract class ShowMessageRequestParams with _$ShowMessageRequestParams {
 
 @freezed
 abstract class MessageActionItem with _$MessageActionItem {
-  const MessageActionItem._();
-
   const factory MessageActionItem({required String title}) = _MessageActionItem;
 
   factory MessageActionItem.fromJson(Map<String, dynamic> json) =>
@@ -1436,8 +1260,6 @@ abstract class MessageActionItem with _$MessageActionItem {
 /// The log message parameters.
 @freezed
 abstract class LogMessageParams with _$LogMessageParams {
-  const LogMessageParams._();
-
   const factory LogMessageParams({
     required MessageType type,
     required String message,
@@ -1450,8 +1272,6 @@ abstract class LogMessageParams with _$LogMessageParams {
 /// The parameters sent in an open text document notification
 @freezed
 abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
-  const DidOpenTextDocumentParams._();
-
   const factory DidOpenTextDocumentParams({
     required TextDocumentItem textDocument,
   }) = _DidOpenTextDocumentParams;
@@ -1463,8 +1283,6 @@ abstract class DidOpenTextDocumentParams with _$DidOpenTextDocumentParams {
 /// The change text document notification's parameters.
 @freezed
 abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
-  const DidChangeTextDocumentParams._();
-
   const factory DidChangeTextDocumentParams({
     required VersionedTextDocumentIdentifier textDocument,
     @_TextDocumentContentChangeEventListConverter()
@@ -1479,8 +1297,6 @@ abstract class DidChangeTextDocumentParams with _$DidChangeTextDocumentParams {
 @freezed
 abstract class TextDocumentChangeRegistrationOptions
     with _$TextDocumentChangeRegistrationOptions {
-  const TextDocumentChangeRegistrationOptions._();
-
   const factory TextDocumentChangeRegistrationOptions({
     required DocumentSelector? documentSelector,
     required TextDocumentSyncKind syncKind,
@@ -1494,8 +1310,6 @@ abstract class TextDocumentChangeRegistrationOptions
 /// The parameters sent in a close text document notification
 @freezed
 abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
-  const DidCloseTextDocumentParams._();
-
   const factory DidCloseTextDocumentParams({
     required TextDocumentIdentifier textDocument,
   }) = _DidCloseTextDocumentParams;
@@ -1507,8 +1321,6 @@ abstract class DidCloseTextDocumentParams with _$DidCloseTextDocumentParams {
 /// The parameters sent in a save text document notification
 @freezed
 abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
-  const DidSaveTextDocumentParams._();
-
   const factory DidSaveTextDocumentParams({
     required TextDocumentIdentifier textDocument,
     String? text,
@@ -1522,8 +1334,6 @@ abstract class DidSaveTextDocumentParams with _$DidSaveTextDocumentParams {
 @freezed
 abstract class TextDocumentSaveRegistrationOptions
     with _$TextDocumentSaveRegistrationOptions {
-  const TextDocumentSaveRegistrationOptions._();
-
   const factory TextDocumentSaveRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? includeText,
@@ -1537,8 +1347,6 @@ abstract class TextDocumentSaveRegistrationOptions
 /// The parameters sent in a will save text document notification.
 @freezed
 abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
-  const WillSaveTextDocumentParams._();
-
   const factory WillSaveTextDocumentParams({
     required TextDocumentIdentifier textDocument,
     required TextDocumentSaveReason reason,
@@ -1551,8 +1359,6 @@ abstract class WillSaveTextDocumentParams with _$WillSaveTextDocumentParams {
 /// A text edit applicable to a text document.
 @freezed
 abstract class TextEdit with _$TextEdit {
-  const TextEdit._();
-
   const factory TextEdit({required Range range, required String newText}) =
       _TextEdit;
 
@@ -1563,8 +1369,6 @@ abstract class TextEdit with _$TextEdit {
 /// The watched files change notification's parameters.
 @freezed
 abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
-  const DidChangeWatchedFilesParams._();
-
   const factory DidChangeWatchedFilesParams({
     required List<FileEvent> changes,
   }) = _DidChangeWatchedFilesParams;
@@ -1577,8 +1381,6 @@ abstract class DidChangeWatchedFilesParams with _$DidChangeWatchedFilesParams {
 @freezed
 abstract class DidChangeWatchedFilesRegistrationOptions
     with _$DidChangeWatchedFilesRegistrationOptions {
-  const DidChangeWatchedFilesRegistrationOptions._();
-
   const factory DidChangeWatchedFilesRegistrationOptions({
     required List<FileSystemWatcher> watchers,
   }) = _DidChangeWatchedFilesRegistrationOptions;
@@ -1591,8 +1393,6 @@ abstract class DidChangeWatchedFilesRegistrationOptions
 /// The publish diagnostic notification's parameters.
 @freezed
 abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
-  const PublishDiagnosticsParams._();
-
   const factory PublishDiagnosticsParams({
     required String uri,
     int? version,
@@ -1606,8 +1406,6 @@ abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
 /// Completion parameters
 @freezed
 abstract class CompletionParams with _$CompletionParams {
-  const CompletionParams._();
-
   const factory CompletionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -1624,8 +1422,6 @@ abstract class CompletionParams with _$CompletionParams {
 /// proposed to complete text that is being typed.
 @freezed
 abstract class CompletionItem with _$CompletionItem {
-  const CompletionItem._();
-
   const factory CompletionItem({
     required String label,
     CompletionItemLabelDetails? labelDetails,
@@ -1656,8 +1452,6 @@ abstract class CompletionItem with _$CompletionItem {
 /// in the editor.
 @freezed
 abstract class CompletionList with _$CompletionList {
-  const CompletionList._();
-
   const factory CompletionList({
     required bool isIncomplete,
     ({
@@ -1679,8 +1473,6 @@ abstract class CompletionList with _$CompletionList {
 @freezed
 abstract class CompletionRegistrationOptions
     with _$CompletionRegistrationOptions {
-  const CompletionRegistrationOptions._();
-
   const factory CompletionRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -1697,8 +1489,6 @@ abstract class CompletionRegistrationOptions
 /// Parameters for a {@link HoverRequest}.
 @freezed
 abstract class HoverParams with _$HoverParams {
-  const HoverParams._();
-
   const factory HoverParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -1712,8 +1502,6 @@ abstract class HoverParams with _$HoverParams {
 /// The result of a hover request.
 @freezed
 abstract class Hover with _$Hover {
-  const Hover._();
-
   const factory Hover({required Object contents, Range? range}) = _Hover;
 
   factory Hover.fromJson(Map<String, dynamic> json) => _$HoverFromJson(json);
@@ -1722,8 +1510,6 @@ abstract class Hover with _$Hover {
 /// Registration options for a {@link HoverRequest}.
 @freezed
 abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
-  const HoverRegistrationOptions._();
-
   const factory HoverRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -1736,8 +1522,6 @@ abstract class HoverRegistrationOptions with _$HoverRegistrationOptions {
 /// Parameters for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpParams with _$SignatureHelpParams {
-  const SignatureHelpParams._();
-
   const factory SignatureHelpParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -1754,8 +1538,6 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
 /// active and only one active parameter.
 @freezed
 abstract class SignatureHelp with _$SignatureHelp {
-  const SignatureHelp._();
-
   const factory SignatureHelp({
     required List<SignatureInformation> signatures,
     int? activeSignature,
@@ -1770,8 +1552,6 @@ abstract class SignatureHelp with _$SignatureHelp {
 @freezed
 abstract class SignatureHelpRegistrationOptions
     with _$SignatureHelpRegistrationOptions {
-  const SignatureHelpRegistrationOptions._();
-
   const factory SignatureHelpRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -1787,8 +1567,6 @@ abstract class SignatureHelpRegistrationOptions
 /// Parameters for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionParams with _$DefinitionParams {
-  const DefinitionParams._();
-
   const factory DefinitionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -1804,8 +1582,6 @@ abstract class DefinitionParams with _$DefinitionParams {
 @freezed
 abstract class DefinitionRegistrationOptions
     with _$DefinitionRegistrationOptions {
-  const DefinitionRegistrationOptions._();
-
   const factory DefinitionRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -1818,8 +1594,6 @@ abstract class DefinitionRegistrationOptions
 /// Parameters for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceParams with _$ReferenceParams {
-  const ReferenceParams._();
-
   const factory ReferenceParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -1836,8 +1610,6 @@ abstract class ReferenceParams with _$ReferenceParams {
 @freezed
 abstract class ReferenceRegistrationOptions
     with _$ReferenceRegistrationOptions {
-  const ReferenceRegistrationOptions._();
-
   const factory ReferenceRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -1850,8 +1622,6 @@ abstract class ReferenceRegistrationOptions
 /// Parameters for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightParams with _$DocumentHighlightParams {
-  const DocumentHighlightParams._();
-
   const factory DocumentHighlightParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -1868,8 +1638,6 @@ abstract class DocumentHighlightParams with _$DocumentHighlightParams {
 /// the background color of its range.
 @freezed
 abstract class DocumentHighlight with _$DocumentHighlight {
-  const DocumentHighlight._();
-
   const factory DocumentHighlight({
     required Range range,
     DocumentHighlightKind? kind,
@@ -1883,8 +1651,6 @@ abstract class DocumentHighlight with _$DocumentHighlight {
 @freezed
 abstract class DocumentHighlightRegistrationOptions
     with _$DocumentHighlightRegistrationOptions {
-  const DocumentHighlightRegistrationOptions._();
-
   const factory DocumentHighlightRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -1898,8 +1664,6 @@ abstract class DocumentHighlightRegistrationOptions
 /// Parameters for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolParams with _$DocumentSymbolParams {
-  const DocumentSymbolParams._();
-
   const factory DocumentSymbolParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -1914,8 +1678,6 @@ abstract class DocumentSymbolParams with _$DocumentSymbolParams {
 /// interfaces etc.
 @freezed
 abstract class SymbolInformation with _$SymbolInformation {
-  const SymbolInformation._();
-
   const factory SymbolInformation({
     required String name,
     required SymbolKind kind,
@@ -1935,8 +1697,6 @@ abstract class SymbolInformation with _$SymbolInformation {
 /// its most interesting range, e.g. the range of an identifier.
 @freezed
 abstract class DocumentSymbol with _$DocumentSymbol {
-  const DocumentSymbol._();
-
   const factory DocumentSymbol({
     required String name,
     String? detail,
@@ -1956,8 +1716,6 @@ abstract class DocumentSymbol with _$DocumentSymbol {
 @freezed
 abstract class DocumentSymbolRegistrationOptions
     with _$DocumentSymbolRegistrationOptions {
-  const DocumentSymbolRegistrationOptions._();
-
   const factory DocumentSymbolRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -1972,8 +1730,6 @@ abstract class DocumentSymbolRegistrationOptions
 /// The parameters of a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionParams with _$CodeActionParams {
-  const CodeActionParams._();
-
   const factory CodeActionParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -1992,8 +1748,6 @@ abstract class CodeActionParams with _$CodeActionParams {
 /// function when invoked.
 @freezed
 abstract class Command with _$Command {
-  const Command._();
-
   const factory Command({
     required String title,
     required String command,
@@ -2034,8 +1788,6 @@ abstract class CodeAction with _$CodeAction {
 @freezed
 abstract class CodeActionRegistrationOptions
     with _$CodeActionRegistrationOptions {
-  const CodeActionRegistrationOptions._();
-
   const factory CodeActionRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -2050,8 +1802,6 @@ abstract class CodeActionRegistrationOptions
 /// The parameters of a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
-  const WorkspaceSymbolParams._();
-
   const factory WorkspaceSymbolParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -2069,8 +1819,6 @@ abstract class WorkspaceSymbolParams with _$WorkspaceSymbolParams {
 /// @since 3.17.0
 @freezed
 abstract class WorkspaceSymbol with _$WorkspaceSymbol {
-  const WorkspaceSymbol._();
-
   const factory WorkspaceSymbol({
     required String name,
     required SymbolKind kind,
@@ -2088,8 +1836,6 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
 @freezed
 abstract class WorkspaceSymbolRegistrationOptions
     with _$WorkspaceSymbolRegistrationOptions {
-  const WorkspaceSymbolRegistrationOptions._();
-
   const factory WorkspaceSymbolRegistrationOptions({
     bool? workDoneProgress,
     bool? resolveProvider,
@@ -2103,8 +1849,6 @@ abstract class WorkspaceSymbolRegistrationOptions
 /// The parameters of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensParams with _$CodeLensParams {
-  const CodeLensParams._();
-
   const factory CodeLensParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -2122,8 +1866,6 @@ abstract class CodeLensParams with _$CodeLensParams {
 /// reasons the creation of a code lens and resolving should be done in two stages.
 @freezed
 abstract class CodeLens with _$CodeLens {
-  const CodeLens._();
-
   const factory CodeLens({
     required Range range,
     Command? command,
@@ -2137,8 +1879,6 @@ abstract class CodeLens with _$CodeLens {
 /// Registration options for a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
-  const CodeLensRegistrationOptions._();
-
   const factory CodeLensRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -2152,8 +1892,6 @@ abstract class CodeLensRegistrationOptions with _$CodeLensRegistrationOptions {
 /// The parameters of a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkParams with _$DocumentLinkParams {
-  const DocumentLinkParams._();
-
   const factory DocumentLinkParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
@@ -2168,8 +1906,6 @@ abstract class DocumentLinkParams with _$DocumentLinkParams {
 /// text document or a web site.
 @freezed
 abstract class DocumentLink with _$DocumentLink {
-  const DocumentLink._();
-
   const factory DocumentLink({
     required Range range,
     String? target,
@@ -2185,8 +1921,6 @@ abstract class DocumentLink with _$DocumentLink {
 @freezed
 abstract class DocumentLinkRegistrationOptions
     with _$DocumentLinkRegistrationOptions {
-  const DocumentLinkRegistrationOptions._();
-
   const factory DocumentLinkRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -2200,8 +1934,6 @@ abstract class DocumentLinkRegistrationOptions
 /// The parameters of a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingParams with _$DocumentFormattingParams {
-  const DocumentFormattingParams._();
-
   const factory DocumentFormattingParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
@@ -2216,8 +1948,6 @@ abstract class DocumentFormattingParams with _$DocumentFormattingParams {
 @freezed
 abstract class DocumentFormattingRegistrationOptions
     with _$DocumentFormattingRegistrationOptions {
-  const DocumentFormattingRegistrationOptions._();
-
   const factory DocumentFormattingRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -2232,8 +1962,6 @@ abstract class DocumentFormattingRegistrationOptions
 @freezed
 abstract class DocumentRangeFormattingParams
     with _$DocumentRangeFormattingParams {
-  const DocumentRangeFormattingParams._();
-
   const factory DocumentRangeFormattingParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
@@ -2249,8 +1977,6 @@ abstract class DocumentRangeFormattingParams
 @freezed
 abstract class DocumentRangeFormattingRegistrationOptions
     with _$DocumentRangeFormattingRegistrationOptions {
-  const DocumentRangeFormattingRegistrationOptions._();
-
   const factory DocumentRangeFormattingRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -2269,8 +1995,6 @@ abstract class DocumentRangeFormattingRegistrationOptions
 @freezed
 abstract class DocumentRangesFormattingParams
     with _$DocumentRangesFormattingParams {
-  const DocumentRangesFormattingParams._();
-
   const factory DocumentRangesFormattingParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
@@ -2286,8 +2010,6 @@ abstract class DocumentRangesFormattingParams
 @freezed
 abstract class DocumentOnTypeFormattingParams
     with _$DocumentOnTypeFormattingParams {
-  const DocumentOnTypeFormattingParams._();
-
   const factory DocumentOnTypeFormattingParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -2303,8 +2025,6 @@ abstract class DocumentOnTypeFormattingParams
 @freezed
 abstract class DocumentOnTypeFormattingRegistrationOptions
     with _$DocumentOnTypeFormattingRegistrationOptions {
-  const DocumentOnTypeFormattingRegistrationOptions._();
-
   const factory DocumentOnTypeFormattingRegistrationOptions({
     required DocumentSelector? documentSelector,
     required String firstTriggerCharacter,
@@ -2319,8 +2039,6 @@ abstract class DocumentOnTypeFormattingRegistrationOptions
 /// The parameters of a {@link RenameRequest}.
 @freezed
 abstract class RenameParams with _$RenameParams {
-  const RenameParams._();
-
   const factory RenameParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required TextDocumentIdentifier textDocument,
@@ -2335,8 +2053,6 @@ abstract class RenameParams with _$RenameParams {
 /// Registration options for a {@link RenameRequest}.
 @freezed
 abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
-  const RenameRegistrationOptions._();
-
   const factory RenameRegistrationOptions({
     required DocumentSelector? documentSelector,
     bool? workDoneProgress,
@@ -2349,8 +2065,6 @@ abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
 
 @freezed
 abstract class PrepareRenameParams with _$PrepareRenameParams {
-  const PrepareRenameParams._();
-
   const factory PrepareRenameParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -2364,8 +2078,6 @@ abstract class PrepareRenameParams with _$PrepareRenameParams {
 /// The parameters of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandParams with _$ExecuteCommandParams {
-  const ExecuteCommandParams._();
-
   const factory ExecuteCommandParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
     required String command,
@@ -2380,8 +2092,6 @@ abstract class ExecuteCommandParams with _$ExecuteCommandParams {
 @freezed
 abstract class ExecuteCommandRegistrationOptions
     with _$ExecuteCommandRegistrationOptions {
-  const ExecuteCommandRegistrationOptions._();
-
   const factory ExecuteCommandRegistrationOptions({
     bool? workDoneProgress,
     required List<String> commands,
@@ -2395,8 +2105,6 @@ abstract class ExecuteCommandRegistrationOptions
 /// The parameters passed via an apply workspace edit request.
 @freezed
 abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
-  const ApplyWorkspaceEditParams._();
-
   const factory ApplyWorkspaceEditParams({
     String? label,
     required WorkspaceEdit edit,
@@ -2411,8 +2119,6 @@ abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
 /// @since 3.17 renamed from ApplyWorkspaceEditResponse
 @freezed
 abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
-  const ApplyWorkspaceEditResult._();
-
   const factory ApplyWorkspaceEditResult({
     required bool applied,
     String? failureReason,
@@ -2425,8 +2131,6 @@ abstract class ApplyWorkspaceEditResult with _$ApplyWorkspaceEditResult {
 
 @freezed
 abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
-  const WorkDoneProgressBegin._();
-
   const factory WorkDoneProgressBegin({
     required String kind,
     required String title,
@@ -2441,8 +2145,6 @@ abstract class WorkDoneProgressBegin with _$WorkDoneProgressBegin {
 
 @freezed
 abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
-  const WorkDoneProgressReport._();
-
   const factory WorkDoneProgressReport({
     required String kind,
     bool? cancellable,
@@ -2456,8 +2158,6 @@ abstract class WorkDoneProgressReport with _$WorkDoneProgressReport {
 
 @freezed
 abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
-  const WorkDoneProgressEnd._();
-
   const factory WorkDoneProgressEnd({required String kind, String? message}) =
       _WorkDoneProgressEnd;
 
@@ -2467,8 +2167,6 @@ abstract class WorkDoneProgressEnd with _$WorkDoneProgressEnd {
 
 @freezed
 abstract class SetTraceParams with _$SetTraceParams {
-  const SetTraceParams._();
-
   const factory SetTraceParams({required TraceValues value}) = _SetTraceParams;
 
   factory SetTraceParams.fromJson(Map<String, dynamic> json) =>
@@ -2477,8 +2175,6 @@ abstract class SetTraceParams with _$SetTraceParams {
 
 @freezed
 abstract class LogTraceParams with _$LogTraceParams {
-  const LogTraceParams._();
-
   const factory LogTraceParams({required String message, String? verbose}) =
       _LogTraceParams;
 
@@ -2488,8 +2184,6 @@ abstract class LogTraceParams with _$LogTraceParams {
 
 @freezed
 abstract class CancelParams with _$CancelParams {
-  const CancelParams._();
-
   const factory CancelParams({required Object id}) = _CancelParams;
 
   factory CancelParams.fromJson(Map<String, dynamic> json) =>
@@ -2498,8 +2192,6 @@ abstract class CancelParams with _$CancelParams {
 
 @freezed
 abstract class ProgressParams with _$ProgressParams {
-  const ProgressParams._();
-
   const factory ProgressParams({
     @_ProgressTokenConverter() required ProgressToken token,
     required LSPAny value,
@@ -2513,8 +2205,6 @@ abstract class ProgressParams with _$ProgressParams {
 /// document.
 @freezed
 abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
-  const TextDocumentPositionParams._();
-
   const factory TextDocumentPositionParams({
     required TextDocumentIdentifier textDocument,
     required Position position,
@@ -2526,8 +2216,6 @@ abstract class TextDocumentPositionParams with _$TextDocumentPositionParams {
 
 @freezed
 abstract class WorkDoneProgressParams with _$WorkDoneProgressParams {
-  const WorkDoneProgressParams._();
-
   const factory WorkDoneProgressParams({
     @_ProgressTokenConverter() ProgressToken? workDoneToken,
   }) = _WorkDoneProgressParams;
@@ -2538,8 +2226,6 @@ abstract class WorkDoneProgressParams with _$WorkDoneProgressParams {
 
 @freezed
 abstract class PartialResultParams with _$PartialResultParams {
-  const PartialResultParams._();
-
   const factory PartialResultParams({
     @_ProgressTokenConverter() ProgressToken? partialResultToken,
   }) = _PartialResultParams;
@@ -2552,8 +2238,6 @@ abstract class PartialResultParams with _$PartialResultParams {
 /// including an origin range.
 @freezed
 abstract class LocationLink with _$LocationLink {
-  const LocationLink._();
-
   const factory LocationLink({
     Range? originSelectionRange,
     required String targetUri,
@@ -2578,8 +2262,6 @@ abstract class LocationLink with _$LocationLink {
 /// ```
 @freezed
 abstract class Range with _$Range {
-  const Range._();
-
   const factory Range({required Position start, required Position end}) =
       _Range;
 
@@ -2588,8 +2270,6 @@ abstract class Range with _$Range {
 
 @freezed
 abstract class ImplementationOptions with _$ImplementationOptions {
-  const ImplementationOptions._();
-
   const factory ImplementationOptions({bool? workDoneProgress}) =
       _ImplementationOptions;
 
@@ -2601,8 +2281,6 @@ abstract class ImplementationOptions with _$ImplementationOptions {
 /// request.
 @freezed
 abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
-  const StaticRegistrationOptions._();
-
   const factory StaticRegistrationOptions({String? id}) =
       _StaticRegistrationOptions;
 
@@ -2612,8 +2290,6 @@ abstract class StaticRegistrationOptions with _$StaticRegistrationOptions {
 
 @freezed
 abstract class TypeDefinitionOptions with _$TypeDefinitionOptions {
-  const TypeDefinitionOptions._();
-
   const factory TypeDefinitionOptions({bool? workDoneProgress}) =
       _TypeDefinitionOptions;
 
@@ -2624,8 +2300,6 @@ abstract class TypeDefinitionOptions with _$TypeDefinitionOptions {
 /// The workspace folder change event.
 @freezed
 abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
-  const WorkspaceFoldersChangeEvent._();
-
   const factory WorkspaceFoldersChangeEvent({
     required List<WorkspaceFolder> added,
     required List<WorkspaceFolder> removed,
@@ -2637,8 +2311,6 @@ abstract class WorkspaceFoldersChangeEvent with _$WorkspaceFoldersChangeEvent {
 
 @freezed
 abstract class ConfigurationItem with _$ConfigurationItem {
-  const ConfigurationItem._();
-
   const factory ConfigurationItem({String? scopeUri, String? section}) =
       _ConfigurationItem;
 
@@ -2649,8 +2321,6 @@ abstract class ConfigurationItem with _$ConfigurationItem {
 /// A literal to identify a text document in the client.
 @freezed
 abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
-  const TextDocumentIdentifier._();
-
   const factory TextDocumentIdentifier({required String uri}) =
       _TextDocumentIdentifier;
 
@@ -2661,8 +2331,6 @@ abstract class TextDocumentIdentifier with _$TextDocumentIdentifier {
 /// Represents a color in RGBA space.
 @freezed
 abstract class Color with _$Color {
-  const Color._();
-
   const factory Color({
     required double red,
     required double green,
@@ -2675,8 +2343,6 @@ abstract class Color with _$Color {
 
 @freezed
 abstract class DocumentColorOptions with _$DocumentColorOptions {
-  const DocumentColorOptions._();
-
   const factory DocumentColorOptions({bool? workDoneProgress}) =
       _DocumentColorOptions;
 
@@ -2686,8 +2352,6 @@ abstract class DocumentColorOptions with _$DocumentColorOptions {
 
 @freezed
 abstract class FoldingRangeOptions with _$FoldingRangeOptions {
-  const FoldingRangeOptions._();
-
   const factory FoldingRangeOptions({bool? workDoneProgress}) =
       _FoldingRangeOptions;
 
@@ -2697,8 +2361,6 @@ abstract class FoldingRangeOptions with _$FoldingRangeOptions {
 
 @freezed
 abstract class DeclarationOptions with _$DeclarationOptions {
-  const DeclarationOptions._();
-
   const factory DeclarationOptions({bool? workDoneProgress}) =
       _DeclarationOptions;
 
@@ -2735,8 +2397,6 @@ abstract class DeclarationOptions with _$DeclarationOptions {
 /// @since 3.17.0 - support for negotiated position encoding.
 @freezed
 abstract class Position with _$Position {
-  const Position._();
-
   const factory Position({required int line, required int character}) =
       _Position;
 
@@ -2746,8 +2406,6 @@ abstract class Position with _$Position {
 
 @freezed
 abstract class SelectionRangeOptions with _$SelectionRangeOptions {
-  const SelectionRangeOptions._();
-
   const factory SelectionRangeOptions({bool? workDoneProgress}) =
       _SelectionRangeOptions;
 
@@ -2760,8 +2418,6 @@ abstract class SelectionRangeOptions with _$SelectionRangeOptions {
 /// @since 3.16.0
 @freezed
 abstract class CallHierarchyOptions with _$CallHierarchyOptions {
-  const CallHierarchyOptions._();
-
   const factory CallHierarchyOptions({bool? workDoneProgress}) =
       _CallHierarchyOptions;
 
@@ -2772,8 +2428,6 @@ abstract class CallHierarchyOptions with _$CallHierarchyOptions {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensOptions with _$SemanticTokensOptions {
-  const SemanticTokensOptions._();
-
   const factory SemanticTokensOptions({
     bool? workDoneProgress,
     required SemanticTokensLegend legend,
@@ -2788,8 +2442,6 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensEdit with _$SemanticTokensEdit {
-  const SemanticTokensEdit._();
-
   const factory SemanticTokensEdit({
     required int start,
     required int deleteCount,
@@ -2802,8 +2454,6 @@ abstract class SemanticTokensEdit with _$SemanticTokensEdit {
 
 @freezed
 abstract class LinkedEditingRangeOptions with _$LinkedEditingRangeOptions {
-  const LinkedEditingRangeOptions._();
-
   const factory LinkedEditingRangeOptions({bool? workDoneProgress}) =
       _LinkedEditingRangeOptions;
 
@@ -2816,8 +2466,6 @@ abstract class LinkedEditingRangeOptions with _$LinkedEditingRangeOptions {
 /// @since 3.16.0
 @freezed
 abstract class FileCreate with _$FileCreate {
-  const FileCreate._();
-
   const factory FileCreate({required String uri}) = _FileCreate;
 
   factory FileCreate.fromJson(Map<String, dynamic> json) =>
@@ -2830,8 +2478,6 @@ abstract class FileCreate with _$FileCreate {
 /// kind of ordering. However the edits must be non overlapping.
 @freezed
 abstract class TextDocumentEdit with _$TextDocumentEdit {
-  const TextDocumentEdit._();
-
   const factory TextDocumentEdit({
     required OptionalVersionedTextDocumentIdentifier textDocument,
     required List<Object> edits,
@@ -2844,8 +2490,6 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
 /// Create file operation.
 @freezed
 abstract class CreateFile with _$CreateFile {
-  const CreateFile._();
-
   const factory CreateFile({
     ChangeAnnotationIdentifier? annotationId,
     required String kind,
@@ -2860,8 +2504,6 @@ abstract class CreateFile with _$CreateFile {
 /// Rename file operation
 @freezed
 abstract class RenameFile with _$RenameFile {
-  const RenameFile._();
-
   const factory RenameFile({
     ChangeAnnotationIdentifier? annotationId,
     required String kind,
@@ -2877,8 +2519,6 @@ abstract class RenameFile with _$RenameFile {
 /// Delete file operation
 @freezed
 abstract class DeleteFile with _$DeleteFile {
-  const DeleteFile._();
-
   const factory DeleteFile({
     ChangeAnnotationIdentifier? annotationId,
     required String kind,
@@ -2895,8 +2535,6 @@ abstract class DeleteFile with _$DeleteFile {
 /// @since 3.16.0
 @freezed
 abstract class ChangeAnnotation with _$ChangeAnnotation {
-  const ChangeAnnotation._();
-
   const factory ChangeAnnotation({
     required String label,
     bool? needsConfirmation,
@@ -2913,8 +2551,6 @@ abstract class ChangeAnnotation with _$ChangeAnnotation {
 /// @since 3.16.0
 @freezed
 abstract class FileOperationFilter with _$FileOperationFilter {
-  const FileOperationFilter._();
-
   const factory FileOperationFilter({
     String? scheme,
     required FileOperationPattern pattern,
@@ -2929,8 +2565,6 @@ abstract class FileOperationFilter with _$FileOperationFilter {
 /// @since 3.16.0
 @freezed
 abstract class FileRename with _$FileRename {
-  const FileRename._();
-
   const factory FileRename({required String oldUri, required String newUri}) =
       _FileRename;
 
@@ -2943,8 +2577,6 @@ abstract class FileRename with _$FileRename {
 /// @since 3.16.0
 @freezed
 abstract class FileDelete with _$FileDelete {
-  const FileDelete._();
-
   const factory FileDelete({required String uri}) = _FileDelete;
 
   factory FileDelete.fromJson(Map<String, dynamic> json) =>
@@ -2953,8 +2585,6 @@ abstract class FileDelete with _$FileDelete {
 
 @freezed
 abstract class MonikerOptions with _$MonikerOptions {
-  const MonikerOptions._();
-
   const factory MonikerOptions({bool? workDoneProgress}) = _MonikerOptions;
 
   factory MonikerOptions.fromJson(Map<String, dynamic> json) =>
@@ -2966,8 +2596,6 @@ abstract class MonikerOptions with _$MonikerOptions {
 /// @since 3.17.0
 @freezed
 abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
-  const TypeHierarchyOptions._();
-
   const factory TypeHierarchyOptions({bool? workDoneProgress}) =
       _TypeHierarchyOptions;
 
@@ -2978,8 +2606,6 @@ abstract class TypeHierarchyOptions with _$TypeHierarchyOptions {
 /// @since 3.17.0
 @freezed
 abstract class InlineValueContext with _$InlineValueContext {
-  const InlineValueContext._();
-
   const factory InlineValueContext({
     required int frameId,
     required Range stoppedLocation,
@@ -2994,8 +2620,6 @@ abstract class InlineValueContext with _$InlineValueContext {
 /// @since 3.17.0
 @freezed
 abstract class InlineValueText with _$InlineValueText {
-  const InlineValueText._();
-
   const factory InlineValueText({required Range range, required String text}) =
       _InlineValueText;
 
@@ -3010,8 +2634,6 @@ abstract class InlineValueText with _$InlineValueText {
 /// @since 3.17.0
 @freezed
 abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
-  const InlineValueVariableLookup._();
-
   const factory InlineValueVariableLookup({
     required Range range,
     String? variableName,
@@ -3030,8 +2652,6 @@ abstract class InlineValueVariableLookup with _$InlineValueVariableLookup {
 @freezed
 abstract class InlineValueEvaluatableExpression
     with _$InlineValueEvaluatableExpression {
-  const InlineValueEvaluatableExpression._();
-
   const factory InlineValueEvaluatableExpression({
     required Range range,
     String? expression,
@@ -3047,8 +2667,6 @@ abstract class InlineValueEvaluatableExpression
 /// @since 3.17.0
 @freezed
 abstract class InlineValueOptions with _$InlineValueOptions {
-  const InlineValueOptions._();
-
   const factory InlineValueOptions({bool? workDoneProgress}) =
       _InlineValueOptions;
 
@@ -3062,8 +2680,6 @@ abstract class InlineValueOptions with _$InlineValueOptions {
 /// @since 3.17.0
 @freezed
 abstract class InlayHintLabelPart with _$InlayHintLabelPart {
-  const InlayHintLabelPart._();
-
   const factory InlayHintLabelPart({
     required String value,
     Object? tooltip,
@@ -3099,8 +2715,6 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
 /// remove HTML from the markdown to avoid script execution.
 @freezed
 abstract class MarkupContent with _$MarkupContent {
-  const MarkupContent._();
-
   const factory MarkupContent({
     required MarkupKind kind,
     required String value,
@@ -3115,8 +2729,6 @@ abstract class MarkupContent with _$MarkupContent {
 /// @since 3.17.0
 @freezed
 abstract class InlayHintOptions with _$InlayHintOptions {
-  const InlayHintOptions._();
-
   const factory InlayHintOptions({
     bool? workDoneProgress,
     bool? resolveProvider,
@@ -3132,8 +2744,6 @@ abstract class InlayHintOptions with _$InlayHintOptions {
 @freezed
 abstract class RelatedFullDocumentDiagnosticReport
     with _$RelatedFullDocumentDiagnosticReport {
-  const RelatedFullDocumentDiagnosticReport._();
-
   const factory RelatedFullDocumentDiagnosticReport({
     required String kind,
     String? resultId,
@@ -3152,8 +2762,6 @@ abstract class RelatedFullDocumentDiagnosticReport
 @freezed
 abstract class RelatedUnchangedDocumentDiagnosticReport
     with _$RelatedUnchangedDocumentDiagnosticReport {
-  const RelatedUnchangedDocumentDiagnosticReport._();
-
   const factory RelatedUnchangedDocumentDiagnosticReport({
     required String kind,
     required String resultId,
@@ -3171,8 +2779,6 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
 @freezed
 abstract class FullDocumentDiagnosticReport
     with _$FullDocumentDiagnosticReport {
-  const FullDocumentDiagnosticReport._();
-
   const factory FullDocumentDiagnosticReport({
     required String kind,
     String? resultId,
@@ -3190,8 +2796,6 @@ abstract class FullDocumentDiagnosticReport
 @freezed
 abstract class UnchangedDocumentDiagnosticReport
     with _$UnchangedDocumentDiagnosticReport {
-  const UnchangedDocumentDiagnosticReport._();
-
   const factory UnchangedDocumentDiagnosticReport({
     required String kind,
     required String resultId,
@@ -3207,8 +2811,6 @@ abstract class UnchangedDocumentDiagnosticReport
 /// @since 3.17.0
 @freezed
 abstract class DiagnosticOptions with _$DiagnosticOptions {
-  const DiagnosticOptions._();
-
   const factory DiagnosticOptions({
     bool? workDoneProgress,
     String? identifier,
@@ -3225,8 +2827,6 @@ abstract class DiagnosticOptions with _$DiagnosticOptions {
 /// @since 3.17.0
 @freezed
 abstract class PreviousResultId with _$PreviousResultId {
-  const PreviousResultId._();
-
   const factory PreviousResultId({required String uri, required String value}) =
       _PreviousResultId;
 
@@ -3239,8 +2839,6 @@ abstract class PreviousResultId with _$PreviousResultId {
 /// @since 3.17.0
 @freezed
 abstract class NotebookDocument with _$NotebookDocument {
-  const NotebookDocument._();
-
   const factory NotebookDocument({
     required String uri,
     required String notebookType,
@@ -3257,8 +2855,6 @@ abstract class NotebookDocument with _$NotebookDocument {
 /// server.
 @freezed
 abstract class TextDocumentItem with _$TextDocumentItem {
-  const TextDocumentItem._();
-
   const factory TextDocumentItem({
     required String uri,
     required String languageId,
@@ -3276,8 +2872,6 @@ abstract class TextDocumentItem with _$TextDocumentItem {
 @freezed
 abstract class VersionedNotebookDocumentIdentifier
     with _$VersionedNotebookDocumentIdentifier {
-  const VersionedNotebookDocumentIdentifier._();
-
   const factory VersionedNotebookDocumentIdentifier({
     required int version,
     required String uri,
@@ -3293,8 +2887,6 @@ abstract class VersionedNotebookDocumentIdentifier
 /// @since 3.17.0
 @freezed
 abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
-  const NotebookDocumentChangeEvent._();
-
   const factory NotebookDocumentChangeEvent({
     LSPObject? metadata,
     ({
@@ -3319,8 +2911,6 @@ abstract class NotebookDocumentChangeEvent with _$NotebookDocumentChangeEvent {
 /// @since 3.17.0
 @freezed
 abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
-  const NotebookDocumentIdentifier._();
-
   const factory NotebookDocumentIdentifier({required String uri}) =
       _NotebookDocumentIdentifier;
 
@@ -3334,8 +2924,6 @@ abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
 /// @proposed
 @freezed
 abstract class InlineCompletionContext with _$InlineCompletionContext {
-  const InlineCompletionContext._();
-
   const factory InlineCompletionContext({
     required InlineCompletionTriggerKind triggerKind,
     SelectedCompletionInfo? selectedCompletionInfo,
@@ -3357,8 +2945,6 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
 /// @proposed
 @freezed
 abstract class StringValue with _$StringValue {
-  const StringValue._();
-
   const factory StringValue({required String kind, required String value}) =
       _StringValue;
 
@@ -3372,8 +2958,6 @@ abstract class StringValue with _$StringValue {
 /// @proposed
 @freezed
 abstract class InlineCompletionOptions with _$InlineCompletionOptions {
-  const InlineCompletionOptions._();
-
   const factory InlineCompletionOptions({bool? workDoneProgress}) =
       _InlineCompletionOptions;
 
@@ -3384,8 +2968,6 @@ abstract class InlineCompletionOptions with _$InlineCompletionOptions {
 /// General parameters to register for a notification or to register a provider.
 @freezed
 abstract class Registration with _$Registration {
-  const Registration._();
-
   const factory Registration({
     required String id,
     required String method,
@@ -3399,8 +2981,6 @@ abstract class Registration with _$Registration {
 /// General parameters to unregister a request or notification.
 @freezed
 abstract class Unregistration with _$Unregistration {
-  const Unregistration._();
-
   const factory Unregistration({required String id, required String method}) =
       _Unregistration;
 
@@ -3411,8 +2991,6 @@ abstract class Unregistration with _$Unregistration {
 @freezed
 abstract class WorkspaceFoldersInitializeParams
     with _$WorkspaceFoldersInitializeParams {
-  const WorkspaceFoldersInitializeParams._();
-
   const factory WorkspaceFoldersInitializeParams({
     List<WorkspaceFolder>? workspaceFolders,
   }) = _WorkspaceFoldersInitializeParams;
@@ -3483,8 +3061,6 @@ abstract class ServerCapabilities with _$ServerCapabilities {
 @freezed
 abstract class VersionedTextDocumentIdentifier
     with _$VersionedTextDocumentIdentifier {
-  const VersionedTextDocumentIdentifier._();
-
   const factory VersionedTextDocumentIdentifier({
     required String uri,
     required int version,
@@ -3497,8 +3073,6 @@ abstract class VersionedTextDocumentIdentifier
 /// Save options.
 @freezed
 abstract class SaveOptions with _$SaveOptions {
-  const SaveOptions._();
-
   const factory SaveOptions({bool? includeText}) = _SaveOptions;
 
   factory SaveOptions.fromJson(Map<String, dynamic> json) =>
@@ -3508,8 +3082,6 @@ abstract class SaveOptions with _$SaveOptions {
 /// An event describing a file change.
 @freezed
 abstract class FileEvent with _$FileEvent {
-  const FileEvent._();
-
   const factory FileEvent({required String uri, required FileChangeType type}) =
       _FileEvent;
 
@@ -3536,8 +3108,6 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
 /// are only valid in the scope of a resource.
 @freezed
 abstract class Diagnostic with _$Diagnostic {
-  const Diagnostic._();
-
   const factory Diagnostic({
     required Range range,
     DiagnosticSeverity? severity,
@@ -3557,8 +3127,6 @@ abstract class Diagnostic with _$Diagnostic {
 /// Contains additional information about the context in which a completion request is triggered.
 @freezed
 abstract class CompletionContext with _$CompletionContext {
-  const CompletionContext._();
-
   const factory CompletionContext({
     required CompletionTriggerKind triggerKind,
     String? triggerCharacter,
@@ -3573,8 +3141,6 @@ abstract class CompletionContext with _$CompletionContext {
 /// @since 3.17.0
 @freezed
 abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
-  const CompletionItemLabelDetails._();
-
   const factory CompletionItemLabelDetails({
     String? detail,
     String? description,
@@ -3589,8 +3155,6 @@ abstract class CompletionItemLabelDetails with _$CompletionItemLabelDetails {
 /// @since 3.16.0
 @freezed
 abstract class InsertReplaceEdit with _$InsertReplaceEdit {
-  const InsertReplaceEdit._();
-
   const factory InsertReplaceEdit({
     required String newText,
     required Range insert,
@@ -3604,8 +3168,6 @@ abstract class InsertReplaceEdit with _$InsertReplaceEdit {
 /// Completion options.
 @freezed
 abstract class CompletionOptions with _$CompletionOptions {
-  const CompletionOptions._();
-
   const factory CompletionOptions({
     bool? workDoneProgress,
     List<String>? triggerCharacters,
@@ -3621,8 +3183,6 @@ abstract class CompletionOptions with _$CompletionOptions {
 /// Hover options.
 @freezed
 abstract class HoverOptions with _$HoverOptions {
-  const HoverOptions._();
-
   const factory HoverOptions({bool? workDoneProgress}) = _HoverOptions;
 
   factory HoverOptions.fromJson(Map<String, dynamic> json) =>
@@ -3634,8 +3194,6 @@ abstract class HoverOptions with _$HoverOptions {
 /// @since 3.15.0
 @freezed
 abstract class SignatureHelpContext with _$SignatureHelpContext {
-  const SignatureHelpContext._();
-
   const factory SignatureHelpContext({
     required SignatureHelpTriggerKind triggerKind,
     String? triggerCharacter,
@@ -3652,8 +3210,6 @@ abstract class SignatureHelpContext with _$SignatureHelpContext {
 /// a set of parameters.
 @freezed
 abstract class SignatureInformation with _$SignatureInformation {
-  const SignatureInformation._();
-
   const factory SignatureInformation({
     required String label,
     Object? documentation,
@@ -3668,8 +3224,6 @@ abstract class SignatureInformation with _$SignatureInformation {
 /// Server Capabilities for a {@link SignatureHelpRequest}.
 @freezed
 abstract class SignatureHelpOptions with _$SignatureHelpOptions {
-  const SignatureHelpOptions._();
-
   const factory SignatureHelpOptions({
     bool? workDoneProgress,
     List<String>? triggerCharacters,
@@ -3683,8 +3237,6 @@ abstract class SignatureHelpOptions with _$SignatureHelpOptions {
 /// Server Capabilities for a {@link DefinitionRequest}.
 @freezed
 abstract class DefinitionOptions with _$DefinitionOptions {
-  const DefinitionOptions._();
-
   const factory DefinitionOptions({bool? workDoneProgress}) =
       _DefinitionOptions;
 
@@ -3696,8 +3248,6 @@ abstract class DefinitionOptions with _$DefinitionOptions {
 /// requesting references.
 @freezed
 abstract class ReferenceContext with _$ReferenceContext {
-  const ReferenceContext._();
-
   const factory ReferenceContext({required bool includeDeclaration}) =
       _ReferenceContext;
 
@@ -3708,8 +3258,6 @@ abstract class ReferenceContext with _$ReferenceContext {
 /// Reference options.
 @freezed
 abstract class ReferenceOptions with _$ReferenceOptions {
-  const ReferenceOptions._();
-
   const factory ReferenceOptions({bool? workDoneProgress}) = _ReferenceOptions;
 
   factory ReferenceOptions.fromJson(Map<String, dynamic> json) =>
@@ -3719,8 +3267,6 @@ abstract class ReferenceOptions with _$ReferenceOptions {
 /// Provider options for a {@link DocumentHighlightRequest}.
 @freezed
 abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
-  const DocumentHighlightOptions._();
-
   const factory DocumentHighlightOptions({bool? workDoneProgress}) =
       _DocumentHighlightOptions;
 
@@ -3731,8 +3277,6 @@ abstract class DocumentHighlightOptions with _$DocumentHighlightOptions {
 /// A base for all symbol information.
 @freezed
 abstract class BaseSymbolInformation with _$BaseSymbolInformation {
-  const BaseSymbolInformation._();
-
   const factory BaseSymbolInformation({
     required String name,
     required SymbolKind kind,
@@ -3747,8 +3291,6 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
 /// Provider options for a {@link DocumentSymbolRequest}.
 @freezed
 abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
-  const DocumentSymbolOptions._();
-
   const factory DocumentSymbolOptions({bool? workDoneProgress, String? label}) =
       _DocumentSymbolOptions;
 
@@ -3760,8 +3302,6 @@ abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
 /// a {@link CodeActionProvider.provideCodeActions code action} is run.
 @freezed
 abstract class CodeActionContext with _$CodeActionContext {
-  const CodeActionContext._();
-
   const factory CodeActionContext({
     required List<Diagnostic> diagnostics,
     List<CodeActionKind>? only,
@@ -3775,8 +3315,6 @@ abstract class CodeActionContext with _$CodeActionContext {
 /// Provider options for a {@link CodeActionRequest}.
 @freezed
 abstract class CodeActionOptions with _$CodeActionOptions {
-  const CodeActionOptions._();
-
   const factory CodeActionOptions({
     bool? workDoneProgress,
     List<CodeActionKind>? codeActionKinds,
@@ -3790,8 +3328,6 @@ abstract class CodeActionOptions with _$CodeActionOptions {
 /// Server capabilities for a {@link WorkspaceSymbolRequest}.
 @freezed
 abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
-  const WorkspaceSymbolOptions._();
-
   const factory WorkspaceSymbolOptions({
     bool? workDoneProgress,
     bool? resolveProvider,
@@ -3804,8 +3340,6 @@ abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
 /// Code Lens provider options of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensOptions with _$CodeLensOptions {
-  const CodeLensOptions._();
-
   const factory CodeLensOptions({
     bool? workDoneProgress,
     bool? resolveProvider,
@@ -3818,8 +3352,6 @@ abstract class CodeLensOptions with _$CodeLensOptions {
 /// Provider options for a {@link DocumentLinkRequest}.
 @freezed
 abstract class DocumentLinkOptions with _$DocumentLinkOptions {
-  const DocumentLinkOptions._();
-
   const factory DocumentLinkOptions({
     bool? workDoneProgress,
     bool? resolveProvider,
@@ -3832,8 +3364,6 @@ abstract class DocumentLinkOptions with _$DocumentLinkOptions {
 /// Value-object describing what options formatting should use.
 @freezed
 abstract class FormattingOptions with _$FormattingOptions {
-  const FormattingOptions._();
-
   const factory FormattingOptions({
     required int tabSize,
     required bool insertSpaces,
@@ -3849,8 +3379,6 @@ abstract class FormattingOptions with _$FormattingOptions {
 /// Provider options for a {@link DocumentFormattingRequest}.
 @freezed
 abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
-  const DocumentFormattingOptions._();
-
   const factory DocumentFormattingOptions({bool? workDoneProgress}) =
       _DocumentFormattingOptions;
 
@@ -3862,8 +3390,6 @@ abstract class DocumentFormattingOptions with _$DocumentFormattingOptions {
 @freezed
 abstract class DocumentRangeFormattingOptions
     with _$DocumentRangeFormattingOptions {
-  const DocumentRangeFormattingOptions._();
-
   const factory DocumentRangeFormattingOptions({
     bool? workDoneProgress,
     bool? rangesSupport,
@@ -3877,8 +3403,6 @@ abstract class DocumentRangeFormattingOptions
 @freezed
 abstract class DocumentOnTypeFormattingOptions
     with _$DocumentOnTypeFormattingOptions {
-  const DocumentOnTypeFormattingOptions._();
-
   const factory DocumentOnTypeFormattingOptions({
     required String firstTriggerCharacter,
     List<String>? moreTriggerCharacter,
@@ -3891,8 +3415,6 @@ abstract class DocumentOnTypeFormattingOptions
 /// Provider options for a {@link RenameRequest}.
 @freezed
 abstract class RenameOptions with _$RenameOptions {
-  const RenameOptions._();
-
   const factory RenameOptions({bool? workDoneProgress, bool? prepareProvider}) =
       _RenameOptions;
 
@@ -3903,8 +3425,6 @@ abstract class RenameOptions with _$RenameOptions {
 /// The server capabilities of a {@link ExecuteCommandRequest}.
 @freezed
 abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
-  const ExecuteCommandOptions._();
-
   const factory ExecuteCommandOptions({
     bool? workDoneProgress,
     required List<String> commands,
@@ -3917,8 +3437,6 @@ abstract class ExecuteCommandOptions with _$ExecuteCommandOptions {
 /// @since 3.16.0
 @freezed
 abstract class SemanticTokensLegend with _$SemanticTokensLegend {
-  const SemanticTokensLegend._();
-
   const factory SemanticTokensLegend({
     required List<String> tokenTypes,
     required List<String> tokenModifiers,
@@ -3932,8 +3450,6 @@ abstract class SemanticTokensLegend with _$SemanticTokensLegend {
 @freezed
 abstract class OptionalVersionedTextDocumentIdentifier
     with _$OptionalVersionedTextDocumentIdentifier {
-  const OptionalVersionedTextDocumentIdentifier._();
-
   const factory OptionalVersionedTextDocumentIdentifier({
     required String uri,
     required int? version,
@@ -3949,8 +3465,6 @@ abstract class OptionalVersionedTextDocumentIdentifier
 /// @since 3.16.0.
 @freezed
 abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
-  const AnnotatedTextEdit._();
-
   const factory AnnotatedTextEdit({
     required Range range,
     required String newText,
@@ -3964,8 +3478,6 @@ abstract class AnnotatedTextEdit with _$AnnotatedTextEdit {
 /// A generic resource operation.
 @freezed
 abstract class ResourceOperation with _$ResourceOperation {
-  const ResourceOperation._();
-
   const factory ResourceOperation({
     required String kind,
     ChangeAnnotationIdentifier? annotationId,
@@ -3978,8 +3490,6 @@ abstract class ResourceOperation with _$ResourceOperation {
 /// Options to create a file.
 @freezed
 abstract class CreateFileOptions with _$CreateFileOptions {
-  const CreateFileOptions._();
-
   const factory CreateFileOptions({bool? overwrite, bool? ignoreIfExists}) =
       _CreateFileOptions;
 
@@ -3990,8 +3500,6 @@ abstract class CreateFileOptions with _$CreateFileOptions {
 /// Rename file options
 @freezed
 abstract class RenameFileOptions with _$RenameFileOptions {
-  const RenameFileOptions._();
-
   const factory RenameFileOptions({bool? overwrite, bool? ignoreIfExists}) =
       _RenameFileOptions;
 
@@ -4002,8 +3510,6 @@ abstract class RenameFileOptions with _$RenameFileOptions {
 /// Delete file options
 @freezed
 abstract class DeleteFileOptions with _$DeleteFileOptions {
-  const DeleteFileOptions._();
-
   const factory DeleteFileOptions({bool? recursive, bool? ignoreIfNotExists}) =
       _DeleteFileOptions;
 
@@ -4017,8 +3523,6 @@ abstract class DeleteFileOptions with _$DeleteFileOptions {
 /// @since 3.16.0
 @freezed
 abstract class FileOperationPattern with _$FileOperationPattern {
-  const FileOperationPattern._();
-
   const factory FileOperationPattern({
     required String glob,
     FileOperationPatternKind? matches,
@@ -4035,8 +3539,6 @@ abstract class FileOperationPattern with _$FileOperationPattern {
 @freezed
 abstract class WorkspaceFullDocumentDiagnosticReport
     with _$WorkspaceFullDocumentDiagnosticReport {
-  const WorkspaceFullDocumentDiagnosticReport._();
-
   const factory WorkspaceFullDocumentDiagnosticReport({
     required String kind,
     String? resultId,
@@ -4056,8 +3558,6 @@ abstract class WorkspaceFullDocumentDiagnosticReport
 @freezed
 abstract class WorkspaceUnchangedDocumentDiagnosticReport
     with _$WorkspaceUnchangedDocumentDiagnosticReport {
-  const WorkspaceUnchangedDocumentDiagnosticReport._();
-
   const factory WorkspaceUnchangedDocumentDiagnosticReport({
     required String kind,
     required String resultId,
@@ -4079,8 +3579,6 @@ abstract class WorkspaceUnchangedDocumentDiagnosticReport
 /// @since 3.17.0
 @freezed
 abstract class NotebookCell with _$NotebookCell {
-  const NotebookCell._();
-
   const factory NotebookCell({
     required NotebookCellKind kind,
     required String document,
@@ -4098,8 +3596,6 @@ abstract class NotebookCell with _$NotebookCell {
 /// @since 3.17.0
 @freezed
 abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
-  const NotebookCellArrayChange._();
-
   const factory NotebookCellArrayChange({
     required int start,
     required int deleteCount,
@@ -4116,8 +3612,6 @@ abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
 /// @proposed
 @freezed
 abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
-  const SelectedCompletionInfo._();
-
   const factory SelectedCompletionInfo({
     required Range range,
     required String text,
@@ -4130,8 +3624,6 @@ abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
 /// Defines the capabilities provided by the client.
 @freezed
 abstract class ClientCapabilities with _$ClientCapabilities {
-  const ClientCapabilities._();
-
   const factory ClientCapabilities({
     WorkspaceClientCapabilities? workspace,
     TextDocumentClientCapabilities? textDocument,
@@ -4147,8 +3639,6 @@ abstract class ClientCapabilities with _$ClientCapabilities {
 
 @freezed
 abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
-  const TextDocumentSyncOptions._();
-
   const factory TextDocumentSyncOptions({
     bool? openClose,
     TextDocumentSyncKind? change,
@@ -4176,8 +3666,6 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
 /// @since 3.17.0
 @freezed
 abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
-  const NotebookDocumentSyncOptions._();
-
   const factory NotebookDocumentSyncOptions({
     required List<Object> notebookSelector,
     bool? save,
@@ -4193,8 +3681,6 @@ abstract class NotebookDocumentSyncOptions with _$NotebookDocumentSyncOptions {
 @freezed
 abstract class NotebookDocumentSyncRegistrationOptions
     with _$NotebookDocumentSyncRegistrationOptions {
-  const NotebookDocumentSyncRegistrationOptions._();
-
   const factory NotebookDocumentSyncRegistrationOptions({
     required List<Object> notebookSelector,
     bool? save,
@@ -4209,8 +3695,6 @@ abstract class NotebookDocumentSyncRegistrationOptions
 @freezed
 abstract class WorkspaceFoldersServerCapabilities
     with _$WorkspaceFoldersServerCapabilities {
-  const WorkspaceFoldersServerCapabilities._();
-
   const factory WorkspaceFoldersServerCapabilities({
     bool? supported,
     Object? changeNotifications,
@@ -4226,8 +3710,6 @@ abstract class WorkspaceFoldersServerCapabilities
 /// @since 3.16.0
 @freezed
 abstract class FileOperationOptions with _$FileOperationOptions {
-  const FileOperationOptions._();
-
   const factory FileOperationOptions({
     FileOperationRegistrationOptions? didCreate,
     FileOperationRegistrationOptions? willCreate,
@@ -4246,8 +3728,6 @@ abstract class FileOperationOptions with _$FileOperationOptions {
 /// @since 3.16.0
 @freezed
 abstract class CodeDescription with _$CodeDescription {
-  const CodeDescription._();
-
   const factory CodeDescription({required String href}) = _CodeDescription;
 
   factory CodeDescription.fromJson(Map<String, dynamic> json) =>
@@ -4260,8 +3740,6 @@ abstract class CodeDescription with _$CodeDescription {
 @freezed
 abstract class DiagnosticRelatedInformation
     with _$DiagnosticRelatedInformation {
-  const DiagnosticRelatedInformation._();
-
   const factory DiagnosticRelatedInformation({
     required Location location,
     required String message,
@@ -4275,8 +3753,6 @@ abstract class DiagnosticRelatedInformation
 /// have a label and a doc-comment.
 @freezed
 abstract class ParameterInformation with _$ParameterInformation {
-  const ParameterInformation._();
-
   const factory ParameterInformation({
     required Object label,
     Object? documentation,
@@ -4293,8 +3769,6 @@ abstract class ParameterInformation with _$ParameterInformation {
 @freezed
 abstract class NotebookCellTextDocumentFilter
     with _$NotebookCellTextDocumentFilter {
-  const NotebookCellTextDocumentFilter._();
-
   const factory NotebookCellTextDocumentFilter({
     required Object notebook,
     String? language,
@@ -4309,8 +3783,6 @@ abstract class NotebookCellTextDocumentFilter
 /// @since 3.16.0
 @freezed
 abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
-  const FileOperationPatternOptions._();
-
   const factory FileOperationPatternOptions({bool? ignoreCase}) =
       _FileOperationPatternOptions;
 
@@ -4320,8 +3792,6 @@ abstract class FileOperationPatternOptions with _$FileOperationPatternOptions {
 
 @freezed
 abstract class ExecutionSummary with _$ExecutionSummary {
-  const ExecutionSummary._();
-
   const factory ExecutionSummary({required int executionOrder, bool? success}) =
       _ExecutionSummary;
 
@@ -4332,8 +3802,6 @@ abstract class ExecutionSummary with _$ExecutionSummary {
 /// Workspace specific client capabilities.
 @freezed
 abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
-  const WorkspaceClientCapabilities._();
-
   const factory WorkspaceClientCapabilities({
     bool? applyEdit,
     WorkspaceEditClientCapabilities? workspaceEdit,
@@ -4360,8 +3828,6 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
 @freezed
 abstract class TextDocumentClientCapabilities
     with _$TextDocumentClientCapabilities {
-  const TextDocumentClientCapabilities._();
-
   const factory TextDocumentClientCapabilities({
     TextDocumentSyncClientCapabilities? synchronization,
     CompletionClientCapabilities? completion,
@@ -4406,8 +3872,6 @@ abstract class TextDocumentClientCapabilities
 @freezed
 abstract class NotebookDocumentClientCapabilities
     with _$NotebookDocumentClientCapabilities {
-  const NotebookDocumentClientCapabilities._();
-
   const factory NotebookDocumentClientCapabilities({
     required NotebookDocumentSyncClientCapabilities synchronization,
   }) = _NotebookDocumentClientCapabilities;
@@ -4419,8 +3883,6 @@ abstract class NotebookDocumentClientCapabilities
 
 @freezed
 abstract class WindowClientCapabilities with _$WindowClientCapabilities {
-  const WindowClientCapabilities._();
-
   const factory WindowClientCapabilities({
     bool? workDoneProgress,
     ShowMessageRequestClientCapabilities? showMessage,
@@ -4436,8 +3898,6 @@ abstract class WindowClientCapabilities with _$WindowClientCapabilities {
 /// @since 3.16.0
 @freezed
 abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
-  const GeneralClientCapabilities._();
-
   const factory GeneralClientCapabilities({
     ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,
     RegularExpressionsClientCapabilities? regularExpressions,
@@ -4456,8 +3916,6 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
 /// @since 3.17.0
 @freezed
 abstract class RelativePattern with _$RelativePattern {
-  const RelativePattern._();
-
   const factory RelativePattern({
     required Object baseUri,
     required Pattern pattern,
@@ -4470,8 +3928,6 @@ abstract class RelativePattern with _$RelativePattern {
 @freezed
 abstract class WorkspaceEditClientCapabilities
     with _$WorkspaceEditClientCapabilities {
-  const WorkspaceEditClientCapabilities._();
-
   const factory WorkspaceEditClientCapabilities({
     bool? documentChanges,
     List<ResourceOperationKind>? resourceOperations,
@@ -4487,8 +3943,6 @@ abstract class WorkspaceEditClientCapabilities
 @freezed
 abstract class DidChangeConfigurationClientCapabilities
     with _$DidChangeConfigurationClientCapabilities {
-  const DidChangeConfigurationClientCapabilities._();
-
   const factory DidChangeConfigurationClientCapabilities({
     bool? dynamicRegistration,
   }) = _DidChangeConfigurationClientCapabilities;
@@ -4501,8 +3955,6 @@ abstract class DidChangeConfigurationClientCapabilities
 @freezed
 abstract class DidChangeWatchedFilesClientCapabilities
     with _$DidChangeWatchedFilesClientCapabilities {
-  const DidChangeWatchedFilesClientCapabilities._();
-
   const factory DidChangeWatchedFilesClientCapabilities({
     bool? dynamicRegistration,
     bool? relativePatternSupport,
@@ -4517,8 +3969,6 @@ abstract class DidChangeWatchedFilesClientCapabilities
 @freezed
 abstract class WorkspaceSymbolClientCapabilities
     with _$WorkspaceSymbolClientCapabilities {
-  const WorkspaceSymbolClientCapabilities._();
-
   const factory WorkspaceSymbolClientCapabilities({
     bool? dynamicRegistration,
     ({List<SymbolKind>? valueSet})? symbolKind,
@@ -4535,8 +3985,6 @@ abstract class WorkspaceSymbolClientCapabilities
 @freezed
 abstract class ExecuteCommandClientCapabilities
     with _$ExecuteCommandClientCapabilities {
-  const ExecuteCommandClientCapabilities._();
-
   const factory ExecuteCommandClientCapabilities({bool? dynamicRegistration}) =
       _ExecuteCommandClientCapabilities;
 
@@ -4549,8 +3997,6 @@ abstract class ExecuteCommandClientCapabilities
 @freezed
 abstract class SemanticTokensWorkspaceClientCapabilities
     with _$SemanticTokensWorkspaceClientCapabilities {
-  const SemanticTokensWorkspaceClientCapabilities._();
-
   const factory SemanticTokensWorkspaceClientCapabilities({
     bool? refreshSupport,
   }) = _SemanticTokensWorkspaceClientCapabilities;
@@ -4564,8 +4010,6 @@ abstract class SemanticTokensWorkspaceClientCapabilities
 @freezed
 abstract class CodeLensWorkspaceClientCapabilities
     with _$CodeLensWorkspaceClientCapabilities {
-  const CodeLensWorkspaceClientCapabilities._();
-
   const factory CodeLensWorkspaceClientCapabilities({bool? refreshSupport}) =
       _CodeLensWorkspaceClientCapabilities;
 
@@ -4583,8 +4027,6 @@ abstract class CodeLensWorkspaceClientCapabilities
 @freezed
 abstract class FileOperationClientCapabilities
     with _$FileOperationClientCapabilities {
-  const FileOperationClientCapabilities._();
-
   const factory FileOperationClientCapabilities({
     bool? dynamicRegistration,
     bool? didCreate,
@@ -4605,8 +4047,6 @@ abstract class FileOperationClientCapabilities
 @freezed
 abstract class InlineValueWorkspaceClientCapabilities
     with _$InlineValueWorkspaceClientCapabilities {
-  const InlineValueWorkspaceClientCapabilities._();
-
   const factory InlineValueWorkspaceClientCapabilities({bool? refreshSupport}) =
       _InlineValueWorkspaceClientCapabilities;
 
@@ -4621,8 +4061,6 @@ abstract class InlineValueWorkspaceClientCapabilities
 @freezed
 abstract class InlayHintWorkspaceClientCapabilities
     with _$InlayHintWorkspaceClientCapabilities {
-  const InlayHintWorkspaceClientCapabilities._();
-
   const factory InlayHintWorkspaceClientCapabilities({bool? refreshSupport}) =
       _InlayHintWorkspaceClientCapabilities;
 
@@ -4637,8 +4075,6 @@ abstract class InlayHintWorkspaceClientCapabilities
 @freezed
 abstract class DiagnosticWorkspaceClientCapabilities
     with _$DiagnosticWorkspaceClientCapabilities {
-  const DiagnosticWorkspaceClientCapabilities._();
-
   const factory DiagnosticWorkspaceClientCapabilities({bool? refreshSupport}) =
       _DiagnosticWorkspaceClientCapabilities;
 
@@ -4654,8 +4090,6 @@ abstract class DiagnosticWorkspaceClientCapabilities
 @freezed
 abstract class FoldingRangeWorkspaceClientCapabilities
     with _$FoldingRangeWorkspaceClientCapabilities {
-  const FoldingRangeWorkspaceClientCapabilities._();
-
   const factory FoldingRangeWorkspaceClientCapabilities({
     bool? refreshSupport,
   }) = _FoldingRangeWorkspaceClientCapabilities;
@@ -4668,8 +4102,6 @@ abstract class FoldingRangeWorkspaceClientCapabilities
 @freezed
 abstract class TextDocumentSyncClientCapabilities
     with _$TextDocumentSyncClientCapabilities {
-  const TextDocumentSyncClientCapabilities._();
-
   const factory TextDocumentSyncClientCapabilities({
     bool? dynamicRegistration,
     bool? willSave,
@@ -4686,8 +4118,6 @@ abstract class TextDocumentSyncClientCapabilities
 @freezed
 abstract class CompletionClientCapabilities
     with _$CompletionClientCapabilities {
-  const CompletionClientCapabilities._();
-
   const factory CompletionClientCapabilities({
     bool? dynamicRegistration,
     ({
@@ -4715,8 +4145,6 @@ abstract class CompletionClientCapabilities
 
 @freezed
 abstract class HoverClientCapabilities with _$HoverClientCapabilities {
-  const HoverClientCapabilities._();
-
   const factory HoverClientCapabilities({
     bool? dynamicRegistration,
     List<MarkupKind>? contentFormat,
@@ -4730,8 +4158,6 @@ abstract class HoverClientCapabilities with _$HoverClientCapabilities {
 @freezed
 abstract class SignatureHelpClientCapabilities
     with _$SignatureHelpClientCapabilities {
-  const SignatureHelpClientCapabilities._();
-
   const factory SignatureHelpClientCapabilities({
     bool? dynamicRegistration,
     ({
@@ -4751,8 +4177,6 @@ abstract class SignatureHelpClientCapabilities
 @freezed
 abstract class DeclarationClientCapabilities
     with _$DeclarationClientCapabilities {
-  const DeclarationClientCapabilities._();
-
   const factory DeclarationClientCapabilities({
     bool? dynamicRegistration,
     bool? linkSupport,
@@ -4766,8 +4190,6 @@ abstract class DeclarationClientCapabilities
 @freezed
 abstract class DefinitionClientCapabilities
     with _$DefinitionClientCapabilities {
-  const DefinitionClientCapabilities._();
-
   const factory DefinitionClientCapabilities({
     bool? dynamicRegistration,
     bool? linkSupport,
@@ -4781,8 +4203,6 @@ abstract class DefinitionClientCapabilities
 @freezed
 abstract class TypeDefinitionClientCapabilities
     with _$TypeDefinitionClientCapabilities {
-  const TypeDefinitionClientCapabilities._();
-
   const factory TypeDefinitionClientCapabilities({
     bool? dynamicRegistration,
     bool? linkSupport,
@@ -4797,8 +4217,6 @@ abstract class TypeDefinitionClientCapabilities
 @freezed
 abstract class ImplementationClientCapabilities
     with _$ImplementationClientCapabilities {
-  const ImplementationClientCapabilities._();
-
   const factory ImplementationClientCapabilities({
     bool? dynamicRegistration,
     bool? linkSupport,
@@ -4812,8 +4230,6 @@ abstract class ImplementationClientCapabilities
 /// Client Capabilities for a {@link ReferencesRequest}.
 @freezed
 abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
-  const ReferenceClientCapabilities._();
-
   const factory ReferenceClientCapabilities({bool? dynamicRegistration}) =
       _ReferenceClientCapabilities;
 
@@ -4825,8 +4241,6 @@ abstract class ReferenceClientCapabilities with _$ReferenceClientCapabilities {
 @freezed
 abstract class DocumentHighlightClientCapabilities
     with _$DocumentHighlightClientCapabilities {
-  const DocumentHighlightClientCapabilities._();
-
   const factory DocumentHighlightClientCapabilities({
     bool? dynamicRegistration,
   }) = _DocumentHighlightClientCapabilities;
@@ -4840,8 +4254,6 @@ abstract class DocumentHighlightClientCapabilities
 @freezed
 abstract class DocumentSymbolClientCapabilities
     with _$DocumentSymbolClientCapabilities {
-  const DocumentSymbolClientCapabilities._();
-
   const factory DocumentSymbolClientCapabilities({
     bool? dynamicRegistration,
     ({List<SymbolKind>? valueSet})? symbolKind,
@@ -4859,8 +4271,6 @@ abstract class DocumentSymbolClientCapabilities
 @freezed
 abstract class CodeActionClientCapabilities
     with _$CodeActionClientCapabilities {
-  const CodeActionClientCapabilities._();
-
   const factory CodeActionClientCapabilities({
     bool? dynamicRegistration,
     ({({List<CodeActionKind> valueSet}) codeActionKind})?
@@ -4879,8 +4289,6 @@ abstract class CodeActionClientCapabilities
 /// The client capabilities  of a {@link CodeLensRequest}.
 @freezed
 abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
-  const CodeLensClientCapabilities._();
-
   const factory CodeLensClientCapabilities({bool? dynamicRegistration}) =
       _CodeLensClientCapabilities;
 
@@ -4892,8 +4300,6 @@ abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
 @freezed
 abstract class DocumentLinkClientCapabilities
     with _$DocumentLinkClientCapabilities {
-  const DocumentLinkClientCapabilities._();
-
   const factory DocumentLinkClientCapabilities({
     bool? dynamicRegistration,
     bool? tooltipSupport,
@@ -4906,8 +4312,6 @@ abstract class DocumentLinkClientCapabilities
 @freezed
 abstract class DocumentColorClientCapabilities
     with _$DocumentColorClientCapabilities {
-  const DocumentColorClientCapabilities._();
-
   const factory DocumentColorClientCapabilities({bool? dynamicRegistration}) =
       _DocumentColorClientCapabilities;
 
@@ -4919,8 +4323,6 @@ abstract class DocumentColorClientCapabilities
 @freezed
 abstract class DocumentFormattingClientCapabilities
     with _$DocumentFormattingClientCapabilities {
-  const DocumentFormattingClientCapabilities._();
-
   const factory DocumentFormattingClientCapabilities({
     bool? dynamicRegistration,
   }) = _DocumentFormattingClientCapabilities;
@@ -4934,8 +4336,6 @@ abstract class DocumentFormattingClientCapabilities
 @freezed
 abstract class DocumentRangeFormattingClientCapabilities
     with _$DocumentRangeFormattingClientCapabilities {
-  const DocumentRangeFormattingClientCapabilities._();
-
   const factory DocumentRangeFormattingClientCapabilities({
     bool? dynamicRegistration,
     bool? rangesSupport,
@@ -4950,8 +4350,6 @@ abstract class DocumentRangeFormattingClientCapabilities
 @freezed
 abstract class DocumentOnTypeFormattingClientCapabilities
     with _$DocumentOnTypeFormattingClientCapabilities {
-  const DocumentOnTypeFormattingClientCapabilities._();
-
   const factory DocumentOnTypeFormattingClientCapabilities({
     bool? dynamicRegistration,
   }) = _DocumentOnTypeFormattingClientCapabilities;
@@ -4963,8 +4361,6 @@ abstract class DocumentOnTypeFormattingClientCapabilities
 
 @freezed
 abstract class RenameClientCapabilities with _$RenameClientCapabilities {
-  const RenameClientCapabilities._();
-
   const factory RenameClientCapabilities({
     bool? dynamicRegistration,
     bool? prepareSupport,
@@ -4979,8 +4375,6 @@ abstract class RenameClientCapabilities with _$RenameClientCapabilities {
 @freezed
 abstract class FoldingRangeClientCapabilities
     with _$FoldingRangeClientCapabilities {
-  const FoldingRangeClientCapabilities._();
-
   const factory FoldingRangeClientCapabilities({
     bool? dynamicRegistration,
     int? rangeLimit,
@@ -4996,8 +4390,6 @@ abstract class FoldingRangeClientCapabilities
 @freezed
 abstract class SelectionRangeClientCapabilities
     with _$SelectionRangeClientCapabilities {
-  const SelectionRangeClientCapabilities._();
-
   const factory SelectionRangeClientCapabilities({bool? dynamicRegistration}) =
       _SelectionRangeClientCapabilities;
 
@@ -5010,8 +4402,6 @@ abstract class SelectionRangeClientCapabilities
 @freezed
 abstract class PublishDiagnosticsClientCapabilities
     with _$PublishDiagnosticsClientCapabilities {
-  const PublishDiagnosticsClientCapabilities._();
-
   const factory PublishDiagnosticsClientCapabilities({
     bool? relatedInformation,
     ({List<DiagnosticTag> valueSet})? tagSupport,
@@ -5029,8 +4419,6 @@ abstract class PublishDiagnosticsClientCapabilities
 @freezed
 abstract class CallHierarchyClientCapabilities
     with _$CallHierarchyClientCapabilities {
-  const CallHierarchyClientCapabilities._();
-
   const factory CallHierarchyClientCapabilities({bool? dynamicRegistration}) =
       _CallHierarchyClientCapabilities;
 
@@ -5042,8 +4430,6 @@ abstract class CallHierarchyClientCapabilities
 @freezed
 abstract class SemanticTokensClientCapabilities
     with _$SemanticTokensClientCapabilities {
-  const SemanticTokensClientCapabilities._();
-
   const factory SemanticTokensClientCapabilities({
     bool? dynamicRegistration,
     required ({Object? range, Object? full}) requests,
@@ -5067,8 +4453,6 @@ abstract class SemanticTokensClientCapabilities
 @freezed
 abstract class LinkedEditingRangeClientCapabilities
     with _$LinkedEditingRangeClientCapabilities {
-  const LinkedEditingRangeClientCapabilities._();
-
   const factory LinkedEditingRangeClientCapabilities({
     bool? dynamicRegistration,
   }) = _LinkedEditingRangeClientCapabilities;
@@ -5083,8 +4467,6 @@ abstract class LinkedEditingRangeClientCapabilities
 /// @since 3.16.0
 @freezed
 abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
-  const MonikerClientCapabilities._();
-
   const factory MonikerClientCapabilities({bool? dynamicRegistration}) =
       _MonikerClientCapabilities;
 
@@ -5096,8 +4478,6 @@ abstract class MonikerClientCapabilities with _$MonikerClientCapabilities {
 @freezed
 abstract class TypeHierarchyClientCapabilities
     with _$TypeHierarchyClientCapabilities {
-  const TypeHierarchyClientCapabilities._();
-
   const factory TypeHierarchyClientCapabilities({bool? dynamicRegistration}) =
       _TypeHierarchyClientCapabilities;
 
@@ -5111,8 +4491,6 @@ abstract class TypeHierarchyClientCapabilities
 @freezed
 abstract class InlineValueClientCapabilities
     with _$InlineValueClientCapabilities {
-  const InlineValueClientCapabilities._();
-
   const factory InlineValueClientCapabilities({bool? dynamicRegistration}) =
       _InlineValueClientCapabilities;
 
@@ -5125,8 +4503,6 @@ abstract class InlineValueClientCapabilities
 /// @since 3.17.0
 @freezed
 abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
-  const InlayHintClientCapabilities._();
-
   const factory InlayHintClientCapabilities({
     bool? dynamicRegistration,
     ({List<String> properties})? resolveSupport,
@@ -5142,8 +4518,6 @@ abstract class InlayHintClientCapabilities with _$InlayHintClientCapabilities {
 @freezed
 abstract class DiagnosticClientCapabilities
     with _$DiagnosticClientCapabilities {
-  const DiagnosticClientCapabilities._();
-
   const factory DiagnosticClientCapabilities({
     bool? dynamicRegistration,
     bool? relatedDocumentSupport,
@@ -5160,8 +4534,6 @@ abstract class DiagnosticClientCapabilities
 @freezed
 abstract class InlineCompletionClientCapabilities
     with _$InlineCompletionClientCapabilities {
-  const InlineCompletionClientCapabilities._();
-
   const factory InlineCompletionClientCapabilities({
     bool? dynamicRegistration,
   }) = _InlineCompletionClientCapabilities;
@@ -5177,8 +4549,6 @@ abstract class InlineCompletionClientCapabilities
 @freezed
 abstract class NotebookDocumentSyncClientCapabilities
     with _$NotebookDocumentSyncClientCapabilities {
-  const NotebookDocumentSyncClientCapabilities._();
-
   const factory NotebookDocumentSyncClientCapabilities({
     bool? dynamicRegistration,
     bool? executionSummarySupport,
@@ -5193,8 +4563,6 @@ abstract class NotebookDocumentSyncClientCapabilities
 @freezed
 abstract class ShowMessageRequestClientCapabilities
     with _$ShowMessageRequestClientCapabilities {
-  const ShowMessageRequestClientCapabilities._();
-
   const factory ShowMessageRequestClientCapabilities({
     ({bool? additionalPropertiesSupport})? messageActionItem,
   }) = _ShowMessageRequestClientCapabilities;
@@ -5210,8 +4578,6 @@ abstract class ShowMessageRequestClientCapabilities
 @freezed
 abstract class ShowDocumentClientCapabilities
     with _$ShowDocumentClientCapabilities {
-  const ShowDocumentClientCapabilities._();
-
   const factory ShowDocumentClientCapabilities({required bool support}) =
       _ShowDocumentClientCapabilities;
 
@@ -5225,8 +4591,6 @@ abstract class ShowDocumentClientCapabilities
 @freezed
 abstract class RegularExpressionsClientCapabilities
     with _$RegularExpressionsClientCapabilities {
-  const RegularExpressionsClientCapabilities._();
-
   const factory RegularExpressionsClientCapabilities({
     required String engine,
     String? version,
@@ -5242,8 +4606,6 @@ abstract class RegularExpressionsClientCapabilities
 /// @since 3.16.0
 @freezed
 abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
-  const MarkdownClientCapabilities._();
-
   const factory MarkdownClientCapabilities({
     required String parser,
     String? version,

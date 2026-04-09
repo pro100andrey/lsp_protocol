@@ -253,8 +253,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.part
 /// @nodoc
 @JsonSerializable()
 
-class _ImplementationParams extends ImplementationParams {
-  const _ImplementationParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken}): super._();
+class _ImplementationParams implements ImplementationParams {
+  const _ImplementationParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _ImplementationParams.fromJson(Map<String, dynamic> json) => _$ImplementationParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -574,8 +574,8 @@ return $default(_that.uri,_that.range);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Location extends Location {
-  const _Location({required this.uri, required this.range}): super._();
+class _Location implements Location {
+  const _Location({required this.uri, required this.range});
   factory _Location.fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);
 
 @override final  String uri;
@@ -850,8 +850,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ImplementationRegistrationOptions extends ImplementationRegistrationOptions {
-  const _ImplementationRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector,super._();
+class _ImplementationRegistrationOptions implements ImplementationRegistrationOptions {
+  const _ImplementationRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _ImplementationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ImplementationRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -1170,8 +1170,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.part
 /// @nodoc
 @JsonSerializable()
 
-class _TypeDefinitionParams extends TypeDefinitionParams {
-  const _TypeDefinitionParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken}): super._();
+class _TypeDefinitionParams implements TypeDefinitionParams {
+  const _TypeDefinitionParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _TypeDefinitionParams.fromJson(Map<String, dynamic> json) => _$TypeDefinitionParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -1483,8 +1483,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TypeDefinitionRegistrationOptions extends TypeDefinitionRegistrationOptions {
-  const _TypeDefinitionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector,super._();
+class _TypeDefinitionRegistrationOptions implements TypeDefinitionRegistrationOptions {
+  const _TypeDefinitionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _TypeDefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TypeDefinitionRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -1759,8 +1759,8 @@ return $default(_that.uri,_that.name);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceFolder extends WorkspaceFolder {
-  const _WorkspaceFolder({required this.uri, required this.name}): super._();
+class _WorkspaceFolder implements WorkspaceFolder {
+  const _WorkspaceFolder({required this.uri, required this.name});
   factory _WorkspaceFolder.fromJson(Map<String, dynamic> json) => _$WorkspaceFolderFromJson(json);
 
 @override final  String uri;
@@ -2033,8 +2033,8 @@ return $default(_that.event);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidChangeWorkspaceFoldersParams extends DidChangeWorkspaceFoldersParams {
-  const _DidChangeWorkspaceFoldersParams({required this.event}): super._();
+class _DidChangeWorkspaceFoldersParams implements DidChangeWorkspaceFoldersParams {
+  const _DidChangeWorkspaceFoldersParams({required this.event});
   factory _DidChangeWorkspaceFoldersParams.fromJson(Map<String, dynamic> json) => _$DidChangeWorkspaceFoldersParamsFromJson(json);
 
 @override final  WorkspaceFoldersChangeEvent event;
@@ -2305,8 +2305,8 @@ return $default(_that.items);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ConfigurationParams extends ConfigurationParams {
-  const _ConfigurationParams({required final  List<ConfigurationItem> items}): _items = items,super._();
+class _ConfigurationParams implements ConfigurationParams {
+  const _ConfigurationParams({required final  List<ConfigurationItem> items}): _items = items;
   factory _ConfigurationParams.fromJson(Map<String, dynamic> json) => _$ConfigurationParamsFromJson(json);
 
  final  List<ConfigurationItem> _items;
@@ -2609,8 +2609,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument)
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentColorParams extends DocumentColorParams {
-  const _DocumentColorParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument}): super._();
+class _DocumentColorParams implements DocumentColorParams {
+  const _DocumentColorParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
   factory _DocumentColorParams.fromJson(Map<String, dynamic> json) => _$DocumentColorParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -2928,8 +2928,8 @@ return $default(_that.range,_that.color);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ColorInformation extends ColorInformation {
-  const _ColorInformation({required this.range, required this.color}): super._();
+class _ColorInformation implements ColorInformation {
+  const _ColorInformation({required this.range, required this.color});
   factory _ColorInformation.fromJson(Map<String, dynamic> json) => _$ColorInformationFromJson(json);
 
 @override final  Range range;
@@ -3213,8 +3213,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentColorRegistrationOptions extends DocumentColorRegistrationOptions {
-  const _DocumentColorRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector,super._();
+class _DocumentColorRegistrationOptions implements DocumentColorRegistrationOptions {
+  const _DocumentColorRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _DocumentColorRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentColorRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -3543,8 +3543,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument,
 /// @nodoc
 @JsonSerializable()
 
-class _ColorPresentationParams extends ColorPresentationParams {
-  const _ColorPresentationParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.color, required this.range}): super._();
+class _ColorPresentationParams implements ColorPresentationParams {
+  const _ColorPresentationParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.color, required this.range});
   factory _ColorPresentationParams.fromJson(Map<String, dynamic> json) => _$ColorPresentationParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -3879,8 +3879,8 @@ return $default(_that.label,_that.textEdit,_that.additionalTextEdits);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ColorPresentation extends ColorPresentation {
-  const _ColorPresentation({required this.label, this.textEdit, final  List<TextEdit>? additionalTextEdits}): _additionalTextEdits = additionalTextEdits,super._();
+class _ColorPresentation implements ColorPresentation {
+  const _ColorPresentation({required this.label, this.textEdit, final  List<TextEdit>? additionalTextEdits}): _additionalTextEdits = additionalTextEdits;
   factory _ColorPresentation.fromJson(Map<String, dynamic> json) => _$ColorPresentationFromJson(json);
 
 @override final  String label;
@@ -4166,8 +4166,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkDoneProgressOptions extends WorkDoneProgressOptions {
-  const _WorkDoneProgressOptions({this.workDoneProgress}): super._();
+class _WorkDoneProgressOptions implements WorkDoneProgressOptions {
+  const _WorkDoneProgressOptions({this.workDoneProgress});
   factory _WorkDoneProgressOptions.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -4429,8 +4429,8 @@ return $default(_that.documentSelector);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentRegistrationOptions extends TextDocumentRegistrationOptions {
-  const _TextDocumentRegistrationOptions({required final  DocumentSelector? documentSelector}): _documentSelector = documentSelector,super._();
+class _TextDocumentRegistrationOptions implements TextDocumentRegistrationOptions {
+  const _TextDocumentRegistrationOptions({required final  DocumentSelector? documentSelector}): _documentSelector = documentSelector;
   factory _TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -4735,8 +4735,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument)
 /// @nodoc
 @JsonSerializable()
 
-class _FoldingRangeParams extends FoldingRangeParams {
-  const _FoldingRangeParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument}): super._();
+class _FoldingRangeParams implements FoldingRangeParams {
+  const _FoldingRangeParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
   factory _FoldingRangeParams.fromJson(Map<String, dynamic> json) => _$FoldingRangeParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -5315,8 +5315,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FoldingRangeRegistrationOptions extends FoldingRangeRegistrationOptions {
-  const _FoldingRangeRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector,super._();
+class _FoldingRangeRegistrationOptions implements FoldingRangeRegistrationOptions {
+  const _FoldingRangeRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _FoldingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$FoldingRangeRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -5635,8 +5635,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.part
 /// @nodoc
 @JsonSerializable()
 
-class _DeclarationParams extends DeclarationParams {
-  const _DeclarationParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken}): super._();
+class _DeclarationParams implements DeclarationParams {
+  const _DeclarationParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _DeclarationParams.fromJson(Map<String, dynamic> json) => _$DeclarationParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -5948,8 +5948,8 @@ return $default(_that.workDoneProgress,_that.documentSelector,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DeclarationRegistrationOptions extends DeclarationRegistrationOptions {
-  const _DeclarationRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector,super._();
+class _DeclarationRegistrationOptions implements DeclarationRegistrationOptions {
+  const _DeclarationRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
   factory _DeclarationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DeclarationRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -6259,8 +6259,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument,
 /// @nodoc
 @JsonSerializable()
 
-class _SelectionRangeParams extends SelectionRangeParams {
-  const _SelectionRangeParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required final  List<Position> positions}): _positions = positions,super._();
+class _SelectionRangeParams implements SelectionRangeParams {
+  const _SelectionRangeParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required final  List<Position> positions}): _positions = positions;
   factory _SelectionRangeParams.fromJson(Map<String, dynamic> json) => _$SelectionRangeParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -6589,8 +6589,8 @@ return $default(_that.range,_that.parent);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SelectionRange extends SelectionRange {
-  const _SelectionRange({required this.range, this.parent}): super._();
+class _SelectionRange implements SelectionRange {
+  const _SelectionRange({required this.range, this.parent});
   factory _SelectionRange.fromJson(Map<String, dynamic> json) => _$SelectionRangeFromJson(json);
 
 @override final  Range range;
@@ -6877,8 +6877,8 @@ return $default(_that.workDoneProgress,_that.documentSelector,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SelectionRangeRegistrationOptions extends SelectionRangeRegistrationOptions {
-  const _SelectionRangeRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector,super._();
+class _SelectionRangeRegistrationOptions implements SelectionRangeRegistrationOptions {
+  const _SelectionRangeRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
   factory _SelectionRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SelectionRangeRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -7161,8 +7161,8 @@ return $default(_that.token);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkDoneProgressCreateParams extends WorkDoneProgressCreateParams {
-  const _WorkDoneProgressCreateParams({@_ProgressTokenConverter() required this.token}): super._();
+class _WorkDoneProgressCreateParams implements WorkDoneProgressCreateParams {
+  const _WorkDoneProgressCreateParams({@_ProgressTokenConverter() required this.token});
   factory _WorkDoneProgressCreateParams.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressCreateParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken token;
@@ -7442,8 +7442,8 @@ return $default(_that.token);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkDoneProgressCancelParams extends WorkDoneProgressCancelParams {
-  const _WorkDoneProgressCancelParams({@_ProgressTokenConverter() required this.token}): super._();
+class _WorkDoneProgressCancelParams implements WorkDoneProgressCancelParams {
+  const _WorkDoneProgressCancelParams({@_ProgressTokenConverter() required this.token});
   factory _WorkDoneProgressCancelParams.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressCancelParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken token;
@@ -7746,8 +7746,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CallHierarchyPrepareParams extends CallHierarchyPrepareParams {
-  const _CallHierarchyPrepareParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken}): super._();
+class _CallHierarchyPrepareParams implements CallHierarchyPrepareParams {
+  const _CallHierarchyPrepareParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken});
   factory _CallHierarchyPrepareParams.fromJson(Map<String, dynamic> json) => _$CallHierarchyPrepareParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -8067,8 +8067,8 @@ return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.ra
 /// @nodoc
 @JsonSerializable()
 
-class _CallHierarchyItem extends CallHierarchyItem {
-  const _CallHierarchyItem({required this.name, required this.kind, final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags,super._();
+class _CallHierarchyItem implements CallHierarchyItem {
+  const _CallHierarchyItem({required this.name, required this.kind, final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags;
   factory _CallHierarchyItem.fromJson(Map<String, dynamic> json) => _$CallHierarchyItemFromJson(json);
 
 @override final  String name;
@@ -8371,8 +8371,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CallHierarchyRegistrationOptions extends CallHierarchyRegistrationOptions {
-  const _CallHierarchyRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector,super._();
+class _CallHierarchyRegistrationOptions implements CallHierarchyRegistrationOptions {
+  const _CallHierarchyRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _CallHierarchyRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CallHierarchyRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -8681,8 +8681,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.item);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CallHierarchyIncomingCallsParams extends CallHierarchyIncomingCallsParams {
-  const _CallHierarchyIncomingCallsParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item}): super._();
+class _CallHierarchyIncomingCallsParams implements CallHierarchyIncomingCallsParams {
+  const _CallHierarchyIncomingCallsParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item});
   factory _CallHierarchyIncomingCallsParams.fromJson(Map<String, dynamic> json) => _$CallHierarchyIncomingCallsParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -8991,8 +8991,8 @@ return $default(_that.from,_that.fromRanges);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CallHierarchyIncomingCall extends CallHierarchyIncomingCall {
-  const _CallHierarchyIncomingCall({required this.from, required final  List<Range> fromRanges}): _fromRanges = fromRanges,super._();
+class _CallHierarchyIncomingCall implements CallHierarchyIncomingCall {
+  const _CallHierarchyIncomingCall({required this.from, required final  List<Range> fromRanges}): _fromRanges = fromRanges;
   factory _CallHierarchyIncomingCall.fromJson(Map<String, dynamic> json) => _$CallHierarchyIncomingCallFromJson(json);
 
 @override final  CallHierarchyItem from;
@@ -9306,8 +9306,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.item);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CallHierarchyOutgoingCallsParams extends CallHierarchyOutgoingCallsParams {
-  const _CallHierarchyOutgoingCallsParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item}): super._();
+class _CallHierarchyOutgoingCallsParams implements CallHierarchyOutgoingCallsParams {
+  const _CallHierarchyOutgoingCallsParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item});
   factory _CallHierarchyOutgoingCallsParams.fromJson(Map<String, dynamic> json) => _$CallHierarchyOutgoingCallsParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -9616,8 +9616,8 @@ return $default(_that.to,_that.fromRanges);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CallHierarchyOutgoingCall extends CallHierarchyOutgoingCall {
-  const _CallHierarchyOutgoingCall({required this.to, required final  List<Range> fromRanges}): _fromRanges = fromRanges,super._();
+class _CallHierarchyOutgoingCall implements CallHierarchyOutgoingCall {
+  const _CallHierarchyOutgoingCall({required this.to, required final  List<Range> fromRanges}): _fromRanges = fromRanges;
   factory _CallHierarchyOutgoingCall.fromJson(Map<String, dynamic> json) => _$CallHierarchyOutgoingCallFromJson(json);
 
 @override final  CallHierarchyItem to;
@@ -9931,8 +9931,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument)
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensParams extends SemanticTokensParams {
-  const _SemanticTokensParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument}): super._();
+class _SemanticTokensParams implements SemanticTokensParams {
+  const _SemanticTokensParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
   factory _SemanticTokensParams.fromJson(Map<String, dynamic> json) => _$SemanticTokensParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -10232,8 +10232,8 @@ return $default(_that.resultId,_that.data);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokens extends SemanticTokens {
-  const _SemanticTokens({this.resultId, required final  List<int> data}): _data = data,super._();
+class _SemanticTokens implements SemanticTokens {
+  const _SemanticTokens({this.resultId, required final  List<int> data}): _data = data;
   factory _SemanticTokens.fromJson(Map<String, dynamic> json) => _$SemanticTokensFromJson(json);
 
 @override final  String? resultId;
@@ -10503,8 +10503,8 @@ return $default(_that.data);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensPartialResult extends SemanticTokensPartialResult {
-  const _SemanticTokensPartialResult({required final  List<int> data}): _data = data,super._();
+class _SemanticTokensPartialResult implements SemanticTokensPartialResult {
+  const _SemanticTokensPartialResult({required final  List<int> data}): _data = data;
   factory _SemanticTokensPartialResult.fromJson(Map<String, dynamic> json) => _$SemanticTokensPartialResultFromJson(json);
 
  final  List<int> _data;
@@ -10784,8 +10784,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.legend,_that
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensRegistrationOptions extends SemanticTokensRegistrationOptions {
-  const _SemanticTokensRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, required this.legend, this.range, this.full, this.id}): _documentSelector = documentSelector,super._();
+class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOptions {
+  const _SemanticTokensRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, required this.legend, this.range, this.full, this.id}): _documentSelector = documentSelector;
   factory _SemanticTokensRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SemanticTokensRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -11108,8 +11108,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument,
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensDeltaParams extends SemanticTokensDeltaParams {
-  const _SemanticTokensDeltaParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.previousResultId}): super._();
+class _SemanticTokensDeltaParams implements SemanticTokensDeltaParams {
+  const _SemanticTokensDeltaParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.previousResultId});
   factory _SemanticTokensDeltaParams.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -11411,8 +11411,8 @@ return $default(_that.resultId,_that.edits);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensDelta extends SemanticTokensDelta {
-  const _SemanticTokensDelta({this.resultId, required final  List<SemanticTokensEdit> edits}): _edits = edits,super._();
+class _SemanticTokensDelta implements SemanticTokensDelta {
+  const _SemanticTokensDelta({this.resultId, required final  List<SemanticTokensEdit> edits}): _edits = edits;
   factory _SemanticTokensDelta.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaFromJson(json);
 
 @override final  String? resultId;
@@ -11682,8 +11682,8 @@ return $default(_that.edits);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensDeltaPartialResult extends SemanticTokensDeltaPartialResult {
-  const _SemanticTokensDeltaPartialResult({required final  List<SemanticTokensEdit> edits}): _edits = edits,super._();
+class _SemanticTokensDeltaPartialResult implements SemanticTokensDeltaPartialResult {
+  const _SemanticTokensDeltaPartialResult({required final  List<SemanticTokensEdit> edits}): _edits = edits;
   factory _SemanticTokensDeltaPartialResult.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaPartialResultFromJson(json);
 
  final  List<SemanticTokensEdit> _edits;
@@ -11996,8 +11996,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument,
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensRangeParams extends SemanticTokensRangeParams {
-  const _SemanticTokensRangeParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.range}): super._();
+class _SemanticTokensRangeParams implements SemanticTokensRangeParams {
+  const _SemanticTokensRangeParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.range});
   factory _SemanticTokensRangeParams.fromJson(Map<String, dynamic> json) => _$SemanticTokensRangeParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -12322,8 +12322,8 @@ return $default(_that.uri,_that.external,_that.takeFocus,_that.selection);case _
 /// @nodoc
 @JsonSerializable()
 
-class _ShowDocumentParams extends ShowDocumentParams {
-  const _ShowDocumentParams({required this.uri, this.external, this.takeFocus, this.selection}): super._();
+class _ShowDocumentParams implements ShowDocumentParams {
+  const _ShowDocumentParams({required this.uri, this.external, this.takeFocus, this.selection});
   factory _ShowDocumentParams.fromJson(Map<String, dynamic> json) => _$ShowDocumentParamsFromJson(json);
 
 @override final  String uri;
@@ -12603,8 +12603,8 @@ return $default(_that.success);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ShowDocumentResult extends ShowDocumentResult {
-  const _ShowDocumentResult({required this.success}): super._();
+class _ShowDocumentResult implements ShowDocumentResult {
+  const _ShowDocumentResult({required this.success});
   factory _ShowDocumentResult.fromJson(Map<String, dynamic> json) => _$ShowDocumentResultFromJson(json);
 
 @override final  bool success;
@@ -12898,8 +12898,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _LinkedEditingRangeParams extends LinkedEditingRangeParams {
-  const _LinkedEditingRangeParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken}): super._();
+class _LinkedEditingRangeParams implements LinkedEditingRangeParams {
+  const _LinkedEditingRangeParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken});
   factory _LinkedEditingRangeParams.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -13196,8 +13196,8 @@ return $default(_that.ranges,_that.wordPattern);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _LinkedEditingRanges extends LinkedEditingRanges {
-  const _LinkedEditingRanges({required final  List<Range> ranges, this.wordPattern}): _ranges = ranges,super._();
+class _LinkedEditingRanges implements LinkedEditingRanges {
+  const _LinkedEditingRanges({required final  List<Range> ranges, this.wordPattern}): _ranges = ranges;
   factory _LinkedEditingRanges.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangesFromJson(json);
 
  final  List<Range> _ranges;
@@ -13469,8 +13469,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _LinkedEditingRangeRegistrationOptions extends LinkedEditingRangeRegistrationOptions {
-  const _LinkedEditingRangeRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector,super._();
+class _LinkedEditingRangeRegistrationOptions implements LinkedEditingRangeRegistrationOptions {
+  const _LinkedEditingRangeRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _LinkedEditingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -13744,8 +13744,8 @@ return $default(_that.files);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CreateFilesParams extends CreateFilesParams {
-  const _CreateFilesParams({required final  List<FileCreate> files}): _files = files,super._();
+class _CreateFilesParams implements CreateFilesParams {
+  const _CreateFilesParams({required final  List<FileCreate> files}): _files = files;
   factory _CreateFilesParams.fromJson(Map<String, dynamic> json) => _$CreateFilesParamsFromJson(json);
 
  final  List<FileCreate> _files;
@@ -14015,8 +14015,8 @@ return $default(_that.changes,_that.documentChanges,_that.changeAnnotations);cas
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceEdit extends WorkspaceEdit {
-  const _WorkspaceEdit({final  Map<String, List<TextEdit>>? changes, final  List<Object>? documentChanges, final  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations}): _changes = changes,_documentChanges = documentChanges,_changeAnnotations = changeAnnotations,super._();
+class _WorkspaceEdit implements WorkspaceEdit {
+  const _WorkspaceEdit({final  Map<String, List<TextEdit>>? changes, final  List<Object>? documentChanges, final  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations}): _changes = changes,_documentChanges = documentChanges,_changeAnnotations = changeAnnotations;
   factory _WorkspaceEdit.fromJson(Map<String, dynamic> json) => _$WorkspaceEditFromJson(json);
 
  final  Map<String, List<TextEdit>>? _changes;
@@ -14306,8 +14306,8 @@ return $default(_that.filters);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FileOperationRegistrationOptions extends FileOperationRegistrationOptions {
-  const _FileOperationRegistrationOptions({required final  List<FileOperationFilter> filters}): _filters = filters,super._();
+class _FileOperationRegistrationOptions implements FileOperationRegistrationOptions {
+  const _FileOperationRegistrationOptions({required final  List<FileOperationFilter> filters}): _filters = filters;
   factory _FileOperationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$FileOperationRegistrationOptionsFromJson(json);
 
  final  List<FileOperationFilter> _filters;
@@ -14575,8 +14575,8 @@ return $default(_that.files);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _RenameFilesParams extends RenameFilesParams {
-  const _RenameFilesParams({required final  List<FileRename> files}): _files = files,super._();
+class _RenameFilesParams implements RenameFilesParams {
+  const _RenameFilesParams({required final  List<FileRename> files}): _files = files;
   factory _RenameFilesParams.fromJson(Map<String, dynamic> json) => _$RenameFilesParamsFromJson(json);
 
  final  List<FileRename> _files;
@@ -14844,8 +14844,8 @@ return $default(_that.files);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DeleteFilesParams extends DeleteFilesParams {
-  const _DeleteFilesParams({required final  List<FileDelete> files}): _files = files,super._();
+class _DeleteFilesParams implements DeleteFilesParams {
+  const _DeleteFilesParams({required final  List<FileDelete> files}): _files = files;
   factory _DeleteFilesParams.fromJson(Map<String, dynamic> json) => _$DeleteFilesParamsFromJson(json);
 
  final  List<FileDelete> _files;
@@ -15158,8 +15158,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.part
 /// @nodoc
 @JsonSerializable()
 
-class _MonikerParams extends MonikerParams {
-  const _MonikerParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken}): super._();
+class _MonikerParams implements MonikerParams {
+  const _MonikerParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _MonikerParams.fromJson(Map<String, dynamic> json) => _$MonikerParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -15472,8 +15472,8 @@ return $default(_that.scheme,_that.identifier,_that.unique,_that.kind);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Moniker extends Moniker {
-  const _Moniker({required this.scheme, required this.identifier, required this.unique, this.kind}): super._();
+class _Moniker implements Moniker {
+  const _Moniker({required this.scheme, required this.identifier, required this.unique, this.kind});
   factory _Moniker.fromJson(Map<String, dynamic> json) => _$MonikerFromJson(json);
 
 @override final  String scheme;
@@ -15742,8 +15742,8 @@ return $default(_that.documentSelector,_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _MonikerRegistrationOptions extends MonikerRegistrationOptions {
-  const _MonikerRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector,super._();
+class _MonikerRegistrationOptions implements MonikerRegistrationOptions {
+  const _MonikerRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _MonikerRegistrationOptions.fromJson(Map<String, dynamic> json) => _$MonikerRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -16047,8 +16047,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TypeHierarchyPrepareParams extends TypeHierarchyPrepareParams {
-  const _TypeHierarchyPrepareParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken}): super._();
+class _TypeHierarchyPrepareParams implements TypeHierarchyPrepareParams {
+  const _TypeHierarchyPrepareParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken});
   factory _TypeHierarchyPrepareParams.fromJson(Map<String, dynamic> json) => _$TypeHierarchyPrepareParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -16368,8 +16368,8 @@ return $default(_that.name,_that.kind,_that.tags,_that.detail,_that.uri,_that.ra
 /// @nodoc
 @JsonSerializable()
 
-class _TypeHierarchyItem extends TypeHierarchyItem {
-  const _TypeHierarchyItem({required this.name, required this.kind, final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags,super._();
+class _TypeHierarchyItem implements TypeHierarchyItem {
+  const _TypeHierarchyItem({required this.name, required this.kind, final  List<SymbolTag>? tags, this.detail, required this.uri, required this.range, required this.selectionRange, this.data}): _tags = tags;
   factory _TypeHierarchyItem.fromJson(Map<String, dynamic> json) => _$TypeHierarchyItemFromJson(json);
 
 @override final  String name;
@@ -16672,8 +16672,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TypeHierarchyRegistrationOptions extends TypeHierarchyRegistrationOptions {
-  const _TypeHierarchyRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector,super._();
+class _TypeHierarchyRegistrationOptions implements TypeHierarchyRegistrationOptions {
+  const _TypeHierarchyRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _TypeHierarchyRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TypeHierarchyRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -16982,8 +16982,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.item);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TypeHierarchySupertypesParams extends TypeHierarchySupertypesParams {
-  const _TypeHierarchySupertypesParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item}): super._();
+class _TypeHierarchySupertypesParams implements TypeHierarchySupertypesParams {
+  const _TypeHierarchySupertypesParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item});
   factory _TypeHierarchySupertypesParams.fromJson(Map<String, dynamic> json) => _$TypeHierarchySupertypesParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -17317,8 +17317,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.item);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TypeHierarchySubtypesParams extends TypeHierarchySubtypesParams {
-  const _TypeHierarchySubtypesParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item}): super._();
+class _TypeHierarchySubtypesParams implements TypeHierarchySubtypesParams {
+  const _TypeHierarchySubtypesParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.item});
   factory _TypeHierarchySubtypesParams.fromJson(Map<String, dynamic> json) => _$TypeHierarchySubtypesParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -17659,8 +17659,8 @@ return $default(_that.workDoneToken,_that.textDocument,_that.range,_that.context
 /// @nodoc
 @JsonSerializable()
 
-class _InlineValueParams extends InlineValueParams {
-  const _InlineValueParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.range, required this.context}): super._();
+class _InlineValueParams implements InlineValueParams {
+  const _InlineValueParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.range, required this.context});
   factory _InlineValueParams.fromJson(Map<String, dynamic> json) => _$InlineValueParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -17969,8 +17969,8 @@ return $default(_that.workDoneProgress,_that.documentSelector,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineValueRegistrationOptions extends InlineValueRegistrationOptions {
-  const _InlineValueRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector,super._();
+class _InlineValueRegistrationOptions implements InlineValueRegistrationOptions {
+  const _InlineValueRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
   factory _InlineValueRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineValueRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -18276,8 +18276,8 @@ return $default(_that.workDoneToken,_that.textDocument,_that.range);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlayHintParams extends InlayHintParams {
-  const _InlayHintParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.range}): super._();
+class _InlayHintParams implements InlayHintParams {
+  const _InlayHintParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.range});
   factory _InlayHintParams.fromJson(Map<String, dynamic> json) => _$InlayHintParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -18586,8 +18586,8 @@ return $default(_that.position,_that.label,_that.kind,_that.textEdits,_that.tool
 /// @nodoc
 @JsonSerializable()
 
-class _InlayHint extends InlayHint {
-  const _InlayHint({required this.position, required this.label, this.kind, final  List<TextEdit>? textEdits, this.tooltip, this.paddingLeft, this.paddingRight, this.data}): _textEdits = textEdits,super._();
+class _InlayHint implements InlayHint {
+  const _InlayHint({required this.position, required this.label, this.kind, final  List<TextEdit>? textEdits, this.tooltip, this.paddingLeft, this.paddingRight, this.data}): _textEdits = textEdits;
   factory _InlayHint.fromJson(Map<String, dynamic> json) => _$InlayHintFromJson(json);
 
 @override final  Position position;
@@ -18880,8 +18880,8 @@ return $default(_that.workDoneProgress,_that.resolveProvider,_that.documentSelec
 /// @nodoc
 @JsonSerializable()
 
-class _InlayHintRegistrationOptions extends InlayHintRegistrationOptions {
-  const _InlayHintRegistrationOptions({this.workDoneProgress, this.resolveProvider, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector,super._();
+class _InlayHintRegistrationOptions implements InlayHintRegistrationOptions {
+  const _InlayHintRegistrationOptions({this.workDoneProgress, this.resolveProvider, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
   factory _InlayHintRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlayHintRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -19194,8 +19194,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument,
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentDiagnosticParams extends DocumentDiagnosticParams {
-  const _DocumentDiagnosticParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, this.identifier, this.previousResultId}): super._();
+class _DocumentDiagnosticParams implements DocumentDiagnosticParams {
+  const _DocumentDiagnosticParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, this.identifier, this.previousResultId});
   factory _DocumentDiagnosticParams.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -19498,8 +19498,8 @@ return $default(_that.relatedDocuments);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentDiagnosticReportPartialResult extends DocumentDiagnosticReportPartialResult {
-  const _DocumentDiagnosticReportPartialResult({required final  Map<String, Object> relatedDocuments}): _relatedDocuments = relatedDocuments,super._();
+class _DocumentDiagnosticReportPartialResult implements DocumentDiagnosticReportPartialResult {
+  const _DocumentDiagnosticReportPartialResult({required final  Map<String, Object> relatedDocuments}): _relatedDocuments = relatedDocuments;
   factory _DocumentDiagnosticReportPartialResult.fromJson(Map<String, dynamic> json) => _$DocumentDiagnosticReportPartialResultFromJson(json);
 
  final  Map<String, Object> _relatedDocuments;
@@ -19767,8 +19767,8 @@ return $default(_that.retriggerRequest);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DiagnosticServerCancellationData extends DiagnosticServerCancellationData {
-  const _DiagnosticServerCancellationData({required this.retriggerRequest}): super._();
+class _DiagnosticServerCancellationData implements DiagnosticServerCancellationData {
+  const _DiagnosticServerCancellationData({required this.retriggerRequest});
   factory _DiagnosticServerCancellationData.fromJson(Map<String, dynamic> json) => _$DiagnosticServerCancellationDataFromJson(json);
 
 @override final  bool retriggerRequest;
@@ -20035,8 +20035,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.identifier,_
 /// @nodoc
 @JsonSerializable()
 
-class _DiagnosticRegistrationOptions extends DiagnosticRegistrationOptions {
-  const _DiagnosticRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.identifier, required this.interFileDependencies, required this.workspaceDiagnostics, this.id}): _documentSelector = documentSelector,super._();
+class _DiagnosticRegistrationOptions implements DiagnosticRegistrationOptions {
+  const _DiagnosticRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.identifier, required this.interFileDependencies, required this.workspaceDiagnostics, this.id}): _documentSelector = documentSelector;
   factory _DiagnosticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -20343,8 +20343,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.identifier,_t
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceDiagnosticParams extends WorkspaceDiagnosticParams {
-  const _WorkspaceDiagnosticParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, this.identifier, required final  List<PreviousResultId> previousResultIds}): _previousResultIds = previousResultIds,super._();
+class _WorkspaceDiagnosticParams implements WorkspaceDiagnosticParams {
+  const _WorkspaceDiagnosticParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, this.identifier, required final  List<PreviousResultId> previousResultIds}): _previousResultIds = previousResultIds;
   factory _WorkspaceDiagnosticParams.fromJson(Map<String, dynamic> json) => _$WorkspaceDiagnosticParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -20642,8 +20642,8 @@ return $default(_that.items);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceDiagnosticReport extends WorkspaceDiagnosticReport {
-  const _WorkspaceDiagnosticReport({@_WorkspaceDocumentDiagnosticReportListConverter() required final  List<WorkspaceDocumentDiagnosticReport> items}): _items = items,super._();
+class _WorkspaceDiagnosticReport implements WorkspaceDiagnosticReport {
+  const _WorkspaceDiagnosticReport({@_WorkspaceDocumentDiagnosticReportListConverter() required final  List<WorkspaceDocumentDiagnosticReport> items}): _items = items;
   factory _WorkspaceDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceDiagnosticReportFromJson(json);
 
  final  List<WorkspaceDocumentDiagnosticReport> _items;
@@ -20911,8 +20911,8 @@ return $default(_that.items);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceDiagnosticReportPartialResult extends WorkspaceDiagnosticReportPartialResult {
-  const _WorkspaceDiagnosticReportPartialResult({@_WorkspaceDocumentDiagnosticReportListConverter() required final  List<WorkspaceDocumentDiagnosticReport> items}): _items = items,super._();
+class _WorkspaceDiagnosticReportPartialResult implements WorkspaceDiagnosticReportPartialResult {
+  const _WorkspaceDiagnosticReportPartialResult({@_WorkspaceDocumentDiagnosticReportListConverter() required final  List<WorkspaceDocumentDiagnosticReport> items}): _items = items;
   factory _WorkspaceDiagnosticReportPartialResult.fromJson(Map<String, dynamic> json) => _$WorkspaceDiagnosticReportPartialResultFromJson(json);
 
  final  List<WorkspaceDocumentDiagnosticReport> _items;
@@ -21190,8 +21190,8 @@ return $default(_that.notebookDocument,_that.cellTextDocuments);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidOpenNotebookDocumentParams extends DidOpenNotebookDocumentParams {
-  const _DidOpenNotebookDocumentParams({required this.notebookDocument, required final  List<TextDocumentItem> cellTextDocuments}): _cellTextDocuments = cellTextDocuments,super._();
+class _DidOpenNotebookDocumentParams implements DidOpenNotebookDocumentParams {
+  const _DidOpenNotebookDocumentParams({required this.notebookDocument, required final  List<TextDocumentItem> cellTextDocuments}): _cellTextDocuments = cellTextDocuments;
   factory _DidOpenNotebookDocumentParams.fromJson(Map<String, dynamic> json) => _$DidOpenNotebookDocumentParamsFromJson(json);
 
 @override final  NotebookDocument notebookDocument;
@@ -21489,8 +21489,8 @@ return $default(_that.notebookDocument,_that.change);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidChangeNotebookDocumentParams extends DidChangeNotebookDocumentParams {
-  const _DidChangeNotebookDocumentParams({required this.notebookDocument, required this.change}): super._();
+class _DidChangeNotebookDocumentParams implements DidChangeNotebookDocumentParams {
+  const _DidChangeNotebookDocumentParams({required this.notebookDocument, required this.change});
   factory _DidChangeNotebookDocumentParams.fromJson(Map<String, dynamic> json) => _$DidChangeNotebookDocumentParamsFromJson(json);
 
 @override final  VersionedNotebookDocumentIdentifier notebookDocument;
@@ -21781,8 +21781,8 @@ return $default(_that.notebookDocument);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidSaveNotebookDocumentParams extends DidSaveNotebookDocumentParams {
-  const _DidSaveNotebookDocumentParams({required this.notebookDocument}): super._();
+class _DidSaveNotebookDocumentParams implements DidSaveNotebookDocumentParams {
+  const _DidSaveNotebookDocumentParams({required this.notebookDocument});
   factory _DidSaveNotebookDocumentParams.fromJson(Map<String, dynamic> json) => _$DidSaveNotebookDocumentParamsFromJson(json);
 
 @override final  NotebookDocumentIdentifier notebookDocument;
@@ -22063,8 +22063,8 @@ return $default(_that.notebookDocument,_that.cellTextDocuments);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidCloseNotebookDocumentParams extends DidCloseNotebookDocumentParams {
-  const _DidCloseNotebookDocumentParams({required this.notebookDocument, required final  List<TextDocumentIdentifier> cellTextDocuments}): _cellTextDocuments = cellTextDocuments,super._();
+class _DidCloseNotebookDocumentParams implements DidCloseNotebookDocumentParams {
+  const _DidCloseNotebookDocumentParams({required this.notebookDocument, required final  List<TextDocumentIdentifier> cellTextDocuments}): _cellTextDocuments = cellTextDocuments;
   factory _DidCloseNotebookDocumentParams.fromJson(Map<String, dynamic> json) => _$DidCloseNotebookDocumentParamsFromJson(json);
 
 @override final  NotebookDocumentIdentifier notebookDocument;
@@ -22385,8 +22385,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.cont
 /// @nodoc
 @JsonSerializable()
 
-class _InlineCompletionParams extends InlineCompletionParams {
-  const _InlineCompletionParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, required this.context}): super._();
+class _InlineCompletionParams implements InlineCompletionParams {
+  const _InlineCompletionParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, required this.context});
   factory _InlineCompletionParams.fromJson(Map<String, dynamic> json) => _$InlineCompletionParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -22693,8 +22693,8 @@ return $default(_that.items);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineCompletionList extends InlineCompletionList {
-  const _InlineCompletionList({required final  List<InlineCompletionItem> items}): _items = items,super._();
+class _InlineCompletionList implements InlineCompletionList {
+  const _InlineCompletionList({required final  List<InlineCompletionItem> items}): _items = items;
   factory _InlineCompletionList.fromJson(Map<String, dynamic> json) => _$InlineCompletionListFromJson(json);
 
  final  List<InlineCompletionItem> _items;
@@ -22988,8 +22988,8 @@ return $default(_that.insertText,_that.filterText,_that.range,_that.command);cas
 /// @nodoc
 @JsonSerializable()
 
-class _InlineCompletionItem extends InlineCompletionItem {
-  const _InlineCompletionItem({required this.insertText, this.filterText, this.range, this.command}): super._();
+class _InlineCompletionItem implements InlineCompletionItem {
+  const _InlineCompletionItem({required this.insertText, this.filterText, this.range, this.command});
   factory _InlineCompletionItem.fromJson(Map<String, dynamic> json) => _$InlineCompletionItemFromJson(json);
 
 @override final  Object insertText;
@@ -23282,8 +23282,8 @@ return $default(_that.workDoneProgress,_that.documentSelector,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineCompletionRegistrationOptions extends InlineCompletionRegistrationOptions {
-  const _InlineCompletionRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector,super._();
+class _InlineCompletionRegistrationOptions implements InlineCompletionRegistrationOptions {
+  const _InlineCompletionRegistrationOptions({this.workDoneProgress, required final  DocumentSelector? documentSelector, this.id}): _documentSelector = documentSelector;
   factory _InlineCompletionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineCompletionRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -23557,8 +23557,8 @@ return $default(_that.registrations);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _RegistrationParams extends RegistrationParams {
-  const _RegistrationParams({required final  List<Registration> registrations}): _registrations = registrations,super._();
+class _RegistrationParams implements RegistrationParams {
+  const _RegistrationParams({required final  List<Registration> registrations}): _registrations = registrations;
   factory _RegistrationParams.fromJson(Map<String, dynamic> json) => _$RegistrationParamsFromJson(json);
 
  final  List<Registration> _registrations;
@@ -23826,8 +23826,8 @@ return $default(_that.unregisterations);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _UnregistrationParams extends UnregistrationParams {
-  const _UnregistrationParams({required final  List<Unregistration> unregisterations}): _unregisterations = unregisterations,super._();
+class _UnregistrationParams implements UnregistrationParams {
+  const _UnregistrationParams({required final  List<Unregistration> unregisterations}): _unregisterations = unregisterations;
   factory _UnregistrationParams.fromJson(Map<String, dynamic> json) => _$UnregistrationParamsFromJson(json);
 
  final  List<Unregistration> _unregisterations;
@@ -24124,8 +24124,8 @@ return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.local
 /// @nodoc
 @JsonSerializable()
 
-class _InitializeParams extends InitializeParams {
-  const _InitializeParams({@_ProgressTokenConverter() this.workDoneToken, required this.processId, this.clientInfo, this.locale, this.rootPath, required this.rootUri, required this.capabilities, this.initializationOptions, this.trace, final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders,super._();
+class _InitializeParams implements InitializeParams {
+  const _InitializeParams({@_ProgressTokenConverter() this.workDoneToken, required this.processId, this.clientInfo, this.locale, this.rootPath, required this.rootUri, required this.capabilities, this.initializationOptions, this.trace, final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders;
   factory _InitializeParams.fromJson(Map<String, dynamic> json) => _$InitializeParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -24443,8 +24443,8 @@ return $default(_that.capabilities,_that.serverInfo);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InitializeResult extends InitializeResult {
-  const _InitializeResult({required this.capabilities, this.serverInfo}): super._();
+class _InitializeResult implements InitializeResult {
+  const _InitializeResult({required this.capabilities, this.serverInfo});
   factory _InitializeResult.fromJson(Map<String, dynamic> json) => _$InitializeResultFromJson(json);
 
 @override final  ServerCapabilities capabilities;
@@ -24717,8 +24717,8 @@ return $default(_that.retry);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InitializeError extends InitializeError {
-  const _InitializeError({required this.retry}): super._();
+class _InitializeError implements InitializeError {
+  const _InitializeError({required this.retry});
   factory _InitializeError.fromJson(Map<String, dynamic> json) => _$InitializeErrorFromJson(json);
 
 @override final  bool retry;
@@ -24949,8 +24949,8 @@ return $default();case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InitializedParams extends InitializedParams {
-  const _InitializedParams(): super._();
+class _InitializedParams implements InitializedParams {
+  const _InitializedParams();
   factory _InitializedParams.fromJson(Map<String, dynamic> json) => _$InitializedParamsFromJson(json);
 
 
@@ -25177,8 +25177,8 @@ return $default(_that.settings);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidChangeConfigurationParams extends DidChangeConfigurationParams {
-  const _DidChangeConfigurationParams({required this.settings}): super._();
+class _DidChangeConfigurationParams implements DidChangeConfigurationParams {
+  const _DidChangeConfigurationParams({required this.settings});
   factory _DidChangeConfigurationParams.fromJson(Map<String, dynamic> json) => _$DidChangeConfigurationParamsFromJson(json);
 
 @override final  LSPAny settings;
@@ -25438,8 +25438,8 @@ return $default(_that.section);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidChangeConfigurationRegistrationOptions extends DidChangeConfigurationRegistrationOptions {
-  const _DidChangeConfigurationRegistrationOptions({this.section}): super._();
+class _DidChangeConfigurationRegistrationOptions implements DidChangeConfigurationRegistrationOptions {
+  const _DidChangeConfigurationRegistrationOptions({this.section});
   factory _DidChangeConfigurationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DidChangeConfigurationRegistrationOptionsFromJson(json);
 
 @override final  Object? section;
@@ -25701,8 +25701,8 @@ return $default(_that.type,_that.message);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ShowMessageParams extends ShowMessageParams {
-  const _ShowMessageParams({required this.type, required this.message}): super._();
+class _ShowMessageParams implements ShowMessageParams {
+  const _ShowMessageParams({required this.type, required this.message});
   factory _ShowMessageParams.fromJson(Map<String, dynamic> json) => _$ShowMessageParamsFromJson(json);
 
 @override final  MessageType type;
@@ -25968,8 +25968,8 @@ return $default(_that.type,_that.message,_that.actions);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ShowMessageRequestParams extends ShowMessageRequestParams {
-  const _ShowMessageRequestParams({required this.type, required this.message, final  List<MessageActionItem>? actions}): _actions = actions,super._();
+class _ShowMessageRequestParams implements ShowMessageRequestParams {
+  const _ShowMessageRequestParams({required this.type, required this.message, final  List<MessageActionItem>? actions}): _actions = actions;
   factory _ShowMessageRequestParams.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestParamsFromJson(json);
 
 @override final  MessageType type;
@@ -26243,8 +26243,8 @@ return $default(_that.title);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _MessageActionItem extends MessageActionItem {
-  const _MessageActionItem({required this.title}): super._();
+class _MessageActionItem implements MessageActionItem {
+  const _MessageActionItem({required this.title});
   factory _MessageActionItem.fromJson(Map<String, dynamic> json) => _$MessageActionItemFromJson(json);
 
 @override final  String title;
@@ -26507,8 +26507,8 @@ return $default(_that.type,_that.message);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _LogMessageParams extends LogMessageParams {
-  const _LogMessageParams({required this.type, required this.message}): super._();
+class _LogMessageParams implements LogMessageParams {
+  const _LogMessageParams({required this.type, required this.message});
   factory _LogMessageParams.fromJson(Map<String, dynamic> json) => _$LogMessageParamsFromJson(json);
 
 @override final  MessageType type;
@@ -26781,8 +26781,8 @@ return $default(_that.textDocument);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidOpenTextDocumentParams extends DidOpenTextDocumentParams {
-  const _DidOpenTextDocumentParams({required this.textDocument}): super._();
+class _DidOpenTextDocumentParams implements DidOpenTextDocumentParams {
+  const _DidOpenTextDocumentParams({required this.textDocument});
   factory _DidOpenTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidOpenTextDocumentParamsFromJson(json);
 
 @override final  TextDocumentItem textDocument;
@@ -27063,8 +27063,8 @@ return $default(_that.textDocument,_that.contentChanges);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidChangeTextDocumentParams extends DidChangeTextDocumentParams {
-  const _DidChangeTextDocumentParams({required this.textDocument, @_TextDocumentContentChangeEventListConverter() required final  List<TextDocumentContentChangeEvent> contentChanges}): _contentChanges = contentChanges,super._();
+class _DidChangeTextDocumentParams implements DidChangeTextDocumentParams {
+  const _DidChangeTextDocumentParams({required this.textDocument, @_TextDocumentContentChangeEventListConverter() required final  List<TextDocumentContentChangeEvent> contentChanges}): _contentChanges = contentChanges;
   factory _DidChangeTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidChangeTextDocumentParamsFromJson(json);
 
 @override final  VersionedTextDocumentIdentifier textDocument;
@@ -27344,8 +27344,8 @@ return $default(_that.documentSelector,_that.syncKind);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentChangeRegistrationOptions extends TextDocumentChangeRegistrationOptions {
-  const _TextDocumentChangeRegistrationOptions({required final  DocumentSelector? documentSelector, required this.syncKind}): _documentSelector = documentSelector,super._();
+class _TextDocumentChangeRegistrationOptions implements TextDocumentChangeRegistrationOptions {
+  const _TextDocumentChangeRegistrationOptions({required final  DocumentSelector? documentSelector, required this.syncKind}): _documentSelector = documentSelector;
   factory _TextDocumentChangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentChangeRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -27626,8 +27626,8 @@ return $default(_that.textDocument);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidCloseTextDocumentParams extends DidCloseTextDocumentParams {
-  const _DidCloseTextDocumentParams({required this.textDocument}): super._();
+class _DidCloseTextDocumentParams implements DidCloseTextDocumentParams {
+  const _DidCloseTextDocumentParams({required this.textDocument});
   factory _DidCloseTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidCloseTextDocumentParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -27908,8 +27908,8 @@ return $default(_that.textDocument,_that.text);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidSaveTextDocumentParams extends DidSaveTextDocumentParams {
-  const _DidSaveTextDocumentParams({required this.textDocument, this.text}): super._();
+class _DidSaveTextDocumentParams implements DidSaveTextDocumentParams {
+  const _DidSaveTextDocumentParams({required this.textDocument, this.text});
   factory _DidSaveTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidSaveTextDocumentParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -28183,8 +28183,8 @@ return $default(_that.documentSelector,_that.includeText);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentSaveRegistrationOptions extends TextDocumentSaveRegistrationOptions {
-  const _TextDocumentSaveRegistrationOptions({required final  DocumentSelector? documentSelector, this.includeText}): _documentSelector = documentSelector,super._();
+class _TextDocumentSaveRegistrationOptions implements TextDocumentSaveRegistrationOptions {
+  const _TextDocumentSaveRegistrationOptions({required final  DocumentSelector? documentSelector, this.includeText}): _documentSelector = documentSelector;
   factory _TextDocumentSaveRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentSaveRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -28466,8 +28466,8 @@ return $default(_that.textDocument,_that.reason);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WillSaveTextDocumentParams extends WillSaveTextDocumentParams {
-  const _WillSaveTextDocumentParams({required this.textDocument, required this.reason}): super._();
+class _WillSaveTextDocumentParams implements WillSaveTextDocumentParams {
+  const _WillSaveTextDocumentParams({required this.textDocument, required this.reason});
   factory _WillSaveTextDocumentParams.fromJson(Map<String, dynamic> json) => _$WillSaveTextDocumentParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -28750,8 +28750,8 @@ return $default(_that.range,_that.newText);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TextEdit extends TextEdit {
-  const _TextEdit({required this.range, required this.newText}): super._();
+class _TextEdit implements TextEdit {
+  const _TextEdit({required this.range, required this.newText});
   factory _TextEdit.fromJson(Map<String, dynamic> json) => _$TextEditFromJson(json);
 
 @override final  Range range;
@@ -29024,8 +29024,8 @@ return $default(_that.changes);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidChangeWatchedFilesParams extends DidChangeWatchedFilesParams {
-  const _DidChangeWatchedFilesParams({required final  List<FileEvent> changes}): _changes = changes,super._();
+class _DidChangeWatchedFilesParams implements DidChangeWatchedFilesParams {
+  const _DidChangeWatchedFilesParams({required final  List<FileEvent> changes}): _changes = changes;
   factory _DidChangeWatchedFilesParams.fromJson(Map<String, dynamic> json) => _$DidChangeWatchedFilesParamsFromJson(json);
 
  final  List<FileEvent> _changes;
@@ -29293,8 +29293,8 @@ return $default(_that.watchers);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidChangeWatchedFilesRegistrationOptions extends DidChangeWatchedFilesRegistrationOptions {
-  const _DidChangeWatchedFilesRegistrationOptions({required final  List<FileSystemWatcher> watchers}): _watchers = watchers,super._();
+class _DidChangeWatchedFilesRegistrationOptions implements DidChangeWatchedFilesRegistrationOptions {
+  const _DidChangeWatchedFilesRegistrationOptions({required final  List<FileSystemWatcher> watchers}): _watchers = watchers;
   factory _DidChangeWatchedFilesRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DidChangeWatchedFilesRegistrationOptionsFromJson(json);
 
  final  List<FileSystemWatcher> _watchers;
@@ -29564,8 +29564,8 @@ return $default(_that.uri,_that.version,_that.diagnostics);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _PublishDiagnosticsParams extends PublishDiagnosticsParams {
-  const _PublishDiagnosticsParams({required this.uri, this.version, required final  List<Diagnostic> diagnostics}): _diagnostics = diagnostics,super._();
+class _PublishDiagnosticsParams implements PublishDiagnosticsParams {
+  const _PublishDiagnosticsParams({required this.uri, this.version, required final  List<Diagnostic> diagnostics}): _diagnostics = diagnostics;
   factory _PublishDiagnosticsParams.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsParamsFromJson(json);
 
 @override final  String uri;
@@ -29895,8 +29895,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.part
 /// @nodoc
 @JsonSerializable()
 
-class _CompletionParams extends CompletionParams {
-  const _CompletionParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, this.context}): super._();
+class _CompletionParams implements CompletionParams {
+  const _CompletionParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, this.context});
   factory _CompletionParams.fromJson(Map<String, dynamic> json) => _$CompletionParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -30259,8 +30259,8 @@ return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detai
 /// @nodoc
 @JsonSerializable()
 
-class _CompletionItem extends CompletionItem {
-  const _CompletionItem({required this.label, this.labelDetails, this.kind, final  List<CompletionItemTag>? tags, this.detail, this.documentation, this.deprecated, this.preselect, this.sortText, this.filterText, this.insertText, this.insertTextFormat, this.insertTextMode, this.textEdit, this.textEditText, final  List<TextEdit>? additionalTextEdits, final  List<String>? commitCharacters, this.command, this.data}): _tags = tags,_additionalTextEdits = additionalTextEdits,_commitCharacters = commitCharacters,super._();
+class _CompletionItem implements CompletionItem {
+  const _CompletionItem({required this.label, this.labelDetails, this.kind, final  List<CompletionItemTag>? tags, this.detail, this.documentation, this.deprecated, this.preselect, this.sortText, this.filterText, this.insertText, this.insertTextFormat, this.insertTextMode, this.textEdit, this.textEditText, final  List<TextEdit>? additionalTextEdits, final  List<String>? commitCharacters, this.command, this.data}): _tags = tags,_additionalTextEdits = additionalTextEdits,_commitCharacters = commitCharacters;
   factory _CompletionItem.fromJson(Map<String, dynamic> json) => _$CompletionItemFromJson(json);
 
 @override final  String label;
@@ -30605,8 +30605,8 @@ return $default(_that.isIncomplete,_that.itemDefaults,_that.items);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CompletionList extends CompletionList {
-  const _CompletionList({required this.isIncomplete, this.itemDefaults, required final  List<CompletionItem> items}): _items = items,super._();
+class _CompletionList implements CompletionList {
+  const _CompletionList({required this.isIncomplete, this.itemDefaults, required final  List<CompletionItem> items}): _items = items;
   factory _CompletionList.fromJson(Map<String, dynamic> json) => _$CompletionListFromJson(json);
 
 @override final  bool isIncomplete;
@@ -30883,8 +30883,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.triggerChara
 /// @nodoc
 @JsonSerializable()
 
-class _CompletionRegistrationOptions extends CompletionRegistrationOptions {
-  const _CompletionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? allCommitCharacters, this.resolveProvider, this.completionItem}): _documentSelector = documentSelector,_triggerCharacters = triggerCharacters,_allCommitCharacters = allCommitCharacters,super._();
+class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
+  const _CompletionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? allCommitCharacters, this.resolveProvider, this.completionItem}): _documentSelector = documentSelector,_triggerCharacters = triggerCharacters,_allCommitCharacters = allCommitCharacters;
   factory _CompletionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CompletionRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -31212,8 +31212,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _HoverParams extends HoverParams {
-  const _HoverParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken}): super._();
+class _HoverParams implements HoverParams {
+  const _HoverParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken});
   factory _HoverParams.fromJson(Map<String, dynamic> json) => _$HoverParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -31521,8 +31521,8 @@ return $default(_that.contents,_that.range);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Hover extends Hover {
-  const _Hover({required this.contents, this.range}): super._();
+class _Hover implements Hover {
+  const _Hover({required this.contents, this.range});
   factory _Hover.fromJson(Map<String, dynamic> json) => _$HoverFromJson(json);
 
 @override final  Object contents;
@@ -31798,8 +31798,8 @@ return $default(_that.documentSelector,_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _HoverRegistrationOptions extends HoverRegistrationOptions {
-  const _HoverRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector,super._();
+class _HoverRegistrationOptions implements HoverRegistrationOptions {
+  const _HoverRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _HoverRegistrationOptions.fromJson(Map<String, dynamic> json) => _$HoverRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -32116,8 +32116,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.cont
 /// @nodoc
 @JsonSerializable()
 
-class _SignatureHelpParams extends SignatureHelpParams {
-  const _SignatureHelpParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, this.context}): super._();
+class _SignatureHelpParams implements SignatureHelpParams {
+  const _SignatureHelpParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, this.context});
   factory _SignatureHelpParams.fromJson(Map<String, dynamic> json) => _$SignatureHelpParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -32429,8 +32429,8 @@ return $default(_that.signatures,_that.activeSignature,_that.activeParameter);ca
 /// @nodoc
 @JsonSerializable()
 
-class _SignatureHelp extends SignatureHelp {
-  const _SignatureHelp({required final  List<SignatureInformation> signatures, this.activeSignature, this.activeParameter}): _signatures = signatures,super._();
+class _SignatureHelp implements SignatureHelp {
+  const _SignatureHelp({required final  List<SignatureInformation> signatures, this.activeSignature, this.activeParameter}): _signatures = signatures;
   factory _SignatureHelp.fromJson(Map<String, dynamic> json) => _$SignatureHelpFromJson(json);
 
  final  List<SignatureInformation> _signatures;
@@ -32705,8 +32705,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.triggerChara
 /// @nodoc
 @JsonSerializable()
 
-class _SignatureHelpRegistrationOptions extends SignatureHelpRegistrationOptions {
-  const _SignatureHelpRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? retriggerCharacters}): _documentSelector = documentSelector,_triggerCharacters = triggerCharacters,_retriggerCharacters = retriggerCharacters,super._();
+class _SignatureHelpRegistrationOptions implements SignatureHelpRegistrationOptions {
+  const _SignatureHelpRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? retriggerCharacters}): _documentSelector = documentSelector,_triggerCharacters = triggerCharacters,_retriggerCharacters = retriggerCharacters;
   factory _SignatureHelpRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SignatureHelpRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -33043,8 +33043,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.part
 /// @nodoc
 @JsonSerializable()
 
-class _DefinitionParams extends DefinitionParams {
-  const _DefinitionParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken}): super._();
+class _DefinitionParams implements DefinitionParams {
+  const _DefinitionParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _DefinitionParams.fromJson(Map<String, dynamic> json) => _$DefinitionParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -33355,8 +33355,8 @@ return $default(_that.documentSelector,_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DefinitionRegistrationOptions extends DefinitionRegistrationOptions {
-  const _DefinitionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector,super._();
+class _DefinitionRegistrationOptions implements DefinitionRegistrationOptions {
+  const _DefinitionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _DefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DefinitionRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -33683,8 +33683,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.part
 /// @nodoc
 @JsonSerializable()
 
-class _ReferenceParams extends ReferenceParams {
-  const _ReferenceParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.context}): super._();
+class _ReferenceParams implements ReferenceParams {
+  const _ReferenceParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.context});
   factory _ReferenceParams.fromJson(Map<String, dynamic> json) => _$ReferenceParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -34006,8 +34006,8 @@ return $default(_that.documentSelector,_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ReferenceRegistrationOptions extends ReferenceRegistrationOptions {
-  const _ReferenceRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector,super._();
+class _ReferenceRegistrationOptions implements ReferenceRegistrationOptions {
+  const _ReferenceRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _ReferenceRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ReferenceRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -34324,8 +34324,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken,_that.part
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentHighlightParams extends DocumentHighlightParams {
-  const _DocumentHighlightParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken}): super._();
+class _DocumentHighlightParams implements DocumentHighlightParams {
+  const _DocumentHighlightParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken});
   factory _DocumentHighlightParams.fromJson(Map<String, dynamic> json) => _$DocumentHighlightParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -34645,8 +34645,8 @@ return $default(_that.range,_that.kind);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentHighlight extends DocumentHighlight {
-  const _DocumentHighlight({required this.range, this.kind}): super._();
+class _DocumentHighlight implements DocumentHighlight {
+  const _DocumentHighlight({required this.range, this.kind});
   factory _DocumentHighlight.fromJson(Map<String, dynamic> json) => _$DocumentHighlightFromJson(json);
 
 @override final  Range range;
@@ -34920,8 +34920,8 @@ return $default(_that.documentSelector,_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentHighlightRegistrationOptions extends DocumentHighlightRegistrationOptions {
-  const _DocumentHighlightRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector,super._();
+class _DocumentHighlightRegistrationOptions implements DocumentHighlightRegistrationOptions {
+  const _DocumentHighlightRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _DocumentHighlightRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentHighlightRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -35228,8 +35228,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument)
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentSymbolParams extends DocumentSymbolParams {
-  const _DocumentSymbolParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument}): super._();
+class _DocumentSymbolParams implements DocumentSymbolParams {
+  const _DocumentSymbolParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
   factory _DocumentSymbolParams.fromJson(Map<String, dynamic> json) => _$DocumentSymbolParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -35542,8 +35542,8 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.depre
 /// @nodoc
 @JsonSerializable()
 
-class _SymbolInformation extends SymbolInformation {
-  const _SymbolInformation({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, this.deprecated, required this.location}): _tags = tags,super._();
+class _SymbolInformation implements SymbolInformation {
+  const _SymbolInformation({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, this.deprecated, required this.location}): _tags = tags;
   factory _SymbolInformation.fromJson(Map<String, dynamic> json) => _$SymbolInformationFromJson(json);
 
 @override final  String name;
@@ -35857,8 +35857,8 @@ return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentSymbol extends DocumentSymbol {
-  const _DocumentSymbol({required this.name, this.detail, required this.kind, final  List<SymbolTag>? tags, this.deprecated, required this.range, required this.selectionRange, final  List<DocumentSymbol>? children}): _tags = tags,_children = children,super._();
+class _DocumentSymbol implements DocumentSymbol {
+  const _DocumentSymbol({required this.name, this.detail, required this.kind, final  List<SymbolTag>? tags, this.deprecated, required this.range, required this.selectionRange, final  List<DocumentSymbol>? children}): _tags = tags,_children = children;
   factory _DocumentSymbol.fromJson(Map<String, dynamic> json) => _$DocumentSymbolFromJson(json);
 
 @override final  String name;
@@ -36170,8 +36170,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.label);case 
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentSymbolRegistrationOptions extends DocumentSymbolRegistrationOptions {
-  const _DocumentSymbolRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.label}): _documentSelector = documentSelector,super._();
+class _DocumentSymbolRegistrationOptions implements DocumentSymbolRegistrationOptions {
+  const _DocumentSymbolRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.label}): _documentSelector = documentSelector;
   factory _DocumentSymbolRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentSymbolRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -36500,8 +36500,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument,
 /// @nodoc
 @JsonSerializable()
 
-class _CodeActionParams extends CodeActionParams {
-  const _CodeActionParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.range, required this.context}): super._();
+class _CodeActionParams implements CodeActionParams {
+  const _CodeActionParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument, required this.range, required this.context});
   factory _CodeActionParams.fromJson(Map<String, dynamic> json) => _$CodeActionParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -36824,8 +36824,8 @@ return $default(_that.title,_that.command,_that.arguments);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Command extends Command {
-  const _Command({required this.title, required this.command, final  List<LSPAny>? arguments}): _arguments = arguments,super._();
+class _Command implements Command {
+  const _Command({required this.title, required this.command, final  List<LSPAny>? arguments}): _arguments = arguments;
   factory _Command.fromJson(Map<String, dynamic> json) => _$CommandFromJson(json);
 
 @override final  String title;
@@ -37440,8 +37440,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.codeActionKi
 /// @nodoc
 @JsonSerializable()
 
-class _CodeActionRegistrationOptions extends CodeActionRegistrationOptions {
-  const _CodeActionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _documentSelector = documentSelector,_codeActionKinds = codeActionKinds,super._();
+class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
+  const _CodeActionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _documentSelector = documentSelector,_codeActionKinds = codeActionKinds;
   factory _CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeActionRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -37751,8 +37751,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.query);case _
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceSymbolParams extends WorkspaceSymbolParams {
-  const _WorkspaceSymbolParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.query}): super._();
+class _WorkspaceSymbolParams implements WorkspaceSymbolParams {
+  const _WorkspaceSymbolParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.query});
   factory _WorkspaceSymbolParams.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -38045,8 +38045,8 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.locat
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceSymbol extends WorkspaceSymbol {
-  const _WorkspaceSymbol({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, required this.location, this.data}): _tags = tags,super._();
+class _WorkspaceSymbol implements WorkspaceSymbol {
+  const _WorkspaceSymbol({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, required this.location, this.data}): _tags = tags;
   factory _WorkspaceSymbol.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolFromJson(json);
 
 @override final  String name;
@@ -38325,8 +38325,8 @@ return $default(_that.workDoneProgress,_that.resolveProvider);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceSymbolRegistrationOptions extends WorkspaceSymbolRegistrationOptions {
-  const _WorkspaceSymbolRegistrationOptions({this.workDoneProgress, this.resolveProvider}): super._();
+class _WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolRegistrationOptions {
+  const _WorkspaceSymbolRegistrationOptions({this.workDoneProgress, this.resolveProvider});
   factory _WorkspaceSymbolRegistrationOptions.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -38625,8 +38625,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument)
 /// @nodoc
 @JsonSerializable()
 
-class _CodeLensParams extends CodeLensParams {
-  const _CodeLensParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument}): super._();
+class _CodeLensParams implements CodeLensParams {
+  const _CodeLensParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
   factory _CodeLensParams.fromJson(Map<String, dynamic> json) => _$CodeLensParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -38947,8 +38947,8 @@ return $default(_that.range,_that.command,_that.data);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CodeLens extends CodeLens {
-  const _CodeLens({required this.range, this.command, this.data}): super._();
+class _CodeLens implements CodeLens {
+  const _CodeLens({required this.range, this.command, this.data});
   factory _CodeLens.fromJson(Map<String, dynamic> json) => _$CodeLensFromJson(json);
 
 @override final  Range range;
@@ -39236,8 +39236,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.resolveProvi
 /// @nodoc
 @JsonSerializable()
 
-class _CodeLensRegistrationOptions extends CodeLensRegistrationOptions {
-  const _CodeLensRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.resolveProvider}): _documentSelector = documentSelector,super._();
+class _CodeLensRegistrationOptions implements CodeLensRegistrationOptions {
+  const _CodeLensRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.resolveProvider}): _documentSelector = documentSelector;
   factory _CodeLensRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeLensRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -39546,8 +39546,8 @@ return $default(_that.workDoneToken,_that.partialResultToken,_that.textDocument)
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentLinkParams extends DocumentLinkParams {
-  const _DocumentLinkParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument}): super._();
+class _DocumentLinkParams implements DocumentLinkParams {
+  const _DocumentLinkParams({@_ProgressTokenConverter() this.workDoneToken, @_ProgressTokenConverter() this.partialResultToken, required this.textDocument});
   factory _DocumentLinkParams.fromJson(Map<String, dynamic> json) => _$DocumentLinkParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -39857,8 +39857,8 @@ return $default(_that.range,_that.target,_that.tooltip,_that.data);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentLink extends DocumentLink {
-  const _DocumentLink({required this.range, this.target, this.tooltip, this.data}): super._();
+class _DocumentLink implements DocumentLink {
+  const _DocumentLink({required this.range, this.target, this.tooltip, this.data});
   factory _DocumentLink.fromJson(Map<String, dynamic> json) => _$DocumentLinkFromJson(json);
 
 @override final  Range range;
@@ -40136,8 +40136,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.resolveProvi
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentLinkRegistrationOptions extends DocumentLinkRegistrationOptions {
-  const _DocumentLinkRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.resolveProvider}): _documentSelector = documentSelector,super._();
+class _DocumentLinkRegistrationOptions implements DocumentLinkRegistrationOptions {
+  const _DocumentLinkRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.resolveProvider}): _documentSelector = documentSelector;
   factory _DocumentLinkRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentLinkRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -40443,8 +40443,8 @@ return $default(_that.workDoneToken,_that.textDocument,_that.options);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentFormattingParams extends DocumentFormattingParams {
-  const _DocumentFormattingParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.options}): super._();
+class _DocumentFormattingParams implements DocumentFormattingParams {
+  const _DocumentFormattingParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.options});
   factory _DocumentFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentFormattingParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -40741,8 +40741,8 @@ return $default(_that.documentSelector,_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentFormattingRegistrationOptions extends DocumentFormattingRegistrationOptions {
-  const _DocumentFormattingRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector,super._();
+class _DocumentFormattingRegistrationOptions implements DocumentFormattingRegistrationOptions {
+  const _DocumentFormattingRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _DocumentFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentFormattingRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -41056,8 +41056,8 @@ return $default(_that.workDoneToken,_that.textDocument,_that.range,_that.options
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentRangeFormattingParams extends DocumentRangeFormattingParams {
-  const _DocumentRangeFormattingParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.range, required this.options}): super._();
+class _DocumentRangeFormattingParams implements DocumentRangeFormattingParams {
+  const _DocumentRangeFormattingParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.range, required this.options});
   factory _DocumentRangeFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -41366,8 +41366,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.rangesSuppor
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentRangeFormattingRegistrationOptions extends DocumentRangeFormattingRegistrationOptions {
-  const _DocumentRangeFormattingRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.rangesSupport}): _documentSelector = documentSelector,super._();
+class _DocumentRangeFormattingRegistrationOptions implements DocumentRangeFormattingRegistrationOptions {
+  const _DocumentRangeFormattingRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.rangesSupport}): _documentSelector = documentSelector;
   factory _DocumentRangeFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -41674,8 +41674,8 @@ return $default(_that.workDoneToken,_that.textDocument,_that.ranges,_that.option
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentRangesFormattingParams extends DocumentRangesFormattingParams {
-  const _DocumentRangesFormattingParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required final  List<Range> ranges, required this.options}): _ranges = ranges,super._();
+class _DocumentRangesFormattingParams implements DocumentRangesFormattingParams {
+  const _DocumentRangesFormattingParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required final  List<Range> ranges, required this.options}): _ranges = ranges;
   factory _DocumentRangesFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentRangesFormattingParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -42009,8 +42009,8 @@ return $default(_that.textDocument,_that.position,_that.ch,_that.options);case _
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentOnTypeFormattingParams extends DocumentOnTypeFormattingParams {
-  const _DocumentOnTypeFormattingParams({required this.textDocument, required this.position, required this.ch, required this.options}): super._();
+class _DocumentOnTypeFormattingParams implements DocumentOnTypeFormattingParams {
+  const _DocumentOnTypeFormattingParams({required this.textDocument, required this.position, required this.ch, required this.options});
   factory _DocumentOnTypeFormattingParams.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -42307,8 +42307,8 @@ return $default(_that.documentSelector,_that.firstTriggerCharacter,_that.moreTri
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentOnTypeFormattingRegistrationOptions extends DocumentOnTypeFormattingRegistrationOptions {
-  const _DocumentOnTypeFormattingRegistrationOptions({required final  DocumentSelector? documentSelector, required this.firstTriggerCharacter, final  List<String>? moreTriggerCharacter}): _documentSelector = documentSelector,_moreTriggerCharacter = moreTriggerCharacter,super._();
+class _DocumentOnTypeFormattingRegistrationOptions implements DocumentOnTypeFormattingRegistrationOptions {
+  const _DocumentOnTypeFormattingRegistrationOptions({required final  DocumentSelector? documentSelector, required this.firstTriggerCharacter, final  List<String>? moreTriggerCharacter}): _documentSelector = documentSelector,_moreTriggerCharacter = moreTriggerCharacter;
   factory _DocumentOnTypeFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -42623,8 +42623,8 @@ return $default(_that.workDoneToken,_that.textDocument,_that.position,_that.newN
 /// @nodoc
 @JsonSerializable()
 
-class _RenameParams extends RenameParams {
-  const _RenameParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.position, required this.newName}): super._();
+class _RenameParams implements RenameParams {
+  const _RenameParams({@_ProgressTokenConverter() this.workDoneToken, required this.textDocument, required this.position, required this.newName});
   factory _RenameParams.fromJson(Map<String, dynamic> json) => _$RenameParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -42924,8 +42924,8 @@ return $default(_that.documentSelector,_that.workDoneProgress,_that.prepareProvi
 /// @nodoc
 @JsonSerializable()
 
-class _RenameRegistrationOptions extends RenameRegistrationOptions {
-  const _RenameRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.prepareProvider}): _documentSelector = documentSelector,super._();
+class _RenameRegistrationOptions implements RenameRegistrationOptions {
+  const _RenameRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.prepareProvider}): _documentSelector = documentSelector;
   factory _RenameRegistrationOptions.fromJson(Map<String, dynamic> json) => _$RenameRegistrationOptionsFromJson(json);
 
  final  DocumentSelector? _documentSelector;
@@ -43231,8 +43231,8 @@ return $default(_that.textDocument,_that.position,_that.workDoneToken);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _PrepareRenameParams extends PrepareRenameParams {
-  const _PrepareRenameParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken}): super._();
+class _PrepareRenameParams implements PrepareRenameParams {
+  const _PrepareRenameParams({required this.textDocument, required this.position, @_ProgressTokenConverter() this.workDoneToken});
   factory _PrepareRenameParams.fromJson(Map<String, dynamic> json) => _$PrepareRenameParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -43542,8 +43542,8 @@ return $default(_that.workDoneToken,_that.command,_that.arguments);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ExecuteCommandParams extends ExecuteCommandParams {
-  const _ExecuteCommandParams({@_ProgressTokenConverter() this.workDoneToken, required this.command, final  List<LSPAny>? arguments}): _arguments = arguments,super._();
+class _ExecuteCommandParams implements ExecuteCommandParams {
+  const _ExecuteCommandParams({@_ProgressTokenConverter() this.workDoneToken, required this.command, final  List<LSPAny>? arguments}): _arguments = arguments;
   factory _ExecuteCommandParams.fromJson(Map<String, dynamic> json) => _$ExecuteCommandParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -43830,8 +43830,8 @@ return $default(_that.workDoneProgress,_that.commands);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ExecuteCommandRegistrationOptions extends ExecuteCommandRegistrationOptions {
-  const _ExecuteCommandRegistrationOptions({this.workDoneProgress, required final  List<String> commands}): _commands = commands,super._();
+class _ExecuteCommandRegistrationOptions implements ExecuteCommandRegistrationOptions {
+  const _ExecuteCommandRegistrationOptions({this.workDoneProgress, required final  List<String> commands}): _commands = commands;
   factory _ExecuteCommandRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ExecuteCommandRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -44111,8 +44111,8 @@ return $default(_that.label,_that.edit);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ApplyWorkspaceEditParams extends ApplyWorkspaceEditParams {
-  const _ApplyWorkspaceEditParams({this.label, required this.edit}): super._();
+class _ApplyWorkspaceEditParams implements ApplyWorkspaceEditParams {
+  const _ApplyWorkspaceEditParams({this.label, required this.edit});
   factory _ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) => _$ApplyWorkspaceEditParamsFromJson(json);
 
 @override final  String? label;
@@ -44387,8 +44387,8 @@ return $default(_that.applied,_that.failureReason,_that.failedChange);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ApplyWorkspaceEditResult extends ApplyWorkspaceEditResult {
-  const _ApplyWorkspaceEditResult({required this.applied, this.failureReason, this.failedChange}): super._();
+class _ApplyWorkspaceEditResult implements ApplyWorkspaceEditResult {
+  const _ApplyWorkspaceEditResult({required this.applied, this.failureReason, this.failedChange});
   factory _ApplyWorkspaceEditResult.fromJson(Map<String, dynamic> json) => _$ApplyWorkspaceEditResultFromJson(json);
 
 @override final  bool applied;
@@ -44658,8 +44658,8 @@ return $default(_that.kind,_that.title,_that.cancellable,_that.message,_that.per
 /// @nodoc
 @JsonSerializable()
 
-class _WorkDoneProgressBegin extends WorkDoneProgressBegin {
-  const _WorkDoneProgressBegin({required this.kind, required this.title, this.cancellable, this.message, this.percentage}): super._();
+class _WorkDoneProgressBegin implements WorkDoneProgressBegin {
+  const _WorkDoneProgressBegin({required this.kind, required this.title, this.cancellable, this.message, this.percentage});
   factory _WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressBeginFromJson(json);
 
 @override final  String kind;
@@ -44932,8 +44932,8 @@ return $default(_that.kind,_that.cancellable,_that.message,_that.percentage);cas
 /// @nodoc
 @JsonSerializable()
 
-class _WorkDoneProgressReport extends WorkDoneProgressReport {
-  const _WorkDoneProgressReport({required this.kind, this.cancellable, this.message, this.percentage}): super._();
+class _WorkDoneProgressReport implements WorkDoneProgressReport {
+  const _WorkDoneProgressReport({required this.kind, this.cancellable, this.message, this.percentage});
   factory _WorkDoneProgressReport.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressReportFromJson(json);
 
 @override final  String kind;
@@ -45202,8 +45202,8 @@ return $default(_that.kind,_that.message);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkDoneProgressEnd extends WorkDoneProgressEnd {
-  const _WorkDoneProgressEnd({required this.kind, this.message}): super._();
+class _WorkDoneProgressEnd implements WorkDoneProgressEnd {
+  const _WorkDoneProgressEnd({required this.kind, this.message});
   factory _WorkDoneProgressEnd.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressEndFromJson(json);
 
 @override final  String kind;
@@ -45467,8 +45467,8 @@ return $default(_that.value);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SetTraceParams extends SetTraceParams {
-  const _SetTraceParams({required this.value}): super._();
+class _SetTraceParams implements SetTraceParams {
+  const _SetTraceParams({required this.value});
   factory _SetTraceParams.fromJson(Map<String, dynamic> json) => _$SetTraceParamsFromJson(json);
 
 @override final  TraceValues value;
@@ -45731,8 +45731,8 @@ return $default(_that.message,_that.verbose);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _LogTraceParams extends LogTraceParams {
-  const _LogTraceParams({required this.message, this.verbose}): super._();
+class _LogTraceParams implements LogTraceParams {
+  const _LogTraceParams({required this.message, this.verbose});
   factory _LogTraceParams.fromJson(Map<String, dynamic> json) => _$LogTraceParamsFromJson(json);
 
 @override final  String message;
@@ -45995,8 +45995,8 @@ return $default(_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CancelParams extends CancelParams {
-  const _CancelParams({required this.id}): super._();
+class _CancelParams implements CancelParams {
+  const _CancelParams({required this.id});
   factory _CancelParams.fromJson(Map<String, dynamic> json) => _$CancelParamsFromJson(json);
 
 @override final  Object id;
@@ -46266,8 +46266,8 @@ return $default(_that.token,_that.value);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ProgressParams extends ProgressParams {
-  const _ProgressParams({@_ProgressTokenConverter() required this.token, required this.value}): super._();
+class _ProgressParams implements ProgressParams {
+  const _ProgressParams({@_ProgressTokenConverter() required this.token, required this.value});
   factory _ProgressParams.fromJson(Map<String, dynamic> json) => _$ProgressParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken token;
@@ -46558,8 +46558,8 @@ return $default(_that.textDocument,_that.position);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentPositionParams extends TextDocumentPositionParams {
-  const _TextDocumentPositionParams({required this.textDocument, required this.position}): super._();
+class _TextDocumentPositionParams implements TextDocumentPositionParams {
+  const _TextDocumentPositionParams({required this.textDocument, required this.position});
   factory _TextDocumentPositionParams.fromJson(Map<String, dynamic> json) => _$TextDocumentPositionParamsFromJson(json);
 
 @override final  TextDocumentIdentifier textDocument;
@@ -46853,8 +46853,8 @@ return $default(_that.workDoneToken);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkDoneProgressParams extends WorkDoneProgressParams {
-  const _WorkDoneProgressParams({@_ProgressTokenConverter() this.workDoneToken}): super._();
+class _WorkDoneProgressParams implements WorkDoneProgressParams {
+  const _WorkDoneProgressParams({@_ProgressTokenConverter() this.workDoneToken});
   factory _WorkDoneProgressParams.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
@@ -47140,8 +47140,8 @@ return $default(_that.partialResultToken);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _PartialResultParams extends PartialResultParams {
-  const _PartialResultParams({@_ProgressTokenConverter() this.partialResultToken}): super._();
+class _PartialResultParams implements PartialResultParams {
+  const _PartialResultParams({@_ProgressTokenConverter() this.partialResultToken});
   factory _PartialResultParams.fromJson(Map<String, dynamic> json) => _$PartialResultParamsFromJson(json);
 
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
@@ -47448,8 +47448,8 @@ return $default(_that.originSelectionRange,_that.targetUri,_that.targetRange,_th
 /// @nodoc
 @JsonSerializable()
 
-class _LocationLink extends LocationLink {
-  const _LocationLink({this.originSelectionRange, required this.targetUri, required this.targetRange, required this.targetSelectionRange}): super._();
+class _LocationLink implements LocationLink {
+  const _LocationLink({this.originSelectionRange, required this.targetUri, required this.targetRange, required this.targetSelectionRange});
   factory _LocationLink.fromJson(Map<String, dynamic> json) => _$LocationLinkFromJson(json);
 
 @override final  Range? originSelectionRange;
@@ -47766,8 +47766,8 @@ return $default(_that.start,_that.end);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Range extends Range {
-  const _Range({required this.start, required this.end}): super._();
+class _Range implements Range {
+  const _Range({required this.start, required this.end});
   factory _Range.fromJson(Map<String, dynamic> json) => _$RangeFromJson(json);
 
 @override final  Position start;
@@ -48049,8 +48049,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ImplementationOptions extends ImplementationOptions {
-  const _ImplementationOptions({this.workDoneProgress}): super._();
+class _ImplementationOptions implements ImplementationOptions {
+  const _ImplementationOptions({this.workDoneProgress});
   factory _ImplementationOptions.fromJson(Map<String, dynamic> json) => _$ImplementationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -48312,8 +48312,8 @@ return $default(_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _StaticRegistrationOptions extends StaticRegistrationOptions {
-  const _StaticRegistrationOptions({this.id}): super._();
+class _StaticRegistrationOptions implements StaticRegistrationOptions {
+  const _StaticRegistrationOptions({this.id});
   factory _StaticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$StaticRegistrationOptionsFromJson(json);
 
 @override final  String? id;
@@ -48575,8 +48575,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TypeDefinitionOptions extends TypeDefinitionOptions {
-  const _TypeDefinitionOptions({this.workDoneProgress}): super._();
+class _TypeDefinitionOptions implements TypeDefinitionOptions {
+  const _TypeDefinitionOptions({this.workDoneProgress});
   factory _TypeDefinitionOptions.fromJson(Map<String, dynamic> json) => _$TypeDefinitionOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -48839,8 +48839,8 @@ return $default(_that.added,_that.removed);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceFoldersChangeEvent extends WorkspaceFoldersChangeEvent {
-  const _WorkspaceFoldersChangeEvent({required final  List<WorkspaceFolder> added, required final  List<WorkspaceFolder> removed}): _added = added,_removed = removed,super._();
+class _WorkspaceFoldersChangeEvent implements WorkspaceFoldersChangeEvent {
+  const _WorkspaceFoldersChangeEvent({required final  List<WorkspaceFolder> added, required final  List<WorkspaceFolder> removed}): _added = added,_removed = removed;
   factory _WorkspaceFoldersChangeEvent.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersChangeEventFromJson(json);
 
  final  List<WorkspaceFolder> _added;
@@ -49117,8 +49117,8 @@ return $default(_that.scopeUri,_that.section);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ConfigurationItem extends ConfigurationItem {
-  const _ConfigurationItem({this.scopeUri, this.section}): super._();
+class _ConfigurationItem implements ConfigurationItem {
+  const _ConfigurationItem({this.scopeUri, this.section});
   factory _ConfigurationItem.fromJson(Map<String, dynamic> json) => _$ConfigurationItemFromJson(json);
 
 @override final  String? scopeUri;
@@ -49382,8 +49382,8 @@ return $default(_that.uri);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentIdentifier extends TextDocumentIdentifier {
-  const _TextDocumentIdentifier({required this.uri}): super._();
+class _TextDocumentIdentifier implements TextDocumentIdentifier {
+  const _TextDocumentIdentifier({required this.uri});
   factory _TextDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$TextDocumentIdentifierFromJson(json);
 
 @override final  String uri;
@@ -49648,8 +49648,8 @@ return $default(_that.red,_that.green,_that.blue,_that.alpha);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Color extends Color {
-  const _Color({required this.red, required this.green, required this.blue, required this.alpha}): super._();
+class _Color implements Color {
+  const _Color({required this.red, required this.green, required this.blue, required this.alpha});
   factory _Color.fromJson(Map<String, dynamic> json) => _$ColorFromJson(json);
 
 @override final  double red;
@@ -49917,8 +49917,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentColorOptions extends DocumentColorOptions {
-  const _DocumentColorOptions({this.workDoneProgress}): super._();
+class _DocumentColorOptions implements DocumentColorOptions {
+  const _DocumentColorOptions({this.workDoneProgress});
   factory _DocumentColorOptions.fromJson(Map<String, dynamic> json) => _$DocumentColorOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -50180,8 +50180,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FoldingRangeOptions extends FoldingRangeOptions {
-  const _FoldingRangeOptions({this.workDoneProgress}): super._();
+class _FoldingRangeOptions implements FoldingRangeOptions {
+  const _FoldingRangeOptions({this.workDoneProgress});
   factory _FoldingRangeOptions.fromJson(Map<String, dynamic> json) => _$FoldingRangeOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -50443,8 +50443,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DeclarationOptions extends DeclarationOptions {
-  const _DeclarationOptions({this.workDoneProgress}): super._();
+class _DeclarationOptions implements DeclarationOptions {
+  const _DeclarationOptions({this.workDoneProgress});
   factory _DeclarationOptions.fromJson(Map<String, dynamic> json) => _$DeclarationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -50707,8 +50707,8 @@ return $default(_that.line,_that.character);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Position extends Position {
-  const _Position({required this.line, required this.character}): super._();
+class _Position implements Position {
+  const _Position({required this.line, required this.character});
   factory _Position.fromJson(Map<String, dynamic> json) => _$PositionFromJson(json);
 
 @override final  int line;
@@ -50972,8 +50972,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SelectionRangeOptions extends SelectionRangeOptions {
-  const _SelectionRangeOptions({this.workDoneProgress}): super._();
+class _SelectionRangeOptions implements SelectionRangeOptions {
+  const _SelectionRangeOptions({this.workDoneProgress});
   factory _SelectionRangeOptions.fromJson(Map<String, dynamic> json) => _$SelectionRangeOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -51235,8 +51235,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CallHierarchyOptions extends CallHierarchyOptions {
-  const _CallHierarchyOptions({this.workDoneProgress}): super._();
+class _CallHierarchyOptions implements CallHierarchyOptions {
+  const _CallHierarchyOptions({this.workDoneProgress});
   factory _CallHierarchyOptions.fromJson(Map<String, dynamic> json) => _$CallHierarchyOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -51508,8 +51508,8 @@ return $default(_that.workDoneProgress,_that.legend,_that.range,_that.full);case
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensOptions extends SemanticTokensOptions {
-  const _SemanticTokensOptions({this.workDoneProgress, required this.legend, this.range, this.full}): super._();
+class _SemanticTokensOptions implements SemanticTokensOptions {
+  const _SemanticTokensOptions({this.workDoneProgress, required this.legend, this.range, this.full});
   factory _SemanticTokensOptions.fromJson(Map<String, dynamic> json) => _$SemanticTokensOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -51786,8 +51786,8 @@ return $default(_that.start,_that.deleteCount,_that.data);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensEdit extends SemanticTokensEdit {
-  const _SemanticTokensEdit({required this.start, required this.deleteCount, final  List<int>? data}): _data = data,super._();
+class _SemanticTokensEdit implements SemanticTokensEdit {
+  const _SemanticTokensEdit({required this.start, required this.deleteCount, final  List<int>? data}): _data = data;
   factory _SemanticTokensEdit.fromJson(Map<String, dynamic> json) => _$SemanticTokensEditFromJson(json);
 
 @override final  int start;
@@ -52061,8 +52061,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _LinkedEditingRangeOptions extends LinkedEditingRangeOptions {
-  const _LinkedEditingRangeOptions({this.workDoneProgress}): super._();
+class _LinkedEditingRangeOptions implements LinkedEditingRangeOptions {
+  const _LinkedEditingRangeOptions({this.workDoneProgress});
   factory _LinkedEditingRangeOptions.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -52324,8 +52324,8 @@ return $default(_that.uri);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FileCreate extends FileCreate {
-  const _FileCreate({required this.uri}): super._();
+class _FileCreate implements FileCreate {
+  const _FileCreate({required this.uri});
   factory _FileCreate.fromJson(Map<String, dynamic> json) => _$FileCreateFromJson(json);
 
 @override final  String uri;
@@ -52597,8 +52597,8 @@ return $default(_that.textDocument,_that.edits);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentEdit extends TextDocumentEdit {
-  const _TextDocumentEdit({required this.textDocument, required final  List<Object> edits}): _edits = edits,super._();
+class _TextDocumentEdit implements TextDocumentEdit {
+  const _TextDocumentEdit({required this.textDocument, required final  List<Object> edits}): _edits = edits;
   factory _TextDocumentEdit.fromJson(Map<String, dynamic> json) => _$TextDocumentEditFromJson(json);
 
 @override final  OptionalVersionedTextDocumentIdentifier textDocument;
@@ -52892,8 +52892,8 @@ return $default(_that.annotationId,_that.kind,_that.uri,_that.options);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CreateFile extends CreateFile {
-  const _CreateFile({this.annotationId, required this.kind, required this.uri, this.options}): super._();
+class _CreateFile implements CreateFile {
+  const _CreateFile({this.annotationId, required this.kind, required this.uri, this.options});
   factory _CreateFile.fromJson(Map<String, dynamic> json) => _$CreateFileFromJson(json);
 
 @override final  ChangeAnnotationIdentifier? annotationId;
@@ -53189,8 +53189,8 @@ return $default(_that.annotationId,_that.kind,_that.oldUri,_that.newUri,_that.op
 /// @nodoc
 @JsonSerializable()
 
-class _RenameFile extends RenameFile {
-  const _RenameFile({this.annotationId, required this.kind, required this.oldUri, required this.newUri, this.options}): super._();
+class _RenameFile implements RenameFile {
+  const _RenameFile({this.annotationId, required this.kind, required this.oldUri, required this.newUri, this.options});
   factory _RenameFile.fromJson(Map<String, dynamic> json) => _$RenameFileFromJson(json);
 
 @override final  ChangeAnnotationIdentifier? annotationId;
@@ -53487,8 +53487,8 @@ return $default(_that.annotationId,_that.kind,_that.uri,_that.options);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DeleteFile extends DeleteFile {
-  const _DeleteFile({this.annotationId, required this.kind, required this.uri, this.options}): super._();
+class _DeleteFile implements DeleteFile {
+  const _DeleteFile({this.annotationId, required this.kind, required this.uri, this.options});
   factory _DeleteFile.fromJson(Map<String, dynamic> json) => _$DeleteFileFromJson(json);
 
 @override final  ChangeAnnotationIdentifier? annotationId;
@@ -53770,8 +53770,8 @@ return $default(_that.label,_that.needsConfirmation,_that.description);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ChangeAnnotation extends ChangeAnnotation {
-  const _ChangeAnnotation({required this.label, this.needsConfirmation, this.description}): super._();
+class _ChangeAnnotation implements ChangeAnnotation {
+  const _ChangeAnnotation({required this.label, this.needsConfirmation, this.description});
   factory _ChangeAnnotation.fromJson(Map<String, dynamic> json) => _$ChangeAnnotationFromJson(json);
 
 @override final  String label;
@@ -54047,8 +54047,8 @@ return $default(_that.scheme,_that.pattern);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FileOperationFilter extends FileOperationFilter {
-  const _FileOperationFilter({this.scheme, required this.pattern}): super._();
+class _FileOperationFilter implements FileOperationFilter {
+  const _FileOperationFilter({this.scheme, required this.pattern});
   factory _FileOperationFilter.fromJson(Map<String, dynamic> json) => _$FileOperationFilterFromJson(json);
 
 @override final  String? scheme;
@@ -54322,8 +54322,8 @@ return $default(_that.oldUri,_that.newUri);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FileRename extends FileRename {
-  const _FileRename({required this.oldUri, required this.newUri}): super._();
+class _FileRename implements FileRename {
+  const _FileRename({required this.oldUri, required this.newUri});
   factory _FileRename.fromJson(Map<String, dynamic> json) => _$FileRenameFromJson(json);
 
 @override final  String oldUri;
@@ -54587,8 +54587,8 @@ return $default(_that.uri);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FileDelete extends FileDelete {
-  const _FileDelete({required this.uri}): super._();
+class _FileDelete implements FileDelete {
+  const _FileDelete({required this.uri});
   factory _FileDelete.fromJson(Map<String, dynamic> json) => _$FileDeleteFromJson(json);
 
 @override final  String uri;
@@ -54850,8 +54850,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _MonikerOptions extends MonikerOptions {
-  const _MonikerOptions({this.workDoneProgress}): super._();
+class _MonikerOptions implements MonikerOptions {
+  const _MonikerOptions({this.workDoneProgress});
   factory _MonikerOptions.fromJson(Map<String, dynamic> json) => _$MonikerOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -55113,8 +55113,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TypeHierarchyOptions extends TypeHierarchyOptions {
-  const _TypeHierarchyOptions({this.workDoneProgress}): super._();
+class _TypeHierarchyOptions implements TypeHierarchyOptions {
+  const _TypeHierarchyOptions({this.workDoneProgress});
   factory _TypeHierarchyOptions.fromJson(Map<String, dynamic> json) => _$TypeHierarchyOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -55386,8 +55386,8 @@ return $default(_that.frameId,_that.stoppedLocation);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineValueContext extends InlineValueContext {
-  const _InlineValueContext({required this.frameId, required this.stoppedLocation}): super._();
+class _InlineValueContext implements InlineValueContext {
+  const _InlineValueContext({required this.frameId, required this.stoppedLocation});
   factory _InlineValueContext.fromJson(Map<String, dynamic> json) => _$InlineValueContextFromJson(json);
 
 @override final  int frameId;
@@ -55670,8 +55670,8 @@ return $default(_that.range,_that.text);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineValueText extends InlineValueText {
-  const _InlineValueText({required this.range, required this.text}): super._();
+class _InlineValueText implements InlineValueText {
+  const _InlineValueText({required this.range, required this.text});
   factory _InlineValueText.fromJson(Map<String, dynamic> json) => _$InlineValueTextFromJson(json);
 
 @override final  Range range;
@@ -55955,8 +55955,8 @@ return $default(_that.range,_that.variableName,_that.caseSensitiveLookup);case _
 /// @nodoc
 @JsonSerializable()
 
-class _InlineValueVariableLookup extends InlineValueVariableLookup {
-  const _InlineValueVariableLookup({required this.range, this.variableName, required this.caseSensitiveLookup}): super._();
+class _InlineValueVariableLookup implements InlineValueVariableLookup {
+  const _InlineValueVariableLookup({required this.range, this.variableName, required this.caseSensitiveLookup});
   factory _InlineValueVariableLookup.fromJson(Map<String, dynamic> json) => _$InlineValueVariableLookupFromJson(json);
 
 @override final  Range range;
@@ -56241,8 +56241,8 @@ return $default(_that.range,_that.expression);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineValueEvaluatableExpression extends InlineValueEvaluatableExpression {
-  const _InlineValueEvaluatableExpression({required this.range, this.expression}): super._();
+class _InlineValueEvaluatableExpression implements InlineValueEvaluatableExpression {
+  const _InlineValueEvaluatableExpression({required this.range, this.expression});
   factory _InlineValueEvaluatableExpression.fromJson(Map<String, dynamic> json) => _$InlineValueEvaluatableExpressionFromJson(json);
 
 @override final  Range range;
@@ -56515,8 +56515,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineValueOptions extends InlineValueOptions {
-  const _InlineValueOptions({this.workDoneProgress}): super._();
+class _InlineValueOptions implements InlineValueOptions {
+  const _InlineValueOptions({this.workDoneProgress});
   factory _InlineValueOptions.fromJson(Map<String, dynamic> json) => _$InlineValueOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -56804,8 +56804,8 @@ return $default(_that.value,_that.tooltip,_that.location,_that.command);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlayHintLabelPart extends InlayHintLabelPart {
-  const _InlayHintLabelPart({required this.value, this.tooltip, this.location, this.command}): super._();
+class _InlayHintLabelPart implements InlayHintLabelPart {
+  const _InlayHintLabelPart({required this.value, this.tooltip, this.location, this.command});
   factory _InlayHintLabelPart.fromJson(Map<String, dynamic> json) => _$InlayHintLabelPartFromJson(json);
 
 @override final  String value;
@@ -57097,8 +57097,8 @@ return $default(_that.kind,_that.value);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _MarkupContent extends MarkupContent {
-  const _MarkupContent({required this.kind, required this.value}): super._();
+class _MarkupContent implements MarkupContent {
+  const _MarkupContent({required this.kind, required this.value});
   factory _MarkupContent.fromJson(Map<String, dynamic> json) => _$MarkupContentFromJson(json);
 
 @override final  MarkupKind kind;
@@ -57363,8 +57363,8 @@ return $default(_that.workDoneProgress,_that.resolveProvider);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlayHintOptions extends InlayHintOptions {
-  const _InlayHintOptions({this.workDoneProgress, this.resolveProvider}): super._();
+class _InlayHintOptions implements InlayHintOptions {
+  const _InlayHintOptions({this.workDoneProgress, this.resolveProvider});
   factory _InlayHintOptions.fromJson(Map<String, dynamic> json) => _$InlayHintOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -57631,8 +57631,8 @@ return $default(_that.kind,_that.resultId,_that.items,_that.relatedDocuments);ca
 /// @nodoc
 @JsonSerializable()
 
-class _RelatedFullDocumentDiagnosticReport extends RelatedFullDocumentDiagnosticReport {
-  const _RelatedFullDocumentDiagnosticReport({required this.kind, this.resultId, required final  List<Diagnostic> items, final  Map<String, Object>? relatedDocuments}): _items = items,_relatedDocuments = relatedDocuments,super._();
+class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnosticReport {
+  const _RelatedFullDocumentDiagnosticReport({required this.kind, this.resultId, required final  List<Diagnostic> items, final  Map<String, Object>? relatedDocuments}): _items = items,_relatedDocuments = relatedDocuments;
   factory _RelatedFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedFullDocumentDiagnosticReportFromJson(json);
 
 @override final  String kind;
@@ -57916,8 +57916,8 @@ return $default(_that.kind,_that.resultId,_that.relatedDocuments);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _RelatedUnchangedDocumentDiagnosticReport extends RelatedUnchangedDocumentDiagnosticReport {
-  const _RelatedUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, final  Map<String, Object>? relatedDocuments}): _relatedDocuments = relatedDocuments,super._();
+class _RelatedUnchangedDocumentDiagnosticReport implements RelatedUnchangedDocumentDiagnosticReport {
+  const _RelatedUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, final  Map<String, Object>? relatedDocuments}): _relatedDocuments = relatedDocuments;
   factory _RelatedUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
 
 @override final  String kind;
@@ -58193,8 +58193,8 @@ return $default(_that.kind,_that.resultId,_that.items);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FullDocumentDiagnosticReport extends FullDocumentDiagnosticReport {
-  const _FullDocumentDiagnosticReport({required this.kind, this.resultId, required final  List<Diagnostic> items}): _items = items,super._();
+class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
+  const _FullDocumentDiagnosticReport({required this.kind, this.resultId, required final  List<Diagnostic> items}): _items = items;
   factory _FullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$FullDocumentDiagnosticReportFromJson(json);
 
 @override final  String kind;
@@ -58467,8 +58467,8 @@ return $default(_that.kind,_that.resultId);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _UnchangedDocumentDiagnosticReport extends UnchangedDocumentDiagnosticReport {
-  const _UnchangedDocumentDiagnosticReport({required this.kind, required this.resultId}): super._();
+class _UnchangedDocumentDiagnosticReport implements UnchangedDocumentDiagnosticReport {
+  const _UnchangedDocumentDiagnosticReport({required this.kind, required this.resultId});
   factory _UnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$UnchangedDocumentDiagnosticReportFromJson(json);
 
 @override final  String kind;
@@ -58735,8 +58735,8 @@ return $default(_that.workDoneProgress,_that.identifier,_that.interFileDependenc
 /// @nodoc
 @JsonSerializable()
 
-class _DiagnosticOptions extends DiagnosticOptions {
-  const _DiagnosticOptions({this.workDoneProgress, this.identifier, required this.interFileDependencies, required this.workspaceDiagnostics}): super._();
+class _DiagnosticOptions implements DiagnosticOptions {
+  const _DiagnosticOptions({this.workDoneProgress, this.identifier, required this.interFileDependencies, required this.workspaceDiagnostics});
   factory _DiagnosticOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -59005,8 +59005,8 @@ return $default(_that.uri,_that.value);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _PreviousResultId extends PreviousResultId {
-  const _PreviousResultId({required this.uri, required this.value}): super._();
+class _PreviousResultId implements PreviousResultId {
+  const _PreviousResultId({required this.uri, required this.value});
   factory _PreviousResultId.fromJson(Map<String, dynamic> json) => _$PreviousResultIdFromJson(json);
 
 @override final  String uri;
@@ -59274,8 +59274,8 @@ return $default(_that.uri,_that.notebookType,_that.version,_that.metadata,_that.
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookDocument extends NotebookDocument {
-  const _NotebookDocument({required this.uri, required this.notebookType, required this.version, final  LSPObject? metadata, required final  List<NotebookCell> cells}): _metadata = metadata,_cells = cells,super._();
+class _NotebookDocument implements NotebookDocument {
+  const _NotebookDocument({required this.uri, required this.notebookType, required this.version, final  LSPObject? metadata, required final  List<NotebookCell> cells}): _metadata = metadata,_cells = cells;
   factory _NotebookDocument.fromJson(Map<String, dynamic> json) => _$NotebookDocumentFromJson(json);
 
 @override final  String uri;
@@ -59562,8 +59562,8 @@ return $default(_that.uri,_that.languageId,_that.version,_that.text);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentItem extends TextDocumentItem {
-  const _TextDocumentItem({required this.uri, required this.languageId, required this.version, required this.text}): super._();
+class _TextDocumentItem implements TextDocumentItem {
+  const _TextDocumentItem({required this.uri, required this.languageId, required this.version, required this.text});
   factory _TextDocumentItem.fromJson(Map<String, dynamic> json) => _$TextDocumentItemFromJson(json);
 
 @override final  String uri;
@@ -59832,8 +59832,8 @@ return $default(_that.version,_that.uri);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _VersionedNotebookDocumentIdentifier extends VersionedNotebookDocumentIdentifier {
-  const _VersionedNotebookDocumentIdentifier({required this.version, required this.uri}): super._();
+class _VersionedNotebookDocumentIdentifier implements VersionedNotebookDocumentIdentifier {
+  const _VersionedNotebookDocumentIdentifier({required this.version, required this.uri});
   factory _VersionedNotebookDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$VersionedNotebookDocumentIdentifierFromJson(json);
 
 @override final  int version;
@@ -60098,8 +60098,8 @@ return $default(_that.metadata,_that.cells);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookDocumentChangeEvent extends NotebookDocumentChangeEvent {
-  const _NotebookDocumentChangeEvent({final  LSPObject? metadata, this.cells}): _metadata = metadata,super._();
+class _NotebookDocumentChangeEvent implements NotebookDocumentChangeEvent {
+  const _NotebookDocumentChangeEvent({final  LSPObject? metadata, this.cells}): _metadata = metadata;
   factory _NotebookDocumentChangeEvent.fromJson(Map<String, dynamic> json) => _$NotebookDocumentChangeEventFromJson(json);
 
  final  LSPObject? _metadata;
@@ -60371,8 +60371,8 @@ return $default(_that.uri);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookDocumentIdentifier extends NotebookDocumentIdentifier {
-  const _NotebookDocumentIdentifier({required this.uri}): super._();
+class _NotebookDocumentIdentifier implements NotebookDocumentIdentifier {
+  const _NotebookDocumentIdentifier({required this.uri});
   factory _NotebookDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$NotebookDocumentIdentifierFromJson(json);
 
 @override final  String uri;
@@ -60647,8 +60647,8 @@ return $default(_that.triggerKind,_that.selectedCompletionInfo);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineCompletionContext extends InlineCompletionContext {
-  const _InlineCompletionContext({required this.triggerKind, this.selectedCompletionInfo}): super._();
+class _InlineCompletionContext implements InlineCompletionContext {
+  const _InlineCompletionContext({required this.triggerKind, this.selectedCompletionInfo});
   factory _InlineCompletionContext.fromJson(Map<String, dynamic> json) => _$InlineCompletionContextFromJson(json);
 
 @override final  InlineCompletionTriggerKind triggerKind;
@@ -60925,8 +60925,8 @@ return $default(_that.kind,_that.value);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _StringValue extends StringValue {
-  const _StringValue({required this.kind, required this.value}): super._();
+class _StringValue implements StringValue {
+  const _StringValue({required this.kind, required this.value});
   factory _StringValue.fromJson(Map<String, dynamic> json) => _$StringValueFromJson(json);
 
 @override final  String kind;
@@ -61190,8 +61190,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineCompletionOptions extends InlineCompletionOptions {
-  const _InlineCompletionOptions({this.workDoneProgress}): super._();
+class _InlineCompletionOptions implements InlineCompletionOptions {
+  const _InlineCompletionOptions({this.workDoneProgress});
   factory _InlineCompletionOptions.fromJson(Map<String, dynamic> json) => _$InlineCompletionOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -61454,8 +61454,8 @@ return $default(_that.id,_that.method,_that.registerOptions);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Registration extends Registration {
-  const _Registration({required this.id, required this.method, this.registerOptions}): super._();
+class _Registration implements Registration {
+  const _Registration({required this.id, required this.method, this.registerOptions});
   factory _Registration.fromJson(Map<String, dynamic> json) => _$RegistrationFromJson(json);
 
 @override final  String id;
@@ -61721,8 +61721,8 @@ return $default(_that.id,_that.method);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Unregistration extends Unregistration {
-  const _Unregistration({required this.id, required this.method}): super._();
+class _Unregistration implements Unregistration {
+  const _Unregistration({required this.id, required this.method});
   factory _Unregistration.fromJson(Map<String, dynamic> json) => _$UnregistrationFromJson(json);
 
 @override final  String id;
@@ -61986,8 +61986,8 @@ return $default(_that.workspaceFolders);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceFoldersInitializeParams extends WorkspaceFoldersInitializeParams {
-  const _WorkspaceFoldersInitializeParams({final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders,super._();
+class _WorkspaceFoldersInitializeParams implements WorkspaceFoldersInitializeParams {
+  const _WorkspaceFoldersInitializeParams({final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders;
   factory _WorkspaceFoldersInitializeParams.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersInitializeParamsFromJson(json);
 
  final  List<WorkspaceFolder>? _workspaceFolders;
@@ -62714,8 +62714,8 @@ return $default(_that.uri,_that.version);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _VersionedTextDocumentIdentifier extends VersionedTextDocumentIdentifier {
-  const _VersionedTextDocumentIdentifier({required this.uri, required this.version}): super._();
+class _VersionedTextDocumentIdentifier implements VersionedTextDocumentIdentifier {
+  const _VersionedTextDocumentIdentifier({required this.uri, required this.version});
   factory _VersionedTextDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$VersionedTextDocumentIdentifierFromJson(json);
 
 @override final  String uri;
@@ -62979,8 +62979,8 @@ return $default(_that.includeText);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SaveOptions extends SaveOptions {
-  const _SaveOptions({this.includeText}): super._();
+class _SaveOptions implements SaveOptions {
+  const _SaveOptions({this.includeText});
   factory _SaveOptions.fromJson(Map<String, dynamic> json) => _$SaveOptionsFromJson(json);
 
 @override final  bool? includeText;
@@ -63243,8 +63243,8 @@ return $default(_that.uri,_that.type);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FileEvent extends FileEvent {
-  const _FileEvent({required this.uri, required this.type}): super._();
+class _FileEvent implements FileEvent {
+  const _FileEvent({required this.uri, required this.type});
   factory _FileEvent.fromJson(Map<String, dynamic> json) => _$FileEventFromJson(json);
 
 @override final  String uri;
@@ -63799,8 +63799,8 @@ return $default(_that.range,_that.severity,_that.code,_that.codeDescription,_tha
 /// @nodoc
 @JsonSerializable()
 
-class _Diagnostic extends Diagnostic {
-  const _Diagnostic({required this.range, this.severity, this.code, this.codeDescription, this.source, required this.message, final  List<DiagnosticTag>? tags, final  List<DiagnosticRelatedInformation>? relatedInformation, this.data}): _tags = tags,_relatedInformation = relatedInformation,super._();
+class _Diagnostic implements Diagnostic {
+  const _Diagnostic({required this.range, this.severity, this.code, this.codeDescription, this.source, required this.message, final  List<DiagnosticTag>? tags, final  List<DiagnosticRelatedInformation>? relatedInformation, this.data}): _tags = tags,_relatedInformation = relatedInformation;
   factory _Diagnostic.fromJson(Map<String, dynamic> json) => _$DiagnosticFromJson(json);
 
 @override final  Range range;
@@ -64114,8 +64114,8 @@ return $default(_that.triggerKind,_that.triggerCharacter);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CompletionContext extends CompletionContext {
-  const _CompletionContext({required this.triggerKind, this.triggerCharacter}): super._();
+class _CompletionContext implements CompletionContext {
+  const _CompletionContext({required this.triggerKind, this.triggerCharacter});
   factory _CompletionContext.fromJson(Map<String, dynamic> json) => _$CompletionContextFromJson(json);
 
 @override final  CompletionTriggerKind triggerKind;
@@ -64380,8 +64380,8 @@ return $default(_that.detail,_that.description);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CompletionItemLabelDetails extends CompletionItemLabelDetails {
-  const _CompletionItemLabelDetails({this.detail, this.description}): super._();
+class _CompletionItemLabelDetails implements CompletionItemLabelDetails {
+  const _CompletionItemLabelDetails({this.detail, this.description});
   factory _CompletionItemLabelDetails.fromJson(Map<String, dynamic> json) => _$CompletionItemLabelDetailsFromJson(json);
 
 @override final  String? detail;
@@ -64665,8 +64665,8 @@ return $default(_that.newText,_that.insert,_that.replace);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InsertReplaceEdit extends InsertReplaceEdit {
-  const _InsertReplaceEdit({required this.newText, required this.insert, required this.replace}): super._();
+class _InsertReplaceEdit implements InsertReplaceEdit {
+  const _InsertReplaceEdit({required this.newText, required this.insert, required this.replace});
   factory _InsertReplaceEdit.fromJson(Map<String, dynamic> json) => _$InsertReplaceEditFromJson(json);
 
 @override final  String newText;
@@ -64954,8 +64954,8 @@ return $default(_that.workDoneProgress,_that.triggerCharacters,_that.allCommitCh
 /// @nodoc
 @JsonSerializable()
 
-class _CompletionOptions extends CompletionOptions {
-  const _CompletionOptions({this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? allCommitCharacters, this.resolveProvider, this.completionItem}): _triggerCharacters = triggerCharacters,_allCommitCharacters = allCommitCharacters,super._();
+class _CompletionOptions implements CompletionOptions {
+  const _CompletionOptions({this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? allCommitCharacters, this.resolveProvider, this.completionItem}): _triggerCharacters = triggerCharacters,_allCommitCharacters = allCommitCharacters;
   factory _CompletionOptions.fromJson(Map<String, dynamic> json) => _$CompletionOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -65241,8 +65241,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _HoverOptions extends HoverOptions {
-  const _HoverOptions({this.workDoneProgress}): super._();
+class _HoverOptions implements HoverOptions {
+  const _HoverOptions({this.workDoneProgress});
   factory _HoverOptions.fromJson(Map<String, dynamic> json) => _$HoverOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -65519,8 +65519,8 @@ return $default(_that.triggerKind,_that.triggerCharacter,_that.isRetrigger,_that
 /// @nodoc
 @JsonSerializable()
 
-class _SignatureHelpContext extends SignatureHelpContext {
-  const _SignatureHelpContext({required this.triggerKind, this.triggerCharacter, required this.isRetrigger, this.activeSignatureHelp}): super._();
+class _SignatureHelpContext implements SignatureHelpContext {
+  const _SignatureHelpContext({required this.triggerKind, this.triggerCharacter, required this.isRetrigger, this.activeSignatureHelp});
   factory _SignatureHelpContext.fromJson(Map<String, dynamic> json) => _$SignatureHelpContextFromJson(json);
 
 @override final  SignatureHelpTriggerKind triggerKind;
@@ -65802,8 +65802,8 @@ return $default(_that.label,_that.documentation,_that.parameters,_that.activePar
 /// @nodoc
 @JsonSerializable()
 
-class _SignatureInformation extends SignatureInformation {
-  const _SignatureInformation({required this.label, this.documentation, final  List<ParameterInformation>? parameters, this.activeParameter}): _parameters = parameters,super._();
+class _SignatureInformation implements SignatureInformation {
+  const _SignatureInformation({required this.label, this.documentation, final  List<ParameterInformation>? parameters, this.activeParameter}): _parameters = parameters;
   factory _SignatureInformation.fromJson(Map<String, dynamic> json) => _$SignatureInformationFromJson(json);
 
 @override final  String label;
@@ -66080,8 +66080,8 @@ return $default(_that.workDoneProgress,_that.triggerCharacters,_that.retriggerCh
 /// @nodoc
 @JsonSerializable()
 
-class _SignatureHelpOptions extends SignatureHelpOptions {
-  const _SignatureHelpOptions({this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? retriggerCharacters}): _triggerCharacters = triggerCharacters,_retriggerCharacters = retriggerCharacters,super._();
+class _SignatureHelpOptions implements SignatureHelpOptions {
+  const _SignatureHelpOptions({this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? retriggerCharacters}): _triggerCharacters = triggerCharacters,_retriggerCharacters = retriggerCharacters;
   factory _SignatureHelpOptions.fromJson(Map<String, dynamic> json) => _$SignatureHelpOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -66363,8 +66363,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DefinitionOptions extends DefinitionOptions {
-  const _DefinitionOptions({this.workDoneProgress}): super._();
+class _DefinitionOptions implements DefinitionOptions {
+  const _DefinitionOptions({this.workDoneProgress});
   factory _DefinitionOptions.fromJson(Map<String, dynamic> json) => _$DefinitionOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -66626,8 +66626,8 @@ return $default(_that.includeDeclaration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ReferenceContext extends ReferenceContext {
-  const _ReferenceContext({required this.includeDeclaration}): super._();
+class _ReferenceContext implements ReferenceContext {
+  const _ReferenceContext({required this.includeDeclaration});
   factory _ReferenceContext.fromJson(Map<String, dynamic> json) => _$ReferenceContextFromJson(json);
 
 @override final  bool includeDeclaration;
@@ -66889,8 +66889,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ReferenceOptions extends ReferenceOptions {
-  const _ReferenceOptions({this.workDoneProgress}): super._();
+class _ReferenceOptions implements ReferenceOptions {
+  const _ReferenceOptions({this.workDoneProgress});
   factory _ReferenceOptions.fromJson(Map<String, dynamic> json) => _$ReferenceOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -67152,8 +67152,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentHighlightOptions extends DocumentHighlightOptions {
-  const _DocumentHighlightOptions({this.workDoneProgress}): super._();
+class _DocumentHighlightOptions implements DocumentHighlightOptions {
+  const _DocumentHighlightOptions({this.workDoneProgress});
   factory _DocumentHighlightOptions.fromJson(Map<String, dynamic> json) => _$DocumentHighlightOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -67418,8 +67418,8 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _BaseSymbolInformation extends BaseSymbolInformation {
-  const _BaseSymbolInformation({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName}): _tags = tags,super._();
+class _BaseSymbolInformation implements BaseSymbolInformation {
+  const _BaseSymbolInformation({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName}): _tags = tags;
   factory _BaseSymbolInformation.fromJson(Map<String, dynamic> json) => _$BaseSymbolInformationFromJson(json);
 
 @override final  String name;
@@ -67696,8 +67696,8 @@ return $default(_that.workDoneProgress,_that.label);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentSymbolOptions extends DocumentSymbolOptions {
-  const _DocumentSymbolOptions({this.workDoneProgress, this.label}): super._();
+class _DocumentSymbolOptions implements DocumentSymbolOptions {
+  const _DocumentSymbolOptions({this.workDoneProgress, this.label});
   factory _DocumentSymbolOptions.fromJson(Map<String, dynamic> json) => _$DocumentSymbolOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -67963,8 +67963,8 @@ return $default(_that.diagnostics,_that.only,_that.triggerKind);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CodeActionContext extends CodeActionContext {
-  const _CodeActionContext({required final  List<Diagnostic> diagnostics, final  List<CodeActionKind>? only, this.triggerKind}): _diagnostics = diagnostics,_only = only,super._();
+class _CodeActionContext implements CodeActionContext {
+  const _CodeActionContext({required final  List<Diagnostic> diagnostics, final  List<CodeActionKind>? only, this.triggerKind}): _diagnostics = diagnostics,_only = only;
   factory _CodeActionContext.fromJson(Map<String, dynamic> json) => _$CodeActionContextFromJson(json);
 
  final  List<Diagnostic> _diagnostics;
@@ -68246,8 +68246,8 @@ return $default(_that.workDoneProgress,_that.codeActionKinds,_that.resolveProvid
 /// @nodoc
 @JsonSerializable()
 
-class _CodeActionOptions extends CodeActionOptions {
-  const _CodeActionOptions({this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _codeActionKinds = codeActionKinds,super._();
+class _CodeActionOptions implements CodeActionOptions {
+  const _CodeActionOptions({this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _codeActionKinds = codeActionKinds;
   factory _CodeActionOptions.fromJson(Map<String, dynamic> json) => _$CodeActionOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -68522,8 +68522,8 @@ return $default(_that.workDoneProgress,_that.resolveProvider);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceSymbolOptions extends WorkspaceSymbolOptions {
-  const _WorkspaceSymbolOptions({this.workDoneProgress, this.resolveProvider}): super._();
+class _WorkspaceSymbolOptions implements WorkspaceSymbolOptions {
+  const _WorkspaceSymbolOptions({this.workDoneProgress, this.resolveProvider});
   factory _WorkspaceSymbolOptions.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -68788,8 +68788,8 @@ return $default(_that.workDoneProgress,_that.resolveProvider);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CodeLensOptions extends CodeLensOptions {
-  const _CodeLensOptions({this.workDoneProgress, this.resolveProvider}): super._();
+class _CodeLensOptions implements CodeLensOptions {
+  const _CodeLensOptions({this.workDoneProgress, this.resolveProvider});
   factory _CodeLensOptions.fromJson(Map<String, dynamic> json) => _$CodeLensOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -69054,8 +69054,8 @@ return $default(_that.workDoneProgress,_that.resolveProvider);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentLinkOptions extends DocumentLinkOptions {
-  const _DocumentLinkOptions({this.workDoneProgress, this.resolveProvider}): super._();
+class _DocumentLinkOptions implements DocumentLinkOptions {
+  const _DocumentLinkOptions({this.workDoneProgress, this.resolveProvider});
   factory _DocumentLinkOptions.fromJson(Map<String, dynamic> json) => _$DocumentLinkOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -69323,8 +69323,8 @@ return $default(_that.tabSize,_that.insertSpaces,_that.trimTrailingWhitespace,_t
 /// @nodoc
 @JsonSerializable()
 
-class _FormattingOptions extends FormattingOptions {
-  const _FormattingOptions({required this.tabSize, required this.insertSpaces, this.trimTrailingWhitespace, this.insertFinalNewline, this.trimFinalNewlines}): super._();
+class _FormattingOptions implements FormattingOptions {
+  const _FormattingOptions({required this.tabSize, required this.insertSpaces, this.trimTrailingWhitespace, this.insertFinalNewline, this.trimFinalNewlines});
   factory _FormattingOptions.fromJson(Map<String, dynamic> json) => _$FormattingOptionsFromJson(json);
 
 @override final  int tabSize;
@@ -69594,8 +69594,8 @@ return $default(_that.workDoneProgress);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentFormattingOptions extends DocumentFormattingOptions {
-  const _DocumentFormattingOptions({this.workDoneProgress}): super._();
+class _DocumentFormattingOptions implements DocumentFormattingOptions {
+  const _DocumentFormattingOptions({this.workDoneProgress});
   factory _DocumentFormattingOptions.fromJson(Map<String, dynamic> json) => _$DocumentFormattingOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -69858,8 +69858,8 @@ return $default(_that.workDoneProgress,_that.rangesSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentRangeFormattingOptions extends DocumentRangeFormattingOptions {
-  const _DocumentRangeFormattingOptions({this.workDoneProgress, this.rangesSupport}): super._();
+class _DocumentRangeFormattingOptions implements DocumentRangeFormattingOptions {
+  const _DocumentRangeFormattingOptions({this.workDoneProgress, this.rangesSupport});
   factory _DocumentRangeFormattingOptions.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -70124,8 +70124,8 @@ return $default(_that.firstTriggerCharacter,_that.moreTriggerCharacter);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentOnTypeFormattingOptions extends DocumentOnTypeFormattingOptions {
-  const _DocumentOnTypeFormattingOptions({required this.firstTriggerCharacter, final  List<String>? moreTriggerCharacter}): _moreTriggerCharacter = moreTriggerCharacter,super._();
+class _DocumentOnTypeFormattingOptions implements DocumentOnTypeFormattingOptions {
+  const _DocumentOnTypeFormattingOptions({required this.firstTriggerCharacter, final  List<String>? moreTriggerCharacter}): _moreTriggerCharacter = moreTriggerCharacter;
   factory _DocumentOnTypeFormattingOptions.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingOptionsFromJson(json);
 
 @override final  String firstTriggerCharacter;
@@ -70398,8 +70398,8 @@ return $default(_that.workDoneProgress,_that.prepareProvider);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _RenameOptions extends RenameOptions {
-  const _RenameOptions({this.workDoneProgress, this.prepareProvider}): super._();
+class _RenameOptions implements RenameOptions {
+  const _RenameOptions({this.workDoneProgress, this.prepareProvider});
   factory _RenameOptions.fromJson(Map<String, dynamic> json) => _$RenameOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -70664,8 +70664,8 @@ return $default(_that.workDoneProgress,_that.commands);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ExecuteCommandOptions extends ExecuteCommandOptions {
-  const _ExecuteCommandOptions({this.workDoneProgress, required final  List<String> commands}): _commands = commands,super._();
+class _ExecuteCommandOptions implements ExecuteCommandOptions {
+  const _ExecuteCommandOptions({this.workDoneProgress, required final  List<String> commands}): _commands = commands;
   factory _ExecuteCommandOptions.fromJson(Map<String, dynamic> json) => _$ExecuteCommandOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -70936,8 +70936,8 @@ return $default(_that.tokenTypes,_that.tokenModifiers);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensLegend extends SemanticTokensLegend {
-  const _SemanticTokensLegend({required final  List<String> tokenTypes, required final  List<String> tokenModifiers}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,super._();
+class _SemanticTokensLegend implements SemanticTokensLegend {
+  const _SemanticTokensLegend({required final  List<String> tokenTypes, required final  List<String> tokenModifiers}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers;
   factory _SemanticTokensLegend.fromJson(Map<String, dynamic> json) => _$SemanticTokensLegendFromJson(json);
 
  final  List<String> _tokenTypes;
@@ -71214,8 +71214,8 @@ return $default(_that.uri,_that.version);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _OptionalVersionedTextDocumentIdentifier extends OptionalVersionedTextDocumentIdentifier {
-  const _OptionalVersionedTextDocumentIdentifier({required this.uri, required this.version}): super._();
+class _OptionalVersionedTextDocumentIdentifier implements OptionalVersionedTextDocumentIdentifier {
+  const _OptionalVersionedTextDocumentIdentifier({required this.uri, required this.version});
   factory _OptionalVersionedTextDocumentIdentifier.fromJson(Map<String, dynamic> json) => _$OptionalVersionedTextDocumentIdentifierFromJson(json);
 
 @override final  String uri;
@@ -71490,8 +71490,8 @@ return $default(_that.range,_that.newText,_that.annotationId);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _AnnotatedTextEdit extends AnnotatedTextEdit {
-  const _AnnotatedTextEdit({required this.range, required this.newText, required this.annotationId}): super._();
+class _AnnotatedTextEdit implements AnnotatedTextEdit {
+  const _AnnotatedTextEdit({required this.range, required this.newText, required this.annotationId});
   factory _AnnotatedTextEdit.fromJson(Map<String, dynamic> json) => _$AnnotatedTextEditFromJson(json);
 
 @override final  Range range;
@@ -71767,8 +71767,8 @@ return $default(_that.kind,_that.annotationId);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ResourceOperation extends ResourceOperation {
-  const _ResourceOperation({required this.kind, this.annotationId}): super._();
+class _ResourceOperation implements ResourceOperation {
+  const _ResourceOperation({required this.kind, this.annotationId});
   factory _ResourceOperation.fromJson(Map<String, dynamic> json) => _$ResourceOperationFromJson(json);
 
 @override final  String kind;
@@ -72033,8 +72033,8 @@ return $default(_that.overwrite,_that.ignoreIfExists);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CreateFileOptions extends CreateFileOptions {
-  const _CreateFileOptions({this.overwrite, this.ignoreIfExists}): super._();
+class _CreateFileOptions implements CreateFileOptions {
+  const _CreateFileOptions({this.overwrite, this.ignoreIfExists});
   factory _CreateFileOptions.fromJson(Map<String, dynamic> json) => _$CreateFileOptionsFromJson(json);
 
 @override final  bool? overwrite;
@@ -72299,8 +72299,8 @@ return $default(_that.overwrite,_that.ignoreIfExists);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _RenameFileOptions extends RenameFileOptions {
-  const _RenameFileOptions({this.overwrite, this.ignoreIfExists}): super._();
+class _RenameFileOptions implements RenameFileOptions {
+  const _RenameFileOptions({this.overwrite, this.ignoreIfExists});
   factory _RenameFileOptions.fromJson(Map<String, dynamic> json) => _$RenameFileOptionsFromJson(json);
 
 @override final  bool? overwrite;
@@ -72565,8 +72565,8 @@ return $default(_that.recursive,_that.ignoreIfNotExists);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DeleteFileOptions extends DeleteFileOptions {
-  const _DeleteFileOptions({this.recursive, this.ignoreIfNotExists}): super._();
+class _DeleteFileOptions implements DeleteFileOptions {
+  const _DeleteFileOptions({this.recursive, this.ignoreIfNotExists});
   factory _DeleteFileOptions.fromJson(Map<String, dynamic> json) => _$DeleteFileOptionsFromJson(json);
 
 @override final  bool? recursive;
@@ -72844,8 +72844,8 @@ return $default(_that.glob,_that.matches,_that.options);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FileOperationPattern extends FileOperationPattern {
-  const _FileOperationPattern({required this.glob, this.matches, this.options}): super._();
+class _FileOperationPattern implements FileOperationPattern {
+  const _FileOperationPattern({required this.glob, this.matches, this.options});
   factory _FileOperationPattern.fromJson(Map<String, dynamic> json) => _$FileOperationPatternFromJson(json);
 
 @override final  String glob;
@@ -73127,8 +73127,8 @@ return $default(_that.kind,_that.resultId,_that.items,_that.uri,_that.version);c
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceFullDocumentDiagnosticReport extends WorkspaceFullDocumentDiagnosticReport {
-  const _WorkspaceFullDocumentDiagnosticReport({required this.kind, this.resultId, required final  List<Diagnostic> items, required this.uri, required this.version}): _items = items,super._();
+class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDiagnosticReport {
+  const _WorkspaceFullDocumentDiagnosticReport({required this.kind, this.resultId, required final  List<Diagnostic> items, required this.uri, required this.version}): _items = items;
   factory _WorkspaceFullDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceFullDocumentDiagnosticReportFromJson(json);
 
 @override final  String kind;
@@ -73407,8 +73407,8 @@ return $default(_that.kind,_that.resultId,_that.uri,_that.version);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceUnchangedDocumentDiagnosticReport extends WorkspaceUnchangedDocumentDiagnosticReport {
-  const _WorkspaceUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, required this.uri, required this.version}): super._();
+class _WorkspaceUnchangedDocumentDiagnosticReport implements WorkspaceUnchangedDocumentDiagnosticReport {
+  const _WorkspaceUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, required this.uri, required this.version});
   factory _WorkspaceUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(json);
 
 @override final  String kind;
@@ -73691,8 +73691,8 @@ return $default(_that.kind,_that.document,_that.metadata,_that.executionSummary)
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookCell extends NotebookCell {
-  const _NotebookCell({required this.kind, required this.document, final  LSPObject? metadata, this.executionSummary}): _metadata = metadata,super._();
+class _NotebookCell implements NotebookCell {
+  const _NotebookCell({required this.kind, required this.document, final  LSPObject? metadata, this.executionSummary}): _metadata = metadata;
   factory _NotebookCell.fromJson(Map<String, dynamic> json) => _$NotebookCellFromJson(json);
 
 @override final  NotebookCellKind kind;
@@ -73982,8 +73982,8 @@ return $default(_that.start,_that.deleteCount,_that.cells);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookCellArrayChange extends NotebookCellArrayChange {
-  const _NotebookCellArrayChange({required this.start, required this.deleteCount, final  List<NotebookCell>? cells}): _cells = cells,super._();
+class _NotebookCellArrayChange implements NotebookCellArrayChange {
+  const _NotebookCellArrayChange({required this.start, required this.deleteCount, final  List<NotebookCell>? cells}): _cells = cells;
   factory _NotebookCellArrayChange.fromJson(Map<String, dynamic> json) => _$NotebookCellArrayChangeFromJson(json);
 
 @override final  int start;
@@ -74267,8 +74267,8 @@ return $default(_that.range,_that.text);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SelectedCompletionInfo extends SelectedCompletionInfo {
-  const _SelectedCompletionInfo({required this.range, required this.text}): super._();
+class _SelectedCompletionInfo implements SelectedCompletionInfo {
+  const _SelectedCompletionInfo({required this.range, required this.text});
   factory _SelectedCompletionInfo.fromJson(Map<String, dynamic> json) => _$SelectedCompletionInfoFromJson(json);
 
 @override final  Range range;
@@ -74605,8 +74605,8 @@ return $default(_that.workspace,_that.textDocument,_that.notebookDocument,_that.
 /// @nodoc
 @JsonSerializable()
 
-class _ClientCapabilities extends ClientCapabilities {
-  const _ClientCapabilities({this.workspace, this.textDocument, this.notebookDocument, this.window, this.general, this.experimental}): super._();
+class _ClientCapabilities implements ClientCapabilities {
+  const _ClientCapabilities({this.workspace, this.textDocument, this.notebookDocument, this.window, this.general, this.experimental});
   factory _ClientCapabilities.fromJson(Map<String, dynamic> json) => _$ClientCapabilitiesFromJson(json);
 
 @override final  WorkspaceClientCapabilities? workspace;
@@ -74940,8 +74940,8 @@ return $default(_that.openClose,_that.change,_that.willSave,_that.willSaveWaitUn
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentSyncOptions extends TextDocumentSyncOptions {
-  const _TextDocumentSyncOptions({this.openClose, this.change, this.willSave, this.willSaveWaitUntil, this.save}): super._();
+class _TextDocumentSyncOptions implements TextDocumentSyncOptions {
+  const _TextDocumentSyncOptions({this.openClose, this.change, this.willSave, this.willSaveWaitUntil, this.save});
   factory _TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentSyncOptionsFromJson(json);
 
 @override final  bool? openClose;
@@ -75211,8 +75211,8 @@ return $default(_that.notebookSelector,_that.save);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookDocumentSyncOptions extends NotebookDocumentSyncOptions {
-  const _NotebookDocumentSyncOptions({required final  List<Object> notebookSelector, this.save}): _notebookSelector = notebookSelector,super._();
+class _NotebookDocumentSyncOptions implements NotebookDocumentSyncOptions {
+  const _NotebookDocumentSyncOptions({required final  List<Object> notebookSelector, this.save}): _notebookSelector = notebookSelector;
   factory _NotebookDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncOptionsFromJson(json);
 
  final  List<Object> _notebookSelector;
@@ -75484,8 +75484,8 @@ return $default(_that.notebookSelector,_that.save,_that.id);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookDocumentSyncRegistrationOptions extends NotebookDocumentSyncRegistrationOptions {
-  const _NotebookDocumentSyncRegistrationOptions({required final  List<Object> notebookSelector, this.save, this.id}): _notebookSelector = notebookSelector,super._();
+class _NotebookDocumentSyncRegistrationOptions implements NotebookDocumentSyncRegistrationOptions {
+  const _NotebookDocumentSyncRegistrationOptions({required final  List<Object> notebookSelector, this.save, this.id}): _notebookSelector = notebookSelector;
   factory _NotebookDocumentSyncRegistrationOptions.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncRegistrationOptionsFromJson(json);
 
  final  List<Object> _notebookSelector;
@@ -75757,8 +75757,8 @@ return $default(_that.supported,_that.changeNotifications);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceFoldersServerCapabilities extends WorkspaceFoldersServerCapabilities {
-  const _WorkspaceFoldersServerCapabilities({this.supported, this.changeNotifications}): super._();
+class _WorkspaceFoldersServerCapabilities implements WorkspaceFoldersServerCapabilities {
+  const _WorkspaceFoldersServerCapabilities({this.supported, this.changeNotifications});
   factory _WorkspaceFoldersServerCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceFoldersServerCapabilitiesFromJson(json);
 
 @override final  bool? supported;
@@ -76098,8 +76098,8 @@ return $default(_that.didCreate,_that.willCreate,_that.didRename,_that.willRenam
 /// @nodoc
 @JsonSerializable()
 
-class _FileOperationOptions extends FileOperationOptions {
-  const _FileOperationOptions({this.didCreate, this.willCreate, this.didRename, this.willRename, this.didDelete, this.willDelete}): super._();
+class _FileOperationOptions implements FileOperationOptions {
+  const _FileOperationOptions({this.didCreate, this.willCreate, this.didRename, this.willRename, this.didDelete, this.willDelete});
   factory _FileOperationOptions.fromJson(Map<String, dynamic> json) => _$FileOperationOptionsFromJson(json);
 
 @override final  FileOperationRegistrationOptions? didCreate;
@@ -76443,8 +76443,8 @@ return $default(_that.href);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CodeDescription extends CodeDescription {
-  const _CodeDescription({required this.href}): super._();
+class _CodeDescription implements CodeDescription {
+  const _CodeDescription({required this.href});
   factory _CodeDescription.fromJson(Map<String, dynamic> json) => _$CodeDescriptionFromJson(json);
 
 @override final  String href;
@@ -76716,8 +76716,8 @@ return $default(_that.location,_that.message);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DiagnosticRelatedInformation extends DiagnosticRelatedInformation {
-  const _DiagnosticRelatedInformation({required this.location, required this.message}): super._();
+class _DiagnosticRelatedInformation implements DiagnosticRelatedInformation {
+  const _DiagnosticRelatedInformation({required this.location, required this.message});
   factory _DiagnosticRelatedInformation.fromJson(Map<String, dynamic> json) => _$DiagnosticRelatedInformationFromJson(json);
 
 @override final  Location location;
@@ -76989,8 +76989,8 @@ return $default(_that.label,_that.documentation);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ParameterInformation extends ParameterInformation {
-  const _ParameterInformation({required this.label, this.documentation}): super._();
+class _ParameterInformation implements ParameterInformation {
+  const _ParameterInformation({required this.label, this.documentation});
   factory _ParameterInformation.fromJson(Map<String, dynamic> json) => _$ParameterInformationFromJson(json);
 
 @override final  Object label;
@@ -77252,8 +77252,8 @@ return $default(_that.notebook,_that.language);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookCellTextDocumentFilter extends NotebookCellTextDocumentFilter {
-  const _NotebookCellTextDocumentFilter({required this.notebook, this.language}): super._();
+class _NotebookCellTextDocumentFilter implements NotebookCellTextDocumentFilter {
+  const _NotebookCellTextDocumentFilter({required this.notebook, this.language});
   factory _NotebookCellTextDocumentFilter.fromJson(Map<String, dynamic> json) => _$NotebookCellTextDocumentFilterFromJson(json);
 
 @override final  Object notebook;
@@ -77516,8 +77516,8 @@ return $default(_that.ignoreCase);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FileOperationPatternOptions extends FileOperationPatternOptions {
-  const _FileOperationPatternOptions({this.ignoreCase}): super._();
+class _FileOperationPatternOptions implements FileOperationPatternOptions {
+  const _FileOperationPatternOptions({this.ignoreCase});
   factory _FileOperationPatternOptions.fromJson(Map<String, dynamic> json) => _$FileOperationPatternOptionsFromJson(json);
 
 @override final  bool? ignoreCase;
@@ -77780,8 +77780,8 @@ return $default(_that.executionOrder,_that.success);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ExecutionSummary extends ExecutionSummary {
-  const _ExecutionSummary({required this.executionOrder, this.success}): super._();
+class _ExecutionSummary implements ExecutionSummary {
+  const _ExecutionSummary({required this.executionOrder, this.success});
   factory _ExecutionSummary.fromJson(Map<String, dynamic> json) => _$ExecutionSummaryFromJson(json);
 
 @override final  int executionOrder;
@@ -78203,8 +78203,8 @@ return $default(_that.applyEdit,_that.workspaceEdit,_that.didChangeConfiguration
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceClientCapabilities extends WorkspaceClientCapabilities {
-  const _WorkspaceClientCapabilities({this.applyEdit, this.workspaceEdit, this.didChangeConfiguration, this.didChangeWatchedFiles, this.symbol, this.executeCommand, this.workspaceFolders, this.configuration, this.semanticTokens, this.codeLens, this.fileOperations, this.inlineValue, this.inlayHint, this.diagnostics, this.foldingRange}): super._();
+class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
+  const _WorkspaceClientCapabilities({this.applyEdit, this.workspaceEdit, this.didChangeConfiguration, this.didChangeWatchedFiles, this.symbol, this.executeCommand, this.workspaceFolders, this.configuration, this.semanticTokens, this.codeLens, this.fileOperations, this.inlineValue, this.inlayHint, this.diagnostics, this.foldingRange});
   factory _WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceClientCapabilitiesFromJson(json);
 
 @override final  bool? applyEdit;
@@ -79040,8 +79040,8 @@ return $default(_that.synchronization,_that.completion,_that.hover,_that.signatu
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentClientCapabilities extends TextDocumentClientCapabilities {
-  const _TextDocumentClientCapabilities({this.synchronization, this.completion, this.hover, this.signatureHelp, this.declaration, this.definition, this.typeDefinition, this.implementation, this.references, this.documentHighlight, this.documentSymbol, this.codeAction, this.codeLens, this.documentLink, this.colorProvider, this.formatting, this.rangeFormatting, this.onTypeFormatting, this.rename, this.foldingRange, this.selectionRange, this.publishDiagnostics, this.callHierarchy, this.semanticTokens, this.linkedEditingRange, this.moniker, this.typeHierarchy, this.inlineValue, this.inlayHint, this.diagnostic, this.inlineCompletion}): super._();
+class _TextDocumentClientCapabilities implements TextDocumentClientCapabilities {
+  const _TextDocumentClientCapabilities({this.synchronization, this.completion, this.hover, this.signatureHelp, this.declaration, this.definition, this.typeDefinition, this.implementation, this.references, this.documentHighlight, this.documentSymbol, this.codeAction, this.codeLens, this.documentLink, this.colorProvider, this.formatting, this.rangeFormatting, this.onTypeFormatting, this.rename, this.foldingRange, this.selectionRange, this.publishDiagnostics, this.callHierarchy, this.semanticTokens, this.linkedEditingRange, this.moniker, this.typeHierarchy, this.inlineValue, this.inlayHint, this.diagnostic, this.inlineCompletion});
   factory _TextDocumentClientCapabilities.fromJson(Map<String, dynamic> json) => _$TextDocumentClientCapabilitiesFromJson(json);
 
 @override final  TextDocumentSyncClientCapabilities? synchronization;
@@ -79744,8 +79744,8 @@ return $default(_that.synchronization);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookDocumentClientCapabilities extends NotebookDocumentClientCapabilities {
-  const _NotebookDocumentClientCapabilities({required this.synchronization}): super._();
+class _NotebookDocumentClientCapabilities implements NotebookDocumentClientCapabilities {
+  const _NotebookDocumentClientCapabilities({required this.synchronization});
   factory _NotebookDocumentClientCapabilities.fromJson(Map<String, dynamic> json) => _$NotebookDocumentClientCapabilitiesFromJson(json);
 
 @override final  NotebookDocumentSyncClientCapabilities synchronization;
@@ -80042,8 +80042,8 @@ return $default(_that.workDoneProgress,_that.showMessage,_that.showDocument);cas
 /// @nodoc
 @JsonSerializable()
 
-class _WindowClientCapabilities extends WindowClientCapabilities {
-  const _WindowClientCapabilities({this.workDoneProgress, this.showMessage, this.showDocument}): super._();
+class _WindowClientCapabilities implements WindowClientCapabilities {
+  const _WindowClientCapabilities({this.workDoneProgress, this.showMessage, this.showDocument});
   factory _WindowClientCapabilities.fromJson(Map<String, dynamic> json) => _$WindowClientCapabilitiesFromJson(json);
 
 @override final  bool? workDoneProgress;
@@ -80360,8 +80360,8 @@ return $default(_that.staleRequestSupport,_that.regularExpressions,_that.markdow
 /// @nodoc
 @JsonSerializable()
 
-class _GeneralClientCapabilities extends GeneralClientCapabilities {
-  const _GeneralClientCapabilities({this.staleRequestSupport, this.regularExpressions, this.markdown, final  List<PositionEncodingKind>? positionEncodings}): _positionEncodings = positionEncodings,super._();
+class _GeneralClientCapabilities implements GeneralClientCapabilities {
+  const _GeneralClientCapabilities({this.staleRequestSupport, this.regularExpressions, this.markdown, final  List<PositionEncodingKind>? positionEncodings}): _positionEncodings = positionEncodings;
   factory _GeneralClientCapabilities.fromJson(Map<String, dynamic> json) => _$GeneralClientCapabilitiesFromJson(json);
 
 @override final  ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport;
@@ -80661,8 +80661,8 @@ return $default(_that.baseUri,_that.pattern);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _RelativePattern extends RelativePattern {
-  const _RelativePattern({required this.baseUri, required this.pattern}): super._();
+class _RelativePattern implements RelativePattern {
+  const _RelativePattern({required this.baseUri, required this.pattern});
   factory _RelativePattern.fromJson(Map<String, dynamic> json) => _$RelativePatternFromJson(json);
 
 @override final  Object baseUri;
@@ -80929,8 +80929,8 @@ return $default(_that.documentChanges,_that.resourceOperations,_that.failureHand
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceEditClientCapabilities extends WorkspaceEditClientCapabilities {
-  const _WorkspaceEditClientCapabilities({this.documentChanges, final  List<ResourceOperationKind>? resourceOperations, this.failureHandling, this.normalizesLineEndings, this.changeAnnotationSupport}): _resourceOperations = resourceOperations,super._();
+class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilities {
+  const _WorkspaceEditClientCapabilities({this.documentChanges, final  List<ResourceOperationKind>? resourceOperations, this.failureHandling, this.normalizesLineEndings, this.changeAnnotationSupport}): _resourceOperations = resourceOperations;
   factory _WorkspaceEditClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceEditClientCapabilitiesFromJson(json);
 
 @override final  bool? documentChanges;
@@ -81208,8 +81208,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidChangeConfigurationClientCapabilities extends DidChangeConfigurationClientCapabilities {
-  const _DidChangeConfigurationClientCapabilities({this.dynamicRegistration}): super._();
+class _DidChangeConfigurationClientCapabilities implements DidChangeConfigurationClientCapabilities {
+  const _DidChangeConfigurationClientCapabilities({this.dynamicRegistration});
   factory _DidChangeConfigurationClientCapabilities.fromJson(Map<String, dynamic> json) => _$DidChangeConfigurationClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -81472,8 +81472,8 @@ return $default(_that.dynamicRegistration,_that.relativePatternSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DidChangeWatchedFilesClientCapabilities extends DidChangeWatchedFilesClientCapabilities {
-  const _DidChangeWatchedFilesClientCapabilities({this.dynamicRegistration, this.relativePatternSupport}): super._();
+class _DidChangeWatchedFilesClientCapabilities implements DidChangeWatchedFilesClientCapabilities {
+  const _DidChangeWatchedFilesClientCapabilities({this.dynamicRegistration, this.relativePatternSupport});
   factory _DidChangeWatchedFilesClientCapabilities.fromJson(Map<String, dynamic> json) => _$DidChangeWatchedFilesClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -81740,8 +81740,8 @@ return $default(_that.dynamicRegistration,_that.symbolKind,_that.tagSupport,_tha
 /// @nodoc
 @JsonSerializable()
 
-class _WorkspaceSymbolClientCapabilities extends WorkspaceSymbolClientCapabilities {
-  const _WorkspaceSymbolClientCapabilities({this.dynamicRegistration, this.symbolKind, this.tagSupport, this.resolveSupport}): super._();
+class _WorkspaceSymbolClientCapabilities implements WorkspaceSymbolClientCapabilities {
+  const _WorkspaceSymbolClientCapabilities({this.dynamicRegistration, this.symbolKind, this.tagSupport, this.resolveSupport});
   factory _WorkspaceSymbolClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -82009,8 +82009,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ExecuteCommandClientCapabilities extends ExecuteCommandClientCapabilities {
-  const _ExecuteCommandClientCapabilities({this.dynamicRegistration}): super._();
+class _ExecuteCommandClientCapabilities implements ExecuteCommandClientCapabilities {
+  const _ExecuteCommandClientCapabilities({this.dynamicRegistration});
   factory _ExecuteCommandClientCapabilities.fromJson(Map<String, dynamic> json) => _$ExecuteCommandClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -82272,8 +82272,8 @@ return $default(_that.refreshSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensWorkspaceClientCapabilities extends SemanticTokensWorkspaceClientCapabilities {
-  const _SemanticTokensWorkspaceClientCapabilities({this.refreshSupport}): super._();
+class _SemanticTokensWorkspaceClientCapabilities implements SemanticTokensWorkspaceClientCapabilities {
+  const _SemanticTokensWorkspaceClientCapabilities({this.refreshSupport});
   factory _SemanticTokensWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensWorkspaceClientCapabilitiesFromJson(json);
 
 @override final  bool? refreshSupport;
@@ -82535,8 +82535,8 @@ return $default(_that.refreshSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CodeLensWorkspaceClientCapabilities extends CodeLensWorkspaceClientCapabilities {
-  const _CodeLensWorkspaceClientCapabilities({this.refreshSupport}): super._();
+class _CodeLensWorkspaceClientCapabilities implements CodeLensWorkspaceClientCapabilities {
+  const _CodeLensWorkspaceClientCapabilities({this.refreshSupport});
   factory _CodeLensWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeLensWorkspaceClientCapabilitiesFromJson(json);
 
 @override final  bool? refreshSupport;
@@ -82804,8 +82804,8 @@ return $default(_that.dynamicRegistration,_that.didCreate,_that.willCreate,_that
 /// @nodoc
 @JsonSerializable()
 
-class _FileOperationClientCapabilities extends FileOperationClientCapabilities {
-  const _FileOperationClientCapabilities({this.dynamicRegistration, this.didCreate, this.willCreate, this.didRename, this.willRename, this.didDelete, this.willDelete}): super._();
+class _FileOperationClientCapabilities implements FileOperationClientCapabilities {
+  const _FileOperationClientCapabilities({this.dynamicRegistration, this.didCreate, this.willCreate, this.didRename, this.willRename, this.didDelete, this.willDelete});
   factory _FileOperationClientCapabilities.fromJson(Map<String, dynamic> json) => _$FileOperationClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -83079,8 +83079,8 @@ return $default(_that.refreshSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineValueWorkspaceClientCapabilities extends InlineValueWorkspaceClientCapabilities {
-  const _InlineValueWorkspaceClientCapabilities({this.refreshSupport}): super._();
+class _InlineValueWorkspaceClientCapabilities implements InlineValueWorkspaceClientCapabilities {
+  const _InlineValueWorkspaceClientCapabilities({this.refreshSupport});
   factory _InlineValueWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineValueWorkspaceClientCapabilitiesFromJson(json);
 
 @override final  bool? refreshSupport;
@@ -83342,8 +83342,8 @@ return $default(_that.refreshSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlayHintWorkspaceClientCapabilities extends InlayHintWorkspaceClientCapabilities {
-  const _InlayHintWorkspaceClientCapabilities({this.refreshSupport}): super._();
+class _InlayHintWorkspaceClientCapabilities implements InlayHintWorkspaceClientCapabilities {
+  const _InlayHintWorkspaceClientCapabilities({this.refreshSupport});
   factory _InlayHintWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlayHintWorkspaceClientCapabilitiesFromJson(json);
 
 @override final  bool? refreshSupport;
@@ -83605,8 +83605,8 @@ return $default(_that.refreshSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DiagnosticWorkspaceClientCapabilities extends DiagnosticWorkspaceClientCapabilities {
-  const _DiagnosticWorkspaceClientCapabilities({this.refreshSupport}): super._();
+class _DiagnosticWorkspaceClientCapabilities implements DiagnosticWorkspaceClientCapabilities {
+  const _DiagnosticWorkspaceClientCapabilities({this.refreshSupport});
   factory _DiagnosticWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticWorkspaceClientCapabilitiesFromJson(json);
 
 @override final  bool? refreshSupport;
@@ -83868,8 +83868,8 @@ return $default(_that.refreshSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FoldingRangeWorkspaceClientCapabilities extends FoldingRangeWorkspaceClientCapabilities {
-  const _FoldingRangeWorkspaceClientCapabilities({this.refreshSupport}): super._();
+class _FoldingRangeWorkspaceClientCapabilities implements FoldingRangeWorkspaceClientCapabilities {
+  const _FoldingRangeWorkspaceClientCapabilities({this.refreshSupport});
   factory _FoldingRangeWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$FoldingRangeWorkspaceClientCapabilitiesFromJson(json);
 
 @override final  bool? refreshSupport;
@@ -84134,8 +84134,8 @@ return $default(_that.dynamicRegistration,_that.willSave,_that.willSaveWaitUntil
 /// @nodoc
 @JsonSerializable()
 
-class _TextDocumentSyncClientCapabilities extends TextDocumentSyncClientCapabilities {
-  const _TextDocumentSyncClientCapabilities({this.dynamicRegistration, this.willSave, this.willSaveWaitUntil, this.didSave}): super._();
+class _TextDocumentSyncClientCapabilities implements TextDocumentSyncClientCapabilities {
+  const _TextDocumentSyncClientCapabilities({this.dynamicRegistration, this.willSave, this.willSaveWaitUntil, this.didSave});
   factory _TextDocumentSyncClientCapabilities.fromJson(Map<String, dynamic> json) => _$TextDocumentSyncClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -84408,8 +84408,8 @@ return $default(_that.dynamicRegistration,_that.completionItem,_that.completionI
 /// @nodoc
 @JsonSerializable()
 
-class _CompletionClientCapabilities extends CompletionClientCapabilities {
-  const _CompletionClientCapabilities({this.dynamicRegistration, this.completionItem, this.completionItemKind, this.insertTextMode, this.contextSupport, this.completionList}): super._();
+class _CompletionClientCapabilities implements CompletionClientCapabilities {
+  const _CompletionClientCapabilities({this.dynamicRegistration, this.completionItem, this.completionItemKind, this.insertTextMode, this.contextSupport, this.completionList});
   factory _CompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CompletionClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -84682,8 +84682,8 @@ return $default(_that.dynamicRegistration,_that.contentFormat);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _HoverClientCapabilities extends HoverClientCapabilities {
-  const _HoverClientCapabilities({this.dynamicRegistration, final  List<MarkupKind>? contentFormat}): _contentFormat = contentFormat,super._();
+class _HoverClientCapabilities implements HoverClientCapabilities {
+  const _HoverClientCapabilities({this.dynamicRegistration, final  List<MarkupKind>? contentFormat}): _contentFormat = contentFormat;
   factory _HoverClientCapabilities.fromJson(Map<String, dynamic> json) => _$HoverClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -84957,8 +84957,8 @@ return $default(_that.dynamicRegistration,_that.signatureInformation,_that.conte
 /// @nodoc
 @JsonSerializable()
 
-class _SignatureHelpClientCapabilities extends SignatureHelpClientCapabilities {
-  const _SignatureHelpClientCapabilities({this.dynamicRegistration, this.signatureInformation, this.contextSupport}): super._();
+class _SignatureHelpClientCapabilities implements SignatureHelpClientCapabilities {
+  const _SignatureHelpClientCapabilities({this.dynamicRegistration, this.signatureInformation, this.contextSupport});
   factory _SignatureHelpClientCapabilities.fromJson(Map<String, dynamic> json) => _$SignatureHelpClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -85225,8 +85225,8 @@ return $default(_that.dynamicRegistration,_that.linkSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DeclarationClientCapabilities extends DeclarationClientCapabilities {
-  const _DeclarationClientCapabilities({this.dynamicRegistration, this.linkSupport}): super._();
+class _DeclarationClientCapabilities implements DeclarationClientCapabilities {
+  const _DeclarationClientCapabilities({this.dynamicRegistration, this.linkSupport});
   factory _DeclarationClientCapabilities.fromJson(Map<String, dynamic> json) => _$DeclarationClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -85491,8 +85491,8 @@ return $default(_that.dynamicRegistration,_that.linkSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DefinitionClientCapabilities extends DefinitionClientCapabilities {
-  const _DefinitionClientCapabilities({this.dynamicRegistration, this.linkSupport}): super._();
+class _DefinitionClientCapabilities implements DefinitionClientCapabilities {
+  const _DefinitionClientCapabilities({this.dynamicRegistration, this.linkSupport});
   factory _DefinitionClientCapabilities.fromJson(Map<String, dynamic> json) => _$DefinitionClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -85757,8 +85757,8 @@ return $default(_that.dynamicRegistration,_that.linkSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TypeDefinitionClientCapabilities extends TypeDefinitionClientCapabilities {
-  const _TypeDefinitionClientCapabilities({this.dynamicRegistration, this.linkSupport}): super._();
+class _TypeDefinitionClientCapabilities implements TypeDefinitionClientCapabilities {
+  const _TypeDefinitionClientCapabilities({this.dynamicRegistration, this.linkSupport});
   factory _TypeDefinitionClientCapabilities.fromJson(Map<String, dynamic> json) => _$TypeDefinitionClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -86023,8 +86023,8 @@ return $default(_that.dynamicRegistration,_that.linkSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ImplementationClientCapabilities extends ImplementationClientCapabilities {
-  const _ImplementationClientCapabilities({this.dynamicRegistration, this.linkSupport}): super._();
+class _ImplementationClientCapabilities implements ImplementationClientCapabilities {
+  const _ImplementationClientCapabilities({this.dynamicRegistration, this.linkSupport});
   factory _ImplementationClientCapabilities.fromJson(Map<String, dynamic> json) => _$ImplementationClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -86288,8 +86288,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ReferenceClientCapabilities extends ReferenceClientCapabilities {
-  const _ReferenceClientCapabilities({this.dynamicRegistration}): super._();
+class _ReferenceClientCapabilities implements ReferenceClientCapabilities {
+  const _ReferenceClientCapabilities({this.dynamicRegistration});
   factory _ReferenceClientCapabilities.fromJson(Map<String, dynamic> json) => _$ReferenceClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -86551,8 +86551,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentHighlightClientCapabilities extends DocumentHighlightClientCapabilities {
-  const _DocumentHighlightClientCapabilities({this.dynamicRegistration}): super._();
+class _DocumentHighlightClientCapabilities implements DocumentHighlightClientCapabilities {
+  const _DocumentHighlightClientCapabilities({this.dynamicRegistration});
   factory _DocumentHighlightClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentHighlightClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -86818,8 +86818,8 @@ return $default(_that.dynamicRegistration,_that.symbolKind,_that.hierarchicalDoc
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentSymbolClientCapabilities extends DocumentSymbolClientCapabilities {
-  const _DocumentSymbolClientCapabilities({this.dynamicRegistration, this.symbolKind, this.hierarchicalDocumentSymbolSupport, this.tagSupport, this.labelSupport}): super._();
+class _DocumentSymbolClientCapabilities implements DocumentSymbolClientCapabilities {
+  const _DocumentSymbolClientCapabilities({this.dynamicRegistration, this.symbolKind, this.hierarchicalDocumentSymbolSupport, this.tagSupport, this.labelSupport});
   factory _DocumentSymbolClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentSymbolClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -87095,8 +87095,8 @@ return $default(_that.dynamicRegistration,_that.codeActionLiteralSupport,_that.i
 /// @nodoc
 @JsonSerializable()
 
-class _CodeActionClientCapabilities extends CodeActionClientCapabilities {
-  const _CodeActionClientCapabilities({this.dynamicRegistration, this.codeActionLiteralSupport, this.isPreferredSupport, this.disabledSupport, this.dataSupport, this.resolveSupport, this.honorsChangeAnnotations}): super._();
+class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
+  const _CodeActionClientCapabilities({this.dynamicRegistration, this.codeActionLiteralSupport, this.isPreferredSupport, this.disabledSupport, this.dataSupport, this.resolveSupport, this.honorsChangeAnnotations});
   factory _CodeActionClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeActionClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -87370,8 +87370,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CodeLensClientCapabilities extends CodeLensClientCapabilities {
-  const _CodeLensClientCapabilities({this.dynamicRegistration}): super._();
+class _CodeLensClientCapabilities implements CodeLensClientCapabilities {
+  const _CodeLensClientCapabilities({this.dynamicRegistration});
   factory _CodeLensClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeLensClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -87634,8 +87634,8 @@ return $default(_that.dynamicRegistration,_that.tooltipSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentLinkClientCapabilities extends DocumentLinkClientCapabilities {
-  const _DocumentLinkClientCapabilities({this.dynamicRegistration, this.tooltipSupport}): super._();
+class _DocumentLinkClientCapabilities implements DocumentLinkClientCapabilities {
+  const _DocumentLinkClientCapabilities({this.dynamicRegistration, this.tooltipSupport});
   factory _DocumentLinkClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentLinkClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -87899,8 +87899,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentColorClientCapabilities extends DocumentColorClientCapabilities {
-  const _DocumentColorClientCapabilities({this.dynamicRegistration}): super._();
+class _DocumentColorClientCapabilities implements DocumentColorClientCapabilities {
+  const _DocumentColorClientCapabilities({this.dynamicRegistration});
   factory _DocumentColorClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentColorClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -88162,8 +88162,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentFormattingClientCapabilities extends DocumentFormattingClientCapabilities {
-  const _DocumentFormattingClientCapabilities({this.dynamicRegistration}): super._();
+class _DocumentFormattingClientCapabilities implements DocumentFormattingClientCapabilities {
+  const _DocumentFormattingClientCapabilities({this.dynamicRegistration});
   factory _DocumentFormattingClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentFormattingClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -88426,8 +88426,8 @@ return $default(_that.dynamicRegistration,_that.rangesSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentRangeFormattingClientCapabilities extends DocumentRangeFormattingClientCapabilities {
-  const _DocumentRangeFormattingClientCapabilities({this.dynamicRegistration, this.rangesSupport}): super._();
+class _DocumentRangeFormattingClientCapabilities implements DocumentRangeFormattingClientCapabilities {
+  const _DocumentRangeFormattingClientCapabilities({this.dynamicRegistration, this.rangesSupport});
   factory _DocumentRangeFormattingClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -88691,8 +88691,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DocumentOnTypeFormattingClientCapabilities extends DocumentOnTypeFormattingClientCapabilities {
-  const _DocumentOnTypeFormattingClientCapabilities({this.dynamicRegistration}): super._();
+class _DocumentOnTypeFormattingClientCapabilities implements DocumentOnTypeFormattingClientCapabilities {
+  const _DocumentOnTypeFormattingClientCapabilities({this.dynamicRegistration});
   factory _DocumentOnTypeFormattingClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -88957,8 +88957,8 @@ return $default(_that.dynamicRegistration,_that.prepareSupport,_that.prepareSupp
 /// @nodoc
 @JsonSerializable()
 
-class _RenameClientCapabilities extends RenameClientCapabilities {
-  const _RenameClientCapabilities({this.dynamicRegistration, this.prepareSupport, this.prepareSupportDefaultBehavior, this.honorsChangeAnnotations}): super._();
+class _RenameClientCapabilities implements RenameClientCapabilities {
+  const _RenameClientCapabilities({this.dynamicRegistration, this.prepareSupport, this.prepareSupportDefaultBehavior, this.honorsChangeAnnotations});
   factory _RenameClientCapabilities.fromJson(Map<String, dynamic> json) => _$RenameClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -89230,8 +89230,8 @@ return $default(_that.dynamicRegistration,_that.rangeLimit,_that.lineFoldingOnly
 /// @nodoc
 @JsonSerializable()
 
-class _FoldingRangeClientCapabilities extends FoldingRangeClientCapabilities {
-  const _FoldingRangeClientCapabilities({this.dynamicRegistration, this.rangeLimit, this.lineFoldingOnly, this.foldingRangeKind, this.foldingRange}): super._();
+class _FoldingRangeClientCapabilities implements FoldingRangeClientCapabilities {
+  const _FoldingRangeClientCapabilities({this.dynamicRegistration, this.rangeLimit, this.lineFoldingOnly, this.foldingRangeKind, this.foldingRange});
   factory _FoldingRangeClientCapabilities.fromJson(Map<String, dynamic> json) => _$FoldingRangeClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -89501,8 +89501,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _SelectionRangeClientCapabilities extends SelectionRangeClientCapabilities {
-  const _SelectionRangeClientCapabilities({this.dynamicRegistration}): super._();
+class _SelectionRangeClientCapabilities implements SelectionRangeClientCapabilities {
+  const _SelectionRangeClientCapabilities({this.dynamicRegistration});
   factory _SelectionRangeClientCapabilities.fromJson(Map<String, dynamic> json) => _$SelectionRangeClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -89768,8 +89768,8 @@ return $default(_that.relatedInformation,_that.tagSupport,_that.versionSupport,_
 /// @nodoc
 @JsonSerializable()
 
-class _PublishDiagnosticsClientCapabilities extends PublishDiagnosticsClientCapabilities {
-  const _PublishDiagnosticsClientCapabilities({this.relatedInformation, this.tagSupport, this.versionSupport, this.codeDescriptionSupport, this.dataSupport}): super._();
+class _PublishDiagnosticsClientCapabilities implements PublishDiagnosticsClientCapabilities {
+  const _PublishDiagnosticsClientCapabilities({this.relatedInformation, this.tagSupport, this.versionSupport, this.codeDescriptionSupport, this.dataSupport});
   factory _PublishDiagnosticsClientCapabilities.fromJson(Map<String, dynamic> json) => _$PublishDiagnosticsClientCapabilitiesFromJson(json);
 
 @override final  bool? relatedInformation;
@@ -90039,8 +90039,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _CallHierarchyClientCapabilities extends CallHierarchyClientCapabilities {
-  const _CallHierarchyClientCapabilities({this.dynamicRegistration}): super._();
+class _CallHierarchyClientCapabilities implements CallHierarchyClientCapabilities {
+  const _CallHierarchyClientCapabilities({this.dynamicRegistration});
   factory _CallHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) => _$CallHierarchyClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -90310,8 +90310,8 @@ return $default(_that.dynamicRegistration,_that.requests,_that.tokenTypes,_that.
 /// @nodoc
 @JsonSerializable()
 
-class _SemanticTokensClientCapabilities extends SemanticTokensClientCapabilities {
-  const _SemanticTokensClientCapabilities({this.dynamicRegistration, required this.requests, required final  List<String> tokenTypes, required final  List<String> tokenModifiers, required final  List<TokenFormat> formats, this.overlappingTokenSupport, this.multilineTokenSupport, this.serverCancelSupport, this.augmentsSyntaxTokens}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,_formats = formats,super._();
+class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilities {
+  const _SemanticTokensClientCapabilities({this.dynamicRegistration, required this.requests, required final  List<String> tokenTypes, required final  List<String> tokenModifiers, required final  List<TokenFormat> formats, this.overlappingTokenSupport, this.multilineTokenSupport, this.serverCancelSupport, this.augmentsSyntaxTokens}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,_formats = formats;
   factory _SemanticTokensClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -90607,8 +90607,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _LinkedEditingRangeClientCapabilities extends LinkedEditingRangeClientCapabilities {
-  const _LinkedEditingRangeClientCapabilities({this.dynamicRegistration}): super._();
+class _LinkedEditingRangeClientCapabilities implements LinkedEditingRangeClientCapabilities {
+  const _LinkedEditingRangeClientCapabilities({this.dynamicRegistration});
   factory _LinkedEditingRangeClientCapabilities.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -90870,8 +90870,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _MonikerClientCapabilities extends MonikerClientCapabilities {
-  const _MonikerClientCapabilities({this.dynamicRegistration}): super._();
+class _MonikerClientCapabilities implements MonikerClientCapabilities {
+  const _MonikerClientCapabilities({this.dynamicRegistration});
   factory _MonikerClientCapabilities.fromJson(Map<String, dynamic> json) => _$MonikerClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -91133,8 +91133,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TypeHierarchyClientCapabilities extends TypeHierarchyClientCapabilities {
-  const _TypeHierarchyClientCapabilities({this.dynamicRegistration}): super._();
+class _TypeHierarchyClientCapabilities implements TypeHierarchyClientCapabilities {
+  const _TypeHierarchyClientCapabilities({this.dynamicRegistration});
   factory _TypeHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) => _$TypeHierarchyClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -91396,8 +91396,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineValueClientCapabilities extends InlineValueClientCapabilities {
-  const _InlineValueClientCapabilities({this.dynamicRegistration}): super._();
+class _InlineValueClientCapabilities implements InlineValueClientCapabilities {
+  const _InlineValueClientCapabilities({this.dynamicRegistration});
   factory _InlineValueClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineValueClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -91660,8 +91660,8 @@ return $default(_that.dynamicRegistration,_that.resolveSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlayHintClientCapabilities extends InlayHintClientCapabilities {
-  const _InlayHintClientCapabilities({this.dynamicRegistration, this.resolveSupport}): super._();
+class _InlayHintClientCapabilities implements InlayHintClientCapabilities {
+  const _InlayHintClientCapabilities({this.dynamicRegistration, this.resolveSupport});
   factory _InlayHintClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlayHintClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -91926,8 +91926,8 @@ return $default(_that.dynamicRegistration,_that.relatedDocumentSupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _DiagnosticClientCapabilities extends DiagnosticClientCapabilities {
-  const _DiagnosticClientCapabilities({this.dynamicRegistration, this.relatedDocumentSupport}): super._();
+class _DiagnosticClientCapabilities implements DiagnosticClientCapabilities {
+  const _DiagnosticClientCapabilities({this.dynamicRegistration, this.relatedDocumentSupport});
   factory _DiagnosticClientCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -92191,8 +92191,8 @@ return $default(_that.dynamicRegistration);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _InlineCompletionClientCapabilities extends InlineCompletionClientCapabilities {
-  const _InlineCompletionClientCapabilities({this.dynamicRegistration}): super._();
+class _InlineCompletionClientCapabilities implements InlineCompletionClientCapabilities {
+  const _InlineCompletionClientCapabilities({this.dynamicRegistration});
   factory _InlineCompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineCompletionClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -92455,8 +92455,8 @@ return $default(_that.dynamicRegistration,_that.executionSummarySupport);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _NotebookDocumentSyncClientCapabilities extends NotebookDocumentSyncClientCapabilities {
-  const _NotebookDocumentSyncClientCapabilities({this.dynamicRegistration, this.executionSummarySupport}): super._();
+class _NotebookDocumentSyncClientCapabilities implements NotebookDocumentSyncClientCapabilities {
+  const _NotebookDocumentSyncClientCapabilities({this.dynamicRegistration, this.executionSummarySupport});
   factory _NotebookDocumentSyncClientCapabilities.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncClientCapabilitiesFromJson(json);
 
 @override final  bool? dynamicRegistration;
@@ -92720,8 +92720,8 @@ return $default(_that.messageActionItem);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ShowMessageRequestClientCapabilities extends ShowMessageRequestClientCapabilities {
-  const _ShowMessageRequestClientCapabilities({this.messageActionItem}): super._();
+class _ShowMessageRequestClientCapabilities implements ShowMessageRequestClientCapabilities {
+  const _ShowMessageRequestClientCapabilities({this.messageActionItem});
   factory _ShowMessageRequestClientCapabilities.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestClientCapabilitiesFromJson(json);
 
 @override final  ({bool? additionalPropertiesSupport})? messageActionItem;
@@ -92983,8 +92983,8 @@ return $default(_that.support);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _ShowDocumentClientCapabilities extends ShowDocumentClientCapabilities {
-  const _ShowDocumentClientCapabilities({required this.support}): super._();
+class _ShowDocumentClientCapabilities implements ShowDocumentClientCapabilities {
+  const _ShowDocumentClientCapabilities({required this.support});
   factory _ShowDocumentClientCapabilities.fromJson(Map<String, dynamic> json) => _$ShowDocumentClientCapabilitiesFromJson(json);
 
 @override final  bool support;
@@ -93247,8 +93247,8 @@ return $default(_that.engine,_that.version);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _RegularExpressionsClientCapabilities extends RegularExpressionsClientCapabilities {
-  const _RegularExpressionsClientCapabilities({required this.engine, this.version}): super._();
+class _RegularExpressionsClientCapabilities implements RegularExpressionsClientCapabilities {
+  const _RegularExpressionsClientCapabilities({required this.engine, this.version});
   factory _RegularExpressionsClientCapabilities.fromJson(Map<String, dynamic> json) => _$RegularExpressionsClientCapabilitiesFromJson(json);
 
 @override final  String engine;
@@ -93514,8 +93514,8 @@ return $default(_that.parser,_that.version,_that.allowedTags);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _MarkdownClientCapabilities extends MarkdownClientCapabilities {
-  const _MarkdownClientCapabilities({required this.parser, this.version, final  List<String>? allowedTags}): _allowedTags = allowedTags,super._();
+class _MarkdownClientCapabilities implements MarkdownClientCapabilities {
+  const _MarkdownClientCapabilities({required this.parser, this.version, final  List<String>? allowedTags}): _allowedTags = allowedTags;
   factory _MarkdownClientCapabilities.fromJson(Map<String, dynamic> json) => _$MarkdownClientCapabilitiesFromJson(json);
 
 @override final  String parser;

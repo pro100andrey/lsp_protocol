@@ -308,6 +308,10 @@ final class EmitterVisitor {
     // After the early return above, cls.name never starts with '_'.
     final publicPart = cls.name;
 
+    // Private constructor is required by freezed only when the class has
+    // custom instance methods (i.e. open-enum getters).
+    final hasEnumGetters = allProps.any((p) => _openEnumInfo(p.type) != null);
+
     return Class((b) {
       b
         ..name = cls.name
@@ -320,15 +324,15 @@ final class EmitterVisitor {
         b.docs.add('/// ${cls.documentation!.replaceAll('\n', '\n/// ')}');
       }
 
-      // Private const constructor — required by freezed for sealed matching /
-      //  instance methods.
-      b.constructors.add(
-        Constructor(
-          (b) => b
-            ..constant = true
-            ..name = '_',
-        ),
-      );
+      if (hasEnumGetters) {
+        b.constructors.add(
+          Constructor(
+            (b) => b
+              ..constant = true
+              ..name = '_',
+          ),
+        );
+      }
 
       // Redirecting factory — freezed generates getters, copyWith, ==,
       // hashCode.
