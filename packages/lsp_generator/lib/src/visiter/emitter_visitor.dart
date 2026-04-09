@@ -136,12 +136,8 @@ final class EmitterVisitor {
       ..directives.add(
         Directive.import('package:json_annotation/json_annotation.dart'),
       )
-      ..body.addAll([
-        ..._resolved.enumerations.map(_buildEnum),
-      ]),
+      ..body.addAll(_resolved.enumerations.map(_buildEnum)),
   );
-
-
 
   /// Builds a [Library] containing all resolved type aliases.
   Library buildAliases() {
@@ -307,11 +303,8 @@ final class EmitterVisitor {
     // inherited properties into the class so it stands alone.
     final allProps = _allProperties(cls);
 
-    // Freezed mixin and redirect names strip leading underscores from the class
-    // name: `_Foo` → mixin `_$Foo`, redirect `__Foo` (still library-private).
-    final publicPart = cls.name.startsWith('_')
-        ? cls.name.substring(1)
-        : cls.name;
+    // After the early return above, cls.name never starts with '_'.
+    final publicPart = cls.name;
 
     return Class((b) {
       b
@@ -425,7 +418,7 @@ final class EmitterVisitor {
       }
 
       // Final fields (plain class — no freezed mixin).
-      final ownerName = cls.name.replaceFirst(RegExp('^_+'), '');
+      final ownerName = baseName;
       for (final p in allProps) {
         b.fields.add(
           Field((b) {
@@ -1668,7 +1661,6 @@ final class EmitterVisitor {
     final switchCases = variants
         .map((v) {
           final toJsonExpr = switch (v.variant) {
-            ClassType() => 'value.toJson()',
             InlineRecord(:final fields) => _inlineRecordToJson(fields, 'value'),
             _ => 'value.toJson()',
           };
@@ -1907,10 +1899,6 @@ final class EmitterVisitor {
     return switch (inner) {
       DartCoreType() => fieldExpr,
       ClassType() => nullable ? '$fieldExpr?.toJson()' : '$fieldExpr.toJson()',
-      EnumType(:final ref) when !ref.supportsCustomValues =>
-        nullable
-            ? '$fieldExpr != null ? _\$${ref.name}EnumMap[$fieldExpr]! : null'
-            : '_\$${ref.name}EnumMap[$fieldExpr]!',
       EnumType(:final ref) =>
         nullable
             ? '$fieldExpr != null ? _\$${ref.name}EnumMap[$fieldExpr]! : null'
