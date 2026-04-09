@@ -6,6 +6,7 @@ final class EmitState {
     required this.aliases,
     required this.scalarUnions,
     required this.unions,
+    required this.methods,
   });
 
   final String structures;
@@ -13,4 +14,5 @@ final class EmitState {
   final String aliases;
   final String scalarUnions;
   final String unions;
+  final String methods;
 }

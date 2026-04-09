@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../models/protocol.dart';
 import '../models/resolved_decl.dart';
 
 part 'resolved_state.freezed.dart';
@@ -12,5 +13,6 @@ abstract class ResolvedState with _$ResolvedState {
     required List<ResolvedClass> classes,
     required List<ResolvedEnum> enumerations,
     required List<ResolvedAlias> aliases,
+    @Default([]) List<MetaNotification> notifications,
   }) = _ResolvedState;
 }

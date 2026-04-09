@@ -7,12 +7,13 @@ final class ResolveModelAction extends BaseAction {
   @override
   AppState reduce() {
     final visitor = ResolverVisitor()..resolve(select.protocol);
-    
+
     final resolved = ResolvedState(
       registry: visitor.registry,
       classes: visitor.classes,
       enumerations: visitor.enumerations,
       aliases: visitor.aliases,
+      notifications: select.protocol.notifications,
     );
 
     return state.copyWith(resolved: resolved);

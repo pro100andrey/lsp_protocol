@@ -1,5 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 
+import '../redux/models/protocol.dart' show MetaNotification;
 import '../redux/models/resolved_decl.dart';
 import '../redux/models/resolved_type.dart';
 import '../redux/resolved/resolved_state.dart';
@@ -140,6 +141,26 @@ final class EmitterVisitor {
       ..directives.add(Directive.part('enumerations.g.dart'))
       ..body.addAll(_resolved.enumerations.map(_buildEnum)),
   );
+
+  /// Builds a [Library] containing a [NotificationMethod] enum with one member
+  /// per LSP notification method string.
+  ///
+  /// Member names use the last path segment when unique across all
+  /// notifications, and fall back to the full camelCase path on collisions
+  /// (e.g. `textDocument/didOpen` vs `notebookDocument/didOpen`).
+  Library buildNotificationMethods() {
+    final notifications = _resolved.notifications;
+    final names = _notificationDartNames(notifications);
+    return Library(
+      (b) => b
+        ..comments.add(_header)
+        ..directives.add(
+          Directive.import('package:json_annotation/json_annotation.dart'),
+        )
+        ..directives.add(Directive.part('methods.g.dart'))
+        ..body.add(_buildNotificationEnum(notifications, names)),
+    );
+  }
 
   /// Builds a [Library] containing all resolved type aliases.
   Library buildAliases() {
@@ -859,6 +880,128 @@ final class EmitterVisitor {
   ///
   /// Each member stores its raw wire value in a `final T value` field and
   /// accepts it via a `const EnumName(this.value)` constructor. A static
+  // ---------------------------------------------------------------------------
+  // Private: notification method enum
+  // ---------------------------------------------------------------------------
+
+  /// Returns a map from each [MetaNotification] to its Dart enum member name.
+  ///
+  /// The last path segment is used when unique across all notifications.
+  /// Collisions (e.g. `textDocument/didOpen` vs `notebookDocument/didOpen`)
+  /// fall back to the full camelCase path.
+  Map<MetaNotification, String> _notificationDartNames(
+    List<MetaNotification> notifications,
+  ) {
+    String clean(String method) => method.startsWith(r'$/')
+        ? method.substring(2)
+        : method.startsWith(r'$')
+        ? method.substring(1)
+        : method;
+
+    String lastSegment(String method) => clean(method).split('/').last;
+
+    String fullCamelCase(String method) {
+      final parts = clean(method).split('/');
+      return [
+        parts.first,
+        ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
+      ].join();
+    }
+
+    final lastSegs = {for (final n in notifications) n: lastSegment(n.method)};
+    final counts = <String, int>{};
+    for (final s in lastSegs.values) {
+      counts[s] = (counts[s] ?? 0) + 1;
+    }
+
+    return {
+      for (final n in notifications)
+        n: _safeIdentifier(
+          counts[lastSegs[n]!]! > 1 ? fullCamelCase(n.method) : lastSegs[n]!,
+        ),
+    };
+  }
+
+  /// Builds the `NotificationMethod` enum spec.
+  Spec _buildNotificationEnum(
+    List<MetaNotification> notifications,
+    Map<MetaNotification, String> names,
+  ) => Enum((b) {
+    b.name = 'NotificationMethod';
+    b.annotations.add(
+      refer('JsonEnum').call([], {
+        'valueField': literalString('value'),
+        'alwaysCreate': literalTrue,
+      }),
+    );
+
+    for (final n in notifications) {
+      b.values.add(
+        EnumValue((b) {
+          b.name = names[n];
+          b.arguments.add(literalString(n.method, raw: true));
+          if (n.documentation != null) {
+            b.docs.add(
+              '/// ${n.documentation!.replaceAll('\n', '\n/// ')}',
+            );
+          }
+        }),
+      );
+    }
+
+    b.fields.add(
+      Field(
+        (b) => b
+          ..modifier = FieldModifier.final$
+          ..name = 'value'
+          ..type = refer('String'),
+      ),
+    );
+
+    b.constructors.add(
+      Constructor(
+        (b) => b
+          ..constant = true
+          ..requiredParameters.add(
+            Parameter(
+              (b) => b
+                ..name = 'value'
+                ..toThis = true,
+            ),
+          ),
+      ),
+    );
+
+    b.methods.add(
+      Method(
+        (b) => b
+          ..static = true
+          ..returns = TypeReference(
+            (b) => b
+              ..symbol = 'NotificationMethod'
+              ..isNullable = true,
+          )
+          ..name = 'decode'
+          ..requiredParameters.add(
+            Parameter(
+              (b) => b
+                ..name = 'json'
+                ..type = refer('String'),
+            ),
+          )
+          ..lambda = true
+          ..body = refer(r'$enumDecodeNullable').call([
+            refer(r'_$NotificationMethodEnumMap'),
+            refer('json'),
+          ]).code,
+      ),
+    );
+  });
+
+  // ---------------------------------------------------------------------------
+  // Private: standard enums
+  // ---------------------------------------------------------------------------
+
   /// `decode` method returns `null` for unknown values, which makes it safe
   /// for both open and closed enums without needing a sentinel member.
   ///

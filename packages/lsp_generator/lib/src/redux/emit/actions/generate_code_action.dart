@@ -38,6 +38,7 @@ final class GenerateCodeAction extends BaseAction {
     final aliases = emit(visitor.buildAliases());
     final scalarUnions = emit(visitor.buildScalarUnions());
     final unions = emit(visitor.buildUnions());
+    final methods = emit(visitor.buildNotificationMethods());
 
     final pkgDir = DirectoryPath(select.resolvedOutputDir);
     final srcDir = pkgDir.join('lib/src');
@@ -52,6 +53,7 @@ final class GenerateCodeAction extends BaseAction {
     srcDir.joinFile('type_aliases.dart').writeAsString(aliases);
     srcDir.joinFile('scalar_unions.dart').writeAsString(scalarUnions);
     srcDir.joinFile('unions.dart').writeAsString(unions);
+    srcDir.joinFile('methods.dart').writeAsString(methods);
 
     // Barrel file: lib/<packageName>.dart
     final packageName = pkgDir.basename;
@@ -64,6 +66,7 @@ final class GenerateCodeAction extends BaseAction {
           Directive.export('src/type_aliases.dart'),
           Directive.export('src/scalar_unions.dart'),
           Directive.export('src/unions.dart'),
+          Directive.export('src/methods.dart'),
         ]),
     );
     final barrel = formatter.format(barrelLib.accept(dartEmitter).toString());
@@ -76,6 +79,7 @@ final class GenerateCodeAction extends BaseAction {
         aliases: aliases,
         scalarUnions: scalarUnions,
         unions: unions,
+        methods: methods,
       ),
     );
   }
