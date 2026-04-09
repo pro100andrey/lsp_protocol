@@ -4,17 +4,16 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'enumerations.g.dart';
 
-/// A set of predefined token types. This set is not fixed
-/// an clients can specify additional token types via the
-/// corresponding client capabilities.
+/// A set of predefined token types. This set is not fixed an clients can
+/// specify additional token types via the corresponding client capabilities.
 ///
 /// @since 3.16.0
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum SemanticTokenTypes {
   namespace('namespace'),
 
-  /// Represents a generic type. Acts as a fallback for types which can't be mapped to
-  /// a specific type like class or enum.
+  /// Represents a generic type. Acts as a fallback for types which can't be
+  /// mapped to a specific type like class or enum.
   type_('type'),
   class_('class'),
   enum_('enum'),
@@ -48,9 +47,8 @@ enum SemanticTokenTypes {
       $enumDecodeNullable(_$SemanticTokenTypesEnumMap, json);
 }
 
-/// A set of predefined token modifiers. This set is not fixed
-/// an clients can specify additional token types via the
-/// corresponding client capabilities.
+/// A set of predefined token modifiers. This set is not fixed an clients can
+/// specify additional token types via the corresponding client capabilities.
 ///
 /// @since 3.16.0
 @JsonEnum(valueField: 'value', alwaysCreate: true)
@@ -79,12 +77,10 @@ enum SemanticTokenModifiers {
 /// @since 3.17.0
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum DocumentDiagnosticReportKind {
-  /// A diagnostic report with a full
-  /// set of problems.
+  /// A diagnostic report with a full set of problems.
   Full('full'),
 
-  /// A report indicating that the last
-  /// returned report is still accurate.
+  /// A report indicating that the last returned report is still accurate.
   Unchanged('unchanged');
 
   const DocumentDiagnosticReportKind(this.value);
@@ -104,8 +100,8 @@ enum ErrorCodes {
   InvalidParams(-32602),
   InternalError(-32603),
 
-  /// Error code indicating that a server received a notification or
-  /// request before the server has received the `initialize` request.
+  /// Error code indicating that a server received a notification or request
+  /// before the server has received the `initialize` request.
   ServerNotInitialized(-32002),
   UnknownErrorCode(-32001);
 
@@ -119,33 +115,29 @@ enum ErrorCodes {
 
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum LSPErrorCodes {
-  /// A request failed but it was syntactically correct, e.g the
-  /// method name was known and the parameters were valid. The error
-  /// message should contain human readable information about why
-  /// the request failed.
+  /// A request failed but it was syntactically correct, e.g the method name was
+  /// known and the parameters were valid. The error message should contain human
+  /// readable information about why the request failed.
   ///
   /// @since 3.17.0
   RequestFailed(-32803),
 
-  /// The server cancelled the request. This error code should
-  /// only be used for requests that explicitly support being
-  /// server cancellable.
+  /// The server cancelled the request. This error code should only be used for
+  /// requests that explicitly support being server cancellable.
   ///
   /// @since 3.17.0
   ServerCancelled(-32802),
 
-  /// The server detected that the content of a document got
-  /// modified outside normal conditions. A server should
-  /// NOT send this error code if it detects a content change
-  /// in it unprocessed messages. The result even computed
-  /// on an older state might still be useful for the client.
+  /// The server detected that the content of a document got modified outside
+  /// normal conditions. A server should NOT send this error code if it detects a
+  /// content change in it unprocessed messages. The result even computed on an
+  /// older state might still be useful for the client.
   ///
-  /// If a client decides that a result is not of any use anymore
-  /// the client should cancel the request.
+  /// If a client decides that a result is not of any use anymore the client
+  /// should cancel the request.
   ContentModified(-32801),
 
-  /// The client has canceled a request and a server has detected
-  /// the cancel.
+  /// The client has canceled a request and a server has detected the cancel.
   RequestCancelled(-32800);
 
   const LSPErrorCodes(this.value);
@@ -328,20 +320,18 @@ enum MessageType {
       $enumDecodeNullable(_$MessageTypeEnumMap, json);
 }
 
-/// Defines how the host (editor) should sync
-/// document changes to the language server.
+/// Defines how the host (editor) should sync document changes to the language
+/// server.
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum TextDocumentSyncKind {
   /// Documents should not be synced at all.
   None(0),
 
-  /// Documents are synced by always sending the full content
-  /// of the document.
+  /// Documents are synced by always sending the full content of the document.
   Full(1),
 
-  /// Documents are synced by sending the full content on open.
-  /// After that only incremental updates to the document are
-  /// send.
+  /// Documents are synced by sending the full content on open. After that only
+  /// incremental updates to the document are send.
   Incremental(2);
 
   const TextDocumentSyncKind(this.value);
@@ -410,8 +400,8 @@ enum CompletionItemKind {
       $enumDecodeNullable(_$CompletionItemKindEnumMap, json);
 }
 
-/// Completion item tags are extra annotations that tweak the rendering of a completion
-/// item.
+/// Completion item tags are extra annotations that tweak the rendering of a
+/// completion item.
 ///
 /// @since 3.15.0
 @JsonEnum(valueField: 'value', alwaysCreate: true)
@@ -427,8 +417,8 @@ enum CompletionItemTag {
       $enumDecodeNullable(_$CompletionItemTagEnumMap, json);
 }
 
-/// Defines whether the insert text in a completion item should be interpreted as
-/// plain text or a snippet.
+/// Defines whether the insert text in a completion item should be interpreted
+/// as plain text or a snippet.
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum InsertTextFormat {
   /// The primary text to be inserted is treated as a plain string.
@@ -436,12 +426,13 @@ enum InsertTextFormat {
 
   /// The primary text to be inserted is treated as a snippet.
   ///
-  /// A snippet can define tab stops and placeholders with `$1`, `$2`
-  /// and `${3:foo}`. `$0` defines the final tab stop, it defaults to
-  /// the end of the snippet. Placeholders with equal identifiers are linked,
-  /// that is typing in one will update others too.
+  /// A snippet can define tab stops and placeholders with `$1`, `$2` and
+  /// `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of the
+  /// snippet. Placeholders with equal identifiers are linked, that is typing in
+  /// one will update others too.
   ///
-  /// See also: https://microsoft.github.io/language-server-protocol/specifications/specification-current/#snippet_syntax
+  /// See also:
+  /// https://microsoft.github.io/language-server-protocol/specifications/specification-current/#snippet_syntax
   Snippet(2);
 
   const InsertTextFormat(this.value);
@@ -452,26 +443,23 @@ enum InsertTextFormat {
       $enumDecodeNullable(_$InsertTextFormatEnumMap, json);
 }
 
-/// How whitespace and indentation is handled during completion
-/// item insertion.
+/// How whitespace and indentation is handled during completion item insertion.
 ///
 /// @since 3.16.0
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum InsertTextMode {
-  /// The insertion or replace strings is taken as it is. If the
-  /// value is multi line the lines below the cursor will be
-  /// inserted using the indentation defined in the string value.
-  /// The client will not apply any kind of adjustments to the
-  /// string.
+  /// The insertion or replace strings is taken as it is. If the value is multi
+  /// line the lines below the cursor will be inserted using the indentation
+  /// defined in the string value. The client will not apply any kind of
+  /// adjustments to the string.
   asIs(1),
 
-  /// The editor adjusts leading whitespace of new lines so that
-  /// they match the indentation up to the cursor of the line for
-  /// which the item is accepted.
+  /// The editor adjusts leading whitespace of new lines so that they match the
+  /// indentation up to the cursor of the line for which the item is accepted.
   ///
-  /// Consider a line like this: <2tabs><cursor><3tabs>foo. Accepting a
-  /// multi line completion item is indented using 2 tabs and all
-  /// following lines inserted will be indented using 2 tabs as well.
+  /// Consider a line like this: <2tabs><cursor><3tabs>foo. Accepting a multi line
+  /// completion item is indented using 2 tabs and all following lines inserted
+  /// will be indented using 2 tabs as well.
   adjustIndentation(2);
 
   const InsertTextMode(this.value);
@@ -518,33 +506,23 @@ enum CodeActionKind {
   ///
   /// Example extract actions:
   ///
-  /// - Extract method
-  /// - Extract function
-  /// - Extract variable
-  /// - Extract interface from class
-  /// - ...
+  /// - Extract method - Extract function - Extract variable - Extract interface
+  /// from class - ...
   RefactorExtract('refactor.extract'),
 
   /// Base kind for refactoring inline actions: 'refactor.inline'
   ///
   /// Example inline actions:
   ///
-  /// - Inline function
-  /// - Inline variable
-  /// - Inline constant
-  /// - ...
+  /// - Inline function - Inline variable - Inline constant - ...
   RefactorInline('refactor.inline'),
 
   /// Base kind for refactoring rewrite actions: 'refactor.rewrite'
   ///
   /// Example rewrite actions:
   ///
-  /// - Convert JavaScript function to class
-  /// - Add or remove parameter
-  /// - Encapsulate field
-  /// - Make method static
-  /// - Move method to base class
-  /// - ...
+  /// - Convert JavaScript function to class - Add or remove parameter -
+  /// Encapsulate field - Make method static - Move method to base class - ...
   RefactorRewrite('refactor.rewrite'),
 
   /// Base kind for source actions: `source`
@@ -557,8 +535,9 @@ enum CodeActionKind {
 
   /// Base kind for auto-fix source actions: `source.fixAll`.
   ///
-  /// Fix all actions automatically fix errors that have a clear fix that do not require user input.
-  /// They should not suppress errors or perform unsafe fixes such as generating new types or classes.
+  /// Fix all actions automatically fix errors that have a clear fix that do not
+  /// require user input. They should not suppress errors or perform unsafe fixes
+  /// such as generating new types or classes.
   ///
   /// @since 3.15.0
   SourceFixAll('source.fixAll');
@@ -590,11 +569,11 @@ enum TraceValues {
       $enumDecodeNullable(_$TraceValuesEnumMap, json);
 }
 
-/// Describes the content type that a client supports in various
-/// result literals like `Hover`, `ParameterInfo` or `CompletionItem`.
+/// Describes the content type that a client supports in various result literals
+/// like `Hover`, `ParameterInfo` or `CompletionItem`.
 ///
-/// Please note that `MarkupKinds` must not start with a `$`. This kinds
-/// are reserved for internal usage.
+/// Please note that `MarkupKinds` must not start with a `$`. This kinds are
+/// reserved for internal usage.
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum MarkupKind {
   /// Plain text is supported as a content format
@@ -611,10 +590,9 @@ enum MarkupKind {
       $enumDecodeNullable(_$MarkupKindEnumMap, json);
 }
 
-/// Describes how an {@link InlineCompletionItemProvider inline completion provider} was triggered.
+/// Describes how an [InlineCompletionItemProvider] was triggered.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum InlineCompletionTriggerKind {
   /// Completion was triggered explicitly by a user gesture.
@@ -641,15 +619,14 @@ enum PositionEncodingKind {
 
   /// Character offsets count UTF-16 code units.
   ///
-  /// This is the default and must always be supported
-  /// by servers
+  /// This is the default and must always be supported by servers
   UTF16('utf-16'),
 
   /// Character offsets count UTF-32 code units.
   ///
-  /// Implementation note: these are the same as Unicode codepoints,
-  /// so this `PositionEncodingKind` may also be used for an
-  /// encoding-agnostic representation of character offsets.
+  /// Implementation note: these are the same as Unicode codepoints, so this
+  /// `PositionEncodingKind` may also be used for an encoding-agnostic
+  /// representation of character offsets.
   UTF32('utf-32');
 
   const PositionEncodingKind(this.value);
@@ -729,8 +706,8 @@ enum DiagnosticSeverity {
 enum DiagnosticTag {
   /// Unused or unnecessary code.
   ///
-  /// Clients are allowed to render diagnostics with this tag faded out instead of having
-  /// an error squiggle.
+  /// Clients are allowed to render diagnostics with this tag faded out instead of
+  /// having an error squiggle.
   Unnecessary(1),
 
   /// Deprecated or obsolete code.
@@ -749,12 +726,12 @@ enum DiagnosticTag {
 /// How a completion was triggered
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum CompletionTriggerKind {
-  /// Completion was triggered by typing an identifier (24x7 code
-  /// complete), manual invocation (e.g Ctrl+Space) or via API.
+  /// Completion was triggered by typing an identifier (24x7 code complete),
+  /// manual invocation (e.g Ctrl+Space) or via API.
   Invoked(1),
 
-  /// Completion was triggered by a trigger character specified by
-  /// the `triggerCharacters` properties of the `CompletionRegistrationOptions`.
+  /// Completion was triggered by a trigger character specified by the
+  /// `triggerCharacters` properties of the `CompletionRegistrationOptions`.
   TriggerCharacter(2),
 
   /// Completion was re-triggered as current completion list is incomplete
@@ -779,7 +756,8 @@ enum SignatureHelpTriggerKind {
   /// Signature help was triggered by a trigger character.
   TriggerCharacter(2),
 
-  /// Signature help was triggered by the cursor moving or by the document content changing.
+  /// Signature help was triggered by the cursor moving or by the document content
+  /// changing.
   ContentChange(3);
 
   const SignatureHelpTriggerKind(this.value);
@@ -812,8 +790,7 @@ enum CodeActionTriggerKind {
       $enumDecodeNullable(_$CodeActionTriggerKindEnumMap, json);
 }
 
-/// A pattern kind describing if a glob pattern matches a file a folder or
-/// both.
+/// A pattern kind describing if a glob pattern matches a file a folder or both.
 ///
 /// @since 3.16.0
 @JsonEnum(valueField: 'value', alwaysCreate: true)
@@ -872,17 +849,18 @@ enum ResourceOperationKind {
 
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum FailureHandlingKind {
-  /// Applying the workspace change is simply aborted if one of the changes provided
-  /// fails. All operations executed before the failing operation stay executed.
+  /// Applying the workspace change is simply aborted if one of the changes
+  /// provided fails. All operations executed before the failing operation stay
+  /// executed.
   Abort('abort'),
 
   /// All operations are executed transactional. That means they either all
   /// succeed or no changes at all are applied to the workspace.
   Transactional('transactional'),
 
-  /// If the workspace edit contains only textual file changes they are executed transactional.
-  /// If resource changes (create, rename or delete file) are part of the change the failure
-  /// handling strategy is abort.
+  /// If the workspace edit contains only textual file changes they are executed
+  /// transactional. If resource changes (create, rename or delete file) are part
+  /// of the change the failure handling strategy is abort.
   TextOnlyTransactional('textOnlyTransactional'),
 
   /// The client tries to undo the operations already executed. But there is no
@@ -899,8 +877,8 @@ enum FailureHandlingKind {
 
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum PrepareSupportDefaultBehavior {
-  /// The client's default behavior is to select the identifier
-  /// according the to language's syntax rule.
+  /// The client's default behavior is to select the identifier according the to
+  /// language's syntax rule.
   Identifier(1);
 
   const PrepareSupportDefaultBehavior(this.value);

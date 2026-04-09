@@ -18,8 +18,8 @@ mixin _$ImplementationParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of ImplementationParams
 /// with the given fields replaced by the non-null parameter values.
@@ -268,8 +268,8 @@ class _ImplementationParams implements ImplementationParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of ImplementationParams
@@ -665,10 +665,10 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$ImplementationRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of ImplementationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -868,11 +868,11 @@ class _ImplementationRegistrationOptions implements ImplementationRegistrationOp
   const _ImplementationRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _ImplementationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ImplementationRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -882,8 +882,8 @@ class _ImplementationRegistrationOptions implements ImplementationRegistrationOp
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of ImplementationRegistrationOptions
@@ -955,8 +955,8 @@ mixin _$TypeDefinitionParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of TypeDefinitionParams
 /// with the given fields replaced by the non-null parameter values.
@@ -1205,8 +1205,8 @@ class _TypeDefinitionParams implements TypeDefinitionParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of TypeDefinitionParams
@@ -1318,10 +1318,10 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 /// @nodoc
 mixin _$TypeDefinitionRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of TypeDefinitionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -1521,11 +1521,11 @@ class _TypeDefinitionRegistrationOptions implements TypeDefinitionRegistrationOp
   const _TypeDefinitionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _TypeDefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TypeDefinitionRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -1535,8 +1535,8 @@ class _TypeDefinitionRegistrationOptions implements TypeDefinitionRegistrationOp
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of TypeDefinitionRegistrationOptions
@@ -1606,8 +1606,8 @@ as String?,
 mixin _$WorkspaceFolder {
 
 /// The associated URI for this workspace folder.
- String get uri;/// The name of the workspace folder. Used to refer to this
-/// workspace folder in the user interface.
+ String get uri;/// The name of the workspace folder. Used to refer to this workspace folder in
+/// the user interface.
  String get name;
 /// Create a copy of WorkspaceFolder
 /// with the given fields replaced by the non-null parameter values.
@@ -1808,8 +1808,8 @@ class _WorkspaceFolder implements WorkspaceFolder {
 
 /// The associated URI for this workspace folder.
 @override final  String uri;
-/// The name of the workspace folder. Used to refer to this
-/// workspace folder in the user interface.
+/// The name of the workspace folder. Used to refer to this workspace folder in
+/// the user interface.
 @override final  String name;
 
 /// Create a copy of WorkspaceFolder
@@ -2430,8 +2430,8 @@ as List<ConfigurationItem>,
 mixin _$DocumentColorParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
  TextDocumentIdentifier get textDocument;
 /// Create a copy of DocumentColorParams
@@ -2667,8 +2667,8 @@ class _DocumentColorParams implements DocumentColorParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
@@ -3078,10 +3078,10 @@ $ColorCopyWith<$Res> get color {
 /// @nodoc
 mixin _$DocumentColorRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of DocumentColorRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -3281,11 +3281,11 @@ class _DocumentColorRegistrationOptions implements DocumentColorRegistrationOpti
   const _DocumentColorRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _DocumentColorRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentColorRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -3295,8 +3295,8 @@ class _DocumentColorRegistrationOptions implements DocumentColorRegistrationOpti
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of DocumentColorRegistrationOptions
@@ -3366,8 +3366,8 @@ as String?,
 mixin _$ColorPresentationParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
  TextDocumentIdentifier get textDocument;/// The color to request presentations for.
  Color get color;/// The range where the color would be inserted. Serves as a context.
@@ -3625,8 +3625,8 @@ class _ColorPresentationParams implements ColorPresentationParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
@@ -3754,14 +3754,14 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$ColorPresentation {
 
-/// The label of this color presentation. It will be shown on the color
-/// picker header. By default this is also the text that is inserted when selecting
+/// The label of this color presentation. It will be shown on the color picker
+/// header. By default this is also the text that is inserted when selecting
 /// this color presentation.
- String get label;/// An {@link TextEdit edit} which is applied to a document when selecting
-/// this presentation for the color.  When `falsy` the {@link ColorPresentation.label label}
-/// is used.
- TextEdit? get textEdit;/// An optional array of additional {@link TextEdit text edits} that are applied when
-/// selecting this color presentation. Edits must not overlap with the main {@link ColorPresentation.textEdit edit} nor with themselves.
+ String get label;/// An [edit] which is applied to a document when selecting this presentation
+/// for the color. When `falsy` the [label] is used.
+ TextEdit? get textEdit;/// An optional array of additional [TextEdit] that are applied when selecting
+/// this color presentation. Edits must not overlap with the main [edit] nor
+/// with themselves.
  List<TextEdit>? get additionalTextEdits;
 /// Create a copy of ColorPresentation
 /// with the given fields replaced by the non-null parameter values.
@@ -3973,19 +3973,20 @@ class _ColorPresentation implements ColorPresentation {
   const _ColorPresentation({required this.label, this.textEdit, final  List<TextEdit>? additionalTextEdits}): _additionalTextEdits = additionalTextEdits;
   factory _ColorPresentation.fromJson(Map<String, dynamic> json) => _$ColorPresentationFromJson(json);
 
-/// The label of this color presentation. It will be shown on the color
-/// picker header. By default this is also the text that is inserted when selecting
+/// The label of this color presentation. It will be shown on the color picker
+/// header. By default this is also the text that is inserted when selecting
 /// this color presentation.
 @override final  String label;
-/// An {@link TextEdit edit} which is applied to a document when selecting
-/// this presentation for the color.  When `falsy` the {@link ColorPresentation.label label}
-/// is used.
+/// An [edit] which is applied to a document when selecting this presentation
+/// for the color. When `falsy` the [label] is used.
 @override final  TextEdit? textEdit;
-/// An optional array of additional {@link TextEdit text edits} that are applied when
-/// selecting this color presentation. Edits must not overlap with the main {@link ColorPresentation.textEdit edit} nor with themselves.
+/// An optional array of additional [TextEdit] that are applied when selecting
+/// this color presentation. Edits must not overlap with the main [edit] nor
+/// with themselves.
  final  List<TextEdit>? _additionalTextEdits;
-/// An optional array of additional {@link TextEdit text edits} that are applied when
-/// selecting this color presentation. Edits must not overlap with the main {@link ColorPresentation.textEdit edit} nor with themselves.
+/// An optional array of additional [TextEdit] that are applied when selecting
+/// this color presentation. Edits must not overlap with the main [edit] nor
+/// with themselves.
 @override List<TextEdit>? get additionalTextEdits {
   final value = _additionalTextEdits;
   if (value == null) return null;
@@ -4336,8 +4337,8 @@ as bool?,
 /// @nodoc
 mixin _$TextDocumentRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector;
 /// Create a copy of TextDocumentRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -4535,11 +4536,11 @@ class _TextDocumentRegistrationOptions implements TextDocumentRegistrationOption
   const _TextDocumentRegistrationOptions({required final  DocumentSelector? documentSelector}): _documentSelector = documentSelector;
   factory _TextDocumentRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -4614,8 +4615,8 @@ as DocumentSelector?,
 mixin _$FoldingRangeParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
  TextDocumentIdentifier get textDocument;
 /// Create a copy of FoldingRangeParams
@@ -4851,8 +4852,8 @@ class _FoldingRangeParams implements FoldingRangeParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
@@ -4956,18 +4957,23 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$FoldingRange {
 
-/// The zero-based start line of the range to fold. The folded area starts after the line's last character.
-/// To be valid, the end must be zero or larger and smaller than the number of lines in the document.
- int get startLine;/// The zero-based character offset from where the folded range starts. If not defined, defaults to the length of the start line.
- int? get startCharacter;/// The zero-based end line of the range to fold. The folded area ends with the line's last character.
-/// To be valid, the end must be zero or larger and smaller than the number of lines in the document.
- int get endLine;/// The zero-based character offset before the folded range ends. If not defined, defaults to the length of the end line.
- int? get endCharacter;/// Describes the kind of the folding range such as `comment' or 'region'. The kind
-/// is used to categorize folding ranges and used by commands like 'Fold all comments'.
-/// See {@link FoldingRangeKind} for an enumeration of standardized kinds.
- String? get kind;/// The text that the client should show when the specified range is
-/// collapsed. If not defined or not supported by the client, a default
-/// will be chosen by the client.
+/// The zero-based start line of the range to fold. The folded area starts after
+/// the line's last character. To be valid, the end must be zero or larger and
+/// smaller than the number of lines in the document.
+ int get startLine;/// The zero-based character offset from where the folded range starts. If not
+/// defined, defaults to the length of the start line.
+ int? get startCharacter;/// The zero-based end line of the range to fold. The folded area ends with the
+/// line's last character. To be valid, the end must be zero or larger and
+/// smaller than the number of lines in the document.
+ int get endLine;/// The zero-based character offset before the folded range ends. If not
+/// defined, defaults to the length of the end line.
+ int? get endCharacter;/// Describes the kind of the folding range such as `comment' or 'region'. The
+/// kind is used to categorize folding ranges and used by commands like 'Fold
+/// all comments'. See [FoldingRangeKind] for an enumeration of standardized
+/// kinds.
+ String? get kind;/// The text that the client should show when the specified range is collapsed.
+/// If not defined or not supported by the client, a default will be chosen by
+/// the client.
 ///
 /// @since 3.17.0
  String? get collapsedText;
@@ -5172,23 +5178,28 @@ class _FoldingRange extends FoldingRange {
   const _FoldingRange({required this.startLine, this.startCharacter, required this.endLine, this.endCharacter, this.kind, this.collapsedText}): super._();
   factory _FoldingRange.fromJson(Map<String, dynamic> json) => _$FoldingRangeFromJson(json);
 
-/// The zero-based start line of the range to fold. The folded area starts after the line's last character.
-/// To be valid, the end must be zero or larger and smaller than the number of lines in the document.
+/// The zero-based start line of the range to fold. The folded area starts after
+/// the line's last character. To be valid, the end must be zero or larger and
+/// smaller than the number of lines in the document.
 @override final  int startLine;
-/// The zero-based character offset from where the folded range starts. If not defined, defaults to the length of the start line.
+/// The zero-based character offset from where the folded range starts. If not
+/// defined, defaults to the length of the start line.
 @override final  int? startCharacter;
-/// The zero-based end line of the range to fold. The folded area ends with the line's last character.
-/// To be valid, the end must be zero or larger and smaller than the number of lines in the document.
+/// The zero-based end line of the range to fold. The folded area ends with the
+/// line's last character. To be valid, the end must be zero or larger and
+/// smaller than the number of lines in the document.
 @override final  int endLine;
-/// The zero-based character offset before the folded range ends. If not defined, defaults to the length of the end line.
+/// The zero-based character offset before the folded range ends. If not
+/// defined, defaults to the length of the end line.
 @override final  int? endCharacter;
-/// Describes the kind of the folding range such as `comment' or 'region'. The kind
-/// is used to categorize folding ranges and used by commands like 'Fold all comments'.
-/// See {@link FoldingRangeKind} for an enumeration of standardized kinds.
+/// Describes the kind of the folding range such as `comment' or 'region'. The
+/// kind is used to categorize folding ranges and used by commands like 'Fold
+/// all comments'. See [FoldingRangeKind] for an enumeration of standardized
+/// kinds.
 @override final  String? kind;
-/// The text that the client should show when the specified range is
-/// collapsed. If not defined or not supported by the client, a default
-/// will be chosen by the client.
+/// The text that the client should show when the specified range is collapsed.
+/// If not defined or not supported by the client, a default will be chosen by
+/// the client.
 ///
 /// @since 3.17.0
 @override final  String? collapsedText;
@@ -5262,10 +5273,10 @@ as String?,
 /// @nodoc
 mixin _$FoldingRangeRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of FoldingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -5465,11 +5476,11 @@ class _FoldingRangeRegistrationOptions implements FoldingRangeRegistrationOption
   const _FoldingRangeRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _FoldingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$FoldingRangeRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -5479,8 +5490,8 @@ class _FoldingRangeRegistrationOptions implements FoldingRangeRegistrationOption
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of FoldingRangeRegistrationOptions
@@ -5552,8 +5563,8 @@ mixin _$DeclarationParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of DeclarationParams
 /// with the given fields replaced by the non-null parameter values.
@@ -5802,8 +5813,8 @@ class _DeclarationParams implements DeclarationParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of DeclarationParams
@@ -5915,10 +5926,10 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 /// @nodoc
 mixin _$DeclarationRegistrationOptions {
 
- bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+ bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of DeclarationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -6119,11 +6130,11 @@ class _DeclarationRegistrationOptions implements DeclarationRegistrationOptions 
   factory _DeclarationRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DeclarationRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -6132,8 +6143,8 @@ class _DeclarationRegistrationOptions implements DeclarationRegistrationOptions 
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of DeclarationRegistrationOptions
@@ -6203,8 +6214,8 @@ as String?,
 mixin _$SelectionRangeParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
  TextDocumentIdentifier get textDocument;/// The positions inside the text document.
  List<Position> get positions;
@@ -6442,8 +6453,8 @@ class _SelectionRangeParams implements SelectionRangeParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
@@ -6557,8 +6568,9 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$SelectionRange {
 
-/// The {@link Range range} of this selection range.
- Range get range;/// The parent selection range containing this range. Therefore `parent.range` must contain `this.range`.
+/// The [range] of this selection range.
+ Range get range;/// The parent selection range containing this range. Therefore `parent.range`
+/// must contain `this.range`.
  SelectionRange? get parent;
 /// Create a copy of SelectionRange
 /// with the given fields replaced by the non-null parameter values.
@@ -6778,9 +6790,10 @@ class _SelectionRange implements SelectionRange {
   const _SelectionRange({required this.range, this.parent});
   factory _SelectionRange.fromJson(Map<String, dynamic> json) => _$SelectionRangeFromJson(json);
 
-/// The {@link Range range} of this selection range.
+/// The [range] of this selection range.
 @override final  Range range;
-/// The parent selection range containing this range. Therefore `parent.range` must contain `this.range`.
+/// The parent selection range containing this range. Therefore `parent.range`
+/// must contain `this.range`.
 @override final  SelectionRange? parent;
 
 /// Create a copy of SelectionRange
@@ -6869,10 +6882,10 @@ $SelectionRangeCopyWith<$Res>? get parent {
 /// @nodoc
 mixin _$SelectionRangeRegistrationOptions {
 
- bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+ bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of SelectionRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -7073,11 +7086,11 @@ class _SelectionRangeRegistrationOptions implements SelectionRangeRegistrationOp
   factory _SelectionRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SelectionRangeRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -7086,8 +7099,8 @@ class _SelectionRangeRegistrationOptions implements SelectionRangeRegistrationOp
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of SelectionRangeRegistrationOptions
@@ -8062,9 +8075,10 @@ mixin _$CallHierarchyItem {
  SymbolKind get kind;/// Tags for this item.
  List<SymbolTag>? get tags;/// More detail for this item, e.g. the signature of a function.
  String? get detail;/// The resource identifier of this item.
- String get uri;/// The range enclosing this symbol not including leading/trailing whitespace but everything else, e.g. comments and code.
- Range get range;/// The range that should be selected and revealed when this symbol is being picked, e.g. the name of a function.
-/// Must be contained by the {@link CallHierarchyItem.range `range`}.
+ String get uri;/// The range enclosing this symbol not including leading/trailing whitespace
+/// but everything else, e.g. comments and code.
+ Range get range;/// The range that should be selected and revealed when this symbol is being
+/// picked, e.g. the name of a function. Must be contained by the [range].
  Range get selectionRange;/// A data entry field that is preserved between a call hierarchy prepare and
 /// incoming calls or outgoing calls requests.
  LSPAny? get data;
@@ -8307,10 +8321,11 @@ class _CallHierarchyItem implements CallHierarchyItem {
 @override final  String? detail;
 /// The resource identifier of this item.
 @override final  String uri;
-/// The range enclosing this symbol not including leading/trailing whitespace but everything else, e.g. comments and code.
+/// The range enclosing this symbol not including leading/trailing whitespace
+/// but everything else, e.g. comments and code.
 @override final  Range range;
-/// The range that should be selected and revealed when this symbol is being picked, e.g. the name of a function.
-/// Must be contained by the {@link CallHierarchyItem.range `range`}.
+/// The range that should be selected and revealed when this symbol is being
+/// picked, e.g. the name of a function. Must be contained by the [range].
 @override final  Range selectionRange;
 /// A data entry field that is preserved between a call hierarchy prepare and
 /// incoming calls or outgoing calls requests.
@@ -8404,10 +8419,10 @@ $RangeCopyWith<$Res> get selectionRange {
 /// @nodoc
 mixin _$CallHierarchyRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of CallHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -8607,11 +8622,11 @@ class _CallHierarchyRegistrationOptions implements CallHierarchyRegistrationOpti
   const _CallHierarchyRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _CallHierarchyRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CallHierarchyRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -8621,8 +8636,8 @@ class _CallHierarchyRegistrationOptions implements CallHierarchyRegistrationOpti
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of CallHierarchyRegistrationOptions
@@ -8692,8 +8707,8 @@ as String?,
 mixin _$CallHierarchyIncomingCallsParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken; CallHierarchyItem get item;
 /// Create a copy of CallHierarchyIncomingCallsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -8928,8 +8943,8 @@ class _CallHierarchyIncomingCallsParams implements CallHierarchyIncomingCallsPar
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 @override final  CallHierarchyItem item;
 
@@ -9033,8 +9048,8 @@ $CallHierarchyItemCopyWith<$Res> get item {
 mixin _$CallHierarchyIncomingCall {
 
 /// The item that makes the call.
- CallHierarchyItem get from;/// The ranges at which the calls appear. This is relative to the caller
-/// denoted by {@link CallHierarchyIncomingCall.from `this.from`}.
+ CallHierarchyItem get from;/// The ranges at which the calls appear. This is relative to the caller denoted
+/// by [CallHierarchyIncomingCall].
  List<Range> get fromRanges;
 /// Create a copy of CallHierarchyIncomingCall
 /// with the given fields replaced by the non-null parameter values.
@@ -9244,11 +9259,11 @@ class _CallHierarchyIncomingCall implements CallHierarchyIncomingCall {
 
 /// The item that makes the call.
 @override final  CallHierarchyItem from;
-/// The ranges at which the calls appear. This is relative to the caller
-/// denoted by {@link CallHierarchyIncomingCall.from `this.from`}.
+/// The ranges at which the calls appear. This is relative to the caller denoted
+/// by [CallHierarchyIncomingCall].
  final  List<Range> _fromRanges;
-/// The ranges at which the calls appear. This is relative to the caller
-/// denoted by {@link CallHierarchyIncomingCall.from `this.from`}.
+/// The ranges at which the calls appear. This is relative to the caller denoted
+/// by [CallHierarchyIncomingCall].
 @override List<Range> get fromRanges {
   if (_fromRanges is EqualUnmodifiableListView) return _fromRanges;
   // ignore: implicit_dynamic_type
@@ -9331,8 +9346,8 @@ $CallHierarchyItemCopyWith<$Res> get from {
 mixin _$CallHierarchyOutgoingCallsParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken; CallHierarchyItem get item;
 /// Create a copy of CallHierarchyOutgoingCallsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -9567,8 +9582,8 @@ class _CallHierarchyOutgoingCallsParams implements CallHierarchyOutgoingCallsPar
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 @override final  CallHierarchyItem item;
 
@@ -9672,9 +9687,9 @@ $CallHierarchyItemCopyWith<$Res> get item {
 mixin _$CallHierarchyOutgoingCall {
 
 /// The item that is called.
- CallHierarchyItem get to;/// The range at which this item is called. This is the range relative to the caller, e.g the item
-/// passed to {@link CallHierarchyItemProvider.provideCallHierarchyOutgoingCalls `provideCallHierarchyOutgoingCalls`}
-/// and not {@link CallHierarchyOutgoingCall.to `this.to`}.
+ CallHierarchyItem get to;/// The range at which this item is called. This is the range relative to the
+/// caller, e.g the item passed to [provideCallHierarchyOutgoingCalls] and not
+/// [CallHierarchyOutgoingCall].
  List<Range> get fromRanges;
 /// Create a copy of CallHierarchyOutgoingCall
 /// with the given fields replaced by the non-null parameter values.
@@ -9884,13 +9899,13 @@ class _CallHierarchyOutgoingCall implements CallHierarchyOutgoingCall {
 
 /// The item that is called.
 @override final  CallHierarchyItem to;
-/// The range at which this item is called. This is the range relative to the caller, e.g the item
-/// passed to {@link CallHierarchyItemProvider.provideCallHierarchyOutgoingCalls `provideCallHierarchyOutgoingCalls`}
-/// and not {@link CallHierarchyOutgoingCall.to `this.to`}.
+/// The range at which this item is called. This is the range relative to the
+/// caller, e.g the item passed to [provideCallHierarchyOutgoingCalls] and not
+/// [CallHierarchyOutgoingCall].
  final  List<Range> _fromRanges;
-/// The range at which this item is called. This is the range relative to the caller, e.g the item
-/// passed to {@link CallHierarchyItemProvider.provideCallHierarchyOutgoingCalls `provideCallHierarchyOutgoingCalls`}
-/// and not {@link CallHierarchyOutgoingCall.to `this.to`}.
+/// The range at which this item is called. This is the range relative to the
+/// caller, e.g the item passed to [provideCallHierarchyOutgoingCalls] and not
+/// [CallHierarchyOutgoingCall].
 @override List<Range> get fromRanges {
   if (_fromRanges is EqualUnmodifiableListView) return _fromRanges;
   // ignore: implicit_dynamic_type
@@ -9973,8 +9988,8 @@ $CallHierarchyItemCopyWith<$Res> get to {
 mixin _$SemanticTokensParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
  TextDocumentIdentifier get textDocument;
 /// Create a copy of SemanticTokensParams
@@ -10210,8 +10225,8 @@ class _SemanticTokensParams implements SemanticTokensParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
@@ -10315,10 +10330,10 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$SemanticTokens {
 
-/// An optional result id. If provided and clients support delta updating
-/// the client will include the result id in the next semantic token request.
-/// A server can then instead of computing all semantic tokens again simply
-/// send a delta.
+/// An optional result id. If provided and clients support delta updating the
+/// client will include the result id in the next semantic token request. A
+/// server can then instead of computing all semantic tokens again simply send a
+/// delta.
  String? get resultId;/// The actual tokens.
  List<int> get data;
 /// Create a copy of SemanticTokens
@@ -10518,10 +10533,10 @@ class _SemanticTokens implements SemanticTokens {
   const _SemanticTokens({this.resultId, required final  List<int> data}): _data = data;
   factory _SemanticTokens.fromJson(Map<String, dynamic> json) => _$SemanticTokensFromJson(json);
 
-/// An optional result id. If provided and clients support delta updating
-/// the client will include the result id in the next semantic token request.
-/// A server can then instead of computing all semantic tokens again simply
-/// send a delta.
+/// An optional result id. If provided and clients support delta updating the
+/// client will include the result id in the next semantic token request. A
+/// server can then instead of computing all semantic tokens again simply send a
+/// delta.
 @override final  String? resultId;
 /// The actual tokens.
  final  List<int> _data;
@@ -10867,14 +10882,14 @@ as List<int>,
 /// @nodoc
 mixin _$SemanticTokensRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The legend used by the server
- SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a specific range
-/// of a document.
+ SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a specific range of a
+/// document.
  Object? get range;/// Server supports providing semantic tokens for a full document.
- Object? get full;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+ Object? get full;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of SemanticTokensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -11084,11 +11099,11 @@ class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOp
   const _SemanticTokensRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, required this.legend, this.range, this.full, this.id}): _documentSelector = documentSelector;
   factory _SemanticTokensRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SemanticTokensRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -11100,13 +11115,13 @@ class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOp
 @override final  bool? workDoneProgress;
 /// The legend used by the server
 @override final  SemanticTokensLegend legend;
-/// Server supports providing semantic tokens for a specific range
-/// of a document.
+/// Server supports providing semantic tokens for a specific range of a
+/// document.
 @override final  Object? range;
 /// Server supports providing semantic tokens for a full document.
 @override final  Object? full;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of SemanticTokensRegistrationOptions
@@ -11186,11 +11201,11 @@ $SemanticTokensLegendCopyWith<$Res> get legend {
 mixin _$SemanticTokensDeltaParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;/// The result id of a previous response. The result Id can either point to a full response
-/// or a delta response depending on what was received last.
+ TextDocumentIdentifier get textDocument;/// The result id of a previous response. The result Id can either point to a
+/// full response or a delta response depending on what was received last.
  String get previousResultId;
 /// Create a copy of SemanticTokensDeltaParams
 /// with the given fields replaced by the non-null parameter values.
@@ -11426,13 +11441,13 @@ class _SemanticTokensDeltaParams implements SemanticTokensDeltaParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
-/// The result id of a previous response. The result Id can either point to a full response
-/// or a delta response depending on what was received last.
+/// The result id of a previous response. The result Id can either point to a
+/// full response or a delta response depending on what was received last.
 @override final  String previousResultId;
 
 /// Create a copy of SemanticTokensDeltaParams
@@ -12080,8 +12095,8 @@ as List<SemanticTokensEdit>,
 mixin _$SemanticTokensRangeParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
  TextDocumentIdentifier get textDocument;/// The range the semantic tokens are requested for.
  Range get range;
@@ -12328,8 +12343,8 @@ class _SemanticTokensRangeParams implements SemanticTokensRangeParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
@@ -12446,17 +12461,15 @@ $RangeCopyWith<$Res> get range {
 mixin _$ShowDocumentParams {
 
 /// The uri to show.
- String get uri;/// Indicates to show the resource in an external program.
-/// To show, for example, `https://code.visualstudio.com/`
-/// in the default WEB browser set `external` to `true`.
- bool? get external;/// An optional property to indicate whether the editor
-/// showing the document should take focus or not.
-/// Clients might ignore this property if an external
+ String get uri;/// Indicates to show the resource in an external program. To show, for example,
+/// `https://code.visualstudio.com/` in the default WEB browser set `external`
+/// to `true`.
+ bool? get external;/// An optional property to indicate whether the editor showing the document
+/// should take focus or not. Clients might ignore this property if an external
 /// program is started.
- bool? get takeFocus;/// An optional selection range if the document is a text
-/// document. Clients might ignore the property if an
-/// external program is started or the file is not a text
-/// file.
+ bool? get takeFocus;/// An optional selection range if the document is a text document. Clients
+/// might ignore the property if an external program is started or the file is
+/// not a text file.
  Range? get selection;
 /// Create a copy of ShowDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -12671,19 +12684,17 @@ class _ShowDocumentParams implements ShowDocumentParams {
 
 /// The uri to show.
 @override final  String uri;
-/// Indicates to show the resource in an external program.
-/// To show, for example, `https://code.visualstudio.com/`
-/// in the default WEB browser set `external` to `true`.
+/// Indicates to show the resource in an external program. To show, for example,
+/// `https://code.visualstudio.com/` in the default WEB browser set `external`
+/// to `true`.
 @override final  bool? external;
-/// An optional property to indicate whether the editor
-/// showing the document should take focus or not.
-/// Clients might ignore this property if an external
+/// An optional property to indicate whether the editor showing the document
+/// should take focus or not. Clients might ignore this property if an external
 /// program is started.
 @override final  bool? takeFocus;
-/// An optional selection range if the document is a text
-/// document. Clients might ignore the property if an
-/// external program is started or the file is not a text
-/// file.
+/// An optional selection range if the document is a text document. Clients
+/// might ignore the property if an external program is started or the file is
+/// not a text file.
 @override final  Range? selection;
 
 /// Create a copy of ShowDocumentParams
@@ -13365,11 +13376,11 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 /// @nodoc
 mixin _$LinkedEditingRanges {
 
-/// A list of ranges that can be edited together. The ranges must have
-/// identical length and contain identical text content. The ranges cannot overlap.
- List<Range> get ranges;/// An optional word pattern (regular expression) that describes valid contents for
-/// the given ranges. If no pattern is provided, the client configuration's word
-/// pattern will be used.
+/// A list of ranges that can be edited together. The ranges must have identical
+/// length and contain identical text content. The ranges cannot overlap.
+ List<Range> get ranges;/// An optional word pattern (regular expression) that describes valid contents
+/// for the given ranges. If no pattern is provided, the client configuration's
+/// word pattern will be used.
  String? get wordPattern;
 /// Create a copy of LinkedEditingRanges
 /// with the given fields replaced by the non-null parameter values.
@@ -13568,20 +13579,20 @@ class _LinkedEditingRanges implements LinkedEditingRanges {
   const _LinkedEditingRanges({required final  List<Range> ranges, this.wordPattern}): _ranges = ranges;
   factory _LinkedEditingRanges.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangesFromJson(json);
 
-/// A list of ranges that can be edited together. The ranges must have
-/// identical length and contain identical text content. The ranges cannot overlap.
+/// A list of ranges that can be edited together. The ranges must have identical
+/// length and contain identical text content. The ranges cannot overlap.
  final  List<Range> _ranges;
-/// A list of ranges that can be edited together. The ranges must have
-/// identical length and contain identical text content. The ranges cannot overlap.
+/// A list of ranges that can be edited together. The ranges must have identical
+/// length and contain identical text content. The ranges cannot overlap.
 @override List<Range> get ranges {
   if (_ranges is EqualUnmodifiableListView) return _ranges;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_ranges);
 }
 
-/// An optional word pattern (regular expression) that describes valid contents for
-/// the given ranges. If no pattern is provided, the client configuration's word
-/// pattern will be used.
+/// An optional word pattern (regular expression) that describes valid contents
+/// for the given ranges. If no pattern is provided, the client configuration's
+/// word pattern will be used.
 @override final  String? wordPattern;
 
 /// Create a copy of LinkedEditingRanges
@@ -13649,10 +13660,10 @@ as String?,
 /// @nodoc
 mixin _$LinkedEditingRangeRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of LinkedEditingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -13852,11 +13863,11 @@ class _LinkedEditingRangeRegistrationOptions implements LinkedEditingRangeRegist
   const _LinkedEditingRangeRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _LinkedEditingRangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -13866,8 +13877,8 @@ class _LinkedEditingRangeRegistrationOptions implements LinkedEditingRangeRegist
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of LinkedEditingRangeRegistrationOptions
@@ -14209,20 +14220,24 @@ as List<FileCreate>,
 mixin _$WorkspaceEdit {
 
 /// Holds changes to existing resources.
- Map<String, List<TextEdit>>? get changes;/// Depending on the client capability `workspace.workspaceEdit.resourceOperations` document changes
-/// are either an array of `TextDocumentEdit`s to express changes to n different text documents
-/// where each text document edit addresses a specific version of a text document. Or it can contain
-/// above `TextDocumentEdit`s mixed with create, rename and delete file / folder operations.
+ Map<String, List<TextEdit>>? get changes;/// Depending on the client capability
+/// `workspace.workspaceEdit.resourceOperations` document changes are either an
+/// array of `TextDocumentEdit`s to express changes to n different text
+/// documents where each text document edit addresses a specific version of a
+/// text document. Or it can contain above `TextDocumentEdit`s mixed with
+/// create, rename and delete file / folder operations.
 ///
 /// Whether a client supports versioned document edits is expressed via
 /// `workspace.workspaceEdit.documentChanges` client capability.
 ///
-/// If a client neither supports `documentChanges` nor `workspace.workspaceEdit.resourceOperations` then
-/// only plain `TextEdit`s using the `changes` property are supported.
- List<Object>? get documentChanges;/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s or create, rename and
-/// delete file / folder operations.
+/// If a client neither supports `documentChanges` nor
+/// `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s
+/// using the `changes` property are supported.
+ List<Object>? get documentChanges;/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
+/// or create, rename and delete file / folder operations.
 ///
-/// Whether clients honor this property depends on the client capability `workspace.changeAnnotationSupport`.
+/// Whether clients honor this property depends on the client capability
+/// `workspace.changeAnnotationSupport`.
 ///
 /// @since 3.16.0
  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? get changeAnnotations;
@@ -14435,27 +14450,33 @@ class _WorkspaceEdit implements WorkspaceEdit {
   return EqualUnmodifiableMapView(value);
 }
 
-/// Depending on the client capability `workspace.workspaceEdit.resourceOperations` document changes
-/// are either an array of `TextDocumentEdit`s to express changes to n different text documents
-/// where each text document edit addresses a specific version of a text document. Or it can contain
-/// above `TextDocumentEdit`s mixed with create, rename and delete file / folder operations.
+/// Depending on the client capability
+/// `workspace.workspaceEdit.resourceOperations` document changes are either an
+/// array of `TextDocumentEdit`s to express changes to n different text
+/// documents where each text document edit addresses a specific version of a
+/// text document. Or it can contain above `TextDocumentEdit`s mixed with
+/// create, rename and delete file / folder operations.
 ///
 /// Whether a client supports versioned document edits is expressed via
 /// `workspace.workspaceEdit.documentChanges` client capability.
 ///
-/// If a client neither supports `documentChanges` nor `workspace.workspaceEdit.resourceOperations` then
-/// only plain `TextEdit`s using the `changes` property are supported.
+/// If a client neither supports `documentChanges` nor
+/// `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s
+/// using the `changes` property are supported.
  final  List<Object>? _documentChanges;
-/// Depending on the client capability `workspace.workspaceEdit.resourceOperations` document changes
-/// are either an array of `TextDocumentEdit`s to express changes to n different text documents
-/// where each text document edit addresses a specific version of a text document. Or it can contain
-/// above `TextDocumentEdit`s mixed with create, rename and delete file / folder operations.
+/// Depending on the client capability
+/// `workspace.workspaceEdit.resourceOperations` document changes are either an
+/// array of `TextDocumentEdit`s to express changes to n different text
+/// documents where each text document edit addresses a specific version of a
+/// text document. Or it can contain above `TextDocumentEdit`s mixed with
+/// create, rename and delete file / folder operations.
 ///
 /// Whether a client supports versioned document edits is expressed via
 /// `workspace.workspaceEdit.documentChanges` client capability.
 ///
-/// If a client neither supports `documentChanges` nor `workspace.workspaceEdit.resourceOperations` then
-/// only plain `TextEdit`s using the `changes` property are supported.
+/// If a client neither supports `documentChanges` nor
+/// `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s
+/// using the `changes` property are supported.
 @override List<Object>? get documentChanges {
   final value = _documentChanges;
   if (value == null) return null;
@@ -14464,17 +14485,19 @@ class _WorkspaceEdit implements WorkspaceEdit {
   return EqualUnmodifiableListView(value);
 }
 
-/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s or create, rename and
-/// delete file / folder operations.
+/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
+/// or create, rename and delete file / folder operations.
 ///
-/// Whether clients honor this property depends on the client capability `workspace.changeAnnotationSupport`.
+/// Whether clients honor this property depends on the client capability
+/// `workspace.changeAnnotationSupport`.
 ///
 /// @since 3.16.0
  final  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? _changeAnnotations;
-/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s or create, rename and
-/// delete file / folder operations.
+/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
+/// or create, rename and delete file / folder operations.
 ///
-/// Whether clients honor this property depends on the client capability `workspace.changeAnnotationSupport`.
+/// Whether clients honor this property depends on the client capability
+/// `workspace.changeAnnotationSupport`.
 ///
 /// @since 3.16.0
 @override Map<ChangeAnnotationIdentifier, ChangeAnnotation>? get changeAnnotations {
@@ -14824,8 +14847,8 @@ as List<FileOperationFilter>,
 /// @nodoc
 mixin _$RenameFilesParams {
 
-/// An array of all files/folders renamed in this operation. When a folder is renamed, only
-/// the folder will be included, and not its children.
+/// An array of all files/folders renamed in this operation. When a folder is
+/// renamed, only the folder will be included, and not its children.
  List<FileRename> get files;
 /// Create a copy of RenameFilesParams
 /// with the given fields replaced by the non-null parameter values.
@@ -15023,11 +15046,11 @@ class _RenameFilesParams implements RenameFilesParams {
   const _RenameFilesParams({required final  List<FileRename> files}): _files = files;
   factory _RenameFilesParams.fromJson(Map<String, dynamic> json) => _$RenameFilesParamsFromJson(json);
 
-/// An array of all files/folders renamed in this operation. When a folder is renamed, only
-/// the folder will be included, and not its children.
+/// An array of all files/folders renamed in this operation. When a folder is
+/// renamed, only the folder will be included, and not its children.
  final  List<FileRename> _files;
-/// An array of all files/folders renamed in this operation. When a folder is renamed, only
-/// the folder will be included, and not its children.
+/// An array of all files/folders renamed in this operation. When a folder is
+/// renamed, only the folder will be included, and not its children.
 @override List<FileRename> get files {
   if (_files is EqualUnmodifiableListView) return _files;
   // ignore: implicit_dynamic_type
@@ -15374,8 +15397,8 @@ mixin _$MonikerParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of MonikerParams
 /// with the given fields replaced by the non-null parameter values.
@@ -15624,8 +15647,8 @@ class _MonikerParams implements MonikerParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of MonikerParams
@@ -15738,8 +15761,8 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 mixin _$Moniker {
 
 /// The scheme of the moniker. For example tsc or .Net
- String get scheme;/// The identifier of the moniker. The value is opaque in LSIF however
-/// schema owners are allowed to define the structure if they want.
+ String get scheme;/// The identifier of the moniker. The value is opaque in LSIF however schema
+/// owners are allowed to define the structure if they want.
  String get identifier;/// The scope in which the moniker is unique
  UniquenessLevel get unique;/// The moniker kind if known.
  MonikerKind? get kind;
@@ -15944,8 +15967,8 @@ class _Moniker implements Moniker {
 
 /// The scheme of the moniker. For example tsc or .Net
 @override final  String scheme;
-/// The identifier of the moniker. The value is opaque in LSIF however
-/// schema owners are allowed to define the structure if they want.
+/// The identifier of the moniker. The value is opaque in LSIF however schema
+/// owners are allowed to define the structure if they want.
 @override final  String identifier;
 /// The scope in which the moniker is unique
 @override final  UniquenessLevel unique;
@@ -16019,8 +16042,8 @@ as MonikerKind?,
 /// @nodoc
 mixin _$MonikerRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;
 /// Create a copy of MonikerRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -16219,11 +16242,11 @@ class _MonikerRegistrationOptions implements MonikerRegistrationOptions {
   const _MonikerRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _MonikerRegistrationOptions.fromJson(Map<String, dynamic> json) => _$MonikerRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -16642,12 +16665,11 @@ mixin _$TypeHierarchyItem {
  String get uri;/// The range enclosing this symbol not including leading/trailing whitespace
 /// but everything else, e.g. comments and code.
  Range get range;/// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the
-/// {@link TypeHierarchyItem.range `range`}.
+/// picked, e.g. the name of a function. Must be contained by the [range].
  Range get selectionRange;/// A data entry field that is preserved between a type hierarchy prepare and
-/// supertypes or subtypes requests. It could also be used to identify the
-/// type hierarchy in the server, helping improve the performance on
-/// resolving supertypes and subtypes.
+/// supertypes or subtypes requests. It could also be used to identify the type
+/// hierarchy in the server, helping improve the performance on resolving
+/// supertypes and subtypes.
  LSPAny? get data;
 /// Create a copy of TypeHierarchyItem
 /// with the given fields replaced by the non-null parameter values.
@@ -16892,13 +16914,12 @@ class _TypeHierarchyItem implements TypeHierarchyItem {
 /// but everything else, e.g. comments and code.
 @override final  Range range;
 /// The range that should be selected and revealed when this symbol is being
-/// picked, e.g. the name of a function. Must be contained by the
-/// {@link TypeHierarchyItem.range `range`}.
+/// picked, e.g. the name of a function. Must be contained by the [range].
 @override final  Range selectionRange;
 /// A data entry field that is preserved between a type hierarchy prepare and
-/// supertypes or subtypes requests. It could also be used to identify the
-/// type hierarchy in the server, helping improve the performance on
-/// resolving supertypes and subtypes.
+/// supertypes or subtypes requests. It could also be used to identify the type
+/// hierarchy in the server, helping improve the performance on resolving
+/// supertypes and subtypes.
 @override final  LSPAny? data;
 
 /// Create a copy of TypeHierarchyItem
@@ -16989,10 +17010,10 @@ $RangeCopyWith<$Res> get selectionRange {
 /// @nodoc
 mixin _$TypeHierarchyRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of TypeHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -17192,11 +17213,11 @@ class _TypeHierarchyRegistrationOptions implements TypeHierarchyRegistrationOpti
   const _TypeHierarchyRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.id}): _documentSelector = documentSelector;
   factory _TypeHierarchyRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TypeHierarchyRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -17206,8 +17227,8 @@ class _TypeHierarchyRegistrationOptions implements TypeHierarchyRegistrationOpti
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of TypeHierarchyRegistrationOptions
@@ -17277,8 +17298,8 @@ as String?,
 mixin _$TypeHierarchySupertypesParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken; TypeHierarchyItem get item;
 /// Create a copy of TypeHierarchySupertypesParams
 /// with the given fields replaced by the non-null parameter values.
@@ -17513,8 +17534,8 @@ class _TypeHierarchySupertypesParams implements TypeHierarchySupertypesParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 @override final  TypeHierarchyItem item;
 
@@ -17618,8 +17639,8 @@ $TypeHierarchyItemCopyWith<$Res> get item {
 mixin _$TypeHierarchySubtypesParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken; TypeHierarchyItem get item;
 /// Create a copy of TypeHierarchySubtypesParams
 /// with the given fields replaced by the non-null parameter values.
@@ -17854,8 +17875,8 @@ class _TypeHierarchySubtypesParams implements TypeHierarchySubtypesParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 @override final  TypeHierarchyItem item;
 
@@ -18318,10 +18339,10 @@ $InlineValueContextCopyWith<$Res> get context {
 /// @nodoc
 mixin _$InlineValueRegistrationOptions {
 
- bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+ bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of InlineValueRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -18522,11 +18543,11 @@ class _InlineValueRegistrationOptions implements InlineValueRegistrationOptions 
   factory _InlineValueRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineValueRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -18535,8 +18556,8 @@ class _InlineValueRegistrationOptions implements InlineValueRegistrationOptions 
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of InlineValueRegistrationOptions
@@ -18948,26 +18969,26 @@ mixin _$InlayHint {
 /// InlayHintLabelPart label parts.
 ///
 /// *Note* that neither the string nor the label part can be empty.
- Object get label;/// The kind of this hint. Can be omitted in which case the client
-/// should fall back to a reasonable default.
+ Object get label;/// The kind of this hint. Can be omitted in which case the client should fall
+/// back to a reasonable default.
  InlayHintKind? get kind;/// Optional text edits that are performed when accepting this inlay hint.
 ///
-/// *Note* that edits are expected to change the document so that the inlay
-/// hint (or its nearest variant) is now part of the document and the inlay
-/// hint itself is now obsolete.
+/// *Note* that edits are expected to change the document so that the inlay hint
+/// (or its nearest variant) is now part of the document and the inlay hint
+/// itself is now obsolete.
  List<TextEdit>? get textEdits;/// The tooltip text when you hover over this item.
  Object? get tooltip;/// Render padding before the hint.
 ///
-/// Note: Padding should use the editor's background color, not the
-/// background color of the hint itself. That means padding can be used
-/// to visually align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the background
+/// color of the hint itself. That means padding can be used to visually
+/// align/separate an inlay hint.
  bool? get paddingLeft;/// Render padding after the hint.
 ///
-/// Note: Padding should use the editor's background color, not the
-/// background color of the hint itself. That means padding can be used
-/// to visually align/separate an inlay hint.
- bool? get paddingRight;/// A data entry field that is preserved on an inlay hint between
-/// a `textDocument/inlayHint` and a `inlayHint/resolve` request.
+/// Note: Padding should use the editor's background color, not the background
+/// color of the hint itself. That means padding can be used to visually
+/// align/separate an inlay hint.
+ bool? get paddingRight;/// A data entry field that is preserved on an inlay hint between a
+/// `textDocument/inlayHint` and a `inlayHint/resolve` request.
  LSPAny? get data;
 /// Create a copy of InlayHint
 /// with the given fields replaced by the non-null parameter values.
@@ -19188,20 +19209,20 @@ class _InlayHint implements InlayHint {
 ///
 /// *Note* that neither the string nor the label part can be empty.
 @override final  Object label;
-/// The kind of this hint. Can be omitted in which case the client
-/// should fall back to a reasonable default.
+/// The kind of this hint. Can be omitted in which case the client should fall
+/// back to a reasonable default.
 @override final  InlayHintKind? kind;
 /// Optional text edits that are performed when accepting this inlay hint.
 ///
-/// *Note* that edits are expected to change the document so that the inlay
-/// hint (or its nearest variant) is now part of the document and the inlay
-/// hint itself is now obsolete.
+/// *Note* that edits are expected to change the document so that the inlay hint
+/// (or its nearest variant) is now part of the document and the inlay hint
+/// itself is now obsolete.
  final  List<TextEdit>? _textEdits;
 /// Optional text edits that are performed when accepting this inlay hint.
 ///
-/// *Note* that edits are expected to change the document so that the inlay
-/// hint (or its nearest variant) is now part of the document and the inlay
-/// hint itself is now obsolete.
+/// *Note* that edits are expected to change the document so that the inlay hint
+/// (or its nearest variant) is now part of the document and the inlay hint
+/// itself is now obsolete.
 @override List<TextEdit>? get textEdits {
   final value = _textEdits;
   if (value == null) return null;
@@ -19214,18 +19235,18 @@ class _InlayHint implements InlayHint {
 @override final  Object? tooltip;
 /// Render padding before the hint.
 ///
-/// Note: Padding should use the editor's background color, not the
-/// background color of the hint itself. That means padding can be used
-/// to visually align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the background
+/// color of the hint itself. That means padding can be used to visually
+/// align/separate an inlay hint.
 @override final  bool? paddingLeft;
 /// Render padding after the hint.
 ///
-/// Note: Padding should use the editor's background color, not the
-/// background color of the hint itself. That means padding can be used
-/// to visually align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the background
+/// color of the hint itself. That means padding can be used to visually
+/// align/separate an inlay hint.
 @override final  bool? paddingRight;
-/// A data entry field that is preserved on an inlay hint between
-/// a `textDocument/inlayHint` and a `inlayHint/resolve` request.
+/// A data entry field that is preserved on an inlay hint between a
+/// `textDocument/inlayHint` and a `inlayHint/resolve` request.
 @override final  LSPAny? data;
 
 /// Create a copy of InlayHint
@@ -19305,12 +19326,12 @@ $PositionCopyWith<$Res> get position {
 /// @nodoc
 mixin _$InlayHintRegistrationOptions {
 
- bool? get workDoneProgress;/// The server provides support to resolve additional
-/// information for an inlay hint item.
- bool? get resolveProvider;/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+ bool? get workDoneProgress;/// The server provides support to resolve additional information for an inlay
+/// hint item.
+ bool? get resolveProvider;/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of InlayHintRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -19512,14 +19533,14 @@ class _InlayHintRegistrationOptions implements InlayHintRegistrationOptions {
   factory _InlayHintRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlayHintRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// The server provides support to resolve additional
-/// information for an inlay hint item.
+/// The server provides support to resolve additional information for an inlay
+/// hint item.
 @override final  bool? resolveProvider;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -19528,8 +19549,8 @@ class _InlayHintRegistrationOptions implements InlayHintRegistrationOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of InlayHintRegistrationOptions
@@ -19600,8 +19621,8 @@ as String?,
 mixin _$DocumentDiagnosticParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
  TextDocumentIdentifier get textDocument;/// The additional identifier  provided during registration.
  String? get identifier;/// The result id of a previous response if provided.
@@ -19841,8 +19862,8 @@ class _DocumentDiagnosticParams implements DocumentDiagnosticParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
@@ -20484,17 +20505,17 @@ as bool,
 /// @nodoc
 mixin _$DiagnosticRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// An optional identifier under which the diagnostics are
-/// managed by the client.
- String? get identifier;/// Whether the language has inter file dependencies meaning that
-/// editing code in one file can result in a different diagnostic
-/// set in another file. Inter file dependencies are common for
-/// most programming languages and typically uncommon for linters.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// An optional identifier under which the diagnostics are managed by the
+/// client.
+ String? get identifier;/// Whether the language has inter file dependencies meaning that editing code
+/// in one file can result in a different diagnostic set in another file. Inter
+/// file dependencies are common for most programming languages and typically
+/// uncommon for linters.
  bool get interFileDependencies;/// The server provides support for workspace diagnostics as well.
- bool get workspaceDiagnostics;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+ bool get workspaceDiagnostics;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of DiagnosticRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -20697,11 +20718,11 @@ class _DiagnosticRegistrationOptions implements DiagnosticRegistrationOptions {
   const _DiagnosticRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.identifier, required this.interFileDependencies, required this.workspaceDiagnostics, this.id}): _documentSelector = documentSelector;
   factory _DiagnosticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -20711,18 +20732,18 @@ class _DiagnosticRegistrationOptions implements DiagnosticRegistrationOptions {
 }
 
 @override final  bool? workDoneProgress;
-/// An optional identifier under which the diagnostics are
-/// managed by the client.
+/// An optional identifier under which the diagnostics are managed by the
+/// client.
 @override final  String? identifier;
-/// Whether the language has inter file dependencies meaning that
-/// editing code in one file can result in a different diagnostic
-/// set in another file. Inter file dependencies are common for
-/// most programming languages and typically uncommon for linters.
+/// Whether the language has inter file dependencies meaning that editing code
+/// in one file can result in a different diagnostic set in another file. Inter
+/// file dependencies are common for most programming languages and typically
+/// uncommon for linters.
 @override final  bool interFileDependencies;
 /// The server provides support for workspace diagnostics as well.
 @override final  bool workspaceDiagnostics;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of DiagnosticRegistrationOptions
@@ -20795,11 +20816,10 @@ as String?,
 mixin _$WorkspaceDiagnosticParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The additional identifier provided during registration.
- String? get identifier;/// The currently known diagnostic reports with their
-/// previous result ids.
+ String? get identifier;/// The currently known diagnostic reports with their previous result ids.
  List<PreviousResultId> get previousResultIds;
 /// Create a copy of WorkspaceDiagnosticParams
 /// with the given fields replaced by the non-null parameter values.
@@ -21026,16 +21046,14 @@ class _WorkspaceDiagnosticParams implements WorkspaceDiagnosticParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The additional identifier provided during registration.
 @override final  String? identifier;
-/// The currently known diagnostic reports with their
-/// previous result ids.
+/// The currently known diagnostic reports with their previous result ids.
  final  List<PreviousResultId> _previousResultIds;
-/// The currently known diagnostic reports with their
-/// previous result ids.
+/// The currently known diagnostic reports with their previous result ids.
 @override List<PreviousResultId> get previousResultIds {
   if (_previousResultIds is EqualUnmodifiableListView) return _previousResultIds;
   // ignore: implicit_dynamic_type
@@ -21673,8 +21691,7 @@ as List<WorkspaceDocumentDiagnosticReport>,
 mixin _$DidOpenNotebookDocumentParams {
 
 /// The notebook document that got opened.
- NotebookDocument get notebookDocument;/// The text documents that represent the content
-/// of a notebook cell.
+ NotebookDocument get notebookDocument;/// The text documents that represent the content of a notebook cell.
  List<TextDocumentItem> get cellTextDocuments;
 /// Create a copy of DidOpenNotebookDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -21884,11 +21901,9 @@ class _DidOpenNotebookDocumentParams implements DidOpenNotebookDocumentParams {
 
 /// The notebook document that got opened.
 @override final  NotebookDocument notebookDocument;
-/// The text documents that represent the content
-/// of a notebook cell.
+/// The text documents that represent the content of a notebook cell.
  final  List<TextDocumentItem> _cellTextDocuments;
-/// The text documents that represent the content
-/// of a notebook cell.
+/// The text documents that represent the content of a notebook cell.
 @override List<TextDocumentItem> get cellTextDocuments {
   if (_cellTextDocuments is EqualUnmodifiableListView) return _cellTextDocuments;
   // ignore: implicit_dynamic_type
@@ -21970,23 +21985,22 @@ $NotebookDocumentCopyWith<$Res> get notebookDocument {
 /// @nodoc
 mixin _$DidChangeNotebookDocumentParams {
 
-/// The notebook document that did change. The version number points
-/// to the version after all provided changes have been applied. If
-/// only the text document content of a cell changes the notebook version
-/// doesn't necessarily have to change.
+/// The notebook document that did change. The version number points to the
+/// version after all provided changes have been applied. If only the text
+/// document content of a cell changes the notebook version doesn't necessarily
+/// have to change.
  VersionedNotebookDocumentIdentifier get notebookDocument;/// The actual changes to the notebook document.
 ///
-/// The changes describe single state changes to the notebook document.
-/// So if there are two changes c1 (at array index 0) and c2 (at array
-/// index 1) for a notebook in state S then c1 moves the notebook from
-/// S to S' and c2 from S' to S''. So c1 is computed on the state S and
-/// c2 is computed on the state S'.
+/// The changes describe single state changes to the notebook document. So if
+/// there are two changes c1 (at array index 0) and c2 (at array index 1) for a
+/// notebook in state S then c1 moves the notebook from S to S' and c2 from S'
+/// to S''. So c1 is computed on the state S and c2 is computed on the state S'.
 ///
-/// To mirror the content of a notebook using change events use the following approach:
-/// - start with the same initial content
-/// - apply the 'notebookDocument/didChange' notifications in the order you receive them.
-/// - apply the `NotebookChangeEvent`s in a single notification in the order
-///   you receive them.
+/// To mirror the content of a notebook using change events use the following
+/// approach: - start with the same initial content - apply the
+/// 'notebookDocument/didChange' notifications in the order you receive them. -
+/// apply the `NotebookChangeEvent`s in a single notification in the order you
+/// receive them.
  NotebookDocumentChangeEvent get change;
 /// Create a copy of DidChangeNotebookDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -22203,24 +22217,23 @@ class _DidChangeNotebookDocumentParams implements DidChangeNotebookDocumentParam
   const _DidChangeNotebookDocumentParams({required this.notebookDocument, required this.change});
   factory _DidChangeNotebookDocumentParams.fromJson(Map<String, dynamic> json) => _$DidChangeNotebookDocumentParamsFromJson(json);
 
-/// The notebook document that did change. The version number points
-/// to the version after all provided changes have been applied. If
-/// only the text document content of a cell changes the notebook version
-/// doesn't necessarily have to change.
+/// The notebook document that did change. The version number points to the
+/// version after all provided changes have been applied. If only the text
+/// document content of a cell changes the notebook version doesn't necessarily
+/// have to change.
 @override final  VersionedNotebookDocumentIdentifier notebookDocument;
 /// The actual changes to the notebook document.
 ///
-/// The changes describe single state changes to the notebook document.
-/// So if there are two changes c1 (at array index 0) and c2 (at array
-/// index 1) for a notebook in state S then c1 moves the notebook from
-/// S to S' and c2 from S' to S''. So c1 is computed on the state S and
-/// c2 is computed on the state S'.
+/// The changes describe single state changes to the notebook document. So if
+/// there are two changes c1 (at array index 0) and c2 (at array index 1) for a
+/// notebook in state S then c1 moves the notebook from S to S' and c2 from S'
+/// to S''. So c1 is computed on the state S and c2 is computed on the state S'.
 ///
-/// To mirror the content of a notebook using change events use the following approach:
-/// - start with the same initial content
-/// - apply the 'notebookDocument/didChange' notifications in the order you receive them.
-/// - apply the `NotebookChangeEvent`s in a single notification in the order
-///   you receive them.
+/// To mirror the content of a notebook using change events use the following
+/// approach: - start with the same initial content - apply the
+/// 'notebookDocument/didChange' notifications in the order you receive them. -
+/// apply the `NotebookChangeEvent`s in a single notification in the order you
+/// receive them.
 @override final  NotebookDocumentChangeEvent change;
 
 /// Create a copy of DidChangeNotebookDocumentParams
@@ -22590,8 +22603,8 @@ $NotebookDocumentIdentifierCopyWith<$Res> get notebookDocument {
 mixin _$DidCloseNotebookDocumentParams {
 
 /// The notebook document that got closed.
- NotebookDocumentIdentifier get notebookDocument;/// The text documents that represent the content
-/// of a notebook cell that got closed.
+ NotebookDocumentIdentifier get notebookDocument;/// The text documents that represent the content of a notebook cell that got
+/// closed.
  List<TextDocumentIdentifier> get cellTextDocuments;
 /// Create a copy of DidCloseNotebookDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -22801,11 +22814,11 @@ class _DidCloseNotebookDocumentParams implements DidCloseNotebookDocumentParams 
 
 /// The notebook document that got closed.
 @override final  NotebookDocumentIdentifier notebookDocument;
-/// The text documents that represent the content
-/// of a notebook cell that got closed.
+/// The text documents that represent the content of a notebook cell that got
+/// closed.
  final  List<TextDocumentIdentifier> _cellTextDocuments;
-/// The text documents that represent the content
-/// of a notebook cell that got closed.
+/// The text documents that represent the content of a notebook cell that got
+/// closed.
 @override List<TextDocumentIdentifier> get cellTextDocuments {
   if (_cellTextDocuments is EqualUnmodifiableListView) return _cellTextDocuments;
   // ignore: implicit_dynamic_type
@@ -23520,9 +23533,10 @@ as List<InlineCompletionItem>,
 mixin _$InlineCompletionItem {
 
 /// The text to replace the range with. Must be set.
- Object get insertText;/// A text that is used to decide if this inline completion should be shown. When `falsy` the {@link InlineCompletionItem.insertText} is used.
+ Object get insertText;/// A text that is used to decide if this inline completion should be shown.
+/// When `falsy` the [InlineCompletionItem.insertText] is used.
  String? get filterText;/// The range to replace. Must begin and end on the same line.
- Range? get range;/// An optional {@link Command} that is executed *after* inserting this completion.
+ Range? get range;/// An optional [Command] that is executed *after* inserting this completion.
  Command? get command;
 /// Create a copy of InlineCompletionItem
 /// with the given fields replaced by the non-null parameter values.
@@ -23748,11 +23762,12 @@ class _InlineCompletionItem implements InlineCompletionItem {
 
 /// The text to replace the range with. Must be set.
 @override final  Object insertText;
-/// A text that is used to decide if this inline completion should be shown. When `falsy` the {@link InlineCompletionItem.insertText} is used.
+/// A text that is used to decide if this inline completion should be shown.
+/// When `falsy` the [InlineCompletionItem.insertText] is used.
 @override final  String? filterText;
 /// The range to replace. Must begin and end on the same line.
 @override final  Range? range;
-/// An optional {@link Command} that is executed *after* inserting this completion.
+/// An optional [Command] that is executed *after* inserting this completion.
 @override final  Command? command;
 
 /// Create a copy of InlineCompletionItem
@@ -23845,10 +23860,10 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 mixin _$InlineCompletionRegistrationOptions {
 
- bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+ bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of InlineCompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -24049,11 +24064,11 @@ class _InlineCompletionRegistrationOptions implements InlineCompletionRegistrati
   factory _InlineCompletionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlineCompletionRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -24062,8 +24077,8 @@ class _InlineCompletionRegistrationOptions implements InlineCompletionRegistrati
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of InlineCompletionRegistrationOptions
@@ -24671,29 +24686,25 @@ as List<Unregistration>,
 mixin _$InitializeParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The process Id of the parent process that started
-/// the server.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The process Id of the parent process that started the server.
 ///
-/// Is `null` if the process has not been started by another process.
-/// If the parent process is not alive then the server should exit.
+/// Is `null` if the process has not been started by another process. If the
+/// parent process is not alive then the server should exit.
  int? get processId;/// Information about the client
 ///
 /// @since 3.15.0
- ({String name, String? version})? get clientInfo;/// The locale the client is currently showing the user interface
-/// in. This must not necessarily be the locale of the operating
-/// system.
+ ({String name, String? version})? get clientInfo;/// The locale the client is currently showing the user interface in. This must
+/// not necessarily be the locale of the operating system.
 ///
-/// Uses IETF language tags as the value's syntax
-/// (See https://en.wikipedia.org/wiki/IETF_language_tag)
+/// Uses IETF language tags as the value's syntax (See
+/// https://en.wikipedia.org/wiki/IETF_language_tag)
 ///
 /// @since 3.16.0
- String? get locale;/// The rootPath of the workspace. Is null
-/// if no folder is open.
+ String? get locale;/// The rootPath of the workspace. Is null if no folder is open.
 ///
 /// @deprecated in favour of rootUri.
- String? get rootPath;/// The rootUri of the workspace. Is null if no
-/// folder is open. If both `rootPath` and `rootUri` are set
-/// `rootUri` wins.
+ String? get rootPath;/// The rootUri of the workspace. Is null if no folder is open. If both
+/// `rootPath` and `rootUri` are set `rootUri` wins.
 ///
 /// @deprecated in favour of workspaceFolders.
  String? get rootUri;/// The capabilities provided by the client (editor or tool)
@@ -24701,8 +24712,8 @@ mixin _$InitializeParams {
  LSPAny? get initializationOptions;/// The initial trace setting. If omitted trace is disabled ('off').
  TraceValues? get trace;/// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
+/// This property is only available if the client supports workspace folders. It
+/// can be `null` if the client supports workspace folders but none are
 /// configured.
 ///
 /// @since 3.6.0
@@ -24934,33 +24945,29 @@ class _InitializeParams implements InitializeParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// The process Id of the parent process that started
-/// the server.
+/// The process Id of the parent process that started the server.
 ///
-/// Is `null` if the process has not been started by another process.
-/// If the parent process is not alive then the server should exit.
+/// Is `null` if the process has not been started by another process. If the
+/// parent process is not alive then the server should exit.
 @override final  int? processId;
 /// Information about the client
 ///
 /// @since 3.15.0
 @override final  ({String name, String? version})? clientInfo;
-/// The locale the client is currently showing the user interface
-/// in. This must not necessarily be the locale of the operating
-/// system.
+/// The locale the client is currently showing the user interface in. This must
+/// not necessarily be the locale of the operating system.
 ///
-/// Uses IETF language tags as the value's syntax
-/// (See https://en.wikipedia.org/wiki/IETF_language_tag)
+/// Uses IETF language tags as the value's syntax (See
+/// https://en.wikipedia.org/wiki/IETF_language_tag)
 ///
 /// @since 3.16.0
 @override final  String? locale;
-/// The rootPath of the workspace. Is null
-/// if no folder is open.
+/// The rootPath of the workspace. Is null if no folder is open.
 ///
 /// @deprecated in favour of rootUri.
 @override final  String? rootPath;
-/// The rootUri of the workspace. Is null if no
-/// folder is open. If both `rootPath` and `rootUri` are set
-/// `rootUri` wins.
+/// The rootUri of the workspace. Is null if no folder is open. If both
+/// `rootPath` and `rootUri` are set `rootUri` wins.
 ///
 /// @deprecated in favour of workspaceFolders.
 @override final  String? rootUri;
@@ -24972,16 +24979,16 @@ class _InitializeParams implements InitializeParams {
 @override final  TraceValues? trace;
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
+/// This property is only available if the client supports workspace folders. It
+/// can be `null` if the client supports workspace folders but none are
 /// configured.
 ///
 /// @since 3.6.0
  final  List<WorkspaceFolder>? _workspaceFolders;
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
+/// This property is only available if the client supports workspace folders. It
+/// can be `null` if the client supports workspace folders but none are
 /// configured.
 ///
 /// @since 3.6.0
@@ -25379,10 +25386,9 @@ $ServerCapabilitiesCopyWith<$Res> get capabilities {
 /// @nodoc
 mixin _$InitializeError {
 
-/// Indicates whether the client execute the following retry logic:
-/// (1) show the message provided by the ResponseError to the user
-/// (2) user selects retry or cancel
-/// (3) if user selected retry the initialize method is sent again.
+/// Indicates whether the client execute the following retry logic: (1) show the
+/// message provided by the ResponseError to the user (2) user selects retry or
+/// cancel (3) if user selected retry the initialize method is sent again.
  bool get retry;
 /// Create a copy of InitializeError
 /// with the given fields replaced by the non-null parameter values.
@@ -25580,10 +25586,9 @@ class _InitializeError implements InitializeError {
   const _InitializeError({required this.retry});
   factory _InitializeError.fromJson(Map<String, dynamic> json) => _$InitializeErrorFromJson(json);
 
-/// Indicates whether the client execute the following retry logic:
-/// (1) show the message provided by the ResponseError to the user
-/// (2) user selects retry or cancel
-/// (3) if user selected retry the initialize method is sent again.
+/// Indicates whether the client execute the following retry logic: (1) show the
+/// message provided by the ResponseError to the user (2) user selects retry or
+/// cancel (3) if user selected retry the initialize method is sent again.
 @override final  bool retry;
 
 /// Create a copy of InitializeError
@@ -26372,7 +26377,7 @@ section: freezed == section ? _self.section : section ,
 /// @nodoc
 mixin _$ShowMessageParams {
 
-/// The message type. See {@link MessageType}
+/// The message type. See [MessageType]
  MessageType get type;/// The actual message.
  String get message;
 /// Create a copy of ShowMessageParams
@@ -26572,7 +26577,7 @@ class _ShowMessageParams implements ShowMessageParams {
   const _ShowMessageParams({required this.type, required this.message});
   factory _ShowMessageParams.fromJson(Map<String, dynamic> json) => _$ShowMessageParamsFromJson(json);
 
-/// The message type. See {@link MessageType}
+/// The message type. See [MessageType]
 @override final  MessageType type;
 /// The actual message.
 @override final  String message;
@@ -26642,7 +26647,7 @@ as String,
 /// @nodoc
 mixin _$ShowMessageRequestParams {
 
-/// The message type. See {@link MessageType}
+/// The message type. See [MessageType]
  MessageType get type;/// The actual message.
  String get message;/// The message action items to present.
  List<MessageActionItem>? get actions;
@@ -26844,7 +26849,7 @@ class _ShowMessageRequestParams implements ShowMessageRequestParams {
   const _ShowMessageRequestParams({required this.type, required this.message, final  List<MessageActionItem>? actions}): _actions = actions;
   factory _ShowMessageRequestParams.fromJson(Map<String, dynamic> json) => _$ShowMessageRequestParamsFromJson(json);
 
-/// The message type. See {@link MessageType}
+/// The message type. See [MessageType]
 @override final  MessageType type;
 /// The actual message.
 @override final  String message;
@@ -27191,7 +27196,7 @@ as String,
 /// @nodoc
 mixin _$LogMessageParams {
 
-/// The message type. See {@link MessageType}
+/// The message type. See [MessageType]
  MessageType get type;/// The actual message.
  String get message;
 /// Create a copy of LogMessageParams
@@ -27391,7 +27396,7 @@ class _LogMessageParams implements LogMessageParams {
   const _LogMessageParams({required this.type, required this.message});
   factory _LogMessageParams.fromJson(Map<String, dynamic> json) => _$LogMessageParamsFromJson(json);
 
-/// The message type. See {@link MessageType}
+/// The message type. See [MessageType]
 @override final  MessageType type;
 /// The actual message.
 @override final  String message;
@@ -27744,20 +27749,19 @@ $TextDocumentItemCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$DidChangeTextDocumentParams {
 
-/// The document that did change. The version number points
-/// to the version after all provided content changes have
-/// been applied.
- VersionedTextDocumentIdentifier get textDocument;/// The actual content changes. The content changes describe single state changes
-/// to the document. So if there are two content changes c1 (at array index 0) and
-/// c2 (at array index 1) for a document in state S then c1 moves the document from
-/// S to S' and c2 from S' to S''. So c1 is computed on the state S and c2 is computed
-/// on the state S'.
+/// The document that did change. The version number points to the version after
+/// all provided content changes have been applied.
+ VersionedTextDocumentIdentifier get textDocument;/// The actual content changes. The content changes describe single state
+/// changes to the document. So if there are two content changes c1 (at array
+/// index 0) and c2 (at array index 1) for a document in state S then c1 moves
+/// the document from S to S' and c2 from S' to S''. So c1 is computed on the
+/// state S and c2 is computed on the state S'.
 ///
-/// To mirror the content of a document using change events use the following approach:
-/// - start with the same initial content
-/// - apply the 'textDocument/didChange' notifications in the order you receive them.
-/// - apply the `TextDocumentContentChangeEvent`s in a single notification in the order
-///   you receive them.
+/// To mirror the content of a document using change events use the following
+/// approach: - start with the same initial content - apply the
+/// 'textDocument/didChange' notifications in the order you receive them. -
+/// apply the `TextDocumentContentChangeEvent`s in a single notification in the
+/// order you receive them.
 @_TextDocumentContentChangeEventListConverter() List<TextDocumentContentChangeEvent> get contentChanges;
 /// Create a copy of DidChangeTextDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -27965,33 +27969,32 @@ class _DidChangeTextDocumentParams implements DidChangeTextDocumentParams {
   const _DidChangeTextDocumentParams({required this.textDocument, @_TextDocumentContentChangeEventListConverter() required final  List<TextDocumentContentChangeEvent> contentChanges}): _contentChanges = contentChanges;
   factory _DidChangeTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidChangeTextDocumentParamsFromJson(json);
 
-/// The document that did change. The version number points
-/// to the version after all provided content changes have
-/// been applied.
+/// The document that did change. The version number points to the version after
+/// all provided content changes have been applied.
 @override final  VersionedTextDocumentIdentifier textDocument;
-/// The actual content changes. The content changes describe single state changes
-/// to the document. So if there are two content changes c1 (at array index 0) and
-/// c2 (at array index 1) for a document in state S then c1 moves the document from
-/// S to S' and c2 from S' to S''. So c1 is computed on the state S and c2 is computed
-/// on the state S'.
+/// The actual content changes. The content changes describe single state
+/// changes to the document. So if there are two content changes c1 (at array
+/// index 0) and c2 (at array index 1) for a document in state S then c1 moves
+/// the document from S to S' and c2 from S' to S''. So c1 is computed on the
+/// state S and c2 is computed on the state S'.
 ///
-/// To mirror the content of a document using change events use the following approach:
-/// - start with the same initial content
-/// - apply the 'textDocument/didChange' notifications in the order you receive them.
-/// - apply the `TextDocumentContentChangeEvent`s in a single notification in the order
-///   you receive them.
+/// To mirror the content of a document using change events use the following
+/// approach: - start with the same initial content - apply the
+/// 'textDocument/didChange' notifications in the order you receive them. -
+/// apply the `TextDocumentContentChangeEvent`s in a single notification in the
+/// order you receive them.
  final  List<TextDocumentContentChangeEvent> _contentChanges;
-/// The actual content changes. The content changes describe single state changes
-/// to the document. So if there are two content changes c1 (at array index 0) and
-/// c2 (at array index 1) for a document in state S then c1 moves the document from
-/// S to S' and c2 from S' to S''. So c1 is computed on the state S and c2 is computed
-/// on the state S'.
+/// The actual content changes. The content changes describe single state
+/// changes to the document. So if there are two content changes c1 (at array
+/// index 0) and c2 (at array index 1) for a document in state S then c1 moves
+/// the document from S to S' and c2 from S' to S''. So c1 is computed on the
+/// state S and c2 is computed on the state S'.
 ///
-/// To mirror the content of a document using change events use the following approach:
-/// - start with the same initial content
-/// - apply the 'textDocument/didChange' notifications in the order you receive them.
-/// - apply the `TextDocumentContentChangeEvent`s in a single notification in the order
-///   you receive them.
+/// To mirror the content of a document using change events use the following
+/// approach: - start with the same initial content - apply the
+/// 'textDocument/didChange' notifications in the order you receive them. -
+/// apply the `TextDocumentContentChangeEvent`s in a single notification in the
+/// order you receive them.
 @override@_TextDocumentContentChangeEventListConverter() List<TextDocumentContentChangeEvent> get contentChanges {
   if (_contentChanges is EqualUnmodifiableListView) return _contentChanges;
   // ignore: implicit_dynamic_type
@@ -28073,8 +28076,8 @@ $VersionedTextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$TextDocumentChangeRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector;/// How documents are synced to the server.
  TextDocumentSyncKind get syncKind;
 /// Create a copy of TextDocumentChangeRegistrationOptions
@@ -28274,11 +28277,11 @@ class _TextDocumentChangeRegistrationOptions implements TextDocumentChangeRegist
   const _TextDocumentChangeRegistrationOptions({required final  DocumentSelector? documentSelector, required this.syncKind}): _documentSelector = documentSelector;
   factory _TextDocumentChangeRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentChangeRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -28639,8 +28642,8 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 mixin _$DidSaveTextDocumentParams {
 
 /// The document that was saved.
- TextDocumentIdentifier get textDocument;/// Optional the content when saved. Depends on the includeText value
-/// when the save notification was requested.
+ TextDocumentIdentifier get textDocument;/// Optional the content when saved. Depends on the includeText value when the
+/// save notification was requested.
  String? get text;
 /// Create a copy of DidSaveTextDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -28850,8 +28853,8 @@ class _DidSaveTextDocumentParams implements DidSaveTextDocumentParams {
 
 /// The document that was saved.
 @override final  TextDocumentIdentifier textDocument;
-/// Optional the content when saved. Depends on the includeText value
-/// when the save notification was requested.
+/// Optional the content when saved. Depends on the includeText value when the
+/// save notification was requested.
 @override final  String? text;
 
 /// Create a copy of DidSaveTextDocumentParams
@@ -28928,8 +28931,8 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$TextDocumentSaveRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector;/// The client is supposed to include the content on save.
  bool? get includeText;
 /// Create a copy of TextDocumentSaveRegistrationOptions
@@ -29129,11 +29132,11 @@ class _TextDocumentSaveRegistrationOptions implements TextDocumentSaveRegistrati
   const _TextDocumentSaveRegistrationOptions({required final  DocumentSelector? documentSelector, this.includeText}): _documentSelector = documentSelector;
   factory _TextDocumentSaveRegistrationOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentSaveRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -29498,10 +29501,9 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$TextEdit {
 
-/// The range of the text document to be manipulated. To insert
-/// text into a document create a range where start === end.
- Range get range;/// The string to be inserted. For delete operations use an
-/// empty string.
+/// The range of the text document to be manipulated. To insert text into a
+/// document create a range where start === end.
+ Range get range;/// The string to be inserted. For delete operations use an empty string.
  String get newText;
 /// Create a copy of TextEdit
 /// with the given fields replaced by the non-null parameter values.
@@ -29709,11 +29711,10 @@ class _TextEdit implements TextEdit {
   const _TextEdit({required this.range, required this.newText});
   factory _TextEdit.fromJson(Map<String, dynamic> json) => _$TextEditFromJson(json);
 
-/// The range of the text document to be manipulated. To insert
-/// text into a document create a range where start === end.
+/// The range of the text document to be manipulated. To insert text into a
+/// document create a range where start === end.
 @override final  Range range;
-/// The string to be inserted. For delete operations use an
-/// empty string.
+/// The string to be inserted. For delete operations use an empty string.
 @override final  String newText;
 
 /// Create a copy of TextEdit
@@ -30335,7 +30336,8 @@ as List<FileSystemWatcher>,
 mixin _$PublishDiagnosticsParams {
 
 /// The URI for which diagnostic information is reported.
- String get uri;/// Optional the version number of the document the diagnostics are published for.
+ String get uri;/// Optional the version number of the document the diagnostics are published
+/// for.
 ///
 /// @since 3.15.0
  int? get version;/// An array of diagnostic information items.
@@ -30540,7 +30542,8 @@ class _PublishDiagnosticsParams implements PublishDiagnosticsParams {
 
 /// The URI for which diagnostic information is reported.
 @override final  String uri;
-/// Optional the version number of the document the diagnostics are published for.
+/// Optional the version number of the document the diagnostics are published
+/// for.
 ///
 /// @since 3.15.0
 @override final  int? version;
@@ -30623,10 +30626,11 @@ mixin _$CompletionParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The completion context. This is only available if the client specifies
-/// to send this using the client capability `textDocument.completion.contextSupport === true`
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The completion context. This is only available if the client specifies to
+/// send this using the client capability
+/// `textDocument.completion.contextSupport === true`
  CompletionContext? get context;
 /// Create a copy of CompletionParams
 /// with the given fields replaced by the non-null parameter values.
@@ -30888,11 +30892,12 @@ class _CompletionParams implements CompletionParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The completion context. This is only available if the client specifies
-/// to send this using the client capability `textDocument.completion.contextSupport === true`
+/// The completion context. This is only available if the client specifies to
+/// send this using the client capability
+/// `textDocument.completion.contextSupport === true`
 @override final  CompletionContext? context;
 
 /// Create a copy of CompletionParams
@@ -31019,102 +31024,95 @@ mixin _$CompletionItem {
 
 /// The label of this completion item.
 ///
-/// The label property is also by default the text that
-/// is inserted when selecting this completion.
+/// The label property is also by default the text that is inserted when
+/// selecting this completion.
 ///
-/// If label details are provided the label itself should
-/// be an unqualified name of the completion item.
+/// If label details are provided the label itself should be an unqualified name
+/// of the completion item.
  String get label;/// Additional details for the label
 ///
 /// @since 3.17.0
- CompletionItemLabelDetails? get labelDetails;/// The kind of this completion item. Based of the kind
-/// an icon is chosen by the editor.
+ CompletionItemLabelDetails? get labelDetails;/// The kind of this completion item. Based of the kind an icon is chosen by the
+/// editor.
  CompletionItemKind? get kind;/// Tags for this completion item.
 ///
 /// @since 3.15.0
- List<CompletionItemTag>? get tags;/// A human-readable string with additional information
-/// about this item, like type or symbol information.
+ List<CompletionItemTag>? get tags;/// A human-readable string with additional information about this item, like
+/// type or symbol information.
  String? get detail;/// A human-readable string that represents a doc-comment.
- Object? get documentation;/// Indicates if this item is deprecated.
-/// @deprecated Use `tags` instead.
+ Object? get documentation;/// Indicates if this item is deprecated. @deprecated Use `tags` instead.
  bool? get deprecated;/// Select this item when showing.
 ///
-/// *Note* that only one completion item can be selected and that the
-/// tool / client decides which item that is. The rule is that the *first*
-/// item of those that match best is selected.
- bool? get preselect;/// A string that should be used when comparing this item
-/// with other items. When `falsy` the {@link CompletionItem.label label}
-/// is used.
- String? get sortText;/// A string that should be used when filtering a set of
-/// completion items. When `falsy` the {@link CompletionItem.label label}
-/// is used.
- String? get filterText;/// A string that should be inserted into a document when selecting
-/// this completion. When `falsy` the {@link CompletionItem.label label}
-/// is used.
+/// *Note* that only one completion item can be selected and that the tool /
+/// client decides which item that is. The rule is that the *first* item of
+/// those that match best is selected.
+ bool? get preselect;/// A string that should be used when comparing this item with other items. When
+/// `falsy` the [label] is used.
+ String? get sortText;/// A string that should be used when filtering a set of completion items. When
+/// `falsy` the [label] is used.
+ String? get filterText;/// A string that should be inserted into a document when selecting this
+/// completion. When `falsy` the [label] is used.
 ///
-/// The `insertText` is subject to interpretation by the client side.
-/// Some tools might not take the string literally. For example
-/// VS Code when code complete is requested in this example
-/// `con<cursor position>` and a completion item with an `insertText` of
-/// `console` is provided it will only insert `sole`. Therefore it is
-/// recommended to use `textEdit` instead since it avoids additional client
-/// side interpretation.
- String? get insertText;/// The format of the insert text. The format applies to both the
-/// `insertText` property and the `newText` property of a provided
-/// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
+/// The `insertText` is subject to interpretation by the client side. Some tools
+/// might not take the string literally. For example VS Code when code complete
+/// is requested in this example `con<cursor position>` and a completion item
+/// with an `insertText` of `console` is provided it will only insert `sole`.
+/// Therefore it is recommended to use `textEdit` instead since it avoids
+/// additional client side interpretation.
+ String? get insertText;/// The format of the insert text. The format applies to both the `insertText`
+/// property and the `newText` property of a provided `textEdit`. If omitted
+/// defaults to `InsertTextFormat.PlainText`.
 ///
 /// Please note that the insertTextFormat doesn't apply to
 /// `additionalTextEdits`.
- InsertTextFormat? get insertTextFormat;/// How whitespace and indentation is handled during completion
-/// item insertion. If not provided the clients default value depends on
-/// the `textDocument.completion.insertTextMode` client capability.
+ InsertTextFormat? get insertTextFormat;/// How whitespace and indentation is handled during completion item insertion.
+/// If not provided the clients default value depends on the
+/// `textDocument.completion.insertTextMode` client capability.
 ///
 /// @since 3.16.0
- InsertTextMode? get insertTextMode;/// An {@link TextEdit edit} which is applied to a document when selecting
-/// this completion. When an edit is provided the value of
-/// {@link CompletionItem.insertText insertText} is ignored.
+ InsertTextMode? get insertTextMode;/// An [edit] which is applied to a document when selecting this completion.
+/// When an edit is provided the value of [insertText] is ignored.
 ///
 /// Most editors support two different operations when accepting a completion
 /// item. One is to insert a completion text and the other is to replace an
 /// existing text with a completion text. Since this can usually not be
-/// predetermined by a server it can report both ranges. Clients need to
-/// signal support for `InsertReplaceEdits` via the
-/// `textDocument.completion.insertReplaceSupport` client capability
-/// property.
+/// predetermined by a server it can report both ranges. Clients need to signal
+/// support for `InsertReplaceEdits` via the
+/// `textDocument.completion.insertReplaceSupport` client capability property.
 ///
 /// *Note 1:* The text edit's range as well as both ranges from an insert
-/// replace edit must be a [single line] and they must contain the position
-/// at which completion has been requested.
-/// *Note 2:* If an `InsertReplaceEdit` is returned the edit's insert range
-/// must be a prefix of the edit's replace range, that means it must be
-/// contained and starting at the same position.
+/// replace edit must be a [single line] and they must contain the position at
+/// which completion has been requested. *Note 2:* If an `InsertReplaceEdit` is
+/// returned the edit's insert range must be a prefix of the edit's replace
+/// range, that means it must be contained and starting at the same position.
 ///
 /// @since 3.16.0 additional type `InsertReplaceEdit`
  Object? get textEdit;/// The edit text used if the completion item is part of a CompletionList and
 /// CompletionList defines an item default for the text edit range.
 ///
-/// Clients will only honor this property if they opt into completion list
-/// item defaults using the capability `completionList.itemDefaults`.
+/// Clients will only honor this property if they opt into completion list item
+/// defaults using the capability `completionList.itemDefaults`.
 ///
-/// If not provided and a list's default range is provided the label
-/// property is used as a text.
+/// If not provided and a list's default range is provided the label property is
+/// used as a text.
 ///
 /// @since 3.17.0
- String? get textEditText;/// An optional array of additional {@link TextEdit text edits} that are applied when
-/// selecting this completion. Edits must not overlap (including the same insert position)
-/// with the main {@link CompletionItem.textEdit edit} nor with themselves.
+ String? get textEditText;/// An optional array of additional [TextEdit] that are applied when selecting
+/// this completion. Edits must not overlap (including the same insert position)
+/// with the main [edit] nor with themselves.
 ///
-/// Additional text edits should be used to change text unrelated to the current cursor position
-/// (for example adding an import statement at the top of the file if the completion item will
-/// insert an unqualified type).
- List<TextEdit>? get additionalTextEdits;/// An optional set of characters that when pressed while this completion is active will accept it first and
-/// then type that character. *Note* that all commit characters should have `length=1` and that superfluous
-/// characters will be ignored.
- List<String>? get commitCharacters;/// An optional {@link Command command} that is executed *after* inserting this completion. *Note* that
-/// additional modifications to the current document should be described with the
-/// {@link CompletionItem.additionalTextEdits additionalTextEdits}-property.
+/// Additional text edits should be used to change text unrelated to the current
+/// cursor position (for example adding an import statement at the top of the
+/// file if the completion item will insert an unqualified type).
+ List<TextEdit>? get additionalTextEdits;/// An optional set of characters that when pressed while this completion is
+/// active will accept it first and then type that character. *Note* that all
+/// commit characters should have `length=1` and that superfluous characters
+/// will be ignored.
+ List<String>? get commitCharacters;/// An optional [command] that is executed *after* inserting this completion.
+/// *Note* that additional modifications to the current document should be
+/// described with the [additionalTextEdits]-property.
  Command? get command;/// A data entry field that is preserved on a completion item between a
-/// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
+/// [CompletionRequest] and a [CompletionResolveRequest].
  LSPAny? get data;
 /// Create a copy of CompletionItem
 /// with the given fields replaced by the non-null parameter values.
@@ -31353,18 +31351,18 @@ class _CompletionItem implements CompletionItem {
 
 /// The label of this completion item.
 ///
-/// The label property is also by default the text that
-/// is inserted when selecting this completion.
+/// The label property is also by default the text that is inserted when
+/// selecting this completion.
 ///
-/// If label details are provided the label itself should
-/// be an unqualified name of the completion item.
+/// If label details are provided the label itself should be an unqualified name
+/// of the completion item.
 @override final  String label;
 /// Additional details for the label
 ///
 /// @since 3.17.0
 @override final  CompletionItemLabelDetails? labelDetails;
-/// The kind of this completion item. Based of the kind
-/// an icon is chosen by the editor.
+/// The kind of this completion item. Based of the kind an icon is chosen by the
+/// editor.
 @override final  CompletionItemKind? kind;
 /// Tags for this completion item.
 ///
@@ -31381,100 +31379,92 @@ class _CompletionItem implements CompletionItem {
   return EqualUnmodifiableListView(value);
 }
 
-/// A human-readable string with additional information
-/// about this item, like type or symbol information.
+/// A human-readable string with additional information about this item, like
+/// type or symbol information.
 @override final  String? detail;
 /// A human-readable string that represents a doc-comment.
 @override final  Object? documentation;
-/// Indicates if this item is deprecated.
-/// @deprecated Use `tags` instead.
+/// Indicates if this item is deprecated. @deprecated Use `tags` instead.
 @override final  bool? deprecated;
 /// Select this item when showing.
 ///
-/// *Note* that only one completion item can be selected and that the
-/// tool / client decides which item that is. The rule is that the *first*
-/// item of those that match best is selected.
+/// *Note* that only one completion item can be selected and that the tool /
+/// client decides which item that is. The rule is that the *first* item of
+/// those that match best is selected.
 @override final  bool? preselect;
-/// A string that should be used when comparing this item
-/// with other items. When `falsy` the {@link CompletionItem.label label}
-/// is used.
+/// A string that should be used when comparing this item with other items. When
+/// `falsy` the [label] is used.
 @override final  String? sortText;
-/// A string that should be used when filtering a set of
-/// completion items. When `falsy` the {@link CompletionItem.label label}
-/// is used.
+/// A string that should be used when filtering a set of completion items. When
+/// `falsy` the [label] is used.
 @override final  String? filterText;
-/// A string that should be inserted into a document when selecting
-/// this completion. When `falsy` the {@link CompletionItem.label label}
-/// is used.
+/// A string that should be inserted into a document when selecting this
+/// completion. When `falsy` the [label] is used.
 ///
-/// The `insertText` is subject to interpretation by the client side.
-/// Some tools might not take the string literally. For example
-/// VS Code when code complete is requested in this example
-/// `con<cursor position>` and a completion item with an `insertText` of
-/// `console` is provided it will only insert `sole`. Therefore it is
-/// recommended to use `textEdit` instead since it avoids additional client
-/// side interpretation.
+/// The `insertText` is subject to interpretation by the client side. Some tools
+/// might not take the string literally. For example VS Code when code complete
+/// is requested in this example `con<cursor position>` and a completion item
+/// with an `insertText` of `console` is provided it will only insert `sole`.
+/// Therefore it is recommended to use `textEdit` instead since it avoids
+/// additional client side interpretation.
 @override final  String? insertText;
-/// The format of the insert text. The format applies to both the
-/// `insertText` property and the `newText` property of a provided
-/// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
+/// The format of the insert text. The format applies to both the `insertText`
+/// property and the `newText` property of a provided `textEdit`. If omitted
+/// defaults to `InsertTextFormat.PlainText`.
 ///
 /// Please note that the insertTextFormat doesn't apply to
 /// `additionalTextEdits`.
 @override final  InsertTextFormat? insertTextFormat;
-/// How whitespace and indentation is handled during completion
-/// item insertion. If not provided the clients default value depends on
-/// the `textDocument.completion.insertTextMode` client capability.
+/// How whitespace and indentation is handled during completion item insertion.
+/// If not provided the clients default value depends on the
+/// `textDocument.completion.insertTextMode` client capability.
 ///
 /// @since 3.16.0
 @override final  InsertTextMode? insertTextMode;
-/// An {@link TextEdit edit} which is applied to a document when selecting
-/// this completion. When an edit is provided the value of
-/// {@link CompletionItem.insertText insertText} is ignored.
+/// An [edit] which is applied to a document when selecting this completion.
+/// When an edit is provided the value of [insertText] is ignored.
 ///
 /// Most editors support two different operations when accepting a completion
 /// item. One is to insert a completion text and the other is to replace an
 /// existing text with a completion text. Since this can usually not be
-/// predetermined by a server it can report both ranges. Clients need to
-/// signal support for `InsertReplaceEdits` via the
-/// `textDocument.completion.insertReplaceSupport` client capability
-/// property.
+/// predetermined by a server it can report both ranges. Clients need to signal
+/// support for `InsertReplaceEdits` via the
+/// `textDocument.completion.insertReplaceSupport` client capability property.
 ///
 /// *Note 1:* The text edit's range as well as both ranges from an insert
-/// replace edit must be a [single line] and they must contain the position
-/// at which completion has been requested.
-/// *Note 2:* If an `InsertReplaceEdit` is returned the edit's insert range
-/// must be a prefix of the edit's replace range, that means it must be
-/// contained and starting at the same position.
+/// replace edit must be a [single line] and they must contain the position at
+/// which completion has been requested. *Note 2:* If an `InsertReplaceEdit` is
+/// returned the edit's insert range must be a prefix of the edit's replace
+/// range, that means it must be contained and starting at the same position.
 ///
 /// @since 3.16.0 additional type `InsertReplaceEdit`
 @override final  Object? textEdit;
 /// The edit text used if the completion item is part of a CompletionList and
 /// CompletionList defines an item default for the text edit range.
 ///
-/// Clients will only honor this property if they opt into completion list
-/// item defaults using the capability `completionList.itemDefaults`.
+/// Clients will only honor this property if they opt into completion list item
+/// defaults using the capability `completionList.itemDefaults`.
 ///
-/// If not provided and a list's default range is provided the label
-/// property is used as a text.
+/// If not provided and a list's default range is provided the label property is
+/// used as a text.
 ///
 /// @since 3.17.0
 @override final  String? textEditText;
-/// An optional array of additional {@link TextEdit text edits} that are applied when
-/// selecting this completion. Edits must not overlap (including the same insert position)
-/// with the main {@link CompletionItem.textEdit edit} nor with themselves.
+/// An optional array of additional [TextEdit] that are applied when selecting
+/// this completion. Edits must not overlap (including the same insert position)
+/// with the main [edit] nor with themselves.
 ///
-/// Additional text edits should be used to change text unrelated to the current cursor position
-/// (for example adding an import statement at the top of the file if the completion item will
-/// insert an unqualified type).
+/// Additional text edits should be used to change text unrelated to the current
+/// cursor position (for example adding an import statement at the top of the
+/// file if the completion item will insert an unqualified type).
  final  List<TextEdit>? _additionalTextEdits;
-/// An optional array of additional {@link TextEdit text edits} that are applied when
-/// selecting this completion. Edits must not overlap (including the same insert position)
-/// with the main {@link CompletionItem.textEdit edit} nor with themselves.
+/// An optional array of additional [TextEdit] that are applied when selecting
+/// this completion. Edits must not overlap (including the same insert position)
+/// with the main [edit] nor with themselves.
 ///
-/// Additional text edits should be used to change text unrelated to the current cursor position
-/// (for example adding an import statement at the top of the file if the completion item will
-/// insert an unqualified type).
+/// Additional text edits should be used to change text unrelated to the current
+/// cursor position (for example adding an import statement at the top of the
+/// file if the completion item will insert an unqualified type).
 @override List<TextEdit>? get additionalTextEdits {
   final value = _additionalTextEdits;
   if (value == null) return null;
@@ -31483,13 +31473,15 @@ class _CompletionItem implements CompletionItem {
   return EqualUnmodifiableListView(value);
 }
 
-/// An optional set of characters that when pressed while this completion is active will accept it first and
-/// then type that character. *Note* that all commit characters should have `length=1` and that superfluous
-/// characters will be ignored.
+/// An optional set of characters that when pressed while this completion is
+/// active will accept it first and then type that character. *Note* that all
+/// commit characters should have `length=1` and that superfluous characters
+/// will be ignored.
  final  List<String>? _commitCharacters;
-/// An optional set of characters that when pressed while this completion is active will accept it first and
-/// then type that character. *Note* that all commit characters should have `length=1` and that superfluous
-/// characters will be ignored.
+/// An optional set of characters that when pressed while this completion is
+/// active will accept it first and then type that character. *Note* that all
+/// commit characters should have `length=1` and that superfluous characters
+/// will be ignored.
 @override List<String>? get commitCharacters {
   final value = _commitCharacters;
   if (value == null) return null;
@@ -31498,12 +31490,12 @@ class _CompletionItem implements CompletionItem {
   return EqualUnmodifiableListView(value);
 }
 
-/// An optional {@link Command command} that is executed *after* inserting this completion. *Note* that
-/// additional modifications to the current document should be described with the
-/// {@link CompletionItem.additionalTextEdits additionalTextEdits}-property.
+/// An optional [command] that is executed *after* inserting this completion.
+/// *Note* that additional modifications to the current document should be
+/// described with the [additionalTextEdits]-property.
 @override final  Command? command;
 /// A data entry field that is preserved on a completion item between a
-/// {@link CompletionRequest} and a {@link CompletionResolveRequest}.
+/// [CompletionRequest] and a [CompletionResolveRequest].
 @override final  LSPAny? data;
 
 /// Create a copy of CompletionItem
@@ -31613,17 +31605,16 @@ mixin _$CompletionList {
 ///
 /// Recomputed lists have all their items replaced (not appended) in the
 /// incomplete completion sessions.
- bool get isIncomplete;/// In many cases the items of an actual completion result share the same
-/// value for properties like `commitCharacters` or the range of a text
-/// edit. A completion list can therefore define item defaults which will
-/// be used if a completion item itself doesn't specify the value.
+ bool get isIncomplete;/// In many cases the items of an actual completion result share the same value
+/// for properties like `commitCharacters` or the range of a text edit. A
+/// completion list can therefore define item defaults which will be used if a
+/// completion item itself doesn't specify the value.
 ///
-/// If a completion list specifies a default value and a completion item
-/// also specifies a corresponding value the one from the item is used.
+/// If a completion list specifies a default value and a completion item also
+/// specifies a corresponding value the one from the item is used.
 ///
-/// Servers are only allowed to return default values if the client
-/// signals support for this via the `completionList.itemDefaults`
-/// capability.
+/// Servers are only allowed to return default values if the client signals
+/// support for this via the `completionList.itemDefaults` capability.
 ///
 /// @since 3.17.0
  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? get itemDefaults;/// The completion items.
@@ -31831,17 +31822,16 @@ class _CompletionList implements CompletionList {
 /// Recomputed lists have all their items replaced (not appended) in the
 /// incomplete completion sessions.
 @override final  bool isIncomplete;
-/// In many cases the items of an actual completion result share the same
-/// value for properties like `commitCharacters` or the range of a text
-/// edit. A completion list can therefore define item defaults which will
-/// be used if a completion item itself doesn't specify the value.
+/// In many cases the items of an actual completion result share the same value
+/// for properties like `commitCharacters` or the range of a text edit. A
+/// completion list can therefore define item defaults which will be used if a
+/// completion item itself doesn't specify the value.
 ///
-/// If a completion list specifies a default value and a completion item
-/// also specifies a corresponding value the one from the item is used.
+/// If a completion list specifies a default value and a completion item also
+/// specifies a corresponding value the one from the item is used.
 ///
-/// Servers are only allowed to return default values if the client
-/// signals support for this via the `completionList.itemDefaults`
-/// capability.
+/// Servers are only allowed to return default values if the client signals
+/// support for this via the `completionList.itemDefaults` capability.
 ///
 /// @since 3.17.0
 @override final  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults;
@@ -31921,28 +31911,30 @@ as List<CompletionItem>,
 /// @nodoc
 mixin _$CompletionRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Most tools trigger completion request automatically without explicitly requesting
-/// it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do so when the user
-/// starts to type an identifier. For example if the user types `c` in a JavaScript file
-/// code complete will automatically pop up present `console` besides others as a
-/// completion item. Characters that make up identifiers don't need to be listed here.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Most tools trigger completion request automatically without explicitly
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
+/// so when the user starts to type an identifier. For example if the user types
+/// `c` in a JavaScript file code complete will automatically pop up present
+/// `console` besides others as a completion item. Characters that make up
+/// identifiers don't need to be listed here.
 ///
-/// If code complete should automatically be trigger on characters not being valid inside
-/// an identifier (for example `.` in JavaScript) list them in `triggerCharacters`.
- List<String>? get triggerCharacters;/// The list of all possible characters that commit a completion. This field can be used
-/// if clients don't support individual commit characters per completion item. See
+/// If code complete should automatically be trigger on characters not being
+/// valid inside an identifier (for example `.` in JavaScript) list them in
+/// `triggerCharacters`.
+ List<String>? get triggerCharacters;/// The list of all possible characters that commit a completion. This field can
+/// be used if clients don't support individual commit characters per completion
+/// item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an individual
-/// completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on an
+/// individual completion item the ones on the completion item win.
 ///
 /// @since 3.2.0
- List<String>? get allCommitCharacters;/// The server provides support to resolve additional
-/// information for a completion item.
- bool? get resolveProvider;/// The server supports the following `CompletionItem` specific
-/// capabilities.
+ List<String>? get allCommitCharacters;/// The server provides support to resolve additional information for a
+/// completion item.
+ bool? get resolveProvider;/// The server supports the following `CompletionItem` specific capabilities.
 ///
 /// @since 3.17.0
  ({bool? labelDetailsSupport})? get completionItem;
@@ -32147,11 +32139,11 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
   const _CompletionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? allCommitCharacters, this.resolveProvider, this.completionItem}): _documentSelector = documentSelector,_triggerCharacters = triggerCharacters,_allCommitCharacters = allCommitCharacters;
   factory _CompletionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CompletionRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -32161,23 +32153,27 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
 }
 
 @override final  bool? workDoneProgress;
-/// Most tools trigger completion request automatically without explicitly requesting
-/// it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do so when the user
-/// starts to type an identifier. For example if the user types `c` in a JavaScript file
-/// code complete will automatically pop up present `console` besides others as a
-/// completion item. Characters that make up identifiers don't need to be listed here.
+/// Most tools trigger completion request automatically without explicitly
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
+/// so when the user starts to type an identifier. For example if the user types
+/// `c` in a JavaScript file code complete will automatically pop up present
+/// `console` besides others as a completion item. Characters that make up
+/// identifiers don't need to be listed here.
 ///
-/// If code complete should automatically be trigger on characters not being valid inside
-/// an identifier (for example `.` in JavaScript) list them in `triggerCharacters`.
+/// If code complete should automatically be trigger on characters not being
+/// valid inside an identifier (for example `.` in JavaScript) list them in
+/// `triggerCharacters`.
  final  List<String>? _triggerCharacters;
-/// Most tools trigger completion request automatically without explicitly requesting
-/// it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do so when the user
-/// starts to type an identifier. For example if the user types `c` in a JavaScript file
-/// code complete will automatically pop up present `console` besides others as a
-/// completion item. Characters that make up identifiers don't need to be listed here.
+/// Most tools trigger completion request automatically without explicitly
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
+/// so when the user starts to type an identifier. For example if the user types
+/// `c` in a JavaScript file code complete will automatically pop up present
+/// `console` besides others as a completion item. Characters that make up
+/// identifiers don't need to be listed here.
 ///
-/// If code complete should automatically be trigger on characters not being valid inside
-/// an identifier (for example `.` in JavaScript) list them in `triggerCharacters`.
+/// If code complete should automatically be trigger on characters not being
+/// valid inside an identifier (for example `.` in JavaScript) list them in
+/// `triggerCharacters`.
 @override List<String>? get triggerCharacters {
   final value = _triggerCharacters;
   if (value == null) return null;
@@ -32186,21 +32182,23 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The list of all possible characters that commit a completion. This field can be used
-/// if clients don't support individual commit characters per completion item. See
+/// The list of all possible characters that commit a completion. This field can
+/// be used if clients don't support individual commit characters per completion
+/// item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an individual
-/// completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on an
+/// individual completion item the ones on the completion item win.
 ///
 /// @since 3.2.0
  final  List<String>? _allCommitCharacters;
-/// The list of all possible characters that commit a completion. This field can be used
-/// if clients don't support individual commit characters per completion item. See
+/// The list of all possible characters that commit a completion. This field can
+/// be used if clients don't support individual commit characters per completion
+/// item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an individual
-/// completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on an
+/// individual completion item the ones on the completion item win.
 ///
 /// @since 3.2.0
 @override List<String>? get allCommitCharacters {
@@ -32211,11 +32209,10 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The server provides support to resolve additional
-/// information for a completion item.
+/// The server provides support to resolve additional information for a
+/// completion item.
 @override final  bool? resolveProvider;
-/// The server supports the following `CompletionItem` specific
-/// capabilities.
+/// The server supports the following `CompletionItem` specific capabilities.
 ///
 /// @since 3.17.0
 @override final  ({bool? labelDetailsSupport})? completionItem;
@@ -32625,8 +32622,8 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 mixin _$Hover {
 
 /// The hover's content
- Object get contents;/// An optional range inside the text document that is used to
-/// visualize the hover, e.g. by changing the background color.
+ Object get contents;/// An optional range inside the text document that is used to visualize the
+/// hover, e.g. by changing the background color.
  Range? get range;
 /// Create a copy of Hover
 /// with the given fields replaced by the non-null parameter values.
@@ -32838,8 +32835,8 @@ class _Hover implements Hover {
 
 /// The hover's content
 @override final  Object contents;
-/// An optional range inside the text document that is used to
-/// visualize the hover, e.g. by changing the background color.
+/// An optional range inside the text document that is used to visualize the
+/// hover, e.g. by changing the background color.
 @override final  Range? range;
 
 /// Create a copy of Hover
@@ -32918,8 +32915,8 @@ $RangeCopyWith<$Res>? get range {
 /// @nodoc
 mixin _$HoverRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;
 /// Create a copy of HoverRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -33118,11 +33115,11 @@ class _HoverRegistrationOptions implements HoverRegistrationOptions {
   const _HoverRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _HoverRegistrationOptions.fromJson(Map<String, dynamic> json) => _$HoverRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -33202,7 +33199,8 @@ mixin _$SignatureHelpParams {
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The signature help context. This is only available if the client specifies
-/// to send this using the client capability `textDocument.signatureHelp.contextSupport === true`
+/// to send this using the client capability
+/// `textDocument.signatureHelp.contextSupport === true`
 ///
 /// @since 3.15.0
  SignatureHelpContext? get context;
@@ -33454,7 +33452,8 @@ class _SignatureHelpParams implements SignatureHelpParams {
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
 /// The signature help context. This is only available if the client specifies
-/// to send this using the client capability `textDocument.signatureHelp.contextSupport === true`
+/// to send this using the client capability
+/// `textDocument.signatureHelp.contextSupport === true`
 ///
 /// @since 3.15.0
 @override final  SignatureHelpContext? context;
@@ -33569,22 +33568,21 @@ $SignatureHelpContextCopyWith<$Res>? get context {
 mixin _$SignatureHelp {
 
 /// One or more signatures.
- List<SignatureInformation> get signatures;/// The active signature. If omitted or the value lies outside the
-/// range of `signatures` the value defaults to zero or is ignored if
-/// the `SignatureHelp` has no signatures.
+ List<SignatureInformation> get signatures;/// The active signature. If omitted or the value lies outside the range of
+/// `signatures` the value defaults to zero or is ignored if the `SignatureHelp`
+/// has no signatures.
 ///
-/// Whenever possible implementors should make an active decision about
-/// the active signature and shouldn't rely on a default value.
+/// Whenever possible implementors should make an active decision about the
+/// active signature and shouldn't rely on a default value.
 ///
-/// In future version of the protocol this property might become
-/// mandatory to better express this.
- int? get activeSignature;/// The active parameter of the active signature. If omitted or the value
-/// lies outside the range of `signatures[activeSignature].parameters`
-/// defaults to 0 if the active signature has parameters. If
-/// the active signature has no parameters it is ignored.
-/// In future version of the protocol this property might become
-/// mandatory to better express the active parameter if the
-/// active signature does have any.
+/// In future version of the protocol this property might become mandatory to
+/// better express this.
+ int? get activeSignature;/// The active parameter of the active signature. If omitted or the value lies
+/// outside the range of `signatures[activeSignature].parameters` defaults to 0
+/// if the active signature has parameters. If the active signature has no
+/// parameters it is ignored. In future version of the protocol this property
+/// might become mandatory to better express the active parameter if the active
+/// signature does have any.
  int? get activeParameter;
 /// Create a copy of SignatureHelp
 /// with the given fields replaced by the non-null parameter values.
@@ -33793,23 +33791,22 @@ class _SignatureHelp implements SignatureHelp {
   return EqualUnmodifiableListView(_signatures);
 }
 
-/// The active signature. If omitted or the value lies outside the
-/// range of `signatures` the value defaults to zero or is ignored if
-/// the `SignatureHelp` has no signatures.
+/// The active signature. If omitted or the value lies outside the range of
+/// `signatures` the value defaults to zero or is ignored if the `SignatureHelp`
+/// has no signatures.
 ///
-/// Whenever possible implementors should make an active decision about
-/// the active signature and shouldn't rely on a default value.
+/// Whenever possible implementors should make an active decision about the
+/// active signature and shouldn't rely on a default value.
 ///
-/// In future version of the protocol this property might become
-/// mandatory to better express this.
+/// In future version of the protocol this property might become mandatory to
+/// better express this.
 @override final  int? activeSignature;
-/// The active parameter of the active signature. If omitted or the value
-/// lies outside the range of `signatures[activeSignature].parameters`
-/// defaults to 0 if the active signature has parameters. If
-/// the active signature has no parameters it is ignored.
-/// In future version of the protocol this property might become
-/// mandatory to better express the active parameter if the
-/// active signature does have any.
+/// The active parameter of the active signature. If omitted or the value lies
+/// outside the range of `signatures[activeSignature].parameters` defaults to 0
+/// if the active signature has parameters. If the active signature has no
+/// parameters it is ignored. In future version of the protocol this property
+/// might become mandatory to better express the active parameter if the active
+/// signature does have any.
 @override final  int? activeParameter;
 
 /// Create a copy of SignatureHelp
@@ -33878,13 +33875,13 @@ as int?,
 /// @nodoc
 mixin _$SignatureHelpRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// List of characters that trigger signature help automatically.
  List<String>? get triggerCharacters;/// List of characters that re-trigger signature help.
 ///
-/// These trigger characters are only active when signature help is already showing. All trigger characters
-/// are also counted as re-trigger characters.
+/// These trigger characters are only active when signature help is already
+/// showing. All trigger characters are also counted as re-trigger characters.
 ///
 /// @since 3.15.0
  List<String>? get retriggerCharacters;
@@ -34087,11 +34084,11 @@ class _SignatureHelpRegistrationOptions implements SignatureHelpRegistrationOpti
   const _SignatureHelpRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<String>? triggerCharacters, final  List<String>? retriggerCharacters}): _documentSelector = documentSelector,_triggerCharacters = triggerCharacters,_retriggerCharacters = retriggerCharacters;
   factory _SignatureHelpRegistrationOptions.fromJson(Map<String, dynamic> json) => _$SignatureHelpRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -34114,15 +34111,15 @@ class _SignatureHelpRegistrationOptions implements SignatureHelpRegistrationOpti
 
 /// List of characters that re-trigger signature help.
 ///
-/// These trigger characters are only active when signature help is already showing. All trigger characters
-/// are also counted as re-trigger characters.
+/// These trigger characters are only active when signature help is already
+/// showing. All trigger characters are also counted as re-trigger characters.
 ///
 /// @since 3.15.0
  final  List<String>? _retriggerCharacters;
 /// List of characters that re-trigger signature help.
 ///
-/// These trigger characters are only active when signature help is already showing. All trigger characters
-/// are also counted as re-trigger characters.
+/// These trigger characters are only active when signature help is already
+/// showing. All trigger characters are also counted as re-trigger characters.
 ///
 /// @since 3.15.0
 @override List<String>? get retriggerCharacters {
@@ -34204,8 +34201,8 @@ mixin _$DefinitionParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of DefinitionParams
 /// with the given fields replaced by the non-null parameter values.
@@ -34454,8 +34451,8 @@ class _DefinitionParams implements DefinitionParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of DefinitionParams
@@ -34567,8 +34564,8 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 /// @nodoc
 mixin _$DefinitionRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;
 /// Create a copy of DefinitionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -34767,11 +34764,11 @@ class _DefinitionRegistrationOptions implements DefinitionRegistrationOptions {
   const _DefinitionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _DefinitionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DefinitionRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -34850,8 +34847,8 @@ mixin _$ReferenceParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken; ReferenceContext get context;
 /// Create a copy of ReferenceParams
 /// with the given fields replaced by the non-null parameter values.
@@ -35110,8 +35107,8 @@ class _ReferenceParams implements ReferenceParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 @override final  ReferenceContext context;
 
@@ -35234,8 +35231,8 @@ $ReferenceContextCopyWith<$Res> get context {
 /// @nodoc
 mixin _$ReferenceRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;
 /// Create a copy of ReferenceRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -35434,11 +35431,11 @@ class _ReferenceRegistrationOptions implements ReferenceRegistrationOptions {
   const _ReferenceRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _ReferenceRegistrationOptions.fromJson(Map<String, dynamic> json) => _$ReferenceRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -35517,8 +35514,8 @@ mixin _$DocumentHighlightParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of DocumentHighlightParams
 /// with the given fields replaced by the non-null parameter values.
@@ -35767,8 +35764,8 @@ class _DocumentHighlightParams implements DocumentHighlightParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of DocumentHighlightParams
@@ -35881,7 +35878,7 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 mixin _$DocumentHighlight {
 
 /// The range this highlight applies to.
- Range get range;/// The highlight kind, default is {@link DocumentHighlightKind.Text text}.
+ Range get range;/// The highlight kind, default is [text].
  DocumentHighlightKind? get kind;
 /// Create a copy of DocumentHighlight
 /// with the given fields replaced by the non-null parameter values.
@@ -36091,7 +36088,7 @@ class _DocumentHighlight implements DocumentHighlight {
 
 /// The range this highlight applies to.
 @override final  Range range;
-/// The highlight kind, default is {@link DocumentHighlightKind.Text text}.
+/// The highlight kind, default is [text].
 @override final  DocumentHighlightKind? kind;
 
 /// Create a copy of DocumentHighlight
@@ -36168,8 +36165,8 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$DocumentHighlightRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;
 /// Create a copy of DocumentHighlightRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -36368,11 +36365,11 @@ class _DocumentHighlightRegistrationOptions implements DocumentHighlightRegistra
   const _DocumentHighlightRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _DocumentHighlightRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentHighlightRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -36449,8 +36446,8 @@ as bool?,
 mixin _$DocumentSymbolParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
  TextDocumentIdentifier get textDocument;
 /// Create a copy of DocumentSymbolParams
@@ -36686,8 +36683,8 @@ class _DocumentSymbolParams implements DocumentSymbolParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
@@ -36796,22 +36793,22 @@ mixin _$SymbolInformation {
  SymbolKind get kind;/// Tags for this symbol.
 ///
 /// @since 3.16.0
- List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
-/// user interface purposes (e.g. to render a qualifier in the user interface
-/// if necessary). It can't be used to re-infer a hierarchy for the document
+ List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for user
+/// interface purposes (e.g. to render a qualifier in the user interface if
+/// necessary). It can't be used to re-infer a hierarchy for the document
 /// symbols.
  String? get containerName;/// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
- bool? get deprecated;/// The location of this symbol. The location's range is used by a tool
-/// to reveal the location in the editor. If the symbol is selected in the
-/// tool the range's start information is used to position the cursor. So
-/// the range usually spans more than the actual symbol's name and does
-/// normally include things like visibility modifiers.
+ bool? get deprecated;/// The location of this symbol. The location's range is used by a tool to
+/// reveal the location in the editor. If the symbol is selected in the tool the
+/// range's start information is used to position the cursor. So the range
+/// usually spans more than the actual symbol's name and does normally include
+/// things like visibility modifiers.
 ///
 /// The range doesn't have to denote a node range in the sense of an abstract
-/// syntax tree. It can therefore not be used to re-construct a hierarchy of
-/// the symbols.
+/// syntax tree. It can therefore not be used to re-construct a hierarchy of the
+/// symbols.
  Location get location;
 /// Create a copy of SymbolInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -37042,24 +37039,24 @@ class _SymbolInformation implements SymbolInformation {
   return EqualUnmodifiableListView(value);
 }
 
-/// The name of the symbol containing this symbol. This information is for
-/// user interface purposes (e.g. to render a qualifier in the user interface
-/// if necessary). It can't be used to re-infer a hierarchy for the document
+/// The name of the symbol containing this symbol. This information is for user
+/// interface purposes (e.g. to render a qualifier in the user interface if
+/// necessary). It can't be used to re-infer a hierarchy for the document
 /// symbols.
 @override final  String? containerName;
 /// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
 @override final  bool? deprecated;
-/// The location of this symbol. The location's range is used by a tool
-/// to reveal the location in the editor. If the symbol is selected in the
-/// tool the range's start information is used to position the cursor. So
-/// the range usually spans more than the actual symbol's name and does
-/// normally include things like visibility modifiers.
+/// The location of this symbol. The location's range is used by a tool to
+/// reveal the location in the editor. If the symbol is selected in the tool the
+/// range's start information is used to position the cursor. So the range
+/// usually spans more than the actual symbol's name and does normally include
+/// things like visibility modifiers.
 ///
 /// The range doesn't have to denote a node range in the sense of an abstract
-/// syntax tree. It can therefore not be used to re-construct a hierarchy of
-/// the symbols.
+/// syntax tree. It can therefore not be used to re-construct a hierarchy of the
+/// symbols.
 @override final  Location location;
 
 /// Create a copy of SymbolInformation
@@ -37140,8 +37137,9 @@ $LocationCopyWith<$Res> get location {
 /// @nodoc
 mixin _$DocumentSymbol {
 
-/// The name of this symbol. Will be displayed in the user interface and therefore must not be
-/// an empty string or a string only consisting of white spaces.
+/// The name of this symbol. Will be displayed in the user interface and
+/// therefore must not be an empty string or a string only consisting of white
+/// spaces.
  String get name;/// More detail for this symbol, e.g the signature of a function.
  String? get detail;/// The kind of this symbol.
  SymbolKind get kind;/// Tags for this document symbol.
@@ -37150,11 +37148,12 @@ mixin _$DocumentSymbol {
  List<SymbolTag>? get tags;/// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
- bool? get deprecated;/// The range enclosing this symbol not including leading/trailing whitespace but everything else
-/// like comments. This information is typically used to determine if the clients cursor is
-/// inside the symbol to reveal in the symbol in the UI.
- Range get range;/// The range that should be selected and revealed when this symbol is being picked, e.g the name of a function.
-/// Must be contained by the `range`.
+ bool? get deprecated;/// The range enclosing this symbol not including leading/trailing whitespace
+/// but everything else like comments. This information is typically used to
+/// determine if the clients cursor is inside the symbol to reveal in the symbol
+/// in the UI.
+ Range get range;/// The range that should be selected and revealed when this symbol is being
+/// picked, e.g the name of a function. Must be contained by the `range`.
  Range get selectionRange;/// Children of this symbol, e.g. properties of a class.
  List<DocumentSymbol>? get children;
 /// Create a copy of DocumentSymbol
@@ -37378,8 +37377,9 @@ class _DocumentSymbol implements DocumentSymbol {
   const _DocumentSymbol({required this.name, this.detail, required this.kind, final  List<SymbolTag>? tags, this.deprecated, required this.range, required this.selectionRange, final  List<DocumentSymbol>? children}): _tags = tags,_children = children;
   factory _DocumentSymbol.fromJson(Map<String, dynamic> json) => _$DocumentSymbolFromJson(json);
 
-/// The name of this symbol. Will be displayed in the user interface and therefore must not be
-/// an empty string or a string only consisting of white spaces.
+/// The name of this symbol. Will be displayed in the user interface and
+/// therefore must not be an empty string or a string only consisting of white
+/// spaces.
 @override final  String name;
 /// More detail for this symbol, e.g the signature of a function.
 @override final  String? detail;
@@ -37404,12 +37404,13 @@ class _DocumentSymbol implements DocumentSymbol {
 ///
 /// @deprecated Use tags instead
 @override final  bool? deprecated;
-/// The range enclosing this symbol not including leading/trailing whitespace but everything else
-/// like comments. This information is typically used to determine if the clients cursor is
-/// inside the symbol to reveal in the symbol in the UI.
+/// The range enclosing this symbol not including leading/trailing whitespace
+/// but everything else like comments. This information is typically used to
+/// determine if the clients cursor is inside the symbol to reveal in the symbol
+/// in the UI.
 @override final  Range range;
-/// The range that should be selected and revealed when this symbol is being picked, e.g the name of a function.
-/// Must be contained by the `range`.
+/// The range that should be selected and revealed when this symbol is being
+/// picked, e.g the name of a function. Must be contained by the `range`.
 @override final  Range selectionRange;
 /// Children of this symbol, e.g. properties of a class.
  final  List<DocumentSymbol>? _children;
@@ -37512,10 +37513,10 @@ $RangeCopyWith<$Res> get selectionRange {
 /// @nodoc
 mixin _$DocumentSymbolRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees
-/// are shown for the same document.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees are shown
+/// for the same document.
 ///
 /// @since 3.16.0
  String? get label;
@@ -37717,11 +37718,11 @@ class _DocumentSymbolRegistrationOptions implements DocumentSymbolRegistrationOp
   const _DocumentSymbolRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.label}): _documentSelector = documentSelector;
   factory _DocumentSymbolRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentSymbolRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -37731,8 +37732,8 @@ class _DocumentSymbolRegistrationOptions implements DocumentSymbolRegistrationOp
 }
 
 @override final  bool? workDoneProgress;
-/// A human-readable string that is shown when multiple outlines trees
-/// are shown for the same document.
+/// A human-readable string that is shown when multiple outlines trees are shown
+/// for the same document.
 ///
 /// @since 3.16.0
 @override final  String? label;
@@ -37804,8 +37805,8 @@ as String?,
 mixin _$CodeActionParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The document in which the command was invoked.
  TextDocumentIdentifier get textDocument;/// The range for which the command was invoked.
  Range get range;/// Context carrying additional information.
@@ -38063,8 +38064,8 @@ class _CodeActionParams implements CodeActionParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The document in which the command was invoked.
 @override final  TextDocumentIdentifier textDocument;
@@ -38194,8 +38195,7 @@ mixin _$Command {
 
 /// Title of the command, like `save`.
  String get title;/// The identifier of the actual command handler.
- String get command;/// Arguments that the command handler should be
-/// invoked with.
+ String get command;/// Arguments that the command handler should be invoked with.
  List<LSPAny>? get arguments;
 /// Create a copy of Command
 /// with the given fields replaced by the non-null parameter values.
@@ -38399,11 +38399,9 @@ class _Command implements Command {
 @override final  String title;
 /// The identifier of the actual command handler.
 @override final  String command;
-/// Arguments that the command handler should be
-/// invoked with.
+/// Arguments that the command handler should be invoked with.
  final  List<LSPAny>? _arguments;
-/// Arguments that the command handler should be
-/// invoked with.
+/// Arguments that the command handler should be invoked with.
 @override List<LSPAny>? get arguments {
   final value = _arguments;
   if (value == null) return null;
@@ -38484,34 +38482,38 @@ mixin _$CodeAction {
 ///
 /// Used to filter code actions.
  String? get kind;/// The diagnostics that this code action resolves.
- List<Diagnostic>? get diagnostics;/// Marks this as a preferred action. Preferred actions are used by the `auto fix` command and can be targeted
-/// by keybindings.
+ List<Diagnostic>? get diagnostics;/// Marks this as a preferred action. Preferred actions are used by the `auto
+/// fix` command and can be targeted by keybindings.
 ///
-/// A quick fix should be marked preferred if it properly addresses the underlying error.
-/// A refactoring should be marked preferred if it is the most reasonable choice of actions to take.
+/// A quick fix should be marked preferred if it properly addresses the
+/// underlying error. A refactoring should be marked preferred if it is the most
+/// reasonable choice of actions to take.
 ///
 /// @since 3.15.0
  bool? get isPreferred;/// Marks that the code action cannot currently be applied.
 ///
-/// Clients should follow the following guidelines regarding disabled code actions:
+/// Clients should follow the following guidelines regarding disabled code
+/// actions:
 ///
-///   - Disabled code actions are not shown in automatic [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
-///     code action menus.
+/// - Disabled code actions are not shown in automatic
+/// [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
+/// code action menus.
 ///
-///   - Disabled actions are shown as faded out in the code action menu when the user requests a more specific type
-///     of code action, such as refactorings.
+/// - Disabled actions are shown as faded out in the code action menu when the
+/// user requests a more specific type of code action, such as refactorings.
 ///
-///   - If the user has a [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
-///     that auto applies a code action and only disabled code actions are returned, the client should show the user an
-///     error message with `reason` in the editor.
+/// - If the user has a
+/// [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
+/// that auto applies a code action and only disabled code actions are returned,
+/// the client should show the user an error message with `reason` in the
+/// editor.
 ///
 /// @since 3.16.0
  ({String reason})? get disabled;/// The workspace edit this code action performs.
- WorkspaceEdit? get edit;/// A command this code action executes. If a code action
-/// provides an edit and a command, first the edit is
-/// executed and then the command.
- Command? get command;/// A data entry field that is preserved on a code action between
-/// a `textDocument/codeAction` and a `codeAction/resolve` request.
+ WorkspaceEdit? get edit;/// A command this code action executes. If a code action provides an edit and a
+/// command, first the edit is executed and then the command.
+ Command? get command;/// A data entry field that is preserved on a code action between a
+/// `textDocument/codeAction` and a `codeAction/resolve` request.
 ///
 /// @since 3.16.0
  LSPAny? get data;
@@ -38758,38 +38760,42 @@ class _CodeAction extends CodeAction {
   return EqualUnmodifiableListView(value);
 }
 
-/// Marks this as a preferred action. Preferred actions are used by the `auto fix` command and can be targeted
-/// by keybindings.
+/// Marks this as a preferred action. Preferred actions are used by the `auto
+/// fix` command and can be targeted by keybindings.
 ///
-/// A quick fix should be marked preferred if it properly addresses the underlying error.
-/// A refactoring should be marked preferred if it is the most reasonable choice of actions to take.
+/// A quick fix should be marked preferred if it properly addresses the
+/// underlying error. A refactoring should be marked preferred if it is the most
+/// reasonable choice of actions to take.
 ///
 /// @since 3.15.0
 @override final  bool? isPreferred;
 /// Marks that the code action cannot currently be applied.
 ///
-/// Clients should follow the following guidelines regarding disabled code actions:
+/// Clients should follow the following guidelines regarding disabled code
+/// actions:
 ///
-///   - Disabled code actions are not shown in automatic [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
-///     code action menus.
+/// - Disabled code actions are not shown in automatic
+/// [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
+/// code action menus.
 ///
-///   - Disabled actions are shown as faded out in the code action menu when the user requests a more specific type
-///     of code action, such as refactorings.
+/// - Disabled actions are shown as faded out in the code action menu when the
+/// user requests a more specific type of code action, such as refactorings.
 ///
-///   - If the user has a [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
-///     that auto applies a code action and only disabled code actions are returned, the client should show the user an
-///     error message with `reason` in the editor.
+/// - If the user has a
+/// [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
+/// that auto applies a code action and only disabled code actions are returned,
+/// the client should show the user an error message with `reason` in the
+/// editor.
 ///
 /// @since 3.16.0
 @override final  ({String reason})? disabled;
 /// The workspace edit this code action performs.
 @override final  WorkspaceEdit? edit;
-/// A command this code action executes. If a code action
-/// provides an edit and a command, first the edit is
-/// executed and then the command.
+/// A command this code action executes. If a code action provides an edit and a
+/// command, first the edit is executed and then the command.
 @override final  Command? command;
-/// A data entry field that is preserved on a code action between
-/// a `textDocument/codeAction` and a `codeAction/resolve` request.
+/// A data entry field that is preserved on a code action between a
+/// `textDocument/codeAction` and a `codeAction/resolve` request.
 ///
 /// @since 3.16.0
 @override final  LSPAny? data;
@@ -38888,14 +38894,14 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 mixin _$CodeActionRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the server
-/// may list out every specific kind they provide.
- List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional
-/// information for a code action.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
+/// server may list out every specific kind they provide.
+ List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional information for a code
+/// action.
 ///
 /// @since 3.16.0
  bool? get resolveProvider;
@@ -39098,11 +39104,11 @@ class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
   const _CodeActionRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, final  List<CodeActionKind>? codeActionKinds, this.resolveProvider}): _documentSelector = documentSelector,_codeActionKinds = codeActionKinds;
   factory _CodeActionRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeActionRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -39114,13 +39120,13 @@ class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
 @override final  bool? workDoneProgress;
 /// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the server
-/// may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
+/// server may list out every specific kind they provide.
  final  List<CodeActionKind>? _codeActionKinds;
 /// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the server
-/// may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
+/// server may list out every specific kind they provide.
 @override List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
@@ -39129,8 +39135,8 @@ class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The server provides support to resolve additional
-/// information for a code action.
+/// The server provides support to resolve additional information for a code
+/// action.
 ///
 /// @since 3.16.0
 @override final  bool? resolveProvider;
@@ -39203,10 +39209,10 @@ as bool?,
 mixin _$WorkspaceSymbolParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// A query string to filter symbols by. Clients may send an empty
-/// string here to request all symbols.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// A query string to filter symbols by. Clients may send an empty string here
+/// to request all symbols.
  String get query;
 /// Create a copy of WorkspaceSymbolParams
 /// with the given fields replaced by the non-null parameter values.
@@ -39432,11 +39438,11 @@ class _WorkspaceSymbolParams implements WorkspaceSymbolParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// A query string to filter symbols by. Clients may send an empty
-/// string here to request all symbols.
+/// A query string to filter symbols by. Clients may send an empty string here
+/// to request all symbols.
 @override final  String query;
 
 /// Create a copy of WorkspaceSymbolParams
@@ -39534,13 +39540,13 @@ mixin _$WorkspaceSymbol {
  SymbolKind get kind;/// Tags for this symbol.
 ///
 /// @since 3.16.0
- List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
-/// user interface purposes (e.g. to render a qualifier in the user interface
-/// if necessary). It can't be used to re-infer a hierarchy for the document
+ List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for user
+/// interface purposes (e.g. to render a qualifier in the user interface if
+/// necessary). It can't be used to re-infer a hierarchy for the document
 /// symbols.
- String? get containerName;/// The location of the symbol. Whether a server is allowed to
-/// return a location without a range depends on the client
-/// capability `workspace.symbol.resolveSupport`.
+ String? get containerName;/// The location of the symbol. Whether a server is allowed to return a location
+/// without a range depends on the client capability
+/// `workspace.symbol.resolveSupport`.
 ///
 /// See SymbolInformation#location for more details.
  Object get location;/// A data entry field that is preserved on a workspace symbol between a
@@ -39764,14 +39770,14 @@ class _WorkspaceSymbol implements WorkspaceSymbol {
   return EqualUnmodifiableListView(value);
 }
 
-/// The name of the symbol containing this symbol. This information is for
-/// user interface purposes (e.g. to render a qualifier in the user interface
-/// if necessary). It can't be used to re-infer a hierarchy for the document
+/// The name of the symbol containing this symbol. This information is for user
+/// interface purposes (e.g. to render a qualifier in the user interface if
+/// necessary). It can't be used to re-infer a hierarchy for the document
 /// symbols.
 @override final  String? containerName;
-/// The location of the symbol. Whether a server is allowed to
-/// return a location without a range depends on the client
-/// capability `workspace.symbol.resolveSupport`.
+/// The location of the symbol. Whether a server is allowed to return a location
+/// without a range depends on the client capability
+/// `workspace.symbol.resolveSupport`.
 ///
 /// See SymbolInformation#location for more details.
 @override final  Object location;
@@ -39846,8 +39852,8 @@ as String?,location: null == location ? _self.location : location ,data: freezed
 /// @nodoc
 mixin _$WorkspaceSymbolRegistrationOptions {
 
- bool? get workDoneProgress;/// The server provides support to resolve additional
-/// information for a workspace symbol.
+ bool? get workDoneProgress;/// The server provides support to resolve additional information for a
+/// workspace symbol.
 ///
 /// @since 3.17.0
  bool? get resolveProvider;
@@ -40049,8 +40055,8 @@ class _WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolRegistration
   factory _WorkspaceSymbolRegistrationOptions.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// The server provides support to resolve additional
-/// information for a workspace symbol.
+/// The server provides support to resolve additional information for a
+/// workspace symbol.
 ///
 /// @since 3.17.0
 @override final  bool? resolveProvider;
@@ -40121,8 +40127,8 @@ as bool?,
 mixin _$CodeLensParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The document to request code lens for.
  TextDocumentIdentifier get textDocument;
 /// Create a copy of CodeLensParams
@@ -40358,8 +40364,8 @@ class _CodeLensParams implements CodeLensParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The document to request code lens for.
 @override final  TextDocumentIdentifier textDocument;
@@ -40465,8 +40471,8 @@ mixin _$CodeLens {
 
 /// The range in which this code lens is valid. Should only span a single line.
  Range get range;/// The command this code lens represents.
- Command? get command;/// A data entry field that is preserved on a code lens item between
-/// a {@link CodeLensRequest} and a {@link CodeLensResolveRequest}
+ Command? get command;/// A data entry field that is preserved on a code lens item between a
+/// [CodeLensRequest] and a [CodeLensResolveRequest]
  LSPAny? get data;
 /// Create a copy of CodeLens
 /// with the given fields replaced by the non-null parameter values.
@@ -40690,8 +40696,8 @@ class _CodeLens implements CodeLens {
 @override final  Range range;
 /// The command this code lens represents.
 @override final  Command? command;
-/// A data entry field that is preserved on a code lens item between
-/// a {@link CodeLensRequest} and a {@link CodeLensResolveRequest}
+/// A data entry field that is preserved on a code lens item between a
+/// [CodeLensRequest] and a [CodeLensResolveRequest]
 @override final  LSPAny? data;
 
 /// Create a copy of CodeLens
@@ -40780,8 +40786,8 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 mixin _$CodeLensRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Code lens has a resolve provider as well.
  bool? get resolveProvider;
 /// Create a copy of CodeLensRegistrationOptions
@@ -40982,11 +40988,11 @@ class _CodeLensRegistrationOptions implements CodeLensRegistrationOptions {
   const _CodeLensRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.resolveProvider}): _documentSelector = documentSelector;
   factory _CodeLensRegistrationOptions.fromJson(Map<String, dynamic> json) => _$CodeLensRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -41066,8 +41072,8 @@ as bool?,
 mixin _$DocumentLinkParams {
 
 /// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The document to provide document links for.
  TextDocumentIdentifier get textDocument;
 /// Create a copy of DocumentLinkParams
@@ -41303,8 +41309,8 @@ class _DocumentLinkParams implements DocumentLinkParams {
 
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The document to provide document links for.
 @override final  TextDocumentIdentifier textDocument;
@@ -41412,9 +41418,9 @@ mixin _$DocumentLink {
  Range get range;/// The uri this link points to. If missing a resolve request is sent later.
  String? get target;/// The tooltip text when you hover over this link.
 ///
-/// If a tooltip is provided, is will be displayed in a string that includes instructions on how to
-/// trigger the link, such as `{0} (ctrl + click)`. The specific instructions vary depending on OS,
-/// user settings, and localization.
+/// If a tooltip is provided, is will be displayed in a string that includes
+/// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
+/// specific instructions vary depending on OS, user settings, and localization.
 ///
 /// @since 3.15.0
  String? get tooltip;/// A data entry field that is preserved on a document link between a
@@ -41633,9 +41639,9 @@ class _DocumentLink implements DocumentLink {
 @override final  String? target;
 /// The tooltip text when you hover over this link.
 ///
-/// If a tooltip is provided, is will be displayed in a string that includes instructions on how to
-/// trigger the link, such as `{0} (ctrl + click)`. The specific instructions vary depending on OS,
-/// user settings, and localization.
+/// If a tooltip is provided, is will be displayed in a string that includes
+/// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
+/// specific instructions vary depending on OS, user settings, and localization.
 ///
 /// @since 3.15.0
 @override final  String? tooltip;
@@ -41718,8 +41724,8 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$DocumentLinkRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Document links have a resolve provider as well.
  bool? get resolveProvider;
 /// Create a copy of DocumentLinkRegistrationOptions
@@ -41920,11 +41926,11 @@ class _DocumentLinkRegistrationOptions implements DocumentLinkRegistrationOption
   const _DocumentLinkRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.resolveProvider}): _documentSelector = documentSelector;
   factory _DocumentLinkRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentLinkRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -42338,8 +42344,8 @@ $FormattingOptionsCopyWith<$Res> get options {
 /// @nodoc
 mixin _$DocumentFormattingRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;
 /// Create a copy of DocumentFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -42538,11 +42544,11 @@ class _DocumentFormattingRegistrationOptions implements DocumentFormattingRegist
   const _DocumentFormattingRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress}): _documentSelector = documentSelector;
   factory _DocumentFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentFormattingRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -42976,12 +42982,11 @@ $FormattingOptionsCopyWith<$Res> get options {
 /// @nodoc
 mixin _$DocumentRangeFormattingRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Whether the server supports formatting multiple ranges at once.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
  bool? get rangesSupport;
 /// Create a copy of DocumentRangeFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -43181,11 +43186,11 @@ class _DocumentRangeFormattingRegistrationOptions implements DocumentRangeFormat
   const _DocumentRangeFormattingRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.rangesSupport}): _documentSelector = documentSelector;
   factory _DocumentRangeFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentRangeFormattingRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -43197,8 +43202,7 @@ class _DocumentRangeFormattingRegistrationOptions implements DocumentRangeFormat
 @override final  bool? workDoneProgress;
 /// Whether the server supports formatting multiple ranges at once.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
 @override final  bool? rangesSupport;
 
 /// Create a copy of DocumentRangeFormattingRegistrationOptions
@@ -43615,13 +43619,13 @@ $FormattingOptionsCopyWith<$Res> get options {
 mixin _$DocumentOnTypeFormattingParams {
 
 /// The document to format.
- TextDocumentIdentifier get textDocument;/// The position around which the on type formatting should happen.
-/// This is not necessarily the exact position where the character denoted
-/// by the property `ch` got typed.
- Position get position;/// The character that has been typed that triggered the formatting
-/// on type request. That is not necessarily the last character that
-/// got inserted into the document since the client could auto insert
-/// characters as well (e.g. like automatic brace completion).
+ TextDocumentIdentifier get textDocument;/// The position around which the on type formatting should happen. This is not
+/// necessarily the exact position where the character denoted by the property
+/// `ch` got typed.
+ Position get position;/// The character that has been typed that triggered the formatting on type
+/// request. That is not necessarily the last character that got inserted into
+/// the document since the client could auto insert characters as well (e.g.
+/// like automatic brace completion).
  String get ch;/// The formatting options.
  FormattingOptions get options;
 /// Create a copy of DocumentOnTypeFormattingParams
@@ -43852,14 +43856,14 @@ class _DocumentOnTypeFormattingParams implements DocumentOnTypeFormattingParams 
 
 /// The document to format.
 @override final  TextDocumentIdentifier textDocument;
-/// The position around which the on type formatting should happen.
-/// This is not necessarily the exact position where the character denoted
-/// by the property `ch` got typed.
+/// The position around which the on type formatting should happen. This is not
+/// necessarily the exact position where the character denoted by the property
+/// `ch` got typed.
 @override final  Position position;
-/// The character that has been typed that triggered the formatting
-/// on type request. That is not necessarily the last character that
-/// got inserted into the document since the client could auto insert
-/// characters as well (e.g. like automatic brace completion).
+/// The character that has been typed that triggered the formatting on type
+/// request. That is not necessarily the last character that got inserted into
+/// the document since the client could auto insert characters as well (e.g.
+/// like automatic brace completion).
 @override final  String ch;
 /// The formatting options.
 @override final  FormattingOptions options;
@@ -43958,8 +43962,8 @@ $FormattingOptionsCopyWith<$Res> get options {
 /// @nodoc
 mixin _$DocumentOnTypeFormattingRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector;/// A character on which formatting should be triggered, like `{`.
  String get firstTriggerCharacter;/// More trigger characters.
  List<String>? get moreTriggerCharacter;
@@ -44161,11 +44165,11 @@ class _DocumentOnTypeFormattingRegistrationOptions implements DocumentOnTypeForm
   const _DocumentOnTypeFormattingRegistrationOptions({required final  DocumentSelector? documentSelector, required this.firstTriggerCharacter, final  List<String>? moreTriggerCharacter}): _documentSelector = documentSelector,_moreTriggerCharacter = moreTriggerCharacter;
   factory _DocumentOnTypeFormattingRegistrationOptions.fromJson(Map<String, dynamic> json) => _$DocumentOnTypeFormattingRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -44257,9 +44261,8 @@ mixin _$RenameParams {
 /// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The document to rename.
  TextDocumentIdentifier get textDocument;/// The position at which this request was sent.
- Position get position;/// The new name of the symbol. If the given name is not valid the
-/// request must return a {@link ResponseError} with an
-/// appropriate message set.
+ Position get position;/// The new name of the symbol. If the given name is not valid the request must
+/// return a [ResponseError] with an appropriate message set.
  String get newName;
 /// Create a copy of RenameParams
 /// with the given fields replaced by the non-null parameter values.
@@ -44496,9 +44499,8 @@ class _RenameParams implements RenameParams {
 @override final  TextDocumentIdentifier textDocument;
 /// The position at which this request was sent.
 @override final  Position position;
-/// The new name of the symbol. If the given name is not valid the
-/// request must return a {@link ResponseError} with an
-/// appropriate message set.
+/// The new name of the symbol. If the given name is not valid the request must
+/// return a [ResponseError] with an appropriate message set.
 @override final  String newName;
 
 /// Create a copy of RenameParams
@@ -44598,8 +44600,8 @@ $PositionCopyWith<$Res> get position {
 /// @nodoc
 mixin _$RenameRegistrationOptions {
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Renames should be checked and tested before being executed.
 ///
 /// @since version 3.12.0
@@ -44802,11 +44804,11 @@ class _RenameRegistrationOptions implements RenameRegistrationOptions {
   const _RenameRegistrationOptions({required final  DocumentSelector? documentSelector, this.workDoneProgress, this.prepareProvider}): _documentSelector = documentSelector;
   factory _RenameRegistrationOptions.fromJson(Map<String, dynamic> json) => _$RenameRegistrationOptionsFromJson(json);
 
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
  final  DocumentSelector? _documentSelector;
-/// A document selector to identify the scope of the registration. If set to null
-/// the document selector provided on the client side will be used.
+/// A document selector to identify the scope of the registration. If set to
+/// null the document selector provided on the client side will be used.
 @override DocumentSelector? get documentSelector {
   final value = _documentSelector;
   if (value == null) return null;
@@ -45805,9 +45807,8 @@ as List<String>,
 /// @nodoc
 mixin _$ApplyWorkspaceEditParams {
 
-/// An optional label of the workspace edit. This label is
-/// presented in the user interface for example on an undo
-/// stack to undo the workspace edit.
+/// An optional label of the workspace edit. This label is presented in the user
+/// interface for example on an undo stack to undo the workspace edit.
  String? get label;/// The edits to apply.
  WorkspaceEdit get edit;
 /// Create a copy of ApplyWorkspaceEditParams
@@ -46016,9 +46017,8 @@ class _ApplyWorkspaceEditParams implements ApplyWorkspaceEditParams {
   const _ApplyWorkspaceEditParams({this.label, required this.edit});
   factory _ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) => _$ApplyWorkspaceEditParamsFromJson(json);
 
-/// An optional label of the workspace edit. This label is
-/// presented in the user interface for example on an undo
-/// stack to undo the workspace edit.
+/// An optional label of the workspace edit. This label is presented in the user
+/// interface for example on an undo stack to undo the workspace edit.
 @override final  String? label;
 /// The edits to apply.
 @override final  WorkspaceEdit edit;
@@ -46098,12 +46098,13 @@ $WorkspaceEditCopyWith<$Res> get edit {
 mixin _$ApplyWorkspaceEditResult {
 
 /// Indicates whether the edit was applied or not.
- bool get applied;/// An optional textual description for why the edit was not applied.
-/// This may be used by the server for diagnostic logging or to provide
-/// a suitable error for a request that triggered the edit.
+ bool get applied;/// An optional textual description for why the edit was not applied. This may
+/// be used by the server for diagnostic logging or to provide a suitable error
+/// for a request that triggered the edit.
  String? get failureReason;/// Depending on the client's failure handling strategy `failedChange` might
 /// contain the index of the change that failed. This property is only available
-/// if the client signals a `failureHandlingStrategy` in its client capabilities.
+/// if the client signals a `failureHandlingStrategy` in its client
+/// capabilities.
  int? get failedChange;
 /// Create a copy of ApplyWorkspaceEditResult
 /// with the given fields replaced by the non-null parameter values.
@@ -46305,13 +46306,14 @@ class _ApplyWorkspaceEditResult implements ApplyWorkspaceEditResult {
 
 /// Indicates whether the edit was applied or not.
 @override final  bool applied;
-/// An optional textual description for why the edit was not applied.
-/// This may be used by the server for diagnostic logging or to provide
-/// a suitable error for a request that triggered the edit.
+/// An optional textual description for why the edit was not applied. This may
+/// be used by the server for diagnostic logging or to provide a suitable error
+/// for a request that triggered the edit.
 @override final  String? failureReason;
 /// Depending on the client's failure handling strategy `failedChange` might
 /// contain the index of the change that failed. This property is only available
-/// if the client signals a `failureHandlingStrategy` in its client capabilities.
+/// if the client signals a `failureHandlingStrategy` in its client
+/// capabilities.
 @override final  int? failedChange;
 
 /// Create a copy of ApplyWorkspaceEditResult
@@ -46380,24 +46382,24 @@ as int?,
 /// @nodoc
 mixin _$WorkDoneProgressBegin {
 
- String get kind;/// Mandatory title of the progress operation. Used to briefly inform about
-/// the kind of operation being performed.
+ String get kind;/// Mandatory title of the progress operation. Used to briefly inform about the
+/// kind of operation being performed.
 ///
 /// Examples: "Indexing" or "Linking dependencies".
- String get title;/// Controls if a cancel button should show to allow the user to cancel the
-/// long running operation. Clients that don't support cancellation are allowed
-/// to ignore the setting.
- bool? get cancellable;/// Optional, more detailed associated progress message. Contains
-/// complementary information to the `title`.
+ String get title;/// Controls if a cancel button should show to allow the user to cancel the long
+/// running operation. Clients that don't support cancellation are allowed to
+/// ignore the setting.
+ bool? get cancellable;/// Optional, more detailed associated progress message. Contains complementary
+/// information to the `title`.
 ///
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
-/// If unset, the previous progress message (if any) is still valid.
- String? get message;/// Optional progress percentage to display (value 100 is considered 100%).
-/// If not provided infinite progress is assumed and clients are allowed
-/// to ignore the `percentage` value in subsequent report notifications.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
+/// unset, the previous progress message (if any) is still valid.
+ String? get message;/// Optional progress percentage to display (value 100 is considered 100%). If
+/// not provided infinite progress is assumed and clients are allowed to ignore
+/// the `percentage` value in subsequent report notifications.
 ///
-/// The value should be steadily rising. Clients are free to ignore values
-/// that are not following this rule. The value range is [0, 100].
+/// The value should be steadily rising. Clients are free to ignore values that
+/// are not following this rule. The value range is [0, 100].
  int? get percentage;
 /// Create a copy of WorkDoneProgressBegin
 /// with the given fields replaced by the non-null parameter values.
@@ -46600,27 +46602,27 @@ class _WorkDoneProgressBegin implements WorkDoneProgressBegin {
   factory _WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressBeginFromJson(json);
 
 @override final  String kind;
-/// Mandatory title of the progress operation. Used to briefly inform about
-/// the kind of operation being performed.
+/// Mandatory title of the progress operation. Used to briefly inform about the
+/// kind of operation being performed.
 ///
 /// Examples: "Indexing" or "Linking dependencies".
 @override final  String title;
-/// Controls if a cancel button should show to allow the user to cancel the
-/// long running operation. Clients that don't support cancellation are allowed
-/// to ignore the setting.
+/// Controls if a cancel button should show to allow the user to cancel the long
+/// running operation. Clients that don't support cancellation are allowed to
+/// ignore the setting.
 @override final  bool? cancellable;
-/// Optional, more detailed associated progress message. Contains
-/// complementary information to the `title`.
+/// Optional, more detailed associated progress message. Contains complementary
+/// information to the `title`.
 ///
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
-/// If unset, the previous progress message (if any) is still valid.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
+/// unset, the previous progress message (if any) is still valid.
 @override final  String? message;
-/// Optional progress percentage to display (value 100 is considered 100%).
-/// If not provided infinite progress is assumed and clients are allowed
-/// to ignore the `percentage` value in subsequent report notifications.
+/// Optional progress percentage to display (value 100 is considered 100%). If
+/// not provided infinite progress is assumed and clients are allowed to ignore
+/// the `percentage` value in subsequent report notifications.
 ///
-/// The value should be steadily rising. Clients are free to ignore values
-/// that are not following this rule. The value range is [0, 100].
+/// The value should be steadily rising. Clients are free to ignore values that
+/// are not following this rule. The value range is [0, 100].
 @override final  int? percentage;
 
 /// Create a copy of WorkDoneProgressBegin
@@ -46693,19 +46695,19 @@ mixin _$WorkDoneProgressReport {
 
  String get kind;/// Controls enablement state of a cancel button.
 ///
-/// Clients that don't support cancellation or don't support controlling the button's
-/// enablement state are allowed to ignore the property.
- bool? get cancellable;/// Optional, more detailed associated progress message. Contains
-/// complementary information to the `title`.
+/// Clients that don't support cancellation or don't support controlling the
+/// button's enablement state are allowed to ignore the property.
+ bool? get cancellable;/// Optional, more detailed associated progress message. Contains complementary
+/// information to the `title`.
 ///
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
-/// If unset, the previous progress message (if any) is still valid.
- String? get message;/// Optional progress percentage to display (value 100 is considered 100%).
-/// If not provided infinite progress is assumed and clients are allowed
-/// to ignore the `percentage` value in subsequent report notifications.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
+/// unset, the previous progress message (if any) is still valid.
+ String? get message;/// Optional progress percentage to display (value 100 is considered 100%). If
+/// not provided infinite progress is assumed and clients are allowed to ignore
+/// the `percentage` value in subsequent report notifications.
 ///
-/// The value should be steadily rising. Clients are free to ignore values
-/// that are not following this rule. The value range is [0, 100].
+/// The value should be steadily rising. Clients are free to ignore values that
+/// are not following this rule. The value range is [0, 100].
  int? get percentage;
 /// Create a copy of WorkDoneProgressReport
 /// with the given fields replaced by the non-null parameter values.
@@ -46909,21 +46911,21 @@ class _WorkDoneProgressReport implements WorkDoneProgressReport {
 @override final  String kind;
 /// Controls enablement state of a cancel button.
 ///
-/// Clients that don't support cancellation or don't support controlling the button's
-/// enablement state are allowed to ignore the property.
+/// Clients that don't support cancellation or don't support controlling the
+/// button's enablement state are allowed to ignore the property.
 @override final  bool? cancellable;
-/// Optional, more detailed associated progress message. Contains
-/// complementary information to the `title`.
+/// Optional, more detailed associated progress message. Contains complementary
+/// information to the `title`.
 ///
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
-/// If unset, the previous progress message (if any) is still valid.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
+/// unset, the previous progress message (if any) is still valid.
 @override final  String? message;
-/// Optional progress percentage to display (value 100 is considered 100%).
-/// If not provided infinite progress is assumed and clients are allowed
-/// to ignore the `percentage` value in subsequent report notifications.
+/// Optional progress percentage to display (value 100 is considered 100%). If
+/// not provided infinite progress is assumed and clients are allowed to ignore
+/// the `percentage` value in subsequent report notifications.
 ///
-/// The value should be steadily rising. Clients are free to ignore values
-/// that are not following this rule. The value range is [0, 100].
+/// The value should be steadily rising. Clients are free to ignore values that
+/// are not following this rule. The value range is [0, 100].
 @override final  int? percentage;
 
 /// Create a copy of WorkDoneProgressReport
@@ -46993,8 +46995,8 @@ as int?,
 /// @nodoc
 mixin _$WorkDoneProgressEnd {
 
- String get kind;/// Optional, a final message indicating to for example indicate the outcome
-/// of the operation.
+ String get kind;/// Optional, a final message indicating to for example indicate the outcome of
+/// the operation.
  String? get message;
 /// Create a copy of WorkDoneProgressEnd
 /// with the given fields replaced by the non-null parameter values.
@@ -47194,8 +47196,8 @@ class _WorkDoneProgressEnd implements WorkDoneProgressEnd {
   factory _WorkDoneProgressEnd.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressEndFromJson(json);
 
 @override final  String kind;
-/// Optional, a final message indicating to for example indicate the outcome
-/// of the operation.
+/// Optional, a final message indicating to for example indicate the outcome of
+/// the operation.
 @override final  String? message;
 
 /// Create a copy of WorkDoneProgressEnd
@@ -48936,8 +48938,8 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 /// @nodoc
 mixin _$PartialResultParams {
 
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;
 /// Create a copy of PartialResultParams
 /// with the given fields replaced by the non-null parameter values.
@@ -49147,8 +49149,8 @@ class _PartialResultParams implements PartialResultParams {
   const _PartialResultParams({@_ProgressTokenConverter() this.partialResultToken});
   factory _PartialResultParams.fromJson(Map<String, dynamic> json) => _$PartialResultParamsFromJson(json);
 
-/// An optional token that a server can use to report partial results (e.g. streaming) to
-/// the client.
+/// An optional token that a server can use to report partial results (e.g.
+/// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 
 /// Create a copy of PartialResultParams
@@ -49229,14 +49231,16 @@ mixin _$LocationLink {
 
 /// Span of the origin of this link.
 ///
-/// Used as the underlined span for mouse interaction. Defaults to the word range at
-/// the definition position.
+/// Used as the underlined span for mouse interaction. Defaults to the word
+/// range at the definition position.
  Range? get originSelectionRange;/// The target resource identifier of this link.
- String get targetUri;/// The full target range of this link. If the target for example is a symbol then target range is the
-/// range enclosing this symbol not including leading/trailing whitespace but everything else
-/// like comments. This information is typically used to highlight the range in the editor.
- Range get targetRange;/// The range that should be selected and revealed when this link is being followed, e.g the name of a function.
-/// Must be contained by the `targetRange`. See also `DocumentSymbol#range`
+ String get targetUri;/// The full target range of this link. If the target for example is a symbol
+/// then target range is the range enclosing this symbol not including
+/// leading/trailing whitespace but everything else like comments. This
+/// information is typically used to highlight the range in the editor.
+ Range get targetRange;/// The range that should be selected and revealed when this link is being
+/// followed, e.g the name of a function. Must be contained by the
+/// `targetRange`. See also `DocumentSymbol#range`
  Range get targetSelectionRange;
 /// Create a copy of LocationLink
 /// with the given fields replaced by the non-null parameter values.
@@ -49469,17 +49473,19 @@ class _LocationLink implements LocationLink {
 
 /// Span of the origin of this link.
 ///
-/// Used as the underlined span for mouse interaction. Defaults to the word range at
-/// the definition position.
+/// Used as the underlined span for mouse interaction. Defaults to the word
+/// range at the definition position.
 @override final  Range? originSelectionRange;
 /// The target resource identifier of this link.
 @override final  String targetUri;
-/// The full target range of this link. If the target for example is a symbol then target range is the
-/// range enclosing this symbol not including leading/trailing whitespace but everything else
-/// like comments. This information is typically used to highlight the range in the editor.
+/// The full target range of this link. If the target for example is a symbol
+/// then target range is the range enclosing this symbol not including
+/// leading/trailing whitespace but everything else like comments. This
+/// information is typically used to highlight the range in the editor.
 @override final  Range targetRange;
-/// The range that should be selected and revealed when this link is being followed, e.g the name of a function.
-/// Must be contained by the `targetRange`. See also `DocumentSymbol#range`
+/// The range that should be selected and revealed when this link is being
+/// followed, e.g the name of a function. Must be contained by the
+/// `targetRange`. See also `DocumentSymbol#range`
 @override final  Range targetSelectionRange;
 
 /// Create a copy of LocationLink
@@ -50148,8 +50154,8 @@ as bool?,
 /// @nodoc
 mixin _$StaticRegistrationOptions {
 
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of StaticRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -50347,8 +50353,8 @@ class _StaticRegistrationOptions implements StaticRegistrationOptions {
   const _StaticRegistrationOptions({this.id});
   factory _StaticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$StaticRegistrationOptionsFromJson(json);
 
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of StaticRegistrationOptions
@@ -52568,15 +52574,16 @@ mixin _$Position {
 
 /// Line position in a document (zero-based).
 ///
-/// If a line number is greater than the number of lines in a document, it defaults back to the number of lines in the document.
-/// If a line number is negative, it defaults to 0.
+/// If a line number is greater than the number of lines in a document, it
+/// defaults back to the number of lines in the document. If a line number is
+/// negative, it defaults to 0.
  int get line;/// Character offset on a line in a document (zero-based).
 ///
 /// The meaning of this offset is determined by the negotiated
 /// `PositionEncodingKind`.
 ///
-/// If the character value is greater than the line length it defaults back to the
-/// line length.
+/// If the character value is greater than the line length it defaults back to
+/// the line length.
  int get character;
 /// Create a copy of Position
 /// with the given fields replaced by the non-null parameter values.
@@ -52777,16 +52784,17 @@ class _Position implements Position {
 
 /// Line position in a document (zero-based).
 ///
-/// If a line number is greater than the number of lines in a document, it defaults back to the number of lines in the document.
-/// If a line number is negative, it defaults to 0.
+/// If a line number is greater than the number of lines in a document, it
+/// defaults back to the number of lines in the document. If a line number is
+/// negative, it defaults to 0.
 @override final  int line;
 /// Character offset on a line in a document (zero-based).
 ///
 /// The meaning of this offset is determined by the negotiated
 /// `PositionEncodingKind`.
 ///
-/// If the character value is greater than the line length it defaults back to the
-/// line length.
+/// If the character value is greater than the line length it defaults back to
+/// the line length.
 @override final  int character;
 
 /// Create a copy of Position
@@ -53381,8 +53389,8 @@ as bool?,
 mixin _$SemanticTokensOptions {
 
  bool? get workDoneProgress;/// The legend used by the server
- SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a specific range
-/// of a document.
+ SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a specific range of a
+/// document.
  Object? get range;/// Server supports providing semantic tokens for a full document.
  Object? get full;
 /// Create a copy of SemanticTokensOptions
@@ -53594,8 +53602,8 @@ class _SemanticTokensOptions implements SemanticTokensOptions {
 @override final  bool? workDoneProgress;
 /// The legend used by the server
 @override final  SemanticTokensLegend legend;
-/// Server supports providing semantic tokens for a specific range
-/// of a document.
+/// Server supports providing semantic tokens for a specific range of a
+/// document.
 @override final  Object? range;
 /// Server supports providing semantic tokens for a full document.
 @override final  Object? full;
@@ -55719,12 +55727,12 @@ $DeleteFileOptionsCopyWith<$Res>? get options {
 /// @nodoc
 mixin _$ChangeAnnotation {
 
-/// A human-readable string describing the actual change. The string
-/// is rendered prominent in the user interface.
- String get label;/// A flag which indicates that user confirmation is needed
-/// before applying the change.
- bool? get needsConfirmation;/// A human-readable string which is rendered less prominent in
-/// the user interface.
+/// A human-readable string describing the actual change. The string is rendered
+/// prominent in the user interface.
+ String get label;/// A flag which indicates that user confirmation is needed before applying the
+/// change.
+ bool? get needsConfirmation;/// A human-readable string which is rendered less prominent in the user
+/// interface.
  String? get description;
 /// Create a copy of ChangeAnnotation
 /// with the given fields replaced by the non-null parameter values.
@@ -55924,14 +55932,14 @@ class _ChangeAnnotation implements ChangeAnnotation {
   const _ChangeAnnotation({required this.label, this.needsConfirmation, this.description});
   factory _ChangeAnnotation.fromJson(Map<String, dynamic> json) => _$ChangeAnnotationFromJson(json);
 
-/// A human-readable string describing the actual change. The string
-/// is rendered prominent in the user interface.
+/// A human-readable string describing the actual change. The string is rendered
+/// prominent in the user interface.
 @override final  String label;
-/// A flag which indicates that user confirmation is needed
-/// before applying the change.
+/// A flag which indicates that user confirmation is needed before applying the
+/// change.
 @override final  bool? needsConfirmation;
-/// A human-readable string which is rendered less prominent in
-/// the user interface.
+/// A human-readable string which is rendered less prominent in the user
+/// interface.
 @override final  String? description;
 
 /// Create a copy of ChangeAnnotation
@@ -57350,8 +57358,8 @@ as bool?,
 mixin _$InlineValueContext {
 
 /// The stack frame (as a DAP Id) where the execution has stopped.
- int get frameId;/// The document range where execution has stopped.
-/// Typically the end position of the range denotes the line where the inline values are shown.
+ int get frameId;/// The document range where execution has stopped. Typically the end position
+/// of the range denotes the line where the inline values are shown.
  Range get stoppedLocation;
 /// Create a copy of InlineValueContext
 /// with the given fields replaced by the non-null parameter values.
@@ -57561,8 +57569,8 @@ class _InlineValueContext implements InlineValueContext {
 
 /// The stack frame (as a DAP Id) where the execution has stopped.
 @override final  int frameId;
-/// The document range where execution has stopped.
-/// Typically the end position of the range denotes the line where the inline values are shown.
+/// The document range where execution has stopped. Typically the end position
+/// of the range denotes the line where the inline values are shown.
 @override final  Range stoppedLocation;
 
 /// Create a copy of InlineValueContext
@@ -57927,8 +57935,8 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlineValueVariableLookup {
 
-/// The document range for which the inline value applies.
-/// The range is used to extract the variable name from the underlying document.
+/// The document range for which the inline value applies. The range is used to
+/// extract the variable name from the underlying document.
  Range get range;/// If specified the name of the variable to look up.
  String? get variableName;/// How to perform the lookup.
  bool get caseSensitiveLookup;
@@ -58139,8 +58147,8 @@ class _InlineValueVariableLookup implements InlineValueVariableLookup {
   const _InlineValueVariableLookup({required this.range, this.variableName, required this.caseSensitiveLookup});
   factory _InlineValueVariableLookup.fromJson(Map<String, dynamic> json) => _$InlineValueVariableLookupFromJson(json);
 
-/// The document range for which the inline value applies.
-/// The range is used to extract the variable name from the underlying document.
+/// The document range for which the inline value applies. The range is used to
+/// extract the variable name from the underlying document.
 @override final  Range range;
 /// If specified the name of the variable to look up.
 @override final  String? variableName;
@@ -58222,8 +58230,8 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlineValueEvaluatableExpression {
 
-/// The document range for which the inline value applies.
-/// The range is used to extract the evaluatable expression from the underlying document.
+/// The document range for which the inline value applies. The range is used to
+/// extract the evaluatable expression from the underlying document.
  Range get range;/// If specified the expression overrides the extracted expression.
  String? get expression;
 /// Create a copy of InlineValueEvaluatableExpression
@@ -58432,8 +58440,8 @@ class _InlineValueEvaluatableExpression implements InlineValueEvaluatableExpress
   const _InlineValueEvaluatableExpression({required this.range, this.expression});
   factory _InlineValueEvaluatableExpression.fromJson(Map<String, dynamic> json) => _$InlineValueEvaluatableExpressionFromJson(json);
 
-/// The document range for which the inline value applies.
-/// The range is used to extract the evaluatable expression from the underlying document.
+/// The document range for which the inline value applies. The range is used to
+/// extract the evaluatable expression from the underlying document.
 @override final  Range range;
 /// If specified the expression overrides the extracted expression.
 @override final  String? expression;
@@ -58776,24 +58784,23 @@ as bool?,
 mixin _$InlayHintLabelPart {
 
 /// The value of this label part.
- String get value;/// The tooltip text when you hover over this label part. Depending on
-/// the client capability `inlayHint.resolveSupport` clients might resolve
-/// this property late using the resolve request.
- Object? get tooltip;/// An optional source code location that represents this
-/// label part.
+ String get value;/// The tooltip text when you hover over this label part. Depending on the
+/// client capability `inlayHint.resolveSupport` clients might resolve this
+/// property late using the resolve request.
+ Object? get tooltip;/// An optional source code location that represents this label part.
 ///
 /// The editor will use this location for the hover and for code navigation
 /// features: This part will become a clickable link that resolves to the
-/// definition of the symbol at the given location (not necessarily the
-/// location itself), it shows the hover that shows at the given location,
-/// and it shows a context menu with further code navigation commands.
+/// definition of the symbol at the given location (not necessarily the location
+/// itself), it shows the hover that shows at the given location, and it shows a
+/// context menu with further code navigation commands.
 ///
-/// Depending on the client capability `inlayHint.resolveSupport` clients
-/// might resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients might
+/// resolve this property late using the resolve request.
  Location? get location;/// An optional command for this label part.
 ///
-/// Depending on the client capability `inlayHint.resolveSupport` clients
-/// might resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients might
+/// resolve this property late using the resolve request.
  Command? get command;
 /// Create a copy of InlayHintLabelPart
 /// with the given fields replaced by the non-null parameter values.
@@ -59019,26 +59026,25 @@ class _InlayHintLabelPart implements InlayHintLabelPart {
 
 /// The value of this label part.
 @override final  String value;
-/// The tooltip text when you hover over this label part. Depending on
-/// the client capability `inlayHint.resolveSupport` clients might resolve
-/// this property late using the resolve request.
+/// The tooltip text when you hover over this label part. Depending on the
+/// client capability `inlayHint.resolveSupport` clients might resolve this
+/// property late using the resolve request.
 @override final  Object? tooltip;
-/// An optional source code location that represents this
-/// label part.
+/// An optional source code location that represents this label part.
 ///
 /// The editor will use this location for the hover and for code navigation
 /// features: This part will become a clickable link that resolves to the
-/// definition of the symbol at the given location (not necessarily the
-/// location itself), it shows the hover that shows at the given location,
-/// and it shows a context menu with further code navigation commands.
+/// definition of the symbol at the given location (not necessarily the location
+/// itself), it shows the hover that shows at the given location, and it shows a
+/// context menu with further code navigation commands.
 ///
-/// Depending on the client capability `inlayHint.resolveSupport` clients
-/// might resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients might
+/// resolve this property late using the resolve request.
 @override final  Location? location;
 /// An optional command for this label part.
 ///
-/// Depending on the client capability `inlayHint.resolveSupport` clients
-/// might resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients might
+/// resolve this property late using the resolve request.
 @override final  Command? command;
 
 /// Create a copy of InlayHintLabelPart
@@ -59401,8 +59407,8 @@ as String,
 /// @nodoc
 mixin _$InlayHintOptions {
 
- bool? get workDoneProgress;/// The server provides support to resolve additional
-/// information for an inlay hint item.
+ bool? get workDoneProgress;/// The server provides support to resolve additional information for an inlay
+/// hint item.
  bool? get resolveProvider;
 /// Create a copy of InlayHintOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -59602,8 +59608,8 @@ class _InlayHintOptions implements InlayHintOptions {
   factory _InlayHintOptions.fromJson(Map<String, dynamic> json) => _$InlayHintOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// The server provides support to resolve additional
-/// information for an inlay hint item.
+/// The server provides support to resolve additional information for an inlay
+/// hint item.
 @override final  bool? resolveProvider;
 
 /// Create a copy of InlayHintOptions
@@ -59672,15 +59678,13 @@ as bool?,
 mixin _$RelatedFullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will
-/// be sent on the next diagnostic request for the
-/// same document.
+ String get kind;/// An optional result id. If provided it will be sent on the next diagnostic
+/// request for the same document.
  String? get resultId;/// The actual items.
- List<Diagnostic> get items;/// Diagnostics of related documents. This information is useful
-/// in programming languages where code in a file A can generate
-/// diagnostics in a file B which A depends on. An example of
-/// such a language is C/C++ where marco definitions in a file
-/// a.cpp and result in errors in a header file b.hpp.
+ List<Diagnostic> get items;/// Diagnostics of related documents. This information is useful in programming
+/// languages where code in a file A can generate diagnostics in a file B which
+/// A depends on. An example of such a language is C/C++ where marco definitions
+/// in a file a.cpp and result in errors in a header file b.hpp.
 ///
 /// @since 3.17.0
  Map<String, Object>? get relatedDocuments;
@@ -59885,9 +59889,8 @@ class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnos
 
 /// A full document diagnostic report.
 @override final  String kind;
-/// An optional result id. If provided it will
-/// be sent on the next diagnostic request for the
-/// same document.
+/// An optional result id. If provided it will be sent on the next diagnostic
+/// request for the same document.
 @override final  String? resultId;
 /// The actual items.
  final  List<Diagnostic> _items;
@@ -59898,19 +59901,17 @@ class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnos
   return EqualUnmodifiableListView(_items);
 }
 
-/// Diagnostics of related documents. This information is useful
-/// in programming languages where code in a file A can generate
-/// diagnostics in a file B which A depends on. An example of
-/// such a language is C/C++ where marco definitions in a file
-/// a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in programming
+/// languages where code in a file A can generate diagnostics in a file B which
+/// A depends on. An example of such a language is C/C++ where marco definitions
+/// in a file a.cpp and result in errors in a header file b.hpp.
 ///
 /// @since 3.17.0
  final  Map<String, Object>? _relatedDocuments;
-/// Diagnostics of related documents. This information is useful
-/// in programming languages where code in a file A can generate
-/// diagnostics in a file B which A depends on. An example of
-/// such a language is C/C++ where marco definitions in a file
-/// a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in programming
+/// languages where code in a file A can generate diagnostics in a file B which
+/// A depends on. An example of such a language is C/C++ where marco definitions
+/// in a file a.cpp and result in errors in a header file b.hpp.
 ///
 /// @since 3.17.0
 @override Map<String, Object>? get relatedDocuments {
@@ -59989,17 +59990,14 @@ as Map<String, Object>?,
 /// @nodoc
 mixin _$RelatedUnchangedDocumentDiagnosticReport {
 
-/// A document diagnostic report indicating
-/// no changes to the last result. A server can
-/// only return `unchanged` if result ids are
-/// provided.
- String get kind;/// A result id which will be sent on the next
-/// diagnostic request for the same document.
- String get resultId;/// Diagnostics of related documents. This information is useful
-/// in programming languages where code in a file A can generate
-/// diagnostics in a file B which A depends on. An example of
-/// such a language is C/C++ where marco definitions in a file
-/// a.cpp and result in errors in a header file b.hpp.
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+ String get kind;/// A result id which will be sent on the next diagnostic request for the same
+/// document.
+ String get resultId;/// Diagnostics of related documents. This information is useful in programming
+/// languages where code in a file A can generate diagnostics in a file B which
+/// A depends on. An example of such a language is C/C++ where marco definitions
+/// in a file a.cpp and result in errors in a header file b.hpp.
 ///
 /// @since 3.17.0
  Map<String, Object>? get relatedDocuments;
@@ -60201,27 +60199,23 @@ class _RelatedUnchangedDocumentDiagnosticReport implements RelatedUnchangedDocum
   const _RelatedUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, final  Map<String, Object>? relatedDocuments}): _relatedDocuments = relatedDocuments;
   factory _RelatedUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$RelatedUnchangedDocumentDiagnosticReportFromJson(json);
 
-/// A document diagnostic report indicating
-/// no changes to the last result. A server can
-/// only return `unchanged` if result ids are
-/// provided.
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
 @override final  String kind;
-/// A result id which will be sent on the next
-/// diagnostic request for the same document.
+/// A result id which will be sent on the next diagnostic request for the same
+/// document.
 @override final  String resultId;
-/// Diagnostics of related documents. This information is useful
-/// in programming languages where code in a file A can generate
-/// diagnostics in a file B which A depends on. An example of
-/// such a language is C/C++ where marco definitions in a file
-/// a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in programming
+/// languages where code in a file A can generate diagnostics in a file B which
+/// A depends on. An example of such a language is C/C++ where marco definitions
+/// in a file a.cpp and result in errors in a header file b.hpp.
 ///
 /// @since 3.17.0
  final  Map<String, Object>? _relatedDocuments;
-/// Diagnostics of related documents. This information is useful
-/// in programming languages where code in a file A can generate
-/// diagnostics in a file B which A depends on. An example of
-/// such a language is C/C++ where marco definitions in a file
-/// a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in programming
+/// languages where code in a file A can generate diagnostics in a file B which
+/// A depends on. An example of such a language is C/C++ where marco definitions
+/// in a file a.cpp and result in errors in a header file b.hpp.
 ///
 /// @since 3.17.0
 @override Map<String, Object>? get relatedDocuments {
@@ -60300,9 +60294,8 @@ as Map<String, Object>?,
 mixin _$FullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will
-/// be sent on the next diagnostic request for the
-/// same document.
+ String get kind;/// An optional result id. If provided it will be sent on the next diagnostic
+/// request for the same document.
  String? get resultId;/// The actual items.
  List<Diagnostic> get items;
 /// Create a copy of FullDocumentDiagnosticReport
@@ -60505,9 +60498,8 @@ class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
 @override final  String kind;
-/// An optional result id. If provided it will
-/// be sent on the next diagnostic request for the
-/// same document.
+/// An optional result id. If provided it will be sent on the next diagnostic
+/// request for the same document.
 @override final  String? resultId;
 /// The actual items.
  final  List<Diagnostic> _items;
@@ -60585,12 +60577,10 @@ as List<Diagnostic>,
 /// @nodoc
 mixin _$UnchangedDocumentDiagnosticReport {
 
-/// A document diagnostic report indicating
-/// no changes to the last result. A server can
-/// only return `unchanged` if result ids are
-/// provided.
- String get kind;/// A result id which will be sent on the next
-/// diagnostic request for the same document.
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+ String get kind;/// A result id which will be sent on the next diagnostic request for the same
+/// document.
  String get resultId;
 /// Create a copy of UnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -60789,13 +60779,11 @@ class _UnchangedDocumentDiagnosticReport implements UnchangedDocumentDiagnosticR
   const _UnchangedDocumentDiagnosticReport({required this.kind, required this.resultId});
   factory _UnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$UnchangedDocumentDiagnosticReportFromJson(json);
 
-/// A document diagnostic report indicating
-/// no changes to the last result. A server can
-/// only return `unchanged` if result ids are
-/// provided.
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
 @override final  String kind;
-/// A result id which will be sent on the next
-/// diagnostic request for the same document.
+/// A result id which will be sent on the next diagnostic request for the same
+/// document.
 @override final  String resultId;
 
 /// Create a copy of UnchangedDocumentDiagnosticReport
@@ -60863,12 +60851,12 @@ as String,
 /// @nodoc
 mixin _$DiagnosticOptions {
 
- bool? get workDoneProgress;/// An optional identifier under which the diagnostics are
-/// managed by the client.
- String? get identifier;/// Whether the language has inter file dependencies meaning that
-/// editing code in one file can result in a different diagnostic
-/// set in another file. Inter file dependencies are common for
-/// most programming languages and typically uncommon for linters.
+ bool? get workDoneProgress;/// An optional identifier under which the diagnostics are managed by the
+/// client.
+ String? get identifier;/// Whether the language has inter file dependencies meaning that editing code
+/// in one file can result in a different diagnostic set in another file. Inter
+/// file dependencies are common for most programming languages and typically
+/// uncommon for linters.
  bool get interFileDependencies;/// The server provides support for workspace diagnostics as well.
  bool get workspaceDiagnostics;
 /// Create a copy of DiagnosticOptions
@@ -61071,13 +61059,13 @@ class _DiagnosticOptions implements DiagnosticOptions {
   factory _DiagnosticOptions.fromJson(Map<String, dynamic> json) => _$DiagnosticOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// An optional identifier under which the diagnostics are
-/// managed by the client.
+/// An optional identifier under which the diagnostics are managed by the
+/// client.
 @override final  String? identifier;
-/// Whether the language has inter file dependencies meaning that
-/// editing code in one file can result in a different diagnostic
-/// set in another file. Inter file dependencies are common for
-/// most programming languages and typically uncommon for linters.
+/// Whether the language has inter file dependencies meaning that editing code
+/// in one file can result in a different diagnostic set in another file. Inter
+/// file dependencies are common for most programming languages and typically
+/// uncommon for linters.
 @override final  bool interFileDependencies;
 /// The server provides support for workspace diagnostics as well.
 @override final  bool workspaceDiagnostics;
@@ -61149,8 +61137,7 @@ as bool,
 /// @nodoc
 mixin _$PreviousResultId {
 
-/// The URI for which the client knowns a
-/// result id.
+/// The URI for which the client knowns a result id.
  String get uri;/// The value of the previous result id.
  String get value;
 /// Create a copy of PreviousResultId
@@ -61350,8 +61337,7 @@ class _PreviousResultId implements PreviousResultId {
   const _PreviousResultId({required this.uri, required this.value});
   factory _PreviousResultId.fromJson(Map<String, dynamic> json) => _$PreviousResultIdFromJson(json);
 
-/// The URI for which the client knowns a
-/// result id.
+/// The URI for which the client knowns a result id.
 @override final  String uri;
 /// The value of the previous result id.
 @override final  String value;
@@ -61423,10 +61409,9 @@ mixin _$NotebookDocument {
 
 /// The notebook document's uri.
  String get uri;/// The type of the notebook.
- String get notebookType;/// The version number of this document (it will increase after each
-/// change, including undo/redo).
- int get version;/// Additional metadata stored with the notebook
-/// document.
+ String get notebookType;/// The version number of this document (it will increase after each change,
+/// including undo/redo).
+ int get version;/// Additional metadata stored with the notebook document.
 ///
 /// Note: should always be an object literal (e.g. LSPObject)
  LSPObject? get metadata;/// The cells of a notebook.
@@ -61635,16 +61620,14 @@ class _NotebookDocument implements NotebookDocument {
 @override final  String uri;
 /// The type of the notebook.
 @override final  String notebookType;
-/// The version number of this document (it will increase after each
-/// change, including undo/redo).
+/// The version number of this document (it will increase after each change,
+/// including undo/redo).
 @override final  int version;
-/// Additional metadata stored with the notebook
-/// document.
+/// Additional metadata stored with the notebook document.
 ///
 /// Note: should always be an object literal (e.g. LSPObject)
  final  LSPObject? _metadata;
-/// Additional metadata stored with the notebook
-/// document.
+/// Additional metadata stored with the notebook document.
 ///
 /// Note: should always be an object literal (e.g. LSPObject)
 @override LSPObject? get metadata {
@@ -61735,8 +61718,8 @@ mixin _$TextDocumentItem {
 
 /// The text document's uri.
  String get uri;/// The text document's language identifier.
- String get languageId;/// The version number of this document (it will increase after each
-/// change, including undo/redo).
+ String get languageId;/// The version number of this document (it will increase after each change,
+/// including undo/redo).
  int get version;/// The content of the opened text document.
  String get text;
 /// Create a copy of TextDocumentItem
@@ -61942,8 +61925,8 @@ class _TextDocumentItem implements TextDocumentItem {
 @override final  String uri;
 /// The text document's language identifier.
 @override final  String languageId;
-/// The version number of this document (it will increase after each
-/// change, including undo/redo).
+/// The version number of this document (it will increase after each change,
+/// including undo/redo).
 @override final  int version;
 /// The content of the opened text document.
 @override final  String text;
@@ -62836,7 +62819,8 @@ as String,
 mixin _$InlineCompletionContext {
 
 /// Describes how the inline completion was triggered.
- InlineCompletionTriggerKind get triggerKind;/// Provides information about the currently selected item in the autocomplete widget if it is visible.
+ InlineCompletionTriggerKind get triggerKind;/// Provides information about the currently selected item in the autocomplete
+/// widget if it is visible.
  SelectedCompletionInfo? get selectedCompletionInfo;
 /// Create a copy of InlineCompletionContext
 /// with the given fields replaced by the non-null parameter values.
@@ -63049,7 +63033,8 @@ class _InlineCompletionContext implements InlineCompletionContext {
 
 /// Describes how the inline completion was triggered.
 @override final  InlineCompletionTriggerKind triggerKind;
-/// Provides information about the currently selected item in the autocomplete widget if it is visible.
+/// Provides information about the currently selected item in the autocomplete
+/// widget if it is visible.
 @override final  SelectedCompletionInfo? selectedCompletionInfo;
 
 /// Create a copy of InlineCompletionContext
@@ -63662,8 +63647,8 @@ as bool?,
 /// @nodoc
 mixin _$Registration {
 
-/// The id used to register the request. The id can be used to deregister
-/// the request again.
+/// The id used to register the request. The id can be used to deregister the
+/// request again.
  String get id;/// The method / capability to register for.
  String get method;/// Options necessary for the registration.
  LSPAny? get registerOptions;
@@ -63864,8 +63849,8 @@ class _Registration implements Registration {
   const _Registration({required this.id, required this.method, this.registerOptions});
   factory _Registration.fromJson(Map<String, dynamic> json) => _$RegistrationFromJson(json);
 
-/// The id used to register the request. The id can be used to deregister
-/// the request again.
+/// The id used to register the request. The id can be used to deregister the
+/// request again.
 @override final  String id;
 /// The method / capability to register for.
 @override final  String method;
@@ -64211,8 +64196,8 @@ mixin _$WorkspaceFoldersInitializeParams {
 
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
+/// This property is only available if the client supports workspace folders. It
+/// can be `null` if the client supports workspace folders but none are
 /// configured.
 ///
 /// @since 3.6.0
@@ -64415,16 +64400,16 @@ class _WorkspaceFoldersInitializeParams implements WorkspaceFoldersInitializePar
 
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
+/// This property is only available if the client supports workspace folders. It
+/// can be `null` if the client supports workspace folders but none are
 /// configured.
 ///
 /// @since 3.6.0
  final  List<WorkspaceFolder>? _workspaceFolders;
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders.
-/// It can be `null` if the client supports workspace folders but none are
+/// This property is only available if the client supports workspace folders. It
+/// can be `null` if the client supports workspace folders but none are
 /// configured.
 ///
 /// @since 3.6.0
@@ -64501,11 +64486,11 @@ as List<WorkspaceFolder>?,
 /// @nodoc
 mixin _$ServerCapabilities {
 
-/// The position encoding the server picked from the encodings offered
-/// by the client via the client capability `general.positionEncodings`.
+/// The position encoding the server picked from the encodings offered by the
+/// client via the client capability `general.positionEncodings`.
 ///
-/// If the client didn't provide any position encodings the only valid
-/// value that a server can return is 'utf-16'.
+/// If the client didn't provide any position encodings the only valid value
+/// that a server can return is 'utf-16'.
 ///
 /// If omitted it defaults to 'utf-16'.
 ///
@@ -64526,9 +64511,9 @@ mixin _$ServerCapabilities {
  Object? get implementationProvider;/// The server provides find references support.
  Object? get referencesProvider;/// The server provides document highlight support.
  Object? get documentHighlightProvider;/// The server provides document symbol support.
- Object? get documentSymbolProvider;/// The server provides code actions. CodeActionOptions may only be
-/// specified if the client states that it supports
-/// `codeActionLiteralSupport` in its initial `initialize` request.
+ Object? get documentSymbolProvider;/// The server provides code actions. CodeActionOptions may only be specified if
+/// the client states that it supports `codeActionLiteralSupport` in its initial
+/// `initialize` request.
  Object? get codeActionProvider;/// The server provides code lens.
  CodeLensOptions? get codeLensProvider;/// The server provides document link support.
  DocumentLinkOptions? get documentLinkProvider;/// The server provides color provider support.
@@ -64536,9 +64521,9 @@ mixin _$ServerCapabilities {
  Object? get workspaceSymbolProvider;/// The server provides document formatting.
  Object? get documentFormattingProvider;/// The server provides document range formatting.
  Object? get documentRangeFormattingProvider;/// The server provides document formatting on typing.
- DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider;/// The server provides rename support. RenameOptions may only be
-/// specified if the client states that it supports
-/// `prepareSupport` in its initial `initialize` request.
+ DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider;/// The server provides rename support. RenameOptions may only be specified if
+/// the client states that it supports `prepareSupport` in its initial
+/// `initialize` request.
  Object? get renameProvider;/// The server provides folding provider support.
  Object? get foldingRangeProvider;/// The server provides selection range support.
  Object? get selectionRangeProvider;/// The server provides execute command support.
@@ -64568,8 +64553,7 @@ mixin _$ServerCapabilities {
 /// @since 3.17.0
  Object? get diagnosticProvider;/// Inline completion options used during static registration.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
  Object? get inlineCompletionProvider;/// Workspace specific server capabilities.
  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? get workspace;/// Experimental server capabilities.
  LSPAny? get experimental;
@@ -64848,11 +64832,11 @@ class _ServerCapabilities extends ServerCapabilities {
   const _ServerCapabilities({this.positionEncoding, this.textDocumentSync, this.notebookDocumentSync, this.completionProvider, this.hoverProvider, this.signatureHelpProvider, this.declarationProvider, this.definitionProvider, this.typeDefinitionProvider, this.implementationProvider, this.referencesProvider, this.documentHighlightProvider, this.documentSymbolProvider, this.codeActionProvider, this.codeLensProvider, this.documentLinkProvider, this.colorProvider, this.workspaceSymbolProvider, this.documentFormattingProvider, this.documentRangeFormattingProvider, this.documentOnTypeFormattingProvider, this.renameProvider, this.foldingRangeProvider, this.selectionRangeProvider, this.executeCommandProvider, this.callHierarchyProvider, this.linkedEditingRangeProvider, this.semanticTokensProvider, this.monikerProvider, this.typeHierarchyProvider, this.inlineValueProvider, this.inlayHintProvider, this.diagnosticProvider, this.inlineCompletionProvider, this.workspace, this.experimental}): super._();
   factory _ServerCapabilities.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFromJson(json);
 
-/// The position encoding the server picked from the encodings offered
-/// by the client via the client capability `general.positionEncodings`.
+/// The position encoding the server picked from the encodings offered by the
+/// client via the client capability `general.positionEncodings`.
 ///
-/// If the client didn't provide any position encodings the only valid
-/// value that a server can return is 'utf-16'.
+/// If the client didn't provide any position encodings the only valid value
+/// that a server can return is 'utf-16'.
 ///
 /// If omitted it defaults to 'utf-16'.
 ///
@@ -64886,9 +64870,9 @@ class _ServerCapabilities extends ServerCapabilities {
 @override final  Object? documentHighlightProvider;
 /// The server provides document symbol support.
 @override final  Object? documentSymbolProvider;
-/// The server provides code actions. CodeActionOptions may only be
-/// specified if the client states that it supports
-/// `codeActionLiteralSupport` in its initial `initialize` request.
+/// The server provides code actions. CodeActionOptions may only be specified if
+/// the client states that it supports `codeActionLiteralSupport` in its initial
+/// `initialize` request.
 @override final  Object? codeActionProvider;
 /// The server provides code lens.
 @override final  CodeLensOptions? codeLensProvider;
@@ -64904,9 +64888,9 @@ class _ServerCapabilities extends ServerCapabilities {
 @override final  Object? documentRangeFormattingProvider;
 /// The server provides document formatting on typing.
 @override final  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
-/// The server provides rename support. RenameOptions may only be
-/// specified if the client states that it supports
-/// `prepareSupport` in its initial `initialize` request.
+/// The server provides rename support. RenameOptions may only be specified if
+/// the client states that it supports `prepareSupport` in its initial
+/// `initialize` request.
 @override final  Object? renameProvider;
 /// The server provides folding provider support.
 @override final  Object? foldingRangeProvider;
@@ -64948,8 +64932,7 @@ class _ServerCapabilities extends ServerCapabilities {
 @override final  Object? diagnosticProvider;
 /// Inline completion options used during static registration.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
 @override final  Object? inlineCompletionProvider;
 /// Workspace specific server capabilities.
 @override final  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace;
@@ -65904,12 +65887,11 @@ as FileChangeType,
 /// @nodoc
 mixin _$FileSystemWatcher {
 
-/// The glob pattern to watch. See {@link GlobPattern glob pattern} for more detail.
+/// The glob pattern to watch. See [GlobPattern] for more detail.
 ///
 /// @since 3.17.0 support for relative patterns.
- GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults
-/// to WatchKind.Create | WatchKind.Change | WatchKind.Delete
-/// which is 7.
+ GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults to WatchKind.Create |
+/// WatchKind.Change | WatchKind.Delete which is 7.
  int? get kind;
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
@@ -66107,13 +66089,12 @@ class _FileSystemWatcher extends FileSystemWatcher {
   const _FileSystemWatcher({required this.globPattern, this.kind}): super._();
   factory _FileSystemWatcher.fromJson(Map<String, dynamic> json) => _$FileSystemWatcherFromJson(json);
 
-/// The glob pattern to watch. See {@link GlobPattern glob pattern} for more detail.
+/// The glob pattern to watch. See [GlobPattern] for more detail.
 ///
 /// @since 3.17.0 support for relative patterns.
 @override final  GlobPattern globPattern;
-/// The kind of events of interest. If omitted it defaults
-/// to WatchKind.Create | WatchKind.Change | WatchKind.Delete
-/// which is 7.
+/// The kind of events of interest. If omitted it defaults to WatchKind.Create |
+/// WatchKind.Change | WatchKind.Delete which is 7.
 @override final  int? kind;
 
 /// Create a copy of FileSystemWatcher
@@ -66181,24 +66162,24 @@ as int?,
 mixin _$Diagnostic {
 
 /// The range at which the message applies
- Range get range;/// The diagnostic's severity. Can be omitted. If omitted it is up to the
-/// client to interpret diagnostics as error, warning, info or hint.
+ Range get range;/// The diagnostic's severity. Can be omitted. If omitted it is up to the client
+/// to interpret diagnostics as error, warning, info or hint.
  DiagnosticSeverity? get severity;/// The diagnostic's code, which usually appear in the user interface.
- Object? get code;/// An optional property to describe the error code.
-/// Requires the code field (above) to be present/not null.
+ Object? get code;/// An optional property to describe the error code. Requires the code field
+/// (above) to be present/not null.
 ///
 /// @since 3.16.0
- CodeDescription? get codeDescription;/// A human-readable string describing the source of this
-/// diagnostic, e.g. 'typescript' or 'super lint'. It usually
-/// appears in the user interface.
+ CodeDescription? get codeDescription;/// A human-readable string describing the source of this diagnostic, e.g.
+/// 'typescript' or 'super lint'. It usually appears in the user interface.
  String? get source;/// The diagnostic's message. It usually appears in the user interface
  String get message;/// Additional metadata about the diagnostic.
 ///
 /// @since 3.15.0
- List<DiagnosticTag>? get tags;/// An array of related diagnostic information, e.g. when symbol-names within
-/// a scope collide all definitions can be marked via this property.
- List<DiagnosticRelatedInformation>? get relatedInformation;/// A data entry field that is preserved between a `textDocument/publishDiagnostics`
-/// notification and `textDocument/codeAction` request.
+ List<DiagnosticTag>? get tags;/// An array of related diagnostic information, e.g. when symbol-names within a
+/// scope collide all definitions can be marked via this property.
+ List<DiagnosticRelatedInformation>? get relatedInformation;/// A data entry field that is preserved between a
+/// `textDocument/publishDiagnostics` notification and `textDocument/codeAction`
+/// request.
 ///
 /// @since 3.16.0
  LSPAny? get data;
@@ -66427,19 +66408,18 @@ class _Diagnostic implements Diagnostic {
 
 /// The range at which the message applies
 @override final  Range range;
-/// The diagnostic's severity. Can be omitted. If omitted it is up to the
-/// client to interpret diagnostics as error, warning, info or hint.
+/// The diagnostic's severity. Can be omitted. If omitted it is up to the client
+/// to interpret diagnostics as error, warning, info or hint.
 @override final  DiagnosticSeverity? severity;
 /// The diagnostic's code, which usually appear in the user interface.
 @override final  Object? code;
-/// An optional property to describe the error code.
-/// Requires the code field (above) to be present/not null.
+/// An optional property to describe the error code. Requires the code field
+/// (above) to be present/not null.
 ///
 /// @since 3.16.0
 @override final  CodeDescription? codeDescription;
-/// A human-readable string describing the source of this
-/// diagnostic, e.g. 'typescript' or 'super lint'. It usually
-/// appears in the user interface.
+/// A human-readable string describing the source of this diagnostic, e.g.
+/// 'typescript' or 'super lint'. It usually appears in the user interface.
 @override final  String? source;
 /// The diagnostic's message. It usually appears in the user interface
 @override final  String message;
@@ -66458,11 +66438,11 @@ class _Diagnostic implements Diagnostic {
   return EqualUnmodifiableListView(value);
 }
 
-/// An array of related diagnostic information, e.g. when symbol-names within
-/// a scope collide all definitions can be marked via this property.
+/// An array of related diagnostic information, e.g. when symbol-names within a
+/// scope collide all definitions can be marked via this property.
  final  List<DiagnosticRelatedInformation>? _relatedInformation;
-/// An array of related diagnostic information, e.g. when symbol-names within
-/// a scope collide all definitions can be marked via this property.
+/// An array of related diagnostic information, e.g. when symbol-names within a
+/// scope collide all definitions can be marked via this property.
 @override List<DiagnosticRelatedInformation>? get relatedInformation {
   final value = _relatedInformation;
   if (value == null) return null;
@@ -66471,8 +66451,9 @@ class _Diagnostic implements Diagnostic {
   return EqualUnmodifiableListView(value);
 }
 
-/// A data entry field that is preserved between a `textDocument/publishDiagnostics`
-/// notification and `textDocument/codeAction` request.
+/// A data entry field that is preserved between a
+/// `textDocument/publishDiagnostics` notification and `textDocument/codeAction`
+/// request.
 ///
 /// @since 3.16.0
 @override final  LSPAny? data;
@@ -66840,10 +66821,12 @@ as String?,
 /// @nodoc
 mixin _$CompletionItemLabelDetails {
 
-/// An optional string which is rendered less prominently directly after {@link CompletionItem.label label},
-/// without any spacing. Should be used for function signatures and type annotations.
- String? get detail;/// An optional string which is rendered less prominently after {@link CompletionItem.detail}. Should be used
-/// for fully qualified names and file paths.
+/// An optional string which is rendered less prominently directly after
+/// [label], without any spacing. Should be used for function signatures and
+/// type annotations.
+ String? get detail;/// An optional string which is rendered less prominently after
+/// [CompletionItem.detail]. Should be used for fully qualified names and file
+/// paths.
  String? get description;
 /// Create a copy of CompletionItemLabelDetails
 /// with the given fields replaced by the non-null parameter values.
@@ -67042,11 +67025,13 @@ class _CompletionItemLabelDetails implements CompletionItemLabelDetails {
   const _CompletionItemLabelDetails({this.detail, this.description});
   factory _CompletionItemLabelDetails.fromJson(Map<String, dynamic> json) => _$CompletionItemLabelDetailsFromJson(json);
 
-/// An optional string which is rendered less prominently directly after {@link CompletionItem.label label},
-/// without any spacing. Should be used for function signatures and type annotations.
+/// An optional string which is rendered less prominently directly after
+/// [label], without any spacing. Should be used for function signatures and
+/// type annotations.
 @override final  String? detail;
-/// An optional string which is rendered less prominently after {@link CompletionItem.detail}. Should be used
-/// for fully qualified names and file paths.
+/// An optional string which is rendered less prominently after
+/// [CompletionItem.detail]. Should be used for fully qualified names and file
+/// paths.
 @override final  String? description;
 
 /// Create a copy of CompletionItemLabelDetails
@@ -67425,26 +67410,28 @@ $RangeCopyWith<$Res> get replace {
 /// @nodoc
 mixin _$CompletionOptions {
 
- bool? get workDoneProgress;/// Most tools trigger completion request automatically without explicitly requesting
-/// it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do so when the user
-/// starts to type an identifier. For example if the user types `c` in a JavaScript file
-/// code complete will automatically pop up present `console` besides others as a
-/// completion item. Characters that make up identifiers don't need to be listed here.
+ bool? get workDoneProgress;/// Most tools trigger completion request automatically without explicitly
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
+/// so when the user starts to type an identifier. For example if the user types
+/// `c` in a JavaScript file code complete will automatically pop up present
+/// `console` besides others as a completion item. Characters that make up
+/// identifiers don't need to be listed here.
 ///
-/// If code complete should automatically be trigger on characters not being valid inside
-/// an identifier (for example `.` in JavaScript) list them in `triggerCharacters`.
- List<String>? get triggerCharacters;/// The list of all possible characters that commit a completion. This field can be used
-/// if clients don't support individual commit characters per completion item. See
+/// If code complete should automatically be trigger on characters not being
+/// valid inside an identifier (for example `.` in JavaScript) list them in
+/// `triggerCharacters`.
+ List<String>? get triggerCharacters;/// The list of all possible characters that commit a completion. This field can
+/// be used if clients don't support individual commit characters per completion
+/// item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an individual
-/// completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on an
+/// individual completion item the ones on the completion item win.
 ///
 /// @since 3.2.0
- List<String>? get allCommitCharacters;/// The server provides support to resolve additional
-/// information for a completion item.
- bool? get resolveProvider;/// The server supports the following `CompletionItem` specific
-/// capabilities.
+ List<String>? get allCommitCharacters;/// The server provides support to resolve additional information for a
+/// completion item.
+ bool? get resolveProvider;/// The server supports the following `CompletionItem` specific capabilities.
 ///
 /// @since 3.17.0
  ({bool? labelDetailsSupport})? get completionItem;
@@ -67649,23 +67636,27 @@ class _CompletionOptions implements CompletionOptions {
   factory _CompletionOptions.fromJson(Map<String, dynamic> json) => _$CompletionOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// Most tools trigger completion request automatically without explicitly requesting
-/// it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do so when the user
-/// starts to type an identifier. For example if the user types `c` in a JavaScript file
-/// code complete will automatically pop up present `console` besides others as a
-/// completion item. Characters that make up identifiers don't need to be listed here.
+/// Most tools trigger completion request automatically without explicitly
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
+/// so when the user starts to type an identifier. For example if the user types
+/// `c` in a JavaScript file code complete will automatically pop up present
+/// `console` besides others as a completion item. Characters that make up
+/// identifiers don't need to be listed here.
 ///
-/// If code complete should automatically be trigger on characters not being valid inside
-/// an identifier (for example `.` in JavaScript) list them in `triggerCharacters`.
+/// If code complete should automatically be trigger on characters not being
+/// valid inside an identifier (for example `.` in JavaScript) list them in
+/// `triggerCharacters`.
  final  List<String>? _triggerCharacters;
-/// Most tools trigger completion request automatically without explicitly requesting
-/// it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do so when the user
-/// starts to type an identifier. For example if the user types `c` in a JavaScript file
-/// code complete will automatically pop up present `console` besides others as a
-/// completion item. Characters that make up identifiers don't need to be listed here.
+/// Most tools trigger completion request automatically without explicitly
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
+/// so when the user starts to type an identifier. For example if the user types
+/// `c` in a JavaScript file code complete will automatically pop up present
+/// `console` besides others as a completion item. Characters that make up
+/// identifiers don't need to be listed here.
 ///
-/// If code complete should automatically be trigger on characters not being valid inside
-/// an identifier (for example `.` in JavaScript) list them in `triggerCharacters`.
+/// If code complete should automatically be trigger on characters not being
+/// valid inside an identifier (for example `.` in JavaScript) list them in
+/// `triggerCharacters`.
 @override List<String>? get triggerCharacters {
   final value = _triggerCharacters;
   if (value == null) return null;
@@ -67674,21 +67665,23 @@ class _CompletionOptions implements CompletionOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The list of all possible characters that commit a completion. This field can be used
-/// if clients don't support individual commit characters per completion item. See
+/// The list of all possible characters that commit a completion. This field can
+/// be used if clients don't support individual commit characters per completion
+/// item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an individual
-/// completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on an
+/// individual completion item the ones on the completion item win.
 ///
 /// @since 3.2.0
  final  List<String>? _allCommitCharacters;
-/// The list of all possible characters that commit a completion. This field can be used
-/// if clients don't support individual commit characters per completion item. See
+/// The list of all possible characters that commit a completion. This field can
+/// be used if clients don't support individual commit characters per completion
+/// item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an individual
-/// completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on an
+/// individual completion item the ones on the completion item win.
 ///
 /// @since 3.2.0
 @override List<String>? get allCommitCharacters {
@@ -67699,11 +67692,10 @@ class _CompletionOptions implements CompletionOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The server provides support to resolve additional
-/// information for a completion item.
+/// The server provides support to resolve additional information for a
+/// completion item.
 @override final  bool? resolveProvider;
-/// The server supports the following `CompletionItem` specific
-/// capabilities.
+/// The server supports the following `CompletionItem` specific capabilities.
 ///
 /// @since 3.17.0
 @override final  ({bool? labelDetailsSupport})? completionItem;
@@ -68042,15 +68034,17 @@ mixin _$SignatureHelpContext {
 /// Action that caused signature help to be triggered.
  SignatureHelpTriggerKind get triggerKind;/// Character that caused signature help to be triggered.
 ///
-/// This is undefined when `triggerKind !== SignatureHelpTriggerKind.TriggerCharacter`
+/// This is undefined when `triggerKind !==
+/// SignatureHelpTriggerKind.TriggerCharacter`
  String? get triggerCharacter;/// `true` if signature help was already showing when it was triggered.
 ///
-/// Retriggers occurs when the signature help is already active and can be caused by actions such as
-/// typing a trigger character, a cursor move, or document content changes.
+/// Retriggers occurs when the signature help is already active and can be
+/// caused by actions such as typing a trigger character, a cursor move, or
+/// document content changes.
  bool get isRetrigger;/// The currently active `SignatureHelp`.
 ///
-/// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field updated based on
-/// the user navigating through available signatures.
+/// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field
+/// updated based on the user navigating through available signatures.
  SignatureHelp? get activeSignatureHelp;
 /// Create a copy of SignatureHelpContext
 /// with the given fields replaced by the non-null parameter values.
@@ -68267,17 +68261,19 @@ class _SignatureHelpContext implements SignatureHelpContext {
 @override final  SignatureHelpTriggerKind triggerKind;
 /// Character that caused signature help to be triggered.
 ///
-/// This is undefined when `triggerKind !== SignatureHelpTriggerKind.TriggerCharacter`
+/// This is undefined when `triggerKind !==
+/// SignatureHelpTriggerKind.TriggerCharacter`
 @override final  String? triggerCharacter;
 /// `true` if signature help was already showing when it was triggered.
 ///
-/// Retriggers occurs when the signature help is already active and can be caused by actions such as
-/// typing a trigger character, a cursor move, or document content changes.
+/// Retriggers occurs when the signature help is already active and can be
+/// caused by actions such as typing a trigger character, a cursor move, or
+/// document content changes.
 @override final  bool isRetrigger;
 /// The currently active `SignatureHelp`.
 ///
-/// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field updated based on
-/// the user navigating through available signatures.
+/// The `activeSignatureHelp` has its `SignatureHelp.activeSignature` field
+/// updated based on the user navigating through available signatures.
 @override final  SignatureHelp? activeSignatureHelp;
 
 /// Create a copy of SignatureHelpContext
@@ -68359,10 +68355,9 @@ $SignatureHelpCopyWith<$Res>? get activeSignatureHelp {
 /// @nodoc
 mixin _$SignatureInformation {
 
-/// The label of this signature. Will be shown in
-/// the UI.
- String get label;/// The human-readable doc-comment of this signature. Will be shown
-/// in the UI but can be omitted.
+/// The label of this signature. Will be shown in the UI.
+ String get label;/// The human-readable doc-comment of this signature. Will be shown in the UI
+/// but can be omitted.
  Object? get documentation;/// The parameters of this signature.
  List<ParameterInformation>? get parameters;/// The index of the active parameter.
 ///
@@ -68568,11 +68563,10 @@ class _SignatureInformation implements SignatureInformation {
   const _SignatureInformation({required this.label, this.documentation, final  List<ParameterInformation>? parameters, this.activeParameter}): _parameters = parameters;
   factory _SignatureInformation.fromJson(Map<String, dynamic> json) => _$SignatureInformationFromJson(json);
 
-/// The label of this signature. Will be shown in
-/// the UI.
+/// The label of this signature. Will be shown in the UI.
 @override final  String label;
-/// The human-readable doc-comment of this signature. Will be shown
-/// in the UI but can be omitted.
+/// The human-readable doc-comment of this signature. Will be shown in the UI
+/// but can be omitted.
 @override final  Object? documentation;
 /// The parameters of this signature.
  final  List<ParameterInformation>? _parameters;
@@ -68661,8 +68655,8 @@ mixin _$SignatureHelpOptions {
  bool? get workDoneProgress;/// List of characters that trigger signature help automatically.
  List<String>? get triggerCharacters;/// List of characters that re-trigger signature help.
 ///
-/// These trigger characters are only active when signature help is already showing. All trigger characters
-/// are also counted as re-trigger characters.
+/// These trigger characters are only active when signature help is already
+/// showing. All trigger characters are also counted as re-trigger characters.
 ///
 /// @since 3.15.0
  List<String>? get retriggerCharacters;
@@ -68878,15 +68872,15 @@ class _SignatureHelpOptions implements SignatureHelpOptions {
 
 /// List of characters that re-trigger signature help.
 ///
-/// These trigger characters are only active when signature help is already showing. All trigger characters
-/// are also counted as re-trigger characters.
+/// These trigger characters are only active when signature help is already
+/// showing. All trigger characters are also counted as re-trigger characters.
 ///
 /// @since 3.15.0
  final  List<String>? _retriggerCharacters;
 /// List of characters that re-trigger signature help.
 ///
-/// These trigger characters are only active when signature help is already showing. All trigger characters
-/// are also counted as re-trigger characters.
+/// These trigger characters are only active when signature help is already
+/// showing. All trigger characters are also counted as re-trigger characters.
 ///
 /// @since 3.15.0
 @override List<String>? get retriggerCharacters {
@@ -70023,9 +70017,9 @@ mixin _$BaseSymbolInformation {
  SymbolKind get kind;/// Tags for this symbol.
 ///
 /// @since 3.16.0
- List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
-/// user interface purposes (e.g. to render a qualifier in the user interface
-/// if necessary). It can't be used to re-infer a hierarchy for the document
+ List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for user
+/// interface purposes (e.g. to render a qualifier in the user interface if
+/// necessary). It can't be used to re-infer a hierarchy for the document
 /// symbols.
  String? get containerName;
 /// Create a copy of BaseSymbolInformation
@@ -70246,9 +70240,9 @@ class _BaseSymbolInformation implements BaseSymbolInformation {
   return EqualUnmodifiableListView(value);
 }
 
-/// The name of the symbol containing this symbol. This information is for
-/// user interface purposes (e.g. to render a qualifier in the user interface
-/// if necessary). It can't be used to re-infer a hierarchy for the document
+/// The name of the symbol containing this symbol. This information is for user
+/// interface purposes (e.g. to render a qualifier in the user interface if
+/// necessary). It can't be used to re-infer a hierarchy for the document
 /// symbols.
 @override final  String? containerName;
 
@@ -70319,8 +70313,8 @@ as String?,
 /// @nodoc
 mixin _$DocumentSymbolOptions {
 
- bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees
-/// are shown for the same document.
+ bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees are shown
+/// for the same document.
 ///
 /// @since 3.16.0
  String? get label;
@@ -70522,8 +70516,8 @@ class _DocumentSymbolOptions implements DocumentSymbolOptions {
   factory _DocumentSymbolOptions.fromJson(Map<String, dynamic> json) => _$DocumentSymbolOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// A human-readable string that is shown when multiple outlines trees
-/// are shown for the same document.
+/// A human-readable string that is shown when multiple outlines trees are shown
+/// for the same document.
 ///
 /// @since 3.16.0
 @override final  String? label;
@@ -70593,15 +70587,16 @@ as String?,
 /// @nodoc
 mixin _$CodeActionContext {
 
-/// An array of diagnostics known on the client side overlapping the range provided to the
-/// `textDocument/codeAction` request. They are provided so that the server knows which
-/// errors are currently presented to the user for the given range. There is no guarantee
-/// that these accurately reflect the error state of the resource. The primary parameter
-/// to compute code actions is the provided range.
+/// An array of diagnostics known on the client side overlapping the range
+/// provided to the `textDocument/codeAction` request. They are provided so that
+/// the server knows which errors are currently presented to the user for the
+/// given range. There is no guarantee that these accurately reflect the error
+/// state of the resource. The primary parameter to compute code actions is the
+/// provided range.
  List<Diagnostic> get diagnostics;/// Requested kind of actions to return.
 ///
-/// Actions not of this kind are filtered out by the client before being shown. So servers
-/// can omit computing them.
+/// Actions not of this kind are filtered out by the client before being shown.
+/// So servers can omit computing them.
  List<CodeActionKind>? get only;/// The reason why code actions were requested.
 ///
 /// @since 3.17.0
@@ -70804,17 +70799,19 @@ class _CodeActionContext implements CodeActionContext {
   const _CodeActionContext({required final  List<Diagnostic> diagnostics, final  List<CodeActionKind>? only, this.triggerKind}): _diagnostics = diagnostics,_only = only;
   factory _CodeActionContext.fromJson(Map<String, dynamic> json) => _$CodeActionContextFromJson(json);
 
-/// An array of diagnostics known on the client side overlapping the range provided to the
-/// `textDocument/codeAction` request. They are provided so that the server knows which
-/// errors are currently presented to the user for the given range. There is no guarantee
-/// that these accurately reflect the error state of the resource. The primary parameter
-/// to compute code actions is the provided range.
+/// An array of diagnostics known on the client side overlapping the range
+/// provided to the `textDocument/codeAction` request. They are provided so that
+/// the server knows which errors are currently presented to the user for the
+/// given range. There is no guarantee that these accurately reflect the error
+/// state of the resource. The primary parameter to compute code actions is the
+/// provided range.
  final  List<Diagnostic> _diagnostics;
-/// An array of diagnostics known on the client side overlapping the range provided to the
-/// `textDocument/codeAction` request. They are provided so that the server knows which
-/// errors are currently presented to the user for the given range. There is no guarantee
-/// that these accurately reflect the error state of the resource. The primary parameter
-/// to compute code actions is the provided range.
+/// An array of diagnostics known on the client side overlapping the range
+/// provided to the `textDocument/codeAction` request. They are provided so that
+/// the server knows which errors are currently presented to the user for the
+/// given range. There is no guarantee that these accurately reflect the error
+/// state of the resource. The primary parameter to compute code actions is the
+/// provided range.
 @override List<Diagnostic> get diagnostics {
   if (_diagnostics is EqualUnmodifiableListView) return _diagnostics;
   // ignore: implicit_dynamic_type
@@ -70823,13 +70820,13 @@ class _CodeActionContext implements CodeActionContext {
 
 /// Requested kind of actions to return.
 ///
-/// Actions not of this kind are filtered out by the client before being shown. So servers
-/// can omit computing them.
+/// Actions not of this kind are filtered out by the client before being shown.
+/// So servers can omit computing them.
  final  List<CodeActionKind>? _only;
 /// Requested kind of actions to return.
 ///
-/// Actions not of this kind are filtered out by the client before being shown. So servers
-/// can omit computing them.
+/// Actions not of this kind are filtered out by the client before being shown.
+/// So servers can omit computing them.
 @override List<CodeActionKind>? get only {
   final value = _only;
   if (value == null) return null;
@@ -70911,10 +70908,10 @@ mixin _$CodeActionOptions {
 
  bool? get workDoneProgress;/// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the server
-/// may list out every specific kind they provide.
- List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional
-/// information for a code action.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
+/// server may list out every specific kind they provide.
+ List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional information for a code
+/// action.
 ///
 /// @since 3.16.0
  bool? get resolveProvider;
@@ -71119,13 +71116,13 @@ class _CodeActionOptions implements CodeActionOptions {
 @override final  bool? workDoneProgress;
 /// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the server
-/// may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
+/// server may list out every specific kind they provide.
  final  List<CodeActionKind>? _codeActionKinds;
 /// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the server
-/// may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
+/// server may list out every specific kind they provide.
 @override List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
@@ -71134,8 +71131,8 @@ class _CodeActionOptions implements CodeActionOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The server provides support to resolve additional
-/// information for a code action.
+/// The server provides support to resolve additional information for a code
+/// action.
 ///
 /// @since 3.16.0
 @override final  bool? resolveProvider;
@@ -71206,8 +71203,8 @@ as bool?,
 /// @nodoc
 mixin _$WorkspaceSymbolOptions {
 
- bool? get workDoneProgress;/// The server provides support to resolve additional
-/// information for a workspace symbol.
+ bool? get workDoneProgress;/// The server provides support to resolve additional information for a
+/// workspace symbol.
 ///
 /// @since 3.17.0
  bool? get resolveProvider;
@@ -71409,8 +71406,8 @@ class _WorkspaceSymbolOptions implements WorkspaceSymbolOptions {
   factory _WorkspaceSymbolOptions.fromJson(Map<String, dynamic> json) => _$WorkspaceSymbolOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// The server provides support to resolve additional
-/// information for a workspace symbol.
+/// The server provides support to resolve additional information for a
+/// workspace symbol.
 ///
 /// @since 3.17.0
 @override final  bool? resolveProvider;
@@ -72578,8 +72575,7 @@ mixin _$DocumentRangeFormattingOptions {
 
  bool? get workDoneProgress;/// Whether the server supports formatting multiple ranges at once.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
  bool? get rangesSupport;
 /// Create a copy of DocumentRangeFormattingOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -72781,8 +72777,7 @@ class _DocumentRangeFormattingOptions implements DocumentRangeFormattingOptions 
 @override final  bool? workDoneProgress;
 /// Whether the server supports formatting multiple ranges at once.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
 @override final  bool? rangesSupport;
 
 /// Create a copy of DocumentRangeFormattingOptions
@@ -73963,9 +73958,9 @@ mixin _$OptionalVersionedTextDocumentIdentifier {
 /// The text document's uri.
  String get uri;/// The version number of this document. If a versioned text document identifier
 /// is sent from the server to the client and the file is not open in the editor
-/// (the server has not received an open notification before) the server can send
-/// `null` to indicate that the version is unknown and the content on disk is the
-/// truth (as specified with document content ownership).
+/// (the server has not received an open notification before) the server can
+/// send `null` to indicate that the version is unknown and the content on disk
+/// is the truth (as specified with document content ownership).
  int? get version;
 /// Create a copy of OptionalVersionedTextDocumentIdentifier
 /// with the given fields replaced by the non-null parameter values.
@@ -74168,9 +74163,9 @@ class _OptionalVersionedTextDocumentIdentifier implements OptionalVersionedTextD
 @override final  String uri;
 /// The version number of this document. If a versioned text document identifier
 /// is sent from the server to the client and the file is not open in the editor
-/// (the server has not received an open notification before) the server can send
-/// `null` to indicate that the version is unknown and the content on disk is the
-/// truth (as specified with document content ownership).
+/// (the server has not received an open notification before) the server can
+/// send `null` to indicate that the version is unknown and the content on disk
+/// is the truth (as specified with document content ownership).
 @override final  int? version;
 
 /// Create a copy of OptionalVersionedTextDocumentIdentifier
@@ -74238,10 +74233,9 @@ as int?,
 /// @nodoc
 mixin _$AnnotatedTextEdit {
 
-/// The range of the text document to be manipulated. To insert
-/// text into a document create a range where start === end.
- Range get range;/// The string to be inserted. For delete operations use an
-/// empty string.
+/// The range of the text document to be manipulated. To insert text into a
+/// document create a range where start === end.
+ Range get range;/// The string to be inserted. For delete operations use an empty string.
  String get newText;/// The actual identifier of the change annotation
  ChangeAnnotationIdentifier get annotationId;
 /// Create a copy of AnnotatedTextEdit
@@ -74451,11 +74445,10 @@ class _AnnotatedTextEdit implements AnnotatedTextEdit {
   const _AnnotatedTextEdit({required this.range, required this.newText, required this.annotationId});
   factory _AnnotatedTextEdit.fromJson(Map<String, dynamic> json) => _$AnnotatedTextEditFromJson(json);
 
-/// The range of the text document to be manipulated. To insert
-/// text into a document create a range where start === end.
+/// The range of the text document to be manipulated. To insert text into a
+/// document create a range where start === end.
 @override final  Range range;
-/// The string to be inserted. For delete operations use an
-/// empty string.
+/// The string to be inserted. For delete operations use an empty string.
 @override final  String newText;
 /// The actual identifier of the change annotation
 @override final  ChangeAnnotationIdentifier annotationId;
@@ -75619,13 +75612,15 @@ as bool?,
 /// @nodoc
 mixin _$FileOperationPattern {
 
-/// The glob pattern to match. Glob patterns can have the following syntax:
-/// - `*` to match zero or more characters in a path segment
-/// - `?` to match on one character in a path segment
-/// - `**` to match any number of path segments, including none
-/// - `{}` to group sub patterns into an OR expression. (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript files)
-/// - `[]` to declare a range of characters to match in a path segment (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)
-/// - `[!...]` to negate a range of characters to match in a path segment (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
+/// The glob pattern to match. Glob patterns can have the following syntax: -
+/// `*` to match zero or more characters in a path segment - `?` to match on one
+/// character in a path segment - `**` to match any number of path segments,
+/// including none - `{}` to group sub patterns into an OR expression. (e.g.
+/// `**​/*.{ts,js}` matches all TypeScript and JavaScript files) - `[]` to
+/// declare a range of characters to match in a path segment (e.g.,
+/// `example.[0-9]` to match on `example.0`, `example.1`, …) - `[!...]` to
+/// negate a range of characters to match in a path segment (e.g.,
+/// `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
  String get glob;/// Whether to match files or folders with this pattern.
 ///
 /// Matches both if undefined.
@@ -75841,13 +75836,15 @@ class _FileOperationPattern implements FileOperationPattern {
   const _FileOperationPattern({required this.glob, this.matches, this.options});
   factory _FileOperationPattern.fromJson(Map<String, dynamic> json) => _$FileOperationPatternFromJson(json);
 
-/// The glob pattern to match. Glob patterns can have the following syntax:
-/// - `*` to match zero or more characters in a path segment
-/// - `?` to match on one character in a path segment
-/// - `**` to match any number of path segments, including none
-/// - `{}` to group sub patterns into an OR expression. (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript files)
-/// - `[]` to declare a range of characters to match in a path segment (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)
-/// - `[!...]` to negate a range of characters to match in a path segment (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
+/// The glob pattern to match. Glob patterns can have the following syntax: -
+/// `*` to match zero or more characters in a path segment - `?` to match on one
+/// character in a path segment - `**` to match any number of path segments,
+/// including none - `{}` to group sub patterns into an OR expression. (e.g.
+/// `**​/*.{ts,js}` matches all TypeScript and JavaScript files) - `[]` to
+/// declare a range of characters to match in a path segment (e.g.,
+/// `example.[0-9]` to match on `example.0`, `example.1`, …) - `[!...]` to
+/// negate a range of characters to match in a path segment (e.g.,
+/// `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
 @override final  String glob;
 /// Whether to match files or folders with this pattern.
 ///
@@ -75935,13 +75932,12 @@ $FileOperationPatternOptionsCopyWith<$Res>? get options {
 mixin _$WorkspaceFullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will
-/// be sent on the next diagnostic request for the
-/// same document.
+ String get kind;/// An optional result id. If provided it will be sent on the next diagnostic
+/// request for the same document.
  String? get resultId;/// The actual items.
  List<Diagnostic> get items;/// The URI for which diagnostic information is reported.
- String get uri;/// The version number for which the diagnostics are reported.
-/// If the document is not marked as open `null` can be provided.
+ String get uri;/// The version number for which the diagnostics are reported. If the document
+/// is not marked as open `null` can be provided.
  int? get version;
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -76145,9 +76141,8 @@ class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDia
 
 /// A full document diagnostic report.
 @override final  String kind;
-/// An optional result id. If provided it will
-/// be sent on the next diagnostic request for the
-/// same document.
+/// An optional result id. If provided it will be sent on the next diagnostic
+/// request for the same document.
 @override final  String? resultId;
 /// The actual items.
  final  List<Diagnostic> _items;
@@ -76160,8 +76155,8 @@ class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDia
 
 /// The URI for which diagnostic information is reported.
 @override final  String uri;
-/// The version number for which the diagnostics are reported.
-/// If the document is not marked as open `null` can be provided.
+/// The version number for which the diagnostics are reported. If the document
+/// is not marked as open `null` can be provided.
 @override final  int? version;
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
@@ -76232,15 +76227,13 @@ as int?,
 /// @nodoc
 mixin _$WorkspaceUnchangedDocumentDiagnosticReport {
 
-/// A document diagnostic report indicating
-/// no changes to the last result. A server can
-/// only return `unchanged` if result ids are
-/// provided.
- String get kind;/// A result id which will be sent on the next
-/// diagnostic request for the same document.
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
+ String get kind;/// A result id which will be sent on the next diagnostic request for the same
+/// document.
  String get resultId;/// The URI for which diagnostic information is reported.
- String get uri;/// The version number for which the diagnostics are reported.
-/// If the document is not marked as open `null` can be provided.
+ String get uri;/// The version number for which the diagnostics are reported. If the document
+/// is not marked as open `null` can be provided.
  int? get version;
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -76441,18 +76434,16 @@ class _WorkspaceUnchangedDocumentDiagnosticReport implements WorkspaceUnchangedD
   const _WorkspaceUnchangedDocumentDiagnosticReport({required this.kind, required this.resultId, required this.uri, required this.version});
   factory _WorkspaceUnchangedDocumentDiagnosticReport.fromJson(Map<String, dynamic> json) => _$WorkspaceUnchangedDocumentDiagnosticReportFromJson(json);
 
-/// A document diagnostic report indicating
-/// no changes to the last result. A server can
-/// only return `unchanged` if result ids are
-/// provided.
+/// A document diagnostic report indicating no changes to the last result. A
+/// server can only return `unchanged` if result ids are provided.
 @override final  String kind;
-/// A result id which will be sent on the next
-/// diagnostic request for the same document.
+/// A result id which will be sent on the next diagnostic request for the same
+/// document.
 @override final  String resultId;
 /// The URI for which diagnostic information is reported.
 @override final  String uri;
-/// The version number for which the diagnostics are reported.
-/// If the document is not marked as open `null` can be provided.
+/// The version number for which the diagnostics are reported. If the document
+/// is not marked as open `null` can be provided.
 @override final  int? version;
 
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
@@ -76523,13 +76514,11 @@ as int?,
 mixin _$NotebookCell {
 
 /// The cell's kind
- NotebookCellKind get kind;/// The URI of the cell's text document
-/// content.
+ NotebookCellKind get kind;/// The URI of the cell's text document content.
  String get document;/// Additional metadata stored with the cell.
 ///
 /// Note: should always be an object literal (e.g. LSPObject)
- LSPObject? get metadata;/// Additional execution summary information
-/// if supported by the client.
+ LSPObject? get metadata;/// Additional execution summary information if supported by the client.
  ExecutionSummary? get executionSummary;
 /// Create a copy of NotebookCell
 /// with the given fields replaced by the non-null parameter values.
@@ -76744,8 +76733,7 @@ class _NotebookCell implements NotebookCell {
 
 /// The cell's kind
 @override final  NotebookCellKind kind;
-/// The URI of the cell's text document
-/// content.
+/// The URI of the cell's text document content.
 @override final  String document;
 /// Additional metadata stored with the cell.
 ///
@@ -76762,8 +76750,7 @@ class _NotebookCell implements NotebookCell {
   return EqualUnmodifiableMapView(value);
 }
 
-/// Additional execution summary information
-/// if supported by the client.
+/// Additional execution summary information if supported by the client.
 @override final  ExecutionSummary? executionSummary;
 
 /// Create a copy of NotebookCell
@@ -77833,16 +77820,17 @@ $GeneralClientCapabilitiesCopyWith<$Res>? get general {
 /// @nodoc
 mixin _$TextDocumentSyncOptions {
 
-/// Open and close notifications are sent to the server. If omitted open close notification should not
-/// be sent.
- bool? get openClose;/// Change notifications are sent to the server. See TextDocumentSyncKind.None, TextDocumentSyncKind.Full
-/// and TextDocumentSyncKind.Incremental. If omitted it defaults to TextDocumentSyncKind.None.
- TextDocumentSyncKind? get change;/// If present will save notifications are sent to the server. If omitted the notification should not be
-/// sent.
- bool? get willSave;/// If present will save wait until requests are sent to the server. If omitted the request should not be
-/// sent.
- bool? get willSaveWaitUntil;/// If present save notifications are sent to the server. If omitted the notification should not be
-/// sent.
+/// Open and close notifications are sent to the server. If omitted open close
+/// notification should not be sent.
+ bool? get openClose;/// Change notifications are sent to the server. See TextDocumentSyncKind.None,
+/// TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted
+/// it defaults to TextDocumentSyncKind.None.
+ TextDocumentSyncKind? get change;/// If present will save notifications are sent to the server. If omitted the
+/// notification should not be sent.
+ bool? get willSave;/// If present will save wait until requests are sent to the server. If omitted
+/// the request should not be sent.
+ bool? get willSaveWaitUntil;/// If present save notifications are sent to the server. If omitted the
+/// notification should not be sent.
  Object? get save;
 /// Create a copy of TextDocumentSyncOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -78043,20 +78031,21 @@ class _TextDocumentSyncOptions implements TextDocumentSyncOptions {
   const _TextDocumentSyncOptions({this.openClose, this.change, this.willSave, this.willSaveWaitUntil, this.save});
   factory _TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentSyncOptionsFromJson(json);
 
-/// Open and close notifications are sent to the server. If omitted open close notification should not
-/// be sent.
+/// Open and close notifications are sent to the server. If omitted open close
+/// notification should not be sent.
 @override final  bool? openClose;
-/// Change notifications are sent to the server. See TextDocumentSyncKind.None, TextDocumentSyncKind.Full
-/// and TextDocumentSyncKind.Incremental. If omitted it defaults to TextDocumentSyncKind.None.
+/// Change notifications are sent to the server. See TextDocumentSyncKind.None,
+/// TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted
+/// it defaults to TextDocumentSyncKind.None.
 @override final  TextDocumentSyncKind? change;
-/// If present will save notifications are sent to the server. If omitted the notification should not be
-/// sent.
+/// If present will save notifications are sent to the server. If omitted the
+/// notification should not be sent.
 @override final  bool? willSave;
-/// If present will save wait until requests are sent to the server. If omitted the request should not be
-/// sent.
+/// If present will save wait until requests are sent to the server. If omitted
+/// the request should not be sent.
 @override final  bool? willSaveWaitUntil;
-/// If present save notifications are sent to the server. If omitted the notification should not be
-/// sent.
+/// If present save notifications are sent to the server. If omitted the
+/// notification should not be sent.
 @override final  Object? save;
 
 /// Create a copy of TextDocumentSyncOptions
@@ -78127,8 +78116,8 @@ as bool?,save: freezed == save ? _self.save : save ,
 mixin _$NotebookDocumentSyncOptions {
 
 /// The notebooks to be synced
- List<Object> get notebookSelector;/// Whether save notification should be forwarded to
-/// the server. Will only be honored if mode === `notebook`.
+ List<Object> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only be
+/// honored if mode === `notebook`.
  bool? get save;
 /// Create a copy of NotebookDocumentSyncOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -78336,8 +78325,8 @@ class _NotebookDocumentSyncOptions implements NotebookDocumentSyncOptions {
   return EqualUnmodifiableListView(_notebookSelector);
 }
 
-/// Whether save notification should be forwarded to
-/// the server. Will only be honored if mode === `notebook`.
+/// Whether save notification should be forwarded to the server. Will only be
+/// honored if mode === `notebook`.
 @override final  bool? save;
 
 /// Create a copy of NotebookDocumentSyncOptions
@@ -78406,10 +78395,10 @@ as bool?,
 mixin _$NotebookDocumentSyncRegistrationOptions {
 
 /// The notebooks to be synced
- List<Object> get notebookSelector;/// Whether save notification should be forwarded to
-/// the server. Will only be honored if mode === `notebook`.
- bool? get save;/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+ List<Object> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only be
+/// honored if mode === `notebook`.
+ bool? get save;/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
  String? get id;
 /// Create a copy of NotebookDocumentSyncRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -78618,11 +78607,11 @@ class _NotebookDocumentSyncRegistrationOptions implements NotebookDocumentSyncRe
   return EqualUnmodifiableListView(_notebookSelector);
 }
 
-/// Whether save notification should be forwarded to
-/// the server. Will only be honored if mode === `notebook`.
+/// Whether save notification should be forwarded to the server. Will only be
+/// honored if mode === `notebook`.
 @override final  bool? save;
-/// The id used to register the request. The id can be used to deregister
-/// the request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister the
+/// request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of NotebookDocumentSyncRegistrationOptions
@@ -78692,13 +78681,11 @@ as String?,
 mixin _$WorkspaceFoldersServerCapabilities {
 
 /// The server has support for workspace folders
- bool? get supported;/// Whether the server wants to receive workspace folder
-/// change notifications.
+ bool? get supported;/// Whether the server wants to receive workspace folder change notifications.
 ///
-/// If a string is provided the string is treated as an ID
-/// under which the notification is registered on the client
-/// side. The ID can be used to unregister for these events
-/// using the `client/unregisterCapability` request.
+/// If a string is provided the string is treated as an ID under which the
+/// notification is registered on the client side. The ID can be used to
+/// unregister for these events using the `client/unregisterCapability` request.
  Object? get changeNotifications;
 /// Create a copy of WorkspaceFoldersServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -78898,13 +78885,11 @@ class _WorkspaceFoldersServerCapabilities implements WorkspaceFoldersServerCapab
 
 /// The server has support for workspace folders
 @override final  bool? supported;
-/// Whether the server wants to receive workspace folder
-/// change notifications.
+/// Whether the server wants to receive workspace folder change notifications.
 ///
-/// If a string is provided the string is treated as an ID
-/// under which the notification is registered on the client
-/// side. The ID can be used to unregister for these events
-/// using the `client/unregisterCapability` request.
+/// If a string is provided the string is treated as an ID under which the
+/// notification is registered on the client side. The ID can be used to
+/// unregister for these events using the `client/unregisterCapability` request.
 @override final  Object? changeNotifications;
 
 /// Create a copy of WorkspaceFoldersServerCapabilities
@@ -79960,14 +79945,15 @@ mixin _$ParameterInformation {
 
 /// The label of this parameter information.
 ///
-/// Either a string or an inclusive start and exclusive end offsets within its containing
-/// signature label. (see SignatureInformation.label). The offsets are based on a UTF-16
-/// string representation as `Position` and `Range` does.
+/// Either a string or an inclusive start and exclusive end offsets within its
+/// containing signature label. (see SignatureInformation.label). The offsets
+/// are based on a UTF-16 string representation as `Position` and `Range` does.
 ///
-/// *Note*: a label of type string should be a substring of its containing signature label.
-/// Its intended use case is to highlight the parameter label part in the `SignatureInformation.label`.
- Object get label;/// The human-readable doc-comment of this parameter. Will be shown
-/// in the UI but can be omitted.
+/// *Note*: a label of type string should be a substring of its containing
+/// signature label. Its intended use case is to highlight the parameter label
+/// part in the `SignatureInformation.label`.
+ Object get label;/// The human-readable doc-comment of this parameter. Will be shown in the UI
+/// but can be omitted.
  Object? get documentation;
 /// Create a copy of ParameterInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -80166,15 +80152,16 @@ class _ParameterInformation implements ParameterInformation {
 
 /// The label of this parameter information.
 ///
-/// Either a string or an inclusive start and exclusive end offsets within its containing
-/// signature label. (see SignatureInformation.label). The offsets are based on a UTF-16
-/// string representation as `Position` and `Range` does.
+/// Either a string or an inclusive start and exclusive end offsets within its
+/// containing signature label. (see SignatureInformation.label). The offsets
+/// are based on a UTF-16 string representation as `Position` and `Range` does.
 ///
-/// *Note*: a label of type string should be a substring of its containing signature label.
-/// Its intended use case is to highlight the parameter label part in the `SignatureInformation.label`.
+/// *Note*: a label of type string should be a substring of its containing
+/// signature label. Its intended use case is to highlight the parameter label
+/// part in the `SignatureInformation.label`.
 @override final  Object label;
-/// The human-readable doc-comment of this parameter. Will be shown
-/// in the UI but can be omitted.
+/// The human-readable doc-comment of this parameter. Will be shown in the UI
+/// but can be omitted.
 @override final  Object? documentation;
 
 /// Create a copy of ParameterInformation
@@ -80240,14 +80227,13 @@ label: null == label ? _self.label : label ,documentation: freezed == documentat
 /// @nodoc
 mixin _$NotebookCellTextDocumentFilter {
 
-/// A filter that matches against the notebook
-/// containing the notebook cell. If a string
-/// value is provided it matches against the
-/// notebook type. '*' matches every notebook.
+/// A filter that matches against the notebook containing the notebook cell. If
+/// a string value is provided it matches against the notebook type. '*' matches
+/// every notebook.
  Object get notebook;/// A language id like `python`.
 ///
-/// Will be matched against the language id of the
-/// notebook cell document. '*' matches every language.
+/// Will be matched against the language id of the notebook cell document. '*'
+/// matches every language.
  String? get language;
 /// Create a copy of NotebookCellTextDocumentFilter
 /// with the given fields replaced by the non-null parameter values.
@@ -80445,15 +80431,14 @@ class _NotebookCellTextDocumentFilter implements NotebookCellTextDocumentFilter 
   const _NotebookCellTextDocumentFilter({required this.notebook, this.language});
   factory _NotebookCellTextDocumentFilter.fromJson(Map<String, dynamic> json) => _$NotebookCellTextDocumentFilterFromJson(json);
 
-/// A filter that matches against the notebook
-/// containing the notebook cell. If a string
-/// value is provided it matches against the
-/// notebook type. '*' matches every notebook.
+/// A filter that matches against the notebook containing the notebook cell. If
+/// a string value is provided it matches against the notebook type. '*' matches
+/// every notebook.
 @override final  Object notebook;
 /// A language id like `python`.
 ///
-/// Will be matched against the language id of the
-/// notebook cell document. '*' matches every language.
+/// Will be matched against the language id of the notebook cell document. '*'
+/// matches every language.
 @override final  String? language;
 
 /// Create a copy of NotebookCellTextDocumentFilter
@@ -80785,11 +80770,9 @@ as bool?,
 /// @nodoc
 mixin _$ExecutionSummary {
 
-/// A strict monotonically increasing value
-/// indicating the execution order of a cell
-/// inside a notebook.
- int get executionOrder;/// Whether the execution was successful or
-/// not if known by the client.
+/// A strict monotonically increasing value indicating the execution order of a
+/// cell inside a notebook.
+ int get executionOrder;/// Whether the execution was successful or not if known by the client.
  bool? get success;
 /// Create a copy of ExecutionSummary
 /// with the given fields replaced by the non-null parameter values.
@@ -80988,12 +80971,10 @@ class _ExecutionSummary implements ExecutionSummary {
   const _ExecutionSummary({required this.executionOrder, this.success});
   factory _ExecutionSummary.fromJson(Map<String, dynamic> json) => _$ExecutionSummaryFromJson(json);
 
-/// A strict monotonically increasing value
-/// indicating the execution order of a cell
-/// inside a notebook.
+/// A strict monotonically increasing value indicating the execution order of a
+/// cell inside a notebook.
 @override final  int executionOrder;
-/// Whether the execution was successful or
-/// not if known by the client.
+/// Whether the execution was successful or not if known by the client.
 @override final  bool? success;
 
 /// Create a copy of ExecutionSummary
@@ -81061,11 +81042,11 @@ as bool?,
 /// @nodoc
 mixin _$WorkspaceClientCapabilities {
 
-/// The client supports applying batch edits
-/// to the workspace by supporting the request
-/// 'workspace/applyEdit'
+/// The client supports applying batch edits to the workspace by supporting the
+/// request 'workspace/applyEdit'
  bool? get applyEdit;/// Capabilities specific to `WorkspaceEdit`s.
- WorkspaceEditClientCapabilities? get workspaceEdit;/// Capabilities specific to the `workspace/didChangeConfiguration` notification.
+ WorkspaceEditClientCapabilities? get workspaceEdit;/// Capabilities specific to the `workspace/didChangeConfiguration`
+/// notification.
  DidChangeConfigurationClientCapabilities? get didChangeConfiguration;/// Capabilities specific to the `workspace/didChangeWatchedFiles` notification.
  DidChangeWatchedFilesClientCapabilities? get didChangeWatchedFiles;/// Capabilities specific to the `workspace/symbol` request.
  WorkspaceSymbolClientCapabilities? get symbol;/// Capabilities specific to the `workspace/executeCommand` request.
@@ -81079,29 +81060,25 @@ mixin _$WorkspaceClientCapabilities {
 /// workspace.
 ///
 /// @since 3.16.0.
- SemanticTokensWorkspaceClientCapabilities? get semanticTokens;/// Capabilities specific to the code lens requests scoped to the
-/// workspace.
+ SemanticTokensWorkspaceClientCapabilities? get semanticTokens;/// Capabilities specific to the code lens requests scoped to the workspace.
 ///
 /// @since 3.16.0.
- CodeLensWorkspaceClientCapabilities? get codeLens;/// The client has support for file notifications/requests for user operations on files.
+ CodeLensWorkspaceClientCapabilities? get codeLens;/// The client has support for file notifications/requests for user operations
+/// on files.
 ///
 /// Since 3.16.0
- FileOperationClientCapabilities? get fileOperations;/// Capabilities specific to the inline values requests scoped to the
-/// workspace.
+ FileOperationClientCapabilities? get fileOperations;/// Capabilities specific to the inline values requests scoped to the workspace.
 ///
 /// @since 3.17.0.
- InlineValueWorkspaceClientCapabilities? get inlineValue;/// Capabilities specific to the inlay hint requests scoped to the
-/// workspace.
+ InlineValueWorkspaceClientCapabilities? get inlineValue;/// Capabilities specific to the inlay hint requests scoped to the workspace.
 ///
 /// @since 3.17.0.
- InlayHintWorkspaceClientCapabilities? get inlayHint;/// Capabilities specific to the diagnostic requests scoped to the
-/// workspace.
+ InlayHintWorkspaceClientCapabilities? get inlayHint;/// Capabilities specific to the diagnostic requests scoped to the workspace.
 ///
 /// @since 3.17.0.
  DiagnosticWorkspaceClientCapabilities? get diagnostics;/// Capabilities specific to the folding range requests scoped to the workspace.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
  FoldingRangeWorkspaceClientCapabilities? get foldingRange;
 /// Create a copy of WorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -81457,13 +81434,13 @@ class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
   const _WorkspaceClientCapabilities({this.applyEdit, this.workspaceEdit, this.didChangeConfiguration, this.didChangeWatchedFiles, this.symbol, this.executeCommand, this.workspaceFolders, this.configuration, this.semanticTokens, this.codeLens, this.fileOperations, this.inlineValue, this.inlayHint, this.diagnostics, this.foldingRange});
   factory _WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceClientCapabilitiesFromJson(json);
 
-/// The client supports applying batch edits
-/// to the workspace by supporting the request
-/// 'workspace/applyEdit'
+/// The client supports applying batch edits to the workspace by supporting the
+/// request 'workspace/applyEdit'
 @override final  bool? applyEdit;
 /// Capabilities specific to `WorkspaceEdit`s.
 @override final  WorkspaceEditClientCapabilities? workspaceEdit;
-/// Capabilities specific to the `workspace/didChangeConfiguration` notification.
+/// Capabilities specific to the `workspace/didChangeConfiguration`
+/// notification.
 @override final  DidChangeConfigurationClientCapabilities? didChangeConfiguration;
 /// Capabilities specific to the `workspace/didChangeWatchedFiles` notification.
 @override final  DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles;
@@ -81484,34 +81461,30 @@ class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
 ///
 /// @since 3.16.0.
 @override final  SemanticTokensWorkspaceClientCapabilities? semanticTokens;
-/// Capabilities specific to the code lens requests scoped to the
-/// workspace.
+/// Capabilities specific to the code lens requests scoped to the workspace.
 ///
 /// @since 3.16.0.
 @override final  CodeLensWorkspaceClientCapabilities? codeLens;
-/// The client has support for file notifications/requests for user operations on files.
+/// The client has support for file notifications/requests for user operations
+/// on files.
 ///
 /// Since 3.16.0
 @override final  FileOperationClientCapabilities? fileOperations;
-/// Capabilities specific to the inline values requests scoped to the
-/// workspace.
+/// Capabilities specific to the inline values requests scoped to the workspace.
 ///
 /// @since 3.17.0.
 @override final  InlineValueWorkspaceClientCapabilities? inlineValue;
-/// Capabilities specific to the inlay hint requests scoped to the
-/// workspace.
+/// Capabilities specific to the inlay hint requests scoped to the workspace.
 ///
 /// @since 3.17.0.
 @override final  InlayHintWorkspaceClientCapabilities? inlayHint;
-/// Capabilities specific to the diagnostic requests scoped to the
-/// workspace.
+/// Capabilities specific to the diagnostic requests scoped to the workspace.
 ///
 /// @since 3.17.0.
 @override final  DiagnosticWorkspaceClientCapabilities? diagnostics;
 /// Capabilities specific to the folding range requests scoped to the workspace.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
 @override final  FoldingRangeWorkspaceClientCapabilities? foldingRange;
 
 /// Create a copy of WorkspaceClientCapabilities
@@ -81797,8 +81770,7 @@ mixin _$TextDocumentClientCapabilities {
 /// @since 3.17.0
  DiagnosticClientCapabilities? get diagnostic;/// Client capabilities specific to inline completions.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
  InlineCompletionClientCapabilities? get inlineCompletion;
 /// Create a copy of TextDocumentClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -82489,8 +82461,7 @@ class _TextDocumentClientCapabilities implements TextDocumentClientCapabilities 
 @override final  DiagnosticClientCapabilities? diagnostic;
 /// Client capabilities specific to inline completions.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
 @override final  InlineCompletionClientCapabilities? inlineCompletion;
 
 /// Create a copy of TextDocumentClientCapabilities
@@ -83246,13 +83217,12 @@ $NotebookDocumentSyncClientCapabilitiesCopyWith<$Res> get synchronization {
 /// @nodoc
 mixin _$WindowClientCapabilities {
 
-/// It indicates whether the client supports server initiated
-/// progress using the `window/workDoneProgress/create` request.
+/// It indicates whether the client supports server initiated progress using the
+/// `window/workDoneProgress/create` request.
 ///
-/// The capability also controls Whether client supports handling
-/// of progress notifications. If set servers are allowed to report a
-/// `workDoneProgress` property in the request specific server
-/// capabilities.
+/// The capability also controls Whether client supports handling of progress
+/// notifications. If set servers are allowed to report a `workDoneProgress`
+/// property in the request specific server capabilities.
 ///
 /// @since 3.15.0
  bool? get workDoneProgress;/// Capabilities specific to the showMessage request.
@@ -83484,13 +83454,12 @@ class _WindowClientCapabilities implements WindowClientCapabilities {
   const _WindowClientCapabilities({this.workDoneProgress, this.showMessage, this.showDocument});
   factory _WindowClientCapabilities.fromJson(Map<String, dynamic> json) => _$WindowClientCapabilitiesFromJson(json);
 
-/// It indicates whether the client supports server initiated
-/// progress using the `window/workDoneProgress/create` request.
+/// It indicates whether the client supports server initiated progress using the
+/// `window/workDoneProgress/create` request.
 ///
-/// The capability also controls Whether client supports handling
-/// of progress notifications. If set servers are allowed to report a
-/// `workDoneProgress` property in the request specific server
-/// capabilities.
+/// The capability also controls Whether client supports handling of progress
+/// notifications. If set servers are allowed to report a `workDoneProgress`
+/// property in the request specific server capabilities.
 ///
 /// @since 3.15.0
 @override final  bool? workDoneProgress;
@@ -83593,10 +83562,9 @@ $ShowDocumentClientCapabilitiesCopyWith<$Res>? get showDocument {
 /// @nodoc
 mixin _$GeneralClientCapabilities {
 
-/// Client capability that signals how the client
-/// handles stale requests (e.g. a request
-/// for which the client will not process the response
-/// anymore since the information is outdated).
+/// Client capability that signals how the client handles stale requests (e.g. a
+/// request for which the client will not process the response anymore since the
+/// information is outdated).
 ///
 /// @since 3.17.0
  ({bool cancel, List<String> retryOnContentModified})? get staleRequestSupport;/// Client capabilities specific to regular expressions.
@@ -83605,22 +83573,20 @@ mixin _$GeneralClientCapabilities {
  RegularExpressionsClientCapabilities? get regularExpressions;/// Client capabilities specific to the client's markdown parser.
 ///
 /// @since 3.16.0
- MarkdownClientCapabilities? get markdown;/// The position encodings supported by the client. Client and server
-/// have to agree on the same position encoding to ensure that offsets
-/// (e.g. character position in a line) are interpreted the same on both
-/// sides.
+ MarkdownClientCapabilities? get markdown;/// The position encodings supported by the client. Client and server have to
+/// agree on the same position encoding to ensure that offsets (e.g. character
+/// position in a line) are interpreted the same on both sides.
 ///
-/// To keep the protocol backwards compatible the following applies: if
-/// the value 'utf-16' is missing from the array of position encodings
-/// servers can assume that the client supports UTF-16. UTF-16 is
-/// therefore a mandatory encoding.
+/// To keep the protocol backwards compatible the following applies: if the
+/// value 'utf-16' is missing from the array of position encodings servers can
+/// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
+/// encoding.
 ///
 /// If omitted it defaults to ['utf-16'].
 ///
-/// Implementation considerations: since the conversion from one encoding
-/// into another requires the content of the file / line the conversion
-/// is best done where the file is read which is usually on the server
-/// side.
+/// Implementation considerations: since the conversion from one encoding into
+/// another requires the content of the file / line the conversion is best done
+/// where the file is read which is usually on the server side.
 ///
 /// @since 3.17.0
  List<PositionEncodingKind>? get positionEncodings;
@@ -83847,10 +83813,9 @@ class _GeneralClientCapabilities implements GeneralClientCapabilities {
   const _GeneralClientCapabilities({this.staleRequestSupport, this.regularExpressions, this.markdown, final  List<PositionEncodingKind>? positionEncodings}): _positionEncodings = positionEncodings;
   factory _GeneralClientCapabilities.fromJson(Map<String, dynamic> json) => _$GeneralClientCapabilitiesFromJson(json);
 
-/// Client capability that signals how the client
-/// handles stale requests (e.g. a request
-/// for which the client will not process the response
-/// anymore since the information is outdated).
+/// Client capability that signals how the client handles stale requests (e.g. a
+/// request for which the client will not process the response anymore since the
+/// information is outdated).
 ///
 /// @since 3.17.0
 @override final  ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport;
@@ -83862,41 +83827,37 @@ class _GeneralClientCapabilities implements GeneralClientCapabilities {
 ///
 /// @since 3.16.0
 @override final  MarkdownClientCapabilities? markdown;
-/// The position encodings supported by the client. Client and server
-/// have to agree on the same position encoding to ensure that offsets
-/// (e.g. character position in a line) are interpreted the same on both
-/// sides.
+/// The position encodings supported by the client. Client and server have to
+/// agree on the same position encoding to ensure that offsets (e.g. character
+/// position in a line) are interpreted the same on both sides.
 ///
-/// To keep the protocol backwards compatible the following applies: if
-/// the value 'utf-16' is missing from the array of position encodings
-/// servers can assume that the client supports UTF-16. UTF-16 is
-/// therefore a mandatory encoding.
+/// To keep the protocol backwards compatible the following applies: if the
+/// value 'utf-16' is missing from the array of position encodings servers can
+/// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
+/// encoding.
 ///
 /// If omitted it defaults to ['utf-16'].
 ///
-/// Implementation considerations: since the conversion from one encoding
-/// into another requires the content of the file / line the conversion
-/// is best done where the file is read which is usually on the server
-/// side.
+/// Implementation considerations: since the conversion from one encoding into
+/// another requires the content of the file / line the conversion is best done
+/// where the file is read which is usually on the server side.
 ///
 /// @since 3.17.0
  final  List<PositionEncodingKind>? _positionEncodings;
-/// The position encodings supported by the client. Client and server
-/// have to agree on the same position encoding to ensure that offsets
-/// (e.g. character position in a line) are interpreted the same on both
-/// sides.
+/// The position encodings supported by the client. Client and server have to
+/// agree on the same position encoding to ensure that offsets (e.g. character
+/// position in a line) are interpreted the same on both sides.
 ///
-/// To keep the protocol backwards compatible the following applies: if
-/// the value 'utf-16' is missing from the array of position encodings
-/// servers can assume that the client supports UTF-16. UTF-16 is
-/// therefore a mandatory encoding.
+/// To keep the protocol backwards compatible the following applies: if the
+/// value 'utf-16' is missing from the array of position encodings servers can
+/// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
+/// encoding.
 ///
 /// If omitted it defaults to ['utf-16'].
 ///
-/// Implementation considerations: since the conversion from one encoding
-/// into another requires the content of the file / line the conversion
-/// is best done where the file is read which is usually on the server
-/// side.
+/// Implementation considerations: since the conversion from one encoding into
+/// another requires the content of the file / line the conversion is best done
+/// where the file is read which is usually on the server side.
 ///
 /// @since 3.17.0
 @override List<PositionEncodingKind>? get positionEncodings {
@@ -84270,19 +84231,17 @@ as Pattern,
 mixin _$WorkspaceEditClientCapabilities {
 
 /// The client supports versioned document changes in `WorkspaceEdit`s
- bool? get documentChanges;/// The resource operations the client supports. Clients should at least
-/// support 'create', 'rename' and 'delete' files and folders.
+ bool? get documentChanges;/// The resource operations the client supports. Clients should at least support
+/// 'create', 'rename' and 'delete' files and folders.
 ///
 /// @since 3.13.0
  List<ResourceOperationKind>? get resourceOperations;/// The failure handling strategy of a client if applying the workspace edit
 /// fails.
 ///
 /// @since 3.13.0
- FailureHandlingKind? get failureHandling;/// Whether the client normalizes line endings to the client specific
-/// setting.
-/// If set to `true` the client will normalize line ending characters
-/// in a workspace edit to the client-specified new line
-/// character.
+ FailureHandlingKind? get failureHandling;/// Whether the client normalizes line endings to the client specific setting.
+/// If set to `true` the client will normalize line ending characters in a
+/// workspace edit to the client-specified new line character.
 ///
 /// @since 3.16.0
  bool? get normalizesLineEndings;/// Whether the client in general supports change annotations on text edits,
@@ -84492,13 +84451,13 @@ class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilitie
 
 /// The client supports versioned document changes in `WorkspaceEdit`s
 @override final  bool? documentChanges;
-/// The resource operations the client supports. Clients should at least
-/// support 'create', 'rename' and 'delete' files and folders.
+/// The resource operations the client supports. Clients should at least support
+/// 'create', 'rename' and 'delete' files and folders.
 ///
 /// @since 3.13.0
  final  List<ResourceOperationKind>? _resourceOperations;
-/// The resource operations the client supports. Clients should at least
-/// support 'create', 'rename' and 'delete' files and folders.
+/// The resource operations the client supports. Clients should at least support
+/// 'create', 'rename' and 'delete' files and folders.
 ///
 /// @since 3.13.0
 @override List<ResourceOperationKind>? get resourceOperations {
@@ -84514,11 +84473,9 @@ class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilitie
 ///
 /// @since 3.13.0
 @override final  FailureHandlingKind? failureHandling;
-/// Whether the client normalizes line endings to the client specific
-/// setting.
-/// If set to `true` the client will normalize line ending characters
-/// in a workspace edit to the client-specified new line
-/// character.
+/// Whether the client normalizes line endings to the client specific setting.
+/// If set to `true` the client will normalize line ending characters in a
+/// workspace edit to the client-specified new line character.
 ///
 /// @since 3.16.0
 @override final  bool? normalizesLineEndings;
@@ -84861,11 +84818,10 @@ as bool?,
 /// @nodoc
 mixin _$DidChangeWatchedFilesClientCapabilities {
 
-/// Did change watched files notification supports dynamic registration. Please note
-/// that the current protocol doesn't support static configuration for file changes
-/// from the server side.
- bool? get dynamicRegistration;/// Whether the client has support for {@link  RelativePattern relative pattern}
-/// or not.
+/// Did change watched files notification supports dynamic registration. Please
+/// note that the current protocol doesn't support static configuration for file
+/// changes from the server side.
+ bool? get dynamicRegistration;/// Whether the client has support for [RelativePattern] or not.
 ///
 /// @since 3.17.0
  bool? get relativePatternSupport;
@@ -85066,12 +85022,11 @@ class _DidChangeWatchedFilesClientCapabilities implements DidChangeWatchedFilesC
   const _DidChangeWatchedFilesClientCapabilities({this.dynamicRegistration, this.relativePatternSupport});
   factory _DidChangeWatchedFilesClientCapabilities.fromJson(Map<String, dynamic> json) => _$DidChangeWatchedFilesClientCapabilitiesFromJson(json);
 
-/// Did change watched files notification supports dynamic registration. Please note
-/// that the current protocol doesn't support static configuration for file changes
-/// from the server side.
+/// Did change watched files notification supports dynamic registration. Please
+/// note that the current protocol doesn't support static configuration for file
+/// changes from the server side.
 @override final  bool? dynamicRegistration;
-/// Whether the client has support for {@link  RelativePattern relative pattern}
-/// or not.
+/// Whether the client has support for [RelativePattern] or not.
 ///
 /// @since 3.17.0
 @override final  bool? relativePatternSupport;
@@ -85142,9 +85097,10 @@ as bool?,
 mixin _$WorkspaceSymbolClientCapabilities {
 
 /// Symbol request supports dynamic registration.
- bool? get dynamicRegistration;/// Specific capabilities for the `SymbolKind` in the `workspace/symbol` request.
- ({List<SymbolKind>? valueSet})? get symbolKind;/// The client supports tags on `SymbolInformation`.
-/// Clients supporting tags have to handle unknown tags gracefully.
+ bool? get dynamicRegistration;/// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
+/// request.
+ ({List<SymbolKind>? valueSet})? get symbolKind;/// The client supports tags on `SymbolInformation`. Clients supporting tags
+/// have to handle unknown tags gracefully.
 ///
 /// @since 3.16.0
  ({List<SymbolTag> valueSet})? get tagSupport;/// The client support partial workspace symbols. The client will send the
@@ -85354,10 +85310,11 @@ class _WorkspaceSymbolClientCapabilities implements WorkspaceSymbolClientCapabil
 
 /// Symbol request supports dynamic registration.
 @override final  bool? dynamicRegistration;
-/// Specific capabilities for the `SymbolKind` in the `workspace/symbol` request.
+/// Specific capabilities for the `SymbolKind` in the `workspace/symbol`
+/// request.
 @override final  ({List<SymbolKind>? valueSet})? symbolKind;
-/// The client supports tags on `SymbolInformation`.
-/// Clients supporting tags have to handle unknown tags gracefully.
+/// The client supports tags on `SymbolInformation`. Clients supporting tags
+/// have to handle unknown tags gracefully.
 ///
 /// @since 3.16.0
 @override final  ({List<SymbolTag> valueSet})? tagSupport;
@@ -85700,13 +85657,13 @@ as bool?,
 /// @nodoc
 mixin _$SemanticTokensWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from
-/// the server to the client.
+/// Whether the client implementation supports a refresh request sent from the
+/// server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// semantic tokens currently shown. It should be used with absolute care
-/// and is useful for situation where a server for example detects a project
-/// wide change that requires such a calculation.
+/// semantic tokens currently shown. It should be used with absolute care and is
+/// useful for situation where a server for example detects a project wide
+/// change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of SemanticTokensWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -85904,13 +85861,13 @@ class _SemanticTokensWorkspaceClientCapabilities implements SemanticTokensWorksp
   const _SemanticTokensWorkspaceClientCapabilities({this.refreshSupport});
   factory _SemanticTokensWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from
-/// the server to the client.
+/// Whether the client implementation supports a refresh request sent from the
+/// server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// semantic tokens currently shown. It should be used with absolute care
-/// and is useful for situation where a server for example detects a project
-/// wide change that requires such a calculation.
+/// semantic tokens currently shown. It should be used with absolute care and is
+/// useful for situation where a server for example detects a project wide
+/// change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of SemanticTokensWorkspaceClientCapabilities
@@ -85980,10 +85937,10 @@ mixin _$CodeLensWorkspaceClientCapabilities {
 /// Whether the client implementation supports a refresh request sent from the
 /// server to the client.
 ///
-/// Note that this event is global and will force the client to refresh all
-/// code lenses currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detect a project wide
-/// change that requires such a calculation.
+/// Note that this event is global and will force the client to refresh all code
+/// lenses currently shown. It should be used with absolute care and is useful
+/// for situation where a server for example detect a project wide change that
+/// requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of CodeLensWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -86184,10 +86141,10 @@ class _CodeLensWorkspaceClientCapabilities implements CodeLensWorkspaceClientCap
 /// Whether the client implementation supports a refresh request sent from the
 /// server to the client.
 ///
-/// Note that this event is global and will force the client to refresh all
-/// code lenses currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detect a project wide
-/// change that requires such a calculation.
+/// Note that this event is global and will force the client to refresh all code
+/// lenses currently shown. It should be used with absolute care and is useful
+/// for situation where a server for example detect a project wide change that
+/// requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of CodeLensWorkspaceClientCapabilities
@@ -86254,7 +86211,8 @@ as bool?,
 /// @nodoc
 mixin _$FileOperationClientCapabilities {
 
-/// Whether the client supports dynamic registration for file requests/notifications.
+/// Whether the client supports dynamic registration for file
+/// requests/notifications.
  bool? get dynamicRegistration;/// The client has support for sending didCreateFiles notifications.
  bool? get didCreate;/// The client has support for sending willCreateFiles requests.
  bool? get willCreate;/// The client has support for sending didRenameFiles notifications.
@@ -86464,7 +86422,8 @@ class _FileOperationClientCapabilities implements FileOperationClientCapabilitie
   const _FileOperationClientCapabilities({this.dynamicRegistration, this.didCreate, this.willCreate, this.didRename, this.willRename, this.didDelete, this.willDelete});
   factory _FileOperationClientCapabilities.fromJson(Map<String, dynamic> json) => _$FileOperationClientCapabilitiesFromJson(json);
 
-/// Whether the client supports dynamic registration for file requests/notifications.
+/// Whether the client supports dynamic registration for file
+/// requests/notifications.
 @override final  bool? dynamicRegistration;
 /// The client has support for sending didCreateFiles notifications.
 @override final  bool? didCreate;
@@ -86826,12 +86785,12 @@ as bool?,
 /// @nodoc
 mixin _$InlayHintWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from
-/// the server to the client.
+/// Whether the client implementation supports a refresh request sent from the
+/// server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// inlay hints currently shown. It should be used with absolute care and
-/// is useful for situation where a server for example detects a project wide
+/// inlay hints currently shown. It should be used with absolute care and is
+/// useful for situation where a server for example detects a project wide
 /// change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of InlayHintWorkspaceClientCapabilities
@@ -87030,12 +86989,12 @@ class _InlayHintWorkspaceClientCapabilities implements InlayHintWorkspaceClientC
   const _InlayHintWorkspaceClientCapabilities({this.refreshSupport});
   factory _InlayHintWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlayHintWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from
-/// the server to the client.
+/// Whether the client implementation supports a refresh request sent from the
+/// server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// inlay hints currently shown. It should be used with absolute care and
-/// is useful for situation where a server for example detects a project wide
+/// inlay hints currently shown. It should be used with absolute care and is
+/// useful for situation where a server for example detects a project wide
 /// change that requires such a calculation.
 @override final  bool? refreshSupport;
 
@@ -87103,8 +87062,8 @@ as bool?,
 /// @nodoc
 mixin _$DiagnosticWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from
-/// the server to the client.
+/// Whether the client implementation supports a refresh request sent from the
+/// server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
 /// pulled diagnostics currently shown. It should be used with absolute care and
@@ -87307,8 +87266,8 @@ class _DiagnosticWorkspaceClientCapabilities implements DiagnosticWorkspaceClien
   const _DiagnosticWorkspaceClientCapabilities({this.refreshSupport});
   factory _DiagnosticWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from
-/// the server to the client.
+/// Whether the client implementation supports a refresh request sent from the
+/// server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
 /// pulled diagnostics currently shown. It should be used with absolute care and
@@ -87388,8 +87347,7 @@ mixin _$FoldingRangeWorkspaceClientCapabilities {
 /// useful for situation where a server for example detects a project wide
 /// change that requires such a calculation.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
  bool? get refreshSupport;
 /// Create a copy of FoldingRangeWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -87595,8 +87553,7 @@ class _FoldingRangeWorkspaceClientCapabilities implements FoldingRangeWorkspaceC
 /// useful for situation where a server for example detects a project wide
 /// change that requires such a calculation.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
 @override final  bool? refreshSupport;
 
 /// Create a copy of FoldingRangeWorkspaceClientCapabilities
@@ -87665,9 +87622,9 @@ mixin _$TextDocumentSyncClientCapabilities {
 
 /// Whether text document synchronization supports dynamic registration.
  bool? get dynamicRegistration;/// The client supports sending will save notifications.
- bool? get willSave;/// The client supports sending a will save request and
-/// waits for a response providing text edits which will
-/// be applied to the document before it is saved.
+ bool? get willSave;/// The client supports sending a will save request and waits for a response
+/// providing text edits which will be applied to the document before it is
+/// saved.
  bool? get willSaveWaitUntil;/// The client supports did save notifications.
  bool? get didSave;
 /// Create a copy of TextDocumentSyncClientCapabilities
@@ -87873,9 +87830,9 @@ class _TextDocumentSyncClientCapabilities implements TextDocumentSyncClientCapab
 @override final  bool? dynamicRegistration;
 /// The client supports sending will save notifications.
 @override final  bool? willSave;
-/// The client supports sending a will save request and
-/// waits for a response providing text edits which will
-/// be applied to the document before it is saved.
+/// The client supports sending a will save request and waits for a response
+/// providing text edits which will be applied to the document before it is
+/// saved.
 @override final  bool? willSaveWaitUntil;
 /// The client supports did save notifications.
 @override final  bool? didSave;
@@ -87948,17 +87905,15 @@ as bool?,
 mixin _$CompletionClientCapabilities {
 
 /// Whether completion supports dynamic registration.
- bool? get dynamicRegistration;/// The client supports the following `CompletionItem` specific
-/// capabilities.
- ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? get completionItem; ({List<CompletionItemKind>? valueSet})? get completionItemKind;/// Defines how the client handles whitespace and indentation
-/// when accepting a completion item that uses multi line
-/// text in either `insertText` or `textEdit`.
+ bool? get dynamicRegistration;/// The client supports the following `CompletionItem` specific capabilities.
+ ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? get completionItem; ({List<CompletionItemKind>? valueSet})? get completionItemKind;/// Defines how the client handles whitespace and indentation when accepting a
+/// completion item that uses multi line text in either `insertText` or
+/// `textEdit`.
 ///
 /// @since 3.17.0
  InsertTextMode? get insertTextMode;/// The client supports to send additional context information for a
 /// `textDocument/completion` request.
- bool? get contextSupport;/// The client supports the following `CompletionList` specific
-/// capabilities.
+ bool? get contextSupport;/// The client supports the following `CompletionList` specific capabilities.
 ///
 /// @since 3.17.0
  ({List<String>? itemDefaults})? get completionList;
@@ -88165,21 +88120,19 @@ class _CompletionClientCapabilities implements CompletionClientCapabilities {
 
 /// Whether completion supports dynamic registration.
 @override final  bool? dynamicRegistration;
-/// The client supports the following `CompletionItem` specific
-/// capabilities.
+/// The client supports the following `CompletionItem` specific capabilities.
 @override final  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem;
 @override final  ({List<CompletionItemKind>? valueSet})? completionItemKind;
-/// Defines how the client handles whitespace and indentation
-/// when accepting a completion item that uses multi line
-/// text in either `insertText` or `textEdit`.
+/// Defines how the client handles whitespace and indentation when accepting a
+/// completion item that uses multi line text in either `insertText` or
+/// `textEdit`.
 ///
 /// @since 3.17.0
 @override final  InsertTextMode? insertTextMode;
 /// The client supports to send additional context information for a
 /// `textDocument/completion` request.
 @override final  bool? contextSupport;
-/// The client supports the following `CompletionList` specific
-/// capabilities.
+/// The client supports the following `CompletionList` specific capabilities.
 ///
 /// @since 3.17.0
 @override final  ({List<String>? itemDefaults})? completionList;
@@ -88254,8 +88207,8 @@ as ({List<String>? itemDefaults})?,
 mixin _$HoverClientCapabilities {
 
 /// Whether hover supports dynamic registration.
- bool? get dynamicRegistration;/// Client supports the following content formats for the content
-/// property. The order describes the preferred format of the client.
+ bool? get dynamicRegistration;/// Client supports the following content formats for the content property. The
+/// order describes the preferred format of the client.
  List<MarkupKind>? get contentFormat;
 /// Create a copy of HoverClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -88456,11 +88409,11 @@ class _HoverClientCapabilities implements HoverClientCapabilities {
 
 /// Whether hover supports dynamic registration.
 @override final  bool? dynamicRegistration;
-/// Client supports the following content formats for the content
-/// property. The order describes the preferred format of the client.
+/// Client supports the following content formats for the content property. The
+/// order describes the preferred format of the client.
  final  List<MarkupKind>? _contentFormat;
-/// Client supports the following content formats for the content
-/// property. The order describes the preferred format of the client.
+/// Client supports the following content formats for the content property. The
+/// order describes the preferred format of the client.
 @override List<MarkupKind>? get contentFormat {
   final value = _contentFormat;
   if (value == null) return null;
@@ -88536,12 +88489,11 @@ as List<MarkupKind>?,
 mixin _$SignatureHelpClientCapabilities {
 
 /// Whether signature help supports dynamic registration.
- bool? get dynamicRegistration;/// The client supports the following `SignatureInformation`
-/// specific properties.
+ bool? get dynamicRegistration;/// The client supports the following `SignatureInformation` specific
+/// properties.
  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? get signatureInformation;/// The client supports to send additional context information for a
-/// `textDocument/signatureHelp` request. A client that opts into
-/// contextSupport will also support the `retriggerCharacters` on
-/// `SignatureHelpOptions`.
+/// `textDocument/signatureHelp` request. A client that opts into contextSupport
+/// will also support the `retriggerCharacters` on `SignatureHelpOptions`.
 ///
 /// @since 3.15.0
  bool? get contextSupport;
@@ -88745,13 +88697,12 @@ class _SignatureHelpClientCapabilities implements SignatureHelpClientCapabilitie
 
 /// Whether signature help supports dynamic registration.
 @override final  bool? dynamicRegistration;
-/// The client supports the following `SignatureInformation`
-/// specific properties.
+/// The client supports the following `SignatureInformation` specific
+/// properties.
 @override final  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation;
 /// The client supports to send additional context information for a
-/// `textDocument/signatureHelp` request. A client that opts into
-/// contextSupport will also support the `retriggerCharacters` on
-/// `SignatureHelpOptions`.
+/// `textDocument/signatureHelp` request. A client that opts into contextSupport
+/// will also support the `retriggerCharacters` on `SignatureHelpOptions`.
 ///
 /// @since 3.15.0
 @override final  bool? contextSupport;
@@ -89370,9 +89321,9 @@ as bool?,
 /// @nodoc
 mixin _$TypeDefinitionClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `TypeDefinitionRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `TypeDefinitionRegistrationOptions`
+/// return value for the corresponding server capability as well.
  bool? get dynamicRegistration;/// The client supports additional metadata in the form of definition links.
 ///
 /// Since 3.14.0
@@ -89574,9 +89525,9 @@ class _TypeDefinitionClientCapabilities implements TypeDefinitionClientCapabilit
   const _TypeDefinitionClientCapabilities({this.dynamicRegistration, this.linkSupport});
   factory _TypeDefinitionClientCapabilities.fromJson(Map<String, dynamic> json) => _$TypeDefinitionClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `TypeDefinitionRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `TypeDefinitionRegistrationOptions`
+/// return value for the corresponding server capability as well.
 @override final  bool? dynamicRegistration;
 /// The client supports additional metadata in the form of definition links.
 ///
@@ -89648,9 +89599,9 @@ as bool?,
 /// @nodoc
 mixin _$ImplementationClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `ImplementationRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `ImplementationRegistrationOptions`
+/// return value for the corresponding server capability as well.
  bool? get dynamicRegistration;/// The client supports additional metadata in the form of definition links.
 ///
 /// @since 3.14.0
@@ -89852,9 +89803,9 @@ class _ImplementationClientCapabilities implements ImplementationClientCapabilit
   const _ImplementationClientCapabilities({this.dynamicRegistration, this.linkSupport});
   factory _ImplementationClientCapabilities.fromJson(Map<String, dynamic> json) => _$ImplementationClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `ImplementationRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `ImplementationRegistrationOptions`
+/// return value for the corresponding server capability as well.
 @override final  bool? dynamicRegistration;
 /// The client supports additional metadata in the form of definition links.
 ///
@@ -90465,8 +90416,8 @@ mixin _$DocumentSymbolClientCapabilities {
 /// Clients supporting tags have to handle unknown tags gracefully.
 ///
 /// @since 3.16.0
- ({List<SymbolTag> valueSet})? get tagSupport;/// The client supports an additional label presented in the UI when
-/// registering a document symbol provider.
+ ({List<SymbolTag> valueSet})? get tagSupport;/// The client supports an additional label presented in the UI when registering
+/// a document symbol provider.
 ///
 /// @since 3.16.0
  bool? get labelSupport;
@@ -90683,8 +90634,8 @@ class _DocumentSymbolClientCapabilities implements DocumentSymbolClientCapabilit
 ///
 /// @since 3.16.0
 @override final  ({List<SymbolTag> valueSet})? tagSupport;
-/// The client supports an additional label presented in the UI when
-/// registering a document symbol provider.
+/// The client supports an additional label presented in the UI when registering
+/// a document symbol provider.
 ///
 /// @since 3.16.0
 @override final  bool? labelSupport;
@@ -90769,20 +90720,18 @@ mixin _$CodeActionClientCapabilities {
  bool? get isPreferredSupport;/// Whether code action supports the `disabled` property.
 ///
 /// @since 3.16.0
- bool? get disabledSupport;/// Whether code action supports the `data` property which is
-/// preserved between a `textDocument/codeAction` and a
-/// `codeAction/resolve` request.
+ bool? get disabledSupport;/// Whether code action supports the `data` property which is preserved between
+/// a `textDocument/codeAction` and a `codeAction/resolve` request.
 ///
 /// @since 3.16.0
- bool? get dataSupport;/// Whether the client supports resolving additional code action
-/// properties via a separate `codeAction/resolve` request.
+ bool? get dataSupport;/// Whether the client supports resolving additional code action properties via
+/// a separate `codeAction/resolve` request.
 ///
 /// @since 3.16.0
- ({List<String> properties})? get resolveSupport;/// Whether the client honors the change annotations in
-/// text edits and resource operations returned via the
-/// `CodeAction#edit` property by for example presenting
-/// the workspace edit in the user interface and asking
-/// for confirmation.
+ ({List<String> properties})? get resolveSupport;/// Whether the client honors the change annotations in text edits and resource
+/// operations returned via the `CodeAction#edit` property by for example
+/// presenting the workspace edit in the user interface and asking for
+/// confirmation.
 ///
 /// @since 3.16.0
  bool? get honorsChangeAnnotations;
@@ -91004,22 +90953,20 @@ class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
 ///
 /// @since 3.16.0
 @override final  bool? disabledSupport;
-/// Whether code action supports the `data` property which is
-/// preserved between a `textDocument/codeAction` and a
-/// `codeAction/resolve` request.
+/// Whether code action supports the `data` property which is preserved between
+/// a `textDocument/codeAction` and a `codeAction/resolve` request.
 ///
 /// @since 3.16.0
 @override final  bool? dataSupport;
-/// Whether the client supports resolving additional code action
-/// properties via a separate `codeAction/resolve` request.
+/// Whether the client supports resolving additional code action properties via
+/// a separate `codeAction/resolve` request.
 ///
 /// @since 3.16.0
 @override final  ({List<String> properties})? resolveSupport;
-/// Whether the client honors the change annotations in
-/// text edits and resource operations returned via the
-/// `CodeAction#edit` property by for example presenting
-/// the workspace edit in the user interface and asking
-/// for confirmation.
+/// Whether the client honors the change annotations in text edits and resource
+/// operations returned via the `CodeAction#edit` property by for example
+/// presenting the workspace edit in the user interface and asking for
+/// confirmation.
 ///
 /// @since 3.16.0
 @override final  bool? honorsChangeAnnotations;
@@ -91633,9 +91580,9 @@ as bool?,
 /// @nodoc
 mixin _$DocumentColorClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `DocumentColorRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `DocumentColorRegistrationOptions` return
+/// value for the corresponding server capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of DocumentColorClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -91833,9 +91780,9 @@ class _DocumentColorClientCapabilities implements DocumentColorClientCapabilitie
   const _DocumentColorClientCapabilities({this.dynamicRegistration});
   factory _DocumentColorClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentColorClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `DocumentColorRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `DocumentColorRegistrationOptions` return
+/// value for the corresponding server capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of DocumentColorClientCapabilities
@@ -92170,8 +92117,7 @@ mixin _$DocumentRangeFormattingClientCapabilities {
 /// Whether range formatting supports dynamic registration.
  bool? get dynamicRegistration;/// Whether the client supports formatting multiple ranges at once.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
  bool? get rangesSupport;
 /// Create a copy of DocumentRangeFormattingClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -92374,8 +92320,7 @@ class _DocumentRangeFormattingClientCapabilities implements DocumentRangeFormatt
 @override final  bool? dynamicRegistration;
 /// Whether the client supports formatting multiple ranges at once.
 ///
-/// @since 3.18.0
-/// @proposed
+/// @since 3.18.0 @proposed
 @override final  bool? rangesSupport;
 
 /// Create a copy of DocumentRangeFormattingClientCapabilities
@@ -92709,21 +92654,18 @@ as bool?,
 mixin _$RenameClientCapabilities {
 
 /// Whether rename supports dynamic registration.
- bool? get dynamicRegistration;/// Client supports testing for validity of rename operations
-/// before execution.
+ bool? get dynamicRegistration;/// Client supports testing for validity of rename operations before execution.
 ///
 /// @since 3.12.0
  bool? get prepareSupport;/// Client supports the default behavior result.
 ///
-/// The value indicates the default behavior used by the
-/// client.
+/// The value indicates the default behavior used by the client.
 ///
 /// @since 3.16.0
- PrepareSupportDefaultBehavior? get prepareSupportDefaultBehavior;/// Whether the client honors the change annotations in
-/// text edits and resource operations returned via the
-/// rename request's workspace edit by for example presenting
-/// the workspace edit in the user interface and asking
-/// for confirmation.
+ PrepareSupportDefaultBehavior? get prepareSupportDefaultBehavior;/// Whether the client honors the change annotations in text edits and resource
+/// operations returned via the rename request's workspace edit by for example
+/// presenting the workspace edit in the user interface and asking for
+/// confirmation.
 ///
 /// @since 3.16.0
  bool? get honorsChangeAnnotations;
@@ -92928,23 +92870,20 @@ class _RenameClientCapabilities implements RenameClientCapabilities {
 
 /// Whether rename supports dynamic registration.
 @override final  bool? dynamicRegistration;
-/// Client supports testing for validity of rename operations
-/// before execution.
+/// Client supports testing for validity of rename operations before execution.
 ///
 /// @since 3.12.0
 @override final  bool? prepareSupport;
 /// Client supports the default behavior result.
 ///
-/// The value indicates the default behavior used by the
-/// client.
+/// The value indicates the default behavior used by the client.
 ///
 /// @since 3.16.0
 @override final  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior;
-/// Whether the client honors the change annotations in
-/// text edits and resource operations returned via the
-/// rename request's workspace edit by for example presenting
-/// the workspace edit in the user interface and asking
-/// for confirmation.
+/// Whether the client honors the change annotations in text edits and resource
+/// operations returned via the rename request's workspace edit by for example
+/// presenting the workspace edit in the user interface and asking for
+/// confirmation.
 ///
 /// @since 3.16.0
 @override final  bool? honorsChangeAnnotations;
@@ -93018,13 +92957,12 @@ mixin _$FoldingRangeClientCapabilities {
 
 /// Whether implementation supports dynamic registration for folding range
 /// providers. If this is set to `true` the client supports the new
-/// `FoldingRangeRegistrationOptions` return value for the corresponding
-/// server capability as well.
- bool? get dynamicRegistration;/// The maximum number of folding ranges that the client prefers to receive
-/// per document. The value serves as a hint, servers are free to follow the
-/// limit.
- int? get rangeLimit;/// If set, the client signals that it only supports folding complete lines.
-/// If set, client will ignore specified `startCharacter` and `endCharacter`
+/// `FoldingRangeRegistrationOptions` return value for the corresponding server
+/// capability as well.
+ bool? get dynamicRegistration;/// The maximum number of folding ranges that the client prefers to receive per
+/// document. The value serves as a hint, servers are free to follow the limit.
+ int? get rangeLimit;/// If set, the client signals that it only supports folding complete lines. If
+/// set, client will ignore specified `startCharacter` and `endCharacter`
 /// properties in a FoldingRange.
  bool? get lineFoldingOnly;/// Specific options for the folding range kind.
 ///
@@ -93235,15 +93173,14 @@ class _FoldingRangeClientCapabilities implements FoldingRangeClientCapabilities 
 
 /// Whether implementation supports dynamic registration for folding range
 /// providers. If this is set to `true` the client supports the new
-/// `FoldingRangeRegistrationOptions` return value for the corresponding
-/// server capability as well.
+/// `FoldingRangeRegistrationOptions` return value for the corresponding server
+/// capability as well.
 @override final  bool? dynamicRegistration;
-/// The maximum number of folding ranges that the client prefers to receive
-/// per document. The value serves as a hint, servers are free to follow the
-/// limit.
+/// The maximum number of folding ranges that the client prefers to receive per
+/// document. The value serves as a hint, servers are free to follow the limit.
 @override final  int? rangeLimit;
-/// If set, the client signals that it only supports folding complete lines.
-/// If set, client will ignore specified `startCharacter` and `endCharacter`
+/// If set, the client signals that it only supports folding complete lines. If
+/// set, client will ignore specified `startCharacter` and `endCharacter`
 /// properties in a FoldingRange.
 @override final  bool? lineFoldingOnly;
 /// Specific options for the folding range kind.
@@ -93323,9 +93260,10 @@ as ({bool? collapsedText})?,
 /// @nodoc
 mixin _$SelectionRangeClientCapabilities {
 
-/// Whether implementation supports dynamic registration for selection range providers. If this is set to `true`
-/// the client supports the new `SelectionRangeRegistrationOptions` return value for the corresponding server
-/// capability as well.
+/// Whether implementation supports dynamic registration for selection range
+/// providers. If this is set to `true` the client supports the new
+/// `SelectionRangeRegistrationOptions` return value for the corresponding
+/// server capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of SelectionRangeClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -93523,9 +93461,10 @@ class _SelectionRangeClientCapabilities implements SelectionRangeClientCapabilit
   const _SelectionRangeClientCapabilities({this.dynamicRegistration});
   factory _SelectionRangeClientCapabilities.fromJson(Map<String, dynamic> json) => _$SelectionRangeClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration for selection range providers. If this is set to `true`
-/// the client supports the new `SelectionRangeRegistrationOptions` return value for the corresponding server
-/// capability as well.
+/// Whether implementation supports dynamic registration for selection range
+/// providers. If this is set to `true` the client supports the new
+/// `SelectionRangeRegistrationOptions` return value for the corresponding
+/// server capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of SelectionRangeClientCapabilities
@@ -93604,9 +93543,8 @@ mixin _$PublishDiagnosticsClientCapabilities {
  bool? get versionSupport;/// Client supports a codeDescription property
 ///
 /// @since 3.16.0
- bool? get codeDescriptionSupport;/// Whether code action supports the `data` property which is
-/// preserved between a `textDocument/publishDiagnostics` and
-/// `textDocument/codeAction` request.
+ bool? get codeDescriptionSupport;/// Whether code action supports the `data` property which is preserved between
+/// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
 ///
 /// @since 3.16.0
  bool? get dataSupport;
@@ -93826,9 +93764,8 @@ class _PublishDiagnosticsClientCapabilities implements PublishDiagnosticsClientC
 ///
 /// @since 3.16.0
 @override final  bool? codeDescriptionSupport;
-/// Whether code action supports the `data` property which is
-/// preserved between a `textDocument/publishDiagnostics` and
-/// `textDocument/codeAction` request.
+/// Whether code action supports the `data` property which is preserved between
+/// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
 ///
 /// @since 3.16.0
 @override final  bool? dataSupport;
@@ -93901,9 +93838,10 @@ as bool?,
 /// @nodoc
 mixin _$CallHierarchyClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of CallHierarchyClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -94101,9 +94039,10 @@ class _CallHierarchyClientCapabilities implements CallHierarchyClientCapabilitie
   const _CallHierarchyClientCapabilities({this.dynamicRegistration});
   factory _CallHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) => _$CallHierarchyClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of CallHierarchyClientCapabilities
@@ -94170,36 +94109,34 @@ as bool?,
 /// @nodoc
 mixin _$SemanticTokensClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
- bool? get dynamicRegistration;/// Which requests the client supports and might send to the server
-/// depending on the server's capability. Please note that clients might not
-/// show semantic tokens or degrade some of the user experience if a range
-/// or full request is advertised by the client but not provided by the
-/// server. If for example the client capability `requests.full` and
-/// `request.range` are both set to true but the server only provides a
-/// range provider the client might not render a minimap correctly or might
-/// even decide to not show any semantic tokens at all.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
+ bool? get dynamicRegistration;/// Which requests the client supports and might send to the server depending on
+/// the server's capability. Please note that clients might not show semantic
+/// tokens or degrade some of the user experience if a range or full request is
+/// advertised by the client but not provided by the server. If for example the
+/// client capability `requests.full` and `request.range` are both set to true
+/// but the server only provides a range provider the client might not render a
+/// minimap correctly or might even decide to not show any semantic tokens at
+/// all.
  ({Object? range, Object? full}) get requests;/// The token types that the client supports.
  List<String> get tokenTypes;/// The token modifiers that the client supports.
  List<String> get tokenModifiers;/// The token formats the clients supports.
  List<TokenFormat> get formats;/// Whether the client supports tokens that can overlap each other.
  bool? get overlappingTokenSupport;/// Whether the client supports tokens that can span multiple lines.
- bool? get multilineTokenSupport;/// Whether the client allows the server to actively cancel a
-/// semantic token request, e.g. supports returning
-/// LSPErrorCodes.ServerCancelled. If a server does the client
-/// needs to retrigger the request.
+ bool? get multilineTokenSupport;/// Whether the client allows the server to actively cancel a semantic token
+/// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
+/// does the client needs to retrigger the request.
 ///
 /// @since 3.17.0
- bool? get serverCancelSupport;/// Whether the client uses semantic tokens to augment existing
-/// syntax tokens. If set to `true` client side created syntax
-/// tokens and semantic tokens are both used for colorization. If
-/// set to `false` the client only uses the returned semantic tokens
-/// for colorization.
+ bool? get serverCancelSupport;/// Whether the client uses semantic tokens to augment existing syntax tokens.
+/// If set to `true` client side created syntax tokens and semantic tokens are
+/// both used for colorization. If set to `false` the client only uses the
+/// returned semantic tokens for colorization.
 ///
-/// If the value is `undefined` then the client behavior is not
-/// specified.
+/// If the value is `undefined` then the client behavior is not specified.
 ///
 /// @since 3.17.0
  bool? get augmentsSyntaxTokens;
@@ -94407,18 +94344,19 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
   const _SemanticTokensClientCapabilities({this.dynamicRegistration, required this.requests, required final  List<String> tokenTypes, required final  List<String> tokenModifiers, required final  List<TokenFormat> formats, this.overlappingTokenSupport, this.multilineTokenSupport, this.serverCancelSupport, this.augmentsSyntaxTokens}): _tokenTypes = tokenTypes,_tokenModifiers = tokenModifiers,_formats = formats;
   factory _SemanticTokensClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
 @override final  bool? dynamicRegistration;
-/// Which requests the client supports and might send to the server
-/// depending on the server's capability. Please note that clients might not
-/// show semantic tokens or degrade some of the user experience if a range
-/// or full request is advertised by the client but not provided by the
-/// server. If for example the client capability `requests.full` and
-/// `request.range` are both set to true but the server only provides a
-/// range provider the client might not render a minimap correctly or might
-/// even decide to not show any semantic tokens at all.
+/// Which requests the client supports and might send to the server depending on
+/// the server's capability. Please note that clients might not show semantic
+/// tokens or degrade some of the user experience if a range or full request is
+/// advertised by the client but not provided by the server. If for example the
+/// client capability `requests.full` and `request.range` are both set to true
+/// but the server only provides a range provider the client might not render a
+/// minimap correctly or might even decide to not show any semantic tokens at
+/// all.
 @override final  ({Object? range, Object? full}) requests;
 /// The token types that the client supports.
  final  List<String> _tokenTypes;
@@ -94451,21 +94389,18 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
 @override final  bool? overlappingTokenSupport;
 /// Whether the client supports tokens that can span multiple lines.
 @override final  bool? multilineTokenSupport;
-/// Whether the client allows the server to actively cancel a
-/// semantic token request, e.g. supports returning
-/// LSPErrorCodes.ServerCancelled. If a server does the client
-/// needs to retrigger the request.
+/// Whether the client allows the server to actively cancel a semantic token
+/// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
+/// does the client needs to retrigger the request.
 ///
 /// @since 3.17.0
 @override final  bool? serverCancelSupport;
-/// Whether the client uses semantic tokens to augment existing
-/// syntax tokens. If set to `true` client side created syntax
-/// tokens and semantic tokens are both used for colorization. If
-/// set to `false` the client only uses the returned semantic tokens
-/// for colorization.
+/// Whether the client uses semantic tokens to augment existing syntax tokens.
+/// If set to `true` client side created syntax tokens and semantic tokens are
+/// both used for colorization. If set to `false` the client only uses the
+/// returned semantic tokens for colorization.
 ///
-/// If the value is `undefined` then the client behavior is not
-/// specified.
+/// If the value is `undefined` then the client behavior is not specified.
 ///
 /// @since 3.17.0
 @override final  bool? augmentsSyntaxTokens;
@@ -94542,9 +94477,10 @@ as bool?,
 /// @nodoc
 mixin _$LinkedEditingRangeClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of LinkedEditingRangeClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -94742,9 +94678,10 @@ class _LinkedEditingRangeClientCapabilities implements LinkedEditingRangeClientC
   const _LinkedEditingRangeClientCapabilities({this.dynamicRegistration});
   factory _LinkedEditingRangeClientCapabilities.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangeClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of LinkedEditingRangeClientCapabilities
@@ -94811,9 +94748,9 @@ as bool?,
 /// @nodoc
 mixin _$MonikerClientCapabilities {
 
-/// Whether moniker supports dynamic registration. If this is set to `true`
-/// the client supports the new `MonikerRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether moniker supports dynamic registration. If this is set to `true` the
+/// client supports the new `MonikerRegistrationOptions` return value for the
+/// corresponding server capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of MonikerClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -95011,9 +94948,9 @@ class _MonikerClientCapabilities implements MonikerClientCapabilities {
   const _MonikerClientCapabilities({this.dynamicRegistration});
   factory _MonikerClientCapabilities.fromJson(Map<String, dynamic> json) => _$MonikerClientCapabilitiesFromJson(json);
 
-/// Whether moniker supports dynamic registration. If this is set to `true`
-/// the client supports the new `MonikerRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether moniker supports dynamic registration. If this is set to `true` the
+/// client supports the new `MonikerRegistrationOptions` return value for the
+/// corresponding server capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of MonikerClientCapabilities
@@ -95080,9 +95017,10 @@ as bool?,
 /// @nodoc
 mixin _$TypeHierarchyClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of TypeHierarchyClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -95280,9 +95218,10 @@ class _TypeHierarchyClientCapabilities implements TypeHierarchyClientCapabilitie
   const _TypeHierarchyClientCapabilities({this.dynamicRegistration});
   factory _TypeHierarchyClientCapabilities.fromJson(Map<String, dynamic> json) => _$TypeHierarchyClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of TypeHierarchyClientCapabilities
@@ -95349,7 +95288,8 @@ as bool?,
 /// @nodoc
 mixin _$InlineValueClientCapabilities {
 
-/// Whether implementation supports dynamic registration for inline value providers.
+/// Whether implementation supports dynamic registration for inline value
+/// providers.
  bool? get dynamicRegistration;
 /// Create a copy of InlineValueClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -95547,7 +95487,8 @@ class _InlineValueClientCapabilities implements InlineValueClientCapabilities {
   const _InlineValueClientCapabilities({this.dynamicRegistration});
   factory _InlineValueClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineValueClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration for inline value providers.
+/// Whether implementation supports dynamic registration for inline value
+/// providers.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of InlineValueClientCapabilities
@@ -95615,8 +95556,7 @@ as bool?,
 mixin _$InlayHintClientCapabilities {
 
 /// Whether inlay hints support dynamic registration.
- bool? get dynamicRegistration;/// Indicates which properties a client can resolve lazily on an inlay
-/// hint.
+ bool? get dynamicRegistration;/// Indicates which properties a client can resolve lazily on an inlay hint.
  ({List<String> properties})? get resolveSupport;
 /// Create a copy of InlayHintClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -95817,8 +95757,7 @@ class _InlayHintClientCapabilities implements InlayHintClientCapabilities {
 
 /// Whether inlay hints support dynamic registration.
 @override final  bool? dynamicRegistration;
-/// Indicates which properties a client can resolve lazily on an inlay
-/// hint.
+/// Indicates which properties a client can resolve lazily on an inlay hint.
 @override final  ({List<String> properties})? resolveSupport;
 
 /// Create a copy of InlayHintClientCapabilities
@@ -95886,10 +95825,12 @@ as ({List<String> properties})?,
 /// @nodoc
 mixin _$DiagnosticClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
- bool? get dynamicRegistration;/// Whether the clients supports related documents for document diagnostic pulls.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
+ bool? get dynamicRegistration;/// Whether the clients supports related documents for document diagnostic
+/// pulls.
  bool? get relatedDocumentSupport;
 /// Create a copy of DiagnosticClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -96088,11 +96029,13 @@ class _DiagnosticClientCapabilities implements DiagnosticClientCapabilities {
   const _DiagnosticClientCapabilities({this.dynamicRegistration, this.relatedDocumentSupport});
   factory _DiagnosticClientCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is set to `true`
-/// the client supports the new `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
 @override final  bool? dynamicRegistration;
-/// Whether the clients supports related documents for document diagnostic pulls.
+/// Whether the clients supports related documents for document diagnostic
+/// pulls.
 @override final  bool? relatedDocumentSupport;
 
 /// Create a copy of DiagnosticClientCapabilities
@@ -96160,7 +96103,8 @@ as bool?,
 /// @nodoc
 mixin _$InlineCompletionClientCapabilities {
 
-/// Whether implementation supports dynamic registration for inline completion providers.
+/// Whether implementation supports dynamic registration for inline completion
+/// providers.
  bool? get dynamicRegistration;
 /// Create a copy of InlineCompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -96358,7 +96302,8 @@ class _InlineCompletionClientCapabilities implements InlineCompletionClientCapab
   const _InlineCompletionClientCapabilities({this.dynamicRegistration});
   factory _InlineCompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineCompletionClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration for inline completion providers.
+/// Whether implementation supports dynamic registration for inline completion
+/// providers.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of InlineCompletionClientCapabilities
@@ -96425,10 +96370,10 @@ as bool?,
 /// @nodoc
 mixin _$NotebookDocumentSyncClientCapabilities {
 
-/// Whether implementation supports dynamic registration. If this is
-/// set to `true` the client supports the new
-/// `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
  bool? get dynamicRegistration;/// The client supports sending execution summary data per cell.
  bool? get executionSummarySupport;
 /// Create a copy of NotebookDocumentSyncClientCapabilities
@@ -96628,10 +96573,10 @@ class _NotebookDocumentSyncClientCapabilities implements NotebookDocumentSyncCli
   const _NotebookDocumentSyncClientCapabilities({this.dynamicRegistration, this.executionSummarySupport});
   factory _NotebookDocumentSyncClientCapabilities.fromJson(Map<String, dynamic> json) => _$NotebookDocumentSyncClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration. If this is
-/// set to `true` the client supports the new
-/// `(TextDocumentRegistrationOptions & StaticRegistrationOptions)`
-/// return value for the corresponding server capability as well.
+/// Whether implementation supports dynamic registration. If this is set to
+/// `true` the client supports the new `(TextDocumentRegistrationOptions &
+/// StaticRegistrationOptions)` return value for the corresponding server
+/// capability as well.
 @override final  bool? dynamicRegistration;
 /// The client supports sending execution summary data per cell.
 @override final  bool? executionSummarySupport;
@@ -96966,8 +96911,7 @@ as ({bool? additionalPropertiesSupport})?,
 /// @nodoc
 mixin _$ShowDocumentClientCapabilities {
 
-/// The client has support for the showDocument
-/// request.
+/// The client has support for the showDocument request.
  bool get support;
 /// Create a copy of ShowDocumentClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -97165,8 +97109,7 @@ class _ShowDocumentClientCapabilities implements ShowDocumentClientCapabilities 
   const _ShowDocumentClientCapabilities({required this.support});
   factory _ShowDocumentClientCapabilities.fromJson(Map<String, dynamic> json) => _$ShowDocumentClientCapabilitiesFromJson(json);
 
-/// The client has support for the showDocument
-/// request.
+/// The client has support for the showDocument request.
 @override final  bool support;
 
 /// Create a copy of ShowDocumentClientCapabilities
@@ -97505,8 +97448,7 @@ mixin _$MarkdownClientCapabilities {
 
 /// The name of the parser.
  String get parser;/// The version of the parser.
- String? get version;/// A list of HTML tags that the client allows / supports in
-/// Markdown.
+ String? get version;/// A list of HTML tags that the client allows / supports in Markdown.
 ///
 /// @since 3.17.0
  List<String>? get allowedTags;
@@ -97712,13 +97654,11 @@ class _MarkdownClientCapabilities implements MarkdownClientCapabilities {
 @override final  String parser;
 /// The version of the parser.
 @override final  String? version;
-/// A list of HTML tags that the client allows / supports in
-/// Markdown.
+/// A list of HTML tags that the client allows / supports in Markdown.
 ///
 /// @since 3.17.0
  final  List<String>? _allowedTags;
-/// A list of HTML tags that the client allows / supports in
-/// Markdown.
+/// A list of HTML tags that the client allows / supports in Markdown.
 ///
 /// @since 3.17.0
 @override List<String>? get allowedTags {

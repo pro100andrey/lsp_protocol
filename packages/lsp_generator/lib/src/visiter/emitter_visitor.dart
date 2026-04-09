@@ -144,7 +144,7 @@ final class EmitterVisitor {
       ..body.addAll(_resolved.enumerations.map(_buildEnum)),
   );
 
-  /// Builds a [Library] containing a [NotificationMethod] enum with one member
+  /// Builds a [Library] containing a NotificationMethod enum with one member
   /// per LSP notification method string.
   ///
   /// Member names use the last path segment when unique across all
@@ -343,9 +343,7 @@ final class EmitterVisitor {
 
       b.mixins.add(refer('_\$$publicPart'));
 
-      if (cls.documentation != null) {
-        b.docs.add('/// ${cls.documentation!.replaceAll('\n', '\n/// ')}');
-      }
+      b.docs.addAll(_docLines(cls.documentation));
 
       if (hasEnumGetters) {
         b.constructors.add(
@@ -470,9 +468,7 @@ final class EmitterVisitor {
     return Class((b) {
       b.name = cls.name;
       b.annotations.add(refer('JsonSerializable').call([]));
-      if (cls.documentation != null) {
-        b.docs.add('/// ${cls.documentation!.replaceAll('\n', '\n/// ')}');
-      }
+      b.docs.addAll(_docLines(cls.documentation));
 
       // Final fields (plain class — no freezed mixin).
       for (final p in allProps) {
@@ -492,11 +488,7 @@ final class EmitterVisitor {
                         : refer(openEnum.primitive))
                   : toRef(p.type, nullable: p.optional);
             _annotationsForParam(p).forEach(b.annotations.add);
-            if (p.documentation != null) {
-              b.docs.add(
-                '/// ${p.documentation!.replaceAll('\n', '\n/// ')}',
-              );
-            }
+            b.docs.addAll(_docLines(p.documentation));
           }),
         );
       }
@@ -593,11 +585,7 @@ final class EmitterVisitor {
               ..named = true
               ..required = !p.optional;
             _annotationsForParam(p).forEach(b.annotations.add);
-            if (p.documentation != null) {
-              b.docs.add(
-                '/// ${p.documentation!.replaceAll('\n', '\n/// ')}',
-              );
-            }
+            b.docs.addAll(_docLines(p.documentation));
           });
         }),
       ),
@@ -965,7 +953,7 @@ final class EmitterVisitor {
               n.documentation ??
               'LSP notification `${n.method}` '
                   '(${_directionLabel(n.messageDirection)}).';
-          b.docs.add('/// ${doc.replaceAll('\n', '\n/// ')}');
+          b.docs.addAll(_docLines(doc));
         }),
       );
     }
@@ -1042,9 +1030,7 @@ final class EmitterVisitor {
         }),
       );
 
-      if (en.documentation != null) {
-        b.docs.add('/// ${en.documentation!.replaceAll('\n', '\n/// ')}');
-      }
+      b.docs.addAll(_docLines(en.documentation));
 
       for (final member in en.members) {
         b.values.add(
@@ -1055,11 +1041,7 @@ final class EmitterVisitor {
                   ? literalNum(int.parse(member.value))
                   : literalString(member.value),
             );
-            if (member.documentation != null) {
-              b.docs.add(
-                '/// ${member.documentation!.replaceAll('\n', '\n/// ')}',
-              );
-            }
+            b.docs.addAll(_docLines(member.documentation));
           }),
         );
       }
@@ -1123,13 +1105,10 @@ final class EmitterVisitor {
 
   Spec _buildAlias(ResolvedAlias alias) => TypeDef(
     (b) {
-      b.name = alias.name;
-      b.definition = toTypeRef(alias.type);
-      if (alias.documentation != null) {
-        b.docs.add(
-          '/// ${alias.documentation!.replaceAll('\n', '\n/// ')}',
-        );
-      }
+      b
+        ..name = alias.name
+        ..definition = toTypeRef(alias.type);
+      b.docs.addAll(_docLines(alias.documentation));
     },
   );
 
@@ -2164,6 +2143,94 @@ final class EmitterVisitor {
       return (primitive: _enumPrimitiveName(ref), ref: ref);
     }
     return null;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Documentation helpers
+  // ---------------------------------------------------------------------------
+
+  /// Formats a documentation string into `/// ` doc-comment lines.
+  ///
+  /// Resolves JSDoc `{@link Target}` and `{@link Target displayText}` to Dart
+  /// cross-reference syntax:
+  /// * `{@link Foo}` → `[Foo]`
+  /// * `{@link Foo.bar}` → `[Foo.bar]`
+  /// * `{@link Foo.bar name}` → `[name]` when *name* is a valid identifier,
+  ///   otherwise `[Foo]` (type part only).
+  ///
+  /// Lines are word-wrapped at [maxWidth] characters. Returns an empty list
+  /// when [input] is null or blank.
+  static List<String> _docLines(String? input, {int maxWidth = 80}) {
+    if (input == null || input.trim().isEmpty) {
+      return const [];
+    }
+
+    const prefix = '/// ';
+    final maxContent = maxWidth - prefix.length;
+
+    // Resolve {@link Target} / {@link Target displayText}
+    final resolved = input.replaceAllMapped(
+      RegExp(r'\{@link\s+(\S+?)(?:\s+([^}]*?))?\}'),
+      (m) {
+        final target = m.group(1)!.replaceAll('[]', '');
+        final rawDisplay = m.group(2)?.replaceAll('`', '').trim() ?? '';
+        if (rawDisplay.isEmpty) {
+          return '[$target]';
+        }
+        // Single valid Dart identifier → use as reference.
+        if (RegExp(r'^\w+$').hasMatch(rawDisplay)) {
+          return '[$rawDisplay]';
+        }
+        // Multi-word / non-identifier → link to the type part only.
+        return '[${target.split('.').first}]';
+      },
+    );
+
+    // Normalise line endings.
+    final normalised = resolved.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
+
+    // Split into paragraphs (blank line = paragraph break).
+    final paragraphs = normalised.split(RegExp(r'\n\s*\n'));
+
+    final lines = <String>[];
+    for (var i = 0; i < paragraphs.length; i++) {
+      if (i > 0) {
+        lines.add('///');
+      }
+      final paragraph = paragraphs[i].trim();
+      if (paragraph.isEmpty) {
+        continue;
+      }
+
+      // Collapse intra-paragraph newlines to spaces, then word-wrap the whole
+      // paragraph as a single stream of words.
+      final text = paragraph.replaceAll('\n', ' ').trim();
+      if (text.length <= maxContent) {
+        lines.add('$prefix$text');
+        continue;
+      }
+
+      final words = text.split(RegExp(r'\s+'));
+      final buf = StringBuffer();
+      for (final word in words) {
+        if (buf.isEmpty) {
+          buf.write(word);
+        } else if (buf.length + 1 + word.length <= maxContent) {
+          buf
+            ..write(' ')
+            ..write(word);
+        } else {
+          lines.add('$prefix$buf');
+          buf
+            ..clear()
+            ..write(word);
+        }
+      }
+      if (buf.isNotEmpty) {
+        lines.add('$prefix$buf');
+      }
+    }
+    return lines;
   }
 
   /// Ensures an identifier is valid Dart (e.g. avoids reserved words).
