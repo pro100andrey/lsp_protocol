@@ -36,6 +36,8 @@ enum NotificationMethod {
   ///
   /// @since 3.17.0
   notebookDocumentDidOpen(r'notebookDocument/didOpen'),
+
+  /// LSP notification `notebookDocument/didChange` (client to server).
   notebookDocumentDidChange(r'notebookDocument/didChange'),
 
   /// A notification sent when a notebook document is saved.
@@ -112,9 +114,17 @@ enum NotificationMethod {
   /// Diagnostics notification are sent from the server to the client to signal
   /// results of validation runs.
   publishDiagnostics(r'textDocument/publishDiagnostics'),
+
+  /// LSP notification `$/setTrace` (client to server).
   setTrace(r'$/setTrace'),
+
+  /// LSP notification `$/logTrace` (server to client).
   logTrace(r'$/logTrace'),
+
+  /// LSP notification `$/cancelRequest` (both directions).
   cancelRequest(r'$/cancelRequest'),
+
+  /// LSP notification `$/progress` (both directions).
   progress(r'$/progress');
 
   const NotificationMethod(this.value);

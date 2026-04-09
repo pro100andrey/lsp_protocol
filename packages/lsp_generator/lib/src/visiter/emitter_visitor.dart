@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 
-import '../redux/models/protocol.dart' show MetaNotification;
+import '../redux/models/protocol.dart' show MessageDirection, MetaNotification;
 import '../redux/models/resolved_decl.dart';
 import '../redux/models/resolved_type.dart';
 import '../redux/resolved/resolved_state.dart';
@@ -884,6 +884,12 @@ final class EmitterVisitor {
   // Private: notification method enum
   // ---------------------------------------------------------------------------
 
+  static String _directionLabel(MessageDirection d) => switch (d) {
+    MessageDirection.clientToServer => 'client to server',
+    MessageDirection.serverToClient => 'server to client',
+    MessageDirection.both => 'both directions',
+  };
+
   /// Returns a map from each [MetaNotification] to its Dart enum member name.
   ///
   /// The last path segment is used when unique across all notifications.
@@ -940,11 +946,11 @@ final class EmitterVisitor {
         EnumValue((b) {
           b.name = names[n];
           b.arguments.add(literalString(n.method, raw: true));
-          if (n.documentation != null) {
-            b.docs.add(
-              '/// ${n.documentation!.replaceAll('\n', '\n/// ')}',
-            );
-          }
+          final doc =
+              n.documentation ??
+              'LSP notification `${n.method}` '
+                  '(${_directionLabel(n.messageDirection)}).';
+          b.docs.add('/// ${doc.replaceAll('\n', '\n/// ')}');
         }),
       );
     }
