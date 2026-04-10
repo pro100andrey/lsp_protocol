@@ -5,7 +5,7 @@ version: 0.1.0
 publish_to: none
 
 environment:
-  sdk: "^3.8.0"
+  sdk: "^3.11.4"
 
 dependencies:
   json_rpc_2: ^4.1.0
@@ -14,5 +14,5 @@ dependencies:
     path: ../lsp_specification
 
 dev_dependencies:
-  lints: ^5.0.0
-  test: ^1.25.0
+  lints: ^6.1.0
+  test: ^1.31.0

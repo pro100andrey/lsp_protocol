@@ -236,7 +236,7 @@ final class ServerApiVisitor {
     ).closure;
 
     return refer('_connection').property('registerRequestHandler').call([
-      literalString(wireMethod),
+      literalString(wireMethod, raw: true),
       closure,
     ]).statement;
   }
@@ -260,7 +260,7 @@ final class ServerApiVisitor {
     ).closure;
 
     return refer('_connection').property('registerNotificationHandler').call([
-      literalString(wireMethod),
+      literalString(wireMethod, raw: true),
       closure,
     ]).statement;
   }
@@ -335,8 +335,13 @@ final class ServerApiVisitor {
     bool hasParams,
   ) {
     final sendCall = hasParams
-        ? "_connection.sendNotification('$wireMethod', params.toJson());"
-        : "_connection.sendNotification('$wireMethod');";
+        ? refer('_connection').property('sendNotification').call([
+            literalString(wireMethod, raw: true),
+            refer('params').property('toJson').call([]),
+          ])
+        : refer('_connection').property('sendNotification').call([
+            literalString(wireMethod, raw: true),
+          ]);
 
     return Method(
       (b) => b
@@ -352,7 +357,7 @@ final class ServerApiVisitor {
             ),
         ])
         ..lambda = true
-        ..body = Code(sendCall),
+        ..body = sendCall.code,
     );
   }
 
@@ -374,12 +379,14 @@ final class ServerApiVisitor {
 
     final sendCallExpr = hasParams
         ? refer('_connection').property('sendRequest').call([
-            literalString(wireMethod),
+            literalString(wireMethod, raw: true),
             refer('params').property('toJson').call([]),
           ])
         : refer(
             '_connection',
-          ).property('sendRequest').call([literalString(wireMethod)]);
+          ).property('sendRequest').call([
+            literalString(wireMethod, raw: true),
+          ]);
 
     final bodyStatements = <Code>[
       if (isVoidResult)
