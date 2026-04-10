@@ -242,6 +242,7 @@ final class _RegisterPass extends MetaVisitor {
             },
             documentation: m.documentation,
             since: m.since,
+            deprecated: m.deprecated,
           ),
         )
         .toList();
@@ -268,6 +269,7 @@ final class _RegisterPass extends MetaVisitor {
       type: const DartCoreType(dartName: 'Object?'),
       documentation: typeAlias.documentation,
       since: typeAlias.since,
+      deprecated: typeAlias.deprecated,
       proposed: typeAlias.proposed,
     );
     

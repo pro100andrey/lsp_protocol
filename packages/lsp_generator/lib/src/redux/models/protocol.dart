@@ -175,6 +175,7 @@ abstract class MetaEnumMember with _$MetaEnumMember {
     @IntOrStringSealedConverter() required EnumRawValue value,
     String? documentation,
     String? since,
+    String? deprecated,
   }) = _MetaEnumMember;
 
   factory MetaEnumMember.fromJson(Map<String, Object?> json) =>

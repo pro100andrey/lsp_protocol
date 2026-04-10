@@ -8,13 +8,17 @@ import 'structures.dart';
 /// the range of the defining symbol
 typedef DefinitionLink = LocationLink;
 
-/// LSP arrays. @since 3.17.0
+/// LSP arrays.
+///
+/// @since 3.17.0
 typedef LSPArray = List<LSPAny>;
 
 /// The LSP any type. Please note that strictly speaking a property with the
 /// value `undefined` can't be converted into JSON preserving the property name.
 /// However for convenience it is allowed and assumed that all these properties
-/// are optional as well. @since 3.17.0
+/// are optional as well.
+///
+/// @since 3.17.0
 typedef LSPAny = Object;
 
 /// Information about where a symbol is declared.
@@ -31,7 +35,9 @@ typedef DeclarationLink = LocationLink;
 /// @sample `let sel:DocumentSelector = [{ language: 'typescript' }, { language:
 /// 'json', pattern: '**∕tsconfig.json' }]`;
 ///
-/// The use of a string as a document filter is deprecated @since 3.16.0.
+/// The use of a string as a document filter is deprecated
+///
+/// @since 3.16.0.
 typedef DocumentSelector = List<DocumentFilter>;
 
 /// An identifier to refer to a change annotation stored with a workspace edit.
@@ -40,10 +46,14 @@ typedef ChangeAnnotationIdentifier = String;
 /// A document filter describes a top level text document or a notebook cell
 /// document.
 ///
+/// - proposed support for NotebookCellTextDocumentFilter.
+///
 /// @since 3.17.0 - proposed support for NotebookCellTextDocumentFilter.
 typedef DocumentFilter = Object;
 
-/// LSP object definition. @since 3.17.0
+/// LSP object definition.
+///
+/// @since 3.17.0
 typedef LSPObject = Map<String, LSPAny>;
 
 /// The glob pattern. Either a string pattern or a relative pattern.

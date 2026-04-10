@@ -61,6 +61,7 @@ abstract class ResolvedAlias with _$ResolvedAlias implements ResolvedDecl {
     required ResolvedType type,
     String? documentation,
     String? since,
+    String? deprecated,
     @Default(false) bool proposed,
   }) = _ResolvedAlias;
   ResolvedAlias._();
@@ -93,5 +94,6 @@ abstract class ResolvedEnumMember with _$ResolvedEnumMember {
     required String value,
     String? documentation,
     String? since,
+    String? deprecated,
   }) = _ResolvedEnumMember;
 }

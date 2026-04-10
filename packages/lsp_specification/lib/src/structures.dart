@@ -316,8 +316,6 @@ abstract class FoldingRange with _$FoldingRange {
     /// The text that the client should show when the specified range is collapsed.
     /// If not defined or not supported by the client, a default will be chosen by
     /// the client.
-    ///
-    /// @since 3.17.0
     String? collapsedText,
   }) = _FoldingRange;
 
@@ -934,8 +932,6 @@ abstract class WorkspaceEdit with _$WorkspaceEdit {
     ///
     /// Whether clients honor this property depends on the client capability
     /// `workspace.changeAnnotationSupport`.
-    ///
-    /// @since 3.16.0
     Map<ChangeAnnotationIdentifier, ChangeAnnotation>? changeAnnotations,
   }) = _WorkspaceEdit;
 
@@ -1545,7 +1541,8 @@ abstract class DidCloseNotebookDocumentParams
 
 /// A parameter literal used in inline completion requests.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class InlineCompletionParams with _$InlineCompletionParams {
   const factory InlineCompletionParams({
@@ -1570,7 +1567,8 @@ abstract class InlineCompletionParams with _$InlineCompletionParams {
 /// Represents a collection of [InlineCompletionItem] to be presented in the
 /// editor.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class InlineCompletionList with _$InlineCompletionList {
   const factory InlineCompletionList({
@@ -1585,7 +1583,8 @@ abstract class InlineCompletionList with _$InlineCompletionList {
 /// An inline completion item represents a text snippet that is proposed inline
 /// to complete text that is being typed.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class InlineCompletionItem with _$InlineCompletionItem {
   const factory InlineCompletionItem({
@@ -1609,7 +1608,8 @@ abstract class InlineCompletionItem with _$InlineCompletionItem {
 
 /// Inline completion options used during static or dynamic registration.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class InlineCompletionRegistrationOptions
     with _$InlineCompletionRegistrationOptions {
@@ -1663,8 +1663,6 @@ abstract class InitializeParams with _$InitializeParams {
     required int? processId,
 
     /// Information about the client
-    ///
-    /// @since 3.15.0
     ({String name, String? version})? clientInfo,
 
     /// The locale the client is currently showing the user interface in. This must
@@ -1672,20 +1670,18 @@ abstract class InitializeParams with _$InitializeParams {
     ///
     /// Uses IETF language tags as the value's syntax (See
     /// https://en.wikipedia.org/wiki/IETF_language_tag)
-    ///
-    /// @since 3.16.0
     String? locale,
 
     /// The rootPath of the workspace. Is null if no folder is open.
     ///
     /// @deprecated in favour of rootUri.
-    String? rootPath,
+    @Deprecated('in favour of rootUri.') String? rootPath,
 
     /// The rootUri of the workspace. Is null if no folder is open. If both
     /// `rootPath` and `rootUri` are set `rootUri` wins.
     ///
     /// @deprecated in favour of workspaceFolders.
-    required String? rootUri,
+    @Deprecated('in favour of workspaceFolders.') required String? rootUri,
 
     /// The capabilities provided by the client (editor or tool)
     required ClientCapabilities capabilities,
@@ -1701,8 +1697,6 @@ abstract class InitializeParams with _$InitializeParams {
     /// This property is only available if the client supports workspace folders. It
     /// can be `null` if the client supports workspace folders but none are
     /// configured.
-    ///
-    /// @since 3.6.0
     List<WorkspaceFolder>? workspaceFolders,
   }) = _InitializeParams;
 
@@ -1718,8 +1712,6 @@ abstract class InitializeResult with _$InitializeResult {
     required ServerCapabilities capabilities,
 
     /// Information about the server.
-    ///
-    /// @since 3.15.0
     ({String name, String? version})? serverInfo,
   }) = _InitializeResult;
 
@@ -2000,8 +1992,6 @@ abstract class PublishDiagnosticsParams with _$PublishDiagnosticsParams {
 
     /// Optional the version number of the document the diagnostics are published
     /// for.
-    ///
-    /// @since 3.15.0
     int? version,
 
     /// An array of diagnostic information items.
@@ -2054,8 +2044,6 @@ abstract class CompletionItem with _$CompletionItem {
     required String label,
 
     /// Additional details for the label
-    ///
-    /// @since 3.17.0
     CompletionItemLabelDetails? labelDetails,
 
     /// The kind of this completion item. Based of the kind an icon is chosen by the
@@ -2063,8 +2051,6 @@ abstract class CompletionItem with _$CompletionItem {
     CompletionItemKind? kind,
 
     /// Tags for this completion item.
-    ///
-    /// @since 3.15.0
     List<CompletionItemTag>? tags,
 
     /// A human-readable string with additional information about this item, like
@@ -2075,7 +2061,7 @@ abstract class CompletionItem with _$CompletionItem {
     Object? documentation,
 
     /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
-    bool? deprecated,
+    @Deprecated('Use `tags` instead.') bool? deprecated,
 
     /// Select this item when showing.
     ///
@@ -2114,8 +2100,6 @@ abstract class CompletionItem with _$CompletionItem {
     /// How whitespace and indentation is handled during completion item insertion.
     /// If not provided the clients default value depends on the
     /// `textDocument.completion.insertTextMode` client capability.
-    ///
-    /// @since 3.16.0
     InsertTextMode? insertTextMode,
 
     /// An [edit] which is applied to a document when selecting this completion.
@@ -2134,7 +2118,7 @@ abstract class CompletionItem with _$CompletionItem {
     /// returned the edit's insert range must be a prefix of the edit's replace
     /// range, that means it must be contained and starting at the same position.
     ///
-    /// @since 3.16.0 additional type `InsertReplaceEdit`
+    /// additional type `InsertReplaceEdit`
     Object? textEdit,
 
     /// The edit text used if the completion item is part of a CompletionList and
@@ -2145,8 +2129,6 @@ abstract class CompletionItem with _$CompletionItem {
     ///
     /// If not provided and a list's default range is provided the label property is
     /// used as a text.
-    ///
-    /// @since 3.17.0
     String? textEditText,
 
     /// An optional array of additional [TextEdit] that are applied when selecting
@@ -2198,8 +2180,6 @@ abstract class CompletionList with _$CompletionList {
     ///
     /// Servers are only allowed to return default values if the client signals
     /// support for this via the `completionList.itemDefaults` capability.
-    ///
-    /// @since 3.17.0
     ({
       List<String>? commitCharacters,
       Object? editRange,
@@ -2246,8 +2226,6 @@ abstract class CompletionRegistrationOptions
     ///
     /// If a server provides both `allCommitCharacters` and commit characters on an
     /// individual completion item the ones on the completion item win.
-    ///
-    /// @since 3.2.0
     List<String>? allCommitCharacters,
 
     /// The server provides support to resolve additional information for a
@@ -2255,8 +2233,6 @@ abstract class CompletionRegistrationOptions
     bool? resolveProvider,
 
     /// The server supports the following `CompletionItem` specific capabilities.
-    ///
-    /// @since 3.17.0
     ({bool? labelDetailsSupport})? completionItem,
   }) = _CompletionRegistrationOptions;
 
@@ -2327,8 +2303,6 @@ abstract class SignatureHelpParams with _$SignatureHelpParams {
     /// The signature help context. This is only available if the client specifies
     /// to send this using the client capability
     /// `textDocument.signatureHelp.contextSupport === true`
-    ///
-    /// @since 3.15.0
     SignatureHelpContext? context,
   }) = _SignatureHelpParams;
 
@@ -2385,8 +2359,6 @@ abstract class SignatureHelpRegistrationOptions
     ///
     /// These trigger characters are only active when signature help is already
     /// showing. All trigger characters are also counted as re-trigger characters.
-    ///
-    /// @since 3.15.0
     List<String>? retriggerCharacters,
   }) = _SignatureHelpRegistrationOptions;
 
@@ -2556,8 +2528,6 @@ abstract class SymbolInformation with _$SymbolInformation {
     required SymbolKind kind,
 
     /// Tags for this symbol.
-    ///
-    /// @since 3.16.0
     List<SymbolTag>? tags,
 
     /// The name of the symbol containing this symbol. This information is for user
@@ -2569,7 +2539,7 @@ abstract class SymbolInformation with _$SymbolInformation {
     /// Indicates if this symbol is deprecated.
     ///
     /// @deprecated Use tags instead
-    bool? deprecated,
+    @Deprecated('Use tags instead') bool? deprecated,
 
     /// The location of this symbol. The location's range is used by a tool to
     /// reveal the location in the editor. If the symbol is selected in the tool the
@@ -2606,14 +2576,12 @@ abstract class DocumentSymbol with _$DocumentSymbol {
     required SymbolKind kind,
 
     /// Tags for this document symbol.
-    ///
-    /// @since 3.16.0
     List<SymbolTag>? tags,
 
     /// Indicates if this symbol is deprecated.
     ///
     /// @deprecated Use tags instead
-    bool? deprecated,
+    @Deprecated('Use tags instead') bool? deprecated,
 
     /// The range enclosing this symbol not including leading/trailing whitespace
     /// but everything else like comments. This information is typically used to
@@ -2645,8 +2613,6 @@ abstract class DocumentSymbolRegistrationOptions
 
     /// A human-readable string that is shown when multiple outlines trees are shown
     /// for the same document.
-    ///
-    /// @since 3.16.0
     String? label,
   }) = _DocumentSymbolRegistrationOptions;
 
@@ -2727,8 +2693,6 @@ abstract class CodeAction with _$CodeAction {
     /// A quick fix should be marked preferred if it properly addresses the
     /// underlying error. A refactoring should be marked preferred if it is the most
     /// reasonable choice of actions to take.
-    ///
-    /// @since 3.15.0
     bool? isPreferred,
 
     /// Marks that the code action cannot currently be applied.
@@ -2748,8 +2712,6 @@ abstract class CodeAction with _$CodeAction {
     /// that auto applies a code action and only disabled code actions are returned,
     /// the client should show the user an error message with `reason` in the
     /// editor.
-    ///
-    /// @since 3.16.0
     ({String reason})? disabled,
 
     /// The workspace edit this code action performs.
@@ -2761,8 +2723,6 @@ abstract class CodeAction with _$CodeAction {
 
     /// A data entry field that is preserved on a code action between a
     /// `textDocument/codeAction` and a `codeAction/resolve` request.
-    ///
-    /// @since 3.16.0
     LSPAny? data,
   }) = _CodeAction;
 
@@ -2791,8 +2751,6 @@ abstract class CodeActionRegistrationOptions
 
     /// The server provides support to resolve additional information for a code
     /// action.
-    ///
-    /// @since 3.16.0
     bool? resolveProvider,
   }) = _CodeActionRegistrationOptions;
 
@@ -2835,8 +2793,6 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     required SymbolKind kind,
 
     /// Tags for this symbol.
-    ///
-    /// @since 3.16.0
     List<SymbolTag>? tags,
 
     /// The name of the symbol containing this symbol. This information is for user
@@ -2870,8 +2826,6 @@ abstract class WorkspaceSymbolRegistrationOptions
 
     /// The server provides support to resolve additional information for a
     /// workspace symbol.
-    ///
-    /// @since 3.17.0
     bool? resolveProvider,
   }) = _WorkspaceSymbolRegistrationOptions;
 
@@ -2975,8 +2929,6 @@ abstract class DocumentLink with _$DocumentLink {
     /// If a tooltip is provided, is will be displayed in a string that includes
     /// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
     /// specific instructions vary depending on OS, user settings, and localization.
-    ///
-    /// @since 3.15.0
     String? tooltip,
 
     /// A data entry field that is preserved on a document link between a
@@ -3073,8 +3025,6 @@ abstract class DocumentRangeFormattingRegistrationOptions
     bool? workDoneProgress,
 
     /// Whether the server supports formatting multiple ranges at once.
-    ///
-    /// @since 3.18.0 @proposed
     bool? rangesSupport,
   }) = _DocumentRangeFormattingRegistrationOptions;
 
@@ -3085,7 +3035,8 @@ abstract class DocumentRangeFormattingRegistrationOptions
 
 /// The parameters of a [DocumentRangesFormattingRequest].
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class DocumentRangesFormattingParams
     with _$DocumentRangesFormattingParams {
@@ -3188,7 +3139,7 @@ abstract class RenameRegistrationOptions with _$RenameRegistrationOptions {
 
     /// Renames should be checked and tested before being executed.
     ///
-    /// @since version 3.12.0
+    /// 3.12.0
     bool? prepareProvider,
   }) = _RenameRegistrationOptions;
 
@@ -3264,6 +3215,8 @@ abstract class ApplyWorkspaceEditParams with _$ApplyWorkspaceEditParams {
 }
 
 /// The result returned from the apply workspace edit request.
+///
+/// renamed from ApplyWorkspaceEditResponse
 ///
 /// @since 3.17 renamed from ApplyWorkspaceEditResponse
 @freezed
@@ -3646,6 +3599,8 @@ abstract class DeclarationOptions with _$DeclarationOptions {
 /// Positions are line end character agnostic. So you can not specify a position
 /// that denotes `\r|\n` or `\n|` where `|` represents the character offset.
 ///
+/// - support for negotiated position encoding.
+///
 /// @since 3.17.0 - support for negotiated position encoding.
 @freezed
 abstract class Position with _$Position {
@@ -3767,8 +3722,7 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
 
     /// The edits to be applied.
     ///
-    /// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
-    /// client capability.
+    /// - support for AnnotatedTextEdit. This is guarded using a client capability.
     required List<Object> edits,
   }) = _TextDocumentEdit;
 
@@ -3781,8 +3735,6 @@ abstract class TextDocumentEdit with _$TextDocumentEdit {
 abstract class CreateFile with _$CreateFile {
   const factory CreateFile({
     /// An optional annotation identifier describing the operation.
-    ///
-    /// @since 3.16.0
     ChangeAnnotationIdentifier? annotationId,
 
     /// A create
@@ -3804,8 +3756,6 @@ abstract class CreateFile with _$CreateFile {
 abstract class RenameFile with _$RenameFile {
   const factory RenameFile({
     /// An optional annotation identifier describing the operation.
-    ///
-    /// @since 3.16.0
     ChangeAnnotationIdentifier? annotationId,
 
     /// A rename
@@ -3830,8 +3780,6 @@ abstract class RenameFile with _$RenameFile {
 abstract class DeleteFile with _$DeleteFile {
   const factory DeleteFile({
     /// An optional annotation identifier describing the operation.
-    ///
-    /// @since 3.16.0
     ChangeAnnotationIdentifier? annotationId,
 
     /// A delete
@@ -4135,8 +4083,6 @@ abstract class RelatedFullDocumentDiagnosticReport
     /// languages where code in a file A can generate diagnostics in a file B which
     /// A depends on. An example of such a language is C/C++ where marco definitions
     /// in a file a.cpp and result in errors in a header file b.hpp.
-    ///
-    /// @since 3.17.0
     Map<String, Object>? relatedDocuments,
   }) = _RelatedFullDocumentDiagnosticReport;
 
@@ -4164,8 +4110,6 @@ abstract class RelatedUnchangedDocumentDiagnosticReport
     /// languages where code in a file A can generate diagnostics in a file B which
     /// A depends on. An example of such a language is C/C++ where marco definitions
     /// in a file a.cpp and result in errors in a header file b.hpp.
-    ///
-    /// @since 3.17.0
     Map<String, Object>? relatedDocuments,
   }) = _RelatedUnchangedDocumentDiagnosticReport;
 
@@ -4377,7 +4321,8 @@ abstract class NotebookDocumentIdentifier with _$NotebookDocumentIdentifier {
 /// Provides information about the context in which an inline completion was
 /// requested.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class InlineCompletionContext with _$InlineCompletionContext {
   const factory InlineCompletionContext({
@@ -4400,7 +4345,8 @@ abstract class InlineCompletionContext with _$InlineCompletionContext {
 /// `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of the
 /// snippet. Variables are defined with `$name` and `${name:default value}`.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class StringValue with _$StringValue {
   const factory StringValue({
@@ -4417,7 +4363,8 @@ abstract class StringValue with _$StringValue {
 
 /// Inline completion options used during static registration.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class InlineCompletionOptions with _$InlineCompletionOptions {
   const factory InlineCompletionOptions({bool? workDoneProgress}) =
@@ -4471,8 +4418,6 @@ abstract class WorkspaceFoldersInitializeParams
     /// This property is only available if the client supports workspace folders. It
     /// can be `null` if the client supports workspace folders but none are
     /// configured.
-    ///
-    /// @since 3.6.0
     List<WorkspaceFolder>? workspaceFolders,
   }) = _WorkspaceFoldersInitializeParams;
 
@@ -4494,8 +4439,6 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// that a server can return is 'utf-16'.
     ///
     /// If omitted it defaults to 'utf-16'.
-    ///
-    /// @since 3.17.0
     String? positionEncoding,
 
     /// Defines how text documents are synced. Is either a detailed structure
@@ -4504,8 +4447,6 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     Object? textDocumentSync,
 
     /// Defines how notebook documents are synced.
-    ///
-    /// @since 3.17.0
     Object? notebookDocumentSync,
 
     /// The server provides completion support.
@@ -4579,48 +4520,30 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     ExecuteCommandOptions? executeCommandProvider,
 
     /// The server provides call hierarchy support.
-    ///
-    /// @since 3.16.0
     Object? callHierarchyProvider,
 
     /// The server provides linked editing range support.
-    ///
-    /// @since 3.16.0
     Object? linkedEditingRangeProvider,
 
     /// The server provides semantic tokens support.
-    ///
-    /// @since 3.16.0
     Object? semanticTokensProvider,
 
     /// The server provides moniker support.
-    ///
-    /// @since 3.16.0
     Object? monikerProvider,
 
     /// The server provides type hierarchy support.
-    ///
-    /// @since 3.17.0
     Object? typeHierarchyProvider,
 
     /// The server provides inline values.
-    ///
-    /// @since 3.17.0
     Object? inlineValueProvider,
 
     /// The server provides inlay hints.
-    ///
-    /// @since 3.17.0
     Object? inlayHintProvider,
 
     /// The server has support for pull model diagnostics.
-    ///
-    /// @since 3.17.0
     Object? diagnosticProvider,
 
     /// Inline completion options used during static registration.
-    ///
-    /// @since 3.18.0 @proposed
     Object? inlineCompletionProvider,
 
     /// Workspace specific server capabilities.
@@ -4692,7 +4615,7 @@ abstract class FileSystemWatcher with _$FileSystemWatcher {
   const factory FileSystemWatcher({
     /// The glob pattern to watch. See [GlobPattern] for more detail.
     ///
-    /// @since 3.17.0 support for relative patterns.
+    /// support for relative patterns.
     required GlobPattern globPattern,
 
     /// The kind of events of interest. If omitted it defaults to WatchKind.Create |
@@ -4723,8 +4646,6 @@ abstract class Diagnostic with _$Diagnostic {
 
     /// An optional property to describe the error code. Requires the code field
     /// (above) to be present/not null.
-    ///
-    /// @since 3.16.0
     CodeDescription? codeDescription,
 
     /// A human-readable string describing the source of this diagnostic, e.g.
@@ -4735,8 +4656,6 @@ abstract class Diagnostic with _$Diagnostic {
     required String message,
 
     /// Additional metadata about the diagnostic.
-    ///
-    /// @since 3.15.0
     List<DiagnosticTag>? tags,
 
     /// An array of related diagnostic information, e.g. when symbol-names within a
@@ -4746,8 +4665,6 @@ abstract class Diagnostic with _$Diagnostic {
     /// A data entry field that is preserved between a
     /// `textDocument/publishDiagnostics` notification and `textDocument/codeAction`
     /// request.
-    ///
-    /// @since 3.16.0
     LSPAny? data,
   }) = _Diagnostic;
 
@@ -4838,8 +4755,6 @@ abstract class CompletionOptions with _$CompletionOptions {
     ///
     /// If a server provides both `allCommitCharacters` and commit characters on an
     /// individual completion item the ones on the completion item win.
-    ///
-    /// @since 3.2.0
     List<String>? allCommitCharacters,
 
     /// The server provides support to resolve additional information for a
@@ -4847,8 +4762,6 @@ abstract class CompletionOptions with _$CompletionOptions {
     bool? resolveProvider,
 
     /// The server supports the following `CompletionItem` specific capabilities.
-    ///
-    /// @since 3.17.0
     ({bool? labelDetailsSupport})? completionItem,
   }) = _CompletionOptions;
 
@@ -4917,8 +4830,6 @@ abstract class SignatureInformation with _$SignatureInformation {
     /// The index of the active parameter.
     ///
     /// If provided, this is used in place of `SignatureHelp.activeParameter`.
-    ///
-    /// @since 3.16.0
     int? activeParameter,
   }) = _SignatureInformation;
 
@@ -4939,8 +4850,6 @@ abstract class SignatureHelpOptions with _$SignatureHelpOptions {
     ///
     /// These trigger characters are only active when signature help is already
     /// showing. All trigger characters are also counted as re-trigger characters.
-    ///
-    /// @since 3.15.0
     List<String>? retriggerCharacters,
   }) = _SignatureHelpOptions;
 
@@ -5001,8 +4910,6 @@ abstract class BaseSymbolInformation with _$BaseSymbolInformation {
     required SymbolKind kind,
 
     /// Tags for this symbol.
-    ///
-    /// @since 3.16.0
     List<SymbolTag>? tags,
 
     /// The name of the symbol containing this symbol. This information is for user
@@ -5024,8 +4931,6 @@ abstract class DocumentSymbolOptions with _$DocumentSymbolOptions {
 
     /// A human-readable string that is shown when multiple outlines trees are shown
     /// for the same document.
-    ///
-    /// @since 3.16.0
     String? label,
   }) = _DocumentSymbolOptions;
 
@@ -5053,8 +4958,6 @@ abstract class CodeActionContext with _$CodeActionContext {
     List<CodeActionKind>? only,
 
     /// The reason why code actions were requested.
-    ///
-    /// @since 3.17.0
     CodeActionTriggerKind? triggerKind,
   }) = _CodeActionContext;
 
@@ -5076,8 +4979,6 @@ abstract class CodeActionOptions with _$CodeActionOptions {
 
     /// The server provides support to resolve additional information for a code
     /// action.
-    ///
-    /// @since 3.16.0
     bool? resolveProvider,
   }) = _CodeActionOptions;
 
@@ -5093,8 +4994,6 @@ abstract class WorkspaceSymbolOptions with _$WorkspaceSymbolOptions {
 
     /// The server provides support to resolve additional information for a
     /// workspace symbol.
-    ///
-    /// @since 3.17.0
     bool? resolveProvider,
   }) = _WorkspaceSymbolOptions;
 
@@ -5141,18 +5040,12 @@ abstract class FormattingOptions with _$FormattingOptions {
     required bool insertSpaces,
 
     /// Trim trailing whitespace on a line.
-    ///
-    /// @since 3.15.0
     bool? trimTrailingWhitespace,
 
     /// Insert a newline character at the end of the file if one does not exist.
-    ///
-    /// @since 3.15.0
     bool? insertFinalNewline,
 
     /// Trim all newlines after the final newline at the end of the file.
-    ///
-    /// @since 3.15.0
     bool? trimFinalNewlines,
   }) = _FormattingOptions;
 
@@ -5178,8 +5071,6 @@ abstract class DocumentRangeFormattingOptions
     bool? workDoneProgress,
 
     /// Whether the server supports formatting multiple ranges at once.
-    ///
-    /// @since 3.18.0 @proposed
     bool? rangesSupport,
   }) = _DocumentRangeFormattingOptions;
 
@@ -5211,7 +5102,7 @@ abstract class RenameOptions with _$RenameOptions {
 
     /// Renames should be checked and tested before being executed.
     ///
-    /// @since version 3.12.0
+    /// 3.12.0
     bool? prepareProvider,
   }) = _RenameOptions;
 
@@ -5299,8 +5190,6 @@ abstract class ResourceOperation with _$ResourceOperation {
     required String kind,
 
     /// An optional annotation identifier describing the operation.
-    ///
-    /// @since 3.16.0
     ChangeAnnotationIdentifier? annotationId,
   }) = _ResourceOperation;
 
@@ -5493,7 +5382,8 @@ abstract class NotebookCellArrayChange with _$NotebookCellArrayChange {
 
 /// Describes the currently selected completion item.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class SelectedCompletionInfo with _$SelectedCompletionInfo {
   const factory SelectedCompletionInfo({
@@ -5519,16 +5409,12 @@ abstract class ClientCapabilities with _$ClientCapabilities {
     TextDocumentClientCapabilities? textDocument,
 
     /// Capabilities specific to the notebook document support.
-    ///
-    /// @since 3.17.0
     NotebookDocumentClientCapabilities? notebookDocument,
 
     /// Window specific client capabilities.
     WindowClientCapabilities? window,
 
     /// General client capabilities.
-    ///
-    /// @since 3.16.0
     GeneralClientCapabilities? general,
 
     /// Experimental client capabilities.
@@ -5801,24 +5687,16 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
     ExecuteCommandClientCapabilities? executeCommand,
 
     /// The client has support for workspace folders.
-    ///
-    /// @since 3.6.0
     bool? workspaceFolders,
 
     /// The client supports `workspace/configuration` requests.
-    ///
-    /// @since 3.6.0
     bool? configuration,
 
     /// Capabilities specific to the semantic token requests scoped to the
     /// workspace.
-    ///
-    /// @since 3.16.0.
     SemanticTokensWorkspaceClientCapabilities? semanticTokens,
 
     /// Capabilities specific to the code lens requests scoped to the workspace.
-    ///
-    /// @since 3.16.0.
     CodeLensWorkspaceClientCapabilities? codeLens,
 
     /// The client has support for file notifications/requests for user operations
@@ -5828,23 +5706,15 @@ abstract class WorkspaceClientCapabilities with _$WorkspaceClientCapabilities {
     FileOperationClientCapabilities? fileOperations,
 
     /// Capabilities specific to the inline values requests scoped to the workspace.
-    ///
-    /// @since 3.17.0.
     InlineValueWorkspaceClientCapabilities? inlineValue,
 
     /// Capabilities specific to the inlay hint requests scoped to the workspace.
-    ///
-    /// @since 3.17.0.
     InlayHintWorkspaceClientCapabilities? inlayHint,
 
     /// Capabilities specific to the diagnostic requests scoped to the workspace.
-    ///
-    /// @since 3.17.0.
     DiagnosticWorkspaceClientCapabilities? diagnostics,
 
     /// Capabilities specific to the folding range requests scoped to the workspace.
-    ///
-    /// @since 3.18.0 @proposed
     FoldingRangeWorkspaceClientCapabilities? foldingRange,
   }) = _WorkspaceClientCapabilities;
 
@@ -5870,21 +5740,15 @@ abstract class TextDocumentClientCapabilities
     SignatureHelpClientCapabilities? signatureHelp,
 
     /// Capabilities specific to the `textDocument/declaration` request.
-    ///
-    /// @since 3.14.0
     DeclarationClientCapabilities? declaration,
 
     /// Capabilities specific to the `textDocument/definition` request.
     DefinitionClientCapabilities? definition,
 
     /// Capabilities specific to the `textDocument/typeDefinition` request.
-    ///
-    /// @since 3.6.0
     TypeDefinitionClientCapabilities? typeDefinition,
 
     /// Capabilities specific to the `textDocument/implementation` request.
-    ///
-    /// @since 3.6.0
     ImplementationClientCapabilities? implementation,
 
     /// Capabilities specific to the `textDocument/references` request.
@@ -5907,8 +5771,6 @@ abstract class TextDocumentClientCapabilities
 
     /// Capabilities specific to the `textDocument/documentColor` and the
     /// `textDocument/colorPresentation` request.
-    ///
-    /// @since 3.6.0
     DocumentColorClientCapabilities? colorProvider,
 
     /// Capabilities specific to the `textDocument/formatting` request.
@@ -5924,61 +5786,39 @@ abstract class TextDocumentClientCapabilities
     RenameClientCapabilities? rename,
 
     /// Capabilities specific to the `textDocument/foldingRange` request.
-    ///
-    /// @since 3.10.0
     FoldingRangeClientCapabilities? foldingRange,
 
     /// Capabilities specific to the `textDocument/selectionRange` request.
-    ///
-    /// @since 3.15.0
     SelectionRangeClientCapabilities? selectionRange,
 
     /// Capabilities specific to the `textDocument/publishDiagnostics` notification.
     PublishDiagnosticsClientCapabilities? publishDiagnostics,
 
     /// Capabilities specific to the various call hierarchy requests.
-    ///
-    /// @since 3.16.0
     CallHierarchyClientCapabilities? callHierarchy,
 
     /// Capabilities specific to the various semantic token request.
-    ///
-    /// @since 3.16.0
     SemanticTokensClientCapabilities? semanticTokens,
 
     /// Capabilities specific to the `textDocument/linkedEditingRange` request.
-    ///
-    /// @since 3.16.0
     LinkedEditingRangeClientCapabilities? linkedEditingRange,
 
     /// Client capabilities specific to the `textDocument/moniker` request.
-    ///
-    /// @since 3.16.0
     MonikerClientCapabilities? moniker,
 
     /// Capabilities specific to the various type hierarchy requests.
-    ///
-    /// @since 3.17.0
     TypeHierarchyClientCapabilities? typeHierarchy,
 
     /// Capabilities specific to the `textDocument/inlineValue` request.
-    ///
-    /// @since 3.17.0
     InlineValueClientCapabilities? inlineValue,
 
     /// Capabilities specific to the `textDocument/inlayHint` request.
-    ///
-    /// @since 3.17.0
     InlayHintClientCapabilities? inlayHint,
 
     /// Capabilities specific to the diagnostic pull model.
-    ///
-    /// @since 3.17.0
     DiagnosticClientCapabilities? diagnostic,
 
     /// Client capabilities specific to inline completions.
-    ///
-    /// @since 3.18.0 @proposed
     InlineCompletionClientCapabilities? inlineCompletion,
   }) = _TextDocumentClientCapabilities;
 
@@ -5994,8 +5834,6 @@ abstract class NotebookDocumentClientCapabilities
     with _$NotebookDocumentClientCapabilities {
   const factory NotebookDocumentClientCapabilities({
     /// Capabilities specific to notebook document synchronization
-    ///
-    /// @since 3.17.0
     required NotebookDocumentSyncClientCapabilities synchronization,
   }) = _NotebookDocumentClientCapabilities;
 
@@ -6013,18 +5851,12 @@ abstract class WindowClientCapabilities with _$WindowClientCapabilities {
     /// The capability also controls Whether client supports handling of progress
     /// notifications. If set servers are allowed to report a `workDoneProgress`
     /// property in the request specific server capabilities.
-    ///
-    /// @since 3.15.0
     bool? workDoneProgress,
 
     /// Capabilities specific to the showMessage request.
-    ///
-    /// @since 3.16.0
     ShowMessageRequestClientCapabilities? showMessage,
 
     /// Capabilities specific to the showDocument request.
-    ///
-    /// @since 3.16.0
     ShowDocumentClientCapabilities? showDocument,
   }) = _WindowClientCapabilities;
 
@@ -6041,18 +5873,12 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
     /// Client capability that signals how the client handles stale requests (e.g. a
     /// request for which the client will not process the response anymore since the
     /// information is outdated).
-    ///
-    /// @since 3.17.0
     ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport,
 
     /// Client capabilities specific to regular expressions.
-    ///
-    /// @since 3.16.0
     RegularExpressionsClientCapabilities? regularExpressions,
 
     /// Client capabilities specific to the client's markdown parser.
-    ///
-    /// @since 3.16.0
     MarkdownClientCapabilities? markdown,
 
     /// The position encodings supported by the client. Client and server have to
@@ -6069,8 +5895,6 @@ abstract class GeneralClientCapabilities with _$GeneralClientCapabilities {
     /// Implementation considerations: since the conversion from one encoding into
     /// another requires the content of the file / line the conversion is best done
     /// where the file is read which is usually on the server side.
-    ///
-    /// @since 3.17.0
     List<PositionEncodingKind>? positionEncodings,
   }) = _GeneralClientCapabilities;
 
@@ -6107,27 +5931,19 @@ abstract class WorkspaceEditClientCapabilities
 
     /// The resource operations the client supports. Clients should at least support
     /// 'create', 'rename' and 'delete' files and folders.
-    ///
-    /// @since 3.13.0
     List<ResourceOperationKind>? resourceOperations,
 
     /// The failure handling strategy of a client if applying the workspace edit
     /// fails.
-    ///
-    /// @since 3.13.0
     FailureHandlingKind? failureHandling,
 
     /// Whether the client normalizes line endings to the client specific setting.
     /// If set to `true` the client will normalize line ending characters in a
     /// workspace edit to the client-specified new line character.
-    ///
-    /// @since 3.16.0
     bool? normalizesLineEndings,
 
     /// Whether the client in general supports change annotations on text edits,
     /// create file, rename file and delete file changes.
-    ///
-    /// @since 3.16.0
     ({bool? groupsOnLabel})? changeAnnotationSupport,
   }) = _WorkspaceEditClientCapabilities;
 
@@ -6158,8 +5974,6 @@ abstract class DidChangeWatchedFilesClientCapabilities
     bool? dynamicRegistration,
 
     /// Whether the client has support for [RelativePattern] or not.
-    ///
-    /// @since 3.17.0
     bool? relativePatternSupport,
   }) = _DidChangeWatchedFilesClientCapabilities;
 
@@ -6182,15 +5996,11 @@ abstract class WorkspaceSymbolClientCapabilities
 
     /// The client supports tags on `SymbolInformation`. Clients supporting tags
     /// have to handle unknown tags gracefully.
-    ///
-    /// @since 3.16.0
     ({List<SymbolTag> valueSet})? tagSupport,
 
     /// The client support partial workspace symbols. The client will send the
     /// request `workspaceSymbol/resolve` to the server to resolve additional
     /// properties.
-    ///
-    /// @since 3.17.0
     ({List<String> properties})? resolveSupport,
   }) = _WorkspaceSymbolClientCapabilities;
 
@@ -6359,7 +6169,8 @@ abstract class DiagnosticWorkspaceClientCapabilities
 
 /// Client workspace capabilities specific to folding ranges
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class FoldingRangeWorkspaceClientCapabilities
     with _$FoldingRangeWorkspaceClientCapabilities {
@@ -6371,8 +6182,6 @@ abstract class FoldingRangeWorkspaceClientCapabilities
     /// folding ranges currently shown. It should be used with absolute care and is
     /// useful for situation where a server for example detects a project wide
     /// change that requires such a calculation.
-    ///
-    /// @since 3.18.0 @proposed
     bool? refreshSupport,
   }) = _FoldingRangeWorkspaceClientCapabilities;
 
@@ -6432,8 +6241,6 @@ abstract class CompletionClientCapabilities
     /// Defines how the client handles whitespace and indentation when accepting a
     /// completion item that uses multi line text in either `insertText` or
     /// `textEdit`.
-    ///
-    /// @since 3.17.0
     InsertTextMode? insertTextMode,
 
     /// The client supports to send additional context information for a
@@ -6441,8 +6248,6 @@ abstract class CompletionClientCapabilities
     bool? contextSupport,
 
     /// The client supports the following `CompletionList` specific capabilities.
-    ///
-    /// @since 3.17.0
     ({List<String>? itemDefaults})? completionList,
   }) = _CompletionClientCapabilities;
 
@@ -6485,8 +6290,6 @@ abstract class SignatureHelpClientCapabilities
     /// The client supports to send additional context information for a
     /// `textDocument/signatureHelp` request. A client that opts into contextSupport
     /// will also support the `retriggerCharacters` on `SignatureHelpOptions`.
-    ///
-    /// @since 3.15.0
     bool? contextSupport,
   }) = _SignatureHelpClientCapabilities;
 
@@ -6521,8 +6324,6 @@ abstract class DefinitionClientCapabilities
     bool? dynamicRegistration,
 
     /// The client supports additional metadata in the form of definition links.
-    ///
-    /// @since 3.14.0
     bool? linkSupport,
   }) = _DefinitionClientCapabilities;
 
@@ -6562,8 +6363,6 @@ abstract class ImplementationClientCapabilities
     bool? dynamicRegistration,
 
     /// The client supports additional metadata in the form of definition links.
-    ///
-    /// @since 3.14.0
     bool? linkSupport,
   }) = _ImplementationClientCapabilities;
 
@@ -6616,14 +6415,10 @@ abstract class DocumentSymbolClientCapabilities
     /// The client supports tags on `SymbolInformation`. Tags are supported on
     /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
     /// Clients supporting tags have to handle unknown tags gracefully.
-    ///
-    /// @since 3.16.0
     ({List<SymbolTag> valueSet})? tagSupport,
 
     /// The client supports an additional label presented in the UI when registering
     /// a document symbol provider.
-    ///
-    /// @since 3.16.0
     bool? labelSupport,
   }) = _DocumentSymbolClientCapabilities;
 
@@ -6643,39 +6438,27 @@ abstract class CodeActionClientCapabilities
     /// The client support code action literals of type `CodeAction` as a valid
     /// response of the `textDocument/codeAction` request. If the property is not
     /// set the request can only return `Command` literals.
-    ///
-    /// @since 3.8.0
     ({({List<CodeActionKind> valueSet}) codeActionKind})?
     codeActionLiteralSupport,
 
     /// Whether code action supports the `isPreferred` property.
-    ///
-    /// @since 3.15.0
     bool? isPreferredSupport,
 
     /// Whether code action supports the `disabled` property.
-    ///
-    /// @since 3.16.0
     bool? disabledSupport,
 
     /// Whether code action supports the `data` property which is preserved between
     /// a `textDocument/codeAction` and a `codeAction/resolve` request.
-    ///
-    /// @since 3.16.0
     bool? dataSupport,
 
     /// Whether the client supports resolving additional code action properties via
     /// a separate `codeAction/resolve` request.
-    ///
-    /// @since 3.16.0
     ({List<String> properties})? resolveSupport,
 
     /// Whether the client honors the change annotations in text edits and resource
     /// operations returned via the `CodeAction#edit` property by for example
     /// presenting the workspace edit in the user interface and asking for
     /// confirmation.
-    ///
-    /// @since 3.16.0
     bool? honorsChangeAnnotations,
   }) = _CodeActionClientCapabilities;
 
@@ -6704,8 +6487,6 @@ abstract class DocumentLinkClientCapabilities
     bool? dynamicRegistration,
 
     /// Whether the client supports the `tooltip` property on `DocumentLink`.
-    ///
-    /// @since 3.15.0
     bool? tooltipSupport,
   }) = _DocumentLinkClientCapabilities;
 
@@ -6750,8 +6531,6 @@ abstract class DocumentRangeFormattingClientCapabilities
     bool? dynamicRegistration,
 
     /// Whether the client supports formatting multiple ranges at once.
-    ///
-    /// @since 3.18.0 @proposed
     bool? rangesSupport,
   }) = _DocumentRangeFormattingClientCapabilities;
 
@@ -6781,23 +6560,17 @@ abstract class RenameClientCapabilities with _$RenameClientCapabilities {
     bool? dynamicRegistration,
 
     /// Client supports testing for validity of rename operations before execution.
-    ///
-    /// @since 3.12.0
     bool? prepareSupport,
 
     /// Client supports the default behavior result.
     ///
     /// The value indicates the default behavior used by the client.
-    ///
-    /// @since 3.16.0
     PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior,
 
     /// Whether the client honors the change annotations in text edits and resource
     /// operations returned via the rename request's workspace edit by for example
     /// presenting the workspace edit in the user interface and asking for
     /// confirmation.
-    ///
-    /// @since 3.16.0
     bool? honorsChangeAnnotations,
   }) = _RenameClientCapabilities;
 
@@ -6825,13 +6598,9 @@ abstract class FoldingRangeClientCapabilities
     bool? lineFoldingOnly,
 
     /// Specific options for the folding range kind.
-    ///
-    /// @since 3.17.0
     ({List<FoldingRangeKind>? valueSet})? foldingRangeKind,
 
     /// Specific options for the folding range.
-    ///
-    /// @since 3.17.0
     ({bool? collapsedText})? foldingRange,
   }) = _FoldingRangeClientCapabilities;
 
@@ -6865,25 +6634,17 @@ abstract class PublishDiagnosticsClientCapabilities
 
     /// Client supports the tag property to provide meta data about a diagnostic.
     /// Clients supporting tags have to handle unknown tags gracefully.
-    ///
-    /// @since 3.15.0
     ({List<DiagnosticTag> valueSet})? tagSupport,
 
     /// Whether the client interprets the version property of the
     /// `textDocument/publishDiagnostics` notification's parameter.
-    ///
-    /// @since 3.15.0
     bool? versionSupport,
 
     /// Client supports a codeDescription property
-    ///
-    /// @since 3.16.0
     bool? codeDescriptionSupport,
 
     /// Whether code action supports the `data` property which is preserved between
     /// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
-    ///
-    /// @since 3.16.0
     bool? dataSupport,
   }) = _PublishDiagnosticsClientCapabilities;
 
@@ -6947,8 +6708,6 @@ abstract class SemanticTokensClientCapabilities
     /// Whether the client allows the server to actively cancel a semantic token
     /// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
     /// does the client needs to retrigger the request.
-    ///
-    /// @since 3.17.0
     bool? serverCancelSupport,
 
     /// Whether the client uses semantic tokens to augment existing syntax tokens.
@@ -6957,8 +6716,6 @@ abstract class SemanticTokensClientCapabilities
     /// returned semantic tokens for colorization.
     ///
     /// If the value is `undefined` then the client behavior is not specified.
-    ///
-    /// @since 3.17.0
     bool? augmentsSyntaxTokens,
   }) = _SemanticTokensClientCapabilities;
 
@@ -7075,7 +6832,8 @@ abstract class DiagnosticClientCapabilities
 
 /// Client capabilities specific to inline completions.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @freezed
 abstract class InlineCompletionClientCapabilities
     with _$InlineCompletionClientCapabilities {
@@ -7173,8 +6931,6 @@ abstract class MarkdownClientCapabilities with _$MarkdownClientCapabilities {
     String? version,
 
     /// A list of HTML tags that the client allows / supports in Markdown.
-    ///
-    /// @since 3.17.0
     List<String>? allowedTags,
   }) = _MarkdownClientCapabilities;
 

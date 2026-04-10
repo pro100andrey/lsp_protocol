@@ -592,7 +592,8 @@ enum MarkupKind {
 
 /// Describes how an [InlineCompletionItemProvider] was triggered.
 ///
-/// @since 3.18.0 @proposed
+/// @since 3.18.0
+/// @proposed
 @JsonEnum(valueField: 'value', alwaysCreate: true)
 enum InlineCompletionTriggerKind {
   /// Completion was triggered explicitly by a user gesture.

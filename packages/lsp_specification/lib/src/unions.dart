@@ -6,6 +6,12 @@ import 'structures.dart';
 
 part 'unions.freezed.dart';
 
+/// The definition of a symbol represented as one or many [locations]. For most
+/// programming languages there is only one location at which a symbol is
+/// defined.
+///
+/// Servers should prefer returning `DefinitionLink` over `Definition` if
+/// supported by the client.
 @freezed
 sealed class Definition with _$Definition {
   const Definition._();
@@ -35,6 +41,7 @@ sealed class Definition with _$Definition {
   };
 }
 
+/// The declaration of a symbol representation as one or many [locations].
 @freezed
 sealed class Declaration with _$Declaration {
   const Declaration._();
@@ -64,6 +71,13 @@ sealed class Declaration with _$Declaration {
   };
 }
 
+/// Inline value information can be provided by different means: - directly as a
+/// text value (class InlineValueText). - as a name to use for a variable lookup
+/// (class InlineValueVariableLookup) - as an evaluatable expression (class
+/// InlineValueEvaluatableExpression) The InlineValue types combines all inline
+/// value types into one type.
+///
+/// @since 3.17.0
 @freezed
 sealed class InlineValue with _$InlineValue {
   const InlineValue._();
@@ -100,6 +114,12 @@ sealed class InlineValue with _$InlineValue {
   };
 }
 
+/// The result of a document diagnostic pull request. A report can either be a
+/// full report containing all diagnostics for the requested document or an
+/// unchanged report indicating that nothing has changed in terms of diagnostics
+/// in comparison to the last pull request.
+///
+/// @since 3.17.0
 @freezed
 sealed class DocumentDiagnosticReport with _$DocumentDiagnosticReport {
   const DocumentDiagnosticReport._();
@@ -184,6 +204,9 @@ sealed class PrepareRenameResult with _$PrepareRenameResult {
   };
 }
 
+/// A workspace diagnostic document report.
+///
+/// @since 3.17.0
 @freezed
 sealed class WorkspaceDocumentDiagnosticReport
     with _$WorkspaceDocumentDiagnosticReport {
@@ -221,6 +244,8 @@ sealed class WorkspaceDocumentDiagnosticReport
   };
 }
 
+/// An event describing a change to a text document. If only a text is provided
+/// it is considered to be the full content of the document.
 @freezed
 sealed class TextDocumentContentChangeEvent
     with _$TextDocumentContentChangeEvent {
@@ -259,7 +284,19 @@ sealed class TextDocumentContentChangeEvent
   };
 }
 
+/// MarkedString can be used to render human readable text. It is either a
+/// markdown string or a code-block that provides a language and a code snippet.
+/// The language identifier is semantically equal to the optional language
+/// identifier in fenced code blocks in GitHub issues. See
+/// https://help.github.com/articles/creating-and-highlighting-code-blocks/#syntax-highlighting
+///
+/// The pair of a language and a value is an equivalent to markdown:
+/// ```${language} ${value} ```
+///
+/// Note that markdown strings will be sanitized - that means html will be
+/// escaped. @deprecated use MarkupContent instead.
 @freezed
+@Deprecated('use MarkupContent instead.')
 sealed class MarkedString with _$MarkedString {
   const MarkedString._();
 

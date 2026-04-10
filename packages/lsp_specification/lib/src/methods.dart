@@ -17,39 +17,27 @@ enum NotificationMethod {
 
   /// The did create files notification is sent from the client to the server when
   /// files were created from within the client.
-  ///
-  /// @since 3.16.0
   didCreateFiles(r'workspace/didCreateFiles'),
 
   /// The did rename files notification is sent from the client to the server when
   /// files were renamed from within the client.
-  ///
-  /// @since 3.16.0
   didRenameFiles(r'workspace/didRenameFiles'),
 
   /// The will delete files request is sent from the client to the server before
   /// files are actually deleted as long as the deletion is triggered from within
   /// the client.
-  ///
-  /// @since 3.16.0
   didDeleteFiles(r'workspace/didDeleteFiles'),
 
   /// A notification sent when a notebook opens.
-  ///
-  /// @since 3.17.0
   notebookDocumentDidOpen(r'notebookDocument/didOpen'),
 
   /// LSP notification `notebookDocument/didChange` (client to server).
   notebookDocumentDidChange(r'notebookDocument/didChange'),
 
   /// A notification sent when a notebook document is saved.
-  ///
-  /// @since 3.17.0
   notebookDocumentDidSave(r'notebookDocument/didSave'),
 
   /// A notification sent when a notebook closes.
-  ///
-  /// @since 3.17.0
   notebookDocumentDidClose(r'notebookDocument/didClose'),
 
   /// The initialized notification is sent from the client to the server after the
@@ -180,8 +168,6 @@ enum RequestMethod {
   /// is of type [FoldingRangeParams], the response is of type [FoldingRangeList]
   /// or a Thenable that resolves to such.
   foldingRange(r'textDocument/foldingRange'),
-
-  /// @since 3.18.0 @proposed
   workspaceFoldingRangeRefresh(r'workspace/foldingRange/refresh'),
 
   /// A request to resolve the type definition locations of a symbol at a given
@@ -201,43 +187,25 @@ enum RequestMethod {
 
   /// A request to result a `CallHierarchyItem` in a document at a given position.
   /// Can be used as an input to an incoming or outgoing call hierarchy.
-  ///
-  /// @since 3.16.0
   prepareCallHierarchy(r'textDocument/prepareCallHierarchy'),
 
   /// A request to resolve the incoming calls for a given `CallHierarchyItem`.
-  ///
-  /// @since 3.16.0
   incomingCalls(r'callHierarchy/incomingCalls'),
 
   /// A request to resolve the outgoing calls for a given `CallHierarchyItem`.
-  ///
-  /// @since 3.16.0
   outgoingCalls(r'callHierarchy/outgoingCalls'),
-
-  /// @since 3.16.0
   full(r'textDocument/semanticTokens/full'),
-
-  /// @since 3.16.0
   delta(r'textDocument/semanticTokens/full/delta'),
-
-  /// @since 3.16.0
   range(r'textDocument/semanticTokens/range'),
-
-  /// @since 3.16.0
   workspaceSemanticTokensRefresh(r'workspace/semanticTokens/refresh'),
 
   /// A request to show a document. This request might open an external program
   /// depending on the value of the URI to open. For example a request to open
   /// `https://code.visualstudio.com/` will very likely open the URI in a WEB
   /// browser.
-  ///
-  /// @since 3.16.0
   showDocument(r'window/showDocument'),
 
   /// A request to provide ranges that can be edited together.
-  ///
-  /// @since 3.16.0
   linkedEditingRange(r'textDocument/linkedEditingRange'),
 
   /// The will create files request is sent from the client to the server before
@@ -247,21 +215,15 @@ enum RequestMethod {
   /// The request can return a `WorkspaceEdit` which will be applied to workspace
   /// before the files are created. Hence the `WorkspaceEdit` can not manipulate
   /// the content of the file to be created.
-  ///
-  /// @since 3.16.0
   willCreateFiles(r'workspace/willCreateFiles'),
 
   /// The will rename files request is sent from the client to the server before
   /// files are actually renamed as long as the rename is triggered from within
   /// the client.
-  ///
-  /// @since 3.16.0
   willRenameFiles(r'workspace/willRenameFiles'),
 
   /// The did delete files notification is sent from the client to the server when
   /// files were deleted from within the client.
-  ///
-  /// @since 3.16.0
   willDeleteFiles(r'workspace/willDeleteFiles'),
 
   /// A request to get the moniker of a symbol at a given text document position.
@@ -271,67 +233,43 @@ enum RequestMethod {
 
   /// A request to result a `TypeHierarchyItem` in a document at a given position.
   /// Can be used as an input to a subtypes or supertypes type hierarchy.
-  ///
-  /// @since 3.17.0
   prepareTypeHierarchy(r'textDocument/prepareTypeHierarchy'),
 
   /// A request to resolve the supertypes for a given `TypeHierarchyItem`.
-  ///
-  /// @since 3.17.0
   supertypes(r'typeHierarchy/supertypes'),
 
   /// A request to resolve the subtypes for a given `TypeHierarchyItem`.
-  ///
-  /// @since 3.17.0
   subtypes(r'typeHierarchy/subtypes'),
 
   /// A request to provide inline values in a document. The request's parameter is
   /// of type [InlineValueParams], the response is of type [InlineValue] or a
   /// Thenable that resolves to such.
-  ///
-  /// @since 3.17.0
   inlineValue(r'textDocument/inlineValue'),
-
-  /// @since 3.17.0
   workspaceInlineValueRefresh(r'workspace/inlineValue/refresh'),
 
   /// A request to provide inlay hints in a document. The request's parameter is
   /// of type [InlayHintsParams], the response is of type [InlayHint] or a
   /// Thenable that resolves to such.
-  ///
-  /// @since 3.17.0
   inlayHint(r'textDocument/inlayHint'),
 
   /// A request to resolve additional properties for an inlay hint. The request's
   /// parameter is of type [InlayHint], the response is of type [InlayHint] or a
   /// Thenable that resolves to such.
-  ///
-  /// @since 3.17.0
   inlayHintResolve(r'inlayHint/resolve'),
-
-  /// @since 3.17.0
   workspaceInlayHintRefresh(r'workspace/inlayHint/refresh'),
 
   /// The document diagnostic request definition.
-  ///
-  /// @since 3.17.0
   textDocumentDiagnostic(r'textDocument/diagnostic'),
 
   /// The workspace diagnostic request definition.
-  ///
-  /// @since 3.17.0
   workspaceDiagnostic(r'workspace/diagnostic'),
 
   /// The diagnostic refresh request definition.
-  ///
-  /// @since 3.17.0
   workspaceDiagnosticRefresh(r'workspace/diagnostic/refresh'),
 
   /// A request to provide inline completions in a document. The request's
   /// parameter is of type [InlineCompletionParams], the response is of type
   /// [InlineCompletion] or a Thenable that resolves to such.
-  ///
-  /// @since 3.18.0 @proposed
   inlineCompletion(r'textDocument/inlineCompletion'),
 
   /// The `client/registerCapability` request is sent from the server to the
@@ -426,14 +364,12 @@ enum RequestMethod {
   /// the [WorkspaceSymbolParams]. The response is of type [SymbolInformation] or
   /// a Thenable that resolves to such.
   ///
-  /// @since 3.17.0 - support for WorkspaceSymbol in the returned data. Clients
-  /// need to advertise support for WorkspaceSymbols via the client capability
+  /// - support for WorkspaceSymbol in the returned data. Clients need to
+  /// advertise support for WorkspaceSymbols via the client capability
   /// `workspace.symbol.resolveSupport`.
   symbol(r'workspace/symbol'),
 
   /// A request to resolve the range inside the workspace symbol's location.
-  ///
-  /// @since 3.17.0
   workspaceSymbolResolve(r'workspaceSymbol/resolve'),
 
   /// A request to provide code lens for the given text document.
@@ -443,8 +379,6 @@ enum RequestMethod {
   codeLensResolve(r'codeLens/resolve'),
 
   /// A request to refresh all code actions
-  ///
-  /// @since 3.16.0
   workspaceCodeLensRefresh(r'workspace/codeLens/refresh'),
 
   /// A request to provide document links
@@ -462,8 +396,6 @@ enum RequestMethod {
   rangeFormatting(r'textDocument/rangeFormatting'),
 
   /// A request to format ranges in a document.
-  ///
-  /// @since 3.18.0 @proposed
   rangesFormatting(r'textDocument/rangesFormatting'),
 
   /// A request to format a document on type.
@@ -474,7 +406,7 @@ enum RequestMethod {
 
   /// A request to test and perform the setup necessary for a rename.
   ///
-  /// @since 3.16 - support for default behavior
+  /// - support for default behavior
   prepareRename(r'textDocument/prepareRename'),
 
   /// A request send from the client to the server to execute a command. The

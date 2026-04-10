@@ -3195,7 +3195,7 @@ as List<MetaReference>,
 /// @nodoc
 mixin _$MetaEnumMember {
 
- String get name;@IntOrStringSealedConverter() EnumRawValue get value; String? get documentation; String? get since;
+ String get name;@IntOrStringSealedConverter() EnumRawValue get value; String? get documentation; String? get since; String? get deprecated;
 /// Create a copy of MetaEnumMember
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3208,16 +3208,16 @@ $MetaEnumMemberCopyWith<MetaEnumMember> get copyWith => _$MetaEnumMemberCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,value,documentation,since);
+int get hashCode => Object.hash(runtimeType,name,value,documentation,since,deprecated);
 
 @override
 String toString() {
-  return 'MetaEnumMember(name: $name, value: $value, documentation: $documentation, since: $since)';
+  return 'MetaEnumMember(name: $name, value: $value, documentation: $documentation, since: $since, deprecated: $deprecated)';
 }
 
 
@@ -3228,7 +3228,7 @@ abstract mixin class $MetaEnumMemberCopyWith<$Res>  {
   factory $MetaEnumMemberCopyWith(MetaEnumMember value, $Res Function(MetaEnumMember) _then) = _$MetaEnumMemberCopyWithImpl;
 @useResult
 $Res call({
- String name,@IntOrStringSealedConverter() EnumRawValue value, String? documentation, String? since
+ String name,@IntOrStringSealedConverter() EnumRawValue value, String? documentation, String? since, String? deprecated
 });
 
 
@@ -3245,12 +3245,13 @@ class _$MetaEnumMemberCopyWithImpl<$Res>
 
 /// Create a copy of MetaEnumMember
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,Object? deprecated = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as EnumRawValue,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -3345,10 +3346,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @IntOrStringSealedConverter()  EnumRawValue value,  String? documentation,  String? since)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @IntOrStringSealedConverter()  EnumRawValue value,  String? documentation,  String? since,  String? deprecated)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MetaEnumMember() when $default != null:
-return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
+return $default(_that.name,_that.value,_that.documentation,_that.since,_that.deprecated);case _:
   return orElse();
 
 }
@@ -3366,10 +3367,10 @@ return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @IntOrStringSealedConverter()  EnumRawValue value,  String? documentation,  String? since)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @IntOrStringSealedConverter()  EnumRawValue value,  String? documentation,  String? since,  String? deprecated)  $default,) {final _that = this;
 switch (_that) {
 case _MetaEnumMember():
-return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
+return $default(_that.name,_that.value,_that.documentation,_that.since,_that.deprecated);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -3386,10 +3387,10 @@ return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @IntOrStringSealedConverter()  EnumRawValue value,  String? documentation,  String? since)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @IntOrStringSealedConverter()  EnumRawValue value,  String? documentation,  String? since,  String? deprecated)?  $default,) {final _that = this;
 switch (_that) {
 case _MetaEnumMember() when $default != null:
-return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
+return $default(_that.name,_that.value,_that.documentation,_that.since,_that.deprecated);case _:
   return null;
 
 }
@@ -3401,13 +3402,14 @@ return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
 @JsonSerializable()
 
 class _MetaEnumMember implements MetaEnumMember {
-  const _MetaEnumMember({required this.name, @IntOrStringSealedConverter() required this.value, this.documentation, this.since});
+  const _MetaEnumMember({required this.name, @IntOrStringSealedConverter() required this.value, this.documentation, this.since, this.deprecated});
   factory _MetaEnumMember.fromJson(Map<String, dynamic> json) => _$MetaEnumMemberFromJson(json);
 
 @override final  String name;
 @override@IntOrStringSealedConverter() final  EnumRawValue value;
 @override final  String? documentation;
 @override final  String? since;
+@override final  String? deprecated;
 
 /// Create a copy of MetaEnumMember
 /// with the given fields replaced by the non-null parameter values.
@@ -3422,16 +3424,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,value,documentation,since);
+int get hashCode => Object.hash(runtimeType,name,value,documentation,since,deprecated);
 
 @override
 String toString() {
-  return 'MetaEnumMember(name: $name, value: $value, documentation: $documentation, since: $since)';
+  return 'MetaEnumMember(name: $name, value: $value, documentation: $documentation, since: $since, deprecated: $deprecated)';
 }
 
 
@@ -3442,7 +3444,7 @@ abstract mixin class _$MetaEnumMemberCopyWith<$Res> implements $MetaEnumMemberCo
   factory _$MetaEnumMemberCopyWith(_MetaEnumMember value, $Res Function(_MetaEnumMember) _then) = __$MetaEnumMemberCopyWithImpl;
 @override @useResult
 $Res call({
- String name,@IntOrStringSealedConverter() EnumRawValue value, String? documentation, String? since
+ String name,@IntOrStringSealedConverter() EnumRawValue value, String? documentation, String? since, String? deprecated
 });
 
 
@@ -3459,12 +3461,13 @@ class __$MetaEnumMemberCopyWithImpl<$Res>
 
 /// Create a copy of MetaEnumMember
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,Object? deprecated = freezed,}) {
   return _then(_MetaEnumMember(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as EnumRawValue,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

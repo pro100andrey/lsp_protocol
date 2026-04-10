@@ -39,7 +39,13 @@ ResolvedProperty _prop(
   String name,
   ResolvedType type, {
   bool optional = false,
-}) => ResolvedProperty(name: name, type: type, optional: optional);
+  String? deprecated,
+}) => ResolvedProperty(
+  name: name,
+  type: type,
+  optional: optional,
+  deprecated: deprecated,
+);
 
 ResolvedEnum _enum(
   String name,
@@ -679,6 +685,229 @@ void main() {
       // convention.Just verify Position (a named class) exists and the output
       // is not empty.
       expect(src, contains('abstract class'));
+    });
+  });
+
+  // -----------------------------------------------------------------------
+  // @Deprecated annotations
+  // -----------------------------------------------------------------------
+
+  group('@Deprecated annotations', () {
+    test('deprecated property emits @Deprecated on redirecting factory param',
+        () {
+      final state = _stateWith(
+        classes: [
+          _cls(
+            'Foo',
+            properties: [
+              _prop(
+                'oldField',
+                const DartCoreType(dartName: 'String'),
+                deprecated: 'Use newField instead.',
+              ),
+              _prop('newField', const DartCoreType(dartName: 'String')),
+            ],
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildStructures());
+      expect(
+        src,
+        contains("@Deprecated('Use newField instead.')"),
+      );
+    });
+
+    test('deprecated property keeps @Deprecated on private JsonSerializable class field',
+        () {
+      final state = _stateWith(
+        classes: [
+          _cls(
+            '_PrivateFoo',
+            properties: [
+              _prop(
+                'oldField',
+                const DartCoreType(dartName: 'String'),
+                deprecated: 'Old.',
+              ),
+            ],
+            isAnonymous: true,
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildStructures());
+      expect(src, contains("@Deprecated('Old.')"));
+    });
+
+    test('deprecated enum member emits @Deprecated annotation', () {
+      final state = _stateWith(
+        enumerations: [
+          const ResolvedEnum(
+            name: 'Status',
+            valueType: 'String',
+            members: [
+              ResolvedEnumMember(
+                name: 'active',
+                value: 'active',
+              ),
+              ResolvedEnumMember(
+                name: 'old',
+                value: 'old',
+                deprecated: 'Use active instead.',
+              ),
+            ],
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildEnumerations());
+      expect(src, contains("@Deprecated('Use active instead.')"));
+      // Non-deprecated member should not have @Deprecated.
+      expect(
+        src.indexOf('@Deprecated'),
+        src.lastIndexOf('@Deprecated'),
+        reason: 'Only one @Deprecated',
+      );
+    });
+
+    test('deprecated alias emits @Deprecated on typedef', () {
+      final state = _stateWith(
+        aliases: [
+          ResolvedAlias(
+            name: 'OldAlias',
+            type: const DartCoreType(dartName: 'String'),
+            deprecated: 'Use NewAlias instead.',
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildAliases());
+      expect(src, contains("@Deprecated('Use NewAlias instead.')"));
+      expect(src, contains('typedef OldAlias'));
+    });
+  });
+
+  // -----------------------------------------------------------------------
+  // since / proposed in doc comments
+  // -----------------------------------------------------------------------
+
+  group('since and proposed in doc comments', () {
+    test('class with only since emits @since tag', () {
+      final state = _stateWith(
+        classes: [
+          ResolvedClass(
+            name: 'NewThing',
+            properties: [],
+            since: '3.17.0',
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildStructures());
+      expect(src, contains('/// @since 3.17.0'));
+    });
+
+    test('class with only proposed emits @proposed tag', () {
+      final state = _stateWith(
+        classes: [
+          ResolvedClass(
+            name: 'ProposedThing',
+            properties: [],
+            proposed: true,
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildStructures());
+      expect(src, contains('/// @proposed'));
+    });
+
+    test('class with documentation and since appends @since to doc comment', () {
+      final state = _stateWith(
+        classes: [
+          ResolvedClass(
+            name: 'DocThing',
+            properties: [],
+            documentation: 'Main description.',
+            since: '3.16.0',
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildStructures());
+      expect(src, contains('/// Main description.'));
+      expect(src, contains('/// @since 3.16.0'));
+    });
+
+    test('enum with since and proposed emits both tags', () {
+      final state = _stateWith(
+        enumerations: [
+          const ResolvedEnum(
+            name: 'NewEnum',
+            valueType: 'int',
+            members: [ResolvedEnumMember(name: 'a', value: '1')],
+            since: '3.18.0',
+            proposed: true,
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildEnumerations());
+      expect(src, contains('/// @since 3.18.0'));
+      expect(src, contains('/// @proposed'));
+    });
+
+    test('alias with since emits @since tag', () {
+      final state = _stateWith(
+        aliases: [
+          ResolvedAlias(
+            name: 'MyAlias',
+            type: const DartCoreType(dartName: 'String'),
+            since: '3.17.0',
+          ),
+        ],
+      );
+      final src = _format(EmitterVisitor(state).buildAliases());
+      expect(src, contains('/// @since 3.17.0'));
+    });
+  });
+
+  // -----------------------------------------------------------------------
+  // Smoke tests for buildNotificationMethods / buildRequestMethods
+  // -----------------------------------------------------------------------
+
+  group('buildNotificationMethods() smoke tests', () {
+    late ResolvedState resolved;
+
+    setUpAll(() {
+      final file = File('../lsp_specification/metaModel.json');
+      final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
+      final protocol = MetaProtocol.fromJson(json);
+      final resolver = ResolverVisitor()..resolve(protocol);
+      resolved = ResolvedState(
+        registry: resolver.registry,
+        classes: resolver.classes.toList(),
+        enumerations: resolver.enumerations.toList(),
+        aliases: resolver.aliases.toList(),
+        notifications: protocol.notifications,
+        requests: protocol.requests,
+      );
+    });
+
+    test('emits NotificationMethod enum', () {
+      final src = _format(EmitterVisitor(resolved).buildNotificationMethods());
+      expect(src, contains('enum NotificationMethod'));
+    });
+
+    test('emits RequestMethod enum', () {
+      final src = _format(EmitterVisitor(resolved).buildNotificationMethods());
+      expect(src, contains('enum RequestMethod'));
+    });
+
+    test('NotificationMethod has at least 10 members', () {
+      final src = _format(EmitterVisitor(resolved).buildNotificationMethods());
+      // Count enum value entries — each line with '(' and a string argument.
+      final count = "(r'".allMatches(src).length + "('".allMatches(src).length;
+      expect(count, greaterThanOrEqualTo(10));
+    });
+
+    test(r'methods use raw strings for $/ methods', () {
+      final src = _format(EmitterVisitor(resolved).buildNotificationMethods());
+      // The setTrace notification uses \$/setTrace.
+      expect(src, contains(r"r'$/"));
     });
   });
 }

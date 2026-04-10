@@ -4974,8 +4974,6 @@ mixin _$FoldingRange {
  String? get kind;/// The text that the client should show when the specified range is collapsed.
 /// If not defined or not supported by the client, a default will be chosen by
 /// the client.
-///
-/// @since 3.17.0
  String? get collapsedText;
 /// Create a copy of FoldingRange
 /// with the given fields replaced by the non-null parameter values.
@@ -5200,8 +5198,6 @@ class _FoldingRange extends FoldingRange {
 /// The text that the client should show when the specified range is collapsed.
 /// If not defined or not supported by the client, a default will be chosen by
 /// the client.
-///
-/// @since 3.17.0
 @override final  String? collapsedText;
 
 /// Create a copy of FoldingRange
@@ -14238,8 +14234,6 @@ mixin _$WorkspaceEdit {
 ///
 /// Whether clients honor this property depends on the client capability
 /// `workspace.changeAnnotationSupport`.
-///
-/// @since 3.16.0
  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? get changeAnnotations;
 /// Create a copy of WorkspaceEdit
 /// with the given fields replaced by the non-null parameter values.
@@ -14490,16 +14484,12 @@ class _WorkspaceEdit implements WorkspaceEdit {
 ///
 /// Whether clients honor this property depends on the client capability
 /// `workspace.changeAnnotationSupport`.
-///
-/// @since 3.16.0
  final  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? _changeAnnotations;
 /// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
 /// or create, rename and delete file / folder operations.
 ///
 /// Whether clients honor this property depends on the client capability
 /// `workspace.changeAnnotationSupport`.
-///
-/// @since 3.16.0
 @override Map<ChangeAnnotationIdentifier, ChangeAnnotation>? get changeAnnotations {
   final value = _changeAnnotations;
   if (value == null) return null;
@@ -24691,23 +24681,19 @@ mixin _$InitializeParams {
 /// Is `null` if the process has not been started by another process. If the
 /// parent process is not alive then the server should exit.
  int? get processId;/// Information about the client
-///
-/// @since 3.15.0
  ({String name, String? version})? get clientInfo;/// The locale the client is currently showing the user interface in. This must
 /// not necessarily be the locale of the operating system.
 ///
 /// Uses IETF language tags as the value's syntax (See
 /// https://en.wikipedia.org/wiki/IETF_language_tag)
-///
-/// @since 3.16.0
  String? get locale;/// The rootPath of the workspace. Is null if no folder is open.
 ///
 /// @deprecated in favour of rootUri.
- String? get rootPath;/// The rootUri of the workspace. Is null if no folder is open. If both
+@Deprecated('in favour of rootUri.') String? get rootPath;/// The rootUri of the workspace. Is null if no folder is open. If both
 /// `rootPath` and `rootUri` are set `rootUri` wins.
 ///
 /// @deprecated in favour of workspaceFolders.
- String? get rootUri;/// The capabilities provided by the client (editor or tool)
+@Deprecated('in favour of workspaceFolders.') String? get rootUri;/// The capabilities provided by the client (editor or tool)
  ClientCapabilities get capabilities;/// User provided initialization options.
  LSPAny? get initializationOptions;/// The initial trace setting. If omitted trace is disabled ('off').
  TraceValues? get trace;/// The workspace folders configured in the client when the server starts.
@@ -24715,8 +24701,6 @@ mixin _$InitializeParams {
 /// This property is only available if the client supports workspace folders. It
 /// can be `null` if the client supports workspace folders but none are
 /// configured.
-///
-/// @since 3.6.0
  List<WorkspaceFolder>? get workspaceFolders;
 /// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -24750,7 +24734,7 @@ abstract mixin class $InitializeParamsCopyWith<$Res>  {
   factory $InitializeParamsCopyWith(InitializeParams value, $Res Function(InitializeParams) _then) = _$InitializeParamsCopyWithImpl;
 @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, ({String name, String? version})? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, ({String name, String? version})? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
@@ -24884,7 +24868,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  ({String name, String? version})? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  ({String name, String? version})? clientInfo,  String? locale, @Deprecated('in favour of rootUri.')  String? rootPath, @Deprecated('in favour of workspaceFolders.')  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InitializeParams() when $default != null:
 return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.locale,_that.rootPath,_that.rootUri,_that.capabilities,_that.initializationOptions,_that.trace,_that.workspaceFolders);case _:
@@ -24905,7 +24889,7 @@ return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.local
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  ({String name, String? version})? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  ({String name, String? version})? clientInfo,  String? locale, @Deprecated('in favour of rootUri.')  String? rootPath, @Deprecated('in favour of workspaceFolders.')  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)  $default,) {final _that = this;
 switch (_that) {
 case _InitializeParams():
 return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.locale,_that.rootPath,_that.rootUri,_that.capabilities,_that.initializationOptions,_that.trace,_that.workspaceFolders);case _:
@@ -24925,7 +24909,7 @@ return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.local
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  ({String name, String? version})? clientInfo,  String? locale,  String? rootPath,  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@_ProgressTokenConverter()  ProgressToken? workDoneToken,  int? processId,  ({String name, String? version})? clientInfo,  String? locale, @Deprecated('in favour of rootUri.')  String? rootPath, @Deprecated('in favour of workspaceFolders.')  String? rootUri,  ClientCapabilities capabilities,  LSPAny? initializationOptions,  TraceValues? trace,  List<WorkspaceFolder>? workspaceFolders)?  $default,) {final _that = this;
 switch (_that) {
 case _InitializeParams() when $default != null:
 return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.locale,_that.rootPath,_that.rootUri,_that.capabilities,_that.initializationOptions,_that.trace,_that.workspaceFolders);case _:
@@ -24940,7 +24924,7 @@ return $default(_that.workDoneToken,_that.processId,_that.clientInfo,_that.local
 @JsonSerializable()
 
 class _InitializeParams implements InitializeParams {
-  const _InitializeParams({@_ProgressTokenConverter() this.workDoneToken, required this.processId, this.clientInfo, this.locale, this.rootPath, required this.rootUri, required this.capabilities, this.initializationOptions, this.trace, final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders;
+  const _InitializeParams({@_ProgressTokenConverter() this.workDoneToken, required this.processId, this.clientInfo, this.locale, @Deprecated('in favour of rootUri.') this.rootPath, @Deprecated('in favour of workspaceFolders.') required this.rootUri, required this.capabilities, this.initializationOptions, this.trace, final  List<WorkspaceFolder>? workspaceFolders}): _workspaceFolders = workspaceFolders;
   factory _InitializeParams.fromJson(Map<String, dynamic> json) => _$InitializeParamsFromJson(json);
 
 /// An optional token that a server can use to report work done progress.
@@ -24951,26 +24935,22 @@ class _InitializeParams implements InitializeParams {
 /// parent process is not alive then the server should exit.
 @override final  int? processId;
 /// Information about the client
-///
-/// @since 3.15.0
 @override final  ({String name, String? version})? clientInfo;
 /// The locale the client is currently showing the user interface in. This must
 /// not necessarily be the locale of the operating system.
 ///
 /// Uses IETF language tags as the value's syntax (See
 /// https://en.wikipedia.org/wiki/IETF_language_tag)
-///
-/// @since 3.16.0
 @override final  String? locale;
 /// The rootPath of the workspace. Is null if no folder is open.
 ///
 /// @deprecated in favour of rootUri.
-@override final  String? rootPath;
+@override@Deprecated('in favour of rootUri.') final  String? rootPath;
 /// The rootUri of the workspace. Is null if no folder is open. If both
 /// `rootPath` and `rootUri` are set `rootUri` wins.
 ///
 /// @deprecated in favour of workspaceFolders.
-@override final  String? rootUri;
+@override@Deprecated('in favour of workspaceFolders.') final  String? rootUri;
 /// The capabilities provided by the client (editor or tool)
 @override final  ClientCapabilities capabilities;
 /// User provided initialization options.
@@ -24982,16 +24962,12 @@ class _InitializeParams implements InitializeParams {
 /// This property is only available if the client supports workspace folders. It
 /// can be `null` if the client supports workspace folders but none are
 /// configured.
-///
-/// @since 3.6.0
  final  List<WorkspaceFolder>? _workspaceFolders;
 /// The workspace folders configured in the client when the server starts.
 ///
 /// This property is only available if the client supports workspace folders. It
 /// can be `null` if the client supports workspace folders but none are
 /// configured.
-///
-/// @since 3.6.0
 @override List<WorkspaceFolder>? get workspaceFolders {
   final value = _workspaceFolders;
   if (value == null) return null;
@@ -25034,7 +25010,7 @@ abstract mixin class _$InitializeParamsCopyWith<$Res> implements $InitializePara
   factory _$InitializeParamsCopyWith(_InitializeParams value, $Res Function(_InitializeParams) _then) = __$InitializeParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, ({String name, String? version})? clientInfo, String? locale, String? rootPath, String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
+@_ProgressTokenConverter() ProgressToken? workDoneToken, int? processId, ({String name, String? version})? clientInfo, String? locale,@Deprecated('in favour of rootUri.') String? rootPath,@Deprecated('in favour of workspaceFolders.') String? rootUri, ClientCapabilities capabilities, LSPAny? initializationOptions, TraceValues? trace, List<WorkspaceFolder>? workspaceFolders
 });
 
 
@@ -25096,8 +25072,6 @@ mixin _$InitializeResult {
 
 /// The capabilities the language server provides.
  ServerCapabilities get capabilities;/// Information about the server.
-///
-/// @since 3.15.0
  ({String name, String? version})? get serverInfo;
 /// Create a copy of InitializeResult
 /// with the given fields replaced by the non-null parameter values.
@@ -25308,8 +25282,6 @@ class _InitializeResult implements InitializeResult {
 /// The capabilities the language server provides.
 @override final  ServerCapabilities capabilities;
 /// Information about the server.
-///
-/// @since 3.15.0
 @override final  ({String name, String? version})? serverInfo;
 
 /// Create a copy of InitializeResult
@@ -30338,8 +30310,6 @@ mixin _$PublishDiagnosticsParams {
 /// The URI for which diagnostic information is reported.
  String get uri;/// Optional the version number of the document the diagnostics are published
 /// for.
-///
-/// @since 3.15.0
  int? get version;/// An array of diagnostic information items.
  List<Diagnostic> get diagnostics;
 /// Create a copy of PublishDiagnosticsParams
@@ -30544,8 +30514,6 @@ class _PublishDiagnosticsParams implements PublishDiagnosticsParams {
 @override final  String uri;
 /// Optional the version number of the document the diagnostics are published
 /// for.
-///
-/// @since 3.15.0
 @override final  int? version;
 /// An array of diagnostic information items.
  final  List<Diagnostic> _diagnostics;
@@ -31030,18 +30998,14 @@ mixin _$CompletionItem {
 /// If label details are provided the label itself should be an unqualified name
 /// of the completion item.
  String get label;/// Additional details for the label
-///
-/// @since 3.17.0
  CompletionItemLabelDetails? get labelDetails;/// The kind of this completion item. Based of the kind an icon is chosen by the
 /// editor.
  CompletionItemKind? get kind;/// Tags for this completion item.
-///
-/// @since 3.15.0
  List<CompletionItemTag>? get tags;/// A human-readable string with additional information about this item, like
 /// type or symbol information.
  String? get detail;/// A human-readable string that represents a doc-comment.
  Object? get documentation;/// Indicates if this item is deprecated. @deprecated Use `tags` instead.
- bool? get deprecated;/// Select this item when showing.
+@Deprecated('Use `tags` instead.') bool? get deprecated;/// Select this item when showing.
 ///
 /// *Note* that only one completion item can be selected and that the tool /
 /// client decides which item that is. The rule is that the *first* item of
@@ -31068,8 +31032,6 @@ mixin _$CompletionItem {
  InsertTextFormat? get insertTextFormat;/// How whitespace and indentation is handled during completion item insertion.
 /// If not provided the clients default value depends on the
 /// `textDocument.completion.insertTextMode` client capability.
-///
-/// @since 3.16.0
  InsertTextMode? get insertTextMode;/// An [edit] which is applied to a document when selecting this completion.
 /// When an edit is provided the value of [insertText] is ignored.
 ///
@@ -31086,7 +31048,7 @@ mixin _$CompletionItem {
 /// returned the edit's insert range must be a prefix of the edit's replace
 /// range, that means it must be contained and starting at the same position.
 ///
-/// @since 3.16.0 additional type `InsertReplaceEdit`
+/// additional type `InsertReplaceEdit`
  Object? get textEdit;/// The edit text used if the completion item is part of a CompletionList and
 /// CompletionList defines an item default for the text edit range.
 ///
@@ -31095,8 +31057,6 @@ mixin _$CompletionItem {
 ///
 /// If not provided and a list's default range is provided the label property is
 /// used as a text.
-///
-/// @since 3.17.0
  String? get textEditText;/// An optional array of additional [TextEdit] that are applied when selecting
 /// this completion. Edits must not overlap (including the same insert position)
 /// with the main [edit] nor with themselves.
@@ -31146,7 +31106,7 @@ abstract mixin class $CompletionItemCopyWith<$Res>  {
   factory $CompletionItemCopyWith(CompletionItem value, $Res Function(CompletionItem) _then) = _$CompletionItemCopyWithImpl;
 @useResult
 $Res call({
- String label, CompletionItemLabelDetails? labelDetails, CompletionItemKind? kind, List<CompletionItemTag>? tags, String? detail, Object? documentation, bool? deprecated, bool? preselect, String? sortText, String? filterText, String? insertText, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, Object? textEdit, String? textEditText, List<TextEdit>? additionalTextEdits, List<String>? commitCharacters, Command? command, LSPAny? data
+ String label, CompletionItemLabelDetails? labelDetails, CompletionItemKind? kind, List<CompletionItemTag>? tags, String? detail, Object? documentation,@Deprecated('Use `tags` instead.') bool? deprecated, bool? preselect, String? sortText, String? filterText, String? insertText, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, Object? textEdit, String? textEditText, List<TextEdit>? additionalTextEdits, List<String>? commitCharacters, Command? command, LSPAny? data
 });
 
 
@@ -31290,7 +31250,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String label,  CompletionItemLabelDetails? labelDetails,  CompletionItemKind? kind,  List<CompletionItemTag>? tags,  String? detail,  Object? documentation,  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String label,  CompletionItemLabelDetails? labelDetails,  CompletionItemKind? kind,  List<CompletionItemTag>? tags,  String? detail,  Object? documentation, @Deprecated('Use `tags` instead.')  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompletionItem() when $default != null:
 return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detail,_that.documentation,_that.deprecated,_that.preselect,_that.sortText,_that.filterText,_that.insertText,_that.insertTextFormat,_that.insertTextMode,_that.textEdit,_that.textEditText,_that.additionalTextEdits,_that.commitCharacters,_that.command,_that.data);case _:
@@ -31311,7 +31271,7 @@ return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detai
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String label,  CompletionItemLabelDetails? labelDetails,  CompletionItemKind? kind,  List<CompletionItemTag>? tags,  String? detail,  Object? documentation,  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String label,  CompletionItemLabelDetails? labelDetails,  CompletionItemKind? kind,  List<CompletionItemTag>? tags,  String? detail,  Object? documentation, @Deprecated('Use `tags` instead.')  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)  $default,) {final _that = this;
 switch (_that) {
 case _CompletionItem():
 return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detail,_that.documentation,_that.deprecated,_that.preselect,_that.sortText,_that.filterText,_that.insertText,_that.insertTextFormat,_that.insertTextMode,_that.textEdit,_that.textEditText,_that.additionalTextEdits,_that.commitCharacters,_that.command,_that.data);case _:
@@ -31331,7 +31291,7 @@ return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detai
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String label,  CompletionItemLabelDetails? labelDetails,  CompletionItemKind? kind,  List<CompletionItemTag>? tags,  String? detail,  Object? documentation,  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String label,  CompletionItemLabelDetails? labelDetails,  CompletionItemKind? kind,  List<CompletionItemTag>? tags,  String? detail,  Object? documentation, @Deprecated('Use `tags` instead.')  bool? deprecated,  bool? preselect,  String? sortText,  String? filterText,  String? insertText,  InsertTextFormat? insertTextFormat,  InsertTextMode? insertTextMode,  Object? textEdit,  String? textEditText,  List<TextEdit>? additionalTextEdits,  List<String>? commitCharacters,  Command? command,  LSPAny? data)?  $default,) {final _that = this;
 switch (_that) {
 case _CompletionItem() when $default != null:
 return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detail,_that.documentation,_that.deprecated,_that.preselect,_that.sortText,_that.filterText,_that.insertText,_that.insertTextFormat,_that.insertTextMode,_that.textEdit,_that.textEditText,_that.additionalTextEdits,_that.commitCharacters,_that.command,_that.data);case _:
@@ -31346,7 +31306,7 @@ return $default(_that.label,_that.labelDetails,_that.kind,_that.tags,_that.detai
 @JsonSerializable()
 
 class _CompletionItem implements CompletionItem {
-  const _CompletionItem({required this.label, this.labelDetails, this.kind, final  List<CompletionItemTag>? tags, this.detail, this.documentation, this.deprecated, this.preselect, this.sortText, this.filterText, this.insertText, this.insertTextFormat, this.insertTextMode, this.textEdit, this.textEditText, final  List<TextEdit>? additionalTextEdits, final  List<String>? commitCharacters, this.command, this.data}): _tags = tags,_additionalTextEdits = additionalTextEdits,_commitCharacters = commitCharacters;
+  const _CompletionItem({required this.label, this.labelDetails, this.kind, final  List<CompletionItemTag>? tags, this.detail, this.documentation, @Deprecated('Use `tags` instead.') this.deprecated, this.preselect, this.sortText, this.filterText, this.insertText, this.insertTextFormat, this.insertTextMode, this.textEdit, this.textEditText, final  List<TextEdit>? additionalTextEdits, final  List<String>? commitCharacters, this.command, this.data}): _tags = tags,_additionalTextEdits = additionalTextEdits,_commitCharacters = commitCharacters;
   factory _CompletionItem.fromJson(Map<String, dynamic> json) => _$CompletionItemFromJson(json);
 
 /// The label of this completion item.
@@ -31358,19 +31318,13 @@ class _CompletionItem implements CompletionItem {
 /// of the completion item.
 @override final  String label;
 /// Additional details for the label
-///
-/// @since 3.17.0
 @override final  CompletionItemLabelDetails? labelDetails;
 /// The kind of this completion item. Based of the kind an icon is chosen by the
 /// editor.
 @override final  CompletionItemKind? kind;
 /// Tags for this completion item.
-///
-/// @since 3.15.0
  final  List<CompletionItemTag>? _tags;
 /// Tags for this completion item.
-///
-/// @since 3.15.0
 @override List<CompletionItemTag>? get tags {
   final value = _tags;
   if (value == null) return null;
@@ -31385,7 +31339,7 @@ class _CompletionItem implements CompletionItem {
 /// A human-readable string that represents a doc-comment.
 @override final  Object? documentation;
 /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
-@override final  bool? deprecated;
+@override@Deprecated('Use `tags` instead.') final  bool? deprecated;
 /// Select this item when showing.
 ///
 /// *Note* that only one completion item can be selected and that the tool /
@@ -31418,8 +31372,6 @@ class _CompletionItem implements CompletionItem {
 /// How whitespace and indentation is handled during completion item insertion.
 /// If not provided the clients default value depends on the
 /// `textDocument.completion.insertTextMode` client capability.
-///
-/// @since 3.16.0
 @override final  InsertTextMode? insertTextMode;
 /// An [edit] which is applied to a document when selecting this completion.
 /// When an edit is provided the value of [insertText] is ignored.
@@ -31437,7 +31389,7 @@ class _CompletionItem implements CompletionItem {
 /// returned the edit's insert range must be a prefix of the edit's replace
 /// range, that means it must be contained and starting at the same position.
 ///
-/// @since 3.16.0 additional type `InsertReplaceEdit`
+/// additional type `InsertReplaceEdit`
 @override final  Object? textEdit;
 /// The edit text used if the completion item is part of a CompletionList and
 /// CompletionList defines an item default for the text edit range.
@@ -31447,8 +31399,6 @@ class _CompletionItem implements CompletionItem {
 ///
 /// If not provided and a list's default range is provided the label property is
 /// used as a text.
-///
-/// @since 3.17.0
 @override final  String? textEditText;
 /// An optional array of additional [TextEdit] that are applied when selecting
 /// this completion. Edits must not overlap (including the same insert position)
@@ -31531,7 +31481,7 @@ abstract mixin class _$CompletionItemCopyWith<$Res> implements $CompletionItemCo
   factory _$CompletionItemCopyWith(_CompletionItem value, $Res Function(_CompletionItem) _then) = __$CompletionItemCopyWithImpl;
 @override @useResult
 $Res call({
- String label, CompletionItemLabelDetails? labelDetails, CompletionItemKind? kind, List<CompletionItemTag>? tags, String? detail, Object? documentation, bool? deprecated, bool? preselect, String? sortText, String? filterText, String? insertText, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, Object? textEdit, String? textEditText, List<TextEdit>? additionalTextEdits, List<String>? commitCharacters, Command? command, LSPAny? data
+ String label, CompletionItemLabelDetails? labelDetails, CompletionItemKind? kind, List<CompletionItemTag>? tags, String? detail, Object? documentation,@Deprecated('Use `tags` instead.') bool? deprecated, bool? preselect, String? sortText, String? filterText, String? insertText, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, Object? textEdit, String? textEditText, List<TextEdit>? additionalTextEdits, List<String>? commitCharacters, Command? command, LSPAny? data
 });
 
 
@@ -31615,8 +31565,6 @@ mixin _$CompletionList {
 ///
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
-///
-/// @since 3.17.0
  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? get itemDefaults;/// The completion items.
  List<CompletionItem> get items;
 /// Create a copy of CompletionList
@@ -31832,8 +31780,6 @@ class _CompletionList implements CompletionList {
 ///
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
-///
-/// @since 3.17.0
 @override final  ({List<String>? commitCharacters, Object? editRange, InsertTextFormat? insertTextFormat, InsertTextMode? insertTextMode, LSPAny? data})? itemDefaults;
 /// The completion items.
  final  List<CompletionItem> _items;
@@ -31930,13 +31876,9 @@ mixin _$CompletionRegistrationOptions {
 ///
 /// If a server provides both `allCommitCharacters` and commit characters on an
 /// individual completion item the ones on the completion item win.
-///
-/// @since 3.2.0
  List<String>? get allCommitCharacters;/// The server provides support to resolve additional information for a
 /// completion item.
  bool? get resolveProvider;/// The server supports the following `CompletionItem` specific capabilities.
-///
-/// @since 3.17.0
  ({bool? labelDetailsSupport})? get completionItem;
 /// Create a copy of CompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -32189,8 +32131,6 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
 ///
 /// If a server provides both `allCommitCharacters` and commit characters on an
 /// individual completion item the ones on the completion item win.
-///
-/// @since 3.2.0
  final  List<String>? _allCommitCharacters;
 /// The list of all possible characters that commit a completion. This field can
 /// be used if clients don't support individual commit characters per completion
@@ -32199,8 +32139,6 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
 ///
 /// If a server provides both `allCommitCharacters` and commit characters on an
 /// individual completion item the ones on the completion item win.
-///
-/// @since 3.2.0
 @override List<String>? get allCommitCharacters {
   final value = _allCommitCharacters;
   if (value == null) return null;
@@ -32213,8 +32151,6 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
 /// completion item.
 @override final  bool? resolveProvider;
 /// The server supports the following `CompletionItem` specific capabilities.
-///
-/// @since 3.17.0
 @override final  ({bool? labelDetailsSupport})? completionItem;
 
 /// Create a copy of CompletionRegistrationOptions
@@ -33201,8 +33137,6 @@ mixin _$SignatureHelpParams {
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The signature help context. This is only available if the client specifies
 /// to send this using the client capability
 /// `textDocument.signatureHelp.contextSupport === true`
-///
-/// @since 3.15.0
  SignatureHelpContext? get context;
 /// Create a copy of SignatureHelpParams
 /// with the given fields replaced by the non-null parameter values.
@@ -33454,8 +33388,6 @@ class _SignatureHelpParams implements SignatureHelpParams {
 /// The signature help context. This is only available if the client specifies
 /// to send this using the client capability
 /// `textDocument.signatureHelp.contextSupport === true`
-///
-/// @since 3.15.0
 @override final  SignatureHelpContext? context;
 
 /// Create a copy of SignatureHelpParams
@@ -33882,8 +33814,6 @@ mixin _$SignatureHelpRegistrationOptions {
 ///
 /// These trigger characters are only active when signature help is already
 /// showing. All trigger characters are also counted as re-trigger characters.
-///
-/// @since 3.15.0
  List<String>? get retriggerCharacters;
 /// Create a copy of SignatureHelpRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -34113,15 +34043,11 @@ class _SignatureHelpRegistrationOptions implements SignatureHelpRegistrationOpti
 ///
 /// These trigger characters are only active when signature help is already
 /// showing. All trigger characters are also counted as re-trigger characters.
-///
-/// @since 3.15.0
  final  List<String>? _retriggerCharacters;
 /// List of characters that re-trigger signature help.
 ///
 /// These trigger characters are only active when signature help is already
 /// showing. All trigger characters are also counted as re-trigger characters.
-///
-/// @since 3.15.0
 @override List<String>? get retriggerCharacters {
   final value = _retriggerCharacters;
   if (value == null) return null;
@@ -36791,8 +36717,6 @@ mixin _$SymbolInformation {
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
  SymbolKind get kind;/// Tags for this symbol.
-///
-/// @since 3.16.0
  List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for user
 /// interface purposes (e.g. to render a qualifier in the user interface if
 /// necessary). It can't be used to re-infer a hierarchy for the document
@@ -36800,7 +36724,7 @@ mixin _$SymbolInformation {
  String? get containerName;/// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
- bool? get deprecated;/// The location of this symbol. The location's range is used by a tool to
+@Deprecated('Use tags instead') bool? get deprecated;/// The location of this symbol. The location's range is used by a tool to
 /// reveal the location in the editor. If the symbol is selected in the tool the
 /// range's start information is used to position the cursor. So the range
 /// usually spans more than the actual symbol's name and does normally include
@@ -36842,7 +36766,7 @@ abstract mixin class $SymbolInformationCopyWith<$Res>  {
   factory $SymbolInformationCopyWith(SymbolInformation value, $Res Function(SymbolInformation) _then) = _$SymbolInformationCopyWithImpl;
 @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName, bool? deprecated, Location location
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName,@Deprecated('Use tags instead') bool? deprecated, Location location
 });
 
 
@@ -36961,7 +36885,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName,  bool? deprecated,  Location location)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName, @Deprecated('Use tags instead')  bool? deprecated,  Location location)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SymbolInformation() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.deprecated,_that.location);case _:
@@ -36982,7 +36906,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.depre
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName,  bool? deprecated,  Location location)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName, @Deprecated('Use tags instead')  bool? deprecated,  Location location)  $default,) {final _that = this;
 switch (_that) {
 case _SymbolInformation():
 return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.deprecated,_that.location);case _:
@@ -37002,7 +36926,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.depre
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName,  bool? deprecated,  Location location)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  SymbolKind kind,  List<SymbolTag>? tags,  String? containerName, @Deprecated('Use tags instead')  bool? deprecated,  Location location)?  $default,) {final _that = this;
 switch (_that) {
 case _SymbolInformation() when $default != null:
 return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.deprecated,_that.location);case _:
@@ -37017,7 +36941,7 @@ return $default(_that.name,_that.kind,_that.tags,_that.containerName,_that.depre
 @JsonSerializable()
 
 class _SymbolInformation implements SymbolInformation {
-  const _SymbolInformation({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, this.deprecated, required this.location}): _tags = tags;
+  const _SymbolInformation({required this.name, required this.kind, final  List<SymbolTag>? tags, this.containerName, @Deprecated('Use tags instead') this.deprecated, required this.location}): _tags = tags;
   factory _SymbolInformation.fromJson(Map<String, dynamic> json) => _$SymbolInformationFromJson(json);
 
 /// The name of this symbol.
@@ -37025,12 +36949,8 @@ class _SymbolInformation implements SymbolInformation {
 /// The kind of this symbol.
 @override final  SymbolKind kind;
 /// Tags for this symbol.
-///
-/// @since 3.16.0
  final  List<SymbolTag>? _tags;
 /// Tags for this symbol.
-///
-/// @since 3.16.0
 @override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
@@ -37047,7 +36967,7 @@ class _SymbolInformation implements SymbolInformation {
 /// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
-@override final  bool? deprecated;
+@override@Deprecated('Use tags instead') final  bool? deprecated;
 /// The location of this symbol. The location's range is used by a tool to
 /// reveal the location in the editor. If the symbol is selected in the tool the
 /// range's start information is used to position the cursor. So the range
@@ -37092,7 +37012,7 @@ abstract mixin class _$SymbolInformationCopyWith<$Res> implements $SymbolInforma
   factory _$SymbolInformationCopyWith(_SymbolInformation value, $Res Function(_SymbolInformation) _then) = __$SymbolInformationCopyWithImpl;
 @override @useResult
 $Res call({
- String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName, bool? deprecated, Location location
+ String name, SymbolKind kind, List<SymbolTag>? tags, String? containerName,@Deprecated('Use tags instead') bool? deprecated, Location location
 });
 
 
@@ -37143,12 +37063,10 @@ mixin _$DocumentSymbol {
  String get name;/// More detail for this symbol, e.g the signature of a function.
  String? get detail;/// The kind of this symbol.
  SymbolKind get kind;/// Tags for this document symbol.
-///
-/// @since 3.16.0
  List<SymbolTag>? get tags;/// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
- bool? get deprecated;/// The range enclosing this symbol not including leading/trailing whitespace
+@Deprecated('Use tags instead') bool? get deprecated;/// The range enclosing this symbol not including leading/trailing whitespace
 /// but everything else like comments. This information is typically used to
 /// determine if the clients cursor is inside the symbol to reveal in the symbol
 /// in the UI.
@@ -37188,7 +37106,7 @@ abstract mixin class $DocumentSymbolCopyWith<$Res>  {
   factory $DocumentSymbolCopyWith(DocumentSymbol value, $Res Function(DocumentSymbol) _then) = _$DocumentSymbolCopyWithImpl;
 @useResult
 $Res call({
- String name, String? detail, SymbolKind kind, List<SymbolTag>? tags, bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
+ String name, String? detail, SymbolKind kind, List<SymbolTag>? tags,@Deprecated('Use tags instead') bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
 });
 
 
@@ -37318,7 +37236,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String? detail,  SymbolKind kind,  List<SymbolTag>? tags,  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String? detail,  SymbolKind kind,  List<SymbolTag>? tags, @Deprecated('Use tags instead')  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentSymbol() when $default != null:
 return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_that.range,_that.selectionRange,_that.children);case _:
@@ -37339,7 +37257,7 @@ return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String? detail,  SymbolKind kind,  List<SymbolTag>? tags,  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String? detail,  SymbolKind kind,  List<SymbolTag>? tags, @Deprecated('Use tags instead')  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbol():
 return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_that.range,_that.selectionRange,_that.children);case _:
@@ -37359,7 +37277,7 @@ return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String? detail,  SymbolKind kind,  List<SymbolTag>? tags,  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String? detail,  SymbolKind kind,  List<SymbolTag>? tags, @Deprecated('Use tags instead')  bool? deprecated,  Range range,  Range selectionRange,  List<DocumentSymbol>? children)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentSymbol() when $default != null:
 return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_that.range,_that.selectionRange,_that.children);case _:
@@ -37374,7 +37292,7 @@ return $default(_that.name,_that.detail,_that.kind,_that.tags,_that.deprecated,_
 @JsonSerializable()
 
 class _DocumentSymbol implements DocumentSymbol {
-  const _DocumentSymbol({required this.name, this.detail, required this.kind, final  List<SymbolTag>? tags, this.deprecated, required this.range, required this.selectionRange, final  List<DocumentSymbol>? children}): _tags = tags,_children = children;
+  const _DocumentSymbol({required this.name, this.detail, required this.kind, final  List<SymbolTag>? tags, @Deprecated('Use tags instead') this.deprecated, required this.range, required this.selectionRange, final  List<DocumentSymbol>? children}): _tags = tags,_children = children;
   factory _DocumentSymbol.fromJson(Map<String, dynamic> json) => _$DocumentSymbolFromJson(json);
 
 /// The name of this symbol. Will be displayed in the user interface and
@@ -37386,12 +37304,8 @@ class _DocumentSymbol implements DocumentSymbol {
 /// The kind of this symbol.
 @override final  SymbolKind kind;
 /// Tags for this document symbol.
-///
-/// @since 3.16.0
  final  List<SymbolTag>? _tags;
 /// Tags for this document symbol.
-///
-/// @since 3.16.0
 @override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
@@ -37403,7 +37317,7 @@ class _DocumentSymbol implements DocumentSymbol {
 /// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
-@override final  bool? deprecated;
+@override@Deprecated('Use tags instead') final  bool? deprecated;
 /// The range enclosing this symbol not including leading/trailing whitespace
 /// but everything else like comments. This information is typically used to
 /// determine if the clients cursor is inside the symbol to reveal in the symbol
@@ -37457,7 +37371,7 @@ abstract mixin class _$DocumentSymbolCopyWith<$Res> implements $DocumentSymbolCo
   factory _$DocumentSymbolCopyWith(_DocumentSymbol value, $Res Function(_DocumentSymbol) _then) = __$DocumentSymbolCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String? detail, SymbolKind kind, List<SymbolTag>? tags, bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
+ String name, String? detail, SymbolKind kind, List<SymbolTag>? tags,@Deprecated('Use tags instead') bool? deprecated, Range range, Range selectionRange, List<DocumentSymbol>? children
 });
 
 
@@ -37517,8 +37431,6 @@ mixin _$DocumentSymbolRegistrationOptions {
 /// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees are shown
 /// for the same document.
-///
-/// @since 3.16.0
  String? get label;
 /// Create a copy of DocumentSymbolRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -37734,8 +37646,6 @@ class _DocumentSymbolRegistrationOptions implements DocumentSymbolRegistrationOp
 @override final  bool? workDoneProgress;
 /// A human-readable string that is shown when multiple outlines trees are shown
 /// for the same document.
-///
-/// @since 3.16.0
 @override final  String? label;
 
 /// Create a copy of DocumentSymbolRegistrationOptions
@@ -38488,8 +38398,6 @@ mixin _$CodeAction {
 /// A quick fix should be marked preferred if it properly addresses the
 /// underlying error. A refactoring should be marked preferred if it is the most
 /// reasonable choice of actions to take.
-///
-/// @since 3.15.0
  bool? get isPreferred;/// Marks that the code action cannot currently be applied.
 ///
 /// Clients should follow the following guidelines regarding disabled code
@@ -38507,15 +38415,11 @@ mixin _$CodeAction {
 /// that auto applies a code action and only disabled code actions are returned,
 /// the client should show the user an error message with `reason` in the
 /// editor.
-///
-/// @since 3.16.0
  ({String reason})? get disabled;/// The workspace edit this code action performs.
  WorkspaceEdit? get edit;/// A command this code action executes. If a code action provides an edit and a
 /// command, first the edit is executed and then the command.
  Command? get command;/// A data entry field that is preserved on a code action between a
 /// `textDocument/codeAction` and a `codeAction/resolve` request.
-///
-/// @since 3.16.0
  LSPAny? get data;
 /// Create a copy of CodeAction
 /// with the given fields replaced by the non-null parameter values.
@@ -38766,8 +38670,6 @@ class _CodeAction extends CodeAction {
 /// A quick fix should be marked preferred if it properly addresses the
 /// underlying error. A refactoring should be marked preferred if it is the most
 /// reasonable choice of actions to take.
-///
-/// @since 3.15.0
 @override final  bool? isPreferred;
 /// Marks that the code action cannot currently be applied.
 ///
@@ -38786,8 +38688,6 @@ class _CodeAction extends CodeAction {
 /// that auto applies a code action and only disabled code actions are returned,
 /// the client should show the user an error message with `reason` in the
 /// editor.
-///
-/// @since 3.16.0
 @override final  ({String reason})? disabled;
 /// The workspace edit this code action performs.
 @override final  WorkspaceEdit? edit;
@@ -38796,8 +38696,6 @@ class _CodeAction extends CodeAction {
 @override final  Command? command;
 /// A data entry field that is preserved on a code action between a
 /// `textDocument/codeAction` and a `codeAction/resolve` request.
-///
-/// @since 3.16.0
 @override final  LSPAny? data;
 
 /// Create a copy of CodeAction
@@ -38902,8 +38800,6 @@ mixin _$CodeActionRegistrationOptions {
 /// server may list out every specific kind they provide.
  List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional information for a code
 /// action.
-///
-/// @since 3.16.0
  bool? get resolveProvider;
 /// Create a copy of CodeActionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -39137,8 +39033,6 @@ class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
 
 /// The server provides support to resolve additional information for a code
 /// action.
-///
-/// @since 3.16.0
 @override final  bool? resolveProvider;
 
 /// Create a copy of CodeActionRegistrationOptions
@@ -39538,8 +39432,6 @@ mixin _$WorkspaceSymbol {
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
  SymbolKind get kind;/// Tags for this symbol.
-///
-/// @since 3.16.0
  List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for user
 /// interface purposes (e.g. to render a qualifier in the user interface if
 /// necessary). It can't be used to re-infer a hierarchy for the document
@@ -39756,12 +39648,8 @@ class _WorkspaceSymbol implements WorkspaceSymbol {
 /// The kind of this symbol.
 @override final  SymbolKind kind;
 /// Tags for this symbol.
-///
-/// @since 3.16.0
  final  List<SymbolTag>? _tags;
 /// Tags for this symbol.
-///
-/// @since 3.16.0
 @override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
@@ -39854,8 +39742,6 @@ mixin _$WorkspaceSymbolRegistrationOptions {
 
  bool? get workDoneProgress;/// The server provides support to resolve additional information for a
 /// workspace symbol.
-///
-/// @since 3.17.0
  bool? get resolveProvider;
 /// Create a copy of WorkspaceSymbolRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -40057,8 +39943,6 @@ class _WorkspaceSymbolRegistrationOptions implements WorkspaceSymbolRegistration
 @override final  bool? workDoneProgress;
 /// The server provides support to resolve additional information for a
 /// workspace symbol.
-///
-/// @since 3.17.0
 @override final  bool? resolveProvider;
 
 /// Create a copy of WorkspaceSymbolRegistrationOptions
@@ -41421,8 +41305,6 @@ mixin _$DocumentLink {
 /// If a tooltip is provided, is will be displayed in a string that includes
 /// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
 /// specific instructions vary depending on OS, user settings, and localization.
-///
-/// @since 3.15.0
  String? get tooltip;/// A data entry field that is preserved on a document link between a
 /// DocumentLinkRequest and a DocumentLinkResolveRequest.
  LSPAny? get data;
@@ -41642,8 +41524,6 @@ class _DocumentLink implements DocumentLink {
 /// If a tooltip is provided, is will be displayed in a string that includes
 /// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
 /// specific instructions vary depending on OS, user settings, and localization.
-///
-/// @since 3.15.0
 @override final  String? tooltip;
 /// A data entry field that is preserved on a document link between a
 /// DocumentLinkRequest and a DocumentLinkResolveRequest.
@@ -42985,8 +42865,6 @@ mixin _$DocumentRangeFormattingRegistrationOptions {
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Whether the server supports formatting multiple ranges at once.
-///
-/// @since 3.18.0 @proposed
  bool? get rangesSupport;
 /// Create a copy of DocumentRangeFormattingRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -43201,8 +43079,6 @@ class _DocumentRangeFormattingRegistrationOptions implements DocumentRangeFormat
 
 @override final  bool? workDoneProgress;
 /// Whether the server supports formatting multiple ranges at once.
-///
-/// @since 3.18.0 @proposed
 @override final  bool? rangesSupport;
 
 /// Create a copy of DocumentRangeFormattingRegistrationOptions
@@ -44604,7 +44480,7 @@ mixin _$RenameRegistrationOptions {
 /// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Renames should be checked and tested before being executed.
 ///
-/// @since version 3.12.0
+/// 3.12.0
  bool? get prepareProvider;
 /// Create a copy of RenameRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -44820,7 +44696,7 @@ class _RenameRegistrationOptions implements RenameRegistrationOptions {
 @override final  bool? workDoneProgress;
 /// Renames should be checked and tested before being executed.
 ///
-/// @since version 3.12.0
+/// 3.12.0
 @override final  bool? prepareProvider;
 
 /// Create a copy of RenameRegistrationOptions
@@ -54497,8 +54373,7 @@ mixin _$TextDocumentEdit {
 /// The text document to change.
  OptionalVersionedTextDocumentIdentifier get textDocument;/// The edits to be applied.
 ///
-/// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
-/// client capability.
+/// - support for AnnotatedTextEdit. This is guarded using a client capability.
  List<Object> get edits;
 /// Create a copy of TextDocumentEdit
 /// with the given fields replaced by the non-null parameter values.
@@ -54710,13 +54585,11 @@ class _TextDocumentEdit implements TextDocumentEdit {
 @override final  OptionalVersionedTextDocumentIdentifier textDocument;
 /// The edits to be applied.
 ///
-/// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
-/// client capability.
+/// - support for AnnotatedTextEdit. This is guarded using a client capability.
  final  List<Object> _edits;
 /// The edits to be applied.
 ///
-/// @since 3.16.0 - support for AnnotatedTextEdit. This is guarded using a
-/// client capability.
+/// - support for AnnotatedTextEdit. This is guarded using a client capability.
 @override List<Object> get edits {
   if (_edits is EqualUnmodifiableListView) return _edits;
   // ignore: implicit_dynamic_type
@@ -54799,8 +54672,6 @@ $OptionalVersionedTextDocumentIdentifierCopyWith<$Res> get textDocument {
 mixin _$CreateFile {
 
 /// An optional annotation identifier describing the operation.
-///
-/// @since 3.16.0
  ChangeAnnotationIdentifier? get annotationId;/// A create
  String get kind;/// The resource to create.
  String get uri;/// Additional options
@@ -55017,8 +54888,6 @@ class _CreateFile implements CreateFile {
   factory _CreateFile.fromJson(Map<String, dynamic> json) => _$CreateFileFromJson(json);
 
 /// An optional annotation identifier describing the operation.
-///
-/// @since 3.16.0
 @override final  ChangeAnnotationIdentifier? annotationId;
 /// A create
 @override final  String kind;
@@ -55107,8 +54976,6 @@ $CreateFileOptionsCopyWith<$Res>? get options {
 mixin _$RenameFile {
 
 /// An optional annotation identifier describing the operation.
-///
-/// @since 3.16.0
  ChangeAnnotationIdentifier? get annotationId;/// A rename
  String get kind;/// The old (existing) location.
  String get oldUri;/// The new location.
@@ -55327,8 +55194,6 @@ class _RenameFile implements RenameFile {
   factory _RenameFile.fromJson(Map<String, dynamic> json) => _$RenameFileFromJson(json);
 
 /// An optional annotation identifier describing the operation.
-///
-/// @since 3.16.0
 @override final  ChangeAnnotationIdentifier? annotationId;
 /// A rename
 @override final  String kind;
@@ -55420,8 +55285,6 @@ $RenameFileOptionsCopyWith<$Res>? get options {
 mixin _$DeleteFile {
 
 /// An optional annotation identifier describing the operation.
-///
-/// @since 3.16.0
  ChangeAnnotationIdentifier? get annotationId;/// A delete
  String get kind;/// The file to delete.
  String get uri;/// Delete options.
@@ -55638,8 +55501,6 @@ class _DeleteFile implements DeleteFile {
   factory _DeleteFile.fromJson(Map<String, dynamic> json) => _$DeleteFileFromJson(json);
 
 /// An optional annotation identifier describing the operation.
-///
-/// @since 3.16.0
 @override final  ChangeAnnotationIdentifier? annotationId;
 /// A delete
 @override final  String kind;
@@ -59685,8 +59546,6 @@ mixin _$RelatedFullDocumentDiagnosticReport {
 /// languages where code in a file A can generate diagnostics in a file B which
 /// A depends on. An example of such a language is C/C++ where marco definitions
 /// in a file a.cpp and result in errors in a header file b.hpp.
-///
-/// @since 3.17.0
  Map<String, Object>? get relatedDocuments;
 /// Create a copy of RelatedFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -59905,15 +59764,11 @@ class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnos
 /// languages where code in a file A can generate diagnostics in a file B which
 /// A depends on. An example of such a language is C/C++ where marco definitions
 /// in a file a.cpp and result in errors in a header file b.hpp.
-///
-/// @since 3.17.0
  final  Map<String, Object>? _relatedDocuments;
 /// Diagnostics of related documents. This information is useful in programming
 /// languages where code in a file A can generate diagnostics in a file B which
 /// A depends on. An example of such a language is C/C++ where marco definitions
 /// in a file a.cpp and result in errors in a header file b.hpp.
-///
-/// @since 3.17.0
 @override Map<String, Object>? get relatedDocuments {
   final value = _relatedDocuments;
   if (value == null) return null;
@@ -59998,8 +59853,6 @@ mixin _$RelatedUnchangedDocumentDiagnosticReport {
 /// languages where code in a file A can generate diagnostics in a file B which
 /// A depends on. An example of such a language is C/C++ where marco definitions
 /// in a file a.cpp and result in errors in a header file b.hpp.
-///
-/// @since 3.17.0
  Map<String, Object>? get relatedDocuments;
 /// Create a copy of RelatedUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -60209,15 +60062,11 @@ class _RelatedUnchangedDocumentDiagnosticReport implements RelatedUnchangedDocum
 /// languages where code in a file A can generate diagnostics in a file B which
 /// A depends on. An example of such a language is C/C++ where marco definitions
 /// in a file a.cpp and result in errors in a header file b.hpp.
-///
-/// @since 3.17.0
  final  Map<String, Object>? _relatedDocuments;
 /// Diagnostics of related documents. This information is useful in programming
 /// languages where code in a file A can generate diagnostics in a file B which
 /// A depends on. An example of such a language is C/C++ where marco definitions
 /// in a file a.cpp and result in errors in a header file b.hpp.
-///
-/// @since 3.17.0
 @override Map<String, Object>? get relatedDocuments {
   final value = _relatedDocuments;
   if (value == null) return null;
@@ -64199,8 +64048,6 @@ mixin _$WorkspaceFoldersInitializeParams {
 /// This property is only available if the client supports workspace folders. It
 /// can be `null` if the client supports workspace folders but none are
 /// configured.
-///
-/// @since 3.6.0
  List<WorkspaceFolder>? get workspaceFolders;
 /// Create a copy of WorkspaceFoldersInitializeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -64403,16 +64250,12 @@ class _WorkspaceFoldersInitializeParams implements WorkspaceFoldersInitializePar
 /// This property is only available if the client supports workspace folders. It
 /// can be `null` if the client supports workspace folders but none are
 /// configured.
-///
-/// @since 3.6.0
  final  List<WorkspaceFolder>? _workspaceFolders;
 /// The workspace folders configured in the client when the server starts.
 ///
 /// This property is only available if the client supports workspace folders. It
 /// can be `null` if the client supports workspace folders but none are
 /// configured.
-///
-/// @since 3.6.0
 @override List<WorkspaceFolder>? get workspaceFolders {
   final value = _workspaceFolders;
   if (value == null) return null;
@@ -64493,14 +64336,10 @@ mixin _$ServerCapabilities {
 /// that a server can return is 'utf-16'.
 ///
 /// If omitted it defaults to 'utf-16'.
-///
-/// @since 3.17.0
  String? get positionEncoding;/// Defines how text documents are synced. Is either a detailed structure
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
  Object? get textDocumentSync;/// Defines how notebook documents are synced.
-///
-/// @since 3.17.0
  Object? get notebookDocumentSync;/// The server provides completion support.
  CompletionOptions? get completionProvider;/// The server provides hover support.
  Object? get hoverProvider;/// The server provides signature help support.
@@ -64528,32 +64367,14 @@ mixin _$ServerCapabilities {
  Object? get foldingRangeProvider;/// The server provides selection range support.
  Object? get selectionRangeProvider;/// The server provides execute command support.
  ExecuteCommandOptions? get executeCommandProvider;/// The server provides call hierarchy support.
-///
-/// @since 3.16.0
  Object? get callHierarchyProvider;/// The server provides linked editing range support.
-///
-/// @since 3.16.0
  Object? get linkedEditingRangeProvider;/// The server provides semantic tokens support.
-///
-/// @since 3.16.0
  Object? get semanticTokensProvider;/// The server provides moniker support.
-///
-/// @since 3.16.0
  Object? get monikerProvider;/// The server provides type hierarchy support.
-///
-/// @since 3.17.0
  Object? get typeHierarchyProvider;/// The server provides inline values.
-///
-/// @since 3.17.0
  Object? get inlineValueProvider;/// The server provides inlay hints.
-///
-/// @since 3.17.0
  Object? get inlayHintProvider;/// The server has support for pull model diagnostics.
-///
-/// @since 3.17.0
  Object? get diagnosticProvider;/// Inline completion options used during static registration.
-///
-/// @since 3.18.0 @proposed
  Object? get inlineCompletionProvider;/// Workspace specific server capabilities.
  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? get workspace;/// Experimental server capabilities.
  LSPAny? get experimental;
@@ -64839,16 +64660,12 @@ class _ServerCapabilities extends ServerCapabilities {
 /// that a server can return is 'utf-16'.
 ///
 /// If omitted it defaults to 'utf-16'.
-///
-/// @since 3.17.0
 @override final  String? positionEncoding;
 /// Defines how text documents are synced. Is either a detailed structure
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
 @override final  Object? textDocumentSync;
 /// Defines how notebook documents are synced.
-///
-/// @since 3.17.0
 @override final  Object? notebookDocumentSync;
 /// The server provides completion support.
 @override final  CompletionOptions? completionProvider;
@@ -64899,40 +64716,22 @@ class _ServerCapabilities extends ServerCapabilities {
 /// The server provides execute command support.
 @override final  ExecuteCommandOptions? executeCommandProvider;
 /// The server provides call hierarchy support.
-///
-/// @since 3.16.0
 @override final  Object? callHierarchyProvider;
 /// The server provides linked editing range support.
-///
-/// @since 3.16.0
 @override final  Object? linkedEditingRangeProvider;
 /// The server provides semantic tokens support.
-///
-/// @since 3.16.0
 @override final  Object? semanticTokensProvider;
 /// The server provides moniker support.
-///
-/// @since 3.16.0
 @override final  Object? monikerProvider;
 /// The server provides type hierarchy support.
-///
-/// @since 3.17.0
 @override final  Object? typeHierarchyProvider;
 /// The server provides inline values.
-///
-/// @since 3.17.0
 @override final  Object? inlineValueProvider;
 /// The server provides inlay hints.
-///
-/// @since 3.17.0
 @override final  Object? inlayHintProvider;
 /// The server has support for pull model diagnostics.
-///
-/// @since 3.17.0
 @override final  Object? diagnosticProvider;
 /// Inline completion options used during static registration.
-///
-/// @since 3.18.0 @proposed
 @override final  Object? inlineCompletionProvider;
 /// Workspace specific server capabilities.
 @override final  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace;
@@ -65889,7 +65688,7 @@ mixin _$FileSystemWatcher {
 
 /// The glob pattern to watch. See [GlobPattern] for more detail.
 ///
-/// @since 3.17.0 support for relative patterns.
+/// support for relative patterns.
  GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults to WatchKind.Create |
 /// WatchKind.Change | WatchKind.Delete which is 7.
  int? get kind;
@@ -66091,7 +65890,7 @@ class _FileSystemWatcher extends FileSystemWatcher {
 
 /// The glob pattern to watch. See [GlobPattern] for more detail.
 ///
-/// @since 3.17.0 support for relative patterns.
+/// support for relative patterns.
 @override final  GlobPattern globPattern;
 /// The kind of events of interest. If omitted it defaults to WatchKind.Create |
 /// WatchKind.Change | WatchKind.Delete which is 7.
@@ -66167,21 +65966,15 @@ mixin _$Diagnostic {
  DiagnosticSeverity? get severity;/// The diagnostic's code, which usually appear in the user interface.
  Object? get code;/// An optional property to describe the error code. Requires the code field
 /// (above) to be present/not null.
-///
-/// @since 3.16.0
  CodeDescription? get codeDescription;/// A human-readable string describing the source of this diagnostic, e.g.
 /// 'typescript' or 'super lint'. It usually appears in the user interface.
  String? get source;/// The diagnostic's message. It usually appears in the user interface
  String get message;/// Additional metadata about the diagnostic.
-///
-/// @since 3.15.0
  List<DiagnosticTag>? get tags;/// An array of related diagnostic information, e.g. when symbol-names within a
 /// scope collide all definitions can be marked via this property.
  List<DiagnosticRelatedInformation>? get relatedInformation;/// A data entry field that is preserved between a
 /// `textDocument/publishDiagnostics` notification and `textDocument/codeAction`
 /// request.
-///
-/// @since 3.16.0
  LSPAny? get data;
 /// Create a copy of Diagnostic
 /// with the given fields replaced by the non-null parameter values.
@@ -66415,8 +66208,6 @@ class _Diagnostic implements Diagnostic {
 @override final  Object? code;
 /// An optional property to describe the error code. Requires the code field
 /// (above) to be present/not null.
-///
-/// @since 3.16.0
 @override final  CodeDescription? codeDescription;
 /// A human-readable string describing the source of this diagnostic, e.g.
 /// 'typescript' or 'super lint'. It usually appears in the user interface.
@@ -66424,12 +66215,8 @@ class _Diagnostic implements Diagnostic {
 /// The diagnostic's message. It usually appears in the user interface
 @override final  String message;
 /// Additional metadata about the diagnostic.
-///
-/// @since 3.15.0
  final  List<DiagnosticTag>? _tags;
 /// Additional metadata about the diagnostic.
-///
-/// @since 3.15.0
 @override List<DiagnosticTag>? get tags {
   final value = _tags;
   if (value == null) return null;
@@ -66454,8 +66241,6 @@ class _Diagnostic implements Diagnostic {
 /// A data entry field that is preserved between a
 /// `textDocument/publishDiagnostics` notification and `textDocument/codeAction`
 /// request.
-///
-/// @since 3.16.0
 @override final  LSPAny? data;
 
 /// Create a copy of Diagnostic
@@ -67427,13 +67212,9 @@ mixin _$CompletionOptions {
 ///
 /// If a server provides both `allCommitCharacters` and commit characters on an
 /// individual completion item the ones on the completion item win.
-///
-/// @since 3.2.0
  List<String>? get allCommitCharacters;/// The server provides support to resolve additional information for a
 /// completion item.
  bool? get resolveProvider;/// The server supports the following `CompletionItem` specific capabilities.
-///
-/// @since 3.17.0
  ({bool? labelDetailsSupport})? get completionItem;
 /// Create a copy of CompletionOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -67672,8 +67453,6 @@ class _CompletionOptions implements CompletionOptions {
 ///
 /// If a server provides both `allCommitCharacters` and commit characters on an
 /// individual completion item the ones on the completion item win.
-///
-/// @since 3.2.0
  final  List<String>? _allCommitCharacters;
 /// The list of all possible characters that commit a completion. This field can
 /// be used if clients don't support individual commit characters per completion
@@ -67682,8 +67461,6 @@ class _CompletionOptions implements CompletionOptions {
 ///
 /// If a server provides both `allCommitCharacters` and commit characters on an
 /// individual completion item the ones on the completion item win.
-///
-/// @since 3.2.0
 @override List<String>? get allCommitCharacters {
   final value = _allCommitCharacters;
   if (value == null) return null;
@@ -67696,8 +67473,6 @@ class _CompletionOptions implements CompletionOptions {
 /// completion item.
 @override final  bool? resolveProvider;
 /// The server supports the following `CompletionItem` specific capabilities.
-///
-/// @since 3.17.0
 @override final  ({bool? labelDetailsSupport})? completionItem;
 
 /// Create a copy of CompletionOptions
@@ -68362,8 +68137,6 @@ mixin _$SignatureInformation {
  List<ParameterInformation>? get parameters;/// The index of the active parameter.
 ///
 /// If provided, this is used in place of `SignatureHelp.activeParameter`.
-///
-/// @since 3.16.0
  int? get activeParameter;
 /// Create a copy of SignatureInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -68582,8 +68355,6 @@ class _SignatureInformation implements SignatureInformation {
 /// The index of the active parameter.
 ///
 /// If provided, this is used in place of `SignatureHelp.activeParameter`.
-///
-/// @since 3.16.0
 @override final  int? activeParameter;
 
 /// Create a copy of SignatureInformation
@@ -68657,8 +68428,6 @@ mixin _$SignatureHelpOptions {
 ///
 /// These trigger characters are only active when signature help is already
 /// showing. All trigger characters are also counted as re-trigger characters.
-///
-/// @since 3.15.0
  List<String>? get retriggerCharacters;
 /// Create a copy of SignatureHelpOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -68874,15 +68643,11 @@ class _SignatureHelpOptions implements SignatureHelpOptions {
 ///
 /// These trigger characters are only active when signature help is already
 /// showing. All trigger characters are also counted as re-trigger characters.
-///
-/// @since 3.15.0
  final  List<String>? _retriggerCharacters;
 /// List of characters that re-trigger signature help.
 ///
 /// These trigger characters are only active when signature help is already
 /// showing. All trigger characters are also counted as re-trigger characters.
-///
-/// @since 3.15.0
 @override List<String>? get retriggerCharacters {
   final value = _retriggerCharacters;
   if (value == null) return null;
@@ -70015,8 +69780,6 @@ mixin _$BaseSymbolInformation {
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
  SymbolKind get kind;/// Tags for this symbol.
-///
-/// @since 3.16.0
  List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for user
 /// interface purposes (e.g. to render a qualifier in the user interface if
 /// necessary). It can't be used to re-infer a hierarchy for the document
@@ -70226,12 +69989,8 @@ class _BaseSymbolInformation implements BaseSymbolInformation {
 /// The kind of this symbol.
 @override final  SymbolKind kind;
 /// Tags for this symbol.
-///
-/// @since 3.16.0
  final  List<SymbolTag>? _tags;
 /// Tags for this symbol.
-///
-/// @since 3.16.0
 @override List<SymbolTag>? get tags {
   final value = _tags;
   if (value == null) return null;
@@ -70315,8 +70074,6 @@ mixin _$DocumentSymbolOptions {
 
  bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees are shown
 /// for the same document.
-///
-/// @since 3.16.0
  String? get label;
 /// Create a copy of DocumentSymbolOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -70518,8 +70275,6 @@ class _DocumentSymbolOptions implements DocumentSymbolOptions {
 @override final  bool? workDoneProgress;
 /// A human-readable string that is shown when multiple outlines trees are shown
 /// for the same document.
-///
-/// @since 3.16.0
 @override final  String? label;
 
 /// Create a copy of DocumentSymbolOptions
@@ -70598,8 +70353,6 @@ mixin _$CodeActionContext {
 /// Actions not of this kind are filtered out by the client before being shown.
 /// So servers can omit computing them.
  List<CodeActionKind>? get only;/// The reason why code actions were requested.
-///
-/// @since 3.17.0
  CodeActionTriggerKind? get triggerKind;
 /// Create a copy of CodeActionContext
 /// with the given fields replaced by the non-null parameter values.
@@ -70836,8 +70589,6 @@ class _CodeActionContext implements CodeActionContext {
 }
 
 /// The reason why code actions were requested.
-///
-/// @since 3.17.0
 @override final  CodeActionTriggerKind? triggerKind;
 
 /// Create a copy of CodeActionContext
@@ -70912,8 +70663,6 @@ mixin _$CodeActionOptions {
 /// server may list out every specific kind they provide.
  List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional information for a code
 /// action.
-///
-/// @since 3.16.0
  bool? get resolveProvider;
 /// Create a copy of CodeActionOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -71133,8 +70882,6 @@ class _CodeActionOptions implements CodeActionOptions {
 
 /// The server provides support to resolve additional information for a code
 /// action.
-///
-/// @since 3.16.0
 @override final  bool? resolveProvider;
 
 /// Create a copy of CodeActionOptions
@@ -71205,8 +70952,6 @@ mixin _$WorkspaceSymbolOptions {
 
  bool? get workDoneProgress;/// The server provides support to resolve additional information for a
 /// workspace symbol.
-///
-/// @since 3.17.0
  bool? get resolveProvider;
 /// Create a copy of WorkspaceSymbolOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -71408,8 +71153,6 @@ class _WorkspaceSymbolOptions implements WorkspaceSymbolOptions {
 @override final  bool? workDoneProgress;
 /// The server provides support to resolve additional information for a
 /// workspace symbol.
-///
-/// @since 3.17.0
 @override final  bool? resolveProvider;
 
 /// Create a copy of WorkspaceSymbolOptions
@@ -72016,14 +71759,8 @@ mixin _$FormattingOptions {
 /// Size of a tab in spaces.
  int get tabSize;/// Prefer spaces over tabs.
  bool get insertSpaces;/// Trim trailing whitespace on a line.
-///
-/// @since 3.15.0
  bool? get trimTrailingWhitespace;/// Insert a newline character at the end of the file if one does not exist.
-///
-/// @since 3.15.0
  bool? get insertFinalNewline;/// Trim all newlines after the final newline at the end of the file.
-///
-/// @since 3.15.0
  bool? get trimFinalNewlines;
 /// Create a copy of FormattingOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -72230,16 +71967,10 @@ class _FormattingOptions implements FormattingOptions {
 /// Prefer spaces over tabs.
 @override final  bool insertSpaces;
 /// Trim trailing whitespace on a line.
-///
-/// @since 3.15.0
 @override final  bool? trimTrailingWhitespace;
 /// Insert a newline character at the end of the file if one does not exist.
-///
-/// @since 3.15.0
 @override final  bool? insertFinalNewline;
 /// Trim all newlines after the final newline at the end of the file.
-///
-/// @since 3.15.0
 @override final  bool? trimFinalNewlines;
 
 /// Create a copy of FormattingOptions
@@ -72574,8 +72305,6 @@ as bool?,
 mixin _$DocumentRangeFormattingOptions {
 
  bool? get workDoneProgress;/// Whether the server supports formatting multiple ranges at once.
-///
-/// @since 3.18.0 @proposed
  bool? get rangesSupport;
 /// Create a copy of DocumentRangeFormattingOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -72776,8 +72505,6 @@ class _DocumentRangeFormattingOptions implements DocumentRangeFormattingOptions 
 
 @override final  bool? workDoneProgress;
 /// Whether the server supports formatting multiple ranges at once.
-///
-/// @since 3.18.0 @proposed
 @override final  bool? rangesSupport;
 
 /// Create a copy of DocumentRangeFormattingOptions
@@ -73126,7 +72853,7 @@ mixin _$RenameOptions {
 
  bool? get workDoneProgress;/// Renames should be checked and tested before being executed.
 ///
-/// @since version 3.12.0
+/// 3.12.0
  bool? get prepareProvider;
 /// Create a copy of RenameOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -73328,7 +73055,7 @@ class _RenameOptions implements RenameOptions {
 @override final  bool? workDoneProgress;
 /// Renames should be checked and tested before being executed.
 ///
-/// @since version 3.12.0
+/// 3.12.0
 @override final  bool? prepareProvider;
 
 /// Create a copy of RenameOptions
@@ -74530,8 +74257,6 @@ mixin _$ResourceOperation {
 
 /// The resource operation kind.
  String get kind;/// An optional annotation identifier describing the operation.
-///
-/// @since 3.16.0
  ChangeAnnotationIdentifier? get annotationId;
 /// Create a copy of ResourceOperation
 /// with the given fields replaced by the non-null parameter values.
@@ -74733,8 +74458,6 @@ class _ResourceOperation implements ResourceOperation {
 /// The resource operation kind.
 @override final  String kind;
 /// An optional annotation identifier describing the operation.
-///
-/// @since 3.16.0
 @override final  ChangeAnnotationIdentifier? annotationId;
 
 /// Create a copy of ResourceOperation
@@ -77407,12 +77130,8 @@ mixin _$ClientCapabilities {
 /// Workspace specific client capabilities.
  WorkspaceClientCapabilities? get workspace;/// Text document specific client capabilities.
  TextDocumentClientCapabilities? get textDocument;/// Capabilities specific to the notebook document support.
-///
-/// @since 3.17.0
  NotebookDocumentClientCapabilities? get notebookDocument;/// Window specific client capabilities.
  WindowClientCapabilities? get window;/// General client capabilities.
-///
-/// @since 3.16.0
  GeneralClientCapabilities? get general;/// Experimental client capabilities.
  LSPAny? get experimental;
 /// Create a copy of ClientCapabilities
@@ -77680,14 +77399,10 @@ class _ClientCapabilities implements ClientCapabilities {
 /// Text document specific client capabilities.
 @override final  TextDocumentClientCapabilities? textDocument;
 /// Capabilities specific to the notebook document support.
-///
-/// @since 3.17.0
 @override final  NotebookDocumentClientCapabilities? notebookDocument;
 /// Window specific client capabilities.
 @override final  WindowClientCapabilities? window;
 /// General client capabilities.
-///
-/// @since 3.16.0
 @override final  GeneralClientCapabilities? general;
 /// Experimental client capabilities.
 @override final  LSPAny? experimental;
@@ -81051,34 +80766,18 @@ mixin _$WorkspaceClientCapabilities {
  DidChangeWatchedFilesClientCapabilities? get didChangeWatchedFiles;/// Capabilities specific to the `workspace/symbol` request.
  WorkspaceSymbolClientCapabilities? get symbol;/// Capabilities specific to the `workspace/executeCommand` request.
  ExecuteCommandClientCapabilities? get executeCommand;/// The client has support for workspace folders.
-///
-/// @since 3.6.0
  bool? get workspaceFolders;/// The client supports `workspace/configuration` requests.
-///
-/// @since 3.6.0
  bool? get configuration;/// Capabilities specific to the semantic token requests scoped to the
 /// workspace.
-///
-/// @since 3.16.0.
  SemanticTokensWorkspaceClientCapabilities? get semanticTokens;/// Capabilities specific to the code lens requests scoped to the workspace.
-///
-/// @since 3.16.0.
  CodeLensWorkspaceClientCapabilities? get codeLens;/// The client has support for file notifications/requests for user operations
 /// on files.
 ///
 /// Since 3.16.0
  FileOperationClientCapabilities? get fileOperations;/// Capabilities specific to the inline values requests scoped to the workspace.
-///
-/// @since 3.17.0.
  InlineValueWorkspaceClientCapabilities? get inlineValue;/// Capabilities specific to the inlay hint requests scoped to the workspace.
-///
-/// @since 3.17.0.
  InlayHintWorkspaceClientCapabilities? get inlayHint;/// Capabilities specific to the diagnostic requests scoped to the workspace.
-///
-/// @since 3.17.0.
  DiagnosticWorkspaceClientCapabilities? get diagnostics;/// Capabilities specific to the folding range requests scoped to the workspace.
-///
-/// @since 3.18.0 @proposed
  FoldingRangeWorkspaceClientCapabilities? get foldingRange;
 /// Create a copy of WorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -81449,21 +81148,13 @@ class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
 /// Capabilities specific to the `workspace/executeCommand` request.
 @override final  ExecuteCommandClientCapabilities? executeCommand;
 /// The client has support for workspace folders.
-///
-/// @since 3.6.0
 @override final  bool? workspaceFolders;
 /// The client supports `workspace/configuration` requests.
-///
-/// @since 3.6.0
 @override final  bool? configuration;
 /// Capabilities specific to the semantic token requests scoped to the
 /// workspace.
-///
-/// @since 3.16.0.
 @override final  SemanticTokensWorkspaceClientCapabilities? semanticTokens;
 /// Capabilities specific to the code lens requests scoped to the workspace.
-///
-/// @since 3.16.0.
 @override final  CodeLensWorkspaceClientCapabilities? codeLens;
 /// The client has support for file notifications/requests for user operations
 /// on files.
@@ -81471,20 +81162,12 @@ class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
 /// Since 3.16.0
 @override final  FileOperationClientCapabilities? fileOperations;
 /// Capabilities specific to the inline values requests scoped to the workspace.
-///
-/// @since 3.17.0.
 @override final  InlineValueWorkspaceClientCapabilities? inlineValue;
 /// Capabilities specific to the inlay hint requests scoped to the workspace.
-///
-/// @since 3.17.0.
 @override final  InlayHintWorkspaceClientCapabilities? inlayHint;
 /// Capabilities specific to the diagnostic requests scoped to the workspace.
-///
-/// @since 3.17.0.
 @override final  DiagnosticWorkspaceClientCapabilities? diagnostics;
 /// Capabilities specific to the folding range requests scoped to the workspace.
-///
-/// @since 3.18.0 @proposed
 @override final  FoldingRangeWorkspaceClientCapabilities? foldingRange;
 
 /// Create a copy of WorkspaceClientCapabilities
@@ -81714,15 +81397,9 @@ mixin _$TextDocumentClientCapabilities {
  CompletionClientCapabilities? get completion;/// Capabilities specific to the `textDocument/hover` request.
  HoverClientCapabilities? get hover;/// Capabilities specific to the `textDocument/signatureHelp` request.
  SignatureHelpClientCapabilities? get signatureHelp;/// Capabilities specific to the `textDocument/declaration` request.
-///
-/// @since 3.14.0
  DeclarationClientCapabilities? get declaration;/// Capabilities specific to the `textDocument/definition` request.
  DefinitionClientCapabilities? get definition;/// Capabilities specific to the `textDocument/typeDefinition` request.
-///
-/// @since 3.6.0
  TypeDefinitionClientCapabilities? get typeDefinition;/// Capabilities specific to the `textDocument/implementation` request.
-///
-/// @since 3.6.0
  ImplementationClientCapabilities? get implementation;/// Capabilities specific to the `textDocument/references` request.
  ReferenceClientCapabilities? get references;/// Capabilities specific to the `textDocument/documentHighlight` request.
  DocumentHighlightClientCapabilities? get documentHighlight;/// Capabilities specific to the `textDocument/documentSymbol` request.
@@ -81731,46 +81408,22 @@ mixin _$TextDocumentClientCapabilities {
  CodeLensClientCapabilities? get codeLens;/// Capabilities specific to the `textDocument/documentLink` request.
  DocumentLinkClientCapabilities? get documentLink;/// Capabilities specific to the `textDocument/documentColor` and the
 /// `textDocument/colorPresentation` request.
-///
-/// @since 3.6.0
  DocumentColorClientCapabilities? get colorProvider;/// Capabilities specific to the `textDocument/formatting` request.
  DocumentFormattingClientCapabilities? get formatting;/// Capabilities specific to the `textDocument/rangeFormatting` request.
  DocumentRangeFormattingClientCapabilities? get rangeFormatting;/// Capabilities specific to the `textDocument/onTypeFormatting` request.
  DocumentOnTypeFormattingClientCapabilities? get onTypeFormatting;/// Capabilities specific to the `textDocument/rename` request.
  RenameClientCapabilities? get rename;/// Capabilities specific to the `textDocument/foldingRange` request.
-///
-/// @since 3.10.0
  FoldingRangeClientCapabilities? get foldingRange;/// Capabilities specific to the `textDocument/selectionRange` request.
-///
-/// @since 3.15.0
  SelectionRangeClientCapabilities? get selectionRange;/// Capabilities specific to the `textDocument/publishDiagnostics` notification.
  PublishDiagnosticsClientCapabilities? get publishDiagnostics;/// Capabilities specific to the various call hierarchy requests.
-///
-/// @since 3.16.0
  CallHierarchyClientCapabilities? get callHierarchy;/// Capabilities specific to the various semantic token request.
-///
-/// @since 3.16.0
  SemanticTokensClientCapabilities? get semanticTokens;/// Capabilities specific to the `textDocument/linkedEditingRange` request.
-///
-/// @since 3.16.0
  LinkedEditingRangeClientCapabilities? get linkedEditingRange;/// Client capabilities specific to the `textDocument/moniker` request.
-///
-/// @since 3.16.0
  MonikerClientCapabilities? get moniker;/// Capabilities specific to the various type hierarchy requests.
-///
-/// @since 3.17.0
  TypeHierarchyClientCapabilities? get typeHierarchy;/// Capabilities specific to the `textDocument/inlineValue` request.
-///
-/// @since 3.17.0
  InlineValueClientCapabilities? get inlineValue;/// Capabilities specific to the `textDocument/inlayHint` request.
-///
-/// @since 3.17.0
  InlayHintClientCapabilities? get inlayHint;/// Capabilities specific to the diagnostic pull model.
-///
-/// @since 3.17.0
  DiagnosticClientCapabilities? get diagnostic;/// Client capabilities specific to inline completions.
-///
-/// @since 3.18.0 @proposed
  InlineCompletionClientCapabilities? get inlineCompletion;
 /// Create a copy of TextDocumentClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -82379,18 +82032,12 @@ class _TextDocumentClientCapabilities implements TextDocumentClientCapabilities 
 /// Capabilities specific to the `textDocument/signatureHelp` request.
 @override final  SignatureHelpClientCapabilities? signatureHelp;
 /// Capabilities specific to the `textDocument/declaration` request.
-///
-/// @since 3.14.0
 @override final  DeclarationClientCapabilities? declaration;
 /// Capabilities specific to the `textDocument/definition` request.
 @override final  DefinitionClientCapabilities? definition;
 /// Capabilities specific to the `textDocument/typeDefinition` request.
-///
-/// @since 3.6.0
 @override final  TypeDefinitionClientCapabilities? typeDefinition;
 /// Capabilities specific to the `textDocument/implementation` request.
-///
-/// @since 3.6.0
 @override final  ImplementationClientCapabilities? implementation;
 /// Capabilities specific to the `textDocument/references` request.
 @override final  ReferenceClientCapabilities? references;
@@ -82406,8 +82053,6 @@ class _TextDocumentClientCapabilities implements TextDocumentClientCapabilities 
 @override final  DocumentLinkClientCapabilities? documentLink;
 /// Capabilities specific to the `textDocument/documentColor` and the
 /// `textDocument/colorPresentation` request.
-///
-/// @since 3.6.0
 @override final  DocumentColorClientCapabilities? colorProvider;
 /// Capabilities specific to the `textDocument/formatting` request.
 @override final  DocumentFormattingClientCapabilities? formatting;
@@ -82418,50 +82063,28 @@ class _TextDocumentClientCapabilities implements TextDocumentClientCapabilities 
 /// Capabilities specific to the `textDocument/rename` request.
 @override final  RenameClientCapabilities? rename;
 /// Capabilities specific to the `textDocument/foldingRange` request.
-///
-/// @since 3.10.0
 @override final  FoldingRangeClientCapabilities? foldingRange;
 /// Capabilities specific to the `textDocument/selectionRange` request.
-///
-/// @since 3.15.0
 @override final  SelectionRangeClientCapabilities? selectionRange;
 /// Capabilities specific to the `textDocument/publishDiagnostics` notification.
 @override final  PublishDiagnosticsClientCapabilities? publishDiagnostics;
 /// Capabilities specific to the various call hierarchy requests.
-///
-/// @since 3.16.0
 @override final  CallHierarchyClientCapabilities? callHierarchy;
 /// Capabilities specific to the various semantic token request.
-///
-/// @since 3.16.0
 @override final  SemanticTokensClientCapabilities? semanticTokens;
 /// Capabilities specific to the `textDocument/linkedEditingRange` request.
-///
-/// @since 3.16.0
 @override final  LinkedEditingRangeClientCapabilities? linkedEditingRange;
 /// Client capabilities specific to the `textDocument/moniker` request.
-///
-/// @since 3.16.0
 @override final  MonikerClientCapabilities? moniker;
 /// Capabilities specific to the various type hierarchy requests.
-///
-/// @since 3.17.0
 @override final  TypeHierarchyClientCapabilities? typeHierarchy;
 /// Capabilities specific to the `textDocument/inlineValue` request.
-///
-/// @since 3.17.0
 @override final  InlineValueClientCapabilities? inlineValue;
 /// Capabilities specific to the `textDocument/inlayHint` request.
-///
-/// @since 3.17.0
 @override final  InlayHintClientCapabilities? inlayHint;
 /// Capabilities specific to the diagnostic pull model.
-///
-/// @since 3.17.0
 @override final  DiagnosticClientCapabilities? diagnostic;
 /// Client capabilities specific to inline completions.
-///
-/// @since 3.18.0 @proposed
 @override final  InlineCompletionClientCapabilities? inlineCompletion;
 
 /// Create a copy of TextDocumentClientCapabilities
@@ -82931,8 +82554,6 @@ $InlineCompletionClientCapabilitiesCopyWith<$Res>? get inlineCompletion {
 mixin _$NotebookDocumentClientCapabilities {
 
 /// Capabilities specific to notebook document synchronization
-///
-/// @since 3.17.0
  NotebookDocumentSyncClientCapabilities get synchronization;
 /// Create a copy of NotebookDocumentClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -83140,8 +82761,6 @@ class _NotebookDocumentClientCapabilities implements NotebookDocumentClientCapab
   factory _NotebookDocumentClientCapabilities.fromJson(Map<String, dynamic> json) => _$NotebookDocumentClientCapabilitiesFromJson(json);
 
 /// Capabilities specific to notebook document synchronization
-///
-/// @since 3.17.0
 @override final  NotebookDocumentSyncClientCapabilities synchronization;
 
 /// Create a copy of NotebookDocumentClientCapabilities
@@ -83223,14 +82842,8 @@ mixin _$WindowClientCapabilities {
 /// The capability also controls Whether client supports handling of progress
 /// notifications. If set servers are allowed to report a `workDoneProgress`
 /// property in the request specific server capabilities.
-///
-/// @since 3.15.0
  bool? get workDoneProgress;/// Capabilities specific to the showMessage request.
-///
-/// @since 3.16.0
  ShowMessageRequestClientCapabilities? get showMessage;/// Capabilities specific to the showDocument request.
-///
-/// @since 3.16.0
  ShowDocumentClientCapabilities? get showDocument;
 /// Create a copy of WindowClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -83460,16 +83073,10 @@ class _WindowClientCapabilities implements WindowClientCapabilities {
 /// The capability also controls Whether client supports handling of progress
 /// notifications. If set servers are allowed to report a `workDoneProgress`
 /// property in the request specific server capabilities.
-///
-/// @since 3.15.0
 @override final  bool? workDoneProgress;
 /// Capabilities specific to the showMessage request.
-///
-/// @since 3.16.0
 @override final  ShowMessageRequestClientCapabilities? showMessage;
 /// Capabilities specific to the showDocument request.
-///
-/// @since 3.16.0
 @override final  ShowDocumentClientCapabilities? showDocument;
 
 /// Create a copy of WindowClientCapabilities
@@ -83565,14 +83172,8 @@ mixin _$GeneralClientCapabilities {
 /// Client capability that signals how the client handles stale requests (e.g. a
 /// request for which the client will not process the response anymore since the
 /// information is outdated).
-///
-/// @since 3.17.0
  ({bool cancel, List<String> retryOnContentModified})? get staleRequestSupport;/// Client capabilities specific to regular expressions.
-///
-/// @since 3.16.0
  RegularExpressionsClientCapabilities? get regularExpressions;/// Client capabilities specific to the client's markdown parser.
-///
-/// @since 3.16.0
  MarkdownClientCapabilities? get markdown;/// The position encodings supported by the client. Client and server have to
 /// agree on the same position encoding to ensure that offsets (e.g. character
 /// position in a line) are interpreted the same on both sides.
@@ -83587,8 +83188,6 @@ mixin _$GeneralClientCapabilities {
 /// Implementation considerations: since the conversion from one encoding into
 /// another requires the content of the file / line the conversion is best done
 /// where the file is read which is usually on the server side.
-///
-/// @since 3.17.0
  List<PositionEncodingKind>? get positionEncodings;
 /// Create a copy of GeneralClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -83816,16 +83415,10 @@ class _GeneralClientCapabilities implements GeneralClientCapabilities {
 /// Client capability that signals how the client handles stale requests (e.g. a
 /// request for which the client will not process the response anymore since the
 /// information is outdated).
-///
-/// @since 3.17.0
 @override final  ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport;
 /// Client capabilities specific to regular expressions.
-///
-/// @since 3.16.0
 @override final  RegularExpressionsClientCapabilities? regularExpressions;
 /// Client capabilities specific to the client's markdown parser.
-///
-/// @since 3.16.0
 @override final  MarkdownClientCapabilities? markdown;
 /// The position encodings supported by the client. Client and server have to
 /// agree on the same position encoding to ensure that offsets (e.g. character
@@ -83841,8 +83434,6 @@ class _GeneralClientCapabilities implements GeneralClientCapabilities {
 /// Implementation considerations: since the conversion from one encoding into
 /// another requires the content of the file / line the conversion is best done
 /// where the file is read which is usually on the server side.
-///
-/// @since 3.17.0
  final  List<PositionEncodingKind>? _positionEncodings;
 /// The position encodings supported by the client. Client and server have to
 /// agree on the same position encoding to ensure that offsets (e.g. character
@@ -83858,8 +83449,6 @@ class _GeneralClientCapabilities implements GeneralClientCapabilities {
 /// Implementation considerations: since the conversion from one encoding into
 /// another requires the content of the file / line the conversion is best done
 /// where the file is read which is usually on the server side.
-///
-/// @since 3.17.0
 @override List<PositionEncodingKind>? get positionEncodings {
   final value = _positionEncodings;
   if (value == null) return null;
@@ -84233,21 +83822,13 @@ mixin _$WorkspaceEditClientCapabilities {
 /// The client supports versioned document changes in `WorkspaceEdit`s
  bool? get documentChanges;/// The resource operations the client supports. Clients should at least support
 /// 'create', 'rename' and 'delete' files and folders.
-///
-/// @since 3.13.0
  List<ResourceOperationKind>? get resourceOperations;/// The failure handling strategy of a client if applying the workspace edit
 /// fails.
-///
-/// @since 3.13.0
  FailureHandlingKind? get failureHandling;/// Whether the client normalizes line endings to the client specific setting.
 /// If set to `true` the client will normalize line ending characters in a
 /// workspace edit to the client-specified new line character.
-///
-/// @since 3.16.0
  bool? get normalizesLineEndings;/// Whether the client in general supports change annotations on text edits,
 /// create file, rename file and delete file changes.
-///
-/// @since 3.16.0
  ({bool? groupsOnLabel})? get changeAnnotationSupport;
 /// Create a copy of WorkspaceEditClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -84453,13 +84034,9 @@ class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilitie
 @override final  bool? documentChanges;
 /// The resource operations the client supports. Clients should at least support
 /// 'create', 'rename' and 'delete' files and folders.
-///
-/// @since 3.13.0
  final  List<ResourceOperationKind>? _resourceOperations;
 /// The resource operations the client supports. Clients should at least support
 /// 'create', 'rename' and 'delete' files and folders.
-///
-/// @since 3.13.0
 @override List<ResourceOperationKind>? get resourceOperations {
   final value = _resourceOperations;
   if (value == null) return null;
@@ -84470,19 +84047,13 @@ class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilitie
 
 /// The failure handling strategy of a client if applying the workspace edit
 /// fails.
-///
-/// @since 3.13.0
 @override final  FailureHandlingKind? failureHandling;
 /// Whether the client normalizes line endings to the client specific setting.
 /// If set to `true` the client will normalize line ending characters in a
 /// workspace edit to the client-specified new line character.
-///
-/// @since 3.16.0
 @override final  bool? normalizesLineEndings;
 /// Whether the client in general supports change annotations on text edits,
 /// create file, rename file and delete file changes.
-///
-/// @since 3.16.0
 @override final  ({bool? groupsOnLabel})? changeAnnotationSupport;
 
 /// Create a copy of WorkspaceEditClientCapabilities
@@ -84822,8 +84393,6 @@ mixin _$DidChangeWatchedFilesClientCapabilities {
 /// note that the current protocol doesn't support static configuration for file
 /// changes from the server side.
  bool? get dynamicRegistration;/// Whether the client has support for [RelativePattern] or not.
-///
-/// @since 3.17.0
  bool? get relativePatternSupport;
 /// Create a copy of DidChangeWatchedFilesClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -85027,8 +84596,6 @@ class _DidChangeWatchedFilesClientCapabilities implements DidChangeWatchedFilesC
 /// changes from the server side.
 @override final  bool? dynamicRegistration;
 /// Whether the client has support for [RelativePattern] or not.
-///
-/// @since 3.17.0
 @override final  bool? relativePatternSupport;
 
 /// Create a copy of DidChangeWatchedFilesClientCapabilities
@@ -85101,13 +84668,9 @@ mixin _$WorkspaceSymbolClientCapabilities {
 /// request.
  ({List<SymbolKind>? valueSet})? get symbolKind;/// The client supports tags on `SymbolInformation`. Clients supporting tags
 /// have to handle unknown tags gracefully.
-///
-/// @since 3.16.0
  ({List<SymbolTag> valueSet})? get tagSupport;/// The client support partial workspace symbols. The client will send the
 /// request `workspaceSymbol/resolve` to the server to resolve additional
 /// properties.
-///
-/// @since 3.17.0
  ({List<String> properties})? get resolveSupport;
 /// Create a copy of WorkspaceSymbolClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -85315,14 +84878,10 @@ class _WorkspaceSymbolClientCapabilities implements WorkspaceSymbolClientCapabil
 @override final  ({List<SymbolKind>? valueSet})? symbolKind;
 /// The client supports tags on `SymbolInformation`. Clients supporting tags
 /// have to handle unknown tags gracefully.
-///
-/// @since 3.16.0
 @override final  ({List<SymbolTag> valueSet})? tagSupport;
 /// The client support partial workspace symbols. The client will send the
 /// request `workspaceSymbol/resolve` to the server to resolve additional
 /// properties.
-///
-/// @since 3.17.0
 @override final  ({List<String> properties})? resolveSupport;
 
 /// Create a copy of WorkspaceSymbolClientCapabilities
@@ -87346,8 +86905,6 @@ mixin _$FoldingRangeWorkspaceClientCapabilities {
 /// folding ranges currently shown. It should be used with absolute care and is
 /// useful for situation where a server for example detects a project wide
 /// change that requires such a calculation.
-///
-/// @since 3.18.0 @proposed
  bool? get refreshSupport;
 /// Create a copy of FoldingRangeWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -87552,8 +87109,6 @@ class _FoldingRangeWorkspaceClientCapabilities implements FoldingRangeWorkspaceC
 /// folding ranges currently shown. It should be used with absolute care and is
 /// useful for situation where a server for example detects a project wide
 /// change that requires such a calculation.
-///
-/// @since 3.18.0 @proposed
 @override final  bool? refreshSupport;
 
 /// Create a copy of FoldingRangeWorkspaceClientCapabilities
@@ -87909,13 +87464,9 @@ mixin _$CompletionClientCapabilities {
  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? get completionItem; ({List<CompletionItemKind>? valueSet})? get completionItemKind;/// Defines how the client handles whitespace and indentation when accepting a
 /// completion item that uses multi line text in either `insertText` or
 /// `textEdit`.
-///
-/// @since 3.17.0
  InsertTextMode? get insertTextMode;/// The client supports to send additional context information for a
 /// `textDocument/completion` request.
  bool? get contextSupport;/// The client supports the following `CompletionList` specific capabilities.
-///
-/// @since 3.17.0
  ({List<String>? itemDefaults})? get completionList;
 /// Create a copy of CompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -88126,15 +87677,11 @@ class _CompletionClientCapabilities implements CompletionClientCapabilities {
 /// Defines how the client handles whitespace and indentation when accepting a
 /// completion item that uses multi line text in either `insertText` or
 /// `textEdit`.
-///
-/// @since 3.17.0
 @override final  InsertTextMode? insertTextMode;
 /// The client supports to send additional context information for a
 /// `textDocument/completion` request.
 @override final  bool? contextSupport;
 /// The client supports the following `CompletionList` specific capabilities.
-///
-/// @since 3.17.0
 @override final  ({List<String>? itemDefaults})? completionList;
 
 /// Create a copy of CompletionClientCapabilities
@@ -88494,8 +88041,6 @@ mixin _$SignatureHelpClientCapabilities {
  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? get signatureInformation;/// The client supports to send additional context information for a
 /// `textDocument/signatureHelp` request. A client that opts into contextSupport
 /// will also support the `retriggerCharacters` on `SignatureHelpOptions`.
-///
-/// @since 3.15.0
  bool? get contextSupport;
 /// Create a copy of SignatureHelpClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -88703,8 +88248,6 @@ class _SignatureHelpClientCapabilities implements SignatureHelpClientCapabilitie
 /// The client supports to send additional context information for a
 /// `textDocument/signatureHelp` request. A client that opts into contextSupport
 /// will also support the `retriggerCharacters` on `SignatureHelpOptions`.
-///
-/// @since 3.15.0
 @override final  bool? contextSupport;
 
 /// Create a copy of SignatureHelpClientCapabilities
@@ -89049,8 +88592,6 @@ mixin _$DefinitionClientCapabilities {
 
 /// Whether definition supports dynamic registration.
  bool? get dynamicRegistration;/// The client supports additional metadata in the form of definition links.
-///
-/// @since 3.14.0
  bool? get linkSupport;
 /// Create a copy of DefinitionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -89252,8 +88793,6 @@ class _DefinitionClientCapabilities implements DefinitionClientCapabilities {
 /// Whether definition supports dynamic registration.
 @override final  bool? dynamicRegistration;
 /// The client supports additional metadata in the form of definition links.
-///
-/// @since 3.14.0
 @override final  bool? linkSupport;
 
 /// Create a copy of DefinitionClientCapabilities
@@ -89603,8 +89142,6 @@ mixin _$ImplementationClientCapabilities {
 /// `true` the client supports the new `ImplementationRegistrationOptions`
 /// return value for the corresponding server capability as well.
  bool? get dynamicRegistration;/// The client supports additional metadata in the form of definition links.
-///
-/// @since 3.14.0
  bool? get linkSupport;
 /// Create a copy of ImplementationClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -89808,8 +89345,6 @@ class _ImplementationClientCapabilities implements ImplementationClientCapabilit
 /// return value for the corresponding server capability as well.
 @override final  bool? dynamicRegistration;
 /// The client supports additional metadata in the form of definition links.
-///
-/// @since 3.14.0
 @override final  bool? linkSupport;
 
 /// Create a copy of ImplementationClientCapabilities
@@ -90414,12 +89949,8 @@ mixin _$DocumentSymbolClientCapabilities {
  bool? get hierarchicalDocumentSymbolSupport;/// The client supports tags on `SymbolInformation`. Tags are supported on
 /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
 /// Clients supporting tags have to handle unknown tags gracefully.
-///
-/// @since 3.16.0
  ({List<SymbolTag> valueSet})? get tagSupport;/// The client supports an additional label presented in the UI when registering
 /// a document symbol provider.
-///
-/// @since 3.16.0
  bool? get labelSupport;
 /// Create a copy of DocumentSymbolClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -90631,13 +90162,9 @@ class _DocumentSymbolClientCapabilities implements DocumentSymbolClientCapabilit
 /// The client supports tags on `SymbolInformation`. Tags are supported on
 /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
 /// Clients supporting tags have to handle unknown tags gracefully.
-///
-/// @since 3.16.0
 @override final  ({List<SymbolTag> valueSet})? tagSupport;
 /// The client supports an additional label presented in the UI when registering
 /// a document symbol provider.
-///
-/// @since 3.16.0
 @override final  bool? labelSupport;
 
 /// Create a copy of DocumentSymbolClientCapabilities
@@ -90712,28 +90239,16 @@ mixin _$CodeActionClientCapabilities {
  bool? get dynamicRegistration;/// The client support code action literals of type `CodeAction` as a valid
 /// response of the `textDocument/codeAction` request. If the property is not
 /// set the request can only return `Command` literals.
-///
-/// @since 3.8.0
  ({({List<CodeActionKind> valueSet}) codeActionKind})? get codeActionLiteralSupport;/// Whether code action supports the `isPreferred` property.
-///
-/// @since 3.15.0
  bool? get isPreferredSupport;/// Whether code action supports the `disabled` property.
-///
-/// @since 3.16.0
  bool? get disabledSupport;/// Whether code action supports the `data` property which is preserved between
 /// a `textDocument/codeAction` and a `codeAction/resolve` request.
-///
-/// @since 3.16.0
  bool? get dataSupport;/// Whether the client supports resolving additional code action properties via
 /// a separate `codeAction/resolve` request.
-///
-/// @since 3.16.0
  ({List<String> properties})? get resolveSupport;/// Whether the client honors the change annotations in text edits and resource
 /// operations returned via the `CodeAction#edit` property by for example
 /// presenting the workspace edit in the user interface and asking for
 /// confirmation.
-///
-/// @since 3.16.0
  bool? get honorsChangeAnnotations;
 /// Create a copy of CodeActionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -90942,33 +90457,21 @@ class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
 /// The client support code action literals of type `CodeAction` as a valid
 /// response of the `textDocument/codeAction` request. If the property is not
 /// set the request can only return `Command` literals.
-///
-/// @since 3.8.0
 @override final  ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport;
 /// Whether code action supports the `isPreferred` property.
-///
-/// @since 3.15.0
 @override final  bool? isPreferredSupport;
 /// Whether code action supports the `disabled` property.
-///
-/// @since 3.16.0
 @override final  bool? disabledSupport;
 /// Whether code action supports the `data` property which is preserved between
 /// a `textDocument/codeAction` and a `codeAction/resolve` request.
-///
-/// @since 3.16.0
 @override final  bool? dataSupport;
 /// Whether the client supports resolving additional code action properties via
 /// a separate `codeAction/resolve` request.
-///
-/// @since 3.16.0
 @override final  ({List<String> properties})? resolveSupport;
 /// Whether the client honors the change annotations in text edits and resource
 /// operations returned via the `CodeAction#edit` property by for example
 /// presenting the workspace edit in the user interface and asking for
 /// confirmation.
-///
-/// @since 3.16.0
 @override final  bool? honorsChangeAnnotations;
 
 /// Create a copy of CodeActionClientCapabilities
@@ -91308,8 +90811,6 @@ mixin _$DocumentLinkClientCapabilities {
 
 /// Whether document link supports dynamic registration.
  bool? get dynamicRegistration;/// Whether the client supports the `tooltip` property on `DocumentLink`.
-///
-/// @since 3.15.0
  bool? get tooltipSupport;
 /// Create a copy of DocumentLinkClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -91511,8 +91012,6 @@ class _DocumentLinkClientCapabilities implements DocumentLinkClientCapabilities 
 /// Whether document link supports dynamic registration.
 @override final  bool? dynamicRegistration;
 /// Whether the client supports the `tooltip` property on `DocumentLink`.
-///
-/// @since 3.15.0
 @override final  bool? tooltipSupport;
 
 /// Create a copy of DocumentLinkClientCapabilities
@@ -92116,8 +91615,6 @@ mixin _$DocumentRangeFormattingClientCapabilities {
 
 /// Whether range formatting supports dynamic registration.
  bool? get dynamicRegistration;/// Whether the client supports formatting multiple ranges at once.
-///
-/// @since 3.18.0 @proposed
  bool? get rangesSupport;
 /// Create a copy of DocumentRangeFormattingClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -92319,8 +91816,6 @@ class _DocumentRangeFormattingClientCapabilities implements DocumentRangeFormatt
 /// Whether range formatting supports dynamic registration.
 @override final  bool? dynamicRegistration;
 /// Whether the client supports formatting multiple ranges at once.
-///
-/// @since 3.18.0 @proposed
 @override final  bool? rangesSupport;
 
 /// Create a copy of DocumentRangeFormattingClientCapabilities
@@ -92655,19 +92150,13 @@ mixin _$RenameClientCapabilities {
 
 /// Whether rename supports dynamic registration.
  bool? get dynamicRegistration;/// Client supports testing for validity of rename operations before execution.
-///
-/// @since 3.12.0
  bool? get prepareSupport;/// Client supports the default behavior result.
 ///
 /// The value indicates the default behavior used by the client.
-///
-/// @since 3.16.0
  PrepareSupportDefaultBehavior? get prepareSupportDefaultBehavior;/// Whether the client honors the change annotations in text edits and resource
 /// operations returned via the rename request's workspace edit by for example
 /// presenting the workspace edit in the user interface and asking for
 /// confirmation.
-///
-/// @since 3.16.0
  bool? get honorsChangeAnnotations;
 /// Create a copy of RenameClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -92871,21 +92360,15 @@ class _RenameClientCapabilities implements RenameClientCapabilities {
 /// Whether rename supports dynamic registration.
 @override final  bool? dynamicRegistration;
 /// Client supports testing for validity of rename operations before execution.
-///
-/// @since 3.12.0
 @override final  bool? prepareSupport;
 /// Client supports the default behavior result.
 ///
 /// The value indicates the default behavior used by the client.
-///
-/// @since 3.16.0
 @override final  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior;
 /// Whether the client honors the change annotations in text edits and resource
 /// operations returned via the rename request's workspace edit by for example
 /// presenting the workspace edit in the user interface and asking for
 /// confirmation.
-///
-/// @since 3.16.0
 @override final  bool? honorsChangeAnnotations;
 
 /// Create a copy of RenameClientCapabilities
@@ -92965,11 +92448,7 @@ mixin _$FoldingRangeClientCapabilities {
 /// set, client will ignore specified `startCharacter` and `endCharacter`
 /// properties in a FoldingRange.
  bool? get lineFoldingOnly;/// Specific options for the folding range kind.
-///
-/// @since 3.17.0
  ({List<FoldingRangeKind>? valueSet})? get foldingRangeKind;/// Specific options for the folding range.
-///
-/// @since 3.17.0
  ({bool? collapsedText})? get foldingRange;
 /// Create a copy of FoldingRangeClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -93184,12 +92663,8 @@ class _FoldingRangeClientCapabilities implements FoldingRangeClientCapabilities 
 /// properties in a FoldingRange.
 @override final  bool? lineFoldingOnly;
 /// Specific options for the folding range kind.
-///
-/// @since 3.17.0
 @override final  ({List<FoldingRangeKind>? valueSet})? foldingRangeKind;
 /// Specific options for the folding range.
-///
-/// @since 3.17.0
 @override final  ({bool? collapsedText})? foldingRange;
 
 /// Create a copy of FoldingRangeClientCapabilities
@@ -93534,19 +93009,11 @@ mixin _$PublishDiagnosticsClientCapabilities {
 /// Whether the clients accepts diagnostics with related information.
  bool? get relatedInformation;/// Client supports the tag property to provide meta data about a diagnostic.
 /// Clients supporting tags have to handle unknown tags gracefully.
-///
-/// @since 3.15.0
  ({List<DiagnosticTag> valueSet})? get tagSupport;/// Whether the client interprets the version property of the
 /// `textDocument/publishDiagnostics` notification's parameter.
-///
-/// @since 3.15.0
  bool? get versionSupport;/// Client supports a codeDescription property
-///
-/// @since 3.16.0
  bool? get codeDescriptionSupport;/// Whether code action supports the `data` property which is preserved between
 /// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
-///
-/// @since 3.16.0
  bool? get dataSupport;
 /// Create a copy of PublishDiagnosticsClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -93752,22 +93219,14 @@ class _PublishDiagnosticsClientCapabilities implements PublishDiagnosticsClientC
 @override final  bool? relatedInformation;
 /// Client supports the tag property to provide meta data about a diagnostic.
 /// Clients supporting tags have to handle unknown tags gracefully.
-///
-/// @since 3.15.0
 @override final  ({List<DiagnosticTag> valueSet})? tagSupport;
 /// Whether the client interprets the version property of the
 /// `textDocument/publishDiagnostics` notification's parameter.
-///
-/// @since 3.15.0
 @override final  bool? versionSupport;
 /// Client supports a codeDescription property
-///
-/// @since 3.16.0
 @override final  bool? codeDescriptionSupport;
 /// Whether code action supports the `data` property which is preserved between
 /// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
-///
-/// @since 3.16.0
 @override final  bool? dataSupport;
 
 /// Create a copy of PublishDiagnosticsClientCapabilities
@@ -94129,16 +93588,12 @@ mixin _$SemanticTokensClientCapabilities {
  bool? get multilineTokenSupport;/// Whether the client allows the server to actively cancel a semantic token
 /// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
 /// does the client needs to retrigger the request.
-///
-/// @since 3.17.0
  bool? get serverCancelSupport;/// Whether the client uses semantic tokens to augment existing syntax tokens.
 /// If set to `true` client side created syntax tokens and semantic tokens are
 /// both used for colorization. If set to `false` the client only uses the
 /// returned semantic tokens for colorization.
 ///
 /// If the value is `undefined` then the client behavior is not specified.
-///
-/// @since 3.17.0
  bool? get augmentsSyntaxTokens;
 /// Create a copy of SemanticTokensClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -94392,8 +93847,6 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
 /// Whether the client allows the server to actively cancel a semantic token
 /// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
 /// does the client needs to retrigger the request.
-///
-/// @since 3.17.0
 @override final  bool? serverCancelSupport;
 /// Whether the client uses semantic tokens to augment existing syntax tokens.
 /// If set to `true` client side created syntax tokens and semantic tokens are
@@ -94401,8 +93854,6 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
 /// returned semantic tokens for colorization.
 ///
 /// If the value is `undefined` then the client behavior is not specified.
-///
-/// @since 3.17.0
 @override final  bool? augmentsSyntaxTokens;
 
 /// Create a copy of SemanticTokensClientCapabilities
@@ -97449,8 +96900,6 @@ mixin _$MarkdownClientCapabilities {
 /// The name of the parser.
  String get parser;/// The version of the parser.
  String? get version;/// A list of HTML tags that the client allows / supports in Markdown.
-///
-/// @since 3.17.0
  List<String>? get allowedTags;
 /// Create a copy of MarkdownClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -97655,12 +97104,8 @@ class _MarkdownClientCapabilities implements MarkdownClientCapabilities {
 /// The version of the parser.
 @override final  String? version;
 /// A list of HTML tags that the client allows / supports in Markdown.
-///
-/// @since 3.17.0
  final  List<String>? _allowedTags;
 /// A list of HTML tags that the client allows / supports in Markdown.
-///
-/// @since 3.17.0
 @override List<String>? get allowedTags {
   final value = _allowedTags;
   if (value == null) return null;

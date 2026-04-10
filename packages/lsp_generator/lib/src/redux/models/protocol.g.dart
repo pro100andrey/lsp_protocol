@@ -308,6 +308,7 @@ _MetaEnumMember _$MetaEnumMemberFromJson(Map<String, dynamic> json) =>
       ),
       documentation: json['documentation'] as String?,
       since: json['since'] as String?,
+      deprecated: json['deprecated'] as String?,
     );
 
 Map<String, dynamic> _$MetaEnumMemberToJson(_MetaEnumMember instance) =>
@@ -316,6 +317,7 @@ Map<String, dynamic> _$MetaEnumMemberToJson(_MetaEnumMember instance) =>
       'value': const IntOrStringSealedConverter().toJson(instance.value),
       'documentation': instance.documentation,
       'since': instance.since,
+      'deprecated': instance.deprecated,
     };
 
 EnumRawValueInteger _$EnumRawValueIntegerFromJson(Map<String, dynamic> json) =>

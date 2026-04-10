@@ -559,7 +559,7 @@ as bool,
 /// @nodoc
 mixin _$ResolvedAlias {
 
- String get name; set name(String value); ResolvedType get type; set type(ResolvedType value); String? get documentation; set documentation(String? value); String? get since; set since(String? value); bool get proposed; set proposed(bool value);
+ String get name; set name(String value); ResolvedType get type; set type(ResolvedType value); String? get documentation; set documentation(String? value); String? get since; set since(String? value); String? get deprecated; set deprecated(String? value); bool get proposed; set proposed(bool value);
 /// Create a copy of ResolvedAlias
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -572,7 +572,7 @@ $ResolvedAliasCopyWith<ResolvedAlias> get copyWith => _$ResolvedAliasCopyWithImp
 
 @override
 String toString() {
-  return 'ResolvedAlias(name: $name, type: $type, documentation: $documentation, since: $since, proposed: $proposed)';
+  return 'ResolvedAlias(name: $name, type: $type, documentation: $documentation, since: $since, deprecated: $deprecated, proposed: $proposed)';
 }
 
 
@@ -583,7 +583,7 @@ abstract mixin class $ResolvedAliasCopyWith<$Res>  {
   factory $ResolvedAliasCopyWith(ResolvedAlias value, $Res Function(ResolvedAlias) _then) = _$ResolvedAliasCopyWithImpl;
 @useResult
 $Res call({
- String name, ResolvedType type, String? documentation, String? since, bool proposed
+ String name, ResolvedType type, String? documentation, String? since, String? deprecated, bool proposed
 });
 
 
@@ -600,12 +600,13 @@ class _$ResolvedAliasCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedAlias
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? type = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? type = null,Object? documentation = freezed,Object? since = freezed,Object? deprecated = freezed,Object? proposed = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as ResolvedType,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
 as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -701,10 +702,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  ResolvedType type,  String? documentation,  String? since,  bool proposed)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  ResolvedType type,  String? documentation,  String? since,  String? deprecated,  bool proposed)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ResolvedAlias() when $default != null:
-return $default(_that.name,_that.type,_that.documentation,_that.since,_that.proposed);case _:
+return $default(_that.name,_that.type,_that.documentation,_that.since,_that.deprecated,_that.proposed);case _:
   return orElse();
 
 }
@@ -722,10 +723,10 @@ return $default(_that.name,_that.type,_that.documentation,_that.since,_that.prop
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  ResolvedType type,  String? documentation,  String? since,  bool proposed)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  ResolvedType type,  String? documentation,  String? since,  String? deprecated,  bool proposed)  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedAlias():
-return $default(_that.name,_that.type,_that.documentation,_that.since,_that.proposed);case _:
+return $default(_that.name,_that.type,_that.documentation,_that.since,_that.deprecated,_that.proposed);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -742,10 +743,10 @@ return $default(_that.name,_that.type,_that.documentation,_that.since,_that.prop
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  ResolvedType type,  String? documentation,  String? since,  bool proposed)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  ResolvedType type,  String? documentation,  String? since,  String? deprecated,  bool proposed)?  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedAlias() when $default != null:
-return $default(_that.name,_that.type,_that.documentation,_that.since,_that.proposed);case _:
+return $default(_that.name,_that.type,_that.documentation,_that.since,_that.deprecated,_that.proposed);case _:
   return null;
 
 }
@@ -757,13 +758,14 @@ return $default(_that.name,_that.type,_that.documentation,_that.since,_that.prop
 
 
 class _ResolvedAlias extends ResolvedAlias {
-   _ResolvedAlias({required this.name, required this.type, this.documentation, this.since, this.proposed = false}): super._();
+   _ResolvedAlias({required this.name, required this.type, this.documentation, this.since, this.deprecated, this.proposed = false}): super._();
   
 
 @override  String name;
 @override  ResolvedType type;
 @override  String? documentation;
 @override  String? since;
+@override  String? deprecated;
 @override@JsonKey()  bool proposed;
 
 /// Create a copy of ResolvedAlias
@@ -778,7 +780,7 @@ _$ResolvedAliasCopyWith<_ResolvedAlias> get copyWith => __$ResolvedAliasCopyWith
 
 @override
 String toString() {
-  return 'ResolvedAlias(name: $name, type: $type, documentation: $documentation, since: $since, proposed: $proposed)';
+  return 'ResolvedAlias(name: $name, type: $type, documentation: $documentation, since: $since, deprecated: $deprecated, proposed: $proposed)';
 }
 
 
@@ -789,7 +791,7 @@ abstract mixin class _$ResolvedAliasCopyWith<$Res> implements $ResolvedAliasCopy
   factory _$ResolvedAliasCopyWith(_ResolvedAlias value, $Res Function(_ResolvedAlias) _then) = __$ResolvedAliasCopyWithImpl;
 @override @useResult
 $Res call({
- String name, ResolvedType type, String? documentation, String? since, bool proposed
+ String name, ResolvedType type, String? documentation, String? since, String? deprecated, bool proposed
 });
 
 
@@ -806,12 +808,13 @@ class __$ResolvedAliasCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedAlias
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? type = null,Object? documentation = freezed,Object? since = freezed,Object? proposed = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? type = null,Object? documentation = freezed,Object? since = freezed,Object? deprecated = freezed,Object? proposed = null,}) {
   return _then(_ResolvedAlias(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as ResolvedType,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
 as String?,proposed: null == proposed ? _self.proposed : proposed // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -1123,7 +1126,7 @@ $ResolvedTypeCopyWith<$Res> get type {
 mixin _$ResolvedEnumMember {
 
  String get name;/// Raw value as a string (may be int or string depending on enum kind).
- String get value; String? get documentation; String? get since;
+ String get value; String? get documentation; String? get since; String? get deprecated;
 /// Create a copy of ResolvedEnumMember
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1134,16 +1137,16 @@ $ResolvedEnumMemberCopyWith<ResolvedEnumMember> get copyWith => _$ResolvedEnumMe
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResolvedEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResolvedEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,value,documentation,since);
+int get hashCode => Object.hash(runtimeType,name,value,documentation,since,deprecated);
 
 @override
 String toString() {
-  return 'ResolvedEnumMember(name: $name, value: $value, documentation: $documentation, since: $since)';
+  return 'ResolvedEnumMember(name: $name, value: $value, documentation: $documentation, since: $since, deprecated: $deprecated)';
 }
 
 
@@ -1154,7 +1157,7 @@ abstract mixin class $ResolvedEnumMemberCopyWith<$Res>  {
   factory $ResolvedEnumMemberCopyWith(ResolvedEnumMember value, $Res Function(ResolvedEnumMember) _then) = _$ResolvedEnumMemberCopyWithImpl;
 @useResult
 $Res call({
- String name, String value, String? documentation, String? since
+ String name, String value, String? documentation, String? since, String? deprecated
 });
 
 
@@ -1171,12 +1174,13 @@ class _$ResolvedEnumMemberCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedEnumMember
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,Object? deprecated = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1262,10 +1266,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String value,  String? documentation,  String? since)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String value,  String? documentation,  String? since,  String? deprecated)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ResolvedEnumMember() when $default != null:
-return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
+return $default(_that.name,_that.value,_that.documentation,_that.since,_that.deprecated);case _:
   return orElse();
 
 }
@@ -1283,10 +1287,10 @@ return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String value,  String? documentation,  String? since)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String value,  String? documentation,  String? since,  String? deprecated)  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedEnumMember():
-return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
+return $default(_that.name,_that.value,_that.documentation,_that.since,_that.deprecated);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1303,10 +1307,10 @@ return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String value,  String? documentation,  String? since)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String value,  String? documentation,  String? since,  String? deprecated)?  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedEnumMember() when $default != null:
-return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
+return $default(_that.name,_that.value,_that.documentation,_that.since,_that.deprecated);case _:
   return null;
 
 }
@@ -1318,7 +1322,7 @@ return $default(_that.name,_that.value,_that.documentation,_that.since);case _:
 
 
 class _ResolvedEnumMember implements ResolvedEnumMember {
-  const _ResolvedEnumMember({required this.name, required this.value, this.documentation, this.since});
+  const _ResolvedEnumMember({required this.name, required this.value, this.documentation, this.since, this.deprecated});
   
 
 @override final  String name;
@@ -1326,6 +1330,7 @@ class _ResolvedEnumMember implements ResolvedEnumMember {
 @override final  String value;
 @override final  String? documentation;
 @override final  String? since;
+@override final  String? deprecated;
 
 /// Create a copy of ResolvedEnumMember
 /// with the given fields replaced by the non-null parameter values.
@@ -1337,16 +1342,16 @@ _$ResolvedEnumMemberCopyWith<_ResolvedEnumMember> get copyWith => __$ResolvedEnu
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResolvedEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResolvedEnumMember&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.documentation, documentation) || other.documentation == documentation)&&(identical(other.since, since) || other.since == since)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,value,documentation,since);
+int get hashCode => Object.hash(runtimeType,name,value,documentation,since,deprecated);
 
 @override
 String toString() {
-  return 'ResolvedEnumMember(name: $name, value: $value, documentation: $documentation, since: $since)';
+  return 'ResolvedEnumMember(name: $name, value: $value, documentation: $documentation, since: $since, deprecated: $deprecated)';
 }
 
 
@@ -1357,7 +1362,7 @@ abstract mixin class _$ResolvedEnumMemberCopyWith<$Res> implements $ResolvedEnum
   factory _$ResolvedEnumMemberCopyWith(_ResolvedEnumMember value, $Res Function(_ResolvedEnumMember) _then) = __$ResolvedEnumMemberCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String value, String? documentation, String? since
+ String name, String value, String? documentation, String? since, String? deprecated
 });
 
 
@@ -1374,12 +1379,13 @@ class __$ResolvedEnumMemberCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedEnumMember
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? value = null,Object? documentation = freezed,Object? since = freezed,Object? deprecated = freezed,}) {
   return _then(_ResolvedEnumMember(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,documentation: freezed == documentation ? _self.documentation : documentation // ignore: cast_nullable_to_non_nullable
 as String?,since: freezed == since ? _self.since : since // ignore: cast_nullable_to_non_nullable
+as String?,deprecated: freezed == deprecated ? _self.deprecated : deprecated // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

@@ -196,7 +196,17 @@ final class EmitterVisitor {
       final alias = _resolved.aliases.firstWhere((a) => a.name == name);
       final ut = alias.type as UnionType;
       final kind = _classifyUnion(ut);
-      specs.addAll(_buildUnionSpecs(name, ut, kind));
+      specs.addAll(_buildUnionSpecs(
+        name,
+        ut,
+        kind,
+        deprecated: alias.deprecated,
+        docs: _docLines(
+          alias.documentation,
+          since: alias.since,
+          proposed: alias.proposed,
+        ),
+      ));
     }
 
     // Scalar unions reference no structs — no cross-imports needed.
@@ -230,7 +240,17 @@ final class EmitterVisitor {
       final alias = _resolved.aliases.firstWhere((a) => a.name == name);
       final ut = alias.type as UnionType;
       final kind = _classifyUnion(ut);
-      specs.addAll(_buildUnionSpecs(name, ut, kind));
+      specs.addAll(_buildUnionSpecs(
+        name,
+        ut,
+        kind,
+        deprecated: alias.deprecated,
+        docs: _docLines(
+          alias.documentation,
+          since: alias.since,
+          proposed: alias.proposed,
+        ),
+      ));
       referencedTypes.addAll(ut.items);
     }
 
@@ -346,7 +366,9 @@ final class EmitterVisitor {
 
       b.mixins.add(refer('_\$$publicPart'));
 
-      b.docs.addAll(_docLines(cls.documentation));
+      b.docs.addAll(
+        _docLines(cls.documentation, since: cls.since, proposed: cls.proposed),
+      );
 
       if (hasEnumGetters) {
         b.constructors.add(
@@ -471,7 +493,9 @@ final class EmitterVisitor {
     return Class((b) {
       b.name = cls.name;
       b.annotations.add(refer('JsonSerializable').call([]));
-      b.docs.addAll(_docLines(cls.documentation));
+      b.docs.addAll(
+        _docLines(cls.documentation, since: cls.since, proposed: cls.proposed),
+      );
 
       // Final fields (plain class — no freezed mixin).
       for (final p in allProps) {
@@ -626,7 +650,13 @@ final class EmitterVisitor {
   /// Returns the list of annotations for factory/field parameter [p].
   List<Expression> _annotationsForParam(ResolvedProperty p) {
     final conv = _converterAnnotationFor(p.type);
-    return conv != null ? [conv] : [];
+    final deprecated = p.deprecated != null
+        ? refer('Deprecated').call([literalString(p.deprecated!)])
+        : null;
+    return [
+      ?deprecated,
+      ?conv,
+    ];
   }
 
   /// Walks every property of every resolved class and collects the set of
@@ -1141,7 +1171,9 @@ final class EmitterVisitor {
         }),
       );
 
-      b.docs.addAll(_docLines(en.documentation));
+      b.docs.addAll(
+        _docLines(en.documentation, since: en.since, proposed: en.proposed),
+      );
 
       for (final member in en.members) {
         b.values.add(
@@ -1152,7 +1184,12 @@ final class EmitterVisitor {
                   ? literalNum(int.parse(member.value))
                   : literalString(member.value),
             );
-            b.docs.addAll(_docLines(member.documentation));
+            if (member.deprecated != null) {
+              b.annotations.add(
+                refer('Deprecated').call([literalString(member.deprecated!)]),
+              );
+            }
+            b.docs.addAll(_docLines(member.documentation, since: member.since));
           }),
         );
       }
@@ -1219,7 +1256,18 @@ final class EmitterVisitor {
       b
         ..name = alias.name
         ..definition = toTypeRef(alias.type);
-      b.docs.addAll(_docLines(alias.documentation));
+      if (alias.deprecated != null) {
+        b.annotations.add(
+          refer('Deprecated').call([literalString(alias.deprecated!)]),
+        );
+      }
+      b.docs.addAll(
+        _docLines(
+          alias.documentation,
+          since: alias.since,
+          proposed: alias.proposed,
+        ),
+      );
     },
   );
 
@@ -1429,7 +1477,13 @@ final class EmitterVisitor {
   // Union spec builders (code_builder Class / Constructor / Method)
   // ---------------------------------------------------------------------------
 
-  List<Spec> _buildUnionSpecs(String name, UnionType ut, _UnionKind kind) {
+  List<Spec> _buildUnionSpecs(
+    String name,
+    UnionType ut,
+    _UnionKind kind, {
+    String? deprecated,
+    List<String> docs = const [],
+  }) {
     final structItems = ut.items
         .where((t) => t is ClassType || t is InlineRecord)
         .toList();
@@ -1437,20 +1491,28 @@ final class EmitterVisitor {
       _UnionKind.scalar => _buildScalarUnionSpecs(
         name,
         ut.items.whereType<DartCoreType>().toList(),
+        deprecated: deprecated,
+        docs: docs,
       ),
       _UnionKind.scalarStruct => _buildScalarStructUnionSpecs(
         name,
         ut.items.whereType<DartCoreType>().toList(),
         structItems.first,
+        deprecated: deprecated,
+        docs: docs,
       ),
       _UnionKind.structList => _buildStructListUnionSpecs(
         name,
         ut.items.whereType<ClassType>().first,
         ut.items.whereType<ListType>().first,
+        deprecated: deprecated,
+        docs: docs,
       ),
       _UnionKind.structStruct => _buildStructStructUnionSpecs(
         name,
         _findStructDiscriminator(structItems)!,
+        deprecated: deprecated,
+        docs: docs,
       ),
       _UnionKind.mixed => [],
     };
@@ -1484,7 +1546,12 @@ final class EmitterVisitor {
   String _factoryName(String suffix) =>
       suffix.isEmpty ? suffix : suffix[0].toLowerCase() + suffix.substring(1);
 
-  List<Spec> _buildScalarUnionSpecs(String name, List<DartCoreType> scalars) {
+  List<Spec> _buildScalarUnionSpecs(
+    String name,
+    List<DartCoreType> scalars, {
+    String? deprecated,
+    List<String> docs = const [],
+  }) {
     final variants = scalars
         .map((s) => (suffix: _variantSuffix(s, name), dartName: s.dartName))
         .toList();
@@ -1498,7 +1565,12 @@ final class EmitterVisitor {
         (b) => b
           ..name = name
           ..sealed = true
-          ..annotations.add(refer('freezed'))
+          ..annotations.addAll([
+            refer('freezed'),
+            if (deprecated != null)
+              refer('Deprecated').call([literalString(deprecated)]),
+          ])
+          ..docs.addAll(docs)
           ..mixins.add(refer('_\$$name'))
           ..constructors.add(
             Constructor(
@@ -1587,8 +1659,10 @@ final class EmitterVisitor {
   List<Spec> _buildScalarStructUnionSpecs(
     String name,
     List<DartCoreType> scalars,
-    ResolvedType struct,
-  ) {
+    ResolvedType struct, {
+    String? deprecated,
+    List<String> docs = const [],
+  }) {
     final structSuffix = _variantSuffix(struct, name);
     final structCls = '$name\$$structSuffix';
     final structFn = _safeIdentifier(_factoryName(structSuffix));
@@ -1632,7 +1706,12 @@ final class EmitterVisitor {
         (b) => b
           ..name = name
           ..sealed = true
-          ..annotations.add(refer('freezed'))
+          ..annotations.addAll([
+            refer('freezed'),
+            if (deprecated != null)
+              refer('Deprecated').call([literalString(deprecated)]),
+          ])
+          ..docs.addAll(docs)
           ..mixins.add(refer('_\$$name'))
           ..constructors.add(
             Constructor(
@@ -1756,8 +1835,10 @@ final class EmitterVisitor {
   List<Spec> _buildStructListUnionSpecs(
     String name,
     ClassType struct,
-    ListType list,
-  ) {
+    ListType list, {
+    String? deprecated,
+    List<String> docs = const [],
+  }) {
     final structSuffix = _variantSuffix(struct, name);
     final structCls = '$name\$$structSuffix';
     final structFn = _safeIdentifier(_factoryName(structSuffix));
@@ -1820,7 +1901,12 @@ final class EmitterVisitor {
         (b) => b
           ..name = name
           ..sealed = true
-          ..annotations.add(refer('freezed'))
+          ..annotations.addAll([
+            refer('freezed'),
+            if (deprecated != null)
+              refer('Deprecated').call([literalString(deprecated)]),
+          ])
+          ..docs.addAll(docs)
           ..mixins.add(refer('_\$$name'))
           ..constructors.add(
             Constructor(
@@ -1925,8 +2011,10 @@ final class EmitterVisitor {
 
   List<Spec> _buildStructStructUnionSpecs(
     String name,
-    List<_UnionCheck> checks,
-  ) {
+    List<_UnionCheck> checks, {
+    String? deprecated,
+    List<String> docs = const [],
+  }) {
     final seenSuffixes = <String>{};
     final variants =
         <({String suffix, String cls, String fn, ResolvedType variant})>[];
@@ -1970,7 +2058,12 @@ final class EmitterVisitor {
         (b) => b
           ..name = name
           ..sealed = true
-          ..annotations.add(refer('freezed'))
+          ..annotations.addAll([
+            refer('freezed'),
+            if (deprecated != null)
+              refer('Deprecated').call([literalString(deprecated)]),
+          ])
+          ..docs.addAll(docs)
           ..mixins.add(refer('_\$$name'))
           ..constructors.add(
             Constructor(
@@ -2269,18 +2362,58 @@ final class EmitterVisitor {
   /// * `{@link Foo.bar name}` → `[name]` when *name* is a valid identifier,
   ///   otherwise `[Foo]` (type part only).
   ///
+  /// When [since] is non-null, appends `/// @since X` after the main body (or
+  /// emits it alone when [input] is blank). [proposed] appends `/// @proposed`
+  /// similarly.
+  ///
   /// Lines are word-wrapped at [maxWidth] characters. Returns an empty list
-  /// when [input] is null or blank.
-  static List<String> _docLines(String? input, {int maxWidth = 80}) {
+  /// when [input] is null or blank and neither [since] nor [proposed] are set.
+  static List<String> _docLines(
+    String? input, {
+    int maxWidth = 80,
+    String? since,
+    bool proposed = false,
+  }) {
     if (input == null || input.trim().isEmpty) {
-      return const [];
+      if (since == null && !proposed) {
+        return const [];
+      }
+      final lines = <String>[];
+      if (since != null) {
+        lines.add('/// @since $since');
+      }
+      if (proposed) {
+        lines.add('/// @proposed');
+      }
+      return lines;
     }
 
     const prefix = '/// ';
     final maxContent = maxWidth - prefix.length;
 
+    // Strip any @since / @proposed tags already embedded in the documentation
+    // text — they are re-emitted from the structured fields below so that the
+    // tags always appear exactly once at the end of the doc comment.
+    final stripped = input
+        .replaceAll(RegExp(r'@since\s+\S+'), '')
+        .replaceAll(RegExp('@proposed'), '')
+        .trim();
+    if (stripped.isEmpty) {
+      if (since == null && !proposed) {
+        return const [];
+      }
+      final lines = <String>[];
+      if (since != null) {
+        lines.add('/// @since $since');
+      }
+      if (proposed) {
+        lines.add('/// @proposed');
+      }
+      return lines;
+    }
+
     // Resolve {@link Target} / {@link Target displayText}
-    final resolved = input.replaceAllMapped(
+    final resolved = stripped.replaceAllMapped(
       RegExp(r'\{@link\s+(\S+?)(?:\s+([^}]*?))?\}'),
       (m) {
         final target = m.group(1)!.replaceAll('[]', '');
@@ -2340,6 +2473,17 @@ final class EmitterVisitor {
       if (buf.isNotEmpty) {
         lines.add('$prefix$buf');
       }
+    }
+    if (since != null) {
+      lines
+        ..add('///')
+        ..add('/// @since $since');
+    }
+    if (proposed) {
+      if (since == null) {
+        lines.add('///');
+      }
+      lines.add('/// @proposed');
     }
     return lines;
   }
