@@ -654,9 +654,9 @@ void main() {
     test('enumerations output contains DiagnosticSeverity enum', () {
       final src = _format(EmitterVisitor(resolved).buildEnumerations());
       expect(src, contains('enum DiagnosticSeverity'));
-      // Real JSON has PascalCase member names: Error, Warning, etc.
-      expect(src, contains('Error(1)'));
-      expect(src, contains('Warning(2)'));
+      // Generator normalises to lowerCamelCase.
+      expect(src, contains('error(1)'));
+      expect(src, contains('warning(2)'));
     });
 
     test(

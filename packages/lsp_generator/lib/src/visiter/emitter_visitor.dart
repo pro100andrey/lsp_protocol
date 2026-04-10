@@ -162,30 +162,36 @@ final class EmitterVisitor {
           Directive.import('package:json_annotation/json_annotation.dart'),
         )
         ..directives.add(Directive.part('methods.g.dart'))
-        ..body.add(_buildMethodEnum(
-          'NotificationMethod',
-          notifications.map(
-            (n) => (
-              memberName: notifNames[n]!,
-              method: n.method,
-              doc: n.documentation ??
-                  'LSP notification `${n.method}` '
-                  '(${_directionLabel(n.messageDirection)}).',
+        ..body.add(
+          _buildMethodEnum(
+            'NotificationMethod',
+            notifications.map(
+              (n) => (
+                memberName: notifNames[n]!,
+                method: n.method,
+                doc:
+                    n.documentation ??
+                    'LSP notification `${n.method}` '
+                        '(${_directionLabel(n.messageDirection)}).',
+              ),
             ),
           ),
-        ))
-        ..body.add(_buildMethodEnum(
-          'RequestMethod',
-          requests.map(
-            (r) => (
-              memberName: requestNames[r]!,
-              method: r.method,
-              doc: r.documentation ??
-                  'LSP request `${r.method}` '
-                  '(${_directionLabel(r.messageDirection)}).',
+        )
+        ..body.add(
+          _buildMethodEnum(
+            'RequestMethod',
+            requests.map(
+              (r) => (
+                memberName: requestNames[r]!,
+                method: r.method,
+                doc:
+                    r.documentation ??
+                    'LSP request `${r.method}` '
+                        '(${_directionLabel(r.messageDirection)}).',
+              ),
             ),
           ),
-        )),
+        ),
     );
   }
 
@@ -218,17 +224,19 @@ final class EmitterVisitor {
       final alias = _resolved.aliases.firstWhere((a) => a.name == name);
       final ut = alias.type as UnionType;
       final kind = _classifyUnion(ut);
-      specs.addAll(_buildUnionSpecs(
-        name,
-        ut,
-        kind,
-        deprecated: alias.deprecated,
-        docs: _docLines(
-          alias.documentation,
-          since: alias.since,
-          proposed: alias.proposed,
+      specs.addAll(
+        _buildUnionSpecs(
+          name,
+          ut,
+          kind,
+          deprecated: alias.deprecated,
+          docs: _docLines(
+            alias.documentation,
+            since: alias.since,
+            proposed: alias.proposed,
+          ),
         ),
-      ));
+      );
     }
 
     // Scalar unions reference no structs — no cross-imports needed.
@@ -262,17 +270,19 @@ final class EmitterVisitor {
       final alias = _resolved.aliases.firstWhere((a) => a.name == name);
       final ut = alias.type as UnionType;
       final kind = _classifyUnion(ut);
-      specs.addAll(_buildUnionSpecs(
-        name,
-        ut,
-        kind,
-        deprecated: alias.deprecated,
-        docs: _docLines(
-          alias.documentation,
-          since: alias.since,
-          proposed: alias.proposed,
+      specs.addAll(
+        _buildUnionSpecs(
+          name,
+          ut,
+          kind,
+          deprecated: alias.deprecated,
+          docs: _docLines(
+            alias.documentation,
+            since: alias.since,
+            proposed: alias.proposed,
+          ),
         ),
-      ));
+      );
       referencedTypes.addAll(ut.items);
     }
 
@@ -530,7 +540,7 @@ final class EmitterVisitor {
                         : refer(openEnum.primitive))
                   : toRef(p.type, nullable: p.optional);
             _annotationsForParam(p).forEach(b.annotations.add);
-            b.docs.addAll(_docLines(p.documentation));
+            b.docs.addAll(_docLines(p.documentation, indent: 2));
           }),
         );
       }
@@ -627,7 +637,7 @@ final class EmitterVisitor {
               ..named = true
               ..required = !p.optional;
             _annotationsForParam(p).forEach(b.annotations.add);
-            b.docs.addAll(_docLines(p.documentation));
+            b.docs.addAll(_docLines(p.documentation, indent: 4));
           });
         }),
       ),
@@ -971,9 +981,7 @@ final class EmitterVisitor {
     return {
       for (final x in items)
         x: _safeIdentifier(
-          counts[lastSegs[x]!]! > 1
-              ? camelCase(getMethod(x))
-              : lastSegs[x]!,
+          counts[lastSegs[x]!]! > 1 ? camelCase(getMethod(x)) : lastSegs[x]!,
         ),
     };
   }
@@ -989,9 +997,9 @@ final class EmitterVisitor {
     Iterable<({String memberName, String method, String doc})> members,
   ) => Enum((b) {
     b.name = enumName;
-    b.docs.add('/// LSP ${
-      enumName.startsWith('Notification') ? 'notification' : 'request'
-    } method identifiers, as sent over the wire.');
+    b.docs.add(
+      '/// LSP ${enumName.startsWith('Notification') ? 'notification' : 'request'} method identifiers, as sent over the wire.',
+    );
     b.annotations.add(
       refer('JsonEnum').call([], {
         'valueField': literalString('value'),
@@ -1003,8 +1011,10 @@ final class EmitterVisitor {
       b.values.add(
         EnumValue((b) {
           b.name = m.memberName;
-          b.arguments.add(literalString(m.method, raw: true));
-          b.docs.addAll(_docLines(m.doc));
+          b.arguments.add(
+            literalString(m.method, raw: m.method.contains(r'$')),
+          );
+          b.docs.addAll(_docLines(m.doc, indent: 2));
         }),
       );
     }
@@ -1023,7 +1033,11 @@ final class EmitterVisitor {
         (b) => b
           ..constant = true
           ..requiredParameters.add(
-            Parameter((b) => b..name = 'value'..toThis = true),
+            Parameter(
+              (b) => b
+                ..name = 'value'
+                ..toThis = true,
+            ),
           ),
       ),
     );
@@ -1033,15 +1047,24 @@ final class EmitterVisitor {
         (b) => b
           ..static = true
           ..returns = TypeReference(
-            (b) => b..symbol = enumName..isNullable = true,
+            (b) => b
+              ..symbol = enumName
+              ..isNullable = true,
           )
           ..name = 'decode'
           ..requiredParameters.add(
-            Parameter((b) => b..name = 'json'..type = refer('String')),
+            Parameter(
+              (b) => b
+                ..name = 'json'
+                ..type = refer('String'),
+            ),
           )
           ..lambda = true
           ..body = refer(r'$enumDecodeNullable').call([
-            refer('_\$$enumName' 'EnumMap'),
+            refer(
+              '_\$$enumName'
+              'EnumMap',
+            ),
             refer('json'),
           ]).code,
       ),
@@ -1078,7 +1101,7 @@ final class EmitterVisitor {
       for (final member in en.members) {
         b.values.add(
           EnumValue((b) {
-            b.name = _safeIdentifier(member.name);
+            b.name = _safeIdentifier(_toLowerCamelCase(member.name));
             b.arguments.add(
               isInt
                   ? literalNum(int.parse(member.value))
@@ -1089,7 +1112,13 @@ final class EmitterVisitor {
                 refer('Deprecated').call([literalString(member.deprecated!)]),
               );
             }
-            b.docs.addAll(_docLines(member.documentation, since: member.since));
+            b.docs.addAll(
+              _docLines(
+                member.documentation,
+                since: member.since,
+                indent: 2,
+              ),
+            );
           }),
         );
       }
@@ -2271,6 +2300,7 @@ final class EmitterVisitor {
   static List<String> _docLines(
     String? input, {
     int maxWidth = 80,
+    int indent = 0,
     String? since,
     bool proposed = false,
   }) {
@@ -2294,7 +2324,7 @@ final class EmitterVisitor {
     }
 
     const prefix = '/// ';
-    final maxContent = maxWidth - prefix.length;
+    final maxContent = maxWidth - prefix.length - indent;
 
     // Resolve {@link Target} / {@link Target displayText} → Dart cross-refs.
     final resolved = body.replaceAllMapped(
@@ -2362,74 +2392,25 @@ final class EmitterVisitor {
   /// Ensures an identifier is valid Dart (e.g. avoids reserved words).
   static String _safeIdentifier(String name) {
     const reserved = {
-      'abstract',
-      'as',
-      'assert',
-      'async',
-      'await',
-      'break',
-      'case',
-      'catch',
       'class',
-      'const',
-      'continue',
-      'covariant',
-      'default',
-      'deferred',
-      'do',
-      'dynamic',
-      'else',
       'enum',
-      'export',
-      'extends',
-      'extension',
-      'external',
-      'factory',
-      'false',
-      'final',
-      'finally',
-      'for',
-      'Function',
-      'get',
-      'hide',
-      'if',
-      'implements',
-      'import',
-      'in',
-      'interface',
-      'is',
-      'late',
-      'library',
-      'mixin',
-      'new',
+      'value',
+      'macro',
       'null',
-      'of',
-      'on',
+      'interface',
       'operator',
-      'part',
-      'required',
-      'rethrow',
-      'return',
-      'sealed',
-      'set',
-      'show',
       'static',
-      'super',
-      'switch',
-      'sync',
-      'this',
-      'throw',
-      'true',
-      'try',
-      'type',
-      'typedef',
-      'var',
-      'void',
-      'when',
-      'while',
-      'with',
-      'yield',
+      'abstract',
+      'async',
     };
+
     return reserved.contains(name) ? '${name}_' : name;
   }
+
+  /// Converts the first character of [name] to lowercase.
+  ///
+  /// Used to normalise PascalCase LSP enum member names (e.g. `PlainText`)
+  /// to the lowerCamelCase Dart convention.
+  static String _toLowerCamelCase(String name) =>
+      name.isEmpty ? name : name[0].toLowerCase() + name.substring(1);
 }

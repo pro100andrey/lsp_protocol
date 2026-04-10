@@ -667,8 +667,8 @@ mixin _$ImplementationRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of ImplementationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -882,8 +882,8 @@ class _ImplementationRegistrationOptions implements ImplementationRegistrationOp
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of ImplementationRegistrationOptions
@@ -1320,8 +1320,8 @@ mixin _$TypeDefinitionRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of TypeDefinitionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -1535,8 +1535,8 @@ class _TypeDefinitionRegistrationOptions implements TypeDefinitionRegistrationOp
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of TypeDefinitionRegistrationOptions
@@ -1606,8 +1606,8 @@ as String?,
 mixin _$WorkspaceFolder {
 
 /// The associated URI for this workspace folder.
- String get uri;/// The name of the workspace folder. Used to refer to this workspace folder in
-/// the user interface.
+ String get uri;/// The name of the workspace folder. Used to refer to this workspace folder
+/// in the user interface.
  String get name;
 /// Create a copy of WorkspaceFolder
 /// with the given fields replaced by the non-null parameter values.
@@ -1808,8 +1808,8 @@ class _WorkspaceFolder implements WorkspaceFolder {
 
 /// The associated URI for this workspace folder.
 @override final  String uri;
-/// The name of the workspace folder. Used to refer to this workspace folder in
-/// the user interface.
+/// The name of the workspace folder. Used to refer to this workspace folder
+/// in the user interface.
 @override final  String name;
 
 /// Create a copy of WorkspaceFolder
@@ -3080,8 +3080,8 @@ mixin _$DocumentColorRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of DocumentColorRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -3295,8 +3295,8 @@ class _DocumentColorRegistrationOptions implements DocumentColorRegistrationOpti
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of DocumentColorRegistrationOptions
@@ -3754,14 +3754,14 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$ColorPresentation {
 
-/// The label of this color presentation. It will be shown on the color picker
-/// header. By default this is also the text that is inserted when selecting
-/// this color presentation.
- String get label;/// An [edit] which is applied to a document when selecting this presentation
-/// for the color. When `falsy` the [label] is used.
- TextEdit? get textEdit;/// An optional array of additional [TextEdit] that are applied when selecting
-/// this color presentation. Edits must not overlap with the main [edit] nor
-/// with themselves.
+/// The label of this color presentation. It will be shown on the color
+/// picker header. By default this is also the text that is inserted when
+/// selecting this color presentation.
+ String get label;/// An [edit] which is applied to a document when selecting this
+/// presentation for the color. When `falsy` the [label] is used.
+ TextEdit? get textEdit;/// An optional array of additional [TextEdit] that are applied when
+/// selecting this color presentation. Edits must not overlap with the main
+/// [edit] nor with themselves.
  List<TextEdit>? get additionalTextEdits;
 /// Create a copy of ColorPresentation
 /// with the given fields replaced by the non-null parameter values.
@@ -3973,20 +3973,20 @@ class _ColorPresentation implements ColorPresentation {
   const _ColorPresentation({required this.label, this.textEdit, final  List<TextEdit>? additionalTextEdits}): _additionalTextEdits = additionalTextEdits;
   factory _ColorPresentation.fromJson(Map<String, dynamic> json) => _$ColorPresentationFromJson(json);
 
-/// The label of this color presentation. It will be shown on the color picker
-/// header. By default this is also the text that is inserted when selecting
-/// this color presentation.
+/// The label of this color presentation. It will be shown on the color
+/// picker header. By default this is also the text that is inserted when
+/// selecting this color presentation.
 @override final  String label;
-/// An [edit] which is applied to a document when selecting this presentation
-/// for the color. When `falsy` the [label] is used.
+/// An [edit] which is applied to a document when selecting this
+/// presentation for the color. When `falsy` the [label] is used.
 @override final  TextEdit? textEdit;
-/// An optional array of additional [TextEdit] that are applied when selecting
-/// this color presentation. Edits must not overlap with the main [edit] nor
-/// with themselves.
+/// An optional array of additional [TextEdit] that are applied when
+/// selecting this color presentation. Edits must not overlap with the main
+/// [edit] nor with themselves.
  final  List<TextEdit>? _additionalTextEdits;
-/// An optional array of additional [TextEdit] that are applied when selecting
-/// this color presentation. Edits must not overlap with the main [edit] nor
-/// with themselves.
+/// An optional array of additional [TextEdit] that are applied when
+/// selecting this color presentation. Edits must not overlap with the main
+/// [edit] nor with themselves.
 @override List<TextEdit>? get additionalTextEdits {
   final value = _additionalTextEdits;
   if (value == null) return null;
@@ -4957,23 +4957,23 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$FoldingRange {
 
-/// The zero-based start line of the range to fold. The folded area starts after
-/// the line's last character. To be valid, the end must be zero or larger and
-/// smaller than the number of lines in the document.
- int get startLine;/// The zero-based character offset from where the folded range starts. If not
-/// defined, defaults to the length of the start line.
- int? get startCharacter;/// The zero-based end line of the range to fold. The folded area ends with the
-/// line's last character. To be valid, the end must be zero or larger and
-/// smaller than the number of lines in the document.
+/// The zero-based start line of the range to fold. The folded area starts
+/// after the line's last character. To be valid, the end must be zero or
+/// larger and smaller than the number of lines in the document.
+ int get startLine;/// The zero-based character offset from where the folded range starts. If
+/// not defined, defaults to the length of the start line.
+ int? get startCharacter;/// The zero-based end line of the range to fold. The folded area ends with
+/// the line's last character. To be valid, the end must be zero or larger
+/// and smaller than the number of lines in the document.
  int get endLine;/// The zero-based character offset before the folded range ends. If not
 /// defined, defaults to the length of the end line.
- int? get endCharacter;/// Describes the kind of the folding range such as `comment' or 'region'. The
-/// kind is used to categorize folding ranges and used by commands like 'Fold
-/// all comments'. See [FoldingRangeKind] for an enumeration of standardized
-/// kinds.
- String? get kind;/// The text that the client should show when the specified range is collapsed.
-/// If not defined or not supported by the client, a default will be chosen by
-/// the client.
+ int? get endCharacter;/// Describes the kind of the folding range such as `comment' or 'region'.
+/// The kind is used to categorize folding ranges and used by commands like
+/// 'Fold all comments'. See [FoldingRangeKind] for an enumeration of
+/// standardized kinds.
+ String? get kind;/// The text that the client should show when the specified range is
+/// collapsed. If not defined or not supported by the client, a default will
+/// be chosen by the client.
  String? get collapsedText;
 /// Create a copy of FoldingRange
 /// with the given fields replaced by the non-null parameter values.
@@ -5176,28 +5176,28 @@ class _FoldingRange extends FoldingRange {
   const _FoldingRange({required this.startLine, this.startCharacter, required this.endLine, this.endCharacter, this.kind, this.collapsedText}): super._();
   factory _FoldingRange.fromJson(Map<String, dynamic> json) => _$FoldingRangeFromJson(json);
 
-/// The zero-based start line of the range to fold. The folded area starts after
-/// the line's last character. To be valid, the end must be zero or larger and
-/// smaller than the number of lines in the document.
+/// The zero-based start line of the range to fold. The folded area starts
+/// after the line's last character. To be valid, the end must be zero or
+/// larger and smaller than the number of lines in the document.
 @override final  int startLine;
-/// The zero-based character offset from where the folded range starts. If not
-/// defined, defaults to the length of the start line.
+/// The zero-based character offset from where the folded range starts. If
+/// not defined, defaults to the length of the start line.
 @override final  int? startCharacter;
-/// The zero-based end line of the range to fold. The folded area ends with the
-/// line's last character. To be valid, the end must be zero or larger and
-/// smaller than the number of lines in the document.
+/// The zero-based end line of the range to fold. The folded area ends with
+/// the line's last character. To be valid, the end must be zero or larger
+/// and smaller than the number of lines in the document.
 @override final  int endLine;
 /// The zero-based character offset before the folded range ends. If not
 /// defined, defaults to the length of the end line.
 @override final  int? endCharacter;
-/// Describes the kind of the folding range such as `comment' or 'region'. The
-/// kind is used to categorize folding ranges and used by commands like 'Fold
-/// all comments'. See [FoldingRangeKind] for an enumeration of standardized
-/// kinds.
+/// Describes the kind of the folding range such as `comment' or 'region'.
+/// The kind is used to categorize folding ranges and used by commands like
+/// 'Fold all comments'. See [FoldingRangeKind] for an enumeration of
+/// standardized kinds.
 @override final  String? kind;
-/// The text that the client should show when the specified range is collapsed.
-/// If not defined or not supported by the client, a default will be chosen by
-/// the client.
+/// The text that the client should show when the specified range is
+/// collapsed. If not defined or not supported by the client, a default will
+/// be chosen by the client.
 @override final  String? collapsedText;
 
 /// Create a copy of FoldingRange
@@ -5271,8 +5271,8 @@ mixin _$FoldingRangeRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of FoldingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -5486,8 +5486,8 @@ class _FoldingRangeRegistrationOptions implements FoldingRangeRegistrationOption
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of FoldingRangeRegistrationOptions
@@ -5924,8 +5924,8 @@ mixin _$DeclarationRegistrationOptions {
 
  bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of DeclarationRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -6139,8 +6139,8 @@ class _DeclarationRegistrationOptions implements DeclarationRegistrationOptions 
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of DeclarationRegistrationOptions
@@ -6565,8 +6565,8 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 mixin _$SelectionRange {
 
 /// The [range] of this selection range.
- Range get range;/// The parent selection range containing this range. Therefore `parent.range`
-/// must contain `this.range`.
+ Range get range;/// The parent selection range containing this range. Therefore
+/// `parent.range` must contain `this.range`.
  SelectionRange? get parent;
 /// Create a copy of SelectionRange
 /// with the given fields replaced by the non-null parameter values.
@@ -6788,8 +6788,8 @@ class _SelectionRange implements SelectionRange {
 
 /// The [range] of this selection range.
 @override final  Range range;
-/// The parent selection range containing this range. Therefore `parent.range`
-/// must contain `this.range`.
+/// The parent selection range containing this range. Therefore
+/// `parent.range` must contain `this.range`.
 @override final  SelectionRange? parent;
 
 /// Create a copy of SelectionRange
@@ -6880,8 +6880,8 @@ mixin _$SelectionRangeRegistrationOptions {
 
  bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of SelectionRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -7095,8 +7095,8 @@ class _SelectionRangeRegistrationOptions implements SelectionRangeRegistrationOp
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of SelectionRangeRegistrationOptions
@@ -8071,12 +8071,12 @@ mixin _$CallHierarchyItem {
  SymbolKind get kind;/// Tags for this item.
  List<SymbolTag>? get tags;/// More detail for this item, e.g. the signature of a function.
  String? get detail;/// The resource identifier of this item.
- String get uri;/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else, e.g. comments and code.
+ String get uri;/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
  Range get range;/// The range that should be selected and revealed when this symbol is being
 /// picked, e.g. the name of a function. Must be contained by the [range].
- Range get selectionRange;/// A data entry field that is preserved between a call hierarchy prepare and
-/// incoming calls or outgoing calls requests.
+ Range get selectionRange;/// A data entry field that is preserved between a call hierarchy prepare
+/// and incoming calls or outgoing calls requests.
  LSPAny? get data;
 /// Create a copy of CallHierarchyItem
 /// with the given fields replaced by the non-null parameter values.
@@ -8317,14 +8317,14 @@ class _CallHierarchyItem implements CallHierarchyItem {
 @override final  String? detail;
 /// The resource identifier of this item.
 @override final  String uri;
-/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else, e.g. comments and code.
+/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
 @override final  Range range;
 /// The range that should be selected and revealed when this symbol is being
 /// picked, e.g. the name of a function. Must be contained by the [range].
 @override final  Range selectionRange;
-/// A data entry field that is preserved between a call hierarchy prepare and
-/// incoming calls or outgoing calls requests.
+/// A data entry field that is preserved between a call hierarchy prepare
+/// and incoming calls or outgoing calls requests.
 @override final  LSPAny? data;
 
 /// Create a copy of CallHierarchyItem
@@ -8417,8 +8417,8 @@ mixin _$CallHierarchyRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of CallHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -8632,8 +8632,8 @@ class _CallHierarchyRegistrationOptions implements CallHierarchyRegistrationOpti
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of CallHierarchyRegistrationOptions
@@ -9044,8 +9044,8 @@ $CallHierarchyItemCopyWith<$Res> get item {
 mixin _$CallHierarchyIncomingCall {
 
 /// The item that makes the call.
- CallHierarchyItem get from;/// The ranges at which the calls appear. This is relative to the caller denoted
-/// by [CallHierarchyIncomingCall].
+ CallHierarchyItem get from;/// The ranges at which the calls appear. This is relative to the caller
+/// denoted by [CallHierarchyIncomingCall].
  List<Range> get fromRanges;
 /// Create a copy of CallHierarchyIncomingCall
 /// with the given fields replaced by the non-null parameter values.
@@ -9255,11 +9255,11 @@ class _CallHierarchyIncomingCall implements CallHierarchyIncomingCall {
 
 /// The item that makes the call.
 @override final  CallHierarchyItem from;
-/// The ranges at which the calls appear. This is relative to the caller denoted
-/// by [CallHierarchyIncomingCall].
+/// The ranges at which the calls appear. This is relative to the caller
+/// denoted by [CallHierarchyIncomingCall].
  final  List<Range> _fromRanges;
-/// The ranges at which the calls appear. This is relative to the caller denoted
-/// by [CallHierarchyIncomingCall].
+/// The ranges at which the calls appear. This is relative to the caller
+/// denoted by [CallHierarchyIncomingCall].
 @override List<Range> get fromRanges {
   if (_fromRanges is EqualUnmodifiableListView) return _fromRanges;
   // ignore: implicit_dynamic_type
@@ -9683,9 +9683,9 @@ $CallHierarchyItemCopyWith<$Res> get item {
 mixin _$CallHierarchyOutgoingCall {
 
 /// The item that is called.
- CallHierarchyItem get to;/// The range at which this item is called. This is the range relative to the
-/// caller, e.g the item passed to [provideCallHierarchyOutgoingCalls] and not
-/// [CallHierarchyOutgoingCall].
+ CallHierarchyItem get to;/// The range at which this item is called. This is the range relative to
+/// the caller, e.g the item passed to [provideCallHierarchyOutgoingCalls]
+/// and not [CallHierarchyOutgoingCall].
  List<Range> get fromRanges;
 /// Create a copy of CallHierarchyOutgoingCall
 /// with the given fields replaced by the non-null parameter values.
@@ -9895,13 +9895,13 @@ class _CallHierarchyOutgoingCall implements CallHierarchyOutgoingCall {
 
 /// The item that is called.
 @override final  CallHierarchyItem to;
-/// The range at which this item is called. This is the range relative to the
-/// caller, e.g the item passed to [provideCallHierarchyOutgoingCalls] and not
-/// [CallHierarchyOutgoingCall].
+/// The range at which this item is called. This is the range relative to
+/// the caller, e.g the item passed to [provideCallHierarchyOutgoingCalls]
+/// and not [CallHierarchyOutgoingCall].
  final  List<Range> _fromRanges;
-/// The range at which this item is called. This is the range relative to the
-/// caller, e.g the item passed to [provideCallHierarchyOutgoingCalls] and not
-/// [CallHierarchyOutgoingCall].
+/// The range at which this item is called. This is the range relative to
+/// the caller, e.g the item passed to [provideCallHierarchyOutgoingCalls]
+/// and not [CallHierarchyOutgoingCall].
 @override List<Range> get fromRanges {
   if (_fromRanges is EqualUnmodifiableListView) return _fromRanges;
   // ignore: implicit_dynamic_type
@@ -10326,10 +10326,10 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$SemanticTokens {
 
-/// An optional result id. If provided and clients support delta updating the
-/// client will include the result id in the next semantic token request. A
-/// server can then instead of computing all semantic tokens again simply send a
-/// delta.
+/// An optional result id. If provided and clients support delta updating
+/// the client will include the result id in the next semantic token
+/// request. A server can then instead of computing all semantic tokens
+/// again simply send a delta.
  String? get resultId;/// The actual tokens.
  List<int> get data;
 /// Create a copy of SemanticTokens
@@ -10529,10 +10529,10 @@ class _SemanticTokens implements SemanticTokens {
   const _SemanticTokens({this.resultId, required final  List<int> data}): _data = data;
   factory _SemanticTokens.fromJson(Map<String, dynamic> json) => _$SemanticTokensFromJson(json);
 
-/// An optional result id. If provided and clients support delta updating the
-/// client will include the result id in the next semantic token request. A
-/// server can then instead of computing all semantic tokens again simply send a
-/// delta.
+/// An optional result id. If provided and clients support delta updating
+/// the client will include the result id in the next semantic token
+/// request. A server can then instead of computing all semantic tokens
+/// again simply send a delta.
 @override final  String? resultId;
 /// The actual tokens.
  final  List<int> _data;
@@ -10884,8 +10884,8 @@ mixin _$SemanticTokensRegistrationOptions {
  SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a specific range of a
 /// document.
  Object? get range;/// Server supports providing semantic tokens for a full document.
- Object? get full;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ Object? get full;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of SemanticTokensRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -11116,8 +11116,8 @@ class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOp
 @override final  Object? range;
 /// Server supports providing semantic tokens for a full document.
 @override final  Object? full;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of SemanticTokensRegistrationOptions
@@ -11200,8 +11200,8 @@ mixin _$SemanticTokensDeltaParams {
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;/// The result id of a previous response. The result Id can either point to a
-/// full response or a delta response depending on what was received last.
+ TextDocumentIdentifier get textDocument;/// The result id of a previous response. The result Id can either point to
+/// a full response or a delta response depending on what was received last.
  String get previousResultId;
 /// Create a copy of SemanticTokensDeltaParams
 /// with the given fields replaced by the non-null parameter values.
@@ -11442,8 +11442,8 @@ class _SemanticTokensDeltaParams implements SemanticTokensDeltaParams {
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
-/// The result id of a previous response. The result Id can either point to a
-/// full response or a delta response depending on what was received last.
+/// The result id of a previous response. The result Id can either point to
+/// a full response or a delta response depending on what was received last.
 @override final  String previousResultId;
 
 /// Create a copy of SemanticTokensDeltaParams
@@ -11546,7 +11546,8 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$SemanticTokensDelta {
 
- String? get resultId;/// The semantic token edits to transform a previous result into a new result.
+ String? get resultId;/// The semantic token edits to transform a previous result into a new
+/// result.
  List<SemanticTokensEdit> get edits;
 /// Create a copy of SemanticTokensDelta
 /// with the given fields replaced by the non-null parameter values.
@@ -11746,9 +11747,11 @@ class _SemanticTokensDelta implements SemanticTokensDelta {
   factory _SemanticTokensDelta.fromJson(Map<String, dynamic> json) => _$SemanticTokensDeltaFromJson(json);
 
 @override final  String? resultId;
-/// The semantic token edits to transform a previous result into a new result.
+/// The semantic token edits to transform a previous result into a new
+/// result.
  final  List<SemanticTokensEdit> _edits;
-/// The semantic token edits to transform a previous result into a new result.
+/// The semantic token edits to transform a previous result into a new
+/// result.
 @override List<SemanticTokensEdit> get edits {
   if (_edits is EqualUnmodifiableListView) return _edits;
   // ignore: implicit_dynamic_type
@@ -12457,15 +12460,15 @@ $RangeCopyWith<$Res> get range {
 mixin _$ShowDocumentParams {
 
 /// The uri to show.
- String get uri;/// Indicates to show the resource in an external program. To show, for example,
-/// `https://code.visualstudio.com/` in the default WEB browser set `external`
-/// to `true`.
+ String get uri;/// Indicates to show the resource in an external program. To show, for
+/// example, `https://code.visualstudio.com/` in the default WEB browser set
+/// `external` to `true`.
  bool? get external;/// An optional property to indicate whether the editor showing the document
-/// should take focus or not. Clients might ignore this property if an external
-/// program is started.
+/// should take focus or not. Clients might ignore this property if an
+/// external program is started.
  bool? get takeFocus;/// An optional selection range if the document is a text document. Clients
-/// might ignore the property if an external program is started or the file is
-/// not a text file.
+/// might ignore the property if an external program is started or the file
+/// is not a text file.
  Range? get selection;
 /// Create a copy of ShowDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -12680,17 +12683,17 @@ class _ShowDocumentParams implements ShowDocumentParams {
 
 /// The uri to show.
 @override final  String uri;
-/// Indicates to show the resource in an external program. To show, for example,
-/// `https://code.visualstudio.com/` in the default WEB browser set `external`
-/// to `true`.
+/// Indicates to show the resource in an external program. To show, for
+/// example, `https://code.visualstudio.com/` in the default WEB browser set
+/// `external` to `true`.
 @override final  bool? external;
 /// An optional property to indicate whether the editor showing the document
-/// should take focus or not. Clients might ignore this property if an external
-/// program is started.
+/// should take focus or not. Clients might ignore this property if an
+/// external program is started.
 @override final  bool? takeFocus;
 /// An optional selection range if the document is a text document. Clients
-/// might ignore the property if an external program is started or the file is
-/// not a text file.
+/// might ignore the property if an external program is started or the file
+/// is not a text file.
 @override final  Range? selection;
 
 /// Create a copy of ShowDocumentParams
@@ -13372,11 +13375,12 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 /// @nodoc
 mixin _$LinkedEditingRanges {
 
-/// A list of ranges that can be edited together. The ranges must have identical
-/// length and contain identical text content. The ranges cannot overlap.
- List<Range> get ranges;/// An optional word pattern (regular expression) that describes valid contents
-/// for the given ranges. If no pattern is provided, the client configuration's
-/// word pattern will be used.
+/// A list of ranges that can be edited together. The ranges must have
+/// identical length and contain identical text content. The ranges cannot
+/// overlap.
+ List<Range> get ranges;/// An optional word pattern (regular expression) that describes valid
+/// contents for the given ranges. If no pattern is provided, the client
+/// configuration's word pattern will be used.
  String? get wordPattern;
 /// Create a copy of LinkedEditingRanges
 /// with the given fields replaced by the non-null parameter values.
@@ -13575,20 +13579,22 @@ class _LinkedEditingRanges implements LinkedEditingRanges {
   const _LinkedEditingRanges({required final  List<Range> ranges, this.wordPattern}): _ranges = ranges;
   factory _LinkedEditingRanges.fromJson(Map<String, dynamic> json) => _$LinkedEditingRangesFromJson(json);
 
-/// A list of ranges that can be edited together. The ranges must have identical
-/// length and contain identical text content. The ranges cannot overlap.
+/// A list of ranges that can be edited together. The ranges must have
+/// identical length and contain identical text content. The ranges cannot
+/// overlap.
  final  List<Range> _ranges;
-/// A list of ranges that can be edited together. The ranges must have identical
-/// length and contain identical text content. The ranges cannot overlap.
+/// A list of ranges that can be edited together. The ranges must have
+/// identical length and contain identical text content. The ranges cannot
+/// overlap.
 @override List<Range> get ranges {
   if (_ranges is EqualUnmodifiableListView) return _ranges;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_ranges);
 }
 
-/// An optional word pattern (regular expression) that describes valid contents
-/// for the given ranges. If no pattern is provided, the client configuration's
-/// word pattern will be used.
+/// An optional word pattern (regular expression) that describes valid
+/// contents for the given ranges. If no pattern is provided, the client
+/// configuration's word pattern will be used.
 @override final  String? wordPattern;
 
 /// Create a copy of LinkedEditingRanges
@@ -13658,8 +13664,8 @@ mixin _$LinkedEditingRangeRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of LinkedEditingRangeRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -13873,8 +13879,8 @@ class _LinkedEditingRangeRegistrationOptions implements LinkedEditingRangeRegist
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of LinkedEditingRangeRegistrationOptions
@@ -14217,10 +14223,10 @@ mixin _$WorkspaceEdit {
 
 /// Holds changes to existing resources.
  Map<String, List<TextEdit>>? get changes;/// Depending on the client capability
-/// `workspace.workspaceEdit.resourceOperations` document changes are either an
-/// array of `TextDocumentEdit`s to express changes to n different text
-/// documents where each text document edit addresses a specific version of a
-/// text document. Or it can contain above `TextDocumentEdit`s mixed with
+/// `workspace.workspaceEdit.resourceOperations` document changes are either
+/// an array of `TextDocumentEdit`s to express changes to n different text
+/// documents where each text document edit addresses a specific version of
+/// a text document. Or it can contain above `TextDocumentEdit`s mixed with
 /// create, rename and delete file / folder operations.
 ///
 /// Whether a client supports versioned document edits is expressed via
@@ -14229,8 +14235,9 @@ mixin _$WorkspaceEdit {
 /// If a client neither supports `documentChanges` nor
 /// `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s
 /// using the `changes` property are supported.
- List<Object>? get documentChanges;/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
-/// or create, rename and delete file / folder operations.
+ List<Object>? get documentChanges;/// A map of change annotations that can be referenced in
+/// `AnnotatedTextEdit`s or create, rename and delete file / folder
+/// operations.
 ///
 /// Whether clients honor this property depends on the client capability
 /// `workspace.changeAnnotationSupport`.
@@ -14445,10 +14452,10 @@ class _WorkspaceEdit implements WorkspaceEdit {
 }
 
 /// Depending on the client capability
-/// `workspace.workspaceEdit.resourceOperations` document changes are either an
-/// array of `TextDocumentEdit`s to express changes to n different text
-/// documents where each text document edit addresses a specific version of a
-/// text document. Or it can contain above `TextDocumentEdit`s mixed with
+/// `workspace.workspaceEdit.resourceOperations` document changes are either
+/// an array of `TextDocumentEdit`s to express changes to n different text
+/// documents where each text document edit addresses a specific version of
+/// a text document. Or it can contain above `TextDocumentEdit`s mixed with
 /// create, rename and delete file / folder operations.
 ///
 /// Whether a client supports versioned document edits is expressed via
@@ -14459,10 +14466,10 @@ class _WorkspaceEdit implements WorkspaceEdit {
 /// using the `changes` property are supported.
  final  List<Object>? _documentChanges;
 /// Depending on the client capability
-/// `workspace.workspaceEdit.resourceOperations` document changes are either an
-/// array of `TextDocumentEdit`s to express changes to n different text
-/// documents where each text document edit addresses a specific version of a
-/// text document. Or it can contain above `TextDocumentEdit`s mixed with
+/// `workspace.workspaceEdit.resourceOperations` document changes are either
+/// an array of `TextDocumentEdit`s to express changes to n different text
+/// documents where each text document edit addresses a specific version of
+/// a text document. Or it can contain above `TextDocumentEdit`s mixed with
 /// create, rename and delete file / folder operations.
 ///
 /// Whether a client supports versioned document edits is expressed via
@@ -14479,14 +14486,16 @@ class _WorkspaceEdit implements WorkspaceEdit {
   return EqualUnmodifiableListView(value);
 }
 
-/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
-/// or create, rename and delete file / folder operations.
+/// A map of change annotations that can be referenced in
+/// `AnnotatedTextEdit`s or create, rename and delete file / folder
+/// operations.
 ///
 /// Whether clients honor this property depends on the client capability
 /// `workspace.changeAnnotationSupport`.
  final  Map<ChangeAnnotationIdentifier, ChangeAnnotation>? _changeAnnotations;
-/// A map of change annotations that can be referenced in `AnnotatedTextEdit`s
-/// or create, rename and delete file / folder operations.
+/// A map of change annotations that can be referenced in
+/// `AnnotatedTextEdit`s or create, rename and delete file / folder
+/// operations.
 ///
 /// Whether clients honor this property depends on the client capability
 /// `workspace.changeAnnotationSupport`.
@@ -14837,8 +14846,8 @@ as List<FileOperationFilter>,
 /// @nodoc
 mixin _$RenameFilesParams {
 
-/// An array of all files/folders renamed in this operation. When a folder is
-/// renamed, only the folder will be included, and not its children.
+/// An array of all files/folders renamed in this operation. When a folder
+/// is renamed, only the folder will be included, and not its children.
  List<FileRename> get files;
 /// Create a copy of RenameFilesParams
 /// with the given fields replaced by the non-null parameter values.
@@ -15036,11 +15045,11 @@ class _RenameFilesParams implements RenameFilesParams {
   const _RenameFilesParams({required final  List<FileRename> files}): _files = files;
   factory _RenameFilesParams.fromJson(Map<String, dynamic> json) => _$RenameFilesParamsFromJson(json);
 
-/// An array of all files/folders renamed in this operation. When a folder is
-/// renamed, only the folder will be included, and not its children.
+/// An array of all files/folders renamed in this operation. When a folder
+/// is renamed, only the folder will be included, and not its children.
  final  List<FileRename> _files;
-/// An array of all files/folders renamed in this operation. When a folder is
-/// renamed, only the folder will be included, and not its children.
+/// An array of all files/folders renamed in this operation. When a folder
+/// is renamed, only the folder will be included, and not its children.
 @override List<FileRename> get files {
   if (_files is EqualUnmodifiableListView) return _files;
   // ignore: implicit_dynamic_type
@@ -15751,8 +15760,8 @@ $ProgressTokenCopyWith<$Res>? get partialResultToken {
 mixin _$Moniker {
 
 /// The scheme of the moniker. For example tsc or .Net
- String get scheme;/// The identifier of the moniker. The value is opaque in LSIF however schema
-/// owners are allowed to define the structure if they want.
+ String get scheme;/// The identifier of the moniker. The value is opaque in LSIF however
+/// schema owners are allowed to define the structure if they want.
  String get identifier;/// The scope in which the moniker is unique
  UniquenessLevel get unique;/// The moniker kind if known.
  MonikerKind? get kind;
@@ -15957,8 +15966,8 @@ class _Moniker implements Moniker {
 
 /// The scheme of the moniker. For example tsc or .Net
 @override final  String scheme;
-/// The identifier of the moniker. The value is opaque in LSIF however schema
-/// owners are allowed to define the structure if they want.
+/// The identifier of the moniker. The value is opaque in LSIF however
+/// schema owners are allowed to define the structure if they want.
 @override final  String identifier;
 /// The scope in which the moniker is unique
 @override final  UniquenessLevel unique;
@@ -16652,14 +16661,14 @@ mixin _$TypeHierarchyItem {
  SymbolKind get kind;/// Tags for this item.
  List<SymbolTag>? get tags;/// More detail for this item, e.g. the signature of a function.
  String? get detail;/// The resource identifier of this item.
- String get uri;/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else, e.g. comments and code.
+ String get uri;/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
  Range get range;/// The range that should be selected and revealed when this symbol is being
 /// picked, e.g. the name of a function. Must be contained by the [range].
- Range get selectionRange;/// A data entry field that is preserved between a type hierarchy prepare and
-/// supertypes or subtypes requests. It could also be used to identify the type
-/// hierarchy in the server, helping improve the performance on resolving
-/// supertypes and subtypes.
+ Range get selectionRange;/// A data entry field that is preserved between a type hierarchy prepare
+/// and supertypes or subtypes requests. It could also be used to identify
+/// the type hierarchy in the server, helping improve the performance on
+/// resolving supertypes and subtypes.
  LSPAny? get data;
 /// Create a copy of TypeHierarchyItem
 /// with the given fields replaced by the non-null parameter values.
@@ -16900,16 +16909,16 @@ class _TypeHierarchyItem implements TypeHierarchyItem {
 @override final  String? detail;
 /// The resource identifier of this item.
 @override final  String uri;
-/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else, e.g. comments and code.
+/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else, e.g. comments and code.
 @override final  Range range;
 /// The range that should be selected and revealed when this symbol is being
 /// picked, e.g. the name of a function. Must be contained by the [range].
 @override final  Range selectionRange;
-/// A data entry field that is preserved between a type hierarchy prepare and
-/// supertypes or subtypes requests. It could also be used to identify the type
-/// hierarchy in the server, helping improve the performance on resolving
-/// supertypes and subtypes.
+/// A data entry field that is preserved between a type hierarchy prepare
+/// and supertypes or subtypes requests. It could also be used to identify
+/// the type hierarchy in the server, helping improve the performance on
+/// resolving supertypes and subtypes.
 @override final  LSPAny? data;
 
 /// Create a copy of TypeHierarchyItem
@@ -17002,8 +17011,8 @@ mixin _$TypeHierarchyRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of TypeHierarchyRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -17217,8 +17226,8 @@ class _TypeHierarchyRegistrationOptions implements TypeHierarchyRegistrationOpti
 }
 
 @override final  bool? workDoneProgress;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of TypeHierarchyRegistrationOptions
@@ -18331,8 +18340,8 @@ mixin _$InlineValueRegistrationOptions {
 
  bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of InlineValueRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -18546,8 +18555,8 @@ class _InlineValueRegistrationOptions implements InlineValueRegistrationOptions 
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of InlineValueRegistrationOptions
@@ -18953,30 +18962,30 @@ mixin _$InlayHint {
 
 /// The position of this hint.
 ///
-/// If multiple hints have the same position, they will be shown in the order
-/// they appear in the response.
+/// If multiple hints have the same position, they will be shown in the
+/// order they appear in the response.
  Position get position;/// The label of this hint. A human readable string or an array of
 /// InlayHintLabelPart label parts.
 ///
 /// *Note* that neither the string nor the label part can be empty.
- Object get label;/// The kind of this hint. Can be omitted in which case the client should fall
-/// back to a reasonable default.
+ Object get label;/// The kind of this hint. Can be omitted in which case the client should
+/// fall back to a reasonable default.
  InlayHintKind? get kind;/// Optional text edits that are performed when accepting this inlay hint.
 ///
-/// *Note* that edits are expected to change the document so that the inlay hint
-/// (or its nearest variant) is now part of the document and the inlay hint
-/// itself is now obsolete.
+/// *Note* that edits are expected to change the document so that the inlay
+/// hint (or its nearest variant) is now part of the document and the inlay
+/// hint itself is now obsolete.
  List<TextEdit>? get textEdits;/// The tooltip text when you hover over this item.
  Object? get tooltip;/// Render padding before the hint.
 ///
-/// Note: Padding should use the editor's background color, not the background
-/// color of the hint itself. That means padding can be used to visually
-/// align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the
+/// background color of the hint itself. That means padding can be used to
+/// visually align/separate an inlay hint.
  bool? get paddingLeft;/// Render padding after the hint.
 ///
-/// Note: Padding should use the editor's background color, not the background
-/// color of the hint itself. That means padding can be used to visually
-/// align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the
+/// background color of the hint itself. That means padding can be used to
+/// visually align/separate an inlay hint.
  bool? get paddingRight;/// A data entry field that is preserved on an inlay hint between a
 /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
  LSPAny? get data;
@@ -19191,28 +19200,28 @@ class _InlayHint implements InlayHint {
 
 /// The position of this hint.
 ///
-/// If multiple hints have the same position, they will be shown in the order
-/// they appear in the response.
+/// If multiple hints have the same position, they will be shown in the
+/// order they appear in the response.
 @override final  Position position;
 /// The label of this hint. A human readable string or an array of
 /// InlayHintLabelPart label parts.
 ///
 /// *Note* that neither the string nor the label part can be empty.
 @override final  Object label;
-/// The kind of this hint. Can be omitted in which case the client should fall
-/// back to a reasonable default.
+/// The kind of this hint. Can be omitted in which case the client should
+/// fall back to a reasonable default.
 @override final  InlayHintKind? kind;
 /// Optional text edits that are performed when accepting this inlay hint.
 ///
-/// *Note* that edits are expected to change the document so that the inlay hint
-/// (or its nearest variant) is now part of the document and the inlay hint
-/// itself is now obsolete.
+/// *Note* that edits are expected to change the document so that the inlay
+/// hint (or its nearest variant) is now part of the document and the inlay
+/// hint itself is now obsolete.
  final  List<TextEdit>? _textEdits;
 /// Optional text edits that are performed when accepting this inlay hint.
 ///
-/// *Note* that edits are expected to change the document so that the inlay hint
-/// (or its nearest variant) is now part of the document and the inlay hint
-/// itself is now obsolete.
+/// *Note* that edits are expected to change the document so that the inlay
+/// hint (or its nearest variant) is now part of the document and the inlay
+/// hint itself is now obsolete.
 @override List<TextEdit>? get textEdits {
   final value = _textEdits;
   if (value == null) return null;
@@ -19225,15 +19234,15 @@ class _InlayHint implements InlayHint {
 @override final  Object? tooltip;
 /// Render padding before the hint.
 ///
-/// Note: Padding should use the editor's background color, not the background
-/// color of the hint itself. That means padding can be used to visually
-/// align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the
+/// background color of the hint itself. That means padding can be used to
+/// visually align/separate an inlay hint.
 @override final  bool? paddingLeft;
 /// Render padding after the hint.
 ///
-/// Note: Padding should use the editor's background color, not the background
-/// color of the hint itself. That means padding can be used to visually
-/// align/separate an inlay hint.
+/// Note: Padding should use the editor's background color, not the
+/// background color of the hint itself. That means padding can be used to
+/// visually align/separate an inlay hint.
 @override final  bool? paddingRight;
 /// A data entry field that is preserved on an inlay hint between a
 /// `textDocument/inlayHint` and a `inlayHint/resolve` request.
@@ -19316,12 +19325,12 @@ $PositionCopyWith<$Res> get position {
 /// @nodoc
 mixin _$InlayHintRegistrationOptions {
 
- bool? get workDoneProgress;/// The server provides support to resolve additional information for an inlay
-/// hint item.
+ bool? get workDoneProgress;/// The server provides support to resolve additional information for an
+/// inlay hint item.
  bool? get resolveProvider;/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of InlayHintRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -19523,8 +19532,8 @@ class _InlayHintRegistrationOptions implements InlayHintRegistrationOptions {
   factory _InlayHintRegistrationOptions.fromJson(Map<String, dynamic> json) => _$InlayHintRegistrationOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// The server provides support to resolve additional information for an inlay
-/// hint item.
+/// The server provides support to resolve additional information for an
+/// inlay hint item.
 @override final  bool? resolveProvider;
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
@@ -19539,8 +19548,8 @@ class _InlayHintRegistrationOptions implements InlayHintRegistrationOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of InlayHintRegistrationOptions
@@ -20499,13 +20508,13 @@ mixin _$DiagnosticRegistrationOptions {
 /// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// An optional identifier under which the diagnostics are managed by the
 /// client.
- String? get identifier;/// Whether the language has inter file dependencies meaning that editing code
-/// in one file can result in a different diagnostic set in another file. Inter
-/// file dependencies are common for most programming languages and typically
-/// uncommon for linters.
+ String? get identifier;/// Whether the language has inter file dependencies meaning that editing
+/// code in one file can result in a different diagnostic set in another
+/// file. Inter file dependencies are common for most programming languages
+/// and typically uncommon for linters.
  bool get interFileDependencies;/// The server provides support for workspace diagnostics as well.
- bool get workspaceDiagnostics;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ bool get workspaceDiagnostics;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of DiagnosticRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -20725,15 +20734,15 @@ class _DiagnosticRegistrationOptions implements DiagnosticRegistrationOptions {
 /// An optional identifier under which the diagnostics are managed by the
 /// client.
 @override final  String? identifier;
-/// Whether the language has inter file dependencies meaning that editing code
-/// in one file can result in a different diagnostic set in another file. Inter
-/// file dependencies are common for most programming languages and typically
-/// uncommon for linters.
+/// Whether the language has inter file dependencies meaning that editing
+/// code in one file can result in a different diagnostic set in another
+/// file. Inter file dependencies are common for most programming languages
+/// and typically uncommon for linters.
 @override final  bool interFileDependencies;
 /// The server provides support for workspace diagnostics as well.
 @override final  bool workspaceDiagnostics;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of DiagnosticRegistrationOptions
@@ -21977,20 +21986,21 @@ mixin _$DidChangeNotebookDocumentParams {
 
 /// The notebook document that did change. The version number points to the
 /// version after all provided changes have been applied. If only the text
-/// document content of a cell changes the notebook version doesn't necessarily
-/// have to change.
+/// document content of a cell changes the notebook version doesn't
+/// necessarily have to change.
  VersionedNotebookDocumentIdentifier get notebookDocument;/// The actual changes to the notebook document.
 ///
-/// The changes describe single state changes to the notebook document. So if
-/// there are two changes c1 (at array index 0) and c2 (at array index 1) for a
-/// notebook in state S then c1 moves the notebook from S to S' and c2 from S'
-/// to S''. So c1 is computed on the state S and c2 is computed on the state S'.
+/// The changes describe single state changes to the notebook document. So
+/// if there are two changes c1 (at array index 0) and c2 (at array index 1)
+/// for a notebook in state S then c1 moves the notebook from S to S' and c2
+/// from S' to S''. So c1 is computed on the state S and c2 is computed on
+/// the state S'.
 ///
-/// To mirror the content of a notebook using change events use the following
-/// approach: - start with the same initial content - apply the
-/// 'notebookDocument/didChange' notifications in the order you receive them. -
-/// apply the `NotebookChangeEvent`s in a single notification in the order you
-/// receive them.
+/// To mirror the content of a notebook using change events use the
+/// following approach: - start with the same initial content - apply the
+/// 'notebookDocument/didChange' notifications in the order you receive
+/// them. - apply the `NotebookChangeEvent`s in a single notification in the
+/// order you receive them.
  NotebookDocumentChangeEvent get change;
 /// Create a copy of DidChangeNotebookDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -22209,21 +22219,22 @@ class _DidChangeNotebookDocumentParams implements DidChangeNotebookDocumentParam
 
 /// The notebook document that did change. The version number points to the
 /// version after all provided changes have been applied. If only the text
-/// document content of a cell changes the notebook version doesn't necessarily
-/// have to change.
+/// document content of a cell changes the notebook version doesn't
+/// necessarily have to change.
 @override final  VersionedNotebookDocumentIdentifier notebookDocument;
 /// The actual changes to the notebook document.
 ///
-/// The changes describe single state changes to the notebook document. So if
-/// there are two changes c1 (at array index 0) and c2 (at array index 1) for a
-/// notebook in state S then c1 moves the notebook from S to S' and c2 from S'
-/// to S''. So c1 is computed on the state S and c2 is computed on the state S'.
+/// The changes describe single state changes to the notebook document. So
+/// if there are two changes c1 (at array index 0) and c2 (at array index 1)
+/// for a notebook in state S then c1 moves the notebook from S to S' and c2
+/// from S' to S''. So c1 is computed on the state S and c2 is computed on
+/// the state S'.
 ///
-/// To mirror the content of a notebook using change events use the following
-/// approach: - start with the same initial content - apply the
-/// 'notebookDocument/didChange' notifications in the order you receive them. -
-/// apply the `NotebookChangeEvent`s in a single notification in the order you
-/// receive them.
+/// To mirror the content of a notebook using change events use the
+/// following approach: - start with the same initial content - apply the
+/// 'notebookDocument/didChange' notifications in the order you receive
+/// them. - apply the `NotebookChangeEvent`s in a single notification in the
+/// order you receive them.
 @override final  NotebookDocumentChangeEvent change;
 
 /// Create a copy of DidChangeNotebookDocumentParams
@@ -22593,8 +22604,8 @@ $NotebookDocumentIdentifierCopyWith<$Res> get notebookDocument {
 mixin _$DidCloseNotebookDocumentParams {
 
 /// The notebook document that got closed.
- NotebookDocumentIdentifier get notebookDocument;/// The text documents that represent the content of a notebook cell that got
-/// closed.
+ NotebookDocumentIdentifier get notebookDocument;/// The text documents that represent the content of a notebook cell that
+/// got closed.
  List<TextDocumentIdentifier> get cellTextDocuments;
 /// Create a copy of DidCloseNotebookDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -22804,11 +22815,11 @@ class _DidCloseNotebookDocumentParams implements DidCloseNotebookDocumentParams 
 
 /// The notebook document that got closed.
 @override final  NotebookDocumentIdentifier notebookDocument;
-/// The text documents that represent the content of a notebook cell that got
-/// closed.
+/// The text documents that represent the content of a notebook cell that
+/// got closed.
  final  List<TextDocumentIdentifier> _cellTextDocuments;
-/// The text documents that represent the content of a notebook cell that got
-/// closed.
+/// The text documents that represent the content of a notebook cell that
+/// got closed.
 @override List<TextDocumentIdentifier> get cellTextDocuments {
   if (_cellTextDocuments is EqualUnmodifiableListView) return _cellTextDocuments;
   // ignore: implicit_dynamic_type
@@ -22893,8 +22904,8 @@ mixin _$InlineCompletionParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// Additional information about the context in which inline completions were
-/// requested.
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// Additional information about the context in which inline completions
+/// were requested.
  InlineCompletionContext get context;
 /// Create a copy of InlineCompletionParams
 /// with the given fields replaced by the non-null parameter values.
@@ -23140,8 +23151,8 @@ class _InlineCompletionParams implements InlineCompletionParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// Additional information about the context in which inline completions were
-/// requested.
+/// Additional information about the context in which inline completions
+/// were requested.
 @override final  InlineCompletionContext context;
 
 /// Create a copy of InlineCompletionParams
@@ -23526,7 +23537,8 @@ mixin _$InlineCompletionItem {
  Object get insertText;/// A text that is used to decide if this inline completion should be shown.
 /// When `falsy` the [InlineCompletionItem.insertText] is used.
  String? get filterText;/// The range to replace. Must begin and end on the same line.
- Range? get range;/// An optional [Command] that is executed *after* inserting this completion.
+ Range? get range;/// An optional [Command] that is executed *after* inserting this
+/// completion.
  Command? get command;
 /// Create a copy of InlineCompletionItem
 /// with the given fields replaced by the non-null parameter values.
@@ -23757,7 +23769,8 @@ class _InlineCompletionItem implements InlineCompletionItem {
 @override final  String? filterText;
 /// The range to replace. Must begin and end on the same line.
 @override final  Range? range;
-/// An optional [Command] that is executed *after* inserting this completion.
+/// An optional [Command] that is executed *after* inserting this
+/// completion.
 @override final  Command? command;
 
 /// Create a copy of InlineCompletionItem
@@ -23852,8 +23865,8 @@ mixin _$InlineCompletionRegistrationOptions {
 
  bool? get workDoneProgress;/// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ DocumentSelector? get documentSelector;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of InlineCompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -24067,8 +24080,8 @@ class _InlineCompletionRegistrationOptions implements InlineCompletionRegistrati
   return EqualUnmodifiableListView(value);
 }
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of InlineCompletionRegistrationOptions
@@ -24681,8 +24694,8 @@ mixin _$InitializeParams {
 /// Is `null` if the process has not been started by another process. If the
 /// parent process is not alive then the server should exit.
  int? get processId;/// Information about the client
- ({String name, String? version})? get clientInfo;/// The locale the client is currently showing the user interface in. This must
-/// not necessarily be the locale of the operating system.
+ ({String name, String? version})? get clientInfo;/// The locale the client is currently showing the user interface in. This
+/// must not necessarily be the locale of the operating system.
 ///
 /// Uses IETF language tags as the value's syntax (See
 /// https://en.wikipedia.org/wiki/IETF_language_tag)
@@ -24698,9 +24711,9 @@ mixin _$InitializeParams {
  LSPAny? get initializationOptions;/// The initial trace setting. If omitted trace is disabled ('off').
  TraceValues? get trace;/// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders. It
-/// can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
  List<WorkspaceFolder>? get workspaceFolders;
 /// Create a copy of InitializeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -24936,8 +24949,8 @@ class _InitializeParams implements InitializeParams {
 @override final  int? processId;
 /// Information about the client
 @override final  ({String name, String? version})? clientInfo;
-/// The locale the client is currently showing the user interface in. This must
-/// not necessarily be the locale of the operating system.
+/// The locale the client is currently showing the user interface in. This
+/// must not necessarily be the locale of the operating system.
 ///
 /// Uses IETF language tags as the value's syntax (See
 /// https://en.wikipedia.org/wiki/IETF_language_tag)
@@ -24959,15 +24972,15 @@ class _InitializeParams implements InitializeParams {
 @override final  TraceValues? trace;
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders. It
-/// can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
  final  List<WorkspaceFolder>? _workspaceFolders;
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders. It
-/// can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
 @override List<WorkspaceFolder>? get workspaceFolders {
   final value = _workspaceFolders;
   if (value == null) return null;
@@ -25358,9 +25371,10 @@ $ServerCapabilitiesCopyWith<$Res> get capabilities {
 /// @nodoc
 mixin _$InitializeError {
 
-/// Indicates whether the client execute the following retry logic: (1) show the
-/// message provided by the ResponseError to the user (2) user selects retry or
-/// cancel (3) if user selected retry the initialize method is sent again.
+/// Indicates whether the client execute the following retry logic: (1) show
+/// the message provided by the ResponseError to the user (2) user selects
+/// retry or cancel (3) if user selected retry the initialize method is sent
+/// again.
  bool get retry;
 /// Create a copy of InitializeError
 /// with the given fields replaced by the non-null parameter values.
@@ -25558,9 +25572,10 @@ class _InitializeError implements InitializeError {
   const _InitializeError({required this.retry});
   factory _InitializeError.fromJson(Map<String, dynamic> json) => _$InitializeErrorFromJson(json);
 
-/// Indicates whether the client execute the following retry logic: (1) show the
-/// message provided by the ResponseError to the user (2) user selects retry or
-/// cancel (3) if user selected retry the initialize method is sent again.
+/// Indicates whether the client execute the following retry logic: (1) show
+/// the message provided by the ResponseError to the user (2) user selects
+/// retry or cancel (3) if user selected retry the initialize method is sent
+/// again.
 @override final  bool retry;
 
 /// Create a copy of InitializeError
@@ -27721,19 +27736,19 @@ $TextDocumentItemCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$DidChangeTextDocumentParams {
 
-/// The document that did change. The version number points to the version after
-/// all provided content changes have been applied.
+/// The document that did change. The version number points to the version
+/// after all provided content changes have been applied.
  VersionedTextDocumentIdentifier get textDocument;/// The actual content changes. The content changes describe single state
-/// changes to the document. So if there are two content changes c1 (at array
-/// index 0) and c2 (at array index 1) for a document in state S then c1 moves
-/// the document from S to S' and c2 from S' to S''. So c1 is computed on the
-/// state S and c2 is computed on the state S'.
+/// changes to the document. So if there are two content changes c1 (at
+/// array index 0) and c2 (at array index 1) for a document in state S then
+/// c1 moves the document from S to S' and c2 from S' to S''. So c1 is
+/// computed on the state S and c2 is computed on the state S'.
 ///
-/// To mirror the content of a document using change events use the following
-/// approach: - start with the same initial content - apply the
+/// To mirror the content of a document using change events use the
+/// following approach: - start with the same initial content - apply the
 /// 'textDocument/didChange' notifications in the order you receive them. -
-/// apply the `TextDocumentContentChangeEvent`s in a single notification in the
-/// order you receive them.
+/// apply the `TextDocumentContentChangeEvent`s in a single notification in
+/// the order you receive them.
 @_TextDocumentContentChangeEventListConverter() List<TextDocumentContentChangeEvent> get contentChanges;
 /// Create a copy of DidChangeTextDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -27941,32 +27956,32 @@ class _DidChangeTextDocumentParams implements DidChangeTextDocumentParams {
   const _DidChangeTextDocumentParams({required this.textDocument, @_TextDocumentContentChangeEventListConverter() required final  List<TextDocumentContentChangeEvent> contentChanges}): _contentChanges = contentChanges;
   factory _DidChangeTextDocumentParams.fromJson(Map<String, dynamic> json) => _$DidChangeTextDocumentParamsFromJson(json);
 
-/// The document that did change. The version number points to the version after
-/// all provided content changes have been applied.
+/// The document that did change. The version number points to the version
+/// after all provided content changes have been applied.
 @override final  VersionedTextDocumentIdentifier textDocument;
 /// The actual content changes. The content changes describe single state
-/// changes to the document. So if there are two content changes c1 (at array
-/// index 0) and c2 (at array index 1) for a document in state S then c1 moves
-/// the document from S to S' and c2 from S' to S''. So c1 is computed on the
-/// state S and c2 is computed on the state S'.
+/// changes to the document. So if there are two content changes c1 (at
+/// array index 0) and c2 (at array index 1) for a document in state S then
+/// c1 moves the document from S to S' and c2 from S' to S''. So c1 is
+/// computed on the state S and c2 is computed on the state S'.
 ///
-/// To mirror the content of a document using change events use the following
-/// approach: - start with the same initial content - apply the
+/// To mirror the content of a document using change events use the
+/// following approach: - start with the same initial content - apply the
 /// 'textDocument/didChange' notifications in the order you receive them. -
-/// apply the `TextDocumentContentChangeEvent`s in a single notification in the
-/// order you receive them.
+/// apply the `TextDocumentContentChangeEvent`s in a single notification in
+/// the order you receive them.
  final  List<TextDocumentContentChangeEvent> _contentChanges;
 /// The actual content changes. The content changes describe single state
-/// changes to the document. So if there are two content changes c1 (at array
-/// index 0) and c2 (at array index 1) for a document in state S then c1 moves
-/// the document from S to S' and c2 from S' to S''. So c1 is computed on the
-/// state S and c2 is computed on the state S'.
+/// changes to the document. So if there are two content changes c1 (at
+/// array index 0) and c2 (at array index 1) for a document in state S then
+/// c1 moves the document from S to S' and c2 from S' to S''. So c1 is
+/// computed on the state S and c2 is computed on the state S'.
 ///
-/// To mirror the content of a document using change events use the following
-/// approach: - start with the same initial content - apply the
+/// To mirror the content of a document using change events use the
+/// following approach: - start with the same initial content - apply the
 /// 'textDocument/didChange' notifications in the order you receive them. -
-/// apply the `TextDocumentContentChangeEvent`s in a single notification in the
-/// order you receive them.
+/// apply the `TextDocumentContentChangeEvent`s in a single notification in
+/// the order you receive them.
 @override@_TextDocumentContentChangeEventListConverter() List<TextDocumentContentChangeEvent> get contentChanges {
   if (_contentChanges is EqualUnmodifiableListView) return _contentChanges;
   // ignore: implicit_dynamic_type
@@ -28614,8 +28629,8 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 mixin _$DidSaveTextDocumentParams {
 
 /// The document that was saved.
- TextDocumentIdentifier get textDocument;/// Optional the content when saved. Depends on the includeText value when the
-/// save notification was requested.
+ TextDocumentIdentifier get textDocument;/// Optional the content when saved. Depends on the includeText value when
+/// the save notification was requested.
  String? get text;
 /// Create a copy of DidSaveTextDocumentParams
 /// with the given fields replaced by the non-null parameter values.
@@ -28825,8 +28840,8 @@ class _DidSaveTextDocumentParams implements DidSaveTextDocumentParams {
 
 /// The document that was saved.
 @override final  TextDocumentIdentifier textDocument;
-/// Optional the content when saved. Depends on the includeText value when the
-/// save notification was requested.
+/// Optional the content when saved. Depends on the includeText value when
+/// the save notification was requested.
 @override final  String? text;
 
 /// Create a copy of DidSaveTextDocumentParams
@@ -30308,8 +30323,8 @@ as List<FileSystemWatcher>,
 mixin _$PublishDiagnosticsParams {
 
 /// The URI for which diagnostic information is reported.
- String get uri;/// Optional the version number of the document the diagnostics are published
-/// for.
+ String get uri;/// Optional the version number of the document the diagnostics are
+/// published for.
  int? get version;/// An array of diagnostic information items.
  List<Diagnostic> get diagnostics;
 /// Create a copy of PublishDiagnosticsParams
@@ -30512,8 +30527,8 @@ class _PublishDiagnosticsParams implements PublishDiagnosticsParams {
 
 /// The URI for which diagnostic information is reported.
 @override final  String uri;
-/// Optional the version number of the document the diagnostics are published
-/// for.
+/// Optional the version number of the document the diagnostics are
+/// published for.
 @override final  int? version;
 /// An array of diagnostic information items.
  final  List<Diagnostic> _diagnostics;
@@ -30596,8 +30611,8 @@ mixin _$CompletionParams {
  Position get position;/// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The completion context. This is only available if the client specifies to
-/// send this using the client capability
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The completion context. This is only available if the client specifies
+/// to send this using the client capability
 /// `textDocument.completion.contextSupport === true`
  CompletionContext? get context;
 /// Create a copy of CompletionParams
@@ -30863,8 +30878,8 @@ class _CompletionParams implements CompletionParams {
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// The completion context. This is only available if the client specifies to
-/// send this using the client capability
+/// The completion context. This is only available if the client specifies
+/// to send this using the client capability
 /// `textDocument.completion.contextSupport === true`
 @override final  CompletionContext? context;
 
@@ -30995,14 +31010,14 @@ mixin _$CompletionItem {
 /// The label property is also by default the text that is inserted when
 /// selecting this completion.
 ///
-/// If label details are provided the label itself should be an unqualified name
-/// of the completion item.
+/// If label details are provided the label itself should be an unqualified
+/// name of the completion item.
  String get label;/// Additional details for the label
- CompletionItemLabelDetails? get labelDetails;/// The kind of this completion item. Based of the kind an icon is chosen by the
-/// editor.
+ CompletionItemLabelDetails? get labelDetails;/// The kind of this completion item. Based of the kind an icon is chosen by
+/// the editor.
  CompletionItemKind? get kind;/// Tags for this completion item.
- List<CompletionItemTag>? get tags;/// A human-readable string with additional information about this item, like
-/// type or symbol information.
+ List<CompletionItemTag>? get tags;/// A human-readable string with additional information about this item,
+/// like type or symbol information.
  String? get detail;/// A human-readable string that represents a doc-comment.
  Object? get documentation;/// Indicates if this item is deprecated. @deprecated Use `tags` instead.
 @Deprecated('Use `tags` instead.') bool? get deprecated;/// Select this item when showing.
@@ -31010,67 +31025,69 @@ mixin _$CompletionItem {
 /// *Note* that only one completion item can be selected and that the tool /
 /// client decides which item that is. The rule is that the *first* item of
 /// those that match best is selected.
- bool? get preselect;/// A string that should be used when comparing this item with other items. When
-/// `falsy` the [label] is used.
- String? get sortText;/// A string that should be used when filtering a set of completion items. When
-/// `falsy` the [label] is used.
+ bool? get preselect;/// A string that should be used when comparing this item with other items.
+/// When `falsy` the [label] is used.
+ String? get sortText;/// A string that should be used when filtering a set of completion items.
+/// When `falsy` the [label] is used.
  String? get filterText;/// A string that should be inserted into a document when selecting this
 /// completion. When `falsy` the [label] is used.
 ///
-/// The `insertText` is subject to interpretation by the client side. Some tools
-/// might not take the string literally. For example VS Code when code complete
-/// is requested in this example `con<cursor position>` and a completion item
-/// with an `insertText` of `console` is provided it will only insert `sole`.
-/// Therefore it is recommended to use `textEdit` instead since it avoids
-/// additional client side interpretation.
- String? get insertText;/// The format of the insert text. The format applies to both the `insertText`
-/// property and the `newText` property of a provided `textEdit`. If omitted
-/// defaults to `InsertTextFormat.PlainText`.
+/// The `insertText` is subject to interpretation by the client side. Some
+/// tools might not take the string literally. For example VS Code when code
+/// complete is requested in this example `con<cursor position>` and a
+/// completion item with an `insertText` of `console` is provided it will
+/// only insert `sole`. Therefore it is recommended to use `textEdit`
+/// instead since it avoids additional client side interpretation.
+ String? get insertText;/// The format of the insert text. The format applies to both the
+/// `insertText` property and the `newText` property of a provided
+/// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
 ///
 /// Please note that the insertTextFormat doesn't apply to
 /// `additionalTextEdits`.
- InsertTextFormat? get insertTextFormat;/// How whitespace and indentation is handled during completion item insertion.
-/// If not provided the clients default value depends on the
+ InsertTextFormat? get insertTextFormat;/// How whitespace and indentation is handled during completion item
+/// insertion. If not provided the clients default value depends on the
 /// `textDocument.completion.insertTextMode` client capability.
  InsertTextMode? get insertTextMode;/// An [edit] which is applied to a document when selecting this completion.
 /// When an edit is provided the value of [insertText] is ignored.
 ///
-/// Most editors support two different operations when accepting a completion
-/// item. One is to insert a completion text and the other is to replace an
-/// existing text with a completion text. Since this can usually not be
-/// predetermined by a server it can report both ranges. Clients need to signal
-/// support for `InsertReplaceEdits` via the
-/// `textDocument.completion.insertReplaceSupport` client capability property.
+/// Most editors support two different operations when accepting a
+/// completion item. One is to insert a completion text and the other is to
+/// replace an existing text with a completion text. Since this can usually
+/// not be predetermined by a server it can report both ranges. Clients need
+/// to signal support for `InsertReplaceEdits` via the
+/// `textDocument.completion.insertReplaceSupport` client capability
+/// property.
 ///
 /// *Note 1:* The text edit's range as well as both ranges from an insert
-/// replace edit must be a [single line] and they must contain the position at
-/// which completion has been requested. *Note 2:* If an `InsertReplaceEdit` is
-/// returned the edit's insert range must be a prefix of the edit's replace
-/// range, that means it must be contained and starting at the same position.
+/// replace edit must be a [single line] and they must contain the position
+/// at which completion has been requested. *Note 2:* If an
+/// `InsertReplaceEdit` is returned the edit's insert range must be a prefix
+/// of the edit's replace range, that means it must be contained and
+/// starting at the same position.
 ///
 /// additional type `InsertReplaceEdit`
- Object? get textEdit;/// The edit text used if the completion item is part of a CompletionList and
-/// CompletionList defines an item default for the text edit range.
+ Object? get textEdit;/// The edit text used if the completion item is part of a CompletionList
+/// and CompletionList defines an item default for the text edit range.
 ///
-/// Clients will only honor this property if they opt into completion list item
-/// defaults using the capability `completionList.itemDefaults`.
+/// Clients will only honor this property if they opt into completion list
+/// item defaults using the capability `completionList.itemDefaults`.
 ///
-/// If not provided and a list's default range is provided the label property is
-/// used as a text.
- String? get textEditText;/// An optional array of additional [TextEdit] that are applied when selecting
-/// this completion. Edits must not overlap (including the same insert position)
-/// with the main [edit] nor with themselves.
+/// If not provided and a list's default range is provided the label
+/// property is used as a text.
+ String? get textEditText;/// An optional array of additional [TextEdit] that are applied when
+/// selecting this completion. Edits must not overlap (including the same
+/// insert position) with the main [edit] nor with themselves.
 ///
-/// Additional text edits should be used to change text unrelated to the current
-/// cursor position (for example adding an import statement at the top of the
-/// file if the completion item will insert an unqualified type).
+/// Additional text edits should be used to change text unrelated to the
+/// current cursor position (for example adding an import statement at the
+/// top of the file if the completion item will insert an unqualified type).
  List<TextEdit>? get additionalTextEdits;/// An optional set of characters that when pressed while this completion is
-/// active will accept it first and then type that character. *Note* that all
-/// commit characters should have `length=1` and that superfluous characters
-/// will be ignored.
- List<String>? get commitCharacters;/// An optional [command] that is executed *after* inserting this completion.
-/// *Note* that additional modifications to the current document should be
-/// described with the [additionalTextEdits]-property.
+/// active will accept it first and then type that character. *Note* that
+/// all commit characters should have `length=1` and that superfluous
+/// characters will be ignored.
+ List<String>? get commitCharacters;/// An optional [command] that is executed *after* inserting this
+/// completion. *Note* that additional modifications to the current document
+/// should be described with the [additionalTextEdits]-property.
  Command? get command;/// A data entry field that is preserved on a completion item between a
 /// [CompletionRequest] and a [CompletionResolveRequest].
  LSPAny? get data;
@@ -31314,13 +31331,13 @@ class _CompletionItem implements CompletionItem {
 /// The label property is also by default the text that is inserted when
 /// selecting this completion.
 ///
-/// If label details are provided the label itself should be an unqualified name
-/// of the completion item.
+/// If label details are provided the label itself should be an unqualified
+/// name of the completion item.
 @override final  String label;
 /// Additional details for the label
 @override final  CompletionItemLabelDetails? labelDetails;
-/// The kind of this completion item. Based of the kind an icon is chosen by the
-/// editor.
+/// The kind of this completion item. Based of the kind an icon is chosen by
+/// the editor.
 @override final  CompletionItemKind? kind;
 /// Tags for this completion item.
  final  List<CompletionItemTag>? _tags;
@@ -31333,8 +31350,8 @@ class _CompletionItem implements CompletionItem {
   return EqualUnmodifiableListView(value);
 }
 
-/// A human-readable string with additional information about this item, like
-/// type or symbol information.
+/// A human-readable string with additional information about this item,
+/// like type or symbol information.
 @override final  String? detail;
 /// A human-readable string that represents a doc-comment.
 @override final  Object? documentation;
@@ -31346,75 +31363,77 @@ class _CompletionItem implements CompletionItem {
 /// client decides which item that is. The rule is that the *first* item of
 /// those that match best is selected.
 @override final  bool? preselect;
-/// A string that should be used when comparing this item with other items. When
-/// `falsy` the [label] is used.
+/// A string that should be used when comparing this item with other items.
+/// When `falsy` the [label] is used.
 @override final  String? sortText;
-/// A string that should be used when filtering a set of completion items. When
-/// `falsy` the [label] is used.
+/// A string that should be used when filtering a set of completion items.
+/// When `falsy` the [label] is used.
 @override final  String? filterText;
 /// A string that should be inserted into a document when selecting this
 /// completion. When `falsy` the [label] is used.
 ///
-/// The `insertText` is subject to interpretation by the client side. Some tools
-/// might not take the string literally. For example VS Code when code complete
-/// is requested in this example `con<cursor position>` and a completion item
-/// with an `insertText` of `console` is provided it will only insert `sole`.
-/// Therefore it is recommended to use `textEdit` instead since it avoids
-/// additional client side interpretation.
+/// The `insertText` is subject to interpretation by the client side. Some
+/// tools might not take the string literally. For example VS Code when code
+/// complete is requested in this example `con<cursor position>` and a
+/// completion item with an `insertText` of `console` is provided it will
+/// only insert `sole`. Therefore it is recommended to use `textEdit`
+/// instead since it avoids additional client side interpretation.
 @override final  String? insertText;
-/// The format of the insert text. The format applies to both the `insertText`
-/// property and the `newText` property of a provided `textEdit`. If omitted
-/// defaults to `InsertTextFormat.PlainText`.
+/// The format of the insert text. The format applies to both the
+/// `insertText` property and the `newText` property of a provided
+/// `textEdit`. If omitted defaults to `InsertTextFormat.PlainText`.
 ///
 /// Please note that the insertTextFormat doesn't apply to
 /// `additionalTextEdits`.
 @override final  InsertTextFormat? insertTextFormat;
-/// How whitespace and indentation is handled during completion item insertion.
-/// If not provided the clients default value depends on the
+/// How whitespace and indentation is handled during completion item
+/// insertion. If not provided the clients default value depends on the
 /// `textDocument.completion.insertTextMode` client capability.
 @override final  InsertTextMode? insertTextMode;
 /// An [edit] which is applied to a document when selecting this completion.
 /// When an edit is provided the value of [insertText] is ignored.
 ///
-/// Most editors support two different operations when accepting a completion
-/// item. One is to insert a completion text and the other is to replace an
-/// existing text with a completion text. Since this can usually not be
-/// predetermined by a server it can report both ranges. Clients need to signal
-/// support for `InsertReplaceEdits` via the
-/// `textDocument.completion.insertReplaceSupport` client capability property.
+/// Most editors support two different operations when accepting a
+/// completion item. One is to insert a completion text and the other is to
+/// replace an existing text with a completion text. Since this can usually
+/// not be predetermined by a server it can report both ranges. Clients need
+/// to signal support for `InsertReplaceEdits` via the
+/// `textDocument.completion.insertReplaceSupport` client capability
+/// property.
 ///
 /// *Note 1:* The text edit's range as well as both ranges from an insert
-/// replace edit must be a [single line] and they must contain the position at
-/// which completion has been requested. *Note 2:* If an `InsertReplaceEdit` is
-/// returned the edit's insert range must be a prefix of the edit's replace
-/// range, that means it must be contained and starting at the same position.
+/// replace edit must be a [single line] and they must contain the position
+/// at which completion has been requested. *Note 2:* If an
+/// `InsertReplaceEdit` is returned the edit's insert range must be a prefix
+/// of the edit's replace range, that means it must be contained and
+/// starting at the same position.
 ///
 /// additional type `InsertReplaceEdit`
 @override final  Object? textEdit;
-/// The edit text used if the completion item is part of a CompletionList and
-/// CompletionList defines an item default for the text edit range.
+/// The edit text used if the completion item is part of a CompletionList
+/// and CompletionList defines an item default for the text edit range.
 ///
-/// Clients will only honor this property if they opt into completion list item
-/// defaults using the capability `completionList.itemDefaults`.
+/// Clients will only honor this property if they opt into completion list
+/// item defaults using the capability `completionList.itemDefaults`.
 ///
-/// If not provided and a list's default range is provided the label property is
-/// used as a text.
+/// If not provided and a list's default range is provided the label
+/// property is used as a text.
 @override final  String? textEditText;
-/// An optional array of additional [TextEdit] that are applied when selecting
-/// this completion. Edits must not overlap (including the same insert position)
-/// with the main [edit] nor with themselves.
+/// An optional array of additional [TextEdit] that are applied when
+/// selecting this completion. Edits must not overlap (including the same
+/// insert position) with the main [edit] nor with themselves.
 ///
-/// Additional text edits should be used to change text unrelated to the current
-/// cursor position (for example adding an import statement at the top of the
-/// file if the completion item will insert an unqualified type).
+/// Additional text edits should be used to change text unrelated to the
+/// current cursor position (for example adding an import statement at the
+/// top of the file if the completion item will insert an unqualified type).
  final  List<TextEdit>? _additionalTextEdits;
-/// An optional array of additional [TextEdit] that are applied when selecting
-/// this completion. Edits must not overlap (including the same insert position)
-/// with the main [edit] nor with themselves.
+/// An optional array of additional [TextEdit] that are applied when
+/// selecting this completion. Edits must not overlap (including the same
+/// insert position) with the main [edit] nor with themselves.
 ///
-/// Additional text edits should be used to change text unrelated to the current
-/// cursor position (for example adding an import statement at the top of the
-/// file if the completion item will insert an unqualified type).
+/// Additional text edits should be used to change text unrelated to the
+/// current cursor position (for example adding an import statement at the
+/// top of the file if the completion item will insert an unqualified type).
 @override List<TextEdit>? get additionalTextEdits {
   final value = _additionalTextEdits;
   if (value == null) return null;
@@ -31424,14 +31443,14 @@ class _CompletionItem implements CompletionItem {
 }
 
 /// An optional set of characters that when pressed while this completion is
-/// active will accept it first and then type that character. *Note* that all
-/// commit characters should have `length=1` and that superfluous characters
-/// will be ignored.
+/// active will accept it first and then type that character. *Note* that
+/// all commit characters should have `length=1` and that superfluous
+/// characters will be ignored.
  final  List<String>? _commitCharacters;
 /// An optional set of characters that when pressed while this completion is
-/// active will accept it first and then type that character. *Note* that all
-/// commit characters should have `length=1` and that superfluous characters
-/// will be ignored.
+/// active will accept it first and then type that character. *Note* that
+/// all commit characters should have `length=1` and that superfluous
+/// characters will be ignored.
 @override List<String>? get commitCharacters {
   final value = _commitCharacters;
   if (value == null) return null;
@@ -31440,9 +31459,9 @@ class _CompletionItem implements CompletionItem {
   return EqualUnmodifiableListView(value);
 }
 
-/// An optional [command] that is executed *after* inserting this completion.
-/// *Note* that additional modifications to the current document should be
-/// described with the [additionalTextEdits]-property.
+/// An optional [command] that is executed *after* inserting this
+/// completion. *Note* that additional modifications to the current document
+/// should be described with the [additionalTextEdits]-property.
 @override final  Command? command;
 /// A data entry field that is preserved on a completion item between a
 /// [CompletionRequest] and a [CompletionResolveRequest].
@@ -31551,17 +31570,18 @@ $CommandCopyWith<$Res>? get command {
 /// @nodoc
 mixin _$CompletionList {
 
-/// This list it not complete. Further typing results in recomputing this list.
+/// This list it not complete. Further typing results in recomputing this
+/// list.
 ///
 /// Recomputed lists have all their items replaced (not appended) in the
 /// incomplete completion sessions.
- bool get isIncomplete;/// In many cases the items of an actual completion result share the same value
-/// for properties like `commitCharacters` or the range of a text edit. A
-/// completion list can therefore define item defaults which will be used if a
-/// completion item itself doesn't specify the value.
+ bool get isIncomplete;/// In many cases the items of an actual completion result share the same
+/// value for properties like `commitCharacters` or the range of a text
+/// edit. A completion list can therefore define item defaults which will be
+/// used if a completion item itself doesn't specify the value.
 ///
-/// If a completion list specifies a default value and a completion item also
-/// specifies a corresponding value the one from the item is used.
+/// If a completion list specifies a default value and a completion item
+/// also specifies a corresponding value the one from the item is used.
 ///
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
@@ -31765,18 +31785,19 @@ class _CompletionList implements CompletionList {
   const _CompletionList({required this.isIncomplete, this.itemDefaults, required final  List<CompletionItem> items}): _items = items;
   factory _CompletionList.fromJson(Map<String, dynamic> json) => _$CompletionListFromJson(json);
 
-/// This list it not complete. Further typing results in recomputing this list.
+/// This list it not complete. Further typing results in recomputing this
+/// list.
 ///
 /// Recomputed lists have all their items replaced (not appended) in the
 /// incomplete completion sessions.
 @override final  bool isIncomplete;
-/// In many cases the items of an actual completion result share the same value
-/// for properties like `commitCharacters` or the range of a text edit. A
-/// completion list can therefore define item defaults which will be used if a
-/// completion item itself doesn't specify the value.
+/// In many cases the items of an actual completion result share the same
+/// value for properties like `commitCharacters` or the range of a text
+/// edit. A completion list can therefore define item defaults which will be
+/// used if a completion item itself doesn't specify the value.
 ///
-/// If a completion list specifies a default value and a completion item also
-/// specifies a corresponding value the one from the item is used.
+/// If a completion list specifies a default value and a completion item
+/// also specifies a corresponding value the one from the item is used.
 ///
 /// Servers are only allowed to return default values if the client signals
 /// support for this via the `completionList.itemDefaults` capability.
@@ -31860,25 +31881,26 @@ mixin _$CompletionRegistrationOptions {
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
-/// so when the user starts to type an identifier. For example if the user types
-/// `c` in a JavaScript file code complete will automatically pop up present
-/// `console` besides others as a completion item. Characters that make up
-/// identifiers don't need to be listed here.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will automatically
+/// pop up present `console` besides others as a completion item. Characters
+/// that make up identifiers don't need to be listed here.
 ///
 /// If code complete should automatically be trigger on characters not being
 /// valid inside an identifier (for example `.` in JavaScript) list them in
 /// `triggerCharacters`.
- List<String>? get triggerCharacters;/// The list of all possible characters that commit a completion. This field can
-/// be used if clients don't support individual commit characters per completion
-/// item. See
+ List<String>? get triggerCharacters;/// The list of all possible characters that commit a completion. This field
+/// can be used if clients don't support individual commit characters per
+/// completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on
+/// an individual completion item the ones on the completion item win.
  List<String>? get allCommitCharacters;/// The server provides support to resolve additional information for a
 /// completion item.
- bool? get resolveProvider;/// The server supports the following `CompletionItem` specific capabilities.
+ bool? get resolveProvider;/// The server supports the following `CompletionItem` specific
+/// capabilities.
  ({bool? labelDetailsSupport})? get completionItem;
 /// Create a copy of CompletionRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -32096,22 +32118,22 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
 
 @override final  bool? workDoneProgress;
 /// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
-/// so when the user starts to type an identifier. For example if the user types
-/// `c` in a JavaScript file code complete will automatically pop up present
-/// `console` besides others as a completion item. Characters that make up
-/// identifiers don't need to be listed here.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will automatically
+/// pop up present `console` besides others as a completion item. Characters
+/// that make up identifiers don't need to be listed here.
 ///
 /// If code complete should automatically be trigger on characters not being
 /// valid inside an identifier (for example `.` in JavaScript) list them in
 /// `triggerCharacters`.
  final  List<String>? _triggerCharacters;
 /// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
-/// so when the user starts to type an identifier. For example if the user types
-/// `c` in a JavaScript file code complete will automatically pop up present
-/// `console` besides others as a completion item. Characters that make up
-/// identifiers don't need to be listed here.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will automatically
+/// pop up present `console` besides others as a completion item. Characters
+/// that make up identifiers don't need to be listed here.
 ///
 /// If code complete should automatically be trigger on characters not being
 /// valid inside an identifier (for example `.` in JavaScript) list them in
@@ -32124,21 +32146,21 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The list of all possible characters that commit a completion. This field can
-/// be used if clients don't support individual commit characters per completion
-/// item. See
+/// The list of all possible characters that commit a completion. This field
+/// can be used if clients don't support individual commit characters per
+/// completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on
+/// an individual completion item the ones on the completion item win.
  final  List<String>? _allCommitCharacters;
-/// The list of all possible characters that commit a completion. This field can
-/// be used if clients don't support individual commit characters per completion
-/// item. See
+/// The list of all possible characters that commit a completion. This field
+/// can be used if clients don't support individual commit characters per
+/// completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on
+/// an individual completion item the ones on the completion item win.
 @override List<String>? get allCommitCharacters {
   final value = _allCommitCharacters;
   if (value == null) return null;
@@ -32150,7 +32172,8 @@ class _CompletionRegistrationOptions implements CompletionRegistrationOptions {
 /// The server provides support to resolve additional information for a
 /// completion item.
 @override final  bool? resolveProvider;
-/// The server supports the following `CompletionItem` specific capabilities.
+/// The server supports the following `CompletionItem` specific
+/// capabilities.
 @override final  ({bool? labelDetailsSupport})? completionItem;
 
 /// Create a copy of CompletionRegistrationOptions
@@ -33134,8 +33157,8 @@ mixin _$SignatureHelpParams {
 /// The text document.
  TextDocumentIdentifier get textDocument;/// The position inside the text document.
  Position get position;/// An optional token that a server can use to report work done progress.
-@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The signature help context. This is only available if the client specifies
-/// to send this using the client capability
+@_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The signature help context. This is only available if the client
+/// specifies to send this using the client capability
 /// `textDocument.signatureHelp.contextSupport === true`
  SignatureHelpContext? get context;
 /// Create a copy of SignatureHelpParams
@@ -33385,8 +33408,8 @@ class _SignatureHelpParams implements SignatureHelpParams {
 @override final  Position position;
 /// An optional token that a server can use to report work done progress.
 @override@_ProgressTokenConverter() final  ProgressToken? workDoneToken;
-/// The signature help context. This is only available if the client specifies
-/// to send this using the client capability
+/// The signature help context. This is only available if the client
+/// specifies to send this using the client capability
 /// `textDocument.signatureHelp.contextSupport === true`
 @override final  SignatureHelpContext? context;
 
@@ -33501,20 +33524,20 @@ mixin _$SignatureHelp {
 
 /// One or more signatures.
  List<SignatureInformation> get signatures;/// The active signature. If omitted or the value lies outside the range of
-/// `signatures` the value defaults to zero or is ignored if the `SignatureHelp`
-/// has no signatures.
+/// `signatures` the value defaults to zero or is ignored if the
+/// `SignatureHelp` has no signatures.
 ///
 /// Whenever possible implementors should make an active decision about the
 /// active signature and shouldn't rely on a default value.
 ///
-/// In future version of the protocol this property might become mandatory to
-/// better express this.
- int? get activeSignature;/// The active parameter of the active signature. If omitted or the value lies
-/// outside the range of `signatures[activeSignature].parameters` defaults to 0
-/// if the active signature has parameters. If the active signature has no
-/// parameters it is ignored. In future version of the protocol this property
-/// might become mandatory to better express the active parameter if the active
-/// signature does have any.
+/// In future version of the protocol this property might become mandatory
+/// to better express this.
+ int? get activeSignature;/// The active parameter of the active signature. If omitted or the value
+/// lies outside the range of `signatures[activeSignature].parameters`
+/// defaults to 0 if the active signature has parameters. If the active
+/// signature has no parameters it is ignored. In future version of the
+/// protocol this property might become mandatory to better express the
+/// active parameter if the active signature does have any.
  int? get activeParameter;
 /// Create a copy of SignatureHelp
 /// with the given fields replaced by the non-null parameter values.
@@ -33724,21 +33747,21 @@ class _SignatureHelp implements SignatureHelp {
 }
 
 /// The active signature. If omitted or the value lies outside the range of
-/// `signatures` the value defaults to zero or is ignored if the `SignatureHelp`
-/// has no signatures.
+/// `signatures` the value defaults to zero or is ignored if the
+/// `SignatureHelp` has no signatures.
 ///
 /// Whenever possible implementors should make an active decision about the
 /// active signature and shouldn't rely on a default value.
 ///
-/// In future version of the protocol this property might become mandatory to
-/// better express this.
+/// In future version of the protocol this property might become mandatory
+/// to better express this.
 @override final  int? activeSignature;
-/// The active parameter of the active signature. If omitted or the value lies
-/// outside the range of `signatures[activeSignature].parameters` defaults to 0
-/// if the active signature has parameters. If the active signature has no
-/// parameters it is ignored. In future version of the protocol this property
-/// might become mandatory to better express the active parameter if the active
-/// signature does have any.
+/// The active parameter of the active signature. If omitted or the value
+/// lies outside the range of `signatures[activeSignature].parameters`
+/// defaults to 0 if the active signature has parameters. If the active
+/// signature has no parameters it is ignored. In future version of the
+/// protocol this property might become mandatory to better express the
+/// active parameter if the active signature does have any.
 @override final  int? activeParameter;
 
 /// Create a copy of SignatureHelp
@@ -33813,7 +33836,8 @@ mixin _$SignatureHelpRegistrationOptions {
  List<String>? get triggerCharacters;/// List of characters that re-trigger signature help.
 ///
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
  List<String>? get retriggerCharacters;
 /// Create a copy of SignatureHelpRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -34042,12 +34066,14 @@ class _SignatureHelpRegistrationOptions implements SignatureHelpRegistrationOpti
 /// List of characters that re-trigger signature help.
 ///
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
  final  List<String>? _retriggerCharacters;
 /// List of characters that re-trigger signature help.
 ///
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
 @override List<String>? get retriggerCharacters {
   final value = _retriggerCharacters;
   if (value == null) return null;
@@ -36717,22 +36743,22 @@ mixin _$SymbolInformation {
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
  SymbolKind get kind;/// Tags for this symbol.
- List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+ List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
  String? get containerName;/// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
 @Deprecated('Use tags instead') bool? get deprecated;/// The location of this symbol. The location's range is used by a tool to
-/// reveal the location in the editor. If the symbol is selected in the tool the
-/// range's start information is used to position the cursor. So the range
-/// usually spans more than the actual symbol's name and does normally include
-/// things like visibility modifiers.
+/// reveal the location in the editor. If the symbol is selected in the tool
+/// the range's start information is used to position the cursor. So the
+/// range usually spans more than the actual symbol's name and does normally
+/// include things like visibility modifiers.
 ///
-/// The range doesn't have to denote a node range in the sense of an abstract
-/// syntax tree. It can therefore not be used to re-construct a hierarchy of the
-/// symbols.
+/// The range doesn't have to denote a node range in the sense of an
+/// abstract syntax tree. It can therefore not be used to re-construct a
+/// hierarchy of the symbols.
  Location get location;
 /// Create a copy of SymbolInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -36959,24 +36985,24 @@ class _SymbolInformation implements SymbolInformation {
   return EqualUnmodifiableListView(value);
 }
 
-/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
 @override final  String? containerName;
 /// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
 @override@Deprecated('Use tags instead') final  bool? deprecated;
 /// The location of this symbol. The location's range is used by a tool to
-/// reveal the location in the editor. If the symbol is selected in the tool the
-/// range's start information is used to position the cursor. So the range
-/// usually spans more than the actual symbol's name and does normally include
-/// things like visibility modifiers.
+/// reveal the location in the editor. If the symbol is selected in the tool
+/// the range's start information is used to position the cursor. So the
+/// range usually spans more than the actual symbol's name and does normally
+/// include things like visibility modifiers.
 ///
-/// The range doesn't have to denote a node range in the sense of an abstract
-/// syntax tree. It can therefore not be used to re-construct a hierarchy of the
-/// symbols.
+/// The range doesn't have to denote a node range in the sense of an
+/// abstract syntax tree. It can therefore not be used to re-construct a
+/// hierarchy of the symbols.
 @override final  Location location;
 
 /// Create a copy of SymbolInformation
@@ -37058,18 +37084,18 @@ $LocationCopyWith<$Res> get location {
 mixin _$DocumentSymbol {
 
 /// The name of this symbol. Will be displayed in the user interface and
-/// therefore must not be an empty string or a string only consisting of white
-/// spaces.
+/// therefore must not be an empty string or a string only consisting of
+/// white spaces.
  String get name;/// More detail for this symbol, e.g the signature of a function.
  String? get detail;/// The kind of this symbol.
  SymbolKind get kind;/// Tags for this document symbol.
  List<SymbolTag>? get tags;/// Indicates if this symbol is deprecated.
 ///
 /// @deprecated Use tags instead
-@Deprecated('Use tags instead') bool? get deprecated;/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else like comments. This information is typically used to
-/// determine if the clients cursor is inside the symbol to reveal in the symbol
-/// in the UI.
+@Deprecated('Use tags instead') bool? get deprecated;/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else like comments. This information is
+/// typically used to determine if the clients cursor is inside the symbol
+/// to reveal in the symbol in the UI.
  Range get range;/// The range that should be selected and revealed when this symbol is being
 /// picked, e.g the name of a function. Must be contained by the `range`.
  Range get selectionRange;/// Children of this symbol, e.g. properties of a class.
@@ -37296,8 +37322,8 @@ class _DocumentSymbol implements DocumentSymbol {
   factory _DocumentSymbol.fromJson(Map<String, dynamic> json) => _$DocumentSymbolFromJson(json);
 
 /// The name of this symbol. Will be displayed in the user interface and
-/// therefore must not be an empty string or a string only consisting of white
-/// spaces.
+/// therefore must not be an empty string or a string only consisting of
+/// white spaces.
 @override final  String name;
 /// More detail for this symbol, e.g the signature of a function.
 @override final  String? detail;
@@ -37318,10 +37344,10 @@ class _DocumentSymbol implements DocumentSymbol {
 ///
 /// @deprecated Use tags instead
 @override@Deprecated('Use tags instead') final  bool? deprecated;
-/// The range enclosing this symbol not including leading/trailing whitespace
-/// but everything else like comments. This information is typically used to
-/// determine if the clients cursor is inside the symbol to reveal in the symbol
-/// in the UI.
+/// The range enclosing this symbol not including leading/trailing
+/// whitespace but everything else like comments. This information is
+/// typically used to determine if the clients cursor is inside the symbol
+/// to reveal in the symbol in the UI.
 @override final  Range range;
 /// The range that should be selected and revealed when this symbol is being
 /// picked, e.g the name of a function. Must be contained by the `range`.
@@ -37429,8 +37455,8 @@ mixin _$DocumentSymbolRegistrationOptions {
 
 /// A document selector to identify the scope of the registration. If set to
 /// null the document selector provided on the client side will be used.
- DocumentSelector? get documentSelector; bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees are shown
-/// for the same document.
+ DocumentSelector? get documentSelector; bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees are
+/// shown for the same document.
  String? get label;
 /// Create a copy of DocumentSymbolRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -37644,8 +37670,8 @@ class _DocumentSymbolRegistrationOptions implements DocumentSymbolRegistrationOp
 }
 
 @override final  bool? workDoneProgress;
-/// A human-readable string that is shown when multiple outlines trees are shown
-/// for the same document.
+/// A human-readable string that is shown when multiple outlines trees are
+/// shown for the same document.
 @override final  String? label;
 
 /// Create a copy of DocumentSymbolRegistrationOptions
@@ -38392,12 +38418,12 @@ mixin _$CodeAction {
 ///
 /// Used to filter code actions.
  String? get kind;/// The diagnostics that this code action resolves.
- List<Diagnostic>? get diagnostics;/// Marks this as a preferred action. Preferred actions are used by the `auto
-/// fix` command and can be targeted by keybindings.
+ List<Diagnostic>? get diagnostics;/// Marks this as a preferred action. Preferred actions are used by the
+/// `auto fix` command and can be targeted by keybindings.
 ///
 /// A quick fix should be marked preferred if it properly addresses the
-/// underlying error. A refactoring should be marked preferred if it is the most
-/// reasonable choice of actions to take.
+/// underlying error. A refactoring should be marked preferred if it is the
+/// most reasonable choice of actions to take.
  bool? get isPreferred;/// Marks that the code action cannot currently be applied.
 ///
 /// Clients should follow the following guidelines regarding disabled code
@@ -38407,17 +38433,18 @@ mixin _$CodeAction {
 /// [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
 /// code action menus.
 ///
-/// - Disabled actions are shown as faded out in the code action menu when the
-/// user requests a more specific type of code action, such as refactorings.
+/// - Disabled actions are shown as faded out in the code action menu when
+/// the user requests a more specific type of code action, such as
+/// refactorings.
 ///
 /// - If the user has a
 /// [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
-/// that auto applies a code action and only disabled code actions are returned,
-/// the client should show the user an error message with `reason` in the
-/// editor.
+/// that auto applies a code action and only disabled code actions are
+/// returned, the client should show the user an error message with `reason`
+/// in the editor.
  ({String reason})? get disabled;/// The workspace edit this code action performs.
- WorkspaceEdit? get edit;/// A command this code action executes. If a code action provides an edit and a
-/// command, first the edit is executed and then the command.
+ WorkspaceEdit? get edit;/// A command this code action executes. If a code action provides an edit
+/// and a command, first the edit is executed and then the command.
  Command? get command;/// A data entry field that is preserved on a code action between a
 /// `textDocument/codeAction` and a `codeAction/resolve` request.
  LSPAny? get data;
@@ -38664,12 +38691,12 @@ class _CodeAction extends CodeAction {
   return EqualUnmodifiableListView(value);
 }
 
-/// Marks this as a preferred action. Preferred actions are used by the `auto
-/// fix` command and can be targeted by keybindings.
+/// Marks this as a preferred action. Preferred actions are used by the
+/// `auto fix` command and can be targeted by keybindings.
 ///
 /// A quick fix should be marked preferred if it properly addresses the
-/// underlying error. A refactoring should be marked preferred if it is the most
-/// reasonable choice of actions to take.
+/// underlying error. A refactoring should be marked preferred if it is the
+/// most reasonable choice of actions to take.
 @override final  bool? isPreferred;
 /// Marks that the code action cannot currently be applied.
 ///
@@ -38680,19 +38707,20 @@ class _CodeAction extends CodeAction {
 /// [lightbulbs](https://code.visualstudio.com/docs/editor/editingevolved#_code-action)
 /// code action menus.
 ///
-/// - Disabled actions are shown as faded out in the code action menu when the
-/// user requests a more specific type of code action, such as refactorings.
+/// - Disabled actions are shown as faded out in the code action menu when
+/// the user requests a more specific type of code action, such as
+/// refactorings.
 ///
 /// - If the user has a
 /// [keybinding](https://code.visualstudio.com/docs/editor/refactoring#_keybindings-for-code-actions)
-/// that auto applies a code action and only disabled code actions are returned,
-/// the client should show the user an error message with `reason` in the
-/// editor.
+/// that auto applies a code action and only disabled code actions are
+/// returned, the client should show the user an error message with `reason`
+/// in the editor.
 @override final  ({String reason})? disabled;
 /// The workspace edit this code action performs.
 @override final  WorkspaceEdit? edit;
-/// A command this code action executes. If a code action provides an edit and a
-/// command, first the edit is executed and then the command.
+/// A command this code action executes. If a code action provides an edit
+/// and a command, first the edit is executed and then the command.
 @override final  Command? command;
 /// A data entry field that is preserved on a code action between a
 /// `textDocument/codeAction` and a `codeAction/resolve` request.
@@ -38796,8 +38824,8 @@ mixin _$CodeActionRegistrationOptions {
 /// null the document selector provided on the client side will be used.
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
  List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional information for a code
 /// action.
  bool? get resolveProvider;
@@ -39016,13 +39044,13 @@ class _CodeActionRegistrationOptions implements CodeActionRegistrationOptions {
 @override final  bool? workDoneProgress;
 /// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
  final  List<CodeActionKind>? _codeActionKinds;
 /// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
 @override List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
@@ -39105,8 +39133,8 @@ mixin _$WorkspaceSymbolParams {
 /// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
-@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// A query string to filter symbols by. Clients may send an empty string here
-/// to request all symbols.
+@_ProgressTokenConverter() ProgressToken? get partialResultToken;/// A query string to filter symbols by. Clients may send an empty string
+/// here to request all symbols.
  String get query;
 /// Create a copy of WorkspaceSymbolParams
 /// with the given fields replaced by the non-null parameter values.
@@ -39335,8 +39363,8 @@ class _WorkspaceSymbolParams implements WorkspaceSymbolParams {
 /// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
-/// A query string to filter symbols by. Clients may send an empty string here
-/// to request all symbols.
+/// A query string to filter symbols by. Clients may send an empty string
+/// here to request all symbols.
 @override final  String query;
 
 /// Create a copy of WorkspaceSymbolParams
@@ -39432,12 +39460,12 @@ mixin _$WorkspaceSymbol {
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
  SymbolKind get kind;/// Tags for this symbol.
- List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
- String? get containerName;/// The location of the symbol. Whether a server is allowed to return a location
-/// without a range depends on the client capability
+ List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
+ String? get containerName;/// The location of the symbol. Whether a server is allowed to return a
+/// location without a range depends on the client capability
 /// `workspace.symbol.resolveSupport`.
 ///
 /// See SymbolInformation#location for more details.
@@ -39658,13 +39686,13 @@ class _WorkspaceSymbol implements WorkspaceSymbol {
   return EqualUnmodifiableListView(value);
 }
 
-/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
 @override final  String? containerName;
-/// The location of the symbol. Whether a server is allowed to return a location
-/// without a range depends on the client capability
+/// The location of the symbol. Whether a server is allowed to return a
+/// location without a range depends on the client capability
 /// `workspace.symbol.resolveSupport`.
 ///
 /// See SymbolInformation#location for more details.
@@ -40353,7 +40381,8 @@ $TextDocumentIdentifierCopyWith<$Res> get textDocument {
 /// @nodoc
 mixin _$CodeLens {
 
-/// The range in which this code lens is valid. Should only span a single line.
+/// The range in which this code lens is valid. Should only span a single
+/// line.
  Range get range;/// The command this code lens represents.
  Command? get command;/// A data entry field that is preserved on a code lens item between a
 /// [CodeLensRequest] and a [CodeLensResolveRequest]
@@ -40576,7 +40605,8 @@ class _CodeLens implements CodeLens {
   const _CodeLens({required this.range, this.command, this.data});
   factory _CodeLens.fromJson(Map<String, dynamic> json) => _$CodeLensFromJson(json);
 
-/// The range in which this code lens is valid. Should only span a single line.
+/// The range in which this code lens is valid. Should only span a single
+/// line.
 @override final  Range range;
 /// The command this code lens represents.
 @override final  Command? command;
@@ -41303,8 +41333,9 @@ mixin _$DocumentLink {
  String? get target;/// The tooltip text when you hover over this link.
 ///
 /// If a tooltip is provided, is will be displayed in a string that includes
-/// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
-/// specific instructions vary depending on OS, user settings, and localization.
+/// instructions on how to trigger the link, such as `{0} (ctrl + click)`.
+/// The specific instructions vary depending on OS, user settings, and
+/// localization.
  String? get tooltip;/// A data entry field that is preserved on a document link between a
 /// DocumentLinkRequest and a DocumentLinkResolveRequest.
  LSPAny? get data;
@@ -41522,8 +41553,9 @@ class _DocumentLink implements DocumentLink {
 /// The tooltip text when you hover over this link.
 ///
 /// If a tooltip is provided, is will be displayed in a string that includes
-/// instructions on how to trigger the link, such as `{0} (ctrl + click)`. The
-/// specific instructions vary depending on OS, user settings, and localization.
+/// instructions on how to trigger the link, such as `{0} (ctrl + click)`.
+/// The specific instructions vary depending on OS, user settings, and
+/// localization.
 @override final  String? tooltip;
 /// A data entry field that is preserved on a document link between a
 /// DocumentLinkRequest and a DocumentLinkResolveRequest.
@@ -43495,13 +43527,13 @@ $FormattingOptionsCopyWith<$Res> get options {
 mixin _$DocumentOnTypeFormattingParams {
 
 /// The document to format.
- TextDocumentIdentifier get textDocument;/// The position around which the on type formatting should happen. This is not
-/// necessarily the exact position where the character denoted by the property
-/// `ch` got typed.
+ TextDocumentIdentifier get textDocument;/// The position around which the on type formatting should happen. This is
+/// not necessarily the exact position where the character denoted by the
+/// property `ch` got typed.
  Position get position;/// The character that has been typed that triggered the formatting on type
-/// request. That is not necessarily the last character that got inserted into
-/// the document since the client could auto insert characters as well (e.g.
-/// like automatic brace completion).
+/// request. That is not necessarily the last character that got inserted
+/// into the document since the client could auto insert characters as well
+/// (e.g. like automatic brace completion).
  String get ch;/// The formatting options.
  FormattingOptions get options;
 /// Create a copy of DocumentOnTypeFormattingParams
@@ -43732,14 +43764,14 @@ class _DocumentOnTypeFormattingParams implements DocumentOnTypeFormattingParams 
 
 /// The document to format.
 @override final  TextDocumentIdentifier textDocument;
-/// The position around which the on type formatting should happen. This is not
-/// necessarily the exact position where the character denoted by the property
-/// `ch` got typed.
+/// The position around which the on type formatting should happen. This is
+/// not necessarily the exact position where the character denoted by the
+/// property `ch` got typed.
 @override final  Position position;
 /// The character that has been typed that triggered the formatting on type
-/// request. That is not necessarily the last character that got inserted into
-/// the document since the client could auto insert characters as well (e.g.
-/// like automatic brace completion).
+/// request. That is not necessarily the last character that got inserted
+/// into the document since the client could auto insert characters as well
+/// (e.g. like automatic brace completion).
 @override final  String ch;
 /// The formatting options.
 @override final  FormattingOptions options;
@@ -44137,8 +44169,8 @@ mixin _$RenameParams {
 /// An optional token that a server can use to report work done progress.
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// The document to rename.
  TextDocumentIdentifier get textDocument;/// The position at which this request was sent.
- Position get position;/// The new name of the symbol. If the given name is not valid the request must
-/// return a [ResponseError] with an appropriate message set.
+ Position get position;/// The new name of the symbol. If the given name is not valid the request
+/// must return a [ResponseError] with an appropriate message set.
  String get newName;
 /// Create a copy of RenameParams
 /// with the given fields replaced by the non-null parameter values.
@@ -44375,8 +44407,8 @@ class _RenameParams implements RenameParams {
 @override final  TextDocumentIdentifier textDocument;
 /// The position at which this request was sent.
 @override final  Position position;
-/// The new name of the symbol. If the given name is not valid the request must
-/// return a [ResponseError] with an appropriate message set.
+/// The new name of the symbol. If the given name is not valid the request
+/// must return a [ResponseError] with an appropriate message set.
 @override final  String newName;
 
 /// Create a copy of RenameParams
@@ -45683,8 +45715,8 @@ as List<String>,
 /// @nodoc
 mixin _$ApplyWorkspaceEditParams {
 
-/// An optional label of the workspace edit. This label is presented in the user
-/// interface for example on an undo stack to undo the workspace edit.
+/// An optional label of the workspace edit. This label is presented in the
+/// user interface for example on an undo stack to undo the workspace edit.
  String? get label;/// The edits to apply.
  WorkspaceEdit get edit;
 /// Create a copy of ApplyWorkspaceEditParams
@@ -45893,8 +45925,8 @@ class _ApplyWorkspaceEditParams implements ApplyWorkspaceEditParams {
   const _ApplyWorkspaceEditParams({this.label, required this.edit});
   factory _ApplyWorkspaceEditParams.fromJson(Map<String, dynamic> json) => _$ApplyWorkspaceEditParamsFromJson(json);
 
-/// An optional label of the workspace edit. This label is presented in the user
-/// interface for example on an undo stack to undo the workspace edit.
+/// An optional label of the workspace edit. This label is presented in the
+/// user interface for example on an undo stack to undo the workspace edit.
 @override final  String? label;
 /// The edits to apply.
 @override final  WorkspaceEdit edit;
@@ -45974,13 +46006,13 @@ $WorkspaceEditCopyWith<$Res> get edit {
 mixin _$ApplyWorkspaceEditResult {
 
 /// Indicates whether the edit was applied or not.
- bool get applied;/// An optional textual description for why the edit was not applied. This may
-/// be used by the server for diagnostic logging or to provide a suitable error
-/// for a request that triggered the edit.
+ bool get applied;/// An optional textual description for why the edit was not applied. This
+/// may be used by the server for diagnostic logging or to provide a
+/// suitable error for a request that triggered the edit.
  String? get failureReason;/// Depending on the client's failure handling strategy `failedChange` might
-/// contain the index of the change that failed. This property is only available
-/// if the client signals a `failureHandlingStrategy` in its client
-/// capabilities.
+/// contain the index of the change that failed. This property is only
+/// available if the client signals a `failureHandlingStrategy` in its
+/// client capabilities.
  int? get failedChange;
 /// Create a copy of ApplyWorkspaceEditResult
 /// with the given fields replaced by the non-null parameter values.
@@ -46182,14 +46214,14 @@ class _ApplyWorkspaceEditResult implements ApplyWorkspaceEditResult {
 
 /// Indicates whether the edit was applied or not.
 @override final  bool applied;
-/// An optional textual description for why the edit was not applied. This may
-/// be used by the server for diagnostic logging or to provide a suitable error
-/// for a request that triggered the edit.
+/// An optional textual description for why the edit was not applied. This
+/// may be used by the server for diagnostic logging or to provide a
+/// suitable error for a request that triggered the edit.
 @override final  String? failureReason;
 /// Depending on the client's failure handling strategy `failedChange` might
-/// contain the index of the change that failed. This property is only available
-/// if the client signals a `failureHandlingStrategy` in its client
-/// capabilities.
+/// contain the index of the change that failed. This property is only
+/// available if the client signals a `failureHandlingStrategy` in its
+/// client capabilities.
 @override final  int? failedChange;
 
 /// Create a copy of ApplyWorkspaceEditResult
@@ -46258,24 +46290,24 @@ as int?,
 /// @nodoc
 mixin _$WorkDoneProgressBegin {
 
- String get kind;/// Mandatory title of the progress operation. Used to briefly inform about the
-/// kind of operation being performed.
+ String get kind;/// Mandatory title of the progress operation. Used to briefly inform about
+/// the kind of operation being performed.
 ///
 /// Examples: "Indexing" or "Linking dependencies".
- String get title;/// Controls if a cancel button should show to allow the user to cancel the long
-/// running operation. Clients that don't support cancellation are allowed to
-/// ignore the setting.
- bool? get cancellable;/// Optional, more detailed associated progress message. Contains complementary
-/// information to the `title`.
+ String get title;/// Controls if a cancel button should show to allow the user to cancel the
+/// long running operation. Clients that don't support cancellation are
+/// allowed to ignore the setting.
+ bool? get cancellable;/// Optional, more detailed associated progress message. Contains
+/// complementary information to the `title`.
 ///
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-/// unset, the previous progress message (if any) is still valid.
- String? get message;/// Optional progress percentage to display (value 100 is considered 100%). If
-/// not provided infinite progress is assumed and clients are allowed to ignore
-/// the `percentage` value in subsequent report notifications.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+/// If unset, the previous progress message (if any) is still valid.
+ String? get message;/// Optional progress percentage to display (value 100 is considered 100%).
+/// If not provided infinite progress is assumed and clients are allowed to
+/// ignore the `percentage` value in subsequent report notifications.
 ///
-/// The value should be steadily rising. Clients are free to ignore values that
-/// are not following this rule. The value range is [0, 100].
+/// The value should be steadily rising. Clients are free to ignore values
+/// that are not following this rule. The value range is [0, 100].
  int? get percentage;
 /// Create a copy of WorkDoneProgressBegin
 /// with the given fields replaced by the non-null parameter values.
@@ -46478,27 +46510,27 @@ class _WorkDoneProgressBegin implements WorkDoneProgressBegin {
   factory _WorkDoneProgressBegin.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressBeginFromJson(json);
 
 @override final  String kind;
-/// Mandatory title of the progress operation. Used to briefly inform about the
-/// kind of operation being performed.
+/// Mandatory title of the progress operation. Used to briefly inform about
+/// the kind of operation being performed.
 ///
 /// Examples: "Indexing" or "Linking dependencies".
 @override final  String title;
-/// Controls if a cancel button should show to allow the user to cancel the long
-/// running operation. Clients that don't support cancellation are allowed to
-/// ignore the setting.
+/// Controls if a cancel button should show to allow the user to cancel the
+/// long running operation. Clients that don't support cancellation are
+/// allowed to ignore the setting.
 @override final  bool? cancellable;
-/// Optional, more detailed associated progress message. Contains complementary
-/// information to the `title`.
+/// Optional, more detailed associated progress message. Contains
+/// complementary information to the `title`.
 ///
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-/// unset, the previous progress message (if any) is still valid.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+/// If unset, the previous progress message (if any) is still valid.
 @override final  String? message;
-/// Optional progress percentage to display (value 100 is considered 100%). If
-/// not provided infinite progress is assumed and clients are allowed to ignore
-/// the `percentage` value in subsequent report notifications.
+/// Optional progress percentage to display (value 100 is considered 100%).
+/// If not provided infinite progress is assumed and clients are allowed to
+/// ignore the `percentage` value in subsequent report notifications.
 ///
-/// The value should be steadily rising. Clients are free to ignore values that
-/// are not following this rule. The value range is [0, 100].
+/// The value should be steadily rising. Clients are free to ignore values
+/// that are not following this rule. The value range is [0, 100].
 @override final  int? percentage;
 
 /// Create a copy of WorkDoneProgressBegin
@@ -46573,17 +46605,17 @@ mixin _$WorkDoneProgressReport {
 ///
 /// Clients that don't support cancellation or don't support controlling the
 /// button's enablement state are allowed to ignore the property.
- bool? get cancellable;/// Optional, more detailed associated progress message. Contains complementary
-/// information to the `title`.
+ bool? get cancellable;/// Optional, more detailed associated progress message. Contains
+/// complementary information to the `title`.
 ///
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-/// unset, the previous progress message (if any) is still valid.
- String? get message;/// Optional progress percentage to display (value 100 is considered 100%). If
-/// not provided infinite progress is assumed and clients are allowed to ignore
-/// the `percentage` value in subsequent report notifications.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+/// If unset, the previous progress message (if any) is still valid.
+ String? get message;/// Optional progress percentage to display (value 100 is considered 100%).
+/// If not provided infinite progress is assumed and clients are allowed to
+/// ignore the `percentage` value in subsequent report notifications.
 ///
-/// The value should be steadily rising. Clients are free to ignore values that
-/// are not following this rule. The value range is [0, 100].
+/// The value should be steadily rising. Clients are free to ignore values
+/// that are not following this rule. The value range is [0, 100].
  int? get percentage;
 /// Create a copy of WorkDoneProgressReport
 /// with the given fields replaced by the non-null parameter values.
@@ -46790,18 +46822,18 @@ class _WorkDoneProgressReport implements WorkDoneProgressReport {
 /// Clients that don't support cancellation or don't support controlling the
 /// button's enablement state are allowed to ignore the property.
 @override final  bool? cancellable;
-/// Optional, more detailed associated progress message. Contains complementary
-/// information to the `title`.
+/// Optional, more detailed associated progress message. Contains
+/// complementary information to the `title`.
 ///
-/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep". If
-/// unset, the previous progress message (if any) is still valid.
+/// Examples: "3/25 files", "project/src/module2", "node_modules/some_dep".
+/// If unset, the previous progress message (if any) is still valid.
 @override final  String? message;
-/// Optional progress percentage to display (value 100 is considered 100%). If
-/// not provided infinite progress is assumed and clients are allowed to ignore
-/// the `percentage` value in subsequent report notifications.
+/// Optional progress percentage to display (value 100 is considered 100%).
+/// If not provided infinite progress is assumed and clients are allowed to
+/// ignore the `percentage` value in subsequent report notifications.
 ///
-/// The value should be steadily rising. Clients are free to ignore values that
-/// are not following this rule. The value range is [0, 100].
+/// The value should be steadily rising. Clients are free to ignore values
+/// that are not following this rule. The value range is [0, 100].
 @override final  int? percentage;
 
 /// Create a copy of WorkDoneProgressReport
@@ -46871,8 +46903,8 @@ as int?,
 /// @nodoc
 mixin _$WorkDoneProgressEnd {
 
- String get kind;/// Optional, a final message indicating to for example indicate the outcome of
-/// the operation.
+ String get kind;/// Optional, a final message indicating to for example indicate the outcome
+/// of the operation.
  String? get message;
 /// Create a copy of WorkDoneProgressEnd
 /// with the given fields replaced by the non-null parameter values.
@@ -47072,8 +47104,8 @@ class _WorkDoneProgressEnd implements WorkDoneProgressEnd {
   factory _WorkDoneProgressEnd.fromJson(Map<String, dynamic> json) => _$WorkDoneProgressEndFromJson(json);
 
 @override final  String kind;
-/// Optional, a final message indicating to for example indicate the outcome of
-/// the operation.
+/// Optional, a final message indicating to for example indicate the outcome
+/// of the operation.
 @override final  String? message;
 
 /// Create a copy of WorkDoneProgressEnd
@@ -49110,10 +49142,10 @@ mixin _$LocationLink {
 /// Used as the underlined span for mouse interaction. Defaults to the word
 /// range at the definition position.
  Range? get originSelectionRange;/// The target resource identifier of this link.
- String get targetUri;/// The full target range of this link. If the target for example is a symbol
-/// then target range is the range enclosing this symbol not including
-/// leading/trailing whitespace but everything else like comments. This
-/// information is typically used to highlight the range in the editor.
+ String get targetUri;/// The full target range of this link. If the target for example is a
+/// symbol then target range is the range enclosing this symbol not
+/// including leading/trailing whitespace but everything else like comments.
+/// This information is typically used to highlight the range in the editor.
  Range get targetRange;/// The range that should be selected and revealed when this link is being
 /// followed, e.g the name of a function. Must be contained by the
 /// `targetRange`. See also `DocumentSymbol#range`
@@ -49354,10 +49386,10 @@ class _LocationLink implements LocationLink {
 @override final  Range? originSelectionRange;
 /// The target resource identifier of this link.
 @override final  String targetUri;
-/// The full target range of this link. If the target for example is a symbol
-/// then target range is the range enclosing this symbol not including
-/// leading/trailing whitespace but everything else like comments. This
-/// information is typically used to highlight the range in the editor.
+/// The full target range of this link. If the target for example is a
+/// symbol then target range is the range enclosing this symbol not
+/// including leading/trailing whitespace but everything else like comments.
+/// This information is typically used to highlight the range in the editor.
 @override final  Range targetRange;
 /// The range that should be selected and revealed when this link is being
 /// followed, e.g the name of a function. Must be contained by the
@@ -50030,8 +50062,8 @@ as bool?,
 /// @nodoc
 mixin _$StaticRegistrationOptions {
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of StaticRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -50229,8 +50261,8 @@ class _StaticRegistrationOptions implements StaticRegistrationOptions {
   const _StaticRegistrationOptions({this.id});
   factory _StaticRegistrationOptions.fromJson(Map<String, dynamic> json) => _$StaticRegistrationOptionsFromJson(json);
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of StaticRegistrationOptions
@@ -52451,15 +52483,15 @@ mixin _$Position {
 /// Line position in a document (zero-based).
 ///
 /// If a line number is greater than the number of lines in a document, it
-/// defaults back to the number of lines in the document. If a line number is
-/// negative, it defaults to 0.
+/// defaults back to the number of lines in the document. If a line number
+/// is negative, it defaults to 0.
  int get line;/// Character offset on a line in a document (zero-based).
 ///
 /// The meaning of this offset is determined by the negotiated
 /// `PositionEncodingKind`.
 ///
-/// If the character value is greater than the line length it defaults back to
-/// the line length.
+/// If the character value is greater than the line length it defaults back
+/// to the line length.
  int get character;
 /// Create a copy of Position
 /// with the given fields replaced by the non-null parameter values.
@@ -52661,16 +52693,16 @@ class _Position implements Position {
 /// Line position in a document (zero-based).
 ///
 /// If a line number is greater than the number of lines in a document, it
-/// defaults back to the number of lines in the document. If a line number is
-/// negative, it defaults to 0.
+/// defaults back to the number of lines in the document. If a line number
+/// is negative, it defaults to 0.
 @override final  int line;
 /// Character offset on a line in a document (zero-based).
 ///
 /// The meaning of this offset is determined by the negotiated
 /// `PositionEncodingKind`.
 ///
-/// If the character value is greater than the line length it defaults back to
-/// the line length.
+/// If the character value is greater than the line length it defaults back
+/// to the line length.
 @override final  int character;
 
 /// Create a copy of Position
@@ -54373,7 +54405,8 @@ mixin _$TextDocumentEdit {
 /// The text document to change.
  OptionalVersionedTextDocumentIdentifier get textDocument;/// The edits to be applied.
 ///
-/// - support for AnnotatedTextEdit. This is guarded using a client capability.
+/// - support for AnnotatedTextEdit. This is guarded using a client
+/// capability.
  List<Object> get edits;
 /// Create a copy of TextDocumentEdit
 /// with the given fields replaced by the non-null parameter values.
@@ -54585,11 +54618,13 @@ class _TextDocumentEdit implements TextDocumentEdit {
 @override final  OptionalVersionedTextDocumentIdentifier textDocument;
 /// The edits to be applied.
 ///
-/// - support for AnnotatedTextEdit. This is guarded using a client capability.
+/// - support for AnnotatedTextEdit. This is guarded using a client
+/// capability.
  final  List<Object> _edits;
 /// The edits to be applied.
 ///
-/// - support for AnnotatedTextEdit. This is guarded using a client capability.
+/// - support for AnnotatedTextEdit. This is guarded using a client
+/// capability.
 @override List<Object> get edits {
   if (_edits is EqualUnmodifiableListView) return _edits;
   // ignore: implicit_dynamic_type
@@ -55588,10 +55623,10 @@ $DeleteFileOptionsCopyWith<$Res>? get options {
 /// @nodoc
 mixin _$ChangeAnnotation {
 
-/// A human-readable string describing the actual change. The string is rendered
-/// prominent in the user interface.
- String get label;/// A flag which indicates that user confirmation is needed before applying the
-/// change.
+/// A human-readable string describing the actual change. The string is
+/// rendered prominent in the user interface.
+ String get label;/// A flag which indicates that user confirmation is needed before applying
+/// the change.
  bool? get needsConfirmation;/// A human-readable string which is rendered less prominent in the user
 /// interface.
  String? get description;
@@ -55793,11 +55828,11 @@ class _ChangeAnnotation implements ChangeAnnotation {
   const _ChangeAnnotation({required this.label, this.needsConfirmation, this.description});
   factory _ChangeAnnotation.fromJson(Map<String, dynamic> json) => _$ChangeAnnotationFromJson(json);
 
-/// A human-readable string describing the actual change. The string is rendered
-/// prominent in the user interface.
+/// A human-readable string describing the actual change. The string is
+/// rendered prominent in the user interface.
 @override final  String label;
-/// A flag which indicates that user confirmation is needed before applying the
-/// change.
+/// A flag which indicates that user confirmation is needed before applying
+/// the change.
 @override final  bool? needsConfirmation;
 /// A human-readable string which is rendered less prominent in the user
 /// interface.
@@ -56157,7 +56192,8 @@ $FileOperationPatternCopyWith<$Res> get pattern {
 /// @nodoc
 mixin _$FileRename {
 
-/// A file:// URI for the original location of the file/folder being renamed.
+/// A file:// URI for the original location of the file/folder being
+/// renamed.
  String get oldUri;/// A file:// URI for the new location of the file/folder being renamed.
  String get newUri;
 /// Create a copy of FileRename
@@ -56357,7 +56393,8 @@ class _FileRename implements FileRename {
   const _FileRename({required this.oldUri, required this.newUri});
   factory _FileRename.fromJson(Map<String, dynamic> json) => _$FileRenameFromJson(json);
 
-/// A file:// URI for the original location of the file/folder being renamed.
+/// A file:// URI for the original location of the file/folder being
+/// renamed.
 @override final  String oldUri;
 /// A file:// URI for the new location of the file/folder being renamed.
 @override final  String newUri;
@@ -57219,8 +57256,9 @@ as bool?,
 mixin _$InlineValueContext {
 
 /// The stack frame (as a DAP Id) where the execution has stopped.
- int get frameId;/// The document range where execution has stopped. Typically the end position
-/// of the range denotes the line where the inline values are shown.
+ int get frameId;/// The document range where execution has stopped. Typically the end
+/// position of the range denotes the line where the inline values are
+/// shown.
  Range get stoppedLocation;
 /// Create a copy of InlineValueContext
 /// with the given fields replaced by the non-null parameter values.
@@ -57430,8 +57468,9 @@ class _InlineValueContext implements InlineValueContext {
 
 /// The stack frame (as a DAP Id) where the execution has stopped.
 @override final  int frameId;
-/// The document range where execution has stopped. Typically the end position
-/// of the range denotes the line where the inline values are shown.
+/// The document range where execution has stopped. Typically the end
+/// position of the range denotes the line where the inline values are
+/// shown.
 @override final  Range stoppedLocation;
 
 /// Create a copy of InlineValueContext
@@ -57796,8 +57835,8 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlineValueVariableLookup {
 
-/// The document range for which the inline value applies. The range is used to
-/// extract the variable name from the underlying document.
+/// The document range for which the inline value applies. The range is used
+/// to extract the variable name from the underlying document.
  Range get range;/// If specified the name of the variable to look up.
  String? get variableName;/// How to perform the lookup.
  bool get caseSensitiveLookup;
@@ -58008,8 +58047,8 @@ class _InlineValueVariableLookup implements InlineValueVariableLookup {
   const _InlineValueVariableLookup({required this.range, this.variableName, required this.caseSensitiveLookup});
   factory _InlineValueVariableLookup.fromJson(Map<String, dynamic> json) => _$InlineValueVariableLookupFromJson(json);
 
-/// The document range for which the inline value applies. The range is used to
-/// extract the variable name from the underlying document.
+/// The document range for which the inline value applies. The range is used
+/// to extract the variable name from the underlying document.
 @override final  Range range;
 /// If specified the name of the variable to look up.
 @override final  String? variableName;
@@ -58091,8 +58130,8 @@ $RangeCopyWith<$Res> get range {
 /// @nodoc
 mixin _$InlineValueEvaluatableExpression {
 
-/// The document range for which the inline value applies. The range is used to
-/// extract the evaluatable expression from the underlying document.
+/// The document range for which the inline value applies. The range is used
+/// to extract the evaluatable expression from the underlying document.
  Range get range;/// If specified the expression overrides the extracted expression.
  String? get expression;
 /// Create a copy of InlineValueEvaluatableExpression
@@ -58301,8 +58340,8 @@ class _InlineValueEvaluatableExpression implements InlineValueEvaluatableExpress
   const _InlineValueEvaluatableExpression({required this.range, this.expression});
   factory _InlineValueEvaluatableExpression.fromJson(Map<String, dynamic> json) => _$InlineValueEvaluatableExpressionFromJson(json);
 
-/// The document range for which the inline value applies. The range is used to
-/// extract the evaluatable expression from the underlying document.
+/// The document range for which the inline value applies. The range is used
+/// to extract the evaluatable expression from the underlying document.
 @override final  Range range;
 /// If specified the expression overrides the extracted expression.
 @override final  String? expression;
@@ -58652,16 +58691,16 @@ mixin _$InlayHintLabelPart {
 ///
 /// The editor will use this location for the hover and for code navigation
 /// features: This part will become a clickable link that resolves to the
-/// definition of the symbol at the given location (not necessarily the location
-/// itself), it shows the hover that shows at the given location, and it shows a
-/// context menu with further code navigation commands.
+/// definition of the symbol at the given location (not necessarily the
+/// location itself), it shows the hover that shows at the given location,
+/// and it shows a context menu with further code navigation commands.
 ///
-/// Depending on the client capability `inlayHint.resolveSupport` clients might
-/// resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients
+/// might resolve this property late using the resolve request.
  Location? get location;/// An optional command for this label part.
 ///
-/// Depending on the client capability `inlayHint.resolveSupport` clients might
-/// resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients
+/// might resolve this property late using the resolve request.
  Command? get command;
 /// Create a copy of InlayHintLabelPart
 /// with the given fields replaced by the non-null parameter values.
@@ -58895,17 +58934,17 @@ class _InlayHintLabelPart implements InlayHintLabelPart {
 ///
 /// The editor will use this location for the hover and for code navigation
 /// features: This part will become a clickable link that resolves to the
-/// definition of the symbol at the given location (not necessarily the location
-/// itself), it shows the hover that shows at the given location, and it shows a
-/// context menu with further code navigation commands.
+/// definition of the symbol at the given location (not necessarily the
+/// location itself), it shows the hover that shows at the given location,
+/// and it shows a context menu with further code navigation commands.
 ///
-/// Depending on the client capability `inlayHint.resolveSupport` clients might
-/// resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients
+/// might resolve this property late using the resolve request.
 @override final  Location? location;
 /// An optional command for this label part.
 ///
-/// Depending on the client capability `inlayHint.resolveSupport` clients might
-/// resolve this property late using the resolve request.
+/// Depending on the client capability `inlayHint.resolveSupport` clients
+/// might resolve this property late using the resolve request.
 @override final  Command? command;
 
 /// Create a copy of InlayHintLabelPart
@@ -59268,8 +59307,8 @@ as String,
 /// @nodoc
 mixin _$InlayHintOptions {
 
- bool? get workDoneProgress;/// The server provides support to resolve additional information for an inlay
-/// hint item.
+ bool? get workDoneProgress;/// The server provides support to resolve additional information for an
+/// inlay hint item.
  bool? get resolveProvider;
 /// Create a copy of InlayHintOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -59469,8 +59508,8 @@ class _InlayHintOptions implements InlayHintOptions {
   factory _InlayHintOptions.fromJson(Map<String, dynamic> json) => _$InlayHintOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// The server provides support to resolve additional information for an inlay
-/// hint item.
+/// The server provides support to resolve additional information for an
+/// inlay hint item.
 @override final  bool? resolveProvider;
 
 /// Create a copy of InlayHintOptions
@@ -59539,13 +59578,14 @@ as bool?,
 mixin _$RelatedFullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+ String get kind;/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
  String? get resultId;/// The actual items.
- List<Diagnostic> get items;/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco definitions
-/// in a file a.cpp and result in errors in a header file b.hpp.
+ List<Diagnostic> get items;/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics in
+/// a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a header
+/// file b.hpp.
  Map<String, Object>? get relatedDocuments;
 /// Create a copy of RelatedFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -59748,8 +59788,8 @@ class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnos
 
 /// A full document diagnostic report.
 @override final  String kind;
-/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
 @override final  String? resultId;
 /// The actual items.
  final  List<Diagnostic> _items;
@@ -59760,15 +59800,17 @@ class _RelatedFullDocumentDiagnosticReport implements RelatedFullDocumentDiagnos
   return EqualUnmodifiableListView(_items);
 }
 
-/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco definitions
-/// in a file a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics in
+/// a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a header
+/// file b.hpp.
  final  Map<String, Object>? _relatedDocuments;
-/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco definitions
-/// in a file a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics in
+/// a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a header
+/// file b.hpp.
 @override Map<String, Object>? get relatedDocuments {
   final value = _relatedDocuments;
   if (value == null) return null;
@@ -59847,12 +59889,13 @@ mixin _$RelatedUnchangedDocumentDiagnosticReport {
 
 /// A document diagnostic report indicating no changes to the last result. A
 /// server can only return `unchanged` if result ids are provided.
- String get kind;/// A result id which will be sent on the next diagnostic request for the same
-/// document.
- String get resultId;/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco definitions
-/// in a file a.cpp and result in errors in a header file b.hpp.
+ String get kind;/// A result id which will be sent on the next diagnostic request for the
+/// same document.
+ String get resultId;/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics in
+/// a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a header
+/// file b.hpp.
  Map<String, Object>? get relatedDocuments;
 /// Create a copy of RelatedUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -60055,18 +60098,20 @@ class _RelatedUnchangedDocumentDiagnosticReport implements RelatedUnchangedDocum
 /// A document diagnostic report indicating no changes to the last result. A
 /// server can only return `unchanged` if result ids are provided.
 @override final  String kind;
-/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+/// A result id which will be sent on the next diagnostic request for the
+/// same document.
 @override final  String resultId;
-/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco definitions
-/// in a file a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics in
+/// a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a header
+/// file b.hpp.
  final  Map<String, Object>? _relatedDocuments;
-/// Diagnostics of related documents. This information is useful in programming
-/// languages where code in a file A can generate diagnostics in a file B which
-/// A depends on. An example of such a language is C/C++ where marco definitions
-/// in a file a.cpp and result in errors in a header file b.hpp.
+/// Diagnostics of related documents. This information is useful in
+/// programming languages where code in a file A can generate diagnostics in
+/// a file B which A depends on. An example of such a language is C/C++
+/// where marco definitions in a file a.cpp and result in errors in a header
+/// file b.hpp.
 @override Map<String, Object>? get relatedDocuments {
   final value = _relatedDocuments;
   if (value == null) return null;
@@ -60143,8 +60188,8 @@ as Map<String, Object>?,
 mixin _$FullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+ String get kind;/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
  String? get resultId;/// The actual items.
  List<Diagnostic> get items;
 /// Create a copy of FullDocumentDiagnosticReport
@@ -60347,8 +60392,8 @@ class _FullDocumentDiagnosticReport implements FullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
 @override final  String kind;
-/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
 @override final  String? resultId;
 /// The actual items.
  final  List<Diagnostic> _items;
@@ -60428,8 +60473,8 @@ mixin _$UnchangedDocumentDiagnosticReport {
 
 /// A document diagnostic report indicating no changes to the last result. A
 /// server can only return `unchanged` if result ids are provided.
- String get kind;/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+ String get kind;/// A result id which will be sent on the next diagnostic request for the
+/// same document.
  String get resultId;
 /// Create a copy of UnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -60631,8 +60676,8 @@ class _UnchangedDocumentDiagnosticReport implements UnchangedDocumentDiagnosticR
 /// A document diagnostic report indicating no changes to the last result. A
 /// server can only return `unchanged` if result ids are provided.
 @override final  String kind;
-/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+/// A result id which will be sent on the next diagnostic request for the
+/// same document.
 @override final  String resultId;
 
 /// Create a copy of UnchangedDocumentDiagnosticReport
@@ -60702,10 +60747,10 @@ mixin _$DiagnosticOptions {
 
  bool? get workDoneProgress;/// An optional identifier under which the diagnostics are managed by the
 /// client.
- String? get identifier;/// Whether the language has inter file dependencies meaning that editing code
-/// in one file can result in a different diagnostic set in another file. Inter
-/// file dependencies are common for most programming languages and typically
-/// uncommon for linters.
+ String? get identifier;/// Whether the language has inter file dependencies meaning that editing
+/// code in one file can result in a different diagnostic set in another
+/// file. Inter file dependencies are common for most programming languages
+/// and typically uncommon for linters.
  bool get interFileDependencies;/// The server provides support for workspace diagnostics as well.
  bool get workspaceDiagnostics;
 /// Create a copy of DiagnosticOptions
@@ -60911,10 +60956,10 @@ class _DiagnosticOptions implements DiagnosticOptions {
 /// An optional identifier under which the diagnostics are managed by the
 /// client.
 @override final  String? identifier;
-/// Whether the language has inter file dependencies meaning that editing code
-/// in one file can result in a different diagnostic set in another file. Inter
-/// file dependencies are common for most programming languages and typically
-/// uncommon for linters.
+/// Whether the language has inter file dependencies meaning that editing
+/// code in one file can result in a different diagnostic set in another
+/// file. Inter file dependencies are common for most programming languages
+/// and typically uncommon for linters.
 @override final  bool interFileDependencies;
 /// The server provides support for workspace diagnostics as well.
 @override final  bool workspaceDiagnostics;
@@ -62668,8 +62713,8 @@ as String,
 mixin _$InlineCompletionContext {
 
 /// Describes how the inline completion was triggered.
- InlineCompletionTriggerKind get triggerKind;/// Provides information about the currently selected item in the autocomplete
-/// widget if it is visible.
+ InlineCompletionTriggerKind get triggerKind;/// Provides information about the currently selected item in the
+/// autocomplete widget if it is visible.
  SelectedCompletionInfo? get selectedCompletionInfo;
 /// Create a copy of InlineCompletionContext
 /// with the given fields replaced by the non-null parameter values.
@@ -62882,8 +62927,8 @@ class _InlineCompletionContext implements InlineCompletionContext {
 
 /// Describes how the inline completion was triggered.
 @override final  InlineCompletionTriggerKind triggerKind;
-/// Provides information about the currently selected item in the autocomplete
-/// widget if it is visible.
+/// Provides information about the currently selected item in the
+/// autocomplete widget if it is visible.
 @override final  SelectedCompletionInfo? selectedCompletionInfo;
 
 /// Create a copy of InlineCompletionContext
@@ -63496,8 +63541,8 @@ as bool?,
 /// @nodoc
 mixin _$Registration {
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again.
+/// The id used to register the request. The id can be used to deregister
+/// the request again.
  String get id;/// The method / capability to register for.
  String get method;/// Options necessary for the registration.
  LSPAny? get registerOptions;
@@ -63698,8 +63743,8 @@ class _Registration implements Registration {
   const _Registration({required this.id, required this.method, this.registerOptions});
   factory _Registration.fromJson(Map<String, dynamic> json) => _$RegistrationFromJson(json);
 
-/// The id used to register the request. The id can be used to deregister the
-/// request again.
+/// The id used to register the request. The id can be used to deregister
+/// the request again.
 @override final  String id;
 /// The method / capability to register for.
 @override final  String method;
@@ -64045,9 +64090,9 @@ mixin _$WorkspaceFoldersInitializeParams {
 
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders. It
-/// can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
  List<WorkspaceFolder>? get workspaceFolders;
 /// Create a copy of WorkspaceFoldersInitializeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -64247,15 +64292,15 @@ class _WorkspaceFoldersInitializeParams implements WorkspaceFoldersInitializePar
 
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders. It
-/// can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
  final  List<WorkspaceFolder>? _workspaceFolders;
 /// The workspace folders configured in the client when the server starts.
 ///
-/// This property is only available if the client supports workspace folders. It
-/// can be `null` if the client supports workspace folders but none are
-/// configured.
+/// This property is only available if the client supports workspace
+/// folders. It can be `null` if the client supports workspace folders but
+/// none are configured.
 @override List<WorkspaceFolder>? get workspaceFolders {
   final value = _workspaceFolders;
   if (value == null) return null;
@@ -64329,8 +64374,8 @@ as List<WorkspaceFolder>?,
 /// @nodoc
 mixin _$ServerCapabilities {
 
-/// The position encoding the server picked from the encodings offered by the
-/// client via the client capability `general.positionEncodings`.
+/// The position encoding the server picked from the encodings offered by
+/// the client via the client capability `general.positionEncodings`.
 ///
 /// If the client didn't provide any position encodings the only valid value
 /// that a server can return is 'utf-16'.
@@ -64350,9 +64395,9 @@ mixin _$ServerCapabilities {
  Object? get implementationProvider;/// The server provides find references support.
  Object? get referencesProvider;/// The server provides document highlight support.
  Object? get documentHighlightProvider;/// The server provides document symbol support.
- Object? get documentSymbolProvider;/// The server provides code actions. CodeActionOptions may only be specified if
-/// the client states that it supports `codeActionLiteralSupport` in its initial
-/// `initialize` request.
+ Object? get documentSymbolProvider;/// The server provides code actions. CodeActionOptions may only be
+/// specified if the client states that it supports
+/// `codeActionLiteralSupport` in its initial `initialize` request.
  Object? get codeActionProvider;/// The server provides code lens.
  CodeLensOptions? get codeLensProvider;/// The server provides document link support.
  DocumentLinkOptions? get documentLinkProvider;/// The server provides color provider support.
@@ -64360,8 +64405,8 @@ mixin _$ServerCapabilities {
  Object? get workspaceSymbolProvider;/// The server provides document formatting.
  Object? get documentFormattingProvider;/// The server provides document range formatting.
  Object? get documentRangeFormattingProvider;/// The server provides document formatting on typing.
- DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider;/// The server provides rename support. RenameOptions may only be specified if
-/// the client states that it supports `prepareSupport` in its initial
+ DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider;/// The server provides rename support. RenameOptions may only be specified
+/// if the client states that it supports `prepareSupport` in its initial
 /// `initialize` request.
  Object? get renameProvider;/// The server provides folding provider support.
  Object? get foldingRangeProvider;/// The server provides selection range support.
@@ -64653,8 +64698,8 @@ class _ServerCapabilities extends ServerCapabilities {
   const _ServerCapabilities({this.positionEncoding, this.textDocumentSync, this.notebookDocumentSync, this.completionProvider, this.hoverProvider, this.signatureHelpProvider, this.declarationProvider, this.definitionProvider, this.typeDefinitionProvider, this.implementationProvider, this.referencesProvider, this.documentHighlightProvider, this.documentSymbolProvider, this.codeActionProvider, this.codeLensProvider, this.documentLinkProvider, this.colorProvider, this.workspaceSymbolProvider, this.documentFormattingProvider, this.documentRangeFormattingProvider, this.documentOnTypeFormattingProvider, this.renameProvider, this.foldingRangeProvider, this.selectionRangeProvider, this.executeCommandProvider, this.callHierarchyProvider, this.linkedEditingRangeProvider, this.semanticTokensProvider, this.monikerProvider, this.typeHierarchyProvider, this.inlineValueProvider, this.inlayHintProvider, this.diagnosticProvider, this.inlineCompletionProvider, this.workspace, this.experimental}): super._();
   factory _ServerCapabilities.fromJson(Map<String, dynamic> json) => _$ServerCapabilitiesFromJson(json);
 
-/// The position encoding the server picked from the encodings offered by the
-/// client via the client capability `general.positionEncodings`.
+/// The position encoding the server picked from the encodings offered by
+/// the client via the client capability `general.positionEncodings`.
 ///
 /// If the client didn't provide any position encodings the only valid value
 /// that a server can return is 'utf-16'.
@@ -64687,9 +64732,9 @@ class _ServerCapabilities extends ServerCapabilities {
 @override final  Object? documentHighlightProvider;
 /// The server provides document symbol support.
 @override final  Object? documentSymbolProvider;
-/// The server provides code actions. CodeActionOptions may only be specified if
-/// the client states that it supports `codeActionLiteralSupport` in its initial
-/// `initialize` request.
+/// The server provides code actions. CodeActionOptions may only be
+/// specified if the client states that it supports
+/// `codeActionLiteralSupport` in its initial `initialize` request.
 @override final  Object? codeActionProvider;
 /// The server provides code lens.
 @override final  CodeLensOptions? codeLensProvider;
@@ -64705,8 +64750,8 @@ class _ServerCapabilities extends ServerCapabilities {
 @override final  Object? documentRangeFormattingProvider;
 /// The server provides document formatting on typing.
 @override final  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
-/// The server provides rename support. RenameOptions may only be specified if
-/// the client states that it supports `prepareSupport` in its initial
+/// The server provides rename support. RenameOptions may only be specified
+/// if the client states that it supports `prepareSupport` in its initial
 /// `initialize` request.
 @override final  Object? renameProvider;
 /// The server provides folding provider support.
@@ -65689,8 +65734,8 @@ mixin _$FileSystemWatcher {
 /// The glob pattern to watch. See [GlobPattern] for more detail.
 ///
 /// support for relative patterns.
- GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults to WatchKind.Create |
-/// WatchKind.Change | WatchKind.Delete which is 7.
+ GlobPattern get globPattern;/// The kind of events of interest. If omitted it defaults to
+/// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
  int? get kind;
 /// Create a copy of FileSystemWatcher
 /// with the given fields replaced by the non-null parameter values.
@@ -65892,8 +65937,8 @@ class _FileSystemWatcher extends FileSystemWatcher {
 ///
 /// support for relative patterns.
 @override final  GlobPattern globPattern;
-/// The kind of events of interest. If omitted it defaults to WatchKind.Create |
-/// WatchKind.Change | WatchKind.Delete which is 7.
+/// The kind of events of interest. If omitted it defaults to
+/// WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7.
 @override final  int? kind;
 
 /// Create a copy of FileSystemWatcher
@@ -65961,8 +66006,8 @@ as int?,
 mixin _$Diagnostic {
 
 /// The range at which the message applies
- Range get range;/// The diagnostic's severity. Can be omitted. If omitted it is up to the client
-/// to interpret diagnostics as error, warning, info or hint.
+ Range get range;/// The diagnostic's severity. Can be omitted. If omitted it is up to the
+/// client to interpret diagnostics as error, warning, info or hint.
  DiagnosticSeverity? get severity;/// The diagnostic's code, which usually appear in the user interface.
  Object? get code;/// An optional property to describe the error code. Requires the code field
 /// (above) to be present/not null.
@@ -65970,11 +66015,11 @@ mixin _$Diagnostic {
 /// 'typescript' or 'super lint'. It usually appears in the user interface.
  String? get source;/// The diagnostic's message. It usually appears in the user interface
  String get message;/// Additional metadata about the diagnostic.
- List<DiagnosticTag>? get tags;/// An array of related diagnostic information, e.g. when symbol-names within a
-/// scope collide all definitions can be marked via this property.
+ List<DiagnosticTag>? get tags;/// An array of related diagnostic information, e.g. when symbol-names
+/// within a scope collide all definitions can be marked via this property.
  List<DiagnosticRelatedInformation>? get relatedInformation;/// A data entry field that is preserved between a
-/// `textDocument/publishDiagnostics` notification and `textDocument/codeAction`
-/// request.
+/// `textDocument/publishDiagnostics` notification and
+/// `textDocument/codeAction` request.
  LSPAny? get data;
 /// Create a copy of Diagnostic
 /// with the given fields replaced by the non-null parameter values.
@@ -66201,8 +66246,8 @@ class _Diagnostic implements Diagnostic {
 
 /// The range at which the message applies
 @override final  Range range;
-/// The diagnostic's severity. Can be omitted. If omitted it is up to the client
-/// to interpret diagnostics as error, warning, info or hint.
+/// The diagnostic's severity. Can be omitted. If omitted it is up to the
+/// client to interpret diagnostics as error, warning, info or hint.
 @override final  DiagnosticSeverity? severity;
 /// The diagnostic's code, which usually appear in the user interface.
 @override final  Object? code;
@@ -66225,11 +66270,11 @@ class _Diagnostic implements Diagnostic {
   return EqualUnmodifiableListView(value);
 }
 
-/// An array of related diagnostic information, e.g. when symbol-names within a
-/// scope collide all definitions can be marked via this property.
+/// An array of related diagnostic information, e.g. when symbol-names
+/// within a scope collide all definitions can be marked via this property.
  final  List<DiagnosticRelatedInformation>? _relatedInformation;
-/// An array of related diagnostic information, e.g. when symbol-names within a
-/// scope collide all definitions can be marked via this property.
+/// An array of related diagnostic information, e.g. when symbol-names
+/// within a scope collide all definitions can be marked via this property.
 @override List<DiagnosticRelatedInformation>? get relatedInformation {
   final value = _relatedInformation;
   if (value == null) return null;
@@ -66239,8 +66284,8 @@ class _Diagnostic implements Diagnostic {
 }
 
 /// A data entry field that is preserved between a
-/// `textDocument/publishDiagnostics` notification and `textDocument/codeAction`
-/// request.
+/// `textDocument/publishDiagnostics` notification and
+/// `textDocument/codeAction` request.
 @override final  LSPAny? data;
 
 /// Create a copy of Diagnostic
@@ -66335,8 +66380,9 @@ $CodeDescriptionCopyWith<$Res>? get codeDescription {
 mixin _$CompletionContext {
 
 /// How the completion was triggered.
- CompletionTriggerKind get triggerKind;/// The trigger character (a single character) that has trigger code complete.
-/// Is undefined if `triggerKind !== CompletionTriggerKind.TriggerCharacter`
+ CompletionTriggerKind get triggerKind;/// The trigger character (a single character) that has trigger code
+/// complete. Is undefined if `triggerKind !==
+/// CompletionTriggerKind.TriggerCharacter`
  String? get triggerCharacter;
 /// Create a copy of CompletionContext
 /// with the given fields replaced by the non-null parameter values.
@@ -66537,8 +66583,9 @@ class _CompletionContext implements CompletionContext {
 
 /// How the completion was triggered.
 @override final  CompletionTriggerKind triggerKind;
-/// The trigger character (a single character) that has trigger code complete.
-/// Is undefined if `triggerKind !== CompletionTriggerKind.TriggerCharacter`
+/// The trigger character (a single character) that has trigger code
+/// complete. Is undefined if `triggerKind !==
+/// CompletionTriggerKind.TriggerCharacter`
 @override final  String? triggerCharacter;
 
 /// Create a copy of CompletionContext
@@ -66610,8 +66657,8 @@ mixin _$CompletionItemLabelDetails {
 /// [label], without any spacing. Should be used for function signatures and
 /// type annotations.
  String? get detail;/// An optional string which is rendered less prominently after
-/// [CompletionItem.detail]. Should be used for fully qualified names and file
-/// paths.
+/// [CompletionItem.detail]. Should be used for fully qualified names and
+/// file paths.
  String? get description;
 /// Create a copy of CompletionItemLabelDetails
 /// with the given fields replaced by the non-null parameter values.
@@ -66815,8 +66862,8 @@ class _CompletionItemLabelDetails implements CompletionItemLabelDetails {
 /// type annotations.
 @override final  String? detail;
 /// An optional string which is rendered less prominently after
-/// [CompletionItem.detail]. Should be used for fully qualified names and file
-/// paths.
+/// [CompletionItem.detail]. Should be used for fully qualified names and
+/// file paths.
 @override final  String? description;
 
 /// Create a copy of CompletionItemLabelDetails
@@ -67196,25 +67243,26 @@ $RangeCopyWith<$Res> get replace {
 mixin _$CompletionOptions {
 
  bool? get workDoneProgress;/// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
-/// so when the user starts to type an identifier. For example if the user types
-/// `c` in a JavaScript file code complete will automatically pop up present
-/// `console` besides others as a completion item. Characters that make up
-/// identifiers don't need to be listed here.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will automatically
+/// pop up present `console` besides others as a completion item. Characters
+/// that make up identifiers don't need to be listed here.
 ///
 /// If code complete should automatically be trigger on characters not being
 /// valid inside an identifier (for example `.` in JavaScript) list them in
 /// `triggerCharacters`.
- List<String>? get triggerCharacters;/// The list of all possible characters that commit a completion. This field can
-/// be used if clients don't support individual commit characters per completion
-/// item. See
+ List<String>? get triggerCharacters;/// The list of all possible characters that commit a completion. This field
+/// can be used if clients don't support individual commit characters per
+/// completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on
+/// an individual completion item the ones on the completion item win.
  List<String>? get allCommitCharacters;/// The server provides support to resolve additional information for a
 /// completion item.
- bool? get resolveProvider;/// The server supports the following `CompletionItem` specific capabilities.
+ bool? get resolveProvider;/// The server supports the following `CompletionItem` specific
+/// capabilities.
  ({bool? labelDetailsSupport})? get completionItem;
 /// Create a copy of CompletionOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -67418,22 +67466,22 @@ class _CompletionOptions implements CompletionOptions {
 
 @override final  bool? workDoneProgress;
 /// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
-/// so when the user starts to type an identifier. For example if the user types
-/// `c` in a JavaScript file code complete will automatically pop up present
-/// `console` besides others as a completion item. Characters that make up
-/// identifiers don't need to be listed here.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will automatically
+/// pop up present `console` besides others as a completion item. Characters
+/// that make up identifiers don't need to be listed here.
 ///
 /// If code complete should automatically be trigger on characters not being
 /// valid inside an identifier (for example `.` in JavaScript) list them in
 /// `triggerCharacters`.
  final  List<String>? _triggerCharacters;
 /// Most tools trigger completion request automatically without explicitly
-/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do
-/// so when the user starts to type an identifier. For example if the user types
-/// `c` in a JavaScript file code complete will automatically pop up present
-/// `console` besides others as a completion item. Characters that make up
-/// identifiers don't need to be listed here.
+/// requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically
+/// they do so when the user starts to type an identifier. For example if
+/// the user types `c` in a JavaScript file code complete will automatically
+/// pop up present `console` besides others as a completion item. Characters
+/// that make up identifiers don't need to be listed here.
 ///
 /// If code complete should automatically be trigger on characters not being
 /// valid inside an identifier (for example `.` in JavaScript) list them in
@@ -67446,21 +67494,21 @@ class _CompletionOptions implements CompletionOptions {
   return EqualUnmodifiableListView(value);
 }
 
-/// The list of all possible characters that commit a completion. This field can
-/// be used if clients don't support individual commit characters per completion
-/// item. See
+/// The list of all possible characters that commit a completion. This field
+/// can be used if clients don't support individual commit characters per
+/// completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on
+/// an individual completion item the ones on the completion item win.
  final  List<String>? _allCommitCharacters;
-/// The list of all possible characters that commit a completion. This field can
-/// be used if clients don't support individual commit characters per completion
-/// item. See
+/// The list of all possible characters that commit a completion. This field
+/// can be used if clients don't support individual commit characters per
+/// completion item. See
 /// `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport`
 ///
-/// If a server provides both `allCommitCharacters` and commit characters on an
-/// individual completion item the ones on the completion item win.
+/// If a server provides both `allCommitCharacters` and commit characters on
+/// an individual completion item the ones on the completion item win.
 @override List<String>? get allCommitCharacters {
   final value = _allCommitCharacters;
   if (value == null) return null;
@@ -67472,7 +67520,8 @@ class _CompletionOptions implements CompletionOptions {
 /// The server provides support to resolve additional information for a
 /// completion item.
 @override final  bool? resolveProvider;
-/// The server supports the following `CompletionItem` specific capabilities.
+/// The server supports the following `CompletionItem` specific
+/// capabilities.
 @override final  ({bool? labelDetailsSupport})? completionItem;
 
 /// Create a copy of CompletionOptions
@@ -68131,8 +68180,8 @@ $SignatureHelpCopyWith<$Res>? get activeSignatureHelp {
 mixin _$SignatureInformation {
 
 /// The label of this signature. Will be shown in the UI.
- String get label;/// The human-readable doc-comment of this signature. Will be shown in the UI
-/// but can be omitted.
+ String get label;/// The human-readable doc-comment of this signature. Will be shown in the
+/// UI but can be omitted.
  Object? get documentation;/// The parameters of this signature.
  List<ParameterInformation>? get parameters;/// The index of the active parameter.
 ///
@@ -68338,8 +68387,8 @@ class _SignatureInformation implements SignatureInformation {
 
 /// The label of this signature. Will be shown in the UI.
 @override final  String label;
-/// The human-readable doc-comment of this signature. Will be shown in the UI
-/// but can be omitted.
+/// The human-readable doc-comment of this signature. Will be shown in the
+/// UI but can be omitted.
 @override final  Object? documentation;
 /// The parameters of this signature.
  final  List<ParameterInformation>? _parameters;
@@ -68427,7 +68476,8 @@ mixin _$SignatureHelpOptions {
  List<String>? get triggerCharacters;/// List of characters that re-trigger signature help.
 ///
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
  List<String>? get retriggerCharacters;
 /// Create a copy of SignatureHelpOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -68642,12 +68692,14 @@ class _SignatureHelpOptions implements SignatureHelpOptions {
 /// List of characters that re-trigger signature help.
 ///
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
  final  List<String>? _retriggerCharacters;
 /// List of characters that re-trigger signature help.
 ///
 /// These trigger characters are only active when signature help is already
-/// showing. All trigger characters are also counted as re-trigger characters.
+/// showing. All trigger characters are also counted as re-trigger
+/// characters.
 @override List<String>? get retriggerCharacters {
   final value = _retriggerCharacters;
   if (value == null) return null;
@@ -69780,10 +69832,10 @@ mixin _$BaseSymbolInformation {
 /// The name of this symbol.
  String get name;/// The kind of this symbol.
  SymbolKind get kind;/// Tags for this symbol.
- List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+ List<SymbolTag>? get tags;/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
  String? get containerName;
 /// Create a copy of BaseSymbolInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -69999,10 +70051,10 @@ class _BaseSymbolInformation implements BaseSymbolInformation {
   return EqualUnmodifiableListView(value);
 }
 
-/// The name of the symbol containing this symbol. This information is for user
-/// interface purposes (e.g. to render a qualifier in the user interface if
-/// necessary). It can't be used to re-infer a hierarchy for the document
-/// symbols.
+/// The name of the symbol containing this symbol. This information is for
+/// user interface purposes (e.g. to render a qualifier in the user
+/// interface if necessary). It can't be used to re-infer a hierarchy for
+/// the document symbols.
 @override final  String? containerName;
 
 /// Create a copy of BaseSymbolInformation
@@ -70072,8 +70124,8 @@ as String?,
 /// @nodoc
 mixin _$DocumentSymbolOptions {
 
- bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees are shown
-/// for the same document.
+ bool? get workDoneProgress;/// A human-readable string that is shown when multiple outlines trees are
+/// shown for the same document.
  String? get label;
 /// Create a copy of DocumentSymbolOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -70273,8 +70325,8 @@ class _DocumentSymbolOptions implements DocumentSymbolOptions {
   factory _DocumentSymbolOptions.fromJson(Map<String, dynamic> json) => _$DocumentSymbolOptionsFromJson(json);
 
 @override final  bool? workDoneProgress;
-/// A human-readable string that is shown when multiple outlines trees are shown
-/// for the same document.
+/// A human-readable string that is shown when multiple outlines trees are
+/// shown for the same document.
 @override final  String? label;
 
 /// Create a copy of DocumentSymbolOptions
@@ -70343,15 +70395,15 @@ as String?,
 mixin _$CodeActionContext {
 
 /// An array of diagnostics known on the client side overlapping the range
-/// provided to the `textDocument/codeAction` request. They are provided so that
-/// the server knows which errors are currently presented to the user for the
-/// given range. There is no guarantee that these accurately reflect the error
-/// state of the resource. The primary parameter to compute code actions is the
-/// provided range.
+/// provided to the `textDocument/codeAction` request. They are provided so
+/// that the server knows which errors are currently presented to the user
+/// for the given range. There is no guarantee that these accurately reflect
+/// the error state of the resource. The primary parameter to compute code
+/// actions is the provided range.
  List<Diagnostic> get diagnostics;/// Requested kind of actions to return.
 ///
-/// Actions not of this kind are filtered out by the client before being shown.
-/// So servers can omit computing them.
+/// Actions not of this kind are filtered out by the client before being
+/// shown. So servers can omit computing them.
  List<CodeActionKind>? get only;/// The reason why code actions were requested.
  CodeActionTriggerKind? get triggerKind;
 /// Create a copy of CodeActionContext
@@ -70553,18 +70605,18 @@ class _CodeActionContext implements CodeActionContext {
   factory _CodeActionContext.fromJson(Map<String, dynamic> json) => _$CodeActionContextFromJson(json);
 
 /// An array of diagnostics known on the client side overlapping the range
-/// provided to the `textDocument/codeAction` request. They are provided so that
-/// the server knows which errors are currently presented to the user for the
-/// given range. There is no guarantee that these accurately reflect the error
-/// state of the resource. The primary parameter to compute code actions is the
-/// provided range.
+/// provided to the `textDocument/codeAction` request. They are provided so
+/// that the server knows which errors are currently presented to the user
+/// for the given range. There is no guarantee that these accurately reflect
+/// the error state of the resource. The primary parameter to compute code
+/// actions is the provided range.
  final  List<Diagnostic> _diagnostics;
 /// An array of diagnostics known on the client side overlapping the range
-/// provided to the `textDocument/codeAction` request. They are provided so that
-/// the server knows which errors are currently presented to the user for the
-/// given range. There is no guarantee that these accurately reflect the error
-/// state of the resource. The primary parameter to compute code actions is the
-/// provided range.
+/// provided to the `textDocument/codeAction` request. They are provided so
+/// that the server knows which errors are currently presented to the user
+/// for the given range. There is no guarantee that these accurately reflect
+/// the error state of the resource. The primary parameter to compute code
+/// actions is the provided range.
 @override List<Diagnostic> get diagnostics {
   if (_diagnostics is EqualUnmodifiableListView) return _diagnostics;
   // ignore: implicit_dynamic_type
@@ -70573,13 +70625,13 @@ class _CodeActionContext implements CodeActionContext {
 
 /// Requested kind of actions to return.
 ///
-/// Actions not of this kind are filtered out by the client before being shown.
-/// So servers can omit computing them.
+/// Actions not of this kind are filtered out by the client before being
+/// shown. So servers can omit computing them.
  final  List<CodeActionKind>? _only;
 /// Requested kind of actions to return.
 ///
-/// Actions not of this kind are filtered out by the client before being shown.
-/// So servers can omit computing them.
+/// Actions not of this kind are filtered out by the client before being
+/// shown. So servers can omit computing them.
 @override List<CodeActionKind>? get only {
   final value = _only;
   if (value == null) return null;
@@ -70659,8 +70711,8 @@ mixin _$CodeActionOptions {
 
  bool? get workDoneProgress;/// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
  List<CodeActionKind>? get codeActionKinds;/// The server provides support to resolve additional information for a code
 /// action.
  bool? get resolveProvider;
@@ -70865,13 +70917,13 @@ class _CodeActionOptions implements CodeActionOptions {
 @override final  bool? workDoneProgress;
 /// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
  final  List<CodeActionKind>? _codeActionKinds;
 /// CodeActionKinds that this server may return.
 ///
-/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the
-/// server may list out every specific kind they provide.
+/// The list of kinds may be generic, such as `CodeActionKind.Refactor`, or
+/// the server may list out every specific kind they provide.
 @override List<CodeActionKind>? get codeActionKinds {
   final value = _codeActionKinds;
   if (value == null) return null;
@@ -73683,11 +73735,12 @@ as List<String>,
 mixin _$OptionalVersionedTextDocumentIdentifier {
 
 /// The text document's uri.
- String get uri;/// The version number of this document. If a versioned text document identifier
-/// is sent from the server to the client and the file is not open in the editor
-/// (the server has not received an open notification before) the server can
-/// send `null` to indicate that the version is unknown and the content on disk
-/// is the truth (as specified with document content ownership).
+ String get uri;/// The version number of this document. If a versioned text document
+/// identifier is sent from the server to the client and the file is not
+/// open in the editor (the server has not received an open notification
+/// before) the server can send `null` to indicate that the version is
+/// unknown and the content on disk is the truth (as specified with document
+/// content ownership).
  int? get version;
 /// Create a copy of OptionalVersionedTextDocumentIdentifier
 /// with the given fields replaced by the non-null parameter values.
@@ -73888,11 +73941,12 @@ class _OptionalVersionedTextDocumentIdentifier implements OptionalVersionedTextD
 
 /// The text document's uri.
 @override final  String uri;
-/// The version number of this document. If a versioned text document identifier
-/// is sent from the server to the client and the file is not open in the editor
-/// (the server has not received an open notification before) the server can
-/// send `null` to indicate that the version is unknown and the content on disk
-/// is the truth (as specified with document content ownership).
+/// The version number of this document. If a versioned text document
+/// identifier is sent from the server to the client and the file is not
+/// open in the editor (the server has not received an open notification
+/// before) the server can send `null` to indicate that the version is
+/// unknown and the content on disk is the truth (as specified with document
+/// content ownership).
 @override final  int? version;
 
 /// Create a copy of OptionalVersionedTextDocumentIdentifier
@@ -75335,15 +75389,16 @@ as bool?,
 /// @nodoc
 mixin _$FileOperationPattern {
 
-/// The glob pattern to match. Glob patterns can have the following syntax: -
-/// `*` to match zero or more characters in a path segment - `?` to match on one
-/// character in a path segment - `**` to match any number of path segments,
-/// including none - `{}` to group sub patterns into an OR expression. (e.g.
-/// `**​/*.{ts,js}` matches all TypeScript and JavaScript files) - `[]` to
-/// declare a range of characters to match in a path segment (e.g.,
-/// `example.[0-9]` to match on `example.0`, `example.1`, …) - `[!...]` to
-/// negate a range of characters to match in a path segment (e.g.,
-/// `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
+/// The glob pattern to match. Glob patterns can have the following syntax:
+/// - `*` to match zero or more characters in a path segment - `?` to match
+/// on one character in a path segment - `**` to match any number of path
+/// segments, including none - `{}` to group sub patterns into an OR
+/// expression. (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript
+/// files) - `[]` to declare a range of characters to match in a path
+/// segment (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)
+/// - `[!...]` to negate a range of characters to match in a path segment
+/// (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not
+/// `example.0`)
  String get glob;/// Whether to match files or folders with this pattern.
 ///
 /// Matches both if undefined.
@@ -75559,15 +75614,16 @@ class _FileOperationPattern implements FileOperationPattern {
   const _FileOperationPattern({required this.glob, this.matches, this.options});
   factory _FileOperationPattern.fromJson(Map<String, dynamic> json) => _$FileOperationPatternFromJson(json);
 
-/// The glob pattern to match. Glob patterns can have the following syntax: -
-/// `*` to match zero or more characters in a path segment - `?` to match on one
-/// character in a path segment - `**` to match any number of path segments,
-/// including none - `{}` to group sub patterns into an OR expression. (e.g.
-/// `**​/*.{ts,js}` matches all TypeScript and JavaScript files) - `[]` to
-/// declare a range of characters to match in a path segment (e.g.,
-/// `example.[0-9]` to match on `example.0`, `example.1`, …) - `[!...]` to
-/// negate a range of characters to match in a path segment (e.g.,
-/// `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)
+/// The glob pattern to match. Glob patterns can have the following syntax:
+/// - `*` to match zero or more characters in a path segment - `?` to match
+/// on one character in a path segment - `**` to match any number of path
+/// segments, including none - `{}` to group sub patterns into an OR
+/// expression. (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript
+/// files) - `[]` to declare a range of characters to match in a path
+/// segment (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)
+/// - `[!...]` to negate a range of characters to match in a path segment
+/// (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not
+/// `example.0`)
 @override final  String glob;
 /// Whether to match files or folders with this pattern.
 ///
@@ -75655,12 +75711,12 @@ $FileOperationPatternOptionsCopyWith<$Res>? get options {
 mixin _$WorkspaceFullDocumentDiagnosticReport {
 
 /// A full document diagnostic report.
- String get kind;/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+ String get kind;/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
  String? get resultId;/// The actual items.
  List<Diagnostic> get items;/// The URI for which diagnostic information is reported.
- String get uri;/// The version number for which the diagnostics are reported. If the document
-/// is not marked as open `null` can be provided.
+ String get uri;/// The version number for which the diagnostics are reported. If the
+/// document is not marked as open `null` can be provided.
  int? get version;
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -75864,8 +75920,8 @@ class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDia
 
 /// A full document diagnostic report.
 @override final  String kind;
-/// An optional result id. If provided it will be sent on the next diagnostic
-/// request for the same document.
+/// An optional result id. If provided it will be sent on the next
+/// diagnostic request for the same document.
 @override final  String? resultId;
 /// The actual items.
  final  List<Diagnostic> _items;
@@ -75878,8 +75934,8 @@ class _WorkspaceFullDocumentDiagnosticReport implements WorkspaceFullDocumentDia
 
 /// The URI for which diagnostic information is reported.
 @override final  String uri;
-/// The version number for which the diagnostics are reported. If the document
-/// is not marked as open `null` can be provided.
+/// The version number for which the diagnostics are reported. If the
+/// document is not marked as open `null` can be provided.
 @override final  int? version;
 
 /// Create a copy of WorkspaceFullDocumentDiagnosticReport
@@ -75952,11 +76008,11 @@ mixin _$WorkspaceUnchangedDocumentDiagnosticReport {
 
 /// A document diagnostic report indicating no changes to the last result. A
 /// server can only return `unchanged` if result ids are provided.
- String get kind;/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+ String get kind;/// A result id which will be sent on the next diagnostic request for the
+/// same document.
  String get resultId;/// The URI for which diagnostic information is reported.
- String get uri;/// The version number for which the diagnostics are reported. If the document
-/// is not marked as open `null` can be provided.
+ String get uri;/// The version number for which the diagnostics are reported. If the
+/// document is not marked as open `null` can be provided.
  int? get version;
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
 /// with the given fields replaced by the non-null parameter values.
@@ -76160,13 +76216,13 @@ class _WorkspaceUnchangedDocumentDiagnosticReport implements WorkspaceUnchangedD
 /// A document diagnostic report indicating no changes to the last result. A
 /// server can only return `unchanged` if result ids are provided.
 @override final  String kind;
-/// A result id which will be sent on the next diagnostic request for the same
-/// document.
+/// A result id which will be sent on the next diagnostic request for the
+/// same document.
 @override final  String resultId;
 /// The URI for which diagnostic information is reported.
 @override final  String uri;
-/// The version number for which the diagnostics are reported. If the document
-/// is not marked as open `null` can be provided.
+/// The version number for which the diagnostics are reported. If the
+/// document is not marked as open `null` can be provided.
 @override final  int? version;
 
 /// Create a copy of WorkspaceUnchangedDocumentDiagnosticReport
@@ -77535,15 +77591,16 @@ $GeneralClientCapabilitiesCopyWith<$Res>? get general {
 /// @nodoc
 mixin _$TextDocumentSyncOptions {
 
-/// Open and close notifications are sent to the server. If omitted open close
-/// notification should not be sent.
- bool? get openClose;/// Change notifications are sent to the server. See TextDocumentSyncKind.None,
-/// TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted
-/// it defaults to TextDocumentSyncKind.None.
- TextDocumentSyncKind? get change;/// If present will save notifications are sent to the server. If omitted the
-/// notification should not be sent.
- bool? get willSave;/// If present will save wait until requests are sent to the server. If omitted
-/// the request should not be sent.
+/// Open and close notifications are sent to the server. If omitted open
+/// close notification should not be sent.
+ bool? get openClose;/// Change notifications are sent to the server. See
+/// TextDocumentSyncKind.None, TextDocumentSyncKind.Full and
+/// TextDocumentSyncKind.Incremental. If omitted it defaults to
+/// TextDocumentSyncKind.None.
+ TextDocumentSyncKind? get change;/// If present will save notifications are sent to the server. If omitted
+/// the notification should not be sent.
+ bool? get willSave;/// If present will save wait until requests are sent to the server. If
+/// omitted the request should not be sent.
  bool? get willSaveWaitUntil;/// If present save notifications are sent to the server. If omitted the
 /// notification should not be sent.
  Object? get save;
@@ -77746,18 +77803,19 @@ class _TextDocumentSyncOptions implements TextDocumentSyncOptions {
   const _TextDocumentSyncOptions({this.openClose, this.change, this.willSave, this.willSaveWaitUntil, this.save});
   factory _TextDocumentSyncOptions.fromJson(Map<String, dynamic> json) => _$TextDocumentSyncOptionsFromJson(json);
 
-/// Open and close notifications are sent to the server. If omitted open close
-/// notification should not be sent.
+/// Open and close notifications are sent to the server. If omitted open
+/// close notification should not be sent.
 @override final  bool? openClose;
-/// Change notifications are sent to the server. See TextDocumentSyncKind.None,
-/// TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted
-/// it defaults to TextDocumentSyncKind.None.
+/// Change notifications are sent to the server. See
+/// TextDocumentSyncKind.None, TextDocumentSyncKind.Full and
+/// TextDocumentSyncKind.Incremental. If omitted it defaults to
+/// TextDocumentSyncKind.None.
 @override final  TextDocumentSyncKind? change;
-/// If present will save notifications are sent to the server. If omitted the
-/// notification should not be sent.
+/// If present will save notifications are sent to the server. If omitted
+/// the notification should not be sent.
 @override final  bool? willSave;
-/// If present will save wait until requests are sent to the server. If omitted
-/// the request should not be sent.
+/// If present will save wait until requests are sent to the server. If
+/// omitted the request should not be sent.
 @override final  bool? willSaveWaitUntil;
 /// If present save notifications are sent to the server. If omitted the
 /// notification should not be sent.
@@ -77831,8 +77889,8 @@ as bool?,save: freezed == save ? _self.save : save ,
 mixin _$NotebookDocumentSyncOptions {
 
 /// The notebooks to be synced
- List<Object> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only be
-/// honored if mode === `notebook`.
+ List<Object> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
  bool? get save;
 /// Create a copy of NotebookDocumentSyncOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -78040,8 +78098,8 @@ class _NotebookDocumentSyncOptions implements NotebookDocumentSyncOptions {
   return EqualUnmodifiableListView(_notebookSelector);
 }
 
-/// Whether save notification should be forwarded to the server. Will only be
-/// honored if mode === `notebook`.
+/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
 @override final  bool? save;
 
 /// Create a copy of NotebookDocumentSyncOptions
@@ -78110,10 +78168,10 @@ as bool?,
 mixin _$NotebookDocumentSyncRegistrationOptions {
 
 /// The notebooks to be synced
- List<Object> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only be
-/// honored if mode === `notebook`.
- bool? get save;/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+ List<Object> get notebookSelector;/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
+ bool? get save;/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
  String? get id;
 /// Create a copy of NotebookDocumentSyncRegistrationOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -78322,11 +78380,11 @@ class _NotebookDocumentSyncRegistrationOptions implements NotebookDocumentSyncRe
   return EqualUnmodifiableListView(_notebookSelector);
 }
 
-/// Whether save notification should be forwarded to the server. Will only be
-/// honored if mode === `notebook`.
+/// Whether save notification should be forwarded to the server. Will only
+/// be honored if mode === `notebook`.
 @override final  bool? save;
-/// The id used to register the request. The id can be used to deregister the
-/// request again. See also Registration#id.
+/// The id used to register the request. The id can be used to deregister
+/// the request again. See also Registration#id.
 @override final  String? id;
 
 /// Create a copy of NotebookDocumentSyncRegistrationOptions
@@ -78396,11 +78454,13 @@ as String?,
 mixin _$WorkspaceFoldersServerCapabilities {
 
 /// The server has support for workspace folders
- bool? get supported;/// Whether the server wants to receive workspace folder change notifications.
+ bool? get supported;/// Whether the server wants to receive workspace folder change
+/// notifications.
 ///
 /// If a string is provided the string is treated as an ID under which the
 /// notification is registered on the client side. The ID can be used to
-/// unregister for these events using the `client/unregisterCapability` request.
+/// unregister for these events using the `client/unregisterCapability`
+/// request.
  Object? get changeNotifications;
 /// Create a copy of WorkspaceFoldersServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -78600,11 +78660,13 @@ class _WorkspaceFoldersServerCapabilities implements WorkspaceFoldersServerCapab
 
 /// The server has support for workspace folders
 @override final  bool? supported;
-/// Whether the server wants to receive workspace folder change notifications.
+/// Whether the server wants to receive workspace folder change
+/// notifications.
 ///
 /// If a string is provided the string is treated as an ID under which the
 /// notification is registered on the client side. The ID can be used to
-/// unregister for these events using the `client/unregisterCapability` request.
+/// unregister for these events using the `client/unregisterCapability`
+/// request.
 @override final  Object? changeNotifications;
 
 /// Create a copy of WorkspaceFoldersServerCapabilities
@@ -79660,15 +79722,16 @@ mixin _$ParameterInformation {
 
 /// The label of this parameter information.
 ///
-/// Either a string or an inclusive start and exclusive end offsets within its
-/// containing signature label. (see SignatureInformation.label). The offsets
-/// are based on a UTF-16 string representation as `Position` and `Range` does.
+/// Either a string or an inclusive start and exclusive end offsets within
+/// its containing signature label. (see SignatureInformation.label). The
+/// offsets are based on a UTF-16 string representation as `Position` and
+/// `Range` does.
 ///
 /// *Note*: a label of type string should be a substring of its containing
-/// signature label. Its intended use case is to highlight the parameter label
-/// part in the `SignatureInformation.label`.
- Object get label;/// The human-readable doc-comment of this parameter. Will be shown in the UI
-/// but can be omitted.
+/// signature label. Its intended use case is to highlight the parameter
+/// label part in the `SignatureInformation.label`.
+ Object get label;/// The human-readable doc-comment of this parameter. Will be shown in the
+/// UI but can be omitted.
  Object? get documentation;
 /// Create a copy of ParameterInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -79867,16 +79930,17 @@ class _ParameterInformation implements ParameterInformation {
 
 /// The label of this parameter information.
 ///
-/// Either a string or an inclusive start and exclusive end offsets within its
-/// containing signature label. (see SignatureInformation.label). The offsets
-/// are based on a UTF-16 string representation as `Position` and `Range` does.
+/// Either a string or an inclusive start and exclusive end offsets within
+/// its containing signature label. (see SignatureInformation.label). The
+/// offsets are based on a UTF-16 string representation as `Position` and
+/// `Range` does.
 ///
 /// *Note*: a label of type string should be a substring of its containing
-/// signature label. Its intended use case is to highlight the parameter label
-/// part in the `SignatureInformation.label`.
+/// signature label. Its intended use case is to highlight the parameter
+/// label part in the `SignatureInformation.label`.
 @override final  Object label;
-/// The human-readable doc-comment of this parameter. Will be shown in the UI
-/// but can be omitted.
+/// The human-readable doc-comment of this parameter. Will be shown in the
+/// UI but can be omitted.
 @override final  Object? documentation;
 
 /// Create a copy of ParameterInformation
@@ -79942,13 +80006,13 @@ label: null == label ? _self.label : label ,documentation: freezed == documentat
 /// @nodoc
 mixin _$NotebookCellTextDocumentFilter {
 
-/// A filter that matches against the notebook containing the notebook cell. If
-/// a string value is provided it matches against the notebook type. '*' matches
-/// every notebook.
+/// A filter that matches against the notebook containing the notebook cell.
+/// If a string value is provided it matches against the notebook type. '*'
+/// matches every notebook.
  Object get notebook;/// A language id like `python`.
 ///
-/// Will be matched against the language id of the notebook cell document. '*'
-/// matches every language.
+/// Will be matched against the language id of the notebook cell document.
+/// '*' matches every language.
  String? get language;
 /// Create a copy of NotebookCellTextDocumentFilter
 /// with the given fields replaced by the non-null parameter values.
@@ -80146,14 +80210,14 @@ class _NotebookCellTextDocumentFilter implements NotebookCellTextDocumentFilter 
   const _NotebookCellTextDocumentFilter({required this.notebook, this.language});
   factory _NotebookCellTextDocumentFilter.fromJson(Map<String, dynamic> json) => _$NotebookCellTextDocumentFilterFromJson(json);
 
-/// A filter that matches against the notebook containing the notebook cell. If
-/// a string value is provided it matches against the notebook type. '*' matches
-/// every notebook.
+/// A filter that matches against the notebook containing the notebook cell.
+/// If a string value is provided it matches against the notebook type. '*'
+/// matches every notebook.
 @override final  Object notebook;
 /// A language id like `python`.
 ///
-/// Will be matched against the language id of the notebook cell document. '*'
-/// matches every language.
+/// Will be matched against the language id of the notebook cell document.
+/// '*' matches every language.
 @override final  String? language;
 
 /// Create a copy of NotebookCellTextDocumentFilter
@@ -80485,8 +80549,8 @@ as bool?,
 /// @nodoc
 mixin _$ExecutionSummary {
 
-/// A strict monotonically increasing value indicating the execution order of a
-/// cell inside a notebook.
+/// A strict monotonically increasing value indicating the execution order
+/// of a cell inside a notebook.
  int get executionOrder;/// Whether the execution was successful or not if known by the client.
  bool? get success;
 /// Create a copy of ExecutionSummary
@@ -80686,8 +80750,8 @@ class _ExecutionSummary implements ExecutionSummary {
   const _ExecutionSummary({required this.executionOrder, this.success});
   factory _ExecutionSummary.fromJson(Map<String, dynamic> json) => _$ExecutionSummaryFromJson(json);
 
-/// A strict monotonically increasing value indicating the execution order of a
-/// cell inside a notebook.
+/// A strict monotonically increasing value indicating the execution order
+/// of a cell inside a notebook.
 @override final  int executionOrder;
 /// Whether the execution was successful or not if known by the client.
 @override final  bool? success;
@@ -80757,12 +80821,13 @@ as bool?,
 /// @nodoc
 mixin _$WorkspaceClientCapabilities {
 
-/// The client supports applying batch edits to the workspace by supporting the
-/// request 'workspace/applyEdit'
+/// The client supports applying batch edits to the workspace by supporting
+/// the request 'workspace/applyEdit'
  bool? get applyEdit;/// Capabilities specific to `WorkspaceEdit`s.
  WorkspaceEditClientCapabilities? get workspaceEdit;/// Capabilities specific to the `workspace/didChangeConfiguration`
 /// notification.
- DidChangeConfigurationClientCapabilities? get didChangeConfiguration;/// Capabilities specific to the `workspace/didChangeWatchedFiles` notification.
+ DidChangeConfigurationClientCapabilities? get didChangeConfiguration;/// Capabilities specific to the `workspace/didChangeWatchedFiles`
+/// notification.
  DidChangeWatchedFilesClientCapabilities? get didChangeWatchedFiles;/// Capabilities specific to the `workspace/symbol` request.
  WorkspaceSymbolClientCapabilities? get symbol;/// Capabilities specific to the `workspace/executeCommand` request.
  ExecuteCommandClientCapabilities? get executeCommand;/// The client has support for workspace folders.
@@ -80770,14 +80835,18 @@ mixin _$WorkspaceClientCapabilities {
  bool? get configuration;/// Capabilities specific to the semantic token requests scoped to the
 /// workspace.
  SemanticTokensWorkspaceClientCapabilities? get semanticTokens;/// Capabilities specific to the code lens requests scoped to the workspace.
- CodeLensWorkspaceClientCapabilities? get codeLens;/// The client has support for file notifications/requests for user operations
-/// on files.
+ CodeLensWorkspaceClientCapabilities? get codeLens;/// The client has support for file notifications/requests for user
+/// operations on files.
 ///
 /// Since 3.16.0
- FileOperationClientCapabilities? get fileOperations;/// Capabilities specific to the inline values requests scoped to the workspace.
- InlineValueWorkspaceClientCapabilities? get inlineValue;/// Capabilities specific to the inlay hint requests scoped to the workspace.
- InlayHintWorkspaceClientCapabilities? get inlayHint;/// Capabilities specific to the diagnostic requests scoped to the workspace.
- DiagnosticWorkspaceClientCapabilities? get diagnostics;/// Capabilities specific to the folding range requests scoped to the workspace.
+ FileOperationClientCapabilities? get fileOperations;/// Capabilities specific to the inline values requests scoped to the
+/// workspace.
+ InlineValueWorkspaceClientCapabilities? get inlineValue;/// Capabilities specific to the inlay hint requests scoped to the
+/// workspace.
+ InlayHintWorkspaceClientCapabilities? get inlayHint;/// Capabilities specific to the diagnostic requests scoped to the
+/// workspace.
+ DiagnosticWorkspaceClientCapabilities? get diagnostics;/// Capabilities specific to the folding range requests scoped to the
+/// workspace.
  FoldingRangeWorkspaceClientCapabilities? get foldingRange;
 /// Create a copy of WorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -81133,15 +81202,16 @@ class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
   const _WorkspaceClientCapabilities({this.applyEdit, this.workspaceEdit, this.didChangeConfiguration, this.didChangeWatchedFiles, this.symbol, this.executeCommand, this.workspaceFolders, this.configuration, this.semanticTokens, this.codeLens, this.fileOperations, this.inlineValue, this.inlayHint, this.diagnostics, this.foldingRange});
   factory _WorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$WorkspaceClientCapabilitiesFromJson(json);
 
-/// The client supports applying batch edits to the workspace by supporting the
-/// request 'workspace/applyEdit'
+/// The client supports applying batch edits to the workspace by supporting
+/// the request 'workspace/applyEdit'
 @override final  bool? applyEdit;
 /// Capabilities specific to `WorkspaceEdit`s.
 @override final  WorkspaceEditClientCapabilities? workspaceEdit;
 /// Capabilities specific to the `workspace/didChangeConfiguration`
 /// notification.
 @override final  DidChangeConfigurationClientCapabilities? didChangeConfiguration;
-/// Capabilities specific to the `workspace/didChangeWatchedFiles` notification.
+/// Capabilities specific to the `workspace/didChangeWatchedFiles`
+/// notification.
 @override final  DidChangeWatchedFilesClientCapabilities? didChangeWatchedFiles;
 /// Capabilities specific to the `workspace/symbol` request.
 @override final  WorkspaceSymbolClientCapabilities? symbol;
@@ -81156,18 +81226,22 @@ class _WorkspaceClientCapabilities implements WorkspaceClientCapabilities {
 @override final  SemanticTokensWorkspaceClientCapabilities? semanticTokens;
 /// Capabilities specific to the code lens requests scoped to the workspace.
 @override final  CodeLensWorkspaceClientCapabilities? codeLens;
-/// The client has support for file notifications/requests for user operations
-/// on files.
+/// The client has support for file notifications/requests for user
+/// operations on files.
 ///
 /// Since 3.16.0
 @override final  FileOperationClientCapabilities? fileOperations;
-/// Capabilities specific to the inline values requests scoped to the workspace.
+/// Capabilities specific to the inline values requests scoped to the
+/// workspace.
 @override final  InlineValueWorkspaceClientCapabilities? inlineValue;
-/// Capabilities specific to the inlay hint requests scoped to the workspace.
+/// Capabilities specific to the inlay hint requests scoped to the
+/// workspace.
 @override final  InlayHintWorkspaceClientCapabilities? inlayHint;
-/// Capabilities specific to the diagnostic requests scoped to the workspace.
+/// Capabilities specific to the diagnostic requests scoped to the
+/// workspace.
 @override final  DiagnosticWorkspaceClientCapabilities? diagnostics;
-/// Capabilities specific to the folding range requests scoped to the workspace.
+/// Capabilities specific to the folding range requests scoped to the
+/// workspace.
 @override final  FoldingRangeWorkspaceClientCapabilities? foldingRange;
 
 /// Create a copy of WorkspaceClientCapabilities
@@ -81414,7 +81488,8 @@ mixin _$TextDocumentClientCapabilities {
  DocumentOnTypeFormattingClientCapabilities? get onTypeFormatting;/// Capabilities specific to the `textDocument/rename` request.
  RenameClientCapabilities? get rename;/// Capabilities specific to the `textDocument/foldingRange` request.
  FoldingRangeClientCapabilities? get foldingRange;/// Capabilities specific to the `textDocument/selectionRange` request.
- SelectionRangeClientCapabilities? get selectionRange;/// Capabilities specific to the `textDocument/publishDiagnostics` notification.
+ SelectionRangeClientCapabilities? get selectionRange;/// Capabilities specific to the `textDocument/publishDiagnostics`
+/// notification.
  PublishDiagnosticsClientCapabilities? get publishDiagnostics;/// Capabilities specific to the various call hierarchy requests.
  CallHierarchyClientCapabilities? get callHierarchy;/// Capabilities specific to the various semantic token request.
  SemanticTokensClientCapabilities? get semanticTokens;/// Capabilities specific to the `textDocument/linkedEditingRange` request.
@@ -82066,7 +82141,8 @@ class _TextDocumentClientCapabilities implements TextDocumentClientCapabilities 
 @override final  FoldingRangeClientCapabilities? foldingRange;
 /// Capabilities specific to the `textDocument/selectionRange` request.
 @override final  SelectionRangeClientCapabilities? selectionRange;
-/// Capabilities specific to the `textDocument/publishDiagnostics` notification.
+/// Capabilities specific to the `textDocument/publishDiagnostics`
+/// notification.
 @override final  PublishDiagnosticsClientCapabilities? publishDiagnostics;
 /// Capabilities specific to the various call hierarchy requests.
 @override final  CallHierarchyClientCapabilities? callHierarchy;
@@ -82836,12 +82912,12 @@ $NotebookDocumentSyncClientCapabilitiesCopyWith<$Res> get synchronization {
 /// @nodoc
 mixin _$WindowClientCapabilities {
 
-/// It indicates whether the client supports server initiated progress using the
-/// `window/workDoneProgress/create` request.
+/// It indicates whether the client supports server initiated progress using
+/// the `window/workDoneProgress/create` request.
 ///
-/// The capability also controls Whether client supports handling of progress
-/// notifications. If set servers are allowed to report a `workDoneProgress`
-/// property in the request specific server capabilities.
+/// The capability also controls Whether client supports handling of
+/// progress notifications. If set servers are allowed to report a
+/// `workDoneProgress` property in the request specific server capabilities.
  bool? get workDoneProgress;/// Capabilities specific to the showMessage request.
  ShowMessageRequestClientCapabilities? get showMessage;/// Capabilities specific to the showDocument request.
  ShowDocumentClientCapabilities? get showDocument;
@@ -83067,12 +83143,12 @@ class _WindowClientCapabilities implements WindowClientCapabilities {
   const _WindowClientCapabilities({this.workDoneProgress, this.showMessage, this.showDocument});
   factory _WindowClientCapabilities.fromJson(Map<String, dynamic> json) => _$WindowClientCapabilitiesFromJson(json);
 
-/// It indicates whether the client supports server initiated progress using the
-/// `window/workDoneProgress/create` request.
+/// It indicates whether the client supports server initiated progress using
+/// the `window/workDoneProgress/create` request.
 ///
-/// The capability also controls Whether client supports handling of progress
-/// notifications. If set servers are allowed to report a `workDoneProgress`
-/// property in the request specific server capabilities.
+/// The capability also controls Whether client supports handling of
+/// progress notifications. If set servers are allowed to report a
+/// `workDoneProgress` property in the request specific server capabilities.
 @override final  bool? workDoneProgress;
 /// Capabilities specific to the showMessage request.
 @override final  ShowMessageRequestClientCapabilities? showMessage;
@@ -83169,25 +83245,25 @@ $ShowDocumentClientCapabilitiesCopyWith<$Res>? get showDocument {
 /// @nodoc
 mixin _$GeneralClientCapabilities {
 
-/// Client capability that signals how the client handles stale requests (e.g. a
-/// request for which the client will not process the response anymore since the
-/// information is outdated).
+/// Client capability that signals how the client handles stale requests
+/// (e.g. a request for which the client will not process the response
+/// anymore since the information is outdated).
  ({bool cancel, List<String> retryOnContentModified})? get staleRequestSupport;/// Client capabilities specific to regular expressions.
  RegularExpressionsClientCapabilities? get regularExpressions;/// Client capabilities specific to the client's markdown parser.
- MarkdownClientCapabilities? get markdown;/// The position encodings supported by the client. Client and server have to
-/// agree on the same position encoding to ensure that offsets (e.g. character
-/// position in a line) are interpreted the same on both sides.
+ MarkdownClientCapabilities? get markdown;/// The position encodings supported by the client. Client and server have
+/// to agree on the same position encoding to ensure that offsets (e.g.
+/// character position in a line) are interpreted the same on both sides.
 ///
 /// To keep the protocol backwards compatible the following applies: if the
-/// value 'utf-16' is missing from the array of position encodings servers can
-/// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
-/// encoding.
+/// value 'utf-16' is missing from the array of position encodings servers
+/// can assume that the client supports UTF-16. UTF-16 is therefore a
+/// mandatory encoding.
 ///
 /// If omitted it defaults to ['utf-16'].
 ///
-/// Implementation considerations: since the conversion from one encoding into
-/// another requires the content of the file / line the conversion is best done
-/// where the file is read which is usually on the server side.
+/// Implementation considerations: since the conversion from one encoding
+/// into another requires the content of the file / line the conversion is
+/// best done where the file is read which is usually on the server side.
  List<PositionEncodingKind>? get positionEncodings;
 /// Create a copy of GeneralClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -83412,43 +83488,43 @@ class _GeneralClientCapabilities implements GeneralClientCapabilities {
   const _GeneralClientCapabilities({this.staleRequestSupport, this.regularExpressions, this.markdown, final  List<PositionEncodingKind>? positionEncodings}): _positionEncodings = positionEncodings;
   factory _GeneralClientCapabilities.fromJson(Map<String, dynamic> json) => _$GeneralClientCapabilitiesFromJson(json);
 
-/// Client capability that signals how the client handles stale requests (e.g. a
-/// request for which the client will not process the response anymore since the
-/// information is outdated).
+/// Client capability that signals how the client handles stale requests
+/// (e.g. a request for which the client will not process the response
+/// anymore since the information is outdated).
 @override final  ({bool cancel, List<String> retryOnContentModified})? staleRequestSupport;
 /// Client capabilities specific to regular expressions.
 @override final  RegularExpressionsClientCapabilities? regularExpressions;
 /// Client capabilities specific to the client's markdown parser.
 @override final  MarkdownClientCapabilities? markdown;
-/// The position encodings supported by the client. Client and server have to
-/// agree on the same position encoding to ensure that offsets (e.g. character
-/// position in a line) are interpreted the same on both sides.
+/// The position encodings supported by the client. Client and server have
+/// to agree on the same position encoding to ensure that offsets (e.g.
+/// character position in a line) are interpreted the same on both sides.
 ///
 /// To keep the protocol backwards compatible the following applies: if the
-/// value 'utf-16' is missing from the array of position encodings servers can
-/// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
-/// encoding.
+/// value 'utf-16' is missing from the array of position encodings servers
+/// can assume that the client supports UTF-16. UTF-16 is therefore a
+/// mandatory encoding.
 ///
 /// If omitted it defaults to ['utf-16'].
 ///
-/// Implementation considerations: since the conversion from one encoding into
-/// another requires the content of the file / line the conversion is best done
-/// where the file is read which is usually on the server side.
+/// Implementation considerations: since the conversion from one encoding
+/// into another requires the content of the file / line the conversion is
+/// best done where the file is read which is usually on the server side.
  final  List<PositionEncodingKind>? _positionEncodings;
-/// The position encodings supported by the client. Client and server have to
-/// agree on the same position encoding to ensure that offsets (e.g. character
-/// position in a line) are interpreted the same on both sides.
+/// The position encodings supported by the client. Client and server have
+/// to agree on the same position encoding to ensure that offsets (e.g.
+/// character position in a line) are interpreted the same on both sides.
 ///
 /// To keep the protocol backwards compatible the following applies: if the
-/// value 'utf-16' is missing from the array of position encodings servers can
-/// assume that the client supports UTF-16. UTF-16 is therefore a mandatory
-/// encoding.
+/// value 'utf-16' is missing from the array of position encodings servers
+/// can assume that the client supports UTF-16. UTF-16 is therefore a
+/// mandatory encoding.
 ///
 /// If omitted it defaults to ['utf-16'].
 ///
-/// Implementation considerations: since the conversion from one encoding into
-/// another requires the content of the file / line the conversion is best done
-/// where the file is read which is usually on the server side.
+/// Implementation considerations: since the conversion from one encoding
+/// into another requires the content of the file / line the conversion is
+/// best done where the file is read which is usually on the server side.
 @override List<PositionEncodingKind>? get positionEncodings {
   final value = _positionEncodings;
   if (value == null) return null;
@@ -83820,13 +83896,14 @@ as Pattern,
 mixin _$WorkspaceEditClientCapabilities {
 
 /// The client supports versioned document changes in `WorkspaceEdit`s
- bool? get documentChanges;/// The resource operations the client supports. Clients should at least support
-/// 'create', 'rename' and 'delete' files and folders.
+ bool? get documentChanges;/// The resource operations the client supports. Clients should at least
+/// support 'create', 'rename' and 'delete' files and folders.
  List<ResourceOperationKind>? get resourceOperations;/// The failure handling strategy of a client if applying the workspace edit
 /// fails.
- FailureHandlingKind? get failureHandling;/// Whether the client normalizes line endings to the client specific setting.
-/// If set to `true` the client will normalize line ending characters in a
-/// workspace edit to the client-specified new line character.
+ FailureHandlingKind? get failureHandling;/// Whether the client normalizes line endings to the client specific
+/// setting. If set to `true` the client will normalize line ending
+/// characters in a workspace edit to the client-specified new line
+/// character.
  bool? get normalizesLineEndings;/// Whether the client in general supports change annotations on text edits,
 /// create file, rename file and delete file changes.
  ({bool? groupsOnLabel})? get changeAnnotationSupport;
@@ -84032,11 +84109,11 @@ class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilitie
 
 /// The client supports versioned document changes in `WorkspaceEdit`s
 @override final  bool? documentChanges;
-/// The resource operations the client supports. Clients should at least support
-/// 'create', 'rename' and 'delete' files and folders.
+/// The resource operations the client supports. Clients should at least
+/// support 'create', 'rename' and 'delete' files and folders.
  final  List<ResourceOperationKind>? _resourceOperations;
-/// The resource operations the client supports. Clients should at least support
-/// 'create', 'rename' and 'delete' files and folders.
+/// The resource operations the client supports. Clients should at least
+/// support 'create', 'rename' and 'delete' files and folders.
 @override List<ResourceOperationKind>? get resourceOperations {
   final value = _resourceOperations;
   if (value == null) return null;
@@ -84048,9 +84125,10 @@ class _WorkspaceEditClientCapabilities implements WorkspaceEditClientCapabilitie
 /// The failure handling strategy of a client if applying the workspace edit
 /// fails.
 @override final  FailureHandlingKind? failureHandling;
-/// Whether the client normalizes line endings to the client specific setting.
-/// If set to `true` the client will normalize line ending characters in a
-/// workspace edit to the client-specified new line character.
+/// Whether the client normalizes line endings to the client specific
+/// setting. If set to `true` the client will normalize line ending
+/// characters in a workspace edit to the client-specified new line
+/// character.
 @override final  bool? normalizesLineEndings;
 /// Whether the client in general supports change annotations on text edits,
 /// create file, rename file and delete file changes.
@@ -84389,9 +84467,9 @@ as bool?,
 /// @nodoc
 mixin _$DidChangeWatchedFilesClientCapabilities {
 
-/// Did change watched files notification supports dynamic registration. Please
-/// note that the current protocol doesn't support static configuration for file
-/// changes from the server side.
+/// Did change watched files notification supports dynamic registration.
+/// Please note that the current protocol doesn't support static
+/// configuration for file changes from the server side.
  bool? get dynamicRegistration;/// Whether the client has support for [RelativePattern] or not.
  bool? get relativePatternSupport;
 /// Create a copy of DidChangeWatchedFilesClientCapabilities
@@ -84591,9 +84669,9 @@ class _DidChangeWatchedFilesClientCapabilities implements DidChangeWatchedFilesC
   const _DidChangeWatchedFilesClientCapabilities({this.dynamicRegistration, this.relativePatternSupport});
   factory _DidChangeWatchedFilesClientCapabilities.fromJson(Map<String, dynamic> json) => _$DidChangeWatchedFilesClientCapabilitiesFromJson(json);
 
-/// Did change watched files notification supports dynamic registration. Please
-/// note that the current protocol doesn't support static configuration for file
-/// changes from the server side.
+/// Did change watched files notification supports dynamic registration.
+/// Please note that the current protocol doesn't support static
+/// configuration for file changes from the server side.
 @override final  bool? dynamicRegistration;
 /// Whether the client has support for [RelativePattern] or not.
 @override final  bool? relativePatternSupport;
@@ -85216,13 +85294,13 @@ as bool?,
 /// @nodoc
 mixin _$SemanticTokensWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// semantic tokens currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// semantic tokens currently shown. It should be used with absolute care
+/// and is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of SemanticTokensWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -85420,13 +85498,13 @@ class _SemanticTokensWorkspaceClientCapabilities implements SemanticTokensWorksp
   const _SemanticTokensWorkspaceClientCapabilities({this.refreshSupport});
   factory _SemanticTokensWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$SemanticTokensWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// semantic tokens currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// semantic tokens currently shown. It should be used with absolute care
+/// and is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of SemanticTokensWorkspaceClientCapabilities
@@ -85493,13 +85571,13 @@ as bool?,
 /// @nodoc
 mixin _$CodeLensWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
-/// Note that this event is global and will force the client to refresh all code
-/// lenses currently shown. It should be used with absolute care and is useful
-/// for situation where a server for example detect a project wide change that
-/// requires such a calculation.
+/// Note that this event is global and will force the client to refresh all
+/// code lenses currently shown. It should be used with absolute care and is
+/// useful for situation where a server for example detect a project wide
+/// change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of CodeLensWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -85697,13 +85775,13 @@ class _CodeLensWorkspaceClientCapabilities implements CodeLensWorkspaceClientCap
   const _CodeLensWorkspaceClientCapabilities({this.refreshSupport});
   factory _CodeLensWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$CodeLensWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
-/// Note that this event is global and will force the client to refresh all code
-/// lenses currently shown. It should be used with absolute care and is useful
-/// for situation where a server for example detect a project wide change that
-/// requires such a calculation.
+/// Note that this event is global and will force the client to refresh all
+/// code lenses currently shown. It should be used with absolute care and is
+/// useful for situation where a server for example detect a project wide
+/// change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of CodeLensWorkspaceClientCapabilities
@@ -86067,13 +86145,13 @@ as bool?,
 /// @nodoc
 mixin _$InlineValueWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// inline values currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// inline values currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of InlineValueWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -86271,13 +86349,13 @@ class _InlineValueWorkspaceClientCapabilities implements InlineValueWorkspaceCli
   const _InlineValueWorkspaceClientCapabilities({this.refreshSupport});
   factory _InlineValueWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineValueWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// inline values currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// inline values currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of InlineValueWorkspaceClientCapabilities
@@ -86344,8 +86422,8 @@ as bool?,
 /// @nodoc
 mixin _$InlayHintWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
 /// inlay hints currently shown. It should be used with absolute care and is
@@ -86548,8 +86626,8 @@ class _InlayHintWorkspaceClientCapabilities implements InlayHintWorkspaceClientC
   const _InlayHintWorkspaceClientCapabilities({this.refreshSupport});
   factory _InlayHintWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlayHintWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
 /// inlay hints currently shown. It should be used with absolute care and is
@@ -86621,13 +86699,13 @@ as bool?,
 /// @nodoc
 mixin _$DiagnosticWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// pulled diagnostics currently shown. It should be used with absolute care and
-/// is useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// pulled diagnostics currently shown. It should be used with absolute care
+/// and is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of DiagnosticWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -86825,13 +86903,13 @@ class _DiagnosticWorkspaceClientCapabilities implements DiagnosticWorkspaceClien
   const _DiagnosticWorkspaceClientCapabilities({this.refreshSupport});
   factory _DiagnosticWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$DiagnosticWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// pulled diagnostics currently shown. It should be used with absolute care and
-/// is useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// pulled diagnostics currently shown. It should be used with absolute care
+/// and is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of DiagnosticWorkspaceClientCapabilities
@@ -86898,13 +86976,13 @@ as bool?,
 /// @nodoc
 mixin _$FoldingRangeWorkspaceClientCapabilities {
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// folding ranges currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// folding ranges currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
  bool? get refreshSupport;
 /// Create a copy of FoldingRangeWorkspaceClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -87102,13 +87180,13 @@ class _FoldingRangeWorkspaceClientCapabilities implements FoldingRangeWorkspaceC
   const _FoldingRangeWorkspaceClientCapabilities({this.refreshSupport});
   factory _FoldingRangeWorkspaceClientCapabilities.fromJson(Map<String, dynamic> json) => _$FoldingRangeWorkspaceClientCapabilitiesFromJson(json);
 
-/// Whether the client implementation supports a refresh request sent from the
-/// server to the client.
+/// Whether the client implementation supports a refresh request sent from
+/// the server to the client.
 ///
 /// Note that this event is global and will force the client to refresh all
-/// folding ranges currently shown. It should be used with absolute care and is
-/// useful for situation where a server for example detects a project wide
-/// change that requires such a calculation.
+/// folding ranges currently shown. It should be used with absolute care and
+/// is useful for situation where a server for example detects a project
+/// wide change that requires such a calculation.
 @override final  bool? refreshSupport;
 
 /// Create a copy of FoldingRangeWorkspaceClientCapabilities
@@ -87460,13 +87538,15 @@ as bool?,
 mixin _$CompletionClientCapabilities {
 
 /// Whether completion supports dynamic registration.
- bool? get dynamicRegistration;/// The client supports the following `CompletionItem` specific capabilities.
- ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? get completionItem; ({List<CompletionItemKind>? valueSet})? get completionItemKind;/// Defines how the client handles whitespace and indentation when accepting a
-/// completion item that uses multi line text in either `insertText` or
+ bool? get dynamicRegistration;/// The client supports the following `CompletionItem` specific
+/// capabilities.
+ ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? get completionItem; ({List<CompletionItemKind>? valueSet})? get completionItemKind;/// Defines how the client handles whitespace and indentation when accepting
+/// a completion item that uses multi line text in either `insertText` or
 /// `textEdit`.
  InsertTextMode? get insertTextMode;/// The client supports to send additional context information for a
 /// `textDocument/completion` request.
- bool? get contextSupport;/// The client supports the following `CompletionList` specific capabilities.
+ bool? get contextSupport;/// The client supports the following `CompletionList` specific
+/// capabilities.
  ({List<String>? itemDefaults})? get completionList;
 /// Create a copy of CompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -87671,17 +87751,19 @@ class _CompletionClientCapabilities implements CompletionClientCapabilities {
 
 /// Whether completion supports dynamic registration.
 @override final  bool? dynamicRegistration;
-/// The client supports the following `CompletionItem` specific capabilities.
+/// The client supports the following `CompletionItem` specific
+/// capabilities.
 @override final  ({bool? snippetSupport, bool? commitCharactersSupport, List<MarkupKind>? documentationFormat, bool? deprecatedSupport, bool? preselectSupport, ({List<CompletionItemTag> valueSet})? tagSupport, bool? insertReplaceSupport, ({List<String> properties})? resolveSupport, ({List<InsertTextMode> valueSet})? insertTextModeSupport, bool? labelDetailsSupport})? completionItem;
 @override final  ({List<CompletionItemKind>? valueSet})? completionItemKind;
-/// Defines how the client handles whitespace and indentation when accepting a
-/// completion item that uses multi line text in either `insertText` or
+/// Defines how the client handles whitespace and indentation when accepting
+/// a completion item that uses multi line text in either `insertText` or
 /// `textEdit`.
 @override final  InsertTextMode? insertTextMode;
 /// The client supports to send additional context information for a
 /// `textDocument/completion` request.
 @override final  bool? contextSupport;
-/// The client supports the following `CompletionList` specific capabilities.
+/// The client supports the following `CompletionList` specific
+/// capabilities.
 @override final  ({List<String>? itemDefaults})? completionList;
 
 /// Create a copy of CompletionClientCapabilities
@@ -87754,8 +87836,8 @@ as ({List<String>? itemDefaults})?,
 mixin _$HoverClientCapabilities {
 
 /// Whether hover supports dynamic registration.
- bool? get dynamicRegistration;/// Client supports the following content formats for the content property. The
-/// order describes the preferred format of the client.
+ bool? get dynamicRegistration;/// Client supports the following content formats for the content property.
+/// The order describes the preferred format of the client.
  List<MarkupKind>? get contentFormat;
 /// Create a copy of HoverClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -87956,11 +88038,11 @@ class _HoverClientCapabilities implements HoverClientCapabilities {
 
 /// Whether hover supports dynamic registration.
 @override final  bool? dynamicRegistration;
-/// Client supports the following content formats for the content property. The
-/// order describes the preferred format of the client.
+/// Client supports the following content formats for the content property.
+/// The order describes the preferred format of the client.
  final  List<MarkupKind>? _contentFormat;
-/// Client supports the following content formats for the content property. The
-/// order describes the preferred format of the client.
+/// Client supports the following content formats for the content property.
+/// The order describes the preferred format of the client.
 @override List<MarkupKind>? get contentFormat {
   final value = _contentFormat;
   if (value == null) return null;
@@ -88039,8 +88121,9 @@ mixin _$SignatureHelpClientCapabilities {
  bool? get dynamicRegistration;/// The client supports the following `SignatureInformation` specific
 /// properties.
  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? get signatureInformation;/// The client supports to send additional context information for a
-/// `textDocument/signatureHelp` request. A client that opts into contextSupport
-/// will also support the `retriggerCharacters` on `SignatureHelpOptions`.
+/// `textDocument/signatureHelp` request. A client that opts into
+/// contextSupport will also support the `retriggerCharacters` on
+/// `SignatureHelpOptions`.
  bool? get contextSupport;
 /// Create a copy of SignatureHelpClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -88246,8 +88329,9 @@ class _SignatureHelpClientCapabilities implements SignatureHelpClientCapabilitie
 /// properties.
 @override final  ({List<MarkupKind>? documentationFormat, ({bool? labelOffsetSupport})? parameterInformation, bool? activeParameterSupport})? signatureInformation;
 /// The client supports to send additional context information for a
-/// `textDocument/signatureHelp` request. A client that opts into contextSupport
-/// will also support the `retriggerCharacters` on `SignatureHelpOptions`.
+/// `textDocument/signatureHelp` request. A client that opts into
+/// contextSupport will also support the `retriggerCharacters` on
+/// `SignatureHelpOptions`.
 @override final  bool? contextSupport;
 
 /// Create a copy of SignatureHelpClientCapabilities
@@ -88316,10 +88400,11 @@ as bool?,
 /// @nodoc
 mixin _$DeclarationClientCapabilities {
 
-/// Whether declaration supports dynamic registration. If this is set to `true`
-/// the client supports the new `DeclarationRegistrationOptions` return value
-/// for the corresponding server capability as well.
- bool? get dynamicRegistration;/// The client supports additional metadata in the form of declaration links.
+/// Whether declaration supports dynamic registration. If this is set to
+/// `true` the client supports the new `DeclarationRegistrationOptions`
+/// return value for the corresponding server capability as well.
+ bool? get dynamicRegistration;/// The client supports additional metadata in the form of declaration
+/// links.
  bool? get linkSupport;
 /// Create a copy of DeclarationClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -88518,11 +88603,12 @@ class _DeclarationClientCapabilities implements DeclarationClientCapabilities {
   const _DeclarationClientCapabilities({this.dynamicRegistration, this.linkSupport});
   factory _DeclarationClientCapabilities.fromJson(Map<String, dynamic> json) => _$DeclarationClientCapabilitiesFromJson(json);
 
-/// Whether declaration supports dynamic registration. If this is set to `true`
-/// the client supports the new `DeclarationRegistrationOptions` return value
-/// for the corresponding server capability as well.
+/// Whether declaration supports dynamic registration. If this is set to
+/// `true` the client supports the new `DeclarationRegistrationOptions`
+/// return value for the corresponding server capability as well.
 @override final  bool? dynamicRegistration;
-/// The client supports additional metadata in the form of declaration links.
+/// The client supports additional metadata in the form of declaration
+/// links.
 @override final  bool? linkSupport;
 
 /// Create a copy of DeclarationClientCapabilities
@@ -89949,8 +90035,8 @@ mixin _$DocumentSymbolClientCapabilities {
  bool? get hierarchicalDocumentSymbolSupport;/// The client supports tags on `SymbolInformation`. Tags are supported on
 /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
 /// Clients supporting tags have to handle unknown tags gracefully.
- ({List<SymbolTag> valueSet})? get tagSupport;/// The client supports an additional label presented in the UI when registering
-/// a document symbol provider.
+ ({List<SymbolTag> valueSet})? get tagSupport;/// The client supports an additional label presented in the UI when
+/// registering a document symbol provider.
  bool? get labelSupport;
 /// Create a copy of DocumentSymbolClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -90163,8 +90249,8 @@ class _DocumentSymbolClientCapabilities implements DocumentSymbolClientCapabilit
 /// `DocumentSymbol` if `hierarchicalDocumentSymbolSupport` is set to true.
 /// Clients supporting tags have to handle unknown tags gracefully.
 @override final  ({List<SymbolTag> valueSet})? tagSupport;
-/// The client supports an additional label presented in the UI when registering
-/// a document symbol provider.
+/// The client supports an additional label presented in the UI when
+/// registering a document symbol provider.
 @override final  bool? labelSupport;
 
 /// Create a copy of DocumentSymbolClientCapabilities
@@ -90237,18 +90323,18 @@ mixin _$CodeActionClientCapabilities {
 
 /// Whether code action supports dynamic registration.
  bool? get dynamicRegistration;/// The client support code action literals of type `CodeAction` as a valid
-/// response of the `textDocument/codeAction` request. If the property is not
-/// set the request can only return `Command` literals.
+/// response of the `textDocument/codeAction` request. If the property is
+/// not set the request can only return `Command` literals.
  ({({List<CodeActionKind> valueSet}) codeActionKind})? get codeActionLiteralSupport;/// Whether code action supports the `isPreferred` property.
  bool? get isPreferredSupport;/// Whether code action supports the `disabled` property.
- bool? get disabledSupport;/// Whether code action supports the `data` property which is preserved between
-/// a `textDocument/codeAction` and a `codeAction/resolve` request.
- bool? get dataSupport;/// Whether the client supports resolving additional code action properties via
-/// a separate `codeAction/resolve` request.
- ({List<String> properties})? get resolveSupport;/// Whether the client honors the change annotations in text edits and resource
-/// operations returned via the `CodeAction#edit` property by for example
-/// presenting the workspace edit in the user interface and asking for
-/// confirmation.
+ bool? get disabledSupport;/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/codeAction` and a `codeAction/resolve` request.
+ bool? get dataSupport;/// Whether the client supports resolving additional code action properties
+/// via a separate `codeAction/resolve` request.
+ ({List<String> properties})? get resolveSupport;/// Whether the client honors the change annotations in text edits and
+/// resource operations returned via the `CodeAction#edit` property by for
+/// example presenting the workspace edit in the user interface and asking
+/// for confirmation.
  bool? get honorsChangeAnnotations;
 /// Create a copy of CodeActionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -90455,23 +90541,23 @@ class _CodeActionClientCapabilities implements CodeActionClientCapabilities {
 /// Whether code action supports dynamic registration.
 @override final  bool? dynamicRegistration;
 /// The client support code action literals of type `CodeAction` as a valid
-/// response of the `textDocument/codeAction` request. If the property is not
-/// set the request can only return `Command` literals.
+/// response of the `textDocument/codeAction` request. If the property is
+/// not set the request can only return `Command` literals.
 @override final  ({({List<CodeActionKind> valueSet}) codeActionKind})? codeActionLiteralSupport;
 /// Whether code action supports the `isPreferred` property.
 @override final  bool? isPreferredSupport;
 /// Whether code action supports the `disabled` property.
 @override final  bool? disabledSupport;
-/// Whether code action supports the `data` property which is preserved between
-/// a `textDocument/codeAction` and a `codeAction/resolve` request.
+/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/codeAction` and a `codeAction/resolve` request.
 @override final  bool? dataSupport;
-/// Whether the client supports resolving additional code action properties via
-/// a separate `codeAction/resolve` request.
+/// Whether the client supports resolving additional code action properties
+/// via a separate `codeAction/resolve` request.
 @override final  ({List<String> properties})? resolveSupport;
-/// Whether the client honors the change annotations in text edits and resource
-/// operations returned via the `CodeAction#edit` property by for example
-/// presenting the workspace edit in the user interface and asking for
-/// confirmation.
+/// Whether the client honors the change annotations in text edits and
+/// resource operations returned via the `CodeAction#edit` property by for
+/// example presenting the workspace edit in the user interface and asking
+/// for confirmation.
 @override final  bool? honorsChangeAnnotations;
 
 /// Create a copy of CodeActionClientCapabilities
@@ -91080,8 +91166,8 @@ as bool?,
 mixin _$DocumentColorClientCapabilities {
 
 /// Whether implementation supports dynamic registration. If this is set to
-/// `true` the client supports the new `DocumentColorRegistrationOptions` return
-/// value for the corresponding server capability as well.
+/// `true` the client supports the new `DocumentColorRegistrationOptions`
+/// return value for the corresponding server capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of DocumentColorClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -91280,8 +91366,8 @@ class _DocumentColorClientCapabilities implements DocumentColorClientCapabilitie
   factory _DocumentColorClientCapabilities.fromJson(Map<String, dynamic> json) => _$DocumentColorClientCapabilitiesFromJson(json);
 
 /// Whether implementation supports dynamic registration. If this is set to
-/// `true` the client supports the new `DocumentColorRegistrationOptions` return
-/// value for the corresponding server capability as well.
+/// `true` the client supports the new `DocumentColorRegistrationOptions`
+/// return value for the corresponding server capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of DocumentColorClientCapabilities
@@ -92149,14 +92235,15 @@ as bool?,
 mixin _$RenameClientCapabilities {
 
 /// Whether rename supports dynamic registration.
- bool? get dynamicRegistration;/// Client supports testing for validity of rename operations before execution.
+ bool? get dynamicRegistration;/// Client supports testing for validity of rename operations before
+/// execution.
  bool? get prepareSupport;/// Client supports the default behavior result.
 ///
 /// The value indicates the default behavior used by the client.
- PrepareSupportDefaultBehavior? get prepareSupportDefaultBehavior;/// Whether the client honors the change annotations in text edits and resource
-/// operations returned via the rename request's workspace edit by for example
-/// presenting the workspace edit in the user interface and asking for
-/// confirmation.
+ PrepareSupportDefaultBehavior? get prepareSupportDefaultBehavior;/// Whether the client honors the change annotations in text edits and
+/// resource operations returned via the rename request's workspace edit by
+/// for example presenting the workspace edit in the user interface and
+/// asking for confirmation.
  bool? get honorsChangeAnnotations;
 /// Create a copy of RenameClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -92359,16 +92446,17 @@ class _RenameClientCapabilities implements RenameClientCapabilities {
 
 /// Whether rename supports dynamic registration.
 @override final  bool? dynamicRegistration;
-/// Client supports testing for validity of rename operations before execution.
+/// Client supports testing for validity of rename operations before
+/// execution.
 @override final  bool? prepareSupport;
 /// Client supports the default behavior result.
 ///
 /// The value indicates the default behavior used by the client.
 @override final  PrepareSupportDefaultBehavior? prepareSupportDefaultBehavior;
-/// Whether the client honors the change annotations in text edits and resource
-/// operations returned via the rename request's workspace edit by for example
-/// presenting the workspace edit in the user interface and asking for
-/// confirmation.
+/// Whether the client honors the change annotations in text edits and
+/// resource operations returned via the rename request's workspace edit by
+/// for example presenting the workspace edit in the user interface and
+/// asking for confirmation.
 @override final  bool? honorsChangeAnnotations;
 
 /// Create a copy of RenameClientCapabilities
@@ -92440,12 +92528,13 @@ mixin _$FoldingRangeClientCapabilities {
 
 /// Whether implementation supports dynamic registration for folding range
 /// providers. If this is set to `true` the client supports the new
-/// `FoldingRangeRegistrationOptions` return value for the corresponding server
-/// capability as well.
- bool? get dynamicRegistration;/// The maximum number of folding ranges that the client prefers to receive per
-/// document. The value serves as a hint, servers are free to follow the limit.
- int? get rangeLimit;/// If set, the client signals that it only supports folding complete lines. If
-/// set, client will ignore specified `startCharacter` and `endCharacter`
+/// `FoldingRangeRegistrationOptions` return value for the corresponding
+/// server capability as well.
+ bool? get dynamicRegistration;/// The maximum number of folding ranges that the client prefers to receive
+/// per document. The value serves as a hint, servers are free to follow the
+/// limit.
+ int? get rangeLimit;/// If set, the client signals that it only supports folding complete lines.
+/// If set, client will ignore specified `startCharacter` and `endCharacter`
 /// properties in a FoldingRange.
  bool? get lineFoldingOnly;/// Specific options for the folding range kind.
  ({List<FoldingRangeKind>? valueSet})? get foldingRangeKind;/// Specific options for the folding range.
@@ -92652,14 +92741,15 @@ class _FoldingRangeClientCapabilities implements FoldingRangeClientCapabilities 
 
 /// Whether implementation supports dynamic registration for folding range
 /// providers. If this is set to `true` the client supports the new
-/// `FoldingRangeRegistrationOptions` return value for the corresponding server
-/// capability as well.
+/// `FoldingRangeRegistrationOptions` return value for the corresponding
+/// server capability as well.
 @override final  bool? dynamicRegistration;
-/// The maximum number of folding ranges that the client prefers to receive per
-/// document. The value serves as a hint, servers are free to follow the limit.
+/// The maximum number of folding ranges that the client prefers to receive
+/// per document. The value serves as a hint, servers are free to follow the
+/// limit.
 @override final  int? rangeLimit;
-/// If set, the client signals that it only supports folding complete lines. If
-/// set, client will ignore specified `startCharacter` and `endCharacter`
+/// If set, the client signals that it only supports folding complete lines.
+/// If set, client will ignore specified `startCharacter` and `endCharacter`
 /// properties in a FoldingRange.
 @override final  bool? lineFoldingOnly;
 /// Specific options for the folding range kind.
@@ -93007,13 +93097,15 @@ as bool?,
 mixin _$PublishDiagnosticsClientCapabilities {
 
 /// Whether the clients accepts diagnostics with related information.
- bool? get relatedInformation;/// Client supports the tag property to provide meta data about a diagnostic.
-/// Clients supporting tags have to handle unknown tags gracefully.
+ bool? get relatedInformation;/// Client supports the tag property to provide meta data about a
+/// diagnostic. Clients supporting tags have to handle unknown tags
+/// gracefully.
  ({List<DiagnosticTag> valueSet})? get tagSupport;/// Whether the client interprets the version property of the
 /// `textDocument/publishDiagnostics` notification's parameter.
  bool? get versionSupport;/// Client supports a codeDescription property
- bool? get codeDescriptionSupport;/// Whether code action supports the `data` property which is preserved between
-/// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
+ bool? get codeDescriptionSupport;/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/publishDiagnostics` and
+/// `textDocument/codeAction` request.
  bool? get dataSupport;
 /// Create a copy of PublishDiagnosticsClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -93217,16 +93309,18 @@ class _PublishDiagnosticsClientCapabilities implements PublishDiagnosticsClientC
 
 /// Whether the clients accepts diagnostics with related information.
 @override final  bool? relatedInformation;
-/// Client supports the tag property to provide meta data about a diagnostic.
-/// Clients supporting tags have to handle unknown tags gracefully.
+/// Client supports the tag property to provide meta data about a
+/// diagnostic. Clients supporting tags have to handle unknown tags
+/// gracefully.
 @override final  ({List<DiagnosticTag> valueSet})? tagSupport;
 /// Whether the client interprets the version property of the
 /// `textDocument/publishDiagnostics` notification's parameter.
 @override final  bool? versionSupport;
 /// Client supports a codeDescription property
 @override final  bool? codeDescriptionSupport;
-/// Whether code action supports the `data` property which is preserved between
-/// a `textDocument/publishDiagnostics` and `textDocument/codeAction` request.
+/// Whether code action supports the `data` property which is preserved
+/// between a `textDocument/publishDiagnostics` and
+/// `textDocument/codeAction` request.
 @override final  bool? dataSupport;
 
 /// Create a copy of PublishDiagnosticsClientCapabilities
@@ -93572,26 +93666,26 @@ mixin _$SemanticTokensClientCapabilities {
 /// `true` the client supports the new `(TextDocumentRegistrationOptions &
 /// StaticRegistrationOptions)` return value for the corresponding server
 /// capability as well.
- bool? get dynamicRegistration;/// Which requests the client supports and might send to the server depending on
-/// the server's capability. Please note that clients might not show semantic
-/// tokens or degrade some of the user experience if a range or full request is
-/// advertised by the client but not provided by the server. If for example the
-/// client capability `requests.full` and `request.range` are both set to true
-/// but the server only provides a range provider the client might not render a
-/// minimap correctly or might even decide to not show any semantic tokens at
-/// all.
+ bool? get dynamicRegistration;/// Which requests the client supports and might send to the server
+/// depending on the server's capability. Please note that clients might not
+/// show semantic tokens or degrade some of the user experience if a range
+/// or full request is advertised by the client but not provided by the
+/// server. If for example the client capability `requests.full` and
+/// `request.range` are both set to true but the server only provides a
+/// range provider the client might not render a minimap correctly or might
+/// even decide to not show any semantic tokens at all.
  ({Object? range, Object? full}) get requests;/// The token types that the client supports.
  List<String> get tokenTypes;/// The token modifiers that the client supports.
  List<String> get tokenModifiers;/// The token formats the clients supports.
  List<TokenFormat> get formats;/// Whether the client supports tokens that can overlap each other.
  bool? get overlappingTokenSupport;/// Whether the client supports tokens that can span multiple lines.
  bool? get multilineTokenSupport;/// Whether the client allows the server to actively cancel a semantic token
-/// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
-/// does the client needs to retrigger the request.
- bool? get serverCancelSupport;/// Whether the client uses semantic tokens to augment existing syntax tokens.
-/// If set to `true` client side created syntax tokens and semantic tokens are
-/// both used for colorization. If set to `false` the client only uses the
-/// returned semantic tokens for colorization.
+/// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a
+/// server does the client needs to retrigger the request.
+ bool? get serverCancelSupport;/// Whether the client uses semantic tokens to augment existing syntax
+/// tokens. If set to `true` client side created syntax tokens and semantic
+/// tokens are both used for colorization. If set to `false` the client only
+/// uses the returned semantic tokens for colorization.
 ///
 /// If the value is `undefined` then the client behavior is not specified.
  bool? get augmentsSyntaxTokens;
@@ -93804,14 +93898,14 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
 /// StaticRegistrationOptions)` return value for the corresponding server
 /// capability as well.
 @override final  bool? dynamicRegistration;
-/// Which requests the client supports and might send to the server depending on
-/// the server's capability. Please note that clients might not show semantic
-/// tokens or degrade some of the user experience if a range or full request is
-/// advertised by the client but not provided by the server. If for example the
-/// client capability `requests.full` and `request.range` are both set to true
-/// but the server only provides a range provider the client might not render a
-/// minimap correctly or might even decide to not show any semantic tokens at
-/// all.
+/// Which requests the client supports and might send to the server
+/// depending on the server's capability. Please note that clients might not
+/// show semantic tokens or degrade some of the user experience if a range
+/// or full request is advertised by the client but not provided by the
+/// server. If for example the client capability `requests.full` and
+/// `request.range` are both set to true but the server only provides a
+/// range provider the client might not render a minimap correctly or might
+/// even decide to not show any semantic tokens at all.
 @override final  ({Object? range, Object? full}) requests;
 /// The token types that the client supports.
  final  List<String> _tokenTypes;
@@ -93845,13 +93939,13 @@ class _SemanticTokensClientCapabilities implements SemanticTokensClientCapabilit
 /// Whether the client supports tokens that can span multiple lines.
 @override final  bool? multilineTokenSupport;
 /// Whether the client allows the server to actively cancel a semantic token
-/// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a server
-/// does the client needs to retrigger the request.
+/// request, e.g. supports returning LSPErrorCodes.ServerCancelled. If a
+/// server does the client needs to retrigger the request.
 @override final  bool? serverCancelSupport;
-/// Whether the client uses semantic tokens to augment existing syntax tokens.
-/// If set to `true` client side created syntax tokens and semantic tokens are
-/// both used for colorization. If set to `false` the client only uses the
-/// returned semantic tokens for colorization.
+/// Whether the client uses semantic tokens to augment existing syntax
+/// tokens. If set to `true` client side created syntax tokens and semantic
+/// tokens are both used for colorization. If set to `false` the client only
+/// uses the returned semantic tokens for colorization.
 ///
 /// If the value is `undefined` then the client behavior is not specified.
 @override final  bool? augmentsSyntaxTokens;
@@ -94199,9 +94293,9 @@ as bool?,
 /// @nodoc
 mixin _$MonikerClientCapabilities {
 
-/// Whether moniker supports dynamic registration. If this is set to `true` the
-/// client supports the new `MonikerRegistrationOptions` return value for the
-/// corresponding server capability as well.
+/// Whether moniker supports dynamic registration. If this is set to `true`
+/// the client supports the new `MonikerRegistrationOptions` return value
+/// for the corresponding server capability as well.
  bool? get dynamicRegistration;
 /// Create a copy of MonikerClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -94399,9 +94493,9 @@ class _MonikerClientCapabilities implements MonikerClientCapabilities {
   const _MonikerClientCapabilities({this.dynamicRegistration});
   factory _MonikerClientCapabilities.fromJson(Map<String, dynamic> json) => _$MonikerClientCapabilitiesFromJson(json);
 
-/// Whether moniker supports dynamic registration. If this is set to `true` the
-/// client supports the new `MonikerRegistrationOptions` return value for the
-/// corresponding server capability as well.
+/// Whether moniker supports dynamic registration. If this is set to `true`
+/// the client supports the new `MonikerRegistrationOptions` return value
+/// for the corresponding server capability as well.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of MonikerClientCapabilities
@@ -95554,8 +95648,8 @@ as bool?,
 /// @nodoc
 mixin _$InlineCompletionClientCapabilities {
 
-/// Whether implementation supports dynamic registration for inline completion
-/// providers.
+/// Whether implementation supports dynamic registration for inline
+/// completion providers.
  bool? get dynamicRegistration;
 /// Create a copy of InlineCompletionClientCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -95753,8 +95847,8 @@ class _InlineCompletionClientCapabilities implements InlineCompletionClientCapab
   const _InlineCompletionClientCapabilities({this.dynamicRegistration});
   factory _InlineCompletionClientCapabilities.fromJson(Map<String, dynamic> json) => _$InlineCompletionClientCapabilitiesFromJson(json);
 
-/// Whether implementation supports dynamic registration for inline completion
-/// providers.
+/// Whether implementation supports dynamic registration for inline
+/// completion providers.
 @override final  bool? dynamicRegistration;
 
 /// Create a copy of InlineCompletionClientCapabilities

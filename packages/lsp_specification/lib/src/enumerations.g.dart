@@ -8,7 +8,7 @@ part of 'enumerations.dart';
 
 const _$SemanticTokenTypesEnumMap = {
   SemanticTokenTypes.namespace: 'namespace',
-  SemanticTokenTypes.type_: 'type',
+  SemanticTokenTypes.type: 'type',
   SemanticTokenTypes.class_: 'class',
   SemanticTokenTypes.enum_: 'enum',
   SemanticTokenTypes.interface_: 'interface',
@@ -21,7 +21,7 @@ const _$SemanticTokenTypesEnumMap = {
   SemanticTokenTypes.event: 'event',
   SemanticTokenTypes.function: 'function',
   SemanticTokenTypes.method: 'method',
-  SemanticTokenTypes.macro: 'macro',
+  SemanticTokenTypes.macro_: 'macro',
   SemanticTokenTypes.keyword: 'keyword',
   SemanticTokenTypes.modifier: 'modifier',
   SemanticTokenTypes.comment: 'comment',
@@ -46,63 +46,63 @@ const _$SemanticTokenModifiersEnumMap = {
 };
 
 const _$DocumentDiagnosticReportKindEnumMap = {
-  DocumentDiagnosticReportKind.Full: 'full',
-  DocumentDiagnosticReportKind.Unchanged: 'unchanged',
+  DocumentDiagnosticReportKind.full: 'full',
+  DocumentDiagnosticReportKind.unchanged: 'unchanged',
 };
 
 const _$ErrorCodesEnumMap = {
-  ErrorCodes.ParseError: -32700,
-  ErrorCodes.InvalidRequest: -32600,
-  ErrorCodes.MethodNotFound: -32601,
-  ErrorCodes.InvalidParams: -32602,
-  ErrorCodes.InternalError: -32603,
-  ErrorCodes.ServerNotInitialized: -32002,
-  ErrorCodes.UnknownErrorCode: -32001,
+  ErrorCodes.parseError: -32700,
+  ErrorCodes.invalidRequest: -32600,
+  ErrorCodes.methodNotFound: -32601,
+  ErrorCodes.invalidParams: -32602,
+  ErrorCodes.internalError: -32603,
+  ErrorCodes.serverNotInitialized: -32002,
+  ErrorCodes.unknownErrorCode: -32001,
 };
 
 const _$LSPErrorCodesEnumMap = {
-  LSPErrorCodes.RequestFailed: -32803,
-  LSPErrorCodes.ServerCancelled: -32802,
-  LSPErrorCodes.ContentModified: -32801,
-  LSPErrorCodes.RequestCancelled: -32800,
+  LSPErrorCodes.requestFailed: -32803,
+  LSPErrorCodes.serverCancelled: -32802,
+  LSPErrorCodes.contentModified: -32801,
+  LSPErrorCodes.requestCancelled: -32800,
 };
 
 const _$FoldingRangeKindEnumMap = {
-  FoldingRangeKind.Comment: 'comment',
-  FoldingRangeKind.Imports: 'imports',
-  FoldingRangeKind.Region: 'region',
+  FoldingRangeKind.comment: 'comment',
+  FoldingRangeKind.imports: 'imports',
+  FoldingRangeKind.region: 'region',
 };
 
 const _$SymbolKindEnumMap = {
-  SymbolKind.File: 1,
-  SymbolKind.Module: 2,
-  SymbolKind.Namespace: 3,
-  SymbolKind.Package: 4,
-  SymbolKind.Class: 5,
-  SymbolKind.Method: 6,
-  SymbolKind.Property: 7,
-  SymbolKind.Field: 8,
-  SymbolKind.Constructor: 9,
-  SymbolKind.Enum: 10,
-  SymbolKind.Interface: 11,
-  SymbolKind.Function_: 12,
-  SymbolKind.Variable: 13,
-  SymbolKind.Constant: 14,
-  SymbolKind.String: 15,
-  SymbolKind.Number: 16,
-  SymbolKind.Boolean: 17,
-  SymbolKind.Array: 18,
-  SymbolKind.Object: 19,
-  SymbolKind.Key: 20,
-  SymbolKind.Null: 21,
-  SymbolKind.EnumMember: 22,
-  SymbolKind.Struct: 23,
-  SymbolKind.Event: 24,
-  SymbolKind.Operator: 25,
-  SymbolKind.TypeParameter: 26,
+  SymbolKind.file: 1,
+  SymbolKind.module: 2,
+  SymbolKind.namespace: 3,
+  SymbolKind.package: 4,
+  SymbolKind.class_: 5,
+  SymbolKind.method: 6,
+  SymbolKind.property: 7,
+  SymbolKind.field: 8,
+  SymbolKind.constructor: 9,
+  SymbolKind.enum_: 10,
+  SymbolKind.interface_: 11,
+  SymbolKind.function: 12,
+  SymbolKind.variable: 13,
+  SymbolKind.constant: 14,
+  SymbolKind.string: 15,
+  SymbolKind.number: 16,
+  SymbolKind.boolean: 17,
+  SymbolKind.array: 18,
+  SymbolKind.object: 19,
+  SymbolKind.key: 20,
+  SymbolKind.null_: 21,
+  SymbolKind.enumMember: 22,
+  SymbolKind.struct: 23,
+  SymbolKind.event: 24,
+  SymbolKind.operator_: 25,
+  SymbolKind.typeParameter: 26,
 };
 
-const _$SymbolTagEnumMap = {SymbolTag.Deprecated: 1};
+const _$SymbolTagEnumMap = {SymbolTag.deprecated: 1};
 
 const _$UniquenessLevelEnumMap = {
   UniquenessLevel.document: 'document',
@@ -113,69 +113,69 @@ const _$UniquenessLevelEnumMap = {
 };
 
 const _$MonikerKindEnumMap = {
-  MonikerKind.import_: 'import',
-  MonikerKind.export_: 'export',
+  MonikerKind.import: 'import',
+  MonikerKind.export: 'export',
   MonikerKind.local: 'local',
 };
 
 const _$InlayHintKindEnumMap = {
-  InlayHintKind.Type: 1,
-  InlayHintKind.Parameter: 2,
+  InlayHintKind.type: 1,
+  InlayHintKind.parameter: 2,
 };
 
 const _$MessageTypeEnumMap = {
-  MessageType.Error: 1,
-  MessageType.Warning: 2,
-  MessageType.Info: 3,
-  MessageType.Log: 4,
-  MessageType.Debug: 5,
+  MessageType.error: 1,
+  MessageType.warning: 2,
+  MessageType.info: 3,
+  MessageType.log: 4,
+  MessageType.debug: 5,
 };
 
 const _$TextDocumentSyncKindEnumMap = {
-  TextDocumentSyncKind.None: 0,
-  TextDocumentSyncKind.Full: 1,
-  TextDocumentSyncKind.Incremental: 2,
+  TextDocumentSyncKind.none: 0,
+  TextDocumentSyncKind.full: 1,
+  TextDocumentSyncKind.incremental: 2,
 };
 
 const _$TextDocumentSaveReasonEnumMap = {
-  TextDocumentSaveReason.Manual: 1,
-  TextDocumentSaveReason.AfterDelay: 2,
-  TextDocumentSaveReason.FocusOut: 3,
+  TextDocumentSaveReason.manual: 1,
+  TextDocumentSaveReason.afterDelay: 2,
+  TextDocumentSaveReason.focusOut: 3,
 };
 
 const _$CompletionItemKindEnumMap = {
-  CompletionItemKind.Text: 1,
-  CompletionItemKind.Method: 2,
-  CompletionItemKind.Function_: 3,
-  CompletionItemKind.Constructor: 4,
-  CompletionItemKind.Field: 5,
-  CompletionItemKind.Variable: 6,
-  CompletionItemKind.Class: 7,
-  CompletionItemKind.Interface: 8,
-  CompletionItemKind.Module: 9,
-  CompletionItemKind.Property: 10,
-  CompletionItemKind.Unit: 11,
-  CompletionItemKind.Value: 12,
-  CompletionItemKind.Enum: 13,
-  CompletionItemKind.Keyword: 14,
-  CompletionItemKind.Snippet: 15,
-  CompletionItemKind.Color: 16,
-  CompletionItemKind.File: 17,
-  CompletionItemKind.Reference: 18,
-  CompletionItemKind.Folder: 19,
-  CompletionItemKind.EnumMember: 20,
-  CompletionItemKind.Constant: 21,
-  CompletionItemKind.Struct: 22,
-  CompletionItemKind.Event: 23,
-  CompletionItemKind.Operator: 24,
-  CompletionItemKind.TypeParameter: 25,
+  CompletionItemKind.text: 1,
+  CompletionItemKind.method: 2,
+  CompletionItemKind.function: 3,
+  CompletionItemKind.constructor: 4,
+  CompletionItemKind.field: 5,
+  CompletionItemKind.variable: 6,
+  CompletionItemKind.class_: 7,
+  CompletionItemKind.interface_: 8,
+  CompletionItemKind.module: 9,
+  CompletionItemKind.property: 10,
+  CompletionItemKind.unit: 11,
+  CompletionItemKind.value_: 12,
+  CompletionItemKind.enum_: 13,
+  CompletionItemKind.keyword: 14,
+  CompletionItemKind.snippet: 15,
+  CompletionItemKind.color: 16,
+  CompletionItemKind.file: 17,
+  CompletionItemKind.reference: 18,
+  CompletionItemKind.folder: 19,
+  CompletionItemKind.enumMember: 20,
+  CompletionItemKind.constant: 21,
+  CompletionItemKind.struct: 22,
+  CompletionItemKind.event: 23,
+  CompletionItemKind.operator_: 24,
+  CompletionItemKind.typeParameter: 25,
 };
 
-const _$CompletionItemTagEnumMap = {CompletionItemTag.Deprecated: 1};
+const _$CompletionItemTagEnumMap = {CompletionItemTag.deprecated: 1};
 
 const _$InsertTextFormatEnumMap = {
-  InsertTextFormat.PlainText: 1,
-  InsertTextFormat.Snippet: 2,
+  InsertTextFormat.plainText: 1,
+  InsertTextFormat.snippet: 2,
 };
 
 const _$InsertTextModeEnumMap = {
@@ -184,84 +184,84 @@ const _$InsertTextModeEnumMap = {
 };
 
 const _$DocumentHighlightKindEnumMap = {
-  DocumentHighlightKind.Text: 1,
-  DocumentHighlightKind.Read: 2,
-  DocumentHighlightKind.Write: 3,
+  DocumentHighlightKind.text: 1,
+  DocumentHighlightKind.read: 2,
+  DocumentHighlightKind.write: 3,
 };
 
 const _$CodeActionKindEnumMap = {
-  CodeActionKind.Empty: '',
-  CodeActionKind.QuickFix: 'quickfix',
-  CodeActionKind.Refactor: 'refactor',
-  CodeActionKind.RefactorExtract: 'refactor.extract',
-  CodeActionKind.RefactorInline: 'refactor.inline',
-  CodeActionKind.RefactorRewrite: 'refactor.rewrite',
-  CodeActionKind.Source: 'source',
-  CodeActionKind.SourceOrganizeImports: 'source.organizeImports',
-  CodeActionKind.SourceFixAll: 'source.fixAll',
+  CodeActionKind.empty: '',
+  CodeActionKind.quickFix: 'quickfix',
+  CodeActionKind.refactor: 'refactor',
+  CodeActionKind.refactorExtract: 'refactor.extract',
+  CodeActionKind.refactorInline: 'refactor.inline',
+  CodeActionKind.refactorRewrite: 'refactor.rewrite',
+  CodeActionKind.source: 'source',
+  CodeActionKind.sourceOrganizeImports: 'source.organizeImports',
+  CodeActionKind.sourceFixAll: 'source.fixAll',
 };
 
 const _$TraceValuesEnumMap = {
-  TraceValues.Off: 'off',
-  TraceValues.Messages: 'messages',
-  TraceValues.Verbose: 'verbose',
+  TraceValues.off: 'off',
+  TraceValues.messages: 'messages',
+  TraceValues.verbose: 'verbose',
 };
 
 const _$MarkupKindEnumMap = {
-  MarkupKind.PlainText: 'plaintext',
-  MarkupKind.Markdown: 'markdown',
+  MarkupKind.plainText: 'plaintext',
+  MarkupKind.markdown: 'markdown',
 };
 
 const _$InlineCompletionTriggerKindEnumMap = {
-  InlineCompletionTriggerKind.Invoked: 0,
-  InlineCompletionTriggerKind.Automatic: 1,
+  InlineCompletionTriggerKind.invoked: 0,
+  InlineCompletionTriggerKind.automatic: 1,
 };
 
 const _$PositionEncodingKindEnumMap = {
-  PositionEncodingKind.UTF8: 'utf-8',
-  PositionEncodingKind.UTF16: 'utf-16',
-  PositionEncodingKind.UTF32: 'utf-32',
+  PositionEncodingKind.uTF8: 'utf-8',
+  PositionEncodingKind.uTF16: 'utf-16',
+  PositionEncodingKind.uTF32: 'utf-32',
 };
 
 const _$FileChangeTypeEnumMap = {
-  FileChangeType.Created: 1,
-  FileChangeType.Changed: 2,
-  FileChangeType.Deleted: 3,
+  FileChangeType.created: 1,
+  FileChangeType.changed: 2,
+  FileChangeType.deleted: 3,
 };
 
 const _$WatchKindEnumMap = {
-  WatchKind.Create: 1,
-  WatchKind.Change: 2,
-  WatchKind.Delete: 4,
+  WatchKind.create: 1,
+  WatchKind.change: 2,
+  WatchKind.delete: 4,
 };
 
 const _$DiagnosticSeverityEnumMap = {
-  DiagnosticSeverity.Error: 1,
-  DiagnosticSeverity.Warning: 2,
-  DiagnosticSeverity.Information: 3,
-  DiagnosticSeverity.Hint: 4,
+  DiagnosticSeverity.error: 1,
+  DiagnosticSeverity.warning: 2,
+  DiagnosticSeverity.information: 3,
+  DiagnosticSeverity.hint: 4,
 };
 
 const _$DiagnosticTagEnumMap = {
-  DiagnosticTag.Unnecessary: 1,
-  DiagnosticTag.Deprecated: 2,
+  DiagnosticTag.unnecessary: 1,
+  DiagnosticTag.deprecated: 2,
 };
 
 const _$CompletionTriggerKindEnumMap = {
-  CompletionTriggerKind.Invoked: 1,
-  CompletionTriggerKind.TriggerCharacter: 2,
-  CompletionTriggerKind.TriggerForIncompleteCompletions: 3,
+  CompletionTriggerKind.invoked: 1,
+  CompletionTriggerKind.triggerCharacter: 2,
+  CompletionTriggerKind.triggerForIncompleteCompletions: 3,
 };
 
 const _$SignatureHelpTriggerKindEnumMap = {
-  SignatureHelpTriggerKind.Invoked: 1,
-  SignatureHelpTriggerKind.TriggerCharacter: 2,
-  SignatureHelpTriggerKind.ContentChange: 3,
+  SignatureHelpTriggerKind.invoked: 1,
+  SignatureHelpTriggerKind.triggerCharacter: 2,
+  SignatureHelpTriggerKind.contentChange: 3,
 };
 
 const _$CodeActionTriggerKindEnumMap = {
-  CodeActionTriggerKind.Invoked: 1,
-  CodeActionTriggerKind.Automatic: 2,
+  CodeActionTriggerKind.invoked: 1,
+  CodeActionTriggerKind.automatic: 2,
 };
 
 const _$FileOperationPatternKindEnumMap = {
@@ -270,25 +270,25 @@ const _$FileOperationPatternKindEnumMap = {
 };
 
 const _$NotebookCellKindEnumMap = {
-  NotebookCellKind.Markup: 1,
-  NotebookCellKind.Code: 2,
+  NotebookCellKind.markup: 1,
+  NotebookCellKind.code: 2,
 };
 
 const _$ResourceOperationKindEnumMap = {
-  ResourceOperationKind.Create: 'create',
-  ResourceOperationKind.Rename: 'rename',
-  ResourceOperationKind.Delete: 'delete',
+  ResourceOperationKind.create: 'create',
+  ResourceOperationKind.rename: 'rename',
+  ResourceOperationKind.delete: 'delete',
 };
 
 const _$FailureHandlingKindEnumMap = {
-  FailureHandlingKind.Abort: 'abort',
-  FailureHandlingKind.Transactional: 'transactional',
-  FailureHandlingKind.TextOnlyTransactional: 'textOnlyTransactional',
-  FailureHandlingKind.Undo: 'undo',
+  FailureHandlingKind.abort: 'abort',
+  FailureHandlingKind.transactional: 'transactional',
+  FailureHandlingKind.textOnlyTransactional: 'textOnlyTransactional',
+  FailureHandlingKind.undo: 'undo',
 };
 
 const _$PrepareSupportDefaultBehaviorEnumMap = {
-  PrepareSupportDefaultBehavior.Identifier: 1,
+  PrepareSupportDefaultBehavior.identifier: 1,
 };
 
-const _$TokenFormatEnumMap = {TokenFormat.Relative: 'relative'};
+const _$TokenFormatEnumMap = {TokenFormat.relative: 'relative'};
