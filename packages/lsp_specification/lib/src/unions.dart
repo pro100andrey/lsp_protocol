@@ -26,7 +26,7 @@ sealed class Definition with _$Definition {
     if (json is List) {
       return Definition.list(
         value: (json as List<Object>)
-            .map((e) => Location.fromJson(e as Map<String, Object?>))
+            .map((e) => Location.fromJson((e as Map<String, Object>)))
             .toList(),
       );
     }
@@ -56,7 +56,7 @@ sealed class Declaration with _$Declaration {
     if (json is List) {
       return Declaration.list(
         value: (json as List<Object>)
-            .map((e) => Location.fromJson(e as Map<String, Object?>))
+            .map((e) => Location.fromJson((e as Map<String, Object>)))
             .toList(),
       );
     }
@@ -308,7 +308,7 @@ sealed class MarkedString with _$MarkedString {
       MarkedString$String;
 
   static MarkedString fromJson(Object? json) {
-    if (json is Map<String, Object?>) {
+    if (json is Map<String, Object>) {
       return MarkedString.languageValue(
         value: (
           language: json['language'] as String,

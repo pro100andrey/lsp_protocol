@@ -353,10 +353,10 @@ final LspConnection _connection;
 
 /// Sends the `workspace/workspaceFolders` request to the client.
 Future<List<WorkspaceFolder>?> workspaceFolders() async  { final raw =  await _connection.sendRequest('workspace/workspaceFolders');
-return (raw as List).cast<Map<String, Object?>>().map(List<WorkspaceFolder>.fromJson).toList(); } 
+return  (raw as List).cast<Map<String,Object?>>().map(List<WorkspaceFolder>.fromJson).toList(); } 
 /// Sends the `workspace/configuration` request to the client.
 Future<List<LSPAny>> configuration(ConfigurationParams params) async  { final raw =  await _connection.sendRequest('workspace/configuration', params.toJson(), );
-return (raw as List).cast<Map<String, Object?>>().map(List<LSPAny>.fromJson).toList(); } 
+return  (raw as List).cast<Map<String,Object?>>().map(List<LSPAny>.fromJson).toList(); } 
 /// Sends the `workspace/foldingRange/refresh` request to the client.
 Future<void> foldingRangeRefresh() async  {  await _connection.sendRequest('workspace/foldingRange/refresh'); } 
 /// Sends the `workspace/semanticTokens/refresh` request to the client.
@@ -385,7 +385,7 @@ Future<ShowDocumentResult> showDocument(ShowDocumentParams params) async  { fina
 return  ShowDocumentResult.fromJson((raw as Map<String,Object?>)); } 
 /// Sends the `window/showMessageRequest` request to the client.
 Future<MessageActionItem?> showMessageRequest(ShowMessageRequestParams params) async  { final raw =  await _connection.sendRequest('window/showMessageRequest', params.toJson(), );
-return raw == null ? null : MessageActionItem.fromJson(raw as Map<String, Object?>); } 
+return  raw == null ? null : MessageActionItem.fromJson((raw as Map<String,Object?>)); } 
 /// Sends the `window/showMessage` notification to the client.
 void showMessage(ShowMessageParams params) => _connection.sendNotification('window/showMessage', params.toJson());;
 

@@ -444,9 +444,16 @@ final class EmitterVisitor {
         }
 
         final isNullableField = p.optional || p.type is NullableType;
-        final bodyCode = isNullableField
-            ? '${p.name} != null ? ${info.ref.name}.decode(${p.name}!) : null'
-            : '${info.ref.name}.decode(${p.name})';
+        final bodyExpr = isNullableField
+            ? refer(p.name)
+                  .notEqualTo(literalNull)
+                  .conditional(
+                    refer(
+                      info.ref.name,
+                    ).property('decode').call([refer(p.name).nullChecked]),
+                    literalNull,
+                  )
+            : refer(info.ref.name).property('decode').call([refer(p.name)]);
         b.methods.add(
           Method(
             (b) => b
@@ -458,7 +465,7 @@ final class EmitterVisitor {
               )
               ..name = '${p.name}Enum'
               ..lambda = true
-              ..body = Code(bodyCode),
+              ..body = bodyExpr.code,
           ),
         );
       }
@@ -1550,7 +1557,7 @@ final class EmitterVisitor {
                     final fn = _safeIdentifier(_factoryName(v.suffix));
                     b.statements.add(
                       ifStatement(
-                        CodeExpression(Code('json is ${v.dartName}')),
+                        refer('json').isA(refer(v.dartName)),
                         Block(
                           (bb) => bb.addExpression(
                             refer(name).newInstanceNamed(fn, [], {
@@ -1707,9 +1714,7 @@ final class EmitterVisitor {
                 ..body = Block((b) {
                   b.statements.add(
                     ifStatement(
-                      const CodeExpression(
-                        Code('json is Map<String, Object?>'),
-                      ),
+                      refer('json').isA(_jsonMapRef()),
                       Block(
                         (bb) => bb.addExpression(
                           refer(name).newInstanceNamed(structFn, [], {
@@ -1726,7 +1731,7 @@ final class EmitterVisitor {
                     final fn = _safeIdentifier(_factoryName(v.suffix));
                     b.statements.add(
                       ifStatement(
-                        CodeExpression(Code('json is ${v.dartName}')),
+                        refer('json').isA(refer(v.dartName)),
                         Block(
                           (bb) => bb.addExpression(
                             refer(name).newInstanceNamed(fn, [], {
@@ -1775,7 +1780,6 @@ final class EmitterVisitor {
     const listFn = 'list';
 
     final elemType = _dartTypeName(list.element);
-    final elemFromJson = _listElementCast(list.element);
     final elemToJson = _toJsonCallerFor(list.element, 'e');
 
     final mapType = TypeReference(
@@ -1803,7 +1807,7 @@ final class EmitterVisitor {
     );
 
     // List variant fromJson:
-    // (json as List<Object?>).map((e) => $elemFromJson).toList()
+    // (json as List<Object?>).map((e) => fromJson(e)).toList()
     final listFromExpr = refer('json')
         .asA(listObjectNullable)
         .property('map')
@@ -1814,7 +1818,7 @@ final class EmitterVisitor {
               ..requiredParameters.add(
                 Parameter((b) => b..name = 'e'),
               )
-              ..body = Code(elemFromJson),
+              ..body = _listElementCastExpr(list.element).code,
           ).closure,
         ])
         .property('toList')
@@ -1904,7 +1908,7 @@ final class EmitterVisitor {
                 ..body = Block((b) {
                   b.statements.add(
                     ifStatement(
-                      const CodeExpression(Code('json is List')),
+                      refer('json').isA(refer('List')),
                       Block(
                         (bb) => bb.addExpression(
                           refer(name).newInstanceNamed(listFn, [], {
@@ -2240,15 +2244,26 @@ final class EmitterVisitor {
     };
   }
 
-  String _listElementCast(ResolvedType element) => switch (element) {
-    ClassType(:final ref) => '${ref.name}.fromJson(e as Map<String, Object?>)',
+  Expression _listElementCastExpr(ResolvedType element) => switch (element) {
+    ClassType(:final ref) => refer(
+      ref.name,
+    ).newInstanceNamed('fromJson', [refer('e').asA(_jsonMapRef())]),
     NullableType(inner: ClassType(:final ref)) =>
-      'e == null ? null : ${ref.name}.fromJson(e as Map<String, Object?>)',
-    EnumType(:final ref) when ref.supportsCustomValues =>
-      'e as ${_enumPrimitiveName(ref)}',
-    EnumType(:final ref) =>
-      '${ref.name}.decode(e as ${_enumPrimitiveName(ref)})!',
-    _ => 'e as ${_dartTypeName(element)}',
+      refer('e')
+          .equalTo(literalNull)
+          .conditional(
+            literalNull,
+            refer(
+              ref.name,
+            ).newInstanceNamed('fromJson', [refer('e').asA(_jsonMapRef())]),
+          ),
+    EnumType(:final ref) when ref.supportsCustomValues => refer(
+      'e',
+    ).asA(refer(_enumPrimitiveName(ref))),
+    EnumType(:final ref) => refer(ref.name).property('decode').call([
+      refer('e').asA(refer(_enumPrimitiveName(ref))),
+    ]).nullChecked,
+    _ => refer('e').asA(refer(_dartTypeName(element))),
   };
 
   String _toJsonCallerFor(ResolvedType t, String v) => switch (t) {
@@ -2388,6 +2403,20 @@ final class EmitterVisitor {
     }
     return lines;
   }
+
+  /// Returns a [TypeReference] for `Map<String, Object?>`.
+  static TypeReference _jsonMapRef() => TypeReference(
+    (b) => b
+      ..symbol = 'Map'
+      ..types.addAll([
+        refer('String'),
+        TypeReference(
+          (b) => b
+            ..symbol = 'Object'
+            ..isNullable = true,
+        ),
+      ]),
+  );
 
   /// Ensures an identifier is valid Dart (e.g. avoids reserved words).
   static String _safeIdentifier(String name) {
