@@ -14,6 +14,7 @@ final class ResolveModelAction extends BaseAction {
       enumerations: visitor.enumerations,
       aliases: visitor.aliases,
       notifications: select.protocol.notifications,
+      requests: select.protocol.requests,
     );
 
     return state.copyWith(resolved: resolved);

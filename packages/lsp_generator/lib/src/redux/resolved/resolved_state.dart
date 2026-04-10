@@ -14,5 +14,6 @@ abstract class ResolvedState with _$ResolvedState {
     required List<ResolvedEnum> enumerations,
     required List<ResolvedAlias> aliases,
     @Default([]) List<MetaNotification> notifications,
+    @Default([]) List<MetaRequest> requests,
   }) = _ResolvedState;
 }

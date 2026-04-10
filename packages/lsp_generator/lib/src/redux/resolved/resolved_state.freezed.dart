@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 mixin _$ResolvedState {
 
 /// Symbol table: declaration name → resolved declaration.
- Map<String, ResolvedDecl> get registry; List<ResolvedClass> get classes; List<ResolvedEnum> get enumerations; List<ResolvedAlias> get aliases; List<MetaNotification> get notifications;
+ Map<String, ResolvedDecl> get registry; List<ResolvedClass> get classes; List<ResolvedEnum> get enumerations; List<ResolvedAlias> get aliases; List<MetaNotification> get notifications; List<MetaRequest> get requests;
 /// Create a copy of ResolvedState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $ResolvedStateCopyWith<ResolvedState> get copyWith => _$ResolvedStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResolvedState&&const DeepCollectionEquality().equals(other.registry, registry)&&const DeepCollectionEquality().equals(other.classes, classes)&&const DeepCollectionEquality().equals(other.enumerations, enumerations)&&const DeepCollectionEquality().equals(other.aliases, aliases)&&const DeepCollectionEquality().equals(other.notifications, notifications));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResolvedState&&const DeepCollectionEquality().equals(other.registry, registry)&&const DeepCollectionEquality().equals(other.classes, classes)&&const DeepCollectionEquality().equals(other.enumerations, enumerations)&&const DeepCollectionEquality().equals(other.aliases, aliases)&&const DeepCollectionEquality().equals(other.notifications, notifications)&&const DeepCollectionEquality().equals(other.requests, requests));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(registry),const DeepCollectionEquality().hash(classes),const DeepCollectionEquality().hash(enumerations),const DeepCollectionEquality().hash(aliases),const DeepCollectionEquality().hash(notifications));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(registry),const DeepCollectionEquality().hash(classes),const DeepCollectionEquality().hash(enumerations),const DeepCollectionEquality().hash(aliases),const DeepCollectionEquality().hash(notifications),const DeepCollectionEquality().hash(requests));
 
 @override
 String toString() {
-  return 'ResolvedState(registry: $registry, classes: $classes, enumerations: $enumerations, aliases: $aliases, notifications: $notifications)';
+  return 'ResolvedState(registry: $registry, classes: $classes, enumerations: $enumerations, aliases: $aliases, notifications: $notifications, requests: $requests)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $ResolvedStateCopyWith<$Res>  {
   factory $ResolvedStateCopyWith(ResolvedState value, $Res Function(ResolvedState) _then) = _$ResolvedStateCopyWithImpl;
 @useResult
 $Res call({
- Map<String, ResolvedDecl> registry, List<ResolvedClass> classes, List<ResolvedEnum> enumerations, List<ResolvedAlias> aliases, List<MetaNotification> notifications
+ Map<String, ResolvedDecl> registry, List<ResolvedClass> classes, List<ResolvedEnum> enumerations, List<ResolvedAlias> aliases, List<MetaNotification> notifications, List<MetaRequest> requests
 });
 
 
@@ -63,14 +63,15 @@ class _$ResolvedStateCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? registry = null,Object? classes = null,Object? enumerations = null,Object? aliases = null,Object? notifications = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? registry = null,Object? classes = null,Object? enumerations = null,Object? aliases = null,Object? notifications = null,Object? requests = null,}) {
   return _then(_self.copyWith(
 registry: null == registry ? _self.registry : registry // ignore: cast_nullable_to_non_nullable
 as Map<String, ResolvedDecl>,classes: null == classes ? _self.classes : classes // ignore: cast_nullable_to_non_nullable
 as List<ResolvedClass>,enumerations: null == enumerations ? _self.enumerations : enumerations // ignore: cast_nullable_to_non_nullable
 as List<ResolvedEnum>,aliases: null == aliases ? _self.aliases : aliases // ignore: cast_nullable_to_non_nullable
 as List<ResolvedAlias>,notifications: null == notifications ? _self.notifications : notifications // ignore: cast_nullable_to_non_nullable
-as List<MetaNotification>,
+as List<MetaNotification>,requests: null == requests ? _self.requests : requests // ignore: cast_nullable_to_non_nullable
+as List<MetaRequest>,
   ));
 }
 
@@ -155,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<String, ResolvedDecl> registry,  List<ResolvedClass> classes,  List<ResolvedEnum> enumerations,  List<ResolvedAlias> aliases,  List<MetaNotification> notifications)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<String, ResolvedDecl> registry,  List<ResolvedClass> classes,  List<ResolvedEnum> enumerations,  List<ResolvedAlias> aliases,  List<MetaNotification> notifications,  List<MetaRequest> requests)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ResolvedState() when $default != null:
-return $default(_that.registry,_that.classes,_that.enumerations,_that.aliases,_that.notifications);case _:
+return $default(_that.registry,_that.classes,_that.enumerations,_that.aliases,_that.notifications,_that.requests);case _:
   return orElse();
 
 }
@@ -176,10 +177,10 @@ return $default(_that.registry,_that.classes,_that.enumerations,_that.aliases,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<String, ResolvedDecl> registry,  List<ResolvedClass> classes,  List<ResolvedEnum> enumerations,  List<ResolvedAlias> aliases,  List<MetaNotification> notifications)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<String, ResolvedDecl> registry,  List<ResolvedClass> classes,  List<ResolvedEnum> enumerations,  List<ResolvedAlias> aliases,  List<MetaNotification> notifications,  List<MetaRequest> requests)  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedState():
-return $default(_that.registry,_that.classes,_that.enumerations,_that.aliases,_that.notifications);case _:
+return $default(_that.registry,_that.classes,_that.enumerations,_that.aliases,_that.notifications,_that.requests);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +197,10 @@ return $default(_that.registry,_that.classes,_that.enumerations,_that.aliases,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<String, ResolvedDecl> registry,  List<ResolvedClass> classes,  List<ResolvedEnum> enumerations,  List<ResolvedAlias> aliases,  List<MetaNotification> notifications)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<String, ResolvedDecl> registry,  List<ResolvedClass> classes,  List<ResolvedEnum> enumerations,  List<ResolvedAlias> aliases,  List<MetaNotification> notifications,  List<MetaRequest> requests)?  $default,) {final _that = this;
 switch (_that) {
 case _ResolvedState() when $default != null:
-return $default(_that.registry,_that.classes,_that.enumerations,_that.aliases,_that.notifications);case _:
+return $default(_that.registry,_that.classes,_that.enumerations,_that.aliases,_that.notifications,_that.requests);case _:
   return null;
 
 }
@@ -211,7 +212,7 @@ return $default(_that.registry,_that.classes,_that.enumerations,_that.aliases,_t
 
 
 class _ResolvedState implements ResolvedState {
-  const _ResolvedState({required final  Map<String, ResolvedDecl> registry, required final  List<ResolvedClass> classes, required final  List<ResolvedEnum> enumerations, required final  List<ResolvedAlias> aliases, final  List<MetaNotification> notifications = const []}): _registry = registry,_classes = classes,_enumerations = enumerations,_aliases = aliases,_notifications = notifications;
+  const _ResolvedState({required final  Map<String, ResolvedDecl> registry, required final  List<ResolvedClass> classes, required final  List<ResolvedEnum> enumerations, required final  List<ResolvedAlias> aliases, final  List<MetaNotification> notifications = const [], final  List<MetaRequest> requests = const []}): _registry = registry,_classes = classes,_enumerations = enumerations,_aliases = aliases,_notifications = notifications,_requests = requests;
   
 
 /// Symbol table: declaration name → resolved declaration.
@@ -251,6 +252,13 @@ class _ResolvedState implements ResolvedState {
   return EqualUnmodifiableListView(_notifications);
 }
 
+ final  List<MetaRequest> _requests;
+@override@JsonKey() List<MetaRequest> get requests {
+  if (_requests is EqualUnmodifiableListView) return _requests;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_requests);
+}
+
 
 /// Create a copy of ResolvedState
 /// with the given fields replaced by the non-null parameter values.
@@ -262,16 +270,16 @@ _$ResolvedStateCopyWith<_ResolvedState> get copyWith => __$ResolvedStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResolvedState&&const DeepCollectionEquality().equals(other._registry, _registry)&&const DeepCollectionEquality().equals(other._classes, _classes)&&const DeepCollectionEquality().equals(other._enumerations, _enumerations)&&const DeepCollectionEquality().equals(other._aliases, _aliases)&&const DeepCollectionEquality().equals(other._notifications, _notifications));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResolvedState&&const DeepCollectionEquality().equals(other._registry, _registry)&&const DeepCollectionEquality().equals(other._classes, _classes)&&const DeepCollectionEquality().equals(other._enumerations, _enumerations)&&const DeepCollectionEquality().equals(other._aliases, _aliases)&&const DeepCollectionEquality().equals(other._notifications, _notifications)&&const DeepCollectionEquality().equals(other._requests, _requests));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_registry),const DeepCollectionEquality().hash(_classes),const DeepCollectionEquality().hash(_enumerations),const DeepCollectionEquality().hash(_aliases),const DeepCollectionEquality().hash(_notifications));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_registry),const DeepCollectionEquality().hash(_classes),const DeepCollectionEquality().hash(_enumerations),const DeepCollectionEquality().hash(_aliases),const DeepCollectionEquality().hash(_notifications),const DeepCollectionEquality().hash(_requests));
 
 @override
 String toString() {
-  return 'ResolvedState(registry: $registry, classes: $classes, enumerations: $enumerations, aliases: $aliases, notifications: $notifications)';
+  return 'ResolvedState(registry: $registry, classes: $classes, enumerations: $enumerations, aliases: $aliases, notifications: $notifications, requests: $requests)';
 }
 
 
@@ -282,7 +290,7 @@ abstract mixin class _$ResolvedStateCopyWith<$Res> implements $ResolvedStateCopy
   factory _$ResolvedStateCopyWith(_ResolvedState value, $Res Function(_ResolvedState) _then) = __$ResolvedStateCopyWithImpl;
 @override @useResult
 $Res call({
- Map<String, ResolvedDecl> registry, List<ResolvedClass> classes, List<ResolvedEnum> enumerations, List<ResolvedAlias> aliases, List<MetaNotification> notifications
+ Map<String, ResolvedDecl> registry, List<ResolvedClass> classes, List<ResolvedEnum> enumerations, List<ResolvedAlias> aliases, List<MetaNotification> notifications, List<MetaRequest> requests
 });
 
 
@@ -299,14 +307,15 @@ class __$ResolvedStateCopyWithImpl<$Res>
 
 /// Create a copy of ResolvedState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? registry = null,Object? classes = null,Object? enumerations = null,Object? aliases = null,Object? notifications = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? registry = null,Object? classes = null,Object? enumerations = null,Object? aliases = null,Object? notifications = null,Object? requests = null,}) {
   return _then(_ResolvedState(
 registry: null == registry ? _self._registry : registry // ignore: cast_nullable_to_non_nullable
 as Map<String, ResolvedDecl>,classes: null == classes ? _self._classes : classes // ignore: cast_nullable_to_non_nullable
 as List<ResolvedClass>,enumerations: null == enumerations ? _self._enumerations : enumerations // ignore: cast_nullable_to_non_nullable
 as List<ResolvedEnum>,aliases: null == aliases ? _self._aliases : aliases // ignore: cast_nullable_to_non_nullable
 as List<ResolvedAlias>,notifications: null == notifications ? _self._notifications : notifications // ignore: cast_nullable_to_non_nullable
-as List<MetaNotification>,
+as List<MetaNotification>,requests: null == requests ? _self._requests : requests // ignore: cast_nullable_to_non_nullable
+as List<MetaRequest>,
   ));
 }
 

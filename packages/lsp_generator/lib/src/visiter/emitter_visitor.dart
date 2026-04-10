@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 
-import '../redux/models/protocol.dart' show MessageDirection, MetaNotification;
+import '../redux/models/protocol.dart' show MessageDirection, MetaNotification, MetaRequest;
 import '../redux/models/resolved_decl.dart';
 import '../redux/models/resolved_type.dart';
 import '../redux/resolved/resolved_state.dart';
@@ -152,7 +152,9 @@ final class EmitterVisitor {
   /// (e.g. `textDocument/didOpen` vs `notebookDocument/didOpen`).
   Library buildNotificationMethods() {
     final notifications = _resolved.notifications;
-    final names = _notificationDartNames(notifications);
+    final requests = _resolved.requests;
+    final notifNames = _notificationDartNames(notifications);
+    final requestNames = _requestDartNames(requests);
     return Library(
       (b) => b
         ..comments.add(_header)
@@ -160,7 +162,8 @@ final class EmitterVisitor {
           Directive.import('package:json_annotation/json_annotation.dart'),
         )
         ..directives.add(Directive.part('methods.g.dart'))
-        ..body.add(_buildNotificationEnum(notifications, names)),
+        ..body.add(_buildNotificationEnum(notifications, notifNames))
+        ..body.add(_buildRequestEnum(requests, requestNames)),
     );
   }
 
@@ -1001,6 +1004,114 @@ final class EmitterVisitor {
           ..lambda = true
           ..body = refer(r'$enumDecodeNullable').call([
             refer(r'_$NotificationMethodEnumMap'),
+            refer('json'),
+          ]).code,
+      ),
+    );
+  });
+
+  Map<MetaRequest, String> _requestDartNames(List<MetaRequest> requests) {
+    String clean(String method) => method.startsWith(r'$/')
+        ? method.substring(2)
+        : method.startsWith(r'$')
+        ? method.substring(1)
+        : method;
+
+    String lastSegment(String method) => clean(method).split('/').last;
+
+    String fullCamelCase(String method) {
+      final parts = clean(method).split('/');
+      return [
+        parts.first,
+        ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
+      ].join();
+    }
+
+    final lastSegs = {for (final r in requests) r: lastSegment(r.method)};
+    final counts = <String, int>{};
+    for (final s in lastSegs.values) {
+      counts[s] = (counts[s] ?? 0) + 1;
+    }
+
+    return {
+      for (final r in requests)
+        r: _safeIdentifier(
+          counts[lastSegs[r]!]! > 1 ? fullCamelCase(r.method) : lastSegs[r]!,
+        ),
+    };
+  }
+
+  /// Builds the `RequestMethod` enum spec.
+  Spec _buildRequestEnum(
+    List<MetaRequest> requests,
+    Map<MetaRequest, String> names,
+  ) => Enum((b) {
+    b.name = 'RequestMethod';
+    b.docs.add('/// LSP request method identifiers, as sent over the wire.');
+    b.annotations.add(
+      refer('JsonEnum').call([], {
+        'valueField': literalString('value'),
+        'alwaysCreate': literalTrue,
+      }),
+    );
+
+    for (final r in requests) {
+      b.values.add(
+        EnumValue((b) {
+          b.name = names[r];
+          b.arguments.add(literalString(r.method, raw: true));
+          final doc =
+              r.documentation ??
+              'LSP request `${r.method}` '
+                  '(${_directionLabel(r.messageDirection)}).';
+          b.docs.addAll(_docLines(doc));
+        }),
+      );
+    }
+
+    b.fields.add(
+      Field(
+        (b) => b
+          ..modifier = FieldModifier.final$
+          ..name = 'value'
+          ..type = refer('String'),
+      ),
+    );
+
+    b.constructors.add(
+      Constructor(
+        (b) => b
+          ..constant = true
+          ..requiredParameters.add(
+            Parameter(
+              (b) => b
+                ..name = 'value'
+                ..toThis = true,
+            ),
+          ),
+      ),
+    );
+
+    b.methods.add(
+      Method(
+        (b) => b
+          ..static = true
+          ..returns = TypeReference(
+            (b) => b
+              ..symbol = 'RequestMethod'
+              ..isNullable = true,
+          )
+          ..name = 'decode'
+          ..requiredParameters.add(
+            Parameter(
+              (b) => b
+                ..name = 'json'
+                ..type = refer('String'),
+            ),
+          )
+          ..lambda = true
+          ..body = refer(r'$enumDecodeNullable').call([
+            refer(r'_$RequestMethodEnumMap'),
             refer('json'),
           ]).code,
       ),
