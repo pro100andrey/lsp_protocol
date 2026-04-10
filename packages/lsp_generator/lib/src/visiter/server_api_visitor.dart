@@ -89,8 +89,7 @@ final class ServerApiVisitor {
 
     for (final req in _resolved.requests) {
       final dir = req.messageDirection;
-      if (dir == MessageDirection.clientToServer ||
-          dir == MessageDirection.both) {
+      if (dir == .clientToServer || dir == .both) {
         addTo(
           handlerGroups,
           req.method,
@@ -99,8 +98,7 @@ final class ServerApiVisitor {
           isNotification: false,
         );
       }
-      if (dir == MessageDirection.serverToClient ||
-          dir == MessageDirection.both) {
+      if (dir == .serverToClient || dir == .both) {
         addTo(
           senderGroups,
           req.method,
@@ -113,8 +111,7 @@ final class ServerApiVisitor {
 
     for (final notif in _resolved.notifications) {
       final dir = notif.messageDirection;
-      if (dir == MessageDirection.clientToServer ||
-          dir == MessageDirection.both) {
+      if (dir == .clientToServer || dir == .both) {
         addTo(
           handlerGroups,
           notif.method,
@@ -123,8 +120,7 @@ final class ServerApiVisitor {
           isNotification: true,
         );
       }
-      if (dir == MessageDirection.serverToClient ||
-          dir == MessageDirection.both) {
+      if (dir == .serverToClient || dir == .both) {
         addTo(
           senderGroups,
           notif.method,
@@ -217,35 +213,56 @@ final class ServerApiVisitor {
     final hasParams = paramsType.isNotEmpty;
     final isVoidResult = resultType == 'void';
 
-    final paramsLine = hasParams
-        ? 'final p = $paramsType.fromJson(json as Map<String, Object?>);'
-        : '';
-    final handlerCall = hasParams ? 'await handler(p)' : 'await handler()';
-    final returnExpr = isVoidResult
-        ? '$handlerCall;\nreturn null;'
-        : _returnExpr(resultType, handlerCall);
+    final statements = <Code>[
+      if (hasParams) _fromJsonAssign(paramsType, 'p', 'json'),
+    ];
+    final handlerExpr = hasParams
+        ? refer('handler').call([refer('p')]).awaited
+        : refer('handler').call([]).awaited;
 
-    return Code(
-      "_connection.registerRequestHandler('$wireMethod', (json) async {\n"
-      '  $paramsLine\n'
-      '  $returnExpr\n'
-      '});',
-    );
+    if (isVoidResult) {
+      statements
+        ..add(handlerExpr.statement)
+        ..add(literalNull.returned.statement);
+    } else {
+      statements.addAll(_returnStatements(resultType, handlerExpr));
+    }
+
+    final closure = Method(
+      (b) => b
+        ..modifier = MethodModifier.async
+        ..requiredParameters.add(Parameter((b) => b..name = 'json'))
+        ..body = Block.of(statements),
+    ).closure;
+
+    return refer('_connection').property('registerRequestHandler').call([
+      literalString(wireMethod),
+      closure,
+    ]).statement;
   }
 
   Code _notificationHandlerBody(String wireMethod, String paramsType) {
     final hasParams = paramsType.isNotEmpty;
-    final paramsLine = hasParams
-        ? 'final p = $paramsType.fromJson(json as Map<String, Object?>);'
-        : '';
-    final handlerCall = hasParams ? 'await handler(p);' : 'await handler();';
 
-    return Code(
-      "_connection.registerNotificationHandler('$wireMethod', (json) async {\n"
-      '  $paramsLine\n'
-      '  $handlerCall\n'
-      '});',
-    );
+    final statements = <Code>[
+      if (hasParams) _fromJsonAssign(paramsType, 'p', 'json'),
+    ];
+    final handlerExpr = hasParams
+        ? refer('handler').call([refer('p')]).awaited
+        : refer('handler').call([]).awaited;
+    statements.add(handlerExpr.statement);
+
+    final closure = Method(
+      (b) => b
+        ..modifier = MethodModifier.async
+        ..requiredParameters.add(Parameter((b) => b..name = 'json'))
+        ..body = Block.of(statements),
+    ).closure;
+
+    return refer('_connection').property('registerNotificationHandler').call([
+      literalString(wireMethod),
+      closure,
+    ]).statement;
   }
 
   // -------------------------------------------------------------------------
@@ -355,16 +372,23 @@ final class ServerApiVisitor {
               ..types.add(refer(resultType)),
           );
 
-    final sendCall = hasParams
-        ? "_connection.sendRequest('$wireMethod', params.toJson())"
-        : "_connection.sendRequest('$wireMethod')";
+    final sendCallExpr = hasParams
+        ? refer('_connection').property('sendRequest').call([
+            literalString(wireMethod),
+            refer('params').property('toJson').call([]),
+          ])
+        : refer(
+            '_connection',
+          ).property('sendRequest').call([literalString(wireMethod)]);
 
-    final body = isVoidResult
-        ? Code('await $sendCall;')
-        : Code(
-            'final raw = await $sendCall;\n'
-            '${_senderResultDecodeExpr(resultType, 'raw')}',
-          );
+    final bodyStatements = <Code>[
+      if (isVoidResult)
+        sendCallExpr.awaited.statement
+      else ...[
+        sendCallExpr.awaited.assignFinal('raw').statement,
+        ..._senderDecodeStatements(resultType),
+      ],
+    ];
 
     return Method(
       (b) => b
@@ -380,7 +404,7 @@ final class ServerApiVisitor {
                 ..type = refer(paramsType),
             ),
         ])
-        ..body = body,
+        ..body = Block.of(bodyStatements),
     );
   }
 
@@ -417,7 +441,7 @@ final class ServerApiVisitor {
           Field(
             (b) => b
               ..name = '_connection'
-              ..modifier = FieldModifier.final$
+              ..modifier = .final$
               ..type = refer('LspConnection'),
           ),
         )
@@ -431,7 +455,7 @@ final class ServerApiVisitor {
                     ? 'general'
                     : ns
                 ..late = true
-                ..modifier = FieldModifier.final$
+                ..modifier = .final$
                 ..assignment = Code(
                   '${_senderClassName(ns)}(_connection)',
                 ),
@@ -457,46 +481,93 @@ final class ServerApiVisitor {
     return '$returnType Function($param)';
   }
 
-  /// Returns `return result?.toJson();` or `return result.toJson();` etc.
-  String _returnExpr(String resultType, String handlerCall) {
+  /// Returns code_builder [Code] statements that serialize [handlerExpr]
+  /// (the awaited handler call, e.g. `await handler(p)`) and return it from
+  /// the registerRequestHandler closure.
+  List<Code> _returnStatements(String resultType, Expression handlerExpr) {
     final isNullable = resultType.endsWith('?');
     final baseType = isNullable
         ? resultType.substring(0, resultType.length - 1)
         : resultType;
 
+    // Object?/Object — return the handler result directly.
     if (resultType == 'Object?' || resultType == 'Object') {
-      return 'return $handlerCall;';
+      return [handlerExpr.returned.statement];
     }
+
     if (baseType.startsWith('List<')) {
-      // List<T?> or List<T>  → .map((e) => e.toJson()).toList()
-      final access = isNullable ? '?.map' : '.map';
-      return 'final r = $handlerCall;\nreturn r$access((e) => e.toJson()).toList();';
+      // final r = await handler(p);
+      // return r.map((e) => e.toJson()).toList();  (or r?.map(...).toList())
+      final mapClosure = Method(
+        (b) => b
+          ..lambda = true
+          ..requiredParameters.add(Parameter((b) => b..name = 'e'))
+          ..body = refer('e').property('toJson').call([]).code,
+      ).closure;
+      final listExpr = isNullable
+          ? refer('r')
+                .nullSafeProperty('map')
+                .call([mapClosure])
+                .property('toList')
+                .call([])
+          : refer(
+              'r',
+            ).property('map').call([mapClosure]).property('toList').call([]);
+      return [
+        handlerExpr.assignFinal('r').statement,
+        listExpr.returned.statement,
+      ];
     }
-    return isNullable
-        ? 'final r = $handlerCall;\nreturn r?.toJson();'
-        : 'final r = $handlerCall;\nreturn r.toJson();';
+
+    // Named type: return r.toJson() / r?.toJson()
+    final toJson = isNullable
+        ? refer('r').nullSafeProperty('toJson').call([])
+        : refer('r').property('toJson').call([]);
+    return [
+      handlerExpr.assignFinal('r').statement,
+      toJson.returned.statement,
+    ];
   }
 
-  /// Generates the result decode expression for sender methods.
-  String _senderResultDecodeExpr(String resultType, String rawVar) {
+  /// Returns code_builder [Code] statements that decode the `raw` local
+  /// variable (type [Object?] from `LspConnection.sendRequest`) into
+  /// [resultType].
+  List<Code> _senderDecodeStatements(String resultType) {
     final isNullable = resultType.endsWith('?');
     final baseType = isNullable
         ? resultType.substring(0, resultType.length - 1)
         : resultType;
 
     if (resultType == 'Object?' || resultType == 'Object') {
-      return 'return raw;';
+      return [refer('raw').returned.statement];
     }
     if (resultType == 'Null' || resultType == 'void') {
-      return '';
+      return [];
     }
     if (baseType.startsWith('List<')) {
-      // Extract inner type from List<X> for fromJson call — use Object? fallback
-      return 'return ($rawVar as List).cast<Map<String, Object?>>().map($baseType.fromJson).toList();';
+      // (raw as List).cast<Map<String, Object?>>().map(T.fromJson).toList()
+      // Uses Code for the cast + tear-off pattern that has no code_builder API.
+      return [
+        Code(
+          'return (raw as List).cast<Map<String, Object?>>().map($baseType.fromJson).toList();',
+        ),
+      ];
     }
-    return isNullable
-        ? 'return $rawVar == null ? null : $baseType.fromJson($rawVar as Map<String, Object?>);'
-        : 'return $baseType.fromJson($rawVar as Map<String, Object?>);';
+    if (isNullable) {
+      // raw == null ? null : T.fromJson(raw as Map<String, Object?>)
+      // Uses Code for the conditional cast expression.
+      return [
+        Code(
+          'return raw == null ? null : $baseType.fromJson(raw as Map<String, Object?>);',
+        ),
+      ];
+    }
+    return [
+      refer(baseType)
+          .newInstanceNamed('fromJson', [refer('raw').asA(_jsonMapRef())])
+          .returned
+          .statement,
+    ];
   }
 
   // -------------------------------------------------------------------------
@@ -509,7 +580,7 @@ final class ServerApiVisitor {
     if (params == null) {
       return '';
     }
-    
+
     return switch (params) {
       TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
       BaseRef(name: 'null') => '',
@@ -548,7 +619,7 @@ final class ServerApiVisitor {
     if (nonNull.isEmpty) {
       return 'void';
     }
-    
+
     if (nonNull.length == 1) {
       final t = _innerTypeName(nonNull.first);
       return hasNull ? '$t?' : t;
@@ -614,6 +685,34 @@ final class ServerApiVisitor {
   static String _capitalize(String s) =>
       s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
 
+  // -------------------------------------------------------------------------
+  // code_builder helpers
+  // -------------------------------------------------------------------------
+
+  /// Returns a [TypeReference] for `Map<String, Object?>`.
+  static TypeReference _jsonMapRef() => TypeReference(
+    (b) => b
+      ..symbol = 'Map'
+      ..types.addAll([
+        refer('String'),
+        TypeReference(
+          (b) => b
+            ..symbol = 'Object'
+            ..isNullable = true,
+        ),
+      ]),
+  );
+
+  /// Emits `final [varName] = [typeName].fromJson([sourceVar] as Map<String, Object?>);`
+  static Code _fromJsonAssign(
+    String typeName,
+    String varName,
+    String sourceVar,
+  ) => refer(typeName)
+      .newInstanceNamed('fromJson', [refer(sourceVar).asA(_jsonMapRef())])
+      .assignFinal(varName)
+      .statement;
+
   static String _safeIdentifier(String name) {
     const reserved = {
       'class',
@@ -630,7 +729,7 @@ final class ServerApiVisitor {
       'macro',
       'value',
     };
-    
+
     return reserved.contains(name) ? '${name}_' : name;
   }
 }
