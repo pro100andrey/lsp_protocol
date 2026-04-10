@@ -1326,7 +1326,7 @@ abstract class DocumentDiagnosticParams with _$DocumentDiagnosticParams {
     /// The text document.
     required TextDocumentIdentifier textDocument,
 
-    /// The additional identifier  provided during registration.
+    /// The additional identifier provided during registration.
     String? identifier,
 
     /// The result id of a previous response if provided.
@@ -6466,7 +6466,7 @@ abstract class CodeActionClientCapabilities
       _$CodeActionClientCapabilitiesFromJson(json);
 }
 
-/// The client capabilities  of a [CodeLensRequest].
+/// The client capabilities of a [CodeLensRequest].
 @freezed
 abstract class CodeLensClientCapabilities with _$CodeLensClientCapabilities {
   const factory CodeLensClientCapabilities({

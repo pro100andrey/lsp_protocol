@@ -2374,46 +2374,27 @@ final class EmitterVisitor {
     String? since,
     bool proposed = false,
   }) {
-    if (input == null || input.trim().isEmpty) {
-      if (since == null && !proposed) {
-        return const [];
-      }
-      final lines = <String>[];
-      if (since != null) {
-        lines.add('/// @since $since');
-      }
-      if (proposed) {
-        lines.add('/// @proposed');
-      }
-      return lines;
-    }
+    // Structured tags — single source of truth used for both empty and non-empty
+    // body paths.
+    final tags = [
+      if (since != null) '/// @since $since',
+      if (proposed) '/// @proposed',
+    ];
+
+    // Strip any @since / @proposed already embedded in the documentation text —
+    // they are re-emitted from the structured fields so they appear exactly once.
+    final body = (input ?? '')
+        .replaceAll(RegExp(r'@since\s+\S+'), '')
+        .replaceAll('@proposed', '')
+        .trim();
+
+    if (body.isEmpty) return tags;
 
     const prefix = '/// ';
     final maxContent = maxWidth - prefix.length;
 
-    // Strip any @since / @proposed tags already embedded in the documentation
-    // text — they are re-emitted from the structured fields below so that the
-    // tags always appear exactly once at the end of the doc comment.
-    final stripped = input
-        .replaceAll(RegExp(r'@since\s+\S+'), '')
-        .replaceAll(RegExp('@proposed'), '')
-        .trim();
-    if (stripped.isEmpty) {
-      if (since == null && !proposed) {
-        return const [];
-      }
-      final lines = <String>[];
-      if (since != null) {
-        lines.add('/// @since $since');
-      }
-      if (proposed) {
-        lines.add('/// @proposed');
-      }
-      return lines;
-    }
-
-    // Resolve {@link Target} / {@link Target displayText}
-    final resolved = stripped.replaceAllMapped(
+    // Resolve {@link Target} / {@link Target displayText} → Dart cross-refs.
+    final resolved = body.replaceAllMapped(
       RegExp(r'\{@link\s+(\S+?)(?:\s+([^}]*?))?\}'),
       (m) {
         final target = m.group(1)!.replaceAll('[]', '');
@@ -2430,31 +2411,21 @@ final class EmitterVisitor {
       },
     );
 
-    // Normalise line endings.
-    final normalised = resolved.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
-
-    // Split into paragraphs (blank line = paragraph break).
-    final paragraphs = normalised.split(RegExp(r'\n\s*\n'));
+    // Normalise line endings; split into non-empty paragraphs.
+    final paragraphs = resolved
+        .replaceAll('\r\n', '\n')
+        .replaceAll('\r', '\n')
+        .split(RegExp(r'\n\s*\n'))
+        .map((p) => p.trim())
+        .where((p) => p.isNotEmpty)
+        .toList();
 
     final lines = <String>[];
-    for (var i = 0; i < paragraphs.length; i++) {
-      if (i > 0) {
-        lines.add('///');
-      }
-      final paragraph = paragraphs[i].trim();
-      if (paragraph.isEmpty) {
-        continue;
-      }
+    for (final paragraph in paragraphs) {
+      if (lines.isNotEmpty) lines.add('///');
 
-      // Collapse intra-paragraph newlines to spaces, then word-wrap the whole
-      // paragraph as a single stream of words.
-      final text = paragraph.replaceAll('\n', ' ').trim();
-      if (text.length <= maxContent) {
-        lines.add('$prefix$text');
-        continue;
-      }
-
-      final words = text.split(RegExp(r'\s+'));
+      // Collapse intra-paragraph newlines to spaces, then word-wrap.
+      final words = paragraph.replaceAll('\n', ' ').split(RegExp(r'\s+'));
       final buf = StringBuffer();
       for (final word in words) {
         if (buf.isEmpty) {
@@ -2474,16 +2445,11 @@ final class EmitterVisitor {
         lines.add('$prefix$buf');
       }
     }
-    if (since != null) {
+
+    if (tags.isNotEmpty) {
       lines
         ..add('///')
-        ..add('/// @since $since');
-    }
-    if (proposed) {
-      if (since == null) {
-        lines.add('///');
-      }
-      lines.add('/// @proposed');
+        ..addAll(tags);
     }
     return lines;
   }

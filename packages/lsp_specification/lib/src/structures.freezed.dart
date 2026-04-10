@@ -19614,7 +19614,7 @@ mixin _$DocumentDiagnosticParams {
 @_ProgressTokenConverter() ProgressToken? get workDoneToken;/// An optional token that a server can use to report partial results (e.g.
 /// streaming) to the client.
 @_ProgressTokenConverter() ProgressToken? get partialResultToken;/// The text document.
- TextDocumentIdentifier get textDocument;/// The additional identifier  provided during registration.
+ TextDocumentIdentifier get textDocument;/// The additional identifier provided during registration.
  String? get identifier;/// The result id of a previous response if provided.
  String? get previousResultId;
 /// Create a copy of DocumentDiagnosticParams
@@ -19857,7 +19857,7 @@ class _DocumentDiagnosticParams implements DocumentDiagnosticParams {
 @override@_ProgressTokenConverter() final  ProgressToken? partialResultToken;
 /// The text document.
 @override final  TextDocumentIdentifier textDocument;
-/// The additional identifier  provided during registration.
+/// The additional identifier provided during registration.
 @override final  String? identifier;
 /// The result id of a previous response if provided.
 @override final  String? previousResultId;
