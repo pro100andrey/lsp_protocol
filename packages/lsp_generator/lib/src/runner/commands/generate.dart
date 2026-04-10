@@ -41,6 +41,7 @@ final class GenerateCommand extends Command with WithStore {
 
     await store.dispatchAndWait(ResolveModelAction());
     await store.dispatchAndWait(GenerateCodeAction());
+    await store.dispatchAndWait(GenerateServerApiAction());
     await store.dispatchAndWait(RunBuildRunnerAction());
   }
 }
