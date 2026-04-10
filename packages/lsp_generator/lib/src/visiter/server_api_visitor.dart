@@ -385,7 +385,7 @@ final class ServerApiVisitor {
       if (isVoidResult)
         sendCallExpr.awaited.statement
       else ...[
-        sendCallExpr.awaited.assignFinal('raw').statement,
+        declareFinal('raw').assign(sendCallExpr.awaited).statement,
         ..._senderDecodeStatements(resultType),
       ],
     ];
@@ -514,7 +514,7 @@ final class ServerApiVisitor {
               'r',
             ).property('map').call([mapClosure]).property('toList').call([]);
       return [
-        handlerExpr.assignFinal('r').statement,
+        declareFinal('r').assign(handlerExpr).statement,
         listExpr.returned.statement,
       ];
     }
@@ -524,7 +524,7 @@ final class ServerApiVisitor {
         ? refer('r').nullSafeProperty('toJson').call([])
         : refer('r').property('toJson').call([]);
     return [
-      handlerExpr.assignFinal('r').statement,
+      declareFinal('r').assign(handlerExpr).statement,
       toJson.returned.statement,
     ];
   }
@@ -546,20 +546,33 @@ final class ServerApiVisitor {
     }
     if (baseType.startsWith('List<')) {
       // (raw as List).cast<Map<String, Object?>>().map(T.fromJson).toList()
-      // Uses Code for the cast + tear-off pattern that has no code_builder API.
       return [
-        Code(
-          'return (raw as List).cast<Map<String, Object?>>().map($baseType.fromJson).toList();',
-        ),
+        refer('raw')
+            .asA(refer('List'))
+            .property('cast')
+            .call([], {}, [_jsonMapRef()])
+            .property('map')
+            .call([refer(baseType).property('fromJson')])
+            .property('toList')
+            .call([])
+            .returned
+            .statement,
       ];
     }
     if (isNullable) {
       // raw == null ? null : T.fromJson(raw as Map<String, Object?>)
-      // Uses Code for the conditional cast expression.
       return [
-        Code(
-          'return raw == null ? null : $baseType.fromJson(raw as Map<String, Object?>);',
-        ),
+        refer('raw')
+            .equalTo(literalNull)
+            .conditional(
+              literalNull,
+              refer(baseType).newInstanceNamed(
+                'fromJson',
+                [refer('raw').asA(_jsonMapRef())],
+              ),
+            )
+            .returned
+            .statement,
       ];
     }
     return [
@@ -703,14 +716,19 @@ final class ServerApiVisitor {
       ]),
   );
 
-  /// Emits `final [varName] = [typeName].fromJson([sourceVar] as Map<String, Object?>);`
+  /// Emits `final [varName] =
+  /// [typeName].fromJson([sourceVar] as `Map<String, Object?>`);`
   static Code _fromJsonAssign(
     String typeName,
     String varName,
     String sourceVar,
-  ) => refer(typeName)
-      .newInstanceNamed('fromJson', [refer(sourceVar).asA(_jsonMapRef())])
-      .assignFinal(varName)
+  ) => declareFinal(varName)
+      .assign(
+        refer(typeName).newInstanceNamed(
+          'fromJson',
+          [refer(sourceVar).asA(_jsonMapRef())],
+        ),
+      )
       .statement;
 
   static String _safeIdentifier(String name) {
