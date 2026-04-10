@@ -16,7 +16,7 @@ class TextDocumentHandlers {
   void onImplementation(
     Future<Object?> Function(ImplementationParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/implementation', (
+    _connection.registerRequestHandler(RequestMethod.implementation.value, (
       json,
     ) async {
       final p = ImplementationParams.fromJson((json as Map<String, Object?>));
@@ -28,7 +28,7 @@ class TextDocumentHandlers {
   void onTypeDefinition(
     Future<Object?> Function(TypeDefinitionParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/typeDefinition', (
+    _connection.registerRequestHandler(RequestMethod.typeDefinition.value, (
       json,
     ) async {
       final p = TypeDefinitionParams.fromJson((json as Map<String, Object?>));
@@ -40,7 +40,7 @@ class TextDocumentHandlers {
   void onDocumentColor(
     Future<List<ColorInformation>> Function(DocumentColorParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/documentColor', (
+    _connection.registerRequestHandler(RequestMethod.documentColor.value, (
       json,
     ) async {
       final p = DocumentColorParams.fromJson((json as Map<String, Object?>));
@@ -54,7 +54,7 @@ class TextDocumentHandlers {
     Future<List<ColorPresentation>> Function(ColorPresentationParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/colorPresentation', (
+    _connection.registerRequestHandler(RequestMethod.colorPresentation.value, (
       json,
     ) async {
       final p = ColorPresentationParams.fromJson(
@@ -69,7 +69,7 @@ class TextDocumentHandlers {
   void onFoldingRange(
     Future<List<FoldingRange>?> Function(FoldingRangeParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/foldingRange', (
+    _connection.registerRequestHandler(RequestMethod.foldingRange.value, (
       json,
     ) async {
       final p = FoldingRangeParams.fromJson((json as Map<String, Object?>));
@@ -82,7 +82,7 @@ class TextDocumentHandlers {
   void onDeclaration(
     Future<Object?> Function(DeclarationParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/declaration', (
+    _connection.registerRequestHandler(RequestMethod.declaration.value, (
       json,
     ) async {
       final p = DeclarationParams.fromJson((json as Map<String, Object?>));
@@ -94,7 +94,7 @@ class TextDocumentHandlers {
   void onSelectionRange(
     Future<List<SelectionRange>?> Function(SelectionRangeParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/selectionRange', (
+    _connection.registerRequestHandler(RequestMethod.selectionRange.value, (
       json,
     ) async {
       final p = SelectionRangeParams.fromJson((json as Map<String, Object?>));
@@ -108,24 +108,23 @@ class TextDocumentHandlers {
     Future<List<CallHierarchyItem>?> Function(CallHierarchyPrepareParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/prepareCallHierarchy', (
-      json,
-    ) async {
-      final p = CallHierarchyPrepareParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      final r = await handler(p);
-      return r?.map((e) => e.toJson()).toList();
-    });
+    _connection.registerRequestHandler(
+      RequestMethod.prepareCallHierarchy.value,
+      (json) async {
+        final p = CallHierarchyPrepareParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        final r = await handler(p);
+        return r?.map((e) => e.toJson()).toList();
+      },
+    );
   }
 
   /// Registers handler for `textDocument/semanticTokens/full`.
   void onSemanticTokensFull(
     Future<SemanticTokens?> Function(SemanticTokensParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/semanticTokens/full', (
-      json,
-    ) async {
+    _connection.registerRequestHandler(RequestMethod.full.value, (json) async {
       final p = SemanticTokensParams.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r?.toJson();
@@ -136,24 +135,19 @@ class TextDocumentHandlers {
   void onSemanticTokensFullDelta(
     Future<Object?> Function(SemanticTokensDeltaParams params) handler,
   ) {
-    _connection.registerRequestHandler(
-      r'textDocument/semanticTokens/full/delta',
-      (json) async {
-        final p = SemanticTokensDeltaParams.fromJson(
-          (json as Map<String, Object?>),
-        );
-        return await handler(p);
-      },
-    );
+    _connection.registerRequestHandler(RequestMethod.delta.value, (json) async {
+      final p = SemanticTokensDeltaParams.fromJson(
+        (json as Map<String, Object?>),
+      );
+      return await handler(p);
+    });
   }
 
   /// Registers handler for `textDocument/semanticTokens/range`.
   void onSemanticTokensRange(
     Future<SemanticTokens?> Function(SemanticTokensRangeParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/semanticTokens/range', (
-      json,
-    ) async {
+    _connection.registerRequestHandler(RequestMethod.range.value, (json) async {
       final p = SemanticTokensRangeParams.fromJson(
         (json as Map<String, Object?>),
       );
@@ -167,7 +161,7 @@ class TextDocumentHandlers {
     Future<LinkedEditingRanges?> Function(LinkedEditingRangeParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/linkedEditingRange', (
+    _connection.registerRequestHandler(RequestMethod.linkedEditingRange.value, (
       json,
     ) async {
       final p = LinkedEditingRangeParams.fromJson(
@@ -182,7 +176,9 @@ class TextDocumentHandlers {
   void onMoniker(
     Future<List<Moniker>?> Function(MonikerParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/moniker', (json) async {
+    _connection.registerRequestHandler(RequestMethod.moniker.value, (
+      json,
+    ) async {
       final p = MonikerParams.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r?.map((e) => e.toJson()).toList();
@@ -194,22 +190,23 @@ class TextDocumentHandlers {
     Future<List<TypeHierarchyItem>?> Function(TypeHierarchyPrepareParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/prepareTypeHierarchy', (
-      json,
-    ) async {
-      final p = TypeHierarchyPrepareParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      final r = await handler(p);
-      return r?.map((e) => e.toJson()).toList();
-    });
+    _connection.registerRequestHandler(
+      RequestMethod.prepareTypeHierarchy.value,
+      (json) async {
+        final p = TypeHierarchyPrepareParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        final r = await handler(p);
+        return r?.map((e) => e.toJson()).toList();
+      },
+    );
   }
 
   /// Registers handler for `textDocument/inlineValue`.
   void onInlineValue(
     Future<List<InlineValue>?> Function(InlineValueParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/inlineValue', (
+    _connection.registerRequestHandler(RequestMethod.inlineValue.value, (
       json,
     ) async {
       final p = InlineValueParams.fromJson((json as Map<String, Object?>));
@@ -222,7 +219,9 @@ class TextDocumentHandlers {
   void onInlayHint(
     Future<List<InlayHint>?> Function(InlayHintParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/inlayHint', (json) async {
+    _connection.registerRequestHandler(RequestMethod.inlayHint.value, (
+      json,
+    ) async {
       final p = InlayHintParams.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r?.map((e) => e.toJson()).toList();
@@ -234,22 +233,23 @@ class TextDocumentHandlers {
     Future<DocumentDiagnosticReport> Function(DocumentDiagnosticParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/diagnostic', (
-      json,
-    ) async {
-      final p = DocumentDiagnosticParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      final r = await handler(p);
-      return r.toJson();
-    });
+    _connection.registerRequestHandler(
+      RequestMethod.textDocumentDiagnostic.value,
+      (json) async {
+        final p = DocumentDiagnosticParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        final r = await handler(p);
+        return r.toJson();
+      },
+    );
   }
 
   /// Registers handler for `textDocument/inlineCompletion`.
   void onInlineCompletion(
     Future<Object?> Function(InlineCompletionParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/inlineCompletion', (
+    _connection.registerRequestHandler(RequestMethod.inlineCompletion.value, (
       json,
     ) async {
       final p = InlineCompletionParams.fromJson((json as Map<String, Object?>));
@@ -261,7 +261,7 @@ class TextDocumentHandlers {
   void onWillSaveWaitUntil(
     Future<List<TextEdit>?> Function(WillSaveTextDocumentParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/willSaveWaitUntil', (
+    _connection.registerRequestHandler(RequestMethod.willSaveWaitUntil.value, (
       json,
     ) async {
       final p = WillSaveTextDocumentParams.fromJson(
@@ -274,7 +274,7 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/completion`.
   void onCompletion(Future<Object?> Function(CompletionParams params) handler) {
-    _connection.registerRequestHandler(r'textDocument/completion', (
+    _connection.registerRequestHandler(RequestMethod.completion.value, (
       json,
     ) async {
       final p = CompletionParams.fromJson((json as Map<String, Object?>));
@@ -284,7 +284,7 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/hover`.
   void onHover(Future<Hover?> Function(HoverParams params) handler) {
-    _connection.registerRequestHandler(r'textDocument/hover', (json) async {
+    _connection.registerRequestHandler(RequestMethod.hover.value, (json) async {
       final p = HoverParams.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r?.toJson();
@@ -295,7 +295,7 @@ class TextDocumentHandlers {
   void onSignatureHelp(
     Future<SignatureHelp?> Function(SignatureHelpParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/signatureHelp', (
+    _connection.registerRequestHandler(RequestMethod.signatureHelp.value, (
       json,
     ) async {
       final p = SignatureHelpParams.fromJson((json as Map<String, Object?>));
@@ -306,7 +306,7 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/definition`.
   void onDefinition(Future<Object?> Function(DefinitionParams params) handler) {
-    _connection.registerRequestHandler(r'textDocument/definition', (
+    _connection.registerRequestHandler(RequestMethod.definition.value, (
       json,
     ) async {
       final p = DefinitionParams.fromJson((json as Map<String, Object?>));
@@ -318,7 +318,7 @@ class TextDocumentHandlers {
   void onReferences(
     Future<List<Location>?> Function(ReferenceParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/references', (
+    _connection.registerRequestHandler(RequestMethod.references.value, (
       json,
     ) async {
       final p = ReferenceParams.fromJson((json as Map<String, Object?>));
@@ -332,7 +332,7 @@ class TextDocumentHandlers {
     Future<List<DocumentHighlight>?> Function(DocumentHighlightParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/documentHighlight', (
+    _connection.registerRequestHandler(RequestMethod.documentHighlight.value, (
       json,
     ) async {
       final p = DocumentHighlightParams.fromJson(
@@ -347,7 +347,7 @@ class TextDocumentHandlers {
   void onDocumentSymbol(
     Future<Object?> Function(DocumentSymbolParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/documentSymbol', (
+    _connection.registerRequestHandler(RequestMethod.documentSymbol.value, (
       json,
     ) async {
       final p = DocumentSymbolParams.fromJson((json as Map<String, Object?>));
@@ -359,7 +359,7 @@ class TextDocumentHandlers {
   void onCodeAction(
     Future<List<Object>?> Function(CodeActionParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/codeAction', (
+    _connection.registerRequestHandler(RequestMethod.codeAction.value, (
       json,
     ) async {
       final p = CodeActionParams.fromJson((json as Map<String, Object?>));
@@ -372,7 +372,9 @@ class TextDocumentHandlers {
   void onCodeLens(
     Future<List<CodeLens>?> Function(CodeLensParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/codeLens', (json) async {
+    _connection.registerRequestHandler(RequestMethod.codeLens.value, (
+      json,
+    ) async {
       final p = CodeLensParams.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r?.map((e) => e.toJson()).toList();
@@ -383,7 +385,7 @@ class TextDocumentHandlers {
   void onDocumentLink(
     Future<List<DocumentLink>?> Function(DocumentLinkParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/documentLink', (
+    _connection.registerRequestHandler(RequestMethod.documentLink.value, (
       json,
     ) async {
       final p = DocumentLinkParams.fromJson((json as Map<String, Object?>));
@@ -396,7 +398,7 @@ class TextDocumentHandlers {
   void onFormatting(
     Future<List<TextEdit>?> Function(DocumentFormattingParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/formatting', (
+    _connection.registerRequestHandler(RequestMethod.formatting.value, (
       json,
     ) async {
       final p = DocumentFormattingParams.fromJson(
@@ -412,7 +414,7 @@ class TextDocumentHandlers {
     Future<List<TextEdit>?> Function(DocumentRangeFormattingParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/rangeFormatting', (
+    _connection.registerRequestHandler(RequestMethod.rangeFormatting.value, (
       json,
     ) async {
       final p = DocumentRangeFormattingParams.fromJson(
@@ -428,7 +430,7 @@ class TextDocumentHandlers {
     Future<List<TextEdit>?> Function(DocumentRangesFormattingParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/rangesFormatting', (
+    _connection.registerRequestHandler(RequestMethod.rangesFormatting.value, (
       json,
     ) async {
       final p = DocumentRangesFormattingParams.fromJson(
@@ -444,7 +446,7 @@ class TextDocumentHandlers {
     Future<List<TextEdit>?> Function(DocumentOnTypeFormattingParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/onTypeFormatting', (
+    _connection.registerRequestHandler(RequestMethod.onTypeFormatting.value, (
       json,
     ) async {
       final p = DocumentOnTypeFormattingParams.fromJson(
@@ -457,7 +459,9 @@ class TextDocumentHandlers {
 
   /// Registers handler for `textDocument/rename`.
   void onRename(Future<WorkspaceEdit?> Function(RenameParams params) handler) {
-    _connection.registerRequestHandler(r'textDocument/rename', (json) async {
+    _connection.registerRequestHandler(RequestMethod.rename.value, (
+      json,
+    ) async {
       final p = RenameParams.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r?.toJson();
@@ -468,7 +472,7 @@ class TextDocumentHandlers {
   void onPrepareRename(
     Future<PrepareRenameResult?> Function(PrepareRenameParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'textDocument/prepareRename', (
+    _connection.registerRequestHandler(RequestMethod.prepareRename.value, (
       json,
     ) async {
       final p = PrepareRenameParams.fromJson((json as Map<String, Object?>));
@@ -481,63 +485,67 @@ class TextDocumentHandlers {
   void onDidOpen(
     Future<void> Function(DidOpenTextDocumentParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'textDocument/didOpen', (
-      json,
-    ) async {
-      final p = DidOpenTextDocumentParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.textDocumentDidOpen.value,
+      (json) async {
+        final p = DidOpenTextDocumentParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `textDocument/didChange`.
   void onDidChange(
     Future<void> Function(DidChangeTextDocumentParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'textDocument/didChange', (
-      json,
-    ) async {
-      final p = DidChangeTextDocumentParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.textDocumentDidChange.value,
+      (json) async {
+        final p = DidChangeTextDocumentParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `textDocument/didClose`.
   void onDidClose(
     Future<void> Function(DidCloseTextDocumentParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'textDocument/didClose', (
-      json,
-    ) async {
-      final p = DidCloseTextDocumentParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.textDocumentDidClose.value,
+      (json) async {
+        final p = DidCloseTextDocumentParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `textDocument/didSave`.
   void onDidSave(
     Future<void> Function(DidSaveTextDocumentParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'textDocument/didSave', (
-      json,
-    ) async {
-      final p = DidSaveTextDocumentParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.textDocumentDidSave.value,
+      (json) async {
+        final p = DidSaveTextDocumentParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `textDocument/willSave`.
   void onWillSave(
     Future<void> Function(WillSaveTextDocumentParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'textDocument/willSave', (
+    _connection.registerNotificationHandler(NotificationMethod.willSave.value, (
       json,
     ) async {
       final p = WillSaveTextDocumentParams.fromJson(
@@ -561,7 +569,7 @@ class CallHierarchyHandlers {
     )
     handler,
   ) {
-    _connection.registerRequestHandler(r'callHierarchy/incomingCalls', (
+    _connection.registerRequestHandler(RequestMethod.incomingCalls.value, (
       json,
     ) async {
       final p = CallHierarchyIncomingCallsParams.fromJson(
@@ -579,7 +587,7 @@ class CallHierarchyHandlers {
     )
     handler,
   ) {
-    _connection.registerRequestHandler(r'callHierarchy/outgoingCalls', (
+    _connection.registerRequestHandler(RequestMethod.outgoingCalls.value, (
       json,
     ) async {
       final p = CallHierarchyOutgoingCallsParams.fromJson(
@@ -601,7 +609,7 @@ class WorkspaceHandlers {
   void onWillCreateFiles(
     Future<WorkspaceEdit?> Function(CreateFilesParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'workspace/willCreateFiles', (
+    _connection.registerRequestHandler(RequestMethod.willCreateFiles.value, (
       json,
     ) async {
       final p = CreateFilesParams.fromJson((json as Map<String, Object?>));
@@ -614,7 +622,7 @@ class WorkspaceHandlers {
   void onWillRenameFiles(
     Future<WorkspaceEdit?> Function(RenameFilesParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'workspace/willRenameFiles', (
+    _connection.registerRequestHandler(RequestMethod.willRenameFiles.value, (
       json,
     ) async {
       final p = RenameFilesParams.fromJson((json as Map<String, Object?>));
@@ -627,7 +635,7 @@ class WorkspaceHandlers {
   void onWillDeleteFiles(
     Future<WorkspaceEdit?> Function(DeleteFilesParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'workspace/willDeleteFiles', (
+    _connection.registerRequestHandler(RequestMethod.willDeleteFiles.value, (
       json,
     ) async {
       final p = DeleteFilesParams.fromJson((json as Map<String, Object?>));
@@ -641,20 +649,25 @@ class WorkspaceHandlers {
     Future<WorkspaceDiagnosticReport> Function(WorkspaceDiagnosticParams params)
     handler,
   ) {
-    _connection.registerRequestHandler(r'workspace/diagnostic', (json) async {
-      final p = WorkspaceDiagnosticParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      final r = await handler(p);
-      return r.toJson();
-    });
+    _connection.registerRequestHandler(
+      RequestMethod.workspaceDiagnostic.value,
+      (json) async {
+        final p = WorkspaceDiagnosticParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        final r = await handler(p);
+        return r.toJson();
+      },
+    );
   }
 
   /// Registers handler for `workspace/symbol`.
   void onSymbol(
     Future<Object?> Function(WorkspaceSymbolParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'workspace/symbol', (json) async {
+    _connection.registerRequestHandler(RequestMethod.symbol.value, (
+      json,
+    ) async {
       final p = WorkspaceSymbolParams.fromJson((json as Map<String, Object?>));
       return await handler(p);
     });
@@ -664,7 +677,7 @@ class WorkspaceHandlers {
   void onExecuteCommand(
     Future<LSPAny?> Function(ExecuteCommandParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'workspace/executeCommand', (
+    _connection.registerRequestHandler(RequestMethod.executeCommand.value, (
       json,
     ) async {
       final p = ExecuteCommandParams.fromJson((json as Map<String, Object?>));
@@ -678,7 +691,7 @@ class WorkspaceHandlers {
     Future<void> Function(DidChangeWorkspaceFoldersParams params) handler,
   ) {
     _connection.registerNotificationHandler(
-      r'workspace/didChangeWorkspaceFolders',
+      NotificationMethod.didChangeWorkspaceFolders.value,
       (json) async {
         final p = DidChangeWorkspaceFoldersParams.fromJson(
           (json as Map<String, Object?>),
@@ -692,36 +705,39 @@ class WorkspaceHandlers {
   void onDidCreateFiles(
     Future<void> Function(CreateFilesParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'workspace/didCreateFiles', (
-      json,
-    ) async {
-      final p = CreateFilesParams.fromJson((json as Map<String, Object?>));
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.didCreateFiles.value,
+      (json) async {
+        final p = CreateFilesParams.fromJson((json as Map<String, Object?>));
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `workspace/didRenameFiles`.
   void onDidRenameFiles(
     Future<void> Function(RenameFilesParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'workspace/didRenameFiles', (
-      json,
-    ) async {
-      final p = RenameFilesParams.fromJson((json as Map<String, Object?>));
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.didRenameFiles.value,
+      (json) async {
+        final p = RenameFilesParams.fromJson((json as Map<String, Object?>));
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `workspace/didDeleteFiles`.
   void onDidDeleteFiles(
     Future<void> Function(DeleteFilesParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'workspace/didDeleteFiles', (
-      json,
-    ) async {
-      final p = DeleteFilesParams.fromJson((json as Map<String, Object?>));
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.didDeleteFiles.value,
+      (json) async {
+        final p = DeleteFilesParams.fromJson((json as Map<String, Object?>));
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `workspace/didChangeConfiguration`.
@@ -729,7 +745,7 @@ class WorkspaceHandlers {
     Future<void> Function(DidChangeConfigurationParams params) handler,
   ) {
     _connection.registerNotificationHandler(
-      r'workspace/didChangeConfiguration',
+      NotificationMethod.didChangeConfiguration.value,
       (json) async {
         final p = DidChangeConfigurationParams.fromJson(
           (json as Map<String, Object?>),
@@ -744,7 +760,7 @@ class WorkspaceHandlers {
     Future<void> Function(DidChangeWatchedFilesParams params) handler,
   ) {
     _connection.registerNotificationHandler(
-      r'workspace/didChangeWatchedFiles',
+      NotificationMethod.didChangeWatchedFiles.value,
       (json) async {
         final p = DidChangeWatchedFilesParams.fromJson(
           (json as Map<String, Object?>),
@@ -768,7 +784,7 @@ class TypeHierarchyHandlers {
     )
     handler,
   ) {
-    _connection.registerRequestHandler(r'typeHierarchy/supertypes', (
+    _connection.registerRequestHandler(RequestMethod.supertypes.value, (
       json,
     ) async {
       final p = TypeHierarchySupertypesParams.fromJson(
@@ -786,7 +802,9 @@ class TypeHierarchyHandlers {
     )
     handler,
   ) {
-    _connection.registerRequestHandler(r'typeHierarchy/subtypes', (json) async {
+    _connection.registerRequestHandler(RequestMethod.subtypes.value, (
+      json,
+    ) async {
       final p = TypeHierarchySubtypesParams.fromJson(
         (json as Map<String, Object?>),
       );
@@ -804,7 +822,9 @@ class InlayHintHandlers {
 
   /// Registers handler for `inlayHint/resolve`.
   void onResolve(Future<InlayHint> Function(InlayHint params) handler) {
-    _connection.registerRequestHandler(r'inlayHint/resolve', (json) async {
+    _connection.registerRequestHandler(RequestMethod.inlayHintResolve.value, (
+      json,
+    ) async {
       final p = InlayHint.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r.toJson();
@@ -822,7 +842,9 @@ class GeneralHandlers {
   void onInitialize(
     Future<InitializeResult> Function(InitializeParams params) handler,
   ) {
-    _connection.registerRequestHandler(r'initialize', (json) async {
+    _connection.registerRequestHandler(RequestMethod.initialize.value, (
+      json,
+    ) async {
       final p = InitializeParams.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r.toJson();
@@ -831,7 +853,9 @@ class GeneralHandlers {
 
   /// Registers handler for `shutdown`.
   void onShutdown(Future<void> Function() handler) {
-    _connection.registerRequestHandler(r'shutdown', (json) async {
+    _connection.registerRequestHandler(RequestMethod.shutdown.value, (
+      json,
+    ) async {
       await handler();
       return null;
     });
@@ -839,22 +863,29 @@ class GeneralHandlers {
 
   /// Registers handler for `initialized`.
   void onInitialized(Future<void> Function(InitializedParams params) handler) {
-    _connection.registerNotificationHandler(r'initialized', (json) async {
-      final p = InitializedParams.fromJson((json as Map<String, Object?>));
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.initialized.value,
+      (json) async {
+        final p = InitializedParams.fromJson((json as Map<String, Object?>));
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `exit`.
   void onExit(Future<void> Function() handler) {
-    _connection.registerNotificationHandler(r'exit', (json) async {
+    _connection.registerNotificationHandler(NotificationMethod.exit.value, (
+      json,
+    ) async {
       await handler();
     });
   }
 
   /// Registers handler for `$/setTrace`.
   void onSetTrace(Future<void> Function(SetTraceParams params) handler) {
-    _connection.registerNotificationHandler(r'$/setTrace', (json) async {
+    _connection.registerNotificationHandler(NotificationMethod.setTrace.value, (
+      json,
+    ) async {
       final p = SetTraceParams.fromJson((json as Map<String, Object?>));
       await handler(p);
     });
@@ -862,15 +893,20 @@ class GeneralHandlers {
 
   /// Registers handler for `$/cancelRequest`.
   void onCancelRequest(Future<void> Function(CancelParams params) handler) {
-    _connection.registerNotificationHandler(r'$/cancelRequest', (json) async {
-      final p = CancelParams.fromJson((json as Map<String, Object?>));
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.cancelRequest.value,
+      (json) async {
+        final p = CancelParams.fromJson((json as Map<String, Object?>));
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `$/progress`.
   void onProgress(Future<void> Function(ProgressParams params) handler) {
-    _connection.registerNotificationHandler(r'$/progress', (json) async {
+    _connection.registerNotificationHandler(NotificationMethod.progress.value, (
+      json,
+    ) async {
       final p = ProgressParams.fromJson((json as Map<String, Object?>));
       await handler(p);
     });
@@ -887,11 +923,14 @@ class CompletionItemHandlers {
   void onResolve(
     Future<CompletionItem> Function(CompletionItem params) handler,
   ) {
-    _connection.registerRequestHandler(r'completionItem/resolve', (json) async {
-      final p = CompletionItem.fromJson((json as Map<String, Object?>));
-      final r = await handler(p);
-      return r.toJson();
-    });
+    _connection.registerRequestHandler(
+      RequestMethod.completionItemResolve.value,
+      (json) async {
+        final p = CompletionItem.fromJson((json as Map<String, Object?>));
+        final r = await handler(p);
+        return r.toJson();
+      },
+    );
   }
 }
 
@@ -903,7 +942,9 @@ class CodeActionHandlers {
 
   /// Registers handler for `codeAction/resolve`.
   void onResolve(Future<CodeAction> Function(CodeAction params) handler) {
-    _connection.registerRequestHandler(r'codeAction/resolve', (json) async {
+    _connection.registerRequestHandler(RequestMethod.codeActionResolve.value, (
+      json,
+    ) async {
       final p = CodeAction.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r.toJson();
@@ -921,13 +962,14 @@ class WorkspaceSymbolHandlers {
   void onResolve(
     Future<WorkspaceSymbol> Function(WorkspaceSymbol params) handler,
   ) {
-    _connection.registerRequestHandler(r'workspaceSymbol/resolve', (
-      json,
-    ) async {
-      final p = WorkspaceSymbol.fromJson((json as Map<String, Object?>));
-      final r = await handler(p);
-      return r.toJson();
-    });
+    _connection.registerRequestHandler(
+      RequestMethod.workspaceSymbolResolve.value,
+      (json) async {
+        final p = WorkspaceSymbol.fromJson((json as Map<String, Object?>));
+        final r = await handler(p);
+        return r.toJson();
+      },
+    );
   }
 }
 
@@ -939,7 +981,9 @@ class CodeLensHandlers {
 
   /// Registers handler for `codeLens/resolve`.
   void onResolve(Future<CodeLens> Function(CodeLens params) handler) {
-    _connection.registerRequestHandler(r'codeLens/resolve', (json) async {
+    _connection.registerRequestHandler(RequestMethod.codeLensResolve.value, (
+      json,
+    ) async {
       final p = CodeLens.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
       return r.toJson();
@@ -955,11 +999,14 @@ class DocumentLinkHandlers {
 
   /// Registers handler for `documentLink/resolve`.
   void onResolve(Future<DocumentLink> Function(DocumentLink params) handler) {
-    _connection.registerRequestHandler(r'documentLink/resolve', (json) async {
-      final p = DocumentLink.fromJson((json as Map<String, Object?>));
-      final r = await handler(p);
-      return r.toJson();
-    });
+    _connection.registerRequestHandler(
+      RequestMethod.documentLinkResolve.value,
+      (json) async {
+        final p = DocumentLink.fromJson((json as Map<String, Object?>));
+        final r = await handler(p);
+        return r.toJson();
+      },
+    );
   }
 }
 
@@ -973,7 +1020,7 @@ class WindowHandlers {
   void onWorkDoneProgressCancel(
     Future<void> Function(WorkDoneProgressCancelParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'window/workDoneProgress/cancel', (
+    _connection.registerNotificationHandler(NotificationMethod.cancel.value, (
       json,
     ) async {
       final p = WorkDoneProgressCancelParams.fromJson(
@@ -994,56 +1041,60 @@ class NotebookDocumentHandlers {
   void onDidOpen(
     Future<void> Function(DidOpenNotebookDocumentParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'notebookDocument/didOpen', (
-      json,
-    ) async {
-      final p = DidOpenNotebookDocumentParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.notebookDocumentDidOpen.value,
+      (json) async {
+        final p = DidOpenNotebookDocumentParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `notebookDocument/didChange`.
   void onDidChange(
     Future<void> Function(DidChangeNotebookDocumentParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'notebookDocument/didChange', (
-      json,
-    ) async {
-      final p = DidChangeNotebookDocumentParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.notebookDocumentDidChange.value,
+      (json) async {
+        final p = DidChangeNotebookDocumentParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `notebookDocument/didSave`.
   void onDidSave(
     Future<void> Function(DidSaveNotebookDocumentParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'notebookDocument/didSave', (
-      json,
-    ) async {
-      final p = DidSaveNotebookDocumentParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.notebookDocumentDidSave.value,
+      (json) async {
+        final p = DidSaveNotebookDocumentParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        await handler(p);
+      },
+    );
   }
 
   /// Registers handler for `notebookDocument/didClose`.
   void onDidClose(
     Future<void> Function(DidCloseNotebookDocumentParams params) handler,
   ) {
-    _connection.registerNotificationHandler(r'notebookDocument/didClose', (
-      json,
-    ) async {
-      final p = DidCloseNotebookDocumentParams.fromJson(
-        (json as Map<String, Object?>),
-      );
-      await handler(p);
-    });
+    _connection.registerNotificationHandler(
+      NotificationMethod.notebookDocumentDidClose.value,
+      (json) async {
+        final p = DidCloseNotebookDocumentParams.fromJson(
+          (json as Map<String, Object?>),
+        );
+        await handler(p);
+      },
+    );
   }
 }
 
@@ -1055,7 +1106,9 @@ class WorkspaceSender {
 
   /// Sends the `workspace/workspaceFolders` request to the client.
   Future<List<WorkspaceFolder>?> workspaceFolders() async {
-    final raw = await _connection.sendRequest(r'workspace/workspaceFolders');
+    final raw = await _connection.sendRequest(
+      RequestMethod.workspaceFolders.value,
+    );
     return (raw as List)
         .cast<Map<String, Object?>>()
         .map(List<WorkspaceFolder>.fromJson)
@@ -1065,7 +1118,7 @@ class WorkspaceSender {
   /// Sends the `workspace/configuration` request to the client.
   Future<List<LSPAny>> configuration(ConfigurationParams params) async {
     final raw = await _connection.sendRequest(
-      r'workspace/configuration',
+      RequestMethod.configuration.value,
       params.toJson(),
     );
     return (raw as List)
@@ -1076,32 +1129,42 @@ class WorkspaceSender {
 
   /// Sends the `workspace/foldingRange/refresh` request to the client.
   Future<void> foldingRangeRefresh() async {
-    await _connection.sendRequest(r'workspace/foldingRange/refresh');
+    await _connection.sendRequest(
+      RequestMethod.workspaceFoldingRangeRefresh.value,
+    );
   }
 
   /// Sends the `workspace/semanticTokens/refresh` request to the client.
   Future<void> semanticTokensRefresh() async {
-    await _connection.sendRequest(r'workspace/semanticTokens/refresh');
+    await _connection.sendRequest(
+      RequestMethod.workspaceSemanticTokensRefresh.value,
+    );
   }
 
   /// Sends the `workspace/inlineValue/refresh` request to the client.
   Future<void> inlineValueRefresh() async {
-    await _connection.sendRequest(r'workspace/inlineValue/refresh');
+    await _connection.sendRequest(
+      RequestMethod.workspaceInlineValueRefresh.value,
+    );
   }
 
   /// Sends the `workspace/inlayHint/refresh` request to the client.
   Future<void> inlayHintRefresh() async {
-    await _connection.sendRequest(r'workspace/inlayHint/refresh');
+    await _connection.sendRequest(
+      RequestMethod.workspaceInlayHintRefresh.value,
+    );
   }
 
   /// Sends the `workspace/diagnostic/refresh` request to the client.
   Future<void> diagnosticRefresh() async {
-    await _connection.sendRequest(r'workspace/diagnostic/refresh');
+    await _connection.sendRequest(
+      RequestMethod.workspaceDiagnosticRefresh.value,
+    );
   }
 
   /// Sends the `workspace/codeLens/refresh` request to the client.
   Future<void> codeLensRefresh() async {
-    await _connection.sendRequest(r'workspace/codeLens/refresh');
+    await _connection.sendRequest(RequestMethod.workspaceCodeLensRefresh.value);
   }
 
   /// Sends the `workspace/applyEdit` request to the client.
@@ -1109,7 +1172,7 @@ class WorkspaceSender {
     ApplyWorkspaceEditParams params,
   ) async {
     final raw = await _connection.sendRequest(
-      r'workspace/applyEdit',
+      RequestMethod.applyEdit.value,
       params.toJson(),
     );
     return ApplyWorkspaceEditResult.fromJson((raw as Map<String, Object?>));
@@ -1126,16 +1189,13 @@ class WindowSender {
   Future<void> workDoneProgressCreate(
     WorkDoneProgressCreateParams params,
   ) async {
-    await _connection.sendRequest(
-      r'window/workDoneProgress/create',
-      params.toJson(),
-    );
+    await _connection.sendRequest(RequestMethod.create.value, params.toJson());
   }
 
   /// Sends the `window/showDocument` request to the client.
   Future<ShowDocumentResult> showDocument(ShowDocumentParams params) async {
     final raw = await _connection.sendRequest(
-      r'window/showDocument',
+      RequestMethod.showDocument.value,
       params.toJson(),
     );
     return ShowDocumentResult.fromJson((raw as Map<String, Object?>));
@@ -1146,7 +1206,7 @@ class WindowSender {
     ShowMessageRequestParams params,
   ) async {
     final raw = await _connection.sendRequest(
-      r'window/showMessageRequest',
+      RequestMethod.showMessageRequest.value,
       params.toJson(),
     );
     return raw == null
@@ -1155,12 +1215,16 @@ class WindowSender {
   }
 
   /// Sends the `window/showMessage` notification to the client.
-  void showMessage(ShowMessageParams params) =>
-      _connection.sendNotification(r'window/showMessage', params.toJson());
+  void showMessage(ShowMessageParams params) => _connection.sendNotification(
+    NotificationMethod.showMessage.value,
+    params.toJson(),
+  );
 
   /// Sends the `window/logMessage` notification to the client.
-  void logMessage(LogMessageParams params) =>
-      _connection.sendNotification(r'window/logMessage', params.toJson());
+  void logMessage(LogMessageParams params) => _connection.sendNotification(
+    NotificationMethod.logMessage.value,
+    params.toJson(),
+  );
 }
 
 /// Sends LSP messages to the client for the `client` namespace.
@@ -1172,7 +1236,7 @@ class ClientSender {
   /// Sends the `client/registerCapability` request to the client.
   Future<void> registerCapability(RegistrationParams params) async {
     await _connection.sendRequest(
-      r'client/registerCapability',
+      RequestMethod.registerCapability.value,
       params.toJson(),
     );
   }
@@ -1180,7 +1244,7 @@ class ClientSender {
   /// Sends the `client/unregisterCapability` request to the client.
   Future<void> unregisterCapability(UnregistrationParams params) async {
     await _connection.sendRequest(
-      r'client/unregisterCapability',
+      RequestMethod.unregisterCapability.value,
       params.toJson(),
     );
   }
@@ -1193,8 +1257,10 @@ class TelemetrySender {
   final LspConnection _connection;
 
   /// Sends the `telemetry/event` notification to the client.
-  void event(Object? params) =>
-      _connection.sendNotification(r'telemetry/event', params.toJson());
+  void event(Object? params) => _connection.sendNotification(
+    NotificationMethod.event.value,
+    params.toJson(),
+  );
 }
 
 /// Sends LSP messages to the client for the `textDocument` namespace.
@@ -1204,8 +1270,11 @@ class TextDocumentSender {
   final LspConnection _connection;
 
   /// Sends the `textDocument/publishDiagnostics` notification to the client.
-  void publishDiagnostics(PublishDiagnosticsParams params) => _connection
-      .sendNotification(r'textDocument/publishDiagnostics', params.toJson());
+  void publishDiagnostics(PublishDiagnosticsParams params) =>
+      _connection.sendNotification(
+        NotificationMethod.publishDiagnostics.value,
+        params.toJson(),
+      );
 }
 
 /// Sends LSP messages to the client for the `general` namespace.
@@ -1215,16 +1284,22 @@ class GeneralSender {
   final LspConnection _connection;
 
   /// Sends the `$/logTrace` notification to the client.
-  void logTrace(LogTraceParams params) =>
-      _connection.sendNotification(r'$/logTrace', params.toJson());
+  void logTrace(LogTraceParams params) => _connection.sendNotification(
+    NotificationMethod.logTrace.value,
+    params.toJson(),
+  );
 
   /// Sends the `$/cancelRequest` notification to the client.
-  void cancelRequest(CancelParams params) =>
-      _connection.sendNotification(r'$/cancelRequest', params.toJson());
+  void cancelRequest(CancelParams params) => _connection.sendNotification(
+    NotificationMethod.cancelRequest.value,
+    params.toJson(),
+  );
 
   /// Sends the `$/progress` notification to the client.
-  void progress(ProgressParams params) =>
-      _connection.sendNotification(r'$/progress', params.toJson());
+  void progress(ProgressParams params) => _connection.sendNotification(
+    NotificationMethod.progress.value,
+    params.toJson(),
+  );
 }
 
 /// Aggregates all outgoing sender classes.
