@@ -717,7 +717,9 @@ void main() {
       );
     });
 
-    test('deprecated property keeps @Deprecated on private JsonSerializable class field',
+    test(
+        'deprecated property keeps @Deprecated on private'
+        ' JsonSerializable class field',
         () {
       final state = _stateWith(
         classes: [
@@ -817,7 +819,9 @@ void main() {
       expect(src, contains('/// @proposed'));
     });
 
-    test('class with documentation and since appends @since to doc comment', () {
+    test(
+        'class with documentation and since appends @since to doc comment',
+        () {
       final state = _stateWith(
         classes: [
           ResolvedClass(

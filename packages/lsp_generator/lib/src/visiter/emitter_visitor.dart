@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 
-import '../redux/models/protocol.dart' show MessageDirection, MetaNotification, MetaRequest;
+import '../redux/models/protocol.dart' show MessageDirection, MetaNotification;
 import '../redux/models/resolved_decl.dart';
 import '../redux/models/resolved_type.dart';
 import '../redux/resolved/resolved_state.dart';
@@ -153,8 +153,8 @@ final class EmitterVisitor {
   Library buildNotificationMethods() {
     final notifications = _resolved.notifications;
     final requests = _resolved.requests;
-    final notifNames = _notificationDartNames(notifications);
-    final requestNames = _requestDartNames(requests);
+    final notifNames = _dartNames(notifications, (n) => n.method);
+    final requestNames = _dartNames(requests, (r) => r.method);
     return Library(
       (b) => b
         ..comments.add(_header)
@@ -162,8 +162,30 @@ final class EmitterVisitor {
           Directive.import('package:json_annotation/json_annotation.dart'),
         )
         ..directives.add(Directive.part('methods.g.dart'))
-        ..body.add(_buildNotificationEnum(notifications, notifNames))
-        ..body.add(_buildRequestEnum(requests, requestNames)),
+        ..body.add(_buildMethodEnum(
+          'NotificationMethod',
+          notifications.map(
+            (n) => (
+              memberName: notifNames[n]!,
+              method: n.method,
+              doc: n.documentation ??
+                  'LSP notification `${n.method}` '
+                  '(${_directionLabel(n.messageDirection)}).',
+            ),
+          ),
+        ))
+        ..body.add(_buildMethodEnum(
+          'RequestMethod',
+          requests.map(
+            (r) => (
+              memberName: requestNames[r]!,
+              method: r.method,
+              doc: r.documentation ??
+                  'LSP request `${r.method}` '
+                  '(${_directionLabel(r.messageDirection)}).',
+            ),
+          ),
+        )),
     );
   }
 
@@ -275,35 +297,23 @@ final class EmitterVisitor {
     Iterable<ResolvedType> types,
     String currentFile,
   ) {
-    var needsStructures = false;
-    var needsEnumerations = false;
-    var needsAliases = false;
-    var needsScalarUnions = false;
-    var needsUnions = false;
+    final needed = <String>{};
 
     void walk(ResolvedType type) {
       switch (type) {
         case ClassType():
-          if (currentFile != _structuresFile) {
-            needsStructures = true;
-          }
+          needed.add(_structuresFile);
         case EnumType():
-          if (currentFile != _enumerationsFile) {
-            needsEnumerations = true;
-          }
+          needed.add(_enumerationsFile);
         case AliasType(:final ref):
-          // Sealed union aliases live in their own files, not
-          // type_aliases.dart.
+          // Sealed union aliases live in their own files,
+          // not type_aliases.dart.
           if (_scalarUnionNames.contains(ref.name)) {
-            if (currentFile != _scalarUnionsFile) {
-              needsScalarUnions = true;
-            }
+            needed.add(_scalarUnionsFile);
           } else if (_sealedUnionNames.contains(ref.name)) {
-            if (currentFile != _unionsFile) {
-              needsUnions = true;
-            }
-          } else if (currentFile != _aliasesFile) {
-            needsAliases = true;
+            needed.add(_unionsFile);
+          } else {
+            needed.add(_aliasesFile);
           }
         case ListType(:final element):
           walk(element);
@@ -321,13 +331,18 @@ final class EmitterVisitor {
     }
 
     types.forEach(walk);
+    needed.remove(currentFile); // no self-import
 
+    // Preserve stable output order.
     return [
-      if (needsStructures) Directive.import(_structuresFile),
-      if (needsEnumerations) Directive.import(_enumerationsFile),
-      if (needsAliases) Directive.import(_aliasesFile),
-      if (needsScalarUnions) Directive.import(_scalarUnionsFile),
-      if (needsUnions) Directive.import(_unionsFile),
+      for (final f in [
+        _structuresFile,
+        _enumerationsFile,
+        _aliasesFile,
+        _scalarUnionsFile,
+        _unionsFile,
+      ])
+        if (needed.contains(f)) Directive.import(f),
     ];
   }
 
@@ -928,48 +943,55 @@ final class EmitterVisitor {
   /// The last path segment is used when unique across all notifications.
   /// Collisions (e.g. `textDocument/didOpen` vs `notebookDocument/didOpen`)
   /// fall back to the full camelCase path.
-  Map<MetaNotification, String> _notificationDartNames(
-    List<MetaNotification> notifications,
-  ) {
-    String clean(String method) => method.startsWith(r'$/')
-        ? method.substring(2)
-        : method.startsWith(r'$')
-        ? method.substring(1)
-        : method;
-
-    String lastSegment(String method) => clean(method).split('/').last;
-
-    String fullCamelCase(String method) {
-      final parts = clean(method).split('/');
+  /// Maps each item in [items] to a unique Dart identifier derived from its
+  /// LSP method string (e.g. `textDocument/didOpen` → `didOpen`).
+  ///
+  /// Uses the last path segment when it is unique across all items; falls back
+  /// to the full camelCase path on collisions.
+  Map<T, String> _dartNames<T>(List<T> items, String Function(T) getMethod) {
+    String clean(String m) => m.startsWith(r'$/')
+        ? m.substring(2)
+        : m.startsWith(r'$')
+        ? m.substring(1)
+        : m;
+    String lastSeg(String m) => clean(m).split('/').last;
+    String camelCase(String m) {
+      final parts = clean(m).split('/');
       return [
         parts.first,
         ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
       ].join();
     }
 
-    final lastSegs = {for (final n in notifications) n: lastSegment(n.method)};
+    final lastSegs = {for (final x in items) x: lastSeg(getMethod(x))};
     final counts = <String, int>{};
     for (final s in lastSegs.values) {
       counts[s] = (counts[s] ?? 0) + 1;
     }
-
     return {
-      for (final n in notifications)
-        n: _safeIdentifier(
-          counts[lastSegs[n]!]! > 1 ? fullCamelCase(n.method) : lastSegs[n]!,
+      for (final x in items)
+        x: _safeIdentifier(
+          counts[lastSegs[x]!]! > 1
+              ? camelCase(getMethod(x))
+              : lastSegs[x]!,
         ),
     };
   }
 
-  /// Builds the `NotificationMethod` enum spec.
-  Spec _buildNotificationEnum(
-    List<MetaNotification> notifications,
-    Map<MetaNotification, String> names,
+  /// Builds a method-identifier enum (e.g. `NotificationMethod` or
+  /// `RequestMethod`) from a sequence of [{memberName, method, doc}] records.
+  ///
+  /// Shared structure: `@JsonEnum(valueField: 'value')`, `final String value`
+  /// field, `const Enum(this.value)` constructor, and a `static T? decode`
+  /// method backed by json_annotation's `$enumDecodeNullable`.
+  Spec _buildMethodEnum(
+    String enumName,
+    Iterable<({String memberName, String method, String doc})> members,
   ) => Enum((b) {
-    b.name = 'NotificationMethod';
-    b.docs.add(
-      '/// LSP notification method identifiers, as sent over the wire.',
-    );
+    b.name = enumName;
+    b.docs.add('/// LSP ${
+      enumName.startsWith('Notification') ? 'notification' : 'request'
+    } method identifiers, as sent over the wire.');
     b.annotations.add(
       refer('JsonEnum').call([], {
         'valueField': literalString('value'),
@@ -977,16 +999,12 @@ final class EmitterVisitor {
       }),
     );
 
-    for (final n in notifications) {
+    for (final m in members) {
       b.values.add(
         EnumValue((b) {
-          b.name = names[n];
-          b.arguments.add(literalString(n.method, raw: true));
-          final doc =
-              n.documentation ??
-              'LSP notification `${n.method}` '
-                  '(${_directionLabel(n.messageDirection)}).';
-          b.docs.addAll(_docLines(doc));
+          b.name = m.memberName;
+          b.arguments.add(literalString(m.method, raw: true));
+          b.docs.addAll(_docLines(m.doc));
         }),
       );
     }
@@ -1005,11 +1023,7 @@ final class EmitterVisitor {
         (b) => b
           ..constant = true
           ..requiredParameters.add(
-            Parameter(
-              (b) => b
-                ..name = 'value'
-                ..toThis = true,
-            ),
+            Parameter((b) => b..name = 'value'..toThis = true),
           ),
       ),
     );
@@ -1019,129 +1033,15 @@ final class EmitterVisitor {
         (b) => b
           ..static = true
           ..returns = TypeReference(
-            (b) => b
-              ..symbol = 'NotificationMethod'
-              ..isNullable = true,
+            (b) => b..symbol = enumName..isNullable = true,
           )
           ..name = 'decode'
           ..requiredParameters.add(
-            Parameter(
-              (b) => b
-                ..name = 'json'
-                ..type = refer('String'),
-            ),
+            Parameter((b) => b..name = 'json'..type = refer('String')),
           )
           ..lambda = true
           ..body = refer(r'$enumDecodeNullable').call([
-            refer(r'_$NotificationMethodEnumMap'),
-            refer('json'),
-          ]).code,
-      ),
-    );
-  });
-
-  Map<MetaRequest, String> _requestDartNames(List<MetaRequest> requests) {
-    String clean(String method) => method.startsWith(r'$/')
-        ? method.substring(2)
-        : method.startsWith(r'$')
-        ? method.substring(1)
-        : method;
-
-    String lastSegment(String method) => clean(method).split('/').last;
-
-    String fullCamelCase(String method) {
-      final parts = clean(method).split('/');
-      return [
-        parts.first,
-        ...parts.skip(1).map((s) => s[0].toUpperCase() + s.substring(1)),
-      ].join();
-    }
-
-    final lastSegs = {for (final r in requests) r: lastSegment(r.method)};
-    final counts = <String, int>{};
-    for (final s in lastSegs.values) {
-      counts[s] = (counts[s] ?? 0) + 1;
-    }
-
-    return {
-      for (final r in requests)
-        r: _safeIdentifier(
-          counts[lastSegs[r]!]! > 1 ? fullCamelCase(r.method) : lastSegs[r]!,
-        ),
-    };
-  }
-
-  /// Builds the `RequestMethod` enum spec.
-  Spec _buildRequestEnum(
-    List<MetaRequest> requests,
-    Map<MetaRequest, String> names,
-  ) => Enum((b) {
-    b.name = 'RequestMethod';
-    b.docs.add('/// LSP request method identifiers, as sent over the wire.');
-    b.annotations.add(
-      refer('JsonEnum').call([], {
-        'valueField': literalString('value'),
-        'alwaysCreate': literalTrue,
-      }),
-    );
-
-    for (final r in requests) {
-      b.values.add(
-        EnumValue((b) {
-          b.name = names[r];
-          b.arguments.add(literalString(r.method, raw: true));
-          final doc =
-              r.documentation ??
-              'LSP request `${r.method}` '
-                  '(${_directionLabel(r.messageDirection)}).';
-          b.docs.addAll(_docLines(doc));
-        }),
-      );
-    }
-
-    b.fields.add(
-      Field(
-        (b) => b
-          ..modifier = FieldModifier.final$
-          ..name = 'value'
-          ..type = refer('String'),
-      ),
-    );
-
-    b.constructors.add(
-      Constructor(
-        (b) => b
-          ..constant = true
-          ..requiredParameters.add(
-            Parameter(
-              (b) => b
-                ..name = 'value'
-                ..toThis = true,
-            ),
-          ),
-      ),
-    );
-
-    b.methods.add(
-      Method(
-        (b) => b
-          ..static = true
-          ..returns = TypeReference(
-            (b) => b
-              ..symbol = 'RequestMethod'
-              ..isNullable = true,
-          )
-          ..name = 'decode'
-          ..requiredParameters.add(
-            Parameter(
-              (b) => b
-                ..name = 'json'
-                ..type = refer('String'),
-            ),
-          )
-          ..lambda = true
-          ..body = refer(r'$enumDecodeNullable').call([
-            refer(r'_$RequestMethodEnumMap'),
+            refer('_\$$enumName' 'EnumMap'),
             refer('json'),
           ]).code,
       ),
@@ -2374,21 +2274,24 @@ final class EmitterVisitor {
     String? since,
     bool proposed = false,
   }) {
-    // Structured tags — single source of truth used for both empty and non-empty
-    // body paths.
+    // Structured tags — single source of truth used for both empty
+    // and non-empty body paths.
     final tags = [
       if (since != null) '/// @since $since',
       if (proposed) '/// @proposed',
     ];
 
     // Strip any @since / @proposed already embedded in the documentation text —
-    // they are re-emitted from the structured fields so they appear exactly once.
+    // they are re-emitted from the structured fields so they appear
+    // exactly once.
     final body = (input ?? '')
         .replaceAll(RegExp(r'@since\s+\S+'), '')
         .replaceAll('@proposed', '')
         .trim();
 
-    if (body.isEmpty) return tags;
+    if (body.isEmpty) {
+      return tags;
+    }
 
     const prefix = '/// ';
     final maxContent = maxWidth - prefix.length;
@@ -2422,7 +2325,9 @@ final class EmitterVisitor {
 
     final lines = <String>[];
     for (final paragraph in paragraphs) {
-      if (lines.isNotEmpty) lines.add('///');
+      if (lines.isNotEmpty) {
+        lines.add('///');
+      }
 
       // Collapse intra-paragraph newlines to spaces, then word-wrap.
       final words = paragraph.replaceAll('\n', ' ').split(RegExp(r'\s+'));
