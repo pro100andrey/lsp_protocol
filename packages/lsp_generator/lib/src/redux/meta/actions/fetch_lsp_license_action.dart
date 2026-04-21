@@ -1,5 +1,4 @@
 import 'package:cli_utils/cli_utils.dart';
-import 'package:dar/dar.dart';
 import 'package:http/http.dart' as http;
 
 import '../../common.dart';

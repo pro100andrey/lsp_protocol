@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:dar/dar.dart';
-
 import '../../common.dart';
 
 final class RunBuildRunnerAction extends BaseAction {
@@ -29,7 +27,7 @@ final class RunBuildRunnerAction extends BaseAction {
         logger.err(err);
       }
       throw UserException(
-      'build_runner exited with code ${result.exitCode}.',
+        'build_runner exited with code ${result.exitCode}.',
         reason: err.isNotEmpty ? err : 'See output above.',
         code: result.exitCode,
       );
