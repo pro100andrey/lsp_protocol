@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "compile",
+            "path": "vscode-lsp-tester/",
+            "label": "npm: compile - vscode-lsp-tester",
+            "group": "build",
+            "problemMatcher": "$tsc"
+        }
+    ]
+}
