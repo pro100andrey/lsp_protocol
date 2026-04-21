@@ -364,7 +364,7 @@ class TextDocumentHandlers {
     ) async {
       final p = CodeActionParams.fromJson((json as Map<String, Object?>));
       final r = await handler(p);
-      return r?.map((e) => e.toJson()).toList();
+      return r?.map((e) => (e as dynamic).toJson()).toList();
     });
   }
 
@@ -675,14 +675,13 @@ class WorkspaceHandlers {
 
   /// Registers handler for `workspace/executeCommand`.
   void onExecuteCommand(
-    Future<LSPAny?> Function(ExecuteCommandParams params) handler,
+    Future<Object?> Function(ExecuteCommandParams params) handler,
   ) {
     _connection.registerRequestHandler(RequestMethod.executeCommand.value, (
       json,
     ) async {
       final p = ExecuteCommandParams.fromJson((json as Map<String, Object?>));
-      final r = await handler(p);
-      return r?.toJson();
+      return await handler(p);
     });
   }
 
@@ -1111,20 +1110,17 @@ class WorkspaceSender {
     );
     return (raw as List)
         .cast<Map<String, Object?>>()
-        .map(List<WorkspaceFolder>.fromJson)
+        .map(WorkspaceFolder.fromJson)
         .toList();
   }
 
   /// Sends the `workspace/configuration` request to the client.
-  Future<List<LSPAny>> configuration(ConfigurationParams params) async {
+  Future<List<Object?>> configuration(ConfigurationParams params) async {
     final raw = await _connection.sendRequest(
       RequestMethod.configuration.value,
       params.toJson(),
     );
-    return (raw as List)
-        .cast<Map<String, Object?>>()
-        .map(List<LSPAny>.fromJson)
-        .toList();
+    return (raw as List).cast<Object>().toList();
   }
 
   /// Sends the `workspace/foldingRange/refresh` request to the client.
@@ -1257,10 +1253,8 @@ class TelemetrySender {
   final LspConnection _connection;
 
   /// Sends the `telemetry/event` notification to the client.
-  void event(Object? params) => _connection.sendNotification(
-    NotificationMethod.event.value,
-    params.toJson(),
-  );
+  void event(Object? params) =>
+      _connection.sendNotification(NotificationMethod.event.value, params);
 }
 
 /// Sends LSP messages to the client for the `textDocument` namespace.

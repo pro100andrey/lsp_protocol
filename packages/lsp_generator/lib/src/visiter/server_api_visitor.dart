@@ -349,10 +349,14 @@ final class ServerApiVisitor {
     String paramsType,
     bool hasParams,
   ) {
+    // Object?/Object (LSPAny) params are already raw JSON — pass through directly.
+    final paramsExpr = (paramsType == 'Object?' || paramsType == 'Object')
+        ? refer('params')
+        : refer('params').property('toJson').call([]);
     final sendCall = hasParams
         ? refer('_connection').property('sendNotification').call([
             _methodRef('NotificationMethod', wireMethod),
-            refer('params').property('toJson').call([]),
+            paramsExpr,
           ])
         : refer('_connection').property('sendNotification').call([
             _methodRef('NotificationMethod', wireMethod),
@@ -520,11 +524,19 @@ final class ServerApiVisitor {
     if (baseType.startsWith('List<')) {
       // final r = await handler(p);
       // return r.map((e) => e.toJson()).toList();  (or r?.map(...).toList())
+      final innerType = baseType.substring(5, baseType.length - 1);
+      final isRawObject = innerType == 'Object' || innerType == 'Object?';
       final mapClosure = Method(
         (b) => b
           ..lambda = true
           ..requiredParameters.add(Parameter((b) => b..name = 'e'))
-          ..body = refer('e').property('toJson').call([]).code,
+          ..body =
+              (isRawObject
+                      ? refer(
+                          'e',
+                        ).asA(refer('dynamic')).property('toJson').call([])
+                      : refer('e').property('toJson').call([]))
+                  .code,
       ).closure;
       final listExpr = isNullable
           ? refer('r')
@@ -567,6 +579,20 @@ final class ServerApiVisitor {
       return [];
     }
     if (baseType.startsWith('List<')) {
+      final innerType = baseType.substring(5, baseType.length - 1);
+      if (innerType == 'Object' || innerType == 'Object?') {
+        // LSPAny list — values are already raw JSON, no deserialization needed.
+        return [
+          refer('raw')
+              .asA(refer('List'))
+              .property('cast')
+              .call([], {}, [refer('Object')])
+              .property('toList')
+              .call([])
+              .returned
+              .statement,
+        ];
+      }
       // (raw as List).cast<Map<String, Object?>>().map(T.fromJson).toList()
       return [
         refer('raw')
@@ -574,7 +600,7 @@ final class ServerApiVisitor {
             .property('cast')
             .call([], {}, [_jsonMapRef()])
             .property('map')
-            .call([refer(baseType).property('fromJson')])
+            .call([refer(innerType).property('fromJson')])
             .property('toList')
             .call([])
             .returned
@@ -631,7 +657,7 @@ final class ServerApiVisitor {
 
     return switch (result) {
       BaseRef(name: 'null') => 'void',
-      TypeRef(:final name) => name,
+      TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
       ArrayRef(:final element) => 'List<${_innerTypeName(element)}>',
       OrRef(:final items) => _orTypeName(items),
       _ => 'Object?',
@@ -639,7 +665,7 @@ final class ServerApiVisitor {
   }
 
   String _innerTypeName(MetaReference ref) => switch (ref) {
-    TypeRef(:final name) => name,
+    TypeRef(:final name) => name == 'LSPAny' ? 'Object?' : name,
     BaseRef(:final name) => _baseDartName(name),
     ArrayRef(:final element) => 'List<${_innerTypeName(element)}>',
     OrRef(:final items) => _orTypeName(items),
@@ -657,7 +683,9 @@ final class ServerApiVisitor {
 
     if (nonNull.length == 1) {
       final t = _innerTypeName(nonNull.first);
-      return hasNull ? '$t?' : t;
+      if (!hasNull) return t;
+      // Avoid double-nullable: Object? from LSPAny should not become Object??
+      return t.endsWith('?') ? t : '$t?';
     }
     return hasNull ? 'Object?' : 'Object';
   }
