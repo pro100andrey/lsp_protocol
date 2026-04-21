@@ -1,7 +1,7 @@
 /// Common Redux
 library;
 
-export 'package:cli_async_redux/cli_async_redux.dart' show ReduxException;
+export 'package:dar/dar.dart' show UserException;
 
 export 'app_state.dart';
 export 'common/base_action.dart';

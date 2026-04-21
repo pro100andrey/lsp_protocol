@@ -1,7 +1,7 @@
 import 'dart:collection';
 
-import 'package:cli_async_redux/cli_async_redux.dart';
 import 'package:cli_utils/cli_utils.dart';
+import 'package:dar/dar.dart';
 import 'package:mason_logger/mason_logger.dart';
 
 import '../app_state.dart';
@@ -23,7 +23,7 @@ class AppActionLogger extends ActionObserver<AppState> {
     final type = action.runtimeTypeString();
     final an = action.status.isCompletedFailed ? type.red.bold : type;
     final dc = dispatchCount.toString();
-    final st = action.isSync ? '∥'.gray : '∥'.lightMagenta;
+    final st = action.isSync() ? '∥'.gray : '∥'.lightMagenta;
 
     final i = ini ? '→'.gray : '←'.lightGreen;
 

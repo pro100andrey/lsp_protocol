@@ -9,12 +9,14 @@ environment:
 
 dependencies:
   args: 2.7.0
-  cli_async_redux:
-    path: ../cli_async_redux
   cli_utils: 
     path: ../cli_utils
   code_builder: ^4.11.1
   collection: ^1.19.1
+  dar:
+    git:
+      url: https://github.com/pro100andrey/dar.git
+      ref: 89775a65fd4d55d6be2dbcc90c440b2d8a19b8d3
   dart_style: ^3.1.0
   fast_immutable_collections: ^11.1.0
   freezed_annotation: ^3.1.0

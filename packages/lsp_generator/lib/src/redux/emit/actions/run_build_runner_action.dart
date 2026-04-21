@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:dar/dar.dart';
+
 import '../../common.dart';
 
 final class RunBuildRunnerAction extends BaseAction {
@@ -26,10 +28,10 @@ final class RunBuildRunnerAction extends BaseAction {
       if (err.isNotEmpty) {
         logger.err(err);
       }
-      throw ReduxException(
-        message: 'build_runner exited with code ${result.exitCode}.',
+      throw UserException(
+      'build_runner exited with code ${result.exitCode}.',
         reason: err.isNotEmpty ? err : 'See output above.',
-        exitCode: ReduxException.exSoftware,
+        code: result.exitCode,
       );
     }
 

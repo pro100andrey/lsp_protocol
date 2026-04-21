@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cli_utils/cli_utils.dart';
+import 'package:dar/dar.dart';
 import 'package:http/http.dart' as http;
 
 import '../../common.dart';
@@ -22,10 +23,10 @@ final class FetchLSPModelAction extends BaseAction {
     } else {
       downloadProgress.fail('Failed to download: ${response.statusCode}');
 
-      throw ReduxException(
-        message: 'Failed to download LSP meta-model for version $version.',
+      throw UserException(
+        'Failed to download LSP meta-model for version $version.',
         reason: 'HTTP status code: ${response.statusCode}',
-        exitCode: ReduxException.exIO,
+        code: 1,
       );
     }
 
@@ -50,10 +51,10 @@ final class FetchLSPModelAction extends BaseAction {
     } catch (e) {
       parserProgress.fail('Failed to parse LSP meta-model: $e');
 
-      throw ReduxException(
-        message: 'Failed to parse LSP meta-model for version $version.',
+      throw UserException(
+        'Failed to parse LSP meta-model for version $version.',
         reason: 'JSON parsing error: $e',
-        exitCode: ReduxException.exTempFail,
+        code: 1,
       );
     }
   }

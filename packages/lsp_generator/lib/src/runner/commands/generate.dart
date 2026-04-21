@@ -1,5 +1,5 @@
 import 'package:args/command_runner.dart';
-import 'package:cli_async_redux/cli_async_redux.dart';
+import 'package:dar/dar.dart';
 
 import '../../redux/app_state.dart';
 import '../../redux/emit/emit.dart';

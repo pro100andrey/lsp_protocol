@@ -1,4 +1,5 @@
 import 'package:cli_utils/cli_utils.dart';
+import 'package:dar/dar.dart';
 import 'package:http/http.dart' as http;
 
 import '../../common.dart';
@@ -19,10 +20,10 @@ final class FetchLSPLicenseAction extends BaseAction {
     } else {
       downloadProgress.fail('Failed to download: ${response.statusCode}');
 
-      throw ReduxException(
-        message: 'Failed to download LSP license for version $version.',
+      throw UserException(
+        'Failed to download LSP license for version $version.',
         reason: 'HTTP status code: ${response.statusCode}',
-        exitCode: ReduxException.exIO,
+        code: 1,
       );
     }
 
