@@ -89,7 +89,7 @@ dart run packages/lsp_generator/bin/lsp_generator.dart generate --verbose
 1. Create `lib/src/redux/<feature>/actions/<name>_action.dart`
 2. Extend `BaseAction<AppState>` (from `common/base_action.dart`)
 3. Override `Future<AppState?> reduce()` (async) or `AppState? reduce()` (sync)
-4. Throw `ReduxException(exitCode: exXxx)` for structured Unix exit codes
+4. Throw `UserException('Message', code: exXxx)` for structured Unix exit codes
 5. Dispatch via `store.dispatchAndWait(MyAction())` inside a command
 
 ### Adding a new command
@@ -140,7 +140,7 @@ build Dart text via `StringBuffer` or raw multi-line string interpolation.
 
 ### Error handling
 
-- Use `ReduxException` with exit codes from `sysexits.h` constants (`exIO`, `exUsage`, etc.)
+- Use `UserException` with exit codes from `sysexits.h` constants (`exIO`, `exUsage`, etc.)
 - Observer classes (`AppErrorObserver`, `AppActionLogger`) handle logging — don't log inside actions
 
 ### Logger injection
