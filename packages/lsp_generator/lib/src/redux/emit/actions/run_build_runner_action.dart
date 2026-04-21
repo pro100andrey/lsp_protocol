@@ -10,7 +10,7 @@ final class RunBuildRunnerAction extends BaseAction {
 
     final result = await Process.run(
       'dart',
-      ['run', 'build_runner', 'build', '--delete-conflicting-outputs'],
+      ['run', 'build_runner', 'build'],
       workingDirectory: outputDir,
     );
 
@@ -26,6 +26,7 @@ final class RunBuildRunnerAction extends BaseAction {
       if (err.isNotEmpty) {
         logger.err(err);
       }
+
       throw UserException(
         'build_runner exited with code ${result.exitCode}.',
         reason: err.isNotEmpty ? err : 'See output above.',

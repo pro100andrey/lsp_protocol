@@ -65,7 +65,7 @@ Code generation is split into four visitor passes:
 
 ```bash
 # Regenerate freezed/json files after editing protocol.dart or app_state.dart
-dart run build_runner build --delete-conflicting-outputs
+dart run build_runner build
 
 # Lint
 dart analyze
