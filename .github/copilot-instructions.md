@@ -2,45 +2,64 @@
 
 ## Overview
 
-A Dart CLI tool that downloads the official LSP meta-model JSON from Microsoft, parses it into strongly-typed Dart structures, and provides the foundation for generating LSP-compliant Dart bindings.
+A Dart CLI tool that downloads the official LSP meta-model JSON from Microsoft, parses it into strongly-typed Dart structures, and generates LSP-compliant Dart bindings used by `lsp_specification` and `lsp_server`.
 
 ## Architecture
 
-Three packages with a clear layered dependency:
+Four packages in this monorepo:
 
 ```
-lsp_generator
-  ├→ cli_async_redux   (custom Redux engine for async CLI state management)
+lsp_generator          (CLI — fetches, resolves, emits Dart bindings)
+  ├→ dar               (Redux engine for async CLI state management)
   └→ cli_utils         (file I/O helpers, ANSI string formatting)
+lsp_specification      (Generated LSP 3.17 Dart bindings — do not edit manually)
+lsp_server             (Typed LSP server over json_rpc_2; generated/server_api.dart is generated)
 ```
 
-### Data Flow
+### Generation Pipeline
+
+`GenerateCommand` dispatches these actions in order:
 
 ```
-CLI args
-  → CommandRunner (args package) parses flags (--verbose)
-  → GenerateCommand.run() dispatches FetchLSPModelAction
-  → Action downloads metaModel.json from Microsoft CDN
-  → Parses JSON → MetaProtocol (freezed + json_serializable)
-  → Stores result in AppState.meta.protocol
-  → Observers log timing; exit code 0 on success
+SetOutputDirAction          (optional, if --output is given)
+  ↓
+FetchLSPModelAction + FetchLSPLicenseAction  (parallel)
+  ↓
+ResolveModelAction
+  ↓
+GenerateCodeAction + GenerateServerApiAction  (parallel)
+  ↓
+RunBuildRunnerAction        (runs build_runner in lsp_specification)
 ```
+
+### Visitor Passes (packages/lsp_generator/lib/src/visiter/)
+
+Code generation is split into four visitor passes:
+
+| Pass | Visitor            | Purpose                                                     |
+| ---- | ------------------ | ----------------------------------------------------------- |
+| 1    | `MetaVisitor`      | Traverses metaModel JSON → typed `MetaProtocol` structures  |
+| 2    | `ResolverVisitor`  | Resolves type references, inheritance, discriminated unions |
+| 3    | `EmitterVisitor`   | Generates Dart source using `code_builder`                  |
+| —    | `ServerApiVisitor` | Generates `lsp_server/generated/server_api.dart`            |
+| —    | `TypeReference`    | Utility: resolves generics, unions, scalar types            |
 
 ### Why Redux for a CLI?
 
-`cli_async_redux` centralises state (`AppState`), queues async actions, and decouples logging via observers — making it easy to add commands without retrofitting error handling or progress reporting.
+`dar` centralises state (`AppState`), queues async actions, and decouples logging via observers — making it easy to add commands without retrofitting error handling or progress reporting.
 
 ### Key Directories
 
-| Path                                            | Purpose                                                                  |
-| ----------------------------------------------- | ------------------------------------------------------------------------ |
-| `packages/lsp_generator/bin/lsp_generator.dart` | Entry point — calls `run(args)`                                          |
-| `packages/lsp_generator/lib/src/runner/`        | `runner.dart` wires store + CommandRunner; `commands/` holds subcommands |
-| `packages/lsp_generator/lib/src/redux/`         | All state: `app_state.dart`, per-feature slices in subdirs               |
-| `packages/lsp_generator/lib/src/redux/models/`  | `protocol.dart` — LSP type tree (freezed + JSON)                         |
-| `packages/lsp_generator/lib/src/redux/common/`  | `base_action.dart` (extend for new actions), `selectors.dart`            |
-| `packages/cli_async_redux/lib/src/`             | Generic Redux engine; `store.dart`, `action.dart`, `observers.dart`      |
-| `packages/cli_utils/lib/src/`                   | `files.dart` (path caching), `string_style.dart` (ANSI boxes/wrap)       |
+| Path                                            | Purpose                                                                   |
+| ----------------------------------------------- | ------------------------------------------------------------------------- |
+| `packages/lsp_generator/bin/lsp_generator.dart` | Entry point — calls `run(args)`                                           |
+| `packages/lsp_generator/lib/src/runner/`        | `runner.dart` wires store + CommandRunner; `commands/` holds subcommands  |
+| `packages/lsp_generator/lib/src/redux/`         | All state: `app_state.dart`, per-feature slices in subdirs                |
+| `packages/lsp_generator/lib/src/redux/models/`  | `protocol.dart` — LSP type tree (freezed + JSON)                          |
+| `packages/lsp_generator/lib/src/redux/common/`  | `base_action.dart` (extend for new actions), `selectors.dart`             |
+| `packages/lsp_specification/lib/src/`           | Generated output: enumerations, structures, unions, type aliases, methods |
+| `packages/lsp_server/lib/src/`                  | LSP server impl; `generated/server_api.dart` is emitted by generator      |
+| `packages/cli_utils/lib/src/`                   | `files.dart` (path caching), `string_style.dart` (ANSI boxes/wrap)        |
 
 ## Build & Test Commands
 
@@ -117,6 +136,7 @@ build Dart text via `StringBuffer` or raw multi-line string interpolation.
 - Annotate with `@freezed` / `@Freezed(unionKey: 'kind')` for sealed unions
 - Run `build_runner build` after any change — **never hand-edit** `*.freezed.dart` or `*.g.dart`
 - Discriminated unions use `@Freezed(unionKey: 'kind')` with `sealed class`
+- All files under `packages/lsp_specification/lib/src/` are **generated outputs** — never edit them directly; re-run the generator instead
 
 ### Error handling
 
