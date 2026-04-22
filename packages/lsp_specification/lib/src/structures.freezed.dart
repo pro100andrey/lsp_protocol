@@ -10883,7 +10883,11 @@ mixin _$SemanticTokensRegistrationOptions {
  DocumentSelector? get documentSelector; bool? get workDoneProgress;/// The legend used by the server
  SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a specific range of a
 /// document.
+///
+/// Type: bool | Object
  Object? get range;/// Server supports providing semantic tokens for a full document.
+///
+/// Type: bool | Object
  Object? get full;/// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
  String? get id;
@@ -11113,8 +11117,12 @@ class _SemanticTokensRegistrationOptions implements SemanticTokensRegistrationOp
 @override final  SemanticTokensLegend legend;
 /// Server supports providing semantic tokens for a specific range of a
 /// document.
+///
+/// Type: bool | Object
 @override final  Object? range;
 /// Server supports providing semantic tokens for a full document.
+///
+/// Type: bool | Object
 @override final  Object? full;
 /// The id used to register the request. The id can be used to deregister
 /// the request again. See also Registration#id.
@@ -18968,6 +18976,8 @@ mixin _$InlayHint {
 /// InlayHintLabelPart label parts.
 ///
 /// *Note* that neither the string nor the label part can be empty.
+///
+/// Type: String | Object
  Object get label;/// The kind of this hint. Can be omitted in which case the client should
 /// fall back to a reasonable default.
  InlayHintKind? get kind;/// Optional text edits that are performed when accepting this inlay hint.
@@ -18976,6 +18986,8 @@ mixin _$InlayHint {
 /// hint (or its nearest variant) is now part of the document and the inlay
 /// hint itself is now obsolete.
  List<TextEdit>? get textEdits;/// The tooltip text when you hover over this item.
+///
+/// Type: String | MarkupContent
  Object? get tooltip;/// Render padding before the hint.
 ///
 /// Note: Padding should use the editor's background color, not the
@@ -19207,6 +19219,8 @@ class _InlayHint implements InlayHint {
 /// InlayHintLabelPart label parts.
 ///
 /// *Note* that neither the string nor the label part can be empty.
+///
+/// Type: String | Object
 @override final  Object label;
 /// The kind of this hint. Can be omitted in which case the client should
 /// fall back to a reasonable default.
@@ -19231,6 +19245,8 @@ class _InlayHint implements InlayHint {
 }
 
 /// The tooltip text when you hover over this item.
+///
+/// Type: String | MarkupContent
 @override final  Object? tooltip;
 /// Render padding before the hint.
 ///
@@ -23534,6 +23550,8 @@ as List<InlineCompletionItem>,
 mixin _$InlineCompletionItem {
 
 /// The text to replace the range with. Must be set.
+///
+/// Type: String | StringValue
  Object get insertText;/// A text that is used to decide if this inline completion should be shown.
 /// When `falsy` the [InlineCompletionItem.insertText] is used.
  String? get filterText;/// The range to replace. Must begin and end on the same line.
@@ -23763,6 +23781,8 @@ class _InlineCompletionItem implements InlineCompletionItem {
   factory _InlineCompletionItem.fromJson(Map<String, dynamic> json) => _$InlineCompletionItemFromJson(json);
 
 /// The text to replace the range with. Must be set.
+///
+/// Type: String | StringValue
 @override final  Object insertText;
 /// A text that is used to decide if this inline completion should be shown.
 /// When `falsy` the [InlineCompletionItem.insertText] is used.
@@ -31019,6 +31039,8 @@ mixin _$CompletionItem {
  List<CompletionItemTag>? get tags;/// A human-readable string with additional information about this item,
 /// like type or symbol information.
  String? get detail;/// A human-readable string that represents a doc-comment.
+///
+/// Type: String | MarkupContent
  Object? get documentation;/// Indicates if this item is deprecated. @deprecated Use `tags` instead.
 @Deprecated('Use `tags` instead.') bool? get deprecated;/// Select this item when showing.
 ///
@@ -31066,6 +31088,8 @@ mixin _$CompletionItem {
 /// starting at the same position.
 ///
 /// additional type `InsertReplaceEdit`
+///
+/// Type: TextEdit | InsertReplaceEdit
  Object? get textEdit;/// The edit text used if the completion item is part of a CompletionList
 /// and CompletionList defines an item default for the text edit range.
 ///
@@ -31354,6 +31378,8 @@ class _CompletionItem implements CompletionItem {
 /// like type or symbol information.
 @override final  String? detail;
 /// A human-readable string that represents a doc-comment.
+///
+/// Type: String | MarkupContent
 @override final  Object? documentation;
 /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
 @override@Deprecated('Use `tags` instead.') final  bool? deprecated;
@@ -31409,6 +31435,8 @@ class _CompletionItem implements CompletionItem {
 /// starting at the same position.
 ///
 /// additional type `InsertReplaceEdit`
+///
+/// Type: TextEdit | InsertReplaceEdit
 @override final  Object? textEdit;
 /// The edit text used if the completion item is part of a CompletionList
 /// and CompletionList defines an item default for the text edit range.
@@ -32581,6 +32609,8 @@ $ProgressTokenCopyWith<$Res>? get workDoneToken {
 mixin _$Hover {
 
 /// The hover's content
+///
+/// Type: MarkupContent | MarkedString | Object
  Object get contents;/// An optional range inside the text document that is used to visualize the
 /// hover, e.g. by changing the background color.
  Range? get range;
@@ -32793,6 +32823,8 @@ class _Hover implements Hover {
   factory _Hover.fromJson(Map<String, dynamic> json) => _$HoverFromJson(json);
 
 /// The hover's content
+///
+/// Type: MarkupContent | MarkedString | Object
 @override final  Object contents;
 /// An optional range inside the text document that is used to visualize the
 /// hover, e.g. by changing the background color.
@@ -39469,6 +39501,8 @@ mixin _$WorkspaceSymbol {
 /// `workspace.symbol.resolveSupport`.
 ///
 /// See SymbolInformation#location for more details.
+///
+/// Type: Location | Object
  Object get location;/// A data entry field that is preserved on a workspace symbol between a
 /// workspace symbol request and a workspace symbol resolve request.
  LSPAny? get data;
@@ -39696,6 +39730,8 @@ class _WorkspaceSymbol implements WorkspaceSymbol {
 /// `workspace.symbol.resolveSupport`.
 ///
 /// See SymbolInformation#location for more details.
+///
+/// Type: Location | Object
 @override final  Object location;
 /// A data entry field that is preserved on a workspace symbol between a
 /// workspace symbol request and a workspace symbol resolve request.
@@ -47703,6 +47739,8 @@ as String?,
 mixin _$CancelParams {
 
 /// The request id to cancel.
+///
+/// Type: int | String
  Object get id;
 /// Create a copy of CancelParams
 /// with the given fields replaced by the non-null parameter values.
@@ -47900,6 +47938,8 @@ class _CancelParams implements CancelParams {
   factory _CancelParams.fromJson(Map<String, dynamic> json) => _$CancelParamsFromJson(json);
 
 /// The request id to cancel.
+///
+/// Type: int | String
 @override final  Object id;
 
 /// Create a copy of CancelParams
@@ -53299,7 +53339,11 @@ mixin _$SemanticTokensOptions {
  bool? get workDoneProgress;/// The legend used by the server
  SemanticTokensLegend get legend;/// Server supports providing semantic tokens for a specific range of a
 /// document.
+///
+/// Type: bool | Object
  Object? get range;/// Server supports providing semantic tokens for a full document.
+///
+/// Type: bool | Object
  Object? get full;
 /// Create a copy of SemanticTokensOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -53512,8 +53556,12 @@ class _SemanticTokensOptions implements SemanticTokensOptions {
 @override final  SemanticTokensLegend legend;
 /// Server supports providing semantic tokens for a specific range of a
 /// document.
+///
+/// Type: bool | Object
 @override final  Object? range;
 /// Server supports providing semantic tokens for a full document.
+///
+/// Type: bool | Object
 @override final  Object? full;
 
 /// Create a copy of SemanticTokensOptions
@@ -58687,6 +58735,8 @@ mixin _$InlayHintLabelPart {
  String get value;/// The tooltip text when you hover over this label part. Depending on the
 /// client capability `inlayHint.resolveSupport` clients might resolve this
 /// property late using the resolve request.
+///
+/// Type: String | MarkupContent
  Object? get tooltip;/// An optional source code location that represents this label part.
 ///
 /// The editor will use this location for the hover and for code navigation
@@ -58929,6 +58979,8 @@ class _InlayHintLabelPart implements InlayHintLabelPart {
 /// The tooltip text when you hover over this label part. Depending on the
 /// client capability `inlayHint.resolveSupport` clients might resolve this
 /// property late using the resolve request.
+///
+/// Type: String | MarkupContent
 @override final  Object? tooltip;
 /// An optional source code location that represents this label part.
 ///
@@ -64384,42 +64436,96 @@ mixin _$ServerCapabilities {
  String? get positionEncoding;/// Defines how text documents are synced. Is either a detailed structure
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
+///
+/// Type: TextDocumentSyncOptions | TextDocumentSyncKind
  Object? get textDocumentSync;/// Defines how notebook documents are synced.
+///
+/// Type: NotebookDocumentSyncOptions | NotebookDocumentSyncRegistrationOptions
  Object? get notebookDocumentSync;/// The server provides completion support.
  CompletionOptions? get completionProvider;/// The server provides hover support.
+///
+/// Type: bool | HoverOptions
  Object? get hoverProvider;/// The server provides signature help support.
  SignatureHelpOptions? get signatureHelpProvider;/// The server provides Goto Declaration support.
+///
+/// Type: bool | DeclarationOptions | DeclarationRegistrationOptions
  Object? get declarationProvider;/// The server provides goto definition support.
+///
+/// Type: bool | DefinitionOptions
  Object? get definitionProvider;/// The server provides Goto Type Definition support.
+///
+/// Type: bool | TypeDefinitionOptions | TypeDefinitionRegistrationOptions
  Object? get typeDefinitionProvider;/// The server provides Goto Implementation support.
+///
+/// Type: bool | ImplementationOptions | ImplementationRegistrationOptions
  Object? get implementationProvider;/// The server provides find references support.
+///
+/// Type: bool | ReferenceOptions
  Object? get referencesProvider;/// The server provides document highlight support.
+///
+/// Type: bool | DocumentHighlightOptions
  Object? get documentHighlightProvider;/// The server provides document symbol support.
+///
+/// Type: bool | DocumentSymbolOptions
  Object? get documentSymbolProvider;/// The server provides code actions. CodeActionOptions may only be
 /// specified if the client states that it supports
 /// `codeActionLiteralSupport` in its initial `initialize` request.
+///
+/// Type: bool | CodeActionOptions
  Object? get codeActionProvider;/// The server provides code lens.
  CodeLensOptions? get codeLensProvider;/// The server provides document link support.
  DocumentLinkOptions? get documentLinkProvider;/// The server provides color provider support.
+///
+/// Type: bool | DocumentColorOptions | DocumentColorRegistrationOptions
  Object? get colorProvider;/// The server provides workspace symbol support.
+///
+/// Type: bool | WorkspaceSymbolOptions
  Object? get workspaceSymbolProvider;/// The server provides document formatting.
+///
+/// Type: bool | DocumentFormattingOptions
  Object? get documentFormattingProvider;/// The server provides document range formatting.
+///
+/// Type: bool | DocumentRangeFormattingOptions
  Object? get documentRangeFormattingProvider;/// The server provides document formatting on typing.
  DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider;/// The server provides rename support. RenameOptions may only be specified
 /// if the client states that it supports `prepareSupport` in its initial
 /// `initialize` request.
+///
+/// Type: bool | RenameOptions
  Object? get renameProvider;/// The server provides folding provider support.
+///
+/// Type: bool | FoldingRangeOptions | FoldingRangeRegistrationOptions
  Object? get foldingRangeProvider;/// The server provides selection range support.
+///
+/// Type: bool | SelectionRangeOptions | SelectionRangeRegistrationOptions
  Object? get selectionRangeProvider;/// The server provides execute command support.
  ExecuteCommandOptions? get executeCommandProvider;/// The server provides call hierarchy support.
+///
+/// Type: bool | CallHierarchyOptions | CallHierarchyRegistrationOptions
  Object? get callHierarchyProvider;/// The server provides linked editing range support.
+///
+/// Type: bool | LinkedEditingRangeOptions | LinkedEditingRangeRegistrationOptions
  Object? get linkedEditingRangeProvider;/// The server provides semantic tokens support.
+///
+/// Type: SemanticTokensOptions | SemanticTokensRegistrationOptions
  Object? get semanticTokensProvider;/// The server provides moniker support.
+///
+/// Type: bool | MonikerOptions | MonikerRegistrationOptions
  Object? get monikerProvider;/// The server provides type hierarchy support.
+///
+/// Type: bool | TypeHierarchyOptions | TypeHierarchyRegistrationOptions
  Object? get typeHierarchyProvider;/// The server provides inline values.
+///
+/// Type: bool | InlineValueOptions | InlineValueRegistrationOptions
  Object? get inlineValueProvider;/// The server provides inlay hints.
+///
+/// Type: bool | InlayHintOptions | InlayHintRegistrationOptions
  Object? get inlayHintProvider;/// The server has support for pull model diagnostics.
+///
+/// Type: DiagnosticOptions | DiagnosticRegistrationOptions
  Object? get diagnosticProvider;/// Inline completion options used during static registration.
+///
+/// Type: bool | InlineCompletionOptions
  Object? get inlineCompletionProvider;/// Workspace specific server capabilities.
  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? get workspace;/// Experimental server capabilities.
  LSPAny? get experimental;
@@ -64709,74 +64815,128 @@ class _ServerCapabilities extends ServerCapabilities {
 /// Defines how text documents are synced. Is either a detailed structure
 /// defining each notification or for backwards compatibility the
 /// TextDocumentSyncKind number.
+///
+/// Type: TextDocumentSyncOptions | TextDocumentSyncKind
 @override final  Object? textDocumentSync;
 /// Defines how notebook documents are synced.
+///
+/// Type: NotebookDocumentSyncOptions | NotebookDocumentSyncRegistrationOptions
 @override final  Object? notebookDocumentSync;
 /// The server provides completion support.
 @override final  CompletionOptions? completionProvider;
 /// The server provides hover support.
+///
+/// Type: bool | HoverOptions
 @override final  Object? hoverProvider;
 /// The server provides signature help support.
 @override final  SignatureHelpOptions? signatureHelpProvider;
 /// The server provides Goto Declaration support.
+///
+/// Type: bool | DeclarationOptions | DeclarationRegistrationOptions
 @override final  Object? declarationProvider;
 /// The server provides goto definition support.
+///
+/// Type: bool | DefinitionOptions
 @override final  Object? definitionProvider;
 /// The server provides Goto Type Definition support.
+///
+/// Type: bool | TypeDefinitionOptions | TypeDefinitionRegistrationOptions
 @override final  Object? typeDefinitionProvider;
 /// The server provides Goto Implementation support.
+///
+/// Type: bool | ImplementationOptions | ImplementationRegistrationOptions
 @override final  Object? implementationProvider;
 /// The server provides find references support.
+///
+/// Type: bool | ReferenceOptions
 @override final  Object? referencesProvider;
 /// The server provides document highlight support.
+///
+/// Type: bool | DocumentHighlightOptions
 @override final  Object? documentHighlightProvider;
 /// The server provides document symbol support.
+///
+/// Type: bool | DocumentSymbolOptions
 @override final  Object? documentSymbolProvider;
 /// The server provides code actions. CodeActionOptions may only be
 /// specified if the client states that it supports
 /// `codeActionLiteralSupport` in its initial `initialize` request.
+///
+/// Type: bool | CodeActionOptions
 @override final  Object? codeActionProvider;
 /// The server provides code lens.
 @override final  CodeLensOptions? codeLensProvider;
 /// The server provides document link support.
 @override final  DocumentLinkOptions? documentLinkProvider;
 /// The server provides color provider support.
+///
+/// Type: bool | DocumentColorOptions | DocumentColorRegistrationOptions
 @override final  Object? colorProvider;
 /// The server provides workspace symbol support.
+///
+/// Type: bool | WorkspaceSymbolOptions
 @override final  Object? workspaceSymbolProvider;
 /// The server provides document formatting.
+///
+/// Type: bool | DocumentFormattingOptions
 @override final  Object? documentFormattingProvider;
 /// The server provides document range formatting.
+///
+/// Type: bool | DocumentRangeFormattingOptions
 @override final  Object? documentRangeFormattingProvider;
 /// The server provides document formatting on typing.
 @override final  DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
 /// The server provides rename support. RenameOptions may only be specified
 /// if the client states that it supports `prepareSupport` in its initial
 /// `initialize` request.
+///
+/// Type: bool | RenameOptions
 @override final  Object? renameProvider;
 /// The server provides folding provider support.
+///
+/// Type: bool | FoldingRangeOptions | FoldingRangeRegistrationOptions
 @override final  Object? foldingRangeProvider;
 /// The server provides selection range support.
+///
+/// Type: bool | SelectionRangeOptions | SelectionRangeRegistrationOptions
 @override final  Object? selectionRangeProvider;
 /// The server provides execute command support.
 @override final  ExecuteCommandOptions? executeCommandProvider;
 /// The server provides call hierarchy support.
+///
+/// Type: bool | CallHierarchyOptions | CallHierarchyRegistrationOptions
 @override final  Object? callHierarchyProvider;
 /// The server provides linked editing range support.
+///
+/// Type: bool | LinkedEditingRangeOptions | LinkedEditingRangeRegistrationOptions
 @override final  Object? linkedEditingRangeProvider;
 /// The server provides semantic tokens support.
+///
+/// Type: SemanticTokensOptions | SemanticTokensRegistrationOptions
 @override final  Object? semanticTokensProvider;
 /// The server provides moniker support.
+///
+/// Type: bool | MonikerOptions | MonikerRegistrationOptions
 @override final  Object? monikerProvider;
 /// The server provides type hierarchy support.
+///
+/// Type: bool | TypeHierarchyOptions | TypeHierarchyRegistrationOptions
 @override final  Object? typeHierarchyProvider;
 /// The server provides inline values.
+///
+/// Type: bool | InlineValueOptions | InlineValueRegistrationOptions
 @override final  Object? inlineValueProvider;
 /// The server provides inlay hints.
+///
+/// Type: bool | InlayHintOptions | InlayHintRegistrationOptions
 @override final  Object? inlayHintProvider;
 /// The server has support for pull model diagnostics.
+///
+/// Type: DiagnosticOptions | DiagnosticRegistrationOptions
 @override final  Object? diagnosticProvider;
 /// Inline completion options used during static registration.
+///
+/// Type: bool | InlineCompletionOptions
 @override final  Object? inlineCompletionProvider;
 /// Workspace specific server capabilities.
 @override final  ({WorkspaceFoldersServerCapabilities? workspaceFolders, FileOperationOptions? fileOperations})? workspace;
@@ -66009,6 +66169,8 @@ mixin _$Diagnostic {
  Range get range;/// The diagnostic's severity. Can be omitted. If omitted it is up to the
 /// client to interpret diagnostics as error, warning, info or hint.
  DiagnosticSeverity? get severity;/// The diagnostic's code, which usually appear in the user interface.
+///
+/// Type: int | String
  Object? get code;/// An optional property to describe the error code. Requires the code field
 /// (above) to be present/not null.
  CodeDescription? get codeDescription;/// A human-readable string describing the source of this diagnostic, e.g.
@@ -66250,6 +66412,8 @@ class _Diagnostic implements Diagnostic {
 /// client to interpret diagnostics as error, warning, info or hint.
 @override final  DiagnosticSeverity? severity;
 /// The diagnostic's code, which usually appear in the user interface.
+///
+/// Type: int | String
 @override final  Object? code;
 /// An optional property to describe the error code. Requires the code field
 /// (above) to be present/not null.
@@ -68182,6 +68346,8 @@ mixin _$SignatureInformation {
 /// The label of this signature. Will be shown in the UI.
  String get label;/// The human-readable doc-comment of this signature. Will be shown in the
 /// UI but can be omitted.
+///
+/// Type: String | MarkupContent
  Object? get documentation;/// The parameters of this signature.
  List<ParameterInformation>? get parameters;/// The index of the active parameter.
 ///
@@ -68389,6 +68555,8 @@ class _SignatureInformation implements SignatureInformation {
 @override final  String label;
 /// The human-readable doc-comment of this signature. Will be shown in the
 /// UI but can be omitted.
+///
+/// Type: String | MarkupContent
 @override final  Object? documentation;
 /// The parameters of this signature.
  final  List<ParameterInformation>? _parameters;
@@ -77603,6 +77771,8 @@ mixin _$TextDocumentSyncOptions {
 /// omitted the request should not be sent.
  bool? get willSaveWaitUntil;/// If present save notifications are sent to the server. If omitted the
 /// notification should not be sent.
+///
+/// Type: bool | SaveOptions
  Object? get save;
 /// Create a copy of TextDocumentSyncOptions
 /// with the given fields replaced by the non-null parameter values.
@@ -77819,6 +77989,8 @@ class _TextDocumentSyncOptions implements TextDocumentSyncOptions {
 @override final  bool? willSaveWaitUntil;
 /// If present save notifications are sent to the server. If omitted the
 /// notification should not be sent.
+///
+/// Type: bool | SaveOptions
 @override final  Object? save;
 
 /// Create a copy of TextDocumentSyncOptions
@@ -78461,6 +78633,8 @@ mixin _$WorkspaceFoldersServerCapabilities {
 /// notification is registered on the client side. The ID can be used to
 /// unregister for these events using the `client/unregisterCapability`
 /// request.
+///
+/// Type: String | bool
  Object? get changeNotifications;
 /// Create a copy of WorkspaceFoldersServerCapabilities
 /// with the given fields replaced by the non-null parameter values.
@@ -78667,6 +78841,8 @@ class _WorkspaceFoldersServerCapabilities implements WorkspaceFoldersServerCapab
 /// notification is registered on the client side. The ID can be used to
 /// unregister for these events using the `client/unregisterCapability`
 /// request.
+///
+/// Type: String | bool
 @override final  Object? changeNotifications;
 
 /// Create a copy of WorkspaceFoldersServerCapabilities
@@ -79730,8 +79906,12 @@ mixin _$ParameterInformation {
 /// *Note*: a label of type string should be a substring of its containing
 /// signature label. Its intended use case is to highlight the parameter
 /// label part in the `SignatureInformation.label`.
+///
+/// Type: String | Object
  Object get label;/// The human-readable doc-comment of this parameter. Will be shown in the
 /// UI but can be omitted.
+///
+/// Type: String | MarkupContent
  Object? get documentation;
 /// Create a copy of ParameterInformation
 /// with the given fields replaced by the non-null parameter values.
@@ -79938,9 +80118,13 @@ class _ParameterInformation implements ParameterInformation {
 /// *Note*: a label of type string should be a substring of its containing
 /// signature label. Its intended use case is to highlight the parameter
 /// label part in the `SignatureInformation.label`.
+///
+/// Type: String | Object
 @override final  Object label;
 /// The human-readable doc-comment of this parameter. Will be shown in the
 /// UI but can be omitted.
+///
+/// Type: String | MarkupContent
 @override final  Object? documentation;
 
 /// Create a copy of ParameterInformation
@@ -80009,6 +80193,8 @@ mixin _$NotebookCellTextDocumentFilter {
 /// A filter that matches against the notebook containing the notebook cell.
 /// If a string value is provided it matches against the notebook type. '*'
 /// matches every notebook.
+///
+/// Type: String | NotebookDocumentFilter
  Object get notebook;/// A language id like `python`.
 ///
 /// Will be matched against the language id of the notebook cell document.
@@ -80213,6 +80399,8 @@ class _NotebookCellTextDocumentFilter implements NotebookCellTextDocumentFilter 
 /// A filter that matches against the notebook containing the notebook cell.
 /// If a string value is provided it matches against the notebook type. '*'
 /// matches every notebook.
+///
+/// Type: String | NotebookDocumentFilter
 @override final  Object notebook;
 /// A language id like `python`.
 ///
@@ -83627,6 +83815,8 @@ mixin _$RelativePattern {
 
 /// A workspace folder or a base URI to which this pattern will be matched
 /// against relatively.
+///
+/// Type: WorkspaceFolder | String
  Object get baseUri;/// The actual glob pattern;
  Pattern get pattern;
 /// Create a copy of RelativePattern
@@ -83827,6 +84017,8 @@ class _RelativePattern implements RelativePattern {
 
 /// A workspace folder or a base URI to which this pattern will be matched
 /// against relatively.
+///
+/// Type: WorkspaceFolder | String
 @override final  Object baseUri;
 /// The actual glob pattern;
 @override final  Pattern pattern;

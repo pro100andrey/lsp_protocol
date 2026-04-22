@@ -644,7 +644,13 @@ final class EmitterVisitor {
               ..named = true
               ..required = !p.optional;
             _annotationsForParam(p).forEach(b.annotations.add);
-            b.docs.addAll(_docLines(p.documentation, indent: 4));
+            b.docs.addAll(
+              _docLines(
+                p.documentation,
+                indent: 4,
+                extra: _inlineUnionNote(p.type),
+              ),
+            );
           });
         }),
       ),
@@ -2318,6 +2324,7 @@ final class EmitterVisitor {
     int indent = 0,
     String? since,
     bool proposed = false,
+    List<String> extra = const [],
   }) {
     // Structured tags — single source of truth used for both empty
     // and non-empty body paths.
@@ -2396,6 +2403,12 @@ final class EmitterVisitor {
       }
     }
 
+    if (extra.isNotEmpty) {
+      lines
+        ..add('///')
+        ..addAll(extra.map((l) => '/// $l'));
+    }
+
     if (tags.isNotEmpty) {
       lines
         ..add('///')
@@ -2404,7 +2417,26 @@ final class EmitterVisitor {
     return lines;
   }
 
-  /// Returns a [TypeReference] for `Map<String, Object?>`.
+  /// If [type] is an inline [UnionType] (i.e. not a named alias), returns a
+  /// one-line note listing the variant names, e.g.
+  /// `['Type: TextDocumentSyncOptions | TextDocumentSyncKind']`.
+  /// Returns an empty list for all other types.
+  static List<String> _inlineUnionNote(ResolvedType type) {
+    final inner = type is NullableType ? type.inner : type;
+    if (inner is! UnionType) return const [];
+    final names = inner.items.map(
+      (t) => switch (t) {
+        ClassType(:final ref) => ref.name,
+        EnumType(:final ref) => ref.name,
+        AliasType(:final ref) => ref.name,
+        DartCoreType(:final dartName) => dartName,
+        _ => 'Object',
+      },
+    );
+    return ['Type: ${names.join(' | ')}'];
+  }
+
+  /// Returns a [TypeReference] for `Map<String, Object?>}`.
   static TypeReference _jsonMapRef() => TypeReference(
     (b) => b
       ..symbol = 'Map'

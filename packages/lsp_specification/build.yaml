@@ -5,4 +5,5 @@ targets:
         options:
           explicit_to_json: true
           include_if_null: false
+          maybe_map: false
           checked: false

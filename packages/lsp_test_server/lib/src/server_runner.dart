@@ -59,7 +59,10 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.general.onInitialize((params) async {
-      log('[ServerRunner] Received initialize request with params: $params');
+      log(
+        '[ServerRunner] Received initialize request with params: '
+        '${params.toJson()}',
+      );
       final action = InitializeAction(params);
       await _store.dispatchAndWait(action);
       return action.result;

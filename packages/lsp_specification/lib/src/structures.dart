@@ -690,9 +690,13 @@ abstract class SemanticTokensRegistrationOptions
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
+    ///
+    /// Type: bool | Object
     Object? range,
 
     /// Server supports providing semantic tokens for a full document.
+    ///
+    /// Type: bool | Object
     Object? full,
 
     /// The id used to register the request. The id can be used to deregister
@@ -1248,6 +1252,8 @@ abstract class InlayHint with _$InlayHint {
     /// InlayHintLabelPart label parts.
     ///
     /// *Note* that neither the string nor the label part can be empty.
+    ///
+    /// Type: String | Object
     required Object label,
 
     /// The kind of this hint. Can be omitted in which case the client should
@@ -1262,6 +1268,8 @@ abstract class InlayHint with _$InlayHint {
     List<TextEdit>? textEdits,
 
     /// The tooltip text when you hover over this item.
+    ///
+    /// Type: String | MarkupContent
     Object? tooltip,
 
     /// Render padding before the hint.
@@ -1593,6 +1601,8 @@ abstract class InlineCompletionList with _$InlineCompletionList {
 abstract class InlineCompletionItem with _$InlineCompletionItem {
   const factory InlineCompletionItem({
     /// The text to replace the range with. Must be set.
+    ///
+    /// Type: String | StringValue
     required Object insertText,
 
     /// A text that is used to decide if this inline completion should be shown.
@@ -2064,6 +2074,8 @@ abstract class CompletionItem with _$CompletionItem {
     String? detail,
 
     /// A human-readable string that represents a doc-comment.
+    ///
+    /// Type: String | MarkupContent
     Object? documentation,
 
     /// Indicates if this item is deprecated. @deprecated Use `tags` instead.
@@ -2127,6 +2139,8 @@ abstract class CompletionItem with _$CompletionItem {
     /// starting at the same position.
     ///
     /// additional type `InsertReplaceEdit`
+    ///
+    /// Type: TextEdit | InsertReplaceEdit
     Object? textEdit,
 
     /// The edit text used if the completion item is part of a CompletionList
@@ -2273,6 +2287,8 @@ abstract class HoverParams with _$HoverParams {
 abstract class Hover with _$Hover {
   const factory Hover({
     /// The hover's content
+    ///
+    /// Type: MarkupContent | MarkedString | Object
     required Object contents,
 
     /// An optional range inside the text document that is used to visualize the
@@ -2818,6 +2834,8 @@ abstract class WorkspaceSymbol with _$WorkspaceSymbol {
     /// `workspace.symbol.resolveSupport`.
     ///
     /// See SymbolInformation#location for more details.
+    ///
+    /// Type: Location | Object
     required Object location,
 
     /// A data entry field that is preserved on a workspace symbol between a
@@ -3357,6 +3375,8 @@ abstract class LogTraceParams with _$LogTraceParams {
 abstract class CancelParams with _$CancelParams {
   const factory CancelParams({
     /// The request id to cancel.
+    ///
+    /// Type: int | String
     required Object id,
   }) = _CancelParams;
 
@@ -3672,9 +3692,13 @@ abstract class SemanticTokensOptions with _$SemanticTokensOptions {
 
     /// Server supports providing semantic tokens for a specific range of a
     /// document.
+    ///
+    /// Type: bool | Object
     Object? range,
 
     /// Server supports providing semantic tokens for a full document.
+    ///
+    /// Type: bool | Object
     Object? full,
   }) = _SemanticTokensOptions;
 
@@ -4008,6 +4032,8 @@ abstract class InlayHintLabelPart with _$InlayHintLabelPart {
     /// The tooltip text when you hover over this label part. Depending on the
     /// client capability `inlayHint.resolveSupport` clients might resolve this
     /// property late using the resolve request.
+    ///
+    /// Type: String | MarkupContent
     Object? tooltip,
 
     /// An optional source code location that represents this label part.
@@ -4463,44 +4489,66 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// Defines how text documents are synced. Is either a detailed structure
     /// defining each notification or for backwards compatibility the
     /// TextDocumentSyncKind number.
+    ///
+    /// Type: TextDocumentSyncOptions | TextDocumentSyncKind
     Object? textDocumentSync,
 
     /// Defines how notebook documents are synced.
+    ///
+    /// Type: NotebookDocumentSyncOptions | NotebookDocumentSyncRegistrationOptions
     Object? notebookDocumentSync,
 
     /// The server provides completion support.
     CompletionOptions? completionProvider,
 
     /// The server provides hover support.
+    ///
+    /// Type: bool | HoverOptions
     Object? hoverProvider,
 
     /// The server provides signature help support.
     SignatureHelpOptions? signatureHelpProvider,
 
     /// The server provides Goto Declaration support.
+    ///
+    /// Type: bool | DeclarationOptions | DeclarationRegistrationOptions
     Object? declarationProvider,
 
     /// The server provides goto definition support.
+    ///
+    /// Type: bool | DefinitionOptions
     Object? definitionProvider,
 
     /// The server provides Goto Type Definition support.
+    ///
+    /// Type: bool | TypeDefinitionOptions | TypeDefinitionRegistrationOptions
     Object? typeDefinitionProvider,
 
     /// The server provides Goto Implementation support.
+    ///
+    /// Type: bool | ImplementationOptions | ImplementationRegistrationOptions
     Object? implementationProvider,
 
     /// The server provides find references support.
+    ///
+    /// Type: bool | ReferenceOptions
     Object? referencesProvider,
 
     /// The server provides document highlight support.
+    ///
+    /// Type: bool | DocumentHighlightOptions
     Object? documentHighlightProvider,
 
     /// The server provides document symbol support.
+    ///
+    /// Type: bool | DocumentSymbolOptions
     Object? documentSymbolProvider,
 
     /// The server provides code actions. CodeActionOptions may only be
     /// specified if the client states that it supports
     /// `codeActionLiteralSupport` in its initial `initialize` request.
+    ///
+    /// Type: bool | CodeActionOptions
     Object? codeActionProvider,
 
     /// The server provides code lens.
@@ -4510,15 +4558,23 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     DocumentLinkOptions? documentLinkProvider,
 
     /// The server provides color provider support.
+    ///
+    /// Type: bool | DocumentColorOptions | DocumentColorRegistrationOptions
     Object? colorProvider,
 
     /// The server provides workspace symbol support.
+    ///
+    /// Type: bool | WorkspaceSymbolOptions
     Object? workspaceSymbolProvider,
 
     /// The server provides document formatting.
+    ///
+    /// Type: bool | DocumentFormattingOptions
     Object? documentFormattingProvider,
 
     /// The server provides document range formatting.
+    ///
+    /// Type: bool | DocumentRangeFormattingOptions
     Object? documentRangeFormattingProvider,
 
     /// The server provides document formatting on typing.
@@ -4527,42 +4583,66 @@ abstract class ServerCapabilities with _$ServerCapabilities {
     /// The server provides rename support. RenameOptions may only be specified
     /// if the client states that it supports `prepareSupport` in its initial
     /// `initialize` request.
+    ///
+    /// Type: bool | RenameOptions
     Object? renameProvider,
 
     /// The server provides folding provider support.
+    ///
+    /// Type: bool | FoldingRangeOptions | FoldingRangeRegistrationOptions
     Object? foldingRangeProvider,
 
     /// The server provides selection range support.
+    ///
+    /// Type: bool | SelectionRangeOptions | SelectionRangeRegistrationOptions
     Object? selectionRangeProvider,
 
     /// The server provides execute command support.
     ExecuteCommandOptions? executeCommandProvider,
 
     /// The server provides call hierarchy support.
+    ///
+    /// Type: bool | CallHierarchyOptions | CallHierarchyRegistrationOptions
     Object? callHierarchyProvider,
 
     /// The server provides linked editing range support.
+    ///
+    /// Type: bool | LinkedEditingRangeOptions | LinkedEditingRangeRegistrationOptions
     Object? linkedEditingRangeProvider,
 
     /// The server provides semantic tokens support.
+    ///
+    /// Type: SemanticTokensOptions | SemanticTokensRegistrationOptions
     Object? semanticTokensProvider,
 
     /// The server provides moniker support.
+    ///
+    /// Type: bool | MonikerOptions | MonikerRegistrationOptions
     Object? monikerProvider,
 
     /// The server provides type hierarchy support.
+    ///
+    /// Type: bool | TypeHierarchyOptions | TypeHierarchyRegistrationOptions
     Object? typeHierarchyProvider,
 
     /// The server provides inline values.
+    ///
+    /// Type: bool | InlineValueOptions | InlineValueRegistrationOptions
     Object? inlineValueProvider,
 
     /// The server provides inlay hints.
+    ///
+    /// Type: bool | InlayHintOptions | InlayHintRegistrationOptions
     Object? inlayHintProvider,
 
     /// The server has support for pull model diagnostics.
+    ///
+    /// Type: DiagnosticOptions | DiagnosticRegistrationOptions
     Object? diagnosticProvider,
 
     /// Inline completion options used during static registration.
+    ///
+    /// Type: bool | InlineCompletionOptions
     Object? inlineCompletionProvider,
 
     /// Workspace specific server capabilities.
@@ -4661,6 +4741,8 @@ abstract class Diagnostic with _$Diagnostic {
     DiagnosticSeverity? severity,
 
     /// The diagnostic's code, which usually appear in the user interface.
+    ///
+    /// Type: int | String
     Object? code,
 
     /// An optional property to describe the error code. Requires the code field
@@ -4843,6 +4925,8 @@ abstract class SignatureInformation with _$SignatureInformation {
 
     /// The human-readable doc-comment of this signature. Will be shown in the
     /// UI but can be omitted.
+    ///
+    /// Type: String | MarkupContent
     Object? documentation,
 
     /// The parameters of this signature.
@@ -5472,6 +5556,8 @@ abstract class TextDocumentSyncOptions with _$TextDocumentSyncOptions {
 
     /// If present save notifications are sent to the server. If omitted the
     /// notification should not be sent.
+    ///
+    /// Type: bool | SaveOptions
     Object? save,
   }) = _TextDocumentSyncOptions;
 
@@ -5542,6 +5628,8 @@ abstract class WorkspaceFoldersServerCapabilities
     /// notification is registered on the client side. The ID can be used to
     /// unregister for these events using the `client/unregisterCapability`
     /// request.
+    ///
+    /// Type: String | bool
     Object? changeNotifications,
   }) = _WorkspaceFoldersServerCapabilities;
 
@@ -5626,10 +5714,14 @@ abstract class ParameterInformation with _$ParameterInformation {
     /// *Note*: a label of type string should be a substring of its containing
     /// signature label. Its intended use case is to highlight the parameter
     /// label part in the `SignatureInformation.label`.
+    ///
+    /// Type: String | Object
     required Object label,
 
     /// The human-readable doc-comment of this parameter. Will be shown in the
     /// UI but can be omitted.
+    ///
+    /// Type: String | MarkupContent
     Object? documentation,
   }) = _ParameterInformation;
 
@@ -5648,6 +5740,8 @@ abstract class NotebookCellTextDocumentFilter
     /// A filter that matches against the notebook containing the notebook cell.
     /// If a string value is provided it matches against the notebook type. '*'
     /// matches every notebook.
+    ///
+    /// Type: String | NotebookDocumentFilter
     required Object notebook,
 
     /// A language id like `python`.
@@ -5946,6 +6040,8 @@ abstract class RelativePattern with _$RelativePattern {
   const factory RelativePattern({
     /// A workspace folder or a base URI to which this pattern will be matched
     /// against relatively.
+    ///
+    /// Type: WorkspaceFolder | String
     required Object baseUri,
 
     /// The actual glob pattern;
