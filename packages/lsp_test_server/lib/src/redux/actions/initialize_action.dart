@@ -2,7 +2,7 @@ import 'package:lsp_specification/lsp_specification.dart';
 
 import '../common/base_action.dart';
 
-/// Handles `initialize` — returns server capabilities and marks state as 
+/// Handles `initialize` — returns server capabilities and marks state as
 /// initialized.
 final class InitializeAction extends BaseAction {
   InitializeAction(this.params);
@@ -14,9 +14,12 @@ final class InitializeAction extends BaseAction {
 
   InitializeResult get result => const InitializeResult(
     capabilities: ServerCapabilities(
+      positionEncoding: 'utf-16',
       hoverProvider: true,
       completionProvider: CompletionOptions(triggerCharacters: ['.', ':']),
-      textDocumentSync: TextDocumentSyncKind.full,
+      textDocumentSync: TextDocumentSyncOptions(
+        change: TextDocumentSyncKind.full,
+      ),
     ),
     serverInfo: (name: 'lsp-test-server', version: '0.1.0'),
   );
