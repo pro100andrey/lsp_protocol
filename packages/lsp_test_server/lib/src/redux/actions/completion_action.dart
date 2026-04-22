@@ -14,21 +14,21 @@ final class CompletionAction extends BaseAction {
   List<CompletionItem> get result => [
     const CompletionItem(
       label: 'hello',
-      kind: CompletionItemKind.keyword,
+      kind: .keyword,
       detail: 'LSP test completion',
       documentation: MarkupContent(
-        kind: MarkupKind.plainText,
+        kind: .plainText,
         value: 'A test completion item from lsp_test_server',
       ),
     ),
     const CompletionItem(
       label: 'world',
-      kind: CompletionItemKind.text,
+      kind: .text,
       detail: 'LSP test completion',
     ),
     const CompletionItem(
       label: 'lsp_test_server',
-      kind: CompletionItemKind.module,
+      kind: .module,
       detail: 'This server package',
     ),
   ];

@@ -59,10 +59,7 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.general.onInitialize((params) async {
-      log(
-        '[ServerRunner] Received initialize request with params: '
-        '${params.toJson()}',
-      );
+      log('[ServerRunner] Received initialize request with params');
       final action = InitializeAction(params);
       await _store.dispatchAndWait(action);
       return action.result;
@@ -85,6 +82,8 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.textDocument.onDidOpen((params) async {
+      log('[ServerRunner] Document opened: ${params.textDocument.uri}');
+
       await _store.dispatchAndWait(
         DidOpenAction(
           uri: params.textDocument.uri,
@@ -94,6 +93,8 @@ final class ServerRunner {
     });
 
     _server.textDocument.onDidChange((params) async {
+      log('[ServerRunner] Document changed: ${params.textDocument.uri}');
+
       final text = switch (params.contentChanges.lastOrNull) {
         TextDocumentContentChangeEvent$Text(:final value) => value.text,
         TextDocumentContentChangeEvent$RangeRangeLengthText(:final value) =>
@@ -109,6 +110,8 @@ final class ServerRunner {
     });
 
     _server.textDocument.onDidClose((params) async {
+      log('[ServerRunner] Document closed: ${params.textDocument.uri}');
+
       await _store.dispatchAndWait(
         DidCloseAction(uri: params.textDocument.uri),
       );
@@ -119,6 +122,8 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.textDocument.onHover((params) async {
+      log('[ServerRunner] Hover request: ${params.textDocument.uri}');
+
       final action = HoverAction(params);
       await _store.dispatchAndWait(action);
       return action.result;
@@ -129,6 +134,8 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.textDocument.onCompletion((params) async {
+      log('[ServerRunner] Completion request: ${params.textDocument.uri}');
+
       final action = CompletionAction(params);
       await _store.dispatchAndWait(action);
       return action.result;

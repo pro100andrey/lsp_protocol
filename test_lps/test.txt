@@ -5,3 +5,5 @@ Type a dot . to trigger textDocument/completion.
 
 This file is used to verify all LSP features implemented in lsp_test_server.
 
+hello
+
