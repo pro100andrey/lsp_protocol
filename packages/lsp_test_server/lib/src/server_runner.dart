@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dar/dar.dart';
 import 'package:dar/log.dart';
 import 'package:lsp_server/lsp_server.dart';
@@ -31,7 +33,8 @@ final class ServerRunner {
         globalErrorObserver: (store) => GlobalErrorObserverForDevelopment(),
       );
 
-  /// Creates a server backed by an arbitrary byte [channel] (e.g. a TCP socket).
+  /// Creates a server backed by an arbitrary byte [channel] (e.g. a TCP
+  /// socket).
   ServerRunner.fromChannel(StreamChannel<List<int>> channel)
     : _server = LspServer.fromChannel(channel),
       _store = Store<AppState>(
@@ -56,16 +59,23 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.general.onInitialize((params) async {
+      log('[ServerRunner] Received initialize request with params: $params');
       final action = InitializeAction(params);
       await _store.dispatchAndWait(action);
       return action.result;
     });
 
-    _server.general.onInitialized((_) async {});
+    _server.general.onInitialized((_) async {
+      log('[ServerRunner] Server initialized');
+    });
 
-    _server.general.onShutdown(() async {});
+    _server.general.onShutdown(() async {
+      log('[ServerRunner] Server shutting down');
+    });
 
-    _server.general.onExit(() async {});
+    _server.general.onExit(() async {
+      log('[ServerRunner] Server exiting');
+    });
 
     // -------------------------------------------------------------------------
     // Text Document Sync
