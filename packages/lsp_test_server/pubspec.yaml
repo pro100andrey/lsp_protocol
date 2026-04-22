@@ -11,7 +11,7 @@ dependencies:
   dar:
     git:
       url: https://github.com/pro100andrey/dar.git
-      ref: 89775a65fd4d55d6be2dbcc90c440b2d8a19b8d3
+      ref: 03192dec8a4d20b7339fb195e124cd0ad546af58
   freezed_annotation: ^3.1.0
   lsp_server:
     path: ../lsp_server

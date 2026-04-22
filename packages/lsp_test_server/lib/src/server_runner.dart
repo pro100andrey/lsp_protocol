@@ -1,4 +1,5 @@
 import 'package:dar/dar.dart';
+import 'package:dar/log.dart';
 import 'package:lsp_server/lsp_server.dart';
 import 'package:lsp_specification/lsp_specification.dart';
 
@@ -20,6 +21,9 @@ final class ServerRunner {
     : _server = LspServer(),
       _store = Store<AppState>(
         initialState: AppState.initial(),
+        actionObservers: [
+          Log()
+        ],
         globalErrorObserver: (store) => GlobalErrorObserverForDevelopment(),
       );
 
