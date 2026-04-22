@@ -2,6 +2,7 @@ import 'package:dar/dar.dart';
 import 'package:dar/log.dart';
 import 'package:lsp_server/lsp_server.dart';
 import 'package:lsp_specification/lsp_specification.dart';
+import 'package:stream_channel/stream_channel.dart';
 
 import 'redux/actions/completion_action.dart';
 import 'redux/actions/hover_action.dart';
@@ -13,7 +14,12 @@ import 'redux/app_state.dart';
 ///
 /// Usage:
 /// ```dart
+/// // stdio (default)
 /// final runner = ServerRunner();
+/// await runner.run();
+///
+/// // TCP socket
+/// final runner = ServerRunner.fromChannel(channel);
 /// await runner.run();
 /// ```
 final class ServerRunner {
@@ -21,9 +27,16 @@ final class ServerRunner {
     : _server = LspServer(),
       _store = Store<AppState>(
         initialState: AppState.initial(),
-        actionObservers: [
-          Log()
-        ],
+        actionObservers: [Log()],
+        globalErrorObserver: (store) => GlobalErrorObserverForDevelopment(),
+      );
+
+  /// Creates a server backed by an arbitrary byte [channel] (e.g. a TCP socket).
+  ServerRunner.fromChannel(StreamChannel<List<int>> channel)
+    : _server = LspServer.fromChannel(channel),
+      _store = Store<AppState>(
+        initialState: AppState.initial(),
+        actionObservers: [Log()],
         globalErrorObserver: (store) => GlobalErrorObserverForDevelopment(),
       );
 

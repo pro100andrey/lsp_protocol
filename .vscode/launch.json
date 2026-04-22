@@ -16,12 +16,18 @@
         {
             // Run the LSP test server standalone for debugging.
             // Set breakpoints in any action or server_runner.dart and hit F5.
+            // The server listens on TCP port 2087; the VS Code extension
+            // connects to it instead of spawning a child process.
             "name": "Run LSP Server",
             "type": "dart",
             "request": "launch",
             "program": "${workspaceFolder}/packages/lsp_test_server/bin/lsp_test_server.dart",
             "cwd": "${workspaceFolder}/packages/lsp_test_server",
-            "console": "terminal"
+            "console": "terminal",
+            "args": [
+                "--socket",
+                "2087"
+            ]
         },
         {
             // Run the VS Code extension in a new Extension Development Host window.

@@ -19,7 +19,17 @@
         "command": "lspTester.restartServer",
         "title": "LSP Tester: Restart Server"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "LSP Tester",
+      "properties": {
+        "lspTester.serverPort": {
+          "type": "number",
+          "default": 2087,
+          "description": "TCP port of the pre-launched LSP test server (dart run lsp_test_server --socket <port>)."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

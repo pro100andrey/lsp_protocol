@@ -17,6 +17,7 @@ dependencies:
     path: ../lsp_server
   lsp_specification:
     path: ../lsp_specification
+  stream_channel: ^2.1.4
 
 dev_dependencies:
   build_runner: ^2.13.1
