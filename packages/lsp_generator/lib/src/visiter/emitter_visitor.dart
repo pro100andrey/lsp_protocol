@@ -2423,7 +2423,9 @@ final class EmitterVisitor {
   /// Returns an empty list for all other types.
   static List<String> _inlineUnionNote(ResolvedType type) {
     final inner = type is NullableType ? type.inner : type;
-    if (inner is! UnionType) return const [];
+    if (inner is! UnionType) {
+      return const [];
+    }
     final names = inner.items.map(
       (t) => switch (t) {
         ClassType(:final ref) => ref.name,

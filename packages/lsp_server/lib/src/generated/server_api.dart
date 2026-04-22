@@ -845,7 +845,6 @@ class GeneralHandlers {
       json,
     ) async {
       final p = InitializeParams.fromJson((json as Map<String, Object?>));
-      p.
       final r = await handler(p);
       return r.toJson();
     });

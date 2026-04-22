@@ -5,5 +5,9 @@ targets:
         options:
           explicit_to_json: true
           include_if_null: false
-          maybe_map: false
+          create_field_map: false
           checked: false
+      freezed:
+        options:
+          when: false
+          map: false

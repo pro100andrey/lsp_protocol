@@ -683,7 +683,9 @@ final class ServerApiVisitor {
 
     if (nonNull.length == 1) {
       final t = _innerTypeName(nonNull.first);
-      if (!hasNull) return t;
+      if (!hasNull) {
+        return t;
+      }
       // Avoid double-nullable: Object? from LSPAny should not become Object??
       return t.endsWith('?') ? t : '$t?';
     }
