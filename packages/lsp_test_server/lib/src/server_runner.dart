@@ -94,13 +94,13 @@ final class ServerRunner {
     });
 
     _server.textDocument.onDidChange((params) async {
-      // TextDocumentContentChangeEvent is a union: $Text (full) or
-      // $RangeRangeLengthText (incremental). We only declared fullSync so we
-      // always expect $Text here.
-      final text = params.contentChanges.lastOrNull?.map(
-        rangeRangeLengthText: (e) => e.value.text,
-        text: (e) => e.value.text,
-      );
+      final text = switch (params.contentChanges.lastOrNull) {
+        TextDocumentContentChangeEvent$Text(:final value) => value.text,
+        TextDocumentContentChangeEvent$RangeRangeLengthText(:final value) =>
+          value.text,
+        null => null,
+      };
+
       if (text != null) {
         await _store.dispatchAndWait(
           DidChangeAction(uri: params.textDocument.uri, text: text),
