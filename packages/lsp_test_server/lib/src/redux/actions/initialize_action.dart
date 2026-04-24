@@ -6,19 +6,19 @@ import '../common/base_action.dart';
 /// initialized.
 final class InitializeAction extends BaseAction {
   InitializeAction(this.params);
-
+  
   final InitializeParams params;
 
   @override
   AppState reduce() => state.copyWith(initialized: true);
 
   InitializeResult get result => const InitializeResult(
-    capabilities: ServerCapabilities(
+    capabilities: .new(
       positionEncoding: 'utf-16',
       hoverProvider: true,
-      completionProvider: CompletionOptions(triggerCharacters: ['.', ':']),
+      completionProvider: .new(triggerCharacters: ['.', ':']),
       textDocumentSync: TextDocumentSyncOptions(
-        change: TextDocumentSyncKind.full,
+        change: .full,
       ),
     ),
     serverInfo: (name: 'lsp-test-server', version: '0.1.0'),

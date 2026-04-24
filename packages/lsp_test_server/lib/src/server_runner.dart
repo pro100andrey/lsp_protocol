@@ -122,7 +122,10 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.textDocument.onHover((params) async {
-      log('[ServerRunner] Hover request: ${params.textDocument.uri}');
+      log(
+        '[ServerRunner] Hover request: ${params.textDocument.uri}, '
+        'position ${params.position.line}:${params.position.character}',
+      );
 
       final action = HoverAction(params);
       await _store.dispatchAndWait(action);
