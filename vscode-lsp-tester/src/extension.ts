@@ -3,10 +3,26 @@ import * as vscode from "vscode";
 import {
   LanguageClient,
   LanguageClientOptions,
+  Middleware,
   ServerOptions,
   State,
   StreamInfo,
 } from "vscode-languageclient/node";
+
+type HoverContents = vscode.Hover["contents"];
+
+function hoverContentsToString(contents: HoverContents): string {
+  const entries = Array.isArray(contents) ? contents : [contents];
+  const text = entries
+    .map((entry) => {
+      if (entry instanceof vscode.MarkdownString) return entry.value;
+      if (typeof entry === "string") return entry;
+      // MarkedString object: { language, value }
+      return "value" in entry ? entry.value : JSON.stringify(entry);
+    })
+    .join(" | ");
+  return text.slice(0, 200);
+}
 
 class LspTesterSession {
   private client: LanguageClient | undefined;
@@ -14,16 +30,24 @@ class LspTesterSession {
   private reconnectTimer: ReturnType<typeof setTimeout> | undefined;
   private readonly statusBarItem: vscode.StatusBarItem;
   private readonly traceOutputChannel: vscode.OutputChannel;
+  private readonly logChannel: vscode.OutputChannel;
 
   constructor(private readonly context: vscode.ExtensionContext) {
     this.traceOutputChannel = vscode.window.createOutputChannel(
       "LSP Test Server — Trace",
     );
+    this.logChannel = vscode.window.createOutputChannel(
+      "LSP Test Server — Log",
+    );
     this.statusBarItem = vscode.window.createStatusBarItem(
       vscode.StatusBarAlignment.Left,
     );
     this.statusBarItem.show();
-    context.subscriptions.push(this.traceOutputChannel, this.statusBarItem);
+    context.subscriptions.push(
+      this.traceOutputChannel,
+      this.logChannel,
+      this.statusBarItem,
+    );
   }
 
   start(): void {
@@ -68,6 +92,45 @@ class LspTesterSession {
     this.traceOutputChannel.show();
   }
 
+  showLog(): void {
+    this.logChannel.show();
+  }
+
+  private createMiddleware(): Middleware {
+    const log = this.logChannel;
+    return {
+      provideHover: async (doc, pos, token, next) => {
+        const result = await next(doc, pos, token);
+        const file = doc.uri.fsPath.split("/").pop() ?? doc.uri.fsPath;
+        const loc = `${file} ${pos.line}:${pos.character}`;
+        if (result) {
+          const text = hoverContentsToString(result.contents);
+          log.appendLine(`[hover] ${loc} → ${text}`);
+        } else {
+          log.appendLine(`[hover] ${loc} → null`);
+        }
+        return result;
+      },
+      provideCompletionItem: async (doc, pos, ctx, token, next) => {
+        const result = await next(doc, pos, ctx, token);
+        const file = doc.uri.fsPath.split("/").pop() ?? doc.uri.fsPath;
+        const loc = `${file} ${pos.line}:${pos.character}`;
+        const items = Array.isArray(result)
+          ? result
+          : result instanceof vscode.CompletionList
+            ? result.items
+            : [];
+        const labels = items
+          .map((i) => (typeof i.label === "string" ? i.label : i.label.label))
+          .join(", ");
+        log.appendLine(
+          `[completion] ${loc} → ${items.length} items: ${labels}`,
+        );
+        return result;
+      },
+    };
+  }
+
   private createClient(): LanguageClient {
     const port = vscode.workspace
       .getConfiguration("lspTester")
@@ -105,6 +168,7 @@ class LspTesterSession {
       documentSelector: [{ scheme: "file", language: "plaintext" }],
       outputChannelName: "LSP Test Server",
       traceOutputChannel: this.traceOutputChannel,
+      middleware: this.createMiddleware(),
     };
 
     return new LanguageClient(
@@ -128,6 +192,9 @@ export function activate(context: vscode.ExtensionContext): void {
     ),
     vscode.commands.registerCommand("lspTester.showOutput", () =>
       session?.showOutput(),
+    ),
+    vscode.commands.registerCommand("lspTester.showLog", () =>
+      session?.showLog(),
     ),
     vscode.workspace.onDidChangeConfiguration((e) => {
       if (e.affectsConfiguration("lspTester.serverPort")) {

@@ -22,6 +22,10 @@
       {
         "command": "lspTester.showOutput",
         "title": "LSP Tester: Show Output"
+      },
+      {
+        "command": "lspTester.showLog",
+        "title": "LSP Tester: Show Request/Response Log"
       }
     ],
     "configuration": {
@@ -36,6 +40,16 @@
           "type": "boolean",
           "default": true,
           "description": "Automatically reconnect to the LSP test server after an unexpected disconnect."
+        },
+        "lspTester.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "verbose",
+          "description": "Trace LSP communication between VS Code and the test server. 'messages' logs request/response headers; 'verbose' includes full JSON bodies."
         }
       }
     }
