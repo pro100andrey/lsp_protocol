@@ -24,20 +24,68 @@ function hoverContentsToString(contents: HoverContents): string {
   return text.slice(0, 200);
 }
 
+/** Routes vscode-languageclient appendLine calls to LogOutputChannel log levels. */
+class TracingChannel implements vscode.OutputChannel {
+  readonly name: string;
+  private readonly inner: vscode.LogOutputChannel;
+
+  constructor(name: string) {
+    this.inner = vscode.window.createOutputChannel(name, { log: true });
+    this.name = this.inner.name;
+  }
+
+  appendLine(line: string): void {
+    // vscode-languageclient prepends "[Trace - H:MM:SS AM/PM] " — strip it to
+    // avoid duplicate timestamps from LogOutputChannel.
+    const stripped = line.replace(/^\[Trace - \d+:\d+:\d+ [AP]M\] /, "");
+    if (/\berror\b|\bfailed\b/i.test(stripped)) {
+      this.inner.error(stripped);
+    } else if (/Sending (request|notification)/i.test(stripped)) {
+      this.inner.info(stripped);
+    } else if (/Received (response|notification)/i.test(stripped)) {
+      this.inner.debug(stripped);
+    } else {
+      this.inner.trace(stripped);
+    }
+  }
+
+  append(value: string): void {
+    this.inner.append(value);
+  }
+  replace(value: string): void {
+    this.inner.replace(value);
+  }
+  clear(): void {
+    this.inner.clear();
+  }
+  show(column?: vscode.ViewColumn | boolean, preserveFocus?: boolean): void {
+    if (typeof column === "boolean") {
+      this.inner.show(column);
+    } else {
+      this.inner.show(preserveFocus);
+    }
+  }
+  hide(): void {
+    this.inner.hide();
+  }
+  dispose(): void {
+    this.inner.dispose();
+  }
+}
+
 class LspTesterSession {
   private client: LanguageClient | undefined;
   private stopping = false;
   private reconnectTimer: ReturnType<typeof setTimeout> | undefined;
   private readonly statusBarItem: vscode.StatusBarItem;
-  private readonly traceOutputChannel: vscode.OutputChannel;
-  private readonly logChannel: vscode.OutputChannel;
+  private readonly traceOutputChannel: TracingChannel;
+  private readonly logChannel: vscode.LogOutputChannel;
 
   constructor(private readonly context: vscode.ExtensionContext) {
-    this.traceOutputChannel = vscode.window.createOutputChannel(
-      "LSP Test Server — Trace",
-    );
+    this.traceOutputChannel = new TracingChannel("LSP Test Server — Trace");
     this.logChannel = vscode.window.createOutputChannel(
       "LSP Test Server — Log",
+      { log: true },
     );
     this.statusBarItem = vscode.window.createStatusBarItem(
       vscode.StatusBarAlignment.Left,
@@ -105,9 +153,9 @@ class LspTesterSession {
         const loc = `${file} ${pos.line}:${pos.character}`;
         if (result) {
           const text = hoverContentsToString(result.contents);
-          log.appendLine(`[hover] ${loc} → ${text}`);
+          log.info(`[hover] ${loc} → ${text}`);
         } else {
-          log.appendLine(`[hover] ${loc} → null`);
+          log.warn(`[hover] ${loc} → null`);
         }
         return result;
       },
@@ -123,9 +171,7 @@ class LspTesterSession {
         const labels = items
           .map((i) => (typeof i.label === "string" ? i.label : i.label.label))
           .join(", ");
-        log.appendLine(
-          `[completion] ${loc} → ${items.length} items: ${labels}`,
-        );
+        log.info(`[completion] ${loc} → ${items.length} items: ${labels}`);
         return result;
       },
     };
