@@ -57,10 +57,11 @@ final class ServerRunner {
     // General
     // -------------------------------------------------------------------------
     _server.general.onInitialize((params) async {
-      logInfo('Received initialize request with params: $params');
+      logInfo('Received initialize request');
 
       final action = InitializeAction(params);
       await _store.dispatchAndWait(action);
+      
       return action.result;
     });
 
