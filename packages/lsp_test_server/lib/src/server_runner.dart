@@ -61,8 +61,69 @@ final class ServerRunner {
 
       final action = InitializeAction(params);
       await _store.dispatchAndWait(action);
-      
-      return action.result;
+
+      return const .new(
+        capabilities: .new(
+          positionEncoding: 'utf-16',
+          hoverProvider: true,
+          completionProvider: .new(triggerCharacters: ['.', ':']),
+          textDocumentSync: TextDocumentSyncOptions(
+            change: .full,
+            openClose: true,
+          ),
+          workspace: (
+            workspaceFolders: .new(
+              supported: true,
+              changeNotifications: true
+            ),
+            fileOperations: .new(
+              willCreate: .new(
+                filters: [
+                  .new(
+                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  ),
+                ],
+              ),
+              willRename: .new(
+                filters: [
+                  .new(
+                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  ),
+                ],
+              ),
+              willDelete: .new(
+                filters: [
+                  .new(
+                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  ),
+                ],
+              ),
+              didCreate: .new(
+                filters: [
+                  .new(
+                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  ),
+                ],
+              ),
+              didRename: .new(
+                filters: [
+                  .new(
+                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  ),
+                ],
+              ),
+              didDelete: .new(
+                filters: [
+                  .new(
+                    pattern: .new(glob: '**/*.txt', matches: .file),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        serverInfo: (name: 'lsp-test-server', version: '0.1.0'),
+      );
     });
 
     _server.general.onInitialized((_) async {
@@ -82,7 +143,7 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.textDocument.onDidOpen((params) async {
-      logInfo('[ServerRunner] Document opened: ${params.textDocument.uri}');
+      logInfo('Document opened: ${params.textDocument.uri}');
 
       await _store.dispatchAndWait(
         DidOpenAction(
@@ -93,7 +154,7 @@ final class ServerRunner {
     });
 
     _server.textDocument.onDidChange((params) async {
-      logInfo('[ServerRunner] Document changed: ${params.textDocument.uri}');
+      logInfo('Document changed: ${params.textDocument.uri}');
 
       final text = switch (params.contentChanges.lastOrNull) {
         TextDocumentContentChangeEvent$Text(:final value) => value.text,
@@ -110,7 +171,7 @@ final class ServerRunner {
     });
 
     _server.textDocument.onDidClose((params) async {
-      logInfo('[ServerRunner] Document closed: ${params.textDocument.uri}');
+      logInfo('Document closed: ${params.textDocument.uri}');
 
       await _store.dispatchAndWait(
         DidCloseAction(uri: params.textDocument.uri),
@@ -123,7 +184,7 @@ final class ServerRunner {
 
     _server.textDocument.onHover((params) async {
       logInfo(
-        '[ServerRunner] Hover request: ${params.textDocument.uri}, '
+        'Hover request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
       );
 
@@ -137,12 +198,29 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.textDocument.onCompletion((params) async {
-      logInfo('[ServerRunner] Completion request: ${params.textDocument.uri}');
+      logInfo('Completion request: ${params.textDocument.uri}');
 
       final action = CompletionAction(params);
       await _store.dispatchAndWait(action);
-      
+
       return action.result;
+    });
+
+    // -------------------------------------------------------------------------
+    // Workspace file operations
+    // -------------------------------------------------------------------------
+
+    _server.workspace.onDidCreateFiles((params) async {
+      logInfo(
+        'Files created: ${params.files.map((f) => f.uri).join(', ')}',
+      );
+    });
+
+    _server.workspace.onDidRenameFiles((params) async {
+      logInfo(
+        'Files renamed: '
+        '${params.files.map((f) => '${f.oldUri} -> ${f.newUri}').join(', ')}',
+      );
     });
   }
 
