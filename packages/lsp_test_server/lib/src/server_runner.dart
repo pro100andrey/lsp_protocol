@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:dar/dar.dart';
 import 'package:dar/log.dart';
@@ -15,15 +15,14 @@ import 'redux/app_state.dart';
 /// Wires [Store] and [LspServer]: registers all LSP handlers as Redux actions.
 ///
 /// Usage:
-/// ```dart
-/// // stdio (default)
-/// final runner = ServerRunner();
-/// await runner.run();
 ///
-/// // TCP socket
-/// final runner = ServerRunner.fromChannel(channel);
-/// await runner.run();
-/// ```
+///     // stdio (default)
+///     final runner = ServerRunner();
+///     await runner.run();
+///
+///     // TCP socket
+///     final runner = ServerRunner.fromChannel(channel);
+///     await runner.run();
 final class ServerRunner {
   ServerRunner()
     : _server = LspServer(),
@@ -57,24 +56,24 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
     // General
     // -------------------------------------------------------------------------
-
     _server.general.onInitialize((params) async {
-      log('[ServerRunner] Received initialize request with params');
+      log('Received initialize request with params: $params');
+
       final action = InitializeAction(params);
       await _store.dispatchAndWait(action);
       return action.result;
     });
 
     _server.general.onInitialized((_) async {
-      log('[ServerRunner] Server initialized');
+      log('Received initialized notification');
     });
 
     _server.general.onShutdown(() async {
-      log('[ServerRunner] Server shutting down');
+      log('Received shutdown request');
     });
 
     _server.general.onExit(() async {
-      log('[ServerRunner] Server exiting');
+      log('Received exit notification');
     });
 
     // -------------------------------------------------------------------------
@@ -143,5 +142,13 @@ final class ServerRunner {
       await _store.dispatchAndWait(action);
       return action.result;
     });
+  }
+
+  void log(String message) {
+    _server.client.window.logMessage(
+      .new(type: .log, message: '[ServerRunner] $message'),
+    );
+
+    stdout.writeln('[ServerRunner] $message');
   }
 }
