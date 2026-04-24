@@ -57,7 +57,7 @@ final class ServerRunner {
     // General
     // -------------------------------------------------------------------------
     _server.general.onInitialize((params) async {
-      log('Received initialize request with params: $params');
+      logInfo('Received initialize request with params: $params');
 
       final action = InitializeAction(params);
       await _store.dispatchAndWait(action);
@@ -65,15 +65,15 @@ final class ServerRunner {
     });
 
     _server.general.onInitialized((_) async {
-      log('Received initialized notification');
+      logInfo('Received initialized notification');
     });
 
     _server.general.onShutdown(() async {
-      log('Received shutdown request');
+      logInfo('Received shutdown request');
     });
 
     _server.general.onExit(() async {
-      log('Received exit notification');
+      logInfo('Received exit notification');
     });
 
     // -------------------------------------------------------------------------
@@ -81,7 +81,7 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.textDocument.onDidOpen((params) async {
-      log('[ServerRunner] Document opened: ${params.textDocument.uri}');
+      logInfo('[ServerRunner] Document opened: ${params.textDocument.uri}');
 
       await _store.dispatchAndWait(
         DidOpenAction(
@@ -92,7 +92,7 @@ final class ServerRunner {
     });
 
     _server.textDocument.onDidChange((params) async {
-      log('[ServerRunner] Document changed: ${params.textDocument.uri}');
+      logInfo('[ServerRunner] Document changed: ${params.textDocument.uri}');
 
       final text = switch (params.contentChanges.lastOrNull) {
         TextDocumentContentChangeEvent$Text(:final value) => value.text,
@@ -109,7 +109,7 @@ final class ServerRunner {
     });
 
     _server.textDocument.onDidClose((params) async {
-      log('[ServerRunner] Document closed: ${params.textDocument.uri}');
+      logInfo('[ServerRunner] Document closed: ${params.textDocument.uri}');
 
       await _store.dispatchAndWait(
         DidCloseAction(uri: params.textDocument.uri),
@@ -121,7 +121,7 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.textDocument.onHover((params) async {
-      log(
+      logInfo(
         '[ServerRunner] Hover request: ${params.textDocument.uri}, '
         'position ${params.position.line}:${params.position.character}',
       );
@@ -136,7 +136,7 @@ final class ServerRunner {
     // -------------------------------------------------------------------------
 
     _server.textDocument.onCompletion((params) async {
-      log('[ServerRunner] Completion request: ${params.textDocument.uri}');
+      logInfo('[ServerRunner] Completion request: ${params.textDocument.uri}');
 
       final action = CompletionAction(params);
       await _store.dispatchAndWait(action);
@@ -144,7 +144,7 @@ final class ServerRunner {
     });
   }
 
-  void log(String message) {
+  void logInfo(String message) {
     _server.client.window.logMessage(
       .new(type: .log, message: '[ServerRunner] $message'),
     );
