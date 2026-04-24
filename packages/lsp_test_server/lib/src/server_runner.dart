@@ -141,6 +141,7 @@ final class ServerRunner {
 
       final action = CompletionAction(params);
       await _store.dispatchAndWait(action);
+      
       return action.result;
     });
   }
