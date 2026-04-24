@@ -43,9 +43,10 @@ class TracingChannel implements vscode.OutputChannel {
     } else if (/Sending (request|notification)/i.test(stripped)) {
       this.inner.info(stripped);
     } else if (/Received (response|notification)/i.test(stripped)) {
-      this.inner.debug(stripped);
+      this.inner.info(stripped);
     } else {
-      this.inner.trace(stripped);
+      // JSON bodies (Params/Result/braces) and empty lines.
+      this.inner.info(stripped);
     }
   }
 
