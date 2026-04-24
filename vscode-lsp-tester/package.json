@@ -10,7 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:plaintext"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -18,6 +18,10 @@
       {
         "command": "lspTester.restartServer",
         "title": "LSP Tester: Restart Server"
+      },
+      {
+        "command": "lspTester.showOutput",
+        "title": "LSP Tester: Show Output"
       }
     ],
     "configuration": {
@@ -27,6 +31,11 @@
           "type": "number",
           "default": 2087,
           "description": "TCP port of the pre-launched LSP test server (dart run lsp_test_server --socket <port>)."
+        },
+        "lspTester.autoReconnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically reconnect to the LSP test server after an unexpected disconnect."
         }
       }
     }

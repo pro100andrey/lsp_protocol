@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:lsp_test_server/src/server_runner.dart';
@@ -26,14 +27,17 @@ Future<void> _runSocket(int port) async {
   final serverSocket = await ServerSocket.bind('127.0.0.1', port);
   stderr.writeln('[lsp_test_server] Listening on port $port');
 
-  final socket = await serverSocket.first;
-  await serverSocket.close();
-  stderr.writeln(
-    '[lsp_test_server] Client connected from '
-    '${socket.remoteAddress.address}:${socket.remotePort}',
-  );
-
-  final channel = StreamChannel<List<int>>(socket, socket);
-  await ServerRunner.fromChannel(channel).run();
-  socket.destroy();
+  await for (final socket in serverSocket) {
+    stderr.writeln(
+      '[lsp_test_server] Client connected from '
+      '${socket.remoteAddress.address}:${socket.remotePort}',
+    );
+    final channel = StreamChannel<List<int>>(socket, socket);
+    unawaited(
+      ServerRunner.fromChannel(channel).run().then((_) {
+        socket.destroy();
+        stderr.writeln('[lsp_test_server] Client disconnected');
+      }),
+    );
+  }
 }
