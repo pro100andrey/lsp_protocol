@@ -6,7 +6,7 @@ A Dart CLI tool that downloads the official LSP meta-model JSON from Microsoft, 
 
 ## Architecture
 
-Four packages in this monorepo:
+Six packages in this monorepo:
 
 ```
 lsp_generator          (CLI — fetches, resolves, emits Dart bindings)
@@ -14,7 +14,28 @@ lsp_generator          (CLI — fetches, resolves, emits Dart bindings)
   └→ cli_utils         (file I/O helpers, ANSI string formatting)
 lsp_specification      (Generated LSP 3.17 Dart bindings — do not edit manually)
 lsp_server             (Typed LSP server over json_rpc_2; generated/server_api.dart is generated)
+lsp_test_server        (Minimal LSP server for validating generated bindings; stdio + TCP modes)
+vscode-lsp-tester      (VS Code extension that connects to lsp_test_server over TCP)
 ```
+
+### `dar` dependency
+
+`dar` is a **git dependency** (not on pub.dev). `lsp_generator` and `lsp_test_server` may pin to **different commits** — do not assume they share the same version.
+
+```yaml
+# Example in pubspec.yaml
+dar:
+  git:
+    url: https://github.com/pro100andrey/dar.git
+    ref: 89775a65fd4d55d6be2dbcc90c440b2d8a19b8d3
+```
+
+### `lsp_test_server` and `vscode-lsp-tester` workflow
+
+1. `dart run packages/lsp_test_server/bin/lsp_test_server.dart --socket 2087` — starts TCP server
+2. Open VS Code with the `vscode-lsp-tester` extension enabled (connects to port 2087, configurable via `lspTester.serverPort`)
+3. Open any `.txt` file — the extension registers as a `LanguageClient` for `plaintext` files (avoids conflicting with the Dart extension)
+4. Use `lspTester.restartServer` command to reconnect
 
 ### Generation Pipeline
 
@@ -65,9 +86,10 @@ Code generation is split into four visitor passes:
 
 ```bash
 # Regenerate freezed/json files after editing protocol.dart or app_state.dart
+# (run inside the package that owns the file)
 dart run build_runner build
 
-# Lint
+# Lint (run per-package or from workspace root)
 dart analyze
 
 # Tests
@@ -80,7 +102,20 @@ dart run packages/lsp_generator/bin/lsp_generator.dart generate --verbose
 
 # Or via pre-compiled binary
 ./packages/lsp_generator/lsp_generator generate
+
+# Start test server (stdio)
+dart run packages/lsp_test_server/bin/lsp_test_server.dart
+
+# Start test server (TCP, for vscode-lsp-tester)
+dart run packages/lsp_test_server/bin/lsp_test_server.dart --socket 2087
 ```
+
+### Pubspec conventions
+
+- All packages: `publish_to: none`
+- Inter-package dependencies use `path:` (no Dart workspace directive)
+- Lint ruleset: `pro_lints` in `dev_dependencies` (not `lints` or `flutter_lints`)
+- `build_runner` is a `dev_dependency` and is run per-package, not globally
 
 ## Conventions
 
@@ -91,12 +126,31 @@ dart run packages/lsp_generator/bin/lsp_generator.dart generate --verbose
 3. Override `Future<AppState?> reduce()` (async) or `AppState? reduce()` (sync)
 4. Throw `UserException('Message', code: exXxx)` for structured Unix exit codes
 5. Dispatch via `store.dispatchAndWait(MyAction())` inside a command
+6. For parallel dispatch use `store.dispatchAndWaitAll([ActionA(), ActionB()])` (also available on `WithStore` commands)
+
+`WithStore` mixin (used in commands) exposes `dispatchAndWait`, `dispatchSync`, `dispatchAll`, `dispatchAndWaitAll` as shorthand — no need to prefix with `store.`.
 
 ### Adding a new command
 
 1. Create `lib/src/runner/commands/<name>.dart`
 2. Extend `Command` and mix in `WithStore` (from `commands/with_store.dart`) to access the store
 3. Register in `runner.dart` with `..addCommand(MyCommand(store: store))`
+
+### Adding an LSP request handler (`lsp_server` / `lsp_test_server`)
+
+Handlers are registered on namespace objects: `server.general`, `server.textDocument`, `server.workspace`, etc.
+
+```dart
+// In server_runner.dart or a Redux action
+final server = store.prop<LspServer>();
+server.textDocument.onHover((params) async {
+  // params is strongly typed via generated/server_api.dart
+  return Hover(contents: MarkupContent(...));
+});
+// Outgoing: server.client.window.logMessage(LogMessageParams(...));
+```
+
+`generated/server_api.dart` is emitted by `ServerApiVisitor` — never edit it directly.
 
 ### Code generation with code_builder
 
@@ -137,6 +191,14 @@ build Dart text via `StringBuffer` or raw multi-line string interpolation.
 - Run `build_runner build` after any change — **never hand-edit** `*.freezed.dart` or `*.g.dart`
 - Discriminated unions use `@Freezed(unionKey: 'kind')` with `sealed class`
 - All files under `packages/lsp_specification/lib/src/` are **generated outputs** — never edit them directly; re-run the generator instead
+
+### Tests
+
+- Tests live in `packages/lsp_generator/test/visiter/`
+- No mocking framework — pure unit tests against visitor logic
+- Use private fixture builder helpers (e.g. `_cls()`, `_prop()`, `_enum()`) that return typed `ResolvedState`/`ResolvedClass` etc. objects
+- Assert emitter output by formatting with `DartEmitter.scoped()` + `DartFormatter` and comparing as formatted Dart source strings
+- No golden files; no file I/O in tests
 
 ### Error handling
 
