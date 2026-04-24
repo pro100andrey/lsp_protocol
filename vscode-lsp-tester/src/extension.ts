@@ -34,9 +34,20 @@ function createClient(context: vscode.ExtensionContext): LanguageClient {
 
   const serverOptions: ServerOptions = (): Promise<StreamInfo> =>
     new Promise((resolve, reject) => {
-      const socket = net.createConnection({ port, host: "127.0.0.1" });
-      socket.once("connect", () => resolve({ reader: socket, writer: socket }));
-      socket.once("error", reject);
+      const tryConnect = (attemptsLeft: number) => {
+        const socket = net.createConnection({ port, host: "127.0.0.1" });
+        socket.once("connect", () =>
+          resolve({ reader: socket, writer: socket }),
+        );
+        socket.once("error", (err: NodeJS.ErrnoException) => {
+          if (err.code === "ECONNREFUSED" && attemptsLeft > 0) {
+            setTimeout(() => tryConnect(attemptsLeft - 1), 1000);
+          } else {
+            reject(err);
+          }
+        });
+      };
+      tryConnect(10);
     });
 
   const clientOptions: LanguageClientOptions = {
