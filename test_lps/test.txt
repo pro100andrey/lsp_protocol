@@ -1,0 +1,9 @@
+LSP Tester — plain text file for protocol testing.
+
+Hover anywhere on this line to test textDocument/hover.
+Type a dot . to trigger textDocument/completion.
+
+This file is used to verify all LSP features implemented in lsp_test_server.
+
+hello
+

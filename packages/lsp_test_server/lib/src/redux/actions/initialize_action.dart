@@ -1,0 +1,15 @@
+import 'package:lsp_specification/lsp_specification.dart';
+
+import '../common/base_action.dart';
+
+/// Handles `initialize` — returns server capabilities and marks state as
+/// initialized.
+final class InitializeAction extends BaseAction {
+  InitializeAction(this.params);
+
+  final InitializeParams params;
+
+  @override
+  AppState reduce() => state.copyWith(initialized: true);
+
+}

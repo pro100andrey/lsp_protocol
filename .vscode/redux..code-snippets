@@ -1,0 +1,36 @@
+{
+    "Redux action (sync)": {
+        "scope": "dart",
+        "prefix": ["redux-action-sync"],
+        "body": [
+            "import '../../common.dart';",
+            "",
+            "final class ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}} extends BaseAction {",
+            "  @override",
+            "  AppState? reduce() {",
+            "    ${2: throw UnimplementedError();}",
+            "  }",
+            "}",
+            ""
+        ],
+        "description": "Template for a synchronous Redux action."
+    },
+    "Redux action (async)": {
+        "scope": "dart",
+        "prefix": ["redux-action-async"],
+        "body": [
+            "import '../../common.dart';",
+            "",
+            "final class ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}} extends BaseAction {",
+            "  @override",
+            "  Future<AppState?> reduce() async {",
+            "    ${2: throw UnimplementedError();}",
+            "  }",
+            "}",
+            ""
+        ],
+        "description": "Template for an asynchronous Redux action."
+    }
+    
+}
+

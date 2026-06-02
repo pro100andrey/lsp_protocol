@@ -1,0 +1,36 @@
+name: lsp_generator
+description: A code generator for generating code from LSP specifications.
+version: 1.0.0
+
+publish_to: none
+
+environment: 
+  sdk: ^3.11.4
+
+dependencies:
+  args: 2.7.0
+  cli_utils: 
+    path: ../cli_utils
+  code_builder: ^4.11.1
+  collection: ^1.19.1
+  dar:
+    git:
+      url: https://github.com/pro100andrey/dar.git
+      ref: 89775a65fd4d55d6be2dbcc90c440b2d8a19b8d3
+  dart_style: ^3.1.0
+  fast_immutable_collections: ^11.1.0
+  freezed_annotation: ^3.1.0
+  http: ^1.6.0
+  json_annotation: ^4.11.0
+  mason_logger: ^0.3.3
+  stack_trace: ^1.12.1
+  
+dev_dependencies:
+  build_runner: ^2.13.1
+  freezed: ^3.2.5
+  json_serializable: ^6.13.1
+  pro_lints: ^5.1.0
+  test: ^1.31.0
+
+executables: 
+  lsp_generator: bin/lsp_generator.dart

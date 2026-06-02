@@ -1,0 +1,70 @@
+{
+  "name": "lsp-tester",
+  "displayName": "LSP Tester",
+  "description": "Tests the Dart-generated LSP protocol bindings via a live server.",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lspTester.restartServer",
+        "title": "LSP Tester: Restart Server"
+      },
+      {
+        "command": "lspTester.showOutput",
+        "title": "LSP Tester: Show Output"
+      },
+      {
+        "command": "lspTester.showLog",
+        "title": "LSP Tester: Show Request/Response Log"
+      }
+    ],
+    "configuration": {
+      "title": "LSP Tester",
+      "properties": {
+        "lspTester.serverPort": {
+          "type": "number",
+          "default": 2087,
+          "description": "TCP port of the pre-launched LSP test server (dart run lsp_test_server --socket <port>)."
+        },
+        "lspTester.autoReconnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically reconnect to the LSP test server after an unexpected disconnect."
+        },
+        "lspTester.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "verbose",
+          "description": "Trace LSP communication between VS Code and the test server. 'messages' logs request/response headers; 'verbose' includes full JSON bodies."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/vscode": "^1.116.0",
+    "typescript": "^6.0.3"
+  }
+}
