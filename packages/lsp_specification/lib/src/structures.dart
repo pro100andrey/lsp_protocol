@@ -1253,7 +1253,7 @@ abstract class InlayHint with _$InlayHint {
     ///
     /// *Note* that neither the string nor the label part can be empty.
     ///
-    /// Type: String | Object
+    /// Type: String | List<InlayHintLabelPart>
     required Object label,
 
     /// The kind of this hint. Can be omitted in which case the client should
@@ -2288,7 +2288,7 @@ abstract class Hover with _$Hover {
   const factory Hover({
     /// The hover's content
     ///
-    /// Type: MarkupContent | MarkedString | Object
+    /// Type: MarkupContent | MarkedString | List<MarkedString>
     required Object contents,
 
     /// An optional range inside the text document that is used to visualize the
@@ -5715,7 +5715,7 @@ abstract class ParameterInformation with _$ParameterInformation {
     /// signature label. Its intended use case is to highlight the parameter
     /// label part in the `SignatureInformation.label`.
     ///
-    /// Type: String | Object
+    /// Type: String | (int, int)
     required Object label,
 
     /// The human-readable doc-comment of this parameter. Will be shown in the

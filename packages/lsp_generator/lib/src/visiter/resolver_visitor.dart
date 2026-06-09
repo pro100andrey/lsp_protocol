@@ -37,85 +37,47 @@ final class ResolverVisitor {
     MetaReference ref, {
     String parentName = '',
     String fieldName = '',
-  }) {
-    switch (ref) {
-      case TypeRef():
-        final decl = _registry[ref.name];
-        if (decl == null) {
-          return DartCoreType(dartName: ref.name);
-        }
-        return switch (decl) {
-          ResolvedClass() => ClassType(ref: decl),
-          ResolvedEnum() => EnumType(ref: decl),
-          ResolvedAlias() => AliasType(ref: decl),
-        };
-
-      case BaseRef():
-        return DartCoreType(dartName: _baseRefToDart(ref.name));
-
-      case ArrayRef():
-        return ListType(
-          element: resolveRef(
-            ref.element,
-            parentName: parentName,
-            fieldName: fieldName,
-          ),
-        );
-
-      case MapRef():
-        return MapType(
-          key: resolveRef(
-            ref.key,
-            parentName: parentName,
-            fieldName: fieldName,
-          ),
-          value: resolveRef(
-            ref.value,
-            parentName: parentName,
-            fieldName: fieldName,
-          ),
-        );
-
-      case OrRef():
-        return _resolveOr(ref, parentName: parentName, fieldName: fieldName);
-
-      case AndRef():
-        return UnionType(
-          items: ref.items
-              .map(
-                (item) => resolveRef(
-                  item,
-                  parentName: parentName,
-                  fieldName: fieldName,
-                ),
-              )
-              .toList(),
-        );
-
-      case TupleRef():
-        return TupleType(
-          items: ref.items
-              .map(
-                (item) => resolveRef(
-                  item,
-                  parentName: parentName,
-                  fieldName: fieldName,
-                ),
-              )
-              .toList(),
-        );
-
-      case LiteralRef():
-        return _resolveLiteral(
-          ref,
-          parentName: parentName,
-          fieldName: fieldName,
-        );
-
-      case StringLiteralRef():
-        return StringLiteralType(value: ref.value);
-    }
-  }
+  }) => switch (ref) {
+    TypeRef(:final name) => switch (_registry[name]) {
+      final ResolvedClass c => ClassType(ref: c),
+      final ResolvedEnum e => EnumType(ref: e),
+      final ResolvedAlias a => AliasType(ref: a),
+      _ => DartCoreType(dartName: name),
+    },
+    BaseRef(:final name) => DartCoreType(dartName: _baseRefToDart(name)),
+    ArrayRef(:final element) => ListType(
+      element: resolveRef(
+        element,
+        parentName: parentName,
+        fieldName: fieldName,
+      ),
+    ),
+    MapRef(:final key, :final value) => MapType(
+      key: resolveRef(key, parentName: parentName, fieldName: fieldName),
+      value: resolveRef(value, parentName: parentName, fieldName: fieldName),
+    ),
+    OrRef() => _resolveOr(ref, parentName: parentName, fieldName: fieldName),
+    AndRef(:final items) => UnionType(
+      items: items
+          .map(
+            (i) => resolveRef(i, parentName: parentName, fieldName: fieldName),
+          )
+          .toList(),
+    ),
+    TupleRef(:final items) => TupleType(
+      items: items
+          .map(
+            (i) => resolveRef(i, parentName: parentName, fieldName: fieldName),
+          )
+          .toList(),
+    ),
+    LiteralRef() => _resolveLiteral(
+      ref,
+      parentName: parentName,
+      fieldName: fieldName,
+    ),
+    StringLiteralRef(:final value) => StringLiteralType(value: value),
+  };
 
   // ---------------------------------------------------------------------------
   // Private resolution helpers

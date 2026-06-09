@@ -8,8 +8,8 @@ import 'package:test/test.dart';
 // Helpers
 // ---------------------------------------------------------------------------
 
-/// Emit a [TypeReference] back to a source string.
-String _emit(TypeReference ref) {
+/// Emit a [Reference] back to a source string.
+String _emit(Reference ref) {
   final emitter = DartEmitter.scoped(useNullSafetySyntax: true);
   return ref.accept(emitter).toString();
 }
@@ -266,7 +266,7 @@ void main() {
   });
 
   group('toTypeRef — TupleType', () {
-    test('collapses to List<Object?>', () {
+    test('translates to Dart 3 Record', () {
       expect(
         _emit(
           toTypeRef(
@@ -278,7 +278,7 @@ void main() {
             ),
           ),
         ),
-        equals('List<Object?>'),
+        equals('(int, String)'),
       );
     });
   });

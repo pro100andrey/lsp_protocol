@@ -11108,7 +11108,7 @@ mixin _$InlayHint {
 ///
 /// *Note* that neither the string nor the label part can be empty.
 ///
-/// Type: String | Object
+/// Type: String | List<InlayHintLabelPart>
  Object get label;/// The kind of this hint. Can be omitted in which case the client should
 /// fall back to a reasonable default.
  InlayHintKind? get kind;/// Optional text edits that are performed when accepting this inlay hint.
@@ -11222,7 +11222,7 @@ class _InlayHint implements InlayHint {
 ///
 /// *Note* that neither the string nor the label part can be empty.
 ///
-/// Type: String | Object
+/// Type: String | List<InlayHintLabelPart>
 @override final  Object label;
 /// The kind of this hint. Can be omitted in which case the client should
 /// fall back to a reasonable default.
@@ -18936,7 +18936,7 @@ mixin _$Hover {
 
 /// The hover's content
 ///
-/// Type: MarkupContent | MarkedString | Object
+/// Type: MarkupContent | MarkedString | List<MarkedString>
  Object get contents;/// An optional range inside the text document that is used to visualize the
 /// hover, e.g. by changing the background color.
  Range? get range;
@@ -19021,7 +19021,7 @@ class _Hover implements Hover {
 
 /// The hover's content
 ///
-/// Type: MarkupContent | MarkedString | Object
+/// Type: MarkupContent | MarkedString | List<MarkedString>
 @override final  Object contents;
 /// An optional range inside the text document that is used to visualize the
 /// hover, e.g. by changing the background color.
@@ -45722,7 +45722,7 @@ mixin _$ParameterInformation {
 /// signature label. Its intended use case is to highlight the parameter
 /// label part in the `SignatureInformation.label`.
 ///
-/// Type: String | Object
+/// Type: String | (int, int)
  Object get label;/// The human-readable doc-comment of this parameter. Will be shown in the
 /// UI but can be omitted.
 ///
@@ -45805,7 +45805,7 @@ class _ParameterInformation implements ParameterInformation {
 /// signature label. Its intended use case is to highlight the parameter
 /// label part in the `SignatureInformation.label`.
 ///
-/// Type: String | Object
+/// Type: String | (int, int)
 @override final  Object label;
 /// The human-readable doc-comment of this parameter. Will be shown in the
 /// UI but can be omitted.

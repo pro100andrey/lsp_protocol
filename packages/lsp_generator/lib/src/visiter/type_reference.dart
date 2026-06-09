@@ -8,21 +8,15 @@ import '../models/resolved_type.dart';
 /// For most types this returns a [TypeReference]. For [InlineRecord] types use
 /// [toRef] which returns the appropriate `RecordType` from code_builder.
 Reference toRef(ResolvedType type, {bool nullable = false}) {
-  if (type is InlineRecord) {
-    return _buildRecordRef(type.fields, nullable: nullable);
-  }
+  final isNull = nullable || type is NullableType;
+  final actualType = type is NullableType ? type.inner : type;
 
-  if (type is NullableType) {
-    final inner = type.inner;
-    if (inner is InlineRecord) {
-      return _buildRecordRef(inner.fields, nullable: true);
-    }
-    return toTypeRef(inner).rebuild((b) => b.isNullable = true);
-  }
+  final ref = switch (actualType) {
+    InlineRecord(:final fields) => _buildRecordRef(fields),
+    _ => toTypeRef(actualType),
+  };
 
-  final ref = toTypeRef(type);
-
-  return nullable ? ref.rebuild((b) => b.isNullable = true) : ref;
+  return isNull ? ref.asNullable : ref;
 }
 
 /// Builds a code_builder [RecordType] from a list of [ResolvedProperty] fields.
@@ -38,11 +32,11 @@ RecordType _buildRecordRef(
   },
 );
 
-/// Converts a [ResolvedType] to a [TypeReference].
+/// Converts a [ResolvedType] to a [Reference].
 ///
 /// [InlineRecord] maps to `Object` as a fallback — callers that actually need
 /// the record syntax should use [toRef] instead.
-TypeReference toTypeRef(ResolvedType type) => switch (type) {
+Reference toTypeRef(ResolvedType type) => switch (type) {
   DartCoreType(:final dartName) => _dartCore(dartName),
   ClassType(:final ref) => TypeReference((b) => b..symbol = ref.name),
   EnumType(:final ref) => TypeReference((b) => b..symbol = ref.name),
@@ -57,20 +51,14 @@ TypeReference toTypeRef(ResolvedType type) => switch (type) {
       ..symbol = 'Map'
       ..types.addAll([toTypeRef(key), toTypeRef(value)]),
   ),
-  NullableType(:final inner) => toTypeRef(inner).rebuild(
-    (b) => b.isNullable = true,
-  ),
+  NullableType(:final inner) => toTypeRef(inner).asNullable,
   UnionType() => TypeReference((b) => b..symbol = 'Object'),
-  TupleType() => TypeReference(
-    (b) => b
-      ..symbol = 'List'
-      ..types.add(
-        TypeReference(
-          (b) => b
-            ..symbol = 'Object'
-            ..isNullable = true,
-        ),
-      ),
+  TupleType(:final items) => RecordType(
+    (b) {
+      for (final item in items) {
+        b.positionalFieldTypes.add(toTypeRef(item));
+      }
+    },
   ),
   StringLiteralType() => TypeReference((b) => b..symbol = 'String'),
   // InlineRecord is handled by toRef(); toTypeRef() falls back to Object.
@@ -115,3 +103,11 @@ TypeReference _dartCore(String name) => switch (name) {
   ),
   _ => TypeReference((b) => b..symbol = name),
 };
+
+extension _ReferenceExt on Reference {
+  Reference get asNullable => switch (this) {
+    final TypeReference r => r.rebuild((b) => b.isNullable = true),
+    final RecordType r => r.rebuild((b) => b.isNullable = true),
+    _ => this,
+  };
+}

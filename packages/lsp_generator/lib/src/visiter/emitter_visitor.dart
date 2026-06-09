@@ -2417,6 +2417,16 @@ final class EmitterVisitor {
     return lines;
   }
 
+  static String _typeName(ResolvedType type) => switch (type) {
+        ClassType(:final ref) => ref.name,
+        EnumType(:final ref) => ref.name,
+        AliasType(:final ref) => ref.name,
+        DartCoreType(:final dartName) => dartName,
+        TupleType(:final items) => '(${items.map(_typeName).join(', ')})',
+        ListType(:final element) => 'List<${_typeName(element)}>',
+        _ => 'Object',
+      };
+
   /// If [type] is an inline [UnionType] (i.e. not a named alias), returns a
   /// one-line note listing the variant names, e.g.
   /// `['Type: TextDocumentSyncOptions | TextDocumentSyncKind']`.
@@ -2426,15 +2436,7 @@ final class EmitterVisitor {
     if (inner is! UnionType) {
       return const [];
     }
-    final names = inner.items.map(
-      (t) => switch (t) {
-        ClassType(:final ref) => ref.name,
-        EnumType(:final ref) => ref.name,
-        AliasType(:final ref) => ref.name,
-        DartCoreType(:final dartName) => dartName,
-        _ => 'Object',
-      },
-    );
+    final names = inner.items.map(_typeName);
     return ['Type: ${names.join(' | ')}'];
   }
 
