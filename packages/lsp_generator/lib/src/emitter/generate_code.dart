@@ -1,6 +1,8 @@
-import 'package:cli_utils/cli_utils.dart';
+import 'dart:io';
+
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
+import 'package:path/path.dart' as p;
 
 import '../resolver/resolved_state.dart';
 import '../visiter/emitter_visitor.dart';
@@ -35,23 +37,29 @@ void generateCode(ResolvedState resolved, String outputDir) {
   final unions = emit(visitor.buildUnions());
   final methods = emit(visitor.buildNotificationMethods());
 
-  final pkgDir = DirectoryPath(outputDir);
-  final srcDir = pkgDir.join('lib/src');
-  final libDir = pkgDir.join('lib');
+  final srcDir = Directory(p.join(outputDir, 'lib', 'src'));
+  final libDir = Directory(p.join(outputDir, 'lib'));
 
-  if (srcDir.notFound) {
-    srcDir.create(recursive: true);
+  if (!srcDir.existsSync()) {
+    srcDir.createSync(recursive: true);
   }
 
-  srcDir.joinFile('structures.dart').writeAsString(structures);
-  srcDir.joinFile('enumerations.dart').writeAsString(enumerations);
-  srcDir.joinFile('type_aliases.dart').writeAsString(aliases);
-  srcDir.joinFile('scalar_unions.dart').writeAsString(scalarUnions);
-  srcDir.joinFile('unions.dart').writeAsString(unions);
-  srcDir.joinFile('methods.dart').writeAsString(methods);
+  final structuresPath = p.join(srcDir.path, 'structures.dart');
+  final enumerationsPath = p.join(srcDir.path, 'enumerations.dart');
+  final aliasesPath = p.join(srcDir.path, 'type_aliases.dart');
+  final scalarUnionsPath = p.join(srcDir.path, 'scalar_unions.dart');
+  final unionsPath = p.join(srcDir.path, 'unions.dart');
+  final methodsPath = p.join(srcDir.path, 'methods.dart');
+
+  File(structuresPath).writeAsStringSync(structures);
+  File(enumerationsPath).writeAsStringSync(enumerations);
+  File(aliasesPath).writeAsStringSync(aliases);
+  File(scalarUnionsPath).writeAsStringSync(scalarUnions);
+  File(unionsPath).writeAsStringSync(unions);
+  File(methodsPath).writeAsStringSync(methods);
 
   // Barrel file: lib/<packageName>.dart
-  final packageName = pkgDir.basename;
+  final packageName = p.basename(outputDir);
   final barrelLib = Library(
     (b) => b
       ..comments.add('GENERATED — do not edit.')
@@ -67,5 +75,5 @@ void generateCode(ResolvedState resolved, String outputDir) {
 
   final barrel = formatter.format(barrelLib.accept(dartEmitter).toString());
   
-  libDir.joinFile('$packageName.dart').writeAsString(barrel);
+  File(p.join(libDir.path, '$packageName.dart')).writeAsStringSync(barrel);
 }

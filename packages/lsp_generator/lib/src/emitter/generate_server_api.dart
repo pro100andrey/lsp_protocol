@@ -1,6 +1,8 @@
-import 'package:cli_utils/cli_utils.dart';
+import 'dart:io';
+
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
+import 'package:path/path.dart' as p;
 
 import '../resolver/resolved_state.dart';
 import '../visiter/server_api_visitor.dart';
@@ -29,11 +31,20 @@ void generateServerApi(ResolvedState resolved) {
     }
   }();
 
-  final serverPkgDir = DirectoryPath('packages/lsp_server');
-  final generatedDir = serverPkgDir.join('lib/src/generated');
-  if (generatedDir.notFound) {
-    generatedDir.create(recursive: true);
+  final generatedPath = p.join(
+    'packages',
+    'lsp_server',
+    'lib',
+    'src',
+    'generated',
+  );
+
+  final generatedDir = Directory(generatedPath);
+  if (!generatedDir.existsSync()) {
+    generatedDir.createSync(recursive: true);
   }
-  
-  generatedDir.joinFile('server_api.dart').writeAsString(source);
+
+  final outputPath = p.join(generatedPath, 'server_api.dart');
+
+  File(outputPath).writeAsStringSync(source);
 }

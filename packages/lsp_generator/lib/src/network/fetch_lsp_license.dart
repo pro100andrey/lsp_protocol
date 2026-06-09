@@ -1,6 +1,8 @@
-import 'package:cli_utils/cli_utils.dart';
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:mason_logger/mason_logger.dart';
+import 'package:path/path.dart' as p;
 
 import '../common/user_exception.dart';
 
@@ -32,12 +34,13 @@ Future<void> fetchLSPLicense(
   }
 
   final saveProgress = logger.progress('Saving License-code.txt...');
-  
-  final outDir = DirectoryPath(outputDir);
-  if (outDir.notFound) {
-    outDir.create(recursive: true);
+  final outDir = Directory(outputDir);
+  if (!outDir.existsSync()) {
+    outDir.createSync(recursive: true);
   }
 
-  outDir.joinFile('License-code.txt').writeAsString(response.body);
-  saveProgress.complete('Saved to ${outDir.path}/License-code.txt');
+  final filePath = p.join(outDir.path, 'License-code.txt');
+  File(filePath).writeAsStringSync(response.body);
+  
+  saveProgress.complete('Saved to $filePath');
 }

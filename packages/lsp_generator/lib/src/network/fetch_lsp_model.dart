@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:cli_utils/cli_utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:mason_logger/mason_logger.dart';
+import 'package:path/path.dart' as p;
 
 import '../common/user_exception.dart';
 import '../models/protocol.dart';
@@ -17,9 +18,7 @@ Future<MetaProtocol> fetchLSPModel(
   );
 
   final uri = Uri.parse(
-    'https://microsoft.github.io/'
-    'language-server-protocol/'
-    'specifications/lsp/$version/metaModel/metaModel.json',
+    'https://microsoft.github.io/language-server-protocol/specifications/lsp/$version/metaModel/metaModel.json',
   );
 
   final response = await http.get(uri);
@@ -46,13 +45,11 @@ Future<MetaProtocol> fetchLSPModel(
     parserProgress.complete('Successfully parsed');
 
     final saveProgress = logger.progress('Saving metaModel.json...');
-
-    final outDir = DirectoryPath(outputDir);
-    if (outDir.notFound) {
-      outDir.create(recursive: true);
+    final outDir = Directory(outputDir);
+    if (!outDir.existsSync()) {
+      outDir.createSync(recursive: true);
     }
-
-    outDir.joinFile('metaModel.json').writeAsString(body);
+    File(p.join(outDir.path, 'metaModel.json')).writeAsStringSync(body);
     saveProgress.complete('Saved to ${outDir.path}/metaModel.json');
 
     return meta;
